@@ -28,28 +28,22 @@ namespace Aws
     {
         namespace Jobs
         {
-            class JobExecutionData final
+            class JobExecutionState final
             {
             public:
-                JobExecutionData() = default;
+                JobExecutionState() = default;
 
-                JobExecutionData(const cJSON& node);
-                JobExecutionData& operator=(const cJSON& node);
+                JobExecutionState(const cJSON& node);
+                JobExecutionState& operator=(const cJSON& node);
 
                 void SerializeToNode(cJSON& node) const;
 
-                Crt::Optional<Crt::String> JobId;
-                Crt::Optional<Crt::String> ThingName;
-                Crt::Optional<Crt::String> JobDocument;
                 Crt::Optional<JobStatus> Status;
-                Crt::Optional<Crt::DateTime> QueuedAt;
-                Crt::Optional<Crt::DateTime> StartedAt;
-                Crt::Optional<Crt::DateTime> LastUpdatedAt;
+                Crt::Optional<Crt::Map<Crt::String, Crt::String>> StatusDetails;
                 Crt::Optional<int32_t> VersionNumber;
-                Crt::Optional<int64_t> ExecutionNumber;
 
             private:
-                static void LoadFromNode(JobExecutionData&, const cJSON& node);
+                static void LoadFromNode(JobExecutionState&, const cJSON& node);
             };
         }
     }

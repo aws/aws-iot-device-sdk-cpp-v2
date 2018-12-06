@@ -24,52 +24,48 @@ namespace Aws
             {
                 if (cJSON_HasObjectItem(&node, "jobId"))
                 {
-                    val.JobId = cJSON_GetObjectItem(&node, "jobId")->string;
+                    val.JobId = cJSON_GetObjectItem(&node, "jobId")->valuestring;
                 }
 
                 if (cJSON_HasObjectItem(&node, "thingName"))
                 {
-                    val.ThingName = cJSON_GetObjectItem(&node, "thingName")->string;
+                    val.ThingName = cJSON_GetObjectItem(&node, "thingName")->valuestring;
                 }
 
                 if (cJSON_HasObjectItem(&node, "jobDocument"))
                 {
-                    val.JobDocument = cJSON_GetObjectItem(&node, "jobDocument")->string;
+                    val.JobDocument = cJSON_GetObjectItem(&node, "jobDocument")->valuestring;
                 }
 
-                if (cJSON_HasObjectItem(&node, "jobStatus"))
+                if (cJSON_HasObjectItem(&node, "status"))
                 {
-                    val.Status = JobStatusMarshaller::FromString(cJSON_GetObjectItem(&node, "jobStatus")->string);
+                    val.Status = JobStatusMarshaller::FromString(cJSON_GetObjectItem(&node, "status")->valuestring);
                 }
 
                 if (cJSON_HasObjectItem(&node, "queuedAt"))
                 {
-                    val.QueuedAt = (uint64_t)cJSON_GetObjectItem(&node, "queuedAt")->valuedouble;
+                    val.QueuedAt = cJSON_GetObjectItem(&node, "queuedAt")->valuedouble;
                 }
 
                 if (cJSON_HasObjectItem(&node, "startedAt"))
                 {
-                    val.StartedAt = (uint64_t)cJSON_GetObjectItem(&node, "startedAt")->valuedouble;
+                    val.StartedAt = cJSON_GetObjectItem(&node, "startedAt")->valuedouble;
                 }
 
                 if (cJSON_HasObjectItem(&node, "lastUpdatedAt"))
                 {
-                    val.LastUpdatedAt = (uint64_t)cJSON_GetObjectItem(&node, "lastUpdatedAt")->valuedouble;
+                    val.LastUpdatedAt = cJSON_GetObjectItem(&node, "lastUpdatedAt")->valuedouble;
                 }
 
                 if (cJSON_HasObjectItem(&node, "versionNumber"))
                 {
-                    val.VersionNumber = (uint32_t)cJSON_GetObjectItem(&node, "versionNumber")->valueint;
+                    val.VersionNumber = static_cast<int32_t>(cJSON_GetObjectItem(&node, "versionNumber")->valueint);
                 }
 
                 if (cJSON_HasObjectItem(&node, "executionNumber"))
                 {
-                    val.ExecutionNumber = (uint64_t)cJSON_GetObjectItem(&node, "executionNumber")->valueint;
+                    val.ExecutionNumber = static_cast<int64_t>(cJSON_GetObjectItem(&node, "executionNumber")->valueint);
                 }
-            }
-
-            JobExecutionData::JobExecutionData() noexcept
-            {
             }
 
             JobExecutionData::JobExecutionData(const cJSON& node)
@@ -81,6 +77,54 @@ namespace Aws
             {
                 *this = JobExecutionData(node);
                 return *this;
+            }
+
+            void JobExecutionData::SerializeToNode(cJSON& node) const
+            {
+                if (JobId)
+                {
+                    cJSON_AddStringToObject(&node, "jobId", JobId->c_str());
+                }
+
+                if (ThingName)
+                {
+                    cJSON_AddStringToObject(&node, "thingName", ThingName->c_str());
+                }
+
+                if (JobDocument)
+                {
+                    cJSON_AddStringToObject(&node, "jobDocument", JobDocument->c_str());
+                }
+
+                if (Status)
+                {
+                    cJSON_AddStringToObject(&node, "status", JobStatusMarshaller::ToString(*Status));
+                }
+
+                if (QueuedAt)
+                {
+                    cJSON_AddNumberToObject(&node, "queuedAt", QueuedAt->SecondsWithMSPrecision());
+                }
+
+                if (StartedAt)
+                {
+                    cJSON_AddNumberToObject(&node, "startedAt", StartedAt->SecondsWithMSPrecision());
+                }
+
+                if (LastUpdatedAt)
+                {
+                    cJSON_AddNumberToObject(&node, "lastUpdatedAt", LastUpdatedAt->SecondsWithMSPrecision());
+                }
+
+                if (VersionNumber)
+                {
+                    cJSON_AddNumberToObject(&node, "versionNumber", static_cast<double>(*VersionNumber));
+                }
+
+                if (ExecutionNumber)
+                {
+                    cJSON_AddNumberToObject(&node, "executionNumber", static_cast<double>(*ExecutionNumber));
+                }
             }
         }
     }
