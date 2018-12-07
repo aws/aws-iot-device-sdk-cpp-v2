@@ -27,12 +27,12 @@ namespace Aws
             {
             }
 
-            IotJobsClient::operator bool() const
+            IotJobsClient::operator bool() const noexcept
             {
                 return *m_connection;
             }
 
-            int IotJobsClient::GetLastError() const
+            int IotJobsClient::GetLastError() const noexcept
             {
                 return aws_last_error();
             }

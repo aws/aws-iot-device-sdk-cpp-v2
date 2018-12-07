@@ -61,14 +61,14 @@ namespace Aws
                 JobsErrorCode ErrorCode;
 
                 template<typename U>
-                U* GetErrorInstance() const
+                const U* GetErrorInstance() const
                 {
                     if (U::Code != ErrorCode)
                     {
                         return nullptr;
                     }
 
-                    return reinterpret_cast<U*>(&m_errorStorage);
+                    return reinterpret_cast<const U*>(&m_errorStorage);
                 }
 
             private:
