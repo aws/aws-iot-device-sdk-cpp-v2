@@ -26,7 +26,7 @@ namespace Aws
     {
         namespace Jobs
         {
-            class DescribeJobExecutionResponse final
+            class AWS_CRT_CPP_API DescribeJobExecutionResponse final
             {
             public:
                 DescribeJobExecutionResponse(const Crt::String& responseDoc);
@@ -37,7 +37,7 @@ namespace Aws
                 operator bool() const { return m_good; }
 
             private:
-                static void LoadFromDoc(DescribeJobExecutionResponse&, const Crt::JsonView& doc);
+                static void LoadFromObject(DescribeJobExecutionResponse &, const Crt::JsonView &doc);
 
                 bool m_good;
             };

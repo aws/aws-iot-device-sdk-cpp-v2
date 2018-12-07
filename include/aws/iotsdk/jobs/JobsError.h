@@ -28,9 +28,12 @@ namespace Aws
                 UnknownError,
             };
 
-            class RejectedError
+            class AWS_CRT_CPP_API RejectedError
             {
             public:
+                RejectedError() = default;
+                RejectedError(const Crt::JsonView& doc);
+
                 Crt::Optional<Crt::String> ClientToken;
                 Crt::Optional<Crt::String> Message;
                 Crt::Optional<Crt::DateTime> Timestamp;
@@ -39,17 +42,22 @@ namespace Aws
                 static const JobsErrorCode Code = JobsErrorCode::RejectedError;
             };
 
-            class UnknownError
+            class AWS_CRT_CPP_API UnknownError
             {
             public:
+                UnknownError() = default;
+                UnknownError(const Crt::JsonView& doc);
+
                 Crt::String Message;
 
                 static const JobsErrorCode Code = JobsErrorCode::UnknownError;
             };
 
-            class JobsError final
+            class AWS_CRT_CPP_API JobsError final
             {
             public:
+                JobsError(const Crt::JsonView& doc);
+
                 JobsErrorCode ErrorCode;
 
                 template<typename U>
@@ -66,8 +74,8 @@ namespace Aws
             private:
                 union
                 {
-                    RejectedError rejectedError;
-                    UnknownError unknownError;
+                    std::aligned_storage<sizeof(RejectedError)>::type rejectedError;
+                    std::aligned_storage<sizeof(UnknownError)>::type unknownError;
                 } m_errorStorage;
             };
         }

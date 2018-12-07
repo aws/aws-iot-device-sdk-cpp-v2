@@ -16,11 +16,9 @@
 #include <aws/iotsdk/jobs/JobStatus.h>
 
 #include <aws/crt/DateTime.h>
+#include <aws/crt/JsonObject.h>
 #include <aws/crt/Types.h>
 #include <aws/crt/StlAllocator.h>
-
-#include <aws/iotsdk/external/cJSON.h>
-
 
 namespace Aws
 {
@@ -28,19 +26,19 @@ namespace Aws
     {
         namespace Jobs
         {
-            class JobExecutionData final
+            class AWS_CRT_CPP_API JobExecutionData final
             {
             public:
                 JobExecutionData() = default;
 
-                JobExecutionData(const cJSON& node);
-                JobExecutionData& operator=(const cJSON& node);
+                JobExecutionData(const Crt::JsonView& doc);
+                JobExecutionData& operator=(const Crt::JsonView& doc);
 
-                void SerializeToNode(cJSON& node) const;
+                void SerializeToObject(Crt::JsonObject& doc) const;
 
                 Crt::Optional<Crt::String> JobId;
                 Crt::Optional<Crt::String> ThingName;
-                Crt::Optional<Crt::String> JobDocument;
+                Crt::Optional<Crt::JsonObject> JobDocument;
                 Crt::Optional<JobStatus> Status;
                 Crt::Optional<Crt::DateTime> QueuedAt;
                 Crt::Optional<Crt::DateTime> StartedAt;
@@ -49,7 +47,7 @@ namespace Aws
                 Crt::Optional<int64_t> ExecutionNumber;
 
             private:
-                static void LoadFromNode(JobExecutionData&, const cJSON& node);
+                static void LoadFromObject(JobExecutionData &, const Crt::JsonView &doc);
             };
         }
     }

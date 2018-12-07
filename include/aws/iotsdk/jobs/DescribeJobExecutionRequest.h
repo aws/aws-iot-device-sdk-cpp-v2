@@ -24,7 +24,7 @@ namespace Aws
     {
         namespace Jobs
         {
-            class DescribeJobExecutionRequest final
+            class AWS_CRT_CPP_API DescribeJobExecutionRequest final
             {
             public:
                 DescribeJobExecutionRequest(Crt::String&& thingName, Crt::String&& jobId, Crt::String&& clientToken);

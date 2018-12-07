@@ -19,31 +19,34 @@
 #include <aws/crt/Types.h>
 #include <aws/crt/StlAllocator.h>
 
-#include <aws/iotsdk/external/cJSON.h>
-
-
 namespace Aws
 {
+    namespace Crt
+    {
+        class JsonObject;
+        class JsonView;
+    }
+
     namespace IotSdk
     {
         namespace Jobs
         {
-            class JobExecutionState final
+            class AWS_CRT_CPP_API JobExecutionState final
             {
             public:
                 JobExecutionState() = default;
 
-                JobExecutionState(const cJSON& node);
-                JobExecutionState& operator=(const cJSON& node);
+                JobExecutionState(const Crt::JsonView& doc);
+                JobExecutionState& operator=(const Crt::JsonView& doc);
 
-                void SerializeToNode(cJSON& node) const;
+                void SerializeToObject(Crt::JsonObject& doc) const;
 
                 Crt::Optional<JobStatus> Status;
                 Crt::Optional<Crt::Map<Crt::String, Crt::String>> StatusDetails;
                 Crt::Optional<int32_t> VersionNumber;
 
             private:
-                static void LoadFromNode(JobExecutionState&, const cJSON& node);
+                static void LoadFromObject(JobExecutionState&, const Crt::JsonView& doc);
             };
         }
     }

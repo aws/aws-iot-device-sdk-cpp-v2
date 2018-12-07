@@ -14,67 +14,67 @@
 */
 #include <aws/iotsdk/jobs/JobExecutionState.h>
 
+#include <aws/crt/JsonObject.h>
+
 namespace Aws
 {
     namespace IotSdk
     {
         namespace Jobs
         {
-            void JobExecutionState::LoadFromNode(JobExecutionState& val, const cJSON& node)
+            void JobExecutionState::LoadFromObject(JobExecutionState& val, const Crt::JsonView& doc)
             {
-
-                if (cJSON_HasObjectItem(&node, "status"))
+                if (doc.ValueExists("status"))
                 {
-                    val.Status = JobStatusMarshaller::FromString(cJSON_GetObjectItem(&node, "status")->valuestring);
+                    val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
                 }
 
-                if (cJSON_HasObjectItem(&node, "statusDetails"))
+                if (doc.ValueExists("statusDetails"))
                 {
-                    auto objectItem = cJSON_GetObjectItem(&node, "statusDetails")->child;
-                    while (objectItem)
+                    auto obj = doc.GetObject("statusDetails");
+                    for (auto& item : obj.GetAllObjects())
                     {
-                        (*val.StatusDetails)[objectItem->string] = objectItem->valuestring;
-                        objectItem = objectItem->next;
+                        (*val.StatusDetails)[item.first] = item.second.AsString();
                     }
                 }
 
-                if (cJSON_HasObjectItem(&node, "versionNumber"))
+                if (doc.ValueExists("versionNumber"))
                 {
-                    val.VersionNumber = static_cast<int32_t>(cJSON_GetObjectItem(&node, "versionNumber")->valueint);
+                    val.VersionNumber = doc.GetInteger("versionNumber");
                 }
-
             }
 
-            JobExecutionState::JobExecutionState(const cJSON& node)
+            JobExecutionState::JobExecutionState(const Crt::JsonView& doc)
             {
-                LoadFromNode(*this, node);
+                LoadFromObject(*this, doc);
             }
 
-            JobExecutionState& JobExecutionState::operator=(const cJSON& node)
+            JobExecutionState& JobExecutionState::operator=(const Crt::JsonView& doc)
             {
-                *this = JobExecutionState(node);
+                *this = JobExecutionState(doc);
                 return *this;
             }
 
-            void JobExecutionState::SerializeToNode(cJSON& node) const
+            void JobExecutionState::SerializeToObject(Crt::JsonObject& doc) const
             {
                 if (Status)
                 {
-                    cJSON_AddStringToObject(&node, "status", JobStatusMarshaller::ToString(*Status));
+                    doc.WithString("status", JobStatusMarshaller::ToString(*Status));
                 }
 
                 if (StatusDetails)
                 {
-                    auto map = cJSON_AddObjectToObject(&node, "statusDetails");
+                    Crt::JsonObject object;
                     for (auto& item : *StatusDetails)
                     {
-                        cJSON_AddStringToObject(map, item.first.c_str(), item.second.c_str());
+                        object.WithString(item.first, item.second);
                     }
+                    doc.WithObject("statusDetails", object);
                 }
 
                 if (VersionNumber)
                 {
-                    cJSON_AddNumberToObject(&node, "versionNumber", static_cast<double>(*VersionNumber));
+                    doc.WithInteger("versionNumber", *VersionNumber);
                 }
             }
         }

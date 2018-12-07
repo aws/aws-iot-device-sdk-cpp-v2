@@ -22,7 +22,8 @@ namespace Aws
     {
         namespace Jobs
         {
-            void DescribeJobExecutionResponse::LoadFromDoc(DescribeJobExecutionResponse& val, const Crt::JsonView& doc)
+            void DescribeJobExecutionResponse::LoadFromObject(DescribeJobExecutionResponse &val,
+                                                              const Crt::JsonView &doc)
             {
                 if (doc.ValueExists("clientToken"))
                 {
@@ -50,7 +51,7 @@ namespace Aws
                     m_good = true;
                 }
 
-                LoadFromDoc(*this, doc.View());
+                LoadFromObject(*this, doc.View());
             }
         }
     }

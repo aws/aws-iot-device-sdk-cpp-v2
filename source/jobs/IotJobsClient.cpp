@@ -1,4 +1,3 @@
-#pragma once
 /*
 * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 *
@@ -14,6 +13,8 @@
 * permissions and limitations under the License.
 */
 #include <aws/iotsdk/jobs/IotJobsClient.h>
+
+#include <aws/crt/JsonObject.h>
 
 namespace Aws
 {
@@ -54,15 +55,8 @@ namespace Aws
                 auto onSubscribePublish = [onResponse](Crt::Mqtt::MqttConnection& connection,
                                                        const Crt::ByteBuf& topic, const Crt::ByteBuf& payload)
                 {
-                    auto jsonObj = cJSON_Parse(reinterpret_cast<char*>(payload.buffer));
-
-                    if (!jsonObj)
-                    {
-                        onResponse(nullptr, nullptr, AWS_ERROR_INVALID_ARGUMENT);
-                        return;
-                    }
-
-                    DescribeJobExecutionResponse response(*jsonObj);
+                    Crt::String objectStr(reinterpret_cast<char*>(payload.buffer), payload.len);
+                    DescribeJobExecutionResponse response(objectStr);
                     onResponse(&response, nullptr, AWS_ERROR_SUCCESS);
                 };
 
@@ -73,15 +67,9 @@ namespace Aws
                 auto onErrorPublish = [onResponse](Crt::Mqtt::MqttConnection& connection,
                                                    const Crt::ByteBuf& topic, const Crt::ByteBuf& payload)
                 {
-                    auto jsonObj = cJSON_Parse(reinterpret_cast<char*>(payload.buffer));
-
-                    if (!jsonObj)
-                    {
-                        onResponse(nullptr, nullptr, AWS_ERROR_INVALID_ARGUMENT);
-                        return;
-                    }
-
-                    JobsError error;
+                    Crt::String objectStr(reinterpret_cast<char*>(payload.buffer), payload.len);
+                    Crt::JsonObject object(objectStr);
+                    JobsError error(object);
                     onResponse(nullptr, &error, AWS_ERROR_SUCCESS);
                 };
 
@@ -100,17 +88,22 @@ namespace Aws
                     return false;
                 }
 
-                auto outgoingJson = request.Serialize();
-                auto onPublishComplete = [outgoingJson, onResponse](Crt::Mqtt::MqttConnection& connection,
+                auto&& outgoingJson = request.Serialize();
+                Crt::ByteBuf buf = Crt::ByteBufNewCopy(Crt::g_allocator,
+                                                       reinterpret_cast<const uint8_t*>(outgoingJson.data()),
+                                                       outgoingJson.length());
+
+                auto onPublishComplete = [buf, onResponse](Crt::Mqtt::MqttConnection& connection,
                         uint16_t packetId)
                 {
                     if (!packetId)
                     {
                         onResponse(nullptr, nullptr, aws_last_error());
                     }
+
+                    Crt::ByteBufDelete(const_cast<Crt::ByteBuf&>(buf));
                 };
 
-                auto buf = Crt::ByteBufFromCString(outgoingJson.c_str());
                 return m_connection->Publish(publishTopic.str().c_str(), qos, false, buf, onPublishComplete) != 0;
 
             }

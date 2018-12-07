@@ -37,8 +37,8 @@ namespace Aws
             public:
                 IotJobsClient(const std::shared_ptr<Crt::Mqtt::MqttConnection>& connection);
 
-                operator bool() const;
-                int GetLastError() const;
+                operator bool() const noexcept;
+                int GetLastError() const noexcept;
 
                 bool DescribeJobExecution(DescribeJobExecutionRequest&& request,
                         Crt::Mqtt::QOS qos, OnDescribeJobExecutionResponse&& onResponse);

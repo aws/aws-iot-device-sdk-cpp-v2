@@ -14,116 +14,119 @@
 */
 #include <aws/iotsdk/jobs/JobExecutionData.h>
 
+#include <aws/crt/JsonObject.h>
+
 namespace Aws
 {
     namespace IotSdk
     {
         namespace Jobs
         {
-            void JobExecutionData::LoadFromNode(JobExecutionData& val, const cJSON& node)
+            void JobExecutionData::LoadFromObject(JobExecutionData &val, const Crt::JsonView &doc)
             {
-                if (cJSON_HasObjectItem(&node, "jobId"))
+                if (doc.ValueExists("jobId"))
                 {
-                    val.JobId = cJSON_GetObjectItem(&node, "jobId")->valuestring;
+                    val.JobId = doc.GetString("jobId");
                 }
 
-                if (cJSON_HasObjectItem(&node, "thingName"))
+                if (doc.ValueExists("thingName"))
                 {
-                    val.ThingName = cJSON_GetObjectItem(&node, "thingName")->valuestring;
+                    val.ThingName = doc.GetString("thingName");
                 }
 
-                if (cJSON_HasObjectItem(&node, "jobDocument"))
+                if (doc.ValueExists("jobDocument"))
                 {
-                    val.JobDocument = cJSON_GetObjectItem(&node, "jobDocument")->valuestring;
+                    val.JobDocument = doc.GetObjectCopy("jobDocument");
                 }
 
-                if (cJSON_HasObjectItem(&node, "status"))
+                if (doc.ValueExists("status"))
                 {
-                    val.Status = JobStatusMarshaller::FromString(cJSON_GetObjectItem(&node, "status")->valuestring);
+                    val.Status = JobStatusMarshaller::FromString(doc.GetString("status").c_str());
                 }
 
-                if (cJSON_HasObjectItem(&node, "queuedAt"))
+                if (doc.ValueExists("queuedAt"))
                 {
-                    val.QueuedAt = cJSON_GetObjectItem(&node, "queuedAt")->valuedouble;
+                    val.QueuedAt = doc.GetDouble("queuedAt");
                 }
 
-                if (cJSON_HasObjectItem(&node, "startedAt"))
+                if (doc.ValueExists("startedAt"))
                 {
-                    val.StartedAt = cJSON_GetObjectItem(&node, "startedAt")->valuedouble;
+                    val.StartedAt = doc.GetDouble("startedAt");
                 }
 
-                if (cJSON_HasObjectItem(&node, "lastUpdatedAt"))
+                if (doc.ValueExists("lastUpdatedAt"))
                 {
-                    val.LastUpdatedAt = cJSON_GetObjectItem(&node, "lastUpdatedAt")->valuedouble;
+                    val.LastUpdatedAt = doc.GetDouble("lastUpdatedAt");
                 }
 
-                if (cJSON_HasObjectItem(&node, "versionNumber"))
+                if (doc.ValueExists("versionNumber"))
                 {
-                    val.VersionNumber = static_cast<int32_t>(cJSON_GetObjectItem(&node, "versionNumber")->valueint);
+                    val.VersionNumber = doc.GetInteger("versionNumber");
+
                 }
 
-                if (cJSON_HasObjectItem(&node, "executionNumber"))
+                if (doc.ValueExists("executionNumber"))
                 {
-                    val.ExecutionNumber = static_cast<int64_t>(cJSON_GetObjectItem(&node, "executionNumber")->valueint);
+                    val.ExecutionNumber = doc.GetInt64("executionNumber");
                 }
             }
 
-            JobExecutionData::JobExecutionData(const cJSON& node)
+            JobExecutionData::JobExecutionData(const Crt::JsonView& doc)
             {
-                LoadFromNode(*this, node);
+                LoadFromObject(*this, doc);
             }
 
-            JobExecutionData& JobExecutionData::operator=(const cJSON& node)
+            JobExecutionData& JobExecutionData::operator=(const Crt::JsonView& doc)
             {
-                *this = JobExecutionData(node);
+                *this = JobExecutionData(doc);
                 return *this;
             }
 
-            void JobExecutionData::SerializeToNode(cJSON& node) const
+            void JobExecutionData::SerializeToObject(Crt::JsonObject& doc) const
             {
                 if (JobId)
                 {
-                    cJSON_AddStringToObject(&node, "jobId", JobId->c_str());
+                    doc.WithString("jobId", *JobId);
                 }
 
                 if (ThingName)
                 {
-                    cJSON_AddStringToObject(&node, "thingName", ThingName->c_str());
+                    doc.WithString("thingName", *ThingName);
                 }
 
                 if (JobDocument)
                 {
-                    cJSON_AddStringToObject(&node, "jobDocument", JobDocument->c_str());
+                    doc.WithObject("jobDocument", *JobDocument);
                 }
 
                 if (Status)
                 {
-                    cJSON_AddStringToObject(&node, "status", JobStatusMarshaller::ToString(*Status));
+                    doc.WithString("status", JobStatusMarshaller::ToString(*Status));
                 }
 
                 if (QueuedAt)
                 {
-                    cJSON_AddNumberToObject(&node, "queuedAt", QueuedAt->SecondsWithMSPrecision());
+                    doc.WithDouble("queuedAt", QueuedAt->SecondsWithMSPrecision());
                 }
 
                 if (StartedAt)
                 {
-                    cJSON_AddNumberToObject(&node, "startedAt", StartedAt->SecondsWithMSPrecision());
+                    doc.WithDouble("startedAt", StartedAt->SecondsWithMSPrecision());
                 }
 
                 if (LastUpdatedAt)
                 {
-                    cJSON_AddNumberToObject(&node, "lastUpdatedAt", LastUpdatedAt->SecondsWithMSPrecision());
+                    doc.WithDouble("lastUpdatedAt", LastUpdatedAt->SecondsWithMSPrecision());
                 }
 
                 if (VersionNumber)
                 {
-                    cJSON_AddNumberToObject(&node, "versionNumber", static_cast<double>(*VersionNumber));
+                    doc.WithInteger("versionNumber", *VersionNumber);
                 }
 
                 if (ExecutionNumber)
                 {
-                    cJSON_AddNumberToObject(&node, "executionNumber", static_cast<double>(*ExecutionNumber));
+                    doc.WithInt64("executionNumber", *ExecutionNumber);
                 }
             }
         }
