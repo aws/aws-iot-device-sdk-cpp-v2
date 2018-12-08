@@ -50,6 +50,8 @@ namespace Aws
 
             void DescribeJobExecutionRequest::SerializeToObject(Crt::JsonObject& object) const
             {
+                object.WithString("clientToken", ClientToken);
+
                 if (ExecutionNumber)
                 {
                     object.WithInt64("executionNumber", *ExecutionNumber);

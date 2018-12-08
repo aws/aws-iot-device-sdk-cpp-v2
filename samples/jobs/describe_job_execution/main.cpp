@@ -181,12 +181,13 @@ int main(int argc, char* argv[])
         exit(-1);
     }
 
+    auto connectionOptions = tlsCtx.NewConnectionOptions();
     /*
      * Now create a connection object. Note: This type is move only
      * and its underlying memory is managed by the client.
      */
     auto connection =
-            mqttClient.NewConnection(endpoint.c_str(), port, socketOptions, tlsCtx.NewConnectionOptions());
+            mqttClient.NewConnection(endpoint.c_str(), port, socketOptions, connectionOptions);
 
     if (!*connection)
     {
@@ -282,27 +283,17 @@ int main(int argc, char* argv[])
 
             if (error)
             {
-                const RejectedError* rejErr = nullptr;
-                const UnknownError* genericErr = nullptr;
-
-                switch(error->ErrorCode)
-                {
-                case JobsErrorCode::RejectedError:
-                    rejErr = error->GetErrorInstance<RejectedError>();
-                    fprintf(stderr, "Rejected error: %s occurred.\n", rejErr->Message->c_str());
-                    break;
-                case JobsErrorCode::UnknownError:
-                    genericErr = error->GetErrorInstance<UnknownError>();
-                    fprintf(stderr, "Error: %s occurred.\n", genericErr->Message.c_str());
-                    break;
-                }
+                fprintf(stderr, "Service Error %d occured\n", (int)error->ErrorCode);
                 conditionVariable.notify_one();
                 return;
             }
 
-            fprintf(stdout, "Received Job:");
+            fprintf(stdout, "Received Job:\n");
             fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
-            fprintf(stdout, "Thing Name: %s\n", response->Execution->ThingName->c_str());
+            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
+            fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
+            conditionVariable.notify_one();
+
         };
 
         client.DescribeJobExecution(std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, handler);

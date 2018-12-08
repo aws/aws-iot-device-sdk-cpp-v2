@@ -68,6 +68,7 @@ namespace Aws
                                                    const Crt::ByteBuf& topic, const Crt::ByteBuf& payload)
                 {
                     Crt::String objectStr(reinterpret_cast<char*>(payload.buffer), payload.len);
+
                     Crt::JsonObject object(objectStr);
                     JobsError error(object);
                     onResponse(nullptr, &error, AWS_ERROR_SUCCESS);

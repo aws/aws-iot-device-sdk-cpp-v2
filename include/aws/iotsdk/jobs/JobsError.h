@@ -24,22 +24,138 @@ namespace Aws
         {
             enum class JobsErrorCode
             {
-                RejectedError,
+                InvalidTopic,
+                InvalidJson,
+                InvalidRequest,
+                InvalidStateTransition,
+                ResourceNotFound,
+                VersionMismatch,
+                InternalError,
+                RequestThrottled,
+                TerminalStateReached,
                 UnknownError,
             };
 
-            class AWS_CRT_CPP_API RejectedError
+            class AWS_CRT_CPP_API InvalidTopic
             {
             public:
-                RejectedError() = default;
-                RejectedError(const Crt::JsonView& doc);
+                InvalidTopic() = default;
+                InvalidTopic(const Crt::JsonView& doc);
+
+                Crt::Optional<Crt::String> ClientToken;
+                Crt::Optional<Crt::String> Message;
+                Crt::Optional<Crt::DateTime> Timestamp;
+
+                static const JobsErrorCode Code = JobsErrorCode::InvalidTopic;
+            };
+
+            class AWS_CRT_CPP_API InvalidJson
+            {
+            public:
+                InvalidJson() = default;
+                InvalidJson(const Crt::JsonView& doc);
+
+                Crt::Optional<Crt::String> ClientToken;
+                Crt::Optional<Crt::String> Message;
+                Crt::Optional<Crt::DateTime> Timestamp;
+
+                static const JobsErrorCode Code = JobsErrorCode::InvalidJson;
+            };
+
+            class AWS_CRT_CPP_API InvalidRequest
+            {
+            public:
+                InvalidRequest() = default;
+                InvalidRequest(const Crt::JsonView& doc);
+
+                Crt::Optional<Crt::String> ClientToken;
+                Crt::Optional<Crt::String> Message;
+                Crt::Optional<Crt::DateTime> Timestamp;
+
+                static const JobsErrorCode Code = JobsErrorCode::InvalidRequest;
+            };
+
+            class AWS_CRT_CPP_API InvalidStateTransition
+            {
+            public:
+                InvalidStateTransition() = default;
+                InvalidStateTransition(const Crt::JsonView& doc);
 
                 Crt::Optional<Crt::String> ClientToken;
                 Crt::Optional<Crt::String> Message;
                 Crt::Optional<Crt::DateTime> Timestamp;
                 Crt::Optional<JobExecutionState> ExecutionState;
 
-                static const JobsErrorCode Code = JobsErrorCode::RejectedError;
+                static const JobsErrorCode Code = JobsErrorCode::InvalidStateTransition;
+            };
+
+            class AWS_CRT_CPP_API ResourceNotFound
+            {
+            public:
+                ResourceNotFound() = default;
+                ResourceNotFound(const Crt::JsonView& doc);
+
+                Crt::Optional<Crt::String> ClientToken;
+                Crt::Optional<Crt::String> Message;
+                Crt::Optional<Crt::DateTime> Timestamp;
+
+                static const JobsErrorCode Code = JobsErrorCode::ResourceNotFound;
+            };
+
+            class AWS_CRT_CPP_API VersionMismatch
+            {
+            public:
+                VersionMismatch() = default;
+                VersionMismatch(const Crt::JsonView& doc);
+
+                Crt::Optional<Crt::String> ClientToken;
+                Crt::Optional<Crt::String> Message;
+                Crt::Optional<Crt::DateTime> Timestamp;
+                Crt::Optional<JobExecutionState> ExecutionState;
+
+                static const JobsErrorCode Code = JobsErrorCode::VersionMismatch;
+            };
+
+            class AWS_CRT_CPP_API InternalError
+            {
+            public:
+                InternalError() = default;
+                InternalError(const Crt::JsonView& doc);
+
+                Crt::Optional<Crt::String> ClientToken;
+                Crt::Optional<Crt::String> Message;
+                Crt::Optional<Crt::DateTime> Timestamp;
+                Crt::Optional<JobExecutionState> ExecutionState;
+
+                static const JobsErrorCode Code = JobsErrorCode::InternalError;
+            };
+
+            class AWS_CRT_CPP_API RequestThrottled
+            {
+            public:
+                RequestThrottled() = default;
+                RequestThrottled(const Crt::JsonView& doc);
+
+                Crt::Optional<Crt::String> ClientToken;
+                Crt::Optional<Crt::String> Message;
+                Crt::Optional<Crt::DateTime> Timestamp;
+                Crt::Optional<JobExecutionState> ExecutionState;
+
+                static const JobsErrorCode Code = JobsErrorCode::RequestThrottled;
+            };
+
+            class AWS_CRT_CPP_API TerminalStateReached
+            {
+            public:
+                TerminalStateReached() = default;
+                TerminalStateReached(const Crt::JsonView& doc);
+
+                Crt::Optional<Crt::String> ClientToken;
+                Crt::Optional<Crt::String> Message;
+                Crt::Optional<Crt::DateTime> Timestamp;
+                Crt::Optional<JobExecutionState> ExecutionState;
+
+                static const JobsErrorCode Code = JobsErrorCode::TerminalStateReached;
             };
 
             class AWS_CRT_CPP_API UnknownError
@@ -70,11 +186,17 @@ namespace Aws
 
                     return reinterpret_cast<const U*>(&m_errorStorage);
                 }
-
             private:
                 union
                 {
-                    std::aligned_storage<sizeof(RejectedError)>::type rejectedError;
+                    std::aligned_storage<sizeof(InvalidTopic)>::type invalidTopic;
+                    std::aligned_storage<sizeof(InvalidJson)>::type invalidJson;
+                    std::aligned_storage<sizeof(InvalidRequest)>::type invalidRequest;
+                    std::aligned_storage<sizeof(InvalidStateTransition)>::type invalidStateTransition;
+                    std::aligned_storage<sizeof(ResourceNotFound)>::type resourceNotFound;
+                    std::aligned_storage<sizeof(VersionMismatch)>::type versionMismatch;
+                    std::aligned_storage<sizeof(RequestThrottled)>::type requestThrottled;
+                    std::aligned_storage<sizeof(TerminalStateReached)>::type terminalStateReached;
                     std::aligned_storage<sizeof(UnknownError)>::type unknownError;
                 } m_errorStorage;
             };
