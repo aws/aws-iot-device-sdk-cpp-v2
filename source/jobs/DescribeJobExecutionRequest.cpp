@@ -22,24 +22,24 @@ namespace Aws
         {
             DescribeJobExecutionRequest::DescribeJobExecutionRequest(
                     Crt::String&& thingName,
-                    Crt::String&& jobId,
-                    Crt::String&& clientToken) :
+                    Crt::String&& jobId) :
                     ThingName(std::move(thingName)),
-                    JobId(std::move(jobId)),
-                    ClientToken(std::move(clientToken))
+                    JobId(std::move(jobId))
             {
             }
 
             DescribeJobExecutionRequest::DescribeJobExecutionRequest(
                     const Crt::String& thingName,
-                    const Crt::String& jobId,
-                    const Crt::String& clientToken) :
+                    const Crt::String& jobId) :
                     ThingName(thingName),
-                    JobId(jobId),
-                    ClientToken(clientToken)
+                    JobId(jobId)
             {
             }
 
+            Crt::String DescribeJobExecutionRequest::GetNonce() const
+            {
+                return ClientToken;
+            }
 
             Crt::String DescribeJobExecutionRequest::Serialize() const
             {

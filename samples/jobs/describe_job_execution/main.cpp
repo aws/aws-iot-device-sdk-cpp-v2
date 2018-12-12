@@ -269,7 +269,7 @@ int main(int argc, char* argv[])
     {
         IotJobsClient client(connection);
 
-        DescribeJobExecutionRequest describeJobExecutionRequest(thingName, jobId, "randomNonce");
+        DescribeJobExecutionRequest describeJobExecutionRequest(thingName, jobId);
         describeJobExecutionRequest.IncludeJobDocument = true;
 
         auto handler = [&](DescribeJobExecutionResponse* response, JobsError* error, int ioErr)
@@ -290,10 +290,9 @@ int main(int argc, char* argv[])
 
             fprintf(stdout, "Received Job:\n");
             fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
-            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
+            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->ToString().c_str());
             fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
             conditionVariable.notify_one();
-
         };
 
         client.DescribeJobExecution(std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, handler);

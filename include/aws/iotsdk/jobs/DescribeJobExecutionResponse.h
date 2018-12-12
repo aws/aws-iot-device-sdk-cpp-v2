@@ -14,6 +14,8 @@
 * permissions and limitations under the License.
 */
 #include <aws/iotsdk/jobs/JobExecutionData.h>
+#include <aws/crt/UUID.h>
+#include <aws/crt/mqtt/RpcDispatch.h>
 
 namespace Aws
 {
@@ -26,13 +28,15 @@ namespace Aws
     {
         namespace Jobs
         {
-            class AWS_CRT_CPP_API DescribeJobExecutionResponse final
+            class AWS_CRT_CPP_API DescribeJobExecutionResponse final : public Crt::Mqtt::RpcNonceContainer
             {
             public:
                 DescribeJobExecutionResponse(const Crt::String& responseDoc);
-                Crt::Optional<Crt::String> ClientToken;
+                Crt::Optional<Crt::UUID> ClientToken;
                 Crt::Optional<JobExecutionData> Execution;
                 Crt::Optional<Crt::DateTime> Timestamp;
+
+                Crt::String GetNonce() const override;
 
                 operator bool() const { return m_good; }
 

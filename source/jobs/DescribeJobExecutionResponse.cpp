@@ -53,6 +53,16 @@ namespace Aws
 
                 LoadFromObject(*this, doc.View());
             }
+
+            Crt::String DescribeJobExecutionResponse::GetNonce() const
+            {
+                if (ClientToken)
+                {
+                    return *ClientToken;
+                }
+
+                return "";
+            }
         }
     }
 }

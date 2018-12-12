@@ -15,6 +15,7 @@
 */
 #include <aws/crt/Types.h>
 #include <aws/iotsdk/jobs/JobExecutionState.h>
+#include <aws/crt/mqtt/RpcDispatch.h>
 
 namespace Aws
 {
@@ -169,12 +170,13 @@ namespace Aws
                 static const JobsErrorCode Code = JobsErrorCode::UnknownError;
             };
 
-            class AWS_CRT_CPP_API JobsError final
+            class AWS_CRT_CPP_API JobsError final : public Crt::Mqtt::RpcNonceContainer
             {
             public:
                 JobsError(const Crt::JsonView& doc);
 
                 JobsErrorCode ErrorCode;
+                Crt::String RpcNonce;
 
                 template<typename U>
                 const U* GetErrorInstance() const
@@ -186,6 +188,12 @@ namespace Aws
 
                     return reinterpret_cast<const U*>(&m_errorStorage);
                 }
+
+                Crt::String GetNonce() const override
+                {
+                    return RpcNonce;
+                }
+
             private:
                 union
                 {

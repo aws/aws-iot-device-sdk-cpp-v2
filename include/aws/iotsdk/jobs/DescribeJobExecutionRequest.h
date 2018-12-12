@@ -15,8 +15,9 @@
 */
 #include <aws/crt/Types.h>
 #include <aws/crt/StlAllocator.h>
-
+#include <aws/crt/UUID.h>
 #include <aws/crt/JsonObject.h>
+#include <aws/crt/mqtt/RpcDispatch.h>
 
 namespace Aws
 {
@@ -24,17 +25,19 @@ namespace Aws
     {
         namespace Jobs
         {
-            class AWS_CRT_CPP_API DescribeJobExecutionRequest final
+        class AWS_CRT_CPP_API DescribeJobExecutionRequest final : public Crt::Mqtt::RpcNonceContainer
             {
             public:
-                DescribeJobExecutionRequest(Crt::String&& thingName, Crt::String&& jobId, Crt::String&& clientToken);
-                DescribeJobExecutionRequest(const Crt::String& thingName, const Crt::String& jobId, const Crt::String& clientToken);
+                DescribeJobExecutionRequest(Crt::String&& thingName, Crt::String&& jobId);
+                DescribeJobExecutionRequest(const Crt::String& thingName, const Crt::String& jobId);
 
                 Crt::String Serialize() const;
 
+                Crt::String GetNonce() const override;
+
                 Crt::String ThingName;
                 Crt::String JobId;
-                Crt::String ClientToken;
+                Crt::UUID ClientToken;
                 Crt::Optional<int64_t> ExecutionNumber;
                 Crt::Optional<bool> IncludeJobDocument;
 
