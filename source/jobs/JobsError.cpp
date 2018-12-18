@@ -102,7 +102,7 @@ namespace Aws
 
                 if (doc.ValueExists("executionState"))
                 {
-                    ExecutionState = doc.GetObjectCopy("executionState");
+                    ExecutionState = doc.GetJsonObject("executionState");
                 }
             }
 
@@ -143,7 +143,7 @@ namespace Aws
 
                 if (doc.ValueExists("executionState"))
                 {
-                    ExecutionState = doc.GetObjectCopy("executionState");
+                    ExecutionState = doc.GetJsonObject("executionState");
                 }
             }
 
@@ -166,7 +166,7 @@ namespace Aws
 
                 if (doc.ValueExists("executionState"))
                 {
-                    ExecutionState = doc.GetObjectCopy("executionState");
+                    ExecutionState = doc.GetJsonObject("executionState");
                 }
             }
 
@@ -189,7 +189,7 @@ namespace Aws
 
                 if (doc.ValueExists("executionState"))
                 {
-                    ExecutionState = doc.GetObjectCopy("executionState");
+                    ExecutionState = doc.GetJsonObject("executionState");
                 }
             }
 
@@ -212,16 +212,21 @@ namespace Aws
 
                 if (doc.ValueExists("executionState"))
                 {
-                    ExecutionState = doc.GetObjectCopy("executionState");
+                    ExecutionState = doc.GetJsonObject("executionState");
                 }
             }
 
             UnknownError::UnknownError(const Crt::JsonView& doc)
             {
+                if (doc.ValueExists("clientToken"))
+                {
+                    ClientToken = doc.GetString("clientToken");
+                }
+
                 if (doc.ValueExists("message"))
                 {
                     Message = doc.GetString("message");
-                }
+                }       
             }
 
             static const size_t INVALID_TOPIC_HASH = Aws::Crt::HashString("InvalidTopic");
@@ -271,6 +276,7 @@ namespace Aws
                     if (errorHash == INVALID_STATE_TRANSITION_HASH)
                     {
                         ErrorCode = Jobs::InvalidStateTransition::Code;
+
                         new(&m_errorStorage)InvalidStateTransition(doc);
                         return;
                     }
@@ -278,6 +284,7 @@ namespace Aws
                     if (errorHash == RESOURCE_NOT_FOUND_HASH)
                     {
                         ErrorCode = Jobs::ResourceNotFound::Code;
+
                         new(&m_errorStorage)ResourceNotFound(doc);
                         return;
                     }
@@ -285,6 +292,7 @@ namespace Aws
                     if (errorHash == VERSION_MISMATCH_HASH)
                     {
                         ErrorCode = Jobs::VersionMismatch::Code;
+
                         new(&m_errorStorage)VersionMismatch(doc);
                         return;
                     }
@@ -299,6 +307,7 @@ namespace Aws
                     if (errorHash == REQUEST_THROTTLED_HASH)
                     {
                         ErrorCode = Jobs::RequestThrottled::Code;
+
                         new(&m_errorStorage)RequestThrottled(doc);
                         return;
                     }
@@ -306,6 +315,7 @@ namespace Aws
                     if (errorHash == TERMINAL_STATE_REACHED_HASH)
                     {
                         ErrorCode = Jobs::TerminalStateReached::Code;
+
                         new(&m_errorStorage)TerminalStateReached(doc);
                         return;
                     }

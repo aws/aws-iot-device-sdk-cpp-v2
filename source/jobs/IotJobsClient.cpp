@@ -37,76 +37,93 @@ namespace Aws
                 return aws_last_error();
             }
 
-            bool IotJobsClient::DescribeJobExecution(DescribeJobExecutionRequest&& request,
-                                                     Crt::Mqtt::QOS qos, OnDescribeJobExecutionResponse&& onResponse)
+            bool IotJobsClient::SubscribeToDescribeJobExecutionAccepted(const DescribeJobExecutionSubscriptionRequest& request,
+                Crt::Mqtt::QOS qos, const OnDescribeJobExecutionAcceptedResponse& handler, const OnSubscribeComplete& onSubAckHandler)
             {
-                auto onSubscribeComplete = [onResponse](Crt::Mqtt::MqttConnection& connection, uint16_t packetId)
+                auto onSubscribeComplete = [handler, onSubAckHandler](Crt::Mqtt::MqttConnection&, uint16_t, const Crt::String& topic, Crt::Mqtt::QOS, int errorCode)
                 {
-                    if (!packetId)
+                    (void)topic;
+                    if (errorCode)
                     {
-                        onResponse(nullptr, nullptr, aws_last_error());
+                        handler(nullptr, errorCode);
+                    }
+
+                    if (onSubAckHandler)
+                    {
+                        onSubAckHandler(errorCode);
                     }
                 };
 
-                Crt::StringStream subscribeTopic;
-                subscribeTopic << "$aws/things/" << request.ThingName << "/jobs/" << request.JobId
-                    << "/get/accepted";
-
-                auto onSubscribePublish = [onResponse](Crt::Mqtt::MqttConnection& connection,
-                                                       const Crt::ByteBuf& topic, const Crt::ByteBuf& payload)
+                auto onSubscribePublish = [handler](Crt::Mqtt::MqttConnection&,
+                    const Crt::String&, const Crt::ByteBuf& payload)
                 {
                     Crt::String objectStr(reinterpret_cast<char*>(payload.buffer), payload.len);
                     DescribeJobExecutionResponse response(objectStr);
-                    onResponse(&response, nullptr, AWS_ERROR_SUCCESS);
+                    handler(&response, AWS_ERROR_SUCCESS);
                 };
 
-                Crt::StringStream errorTopic;
-                errorTopic << "$aws/things/" << request.ThingName << "/jobs/" << request.JobId
-                    << "/get/rejected";
+                Crt::StringStream subscribeTopicSStr;
+                subscribeTopicSStr << "$aws/things/" << request.ThingName << "/jobs/" << request.JobId
+                    << "/get/accepted";
 
-                auto onErrorPublish = [onResponse](Crt::Mqtt::MqttConnection& connection,
-                                                   const Crt::ByteBuf& topic, const Crt::ByteBuf& payload)
+                return m_connection->Subscribe(subscribeTopicSStr.str().c_str(), qos,
+                    std::move(onSubscribePublish), std::move(onSubscribeComplete)) != 0;
+            }            
+
+            bool IotJobsClient::SubscribeToDescribeJobExecutionRejected(const DescribeJobExecutionSubscriptionRequest& request,
+                Crt::Mqtt::QOS qos, const OnDescribeJobExecutionRejectedResponse& handler, const OnSubscribeComplete& onSubAckHandler)
+            {
+                auto onSubscribeComplete = [handler, onSubAckHandler](Crt::Mqtt::MqttConnection&, uint16_t, const Crt::String& topic, Crt::Mqtt::QOS, int errorCode)
+                {
+                    (void)topic;
+                    if (errorCode)
+                    {
+                        handler(nullptr, errorCode);
+                    }
+
+                    if (onSubAckHandler)
+                    {
+                        onSubAckHandler(errorCode);
+                    }
+                };
+
+                auto onSubscribePublish = [handler](Crt::Mqtt::MqttConnection&,
+                    const Crt::String&, const Crt::ByteBuf& payload)
                 {
                     Crt::String objectStr(reinterpret_cast<char*>(payload.buffer), payload.len);
 
                     Crt::JsonObject object(objectStr);
                     JobsError error(object);
-                    onResponse(nullptr, &error, AWS_ERROR_SUCCESS);
+                    handler(&error, AWS_ERROR_SUCCESS);
                 };
 
+                Crt::StringStream subscribeTopicSStr;
+                subscribeTopicSStr << "$aws/things/" << request.ThingName << "/jobs/" << request.JobId
+                    << "/get/rejected";
+
+                return m_connection->Subscribe(subscribeTopicSStr.str().c_str(), qos,
+                    std::move(onSubscribePublish), std::move(onSubscribeComplete)) != 0;
+            }
+
+            bool IotJobsClient::PublishDescribeJobExecution(const DescribeJobExecutionRequest& request,
+                                                     Crt::Mqtt::QOS qos, const OnPublishComplete& handler)
+            {
                 Crt::StringStream publishTopic;
-                publishTopic << "$aws/things/" << request.ThingName << "/jobs/" << request.JobId << "/get";
-
-                if (!m_connection->Subscribe(subscribeTopic.str().c_str(), qos,
-                        std::move(onSubscribePublish), onSubscribeComplete))
-                {
-                    return false;
-                }
-
-                if (!m_connection->Subscribe(errorTopic.str().c_str(), qos,
-                                             std::move(onErrorPublish), onSubscribeComplete))
-                {
-                    return false;
-                }
+                publishTopic << "$aws/things/" << request.ThingName << "/jobs/" << request.JobId << "/get";                
 
                 auto&& outgoingJson = request.Serialize();
                 Crt::ByteBuf buf = Crt::ByteBufNewCopy(Crt::g_allocator,
                                                        reinterpret_cast<const uint8_t*>(outgoingJson.data()),
                                                        outgoingJson.length());
 
-                auto onPublishComplete = [buf, onResponse](Crt::Mqtt::MqttConnection& connection,
-                        uint16_t packetId)
+                auto onPublishComplete = [buf, handler](Crt::Mqtt::MqttConnection&,
+                        uint16_t, int errorCode)
                 {
-                    if (!packetId)
-                    {
-                        onResponse(nullptr, nullptr, aws_last_error());
-                    }
-
+                    handler(errorCode);
                     Crt::ByteBufDelete(const_cast<Crt::ByteBuf&>(buf));
                 };
 
                 return m_connection->Publish(publishTopic.str().c_str(), qos, false, buf, onPublishComplete) != 0;
-
             }
         }
     }

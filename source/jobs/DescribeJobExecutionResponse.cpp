@@ -32,7 +32,7 @@ namespace Aws
 
                 if (doc.ValueExists("execution"))
                 {
-                    val.Execution = doc.GetObject("execution");
+                    val.Execution = doc.GetJsonObject("execution");
                 }
 
                 if (doc.ValueExists("timestamp"))
@@ -52,16 +52,6 @@ namespace Aws
                 }
 
                 LoadFromObject(*this, doc.View());
-            }
-
-            Crt::String DescribeJobExecutionResponse::GetNonce() const
-            {
-                if (ClientToken)
-                {
-                    return *ClientToken;
-                }
-
-                return "";
             }
         }
     }

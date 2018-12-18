@@ -36,11 +36,6 @@ namespace Aws
             {
             }
 
-            Crt::String DescribeJobExecutionRequest::GetNonce() const
-            {
-                return ClientToken;
-            }
-
             Crt::String DescribeJobExecutionRequest::Serialize() const
             {
                 Crt::JsonObject newDoc;

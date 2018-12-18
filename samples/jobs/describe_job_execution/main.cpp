@@ -269,10 +269,38 @@ int main(int argc, char* argv[])
     {
         IotJobsClient client(connection);
 
-        DescribeJobExecutionRequest describeJobExecutionRequest(thingName, jobId);
-        describeJobExecutionRequest.IncludeJobDocument = true;
+        DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest(thingName, jobId);
 
-        auto handler = [&](DescribeJobExecutionResponse* response, JobsError* error, int ioErr)
+        // This isn't absolutely neccessary but since we're doing a publish almost immediately afterwards,
+        // to be cautious make sure the subscribe has finished before doing the publish.
+        auto subAckHandler = [&](int ioErr)
+        {
+            if (!ioErr)
+            {
+                conditionVariable.notify_one();
+            }
+        };
+
+        auto subscriptionHandler = [&](DescribeJobExecutionResponse* response, int ioErr)
+        {
+            if (ioErr)
+            {
+                fprintf(stderr, "Error %d occurred\n", ioErr);
+                conditionVariable.notify_one();
+                return;
+            }
+
+            fprintf(stdout, "Received Job:\n");
+            fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
+            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->ToString().c_str());
+            fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
+            conditionVariable.notify_one();
+        };
+
+        client.SubscribeToDescribeJobExecutionAccepted(describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscriptionHandler, subAckHandler);
+        conditionVariable.wait(uniqueLock);
+
+        auto failureHandler = [&](JobsError* error, int ioErr)
         {
             if (ioErr)
             {
@@ -287,15 +315,25 @@ int main(int argc, char* argv[])
                 conditionVariable.notify_one();
                 return;
             }
-
-            fprintf(stdout, "Received Job:\n");
-            fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
-            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->ToString().c_str());
-            fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
-            conditionVariable.notify_one();
         };
 
-        client.DescribeJobExecution(std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, handler);
+        client.SubscribeToDescribeJobExecutionRejected(describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
+        conditionVariable.wait(uniqueLock);
+
+        DescribeJobExecutionRequest describeJobExecutionRequest(thingName, jobId);
+        describeJobExecutionRequest.IncludeJobDocument = true;
+
+        auto publishHandler = [&](int ioErr)
+        {
+            if (ioErr)
+            {
+                fprintf(stderr, "Error %d occurred\n", ioErr);
+                conditionVariable.notify_one();
+                return;
+            }
+        };
+
+        client.PublishDescribeJobExecution(std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
         conditionVariable.wait(uniqueLock);
     }
 

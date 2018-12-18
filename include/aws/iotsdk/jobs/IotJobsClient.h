@@ -15,6 +15,8 @@
 */
 #include <aws/iotsdk/jobs/DescribeJobExecutionRequest.h>
 #include <aws/iotsdk/jobs/DescribeJobExecutionResponse.h>
+#include <aws/iotsdk/jobs/DescribeJobExecutionSubscriptionRequest.h>
+
 #include <aws/iotsdk/jobs/JobsError.h>
 
 #include <aws/crt/DateTime.h>
@@ -29,8 +31,14 @@ namespace Aws
     {
         namespace Jobs
         {
-            using OnDescribeJobExecutionResponse =
-                    std::function<void(DescribeJobExecutionResponse*, JobsError*, int ioErr)>;
+            using OnSubscribeComplete = std::function<void(int ioErr)>;
+            using OnDescribeJobExecutionAcceptedResponse =
+                    std::function<void(DescribeJobExecutionResponse*, int ioErr)>;
+
+            using OnDescribeJobExecutionRejectedResponse =
+                std::function<void(JobsError*, int ioErr)>;
+
+            using OnPublishComplete = std::function<void(int ioErr)>;
 
             class IotJobsClient final
             {
@@ -40,8 +48,12 @@ namespace Aws
                 operator bool() const noexcept;
                 int GetLastError() const noexcept;
 
-                bool DescribeJobExecution(DescribeJobExecutionRequest&& request,
-                        Crt::Mqtt::QOS qos, OnDescribeJobExecutionResponse&& onResponse);
+                bool SubscribeToDescribeJobExecutionAccepted(const DescribeJobExecutionSubscriptionRequest& request, 
+                    Crt::Mqtt::QOS qos, const OnDescribeJobExecutionAcceptedResponse& handler, const OnSubscribeComplete& onSubAckHandler);
+                bool SubscribeToDescribeJobExecutionRejected(const DescribeJobExecutionSubscriptionRequest& request, 
+                    Crt::Mqtt::QOS qos, const OnDescribeJobExecutionRejectedResponse& handler, const OnSubscribeComplete& onSubAckHandler);
+                bool PublishDescribeJobExecution(const DescribeJobExecutionRequest& request,
+                        Crt::Mqtt::QOS qos, const OnPublishComplete& handler);
 
             private:
                 std::shared_ptr<Crt::Mqtt::MqttConnection> m_connection;

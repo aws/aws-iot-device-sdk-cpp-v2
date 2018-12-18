@@ -31,7 +31,7 @@ namespace Aws
 
                 if (doc.ValueExists("statusDetails"))
                 {
-                    auto obj = doc.GetObject("statusDetails");
+                    auto obj = doc.GetJsonObject("statusDetails");
                     for (auto& item : obj.GetAllObjects())
                     {
                         (*val.StatusDetails)[item.first] = item.second.AsString();

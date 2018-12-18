@@ -37,7 +37,7 @@ namespace Aws
                 UnknownError,
             };
 
-            class AWS_CRT_CPP_API InvalidTopic
+            class AWS_CRT_CPP_API InvalidTopic final
             {
             public:
                 InvalidTopic() = default;
@@ -46,11 +46,11 @@ namespace Aws
                 Crt::Optional<Crt::String> ClientToken;
                 Crt::Optional<Crt::String> Message;
                 Crt::Optional<Crt::DateTime> Timestamp;
-
+                
                 static const JobsErrorCode Code = JobsErrorCode::InvalidTopic;
             };
 
-            class AWS_CRT_CPP_API InvalidJson
+            class AWS_CRT_CPP_API InvalidJson final
             {
             public:
                 InvalidJson() = default;
@@ -63,7 +63,7 @@ namespace Aws
                 static const JobsErrorCode Code = JobsErrorCode::InvalidJson;
             };
 
-            class AWS_CRT_CPP_API InvalidRequest
+            class AWS_CRT_CPP_API InvalidRequest final
             {
             public:
                 InvalidRequest() = default;
@@ -76,7 +76,7 @@ namespace Aws
                 static const JobsErrorCode Code = JobsErrorCode::InvalidRequest;
             };
 
-            class AWS_CRT_CPP_API InvalidStateTransition
+            class AWS_CRT_CPP_API InvalidStateTransition final
             {
             public:
                 InvalidStateTransition() = default;
@@ -90,7 +90,7 @@ namespace Aws
                 static const JobsErrorCode Code = JobsErrorCode::InvalidStateTransition;
             };
 
-            class AWS_CRT_CPP_API ResourceNotFound
+            class AWS_CRT_CPP_API ResourceNotFound final
             {
             public:
                 ResourceNotFound() = default;
@@ -103,7 +103,7 @@ namespace Aws
                 static const JobsErrorCode Code = JobsErrorCode::ResourceNotFound;
             };
 
-            class AWS_CRT_CPP_API VersionMismatch
+            class AWS_CRT_CPP_API VersionMismatch final
             {
             public:
                 VersionMismatch() = default;
@@ -113,11 +113,11 @@ namespace Aws
                 Crt::Optional<Crt::String> Message;
                 Crt::Optional<Crt::DateTime> Timestamp;
                 Crt::Optional<JobExecutionState> ExecutionState;
-
+                
                 static const JobsErrorCode Code = JobsErrorCode::VersionMismatch;
             };
 
-            class AWS_CRT_CPP_API InternalError
+            class AWS_CRT_CPP_API InternalError final
             {
             public:
                 InternalError() = default;
@@ -131,7 +131,7 @@ namespace Aws
                 static const JobsErrorCode Code = JobsErrorCode::InternalError;
             };
 
-            class AWS_CRT_CPP_API RequestThrottled
+            class AWS_CRT_CPP_API RequestThrottled final
             {
             public:
                 RequestThrottled() = default;
@@ -141,11 +141,11 @@ namespace Aws
                 Crt::Optional<Crt::String> Message;
                 Crt::Optional<Crt::DateTime> Timestamp;
                 Crt::Optional<JobExecutionState> ExecutionState;
-
+                
                 static const JobsErrorCode Code = JobsErrorCode::RequestThrottled;
             };
 
-            class AWS_CRT_CPP_API TerminalStateReached
+            class AWS_CRT_CPP_API TerminalStateReached final
             {
             public:
                 TerminalStateReached() = default;
@@ -155,28 +155,28 @@ namespace Aws
                 Crt::Optional<Crt::String> Message;
                 Crt::Optional<Crt::DateTime> Timestamp;
                 Crt::Optional<JobExecutionState> ExecutionState;
-
+                
                 static const JobsErrorCode Code = JobsErrorCode::TerminalStateReached;
             };
 
-            class AWS_CRT_CPP_API UnknownError
+            class AWS_CRT_CPP_API UnknownError final
             {
             public:
                 UnknownError() = default;
                 UnknownError(const Crt::JsonView& doc);
 
+                Crt::Optional<Crt::String> ClientToken;
                 Crt::String Message;
-
+                
                 static const JobsErrorCode Code = JobsErrorCode::UnknownError;
             };
 
-            class AWS_CRT_CPP_API JobsError final : public Crt::Mqtt::RpcNonceContainer
+            class AWS_CRT_CPP_API JobsError final
             {
             public:
                 JobsError(const Crt::JsonView& doc);
 
                 JobsErrorCode ErrorCode;
-                Crt::String RpcNonce;
 
                 template<typename U>
                 const U* GetErrorInstance() const
@@ -187,11 +187,6 @@ namespace Aws
                     }
 
                     return reinterpret_cast<const U*>(&m_errorStorage);
-                }
-
-                Crt::String GetNonce() const override
-                {
-                    return RpcNonce;
                 }
 
             private:

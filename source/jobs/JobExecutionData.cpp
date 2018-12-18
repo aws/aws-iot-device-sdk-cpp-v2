@@ -36,7 +36,7 @@ namespace Aws
 
                 if (doc.ValueExists("jobDocument"))
                 {
-                    val.JobDocument = doc.GetObjectCopy("jobDocument");
+                    val.JobDocument = doc.GetJsonObjectCopy("jobDocument");
                 }
 
                 if (doc.ValueExists("status"))
