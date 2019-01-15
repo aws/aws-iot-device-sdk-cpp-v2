@@ -1,0 +1,5 @@
+/home/local/ANT/henso/Applications/clion-2018.2.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=/usr/bin/c++ -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=/home/local/ANT/henso/Source/local-c-install -DCMAKE_PREFIX_PATH=/home/local/ANT/henso/Source/local-c-install -G "CodeBlocks - Unix Makefiles" /home/local/ANT/henso/Source/aws-iot-device-sdk-cpp-v2
+-- Libcrypto Include Dir: /home/local/ANT/henso/Source/local-c-install/include
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/local/ANT/henso/Source/aws-iot-device-sdk-cpp-v2/cmake-build-debug

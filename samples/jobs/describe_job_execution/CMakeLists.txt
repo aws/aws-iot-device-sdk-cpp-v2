@@ -27,5 +27,5 @@ target_include_directories(${JOBS_PROJECT_NAME} PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
-target_link_libraries(${JOBS_PROJECT_NAME} aws-iot-device-sdk-cpp-v2)
+target_link_libraries(${JOBS_PROJECT_NAME} IotJobs-cpp)
 

@@ -12,9 +12,16 @@
 * express or implied. See the License for the specific language governing
 * permissions and limitations under the License.
 */
-#include <aws/crt/Api.h>
 
-#include <aws/iotsdk/jobs/IotJobsClient.h>
+
+#include <aws/iotjobs/IotJobsClient.h>
+#include <aws/iotjobs/DescribeJobExecutionSubscriptionRequest.h>
+#include <aws/iotjobs/DescribeJobExecutionResponse.h>
+#include <aws/iotjobs/DescribeJobExecutionRequest.h>
+#include <aws/iotjobs/RejectedError.h>
+
+#include <aws/crt/UUID.h>
+#include <aws/crt/Api.h>
 
 #include <iostream>
 #include <mutex>
@@ -22,7 +29,7 @@
 #include <algorithm>
 
 using namespace Aws::Crt;
-using namespace Aws::IotSdk::Jobs;
+using namespace Aws::Iotjobs;
 
 static void s_printHelp()
 {
@@ -182,6 +189,8 @@ int main(int argc, char* argv[])
     }
 
     auto connectionOptions = tlsCtx.NewConnectionOptions();
+    connectionOptions.server_name = endpoint.c_str();
+
     /*
      * Now create a connection object. Note: This type is move only
      * and its underlying memory is managed by the client.
@@ -204,31 +213,29 @@ int main(int argc, char* argv[])
     std::condition_variable conditionVariable;
     bool connectionSucceeded = false;
     bool connectionClosed = false;
+    bool connectionCompleted = false;
 
     /*
      * This will execute when an mqtt connect has completed or failed.
      */
-    auto onConAck = [&](Mqtt::MqttConnection&,
-                        Mqtt::ReturnCode returnCode, bool)
+    auto onConnectionCompleted = [&](Mqtt::MqttConnection&, int errorCode,
+                                     Mqtt::ReturnCode returnCode, bool)
     {
+        if (errorCode)
+        {
+            fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
+            std::lock_guard<std::mutex> lockGuard(mutex);
+            connectionSucceeded = false;
+        }
+        else
         {
             fprintf(stdout, "Connection completed with return code %d\n", returnCode);
             fprintf(stdout, "Connection state %d\n", static_cast<int>(connection->GetConnectionState()));
-            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionSucceeded = true;
         }
-        conditionVariable.notify_one();
-    };
-
-    /*
-     * This will be invoked when the TCP connection fails.
-     */
-    auto onConFailure = [&](Mqtt::MqttConnection&, int error)
-    {
         {
-            fprintf(stdout, "Connection failed with %s\n", ErrorDebugString(error));
             std::lock_guard<std::mutex> lockGuard(mutex);
-            connectionClosed = true;
+            connectionCompleted = true;
         }
         conditionVariable.notify_one();
     };
@@ -236,20 +243,17 @@ int main(int argc, char* argv[])
     /*
      * Invoked when a disconnect message has completed.
      */
-    auto onDisconnect = [&](Mqtt::MqttConnection& conn, int error) -> bool
+    auto onDisconnect = [&](Mqtt::MqttConnection& conn)
     {
         {
-            fprintf(stdout, "Connection closed with error %s\n", ErrorDebugString(error));
             fprintf(stdout, "Connection state %d\n", static_cast<int>(conn.GetConnectionState()));
             std::lock_guard<std::mutex> lockGuard(mutex);
             connectionClosed = true;
         }
         conditionVariable.notify_one();
-        return false;
     };
 
-    connection->OnConnAck = std::move(onConAck);
-    connection->OnConnectionFailed = std::move(onConFailure);
+    connection->OnConnectionCompleted = std::move(onConnectionCompleted);
     connection->OnDisconnect = std::move(onDisconnect);
 
     /*
@@ -269,7 +273,9 @@ int main(int argc, char* argv[])
     {
         IotJobsClient client(connection);
 
-        DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest(thingName, jobId);
+        DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest;
+        describeJobExecutionSubscriptionRequest.ThingName = thingName;
+        describeJobExecutionSubscriptionRequest.JobId =  jobId;
 
         // This isn't absolutely neccessary but since we're doing a publish almost immediately afterwards,
         // to be cautious make sure the subscribe has finished before doing the publish.
@@ -292,7 +298,7 @@ int main(int argc, char* argv[])
 
             fprintf(stdout, "Received Job:\n");
             fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
-            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->ToString().c_str());
+            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
             fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
             conditionVariable.notify_one();
         };
@@ -300,7 +306,7 @@ int main(int argc, char* argv[])
         client.SubscribeToDescribeJobExecutionAccepted(describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscriptionHandler, subAckHandler);
         conditionVariable.wait(uniqueLock);
 
-        auto failureHandler = [&](JobsError* error, int ioErr)
+        auto failureHandler = [&](RejectedError* rejectedError, int ioErr)
         {
             if (ioErr)
             {
@@ -309,9 +315,9 @@ int main(int argc, char* argv[])
                 return;
             }
 
-            if (error)
+            if (rejectedError)
             {
-                fprintf(stderr, "Service Error %d occured\n", (int)error->ErrorCode);
+                fprintf(stderr, "Service Error %d occured\n", (int)rejectedError->Code.value());
                 conditionVariable.notify_one();
                 return;
             }
@@ -320,8 +326,11 @@ int main(int argc, char* argv[])
         client.SubscribeToDescribeJobExecutionRejected(describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
         conditionVariable.wait(uniqueLock);
 
-        DescribeJobExecutionRequest describeJobExecutionRequest(thingName, jobId);
+        DescribeJobExecutionRequest describeJobExecutionRequest;
+        describeJobExecutionRequest.ThingName = thingName;
+        describeJobExecutionRequest.JobId = jobId;
         describeJobExecutionRequest.IncludeJobDocument = true;
+        describeJobExecutionRequest.ClientToken = UUID();
 
         auto publishHandler = [&](int ioErr)
         {
