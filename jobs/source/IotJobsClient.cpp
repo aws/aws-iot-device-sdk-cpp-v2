@@ -13,7 +13,7 @@
 
 * This file is generated
 */
-#include <aws/iotjobs //IotJobsClient.h>
+#include <aws/iotjobs/IotJobsClient.h>
 
 #include <aws/iotjobs/DescribeJobExecutionRequest.h>
 #include <aws/iotjobs/DescribeJobExecutionResponse.h>

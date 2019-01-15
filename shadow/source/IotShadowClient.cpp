@@ -13,7 +13,7 @@
 
 * This file is generated
 */
-#include <aws/iotshadow //IotShadowClient.h>
+#include <aws/iotshadow/IotShadowClient.h>
 
 #include <aws/iotshadow/DeleteShadowRequest.h>
 #include <aws/iotshadow/DeleteShadowResponse.h>
