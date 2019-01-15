@@ -25,7 +25,7 @@ namespace Aws
 
             if (doc.ValueExists("metadata"))
             {
-                val.Metadata = doc.Materialize();
+                val.Metadata = doc.GetJsonObjectCopy("metadata");
             }
 
             if (doc.ValueExists("version"))
@@ -40,7 +40,7 @@ namespace Aws
 
             if (doc.ValueExists("state"))
             {
-                val.State = doc.Materialize();
+                val.State = doc.GetJsonObjectCopy("state");
             }
         }
 

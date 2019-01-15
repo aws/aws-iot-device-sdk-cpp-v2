@@ -25,12 +25,12 @@ namespace Aws
 
             if (doc.ValueExists("desired"))
             {
-                val.Desired = doc.Materialize();
+                val.Desired = doc.GetJsonObjectCopy("desired");
             }
 
             if (doc.ValueExists("reported"))
             {
-                val.Reported = doc.Materialize();
+                val.Reported = doc.GetJsonObjectCopy("reported");
             }
         }
 

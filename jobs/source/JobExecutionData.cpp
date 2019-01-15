@@ -35,7 +35,7 @@ namespace Aws
 
             if (doc.ValueExists("jobDocument"))
             {
-                val.JobDocument = doc.Materialize();
+                val.JobDocument = doc.GetJsonObjectCopy("jobDocument");
             }
 
             if (doc.ValueExists("executionNumber"))
