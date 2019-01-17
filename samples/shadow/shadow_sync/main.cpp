@@ -240,11 +240,10 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    std::mutex mutex;
     std::condition_variable conditionVariable;
-    bool connectionSucceeded = false;
-    bool connectionClosed = false;
-    bool connectionCompleted = false;
+    std::atomic<bool> connectionSucceeded(false);
+    std::atomic<bool> connectionClosed(false);
+    std::atomic<bool> connectionCompleted(false);
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -253,7 +252,6 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionSucceeded = false;
         }
         else
@@ -262,10 +260,8 @@ int main(int argc, char *argv[])
             fprintf(stdout, "Connection state %d\n", static_cast<int>(connection->GetConnectionState()));
             connectionSucceeded = true;
         }
-        {
-            std::lock_guard<std::mutex> lockGuard(mutex);
-            connectionCompleted = true;
-        }
+
+        connectionCompleted = true;
         conditionVariable.notify_one();
     };
 
@@ -275,7 +271,6 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection &conn) {
         {
             fprintf(stdout, "Connection state %d\n", static_cast<int>(conn.GetConnectionState()));
-            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionClosed = true;
         }
         conditionVariable.notify_one();
@@ -293,6 +288,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
+    std::mutex mutex;
     std::unique_lock<std::mutex> uniqueLock(mutex);
     conditionVariable.wait(uniqueLock, [&]() { return connectionSucceeded || connectionClosed; });
 
@@ -300,9 +296,9 @@ int main(int argc, char *argv[])
     {
         Aws::Iotshadow::IotShadowClient shadowClient(connection);
 
-        std::atomic<bool> subscribeDeltaCompleted = false;
-        std::atomic<bool> subscribeDeltaAccepedCompleted = false;
-        std::atomic<bool> subscribeDeltaRejectedCompleted = false;
+        std::atomic<bool> subscribeDeltaCompleted(false);
+        std::atomic<bool> subscribeDeltaAccepedCompleted(false);
+        std::atomic<bool> subscribeDeltaRejectedCompleted(false);
 
         auto onDeltaUpdatedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
@@ -427,6 +423,7 @@ int main(int argc, char *argv[])
 
         while (true)
         {
+            fprintf(stdout, "Enter Desired state of %s:\n", shadowProperty.c_str());
             String input;
             std::cin >> input;
 
@@ -444,7 +441,7 @@ int main(int argc, char *argv[])
     {
         /* Disconnect */
         connection->Disconnect();
-        conditionVariable.wait(uniqueLock, [&]() { return connectionClosed; });
+        conditionVariable.wait(uniqueLock, [&]() { return connectionClosed.load(); });
     }
     return 0;
 }

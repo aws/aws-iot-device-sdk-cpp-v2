@@ -12,15 +12,14 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+#include <aws/crt/Api.h>
+#include <aws/crt/UUID.h>
 
 #include <aws/iotjobs/DescribeJobExecutionRequest.h>
 #include <aws/iotjobs/DescribeJobExecutionResponse.h>
 #include <aws/iotjobs/DescribeJobExecutionSubscriptionRequest.h>
 #include <aws/iotjobs/IotJobsClient.h>
 #include <aws/iotjobs/RejectedError.h>
-
-#include <aws/crt/Api.h>
-#include <aws/crt/UUID.h>
 
 #include <algorithm>
 #include <condition_variable>
@@ -205,11 +204,10 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    std::mutex mutex;
     std::condition_variable conditionVariable;
-    bool connectionSucceeded = false;
-    bool connectionClosed = false;
-    bool connectionCompleted = false;
+    std::atomic<bool> connectionSucceeded(false);
+    std::atomic<bool> connectionClosed(false);
+    std::atomic<bool> connectionCompleted(false);
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -218,7 +216,6 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionSucceeded = false;
         }
         else
@@ -227,10 +224,8 @@ int main(int argc, char *argv[])
             fprintf(stdout, "Connection state %d\n", static_cast<int>(connection->GetConnectionState()));
             connectionSucceeded = true;
         }
-        {
-            std::lock_guard<std::mutex> lockGuard(mutex);
-            connectionCompleted = true;
-        }
+
+        connectionCompleted = true;
         conditionVariable.notify_one();
     };
 
@@ -240,7 +235,6 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection &conn) {
         {
             fprintf(stdout, "Connection state %d\n", static_cast<int>(conn.GetConnectionState()));
-            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionClosed = true;
         }
         conditionVariable.notify_one();
@@ -258,6 +252,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
+    std::mutex mutex;
     std::unique_lock<std::mutex> uniqueLock(mutex);
     conditionVariable.wait(uniqueLock, [&]() { return connectionSucceeded || connectionClosed; });
 
@@ -341,7 +336,7 @@ int main(int argc, char *argv[])
     {
         /* Disconnect */
         connection->Disconnect();
-        conditionVariable.wait(uniqueLock, [&]() { return connectionClosed; });
+        conditionVariable.wait(uniqueLock, [&]() { return connectionClosed.load(); });
     }
     return 0;
 }
