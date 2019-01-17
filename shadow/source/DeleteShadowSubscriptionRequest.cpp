@@ -21,12 +21,12 @@ namespace Aws
     {
 
         void DeleteShadowSubscriptionRequest::LoadFromObject(
-            DeleteShadowSubscriptionRequest &val,
-            const Aws::Crt::JsonView &doc)
+            DeleteShadowSubscriptionRequest &,
+            const Aws::Crt::JsonView &)
         {
         }
 
-        void DeleteShadowSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const {}
+        void DeleteShadowSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &) const {}
 
         DeleteShadowSubscriptionRequest::DeleteShadowSubscriptionRequest(const Crt::JsonView &doc)
         {

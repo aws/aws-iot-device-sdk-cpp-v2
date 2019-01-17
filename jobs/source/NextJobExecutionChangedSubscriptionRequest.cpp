@@ -21,12 +21,12 @@ namespace Aws
     {
 
         void NextJobExecutionChangedSubscriptionRequest::LoadFromObject(
-            NextJobExecutionChangedSubscriptionRequest &val,
-            const Aws::Crt::JsonView &doc)
+            NextJobExecutionChangedSubscriptionRequest &,
+            const Aws::Crt::JsonView &)
         {
         }
 
-        void NextJobExecutionChangedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const {}
+        void NextJobExecutionChangedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &) const {}
 
         NextJobExecutionChangedSubscriptionRequest::NextJobExecutionChangedSubscriptionRequest(const Crt::JsonView &doc)
         {

@@ -21,12 +21,12 @@ namespace Aws
     {
 
         void StartNextPendingJobExecutionSubscriptionRequest::LoadFromObject(
-            StartNextPendingJobExecutionSubscriptionRequest &val,
-            const Aws::Crt::JsonView &doc)
+            StartNextPendingJobExecutionSubscriptionRequest &,
+            const Aws::Crt::JsonView &)
         {
         }
 
-        void StartNextPendingJobExecutionSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const {}
+        void StartNextPendingJobExecutionSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &) const {}
 
         StartNextPendingJobExecutionSubscriptionRequest::StartNextPendingJobExecutionSubscriptionRequest(
             const Crt::JsonView &doc)

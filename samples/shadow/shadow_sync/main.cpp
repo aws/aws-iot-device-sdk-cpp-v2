@@ -12,15 +12,17 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
-
-#include <aws/iotjobs/DescribeJobExecutionRequest.h>
-#include <aws/iotjobs/DescribeJobExecutionResponse.h>
-#include <aws/iotjobs/DescribeJobExecutionSubscriptionRequest.h>
-#include <aws/iotjobs/IotJobsClient.h>
-#include <aws/iotjobs/RejectedError.h>
-
 #include <aws/crt/Api.h>
+#include <aws/crt/JsonObject.h>
 #include <aws/crt/UUID.h>
+
+#include <aws/iotshadow/ErrorResponse.h>
+#include <aws/iotshadow/IotShadowClient.h>
+#include <aws/iotshadow/ShadowDeltaUpdatedEvent.h>
+#include <aws/iotshadow/ShadowDeltaUpdatedSubscriptionRequest.h>
+#include <aws/iotshadow/UpdateShadowRequest.h>
+#include <aws/iotshadow/UpdateShadowResponse.h>
+#include <aws/iotshadow/UpdateShadowSubscriptionRequest.h>
 
 #include <algorithm>
 #include <condition_variable>
@@ -28,16 +30,18 @@
 #include <mutex>
 
 using namespace Aws::Crt;
-using namespace Aws::Iotjobs;
+using namespace Aws::Iotshadow;
+
+static const char *SHADOW_VALUE_DEFAULT = "off";
 
 static void s_printHelp()
 {
     fprintf(stdout, "Usage:\n");
     fprintf(
         stdout,
-        "describe-job-execution --endpoint <endpoint> --cert <path to cert>"
+        "shadow-sync --endpoint <endpoint> --cert <path to cert>"
         " --key <path to key> --ca_file <optional: path to custom ca>"
-        "--thing_name <thing name> --job_id <job id>\n\n");
+        "--thing_name <thing name> --shadow_property <Name of property in shadow to keep in sync.>\n\n");
     fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
     fprintf(stdout, "cert: path to your client certificate in PEM format\n");
     fprintf(stdout, "key: path to your key in PEM format\n");
@@ -47,15 +51,15 @@ static void s_printHelp()
         " in your trust store, set this.\n");
     fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
     fprintf(stdout, "thing_name: the name of your IOT thing\n");
-    fprintf(stdout, "job_id: the job id you want to describe.\n");
+    fprintf(stdout, "shadow_property: The name of the shadow property you want to change.\n");
 }
 
-bool s_cmdOptionExists(char **begin, char **end, const String &option)
+static bool s_cmdOptionExists(char **begin, char **end, const String &option)
 {
     return std::find(begin, end, option) != end;
 }
 
-char *s_getCmdOption(char **begin, char **end, const String &option)
+static char *s_getCmdOption(char **begin, char **end, const String &option)
 {
     char **itr = std::find(begin, end, option);
     if (itr != end && ++itr != end)
@@ -63,6 +67,37 @@ char *s_getCmdOption(char **begin, char **end, const String &option)
         return *itr;
     }
     return 0;
+}
+
+static void s_changeShadowValue(IotShadowClient& client, const String &thingName, const String &shadowProperty, const String &value)
+{
+    fprintf(stdout, "Changing local shadow value to %s.\n", value.c_str());
+
+    UpdateShadowRequest updateShadowRequest;
+    updateShadowRequest.ClientToken = Aws::Crt::UUID();
+
+    JsonObject stateDocument;
+    JsonObject reported;
+    reported.WithString(shadowProperty, value);
+    stateDocument.WithObject("reported", std::move(reported));
+    JsonObject desired;
+    desired.WithString(shadowProperty, value);
+    stateDocument.WithObject("desired", std::move(desired));
+
+    updateShadowRequest.State = std::move(stateDocument);
+    updateShadowRequest.ThingName = thingName;
+
+    auto publishCompleted = [thingName, value](int ioErr) {
+        if (ioErr != AWS_OP_SUCCESS)
+        {
+            fprintf(stderr, "failed to update %s shadow state: error %s\n", thingName.c_str(), ErrorDebugString(ioErr));
+            return;
+        }
+
+        fprintf(stdout, "Successfully updated shadow state for %s, to %s\n", thingName.c_str(), value.c_str());
+    };
+
+    client.PublishUpdateShadow(updateShadowRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, std::move(publishCompleted));
 }
 
 int main(int argc, char *argv[])
@@ -83,12 +118,12 @@ int main(int argc, char *argv[])
     String keyPath;
     String caFile;
     String thingName;
-    String jobId;
+    String shadowProperty;
 
     /*********************** Parse Arguments ***************************/
     if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") && s_cmdOptionExists(argv, argv + argc, "--cert") &&
           s_cmdOptionExists(argv, argv + argc, "--key") && s_cmdOptionExists(argv, argv + argc, "--thing_name") &&
-          s_cmdOptionExists(argv, argv + argc, "--job_id")))
+          s_cmdOptionExists(argv, argv + argc, "--shadow_property")))
     {
         s_printHelp();
         return 0;
@@ -98,7 +133,7 @@ int main(int argc, char *argv[])
     certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
     keyPath = s_getCmdOption(argv, argv + argc, "--key");
     thingName = s_getCmdOption(argv, argv + argc, "--thing_name");
-    jobId = s_getCmdOption(argv, argv + argc, "--job_id");
+    shadowProperty = s_getCmdOption(argv, argv + argc, "--shadow_property");
 
     if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
     {
@@ -263,78 +298,146 @@ int main(int argc, char *argv[])
 
     if (connectionSucceeded)
     {
-        IotJobsClient client(connection);
+        Aws::Iotshadow::IotShadowClient shadowClient(connection);
 
-        DescribeJobExecutionSubscriptionRequest describeJobExecutionSubscriptionRequest;
-        describeJobExecutionSubscriptionRequest.ThingName = thingName;
-        describeJobExecutionSubscriptionRequest.JobId = jobId;
+        std::atomic<bool> subscribeDeltaCompleted = false;
+        std::atomic<bool> subscribeDeltaAccepedCompleted = false;
+        std::atomic<bool> subscribeDeltaRejectedCompleted = false;
 
-        // This isn't absolutely neccessary but since we're doing a publish almost immediately afterwards,
-        // to be cautious make sure the subscribe has finished before doing the publish.
-        auto subAckHandler = [&](int ioErr) {
-            if (!ioErr)
+        auto onDeltaUpdatedSubAck = [&](int ioErr) {
+            if (ioErr != AWS_OP_SUCCESS)
             {
-                conditionVariable.notify_one();
-            }
-        };
-
-        auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr) {
-            if (ioErr)
-            {
-                fprintf(stderr, "Error %d occurred\n", ioErr);
-                conditionVariable.notify_one();
-                return;
+                fprintf(stderr, "Error subscribing to shadow delta: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
             }
 
-            fprintf(stdout, "Received Job:\n");
-            fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
-            fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
-            fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
+            subscribeDeltaCompleted = true;
             conditionVariable.notify_one();
         };
 
-        client.SubscribeToDescribeJobExecutionAccepted(
-            describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscriptionHandler, subAckHandler);
-        conditionVariable.wait(uniqueLock);
-
-        auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
-            if (ioErr)
+        auto onDeltaUpdatedAcceptedSubAck = [&](int ioErr) {
+            if (ioErr != AWS_OP_SUCCESS)
             {
-                fprintf(stderr, "Error %d occurred\n", ioErr);
-                conditionVariable.notify_one();
-                return;
+                fprintf(stderr, "Error subscribing to shadow delta accepted: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
             }
 
-            if (rejectedError)
+            subscribeDeltaAccepedCompleted = true;
+            conditionVariable.notify_one();
+        };
+
+        auto onDeltaUpdatedRejectedSubAck = [&](int ioErr) {
+            if (ioErr != AWS_OP_SUCCESS)
             {
-                fprintf(stderr, "Service Error %d occured\n", (int)rejectedError->Code.value());
-                conditionVariable.notify_one();
-                return;
+                fprintf(stderr, "Error subscribing to shadow delta rejected: %s\n", ErrorDebugString(ioErr));
+            }
+            subscribeDeltaRejectedCompleted = true;
+            conditionVariable.notify_one();
+        };
+
+        auto onDeltaUpdated = [&](ShadowDeltaUpdatedEvent *event, int ioErr) {
+            if (event)
+            {
+                fprintf(stdout, "Received shadow delta event.\n");
+                if (event->State && event->State->View().ValueExists(shadowProperty))
+                {
+                    JsonView objectView = event->State->View().GetJsonObject(shadowProperty);
+
+                    if (objectView.IsNull())
+                    {
+                        fprintf(
+                            stdout,
+                            "Delta reports that %s was deleted. Resetting defaults...\n",
+                            shadowProperty.c_str());
+                        s_changeShadowValue(shadowClient, thingName, shadowProperty, SHADOW_VALUE_DEFAULT);
+                    }
+                    else
+                    {
+                        fprintf(
+                            stdout,
+                            "Delta reports that \"%s\" has a desired value of \"%s\", Changing local value...\n",
+                            shadowProperty.c_str(),
+                            event->State->View().GetString(shadowProperty).c_str());
+                        s_changeShadowValue(
+                            shadowClient, thingName, shadowProperty, event->State->View().GetString(shadowProperty));
+                    }
+                }
+                else
+                {
+                    fprintf(stdout, "Delta did not report a change in \"%s\".\n", shadowProperty.c_str());
+                }
+            }
+
+            if (ioErr)
+            {
+                fprintf(stdout, "Error processing shadow delta: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
             }
         };
 
-        client.SubscribeToDescribeJobExecutionRejected(
-            describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
-        conditionVariable.wait(uniqueLock);
-
-        DescribeJobExecutionRequest describeJobExecutionRequest;
-        describeJobExecutionRequest.ThingName = thingName;
-        describeJobExecutionRequest.JobId = jobId;
-        describeJobExecutionRequest.IncludeJobDocument = true;
-        describeJobExecutionRequest.ClientToken = Aws::Crt::UUID();
-
-        auto publishHandler = [&](int ioErr) {
-            if (ioErr)
+        auto onUpdateShadowAccepted = [&](UpdateShadowResponse *response, int ioErr) {
+            if (ioErr == AWS_OP_SUCCESS)
             {
-                fprintf(stderr, "Error %d occurred\n", ioErr);
-                conditionVariable.notify_one();
-                return;
+                fprintf(
+                    stdout,
+                    "Finished updating reported shadow value to %s.\n",
+                    response->State->Reported->View().GetString(shadowProperty).c_str());
+                fprintf(stdout, "Enter desired value:\n");
+            }
+            else
+            {
+                fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
+                exit(-1);
             }
         };
 
-        client.PublishDescribeJobExecution(
-            std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
-        conditionVariable.wait(uniqueLock);
+        auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr) {
+            if (ioErr == AWS_OP_SUCCESS)
+            {
+                fprintf(stdout, "Update of shadow state failed with message %s and code %d.", error->Message->c_str(), *error->Code);                 
+            }
+            else
+            {
+                fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
+                exit(-1);
+            }
+        };
+
+        ShadowDeltaUpdatedSubscriptionRequest shadowDeltaUpdatedRequest;
+        shadowDeltaUpdatedRequest.ThingName = thingName;
+
+        shadowClient.SubscribeToShadowDeltaUpdatedEvents(
+            shadowDeltaUpdatedRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onDeltaUpdated, onDeltaUpdatedSubAck);
+
+        UpdateShadowSubscriptionRequest updateShadowSubscriptionRequest;
+        updateShadowSubscriptionRequest.ThingName = thingName;
+
+        shadowClient.SubscribeToUpdateShadowAccepted(
+            updateShadowSubscriptionRequest,
+            AWS_MQTT_QOS_AT_LEAST_ONCE,
+            onUpdateShadowAccepted,
+            onDeltaUpdatedAcceptedSubAck);
+
+        shadowClient.SubscribeToUpdateShadowRejected(
+                updateShadowSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onUpdateShadowRejected, onDeltaUpdatedRejectedSubAck);
+
+        conditionVariable.wait(uniqueLock, [&]() {
+            return subscribeDeltaCompleted.load() && subscribeDeltaAccepedCompleted.load() && subscribeDeltaRejectedCompleted.load(); 
+        });
+
+        while (true)
+        {
+            String input;
+            std::cin >> input;
+
+            if (input == "exit" || input == "quit")
+            {
+                fprintf(stdout, "Exiting...");
+                break;
+            }
+
+            s_changeShadowValue(shadowClient, thingName, shadowProperty, input);
+        }
     }
 
     if (!connectionClosed)

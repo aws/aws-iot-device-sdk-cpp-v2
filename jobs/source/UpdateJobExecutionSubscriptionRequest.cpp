@@ -21,12 +21,12 @@ namespace Aws
     {
 
         void UpdateJobExecutionSubscriptionRequest::LoadFromObject(
-            UpdateJobExecutionSubscriptionRequest &val,
-            const Aws::Crt::JsonView &doc)
+            UpdateJobExecutionSubscriptionRequest &,
+            const Aws::Crt::JsonView &)
         {
         }
 
-        void UpdateJobExecutionSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const {}
+        void UpdateJobExecutionSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &) const {}
 
         UpdateJobExecutionSubscriptionRequest::UpdateJobExecutionSubscriptionRequest(const Crt::JsonView &doc)
         {
