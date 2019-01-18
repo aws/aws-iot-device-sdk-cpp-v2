@@ -22,6 +22,8 @@ namespace Aws
 
         void ErrorResponse::LoadFromObject(ErrorResponse &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("message"))
             {
@@ -46,6 +48,7 @@ namespace Aws
 
         void ErrorResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Message)
             {

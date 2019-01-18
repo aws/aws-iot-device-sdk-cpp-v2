@@ -22,6 +22,8 @@ namespace Aws
 
         void UpdateJobExecutionRequest::LoadFromObject(UpdateJobExecutionRequest &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("expectedVersion"))
             {
@@ -68,6 +70,7 @@ namespace Aws
 
         void UpdateJobExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (ExpectedVersion)
             {

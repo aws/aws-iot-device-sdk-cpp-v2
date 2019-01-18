@@ -22,6 +22,8 @@ namespace Aws
 
         void ShadowStateWithDelta::LoadFromObject(ShadowStateWithDelta &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("reported"))
             {
@@ -41,6 +43,7 @@ namespace Aws
 
         void ShadowStateWithDelta::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Reported)
             {

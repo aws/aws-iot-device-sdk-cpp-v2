@@ -20,9 +20,13 @@ namespace Aws
     namespace Iotshadow
     {
 
-        void GetShadowRequest::LoadFromObject(GetShadowRequest &, const Aws::Crt::JsonView &) {}
+        void GetShadowRequest::LoadFromObject(GetShadowRequest &val, const Aws::Crt::JsonView &doc)
+        {
+            (void)val;
+            (void)doc;
+        }
 
-        void GetShadowRequest::SerializeToObject(Aws::Crt::JsonObject &) const {}
+        void GetShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
 
         GetShadowRequest::GetShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 

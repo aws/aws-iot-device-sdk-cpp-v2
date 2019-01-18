@@ -22,6 +22,8 @@ namespace Aws
 
         void ShadowUpdatedEvent::LoadFromObject(ShadowUpdatedEvent &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("previous"))
             {
@@ -41,6 +43,7 @@ namespace Aws
 
         void ShadowUpdatedEvent::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Previous)
             {

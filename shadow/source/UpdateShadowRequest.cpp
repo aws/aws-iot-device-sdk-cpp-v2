@@ -22,6 +22,8 @@ namespace Aws
 
         void UpdateShadowRequest::LoadFromObject(UpdateShadowRequest &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("state"))
             {
@@ -41,6 +43,7 @@ namespace Aws
 
         void UpdateShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (State)
             {

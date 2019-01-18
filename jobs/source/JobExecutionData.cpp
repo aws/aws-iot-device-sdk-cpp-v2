@@ -22,6 +22,8 @@ namespace Aws
 
         void JobExecutionData::LoadFromObject(JobExecutionData &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("jobId"))
             {
@@ -83,6 +85,7 @@ namespace Aws
 
         void JobExecutionData::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (JobId)
             {

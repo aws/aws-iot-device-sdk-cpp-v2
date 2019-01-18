@@ -22,6 +22,8 @@ namespace Aws
 
         void DeleteShadowResponse::LoadFromObject(DeleteShadowResponse &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("timestamp"))
             {
@@ -36,6 +38,7 @@ namespace Aws
 
         void DeleteShadowResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Timestamp)
             {

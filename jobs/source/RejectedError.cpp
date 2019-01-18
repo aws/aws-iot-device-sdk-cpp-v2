@@ -22,6 +22,8 @@ namespace Aws
 
         void RejectedError::LoadFromObject(RejectedError &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("timestamp"))
             {
@@ -51,6 +53,7 @@ namespace Aws
 
         void RejectedError::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Timestamp)
             {

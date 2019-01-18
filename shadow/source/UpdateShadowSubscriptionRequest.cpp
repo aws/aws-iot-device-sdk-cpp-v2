@@ -21,12 +21,14 @@ namespace Aws
     {
 
         void UpdateShadowSubscriptionRequest::LoadFromObject(
-            UpdateShadowSubscriptionRequest &,
-            const Aws::Crt::JsonView &)
+            UpdateShadowSubscriptionRequest &val,
+            const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
         }
 
-        void UpdateShadowSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &) const {}
+        void UpdateShadowSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
 
         UpdateShadowSubscriptionRequest::UpdateShadowSubscriptionRequest(const Crt::JsonView &doc)
         {

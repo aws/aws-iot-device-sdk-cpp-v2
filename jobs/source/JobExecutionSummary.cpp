@@ -22,6 +22,8 @@ namespace Aws
 
         void JobExecutionSummary::LoadFromObject(JobExecutionSummary &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("lastUpdatedAt"))
             {
@@ -56,6 +58,7 @@ namespace Aws
 
         void JobExecutionSummary::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (LastUpdatedAt)
             {

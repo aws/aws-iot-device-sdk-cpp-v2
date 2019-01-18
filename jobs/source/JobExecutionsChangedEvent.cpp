@@ -22,6 +22,8 @@ namespace Aws
 
         void JobExecutionsChangedEvent::LoadFromObject(JobExecutionsChangedEvent &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("jobs"))
             {
@@ -51,6 +53,7 @@ namespace Aws
 
         void JobExecutionsChangedEvent::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Jobs)
             {

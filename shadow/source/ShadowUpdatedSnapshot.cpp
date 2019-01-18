@@ -22,6 +22,8 @@ namespace Aws
 
         void ShadowUpdatedSnapshot::LoadFromObject(ShadowUpdatedSnapshot &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("version"))
             {
@@ -41,6 +43,7 @@ namespace Aws
 
         void ShadowUpdatedSnapshot::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Version)
             {

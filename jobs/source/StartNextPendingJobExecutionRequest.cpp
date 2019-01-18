@@ -24,6 +24,8 @@ namespace Aws
             StartNextPendingJobExecutionRequest &val,
             const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("clientToken"))
             {
@@ -50,6 +52,7 @@ namespace Aws
 
         void StartNextPendingJobExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (ClientToken)
             {

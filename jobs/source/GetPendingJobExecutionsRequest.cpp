@@ -24,6 +24,8 @@ namespace Aws
             GetPendingJobExecutionsRequest &val,
             const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("clientToken"))
             {
@@ -33,6 +35,7 @@ namespace Aws
 
         void GetPendingJobExecutionsRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (ClientToken)
             {

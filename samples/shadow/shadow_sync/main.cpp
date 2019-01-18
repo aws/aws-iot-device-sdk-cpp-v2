@@ -69,7 +69,11 @@ static char *s_getCmdOption(char **begin, char **end, const String &option)
     return 0;
 }
 
-static void s_changeShadowValue(IotShadowClient& client, const String &thingName, const String &shadowProperty, const String &value)
+static void s_changeShadowValue(
+    IotShadowClient &client,
+    const String &thingName,
+    const String &shadowProperty,
+    const String &value)
 {
     fprintf(stdout, "Changing local shadow value to %s.\n", value.c_str());
 
@@ -390,7 +394,11 @@ int main(int argc, char *argv[])
         auto onUpdateShadowRejected = [&](ErrorResponse *error, int ioErr) {
             if (ioErr == AWS_OP_SUCCESS)
             {
-                fprintf(stdout, "Update of shadow state failed with message %s and code %d.", error->Message->c_str(), *error->Code);                 
+                fprintf(
+                    stdout,
+                    "Update of shadow state failed with message %s and code %d.",
+                    error->Message->c_str(),
+                    *error->Code);
             }
             else
             {
@@ -415,10 +423,14 @@ int main(int argc, char *argv[])
             onDeltaUpdatedAcceptedSubAck);
 
         shadowClient.SubscribeToUpdateShadowRejected(
-                updateShadowSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onUpdateShadowRejected, onDeltaUpdatedRejectedSubAck);
+            updateShadowSubscriptionRequest,
+            AWS_MQTT_QOS_AT_LEAST_ONCE,
+            onUpdateShadowRejected,
+            onDeltaUpdatedRejectedSubAck);
 
         conditionVariable.wait(uniqueLock, [&]() {
-            return subscribeDeltaCompleted.load() && subscribeDeltaAccepedCompleted.load() && subscribeDeltaRejectedCompleted.load(); 
+            return subscribeDeltaCompleted.load() && subscribeDeltaAccepedCompleted.load() &&
+                   subscribeDeltaRejectedCompleted.load();
         });
 
         while (true)

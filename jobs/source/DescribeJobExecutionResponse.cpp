@@ -24,6 +24,8 @@ namespace Aws
             DescribeJobExecutionResponse &val,
             const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("execution"))
             {
@@ -43,6 +45,7 @@ namespace Aws
 
         void DescribeJobExecutionResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Execution)
             {

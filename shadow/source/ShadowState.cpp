@@ -22,6 +22,8 @@ namespace Aws
 
         void ShadowState::LoadFromObject(ShadowState &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("desired"))
             {
@@ -36,6 +38,7 @@ namespace Aws
 
         void ShadowState::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Desired)
             {

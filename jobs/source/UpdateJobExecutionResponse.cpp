@@ -22,6 +22,8 @@ namespace Aws
 
         void UpdateJobExecutionResponse::LoadFromObject(UpdateJobExecutionResponse &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("timestamp"))
             {
@@ -46,6 +48,7 @@ namespace Aws
 
         void UpdateJobExecutionResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Timestamp)
             {

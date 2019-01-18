@@ -21,12 +21,17 @@ namespace Aws
     {
 
         void ShadowDeltaUpdatedSubscriptionRequest::LoadFromObject(
-            ShadowDeltaUpdatedSubscriptionRequest &,
-            const Aws::Crt::JsonView &)
+            ShadowDeltaUpdatedSubscriptionRequest &val,
+            const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
         }
 
-        void ShadowDeltaUpdatedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &) const {}
+        void ShadowDeltaUpdatedSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+        }
 
         ShadowDeltaUpdatedSubscriptionRequest::ShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView &doc)
         {

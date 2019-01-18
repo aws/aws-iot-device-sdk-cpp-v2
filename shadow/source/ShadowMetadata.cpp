@@ -22,6 +22,8 @@ namespace Aws
 
         void ShadowMetadata::LoadFromObject(ShadowMetadata &val, const Aws::Crt::JsonView &doc)
         {
+            (void)val;
+            (void)doc;
 
             if (doc.ValueExists("desired"))
             {
@@ -36,6 +38,7 @@ namespace Aws
 
         void ShadowMetadata::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
+            (void)object;
 
             if (Desired)
             {
