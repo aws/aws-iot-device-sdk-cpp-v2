@@ -45,7 +45,7 @@ cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>" -DCMAKE_PREFIX_PATH="
 
 # Samples
 
-## shadow
+## Shadow
 
 This sample uses the AWS IoT
 [Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
@@ -124,7 +124,7 @@ and receive.
 </pre>
 </details>
 
-## jobs
+## Jobs
 
 This sample uses the AWS IoT
 [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
