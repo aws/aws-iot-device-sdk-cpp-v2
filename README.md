@@ -29,7 +29,7 @@ is provided by code that been generated from a model of the service.
 
 ## Build from source
 ```
-git clone --branch v0.1.0 https://github.com/awslabs/aws-crt-cpp.git
+git clone --branch v0.1.1 https://github.com/awslabs/aws-crt-cpp.git
 git clone https://github.com/awslabs/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-crt-cpp-build
 cd aws-crt-cpp-build
