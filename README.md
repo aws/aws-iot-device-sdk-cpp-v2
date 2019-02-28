@@ -36,8 +36,8 @@ cd aws-crt-cpp-build
 cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>" -DCMAKE_PREFIX_PATH="<path to where you install>" -DBUILD_SHARED_LIBS=ON -DBUILD_DEPS=ON ../aws-crt-cpp
 <invoke build command make, msbuild, ninja etc....> install
 cd ..
-mkdir aws-iot-device-sdk-cpp-v2
-cd aws-iot-device-sdk-cpp-v2
+mkdir aws-iot-device-sdk-cpp-v2-build
+cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>" -DCMAKE_PREFIX_PATH="<path to where you install>" -DBUILD_SHARED_LIBS=ON ../aws-iot-device-sdk-cpp-v2
 <invoke build command make, msbuild, ninja etc....> install
 
