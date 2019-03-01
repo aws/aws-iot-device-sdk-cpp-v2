@@ -15,7 +15,7 @@ endif()
 
 set(IS_SUBDIRECTORY_INCLUDE true)
 find_package(aws-crt-cpp REQUIRED)
-find_package(aws-c-cpp REQUIRED)
+find_package(aws-c-cal REQUIRED)
 
 add_subdirectory(jobs)
 add_subdirectory(shadow)
