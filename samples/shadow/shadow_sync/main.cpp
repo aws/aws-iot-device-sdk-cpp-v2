@@ -226,7 +226,7 @@ int main(int argc, char *argv[])
     }
 
     auto connectionOptions = tlsCtx.NewConnectionOptions();
-    connectionOptions.server_name = endpoint.c_str();
+    connectionOptions.server_name = aws_string_new_from_c_str(aws_default_allocator(), endpoint.c_str());
 
     /*
      * Now create a connection object. Note: This type is move only
