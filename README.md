@@ -29,18 +29,17 @@ is provided by code that been generated from a model of the service.
 
 ## Build from source
 ```
-git clone --branch v0.1.1 https://github.com/awslabs/aws-crt-cpp.git
+git clone --branch v0.1.4 https://github.com/awslabs/aws-crt-cpp.git
 git clone https://github.com/awslabs/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-crt-cpp-build
 cd aws-crt-cpp-build
 cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>" -DCMAKE_PREFIX_PATH="<path to where you install>" -DBUILD_SHARED_LIBS=ON -DBUILD_DEPS=ON ../aws-crt-cpp
-<invoke build command make, msbuild, ninja etc....> install
+cmake --build . --target install
 cd ..
-mkdir aws-iot-device-sdk-cpp-v2
-cd aws-iot-device-sdk-cpp-v2
+mkdir aws-iot-device-sdk-cpp-v2-build
+cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>" -DCMAKE_PREFIX_PATH="<path to where you install>" -DBUILD_SHARED_LIBS=ON ../aws-iot-device-sdk-cpp-v2
-<invoke build command make, msbuild, ninja etc....> install
-
+cmake --build . --target install
 ```
 
 # Samples

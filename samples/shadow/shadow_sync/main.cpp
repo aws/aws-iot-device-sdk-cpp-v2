@@ -41,7 +41,7 @@ static void s_printHelp()
         stdout,
         "shadow-sync --endpoint <endpoint> --cert <path to cert>"
         " --key <path to key> --ca_file <optional: path to custom ca>"
-        "--thing_name <thing name> --shadow_property <Name of property in shadow to keep in sync.>\n\n");
+        " --thing_name <thing name> --shadow_property <Name of property in shadow to keep in sync.>\n\n");
     fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
     fprintf(stdout, "cert: path to your client certificate in PEM format\n");
     fprintf(stdout, "key: path to your key in PEM format\n");
