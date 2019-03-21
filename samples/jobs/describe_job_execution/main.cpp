@@ -36,7 +36,7 @@ static void s_printHelp()
         stdout,
         "describe-job-execution --endpoint <endpoint> --cert <path to cert>"
         " --key <path to key> --ca_file <optional: path to custom ca>"
-        "--thing_name <thing name> --job_id <job id>\n\n");
+        " --thing_name <thing name> --job_id <job id>\n\n");
     fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
     fprintf(stdout, "cert: path to your client certificate in PEM format\n");
     fprintf(stdout, "key: path to your key in PEM format\n");
