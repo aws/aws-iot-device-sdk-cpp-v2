@@ -18,6 +18,7 @@ find_package(aws-crt-cpp REQUIRED)
 
 add_subdirectory(jobs)
 add_subdirectory(shadow)
+add_subdirectory(discovery)
 add_subdirectory(samples/jobs/describe_job_execution)
 add_subdirectory(samples/shadow/shadow_sync)
 
