@@ -30,10 +30,12 @@ namespace Aws
             {
                 auto connectivityArray = doc.GetArray("Connectivity");
                 obj.Connectivity = Aws::Crt::Vector<ConnectivityInfo>();
+                obj.Connectivity->reserve(connectivityArray.size());
 
                 for (auto &connectivity : connectivityArray)
                 {
-                    obj.Connectivity->push_back(connectivity);
+                    ConnectivityInfo connectivityInfo(connectivity.AsObject());
+                    obj.Connectivity->push_back(std::move(connectivity));
                 }
             }
         }
