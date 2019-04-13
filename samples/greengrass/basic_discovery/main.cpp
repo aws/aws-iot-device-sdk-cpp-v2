@@ -17,6 +17,8 @@
 
 #include <aws/discovery/DiscoveryClient.h>
 
+#include <aws/iot/MqttClient.h>
+
 #include <algorithm>
 #include <condition_variable>
 #include <iostream>
@@ -167,10 +169,10 @@ int main(int argc, char *argv[])
     DiscoveryClient discoveryClient(clientConfig);
 
     GGGroup groupToUse;
-    Io::TlsContextOptions mqttTlsContextOptions =
-        Io::TlsContextOptions::InitClientWithMtls(certificatePath.c_str(), keyPath.c_str());
-    Io::TlsContext mqttTlsContext;
-    Mqtt::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClientConnectionConfigBuilder connectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
+    Aws::Iot::MqttClientConnectionConfig connectionConfig;
+
+    Aws::Iot::MqttClient mqttClient(bootstrap);
     std::shared_ptr<Mqtt::MqttConnection> connection(nullptr);
 
     std::mutex semaphoreLock;
@@ -184,10 +186,7 @@ int main(int argc, char *argv[])
             groupToUse = std::move(response->GGGroups->at(0));
             ByteCursor caCursor = ByteCursorFromArray(
                 reinterpret_cast<const uint8_t *>(groupToUse.CAs->at(0).data()), groupToUse.CAs->at(0).length());
-            mqttTlsContextOptions.OverrideDefaultTrustStore(caCursor);
-
-            mqttTlsContext = Io::TlsContext(mqttTlsContextOptions, Io::TlsMode::CLIENT);
-            auto mqttTlsConnectionOptions = mqttTlsContext.NewConnectionOptions();
+            connectionConfigBuilder.WithCertificateAuthority(caCursor);
 
             auto connectivityInfo = groupToUse.Cores->at(0).Connectivity->at(0);
 
@@ -199,11 +198,10 @@ int main(int argc, char *argv[])
                 connectivityInfo.HostAddress->c_str(),
                 (int)connectivityInfo.Port.value());
 
-            connection = mqttClient.NewConnection(
-                connectivityInfo.HostAddress->c_str(),
-                connectivityInfo.Port.value(),
-                socketOptions,
-                mqttTlsConnectionOptions);
+            connectionConfigBuilder.WithPortOverride(connectivityInfo.Port.value());
+            connectionConfigBuilder.WithEndpoint(connectivityInfo.HostAddress.value());
+            connectionConfig = connectionConfigBuilder.Build();
+            connection = mqttClient.NewConnection(connectionConfig);
 
             connection->OnConnectionCompleted =
                 [&, connectivityInfo](
