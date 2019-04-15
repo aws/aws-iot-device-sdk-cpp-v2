@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
     std::atomic<bool> connectionFinished(false);
     std::atomic<bool> shutdownCompleted(false);
 
-    discoveryClient.Discover(thingName, [&](DiscoverResponse *response, int error) {
+    discoveryClient.Discover(thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
         if (!error && response->GGGroups)
         {
             groupToUse = std::move(response->GGGroups->at(0));
@@ -288,6 +288,12 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Connect failed with error %s\n", aws_error_debug_str(aws_last_error()));
                 exit(-1);
             }
+        }
+        else
+        {
+            fprintf(stderr, "Discover failed with error: %s, and http response code %d\n",
+                    aws_error_debug_str(error), httpResponseCode);
+
         }
     });
 

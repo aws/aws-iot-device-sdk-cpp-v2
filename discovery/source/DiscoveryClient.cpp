@@ -124,15 +124,15 @@ namespace Aws
                             {
                                 Crt::JsonObject jsonObject(callbackContext->ss.str());
                                 DiscoverResponse response(jsonObject.View());
-                                onDiscoverResponse(&response, AWS_ERROR_SUCCESS);
+                                onDiscoverResponse(&response, AWS_ERROR_SUCCESS, callbackContext->responseCode);
                             }
                             else if (errorCode)
                             {
-                                onDiscoverResponse(nullptr, errorCode);
+                                onDiscoverResponse(nullptr, errorCode, callbackContext->responseCode);
                             }
                             else
                             {
-                                onDiscoverResponse(nullptr, callbackContext->responseCode);
+                                onDiscoverResponse(nullptr, errorCode, callbackContext->responseCode);
                             }
 
                             Crt::Delete(callbackContext, m_allocator);
@@ -141,7 +141,7 @@ namespace Aws
 
                         if (!connection->NewClientStream(requestOptions))
                         {
-                            onDiscoverResponse(nullptr, aws_last_error());
+                            onDiscoverResponse(nullptr, aws_last_error(), 0);
                             Crt::Delete(callbackContext, m_allocator);
                             m_connectionManager->ReleaseConnection(connection);
                         }
@@ -149,7 +149,7 @@ namespace Aws
                         return;
                     }
 
-                    onDiscoverResponse(nullptr, errorCode);
+                    onDiscoverResponse(nullptr, errorCode, 0);
                     Crt::Delete(callbackContext, m_allocator);
                 });
 

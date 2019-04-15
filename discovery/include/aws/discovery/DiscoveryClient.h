@@ -22,7 +22,7 @@ namespace Aws
 {
     namespace Discovery
     {
-        using OnDiscoverResponse = std::function<void(DiscoverResponse *, int errorCode)>;
+        using OnDiscoverResponse = std::function<void(DiscoverResponse *, int errorCode, int httpResponseCode)>;
 
         struct DiscoveryClientConfig
         {
