@@ -61,7 +61,8 @@ namespace Aws
                 for (auto &jobsMapMember : *Jobs)
                 {
                     Aws::Crt::JsonObject jobsMapValMember;
-                    Aws::Crt::Vector<Aws::Crt::JsonObject> valueList(jobsMapMember.second.size());
+                    Aws::Crt::Vector<Aws::Crt::JsonObject> valueList;
+                    valueList.reserve(jobsMapMember.second.size());
                     for (auto &valueListMember : jobsMapMember.second)
                     {
                         Aws::Crt::JsonObject valueListValMember;
