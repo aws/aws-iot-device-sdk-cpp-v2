@@ -293,6 +293,7 @@ int main(int argc, char *argv[])
         {
             fprintf(stderr, "Discover failed with error: %s, and http response code %d\n",
                     aws_error_debug_str(error), httpResponseCode);
+            exit(-1);
 
         }
     });
