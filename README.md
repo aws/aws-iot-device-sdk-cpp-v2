@@ -13,7 +13,8 @@ This SDK is built on the AWS Common Runtime, a collection of libraries
 ([1](https://github.com/awslabs/aws-c-common),
 [2](https://github.com/awslabs/aws-c-io),
 [3](https://github.com/awslabs/aws-c-mqtt),
-[4](https://github.com/awslabs/aws-c-http)...) written in C to be
+[4](https://github.com/awslabs/aws-c-http),
+[5](https://github.com/awslabs/aws-c-cal)...) written in C to be
 cross-platform, high-performance, secure, and reliable. The libraries are bound
 to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
@@ -30,7 +31,7 @@ is provided by code that been generated from a model of the service.
 
 ## Build from source
 ```
-git clone --branch v0.2.0 https://github.com/awslabs/aws-crt-cpp.git
+git clone --branch v0.3.1 https://github.com/awslabs/aws-crt-cpp.git
 git clone https://github.com/awslabs/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-crt-cpp-build
 cd aws-crt-cpp-build
@@ -192,6 +193,10 @@ and receive.
 }
 </pre>
 </details>
+
+## Greengrass Discovery
+This sample is intended for direct usage with the Greengrass tutorial found [here](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html).
+
 
 # License
 

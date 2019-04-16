@@ -14,6 +14,9 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/UUID.h>
+#include <aws/crt/io/HostResolver.h>
+
+#include <aws/iot/MqttClient.h>
 
 #include <aws/iotjobs/DescribeJobExecutionRequest.h>
 #include <aws/iotjobs/DescribeJobExecutionResponse.h>
@@ -116,55 +119,24 @@ int main(int argc, char *argv[])
             stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
         exit(-1);
     }
-    /*
-     * We're using Mutual TLS for Mqtt, so we need to load our client certificates
-     */
-    Io::TlsContextOptions tlsCtxOptions =
-        Io::TlsContextOptions::InitClientWithMtls(certificatePath.c_str(), keyPath.c_str());
-    /*
-     * If we have a custom CA, set that up here.
-     */
-    if (!caFile.empty())
-    {
-        tlsCtxOptions.OverrideDefaultTrustStore(nullptr, caFile.c_str());
-    }
 
-    uint16_t port = 8883;
-    if (Io::TlsContextOptions::IsAlpnSupported())
-    {
-        /*
-         * Use ALPN to negotiate the mqtt protocol on a normal
-         * TLS port if possible.
-         */
-        tlsCtxOptions.SetAlpnList("x-amzn-mqtt-ca");
-        port = 443;
-    }
-
-    Io::TlsContext tlsCtx(tlsCtxOptions, Io::TlsMode::CLIENT);
-
-    if (!tlsCtx)
-    {
-        fprintf(stderr, "Tls Context creation failed with error %s\n", ErrorDebugString(tlsCtx.LastError()));
-        exit(-1);
-    }
-
-    /*
-     * Default Socket options to use. IPV4 will be ignored based on what DNS
-     * tells us.
-     */
-    Io::SocketOptions socketOptions;
-    socketOptions.connect_timeout_ms = 3000;
-    socketOptions.domain = AWS_SOCKET_IPV4;
-    socketOptions.type = AWS_SOCKET_STREAM;
-    socketOptions.keep_alive_interval_sec = 0;
-    socketOptions.keep_alive_timeout_sec = 0;
-    socketOptions.keepalive = false;
-
-    Io::ClientBootstrap bootstrap(eventLoopGroup);
+    Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 2, 30);
+    Io::ClientBootstrap bootstrap(eventLoopGroup, defaultHostResolver);
 
     if (!bootstrap)
     {
         fprintf(stderr, "ClientBootstrap failed with error %s\n", ErrorDebugString(bootstrap.LastError()));
+        exit(-1);
+    }
+
+    auto clientConfig = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str())
+            .WithEndpoint(endpoint)
+            .WithCertificateAuthority(caFile.c_str())
+            .Build();
+
+    if (!clientConfig)
+    {
+        fprintf(stderr, "Client Configuration initialization failed with error %s\n", ErrorDebugString(LastError()));
         exit(-1);
     }
 
@@ -173,7 +145,7 @@ int main(int argc, char *argv[])
      * An instance of a client must outlive its connections.
      * It is the users responsibility to make sure of this.
      */
-    Mqtt::MqttClient mqttClient(bootstrap);
+    Aws::Iot::MqttClient mqttClient(bootstrap);
 
     /*
      * Since no exceptions are used, always check the bool operator
@@ -185,14 +157,11 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    auto connectionOptions = tlsCtx.NewConnectionOptions();
-    connectionOptions.server_name = aws_string_new_from_c_str(aws_default_allocator(), endpoint.c_str());
-
     /*
      * Now create a connection object. Note: This type is move only
      * and its underlying memory is managed by the client.
      */
-    auto connection = mqttClient.NewConnection(endpoint.c_str(), port, socketOptions, connectionOptions);
+    auto connection = mqttClient.NewConnection(clientConfig);
 
     if (!*connection)
     {

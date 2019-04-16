@@ -35,7 +35,8 @@ namespace Aws
             if (doc.ValueExists("queuedJobs"))
             {
                 auto queuedJobsList = doc.GetArray("queuedJobs");
-                val.QueuedJobs = Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>(queuedJobsList.size());
+                val.QueuedJobs = Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>();
+                val.QueuedJobs->reserve(queuedJobsList.size());
                 for (auto &queuedJobsListMember : queuedJobsList)
                 {
                     Aws::Iotjobs::JobExecutionSummary queuedJobsListValMember;
@@ -52,7 +53,8 @@ namespace Aws
             if (doc.ValueExists("inProgressJobs"))
             {
                 auto inProgressJobsList = doc.GetArray("inProgressJobs");
-                val.InProgressJobs = Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>(inProgressJobsList.size());
+                val.InProgressJobs = Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>();
+                val.InProgressJobs->reserve(inProgressJobsList.size());
                 for (auto &inProgressJobsListMember : inProgressJobsList)
                 {
                     Aws::Iotjobs::JobExecutionSummary inProgressJobsListValMember;
@@ -73,7 +75,8 @@ namespace Aws
 
             if (QueuedJobs)
             {
-                Aws::Crt::Vector<Aws::Crt::JsonObject> queuedJobsList(QueuedJobs->size());
+                Aws::Crt::Vector<Aws::Crt::JsonObject> queuedJobsList;
+                queuedJobsList.reserve(QueuedJobs->size());
                 for (auto &queuedJobsListMember : *QueuedJobs)
                 {
                     Aws::Crt::JsonObject queuedJobsListValMember;
@@ -92,7 +95,8 @@ namespace Aws
 
             if (InProgressJobs)
             {
-                Aws::Crt::Vector<Aws::Crt::JsonObject> inProgressJobsList(InProgressJobs->size());
+                Aws::Crt::Vector<Aws::Crt::JsonObject> inProgressJobsList;
+                inProgressJobsList.reserve(InProgressJobs->size());
                 for (auto &inProgressJobsListMember : *InProgressJobs)
                 {
                     Aws::Crt::JsonObject inProgressJobsListValMember;
