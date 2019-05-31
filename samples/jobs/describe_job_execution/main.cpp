@@ -190,7 +190,6 @@ int main(int argc, char *argv[])
         else
         {
             fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            fprintf(stdout, "Connection state %d\n", static_cast<int>(connection->GetConnectionState()));
             connectionSucceeded = true;
         }
 
@@ -203,7 +202,7 @@ int main(int argc, char *argv[])
      */
     auto onDisconnect = [&](Mqtt::MqttConnection &conn) {
         {
-            fprintf(stdout, "Connection state %d\n", static_cast<int>(conn.GetConnectionState()));
+            fprintf(stdout, "Disconnect completed\n");
             connectionClosed = true;
         }
         conditionVariable.notify_one();
@@ -215,6 +214,7 @@ int main(int argc, char *argv[])
     /*
      * Actually perform the connect dance.
      */
+    fprintf(stdout, "Connecting...\n");
     if (!connection->Connect("client_id12335456", true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
