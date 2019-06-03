@@ -18,6 +18,8 @@
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/StringUtils.h>
 
+#include <assert.h>
+
 static const size_t INVALIDTOPIC_HASH = Aws::Crt::HashString("InvalidTopic");
 static const size_t INVALIDJSON_HASH = Aws::Crt::HashString("InvalidJson");
 static const size_t INVALIDREQUEST_HASH = Aws::Crt::HashString("InvalidRequest");
