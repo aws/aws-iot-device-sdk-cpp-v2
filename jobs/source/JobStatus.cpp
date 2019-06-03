@@ -18,6 +18,8 @@
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/StringUtils.h>
 
+#include <assert.h>
+
 static const size_t QUEUED_HASH = Aws::Crt::HashString("QUEUED");
 static const size_t IN_PROGRESS_HASH = Aws::Crt::HashString("IN_PROGRESS");
 static const size_t TIMED_OUT_HASH = Aws::Crt::HashString("TIMED_OUT");
