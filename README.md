@@ -44,6 +44,8 @@ cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>" -DCMAKE_PREFIX_PATH="
 cmake --build . --target install
 ```
 
+Note: If you are updating an existing installation of `aws-crt-cpp`, you must delete and recreate `aws-crt-cpp-build` or it will not build correctly.
+
 # Samples
 
 ## Shadow
