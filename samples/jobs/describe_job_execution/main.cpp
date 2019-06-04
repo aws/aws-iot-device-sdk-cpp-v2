@@ -130,9 +130,9 @@ int main(int argc, char *argv[])
     }
 
     auto clientConfig = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str())
-            .WithEndpoint(endpoint)
-            .WithCertificateAuthority(caFile.c_str())
-            .Build();
+                            .WithEndpoint(endpoint)
+                            .WithCertificateAuthority(caFile.c_str())
+                            .Build();
 
     if (!clientConfig)
     {

@@ -1,0 +1,36 @@
+version: 0.2
+#this build spec assumes the ubuntu 14.04 trusty image
+phases:
+  install:
+    commands:
+      - sudo apt-get update -y
+      - sudo apt-get install gcc gcc-multilib g++ g++-multilib -y
+      # Build OpenSSL from source
+      - mkdir libcrypto-build
+      - cd libcrypto-build
+      - curl -LO https://www.openssl.org/source/openssl-1.1.0j.tar.gz
+      - tar -xzvf openssl-1.1.0j.tar.gz
+      - cd openssl-1.1.0j
+      - setarch i386 ./config -fPIC no-shared     \
+        -m32 no-md2 no-rc5 no-rfc3779 no-sctp no-ssl-trace no-zlib     \
+        no-hw no-mdc2 no-seed no-idea no-camellia\
+        no-bf no-ripemd no-dsa no-ssl2 no-ssl3 no-capieng     \
+        -DSSL_FORBID_ENULL -DOPENSSL_NO_DTLS1 -DOPENSSL_NO_HEARTBEATS   \
+        --prefix=/tmp/builds/install
+      - make -j 12
+      - make install_sw
+      - cd $CODEBUILD_SRC_DIR
+
+  pre_build:
+    commands:
+      - export CC=gcc
+      - export CXX=g++
+  build:
+    commands:
+      - echo Build started on `date`
+      - ./codebuild/common-posix.sh -DCMAKE_C_FLAGS="-m32" -DCMAKE_CXX_FLAGS="-m32"
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+
