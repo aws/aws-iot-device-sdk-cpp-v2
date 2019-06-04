@@ -5,10 +5,11 @@ phases:
     commands:
       - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
       - sudo apt-get update -y
-      - sudo apt-get install gcc-5 -y
+      - sudo apt-get install gcc-5 g++-5 -y
   pre_build:
     commands:
       - export CC=gcc-5
+      - export CXX=g++-5
   build:
     commands:
       - echo Build started on `date`

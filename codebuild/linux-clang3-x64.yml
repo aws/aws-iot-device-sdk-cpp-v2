@@ -10,6 +10,7 @@ phases:
   pre_build:
     commands:
       - export CC=clang-3.9
+      - export CXX=clang-3.9
   build:
     commands:
       - echo Build started on `date`

@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - sudo apt-get update -y
-      - sudo apt-get install gcc gcc-multilib -y
+      - sudo apt-get install gcc gcc-multilib g++ g++-multilib -y
       # Build OpenSSL from source
       - mkdir libcrypto-build
       - cd libcrypto-build
@@ -24,10 +24,11 @@ phases:
   pre_build:
     commands:
       - export CC=gcc
+      - export CXX=g++
   build:
     commands:
       - echo Build started on `date`
-      - ./codebuild/common-posix.sh -DCMAKE_C_FLAGS="-m32" -DCMAKE_LINK_FLAGS="-m32"
+      - ./codebuild/common-posix.sh -DCMAKE_C_FLAGS="-m32" -DCMAKE_CXX_FLAGS="-m32"
 
   post_build:
     commands:
