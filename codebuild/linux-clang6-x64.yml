@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+      - curl https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
       - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
       - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main"
       - sudo apt-get update -y
