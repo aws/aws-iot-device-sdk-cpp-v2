@@ -134,14 +134,12 @@ namespace Aws
                             }
 
                             Crt::Delete(callbackContext, m_allocator);
-                            m_connectionManager->ReleaseConnection(connection);
                         };
 
                         if (!connection->NewClientStream(requestOptions))
                         {
                             onDiscoverResponse(nullptr, aws_last_error(), 0);
                             Crt::Delete(callbackContext, m_allocator);
-                            m_connectionManager->ReleaseConnection(connection);
                         }
 
                         return;

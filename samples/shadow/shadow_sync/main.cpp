@@ -81,7 +81,8 @@ static void s_changeShadowValue(
     fprintf(stdout, "Changing local shadow value to %s.\n", value.c_str());
 
     UpdateShadowRequest updateShadowRequest;
-    updateShadowRequest.ClientToken = Aws::Crt::UUID();
+    Aws::Crt::UUID uuid;
+    updateShadowRequest.ClientToken = uuid.ToString();
 
     JsonObject stateDocument;
     JsonObject reported;
