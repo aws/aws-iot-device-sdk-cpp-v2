@@ -87,7 +87,7 @@ static void s_changeShadowValue(
     reported.WithString(shadowProperty, value);
     state.Desired = desired;
     state.Reported = reported;
-    
+
     UpdateShadowRequest updateShadowRequest;
     Aws::Crt::UUID uuid;
     updateShadowRequest.ClientToken = uuid.ToString();
