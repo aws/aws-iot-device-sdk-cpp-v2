@@ -91,7 +91,7 @@ static void s_changeShadowValue(
     UpdateShadowRequest updateShadowRequest;
     Aws::Crt::UUID uuid;
     updateShadowRequest.ClientToken = uuid.ToString();
-    updateShadowRequest.ThingName = thingName.c_str();
+    updateShadowRequest.ThingName = thingName;
     updateShadowRequest.State = state;
 
     auto publishCompleted = [thingName, value](int ioErr) {
