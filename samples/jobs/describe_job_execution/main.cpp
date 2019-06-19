@@ -285,7 +285,8 @@ int main(int argc, char *argv[])
         describeJobExecutionRequest.ThingName = thingName;
         describeJobExecutionRequest.JobId = jobId;
         describeJobExecutionRequest.IncludeJobDocument = true;
-        describeJobExecutionRequest.ClientToken = Aws::Crt::UUID();
+        Aws::Crt::UUID uuid;
+        describeJobExecutionRequest.ClientToken = uuid.ToString();
 
         auto publishHandler = [&](int ioErr) {
             if (ioErr)
