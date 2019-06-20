@@ -80,20 +80,19 @@ static void s_changeShadowValue(
 {
     fprintf(stdout, "Changing local shadow value to %s.\n", value.c_str());
 
+    ShadowState state;
+    JsonObject desired;
+    desired.WithString(shadowProperty, value);
+    JsonObject reported;
+    reported.WithString(shadowProperty, value);
+    state.Desired = desired;
+    state.Reported = reported;
+
     UpdateShadowRequest updateShadowRequest;
     Aws::Crt::UUID uuid;
     updateShadowRequest.ClientToken = uuid.ToString();
-
-    JsonObject stateDocument;
-    JsonObject reported;
-    reported.WithString(shadowProperty, value);
-    stateDocument.WithObject("reported", std::move(reported));
-    JsonObject desired;
-    desired.WithString(shadowProperty, value);
-    stateDocument.WithObject("desired", std::move(desired));
-
-    updateShadowRequest.State = std::move(stateDocument);
     updateShadowRequest.ThingName = thingName;
+    updateShadowRequest.State = state;
 
     auto publishCompleted = [thingName, value](int ioErr) {
         if (ioErr != AWS_OP_SUCCESS)
