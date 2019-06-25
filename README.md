@@ -31,7 +31,7 @@ is provided by code that been generated from a model of the service.
 
 ## Build from source
 ```
-git clone --branch v0.4.2 https://github.com/awslabs/aws-crt-cpp.git
+git clone --branch v0.4.4 https://github.com/awslabs/aws-crt-cpp.git
 git clone https://github.com/awslabs/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-crt-cpp-build
 cd aws-crt-cpp-build
