@@ -8,7 +8,7 @@ mkdir %INSTALL_DIR%
 @rem build aws-crt-cpp
 mkdir %BUILDS_DIR%\aws-crt-cpp-build
 cd %BUILDS_DIR%\aws-crt-cpp-build
-git clone --branch v0.4.5 https://github.com/awslabs/aws-crt-cpp.git
+git clone --branch v0.4.6 https://github.com/awslabs/aws-crt-cpp.git
 cmake %CMAKE_ARGS% -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -DCMAKE_PREFIX_PATH="%INSTALL_DIR%" -DCMAKE_BUILD_TYPE="Release" -DBUILD_DEPS=ON aws-crt-cpp || goto error
 cmake --build . --target install || goto error
 

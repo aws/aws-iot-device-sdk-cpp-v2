@@ -71,11 +71,6 @@ int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*
-     * These make debug output via ErrorDebugString() work.
-     */
-    LoadErrorStrings();
-
-    /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -136,7 +131,10 @@ int main(int argc, char *argv[])
 
     if (!clientConfig)
     {
-        fprintf(stderr, "Client Configuration initialization failed with error %s\n", ErrorDebugString(LastError()));
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
 

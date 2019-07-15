@@ -66,11 +66,6 @@ int main(int argc, char *argv[])
 {
     /************************ Setup the Lib ****************************/
     /*
-     * These make debug output via ErrorDebugString() work.
-     */
-    LoadErrorStrings();
-
-    /*
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
@@ -124,6 +119,7 @@ int main(int argc, char *argv[])
             stderr, "Event Loop Group Creation failed with error %s\n", ErrorDebugString(eventLoopGroup.LastError()));
         exit(-1);
     }
+
     /*
      * We're using Mutual TLS for Mqtt, so we need to load our client certificates
      */
@@ -168,10 +164,6 @@ int main(int argc, char *argv[])
 
     DiscoveryClient discoveryClient(clientConfig);
 
-    GGGroup groupToUse;
-    Aws::Iot::MqttClientConnectionConfigBuilder connectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
-    Aws::Iot::MqttClientConnectionConfig connectionConfig;
-
     Aws::Iot::MqttClient mqttClient(bootstrap);
     std::shared_ptr<Mqtt::MqttConnection> connection(nullptr);
 
@@ -183,10 +175,7 @@ int main(int argc, char *argv[])
     discoveryClient.Discover(thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
         if (!error && response->GGGroups)
         {
-            groupToUse = std::move(response->GGGroups->at(0));
-            ByteCursor caCursor = ByteCursorFromArray(
-                reinterpret_cast<const uint8_t *>(groupToUse.CAs->at(0).data()), groupToUse.CAs->at(0).length());
-            connectionConfigBuilder.WithCertificateAuthority(caCursor);
+            auto groupToUse = std::move(response->GGGroups->at(0));
 
             auto connectivityInfo = groupToUse.Cores->at(0).Connectivity->at(0);
 
@@ -198,10 +187,18 @@ int main(int argc, char *argv[])
                 connectivityInfo.HostAddress->c_str(),
                 (int)connectivityInfo.Port.value());
 
-            connectionConfigBuilder.WithPortOverride(connectivityInfo.Port.value());
-            connectionConfigBuilder.WithEndpoint(connectivityInfo.HostAddress.value());
-            connectionConfig = connectionConfigBuilder.Build();
-            connection = mqttClient.NewConnection(connectionConfig);
+            connection = mqttClient.NewConnection(
+                Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str())
+                    .WithCertificateAuthority(groupToUse.CAs->at(0).c_str())
+                    .WithPortOverride(connectivityInfo.Port.value())
+                    .WithEndpoint(connectivityInfo.HostAddress.value())
+                    .Build());
+
+            if (!connection)
+            {
+                fprintf(stderr, "Connection setup failed with error %s", ErrorDebugString(mqttClient.LastError()));
+                exit(-1);
+            }
 
             connection->OnConnectionCompleted =
                 [&, connectivityInfo](
