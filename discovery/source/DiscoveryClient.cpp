@@ -124,12 +124,12 @@ namespace Aws
                                 DiscoverResponse response(jsonObject.View());
                                 onDiscoverResponse(&response, AWS_ERROR_SUCCESS, callbackContext->responseCode);
                             }
-                            else if (errorCode)
-                            {
-                                onDiscoverResponse(nullptr, errorCode, callbackContext->responseCode);
-                            }
                             else
                             {
+                                if (!errorCode)
+                                {
+                                    errorCode = AWS_ERROR_UNKNOWN;
+                                }
                                 onDiscoverResponse(nullptr, errorCode, callbackContext->responseCode);
                             }
 
