@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 
             connection = mqttClient.NewConnection(
                 Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str())
-                    .WithCertificateAuthority(groupToUse.CAs->at(0).c_str())
+                    .WithCertificateAuthority(ByteCursorFromCString(groupToUse.CAs->at(0).c_str()))
                     .WithPortOverride(connectivityInfo.Port.value())
                     .WithEndpoint(connectivityInfo.HostAddress.value())
                     .Build());
