@@ -14,6 +14,7 @@
 #include <aws/discovery/DiscoveryClient.h>
 
 #include <aws/crt/Types.h>
+#include <aws/crt/http/HttpRequestResponse.h>
 #include <aws/crt/io/TlsOptions.h>
 #include <aws/crt/io/Uri.h>
 
@@ -77,8 +78,7 @@ namespace Aws
             const Crt::String &thingName,
             const OnDiscoverResponse &onDiscoverResponse) noexcept
         {
-
-            auto *callbackContext = Crt::New<ClientCallbackContext>(m_allocator);
+            auto callbackContext = Crt::MakeShared<ClientCallbackContext>(m_allocator);
             if (!callbackContext)
             {
                 return false;
@@ -91,21 +91,22 @@ namespace Aws
                     std::shared_ptr<Crt::Http::HttpClientConnection> connection, int errorCode) {
                     if (!errorCode)
                     {
+                        auto request = Aws::Crt::MakeShared<Crt::Http::HttpRequest>(m_allocator, m_allocator);
+
                         Crt::StringStream ss;
                         ss << "/greengrass/discover/thing/" << thingName;
                         Crt::String uriStr = ss.str();
-                        Crt::Http::HttpRequestOptions requestOptions;
-                        requestOptions.uri = Crt::ByteCursorFromCString(uriStr.c_str());
-                        requestOptions.method = Crt::ByteCursorFromCString("GET");
+                        request->SetMethod(Crt::ByteCursorFromCString("GET"));
+                        request->SetPath(Crt::ByteCursorFromCString(uriStr.c_str()));
 
                         Crt::Http::HttpHeader hostNameHeader;
                         hostNameHeader.name = Crt::ByteCursorFromCString("host");
                         hostNameHeader.value = Crt::ByteCursorFromCString(m_hostName.c_str());
 
-                        requestOptions.headerArray = &hostNameHeader;
-                        requestOptions.headerArrayLength = 1;
+                        request->AddHeader(hostNameHeader);
 
-                        requestOptions.onStreamOutgoingBody = nullptr;
+                        Crt::Http::HttpRequestOptions requestOptions;
+                        requestOptions.request = request.get();
                         requestOptions.onIncomingHeaders =
                             [](Crt::Http::HttpStream &, const Crt::Http::HttpHeader *, std::size_t) {};
                         requestOptions.onIncomingHeadersBlockDone =
@@ -113,10 +114,10 @@ namespace Aws
                                 callbackContext->responseCode = stream.GetResponseStatusCode();
                             };
                         requestOptions.onIncomingBody =
-                            [callbackContext](Crt::Http::HttpStream &, const Crt::ByteCursor &data, std::size_t &) {
+                            [callbackContext](Crt::Http::HttpStream &, const Crt::ByteCursor &data) {
                                 callbackContext->ss.write(reinterpret_cast<const char *>(data.ptr), data.len);
                             };
-                        requestOptions.onStreamComplete = [this, connection, callbackContext, onDiscoverResponse](
+                        requestOptions.onStreamComplete = [request, connection, callbackContext, onDiscoverResponse](
                                                               Crt::Http::HttpStream &stream, int errorCode) {
                             if (!errorCode && callbackContext->responseCode == 200)
                             {
@@ -132,26 +133,21 @@ namespace Aws
                                 }
                                 onDiscoverResponse(nullptr, errorCode, callbackContext->responseCode);
                             }
-
-                            Crt::Delete(callbackContext, m_allocator);
                         };
 
                         if (!connection->NewClientStream(requestOptions))
                         {
                             onDiscoverResponse(nullptr, aws_last_error(), 0);
-                            Crt::Delete(callbackContext, m_allocator);
                         }
 
                         return;
                     }
 
                     onDiscoverResponse(nullptr, errorCode, 0);
-                    Crt::Delete(callbackContext, m_allocator);
                 });
 
             if (!res)
             {
-                Crt::Delete(callbackContext, m_allocator);
                 return false;
             }
 
