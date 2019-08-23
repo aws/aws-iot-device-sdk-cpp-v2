@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
             }
 
             connection->OnConnectionCompleted =
-                [&, connectivityInfo](
+                [&, connectivityInfo, groupToUse](
                     Mqtt::MqttConnection &conn, int errorCode, Mqtt::ReturnCode returnCode, bool sessionPresent) {
                     if (!errorCode)
                     {
