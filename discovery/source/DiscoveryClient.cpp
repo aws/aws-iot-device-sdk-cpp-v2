@@ -55,14 +55,18 @@ namespace Aws
             Crt::ByteCursor serverName = Crt::ByteCursorFromCString(m_hostName.c_str());
             tlsConnectionOptions.SetServerName(serverName);
 
+            Crt::Http::HttpClientConnectionOptions connectionOptions;
+            connectionOptions.SetSocketOptions(*clientConfig.socketOptions);
+            connectionOptions.SetBootstrap(clientConfig.bootstrap);
+            connectionOptions.SetTlsOptions(tlsConnectionOptions);
+            connectionOptions.SetInitialWindowSize(SIZE_MAX);
+            connectionOptions.SetHostName(Crt::String((const char *)serverName.ptr, serverName.len));
+            connectionOptions.SetPort(port);
+
             Crt::Http::HttpClientConnectionManagerOptions connectionManagerOptions;
-            connectionManagerOptions.socketOptions = clientConfig.socketOptions;
-            connectionManagerOptions.bootstrap = clientConfig.bootstrap;
-            connectionManagerOptions.tlsConnectionOptions = &tlsConnectionOptions;
-            connectionManagerOptions.maxConnections = clientConfig.maxConnections;
-            connectionManagerOptions.initialWindowSize = SIZE_MAX;
-            connectionManagerOptions.hostName = serverName;
-            connectionManagerOptions.port = port;
+            connectionManagerOptions.SetConnectionOptions(connectionOptions);
+            connectionManagerOptions.SetMaxConnections(clientConfig.maxConnections);
+
 
             m_connectionManager = Crt::Http::HttpClientConnectionManager::NewClientConnectionManager(
                 connectionManagerOptions, clientConfig.allocator);
