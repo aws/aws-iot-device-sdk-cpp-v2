@@ -140,12 +140,7 @@ int main(int argc, char *argv[])
      * tells us.
      */
     Io::SocketOptions socketOptions;
-    socketOptions.connect_timeout_ms = 3000;
-    socketOptions.domain = AWS_SOCKET_IPV4;
-    socketOptions.type = AWS_SOCKET_STREAM;
-    socketOptions.keep_alive_interval_sec = 0;
-    socketOptions.keep_alive_timeout_sec = 0;
-    socketOptions.keepalive = false;
+    socketOptions.SetConnectTimeoutMs(3000);
 
     Io::DefaultHostResolver hostResolver(eventLoopGroup, 64, 30);
     Io::ClientBootstrap bootstrap(eventLoopGroup, hostResolver);
