@@ -22,26 +22,112 @@ namespace Aws
     {
         using OnDiscoverResponse = std::function<void(DiscoverResponse *, int errorCode, int httpResponseCode)>;
 
-        struct DiscoveryClientConfig
+        class DiscoveryClientConfig
         {
-            DiscoveryClientConfig() noexcept;
-            Crt::Allocator *allocator;
-            Crt::Io::ClientBootstrap *bootstrap;
-            Crt::Io::TlsContext *tlsContext;
-            Crt::Io::SocketOptions *socketOptions;
-            Crt::String region;
-            size_t maxConnections;
-            // TODO: when supported add proxy configuration.
+          public:
+            explicit DiscoveryClientConfig(Crt::Allocator *allocator = Crt::DefaultAllocator()) noexcept;
+            DiscoveryClientConfig(const DiscoveryClientConfig &rhs) = default;
+            DiscoveryClientConfig(DiscoveryClientConfig &&rhs) = default;
+
+            DiscoveryClientConfig &operator=(const DiscoveryClientConfig &rhs) = default;
+            DiscoveryClientConfig &operator=(DiscoveryClientConfig &&rhs) = default;
+
+            ~DiscoveryClientConfig() = default;
+
+            /**
+             * Sets the client bootstrap to use for setting up and tearing down connections.
+             * This value must be set.
+             */
+            void SetBootstrap(Crt::Io::ClientBootstrap *bootstrap) noexcept { m_bootstrap = bootstrap; }
+
+            /**
+             * Gets the client bootstrap to use for setting up and tearing down connections.
+             */
+            Crt::Io::ClientBootstrap *GetBootstrap() const noexcept { return m_bootstrap; }
+
+            /**
+             * Sets the TLS options for all http connections made by this client
+             */
+            void SetTlsContext(const Crt::Io::TlsContext &context) noexcept { m_tlsContext = context; }
+
+            /**
+             * Gets the TLS options for all http connections made by this client
+             */
+            const Crt::Io::TlsContext *GetTlsContext() const noexcept
+            {
+                return m_tlsContext.has_value() ? &m_tlsContext.value() : nullptr;
+            }
+
+            /**
+             * Sets the socket options of the connections made by the client.
+             * This value must be set.
+             */
+            void SetSocketOptions(const Crt::Io::SocketOptions &options) noexcept { m_socketOptions = options; }
+
+            /**
+             * Gets the socket options of the connections made by the client
+             */
+            const Crt::Io::SocketOptions &GetSocketOptions() const noexcept { return m_socketOptions; }
+
+            /**
+             * Sets the value of the Aws region to connect to.
+             * This value must be set.
+             */
+            void SetRegion(const Crt::String &region) noexcept { m_region = region; }
+
+            /**
+             * Gets the value of the Aws region to connect to.
+             */
+            const Crt::String &GetRegion() const noexcept { return m_region; }
+
+            /**
+             * Sets the maximum number of concurrent connections allowed
+             */
+            void SetMaxConnections(size_t maxConnections) noexcept { m_maxConnections = maxConnections; }
+
+            /**
+             * Gets the maximum number of concurrent connections allowed
+             */
+            size_t GetMaxConnections() const noexcept { return m_maxConnections; }
+
+            /**
+             * Sets the proxy options for all http connections made by this client
+             */
+            void SetProxyOptions(const Crt::Http::HttpClientConnectionProxyOptions &options) noexcept
+            {
+                m_proxyOptions = options;
+            }
+
+            /**
+             * Gets the proxy options for all http connections made by this client
+             */
+            const Crt::Http::HttpClientConnectionProxyOptions *GetProxyOptions() const noexcept
+            {
+                return m_proxyOptions.has_value() ? &m_proxyOptions.value() : nullptr;
+            }
+
+          private:
+            Crt::Allocator *m_allocator;
+            Crt::Io::ClientBootstrap *m_bootstrap;
+            Crt::Optional<Crt::Io::TlsContext> m_tlsContext;
+            Crt::Io::SocketOptions m_socketOptions;
+            Crt::String m_region;
+            size_t m_maxConnections;
+            Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> m_proxyOptions;
         };
 
         class DiscoveryClient final
         {
           public:
-            DiscoveryClient(const DiscoveryClientConfig &) noexcept;
-
             bool Discover(const Crt::String &thingName, const OnDiscoverResponse &onDiscoverResponse) noexcept;
 
+            static std::shared_ptr<DiscoveryClient> CreateClient(
+                const DiscoveryClientConfig &config,
+                Crt::Allocator *allocator = Crt::DefaultAllocator());
+
           private:
+            DiscoveryClient(const DiscoveryClientConfig &config, Crt::Allocator *allocator) noexcept;
+
             std::shared_ptr<Crt::Http::HttpClientConnectionManager> m_connectionManager;
             Crt::String m_hostName;
             Crt::Allocator *m_allocator;

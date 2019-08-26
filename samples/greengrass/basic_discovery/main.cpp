@@ -152,12 +152,12 @@ int main(int argc, char *argv[])
     }
 
     DiscoveryClientConfig clientConfig;
-    clientConfig.bootstrap = &bootstrap;
-    clientConfig.socketOptions = &socketOptions;
-    clientConfig.tlsContext = &tlsCtx;
-    clientConfig.region = region;
+    clientConfig.SetBootstrap(&bootstrap);
+    clientConfig.SetSocketOptions(socketOptions);
+    clientConfig.SetTlsContext(tlsCtx);
+    clientConfig.SetRegion(region);
 
-    DiscoveryClient discoveryClient(clientConfig);
+    auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);
 
     Aws::Iot::MqttClient mqttClient(bootstrap);
     std::shared_ptr<Mqtt::MqttConnection> connection(nullptr);
@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
     std::atomic<bool> connectionFinished(false);
     std::atomic<bool> shutdownCompleted(false);
 
-    discoveryClient.Discover(thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
+    discoveryClient->Discover(thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
         if (!error && response->GGGroups)
         {
             auto groupToUse = std::move(response->GGGroups->at(0));
