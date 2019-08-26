@@ -64,6 +64,10 @@ namespace Aws
             connectionOptions.SetInitialWindowSize(SIZE_MAX);
             connectionOptions.SetHostName(Crt::String((const char *)serverName.ptr, serverName.len));
             connectionOptions.SetPort(port);
+            if (clientConfig.GetProxyOptions())
+            {
+                connectionOptions.SetProxyOptions(*clientConfig.GetProxyOptions());
+            }
 
             Crt::Http::HttpClientConnectionManagerOptions connectionManagerOptions;
             connectionManagerOptions.SetConnectionOptions(connectionOptions);

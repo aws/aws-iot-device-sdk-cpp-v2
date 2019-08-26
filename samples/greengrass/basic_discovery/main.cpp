@@ -35,7 +35,8 @@ static void s_printHelp()
         "basic-discovery --region <optional: region> --cert <path to cert>"
         " --key <path to key> --ca_file <path to custom ca>"
         " --thing_name <thing name> --topic <optional: topic> "
-        " --mode <optional: both|publish|subscribe> --message <optional: message to publish>\n\n");
+        " --mode <optional: both|publish|subscribe> --message <optional: message to publish>"
+        " --proxy-host <optional: proxy host name> --proxy-port <optional: proxy port>\n\n");
     fprintf(stdout, "region: the region for your green grass groups, default us-east-1\n");
     fprintf(stdout, "cert: path to your client certificate in PEM format\n");
     fprintf(stdout, "key: path to your key in PEM format\n");
@@ -45,6 +46,8 @@ static void s_printHelp()
     fprintf(stdout, "topic: targeted topic. Default is sdk/test/cpp-v2\n");
     fprintf(stdout, "mode: default both\n");
     fprintf(stdout, "message: message to publish. default 'Hello World'\n");
+    fprintf(stdout, "proxy-host: proxy host to use for discovery call. Default is to not use a proxy.\n");
+    fprintf(stdout, "proxy-port: proxy port to use for discovery call.\n");
 }
 
 bool s_cmdOptionExists(char **begin, char **end, const String &option)
@@ -70,6 +73,8 @@ int main(int argc, char *argv[])
      */
     ApiHandle apiHandle;
 
+    String proxyHost;
+    uint16_t proxyPort = 0;
     String region("us-east-1");
     String certificatePath;
     String keyPath;
@@ -112,6 +117,17 @@ int main(int argc, char *argv[])
         message = s_getCmdOption(argv, argv + argc, "--message");
     }
 
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy-host"))
+    {
+        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy-host");
+    }
+
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy-port"))
+    {
+        String portString = s_getCmdOption(argv, argv + argc, "--proxy-port");
+        proxyPort = atoi(portString.c_str());
+    }
+
     Io::EventLoopGroup eventLoopGroup(1);
     if (!eventLoopGroup)
     {
@@ -131,7 +147,7 @@ int main(int argc, char *argv[])
 
     if (!tlsCtx)
     {
-        fprintf(stderr, "Tls Context creation failed with error %s\n", ErrorDebugString(tlsCtx.LastError()));
+        fprintf(stderr, "Tls Context creation failed with error %s\n", ErrorDebugString(LastErrorOrUnknown()));
         exit(-1);
     }
 
@@ -156,6 +172,14 @@ int main(int argc, char *argv[])
     clientConfig.SetSocketOptions(socketOptions);
     clientConfig.SetTlsContext(tlsCtx);
     clientConfig.SetRegion(region);
+
+    Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+    if (proxyHost.length() > 0 && proxyPort != 0)
+    {
+        proxyOptions.SetHostName(proxyHost);
+        proxyOptions.SetPort(proxyPort);
+        clientConfig.SetProxyOptions(proxyOptions); //
+    }
 
     auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);
 
