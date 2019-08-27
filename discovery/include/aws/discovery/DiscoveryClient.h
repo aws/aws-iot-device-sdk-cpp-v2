@@ -25,7 +25,7 @@ namespace Aws
         class DiscoveryClientConfig
         {
           public:
-            explicit DiscoveryClientConfig(Crt::Allocator *allocator = Crt::DefaultAllocator()) noexcept;
+            DiscoveryClientConfig() noexcept;
             DiscoveryClientConfig(const DiscoveryClientConfig &rhs) = default;
             DiscoveryClientConfig(DiscoveryClientConfig &&rhs) = default;
 
@@ -107,7 +107,6 @@ namespace Aws
             }
 
           private:
-            Crt::Allocator *m_allocator;
             Crt::Io::ClientBootstrap *m_bootstrap;
             Crt::Optional<Crt::Io::TlsContext> m_tlsContext;
             Crt::Io::SocketOptions m_socketOptions;

@@ -23,8 +23,8 @@ namespace Aws
 {
     namespace Discovery
     {
-        DiscoveryClientConfig::DiscoveryClientConfig(Crt::Allocator *allocator) noexcept
-            : m_allocator(allocator), m_bootstrap(nullptr), m_tlsContext(), m_socketOptions(), m_region(),
+        DiscoveryClientConfig::DiscoveryClientConfig() noexcept
+            : m_bootstrap(nullptr), m_tlsContext(), m_socketOptions(), m_region(),
               m_maxConnections(2), m_proxyOptions()
         {
         }
