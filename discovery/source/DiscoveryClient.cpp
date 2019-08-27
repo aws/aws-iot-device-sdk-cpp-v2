@@ -163,7 +163,7 @@ namespace Aws
                             callbackContext->ss.write(reinterpret_cast<const char *>(data.ptr), data.len);
                         };
                     requestOptions.onStreamComplete = [request, connection, callbackContext, onDiscoverResponse](
-                                                          Crt::Http::HttpStream &stream, int errorCode) {
+                                                          Crt::Http::HttpStream &, int errorCode) {
                         if (!errorCode && callbackContext->responseCode == 200)
                         {
                             Crt::JsonObject jsonObject(callbackContext->ss.str());

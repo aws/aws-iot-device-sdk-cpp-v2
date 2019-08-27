@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
     if (s_cmdOptionExists(argv, argv + argc, "--proxy-port"))
     {
         String portString = s_getCmdOption(argv, argv + argc, "--proxy-port");
-        proxyPort = atoi(portString.c_str());
+        proxyPort = static_cast<uint16_t>(atoi(portString.c_str()));
     }
 
     Io::EventLoopGroup eventLoopGroup(1);
@@ -221,7 +221,7 @@ int main(int argc, char *argv[])
 
             connection->OnConnectionCompleted =
                 [&, connectivityInfo, groupToUse](
-                    Mqtt::MqttConnection &conn, int errorCode, Mqtt::ReturnCode returnCode, bool sessionPresent) {
+                    Mqtt::MqttConnection &conn, int errorCode, Mqtt::ReturnCode /*returnCode*/, bool /*sessionPresent*/) {
                     if (!errorCode)
                     {
                         fprintf(
@@ -233,7 +233,7 @@ int main(int argc, char *argv[])
 
                         if (mode == "both" || mode == "subscribe")
                         {
-                            auto onPublish = [&](Mqtt::MqttConnection &connection,
+                            auto onPublish = [&](Mqtt::MqttConnection & /*connection*/,
                                                  const String &receivedOnTopic,
                                                  const ByteBuf &payload) {
                                 fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
@@ -242,10 +242,10 @@ int main(int argc, char *argv[])
                                 fprintf(stdout, "\n");
                             };
 
-                            auto onSubAck = [&](Mqtt::MqttConnection &connection,
-                                                uint16_t packetId,
+                            auto onSubAck = [&](Mqtt::MqttConnection & /*connection*/,
+                                                uint16_t /*packetId*/,
                                                 const String &topic,
-                                                Mqtt::QOS qos,
+                                                Mqtt::QOS /*qos*/,
                                                 int errorCode) {
                                 if (!errorCode)
                                 {
@@ -289,11 +289,11 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Connection interrupted with error %s\n", aws_error_debug_str(errorCode));
             };
 
-            connection->OnConnectionResumed = [](Mqtt::MqttConnection &,
-                                                 Mqtt::ReturnCode connectCode,
-                                                 bool sessionPresent) { fprintf(stdout, "Connection resumed\n"); };
+            connection->OnConnectionResumed = [](Mqtt::MqttConnection & /*connection*/,
+                                                 Mqtt::ReturnCode /*connectCode*/,
+                                                 bool /*sessionPresent*/) { fprintf(stdout, "Connection resumed\n"); };
 
-            connection->OnDisconnect = [&](Mqtt::MqttConnection &connection) {
+            connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/) {
                 fprintf(stdout, "Connection disconnected. Shutting Down.....\n");
                 shutdownCompleted = true;
                 semaphore.notify_one();
