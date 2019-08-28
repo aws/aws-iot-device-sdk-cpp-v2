@@ -22,7 +22,7 @@ namespace Aws
     {
         using OnDiscoverResponse = std::function<void(DiscoverResponse *, int errorCode, int httpResponseCode)>;
 
-        class DiscoveryClientConfig
+        class AWS_DISCOVERY_API DiscoveryClientConfig
         {
           public:
             DiscoveryClientConfig() noexcept;
@@ -70,7 +70,7 @@ namespace Aws
             Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> ProxyOptions;
         };
 
-        class DiscoveryClient final
+        class AWS_DISCOVERY_API DiscoveryClient final
         {
           public:
             bool Discover(const Crt::String &thingName, const OnDiscoverResponse &onDiscoverResponse) noexcept;

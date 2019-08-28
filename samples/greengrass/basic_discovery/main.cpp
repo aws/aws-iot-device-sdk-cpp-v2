@@ -125,7 +125,7 @@ int main(int argc, char *argv[])
     if (s_cmdOptionExists(argv, argv + argc, "--proxy-port"))
     {
         String portString = s_getCmdOption(argv, argv + argc, "--proxy-port");
-        proxyPort = atoi(portString.c_str());
+        proxyPort = static_cast<uint16_t>(atoi(portString.c_str()));
     }
 
     Io::EventLoopGroup eventLoopGroup(1);
@@ -219,81 +219,83 @@ int main(int argc, char *argv[])
                 exit(-1);
             }
 
-            connection->OnConnectionCompleted =
-                [&, connectivityInfo, groupToUse](
-                    Mqtt::MqttConnection &conn, int errorCode, Mqtt::ReturnCode returnCode, bool sessionPresent) {
-                    if (!errorCode)
+            connection->OnConnectionCompleted = [&, connectivityInfo, groupToUse](
+                                                    Mqtt::MqttConnection &conn,
+                                                    int errorCode,
+                                                    Mqtt::ReturnCode /*returnCode*/,
+                                                    bool /*sessionPresent*/) {
+                if (!errorCode)
+                {
+                    fprintf(
+                        stdout,
+                        "Connected to group %s, using connection to %s:%d\n",
+                        groupToUse.GGGroupId->c_str(),
+                        connectivityInfo.HostAddress->c_str(),
+                        (int)connectivityInfo.Port.value());
+
+                    if (mode == "both" || mode == "subscribe")
                     {
-                        fprintf(
-                            stdout,
-                            "Connected to group %s, using connection to %s:%d\n",
-                            groupToUse.GGGroupId->c_str(),
-                            connectivityInfo.HostAddress->c_str(),
-                            (int)connectivityInfo.Port.value());
+                        auto onPublish = [&](Mqtt::MqttConnection & /*connection*/,
+                                             const String &receivedOnTopic,
+                                             const ByteBuf &payload) {
+                            fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
+                            fprintf(stdout, "Message: \n");
+                            fwrite(payload.buffer, 1, payload.len, stdout);
+                            fprintf(stdout, "\n");
+                        };
 
-                        if (mode == "both" || mode == "subscribe")
-                        {
-                            auto onPublish = [&](Mqtt::MqttConnection &connection,
-                                                 const String &receivedOnTopic,
-                                                 const ByteBuf &payload) {
-                                fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
-                                fprintf(stdout, "Message: \n");
-                                fwrite(payload.buffer, 1, payload.len, stdout);
-                                fprintf(stdout, "\n");
-                            };
+                        auto onSubAck = [&](Mqtt::MqttConnection & /*connection*/,
+                                            uint16_t /*packetId*/,
+                                            const String &topic,
+                                            Mqtt::QOS /*qos*/,
+                                            int errorCode) {
+                            if (!errorCode)
+                            {
+                                fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
+                                connectionFinished = true;
+                                semaphore.notify_one();
+                            }
+                            else
+                            {
+                                fprintf(
+                                    stderr,
+                                    "Failed to subscribe to %s with error %s. Exiting\n",
+                                    topic.c_str(),
+                                    aws_error_debug_str(errorCode));
+                                exit(-1);
+                            }
+                        };
 
-                            auto onSubAck = [&](Mqtt::MqttConnection &connection,
-                                                uint16_t packetId,
-                                                const String &topic,
-                                                Mqtt::QOS qos,
-                                                int errorCode) {
-                                if (!errorCode)
-                                {
-                                    fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
-                                    connectionFinished = true;
-                                    semaphore.notify_one();
-                                }
-                                else
-                                {
-                                    fprintf(
-                                        stderr,
-                                        "Failed to subscribe to %s with error %s. Exiting\n",
-                                        topic.c_str(),
-                                        aws_error_debug_str(errorCode));
-                                    exit(-1);
-                                }
-                            };
-
-                            conn.Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onPublish, onSubAck);
-                        }
-                        else
-                        {
-                            connectionFinished = true;
-                            semaphore.notify_one();
-                        }
+                        conn.Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onPublish, onSubAck);
                     }
                     else
                     {
-                        fprintf(
-                            stderr,
-                            "Error connecting to group %s, using connection to %s:%d\n",
-                            groupToUse.GGGroupId->c_str(),
-                            connectivityInfo.HostAddress->c_str(),
-                            (int)connectivityInfo.Port.value());
-                        fprintf(stderr, "Error: %s\n", aws_error_debug_str(errorCode));
-                        exit(-1);
+                        connectionFinished = true;
+                        semaphore.notify_one();
                     }
-                };
+                }
+                else
+                {
+                    fprintf(
+                        stderr,
+                        "Error connecting to group %s, using connection to %s:%d\n",
+                        groupToUse.GGGroupId->c_str(),
+                        connectivityInfo.HostAddress->c_str(),
+                        (int)connectivityInfo.Port.value());
+                    fprintf(stderr, "Error: %s\n", aws_error_debug_str(errorCode));
+                    exit(-1);
+                }
+            };
 
             connection->OnConnectionInterrupted = [](Mqtt::MqttConnection &, int errorCode) {
                 fprintf(stderr, "Connection interrupted with error %s\n", aws_error_debug_str(errorCode));
             };
 
-            connection->OnConnectionResumed = [](Mqtt::MqttConnection &,
-                                                 Mqtt::ReturnCode connectCode,
-                                                 bool sessionPresent) { fprintf(stdout, "Connection resumed\n"); };
+            connection->OnConnectionResumed = [](Mqtt::MqttConnection & /*connection*/,
+                                                 Mqtt::ReturnCode /*connectCode*/,
+                                                 bool /*sessionPresent*/) { fprintf(stdout, "Connection resumed\n"); };
 
-            connection->OnDisconnect = [&](Mqtt::MqttConnection &connection) {
+            connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/) {
                 fprintf(stdout, "Connection disconnected. Shutting Down.....\n");
                 shutdownCompleted = true;
                 semaphore.notify_one();
