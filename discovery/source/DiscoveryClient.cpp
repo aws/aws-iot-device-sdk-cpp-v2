@@ -23,9 +23,8 @@ namespace Aws
 {
     namespace Discovery
     {
-        DiscoveryClientConfig::DiscoveryClientConfig(Crt::Allocator *allocator) noexcept
-            : m_allocator(allocator), m_bootstrap(nullptr), m_tlsContext(), m_socketOptions(), m_region(),
-              m_maxConnections(2), m_proxyOptions()
+        DiscoveryClientConfig::DiscoveryClientConfig() noexcept
+            : Bootstrap(nullptr), TlsContext(), SocketOptions(), Region(), MaxConnections(2), ProxyOptions()
         {
         }
 
@@ -33,15 +32,15 @@ namespace Aws
             const Aws::Discovery::DiscoveryClientConfig &clientConfig,
             Crt::Allocator *allocator) noexcept
         {
-            AWS_ASSERT(clientConfig.GetTlsContext());
-            AWS_ASSERT(clientConfig.GetBootstrap());
+            AWS_FATAL_ASSERT(clientConfig.TlsContext);
+            AWS_FATAL_ASSERT(clientConfig.Bootstrap);
 
             m_allocator = allocator;
 
             Crt::StringStream ss;
-            ss << "greengrass-ats.iot." << clientConfig.GetRegion() << ".amazonaws.com";
+            ss << "greengrass-ats.iot." << clientConfig.Region << ".amazonaws.com";
 
-            Crt::Io::TlsConnectionOptions tlsConnectionOptions = clientConfig.GetTlsContext()->NewConnectionOptions();
+            Crt::Io::TlsConnectionOptions tlsConnectionOptions = clientConfig.TlsContext->NewConnectionOptions();
             uint16_t port = 443;
 
             if (Crt::Io::TlsContextOptions::IsAlpnSupported())
@@ -58,20 +57,19 @@ namespace Aws
             tlsConnectionOptions.SetServerName(serverName);
 
             Crt::Http::HttpClientConnectionOptions connectionOptions;
-            connectionOptions.SetSocketOptions(clientConfig.GetSocketOptions());
-            connectionOptions.SetBootstrap(clientConfig.GetBootstrap());
-            connectionOptions.SetTlsOptions(tlsConnectionOptions);
-            connectionOptions.SetInitialWindowSize(SIZE_MAX);
-            connectionOptions.SetHostName(Crt::String((const char *)serverName.ptr, serverName.len));
-            connectionOptions.SetPort(port);
-            if (clientConfig.GetProxyOptions())
+            connectionOptions.SocketOptions = clientConfig.SocketOptions;
+            connectionOptions.Bootstrap = clientConfig.Bootstrap;
+            connectionOptions.TlsOptions = tlsConnectionOptions;
+            connectionOptions.HostName = Crt::String((const char *)serverName.ptr, serverName.len);
+            connectionOptions.Port = port;
+            if (clientConfig.ProxyOptions)
             {
-                connectionOptions.SetProxyOptions(*clientConfig.GetProxyOptions());
+                connectionOptions.ProxyOptions = *clientConfig.ProxyOptions;
             }
 
             Crt::Http::HttpClientConnectionManagerOptions connectionManagerOptions;
-            connectionManagerOptions.SetConnectionOptions(connectionOptions);
-            connectionManagerOptions.SetMaxConnections(clientConfig.GetMaxConnections());
+            connectionManagerOptions.ConnectionOptions = connectionOptions;
+            connectionManagerOptions.MaxConnections = clientConfig.MaxConnections;
 
             m_connectionManager =
                 Crt::Http::HttpClientConnectionManager::NewClientConnectionManager(connectionManagerOptions, allocator);

@@ -168,17 +168,17 @@ int main(int argc, char *argv[])
     }
 
     DiscoveryClientConfig clientConfig;
-    clientConfig.SetBootstrap(&bootstrap);
-    clientConfig.SetSocketOptions(socketOptions);
-    clientConfig.SetTlsContext(tlsCtx);
-    clientConfig.SetRegion(region);
+    clientConfig.Bootstrap = &bootstrap;
+    clientConfig.SocketOptions = socketOptions;
+    clientConfig.TlsContext = tlsCtx;
+    clientConfig.Region = region;
 
     Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
     if (proxyHost.length() > 0 && proxyPort != 0)
     {
-        proxyOptions.SetHostName(proxyHost);
-        proxyOptions.SetPort(proxyPort);
-        clientConfig.SetProxyOptions(proxyOptions); //
+        proxyOptions.HostName = proxyHost;
+        proxyOptions.Port = proxyPort;
+        clientConfig.ProxyOptions = proxyOptions; //
     }
 
     auto discoveryClient = DiscoveryClient::CreateClient(clientConfig);
