@@ -13,7 +13,9 @@
  */
 #include <aws/discovery/DiscoveryClient.h>
 
+#include <aws/crt/Api.h>
 #include <aws/crt/Types.h>
+#include <aws/crt/http/HttpRequestResponse.h>
 #include <aws/crt/io/TlsOptions.h>
 #include <aws/crt/io/Uri.h>
 
@@ -22,23 +24,23 @@ namespace Aws
     namespace Discovery
     {
         DiscoveryClientConfig::DiscoveryClientConfig() noexcept
-            : allocator(Crt::DefaultAllocator()), bootstrap(nullptr), tlsContext(nullptr), socketOptions(nullptr),
-              region("us-east-1"), maxConnections(2)
+            : Bootstrap(nullptr), TlsContext(), SocketOptions(), Region(), MaxConnections(2), ProxyOptions()
         {
         }
 
-        DiscoveryClient::DiscoveryClient(const Aws::Discovery::DiscoveryClientConfig &clientConfig) noexcept
+        DiscoveryClient::DiscoveryClient(
+            const Aws::Discovery::DiscoveryClientConfig &clientConfig,
+            Crt::Allocator *allocator) noexcept
         {
-            AWS_ASSERT(clientConfig.tlsContext);
-            AWS_ASSERT(clientConfig.bootstrap);
-            AWS_ASSERT(clientConfig.socketOptions);
+            AWS_FATAL_ASSERT(clientConfig.TlsContext);
+            AWS_FATAL_ASSERT(clientConfig.Bootstrap);
 
-            m_allocator = clientConfig.allocator;
+            m_allocator = allocator;
 
             Crt::StringStream ss;
-            ss << "greengrass-ats.iot." << clientConfig.region << ".amazonaws.com";
+            ss << "greengrass-ats.iot." << clientConfig.Region << ".amazonaws.com";
 
-            Crt::Io::TlsConnectionOptions tlsConnectionOptions = clientConfig.tlsContext->NewConnectionOptions();
+            Crt::Io::TlsConnectionOptions tlsConnectionOptions = clientConfig.TlsContext->NewConnectionOptions();
             uint16_t port = 443;
 
             if (Crt::Io::TlsContextOptions::IsAlpnSupported())
@@ -54,17 +56,38 @@ namespace Aws
             Crt::ByteCursor serverName = Crt::ByteCursorFromCString(m_hostName.c_str());
             tlsConnectionOptions.SetServerName(serverName);
 
-            Crt::Http::HttpClientConnectionManagerOptions connectionManagerOptions;
-            connectionManagerOptions.socketOptions = clientConfig.socketOptions;
-            connectionManagerOptions.bootstrap = clientConfig.bootstrap;
-            connectionManagerOptions.tlsConnectionOptions = &tlsConnectionOptions;
-            connectionManagerOptions.maxConnections = clientConfig.maxConnections;
-            connectionManagerOptions.initialWindowSize = SIZE_MAX;
-            connectionManagerOptions.hostName = serverName;
-            connectionManagerOptions.port = port;
+            Crt::Http::HttpClientConnectionOptions connectionOptions;
+            connectionOptions.SocketOptions = clientConfig.SocketOptions;
+            connectionOptions.Bootstrap = clientConfig.Bootstrap;
+            connectionOptions.TlsOptions = tlsConnectionOptions;
+            connectionOptions.HostName = Crt::String((const char *)serverName.ptr, serverName.len);
+            connectionOptions.Port = port;
+            if (clientConfig.ProxyOptions)
+            {
+                connectionOptions.ProxyOptions = *clientConfig.ProxyOptions;
+            }
 
-            m_connectionManager = Crt::Http::HttpClientConnectionManager::NewClientConnectionManager(
-                connectionManagerOptions, clientConfig.allocator);
+            Crt::Http::HttpClientConnectionManagerOptions connectionManagerOptions;
+            connectionManagerOptions.ConnectionOptions = connectionOptions;
+            connectionManagerOptions.MaxConnections = clientConfig.MaxConnections;
+
+            m_connectionManager =
+                Crt::Http::HttpClientConnectionManager::NewClientConnectionManager(connectionManagerOptions, allocator);
+        }
+
+        std::shared_ptr<DiscoveryClient> DiscoveryClient::CreateClient(
+            const Aws::Discovery::DiscoveryClientConfig &clientConfig,
+            Crt::Allocator *allocator)
+        {
+            auto *toSeat = static_cast<DiscoveryClient *>(aws_mem_acquire(allocator, sizeof(DiscoveryClient)));
+            if (toSeat)
+            {
+                toSeat = new (toSeat) DiscoveryClient(clientConfig, allocator);
+                return std::shared_ptr<DiscoveryClient>(
+                    toSeat, [allocator](DiscoveryClient *client) { Crt::Delete(client, allocator); });
+            }
+
+            return nullptr;
         }
 
         struct ClientCallbackContext
@@ -77,8 +100,7 @@ namespace Aws
             const Crt::String &thingName,
             const OnDiscoverResponse &onDiscoverResponse) noexcept
         {
-
-            auto *callbackContext = Crt::New<ClientCallbackContext>(m_allocator);
+            auto callbackContext = Crt::MakeShared<ClientCallbackContext>(m_allocator);
             if (!callbackContext)
             {
                 return false;
@@ -89,69 +111,81 @@ namespace Aws
             bool res = m_connectionManager->AcquireConnection(
                 [this, callbackContext, thingName, onDiscoverResponse](
                     std::shared_ptr<Crt::Http::HttpClientConnection> connection, int errorCode) {
-                    if (!errorCode)
+                    if (errorCode)
                     {
-                        Crt::StringStream ss;
-                        ss << "/greengrass/discover/thing/" << thingName;
-                        Crt::String uriStr = ss.str();
-                        Crt::Http::HttpRequestOptions requestOptions;
-                        requestOptions.uri = Crt::ByteCursorFromCString(uriStr.c_str());
-                        requestOptions.method = Crt::ByteCursorFromCString("GET");
-
-                        Crt::Http::HttpHeader hostNameHeader;
-                        hostNameHeader.name = Crt::ByteCursorFromCString("host");
-                        hostNameHeader.value = Crt::ByteCursorFromCString(m_hostName.c_str());
-
-                        requestOptions.headerArray = &hostNameHeader;
-                        requestOptions.headerArrayLength = 1;
-
-                        requestOptions.onStreamOutgoingBody = nullptr;
-                        requestOptions.onIncomingHeaders =
-                            [](Crt::Http::HttpStream &, const Crt::Http::HttpHeader *, std::size_t) {};
-                        requestOptions.onIncomingHeadersBlockDone =
-                            [callbackContext](Crt::Http::HttpStream &stream, bool) {
-                                callbackContext->responseCode = stream.GetResponseStatusCode();
-                            };
-                        requestOptions.onIncomingBody =
-                            [callbackContext](Crt::Http::HttpStream &, const Crt::ByteCursor &data, std::size_t &) {
-                                callbackContext->ss.write(reinterpret_cast<const char *>(data.ptr), data.len);
-                            };
-                        requestOptions.onStreamComplete = [this, connection, callbackContext, onDiscoverResponse](
-                                                              Crt::Http::HttpStream &stream, int errorCode) {
-                            if (!errorCode && callbackContext->responseCode == 200)
-                            {
-                                Crt::JsonObject jsonObject(callbackContext->ss.str());
-                                DiscoverResponse response(jsonObject.View());
-                                onDiscoverResponse(&response, AWS_ERROR_SUCCESS, callbackContext->responseCode);
-                            }
-                            else
-                            {
-                                if (!errorCode)
-                                {
-                                    errorCode = AWS_ERROR_UNKNOWN;
-                                }
-                                onDiscoverResponse(nullptr, errorCode, callbackContext->responseCode);
-                            }
-
-                            Crt::Delete(callbackContext, m_allocator);
-                        };
-
-                        if (!connection->NewClientStream(requestOptions))
-                        {
-                            onDiscoverResponse(nullptr, aws_last_error(), 0);
-                            Crt::Delete(callbackContext, m_allocator);
-                        }
-
+                        onDiscoverResponse(nullptr, errorCode, 0);
                         return;
                     }
 
-                    onDiscoverResponse(nullptr, errorCode, 0);
-                    Crt::Delete(callbackContext, m_allocator);
+                    auto request = Aws::Crt::MakeShared<Crt::Http::HttpRequest>(m_allocator, m_allocator);
+                    if (request == nullptr)
+                    {
+                        onDiscoverResponse(nullptr, Crt::LastErrorOrUnknown(), 0);
+                        return;
+                    }
+
+                    Crt::StringStream ss;
+                    ss << "/greengrass/discover/thing/" << thingName;
+                    Crt::String uriStr = ss.str();
+                    if (!request->SetMethod(Crt::ByteCursorFromCString("GET")))
+                    {
+                        onDiscoverResponse(nullptr, Crt::LastErrorOrUnknown(), 0);
+                        return;
+                    }
+
+                    if (!request->SetPath(Crt::ByteCursorFromCString(uriStr.c_str())))
+                    {
+                        onDiscoverResponse(nullptr, Crt::LastErrorOrUnknown(), 0);
+                        return;
+                    }
+
+                    Crt::Http::HttpHeader hostNameHeader;
+                    hostNameHeader.name = Crt::ByteCursorFromCString("host");
+                    hostNameHeader.value = Crt::ByteCursorFromCString(m_hostName.c_str());
+
+                    if (!request->AddHeader(hostNameHeader))
+                    {
+                        onDiscoverResponse(nullptr, Crt::LastErrorOrUnknown(), 0);
+                        return;
+                    }
+
+                    Crt::Http::HttpRequestOptions requestOptions;
+                    requestOptions.request = request.get();
+                    requestOptions.onIncomingHeaders =
+                        [](Crt::Http::HttpStream &, const Crt::Http::HttpHeader *, std::size_t) {};
+                    requestOptions.onIncomingHeadersBlockDone = [callbackContext](Crt::Http::HttpStream &stream, bool) {
+                        callbackContext->responseCode = stream.GetResponseStatusCode();
+                    };
+                    requestOptions.onIncomingBody =
+                        [callbackContext](Crt::Http::HttpStream &, const Crt::ByteCursor &data) {
+                            callbackContext->ss.write(reinterpret_cast<const char *>(data.ptr), data.len);
+                        };
+                    requestOptions.onStreamComplete = [request, connection, callbackContext, onDiscoverResponse](
+                                                          Crt::Http::HttpStream &, int errorCode) {
+                        if (!errorCode && callbackContext->responseCode == 200)
+                        {
+                            Crt::JsonObject jsonObject(callbackContext->ss.str());
+                            DiscoverResponse response(jsonObject.View());
+                            onDiscoverResponse(&response, AWS_ERROR_SUCCESS, callbackContext->responseCode);
+                        }
+                        else
+                        {
+                            if (!errorCode)
+                            {
+                                errorCode = AWS_ERROR_UNKNOWN;
+                            }
+                            onDiscoverResponse(nullptr, errorCode, callbackContext->responseCode);
+                        }
+                    };
+
+                    if (!connection->NewClientStream(requestOptions))
+                    {
+                        onDiscoverResponse(nullptr, Crt::LastErrorOrUnknown(), 0);
+                    }
                 });
 
             if (!res)
             {
-                Crt::Delete(callbackContext, m_allocator);
                 return false;
             }
 
