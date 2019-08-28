@@ -17,7 +17,7 @@ fi
 
 # build aws-crt-cpp
 pushd $BUILD_PATH
-git clone --branch v0.5.2 https://github.com/awslabs/aws-crt-cpp.git
+git clone --branch v0.5.3 https://github.com/awslabs/aws-crt-cpp.git
 cd aws-crt-cpp
 cmake $CMAKE_ARGS -DBUILD_DEPS=ON ./
 cmake --build . --target install
