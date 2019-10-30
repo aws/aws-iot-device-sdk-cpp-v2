@@ -74,12 +74,12 @@ if (BUILD_DEPS)
     #we don't want happening until we're done with the above code.
     list(APPEND CMAKE_PREFIX_PATH "${AWS_DEPS_INSTALL_DIR}")
 
-    project(aws-iot-device-sdk-cpp-v2 CXX)
+    project(aws-iot-device-sdk-cpp-v2)
 
 else()
     #the following two lines are done in this branch intentionally, don't move it. project() does some magic that
     #we want happening exactly right now.
-    project(aws-iot-device-sdk-cpp-v2 CXX)
+    project(aws-iot-device-sdk-cpp-v2)
 
 endif()
 
