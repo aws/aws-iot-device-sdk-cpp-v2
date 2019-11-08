@@ -10,11 +10,13 @@ Until this project is promoted to General Availability, we advise you use the
 for a stable development environment.
 
 This SDK is built on the AWS Common Runtime, a collection of libraries
-([1](https://github.com/awslabs/aws-c-common),
-[2](https://github.com/awslabs/aws-c-io),
-[3](https://github.com/awslabs/aws-c-mqtt),
-[4](https://github.com/awslabs/aws-c-http),
-[5](https://github.com/awslabs/aws-c-cal)...) written in C to be
+([aws-c-common](https://github.com/awslabs/aws-c-common),
+[aws-c-io](https://github.com/awslabs/aws-c-io),
+[aws-c-mqtt](https://github.com/awslabs/aws-c-mqtt),
+[aws-c-http](https://github.com/awslabs/aws-c-http),
+[aws-c-cal](https://github.com/awslabs/aws-c-cal),
+[aws-c-auth](https://github.com/awslabs/aws-c-auth),
+[s2n](https://github.com/awslabs/s2n)...) written in C to be
 cross-platform, high-performance, secure, and reliable. The libraries are bound
 to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
@@ -30,22 +32,22 @@ is provided by code that been generated from a model of the service.
 *   Clang 3.9+ or GCC 4.4+ or MSVC 2015+
 
 ## Build from source
+### Automatically Build and Install AWS Dependencies
 ```
-git clone --branch v0.6.1 https://github.com/awslabs/aws-crt-cpp.git
 git clone https://github.com/awslabs/aws-iot-device-sdk-cpp-v2.git
-mkdir aws-crt-cpp-build
-cd aws-crt-cpp-build
-cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>" -DCMAKE_PREFIX_PATH="<path to where you install>" -DBUILD_SHARED_LIBS=ON -DBUILD_DEPS=ON ../aws-crt-cpp
-cmake --build . --target install
-cd ..
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>" -DCMAKE_PREFIX_PATH="<path to where you install>" -DBUILD_SHARED_LIBS=ON ../aws-iot-device-sdk-cpp-v2
+cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>"  -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install
 ```
+### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
 
-Note: If you are updating an existing installation of `aws-crt-cpp`, you must delete and recreate `aws-crt-cpp-build` or it will not build correctly.
-
+```
+mkdir aws-iot-device-sdk-cpp-v2-build
+cd aws-iot-device-sdk-cpp-v2-build
+cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>"  -DCMAKE_PREFIX_PATH="<path to where you install>" -DBUILD_DEPS=OFF ../aws-iot-device-sdk-cpp-v2
+cmake --build . --target install
+```
 # Samples
 
 ## Shadow
@@ -198,7 +200,6 @@ and receive.
 
 ## Greengrass Discovery
 This sample is intended for direct usage with the Greengrass tutorial found [here](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html).
-
 
 # License
 

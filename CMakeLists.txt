@@ -8,6 +8,10 @@ elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
     set(CMAKE_INSTALL_LIBDIR "lib")
 endif()
 
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+endif()
+
 if (BUILD_DEPS)
     set(AWS_DEPS_BUILD_DIR ${CMAKE_CURRENT_BINARY_DIR}/deps CACHE STRING "If BUILD_DEPS is on, aws common runtime dependencies build in this directory.")
     if (DEFINED CMAKE_INSTALL_PREFIX)
