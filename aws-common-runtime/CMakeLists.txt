@@ -18,5 +18,5 @@ set(AWS_DEPS_DOWNLOAD_DIR "${AWS_DEPS_BUILD_DIR}/downloads" CACHE PATH "Dependen
 message("install dir ${AWS_DEPS_INSTALL_DIR}")
 
 set(AWS_CRT_CPP_URL "https://github.com/awslabs/aws-crt-cpp.git")
-set(AWS_CRT_CPP_SHA "v0.6.1")
+set(AWS_CRT_CPP_SHA "v0.6.2")
 include(BuildAwsCrtCpp)
