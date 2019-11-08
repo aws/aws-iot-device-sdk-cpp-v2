@@ -41,6 +41,7 @@ if (BUILD_DEPS)
                 -DCMAKE_PREFIX_PATH=${AWS_DEPS_INSTALL_DIR}
                 -DGIT_EXECUTABLE=${GIT_EXECUTABLE}
                 -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
+                -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
                 ${CMAKE_CURRENT_SOURCE_DIR}/aws-common-runtime
                 WORKING_DIRECTORY ${AWS_DEPS_BUILD_DIR}
         )
@@ -57,6 +58,7 @@ if (BUILD_DEPS)
                 -DCMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}
                 -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${CMAKE_CURRENT_BINARY_DIR}/bin
                 -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
+                -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
                 ${CMAKE_CURRENT_SOURCE_DIR}/aws-common-runtime
                 WORKING_DIRECTORY ${AWS_DEPS_BUILD_DIR}
                 RESULT_VARIABLE BUILD_AWSCRT_EXIT_CODE
