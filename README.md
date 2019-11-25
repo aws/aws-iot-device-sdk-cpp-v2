@@ -2,12 +2,8 @@
 
 Next generation AWS IoT Client SDK for C++.
 
-This project is in **DEVELOPER PREVIEW** while we gather feedback on
-interfaces and use cases. Please file issues and feature requests.
-Expect breaking API changes as we incorporate feedback.
-Until this project is promoted to General Availability, we advise you use the
-[previous SDK](https://github.com/aws/aws-iot-device-sdk-cpp)
-for a stable development environment.
+This project is in **GENERAL AVAILABILITY**. If you have any issues or feature
+requests, please file an issue or pull request.
 
 This SDK is built on the AWS Common Runtime, a collection of libraries
 ([aws-c-common](https://github.com/awslabs/aws-c-common),
