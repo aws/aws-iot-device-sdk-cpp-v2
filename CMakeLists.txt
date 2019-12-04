@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.1)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build, only do this if you don't want to control your dependency chain." OFF)
 
+if (DEFINED CMAKE_PREFIX_PATH)
+    file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
+endif()
+
+if (DEFINED CMAKE_INSTALL_PREFIX)
+    file(TO_CMAKE_PATH "${CMAKE_INSTALL_PREFIX}" CMAKE_INSTALL_PREFIX)
+endif()
+
 if (UNIX AND NOT APPLE)
     include(GNUInstallDirs)
 elseif(NOT DEFINED CMAKE_INSTALL_LIBDIR)
@@ -42,7 +50,8 @@ if (BUILD_DEPS)
                 -DGIT_EXECUTABLE=${GIT_EXECUTABLE}
                 -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
                 -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
-                ${CMAKE_CURRENT_SOURCE_DIR}/aws-common-runtime
+                -DCMAKE_INSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}
+		${CMAKE_CURRENT_SOURCE_DIR}/aws-common-runtime
                 WORKING_DIRECTORY ${AWS_DEPS_BUILD_DIR}
         )
 
@@ -59,6 +68,7 @@ if (BUILD_DEPS)
                 -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${CMAKE_CURRENT_BINARY_DIR}/bin
                 -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
                 -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
+		-DCMAKE_INSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}
                 ${CMAKE_CURRENT_SOURCE_DIR}/aws-common-runtime
                 WORKING_DIRECTORY ${AWS_DEPS_BUILD_DIR}
                 RESULT_VARIABLE BUILD_AWSCRT_EXIT_CODE
@@ -88,8 +98,12 @@ else()
     project(aws-iot-device-sdk-cpp-v2)
 
 endif()
+# This is required in order to append /lib/cmake to each element in CMAKE_PREFIX_PATH
+set(AWS_MODULE_DIR "/${CMAKE_INSTALL_LIBDIR}/cmake")
+string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${AWS_MODULE_DIR}")
+# Append that generated list to the module search path
+list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_PREFIX_PATH}/${CMAKE_INSTALL_LIBDIR}/cmake")
 
 if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)

@@ -18,8 +18,10 @@ if("${TARGET_ARCH}" STREQUAL ANDROID)
             -DANDROID_STL=${ANDROID_STL}
             -DENABLE_HW_OPTIMIZATION=OFF
             -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
+	    -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
             -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
-            -DBUILD_DEPS=ON
+            -DCMAKE_INSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}
+	    -DBUILD_DEPS=ON
             )
 elseif(MSVC)
     ExternalProject_Add(AwsCrtCpp
@@ -37,6 +39,7 @@ elseif(MSVC)
             -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
             -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
             -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
+            -DCMAKE_INSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}
             -DBUILD_DEPS=ON
             )
 else()
@@ -54,6 +57,7 @@ else()
             -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
             -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
             -DCMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}
-            -DBUILD_DEPS=ON
+            -DCMAKE_INSTALL_LIBDIR=${CMAKE_INSTALL_LIBDIR}
+	    -DBUILD_DEPS=ON
             )
 endif()
