@@ -46,6 +46,54 @@ cmake --build . --target install
 ```
 # Samples
 
+## Basic MQTT Pub-Sub
+
+This sample uses the
+[Message Broker](https://docs.aws.amazon.com/iot/latest/developerguide/iot-message-broker.html)
+for AWS IoT to send and receive messages through an MQTT connection.
+On startup, the device connects to the server and subscribes to a topic.
+
+The terminal prompts the user for input. Type something and press enter to publish a message to the topic.
+Since the sample is subscribed to the same topic, it will also receive the message back from the server.
+Type `quit` and press enter to end the sample.
+
+Source: `samples/mqtt/basic_pub_sub`
+
+Your Thing's
+[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
+must provide privileges for this sample to connect, subscribe, publish,
+and receive.
+
+```json
+{
+    "Effect": "Allow",
+    "Action": [
+        "iot:Receive",
+        "iot:Publish"
+    ],
+    "Resource": [
+        "arn:aws:iot:<your-region>:<your-id>:topic/a/b"
+    ],
+},
+{
+    "Effect": "Allow",
+    "Action": [
+        "iot:Subscribe"
+    ],
+    "Resource": [
+        "arn:aws:iot:<your-region>:<your-id>:topicfilter/a/b"
+    ]
+}
+```
+
+## Raw MQTT Pub-Sub
+This sample is similar to the Basic Pub-Sub, but the connection setup is more manual.
+This is a starting point for using custom
+[Configurable Endpoints](https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-endpoints-configurable.html).
+
+source: `samples/mqtt/raw_pub_sub`
+
+
 ## Shadow
 
 This sample uses the AWS IoT
