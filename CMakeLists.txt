@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build, only do this if you don't want to control your dependency chain." OFF)
+option(BUILD_SAMPLES "Build samples as part of the build" ON)
 
 if (DEFINED CMAKE_PREFIX_PATH)
     file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
@@ -115,8 +116,11 @@ find_package(aws-crt-cpp REQUIRED)
 add_subdirectory(jobs)
 add_subdirectory(shadow)
 add_subdirectory(discovery)
-add_subdirectory(samples/jobs/describe_job_execution)
-add_subdirectory(samples/shadow/shadow_sync)
-add_subdirectory(samples/greengrass/basic_discovery)
 
-
+if (BUILD_SAMPLES)
+    add_subdirectory(samples/mqtt/basic_pub_sub)
+    add_subdirectory(samples/mqtt/raw_pub_sub)
+    add_subdirectory(samples/jobs/describe_job_execution)
+    add_subdirectory(samples/shadow/shadow_sync)
+    add_subdirectory(samples/greengrass/basic_discovery)
+endif()
