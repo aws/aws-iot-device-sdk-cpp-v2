@@ -91,10 +91,10 @@ target_include_directories(Discovery-cpp PUBLIC
         $<INSTALL_INTERFACE:include>)
 
 if (NOT IS_SUBDIRECTORY_INCLUDE)
-    find_package(aws-crt-cpp REQUIRED)
+    aws_use_package(aws-crt-cpp)
 endif()
 
-target_link_libraries(Discovery-cpp AWS::aws-crt-cpp)
+target_link_libraries(Discovery-cpp ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_DISCOVERY_HEADERS} DESTINATION "include/aws/discovery/" COMPONENT Development)
 

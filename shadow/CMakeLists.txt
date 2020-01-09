@@ -91,10 +91,10 @@ target_include_directories(IotShadow-cpp PUBLIC
         $<INSTALL_INTERFACE:include>)
 
 if (NOT IS_SUBDIRECTORY_INCLUDE)
-    find_package(aws-crt-cpp REQUIRED)
+    aws_use_package(aws-crt-cpp)
 endif()
 
-target_link_libraries(IotShadow-cpp AWS::aws-crt-cpp)
+target_link_libraries(IotShadow-cpp ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTSHADOW_HEADERS} DESTINATION "include/aws/iotshadow/" COMPONENT Development)
 
