@@ -27,4 +27,5 @@ target_include_directories(${PUB_SUB_PROJECT_NAME} PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
-target_link_libraries(${PUB_SUB_PROJECT_NAME} AWS::aws-crt-cpp)
+aws_use_package(aws-crt-cpp)
+target_link_libraries(${PUB_SUB_PROJECT_NAME} ${DEP_AWS_LIBS})

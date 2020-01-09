@@ -2,4 +2,8 @@ include(CMakeFindDependencyMacro)
 
 find_dependency(aws-crt-cpp)
 
-include(${CMAKE_CURRENT_LIST_DIR}/IotShadow-cpp-targets.cmake)
+if (BUILD_SHARED_LIBS)
+    include(${CMAKE_CURRENT_LIST_DIR}/shared/@PROJECT_NAME@-targets.cmake)
+else ()
+    include(${CMAKE_CURRENT_LIST_DIR}/static/@PROJECT_NAME@-targets.cmake)
+endif()

@@ -16,6 +16,7 @@ if [ "$TRAVIS_OS_NAME" != "osx" ]; then
 fi
 
 # build SDK
+git submodule update --init --recursive
 mkdir -p build
 pushd build
 cmake $CMAKE_ARGS ../
