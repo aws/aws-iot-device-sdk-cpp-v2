@@ -98,10 +98,16 @@ target_link_libraries(IotShadow-cpp ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTSHADOW_HEADERS} DESTINATION "include/aws/iotshadow/" COMPONENT Development)
 
+if (BUILD_SHARED_LIBS)
+    set (TARGET_DIR "shared")
+else()
+    set (TARGET_DIR "static")
+endif()
 
 install(EXPORT "IotShadow-cpp-targets"
-        DESTINATION "lib/IotShadow-cpp/cmake/"
-        NAMESPACE AWS::)
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotShadow-cpp/cmake/${TARGET_DIR}"
+        NAMESPACE AWS::
+        COMPONENT Development)
 
 configure_file("cmake/IotShadow-cpp-config.cmake"
         "${CMAKE_CURRENT_BINARY_DIR}/IotShadow-cpp-config.cmake"

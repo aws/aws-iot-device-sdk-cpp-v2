@@ -98,10 +98,16 @@ target_link_libraries(Discovery-cpp ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_DISCOVERY_HEADERS} DESTINATION "include/aws/discovery/" COMPONENT Development)
 
+if (BUILD_SHARED_LIBS)
+    set (TARGET_DIR "shared")
+else()
+    set (TARGET_DIR "static")
+endif()
 
 install(EXPORT "Discovery-cpp-targets"
-        DESTINATION "lib/Discovery-cpp/cmake/"
-        NAMESPACE AWS::)
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/Discovery-cpp/cmake/${TARGET_DIR}"
+        NAMESPACE AWS::
+        COMPONENT Development)
 
 configure_file("cmake/Discovery-cpp-config.cmake"
         "${CMAKE_CURRENT_BINARY_DIR}/Discovery-cpp-config.cmake"
