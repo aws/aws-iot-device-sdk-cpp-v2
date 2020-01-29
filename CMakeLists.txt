@@ -34,8 +34,10 @@ string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${A
 # Append that generated list to the module search path
 list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
 
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+if (NOT DEFINED CMAKE_BUILD_TYPE)
+    if (NOT WIN32)
+        set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+    endif()
 endif()
 
 if (BUILD_DEPS)
