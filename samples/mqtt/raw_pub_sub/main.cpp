@@ -286,13 +286,13 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    std::mutex connectionMutex;
-    std::mutex publishMutex;
+    std::mutex mutex;
     std::condition_variable conditionVariable;
     bool connectionSucceeded = false;
     bool connectionClosed = false;
     bool connectionCompleted = false;
     bool publishCompleted = false;
+    bool subscribeAck = false;
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -301,7 +301,7 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            std::lock_guard<std::mutex> lockGuard(connectionMutex);
+            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionSucceeded = false;
         }
         else
@@ -310,7 +310,7 @@ int main(int argc, char *argv[])
             connectionSucceeded = true;
         }
         {
-            std::lock_guard<std::mutex> lockGuard(connectionMutex);
+            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionCompleted = true;
         }
         conditionVariable.notify_one();
@@ -328,7 +328,7 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
-            std::lock_guard<std::mutex> lockGuard(connectionMutex);
+            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionClosed = true;
         }
         conditionVariable.notify_one();
@@ -357,8 +357,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    std::unique_lock<std::mutex> uniqueLock(connectionMutex);
-    std::unique_lock<std::mutex> publishLock(publishMutex);
+    std::unique_lock<std::mutex> uniqueLock(mutex);
     conditionVariable.wait(uniqueLock, [&]() { return connectionCompleted; });
 
     if (connectionSucceeded)
@@ -385,11 +384,13 @@ int main(int argc, char *argv[])
             {
                 fprintf(stdout, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
             }
+            subscribeAck=true;
+            std::lock_guard<std::mutex> lockGuard(mutex);
             conditionVariable.notify_one();
         };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onPublish, onSubAck);
-        conditionVariable.wait(uniqueLock);
+        conditionVariable.wait(uniqueLock,[&]() { return subscribeAck; });
 
         while (true)
         {
@@ -421,12 +422,12 @@ int main(int argc, char *argv[])
                 {
                     fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
                 }
-                std::lock_guard<std::mutex> lockGuard(publishMutex);
+                std::lock_guard<std::mutex> lockGuard(mutex);
                 publishCompleted = true;
                 conditionVariable.notify_one();
             };
             connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
-            conditionVariable.wait(publishLock,[&]() { return publishCompleted; });
+            conditionVariable.wait(uniqueLock,[&]() { return publishCompleted; });
         }
 
         /*
