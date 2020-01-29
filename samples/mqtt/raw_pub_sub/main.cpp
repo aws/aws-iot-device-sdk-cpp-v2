@@ -292,6 +292,7 @@ int main(int argc, char *argv[])
     bool connectionSucceeded = false;
     bool connectionClosed = false;
     bool connectionCompleted = false;
+    bool publishCompleted = false;
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -419,10 +420,11 @@ int main(int argc, char *argv[])
                 {
                     fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
                 }
+                publishCompleted = true;
                 conditionVariable.notify_one();
             };
             connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
-            conditionVariable.wait(publishLock);
+            conditionVariable.wait(publishLock,[&]() { return publishCompleted; });
         }
 
         /*

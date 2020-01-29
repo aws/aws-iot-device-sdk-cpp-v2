@@ -238,6 +238,7 @@ int main(int argc, char *argv[])
     bool connectionSucceeded = false;
     bool connectionClosed = false;
     bool connectionCompleted = false;
+    bool publishCompleted = false;
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -303,7 +304,7 @@ int main(int argc, char *argv[])
     }
 
     std::unique_lock<std::mutex> uniqueLock(connectionMutex);
-    std::lock_guard<std::mutex> publishLock(publishMutex);
+    std::unique_lock<std::mutex> publishLock(publishMutex);
     conditionVariable.wait(uniqueLock, [&]() { return connectionCompleted; });
 
     if (connectionSucceeded)
@@ -365,10 +366,12 @@ int main(int argc, char *argv[])
                 {
                     fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
                 }
-                conditionVariable.wait(publishLock)
+                publishCompleted = true;
+                conditionVariable.notify_one();
             };
             
             connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
+            conditionVariable.wait(publishLock,[&]() { return publishCompleted; });
         }
 
         /*
