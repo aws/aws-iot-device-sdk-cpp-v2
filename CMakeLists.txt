@@ -43,11 +43,10 @@ if (BUILD_DEPS)
 
     include(AwsFindPackage)
     set(IN_SOURCE_BUILD ON)
-    set(BUILD_TESTING_PREV BUILD_TESTING)
+    set(BUILD_TESTING_PREV ${BUILD_TESTING})
     set(BUILD_TESTING OFF)
     add_subdirectory(aws-common-runtime/aws-crt-cpp)
-
-    set(BUILD_TESTING BUILD_TESTING_PREV)
+    set(BUILD_TESTING ${BUILD_TESTING_PREV})
 else()
     include(AwsFindPackage)
     set(IN_SOURCE_BUILD OFF)
