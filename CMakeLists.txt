@@ -34,8 +34,10 @@ string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${A
 # Append that generated list to the module search path
 list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
 
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+if (NOT DEFINED CMAKE_BUILD_TYPE)
+    if (NOT WIN32)
+        set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+    endif()
 endif()
 
 if (BUILD_DEPS)
@@ -43,11 +45,10 @@ if (BUILD_DEPS)
 
     include(AwsFindPackage)
     set(IN_SOURCE_BUILD ON)
-    set(BUILD_TESTING_PREV BUILD_TESTING)
+    set(BUILD_TESTING_PREV ${BUILD_TESTING})
     set(BUILD_TESTING OFF)
     add_subdirectory(aws-common-runtime/aws-crt-cpp)
-
-    set(BUILD_TESTING BUILD_TESTING_PREV)
+    set(BUILD_TESTING ${BUILD_TESTING_PREV})
 else()
     include(AwsFindPackage)
     set(IN_SOURCE_BUILD OFF)
