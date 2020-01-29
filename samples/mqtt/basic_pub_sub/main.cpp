@@ -232,7 +232,8 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    std::mutex mutex;
+    std::mutex connectionMutex;
+    std::mutex publishMutex;
     std::condition_variable conditionVariable;
     bool connectionSucceeded = false;
     bool connectionClosed = false;
@@ -245,7 +246,7 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            std::lock_guard<std::mutex> lockGuard(mutex);
+            std::lock_guard<std::mutex> lockGuard(connectionMutex);
             connectionSucceeded = false;
         }
         else
@@ -254,7 +255,7 @@ int main(int argc, char *argv[])
             connectionSucceeded = true;
         }
         {
-            std::lock_guard<std::mutex> lockGuard(mutex);
+            std::lock_guard<std::mutex> lockGuard(connectionMutex);
             connectionCompleted = true;
         }
         conditionVariable.notify_one();
@@ -272,7 +273,7 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
-            std::lock_guard<std::mutex> lockGuard(mutex);
+            std::lock_guard<std::mutex> lockGuard(connectionMutex);
             connectionClosed = true;
         }
         conditionVariable.notify_one();
@@ -301,7 +302,8 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    std::unique_lock<std::mutex> uniqueLock(mutex);
+    std::unique_lock<std::mutex> uniqueLock(connectionMutex);
+    std::lock_guard<std::mutex> publishLock(publishMutex);
     conditionVariable.wait(uniqueLock, [&]() { return connectionCompleted; });
 
     if (connectionSucceeded)
@@ -333,7 +335,7 @@ int main(int argc, char *argv[])
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onPublish, onSubAck);
         conditionVariable.wait(uniqueLock);
-
+        
         while (true)
         {
             String input;
@@ -352,7 +354,7 @@ int main(int argc, char *argv[])
             ByteBuf payload = ByteBufNewCopy(DefaultAllocator(), (const uint8_t *)input.data(), input.length());
             ByteBuf *payloadPtr = &payload;
 
-            auto onPublishComplete = [payloadPtr](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
+            auto onPublishComplete = [&,payloadPtr](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
                 aws_byte_buf_clean_up(payloadPtr);
 
                 if (packetId)
@@ -363,7 +365,9 @@ int main(int argc, char *argv[])
                 {
                     fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
                 }
+                conditionVariable.wait(publishLock)
             };
+            
             connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
         }
 
