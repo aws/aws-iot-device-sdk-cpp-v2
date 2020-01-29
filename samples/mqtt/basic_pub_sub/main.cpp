@@ -339,6 +339,7 @@ int main(int argc, char *argv[])
         
         while (true)
         {
+            publishCompleted=false;
             String input;
             fprintf(
                 stdout,
@@ -366,6 +367,7 @@ int main(int argc, char *argv[])
                 {
                     fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
                 }
+                std::lock_guard<std::mutex> lockGuard(publishMutex);
                 publishCompleted = true;
                 conditionVariable.notify_one();
             };
