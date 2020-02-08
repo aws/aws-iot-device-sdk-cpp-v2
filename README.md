@@ -30,7 +30,7 @@ is provided by code that been generated from a model of the service.
 ## Build from source
 ### Automatically Build and Install AWS Dependencies
 ```
-git clone --recursive https://github.com/awslabs/aws-iot-device-sdk-cpp-v2.git
+git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>"  -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2
