@@ -67,7 +67,7 @@ namespace Aws
 
             if (Code)
             {
-                (RejectedErrorCodeMarshaller::ToString(*Code));
+                object.WithString("code", RejectedErrorCodeMarshaller::ToString(*Code));
             }
 
             if (ExecutionState)

@@ -121,7 +121,7 @@ namespace Aws
 
             if (Status)
             {
-                (JobStatusMarshaller::ToString(*Status));
+                object.WithString("status", JobStatusMarshaller::ToString(*Status));
             }
 
             if (VersionNumber)
