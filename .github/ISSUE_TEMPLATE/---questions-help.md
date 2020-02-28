@@ -1,5 +1,5 @@
 ---
-name: Questions/help
+name: "\U0001F4AC Questions / Help"
 about: Make sure your question hasn't been asked before
 title: ''
 labels: guidance, needs-triage
