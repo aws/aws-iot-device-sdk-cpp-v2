@@ -30,10 +30,12 @@ is provided by code that been generated from a model of the service.
 ## Build from source
 ### Automatically Build and Install AWS Dependencies
 ```
+mkdir sdk-spp-workspace
+cd sdk-spp-workspace
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>"  -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-spp-workspace dir>"  -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install
 ```
 ### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
@@ -41,10 +43,83 @@ cmake --build . --target install
 ```
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<path to where you install>"  -DCMAKE_PREFIX_PATH="<path to where you install>" -DBUILD_DEPS=OFF ../aws-iot-device-sdk-cpp-v2
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-spp-workspace dir>"  -DCMAKE_PREFIX_PATH="<absolute path sdk-spp-workspace dir>" -DBUILD_DEPS=OFF ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install
 ```
 # Samples
+
+## fleet provisioning
+
+This sample uses the AWS IoT
+[Fleet provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html)
+to provision devices using either a CSR or KeysAndcertificate and subsequently calls RegisterThing.
+
+On startup, the script subscribes to topics based on the request type of either CSR or Keys topics,
+publishes the request to corresponding topic and calls RegisterThing.
+
+Source: `samples/identity/fleet_provisioning`
+
+cd ~/aws-iot-device-sdk-cpp-v2-build/samples/identity/fleet_provisioning
+
+Run the sample like this to provisiong using CreateKeysAndCertificate:
+ 
+```
+./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA> 
+--cert <path to the certificate> --key <path to the private key> 
+--template_name <template name> --template_parameters <template parameters json>
+```
+
+Run the sample like this to provisiong using Csr:
+ 
+```
+./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA> 
+--cert <path to the certificate> --key <path to the private key> 
+--template_name <template name> --template_parameters <template parameters json> --csr <path to the CSR in PEM format>
+```
+
+Your Thing's
+[Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
+must provide privileges for this sample to connect, subscribe, publish,
+and receive.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename<b>/provision/json"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Receive",
+        "iot:Subscribe"
+      ],
+      "Resource": [
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/rejected",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json/rejected",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename<b>/provision/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename<b>/provision/json/rejected"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iot:Connect",
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/samples-client-id"
+    }
+  ]
+}
+```
 
 ## Basic MQTT Pub-Sub
 
