@@ -311,6 +311,7 @@ int main(int argc, char *argv[]) {
                     *error->StatusCode,
                     error->ErrorMessage->c_str(),
                     error->ErrorCode->c_str());
+                    exit(-1);
             } else {
                 fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
                 exit(-1);
@@ -365,6 +366,7 @@ int main(int argc, char *argv[]) {
                     *error->StatusCode,
                     error->ErrorMessage->c_str(),
                     error->ErrorCode->c_str());
+                    exit(-1);
             } else {
                 fprintf(stderr, "Error on subscription: %s.\n", ErrorDebugString(ioErr));
                 exit(-1);
