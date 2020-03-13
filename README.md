@@ -61,7 +61,7 @@ Source: `samples/identity/fleet_provisioning`
 
 cd ~/aws-iot-device-sdk-cpp-v2-build/samples/identity/fleet_provisioning
 
-Run the sample like this to provisiong using CreateKeysAndCertificate:
+Run the sample like this to provision using CreateKeysAndCertificate:
  
 ```
 ./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA> 
@@ -69,7 +69,7 @@ Run the sample like this to provisiong using CreateKeysAndCertificate:
 --template_name <template name> --template_parameters <template parameters json>
 ```
 
-Run the sample like this to provisiong using Csr:
+Run the sample like this to provision using Csr:
  
 ```
 ./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA> 
