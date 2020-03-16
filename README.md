@@ -30,12 +30,12 @@ is provided by code that been generated from a model of the service.
 ## Build from source
 ### Automatically Build and Install AWS Dependencies
 ```
-mkdir sdk-spp-workspace
-cd sdk-spp-workspace
+mkdir sdk-cpp-workspace
+cd sdk-cpp-workspace
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-spp-workspace dir>"  -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install
 ```
 ### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
@@ -43,7 +43,7 @@ cmake --build . --target install
 ```
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-spp-workspace dir>"  -DCMAKE_PREFIX_PATH="<absolute path sdk-spp-workspace dir>" -DBUILD_DEPS=OFF ../aws-iot-device-sdk-cpp-v2
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=OFF ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install
 ```
 # Samples
