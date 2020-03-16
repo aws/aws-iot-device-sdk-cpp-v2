@@ -80,8 +80,8 @@ static char *s_getCmdOption(char **begin, char **end, const String &option) {
 }
 
 static void sleep(int sleeptime) {
-    std::cout << "Sleeping for " << sleeptime << " nanoseconds..." << std::endl;
-    sleep_for(nanoseconds(sleeptime));
+    std::cout << "Sleeping for " << sleeptime << " seconds..." << std::endl;
+    sleep_until(system_clock::now() + seconds(sleeptime));
 }
 
 static std::string getFileData(std::string const& fileName) {
@@ -536,7 +536,7 @@ int main(int argc, char *argv[]) {
                         onRegisterRejected,
                         onRegisterRejectedSubAck);
 
-            sleep(1000000000);
+            sleep(1);
 
             std::cout << "Publishing to RegisterThing topic" << std::endl;
             RegisterThingRequest registerThingRequest;
@@ -558,7 +558,7 @@ int main(int argc, char *argv[]) {
                         registerThingRequest,
                         AWS_MQTT_QOS_AT_LEAST_ONCE,
                         onRegisterPublishSubAck);
-            sleep(1000000000);
+            sleep(1);
 
             conditionVariable.wait(uniqueLock, [&]() {
                         return csrPublishCompleted.load() &&
