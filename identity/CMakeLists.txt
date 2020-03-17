@@ -99,9 +99,9 @@ target_link_libraries(IotIdentity-cpp ${DEP_AWS_LIBS})
 install(FILES ${AWS_IOTIDENTITY_HEADERS} DESTINATION "include/aws/iotidentity/" COMPONENT Development)
 
 if (BUILD_SHARED_LIBS)
-    set (TARGET_DIR "shared")
+    set(TARGET_DIR "shared")
 else()
-    set (TARGET_DIR "static")
+    set(TARGET_DIR "static")
 endif()
 
 install(EXPORT "IotIdentity-cpp-targets"
