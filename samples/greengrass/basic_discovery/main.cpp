@@ -33,7 +33,7 @@ static void s_printHelp()
     fprintf(
         stdout,
         "basic-discovery --region <optional: region> --cert <path to cert>"
-        " --key <path to key> --ca_file <path to custom ca>"
+        " --key <path to key> --ca_file <optional: path to custom ca>"
         " --thing_name <thing name> --topic <optional: topic> "
         " --mode <optional: both|publish|subscribe> --message <optional: message to publish>"
         " --proxy-host <optional: proxy host name> --proxy-port <optional: proxy port>\n\n");
@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
 
     /*********************** Parse Arguments ***************************/
     if (!(s_cmdOptionExists(argv, argv + argc, "--cert") && s_cmdOptionExists(argv, argv + argc, "--key") &&
-          s_cmdOptionExists(argv, argv + argc, "--thing_name") && s_cmdOptionExists(argv, argv + argc, "--ca_file")))
+          s_cmdOptionExists(argv, argv + argc, "--thing_name")))
     {
         s_printHelp();
         return 0;
@@ -95,7 +95,11 @@ int main(int argc, char *argv[])
     certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
     keyPath = s_getCmdOption(argv, argv + argc, "--key");
     thingName = s_getCmdOption(argv, argv + argc, "--thing_name");
-    caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
+
+    if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
+    {
+        caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
+    }
 
     if (s_cmdOptionExists(argv, argv + argc, "--region"))
     {
@@ -142,7 +146,17 @@ int main(int argc, char *argv[])
     Io::TlsContextOptions tlsCtxOptions =
         Io::TlsContextOptions::InitClientWithMtls(certificatePath.c_str(), keyPath.c_str());
 
-    tlsCtxOptions.OverrideDefaultTrustStore(nullptr, caFile.c_str());
+    if (!tlsCtxOptions)
+    {
+        fprintf(stderr, "TLS Context Options creation failed with error %s\n", ErrorDebugString(Aws::Crt::LastError()));
+        exit(-1);
+    }
+
+    if (!caFile.empty())
+    {
+        tlsCtxOptions.OverrideDefaultTrustStore(nullptr, caFile.c_str());
+    }
+
     Io::TlsContext tlsCtx(tlsCtxOptions, Io::TlsMode::CLIENT);
 
     if (!tlsCtx)
