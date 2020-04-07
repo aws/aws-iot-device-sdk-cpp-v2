@@ -43,6 +43,7 @@ namespace Aws
             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
             Aws::Crt::Optional<bool> IncludeJobExecutionState;
             Aws::Crt::Optional<Aws::Iotjobs::JobStatus> Status;
+            Aws::Crt::Optional<int64_t> StepTimeoutInMinutes;
             Aws::Crt::Optional<Aws::Crt::String> JobId;
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
