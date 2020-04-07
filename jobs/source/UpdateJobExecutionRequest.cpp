@@ -62,6 +62,11 @@ namespace Aws
                 val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
             }
 
+            if (doc.ValueExists("stepTimeoutInMinutes"))
+            {
+                val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
+            }
+
             if (doc.ValueExists("clientToken"))
             {
                 val.ClientToken = doc.GetString("clientToken");
@@ -107,6 +112,11 @@ namespace Aws
             if (Status)
             {
                 object.WithString("status", JobStatusMarshaller::ToString(*Status));
+            }
+
+            if (StepTimeoutInMinutes)
+            {
+                object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
             }
 
             if (ClientToken)
