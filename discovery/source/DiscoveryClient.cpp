@@ -180,7 +180,13 @@ namespace Aws
                         }
                     };
 
-                    if (!connection->NewClientStream(requestOptions))
+                    auto stream = connection->NewClientStream(requestOptions);
+                    if (!stream)
+                    {
+                        onDiscoverResponse(nullptr, Crt::LastErrorOrUnknown(), 0);
+                    }
+
+                    if (!stream->Activate())
                     {
                         onDiscoverResponse(nullptr, Crt::LastErrorOrUnknown(), 0);
                     }

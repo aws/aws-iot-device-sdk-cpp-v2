@@ -99,9 +99,9 @@ target_link_libraries(IotJobs-cpp ${DEP_AWS_LIBS})
 install(FILES ${AWS_IOTJOBS_HEADERS} DESTINATION "include/aws/iotjobs/" COMPONENT Development)
 
 if (BUILD_SHARED_LIBS)
-    set (TARGET_DIR "shared")
+   set(TARGET_DIR "shared")
 else()
-    set (TARGET_DIR "static")
+   set(TARGET_DIR "static")
 endif()
 
 install(EXPORT "IotJobs-cpp-targets"
