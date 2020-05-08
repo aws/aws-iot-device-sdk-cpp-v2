@@ -110,6 +110,8 @@ int main(int argc, char *argv[]) {
     String token;
     RegisterThingResponse registerThingResponse;
 
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, stderr);
+
     /*********************** Parse Arguments ***************************/
     if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") &&
           s_cmdOptionExists(argv, argv + argc, "--cert") &&
@@ -132,7 +134,7 @@ int main(int argc, char *argv[]) {
 
     //if CSRFile provided
     if (s_cmdOptionExists(argv, argv + argc, "--csr")) {
-        csrFile = getFileData(s_getCmdOption(argv, argv + argc, "--csr"));
+        csrFile = getFileData(s_getCmdOption(argv, argv + argc, "--csr")).c_str();
     }
 
     /********************** Now Setup an Mqtt Client ******************/
