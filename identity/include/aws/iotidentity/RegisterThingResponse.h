@@ -22,26 +22,24 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    class AWS_IOTIDENTITY_API RegisterThingResponse final
+    namespace Iotidentity
     {
-    public:
-        RegisterThingResponse() = default;
 
-        RegisterThingResponse(const Crt::JsonView& doc);
-        RegisterThingResponse& operator=(const Crt::JsonView& doc);
+        class AWS_IOTIDENTITY_API RegisterThingResponse final
+        {
+          public:
+            RegisterThingResponse() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            RegisterThingResponse(const Crt::JsonView &doc);
+            RegisterThingResponse &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> DeviceConfiguration;
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> DeviceConfiguration;
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-    private:
-        static void LoadFromObject(RegisterThingResponse& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(RegisterThingResponse &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotidentity
+} // namespace Aws

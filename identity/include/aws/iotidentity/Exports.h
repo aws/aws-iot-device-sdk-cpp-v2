@@ -27,5 +27,5 @@
 #    endif /* AWS_IOTIDENTITY_USE_IMPORT_EXPORT */
 
 #else /* defined (AWS_IOTIDENTITY_USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */
-#        define AWS_IOTIDENTITY_API
+#    define AWS_IOTIDENTITY_API
 #endif /* defined (AWS_IOTIDENTITY__USE_WINDOWS_DLL_SEMANTICS) || defined (WIN32) */

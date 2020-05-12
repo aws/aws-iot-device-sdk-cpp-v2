@@ -22,28 +22,26 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    class AWS_IOTIDENTITY_API CreateKeysAndCertificateResponse final
+    namespace Iotidentity
     {
-    public:
-        CreateKeysAndCertificateResponse() = default;
 
-        CreateKeysAndCertificateResponse(const Crt::JsonView& doc);
-        CreateKeysAndCertificateResponse& operator=(const Crt::JsonView& doc);
+        class AWS_IOTIDENTITY_API CreateKeysAndCertificateResponse final
+        {
+          public:
+            CreateKeysAndCertificateResponse() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            CreateKeysAndCertificateResponse(const Crt::JsonView &doc);
+            CreateKeysAndCertificateResponse &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::String> CertificateId;
-        Aws::Crt::Optional<Aws::Crt::String> PrivateKey;
-        Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
-        Aws::Crt::Optional<Aws::Crt::String> CertificatePem;
+            Aws::Crt::Optional<Aws::Crt::String> CertificateId;
+            Aws::Crt::Optional<Aws::Crt::String> PrivateKey;
+            Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
+            Aws::Crt::Optional<Aws::Crt::String> CertificatePem;
 
-    private:
-        static void LoadFromObject(CreateKeysAndCertificateResponse& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(CreateKeysAndCertificateResponse &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotidentity
+} // namespace Aws
