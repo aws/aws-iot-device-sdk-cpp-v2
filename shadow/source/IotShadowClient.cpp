@@ -50,6 +50,7 @@ namespace Aws
             const OnSubscribeToUpdateShadowRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -101,6 +102,7 @@ namespace Aws
             const OnSubscribeToDeleteShadowRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -152,6 +154,7 @@ namespace Aws
             const OnSubscribeToGetShadowAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -203,6 +206,7 @@ namespace Aws
             const OnSubscribeToShadowUpdatedEventsResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -254,6 +258,7 @@ namespace Aws
             const OnSubscribeToShadowDeltaUpdatedEventsResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -305,6 +310,7 @@ namespace Aws
             const OnSubscribeToDeleteShadowAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -356,6 +362,7 @@ namespace Aws
             const OnSubscribeToGetShadowRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -407,6 +414,7 @@ namespace Aws
             const OnSubscribeToUpdateShadowAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
