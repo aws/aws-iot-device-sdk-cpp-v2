@@ -46,6 +46,7 @@ namespace Aws
             const OnSubscribeToCreateCertificateFromCsrAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -97,6 +98,7 @@ namespace Aws
             const OnSubscribeToCreateKeysAndCertificateRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -148,6 +150,7 @@ namespace Aws
             const OnSubscribeToRegisterThingAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -199,6 +202,7 @@ namespace Aws
             const OnSubscribeToRegisterThingRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -250,6 +254,7 @@ namespace Aws
             const OnSubscribeToCreateKeysAndCertificateAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -301,6 +306,7 @@ namespace Aws
             const OnSubscribeToCreateCertificateFromCsrRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
