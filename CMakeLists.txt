@@ -6,6 +6,10 @@ include(CTest)
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build, only do this if you don't want to control your dependency chain." OFF)
 option(BUILD_SAMPLES "Build samples as part of the build" ON)
 
+if (WIN32)
+    set(CMAKE_OBJECT_PATH_MAX 200)
+endif()
+
 if (DEFINED CMAKE_PREFIX_PATH)
     file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
 endif()
