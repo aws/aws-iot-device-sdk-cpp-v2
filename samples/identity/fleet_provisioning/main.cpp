@@ -36,7 +36,6 @@
 #include <condition_variable>
 #include <fstream>
 #include <iostream>
-#include <iostream>
 #include <mutex>
 #include <sstream>
 #include <streambuf>
