@@ -24,25 +24,27 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    class AWS_IOTSHADOW_API ShadowUpdatedEvent final
     {
+    public:
+        ShadowUpdatedEvent() = default;
 
-        class AWS_IOTSHADOW_API ShadowUpdatedEvent final
-        {
-          public:
-            ShadowUpdatedEvent() = default;
+        ShadowUpdatedEvent(const Crt::JsonView& doc);
+        ShadowUpdatedEvent& operator=(const Crt::JsonView& doc);
 
-            ShadowUpdatedEvent(const Crt::JsonView &doc);
-            ShadowUpdatedEvent &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Iotshadow::ShadowUpdatedSnapshot> Previous;
-            Aws::Crt::Optional<Aws::Iotshadow::ShadowUpdatedSnapshot> Current;
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+        Aws::Crt::Optional<Aws::Iotshadow::ShadowUpdatedSnapshot> Previous;
+        Aws::Crt::Optional<Aws::Iotshadow::ShadowUpdatedSnapshot> Current;
+        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-          private:
-            static void LoadFromObject(ShadowUpdatedEvent &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(ShadowUpdatedEvent& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

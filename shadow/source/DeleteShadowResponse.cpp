@@ -17,47 +17,62 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    void DeleteShadowResponse::LoadFromObject(DeleteShadowResponse& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void DeleteShadowResponse::LoadFromObject(DeleteShadowResponse &val, const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("version"))
         {
-            (void)val;
-            (void)doc;
-
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
-
-            if (doc.ValueExists("version"))
-            {
-                val.Version = doc.GetInteger("version");
-            }
+            val.Version = doc.GetInteger("version");
         }
 
-        void DeleteShadowResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
+        if (doc.ValueExists("clientToken"))
         {
-            (void)object;
-
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
-
-            if (Version)
-            {
-                object.WithInteger("version", *Version);
-            }
+            val.ClientToken = doc.GetString("clientToken");
         }
 
-        DeleteShadowResponse::DeleteShadowResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
-
-        DeleteShadowResponse &DeleteShadowResponse::operator=(const Crt::JsonView &doc)
+        if (doc.ValueExists("timestamp"))
         {
-            *this = DeleteShadowResponse(doc);
-            return *this;
+            val.Timestamp = doc.GetDouble("timestamp");
         }
 
-    } // namespace Iotshadow
-} // namespace Aws
+    }
+
+    void DeleteShadowResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
+
+        if (Version)
+        {
+            object.WithInteger("version", *Version);
+        }
+
+        if (ClientToken)
+        {
+            object.WithString("clientToken", *ClientToken);
+        }
+
+        if (Timestamp)
+        {
+            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+        }
+
+    }
+
+    DeleteShadowResponse::DeleteShadowResponse(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
+
+    DeleteShadowResponse& DeleteShadowResponse::operator=(const Crt::JsonView& doc)
+    {
+        *this = DeleteShadowResponse(doc);
+        return *this;
+    }
+
+}
+}

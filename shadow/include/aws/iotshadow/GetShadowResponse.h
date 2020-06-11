@@ -25,26 +25,29 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    class AWS_IOTSHADOW_API GetShadowResponse final
     {
+    public:
+        GetShadowResponse() = default;
 
-        class AWS_IOTSHADOW_API GetShadowResponse final
-        {
-          public:
-            GetShadowResponse() = default;
+        GetShadowResponse(const Crt::JsonView& doc);
+        GetShadowResponse& operator=(const Crt::JsonView& doc);
 
-            GetShadowResponse(const Crt::JsonView &doc);
-            GetShadowResponse &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Iotshadow::ShadowStateWithDelta> State;
-            Aws::Crt::Optional<int32_t> Version;
-            Aws::Crt::Optional<Aws::Iotshadow::ShadowMetadata> Metadata;
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+        Aws::Crt::Optional<int32_t> Version;
+        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+        Aws::Crt::Optional<Aws::Iotshadow::ShadowStateWithDelta> State;
+        Aws::Crt::Optional<Aws::Iotshadow::ShadowMetadata> Metadata;
+        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-          private:
-            static void LoadFromObject(GetShadowResponse &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(GetShadowResponse& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

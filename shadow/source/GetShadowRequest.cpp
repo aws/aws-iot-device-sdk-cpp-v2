@@ -17,24 +17,42 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    void GetShadowRequest::LoadFromObject(GetShadowRequest& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void GetShadowRequest::LoadFromObject(GetShadowRequest &val, const Aws::Crt::JsonView &doc)
+        if (doc.ValueExists("clientToken"))
         {
-            (void)val;
-            (void)doc;
+            val.ClientToken = doc.GetString("clientToken");
         }
 
-        void GetShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
+    }
 
-        GetShadowRequest::GetShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+    void GetShadowRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
 
-        GetShadowRequest &GetShadowRequest::operator=(const Crt::JsonView &doc)
+        if (ClientToken)
         {
-            *this = GetShadowRequest(doc);
-            return *this;
+            object.WithString("clientToken", *ClientToken);
         }
 
-    } // namespace Iotshadow
-} // namespace Aws
+    }
+
+    GetShadowRequest::GetShadowRequest(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
+
+    GetShadowRequest& GetShadowRequest::operator=(const Crt::JsonView& doc)
+    {
+        *this = GetShadowRequest(doc);
+        return *this;
+    }
+
+}
+}

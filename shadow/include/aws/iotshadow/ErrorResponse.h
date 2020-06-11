@@ -23,26 +23,28 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    class AWS_IOTSHADOW_API ErrorResponse final
     {
+    public:
+        ErrorResponse() = default;
 
-        class AWS_IOTSHADOW_API ErrorResponse final
-        {
-          public:
-            ErrorResponse() = default;
+        ErrorResponse(const Crt::JsonView& doc);
+        ErrorResponse& operator=(const Crt::JsonView& doc);
 
-            ErrorResponse(const Crt::JsonView &doc);
-            ErrorResponse &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> Message;
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
-            Aws::Crt::Optional<int32_t> Code;
+        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+        Aws::Crt::Optional<Aws::Crt::String> Message;
+        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+        Aws::Crt::Optional<int32_t> Code;
 
-          private:
-            static void LoadFromObject(ErrorResponse &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(ErrorResponse& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

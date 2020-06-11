@@ -17,29 +17,32 @@
 
 namespace Aws
 {
-    namespace Iotidentity
+namespace Iotidentity
+{
+
+    void CreateKeysAndCertificateRequest::LoadFromObject(CreateKeysAndCertificateRequest& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void CreateKeysAndCertificateRequest::LoadFromObject(
-            CreateKeysAndCertificateRequest &val,
-            const Aws::Crt::JsonView &doc)
-        {
-            (void)val;
-            (void)doc;
-        }
+    }
 
-        void CreateKeysAndCertificateRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
+    void CreateKeysAndCertificateRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
 
-        CreateKeysAndCertificateRequest::CreateKeysAndCertificateRequest(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+    }
 
-        CreateKeysAndCertificateRequest &CreateKeysAndCertificateRequest::operator=(const Crt::JsonView &doc)
-        {
-            *this = CreateKeysAndCertificateRequest(doc);
-            return *this;
-        }
+    CreateKeysAndCertificateRequest::CreateKeysAndCertificateRequest(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
 
-    } // namespace Iotidentity
-} // namespace Aws
+    CreateKeysAndCertificateRequest& CreateKeysAndCertificateRequest::operator=(const Crt::JsonView& doc)
+    {
+        *this = CreateKeysAndCertificateRequest(doc);
+        return *this;
+    }
+
+}
+}

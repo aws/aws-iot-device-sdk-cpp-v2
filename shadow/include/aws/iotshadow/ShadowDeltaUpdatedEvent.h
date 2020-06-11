@@ -24,26 +24,28 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    class AWS_IOTSHADOW_API ShadowDeltaUpdatedEvent final
     {
+    public:
+        ShadowDeltaUpdatedEvent() = default;
 
-        class AWS_IOTSHADOW_API ShadowDeltaUpdatedEvent final
-        {
-          public:
-            ShadowDeltaUpdatedEvent() = default;
+        ShadowDeltaUpdatedEvent(const Crt::JsonView& doc);
+        ShadowDeltaUpdatedEvent& operator=(const Crt::JsonView& doc);
 
-            ShadowDeltaUpdatedEvent(const Crt::JsonView &doc);
-            ShadowDeltaUpdatedEvent &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::JsonObject> Metadata;
-            Aws::Crt::Optional<int32_t> Version;
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
-            Aws::Crt::Optional<Aws::Crt::JsonObject> State;
+        Aws::Crt::Optional<int32_t> Version;
+        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+        Aws::Crt::Optional<Aws::Crt::JsonObject> Metadata;
+        Aws::Crt::Optional<Aws::Crt::JsonObject> State;
 
-          private:
-            static void LoadFromObject(ShadowDeltaUpdatedEvent &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(ShadowDeltaUpdatedEvent& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

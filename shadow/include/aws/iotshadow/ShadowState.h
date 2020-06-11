@@ -23,24 +23,26 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    class AWS_IOTSHADOW_API ShadowState final
     {
+    public:
+        ShadowState() = default;
 
-        class AWS_IOTSHADOW_API ShadowState final
-        {
-          public:
-            ShadowState() = default;
+        ShadowState(const Crt::JsonView& doc);
+        ShadowState& operator=(const Crt::JsonView& doc);
 
-            ShadowState(const Crt::JsonView &doc);
-            ShadowState &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::JsonObject> Desired;
-            Aws::Crt::Optional<Aws::Crt::JsonObject> Reported;
+        Aws::Crt::Optional<Aws::Crt::JsonObject> Desired;
+        Aws::Crt::Optional<Aws::Crt::JsonObject> Reported;
 
-          private:
-            static void LoadFromObject(ShadowState &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(ShadowState& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

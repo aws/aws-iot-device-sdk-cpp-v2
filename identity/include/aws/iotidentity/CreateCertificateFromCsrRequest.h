@@ -22,23 +22,25 @@
 
 namespace Aws
 {
-    namespace Iotidentity
+namespace Iotidentity
+{
+
+    class AWS_IOTIDENTITY_API CreateCertificateFromCsrRequest final
     {
+    public:
+        CreateCertificateFromCsrRequest() = default;
 
-        class AWS_IOTIDENTITY_API CreateCertificateFromCsrRequest final
-        {
-          public:
-            CreateCertificateFromCsrRequest() = default;
+        CreateCertificateFromCsrRequest(const Crt::JsonView& doc);
+        CreateCertificateFromCsrRequest& operator=(const Crt::JsonView& doc);
 
-            CreateCertificateFromCsrRequest(const Crt::JsonView &doc);
-            CreateCertificateFromCsrRequest &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> CertificateSigningRequest;
+        Aws::Crt::Optional<Aws::Crt::String> CertificateSigningRequest;
 
-          private:
-            static void LoadFromObject(CreateCertificateFromCsrRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotidentity
-} // namespace Aws
+    private:
+        static void LoadFromObject(CreateCertificateFromCsrRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

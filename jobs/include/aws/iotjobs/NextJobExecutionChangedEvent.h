@@ -24,24 +24,26 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    class AWS_IOTJOBS_API NextJobExecutionChangedEvent final
     {
+    public:
+        NextJobExecutionChangedEvent() = default;
 
-        class AWS_IOTJOBS_API NextJobExecutionChangedEvent final
-        {
-          public:
-            NextJobExecutionChangedEvent() = default;
+        NextJobExecutionChangedEvent(const Crt::JsonView& doc);
+        NextJobExecutionChangedEvent& operator=(const Crt::JsonView& doc);
 
-            NextJobExecutionChangedEvent(const Crt::JsonView &doc);
-            NextJobExecutionChangedEvent &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Iotjobs::JobExecutionData> Execution;
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+        Aws::Crt::Optional<Aws::Iotjobs::JobExecutionData> Execution;
+        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
-          private:
-            static void LoadFromObject(NextJobExecutionChangedEvent &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws
+    private:
+        static void LoadFromObject(NextJobExecutionChangedEvent& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

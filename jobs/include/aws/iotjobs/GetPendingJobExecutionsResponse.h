@@ -24,26 +24,28 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    class AWS_IOTJOBS_API GetPendingJobExecutionsResponse final
     {
+    public:
+        GetPendingJobExecutionsResponse() = default;
 
-        class AWS_IOTJOBS_API GetPendingJobExecutionsResponse final
-        {
-          public:
-            GetPendingJobExecutionsResponse() = default;
+        GetPendingJobExecutionsResponse(const Crt::JsonView& doc);
+        GetPendingJobExecutionsResponse& operator=(const Crt::JsonView& doc);
 
-            GetPendingJobExecutionsResponse(const Crt::JsonView &doc);
-            GetPendingJobExecutionsResponse &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> QueuedJobs;
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
-            Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> InProgressJobs;
+        Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> QueuedJobs;
+        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+        Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> InProgressJobs;
 
-          private:
-            static void LoadFromObject(GetPendingJobExecutionsResponse &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotjobs
-} // namespace Aws
+    private:
+        static void LoadFromObject(GetPendingJobExecutionsResponse& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

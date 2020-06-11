@@ -22,25 +22,27 @@
 
 namespace Aws
 {
-    namespace Iotidentity
+namespace Iotidentity
+{
+
+    class AWS_IOTIDENTITY_API ErrorResponse final
     {
+    public:
+        ErrorResponse() = default;
 
-        class AWS_IOTIDENTITY_API ErrorResponse final
-        {
-          public:
-            ErrorResponse() = default;
+        ErrorResponse(const Crt::JsonView& doc);
+        ErrorResponse& operator=(const Crt::JsonView& doc);
 
-            ErrorResponse(const Crt::JsonView &doc);
-            ErrorResponse &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ErrorCode;
-            Aws::Crt::Optional<int32_t> StatusCode;
-            Aws::Crt::Optional<Aws::Crt::String> ErrorMessage;
+        Aws::Crt::Optional<int32_t> StatusCode;
+        Aws::Crt::Optional<Aws::Crt::String> ErrorMessage;
+        Aws::Crt::Optional<Aws::Crt::String> ErrorCode;
 
-          private:
-            static void LoadFromObject(ErrorResponse &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotidentity
-} // namespace Aws
+    private:
+        static void LoadFromObject(ErrorResponse& obj, const Crt::JsonView &doc);
+    };
+}
+}
+

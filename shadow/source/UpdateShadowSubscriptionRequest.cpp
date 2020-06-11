@@ -17,29 +17,32 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    void UpdateShadowSubscriptionRequest::LoadFromObject(UpdateShadowSubscriptionRequest& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void UpdateShadowSubscriptionRequest::LoadFromObject(
-            UpdateShadowSubscriptionRequest &val,
-            const Aws::Crt::JsonView &doc)
-        {
-            (void)val;
-            (void)doc;
-        }
+    }
 
-        void UpdateShadowSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
+    void UpdateShadowSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
 
-        UpdateShadowSubscriptionRequest::UpdateShadowSubscriptionRequest(const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+    }
 
-        UpdateShadowSubscriptionRequest &UpdateShadowSubscriptionRequest::operator=(const Crt::JsonView &doc)
-        {
-            *this = UpdateShadowSubscriptionRequest(doc);
-            return *this;
-        }
+    UpdateShadowSubscriptionRequest::UpdateShadowSubscriptionRequest(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
 
-    } // namespace Iotshadow
-} // namespace Aws
+    UpdateShadowSubscriptionRequest& UpdateShadowSubscriptionRequest::operator=(const Crt::JsonView& doc)
+    {
+        *this = UpdateShadowSubscriptionRequest(doc);
+        return *this;
+    }
+
+}
+}

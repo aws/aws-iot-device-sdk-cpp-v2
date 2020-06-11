@@ -17,34 +17,32 @@
 
 namespace Aws
 {
-    namespace Iotjobs
+namespace Iotjobs
+{
+
+    void StartNextPendingJobExecutionSubscriptionRequest::LoadFromObject(StartNextPendingJobExecutionSubscriptionRequest& val, const Aws::Crt::JsonView &doc)
     {
+        (void)val;
+        (void)doc;
 
-        void StartNextPendingJobExecutionSubscriptionRequest::LoadFromObject(
-            StartNextPendingJobExecutionSubscriptionRequest &val,
-            const Aws::Crt::JsonView &doc)
-        {
-            (void)val;
-            (void)doc;
-        }
+    }
 
-        void StartNextPendingJobExecutionSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
-        {
-            (void)object;
-        }
+    void StartNextPendingJobExecutionSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
+    {
+        (void)object;
 
-        StartNextPendingJobExecutionSubscriptionRequest::StartNextPendingJobExecutionSubscriptionRequest(
-            const Crt::JsonView &doc)
-        {
-            LoadFromObject(*this, doc);
-        }
+    }
 
-        StartNextPendingJobExecutionSubscriptionRequest &StartNextPendingJobExecutionSubscriptionRequest::operator=(
-            const Crt::JsonView &doc)
-        {
-            *this = StartNextPendingJobExecutionSubscriptionRequest(doc);
-            return *this;
-        }
+    StartNextPendingJobExecutionSubscriptionRequest::StartNextPendingJobExecutionSubscriptionRequest(const Crt::JsonView& doc)
+    {
+        LoadFromObject(*this, doc);
+    }
 
-    } // namespace Iotjobs
-} // namespace Aws
+    StartNextPendingJobExecutionSubscriptionRequest& StartNextPendingJobExecutionSubscriptionRequest::operator=(const Crt::JsonView& doc)
+    {
+        *this = StartNextPendingJobExecutionSubscriptionRequest(doc);
+        return *this;
+    }
+
+}
+}

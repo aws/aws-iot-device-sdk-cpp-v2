@@ -22,23 +22,25 @@
 
 namespace Aws
 {
-    namespace Iotshadow
+namespace Iotshadow
+{
+
+    class AWS_IOTSHADOW_API ShadowDeltaUpdatedSubscriptionRequest final
     {
+    public:
+        ShadowDeltaUpdatedSubscriptionRequest() = default;
 
-        class AWS_IOTSHADOW_API ShadowDeltaUpdatedSubscriptionRequest final
-        {
-          public:
-            ShadowDeltaUpdatedSubscriptionRequest() = default;
+        ShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView& doc);
+        ShadowDeltaUpdatedSubscriptionRequest& operator=(const Crt::JsonView& doc);
 
-            ShadowDeltaUpdatedSubscriptionRequest(const Crt::JsonView &doc);
-            ShadowDeltaUpdatedSubscriptionRequest &operator=(const Crt::JsonView &doc);
+        void SerializeToObject(Crt::JsonObject& doc) const;
 
-            void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+        Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
-          private:
-            static void LoadFromObject(ShadowDeltaUpdatedSubscriptionRequest &obj, const Crt::JsonView &doc);
-        };
-    } // namespace Iotshadow
-} // namespace Aws
+    private:
+        static void LoadFromObject(ShadowDeltaUpdatedSubscriptionRequest& obj, const Crt::JsonView &doc);
+    };
+}
+}
+
