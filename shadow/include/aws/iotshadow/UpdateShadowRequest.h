@@ -38,8 +38,8 @@ namespace Aws
 
             Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
             Aws::Crt::Optional<int32_t> Version;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
           private:
             static void LoadFromObject(UpdateShadowRequest &obj, const Crt::JsonView &doc);

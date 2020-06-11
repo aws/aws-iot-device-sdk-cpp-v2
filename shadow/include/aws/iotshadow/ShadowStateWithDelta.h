@@ -36,8 +36,8 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::JsonObject> Reported;
             Aws::Crt::Optional<Aws::Crt::JsonObject> Delta;
+            Aws::Crt::Optional<Aws::Crt::JsonObject> Reported;
             Aws::Crt::Optional<Aws::Crt::JsonObject> Desired;
 
           private:

@@ -35,10 +35,10 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
-            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
             Aws::Crt::Optional<int64_t> StepTimeoutInMinutes;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
 
           private:
             static void LoadFromObject(StartNextPendingJobExecutionRequest &obj, const Crt::JsonView &doc);

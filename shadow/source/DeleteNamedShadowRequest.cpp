@@ -13,59 +13,39 @@
 
 * This file is generated
 */
-#include <aws/iotshadow/DeleteShadowResponse.h>
+#include <aws/iotshadow/DeleteNamedShadowRequest.h>
 
 namespace Aws
 {
     namespace Iotshadow
     {
 
-        void DeleteShadowResponse::LoadFromObject(DeleteShadowResponse &val, const Aws::Crt::JsonView &doc)
+        void DeleteNamedShadowRequest::LoadFromObject(DeleteNamedShadowRequest &val, const Aws::Crt::JsonView &doc)
         {
             (void)val;
             (void)doc;
-
-            if (doc.ValueExists("version"))
-            {
-                val.Version = doc.GetInteger("version");
-            }
 
             if (doc.ValueExists("clientToken"))
             {
                 val.ClientToken = doc.GetString("clientToken");
             }
-
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
         }
 
-        void DeleteShadowResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
+        void DeleteNamedShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
-
-            if (Version)
-            {
-                object.WithInteger("version", *Version);
-            }
 
             if (ClientToken)
             {
                 object.WithString("clientToken", *ClientToken);
             }
-
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
         }
 
-        DeleteShadowResponse::DeleteShadowResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        DeleteNamedShadowRequest::DeleteNamedShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
-        DeleteShadowResponse &DeleteShadowResponse::operator=(const Crt::JsonView &doc)
+        DeleteNamedShadowRequest &DeleteNamedShadowRequest::operator=(const Crt::JsonView &doc)
         {
-            *this = DeleteShadowResponse(doc);
+            *this = DeleteNamedShadowRequest(doc);
             return *this;
         }
 

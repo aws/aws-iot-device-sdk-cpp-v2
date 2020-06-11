@@ -13,14 +13,14 @@
 
 * This file is generated
 */
-#include <aws/iotshadow/DeleteShadowRequest.h>
+#include <aws/iotshadow/UpdateNamedShadowRequest.h>
 
 namespace Aws
 {
     namespace Iotshadow
     {
 
-        void DeleteShadowRequest::LoadFromObject(DeleteShadowRequest &val, const Aws::Crt::JsonView &doc)
+        void UpdateNamedShadowRequest::LoadFromObject(UpdateNamedShadowRequest &val, const Aws::Crt::JsonView &doc)
         {
             (void)val;
             (void)doc;
@@ -29,9 +29,19 @@ namespace Aws
             {
                 val.ClientToken = doc.GetString("clientToken");
             }
+
+            if (doc.ValueExists("state"))
+            {
+                val.State = doc.GetJsonObject("state");
+            }
+
+            if (doc.ValueExists("version"))
+            {
+                val.Version = doc.GetInteger("version");
+            }
         }
 
-        void DeleteShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        void UpdateNamedShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
 
@@ -39,13 +49,25 @@ namespace Aws
             {
                 object.WithString("clientToken", *ClientToken);
             }
+
+            if (State)
+            {
+                Aws::Crt::JsonObject jsonObject;
+                State->SerializeToObject(jsonObject);
+                object.WithObject("state", std::move(jsonObject));
+            }
+
+            if (Version)
+            {
+                object.WithInteger("version", *Version);
+            }
         }
 
-        DeleteShadowRequest::DeleteShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+        UpdateNamedShadowRequest::UpdateNamedShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
-        DeleteShadowRequest &DeleteShadowRequest::operator=(const Crt::JsonView &doc)
+        UpdateNamedShadowRequest &UpdateNamedShadowRequest::operator=(const Crt::JsonView &doc)
         {
-            *this = DeleteShadowRequest(doc);
+            *this = UpdateNamedShadowRequest(doc);
             return *this;
         }
 

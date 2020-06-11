@@ -25,11 +25,6 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("metadata"))
-            {
-                val.Metadata = doc.GetJsonObjectCopy("metadata");
-            }
-
             if (doc.ValueExists("version"))
             {
                 val.Version = doc.GetInteger("version");
@@ -38,6 +33,11 @@ namespace Aws
             if (doc.ValueExists("timestamp"))
             {
                 val.Timestamp = doc.GetDouble("timestamp");
+            }
+
+            if (doc.ValueExists("metadata"))
+            {
+                val.Metadata = doc.GetJsonObjectCopy("metadata");
             }
 
             if (doc.ValueExists("state"))
@@ -50,11 +50,6 @@ namespace Aws
         {
             (void)object;
 
-            if (Metadata)
-            {
-                object.WithObject("metadata", *Metadata);
-            }
-
             if (Version)
             {
                 object.WithInteger("version", *Version);
@@ -63,6 +58,11 @@ namespace Aws
             if (Timestamp)
             {
                 object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
+
+            if (Metadata)
+            {
+                object.WithObject("metadata", *Metadata);
             }
 
             if (State)

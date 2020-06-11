@@ -13,39 +13,34 @@
 
 * This file is generated
 */
-#include <aws/iotshadow/DeleteShadowRequest.h>
+#include <aws/iotshadow/UpdateNamedShadowSubscriptionRequest.h>
 
 namespace Aws
 {
     namespace Iotshadow
     {
 
-        void DeleteShadowRequest::LoadFromObject(DeleteShadowRequest &val, const Aws::Crt::JsonView &doc)
+        void UpdateNamedShadowSubscriptionRequest::LoadFromObject(
+            UpdateNamedShadowSubscriptionRequest &val,
+            const Aws::Crt::JsonView &doc)
         {
             (void)val;
             (void)doc;
-
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
         }
 
-        void DeleteShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        void UpdateNamedShadowSubscriptionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
-
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
-            }
         }
 
-        DeleteShadowRequest::DeleteShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
-
-        DeleteShadowRequest &DeleteShadowRequest::operator=(const Crt::JsonView &doc)
+        UpdateNamedShadowSubscriptionRequest::UpdateNamedShadowSubscriptionRequest(const Crt::JsonView &doc)
         {
-            *this = DeleteShadowRequest(doc);
+            LoadFromObject(*this, doc);
+        }
+
+        UpdateNamedShadowSubscriptionRequest &UpdateNamedShadowSubscriptionRequest::operator=(const Crt::JsonView &doc)
+        {
+            *this = UpdateNamedShadowSubscriptionRequest(doc);
             return *this;
         }
 

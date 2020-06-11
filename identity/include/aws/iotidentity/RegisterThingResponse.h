@@ -35,8 +35,8 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> DeviceConfiguration;
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> DeviceConfiguration;
 
           private:
             static void LoadFromObject(RegisterThingResponse &obj, const Crt::JsonView &doc);

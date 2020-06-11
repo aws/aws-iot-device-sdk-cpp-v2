@@ -39,10 +39,10 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
             Aws::Crt::Optional<Aws::Iotjobs::RejectedErrorCode> Code;
-            Aws::Crt::Optional<Aws::Iotjobs::JobExecutionState> ExecutionState;
             Aws::Crt::Optional<Aws::Crt::String> Message;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Iotjobs::JobExecutionState> ExecutionState;
 
           private:
             static void LoadFromObject(RejectedError &obj, const Crt::JsonView &doc);

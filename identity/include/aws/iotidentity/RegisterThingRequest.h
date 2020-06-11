@@ -35,8 +35,8 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> Parameters;
             Aws::Crt::Optional<Aws::Crt::String> TemplateName;
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> Parameters;
             Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
 
           private:

@@ -25,14 +25,14 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
-
             if (doc.ValueExists("clientToken"))
             {
                 val.ClientToken = doc.GetString("clientToken");
+            }
+
+            if (doc.ValueExists("timestamp"))
+            {
+                val.Timestamp = doc.GetDouble("timestamp");
             }
 
             if (doc.ValueExists("jobDocument"))
@@ -50,14 +50,14 @@ namespace Aws
         {
             (void)object;
 
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
-
             if (ClientToken)
             {
                 object.WithString("clientToken", *ClientToken);
+            }
+
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
             }
 
             if (JobDocument)

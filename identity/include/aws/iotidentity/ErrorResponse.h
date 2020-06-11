@@ -35,9 +35,9 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ErrorCode;
             Aws::Crt::Optional<int32_t> StatusCode;
             Aws::Crt::Optional<Aws::Crt::String> ErrorMessage;
+            Aws::Crt::Optional<Aws::Crt::String> ErrorCode;
 
           private:
             static void LoadFromObject(ErrorResponse &obj, const Crt::JsonView &doc);

@@ -30,14 +30,14 @@ namespace Aws
                 val.State = doc.GetJsonObject("state");
             }
 
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
-
             if (doc.ValueExists("version"))
             {
                 val.Version = doc.GetInteger("version");
+            }
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
             }
         }
 
@@ -52,14 +52,14 @@ namespace Aws
                 object.WithObject("state", std::move(jsonObject));
             }
 
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
-            }
-
             if (Version)
             {
                 object.WithInteger("version", *Version);
+            }
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
             }
         }
 

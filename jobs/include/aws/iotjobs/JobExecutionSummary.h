@@ -38,9 +38,9 @@ namespace Aws
 
             Aws::Crt::Optional<Aws::Crt::DateTime> LastUpdatedAt;
             Aws::Crt::Optional<int64_t> ExecutionNumber;
+            Aws::Crt::Optional<Aws::Crt::DateTime> StartedAt;
             Aws::Crt::Optional<int32_t> VersionNumber;
             Aws::Crt::Optional<Aws::Crt::String> JobId;
-            Aws::Crt::Optional<Aws::Crt::DateTime> StartedAt;
             Aws::Crt::Optional<Aws::Crt::DateTime> QueuedAt;
 
           private:

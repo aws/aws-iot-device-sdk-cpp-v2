@@ -25,19 +25,9 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("expectedVersion"))
-            {
-                val.ExpectedVersion = doc.GetInteger("expectedVersion");
-            }
-
             if (doc.ValueExists("executionNumber"))
             {
                 val.ExecutionNumber = doc.GetInt64("executionNumber");
-            }
-
-            if (doc.ValueExists("includeJobDocument"))
-            {
-                val.IncludeJobDocument = doc.GetBool("includeJobDocument");
             }
 
             if (doc.ValueExists("statusDetails"))
@@ -55,6 +45,16 @@ namespace Aws
             if (doc.ValueExists("includeJobExecutionState"))
             {
                 val.IncludeJobExecutionState = doc.GetBool("includeJobExecutionState");
+            }
+
+            if (doc.ValueExists("expectedVersion"))
+            {
+                val.ExpectedVersion = doc.GetInteger("expectedVersion");
+            }
+
+            if (doc.ValueExists("includeJobDocument"))
+            {
+                val.IncludeJobDocument = doc.GetBool("includeJobDocument");
             }
 
             if (doc.ValueExists("status"))
@@ -77,19 +77,9 @@ namespace Aws
         {
             (void)object;
 
-            if (ExpectedVersion)
-            {
-                object.WithInteger("expectedVersion", *ExpectedVersion);
-            }
-
             if (ExecutionNumber)
             {
                 object.WithInt64("executionNumber", *ExecutionNumber);
-            }
-
-            if (IncludeJobDocument)
-            {
-                object.WithBool("includeJobDocument", *IncludeJobDocument);
             }
 
             if (StatusDetails)
@@ -107,6 +97,16 @@ namespace Aws
             if (IncludeJobExecutionState)
             {
                 object.WithBool("includeJobExecutionState", *IncludeJobExecutionState);
+            }
+
+            if (ExpectedVersion)
+            {
+                object.WithInteger("expectedVersion", *ExpectedVersion);
+            }
+
+            if (IncludeJobDocument)
+            {
+                object.WithBool("includeJobDocument", *IncludeJobDocument);
             }
 
             if (Status)

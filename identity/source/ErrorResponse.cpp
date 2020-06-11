@@ -25,11 +25,6 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("errorCode"))
-            {
-                val.ErrorCode = doc.GetString("errorCode");
-            }
-
             if (doc.ValueExists("statusCode"))
             {
                 val.StatusCode = doc.GetInteger("statusCode");
@@ -39,16 +34,16 @@ namespace Aws
             {
                 val.ErrorMessage = doc.GetString("errorMessage");
             }
+
+            if (doc.ValueExists("errorCode"))
+            {
+                val.ErrorCode = doc.GetString("errorCode");
+            }
         }
 
         void ErrorResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
-
-            if (ErrorCode)
-            {
-                object.WithString("errorCode", *ErrorCode);
-            }
 
             if (StatusCode)
             {
@@ -58,6 +53,11 @@ namespace Aws
             if (ErrorMessage)
             {
                 object.WithString("errorMessage", *ErrorMessage);
+            }
+
+            if (ErrorCode)
+            {
+                object.WithString("errorCode", *ErrorCode);
             }
         }
 

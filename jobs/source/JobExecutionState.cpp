@@ -25,11 +25,6 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("versionNumber"))
-            {
-                val.VersionNumber = doc.GetInteger("versionNumber");
-            }
-
             if (doc.ValueExists("statusDetails"))
             {
                 auto statusDetailsMap = doc.GetJsonObject("statusDetails");
@@ -42,6 +37,11 @@ namespace Aws
                 }
             }
 
+            if (doc.ValueExists("versionNumber"))
+            {
+                val.VersionNumber = doc.GetInteger("versionNumber");
+            }
+
             if (doc.ValueExists("status"))
             {
                 val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
@@ -51,11 +51,6 @@ namespace Aws
         void JobExecutionState::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
-
-            if (VersionNumber)
-            {
-                object.WithInteger("versionNumber", *VersionNumber);
-            }
 
             if (StatusDetails)
             {
@@ -67,6 +62,11 @@ namespace Aws
                     statusDetailsMap.WithObject(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
                 }
                 object.WithObject("statusDetails", std::move(statusDetailsMap));
+            }
+
+            if (VersionNumber)
+            {
+                object.WithInteger("versionNumber", *VersionNumber);
             }
 
             if (Status)

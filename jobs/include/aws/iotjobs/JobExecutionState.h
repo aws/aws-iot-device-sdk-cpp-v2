@@ -36,8 +36,8 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<int32_t> VersionNumber;
             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
+            Aws::Crt::Optional<int32_t> VersionNumber;
             Aws::Crt::Optional<Aws::Iotjobs::JobStatus> Status;
 
           private:

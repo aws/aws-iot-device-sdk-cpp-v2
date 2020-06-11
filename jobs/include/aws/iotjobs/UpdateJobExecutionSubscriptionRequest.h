@@ -35,8 +35,8 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
             Aws::Crt::Optional<Aws::Crt::String> JobId;
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
           private:
             static void LoadFromObject(UpdateJobExecutionSubscriptionRequest &obj, const Crt::JsonView &doc);

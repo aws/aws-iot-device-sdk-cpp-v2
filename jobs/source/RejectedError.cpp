@@ -30,24 +30,24 @@ namespace Aws
                 val.Timestamp = doc.GetDouble("timestamp");
             }
 
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
-
             if (doc.ValueExists("code"))
             {
                 val.Code = RejectedErrorCodeMarshaller::FromString(doc.GetString("code"));
             }
 
-            if (doc.ValueExists("executionState"))
-            {
-                val.ExecutionState = doc.GetJsonObject("executionState");
-            }
-
             if (doc.ValueExists("message"))
             {
                 val.Message = doc.GetString("message");
+            }
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
+
+            if (doc.ValueExists("executionState"))
+            {
+                val.ExecutionState = doc.GetJsonObject("executionState");
             }
         }
 
@@ -60,14 +60,19 @@ namespace Aws
                 object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
             }
 
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
-            }
-
             if (Code)
             {
                 object.WithString("code", RejectedErrorCodeMarshaller::ToString(*Code));
+            }
+
+            if (Message)
+            {
+                object.WithString("message", *Message);
+            }
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
             }
 
             if (ExecutionState)
@@ -75,11 +80,6 @@ namespace Aws
                 Aws::Crt::JsonObject jsonObject;
                 ExecutionState->SerializeToObject(jsonObject);
                 object.WithObject("executionState", std::move(jsonObject));
-            }
-
-            if (Message)
-            {
-                object.WithString("message", *Message);
             }
         }
 
