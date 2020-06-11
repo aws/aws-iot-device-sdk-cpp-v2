@@ -17,67 +17,63 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    void RegisterThingResponse::LoadFromObject(RegisterThingResponse& val, const Aws::Crt::JsonView &doc)
+    namespace Iotidentity
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("thingName"))
+        void RegisterThingResponse::LoadFromObject(RegisterThingResponse &val, const Aws::Crt::JsonView &doc)
         {
-            val.ThingName = doc.GetString("thingName");
-        }
+            (void)val;
+            (void)doc;
 
-        if (doc.ValueExists("deviceConfiguration"))
-        {
-            auto deviceConfigurationMap = doc.GetJsonObject("deviceConfiguration");
-            val.DeviceConfiguration = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
-            for (auto& deviceConfigurationMapMember : deviceConfigurationMap.GetAllObjects())
+            if (doc.ValueExists("thingName"))
             {
-                Aws::Crt::String deviceConfigurationMapValMember;
-                deviceConfigurationMapValMember = deviceConfigurationMapMember.second.AsString();
-                val.DeviceConfiguration->emplace(deviceConfigurationMapMember.first, std::move(deviceConfigurationMapValMember));
+                val.ThingName = doc.GetString("thingName");
             }
 
-        }
-
-    }
-
-    void RegisterThingResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (ThingName)
-        {
-            object.WithString("thingName", *ThingName);
-        }
-
-        if (DeviceConfiguration)
-        {
-            Aws::Crt::JsonObject deviceConfigurationMap;
-            for (auto& deviceConfigurationMapMember : *DeviceConfiguration)
+            if (doc.ValueExists("deviceConfiguration"))
             {
-                Aws::Crt::JsonObject deviceConfigurationMapValMember;
-                deviceConfigurationMapValMember.AsString(deviceConfigurationMapMember.second);
-                deviceConfigurationMap.WithObject(deviceConfigurationMapMember.first, std::move(deviceConfigurationMapValMember));
+                auto deviceConfigurationMap = doc.GetJsonObject("deviceConfiguration");
+                val.DeviceConfiguration = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
+                for (auto &deviceConfigurationMapMember : deviceConfigurationMap.GetAllObjects())
+                {
+                    Aws::Crt::String deviceConfigurationMapValMember;
+                    deviceConfigurationMapValMember = deviceConfigurationMapMember.second.AsString();
+                    val.DeviceConfiguration->emplace(
+                        deviceConfigurationMapMember.first, std::move(deviceConfigurationMapValMember));
+                }
             }
-            object.WithObject("deviceConfiguration", std::move(deviceConfigurationMap));
         }
 
-    }
+        void RegisterThingResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
 
-    RegisterThingResponse::RegisterThingResponse(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+            if (ThingName)
+            {
+                object.WithString("thingName", *ThingName);
+            }
 
-    RegisterThingResponse& RegisterThingResponse::operator=(const Crt::JsonView& doc)
-    {
-        *this = RegisterThingResponse(doc);
-        return *this;
-    }
+            if (DeviceConfiguration)
+            {
+                Aws::Crt::JsonObject deviceConfigurationMap;
+                for (auto &deviceConfigurationMapMember : *DeviceConfiguration)
+                {
+                    Aws::Crt::JsonObject deviceConfigurationMapValMember;
+                    deviceConfigurationMapValMember.AsString(deviceConfigurationMapMember.second);
+                    deviceConfigurationMap.WithObject(
+                        deviceConfigurationMapMember.first, std::move(deviceConfigurationMapValMember));
+                }
+                object.WithObject("deviceConfiguration", std::move(deviceConfigurationMap));
+            }
+        }
 
-}
-}
+        RegisterThingResponse::RegisterThingResponse(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+
+        RegisterThingResponse &RegisterThingResponse::operator=(const Crt::JsonView &doc)
+        {
+            *this = RegisterThingResponse(doc);
+            return *this;
+        }
+
+    } // namespace Iotidentity
+} // namespace Aws

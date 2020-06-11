@@ -22,26 +22,24 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    class AWS_IOTSHADOW_API DeleteShadowRequest final
+    namespace Iotshadow
     {
-    public:
-        DeleteShadowRequest() = default;
 
-        DeleteShadowRequest(const Crt::JsonView& doc);
-        DeleteShadowRequest& operator=(const Crt::JsonView& doc);
+        class AWS_IOTSHADOW_API DeleteShadowRequest final
+        {
+          public:
+            DeleteShadowRequest() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            DeleteShadowRequest(const Crt::JsonView &doc);
+            DeleteShadowRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
-        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-    private:
-        static void LoadFromObject(DeleteShadowRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(DeleteShadowRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotshadow
+} // namespace Aws

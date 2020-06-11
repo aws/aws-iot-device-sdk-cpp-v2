@@ -17,67 +17,61 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    void RegisterThingRequest::LoadFromObject(RegisterThingRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotidentity
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("parameters"))
+        void RegisterThingRequest::LoadFromObject(RegisterThingRequest &val, const Aws::Crt::JsonView &doc)
         {
-            auto parametersMap = doc.GetJsonObject("parameters");
-            val.Parameters = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
-            for (auto& parametersMapMember : parametersMap.GetAllObjects())
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("parameters"))
             {
-                Aws::Crt::String parametersMapValMember;
-                parametersMapValMember = parametersMapMember.second.AsString();
-                val.Parameters->emplace(parametersMapMember.first, std::move(parametersMapValMember));
+                auto parametersMap = doc.GetJsonObject("parameters");
+                val.Parameters = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
+                for (auto &parametersMapMember : parametersMap.GetAllObjects())
+                {
+                    Aws::Crt::String parametersMapValMember;
+                    parametersMapValMember = parametersMapMember.second.AsString();
+                    val.Parameters->emplace(parametersMapMember.first, std::move(parametersMapValMember));
+                }
             }
 
-        }
-
-        if (doc.ValueExists("certificateOwnershipToken"))
-        {
-            val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
-        }
-
-    }
-
-    void RegisterThingRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (Parameters)
-        {
-            Aws::Crt::JsonObject parametersMap;
-            for (auto& parametersMapMember : *Parameters)
+            if (doc.ValueExists("certificateOwnershipToken"))
             {
-                Aws::Crt::JsonObject parametersMapValMember;
-                parametersMapValMember.AsString(parametersMapMember.second);
-                parametersMap.WithObject(parametersMapMember.first, std::move(parametersMapValMember));
+                val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
             }
-            object.WithObject("parameters", std::move(parametersMap));
         }
 
-        if (CertificateOwnershipToken)
+        void RegisterThingRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
+            (void)object;
+
+            if (Parameters)
+            {
+                Aws::Crt::JsonObject parametersMap;
+                for (auto &parametersMapMember : *Parameters)
+                {
+                    Aws::Crt::JsonObject parametersMapValMember;
+                    parametersMapValMember.AsString(parametersMapMember.second);
+                    parametersMap.WithObject(parametersMapMember.first, std::move(parametersMapValMember));
+                }
+                object.WithObject("parameters", std::move(parametersMap));
+            }
+
+            if (CertificateOwnershipToken)
+            {
+                object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
+            }
         }
 
-    }
+        RegisterThingRequest::RegisterThingRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
-    RegisterThingRequest::RegisterThingRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+        RegisterThingRequest &RegisterThingRequest::operator=(const Crt::JsonView &doc)
+        {
+            *this = RegisterThingRequest(doc);
+            return *this;
+        }
 
-    RegisterThingRequest& RegisterThingRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = RegisterThingRequest(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotidentity
+} // namespace Aws

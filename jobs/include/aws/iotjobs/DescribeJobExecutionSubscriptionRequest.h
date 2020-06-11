@@ -22,26 +22,24 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    class AWS_IOTJOBS_API DescribeJobExecutionSubscriptionRequest final
+    namespace Iotjobs
     {
-    public:
-        DescribeJobExecutionSubscriptionRequest() = default;
 
-        DescribeJobExecutionSubscriptionRequest(const Crt::JsonView& doc);
-        DescribeJobExecutionSubscriptionRequest& operator=(const Crt::JsonView& doc);
+        class AWS_IOTJOBS_API DescribeJobExecutionSubscriptionRequest final
+        {
+          public:
+            DescribeJobExecutionSubscriptionRequest() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            DescribeJobExecutionSubscriptionRequest(const Crt::JsonView &doc);
+            DescribeJobExecutionSubscriptionRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
-        Aws::Crt::Optional<Aws::Crt::String> JobId;
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            Aws::Crt::Optional<Aws::Crt::String> JobId;
 
-    private:
-        static void LoadFromObject(DescribeJobExecutionSubscriptionRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(DescribeJobExecutionSubscriptionRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotjobs
+} // namespace Aws

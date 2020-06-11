@@ -23,29 +23,27 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    class AWS_IOTSHADOW_API UpdateNamedShadowRequest final
+    namespace Iotshadow
     {
-    public:
-        UpdateNamedShadowRequest() = default;
 
-        UpdateNamedShadowRequest(const Crt::JsonView& doc);
-        UpdateNamedShadowRequest& operator=(const Crt::JsonView& doc);
+        class AWS_IOTSHADOW_API UpdateNamedShadowRequest final
+        {
+          public:
+            UpdateNamedShadowRequest() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            UpdateNamedShadowRequest(const Crt::JsonView &doc);
+            UpdateNamedShadowRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::String> ShadowName;
-        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
-        Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
-        Aws::Crt::Optional<int32_t> Version;
+            Aws::Crt::Optional<Aws::Crt::String> ShadowName;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
+            Aws::Crt::Optional<int32_t> Version;
 
-    private:
-        static void LoadFromObject(UpdateNamedShadowRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(UpdateNamedShadowRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotshadow
+} // namespace Aws

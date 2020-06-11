@@ -22,26 +22,24 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    class AWS_IOTSHADOW_API GetShadowRequest final
+    namespace Iotshadow
     {
-    public:
-        GetShadowRequest() = default;
 
-        GetShadowRequest(const Crt::JsonView& doc);
-        GetShadowRequest& operator=(const Crt::JsonView& doc);
+        class AWS_IOTSHADOW_API GetShadowRequest final
+        {
+          public:
+            GetShadowRequest() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            GetShadowRequest(const Crt::JsonView &doc);
+            GetShadowRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
-        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
-    private:
-        static void LoadFromObject(GetShadowRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(GetShadowRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotshadow
+} // namespace Aws

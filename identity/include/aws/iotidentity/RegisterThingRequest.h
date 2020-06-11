@@ -22,27 +22,25 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    class AWS_IOTIDENTITY_API RegisterThingRequest final
+    namespace Iotidentity
     {
-    public:
-        RegisterThingRequest() = default;
 
-        RegisterThingRequest(const Crt::JsonView& doc);
-        RegisterThingRequest& operator=(const Crt::JsonView& doc);
+        class AWS_IOTIDENTITY_API RegisterThingRequest final
+        {
+          public:
+            RegisterThingRequest() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            RegisterThingRequest(const Crt::JsonView &doc);
+            RegisterThingRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::String> TemplateName;
-        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> Parameters;
-        Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
+            Aws::Crt::Optional<Aws::Crt::String> TemplateName;
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> Parameters;
+            Aws::Crt::Optional<Aws::Crt::String> CertificateOwnershipToken;
 
-    private:
-        static void LoadFromObject(RegisterThingRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(RegisterThingRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotidentity
+} // namespace Aws

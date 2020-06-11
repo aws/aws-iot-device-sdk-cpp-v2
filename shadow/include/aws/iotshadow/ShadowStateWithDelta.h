@@ -23,27 +23,25 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    class AWS_IOTSHADOW_API ShadowStateWithDelta final
+    namespace Iotshadow
     {
-    public:
-        ShadowStateWithDelta() = default;
 
-        ShadowStateWithDelta(const Crt::JsonView& doc);
-        ShadowStateWithDelta& operator=(const Crt::JsonView& doc);
+        class AWS_IOTSHADOW_API ShadowStateWithDelta final
+        {
+          public:
+            ShadowStateWithDelta() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            ShadowStateWithDelta(const Crt::JsonView &doc);
+            ShadowStateWithDelta &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::JsonObject> Delta;
-        Aws::Crt::Optional<Aws::Crt::JsonObject> Reported;
-        Aws::Crt::Optional<Aws::Crt::JsonObject> Desired;
+            Aws::Crt::Optional<Aws::Crt::JsonObject> Delta;
+            Aws::Crt::Optional<Aws::Crt::JsonObject> Reported;
+            Aws::Crt::Optional<Aws::Crt::JsonObject> Desired;
 
-    private:
-        static void LoadFromObject(ShadowStateWithDelta& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(ShadowStateWithDelta &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotshadow
+} // namespace Aws

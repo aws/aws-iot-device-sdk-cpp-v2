@@ -25,29 +25,27 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    class AWS_IOTJOBS_API RejectedError final
+    namespace Iotjobs
     {
-    public:
-        RejectedError() = default;
 
-        RejectedError(const Crt::JsonView& doc);
-        RejectedError& operator=(const Crt::JsonView& doc);
+        class AWS_IOTJOBS_API RejectedError final
+        {
+          public:
+            RejectedError() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            RejectedError(const Crt::JsonView &doc);
+            RejectedError &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
-        Aws::Crt::Optional<Aws::Iotjobs::RejectedErrorCode> Code;
-        Aws::Crt::Optional<Aws::Crt::String> Message;
-        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-        Aws::Crt::Optional<Aws::Iotjobs::JobExecutionState> ExecutionState;
+            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+            Aws::Crt::Optional<Aws::Iotjobs::RejectedErrorCode> Code;
+            Aws::Crt::Optional<Aws::Crt::String> Message;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Iotjobs::JobExecutionState> ExecutionState;
 
-    private:
-        static void LoadFromObject(RejectedError& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(RejectedError &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotjobs
+} // namespace Aws

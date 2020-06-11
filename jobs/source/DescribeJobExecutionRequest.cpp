@@ -17,62 +17,62 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void DescribeJobExecutionRequest::LoadFromObject(DescribeJobExecutionRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("executionNumber"))
+        void DescribeJobExecutionRequest::LoadFromObject(
+            DescribeJobExecutionRequest &val,
+            const Aws::Crt::JsonView &doc)
         {
-            val.ExecutionNumber = doc.GetInt64("executionNumber");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("executionNumber"))
+            {
+                val.ExecutionNumber = doc.GetInt64("executionNumber");
+            }
+
+            if (doc.ValueExists("includeJobDocument"))
+            {
+                val.IncludeJobDocument = doc.GetBool("includeJobDocument");
+            }
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
         }
 
-        if (doc.ValueExists("includeJobDocument"))
+        void DescribeJobExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.IncludeJobDocument = doc.GetBool("includeJobDocument");
+            (void)object;
+
+            if (ExecutionNumber)
+            {
+                object.WithInt64("executionNumber", *ExecutionNumber);
+            }
+
+            if (IncludeJobDocument)
+            {
+                object.WithBool("includeJobDocument", *IncludeJobDocument);
+            }
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
         }
 
-        if (doc.ValueExists("clientToken"))
+        DescribeJobExecutionRequest::DescribeJobExecutionRequest(const Crt::JsonView &doc)
         {
-            val.ClientToken = doc.GetString("clientToken");
+            LoadFromObject(*this, doc);
         }
 
-    }
-
-    void DescribeJobExecutionRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (ExecutionNumber)
+        DescribeJobExecutionRequest &DescribeJobExecutionRequest::operator=(const Crt::JsonView &doc)
         {
-            object.WithInt64("executionNumber", *ExecutionNumber);
+            *this = DescribeJobExecutionRequest(doc);
+            return *this;
         }
 
-        if (IncludeJobDocument)
-        {
-            object.WithBool("includeJobDocument", *IncludeJobDocument);
-        }
-
-        if (ClientToken)
-        {
-            object.WithString("clientToken", *ClientToken);
-        }
-
-    }
-
-    DescribeJobExecutionRequest::DescribeJobExecutionRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    DescribeJobExecutionRequest& DescribeJobExecutionRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = DescribeJobExecutionRequest(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotjobs
+} // namespace Aws

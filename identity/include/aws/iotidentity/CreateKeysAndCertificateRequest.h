@@ -22,24 +22,21 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    class AWS_IOTIDENTITY_API CreateKeysAndCertificateRequest final
+    namespace Iotidentity
     {
-    public:
-        CreateKeysAndCertificateRequest() = default;
 
-        CreateKeysAndCertificateRequest(const Crt::JsonView& doc);
-        CreateKeysAndCertificateRequest& operator=(const Crt::JsonView& doc);
+        class AWS_IOTIDENTITY_API CreateKeysAndCertificateRequest final
+        {
+          public:
+            CreateKeysAndCertificateRequest() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            CreateKeysAndCertificateRequest(const Crt::JsonView &doc);
+            CreateKeysAndCertificateRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-
-    private:
-        static void LoadFromObject(CreateKeysAndCertificateRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(CreateKeysAndCertificateRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotidentity
+} // namespace Aws

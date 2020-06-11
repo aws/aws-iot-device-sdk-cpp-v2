@@ -17,54 +17,54 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void NextJobExecutionChangedEvent::LoadFromObject(NextJobExecutionChangedEvent& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("execution"))
+        void NextJobExecutionChangedEvent::LoadFromObject(
+            NextJobExecutionChangedEvent &val,
+            const Aws::Crt::JsonView &doc)
         {
-            val.Execution = doc.GetJsonObject("execution");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("execution"))
+            {
+                val.Execution = doc.GetJsonObject("execution");
+            }
+
+            if (doc.ValueExists("timestamp"))
+            {
+                val.Timestamp = doc.GetDouble("timestamp");
+            }
         }
 
-        if (doc.ValueExists("timestamp"))
+        void NextJobExecutionChangedEvent::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.Timestamp = doc.GetDouble("timestamp");
+            (void)object;
+
+            if (Execution)
+            {
+                Aws::Crt::JsonObject jsonObject;
+                Execution->SerializeToObject(jsonObject);
+                object.WithObject("execution", std::move(jsonObject));
+            }
+
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
         }
 
-    }
-
-    void NextJobExecutionChangedEvent::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (Execution)
+        NextJobExecutionChangedEvent::NextJobExecutionChangedEvent(const Crt::JsonView &doc)
         {
-            Aws::Crt::JsonObject jsonObject;
-            Execution->SerializeToObject(jsonObject);
-            object.WithObject("execution", std::move(jsonObject));
+            LoadFromObject(*this, doc);
         }
 
-        if (Timestamp)
+        NextJobExecutionChangedEvent &NextJobExecutionChangedEvent::operator=(const Crt::JsonView &doc)
         {
-            object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            *this = NextJobExecutionChangedEvent(doc);
+            return *this;
         }
 
-    }
-
-    NextJobExecutionChangedEvent::NextJobExecutionChangedEvent(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    NextJobExecutionChangedEvent& NextJobExecutionChangedEvent::operator=(const Crt::JsonView& doc)
-    {
-        *this = NextJobExecutionChangedEvent(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotjobs
+} // namespace Aws

@@ -17,77 +17,71 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    void JobExecutionState::LoadFromObject(JobExecutionState& val, const Aws::Crt::JsonView &doc)
+    namespace Iotjobs
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("statusDetails"))
+        void JobExecutionState::LoadFromObject(JobExecutionState &val, const Aws::Crt::JsonView &doc)
         {
-            auto statusDetailsMap = doc.GetJsonObject("statusDetails");
-            val.StatusDetails = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
-            for (auto& statusDetailsMapMember : statusDetailsMap.GetAllObjects())
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("statusDetails"))
             {
-                Aws::Crt::String statusDetailsMapValMember;
-                statusDetailsMapValMember = statusDetailsMapMember.second.AsString();
-                val.StatusDetails->emplace(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
+                auto statusDetailsMap = doc.GetJsonObject("statusDetails");
+                val.StatusDetails = Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>();
+                for (auto &statusDetailsMapMember : statusDetailsMap.GetAllObjects())
+                {
+                    Aws::Crt::String statusDetailsMapValMember;
+                    statusDetailsMapValMember = statusDetailsMapMember.second.AsString();
+                    val.StatusDetails->emplace(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
+                }
             }
 
-        }
-
-        if (doc.ValueExists("versionNumber"))
-        {
-            val.VersionNumber = doc.GetInteger("versionNumber");
-        }
-
-        if (doc.ValueExists("status"))
-        {
-            val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
-        }
-
-    }
-
-    void JobExecutionState::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (StatusDetails)
-        {
-            Aws::Crt::JsonObject statusDetailsMap;
-            for (auto& statusDetailsMapMember : *StatusDetails)
+            if (doc.ValueExists("versionNumber"))
             {
-                Aws::Crt::JsonObject statusDetailsMapValMember;
-                statusDetailsMapValMember.AsString(statusDetailsMapMember.second);
-                statusDetailsMap.WithObject(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
+                val.VersionNumber = doc.GetInteger("versionNumber");
             }
-            object.WithObject("statusDetails", std::move(statusDetailsMap));
+
+            if (doc.ValueExists("status"))
+            {
+                val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
+            }
         }
 
-        if (VersionNumber)
+        void JobExecutionState::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            object.WithInteger("versionNumber", *VersionNumber);
+            (void)object;
+
+            if (StatusDetails)
+            {
+                Aws::Crt::JsonObject statusDetailsMap;
+                for (auto &statusDetailsMapMember : *StatusDetails)
+                {
+                    Aws::Crt::JsonObject statusDetailsMapValMember;
+                    statusDetailsMapValMember.AsString(statusDetailsMapMember.second);
+                    statusDetailsMap.WithObject(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
+                }
+                object.WithObject("statusDetails", std::move(statusDetailsMap));
+            }
+
+            if (VersionNumber)
+            {
+                object.WithInteger("versionNumber", *VersionNumber);
+            }
+
+            if (Status)
+            {
+                object.WithString("status", JobStatusMarshaller::ToString(*Status));
+            }
         }
 
-        if (Status)
+        JobExecutionState::JobExecutionState(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
+
+        JobExecutionState &JobExecutionState::operator=(const Crt::JsonView &doc)
         {
-            object.WithString("status", JobStatusMarshaller::ToString(*Status));
+            *this = JobExecutionState(doc);
+            return *this;
         }
 
-    }
-
-    JobExecutionState::JobExecutionState(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    JobExecutionState& JobExecutionState::operator=(const Crt::JsonView& doc)
-    {
-        *this = JobExecutionState(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotjobs
+} // namespace Aws

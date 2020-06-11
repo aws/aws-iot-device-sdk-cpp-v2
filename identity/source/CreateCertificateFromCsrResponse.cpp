@@ -17,62 +17,62 @@
 
 namespace Aws
 {
-namespace Iotidentity
-{
-
-    void CreateCertificateFromCsrResponse::LoadFromObject(CreateCertificateFromCsrResponse& val, const Aws::Crt::JsonView &doc)
+    namespace Iotidentity
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("certificateId"))
+        void CreateCertificateFromCsrResponse::LoadFromObject(
+            CreateCertificateFromCsrResponse &val,
+            const Aws::Crt::JsonView &doc)
         {
-            val.CertificateId = doc.GetString("certificateId");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("certificateId"))
+            {
+                val.CertificateId = doc.GetString("certificateId");
+            }
+
+            if (doc.ValueExists("certificateOwnershipToken"))
+            {
+                val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
+            }
+
+            if (doc.ValueExists("certificatePem"))
+            {
+                val.CertificatePem = doc.GetString("certificatePem");
+            }
         }
 
-        if (doc.ValueExists("certificateOwnershipToken"))
+        void CreateCertificateFromCsrResponse::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
+            (void)object;
+
+            if (CertificateId)
+            {
+                object.WithString("certificateId", *CertificateId);
+            }
+
+            if (CertificateOwnershipToken)
+            {
+                object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
+            }
+
+            if (CertificatePem)
+            {
+                object.WithString("certificatePem", *CertificatePem);
+            }
         }
 
-        if (doc.ValueExists("certificatePem"))
+        CreateCertificateFromCsrResponse::CreateCertificateFromCsrResponse(const Crt::JsonView &doc)
         {
-            val.CertificatePem = doc.GetString("certificatePem");
+            LoadFromObject(*this, doc);
         }
 
-    }
-
-    void CreateCertificateFromCsrResponse::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (CertificateId)
+        CreateCertificateFromCsrResponse &CreateCertificateFromCsrResponse::operator=(const Crt::JsonView &doc)
         {
-            object.WithString("certificateId", *CertificateId);
+            *this = CreateCertificateFromCsrResponse(doc);
+            return *this;
         }
 
-        if (CertificateOwnershipToken)
-        {
-            object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
-        }
-
-        if (CertificatePem)
-        {
-            object.WithString("certificatePem", *CertificatePem);
-        }
-
-    }
-
-    CreateCertificateFromCsrResponse::CreateCertificateFromCsrResponse(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
-
-    CreateCertificateFromCsrResponse& CreateCertificateFromCsrResponse::operator=(const Crt::JsonView& doc)
-    {
-        *this = CreateCertificateFromCsrResponse(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotidentity
+} // namespace Aws

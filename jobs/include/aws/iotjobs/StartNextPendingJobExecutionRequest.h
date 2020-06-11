@@ -22,28 +22,26 @@
 
 namespace Aws
 {
-namespace Iotjobs
-{
-
-    class AWS_IOTJOBS_API StartNextPendingJobExecutionRequest final
+    namespace Iotjobs
     {
-    public:
-        StartNextPendingJobExecutionRequest() = default;
 
-        StartNextPendingJobExecutionRequest(const Crt::JsonView& doc);
-        StartNextPendingJobExecutionRequest& operator=(const Crt::JsonView& doc);
+        class AWS_IOTJOBS_API StartNextPendingJobExecutionRequest final
+        {
+          public:
+            StartNextPendingJobExecutionRequest() = default;
 
-        void SerializeToObject(Crt::JsonObject& doc) const;
+            StartNextPendingJobExecutionRequest(const Crt::JsonView &doc);
+            StartNextPendingJobExecutionRequest &operator=(const Crt::JsonView &doc);
 
+            void SerializeToObject(Crt::JsonObject &doc) const;
 
-        Aws::Crt::Optional<Aws::Crt::String> ThingName;
-        Aws::Crt::Optional<int64_t> StepTimeoutInMinutes;
-        Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-        Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            Aws::Crt::Optional<int64_t> StepTimeoutInMinutes;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
 
-    private:
-        static void LoadFromObject(StartNextPendingJobExecutionRequest& obj, const Crt::JsonView &doc);
-    };
-}
-}
-
+          private:
+            static void LoadFromObject(StartNextPendingJobExecutionRequest &obj, const Crt::JsonView &doc);
+        };
+    } // namespace Iotjobs
+} // namespace Aws

@@ -17,42 +17,37 @@
 
 namespace Aws
 {
-namespace Iotshadow
-{
-
-    void DeleteShadowRequest::LoadFromObject(DeleteShadowRequest& val, const Aws::Crt::JsonView &doc)
+    namespace Iotshadow
     {
-        (void)val;
-        (void)doc;
 
-        if (doc.ValueExists("clientToken"))
+        void DeleteShadowRequest::LoadFromObject(DeleteShadowRequest &val, const Aws::Crt::JsonView &doc)
         {
-            val.ClientToken = doc.GetString("clientToken");
+            (void)val;
+            (void)doc;
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
         }
 
-    }
-
-    void DeleteShadowRequest::SerializeToObject(Aws::Crt::JsonObject& object) const
-    {
-        (void)object;
-
-        if (ClientToken)
+        void DeleteShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
-            object.WithString("clientToken", *ClientToken);
+            (void)object;
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
         }
 
-    }
+        DeleteShadowRequest::DeleteShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 
-    DeleteShadowRequest::DeleteShadowRequest(const Crt::JsonView& doc)
-    {
-        LoadFromObject(*this, doc);
-    }
+        DeleteShadowRequest &DeleteShadowRequest::operator=(const Crt::JsonView &doc)
+        {
+            *this = DeleteShadowRequest(doc);
+            return *this;
+        }
 
-    DeleteShadowRequest& DeleteShadowRequest::operator=(const Crt::JsonView& doc)
-    {
-        *this = DeleteShadowRequest(doc);
-        return *this;
-    }
-
-}
-}
+    } // namespace Iotshadow
+} // namespace Aws
