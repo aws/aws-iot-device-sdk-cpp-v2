@@ -37,9 +37,9 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<int32_t> Version;
             Aws::Crt::Optional<Aws::Iotshadow::ShadowState> State;
             Aws::Crt::Optional<Aws::Iotshadow::ShadowMetadata> Metadata;
+            Aws::Crt::Optional<int32_t> Version;
 
           private:
             static void LoadFromObject(ShadowUpdatedSnapshot &obj, const Crt::JsonView &doc);

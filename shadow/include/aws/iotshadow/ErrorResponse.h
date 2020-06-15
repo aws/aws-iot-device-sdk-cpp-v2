@@ -36,9 +36,9 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
+            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
             Aws::Crt::Optional<Aws::Crt::String> Message;
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
             Aws::Crt::Optional<int32_t> Code;
 
           private:

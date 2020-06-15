@@ -27,11 +27,6 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("clientToken"))
-            {
-                val.ClientToken = doc.GetString("clientToken");
-            }
-
             if (doc.ValueExists("queuedJobs"))
             {
                 auto queuedJobsList = doc.GetArray("queuedJobs");
@@ -48,6 +43,11 @@ namespace Aws
             if (doc.ValueExists("timestamp"))
             {
                 val.Timestamp = doc.GetDouble("timestamp");
+            }
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
             }
 
             if (doc.ValueExists("inProgressJobs"))
@@ -68,11 +68,6 @@ namespace Aws
         {
             (void)object;
 
-            if (ClientToken)
-            {
-                object.WithString("clientToken", *ClientToken);
-            }
-
             if (QueuedJobs)
             {
                 Aws::Crt::Vector<Aws::Crt::JsonObject> queuedJobsList;
@@ -91,6 +86,11 @@ namespace Aws
             if (Timestamp)
             {
                 object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
             }
 
             if (InProgressJobs)

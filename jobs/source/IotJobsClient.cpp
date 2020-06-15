@@ -53,6 +53,7 @@ namespace Aws
             const OnSubscribeToUpdateJobExecutionAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -104,6 +105,7 @@ namespace Aws
             const OnSubscribeToGetPendingJobExecutionsRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -155,6 +157,7 @@ namespace Aws
             const OnSubscribeToDescribeJobExecutionAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -206,6 +209,7 @@ namespace Aws
             const OnSubscribeToDescribeJobExecutionRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -257,6 +261,7 @@ namespace Aws
             const OnSubscribeToUpdateJobExecutionRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -308,6 +313,7 @@ namespace Aws
             const OnSubscribeToJobExecutionsChangedEventsResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -357,6 +363,7 @@ namespace Aws
             const OnSubscribeToStartNextPendingJobExecutionRejectedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -408,6 +415,7 @@ namespace Aws
             const OnSubscribeToNextJobExecutionChangedEventsResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -457,6 +465,7 @@ namespace Aws
             const OnSubscribeToGetPendingJobExecutionsAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,
@@ -508,6 +517,7 @@ namespace Aws
             const OnSubscribeToStartNextPendingJobExecutionAcceptedResponse &handler,
             const OnSubscribeComplete &onSubAck)
         {
+            (void)request;
             auto onSubscribeComplete = [handler, onSubAck](
                                            Aws::Crt::Mqtt::MqttConnection &,
                                            uint16_t,

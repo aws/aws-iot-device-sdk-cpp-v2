@@ -25,14 +25,19 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("state"))
-            {
-                val.State = doc.GetJsonObject("state");
-            }
-
             if (doc.ValueExists("version"))
             {
                 val.Version = doc.GetInteger("version");
+            }
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
+
+            if (doc.ValueExists("state"))
+            {
+                val.State = doc.GetJsonObject("state");
             }
 
             if (doc.ValueExists("metadata"))
@@ -50,16 +55,21 @@ namespace Aws
         {
             (void)object;
 
+            if (Version)
+            {
+                object.WithInteger("version", *Version);
+            }
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
+
             if (State)
             {
                 Aws::Crt::JsonObject jsonObject;
                 State->SerializeToObject(jsonObject);
                 object.WithObject("state", std::move(jsonObject));
-            }
-
-            if (Version)
-            {
-                object.WithInteger("version", *Version);
             }
 
             if (Metadata)

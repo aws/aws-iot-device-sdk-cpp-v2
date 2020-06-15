@@ -37,9 +37,9 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
             Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> QueuedJobs;
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
             Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> InProgressJobs;
 
           private:

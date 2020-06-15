@@ -27,6 +27,11 @@ namespace Aws
             (void)val;
             (void)doc;
 
+            if (doc.ValueExists("stepTimeoutInMinutes"))
+            {
+                val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
+            }
+
             if (doc.ValueExists("clientToken"))
             {
                 val.ClientToken = doc.GetString("clientToken");
@@ -43,16 +48,16 @@ namespace Aws
                     val.StatusDetails->emplace(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
                 }
             }
-
-            if (doc.ValueExists("stepTimeoutInMinutes"))
-            {
-                val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
-            }
         }
 
         void StartNextPendingJobExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
+
+            if (StepTimeoutInMinutes)
+            {
+                object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
+            }
 
             if (ClientToken)
             {
@@ -69,11 +74,6 @@ namespace Aws
                     statusDetailsMap.WithObject(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
                 }
                 object.WithObject("statusDetails", std::move(statusDetailsMap));
-            }
-
-            if (StepTimeoutInMinutes)
-            {
-                object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
             }
         }
 

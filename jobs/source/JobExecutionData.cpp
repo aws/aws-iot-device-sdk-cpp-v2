@@ -30,14 +30,29 @@ namespace Aws
                 val.JobId = doc.GetString("jobId");
             }
 
-            if (doc.ValueExists("thingName"))
-            {
-                val.ThingName = doc.GetString("thingName");
-            }
-
             if (doc.ValueExists("jobDocument"))
             {
                 val.JobDocument = doc.GetJsonObjectCopy("jobDocument");
+            }
+
+            if (doc.ValueExists("status"))
+            {
+                val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
+            }
+
+            if (doc.ValueExists("versionNumber"))
+            {
+                val.VersionNumber = doc.GetInteger("versionNumber");
+            }
+
+            if (doc.ValueExists("queuedAt"))
+            {
+                val.QueuedAt = doc.GetDouble("queuedAt");
+            }
+
+            if (doc.ValueExists("thingName"))
+            {
+                val.ThingName = doc.GetString("thingName");
             }
 
             if (doc.ValueExists("executionNumber"))
@@ -55,21 +70,6 @@ namespace Aws
                     statusDetailsMapValMember = statusDetailsMapMember.second.AsString();
                     val.StatusDetails->emplace(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
                 }
-            }
-
-            if (doc.ValueExists("status"))
-            {
-                val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
-            }
-
-            if (doc.ValueExists("versionNumber"))
-            {
-                val.VersionNumber = doc.GetInteger("versionNumber");
-            }
-
-            if (doc.ValueExists("queuedAt"))
-            {
-                val.QueuedAt = doc.GetDouble("queuedAt");
             }
 
             if (doc.ValueExists("lastUpdatedAt"))
@@ -92,14 +92,29 @@ namespace Aws
                 object.WithString("jobId", *JobId);
             }
 
-            if (ThingName)
-            {
-                object.WithString("thingName", *ThingName);
-            }
-
             if (JobDocument)
             {
                 object.WithObject("jobDocument", *JobDocument);
+            }
+
+            if (Status)
+            {
+                object.WithString("status", JobStatusMarshaller::ToString(*Status));
+            }
+
+            if (VersionNumber)
+            {
+                object.WithInteger("versionNumber", *VersionNumber);
+            }
+
+            if (QueuedAt)
+            {
+                object.WithDouble("queuedAt", QueuedAt->SecondsWithMSPrecision());
+            }
+
+            if (ThingName)
+            {
+                object.WithString("thingName", *ThingName);
             }
 
             if (ExecutionNumber)
@@ -117,21 +132,6 @@ namespace Aws
                     statusDetailsMap.WithObject(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
                 }
                 object.WithObject("statusDetails", std::move(statusDetailsMap));
-            }
-
-            if (Status)
-            {
-                object.WithString("status", JobStatusMarshaller::ToString(*Status));
-            }
-
-            if (VersionNumber)
-            {
-                object.WithInteger("versionNumber", *VersionNumber);
-            }
-
-            if (QueuedAt)
-            {
-                object.WithDouble("queuedAt", QueuedAt->SecondsWithMSPrecision());
             }
 
             if (LastUpdatedAt)

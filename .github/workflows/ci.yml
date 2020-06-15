@@ -7,7 +7,7 @@ on:
       - '!master'
 
 env:
-  BUILDER_VERSION: v0.6.0
+  BUILDER_VERSION: v0.6.5
   BUILDER_SOURCE: releases
   BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
   PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
@@ -31,7 +31,7 @@ jobs:
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u awslabs --password-stdin
         export DOCKER_IMAGE=docker.pkg.github.com/awslabs/aws-crt-builder/aws-crt-${{ matrix.image }}:${{ env.BUILDER_VERSION }}
         docker pull $DOCKER_IMAGE
-        docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} 
+        docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }}
 
   al2:
     runs-on: ubuntu-latest
@@ -42,8 +42,8 @@ jobs:
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u awslabs --password-stdin
         export DOCKER_IMAGE=docker.pkg.github.com/awslabs/aws-crt-builder/aws-crt-al2-x64:${{ env.BUILDER_VERSION }}
         docker pull $DOCKER_IMAGE
-        docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} al2-default-default-default-default-downstream
-      
+        docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+
   clang-compat:
     runs-on: ubuntu-latest
     strategy:
@@ -56,13 +56,13 @@ jobs:
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u awslabs --password-stdin
         export DOCKER_IMAGE=docker.pkg.github.com/awslabs/aws-crt-builder/aws-crt-${{ env.LINUX_BASE_IMAGE }}:${{ env.BUILDER_VERSION }}
         docker pull $DOCKER_IMAGE
-        docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} linux-clang-${{ matrix.version }}-linux-x64 --config Debug
+        docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} --compiler=clang-${{ matrix.version }} --config Debug
 
   gcc-compat:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [4.8, 5, 6, 7, 8]      
+        version: [4.8, 5, 6, 7, 8]
     steps:
         # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
     - name: Build ${{ env.PACKAGE_NAME }}
@@ -70,15 +70,36 @@ jobs:
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u awslabs --password-stdin
         export DOCKER_IMAGE=docker.pkg.github.com/awslabs/aws-crt-builder/aws-crt-${{ env.LINUX_BASE_IMAGE }}:${{ env.BUILDER_VERSION }}
         docker pull $DOCKER_IMAGE
-        docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} linux-gcc-${{ matrix.version }}-linux-x64
+        docker run --env GITHUB_REF $DOCKER_IMAGE build -p ${{ env.PACKAGE_NAME }} --compiler=gcc-${{ matrix.version }}
 
-  windows:
+  windows-vs16:
     runs-on: windows-latest
     steps:
     - name: Build ${{ env.PACKAGE_NAME }} + consumers
       run: |
+        md D:\a\work
+        cd D:\a\work
         python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder.pyz')"
-        python builder.pyz build -p ${{ env.PACKAGE_NAME }} default-downstream
+        python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+
+  windows-vs14:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        arch: [x86, x64]
+    steps:
+    - uses: ilammy/msvc-dev-cmd@v1
+      with:
+        toolset: 14.0
+        arch: ${{ matrix.arch }}
+        uwp: false
+        spectre: true
+    - name: Build ${{ env.PACKAGE_NAME }} + consumers
+      run: |
+        md D:\a\work
+        cd D:\a\work
+        python -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder.pyz')"
+        python builder.pyz build -p ${{ env.PACKAGE_NAME }} --spec=downstream
 
   osx:
     runs-on: macos-latest
@@ -87,6 +108,4 @@ jobs:
       run: |
         python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
         chmod a+x builder
-        ./builder build -p ${{ env.PACKAGE_NAME }} default-downstream
-
-        
+        ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream

@@ -24,9 +24,22 @@ namespace Aws
         {
             (void)val;
             (void)doc;
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
         }
 
-        void DeleteShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const { (void)object; }
+        void DeleteShadowRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
+        {
+            (void)object;
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
+        }
 
         DeleteShadowRequest::DeleteShadowRequest(const Crt::JsonView &doc) { LoadFromObject(*this, doc); }
 

@@ -35,11 +35,11 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
+            Aws::Crt::Optional<int64_t> ExecutionNumber;
+            Aws::Crt::Optional<Aws::Crt::String> ThingName;
             Aws::Crt::Optional<bool> IncludeJobDocument;
             Aws::Crt::Optional<Aws::Crt::String> JobId;
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
-            Aws::Crt::Optional<int64_t> ExecutionNumber;
-            Aws::Crt::Optional<Aws::Crt::String> ThingName;
 
           private:
             static void LoadFromObject(DescribeJobExecutionRequest &obj, const Crt::JsonView &doc);

@@ -27,6 +27,11 @@ namespace Aws
             (void)val;
             (void)doc;
 
+            if (doc.ValueExists("executionNumber"))
+            {
+                val.ExecutionNumber = doc.GetInt64("executionNumber");
+            }
+
             if (doc.ValueExists("includeJobDocument"))
             {
                 val.IncludeJobDocument = doc.GetBool("includeJobDocument");
@@ -36,16 +41,16 @@ namespace Aws
             {
                 val.ClientToken = doc.GetString("clientToken");
             }
-
-            if (doc.ValueExists("executionNumber"))
-            {
-                val.ExecutionNumber = doc.GetInt64("executionNumber");
-            }
         }
 
         void DescribeJobExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
+
+            if (ExecutionNumber)
+            {
+                object.WithInt64("executionNumber", *ExecutionNumber);
+            }
 
             if (IncludeJobDocument)
             {
@@ -55,11 +60,6 @@ namespace Aws
             if (ClientToken)
             {
                 object.WithString("clientToken", *ClientToken);
-            }
-
-            if (ExecutionNumber)
-            {
-                object.WithInt64("executionNumber", *ExecutionNumber);
             }
         }
 

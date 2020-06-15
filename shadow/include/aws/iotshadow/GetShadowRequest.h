@@ -36,6 +36,7 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
           private:
             static void LoadFromObject(GetShadowRequest &obj, const Crt::JsonView &doc);

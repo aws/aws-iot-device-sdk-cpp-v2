@@ -35,6 +35,11 @@ namespace Aws
                 val.ExecutionNumber = doc.GetInt64("executionNumber");
             }
 
+            if (doc.ValueExists("startedAt"))
+            {
+                val.StartedAt = doc.GetDouble("startedAt");
+            }
+
             if (doc.ValueExists("versionNumber"))
             {
                 val.VersionNumber = doc.GetInteger("versionNumber");
@@ -43,11 +48,6 @@ namespace Aws
             if (doc.ValueExists("jobId"))
             {
                 val.JobId = doc.GetString("jobId");
-            }
-
-            if (doc.ValueExists("startedAt"))
-            {
-                val.StartedAt = doc.GetDouble("startedAt");
             }
 
             if (doc.ValueExists("queuedAt"))
@@ -70,6 +70,11 @@ namespace Aws
                 object.WithInt64("executionNumber", *ExecutionNumber);
             }
 
+            if (StartedAt)
+            {
+                object.WithDouble("startedAt", StartedAt->SecondsWithMSPrecision());
+            }
+
             if (VersionNumber)
             {
                 object.WithInteger("versionNumber", *VersionNumber);
@@ -78,11 +83,6 @@ namespace Aws
             if (JobId)
             {
                 object.WithString("jobId", *JobId);
-            }
-
-            if (StartedAt)
-            {
-                object.WithDouble("startedAt", StartedAt->SecondsWithMSPrecision());
             }
 
             if (QueuedAt)

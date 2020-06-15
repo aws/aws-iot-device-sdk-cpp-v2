@@ -25,14 +25,19 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("timestamp"))
-            {
-                val.Timestamp = doc.GetDouble("timestamp");
-            }
-
             if (doc.ValueExists("version"))
             {
                 val.Version = doc.GetInteger("version");
+            }
+
+            if (doc.ValueExists("clientToken"))
+            {
+                val.ClientToken = doc.GetString("clientToken");
+            }
+
+            if (doc.ValueExists("timestamp"))
+            {
+                val.Timestamp = doc.GetDouble("timestamp");
             }
         }
 
@@ -40,14 +45,19 @@ namespace Aws
         {
             (void)object;
 
-            if (Timestamp)
-            {
-                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
-            }
-
             if (Version)
             {
                 object.WithInteger("version", *Version);
+            }
+
+            if (ClientToken)
+            {
+                object.WithString("clientToken", *ClientToken);
+            }
+
+            if (Timestamp)
+            {
+                object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
             }
         }
 

@@ -37,9 +37,9 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::JsonObject> Metadata;
             Aws::Crt::Optional<int32_t> Version;
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
+            Aws::Crt::Optional<Aws::Crt::JsonObject> Metadata;
             Aws::Crt::Optional<Aws::Crt::JsonObject> State;
 
           private:

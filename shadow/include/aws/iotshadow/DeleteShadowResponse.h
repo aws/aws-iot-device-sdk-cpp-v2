@@ -36,8 +36,9 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
             Aws::Crt::Optional<int32_t> Version;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 
           private:
             static void LoadFromObject(DeleteShadowResponse &obj, const Crt::JsonView &doc);

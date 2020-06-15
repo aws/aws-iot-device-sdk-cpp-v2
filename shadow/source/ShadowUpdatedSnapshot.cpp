@@ -25,11 +25,6 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("version"))
-            {
-                val.Version = doc.GetInteger("version");
-            }
-
             if (doc.ValueExists("state"))
             {
                 val.State = doc.GetJsonObject("state");
@@ -39,16 +34,16 @@ namespace Aws
             {
                 val.Metadata = doc.GetJsonObject("metadata");
             }
+
+            if (doc.ValueExists("version"))
+            {
+                val.Version = doc.GetInteger("version");
+            }
         }
 
         void ShadowUpdatedSnapshot::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
-
-            if (Version)
-            {
-                object.WithInteger("version", *Version);
-            }
 
             if (State)
             {
@@ -62,6 +57,11 @@ namespace Aws
                 Aws::Crt::JsonObject jsonObject;
                 Metadata->SerializeToObject(jsonObject);
                 object.WithObject("metadata", std::move(jsonObject));
+            }
+
+            if (Version)
+            {
+                object.WithInteger("version", *Version);
             }
         }
 

@@ -38,8 +38,9 @@ namespace Aws
 
             void SerializeToObject(Crt::JsonObject &doc) const;
 
-            Aws::Crt::Optional<Aws::Iotshadow::ShadowStateWithDelta> State;
             Aws::Crt::Optional<int32_t> Version;
+            Aws::Crt::Optional<Aws::Crt::String> ClientToken;
+            Aws::Crt::Optional<Aws::Iotshadow::ShadowStateWithDelta> State;
             Aws::Crt::Optional<Aws::Iotshadow::ShadowMetadata> Metadata;
             Aws::Crt::Optional<Aws::Crt::DateTime> Timestamp;
 

@@ -37,14 +37,14 @@ namespace Aws
             void SerializeToObject(Crt::JsonObject &doc) const;
 
             Aws::Crt::Optional<Aws::Crt::String> ThingName;
-            Aws::Crt::Optional<int32_t> ExpectedVersion;
             Aws::Crt::Optional<int64_t> ExecutionNumber;
-            Aws::Crt::Optional<bool> IncludeJobDocument;
             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> StatusDetails;
             Aws::Crt::Optional<bool> IncludeJobExecutionState;
+            Aws::Crt::Optional<Aws::Crt::String> JobId;
+            Aws::Crt::Optional<int32_t> ExpectedVersion;
+            Aws::Crt::Optional<bool> IncludeJobDocument;
             Aws::Crt::Optional<Aws::Iotjobs::JobStatus> Status;
             Aws::Crt::Optional<int64_t> StepTimeoutInMinutes;
-            Aws::Crt::Optional<Aws::Crt::String> JobId;
             Aws::Crt::Optional<Aws::Crt::String> ClientToken;
 
           private:
