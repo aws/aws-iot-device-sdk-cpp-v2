@@ -15,6 +15,7 @@ This SDK is built on the AWS Common Runtime, a collection of libraries
 cross-platform, high-performance, secure, and reliable. The libraries are bound
 to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
+
 *__Jump To:__*
 * [Installation](#Installation)
 * [Samples](samples)
@@ -22,16 +23,18 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
 * [More Resources](#More-Resources)
 
+
+
 ## Installation
 
-## Minimum Requirements
+### Minimum Requirements
 *   C++ 11 or higher
 *   CMake 3.1+
 *   Clang 3.9+ or GCC 4.4+ or MSVC 2015+
 
 
-## Build from source
-### Automatically Build and Install AWS Dependencies
+### Build from source
+#### Automatically Build and Install AWS Dependencies
 ```
 mkdir sdk-cpp-workspace
 cd sdk-cpp-workspace
@@ -41,7 +44,7 @@ cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install
 ```
-### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
+#### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
 
 ```
 mkdir aws-iot-device-sdk-cpp-v2-build
@@ -50,20 +53,24 @@ cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_PR
 cmake --build . --target install
 ```
 
+
+
 ## Samples
 
-[Samples README.md](samples)
+[Samples README](samples)
+
 
 
 ## Getting Help
 
 Use the following sources for information :
 
-*   Check api and developer guides
+*   Check api and developer guides.
 *   Check for similar issues already opened.
 *   Gitter or whatever chat app we implement.
 
 If you still can’t find a solution to your problem open an [issue](.issues)
+
 
 
 ## Giving Feedback and Contributions
@@ -73,6 +80,7 @@ We need your help in making this SDK great. Please participate in the community 
 *   [Contributions Guidelines](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/master/CONTRIBUTING.md)
 *   Articulate your feature request or upvote existing ones on our [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues?q=is%3Aissue+is%3Aopen+label%3Afeature-request) page.
 *   Submit [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
+
 
 
 ## More Resources
@@ -86,6 +94,8 @@ Integration with AWS IoT Services such as
 [Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
 and [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
 is provided by code that been generated from a model of the service.
+
+
 
 # License
 
