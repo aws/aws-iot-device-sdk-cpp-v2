@@ -16,13 +16,13 @@ cross-platform, high-performance, secure, and reliable. The libraries are bound
 to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 *__Jump To:__*
-* [Installation](_#Installation_)
-* [Samples](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/master/samples/README.md)
-* [Getting Help](_#Getting-Help_)
-* [Giving Feedback and Contributions](_#Giving-Feedback-and-Contributions)
-* [More Resources](_#More-Resources_)
+* [Installation](#Installation)
+* [Samples](samples)
+* [Getting Help](#Getting-Help)
+* [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
+* [More Resources](#More-Resources)
 
-# Installation
+## Installation
 
 ## Minimum Requirements
 *   C++ 11 or higher
@@ -52,7 +52,7 @@ cmake --build . --target install
 
 ## Samples
 
-[Samples README.md](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/master/samples/README.md)
+[Samples README.md](samples)
 
 
 ## Getting Help
@@ -66,16 +66,16 @@ Use the following sources for information :
 If you still can’t find a solution to your problem open an [issue](.issues)
 
 
-##Giving Feedback and Contributions
+## Giving Feedback and Contributions
 
 We need your help in making this SDK great. Please participate in the community and contribute to this effort by submitting issues, participating in discussion forums and submitting pull requests through the following channels.
 
 *   [Contributions Guidelines](https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/master/CONTRIBUTING.md)
 *   Articulate your feature request or upvote existing ones on our [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues?q=is%3Aissue+is%3Aopen+label%3Afeature-request) page.
-*   Submit [issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
+*   Submit [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
 
 
-##More Resources
+## More Resources
 
 *   [AWS IoT Core Documentation](https://docs.aws.amazon.com/iot/)
 *   [Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
