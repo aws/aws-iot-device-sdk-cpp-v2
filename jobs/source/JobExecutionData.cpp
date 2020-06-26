@@ -1,18 +1,7 @@
-/* Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License").
-* You may not use this file except in compliance with the License.
-* A copy of the License is located at
-*
-*  http://aws.amazon.com/apache2.0
-*
-* or in the "license" file accompanying this file. This file is distributed
-* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-* express or implied. See the License for the specific language governing
-* permissions and limitations under the License.
-
-* This file is generated
-*/
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
 #include <aws/iotjobs/JobExecutionData.h>
 
 namespace Aws
@@ -30,14 +19,29 @@ namespace Aws
                 val.JobId = doc.GetString("jobId");
             }
 
-            if (doc.ValueExists("thingName"))
-            {
-                val.ThingName = doc.GetString("thingName");
-            }
-
             if (doc.ValueExists("jobDocument"))
             {
                 val.JobDocument = doc.GetJsonObjectCopy("jobDocument");
+            }
+
+            if (doc.ValueExists("status"))
+            {
+                val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
+            }
+
+            if (doc.ValueExists("versionNumber"))
+            {
+                val.VersionNumber = doc.GetInteger("versionNumber");
+            }
+
+            if (doc.ValueExists("queuedAt"))
+            {
+                val.QueuedAt = doc.GetDouble("queuedAt");
+            }
+
+            if (doc.ValueExists("thingName"))
+            {
+                val.ThingName = doc.GetString("thingName");
             }
 
             if (doc.ValueExists("executionNumber"))
@@ -55,21 +59,6 @@ namespace Aws
                     statusDetailsMapValMember = statusDetailsMapMember.second.AsString();
                     val.StatusDetails->emplace(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
                 }
-            }
-
-            if (doc.ValueExists("status"))
-            {
-                val.Status = JobStatusMarshaller::FromString(doc.GetString("status"));
-            }
-
-            if (doc.ValueExists("versionNumber"))
-            {
-                val.VersionNumber = doc.GetInteger("versionNumber");
-            }
-
-            if (doc.ValueExists("queuedAt"))
-            {
-                val.QueuedAt = doc.GetDouble("queuedAt");
             }
 
             if (doc.ValueExists("lastUpdatedAt"))
@@ -92,14 +81,29 @@ namespace Aws
                 object.WithString("jobId", *JobId);
             }
 
-            if (ThingName)
-            {
-                object.WithString("thingName", *ThingName);
-            }
-
             if (JobDocument)
             {
                 object.WithObject("jobDocument", *JobDocument);
+            }
+
+            if (Status)
+            {
+                object.WithString("status", JobStatusMarshaller::ToString(*Status));
+            }
+
+            if (VersionNumber)
+            {
+                object.WithInteger("versionNumber", *VersionNumber);
+            }
+
+            if (QueuedAt)
+            {
+                object.WithDouble("queuedAt", QueuedAt->SecondsWithMSPrecision());
+            }
+
+            if (ThingName)
+            {
+                object.WithString("thingName", *ThingName);
             }
 
             if (ExecutionNumber)
@@ -117,21 +121,6 @@ namespace Aws
                     statusDetailsMap.WithObject(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
                 }
                 object.WithObject("statusDetails", std::move(statusDetailsMap));
-            }
-
-            if (Status)
-            {
-                object.WithString("status", JobStatusMarshaller::ToString(*Status));
-            }
-
-            if (VersionNumber)
-            {
-                object.WithInteger("versionNumber", *VersionNumber);
-            }
-
-            if (QueuedAt)
-            {
-                object.WithDouble("queuedAt", QueuedAt->SecondsWithMSPrecision());
             }
 
             if (LastUpdatedAt)

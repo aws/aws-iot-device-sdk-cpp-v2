@@ -1,18 +1,7 @@
-/* Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License").
-* You may not use this file except in compliance with the License.
-* A copy of the License is located at
-*
-*  http://aws.amazon.com/apache2.0
-*
-* or in the "license" file accompanying this file. This file is distributed
-* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-* express or implied. See the License for the specific language governing
-* permissions and limitations under the License.
-
-* This file is generated
-*/
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
 #include <aws/iotshadow/ShadowDeltaUpdatedEvent.h>
 
 namespace Aws
@@ -25,11 +14,6 @@ namespace Aws
             (void)val;
             (void)doc;
 
-            if (doc.ValueExists("metadata"))
-            {
-                val.Metadata = doc.GetJsonObjectCopy("metadata");
-            }
-
             if (doc.ValueExists("version"))
             {
                 val.Version = doc.GetInteger("version");
@@ -38,6 +22,11 @@ namespace Aws
             if (doc.ValueExists("timestamp"))
             {
                 val.Timestamp = doc.GetDouble("timestamp");
+            }
+
+            if (doc.ValueExists("metadata"))
+            {
+                val.Metadata = doc.GetJsonObjectCopy("metadata");
             }
 
             if (doc.ValueExists("state"))
@@ -50,11 +39,6 @@ namespace Aws
         {
             (void)object;
 
-            if (Metadata)
-            {
-                object.WithObject("metadata", *Metadata);
-            }
-
             if (Version)
             {
                 object.WithInteger("version", *Version);
@@ -63,6 +47,11 @@ namespace Aws
             if (Timestamp)
             {
                 object.WithDouble("timestamp", Timestamp->SecondsWithMSPrecision());
+            }
+
+            if (Metadata)
+            {
+                object.WithObject("metadata", *Metadata);
             }
 
             if (State)
