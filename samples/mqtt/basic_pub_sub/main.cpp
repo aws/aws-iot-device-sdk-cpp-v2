@@ -319,20 +319,29 @@ int main(int argc, char *argv[])
         /*
          * Subscribe for incoming publish messages on topic.
          */
+        bool subscribeFinished = false;
         auto onSubAck = [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS, int errorCode) {
-            if (packetId)
+            if (errorCode)
             {
-                fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
             }
             else
             {
-                fprintf(stdout, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
+                if (packetId)
+                {
+                    fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                }
+                else
+                {
+                    fprintf(stderr, "Subscribe rejected by the broker.");
+                }
             }
+            subscribeFinished = true;
             conditionVariable.notify_one();
         };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onPublish, onSubAck);
-        conditionVariable.wait(uniqueLock);
+        conditionVariable.wait(uniqueLock, [&]() { return subscribeFinished; });
 
         while (true)
         {
@@ -370,9 +379,12 @@ int main(int argc, char *argv[])
         /*
          * Unsubscribe from the topic.
          */
-        connection->Unsubscribe(
-            topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { conditionVariable.notify_one(); });
-        conditionVariable.wait(uniqueLock);
+        bool unsubscribeFinished = false;
+        connection->Unsubscribe(topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) {
+            unsubscribeFinished = true;
+            conditionVariable.notify_one();
+        });
+        conditionVariable.wait(uniqueLock, [&]() { return unsubscribeFinished; });
     }
 
     /* Disconnect */
