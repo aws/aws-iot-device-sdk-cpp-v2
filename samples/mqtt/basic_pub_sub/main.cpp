@@ -317,25 +317,26 @@ int main(int argc, char *argv[])
          * Subscribe for incoming publish messages on topic.
          */
         std::atomic<bool> subscribeFinished(false);
-        auto onSubAck = [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
-            if (errorCode)
-            {
-                fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
-            }
-            else
-            {
-                if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
+        auto onSubAck =
+            [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
+                if (errorCode)
                 {
-                    fprintf(stderr, "Subscribe rejected by the broker.");
+                    fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
                 }
-                else 
+                else
                 {
-                    fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                    if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
+                    {
+                        fprintf(stderr, "Subscribe rejected by the broker.");
+                    }
+                    else
+                    {
+                        fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
+                    }
                 }
-            }
-            subscribeFinished = true;
-            conditionVariable.notify_one();
-        };
+                subscribeFinished = true;
+                conditionVariable.notify_one();
+            };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onPublish, onSubAck);
         conditionVariable.wait(uniqueLock, [&]() { return subscribeFinished.load(); });
