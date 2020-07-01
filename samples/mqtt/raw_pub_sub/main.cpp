@@ -288,9 +288,9 @@ int main(int argc, char *argv[])
      */
     std::mutex mutex;
     std::condition_variable conditionVariable;
-    bool connectionSucceeded = false;
-    bool connectionClosed = false;
-    bool connectionCompleted = false;
+    std::atomic<bool> connectionSucceeded(false);
+    std::atomic<bool> connectionClosed(false);
+    std::atomic<bool> connectionCompleted(false);
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -299,7 +299,6 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionSucceeded = false;
         }
         else
@@ -308,7 +307,6 @@ int main(int argc, char *argv[])
             connectionSucceeded = true;
         }
         {
-            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionCompleted = true;
         }
         conditionVariable.notify_one();
@@ -326,7 +324,6 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
-            std::lock_guard<std::mutex> lockGuard(mutex);
             connectionClosed = true;
         }
         conditionVariable.notify_one();
@@ -356,7 +353,7 @@ int main(int argc, char *argv[])
     }
 
     std::unique_lock<std::mutex> uniqueLock(mutex);
-    conditionVariable.wait(uniqueLock, [&]() { return connectionCompleted; });
+    conditionVariable.wait(uniqueLock, [&]() { return connectionCompleted.load(); });
 
     if (connectionSucceeded)
     {
@@ -373,7 +370,7 @@ int main(int argc, char *argv[])
         /*
          * Subscribe for incoming publish messages on topic.
          */
-        bool subscribeFinished = false;
+        std::atomic<bool> subscribeFinished(false);
         auto onSubAck = [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS, int errorCode) {
             if (errorCode)
             {
@@ -395,7 +392,7 @@ int main(int argc, char *argv[])
         };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onPublish, onSubAck);
-        conditionVariable.wait(uniqueLock, [&]() { return subscribeFinished; });
+        conditionVariable.wait(uniqueLock, [&]() { return subscribeFinished.load(); });
 
         while (true)
         {
@@ -433,19 +430,18 @@ int main(int argc, char *argv[])
         /*
          * Unsubscribe from the topic.
          */
-        bool unsubscribeFinished = false;
+        std::atomic<bool> unsubscribeFinished(false);
         connection->Unsubscribe(topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) {
             unsubscribeFinished = true;
             conditionVariable.notify_one();
         });
-
-        conditionVariable.wait(uniqueLock, [&]() { return unsubscribeFinished; });
+        conditionVariable.wait(uniqueLock, [&]() { return unsubscribeFinished.load(); });
     }
 
     /* Disconnect */
     if (connection->Disconnect())
     {
-        conditionVariable.wait(uniqueLock, [&]() { return connectionClosed; });
+        conditionVariable.wait(uniqueLock, [&]() { return connectionClosed.load(); });
     }
     return 0;
 }

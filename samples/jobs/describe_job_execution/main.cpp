@@ -236,17 +236,20 @@ int main(int argc, char *argv[])
 
         // This isn't absolutely neccessary but since we're doing a publish almost immediately afterwards,
         // to be cautious make sure the subscribe has finished before doing the publish.
+        std::atomic<bool> subAcked(false);
         auto subAckHandler = [&](int ioErr) {
             if (!ioErr)
             {
+                subAcked = true;
                 conditionVariable.notify_one();
             }
         };
-
+        std::atomic<bool> jobExecutionAcceptedCompleted(false);
         auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
+                jobExecutionAcceptedCompleted = true;
                 conditionVariable.notify_one();
                 return;
             }
@@ -255,17 +258,20 @@ int main(int argc, char *argv[])
             fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
             fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
             fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
+            jobExecutionAcceptedCompleted = true;
             conditionVariable.notify_one();
         };
 
         client.SubscribeToDescribeJobExecutionAccepted(
             describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscriptionHandler, subAckHandler);
-        conditionVariable.wait(uniqueLock);
-
+        conditionVariable.wait(uniqueLock, [&]() { return subAcked || jobExecutionAcceptedCompleted; });
+        subAcked = false;
+        std::atomic<bool> jobExecutionRejectedCompleted(false);
         auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
+                jobExecutionRejectedCompleted = true;
                 conditionVariable.notify_one();
                 return;
             }
@@ -273,6 +279,7 @@ int main(int argc, char *argv[])
             if (rejectedError)
             {
                 fprintf(stderr, "Service Error %d occured\n", (int)rejectedError->Code.value());
+                jobExecutionRejectedCompleted = true;
                 conditionVariable.notify_one();
                 return;
             }
@@ -280,7 +287,7 @@ int main(int argc, char *argv[])
 
         client.SubscribeToDescribeJobExecutionRejected(
             describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
-        conditionVariable.wait(uniqueLock);
+        conditionVariable.wait(uniqueLock, [&]() { return subAcked || jobExecutionRejectedCompleted; });
 
         DescribeJobExecutionRequest describeJobExecutionRequest;
         describeJobExecutionRequest.ThingName = thingName;
@@ -288,11 +295,13 @@ int main(int argc, char *argv[])
         describeJobExecutionRequest.IncludeJobDocument = true;
         Aws::Crt::UUID uuid;
         describeJobExecutionRequest.ClientToken = uuid.ToString();
+        std::atomic<bool> publishDescribeJobExeCompelted(false);
 
         auto publishHandler = [&](int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
+                publishDescribeJobExeCompelted = true;
                 conditionVariable.notify_one();
                 return;
             }
@@ -300,7 +309,7 @@ int main(int argc, char *argv[])
 
         client.PublishDescribeJobExecution(
             std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
-        conditionVariable.wait(uniqueLock);
+        conditionVariable.wait(uniqueLock, [&]() { return publishDescribeJobExeCompelted.load(); });
     }
 
     if (!connectionClosed)
