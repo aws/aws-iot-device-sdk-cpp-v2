@@ -190,8 +190,8 @@ int main(int argc, char *argv[])
     Aws::Iot::MqttClient mqttClient(bootstrap);
     std::shared_ptr<Mqtt::MqttConnection> connection(nullptr);
 
-    std::promise<bool> connectionFinishedPromise;
-    std::promise<bool> shutdownCompletedPromise;
+    std::promise<void> connectionFinishedPromise;
+    std::promise<void> shutdownCompletedPromise;
 
     discoveryClient->Discover(thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
         if (!error && response->GGGroups)
@@ -254,7 +254,7 @@ int main(int argc, char *argv[])
                             if (!errorCode)
                             {
                                 fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
-                                connectionFinishedPromise.set_value(true);
+                                connectionFinishedPromise.set_value();
                             }
                             else
                             {
@@ -271,7 +271,7 @@ int main(int argc, char *argv[])
                     }
                     else
                     {
-                        connectionFinishedPromise.set_value(true);
+                        connectionFinishedPromise.set_value();
                     }
                 }
                 else
@@ -297,7 +297,7 @@ int main(int argc, char *argv[])
 
             connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/) {
                 fprintf(stdout, "Connection disconnected. Shutting Down.....\n");
-                shutdownCompletedPromise.set_value(true);
+                shutdownCompletedPromise.set_value();
             };
 
             if (!connection->Connect(thingName.c_str(), false))

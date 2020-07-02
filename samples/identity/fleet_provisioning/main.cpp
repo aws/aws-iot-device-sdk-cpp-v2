@@ -206,10 +206,8 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    std::condition_variable conditionVariable;
-    std::atomic<bool> connectionSucceeded(false);
-    std::atomic<bool> connectionClosed(false);
-    std::atomic<bool> connectionCompleted(false);
+    std::promise<bool> connectionCompletedPromise;
+    std::promise<void> connectionClosedPromise;
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -218,16 +216,13 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            connectionSucceeded = false;
+            connectionCompletedPromise.set_value(false);
         }
         else
         {
             fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            connectionSucceeded = true;
+            connectionCompletedPromise.set_value(true);
         }
-
-        connectionCompleted = true;
-        conditionVariable.notify_one();
     };
 
     /*
@@ -236,9 +231,8 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
-            connectionClosed = true;
+            connectionClosedPromise.set_value();
         }
-        conditionVariable.notify_one();
     };
 
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
@@ -254,25 +248,21 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    std::mutex mutex;
-    std::unique_lock<std::mutex> uniqueLock(mutex);
-    conditionVariable.wait(uniqueLock, [&]() { return connectionCompleted.load(); });
-
-    if (connectionSucceeded)
+    if (connectionCompletedPromise.get_future().get())
     {
         IotIdentityClient identityClient(connection);
 
-        std::atomic<bool> csrPublishCompleted(false);
-        std::atomic<bool> csrAcceptedCompleted(false);
-        std::atomic<bool> csrRejectedCompleted(false);
+        std::promise<void> csrPublishCompletedPromise;
+        std::promise<void> csrAcceptedCompletedPromise;
+        std::promise<void> csrRejectedCompletedPromise;
 
-        std::atomic<bool> keysPublishCompleted(false);
-        std::atomic<bool> keysAcceptedCompleted(false);
-        std::atomic<bool> keysRejectedCompleted(false);
+        std::promise<void> keysPublishCompletedPromise;
+        std::promise<void> keysAcceptedCompletedPromise;
+        std::promise<void> keysRejectedCompletedPromise;
 
-        std::atomic<bool> registerPublishCompleted(false);
-        std::atomic<bool> registerAcceptedCompleted(false);
-        std::atomic<bool> registerRejectedCompleted(false);
+        std::promise<void> registerPublishCompletedPromise;
+        std::promise<void> registerAcceptedCompletedPromise;
+        std::promise<void> registerRejectedCompletedPromise;
 
         auto onCsrPublishSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
@@ -281,8 +271,7 @@ int main(int argc, char *argv[])
                 exit(-1);
             }
 
-            csrPublishCompleted = true;
-            conditionVariable.notify_one();
+            csrPublishCompletedPromise.set_value();
         };
 
         auto onCsrAcceptedSubAck = [&](int ioErr) {
@@ -293,8 +282,7 @@ int main(int argc, char *argv[])
                 exit(-1);
             }
 
-            csrAcceptedCompleted = true;
-            conditionVariable.notify_one();
+            csrAcceptedCompletedPromise.set_value();
         };
 
         auto onCsrRejectedSubAck = [&](int ioErr) {
@@ -302,9 +290,9 @@ int main(int argc, char *argv[])
             {
                 fprintf(
                     stderr, "Error subscribing to CreateCertificateFromCsr rejected: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
             }
-            csrRejectedCompleted = true;
-            conditionVariable.notify_one();
+            csrRejectedCompletedPromise.set_value();
         };
 
         auto onCsrAccepted = [&](CreateCertificateFromCsrResponse *response, int ioErr) {
@@ -346,8 +334,7 @@ int main(int argc, char *argv[])
                 exit(-1);
             }
 
-            keysPublishCompleted = true;
-            conditionVariable.notify_one();
+            keysPublishCompletedPromise.set_value();
         };
 
         auto onKeysAcceptedSubAck = [&](int ioErr) {
@@ -358,8 +345,7 @@ int main(int argc, char *argv[])
                 exit(-1);
             }
 
-            keysAcceptedCompleted = true;
-            conditionVariable.notify_one();
+            keysAcceptedCompletedPromise.set_value();
         };
 
         auto onKeysRejectedSubAck = [&](int ioErr) {
@@ -367,9 +353,9 @@ int main(int argc, char *argv[])
             {
                 fprintf(
                     stderr, "Error subscribing to CreateKeysAndCertificate rejected: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
             }
-            keysRejectedCompleted = true;
-            conditionVariable.notify_one();
+            keysRejectedCompletedPromise.set_value();
         };
 
         auto onKeysAccepted = [&](CreateKeysAndCertificateResponse *response, int ioErr) {
@@ -411,17 +397,16 @@ int main(int argc, char *argv[])
                 exit(-1);
             }
 
-            registerAcceptedCompleted = true;
-            conditionVariable.notify_one();
+            registerAcceptedCompletedPromise.set_value();
         };
 
         auto onRegisterRejectedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
             {
                 fprintf(stderr, "Error subscribing to RegisterThing rejected: %s\n", ErrorDebugString(ioErr));
+                exit(-1);
             }
-            registerRejectedCompleted = true;
-            conditionVariable.notify_one();
+            registerRejectedCompletedPromise.set_value();
         };
 
         auto onRegisterAccepted = [&](RegisterThingResponse *response, int ioErr) {
@@ -460,8 +445,7 @@ int main(int argc, char *argv[])
                 exit(-1);
             }
 
-            registerPublishCompleted = true;
-            conditionVariable.notify_one();
+            registerPublishCompletedPromise.set_value();
         };
 
         if (csrFile.empty())
@@ -514,11 +498,12 @@ int main(int argc, char *argv[])
                 registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterPublishSubAck);
             sleep(1);
 
-            conditionVariable.wait(uniqueLock, [&]() {
-                return keysPublishCompleted.load() && keysAcceptedCompleted.load() && keysRejectedCompleted.load() &&
-                       registerPublishCompleted.load() && registerAcceptedCompleted.load() &&
-                       registerRejectedCompleted.load();
-            });
+            keysPublishCompletedPromise.get_future().wait();
+            keysAcceptedCompletedPromise.get_future().wait();
+            keysRejectedCompletedPromise.get_future().wait();
+            registerPublishCompletedPromise.get_future().wait();
+            registerAcceptedCompletedPromise.get_future().wait();
+            registerRejectedCompletedPromise.get_future().wait();
         }
         else
         {
@@ -571,19 +556,19 @@ int main(int argc, char *argv[])
                 registerThingRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, onRegisterPublishSubAck);
             sleep(2);
 
-            conditionVariable.wait(uniqueLock, [&]() {
-                return csrPublishCompleted.load() && csrAcceptedCompleted.load() && csrRejectedCompleted.load() &&
-                       registerPublishCompleted.load() && registerAcceptedCompleted.load() &&
-                       registerRejectedCompleted.load();
-            });
+            csrPublishCompletedPromise.get_future().wait();
+            csrAcceptedCompletedPromise.get_future().wait();
+            csrRejectedCompletedPromise.get_future().wait();
+            registerPublishCompletedPromise.get_future().wait();
+            registerAcceptedCompletedPromise.get_future().wait();
+            registerRejectedCompletedPromise.get_future().wait();
         }
     }
 
-    if (!connectionClosed)
+    /* Disconnect */
+    if (connection->Disconnect())
     {
-        /* Disconnect */
-        connection->Disconnect();
-        conditionVariable.wait(uniqueLock, [&]() { return connectionClosed.load(); });
+        connectionClosedPromise.get_future().wait();
     }
     return 0;
 }
