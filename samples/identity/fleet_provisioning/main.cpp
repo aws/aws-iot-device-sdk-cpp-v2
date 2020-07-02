@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
 
     /*
      * Since no exceptions are used, always check the bool operator
-     * when an error could have occured.
+     * when an error could have occurred.
      */
     if (!mqttClient)
     {
