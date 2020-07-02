@@ -232,12 +232,12 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            connectionCompletedPromise.set_value(true);
+            connectionCompletedPromise.set_value(false);
         }
         else
         {
             fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            connectionCompletedPromise.set_value(false);
+            connectionCompletedPromise.set_value(true);
         }
     };
 
@@ -301,18 +301,19 @@ int main(int argc, char *argv[])
                 if (errorCode)
                 {
                     fprintf(stderr, "Subscribe failed with error %s\n", aws_error_debug_str(errorCode));
+                    exit(-1);
                 }
                 else
                 {
                     if (!packetId || QoS == AWS_MQTT_QOS_FAILURE)
                     {
                         fprintf(stderr, "Subscribe rejected by the broker.");
+                        exit(-1);
                     }
                     else
                     {
                         fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
                     }
-                    exit(-1);
                 }
                 subscribeFinishedPromise.set_value();
             };
