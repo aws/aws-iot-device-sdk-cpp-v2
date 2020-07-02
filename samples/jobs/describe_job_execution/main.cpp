@@ -239,7 +239,6 @@ int main(int argc, char *argv[])
         subAckedPromise.get_future().wait();
 
         subAckedPromise = std::promise<void>();
-        std::atomic<bool> jobExecutionRejectedCompleted(false);
         auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
             if (ioErr)
             {
