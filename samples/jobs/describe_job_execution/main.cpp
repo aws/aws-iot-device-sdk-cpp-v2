@@ -285,13 +285,13 @@ int main(int argc, char *argv[])
         describeJobExecutionRequest.IncludeJobDocument = true;
         Aws::Crt::UUID uuid;
         describeJobExecutionRequest.ClientToken = uuid.ToString();
-        std::atomic<bool> publishDescribeJobExeCompelted(false);
+        std::atomic<bool> publishDescribeJobExeCompleted(false);
 
         auto publishHandler = [&](int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
-                publishDescribeJobExeCompelted = true;
+                publishDescribeJobExeCompleted = true;
                 conditionVariable.notify_one();
                 return;
             }
@@ -299,7 +299,7 @@ int main(int argc, char *argv[])
 
         client.PublishDescribeJobExecution(
             std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
-        conditionVariable.wait(uniqueLock, [&]() { return publishDescribeJobExeCompelted.load(); });
+        conditionVariable.wait(uniqueLock, [&]() { return publishDescribeJobExeCompleted.load(); });
     }
 
     if (!connectionClosed)
