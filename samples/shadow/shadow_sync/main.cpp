@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
 
     /*
      * Since no exceptions are used, always check the bool operator
-     * when an error could have occured.
+     * when an error could have occurred.
      */
     if (!mqttClient)
     {
@@ -203,10 +203,9 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    std::condition_variable conditionVariable;
     std::atomic<bool> connectionSucceeded(false);
-    std::atomic<bool> connectionClosed(false);
-    std::atomic<bool> connectionCompleted(false);
+    std::promise<bool> connectionCompletedPromise;
+    std::promise<bool> connectionClosedPromise;
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -223,8 +222,7 @@ int main(int argc, char *argv[])
             connectionSucceeded = true;
         }
 
-        connectionCompleted = true;
-        conditionVariable.notify_one();
+        connectionCompletedPromise.set_value(true);
     };
 
     /*
@@ -233,9 +231,8 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
-            connectionClosed = true;
+            connectionCompletedPromise.set_value(true);
         }
-        conditionVariable.notify_one();
     };
 
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
@@ -251,17 +248,15 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    std::mutex mutex;
-    std::unique_lock<std::mutex> uniqueLock(mutex);
-    conditionVariable.wait(uniqueLock, [&]() { return connectionSucceeded || connectionClosed; });
+    connectionCompletedPromise.get_future().wait();
 
     if (connectionSucceeded)
     {
         Aws::Iotshadow::IotShadowClient shadowClient(connection);
 
-        std::atomic<bool> subscribeDeltaCompleted(false);
-        std::atomic<bool> subscribeDeltaAccepedCompleted(false);
-        std::atomic<bool> subscribeDeltaRejectedCompleted(false);
+        std::promise<bool> subscribeDeltaCompletedPromise;
+        std::promise<bool> subscribeDeltaAcceptedCompletedPromise;
+        std::promise<bool> subscribeDeltaRejectedCompletedPromise;
 
         auto onDeltaUpdatedSubAck = [&](int ioErr) {
             if (ioErr != AWS_OP_SUCCESS)
@@ -269,9 +264,7 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error subscribing to shadow delta: %s\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
-
-            subscribeDeltaCompleted = true;
-            conditionVariable.notify_one();
+            subscribeDeltaCompletedPromise.set_value(true);
         };
 
         auto onDeltaUpdatedAcceptedSubAck = [&](int ioErr) {
@@ -280,9 +273,7 @@ int main(int argc, char *argv[])
                 fprintf(stderr, "Error subscribing to shadow delta accepted: %s\n", ErrorDebugString(ioErr));
                 exit(-1);
             }
-
-            subscribeDeltaAccepedCompleted = true;
-            conditionVariable.notify_one();
+            subscribeDeltaAcceptedCompletedPromise.set_value(true);
         };
 
         auto onDeltaUpdatedRejectedSubAck = [&](int ioErr) {
@@ -290,8 +281,7 @@ int main(int argc, char *argv[])
             {
                 fprintf(stderr, "Error subscribing to shadow delta rejected: %s\n", ErrorDebugString(ioErr));
             }
-            subscribeDeltaRejectedCompleted = true;
-            conditionVariable.notify_one();
+            subscribeDeltaRejectedCompletedPromise.set_value(true);
         };
 
         auto onDeltaUpdated = [&](ShadowDeltaUpdatedEvent *event, int ioErr) {
@@ -387,10 +377,9 @@ int main(int argc, char *argv[])
             onUpdateShadowRejected,
             onDeltaUpdatedRejectedSubAck);
 
-        conditionVariable.wait(uniqueLock, [&]() {
-            return subscribeDeltaCompleted.load() && subscribeDeltaAccepedCompleted.load() &&
-                   subscribeDeltaRejectedCompleted.load();
-        });
+        subscribeDeltaCompletedPromise.get_future().wait();
+        subscribeDeltaAcceptedCompletedPromise.get_future().wait();
+        subscribeDeltaRejectedCompletedPromise.get_future().wait();
 
         while (true)
         {
@@ -408,11 +397,10 @@ int main(int argc, char *argv[])
         }
     }
 
-    if (!connectionClosed)
+    /* Disconnect */
+    if (connection->Disconnect())
     {
-        /* Disconnect */
-        connection->Disconnect();
-        conditionVariable.wait(uniqueLock, [&]() { return connectionClosed.load(); });
+        connectionClosedPromise.get_future().wait();
     }
     return 0;
 }

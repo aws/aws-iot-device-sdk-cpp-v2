@@ -416,9 +416,8 @@ int main(int argc, char *argv[])
          * Unsubscribe from the topic.
          */
         std::promise<bool> unsubscribeFinishedPromise;
-        connection->Unsubscribe(topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) {
-            unsubscribeFinishedPromise.set_value(true);
-        });
+        connection->Unsubscribe(
+            topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(true); });
         unsubscribeFinishedPromise.get_future().wait();
     }
 
