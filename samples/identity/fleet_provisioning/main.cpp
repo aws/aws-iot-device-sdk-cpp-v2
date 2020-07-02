@@ -256,7 +256,7 @@ int main(int argc, char *argv[])
 
     std::mutex mutex;
     std::unique_lock<std::mutex> uniqueLock(mutex);
-    conditionVariable.wait(uniqueLock, [&]() { return connectionSucceeded || connectionClosed; });
+    conditionVariable.wait(uniqueLock, [&]() { return connectionCompleted.load(); });
 
     if (connectionSucceeded)
     {
