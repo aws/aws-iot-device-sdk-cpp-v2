@@ -222,9 +222,8 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    std::atomic<bool> connectionSucceeded(false);
     std::promise<bool> connectionCompletedPromise;
-    std::promise<bool> connectionClosedPromise;
+    std::promise<void> connectionClosedPromise;
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -233,15 +232,12 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            connectionSucceeded = false;
+            connectionCompletedPromise.set_value(true);
         }
         else
         {
             fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            connectionSucceeded = true;
-        }
-        {
-            connectionCompletedPromise.set_value(true);
+            connectionCompletedPromise.set_value(false);
         }
     };
 
@@ -257,7 +253,7 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection &) {
         {
             fprintf(stdout, "Disconnect completed\n");
-            connectionClosedPromise.set_value(true);
+            connectionClosedPromise.set_value();
         }
     };
 
@@ -284,9 +280,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    connectionCompletedPromise.get_future().wait();
-
-    if (connectionSucceeded)
+    if (connectionCompletedPromise.get_future().get())
     {
         /*
          * This is invoked upon the receipt of a Publish on a subscribed topic.
@@ -301,7 +295,7 @@ int main(int argc, char *argv[])
         /*
          * Subscribe for incoming publish messages on topic.
          */
-        std::promise<bool> subscribeFinishedPromise;
+        std::promise<void> subscribeFinishedPromise;
         auto onSubAck =
             [&](Mqtt::MqttConnection &, uint16_t packetId, const String &topic, Mqtt::QOS QoS, int errorCode) {
                 if (errorCode)
@@ -318,8 +312,9 @@ int main(int argc, char *argv[])
                     {
                         fprintf(stdout, "Subscribe on topic %s on packetId %d Succeeded\n", topic.c_str(), packetId);
                     }
+                    exit(-1);
                 }
-                subscribeFinishedPromise.set_value(true);
+                subscribeFinishedPromise.set_value();
             };
 
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onPublish, onSubAck);
@@ -361,9 +356,9 @@ int main(int argc, char *argv[])
         /*
          * Unsubscribe from the topic.
          */
-        std::promise<bool> unsubscribeFinishedPromise;
+        std::promise<void> unsubscribeFinishedPromise;
         connection->Unsubscribe(
-            topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(true); });
+            topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(); });
         unsubscribeFinishedPromise.get_future().wait();
     }
 
