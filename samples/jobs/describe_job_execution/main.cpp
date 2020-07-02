@@ -140,7 +140,7 @@ int main(int argc, char *argv[])
 
     /*
      * Since no exceptions are used, always check the bool operator
-     * when an error could have occured.
+     * when an error could have occurred.
      */
     if (!mqttClient)
     {
@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
 
             if (rejectedError)
             {
-                fprintf(stderr, "Service Error %d occured\n", (int)rejectedError->Code.value());
+                fprintf(stderr, "Service Error %d occurred\n", (int)rejectedError->Code.value());
                 return;
             }
         };
