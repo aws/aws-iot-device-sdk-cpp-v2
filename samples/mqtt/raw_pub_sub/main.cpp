@@ -22,7 +22,7 @@ static void s_printHelp()
     fprintf(
         stdout,
         "raw-pub-sub --endpoint <endpoint> --cert <path to cert>"
-        " --key <path to key> --topic --ca_file <optional: path to custom ca>"
+        " --key <path to key> --topic <topic> --ca_file <optional: path to custom ca>"
         " --use_websocket --user_name <username> --password <password> --protocol_name <protocol> "
         " --auth_params=<comma delimited list> --proxy_host <host> --proxy_port <port>\n\n");
     fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
     String keyPath;
     String caFile;
     String topic;
-    String clientId(Aws::Crt::UUID().ToString());
+    String clientId(String("test-") + Aws::Crt::UUID().ToString());
     String proxyHost;
     uint16_t proxyPort(8080);
     String userName;

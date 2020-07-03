@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
     String certificatePath;
     String keyPath;
     String caFile;
-    String clientId(Aws::Crt::UUID().ToString());
+    String clientId(String("test-") + Aws::Crt::UUID().ToString());
     String templateName;
     String templateParameters;
     String csrFile;
@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
      * Actually perform the connect dance.
      */
     fprintf(stdout, "Connecting...\n");
-    if (!connection->Connect("client_id12335456", true, 0))
+    if (!connection->Connect(clientId.c_str(), true, 0))
     {
         fprintf(stderr, "MQTT Connection failed with error %s\n", ErrorDebugString(connection->LastError()));
         exit(-1);

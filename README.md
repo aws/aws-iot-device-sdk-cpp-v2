@@ -62,18 +62,18 @@ Source: `samples/identity/fleet_provisioning`
 cd ~/aws-iot-device-sdk-cpp-v2-build/samples/identity/fleet_provisioning
 
 Run the sample like this to provision using CreateKeysAndCertificate:
- 
+
 ```
-./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA> 
---cert <path to the certificate> --key <path to the private key> 
+./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
 --template_name <template name> --template_parameters <template parameters json>
 ```
 
 Run the sample like this to provision using Csr:
- 
+
 ```
-./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA> 
---cert <path to the certificate> --key <path to the private key> 
+./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA>
+--cert <path to the certificate> --key <path to the private key>
 --template_name <template name> --template_parameters <template parameters json> --csr <path to the CSR in PEM format>
 ```
 
@@ -82,7 +82,9 @@ Your Thing's
 must provide privileges for this sample to connect, subscribe, publish,
 and receive.
 
-```json
+<details>
+<summary>(see sample policy)</summary>
+<pre>
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -94,7 +96,7 @@ and receive.
       "Resource": [
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename<b>/provision/json"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json"
       ]
     },
     {
@@ -108,18 +110,19 @@ and receive.
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create/json/rejected",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json/accepted",
         "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/certificates/create-from-csr/json/rejected",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename<b>/provision/json/accepted",
-        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename<b>/provision/json/rejected"
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json/accepted",
+        "arn:aws:iot:<b>region</b>:<b>account</b>:topic/$aws/provisioning-templates/<b>templatename</b>/provision/json/rejected"
       ]
     },
     {
       "Effect": "Allow",
       "Action": "iot:Connect",
-      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/samples-client-id"
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
     }
   ]
 }
-```
+</pre>
+</details>
 
 ## Basic MQTT Pub-Sub
 
@@ -241,7 +244,7 @@ and receive.
     {
       "Effect": "Allow",
       "Action": "iot:Connect",
-      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/samples-client-id"
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
     }
   ]
 }
@@ -310,7 +313,7 @@ and receive.
     {
       "Effect": "Allow",
       "Action": "iot:Connect",
-      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/samples-client-id"
+      "Resource": "arn:aws:iot:<b>region</b>:<b>account</b>:client/test-*"
     }
   ]
 }
