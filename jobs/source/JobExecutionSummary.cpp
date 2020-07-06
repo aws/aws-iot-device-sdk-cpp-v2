@@ -1,18 +1,7 @@
-/* Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License").
-* You may not use this file except in compliance with the License.
-* A copy of the License is located at
-*
-*  http://aws.amazon.com/apache2.0
-*
-* or in the "license" file accompanying this file. This file is distributed
-* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-* express or implied. See the License for the specific language governing
-* permissions and limitations under the License.
-
-* This file is generated
-*/
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
 #include <aws/iotjobs/JobExecutionSummary.h>
 
 namespace Aws
@@ -35,6 +24,11 @@ namespace Aws
                 val.ExecutionNumber = doc.GetInt64("executionNumber");
             }
 
+            if (doc.ValueExists("startedAt"))
+            {
+                val.StartedAt = doc.GetDouble("startedAt");
+            }
+
             if (doc.ValueExists("versionNumber"))
             {
                 val.VersionNumber = doc.GetInteger("versionNumber");
@@ -43,11 +37,6 @@ namespace Aws
             if (doc.ValueExists("jobId"))
             {
                 val.JobId = doc.GetString("jobId");
-            }
-
-            if (doc.ValueExists("startedAt"))
-            {
-                val.StartedAt = doc.GetDouble("startedAt");
             }
 
             if (doc.ValueExists("queuedAt"))
@@ -70,6 +59,11 @@ namespace Aws
                 object.WithInt64("executionNumber", *ExecutionNumber);
             }
 
+            if (StartedAt)
+            {
+                object.WithDouble("startedAt", StartedAt->SecondsWithMSPrecision());
+            }
+
             if (VersionNumber)
             {
                 object.WithInteger("versionNumber", *VersionNumber);
@@ -78,11 +72,6 @@ namespace Aws
             if (JobId)
             {
                 object.WithString("jobId", *JobId);
-            }
-
-            if (StartedAt)
-            {
-                object.WithDouble("startedAt", StartedAt->SecondsWithMSPrecision());
             }
 
             if (QueuedAt)

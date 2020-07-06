@@ -1,18 +1,7 @@
-/* Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License").
-* You may not use this file except in compliance with the License.
-* A copy of the License is located at
-*
-*  http://aws.amazon.com/apache2.0
-*
-* or in the "license" file accompanying this file. This file is distributed
-* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-* express or implied. See the License for the specific language governing
-* permissions and limitations under the License.
-
-* This file is generated
-*/
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
 #include <aws/iotidentity/CreateKeysAndCertificateResponse.h>
 
 namespace Aws
@@ -32,11 +21,6 @@ namespace Aws
                 val.CertificateId = doc.GetString("certificateId");
             }
 
-            if (doc.ValueExists("privateKey"))
-            {
-                val.PrivateKey = doc.GetString("privateKey");
-            }
-
             if (doc.ValueExists("certificateOwnershipToken"))
             {
                 val.CertificateOwnershipToken = doc.GetString("certificateOwnershipToken");
@@ -45,6 +29,11 @@ namespace Aws
             if (doc.ValueExists("certificatePem"))
             {
                 val.CertificatePem = doc.GetString("certificatePem");
+            }
+
+            if (doc.ValueExists("privateKey"))
+            {
+                val.PrivateKey = doc.GetString("privateKey");
             }
         }
 
@@ -57,11 +46,6 @@ namespace Aws
                 object.WithString("certificateId", *CertificateId);
             }
 
-            if (PrivateKey)
-            {
-                object.WithString("privateKey", *PrivateKey);
-            }
-
             if (CertificateOwnershipToken)
             {
                 object.WithString("certificateOwnershipToken", *CertificateOwnershipToken);
@@ -70,6 +54,11 @@ namespace Aws
             if (CertificatePem)
             {
                 object.WithString("certificatePem", *CertificatePem);
+            }
+
+            if (PrivateKey)
+            {
+                object.WithString("privateKey", *PrivateKey);
             }
         }
 

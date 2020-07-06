@@ -1,18 +1,7 @@
-/* Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-*
-* Licensed under the Apache License, Version 2.0 (the "License").
-* You may not use this file except in compliance with the License.
-* A copy of the License is located at
-*
-*  http://aws.amazon.com/apache2.0
-*
-* or in the "license" file accompanying this file. This file is distributed
-* on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
-* express or implied. See the License for the specific language governing
-* permissions and limitations under the License.
-
-* This file is generated
-*/
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0.
+ */
 #include <aws/iotjobs/StartNextPendingJobExecutionRequest.h>
 
 namespace Aws
@@ -26,6 +15,11 @@ namespace Aws
         {
             (void)val;
             (void)doc;
+
+            if (doc.ValueExists("stepTimeoutInMinutes"))
+            {
+                val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
+            }
 
             if (doc.ValueExists("clientToken"))
             {
@@ -43,16 +37,16 @@ namespace Aws
                     val.StatusDetails->emplace(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
                 }
             }
-
-            if (doc.ValueExists("stepTimeoutInMinutes"))
-            {
-                val.StepTimeoutInMinutes = doc.GetInt64("stepTimeoutInMinutes");
-            }
         }
 
         void StartNextPendingJobExecutionRequest::SerializeToObject(Aws::Crt::JsonObject &object) const
         {
             (void)object;
+
+            if (StepTimeoutInMinutes)
+            {
+                object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
+            }
 
             if (ClientToken)
             {
@@ -69,11 +63,6 @@ namespace Aws
                     statusDetailsMap.WithObject(statusDetailsMapMember.first, std::move(statusDetailsMapValMember));
                 }
                 object.WithObject("statusDetails", std::move(statusDetailsMap));
-            }
-
-            if (StepTimeoutInMinutes)
-            {
-                object.WithInt64("stepTimeoutInMinutes", *StepTimeoutInMinutes);
             }
         }
 
