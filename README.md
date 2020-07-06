@@ -1,8 +1,7 @@
 # AWS IoT SDK for C++ v2
 This document provides information about the AWS IoT device SDK for C++ V2.
 
-This project is in **GENERAL AVAILABILITY**. If you have any issues or feature
-requests, please file an issue or pull request.
+If you have any issues or feature requests, please file an issue or pull request.
 
 This SDK is built on the AWS Common Runtime, a collection of libraries
 ([aws-c-common](https://github.com/awslabs/aws-c-common),
@@ -19,7 +18,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 *__Jump To:__*
 * [Installation](#Installation)
 * [Samples](samples)
-* [Getting Help](#Getting-Help)
+* [Getting Help](#Getting-Help)https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/master/LICENSE
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
 * [More Resources](#More-Resources)
 
@@ -67,7 +66,6 @@ Use the following sources for information :
 
 *   Check api and developer guides.
 *   Check for similar issues already opened.
-*   Gitter or whatever chat app we implement.
 
 If you still can’t find a solution to your problem open an [issue](issues)
 
@@ -79,7 +77,7 @@ We need your help in making this SDK great. Please participate in the community 
 
 *   [Contributions Guidelines](master/CONTRIBUTING.md)
 *   Articulate your feature request or upvote existing ones on our [Issues](issues?q=is%3Aissue+is%3Aopen+label%3Afeature-request) page.
-*   Submit [Issues](issues)
+*   Submit [Issues](issues/)
 
 
 
@@ -87,7 +85,7 @@ We need your help in making this SDK great. Please participate in the community 
 
 *   [AWS IoT Core Documentation](https://docs.aws.amazon.com/iot/)
 *   [Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
-*   [Issues](issues)
+*   [Issues](issues/)
 *   [Dev Blog](https://aws.amazon.com/blogs/?awsf.blog-master-iot=category-internet-of-things%23amazon-freertos%7Ccategory-internet-of-things%23aws-greengrass%7Ccategory-internet-of-things%23aws-iot-analytics%7Ccategory-internet-of-things%23aws-iot-button%7Ccategory-internet-of-things%23aws-iot-device-defender%7Ccategory-internet-of-things%23aws-iot-device-management%7Ccategory-internet-of-things%23aws-iot-platform)
 
 Integration with AWS IoT Services such as
