@@ -18,7 +18,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 *__Jump To:__*
 * [Installation](#Installation)
 * [Samples](samples)
-* [Getting Help](#Getting-Help)https://github.com/aws/aws-iot-device-sdk-cpp-v2/blob/master/LICENSE
+* [Getting Help](#Getting-Help)
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
 * [More Resources](#More-Resources)
 
