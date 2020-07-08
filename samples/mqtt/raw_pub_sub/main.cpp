@@ -286,9 +286,15 @@ int main(int argc, char *argv[])
      * This will execute when an mqtt connect has completed or failed.
      */
     auto onConnectionCompleted = [&](Mqtt::MqttConnection &, int errorCode, Mqtt::ReturnCode returnCode, bool) {
-        if (errorCode || returnCode != AWS_MQTT_CONNECT_ACCEPTED)
+        if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
+            std::lock_guard<std::mutex> lockGuard(mutex);
+            connectionSucceeded = false;
+        }
+        else if (returnCode != AWS_MQTT_CONNECT_ACCEPTED)
+        {
+            fprintf(stdout, "Connection failed with mqtt return code %d\n", (int)returnCode);
             std::lock_guard<std::mutex> lockGuard(mutex);
             connectionSucceeded = false;
         }
