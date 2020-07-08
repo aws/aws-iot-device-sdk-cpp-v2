@@ -249,7 +249,6 @@ int main(int argc, char *argv[])
         }
     };
 
-
     auto onInterrupted = [&](Mqtt::MqttConnection &, int error) {
         fprintf(stdout, "Connection interrupted with error %s\n", ErrorDebugString(error));
     };
