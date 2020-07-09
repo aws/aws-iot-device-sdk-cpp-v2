@@ -190,10 +190,8 @@ int main(int argc, char *argv[])
     Aws::Iot::MqttClient mqttClient(bootstrap);
     std::shared_ptr<Mqtt::MqttConnection> connection(nullptr);
 
-    std::mutex semaphoreLock;
-    std::condition_variable semaphore;
-    std::atomic<bool> connectionFinished(false);
-    std::atomic<bool> shutdownCompleted(false);
+    std::promise<void> connectionFinishedPromise;
+    std::promise<void> shutdownCompletedPromise;
 
     discoveryClient->Discover(thingName, [&](DiscoverResponse *response, int error, int httpResponseCode) {
         if (!error && response->GGGroups)
@@ -256,8 +254,7 @@ int main(int argc, char *argv[])
                             if (!errorCode)
                             {
                                 fprintf(stdout, "Successfully subscribed to %s\n", topic.c_str());
-                                connectionFinished = true;
-                                semaphore.notify_one();
+                                connectionFinishedPromise.set_value();
                             }
                             else
                             {
@@ -274,8 +271,7 @@ int main(int argc, char *argv[])
                     }
                     else
                     {
-                        connectionFinished = true;
-                        semaphore.notify_one();
+                        connectionFinishedPromise.set_value();
                     }
                 }
                 else
@@ -301,8 +297,7 @@ int main(int argc, char *argv[])
 
             connection->OnDisconnect = [&](Mqtt::MqttConnection & /*connection*/) {
                 fprintf(stdout, "Connection disconnected. Shutting Down.....\n");
-                shutdownCompleted = true;
-                semaphore.notify_one();
+                shutdownCompletedPromise.set_value();
             };
 
             if (!connection->Connect(thingName.c_str(), false))
@@ -323,8 +318,7 @@ int main(int argc, char *argv[])
     });
 
     {
-        std::unique_lock<std::mutex> lock(semaphoreLock);
-        semaphore.wait(lock, [&]() { return connectionFinished.load(); });
+        connectionFinishedPromise.get_future().wait();
     }
 
     while (true)
@@ -373,8 +367,7 @@ int main(int argc, char *argv[])
 
     connection->Disconnect();
     {
-        std::unique_lock<std::mutex> lock(semaphoreLock);
-        semaphore.wait(lock, [&]() { return shutdownCompleted.load(); });
+        shutdownCompletedPromise.get_future().wait();
     }
 
     return 0;
