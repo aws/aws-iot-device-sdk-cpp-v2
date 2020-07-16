@@ -84,7 +84,6 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
-    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, "/tmp/log.txt");
 
     String endpoint;
     String certificatePath;
