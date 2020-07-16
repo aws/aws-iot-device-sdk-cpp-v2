@@ -4,6 +4,8 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/StlAllocator.h>
+#include <aws/crt/auth/Credentials.h>
+#include <aws/crt/io/TlsOptions.h>
 
 #include <aws/iot/MqttClient.h>
 
@@ -22,7 +24,9 @@ static void s_printHelp()
         stdout,
         "basic-pub-sub --endpoint <endpoint> --cert <path to cert>"
         " --key <path to key> --topic --ca_file <optional: path to custom ca>"
-        " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>\n\n");
+        " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>"
+        " --x509 --x509rolealias <role_alias> --x509endpoint <endpoint> --x509thing <thing_name>"
+        " --x509cert <path to cert> --x509key <path to key> --x509rootca <path to root ca>\n\n");
     fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
     fprintf(
         stdout,
@@ -42,7 +46,19 @@ static void s_printHelp()
         "websockets)\n");
     fprintf(stdout, "proxy_host: if you want to use a proxy with websockets, specify the host here (optional).\n");
     fprintf(
-        stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n\n");
+        stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n");
+
+    fprintf(stdout, "  x509: Use the x509 credentials provider while using websockets (optional)\n");
+    fprintf(stdout, "  x509rolealias: Role alias to use with the x509 credentials provider (required for x509)\n");
+    fprintf(stdout, "  x509endpoint: Endpoint to fetch x509 credentials from (required for x509)\n");
+    fprintf(stdout, "  x509thing: Thing name to fetch x509 credentials on behalf of (required for x509)\n");
+    fprintf(
+        stdout,
+        "  x509cert: Path to the IoT thing certificate used in fetching x509 credentials (required for x509)\n");
+    fprintf(
+        stdout, "  x509key: Path to the IoT thing private key used in fetching x509 credentials (required for x509)\n");
+    fprintf(
+        stdout, "  x509rootca: Path to the root certificate used in fetching x509 credentials (required for x509)\n\n");
 }
 
 bool s_cmdOptionExists(char **begin, char **end, const String &option)
@@ -68,6 +84,7 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Trace, "/tmp/log.txt");
 
     String endpoint;
     String certificatePath;
@@ -79,13 +96,21 @@ int main(int argc, char *argv[])
     String proxyHost;
     uint16_t proxyPort(8080);
 
+    String x509Endpoint;
+    String x509ThingName;
+    String x509RoleAlias;
+    String x509CertificatePath;
+    String x509KeyPath;
+    String x509RootCAFile;
+
     bool useWebSocket = false;
+    bool useX509 = false;
 
     /*********************** Parse Arguments ***************************/
     if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") && s_cmdOptionExists(argv, argv + argc, "--topic")))
     {
         s_printHelp();
-        return 0;
+        return 1;
     }
 
     endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
@@ -100,6 +125,13 @@ int main(int argc, char *argv[])
         certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
     }
 
+    if (keyPath.empty() != certificatePath.empty())
+    {
+        fprintf(stdout, "Using mtls (cert and key) requires both the certificate and the private key\n");
+        s_printHelp();
+        return 1;
+    }
+
     topic = s_getCmdOption(argv, argv + argc, "--topic");
     if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
     {
@@ -109,11 +141,14 @@ int main(int argc, char *argv[])
     {
         clientId = s_getCmdOption(argv, argv + argc, "--client_id");
     }
+
     if (s_cmdOptionExists(argv, argv + argc, "--use_websocket"))
     {
         if (!s_cmdOptionExists(argv, argv + argc, "--signing_region"))
         {
+            fprintf(stdout, "Websockets require a signing region to be specified.\n");
             s_printHelp();
+            return 1;
         }
         useWebSocket = true;
         signingRegion = s_getCmdOption(argv, argv + argc, "--signing_region");
@@ -127,6 +162,82 @@ int main(int argc, char *argv[])
         {
             proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
         }
+    }
+
+    bool usingMtls = !certificatePath.empty() && !keyPath.empty();
+
+    /* one or the other, but not both nor neither */
+    if (useWebSocket == usingMtls)
+    {
+        if (useWebSocket && usingMtls)
+        {
+            fprintf(stdout, "You must use either websockets or mtls for authentication, but not both.\n");
+        }
+        else
+        {
+            fprintf(stdout, "You must use either websockets or mtls for authentication.\n");
+        }
+
+        s_printHelp();
+        return 1;
+    }
+
+    // x509 credentials provider configuration
+    if (s_cmdOptionExists(argv, argv + argc, "--x509"))
+    {
+        if (!useWebSocket)
+        {
+            fprintf(stdout, "X509 credentials sourcing requires websockets to be enabled and configured.\n");
+            s_printHelp();
+            return 1;
+        }
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509rolealias"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an x509 role alias to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509RoleAlias = s_getCmdOption(argv, argv + argc, "--x509rolealias");
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509endpoint"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an x509 endpoint to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509Endpoint = s_getCmdOption(argv, argv + argc, "--x509endpoint");
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509thing"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an x509 thing name to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509ThingName = s_getCmdOption(argv, argv + argc, "--x509thing");
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509cert"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an Iot thing certificate to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509CertificatePath = s_getCmdOption(argv, argv + argc, "--x509cert");
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509key"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an Iot thing private key to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509KeyPath = s_getCmdOption(argv, argv + argc, "--x509key");
+
+        if (s_cmdOptionExists(argv, argv + argc, "--x509rootca"))
+        {
+            x509RootCAFile = s_getCmdOption(argv, argv + argc, "--x509rootca");
+        }
+
+        useX509 = true;
     }
 
     /********************** Now Setup an Mqtt Client ******************/
@@ -151,6 +262,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
+    Aws::Crt::Io::TlsContext x509TlsCtx;
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
 
     if (!certificatePath.empty() && !keyPath.empty())
@@ -161,13 +273,45 @@ int main(int argc, char *argv[])
     {
         Aws::Iot::WebsocketConfig config(signingRegion, &bootstrap);
 
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
         if (!proxyHost.empty())
         {
-            Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
             proxyOptions.HostName = proxyHost;
             proxyOptions.Port = proxyPort;
             proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
-            config.ProxyOptions = std::move(proxyOptions);
+            config.ProxyOptions = proxyOptions;
+        }
+
+        if (useX509)
+        {
+            Aws::Crt::Io::TlsContextOptions tlsCtxOptions =
+                Aws::Crt::Io::TlsContextOptions::InitClientWithMtls(x509CertificatePath.c_str(), x509KeyPath.c_str());
+            if (!x509RootCAFile.empty())
+            {
+                tlsCtxOptions.OverrideDefaultTrustStore(nullptr, x509RootCAFile.c_str());
+            }
+
+            x509TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
+            if (!x509TlsCtx)
+            {
+                fprintf(stdout, "TlsError!\n");
+                return 1;
+            }
+
+            Aws::Crt::Auth::CredentialsProviderX509Config x509Config;
+
+            x509Config.TlsOptions = x509TlsCtx.NewConnectionOptions();
+            x509Config.Bootstrap = &bootstrap;
+            x509Config.Endpoint = x509Endpoint;
+            x509Config.RoleAlias = x509RoleAlias;
+            x509Config.ThingName = x509ThingName;
+
+            if (!proxyHost.empty())
+            {
+                x509Config.ProxyOptions = proxyOptions;
+            }
+
+            config.CredentialsProvider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderX509(x509Config);
         }
 
         builder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
