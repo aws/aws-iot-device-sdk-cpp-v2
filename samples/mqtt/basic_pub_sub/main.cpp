@@ -25,8 +25,8 @@ static void s_printHelp()
         "basic-pub-sub --endpoint <endpoint> --cert <path to cert>"
         " --key <path to key> --topic --ca_file <optional: path to custom ca>"
         " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>"
-        " --x509 --x509rolealias <role_alias> --x509endpoint <endpoint> --x509thing <thing_name>"
-        " --x509cert <path to cert> --x509key <path to key> --x509rootca <path to root ca>\n\n");
+        " --x509 --x509_role_alias <role_alias> --x509_endpoint <endpoint> --x509_thing <thing_name>"
+        " --x509_cert <path to cert> --x509_key <path to key> --x509_rootca <path to root ca>\n\n");
     fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
     fprintf(
         stdout,
