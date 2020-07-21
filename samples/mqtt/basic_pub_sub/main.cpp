@@ -49,16 +49,18 @@ static void s_printHelp()
         stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n");
 
     fprintf(stdout, "  x509: Use the x509 credentials provider while using websockets (optional)\n");
-    fprintf(stdout, "  x509rolealias: Role alias to use with the x509 credentials provider (required for x509)\n");
-    fprintf(stdout, "  x509endpoint: Endpoint to fetch x509 credentials from (required for x509)\n");
-    fprintf(stdout, "  x509thing: Thing name to fetch x509 credentials on behalf of (required for x509)\n");
+    fprintf(stdout, "  x509_role_alias: Role alias to use with the x509 credentials provider (required for x509)\n");
+    fprintf(stdout, "  x509_endpoint: Endpoint to fetch x509 credentials from (required for x509)\n");
+    fprintf(stdout, "  x509_thing: Thing name to fetch x509 credentials on behalf of (required for x509)\n");
     fprintf(
         stdout,
-        "  x509cert: Path to the IoT thing certificate used in fetching x509 credentials (required for x509)\n");
+        "  x509_cert: Path to the IoT thing certificate used in fetching x509 credentials (required for x509)\n");
     fprintf(
-        stdout, "  x509key: Path to the IoT thing private key used in fetching x509 credentials (required for x509)\n");
+        stdout,
+        "  x509_key: Path to the IoT thing private key used in fetching x509 credentials (required for x509)\n");
     fprintf(
-        stdout, "  x509rootca: Path to the root certificate used in fetching x509 credentials (required for x509)\n\n");
+        stdout,
+        "  x509_rootca: Path to the root certificate used in fetching x509 credentials (required for x509)\n\n");
 }
 
 bool s_cmdOptionExists(char **begin, char **end, const String &option)
@@ -191,49 +193,49 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509rolealias"))
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_role_alias"))
         {
             fprintf(stdout, "X509 credentials sourcing requires an x509 role alias to be specified.\n");
             s_printHelp();
             return 1;
         }
-        x509RoleAlias = s_getCmdOption(argv, argv + argc, "--x509rolealias");
+        x509RoleAlias = s_getCmdOption(argv, argv + argc, "--x509_role_alias");
 
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509endpoint"))
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_endpoint"))
         {
             fprintf(stdout, "X509 credentials sourcing requires an x509 endpoint to be specified.\n");
             s_printHelp();
             return 1;
         }
-        x509Endpoint = s_getCmdOption(argv, argv + argc, "--x509endpoint");
+        x509Endpoint = s_getCmdOption(argv, argv + argc, "--x509_endpoint");
 
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509thing"))
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_thing"))
         {
             fprintf(stdout, "X509 credentials sourcing requires an x509 thing name to be specified.\n");
             s_printHelp();
             return 1;
         }
-        x509ThingName = s_getCmdOption(argv, argv + argc, "--x509thing");
+        x509ThingName = s_getCmdOption(argv, argv + argc, "--x509_thing");
 
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509cert"))
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_cert"))
         {
             fprintf(stdout, "X509 credentials sourcing requires an Iot thing certificate to be specified.\n");
             s_printHelp();
             return 1;
         }
-        x509CertificatePath = s_getCmdOption(argv, argv + argc, "--x509cert");
+        x509CertificatePath = s_getCmdOption(argv, argv + argc, "--x509_cert");
 
-        if (!s_cmdOptionExists(argv, argv + argc, "--x509key"))
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_key"))
         {
             fprintf(stdout, "X509 credentials sourcing requires an Iot thing private key to be specified.\n");
             s_printHelp();
             return 1;
         }
-        x509KeyPath = s_getCmdOption(argv, argv + argc, "--x509key");
+        x509KeyPath = s_getCmdOption(argv, argv + argc, "--x509_key");
 
-        if (s_cmdOptionExists(argv, argv + argc, "--x509rootca"))
+        if (s_cmdOptionExists(argv, argv + argc, "--x509_rootca"))
         {
-            x509RootCAFile = s_getCmdOption(argv, argv + argc, "--x509rootca");
+            x509RootCAFile = s_getCmdOption(argv, argv + argc, "--x509_rootca");
         }
 
         useX509 = true;
@@ -285,6 +287,15 @@ int main(int argc, char *argv[])
         {
             Aws::Crt::Io::TlsContextOptions tlsCtxOptions =
                 Aws::Crt::Io::TlsContextOptions::InitClientWithMtls(x509CertificatePath.c_str(), x509KeyPath.c_str());
+            if (!tlsCtxOptions)
+            {
+                fprintf(
+                    stderr,
+                    "Unable to initialize tls context options, error: %s!\n",
+                    ErrorDebugString(tlsCtxOptions.LastError()));
+                return -1;
+            }
+
             if (!x509RootCAFile.empty())
             {
                 tlsCtxOptions.OverrideDefaultTrustStore(nullptr, x509RootCAFile.c_str());
@@ -293,13 +304,25 @@ int main(int argc, char *argv[])
             x509TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
             if (!x509TlsCtx)
             {
-                fprintf(stdout, "TlsError!\n");
-                return 1;
+                fprintf(
+                    stderr,
+                    "Unable to create tls context, error: %s!\n",
+                    ErrorDebugString(x509TlsCtx.GetInitializationError()));
+                return -1;
             }
 
             Aws::Crt::Auth::CredentialsProviderX509Config x509Config;
 
             x509Config.TlsOptions = x509TlsCtx.NewConnectionOptions();
+            if (!x509Config.TlsOptions)
+            {
+                fprintf(
+                    stderr,
+                    "Unable to create tls options from tls context, error: %s!\n",
+                    ErrorDebugString(x509Config.TlsOptions.LastError()));
+                return -1;
+            }
+
             x509Config.Bootstrap = &bootstrap;
             x509Config.Endpoint = x509Endpoint;
             x509Config.RoleAlias = x509RoleAlias;
@@ -311,6 +334,11 @@ int main(int argc, char *argv[])
             }
 
             config.CredentialsProvider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderX509(x509Config);
+            if (!config.CredentialsProvider)
+            {
+                fprintf(stderr, "Failure to create X509 credentials provider!\n");
+                return -1;
+            }
         }
 
         builder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
