@@ -21,6 +21,10 @@ Integration with AWS IoT Services such as
 and [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
 is provided by code that been generated from a model of the service.
 
+# OSX-Only TLS Behavior
+
+Please note that on OSX, once a private key is used with a certificate, that certificate-key pair is imported into the OSX Keychain.  All subsequent uses of that certificate will use the stored private key and ignore anything passed in programmatically.
+
 # Installation
 ## Minimum Requirements
 *   C++ 11 or higher
