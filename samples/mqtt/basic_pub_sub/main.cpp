@@ -272,7 +272,7 @@ int main(int argc, char *argv[])
     }
     else if (useWebSocket)
     {
-        Aws::Iot::WebsocketConfig config(signingRegion, &bootstrap);
+        std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
 
         Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
         if (!proxyHost.empty())
@@ -280,7 +280,6 @@ int main(int argc, char *argv[])
             proxyOptions.HostName = proxyHost;
             proxyOptions.Port = proxyPort;
             proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
-            config.ProxyOptions = proxyOptions;
         }
 
         if (useX509)
@@ -333,12 +332,26 @@ int main(int argc, char *argv[])
                 x509Config.ProxyOptions = proxyOptions;
             }
 
-            config.CredentialsProvider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderX509(x509Config);
-            if (!config.CredentialsProvider)
-            {
-                fprintf(stderr, "Failure to create X509 credentials provider!\n");
-                return -1;
-            }
+            provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderX509(x509Config);
+        }
+        else
+        {
+            Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+            defaultConfig.Bootstrap = &bootstrap;
+
+            provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+        }
+
+        if (!provider)
+        {
+            fprintf(stderr, "Failure to create credentials provider!\n");
+            return -1;
+        }
+
+        Aws::Iot::WebsocketConfig config(signingRegion, provider);
+        if (!proxyHost.empty())
+        {
+            config.ProxyOptions = proxyOptions;
         }
 
         builder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
