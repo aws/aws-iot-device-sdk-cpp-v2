@@ -45,13 +45,14 @@ and receive.
 
 To run the basic MQTT Pub-Sub use the following command:
 
-```
+```sh
 ./basic-pub-sub --endpoint <endpoint> --ca_file <path to root CA> 
 --cert <path to the certificate> --key <path to the private key> 
 --topic <topic name>
 ```
 
 ## Raw MQTT Pub-Sub
+
 This sample is similar to the Basic Pub-Sub, but the connection setup is more manual.
 This is a starting point for using custom
 [Configurable Endpoints](https://docs.aws.amazon.com/iot/latest/developerguide/iot-custom-endpoints-configurable.html).
@@ -74,7 +75,7 @@ cd ~/aws-iot-device-sdk-cpp-v2-build/samples/identity/fleet_provisioning
 
 Run the sample like this to provision using CreateKeysAndCertificate:
  
-```
+```sh
 ./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA> 
 --cert <path to the certificate> --key <path to the private key> 
 --template_name <template name> --template_parameters <template parameters json>
@@ -82,7 +83,7 @@ Run the sample like this to provision using CreateKeysAndCertificate:
 
 Run the sample like this to provision using Csr:
  
-```
+```sh
 ./fleet-provisioning --endpoint <endpoint> --ca_file <path to root CA> 
 --cert <path to the certificate> --key <path to the private key> 
 --template_name <template name> --template_parameters <template parameters json> --csr <path to the CSR in PEM format>
@@ -285,4 +286,5 @@ and receive.
 </details>
 
 ## Greengrass Discovery
+
 This sample is intended for direct usage with the Greengrass tutorial found [here](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html).

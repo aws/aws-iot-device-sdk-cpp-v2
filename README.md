@@ -34,7 +34,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 ### Build from source
 #### Automatically Build and Install AWS Dependencies
-```
+```sh
 mkdir sdk-cpp-workspace
 cd sdk-cpp-workspace
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
@@ -45,7 +45,7 @@ cmake --build . --target install
 ```
 #### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
 
-```
+```sh
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=OFF ../aws-iot-device-sdk-cpp-v2
@@ -75,7 +75,7 @@ If you still can’t find a solution to your problem open an [issue](https://git
 
 We need your help in making this SDK great. Please participate in the community and contribute to this effort by submitting issues, participating in discussion forums and submitting pull requests through the following channels.
 
-*   [Contributions Guidelines](master/CONTRIBUTING.md)
+*   [Contributions Guidelines](CONTRIBUTING.md)
 *   Articulate your feature request or upvote existing ones on our [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues?q=is%3Aissue+is%3Aopen+label%3Afeature-request) page.
 *   Submit [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
 
@@ -95,6 +95,6 @@ is provided by code that been generated from a model of the service.
 
 
 
-# License
+## License
 
-This library is licensed under the Apache 2.0 License.
+This library is licensed under the [Apache 2.0 License](LICENSE). 
