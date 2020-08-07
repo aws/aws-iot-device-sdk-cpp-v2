@@ -32,7 +32,7 @@ static void s_printHelp()
         stdout,
         "cert: path to your client certificate in PEM format. If this is not set you must specify use_websocket\n");
     fprintf(stdout, "key: path to your key in PEM format. If this is not set you must specify use_websocket\n");
-    fprintf(stdout, "topic: topic to publish, subscribe to.\n");
+    fprintf(stdout, "topic: topic to publish, subscribe to. (optional)\n");
     fprintf(stdout, "client_id: client id to use (optional)\n");
     fprintf(
         stdout,
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
     bool useX509 = false;
 
     /*********************** Parse Arguments ***************************/
-    if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") && s_cmdOptionExists(argv, argv + argc, "--topic")))
+    if (!s_cmdOptionExists(argv, argv + argc, "--endpoint"))
     {
         s_printHelp();
         return 1;
