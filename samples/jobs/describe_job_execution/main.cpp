@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
 
     /*
      * Since no exceptions are used, always check the bool operator
-     * when an error could have occured.
+     * when an error could have occurred.
      */
     if (!mqttClient)
     {
@@ -165,10 +165,8 @@ int main(int argc, char *argv[])
      * In a real world application you probably don't want to enforce synchronous behavior
      * but this is a sample console application, so we'll just do that with a condition variable.
      */
-    std::condition_variable conditionVariable;
-    std::atomic<bool> connectionSucceeded(false);
-    std::atomic<bool> connectionClosed(false);
-    std::atomic<bool> connectionCompleted(false);
+    std::promise<bool> connectionCompletedPromise;
+    std::promise<void> connectionClosedPromise;
 
     /*
      * This will execute when an mqtt connect has completed or failed.
@@ -177,16 +175,13 @@ int main(int argc, char *argv[])
         if (errorCode)
         {
             fprintf(stdout, "Connection failed with error %s\n", ErrorDebugString(errorCode));
-            connectionSucceeded = false;
+            connectionCompletedPromise.set_value(false);
         }
         else
         {
             fprintf(stdout, "Connection completed with return code %d\n", returnCode);
-            connectionSucceeded = true;
+            connectionCompletedPromise.set_value(true);
         }
-
-        connectionCompleted = true;
-        conditionVariable.notify_one();
     };
 
     /*
@@ -195,9 +190,8 @@ int main(int argc, char *argv[])
     auto onDisconnect = [&](Mqtt::MqttConnection & /*conn*/) {
         {
             fprintf(stdout, "Disconnect completed\n");
-            connectionClosed = true;
+            connectionClosedPromise.set_value();
         }
-        conditionVariable.notify_one();
     };
 
     connection->OnConnectionCompleted = std::move(onConnectionCompleted);
@@ -213,11 +207,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    std::mutex mutex;
-    std::unique_lock<std::mutex> uniqueLock(mutex);
-    conditionVariable.wait(uniqueLock, [&]() { return connectionSucceeded || connectionClosed; });
-
-    if (connectionSucceeded)
+    if (connectionCompletedPromise.get_future().get())
     {
         IotJobsClient client(connection);
 
@@ -225,20 +215,17 @@ int main(int argc, char *argv[])
         describeJobExecutionSubscriptionRequest.ThingName = thingName;
         describeJobExecutionSubscriptionRequest.JobId = jobId;
 
-        // This isn't absolutely neccessary but since we're doing a publish almost immediately afterwards,
+        // This isn't absolutely necessary but since we're doing a publish almost immediately afterwards,
         // to be cautious make sure the subscribe has finished before doing the publish.
-        auto subAckHandler = [&](int ioErr) {
-            if (!ioErr)
-            {
-                conditionVariable.notify_one();
-            }
+        std::promise<void> subAckedPromise;
+        auto subAckHandler = [&](int) {
+            /* if error code returns it will be recorded by the other callback */
+            subAckedPromise.set_value();
         };
-
         auto subscriptionHandler = [&](DescribeJobExecutionResponse *response, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
-                conditionVariable.notify_one();
                 return;
             }
 
@@ -246,32 +233,30 @@ int main(int argc, char *argv[])
             fprintf(stdout, "Job Id: %s\n", response->Execution->JobId->c_str());
             fprintf(stdout, "ClientToken: %s\n", response->ClientToken->c_str());
             fprintf(stdout, "Execution Status: %s\n", JobStatusMarshaller::ToString(*response->Execution->Status));
-            conditionVariable.notify_one();
         };
 
         client.SubscribeToDescribeJobExecutionAccepted(
             describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, subscriptionHandler, subAckHandler);
-        conditionVariable.wait(uniqueLock);
+        subAckedPromise.get_future().wait();
 
+        subAckedPromise = std::promise<void>();
         auto failureHandler = [&](RejectedError *rejectedError, int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
-                conditionVariable.notify_one();
                 return;
             }
 
             if (rejectedError)
             {
-                fprintf(stderr, "Service Error %d occured\n", (int)rejectedError->Code.value());
-                conditionVariable.notify_one();
+                fprintf(stderr, "Service Error %d occurred\n", (int)rejectedError->Code.value());
                 return;
             }
         };
 
         client.SubscribeToDescribeJobExecutionRejected(
             describeJobExecutionSubscriptionRequest, AWS_MQTT_QOS_AT_LEAST_ONCE, failureHandler, subAckHandler);
-        conditionVariable.wait(uniqueLock);
+        subAckedPromise.get_future().wait();
 
         DescribeJobExecutionRequest describeJobExecutionRequest;
         describeJobExecutionRequest.ThingName = thingName;
@@ -279,26 +264,25 @@ int main(int argc, char *argv[])
         describeJobExecutionRequest.IncludeJobDocument = true;
         Aws::Crt::UUID uuid;
         describeJobExecutionRequest.ClientToken = uuid.ToString();
+        std::promise<void> publishDescribeJobExeCompletedPromise;
 
         auto publishHandler = [&](int ioErr) {
             if (ioErr)
             {
                 fprintf(stderr, "Error %d occurred\n", ioErr);
-                conditionVariable.notify_one();
-                return;
             }
+            publishDescribeJobExeCompletedPromise.set_value();
         };
 
         client.PublishDescribeJobExecution(
             std::move(describeJobExecutionRequest), AWS_MQTT_QOS_AT_LEAST_ONCE, publishHandler);
-        conditionVariable.wait(uniqueLock);
+        publishDescribeJobExeCompletedPromise.get_future().wait();
     }
 
-    if (!connectionClosed)
+    /* Disconnect */
+    if (connection->Disconnect())
     {
-        /* Disconnect */
-        connection->Disconnect();
-        conditionVariable.wait(uniqueLock, [&]() { return connectionClosed.load(); });
+        connectionClosedPromise.get_future().wait();
     }
     return 0;
 }
