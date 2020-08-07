@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     String certificatePath;
     String keyPath;
     String caFile;
-    String topic;
+    String topic("test/topic");
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
     String signingRegion;
     String proxyHost;
@@ -132,8 +132,10 @@ int main(int argc, char *argv[])
         s_printHelp();
         return 1;
     }
-
-    topic = s_getCmdOption(argv, argv + argc, "--topic");
+    if (s_getCmdOption(argv, argv + argc, "--topic"))
+    {
+        topic = s_getCmdOption(argv, argv + argc, "--topic");
+    }
     if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
     {
         caFile = s_getCmdOption(argv, argv + argc, "--ca_file");

@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
     String certificatePath;
     String keyPath;
     String caFile;
-    String topic;
+    String topic("test/topic");
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
     String proxyHost;
     uint16_t proxyPort(8080);
@@ -105,8 +105,10 @@ int main(int argc, char *argv[])
     {
         certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
     }
-
-    topic = s_getCmdOption(argv, argv + argc, "--topic");
+    if (s_getCmdOption(argv, argv + argc, "--topic"))
+    {
+        topic = s_getCmdOption(argv, argv + argc, "--topic");
+    }
     if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
     {
         caFile = s_getCmdOption(argv, argv + argc, "--ca_file");

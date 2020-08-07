@@ -12,6 +12,7 @@ Since the sample is subscribed to the same topic, it will also receive the messa
 Type `quit` and press enter to end the sample.
 
 Source: `samples/mqtt/basic_pub_sub`
+
 Your Thing's
 [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
 must provide privileges for this sample to connect, subscribe, publish,
@@ -60,7 +61,7 @@ and receive.
 
 To run the basic MQTT Pub-Sub use the following command:
 
-```
+``` sh
 ./basic-pub-sub --endpoint <endpoint> --ca_file <path to root CA>
 --cert <path to the certificate> --key <path to the private key>
 --topic <topic name>
@@ -80,7 +81,7 @@ This sample uses the AWS IoT
 [Fleet provisioning](https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html)
 to provision devices using either a CSR or KeysAndcertificate and subsequently calls RegisterThing.
 
-On startup, the script subscribes to topics based on the request type of either CSR or Keys topics, 
+On startup, the script subscribes to topics based on the request type of either CSR or Keys topics,
 publishes the request to corresponding topic and calls RegisterThing.
 
 Source: `samples/identity/fleet_provisioning`
@@ -170,6 +171,7 @@ on the device and an update is sent to the server with the new "reported"
 value.
 
 Source: `samples/shadow/shadow_sync`
+
 Your Thing's
 [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
 must provide privileges for this sample to connect, subscribe, publish,
@@ -241,6 +243,7 @@ This sample requires you to create jobs for your device to execute. See
 On startup, the sample describes a job that is pending execution.
 
 Source: `samples/jobs/describe_job_execution`
+
 Your Thing's
 [Policy](https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html)
 must provide privileges for this sample to connect, subscribe, publish,
