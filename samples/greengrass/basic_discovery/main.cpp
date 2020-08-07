@@ -33,7 +33,7 @@ static void s_printHelp()
     fprintf(stdout, "ca_file: ca file to use in verifying TLS connections.\n");
     fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
     fprintf(stdout, "thing_name: the name of your IOT thing\n");
-    fprintf(stdout, "topic: targeted topic. Default is sdk/test/cpp-v2\n");
+    fprintf(stdout, "topic: targeted topic. Default is test/topic\n");
     fprintf(stdout, "mode: default both\n");
     fprintf(stdout, "message: message to publish. default 'Hello World'\n");
     fprintf(stdout, "proxy-host: proxy host to use for discovery call. Default is to not use a proxy.\n");
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     String keyPath;
     String caFile;
     String thingName;
-    String topic("sdk/test/cpp-v2");
+    String topic("test/topic");
     String mode("both");
     String message("Hello World");
 

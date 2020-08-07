@@ -23,7 +23,7 @@ static void s_printHelp()
     fprintf(
         stdout,
         "basic-pub-sub --endpoint <endpoint> --cert <path to cert>"
-        " --key <path to key> --topic --ca_file <optional: path to custom ca>"
+        " --key <path to key> --topic <topic> --ca_file <optional: path to custom ca>"
         " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>"
         " --x509 --x509_role_alias <role_alias> --x509_endpoint <endpoint> --x509_thing <thing_name>"
         " --x509_cert <path to cert> --x509_key <path to key> --x509_rootca <path to root ca>\n\n");
@@ -32,7 +32,7 @@ static void s_printHelp()
         stdout,
         "cert: path to your client certificate in PEM format. If this is not set you must specify use_websocket\n");
     fprintf(stdout, "key: path to your key in PEM format. If this is not set you must specify use_websocket\n");
-    fprintf(stdout, "topic: topic to publish, subscribe to.\n");
+    fprintf(stdout, "topic: topic to publish, subscribe to. (optional)\n");
     fprintf(stdout, "client_id: client id to use (optional)\n");
     fprintf(
         stdout,
@@ -91,8 +91,8 @@ int main(int argc, char *argv[])
     String certificatePath;
     String keyPath;
     String caFile;
-    String topic;
-    String clientId(Aws::Crt::UUID().ToString());
+    String topic("test/topic");
+    String clientId(String("test-") + Aws::Crt::UUID().ToString());
     String signingRegion;
     String proxyHost;
     uint16_t proxyPort(8080);
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
     bool useX509 = false;
 
     /*********************** Parse Arguments ***************************/
-    if (!(s_cmdOptionExists(argv, argv + argc, "--endpoint") && s_cmdOptionExists(argv, argv + argc, "--topic")))
+    if (!s_cmdOptionExists(argv, argv + argc, "--endpoint"))
     {
         s_printHelp();
         return 1;
@@ -132,8 +132,10 @@ int main(int argc, char *argv[])
         s_printHelp();
         return 1;
     }
-
-    topic = s_getCmdOption(argv, argv + argc, "--topic");
+    if (s_getCmdOption(argv, argv + argc, "--topic"))
+    {
+        topic = s_getCmdOption(argv, argv + argc, "--topic");
+    }
     if (s_cmdOptionExists(argv, argv + argc, "--ca_file"))
     {
         caFile = s_getCmdOption(argv, argv + argc, "--ca_file");
