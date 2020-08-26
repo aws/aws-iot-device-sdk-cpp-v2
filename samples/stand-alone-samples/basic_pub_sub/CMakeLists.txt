@@ -2,6 +2,8 @@ if (NOT CMAKE_CXX_STANDARD)
     set(CMAKE_CXX_STANDARD 11)
 endif()
 
+cmake_minimum_required(VERSION 3.18)
+
 project(basic-pub-sub CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
@@ -13,6 +15,10 @@ file(GLOB PUB_SUB_SRC
 set(PUB_SUB_PROJECT_NAME basic-pub-sub)
 add_executable(${PUB_SUB_PROJECT_NAME} ${PUB_SUB_SRC})
 set_target_properties(${PUB_SUB_PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+
+if(COMMAND cmake_policy)
+    cmake_policy(SET CMP0003 NEW)
+endif(COMMAND cmake_policy)
 
 set(CMAKE_C_FLAGS_DEBUGOPT "")
 
