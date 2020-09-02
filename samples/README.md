@@ -352,17 +352,27 @@ We've included a script in the utils folder that creates certificate and key fil
 you'll need to substitute the name of the template you previously created, and on Windows, replace the paths with something appropriate.
 
 (Optional) Create a temporary provisioning claim certificate set:
-<pre>
-aws iot create-provisioning-claim --template-name [TemplateName] | python ../../../../aws-iot-device-sdk-cpp-v2/utils/parse_cert_set_result.py --path /tmp --filename provision
-</pre>
+``` sh
+aws iot create-provisioning-claim \
+        --template-name [TemplateName] \
+        | python ../../../../aws-iot-device-sdk-cpp-v2/utils/parse_cert_set_result.py \
+        --path /tmp \
+        --filename provision
+```
 
 The provisioning claim's cert and key set have been written to `/tmp/provision*`. Now you can use these temporary keys
 to perform the actual provisioning. If you are not using the temporary provisioning certificate, replace the paths for `--cert` 
 and `--key` appropriately:
 
-<pre>
-./fleet-provisioning --endpoint [your endpoint]-ats.iot.[region].amazonaws.com --ca_file [pathToRootCA] --cert /tmp/provision.cert.pem --key /tmp/provision.private.key --template_name [TemplateName] --template_parameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}"
-</pre>
+``` sh
+./fleet-provisioning \
+        --endpoint [your endpoint]-ats.iot.[region].amazonaws.com \
+        --ca_file [pathToRootCA] \
+        --cert /tmp/provision.cert.pem \
+        --key /tmp/provision.private.key \
+        --template_name [TemplateName] \
+        --template_parameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}"
+```
 
 Notice that we provided substitution values for the two parameters in the template body, `DeviceLocation` and `SerialNumber`.
 
@@ -371,27 +381,38 @@ Notice that we provided substitution values for the two parameters in the templa
 To run the sample with this workflow, you'll need to create a certificate signing request.
 
 First create a certificate-key pair:
-<pre>
+``` sh
 openssl genrsa -out /tmp/deviceCert.key 2048
-</pre>
+```
 
 Next create a certificate signing request from it:
-<pre>
+``` sh
 openssl req -new -key /tmp/deviceCert.key -out /tmp/deviceCert.csr
-</pre>
+```
 
 (Optional) As with the previous workflow, we'll create a temporary certificate set from a provisioning claim. This step can
 be skipped if you're using a certificate set capable of provisioning the device:
 
-<pre>
-aws iot create-provisioning-claim --template-name [TemplateName] | python ../../../../aws-iot-device-sdk-cpp-v2/utils/parse_cert_set_result.py --path /tmp --filename provision
-</pre>
+``` sh
+aws iot create-provisioning-claim \
+        --template-name [TemplateName] \
+        | python ../../../../aws-iot-device-sdk-cpp-v2/utils/parse_cert_set_result.py \
+        --path /tmp \
+        --filename provision
+```
 
 Finally, supply the certificate signing request while invoking the provisioning sample. As with the previous workflow, if
 using a permanent certificate set, replace the paths specified in the `--cert` and `--key` arguments:
-<pre>
-./fleet-provisioning --endpoint [your endpoint]-ats.iot.[region].amazonaws.com --root-ca [pathToRootCA] --cert /tmp/provision.cert.pem --key /tmp/provision.private.key --templateName [TemplateName] --templateParameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}" --csr /tmp/deviceCert.csr 
-</pre>
+``` sh
+./fleet-provisioning \
+        --endpoint [your endpoint]-ats.iot.[region].amazonaws.com \
+        --ca_file [pathToRootCA] \
+        --cert /tmp/provision.cert.pem \
+        --key /tmp/provision.private.key \
+        --template_name [TemplateName] \
+        --template_parameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}" \
+        --csr /tmp/deviceCert.csr
+```
 
 ## Greengrass Discovery
 
