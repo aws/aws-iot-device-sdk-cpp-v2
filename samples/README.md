@@ -361,7 +361,7 @@ to perform the actual provisioning. If you are not using the temporary provision
 and `--key` appropriately:
 
 <pre>
-./fleet-provisioning --endpoint [your endpoint]-ats.iot.[region].amazonaws.com --root-ca [pathToRootCA] --cert /tmp/provision.cert.pem --key /tmp/provision.private.key --templateName [TemplateName]--templateParameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}"
+./fleet-provisioning --endpoint [your endpoint]-ats.iot.[region].amazonaws.com --ca_file [pathToRootCA] --cert /tmp/provision.cert.pem --key /tmp/provision.private.key --template_name [TemplateName] --template_parameters "{\"SerialNumber\":\"1\",\"DeviceLocation\":\"Seattle\"}"
 </pre>
 
 Notice that we provided substitution values for the two parameters in the template body, `DeviceLocation` and `SerialNumber`.
