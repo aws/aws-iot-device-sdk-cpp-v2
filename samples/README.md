@@ -351,11 +351,11 @@ We've included a script in the utils folder that creates certificate and key fil
 `create-provisioning-claim`. These dynamically sourced certificates are only valid for five minutes. When running the command, 
 you'll need to substitute the name of the template you previously created, and on Windows, replace the paths with something appropriate.
 
-(Optional) Create a temporary provisioning claim certificate set:
+(Optional) Create a temporary provisioning claim certificate set. This command is executed in the debug folder(`aws-iot-device-sdk-cpp-v2-build\samples\identity\fleet_provisioning\Debug`):
 ``` sh
 aws iot create-provisioning-claim \
         --template-name [TemplateName] \
-        | python ../../../../aws-iot-device-sdk-cpp-v2/utils/parse_cert_set_result.py \
+        | python ../../../../../aws-iot-device-sdk-cpp-v2/utils/parse_cert_set_result.py \
         --path /tmp \
         --filename provision
 ```
@@ -391,12 +391,12 @@ openssl req -new -key /tmp/deviceCert.key -out /tmp/deviceCert.csr
 ```
 
 (Optional) As with the previous workflow, we'll create a temporary certificate set from a provisioning claim. This step can
-be skipped if you're using a certificate set capable of provisioning the device:
+be skipped if you're using a certificate set capable of provisioning the device. This command is executed in the debug folder(`aws-iot-device-sdk-cpp-v2-build\samples\identity\fleet_provisioning\Debug`):
 
 ``` sh
 aws iot create-provisioning-claim \
         --template-name [TemplateName] \
-        | python ../../../../aws-iot-device-sdk-cpp-v2/utils/parse_cert_set_result.py \
+        | python ../../../../../aws-iot-device-sdk-cpp-v2/utils/parse_cert_set_result.py \
         --path /tmp \
         --filename provision
 ```
