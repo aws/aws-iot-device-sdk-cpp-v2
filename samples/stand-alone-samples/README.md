@@ -2,7 +2,7 @@
 
 ## building instruction
 
-Firstly, build the project following the following instruction.
+Firstly, build the project with the following instruction.
 
 ``` sh
 mkdir sdk-cpp-workspace
@@ -24,5 +24,7 @@ cd build
 cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --config Release
 ```
+
+To debug, just change every mentioned `Release` to `Debug`.
 
 The binary executable file will be under build/. for Linux/Mac, and under build/release for Windows.
