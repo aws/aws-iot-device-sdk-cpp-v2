@@ -7,6 +7,7 @@ cmake_minimum_required(VERSION 3.1)
 project(basic-pub-sub CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
 file(GLOB PUB_SUB_SRC
        "*.cpp"

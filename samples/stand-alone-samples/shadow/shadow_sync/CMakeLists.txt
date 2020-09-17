@@ -7,6 +7,7 @@ cmake_minimum_required(VERSION 3.1)
 project(shadow-sync CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
 file(GLOB SHADOW_SYNC_SRC
        "*.cpp"
@@ -40,4 +41,3 @@ find_library (
 set(DEP_AWS_LIBS ${DEP_AWS_LIBS} AWS::aws-crt-cpp)
 
 target_link_libraries(${SHADOW_SYNC_PROJECT_NAME} ${DEP_AWS_LIBS} ${SHADOW_LIB})
-
