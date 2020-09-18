@@ -9,6 +9,8 @@ project(basic-pub-sub CXX)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
+include(AwsFindPackage)
+
 file(GLOB PUB_SUB_SRC
        "*.cpp"
 )
@@ -38,7 +40,6 @@ target_include_directories(${PUB_SUB_PROJECT_NAME} PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
-find_package(aws-crt-cpp REQUIRED)
-set(DEP_AWS_LIBS ${DEP_AWS_LIBS} AWS::aws-crt-cpp)
+aws_use_package(aws-crt-cpp)
 
 target_link_libraries(${PUB_SUB_PROJECT_NAME} ${DEP_AWS_LIBS})

@@ -9,6 +9,8 @@ project(shadow-sync CXX)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
+include(AwsFindPackage)
+
 file(GLOB SHADOW_SYNC_SRC
        "*.cpp"
 )
@@ -32,12 +34,11 @@ target_include_directories(${SHADOW_SYNC_PROJECT_NAME} PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
-find_package(aws-crt-cpp REQUIRED)
+aws_use_package(aws-crt-cpp)
 
 find_library (
     SHADOW_LIB
     NAMES IotShadow-cpp
 )
-set(DEP_AWS_LIBS ${DEP_AWS_LIBS} AWS::aws-crt-cpp)
 
 target_link_libraries(${SHADOW_SYNC_PROJECT_NAME} ${DEP_AWS_LIBS} ${SHADOW_LIB})
