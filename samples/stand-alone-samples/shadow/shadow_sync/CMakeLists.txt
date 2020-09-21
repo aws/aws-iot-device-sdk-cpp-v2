@@ -1,13 +1,8 @@
-if (NOT CMAKE_CXX_STANDARD)
-    set(CMAKE_CXX_STANDARD 11)
-endif()
+project(shadow-sync CXX)
 
 cmake_minimum_required(VERSION 3.1)
 
-project(shadow-sync CXX)
-
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
 include(AwsFindPackage)
 
@@ -15,9 +10,10 @@ file(GLOB SHADOW_SYNC_SRC
        "*.cpp"
 )
 
-set(SHADOW_SYNC_PROJECT_NAME shadow-sync)
-add_executable(${SHADOW_SYNC_PROJECT_NAME} ${SHADOW_SYNC_SRC})
-set_target_properties(${SHADOW_SYNC_PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+add_executable(${PROJECT_NAME} ${SHADOW_SYNC_SRC})
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    LINKER_LANGUAGE CXX
+    CXX_STANDARD 11)
 
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 NEW)
@@ -25,20 +21,15 @@ endif(COMMAND cmake_policy)
 
 #set warnings
 if (MSVC)
-    target_compile_options(${SHADOW_SYNC_PROJECT_NAME} PRIVATE /W4 /WX)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
 else ()
-    target_compile_options(${SHADOW_SYNC_PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-target_include_directories(${SHADOW_SYNC_PROJECT_NAME} PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>)
-
-aws_use_package(aws-crt-cpp)
-
+find_package(aws-crt-cpp REQUIRED)
 find_library (
     SHADOW_LIB
     NAMES IotShadow-cpp
 )
 
-target_link_libraries(${SHADOW_SYNC_PROJECT_NAME} ${DEP_AWS_LIBS} ${SHADOW_LIB})
+target_link_libraries(${PROJECT_NAME} AWS::aws-crt-cpp ${SHADOW_LIB})
