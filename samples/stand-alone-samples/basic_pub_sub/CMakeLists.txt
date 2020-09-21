@@ -18,8 +18,6 @@ if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 NEW)
 endif(COMMAND cmake_policy)
 
-set(CMAKE_C_FLAGS_DEBUGOPT "")
-
 #set warnings
 if (MSVC)
     target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX /wd4068)

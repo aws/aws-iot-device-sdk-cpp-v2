@@ -4,13 +4,12 @@ cmake_minimum_required(VERSION 3.1)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
 
-include(AwsFindPackage)
-
 file(GLOB SHADOW_SYNC_SRC
        "*.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SHADOW_SYNC_SRC})
+
 set_target_properties(${PROJECT_NAME} PROPERTIES
     LINKER_LANGUAGE CXX
     CXX_STANDARD 11)
