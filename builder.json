@@ -23,6 +23,7 @@
         }
     },
     "test_steps": [
+        "ls",
         "cd samples/stand-alone-samples/shadow/shadow_sync",
         "mkdir build",
         "cd build",
