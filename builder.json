@@ -23,6 +23,6 @@
         }
     },
     "test_steps": [
-        "cmake -DCMAKE_INSTALL_PREFIX={install_dir} -DCMAKE_BUILD_TYPE=Release samples/stand-alone-samples/shadow/shadow_sync/ && cmake --build samples/stand-alone-samples/shadow/shadow_sync/ --config Release"
+        "cmake -DCMAKE_INSTALL_PREFIX={install_dir} -DCMAKE_BUILD_TYPE=Release samples/stand-alone-samples/shadow/shadow_sync/ && cmake --build . --config Release"
     ]
 }
