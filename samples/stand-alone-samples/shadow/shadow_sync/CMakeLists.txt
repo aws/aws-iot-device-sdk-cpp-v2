@@ -1,6 +1,5 @@
-project(shadow-sync CXX)
-
 cmake_minimum_required(VERSION 3.1)
+project(shadow-sync CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
 
