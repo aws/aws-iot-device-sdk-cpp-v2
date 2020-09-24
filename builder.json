@@ -33,7 +33,8 @@
             "cmake", 
             "--build", 
             ".",
-            "--config Release"
+            "--config", 
+            "Release"
         ]
     ]
 }
