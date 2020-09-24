@@ -25,6 +25,13 @@
     "test_steps": [
         [
             "cmake",
+            "--build",
+            "build/aws-iot-device-sdk-cpp-v2",
+            "--config",
+            "Release"
+        ],
+        [
+            "cmake",
             "-DCMAKE_INSTALL_PREFIX={install_dir}",
             "-DCMAKE_BUILD_TYPE=Release",
             "samples/stand-alone-samples/shadow/shadow_sync/"
