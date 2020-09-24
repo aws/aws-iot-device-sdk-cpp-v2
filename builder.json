@@ -26,7 +26,8 @@
         [
             "cmake", 
             "-DCMAKE_INSTALL_PREFIX={install_dir}", 
-            "-DCMAKE_BUILD_TYPE=Release samples/stand-alone-samples/shadow/shadow_sync/"
+            "-DCMAKE_BUILD_TYPE=Release",
+            "samples/stand-alone-samples/shadow/shadow_sync/"
         ],
         [
             "cmake", 
