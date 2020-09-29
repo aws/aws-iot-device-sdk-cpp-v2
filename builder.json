@@ -12,7 +12,7 @@
             ]
         }
     },
-    "search_dirs": ["aws-common-runtime"],
+    "search_dirs": ["crt"],
     "hosts": {
         "manylinux": {
             "architectures": {
