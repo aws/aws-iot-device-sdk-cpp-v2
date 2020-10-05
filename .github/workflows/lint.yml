@@ -23,9 +23,9 @@ jobs:
     - name: Checkout Sources
       uses: actions/checkout@v1
       with:
-        submodules: true
+        submodules: recursive
 
     - name: Max Path
       uses: graebm/max-path-action@v1
       with:
-        limit: 75
+        limit: 100
