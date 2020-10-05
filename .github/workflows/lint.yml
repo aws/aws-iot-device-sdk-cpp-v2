@@ -28,4 +28,4 @@ jobs:
     - name: Max Path
       uses: graebm/max-path-action@v1
       with:
-        limit: 150
+        limit: 75
