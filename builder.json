@@ -32,7 +32,7 @@
       "samples/stand-alone-samples/shadow/shadow_sync/"
     ],
     [ "cmake", "--build", ".", "--config", "Release" ],
-    [ "cmake", "--cmake-clean-cache" ],
+    [ "cmake", "--build", ".", "--target", "clean" ],
     [
       "cmake",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
