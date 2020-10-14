@@ -30,7 +30,7 @@
       "--version"
     ],
     [
-      "cmake",,
+      "cmake",
       "-Bbuild_shadow",
       "-Hsamples/stand-alone-samples/shadow/shadow_sync/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
