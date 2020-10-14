@@ -56,6 +56,6 @@
       "-B",
       "build_pubsub"
     ],
-    [ "cmake", "--build", ".", "--config", "Release" ]
+    [ "cmake", "--build", "build_pubsub", "--config", "Release" ]
   ]
 }
