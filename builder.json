@@ -26,9 +26,6 @@
       "build_shadow"
     ],
     [
-      "ls"
-    ],
-    [
       "cd",
       "build_shadow"
     ],
@@ -41,6 +38,24 @@
       "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so", 
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a", 
       "samples/stand-alone-samples/shadow/shadow_sync/"
-    ]
+    ],
+    [ "cmake", "--build", ".", "--config", "Release" ],
+    [ "cd .." ],
+    [
+      "mkdir",
+      "build_pubsub"
+    ],
+    [ "cd build_pubsub" ],
+    [
+      "cmake",
+      "-DCMAKE_INSTALL_PREFIX={install_dir}",
+      "-DCMAKE_PREFIX_PATH={install_dir}",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include", 
+      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so", 
+      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a", 
+      "samples/stand-alone-samples/basic_pub_sub/"
+    ],
+    [ "cmake", "--build", ".", "--config", "Release" ]
   ]
 }
