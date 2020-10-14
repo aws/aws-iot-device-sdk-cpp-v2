@@ -26,9 +26,10 @@
       "build_shadow"
     ],
     [
-      "cd",
+      "pushd",
       "build_shadow"
     ],
+    ["ls"],
     [
       "cmake",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
@@ -45,7 +46,7 @@
       "mkdir",
       "build_pubsub"
     ],
-    [ "cd" ,"build_pubsub" ],
+    [ "cd", "build_pubsub" ],
     [
       "cmake",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
