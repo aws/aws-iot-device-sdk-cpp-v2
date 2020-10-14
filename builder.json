@@ -21,7 +21,6 @@
     }
   },
   "test_steps": [
-    ["pushenv"],
     [
       "cmake",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
@@ -33,7 +32,7 @@
       "samples/stand-alone-samples/shadow/shadow_sync/"
     ],
     [ "cmake", "--build", ".", "--config", "Release" ],
-    ["popenv"],
+    [ "cmake", "--cmake-clean-cache" ],
     [
       "cmake",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",

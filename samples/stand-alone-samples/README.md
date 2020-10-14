@@ -24,6 +24,15 @@ cd build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_BUILD_TYPE=Release ..
 cmake --build . --config Release
 ```
-To debug, just change every mentioned `Release` to `Debug`.
 
+Note: for linux machine, you may need to indicate the path to libcrypto, because of the dependency of S2N. Following commands as below:
+
+``` sh
+mkdir build
+cd build
+cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DLibCrypto_INCLUDE_DIR="<path to include dir>" -DLibCrypto_STATIC_LIBRARY="<path to libcrypto.a file>" -DCMAKE_BUILD_TYPE=Release ..
+cmake --build . --config Release
+```
+
+To debug, just change every mentioned `Release` to `Debug`.
 The binary executable file will be under build/. for Linux/Mac, and under build/release for Windows.
