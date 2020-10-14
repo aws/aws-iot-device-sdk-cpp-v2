@@ -26,6 +26,10 @@
       "build_shadow"
     ],
     [
+      "cmake", 
+      "--version"
+    ],
+    [
       "cmake",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
