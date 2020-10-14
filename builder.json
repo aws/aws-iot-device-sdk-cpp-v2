@@ -21,18 +21,7 @@
     }
   },
   "test_steps": [
-    [
-      "mkdir",
-      "build_shadow"
-    ],
-    [
-      "pushd",
-      "build_shadow"
-    ],
-    ["popd"],
-    ["ls"],
-    ["popd"],
-    ["ls"],
+    ["pushenv"],
     [
       "cmake",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
@@ -44,12 +33,7 @@
       "samples/stand-alone-samples/shadow/shadow_sync/"
     ],
     [ "cmake", "--build", ".", "--config", "Release" ],
-    [ "cd", ".." ],
-    [
-      "mkdir",
-      "build_pubsub"
-    ],
-    [ "cd", "build_pubsub" ],
+    ["popenv"],
     [
       "cmake",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
