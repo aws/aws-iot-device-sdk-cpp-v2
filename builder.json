@@ -29,6 +29,9 @@
       "pushd",
       "build_shadow"
     ],
+    ["popd"],
+    ["ls"],
+    ["popd"],
     ["ls"],
     [
       "cmake",
