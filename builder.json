@@ -1,25 +1,61 @@
 {
-    "name": "aws-iot-device-sdk-cpp-v2",
-    "!cmake_args": [
-        "-DBUILD_DEPS=ON",
-        "-DPERFORM_HEADER_CHECK=OFF",
-        "-DS2N_NO_PQ_ASM=ON"
-    ],
-    "targets": {
-        "linux" : {
-            "imports": [
-                "s2n"
-            ]
-        }
-    },
-    "search_dirs": ["crt"],
-    "hosts": {
-        "manylinux": {
-            "architectures": {
-                "x86": {
-                    "!yum_compiler_packages": []
-                }
-            }
-        }
+  "name": "aws-iot-device-sdk-cpp-v2",
+  "!cmake_args": [
+    "-DBUILD_DEPS=ON",
+    "-DPERFORM_HEADER_CHECK=OFF",
+    "-DS2N_NO_PQ_ASM=ON"
+  ],
+  "targets": {
+    "linux": {
+      "imports": ["s2n"]
     }
+  },
+  "search_dirs": ["crt"],
+  "hosts": {
+    "manylinux": {
+      "architectures": {
+        "x86": {
+          "!yum_compiler_packages": []
+        }
+      }
+    }
+  },
+  "test_steps": [
+    [
+      "mkdir",
+      "build_shadow"
+    ],
+    [
+      "cmake", 
+      "--version"
+    ],
+    [
+      "cmake",
+      "-Bbuild_shadow",
+      "-Hsamples/stand-alone-samples/shadow/shadow_sync/",
+      "-DCMAKE_INSTALL_PREFIX={install_dir}",
+      "-DCMAKE_PREFIX_PATH={install_dir}",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include", 
+      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so", 
+      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
+    ],
+    [ "cmake", "--build", "build_shadow", "--config", "Release" ],
+    [
+      "mkdir",
+      "build_pubsub"
+    ],
+    [
+      "cmake",
+      "-Bbuild_pubsub",
+      "-Hsamples/stand-alone-samples/basic_pub_sub/",
+      "-DCMAKE_INSTALL_PREFIX={install_dir}",
+      "-DCMAKE_PREFIX_PATH={install_dir}",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include", 
+      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so", 
+      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
+    ],
+    [ "cmake", "--build", "build_pubsub", "--config", "Release" ]
+  ]
 }
