@@ -39,7 +39,7 @@
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a", 
       "-B",
       "build_shadow",
-      "-S",
+      "-H",
       "samples/stand-alone-samples/shadow/shadow_sync/"
     ],
     [ "cmake", "--build", "build_shadow", "--config", "Release" ],
@@ -57,7 +57,7 @@
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a",
       "-B",
       "build_pubsub",
-      "-S",
+      "-H",
       "samples/stand-alone-samples/basic_pub_sub/"
     ],
     [ "cmake", "--build", "build_pubsub", "--config", "Release" ]
