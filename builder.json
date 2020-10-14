@@ -20,7 +20,7 @@
       }
     }
   },
-  "test_steps": [
+  "build_steps": [
     [
       "mkdir",
       "build_shadow"
