@@ -24,15 +24,25 @@
     "build",
     [
       "mkdir",
-      "build_shadow",
+      "build_shadow"
+    ],
+    [
       "mkdir",
-      "build_basic_pubsub",
+      "build_basic_pubsub"
+    ],
+    [
       "mkdir",
-      "build_raw_pubsub",
+      "build_raw_pubsub"
+    ],
+    [
       "mkdir",
-      "build_greengrass",
+      "build_greengrass"
+    ],
+    [
       "mkdir",
-      "build_identity",
+      "build_identity"
+    ],
+    [
       "mkdir",
       "build_jobs"
     ],
