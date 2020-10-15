@@ -6,7 +6,7 @@ file(GLOB SRC_FILES
        "*.cpp"
 )
 
-add_executable(${PROJECT_NAME} ${SHADOW_SYNC_SRC})
+add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17)
@@ -18,15 +18,9 @@ else ()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-find_library (
-    CRT_LIB
-    NAMES aws-crt-cpp
-)
-find_library (
-    SHADOW_LIB
-    NAMES IotShadow-cpp
-)
+find_package(aws-crt-cpp REQUIRED)
+find_package (IotShadow-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${CRT_LIB} ${SHADOW_LIB})
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotShadow-cpp)
