@@ -1,30 +1,29 @@
+cmake_minimum_required(VERSION 3.1)
+# note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
 project(basic-discovery CXX)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
-
-file(GLOB BASIC_DISCOVERY_SRC
+file(GLOB SRC_FILES
        "*.cpp"
 )
 
-set(BASIC_DISCOVERY_PROJECT_NAME basic-discovery)
-add_executable(${BASIC_DISCOVERY_PROJECT_NAME} ${BASIC_DISCOVERY_SRC})
-set_target_properties(${BASIC_DISCOVERY_PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+add_executable(${PROJECT_NAME} ${SRC_FILES})
 
-set(CMAKE_C_FLAGS_DEBUGOPT "")
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    CXX_STANDARD 14)
 
 #set warnings
 if (MSVC)
-    target_compile_options(${BASIC_DISCOVERY_PROJECT_NAME} PRIVATE /W4 /WX)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
 else ()
-    target_compile_options(${BASIC_DISCOVERY_PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-if (CMAKE_BUILD_TYPE STREQUAL "" OR CMAKE_BUILD_TYPE MATCHES Debug)
-    target_compile_definitions(${BASIC_DISCOVERY_PROJECT_NAME} PRIVATE "-DDEBUG_BUILD")
-endif ()
+find_package(aws-crt-cpp REQUIRED)
+find_library(
+    DISCOVERY_LIB
+    NAMES Discovery-cpp
+)
 
-target_include_directories(${BASIC_DISCOVERY_PROJECT_NAME} PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>)
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${BASIC_DISCOVERY_PROJECT_NAME} Discovery-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp ${DISCOVERY_LIB})
