@@ -1,21 +1,15 @@
 cmake_minimum_required(VERSION 3.1)
+# note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
 project(shadow-sync CXX)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
-
-file(GLOB SHADOW_SYNC_SRC
+file(GLOB SRC_FILES
        "*.cpp"
 )
 
 add_executable(${PROJECT_NAME} ${SHADOW_SYNC_SRC})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    LINKER_LANGUAGE CXX
-    CXX_STANDARD 11)
-
-if(COMMAND cmake_policy)
-    cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
+    CXX_STANDARD 17)
 
 #set warnings
 if (MSVC)
@@ -25,9 +19,8 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
-find_library (
-    SHADOW_LIB
-    NAMES IotShadow-cpp
-)
+find_package(IotShadow-cpp REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} AWS::aws-crt-cpp ${SHADOW_LIB})
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp IotShadow-cpp)
