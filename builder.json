@@ -27,10 +27,6 @@
       "build_shadow"
     ],
     [
-      "cmake", 
-      "--version"
-    ],
-    [
       "cmake",
       "-Bbuild_shadow",
       "-Hsamples/stand-alone-samples/shadow/shadow_sync/",

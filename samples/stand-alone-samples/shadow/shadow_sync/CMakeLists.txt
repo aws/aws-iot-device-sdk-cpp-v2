@@ -19,8 +19,11 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
-find_package (IotShadow-cpp REQUIRED)
+find_library(
+    SHADOW_LIB
+    NAMES IotShadow-cpp
+)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotShadow-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp ${SHADOW_LIB})
