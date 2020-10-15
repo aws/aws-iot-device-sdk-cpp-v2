@@ -9,7 +9,7 @@ file(GLOB SRC_FILES
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    CXX_STANDARD 17)
+    CXX_STANDARD 14)
 
 #set warnings
 if (MSVC)
