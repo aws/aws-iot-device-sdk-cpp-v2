@@ -18,9 +18,15 @@ else ()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wno-long-long -pedantic -Werror)
 endif ()
 
-find_package(aws-crt-cpp REQUIRED)
-find_package(IotShadow-cpp REQUIRED)
+find_library (
+    CRT_LIB
+    NAMES aws-crt-cpp
+)
+find_library (
+    SHADOW_LIB
+    NAMES IotShadow-cpp
+)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp IotShadow-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${CRT_LIB} ${SHADOW_LIB})
