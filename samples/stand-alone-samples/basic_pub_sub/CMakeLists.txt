@@ -1,21 +1,15 @@
 cmake_minimum_required(VERSION 3.1)
+# note: cxx-17 requires cmake 3.8, cxx-20 requires cmake 3.12
 project(basic-pub-sub CXX)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}/lib/cmake")
-
-file(GLOB PUB_SUB_SRC
+file(GLOB SRC_FILES
        "*.cpp"
 )
 
-add_executable(${PROJECT_NAME} ${PUB_SUB_SRC})
+add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    LINKER_LANGUAGE CXX
-    CXX_STANDARD 11)
-
-if(COMMAND cmake_policy)
-    cmake_policy(SET CMP0003 NEW)
-endif(COMMAND cmake_policy)
+    CXX_STANDARD 17)
 
 #set warnings
 if (MSVC)
