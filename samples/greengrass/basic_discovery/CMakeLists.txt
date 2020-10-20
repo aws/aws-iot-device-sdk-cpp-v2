@@ -19,11 +19,8 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
-find_library(
-    DISCOVERY_LIB
-    NAMES Discovery-cpp
-)
+find_package(Discovery-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp ${DISCOVERY_LIB})
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::Discovery-cpp)

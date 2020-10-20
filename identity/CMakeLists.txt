@@ -109,10 +109,10 @@ install(EXPORT "IotIdentity-cpp-targets"
         NAMESPACE AWS::
         COMPONENT Development)
 
-configure_file("cmake/IotIdentity-cpp-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/IotIdentity-cpp-config.cmake"
+configure_file("cmake/iotidentity-cpp-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/iotidentity-cpp-config.cmake"
         @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/IotIdentity-cpp-config.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotidentity-cpp-config.cmake"
         DESTINATION "lib/IotIdentity-cpp/cmake/"
         COMPONENT Development)

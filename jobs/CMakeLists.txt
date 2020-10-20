@@ -109,10 +109,10 @@ install(EXPORT "IotJobs-cpp-targets"
         NAMESPACE AWS::
         COMPONENT Development)
 
-configure_file("cmake/IotJobs-cpp-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/IotJobs-cpp-config.cmake"
+configure_file("cmake/iotjobs-cpp-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/iotjobs-cpp-config.cmake"
         @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/IotJobs-cpp-config.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotjobs-cpp-config.cmake"
         DESTINATION "lib/IotJobs-cpp/cmake/"
         COMPONENT Development)
