@@ -84,6 +84,18 @@
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
     ],
     [ "cmake", "--build", "build_shadow", "--config", "Release" ],
+    [	
+      "cmake",	
+      "-Bbuild_greengrass",	
+      "-Hsamples/greengrass/basic_discovery/",	
+      "-DCMAKE_INSTALL_PREFIX={install_dir}",	
+      "-DCMAKE_PREFIX_PATH={install_dir}",	
+      "-DCMAKE_BUILD_TYPE=Release",	
+      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include", 	
+      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so", 	
+      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"	
+    ],	
+    [ "cmake", "--build", "build_greengrass", "--config", "Release" ],
     [
       "cmake",
       "-Bbuild_identity",
