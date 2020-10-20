@@ -39,7 +39,7 @@ if (WIN32)
     endif ()
 endif()
 
-add_library(IotShadow-cpp ${AWS_IOTSHADOW_CPP_SRC})
+add_library(IotShadow-cpp STATIC ${AWS_IOTSHADOW_CPP_SRC})
 
 set_target_properties(IotShadow-cpp PROPERTIES LINKER_LANGUAGE CXX)
 
