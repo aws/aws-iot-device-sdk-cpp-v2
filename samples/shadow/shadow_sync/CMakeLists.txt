@@ -20,7 +20,7 @@ endif ()
 
 find_package(aws-crt-cpp REQUIRED)
 
-set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS ON)
+set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS TRUE)
 get_property(uselib64paths GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS)
 message("FIND_LIBRARY_USE_LIB64_PATHS: ${uselib64paths}")
 
