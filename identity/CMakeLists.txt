@@ -114,5 +114,5 @@ configure_file("cmake/iotidentity-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotidentity-cpp-config.cmake"
-        DESTINATION "lib/IotIdentity-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotIdentity-cpp/cmake/"
         COMPONENT Development)

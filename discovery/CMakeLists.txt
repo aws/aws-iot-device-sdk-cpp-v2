@@ -114,5 +114,5 @@ configure_file("cmake/discovery-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/discovery-cpp-config.cmake"
-        DESTINATION "lib/Discovery-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/Discovery-cpp/cmake/"
         COMPONENT Development)
