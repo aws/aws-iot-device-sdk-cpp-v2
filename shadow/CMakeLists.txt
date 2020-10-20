@@ -82,8 +82,8 @@ if (BUILD_SHARED_LIBS)
 else()
     install(TARGETS IotShadow-cpp
             EXPORT IotShadow-cpp-targets
-            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Development
-            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Development)
+            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} 
+            COMPONENT Development)
 endif()
 
 target_include_directories(IotShadow-cpp PUBLIC

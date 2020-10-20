@@ -1,5 +1,44 @@
 # Samples
 
+## Build Instruction
+
+You can build the samples either separate or together.
+
+build aws-iot-devices-sdk-cpp-v2 with following instructions:
+
+``` sh
+mkdir sdk-cpp-workspace
+cd sdk-cpp-workspace
+git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
+mkdir aws-iot-device-sdk-cpp-v2-build
+cd aws-iot-device-sdk-cpp-v2-build
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DBUILD_DEPS=ON -DCMAKE_BUILD_TYPE=Release ../aws-iot-device-sdk-cpp-v2
+cmake --build . --config Release --target install
+```
+
+### Separate build each sample
+
+Change directory into one of the samples, taking samples/mqtt/basic_pub_sub as example here.
+
+Under the directory of the sample, run the following commands:
+
+``` sh
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_BUILD_TYPE=Release ..
+cmake --build . --config Release --target install
+
+```
+
+### Build samples together
+
+under aws-iot-device-sdk-cpp-v2-build directory, run the following commands:
+
+``` sh
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DBUILD_DEPS=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_SAMPLES=ON ../aws-iot-device-sdk-cpp-v2
+cmake --build . --config Release --target install
+```
+
 ## Basic MQTT Pub-Sub
 
 This sample uses the
