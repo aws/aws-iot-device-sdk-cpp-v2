@@ -19,13 +19,8 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
-
-set_property(GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS TRUE)
-get_property(uselib64paths GLOBAL PROPERTY FIND_LIBRARY_USE_LIB64_PATHS)
-message("FIND_LIBRARY_USE_LIB64_PATHS: ${uselib64paths}")
-
 find_package(IotShadow-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp IotShadow-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotShadow-cpp)
