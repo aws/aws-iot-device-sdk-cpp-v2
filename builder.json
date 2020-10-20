@@ -50,18 +50,6 @@
     "/root/aws-iot-device-sdk-cpp-v2/build/install/lib64/IotShadow-cpp/cmake/static/"],
     [
       "cmake",
-      "-Bbuild_shadow",
-      "-Hsamples/shadow/shadow_sync/",
-      "-DCMAKE_INSTALL_PREFIX={install_dir}",
-      "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=Release",
-      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include", 
-      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so", 
-      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
-    ],
-    [ "cmake", "--build", "build_shadow", "--config", "Release" ],
-    [
-      "cmake",
       "-Bbuild_basic_pubsub",
       "-Hsamples/mqtt/basic_pub_sub/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
@@ -84,7 +72,18 @@
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
     ],
     [ "cmake", "--build", "build_raw_pubsub", "--config", "Release" ],
-
+    [
+      "cmake",
+      "-Bbuild_shadow",
+      "-Hsamples/shadow/shadow_sync/",
+      "-DCMAKE_INSTALL_PREFIX={install_dir}",
+      "-DCMAKE_PREFIX_PATH={install_dir}",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include", 
+      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so", 
+      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
+    ],
+    [ "cmake", "--build", "build_shadow", "--config", "Release" ],
     [
       "cmake",
       "-Bbuild_identity",
