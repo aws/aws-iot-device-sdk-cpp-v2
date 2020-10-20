@@ -19,6 +19,8 @@ else ()
 endif ()
 
 find_package(aws-crt-cpp REQUIRED)
+
+SET(FIND_LIBRARY_USE_LIB64_PATHS TRUE)
 find_package(IotShadow-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)

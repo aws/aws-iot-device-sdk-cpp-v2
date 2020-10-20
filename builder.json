@@ -46,8 +46,6 @@
       "mkdir",
       "build_jobs"
     ],
-    ["ls",
-    "/root/aws-iot-device-sdk-cpp-v2/build/install/lib/IotShadow-cpp/cmake/static/"],
     [
       "cmake",
       "-Bbuild_shadow",
