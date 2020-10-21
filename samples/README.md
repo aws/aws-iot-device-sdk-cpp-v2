@@ -4,7 +4,7 @@
 
 You can build the samples either separate or together.
 
-build aws-iot-devices-sdk-cpp-v2 with following instructions:
+Firstly, build aws-iot-devices-sdk-cpp-v2 with following instructions:
 
 ``` sh
 mkdir sdk-cpp-workspace
@@ -18,9 +18,7 @@ cmake --build . --config Release --target install
 
 ### Separate build each sample
 
-Change directory into one of the samples, taking samples/mqtt/basic_pub_sub as example here.
-
-Under the directory of the sample, run the following commands:
+Change directory into one of the samples. Under the directory of the sample, run the following commands:
 
 ``` sh
 mkdir build
@@ -38,6 +36,10 @@ under aws-iot-device-sdk-cpp-v2-build directory, run the following commands:
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DBUILD_DEPS=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_SAMPLES=ON ../aws-iot-device-sdk-cpp-v2
 cmake --build . --config Release --target install
 ```
+
+**Note: for linux machine, you may need to indicate the path to libcrypto, by adding the following configuration to the cmake config process:**
+- LibCrypto_INCLUDE_DIR="\<path to include dir\>"
+- LibCrypto_STATIC_LIBRARY="\<path to libcrypto.a file\>"
 
 ## Basic MQTT Pub-Sub
 
