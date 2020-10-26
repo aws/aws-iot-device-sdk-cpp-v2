@@ -1,4 +1,11 @@
-# Samples
+# Sample apps for the AWS IoT Device SDK for C++ v2
+
+* [Basic MQTT Pub-Sub](#basic-mqtt-pub-sub)
+* [Raw MQTT Pub-Sub](#raw-mqtt-pub-sub)
+* [Fleet provisioning](#fleet-provisioning)
+* [Shadow](#shadow)
+* [Jobs](#jobs)
+* [Greengrass discovery](#greengrass-discovery)
 
 ## Basic MQTT Pub-Sub
 
@@ -302,6 +309,6 @@ and receive.
 </pre>
 </details>
 
-## Greengrass Discovery
+## Greengrass discovery
 
 This sample is intended for direct usage with the Greengrass tutorial found [here](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html).
