@@ -4,9 +4,10 @@
  */
 #include <aws/crt/Api.h>
 #include <aws/crt/StlAllocator.h>
+#include <aws/crt/auth/Credentials.h>
+#include <aws/crt/io/TlsOptions.h>
 
-#include <aws/crt/http/HttpRequestResponse.h>
-#include <aws/crt/mqtt/MqttClient.h>
+#include <aws/iot/MqttClient.h>
 
 #include <algorithm>
 #include <aws/crt/UUID.h>
@@ -21,13 +22,16 @@ static void s_printHelp()
     fprintf(stdout, "Usage:\n");
     fprintf(
         stdout,
-        "raw-pub-sub --endpoint <endpoint> --cert <path to cert>"
+        "basic-pub-sub --endpoint <endpoint> --cert <path to cert>"
         " --key <path to key> --topic <topic> --ca_file <optional: path to custom ca>"
-        " --use_websocket --user_name <username> --password <password> --protocol_name <protocol> "
-        " --auth_params=<comma delimited list> --proxy_host <host> --proxy_port <port>\n\n");
+        " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>"
+        " --x509 --x509_role_alias <role_alias> --x509_endpoint <endpoint> --x509_thing <thing_name>"
+        " --x509_cert <path to cert> --x509_key <path to key> --x509_rootca <path to root ca>\n\n");
     fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
-    fprintf(stdout, "cert: path to your client certificate in PEM format. Don't use with use_websocket\n");
-    fprintf(stdout, "key: path to your key in PEM format. Dont use with use_websocket\n");
+    fprintf(
+        stdout,
+        "cert: path to your client certificate in PEM format. If this is not set you must specify use_websocket\n");
+    fprintf(stdout, "key: path to your key in PEM format. If this is not set you must specify use_websocket\n");
     fprintf(stdout, "topic: topic to publish, subscribe to. (optional)\n");
     fprintf(stdout, "client_id: client id to use (optional)\n");
     fprintf(
@@ -36,16 +40,27 @@ static void s_printHelp()
         " in your trust store, set this.\n");
     fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
     fprintf(stdout, "use_websocket: if specified, uses a websocket over https (optional)\n");
+    fprintf(
+        stdout,
+        "signing_region: used for websocket signer it should only be specific if websockets are used. (required for "
+        "websockets)\n");
     fprintf(stdout, "proxy_host: if you want to use a proxy with websockets, specify the host here (optional).\n");
     fprintf(
         stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n");
-    fprintf(stdout, "user_name: User name to send with mqtt connect.\n");
-    fprintf(stdout, "password: Password to send with mqtt connect.\n");
-    fprintf(stdout, "protocol_name: (optional) defaults to mqtt.\n");
+
+    fprintf(stdout, "  x509: Use the x509 credentials provider while using websockets (optional)\n");
+    fprintf(stdout, "  x509_role_alias: Role alias to use with the x509 credentials provider (required for x509)\n");
+    fprintf(stdout, "  x509_endpoint: Endpoint to fetch x509 credentials from (required for x509)\n");
+    fprintf(stdout, "  x509_thing: Thing name to fetch x509 credentials on behalf of (required for x509)\n");
     fprintf(
         stdout,
-        "auth_params: (optional) Comma delimited list of auth parameters. For websockets these will be set as headers. "
-        "For raw mqtt these will be appended to user_name.\n\n");
+        "  x509_cert: Path to the IoT thing certificate used in fetching x509 credentials (required for x509)\n");
+    fprintf(
+        stdout,
+        "  x509_key: Path to the IoT thing private key used in fetching x509 credentials (required for x509)\n");
+    fprintf(
+        stdout,
+        "  x509_rootca: Path to the root certificate used in fetching x509 credentials (required for x509)\n\n");
 }
 
 bool s_cmdOptionExists(char **begin, char **end, const String &option)
@@ -78,23 +93,25 @@ int main(int argc, char *argv[])
     String caFile;
     String topic("test/topic");
     String clientId(String("test-") + Aws::Crt::UUID().ToString());
+    String signingRegion;
     String proxyHost;
     uint16_t proxyPort(8080);
-    String userName;
-    String password;
-    // Valid protocol names are documented on page:
-    // https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html
-    // Use "mqtt" for Custom Authentication
-    String protocolName("x-amzn-mqtt-ca"); // X.509 client certificate auth
-    Vector<String> authParams;
+
+    String x509Endpoint;
+    String x509ThingName;
+    String x509RoleAlias;
+    String x509CertificatePath;
+    String x509KeyPath;
+    String x509RootCAFile;
 
     bool useWebSocket = false;
+    bool useX509 = false;
 
     /*********************** Parse Arguments ***************************/
     if (!s_cmdOptionExists(argv, argv + argc, "--endpoint"))
     {
         s_printHelp();
-        return 0;
+        return 1;
     }
 
     endpoint = s_getCmdOption(argv, argv + argc, "--endpoint");
@@ -108,6 +125,13 @@ int main(int argc, char *argv[])
     {
         certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
     }
+
+    if (keyPath.empty() != certificatePath.empty())
+    {
+        fprintf(stdout, "Using mtls (cert and key) requires both the certificate and the private key\n");
+        s_printHelp();
+        return 1;
+    }
     if (s_getCmdOption(argv, argv + argc, "--topic"))
     {
         topic = s_getCmdOption(argv, argv + argc, "--topic");
@@ -120,10 +144,18 @@ int main(int argc, char *argv[])
     {
         clientId = s_getCmdOption(argv, argv + argc, "--client_id");
     }
+
     if (s_cmdOptionExists(argv, argv + argc, "--use_websocket"))
     {
-        protocolName = "http/1.1";
+        if (!s_cmdOptionExists(argv, argv + argc, "--signing_region"))
+        {
+            fprintf(stdout, "Websockets require a signing region to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
         useWebSocket = true;
+        signingRegion = s_getCmdOption(argv, argv + argc, "--signing_region");
+
         if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
         {
             proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
@@ -135,31 +167,80 @@ int main(int argc, char *argv[])
         }
     }
 
-    if (s_cmdOptionExists(argv, argv + argc, "--user_name"))
-    {
-        userName = s_getCmdOption(argv, argv + argc, "--user_name");
-    }
+    bool usingMtls = !certificatePath.empty() && !keyPath.empty();
 
-    if (s_cmdOptionExists(argv, argv + argc, "--password"))
+    /* one or the other, but not both nor neither */
+    if (useWebSocket == usingMtls)
     {
-        password = s_getCmdOption(argv, argv + argc, "--password");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--protocol_name"))
-    {
-        protocolName = s_getCmdOption(argv, argv + argc, "--protocol_name");
-    }
-
-    if (s_cmdOptionExists(argv, argv + argc, "--auth_params"))
-    {
-        String params = s_getCmdOption(argv, argv + argc, "--auth_params");
-        ByteCursor commaDelimitedParams = ByteCursorFromCString(params.c_str());
-        ByteCursor split;
-        AWS_ZERO_STRUCT(split);
-        while (aws_byte_cursor_next_split(&commaDelimitedParams, ',', &split))
+        if (useWebSocket && usingMtls)
         {
-            authParams.push_back(String((char *)split.ptr, split.len));
+            fprintf(stdout, "You must use either websockets or mtls for authentication, but not both.\n");
         }
+        else
+        {
+            fprintf(stdout, "You must use either websockets or mtls for authentication.\n");
+        }
+
+        s_printHelp();
+        return 1;
+    }
+
+    // x509 credentials provider configuration
+    if (s_cmdOptionExists(argv, argv + argc, "--x509"))
+    {
+        if (!useWebSocket)
+        {
+            fprintf(stdout, "X509 credentials sourcing requires websockets to be enabled and configured.\n");
+            s_printHelp();
+            return 1;
+        }
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_role_alias"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an x509 role alias to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509RoleAlias = s_getCmdOption(argv, argv + argc, "--x509_role_alias");
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_endpoint"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an x509 endpoint to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509Endpoint = s_getCmdOption(argv, argv + argc, "--x509_endpoint");
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_thing"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an x509 thing name to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509ThingName = s_getCmdOption(argv, argv + argc, "--x509_thing");
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_cert"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an Iot thing certificate to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509CertificatePath = s_getCmdOption(argv, argv + argc, "--x509_cert");
+
+        if (!s_cmdOptionExists(argv, argv + argc, "--x509_key"))
+        {
+            fprintf(stdout, "X509 credentials sourcing requires an Iot thing private key to be specified.\n");
+            s_printHelp();
+            return 1;
+        }
+        x509KeyPath = s_getCmdOption(argv, argv + argc, "--x509_key");
+
+        if (s_cmdOptionExists(argv, argv + argc, "--x509_rootca"))
+        {
+            x509RootCAFile = s_getCmdOption(argv, argv + argc, "--x509_rootca");
+        }
+
+        useX509 = true;
     }
 
     /********************** Now Setup an Mqtt Client ******************/
@@ -184,97 +265,143 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    Mqtt::MqttClient client(bootstrap);
-    Io::TlsContextOptions ctxOptions = Io::TlsContextOptions::InitDefaultClient();
+    Aws::Crt::Io::TlsContext x509TlsCtx;
+    Aws::Iot::MqttClientConnectionConfigBuilder builder;
 
     if (!certificatePath.empty() && !keyPath.empty())
     {
-        ctxOptions = Io::TlsContextOptions::InitClientWithMtls(certificatePath.c_str(), keyPath.c_str());
+        builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
+    }
+    else if (useWebSocket)
+    {
+        std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
+
+        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+        if (!proxyHost.empty())
+        {
+            proxyOptions.HostName = proxyHost;
+            proxyOptions.Port = proxyPort;
+            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+        }
+
+        if (useX509)
+        {
+            Aws::Crt::Io::TlsContextOptions tlsCtxOptions =
+                Aws::Crt::Io::TlsContextOptions::InitClientWithMtls(x509CertificatePath.c_str(), x509KeyPath.c_str());
+            if (!tlsCtxOptions)
+            {
+                fprintf(
+                    stderr,
+                    "Unable to initialize tls context options, error: %s!\n",
+                    ErrorDebugString(tlsCtxOptions.LastError()));
+                return -1;
+            }
+
+            if (!x509RootCAFile.empty())
+            {
+                tlsCtxOptions.OverrideDefaultTrustStore(nullptr, x509RootCAFile.c_str());
+            }
+
+            x509TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
+            if (!x509TlsCtx)
+            {
+                fprintf(
+                    stderr,
+                    "Unable to create tls context, error: %s!\n",
+                    ErrorDebugString(x509TlsCtx.GetInitializationError()));
+                return -1;
+            }
+
+            Aws::Crt::Auth::CredentialsProviderX509Config x509Config;
+
+            x509Config.TlsOptions = x509TlsCtx.NewConnectionOptions();
+            if (!x509Config.TlsOptions)
+            {
+                fprintf(
+                    stderr,
+                    "Unable to create tls options from tls context, error: %s!\n",
+                    ErrorDebugString(x509Config.TlsOptions.LastError()));
+                return -1;
+            }
+
+            x509Config.Bootstrap = &bootstrap;
+            x509Config.Endpoint = x509Endpoint;
+            x509Config.RoleAlias = x509RoleAlias;
+            x509Config.ThingName = x509ThingName;
+
+            if (!proxyHost.empty())
+            {
+                x509Config.ProxyOptions = proxyOptions;
+            }
+
+            provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderX509(x509Config);
+        }
+        else
+        {
+            Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
+            defaultConfig.Bootstrap = &bootstrap;
+
+            provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
+        }
+
+        if (!provider)
+        {
+            fprintf(stderr, "Failure to create credentials provider!\n");
+            return -1;
+        }
+
+        Aws::Iot::WebsocketConfig config(signingRegion, provider);
+        if (!proxyHost.empty())
+        {
+            config.ProxyOptions = proxyOptions;
+        }
+
+        builder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
+    }
+    else
+    {
+        s_printHelp();
     }
 
     if (!caFile.empty())
     {
-        ctxOptions.OverrideDefaultTrustStore(nullptr, caFile.c_str());
+        builder.WithCertificateAuthority(caFile.c_str());
     }
 
-    uint16_t port = useWebSocket ? 443 : 8883;
-    if (Io::TlsContextOptions::IsAlpnSupported())
+    builder.WithEndpoint(endpoint);
+
+    auto clientConfig = builder.Build();
+
+    if (!clientConfig)
     {
-        port = 443;
-        ctxOptions.SetAlpnList(protocolName.c_str());
-    }
-
-    Io::SocketOptions socketOptions;
-    socketOptions.SetConnectTimeoutMs(3000);
-
-    Io::TlsContext tlsContext(ctxOptions, Io::TlsMode::CLIENT);
-
-    auto connection = client.NewConnection(endpoint.c_str(), port, socketOptions, tlsContext, useWebSocket);
-
-    if (!connection)
-    {
-        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(client.LastError()));
+        fprintf(
+            stderr,
+            "Client Configuration initialization failed with error %s\n",
+            ErrorDebugString(clientConfig.LastError()));
         exit(-1);
     }
 
-    if (!authParams.empty())
+    Aws::Iot::MqttClient mqttClient(bootstrap);
+    /*
+     * Since no exceptions are used, always check the bool operator
+     * when an error could have occurred.
+     */
+    if (!mqttClient)
     {
-        if (useWebSocket)
-        {
-            /* set authorizer headers on the outgoing websocket upgrade request. */
-            connection->WebsocketInterceptor = [&](std::shared_ptr<Http::HttpRequest> req,
-                                                   const Mqtt::OnWebSocketHandshakeInterceptComplete &onComplete) {
-                for (auto &param : authParams)
-                {
-                    Http::HttpHeader header;
-                    AWS_ZERO_STRUCT(header);
-                    ByteCursor paramPair = ByteCursorFromCString(param.c_str());
-                    ByteCursor nameOrValue;
-                    AWS_ZERO_STRUCT(nameOrValue);
-                    if (!aws_byte_cursor_next_split(&paramPair, '=', &nameOrValue))
-                    {
-                        s_printHelp();
-                        exit(-1);
-                    }
-                    header.name = nameOrValue;
-                    if (!aws_byte_cursor_next_split(&paramPair, '=', &nameOrValue))
-                    {
-                        s_printHelp();
-                        exit(-1);
-                    }
-                    header.value = nameOrValue;
-                    req->AddHeader(header);
-                }
-                onComplete(req, AWS_OP_SUCCESS);
-            };
-        } /* set authorizer parameters on username if we're using raw mqtt */
-        else if (!userName.empty())
-        {
-            userName += "?";
-            size_t count = 0;
-            for (auto &param : authParams)
-            {
-                userName += param;
-                count++;
-                if (count < authParams.size())
-                {
-                    userName += "&";
-                }
-            }
-        }
+        fprintf(stderr, "MQTT Client Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
+        exit(-1);
     }
 
-    if (!userName.empty())
-    {
-        connection->SetLogin(userName.c_str(), password.c_str());
-    }
+    /*
+     * Now create a connection object. Note: This type is move only
+     * and its underlying memory is managed by the client.
+     */
+    auto connection = mqttClient.NewConnection(clientConfig);
 
-    if (!proxyHost.empty())
+    if (!connection)
     {
-        Http::HttpClientConnectionProxyOptions proxyOptions;
-        proxyOptions.HostName = proxyHost;
-        proxyOptions.Port = proxyPort;
-        connection->SetWebsocketProxyOptions(proxyOptions);
+        fprintf(stderr, "MQTT Connection Creation failed with error %s\n", ErrorDebugString(mqttClient.LastError()));
+        exit(-1);
     }
 
     /*
