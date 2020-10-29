@@ -45,6 +45,8 @@ cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DBUILD_DE
 cmake --build . --target install
 ```
 
+Note: -DCMAKE_INSTALL_PREFIX can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here.
+
 #### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
 
 ``` sh
@@ -55,6 +57,7 @@ cmake --build . --target install
 ```
 
 #### Building on Windows
+
 Due to maximum path length limitations in the Windows API, we recommend [enabling long paths](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) on your development machines, or cloning to a short path like: `C:\dev\iotsdk`
 
 ### Mac-Only TLS Behavior
