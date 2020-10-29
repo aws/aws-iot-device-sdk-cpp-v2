@@ -88,9 +88,7 @@
     [
       "cmake",
       "--build",
-      "build_shadow",
-      "--config",
-      "Release"
+      "build_shadow"
     ],
     [
       "mkdir",

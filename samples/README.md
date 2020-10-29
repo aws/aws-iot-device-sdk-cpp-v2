@@ -18,22 +18,25 @@ Change directory into one of the samples. Under the directory of the sample, run
 ``` sh
 mkdir build
 cd build
-cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" ..
+cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
 cmake --build .
 ```
 
-Note: -DCMAKE_PREFIX_PATH needs to be set to the path aws-iot-device-sdk-cpp-v2 installed. Since [Installation](../README.md#Installation) takes sdk-cpp-workspace as an example, here takes that as an example too.
+#### Note
 
-#### **Note: for linux machine, you will need to indicate the path to libcrypto, by adding the following configuration to the cmake config process:**
+* `-DCMAKE_PREFIX_PATH` needs to be set to the path aws-iot-device-sdk-cpp-v2 installed. Since [Installation](../README.md#Installation) takes sdk-cpp-workspace as an example, here takes that as an example too.
 
-* LibCrypto_INCLUDE_DIR="\<path to include dir\>"
-* LibCrypto_STATIC_LIBRARY="\<path to libcrypto.a file\>"
+* `-DCMAKE_BUILD_TYPE` needs to match the CMAKE_BUILD_TYPE aws-iot-device-sdk-cpp-v2 built.
 
-Like the following commands:
+* **for linux machine, you will need to indicate the path to libcrypto, by adding the following configuration to the cmake config process:**
+  * LibCrypto_INCLUDE_DIR="\<path to include dir\>"
+  * LibCrypto_STATIC_LIBRARY="\<path to libcrypto.a file\>"
 
-``` sh
-cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DLibCrypto_INCLUDE_DIR="<path to include dir>" -DLibCrypto_STATIC_LIBRARY="<path to libcrypto.a file>" ..
-```
+  Like the following commands:
+
+  ``` sh
+  cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DLibCrypto_INCLUDE_DIR="<path to include dir>" -DLibCrypto_STATIC_LIBRARY="<path to libcrypto.a file>" ..
+  ```
 
 ## Basic MQTT Pub-Sub
 
