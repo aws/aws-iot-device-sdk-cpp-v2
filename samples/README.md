@@ -26,9 +26,9 @@ cmake --build .
 
 * `-DCMAKE_PREFIX_PATH` needs to be set to the path aws-iot-device-sdk-cpp-v2 installed. Since [Installation](../README.md#Installation) takes sdk-cpp-workspace as an example, here takes that as an example too.
 
-* `-DCMAKE_BUILD_TYPE` needs to match the CMAKE_BUILD_TYPE aws-iot-device-sdk-cpp-v2 built.
+* `-DCMAKE_BUILD_TYPE` needs to match the CMAKE_BUILD_TYPE when aws-iot-device-sdk-cpp-v2 built.
 
-* **for linux machine, you will need to indicate the path to libcrypto, by adding the following configuration to the cmake config process:**
+* **For linux machine, you will need to indicate the path to libcrypto, by adding the following configuration to the cmake config process:**
   * LibCrypto_INCLUDE_DIR="\<path to include dir\>"
   * LibCrypto_STATIC_LIBRARY="\<path to libcrypto.a file\>"
 
