@@ -1,4 +1,4 @@
-# AWS IoT SDK for C++ v2
+# AWS IoT Device SDK for C++ v2
 
 This document provides information about the AWS IoT device SDK for C++ V2.
 
@@ -61,7 +61,7 @@ Due to maximum path length limitations in the Windows API, we recommend [enablin
 
 Please note that on Mac, once a private key is used with a certificate, that certificate-key pair is imported into the Mac Keychain.  All subsequent uses of that certificate will use the stored private key and ignore anything passed in programmatically.  Beginning in v1.7.3, when a stored private key from the Keychain is used, the following will be logged at the "info" log level:
 
-``` 
+```
 static: certificate has an existing certificate-key pair that was previously imported into the Keychain.  Using key from Keychain instead of the one provided.
 ```
 
