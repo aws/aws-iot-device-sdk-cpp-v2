@@ -12,15 +12,12 @@ namespace Aws
 
     }
 
-    namespace Iotdevice
+    namespace Iotdevicedefenderv1
     {
+
         DeviceApiHandle::DeviceApiHandle(Crt::Allocator *allocator) noexcept { aws_iotdevice_library_init(allocator); }
 
         DeviceApiHandle::~DeviceApiHandle() { aws_iotdevice_library_clean_up(); }
-    } // namespace Iotdevice
-
-    namespace Iotdevicedefenderv1
-    {
 
         void ReportTask::s_onDefenderV1TaskCancelled(void *userData)
         {

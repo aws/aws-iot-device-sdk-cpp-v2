@@ -13,7 +13,7 @@ static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, vo
     (void)ctx;
     {
         Aws::Crt::ApiHandle apiHandle(allocator);
-        Aws::Iotdevice::DeviceApiHandle deviceApiHandle(allocator);
+        Aws::Iotdevicedefenderv1::DeviceApiHandle deviceApiHandle(allocator);
         Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitDefaultClient();
 
         Aws::Crt::Io::TlsContext tlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT, allocator);
@@ -93,7 +93,7 @@ static int s_TestDeviceDefenderFailedTest(Aws::Crt::Allocator *allocator, void *
     (void)ctx;
     {
         Aws::Crt::ApiHandle apiHandle(allocator);
-        Aws::Iotdevice::DeviceApiHandle deviceApiHandle(allocator);
+        Aws::Iotdevicedefenderv1::DeviceApiHandle deviceApiHandle(allocator);
         Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitDefaultClient();
 
         Aws::Crt::Io::TlsContext tlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT, allocator);

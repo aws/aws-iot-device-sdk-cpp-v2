@@ -18,20 +18,6 @@ namespace Aws
 
     }
 
-    namespace Iotdevice
-    {
-        class AWS_IOTDEVICEDEFENDER_API DeviceApiHandle final
-        {
-          public:
-            DeviceApiHandle(Crt::Allocator *allocator) noexcept;
-            ~DeviceApiHandle();
-            DeviceApiHandle(const DeviceApiHandle &) = delete;
-            DeviceApiHandle(DeviceApiHandle &&) = delete;
-            DeviceApiHandle &operator=(const DeviceApiHandle &) = delete;
-            DeviceApiHandle &operator=(DeviceApiHandle &&) = delete;
-        };
-    } // namespace Iotdevice
-
     namespace Iotdevicedefenderv1
     {
 
@@ -53,6 +39,20 @@ namespace Aws
             Ready = 0,
             Running = 1,
             Stopped = 2,
+        };
+
+        /**
+         * This object should be initialized before creating DeviceDefender tasks
+         */
+        class AWS_IOTDEVICEDEFENDER_API DeviceApiHandle final
+        {
+          public:
+            DeviceApiHandle(Crt::Allocator *allocator) noexcept;
+            ~DeviceApiHandle();
+            DeviceApiHandle(const DeviceApiHandle &) = delete;
+            DeviceApiHandle(DeviceApiHandle &&) = delete;
+            DeviceApiHandle &operator=(const DeviceApiHandle &) = delete;
+            DeviceApiHandle &operator=(DeviceApiHandle &&) = delete;
         };
 
         /**
