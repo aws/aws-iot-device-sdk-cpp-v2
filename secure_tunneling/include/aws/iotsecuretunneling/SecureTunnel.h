@@ -7,6 +7,7 @@
 #include <aws/crt/io/Bootstrap.h>
 #include <aws/crt/io/SocketOptions.h>
 #include <aws/iotdevice/secure_tunneling.h>
+#include <aws/iotsecuretunneling/Exports.h>
 
 int s_SecureTunnelingCallbackTest(Aws::Crt::Allocator *allocator, void *ctx);
 
@@ -24,7 +25,7 @@ namespace Aws
             using OnSecureTunnelingStreamReset = std::function<void(void)>;
             using OnSecureTunnelingSessionReset = std::function<void(void)>;
 
-            class SecureTunnel
+            class AWS_IOTSECURETUNNELING_API SecureTunnel
             {
               public:
                 SecureTunnel(

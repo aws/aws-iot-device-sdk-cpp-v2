@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(IotSecureTunneling-cpp CXX)
+project(IotSecureTunneling-cpp CXX C)
 
 set(RUNTIME_DIRECTORY bin)
 
@@ -93,6 +93,8 @@ target_include_directories(IotSecureTunneling-cpp PUBLIC
 if (NOT IS_SUBDIRECTORY_INCLUDE)
     aws_use_package(aws-crt-cpp)
 endif()
+
+aws_use_package(aws-c-iot)
 
 target_link_libraries(IotSecureTunneling-cpp ${DEP_AWS_LIBS})
 
