@@ -134,7 +134,7 @@
       "--build",
       "build_identity",
       "--config",
-      "RelWithDebInfo"
+      "Debug"
     ],
     [
       "mkdir",
