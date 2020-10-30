@@ -20,8 +20,6 @@ jobs:
     strategy:
       matrix:
         image:
-          - manylinux1-x64
-          - manylinux1-x86
           - manylinux2014-x64
           - manylinux2014-x86
     steps:

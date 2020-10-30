@@ -45,19 +45,18 @@ namespace Aws
             void *cancellationUserdata) noexcept
             : OnTaskCancelled(std::move(onCancelled)), cancellationUserdata(cancellationUserdata),
               m_allocator(allocator), m_status(ReportTaskStatus::Ready),
-              m_taskConfig{
-                  mqttConnection.get()->GetUnderlyingConnection(),
-                  ByteCursorFromString(thingName),
-                  aws_event_loop_group_get_next_loop(eventLoopGroup.GetUnderlyingHandle()),
-                  reportFormat,
-                  aws_timestamp_convert(taskPeriodSeconds, AWS_TIMESTAMP_SECS, AWS_TIMESTAMP_NANOS, NULL),
-                  aws_timestamp_convert(
-                      networkConnectionSamplePeriodSeconds,
-                      AWS_TIMESTAMP_SECS,
-                      AWS_TIMESTAMP_NANOS,
-                      NULL),
-                  ReportTask::s_onDefenderV1TaskCancelled,
-                  this},
+              m_taskConfig{mqttConnection.get()->GetUnderlyingConnection(),
+                           ByteCursorFromString(thingName),
+                           aws_event_loop_group_get_next_loop(eventLoopGroup.GetUnderlyingHandle()),
+                           reportFormat,
+                           aws_timestamp_convert(taskPeriodSeconds, AWS_TIMESTAMP_SECS, AWS_TIMESTAMP_NANOS, NULL),
+                           aws_timestamp_convert(
+                               networkConnectionSamplePeriodSeconds,
+                               AWS_TIMESTAMP_SECS,
+                               AWS_TIMESTAMP_NANOS,
+                               NULL),
+                           ReportTask::s_onDefenderV1TaskCancelled,
+                           this},
               m_lastError(0)
         {
             aws_iotdevice_library_init(allocator);
