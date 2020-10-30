@@ -20,7 +20,7 @@ namespace Aws
 
     namespace Iotdevice
     {
-        class AWS_CRT_CPP_API DeviceApiHandle final
+        class AWS_IOTDEVICEDEFENDER_API DeviceApiHandle final
         {
           public:
             DeviceApiHandle(Crt::Allocator *allocator) noexcept;
@@ -58,7 +58,7 @@ namespace Aws
         /**
          * Represents a persistent DeviceDefender V1 task.
          */
-        class AWS_CRT_CPP_API ReportTask final
+        class AWS_IOTDEVICEDEFENDER_API ReportTask final
         {
             friend ReportTaskBuilder;
 
@@ -117,7 +117,7 @@ namespace Aws
         /**
          * Represents a builder for creating a ReportTask object.
          */
-        class AWS_CRT_CPP_API ReportTaskBuilder final
+        class AWS_IOTDEVICEDEFENDER_API ReportTaskBuilder final
         {
           public:
             ReportTaskBuilder(
