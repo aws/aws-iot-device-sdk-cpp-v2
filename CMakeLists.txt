@@ -4,7 +4,7 @@ project(aws-iot-device-sdk-cpp-v2)
 include(CTest)
 
 option(BUILD_DEPS "Builds aws common runtime dependencies as part of build, only do this if you don't want to control your dependency chain." OFF)
-option(BUILD_SAMPLES "Build samples as part of the build" ON)
+option(BUILD_SAMPLES "Build samples as part of the build" OFF)
 
 if (DEFINED CMAKE_PREFIX_PATH)
     file(TO_CMAKE_PATH "${CMAKE_PREFIX_PATH}" CMAKE_PREFIX_PATH)
@@ -34,7 +34,7 @@ string(REPLACE ";" "${AWS_MODULE_DIR};" AWS_MODULE_PATH "${CMAKE_PREFIX_PATH}${A
 # Append that generated list to the module search path
 list(APPEND CMAKE_MODULE_PATH ${AWS_MODULE_PATH})
 
-if (NOT DEFINED CMAKE_BUILD_TYPE)
+if (NOT CMAKE_BUILD_TYPE)
     if (NOT WIN32)
         set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     endif()
@@ -62,10 +62,5 @@ add_subdirectory(identity)
 add_subdirectory(devicedefender)
 
 if (BUILD_SAMPLES)
-    add_subdirectory(samples/identity/fleet_provisioning)
-    add_subdirectory(samples/mqtt/basic_pub_sub)
-    add_subdirectory(samples/mqtt/raw_pub_sub)
-    add_subdirectory(samples/jobs/describe_job_execution)
-    add_subdirectory(samples/shadow/shadow_sync)
-    add_subdirectory(samples/greengrass/basic_discovery)
+    message(WARNING "BUILD_SAMPLES has been depercated. Please build each sample separately.")
 endif()
