@@ -36,7 +36,7 @@
       "-Hsamples/mqtt/basic_pub_sub/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
       "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
       "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
@@ -46,7 +46,7 @@
       "--build",
       "build_basic_pubsub",
       "--config",
-      "Release"
+      "RelWithDebInfo"
     ],
     [
       "mkdir",
@@ -58,7 +58,7 @@
       "-Hsamples/mqtt/raw_pub_sub/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
       "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
       "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
@@ -68,7 +68,7 @@
       "--build",
       "build_raw_pubsub",
       "--config",
-      "Release"
+      "RelWithDebInfo"
     ],
     [
       "mkdir",
@@ -80,6 +80,7 @@
       "-Hsamples/shadow/shadow_sync/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
       "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
       "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
@@ -89,7 +90,7 @@
       "--build",
       "build_shadow",
       "--config",
-      "Release"
+      "RelWithDebInfo"
     ],
     [
       "mkdir",
@@ -101,7 +102,7 @@
       "-Hsamples/greengrass/basic_discovery/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
       "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
       "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
@@ -111,7 +112,7 @@
       "--build",
       "build_greengrass",
       "--config",
-      "Release"
+      "RelWithDebInfo"
     ],
     [
       "mkdir",
@@ -123,7 +124,7 @@
       "-Hsamples/identity/fleet_provisioning/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
       "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
       "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
@@ -133,7 +134,7 @@
       "--build",
       "build_identity",
       "--config",
-      "Release"
+      "RelWithDebInfo"
     ],
     [
       "mkdir",
@@ -145,7 +146,7 @@
       "-Hsamples/jobs/describe_job_execution/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=Release",
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
       "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
       "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
       "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
@@ -155,7 +156,7 @@
       "--build",
       "build_jobs",
       "--config",
-      "Release"
+      "RelWithDebInfo"
     ]
   ]
 }

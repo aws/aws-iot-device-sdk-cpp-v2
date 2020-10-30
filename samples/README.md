@@ -19,14 +19,14 @@ Change directory into one of the samples. Under the directory of the sample, run
 mkdir build
 cd build
 cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
-cmake --build .
+cmake --build . --config "<Release|RelWithDebInfo|Debug>"
 ```
 
 #### Note
 
 * `-DCMAKE_PREFIX_PATH` needs to be set to the path aws-iot-device-sdk-cpp-v2 installed. Since [Installation](../README.md#Installation) takes sdk-cpp-workspace as an example, here takes that as an example too.
 
-* `-DCMAKE_BUILD_TYPE` needs to match the CMAKE_BUILD_TYPE when aws-iot-device-sdk-cpp-v2 built.
+* `-DCMAKE_BUILD_TYPE` and `--config` needs to match the CMAKE_BUILD_TYPE when aws-iot-device-sdk-cpp-v2 built. `--config` is only REQUIRED for multi-configuration build tools.
 
 * **For linux machine, you will need to indicate the path to libcrypto, by adding the following configuration to the cmake config process:**
   * LibCrypto_INCLUDE_DIR="\<path to include dir\>"

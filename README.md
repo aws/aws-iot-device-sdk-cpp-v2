@@ -42,10 +42,10 @@ git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=ON -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ../aws-iot-device-sdk-cpp-v2
-cmake --build . --target install
+cmake --build . --target install --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-Note: -DCMAKE_INSTALL_PREFIX can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here.
+Note: -DCMAKE_INSTALL_PREFIX can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here. And `--config` is only REQUIRED for multi-configuration build tools.
 
 #### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
 
