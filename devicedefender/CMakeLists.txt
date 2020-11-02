@@ -96,6 +96,10 @@ endif()
 
 aws_use_package(aws-c-iot)
 
+if (BUILD_TESTING)
+    aws_use_package(IotDevice-cpp)
+endif()
+
 target_link_libraries(IotDeviceDefender-cpp ${DEP_AWS_LIBS})
 
 install(FILES ${AWS_IOTDEVICEDEFENDER_HEADERS} DESTINATION "include/aws/iotdevicedefender/" COMPONENT Development)

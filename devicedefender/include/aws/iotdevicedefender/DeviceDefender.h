@@ -42,20 +42,6 @@ namespace Aws
         };
 
         /**
-         * This object should be initialized before creating DeviceDefender tasks
-         */
-        class AWS_IOTDEVICEDEFENDER_API DeviceApiHandle final
-        {
-          public:
-            DeviceApiHandle(Crt::Allocator *allocator) noexcept;
-            ~DeviceApiHandle();
-            DeviceApiHandle(const DeviceApiHandle &) = delete;
-            DeviceApiHandle(DeviceApiHandle &&) = delete;
-            DeviceApiHandle &operator=(const DeviceApiHandle &) = delete;
-            DeviceApiHandle &operator=(DeviceApiHandle &&) = delete;
-        };
-
-        /**
          * Represents a persistent DeviceDefender V1 task.
          */
         class AWS_IOTDEVICEDEFENDER_API ReportTask final

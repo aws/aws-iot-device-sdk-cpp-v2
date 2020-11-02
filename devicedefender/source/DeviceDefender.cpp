@@ -15,10 +15,6 @@ namespace Aws
     namespace Iotdevicedefenderv1
     {
 
-        DeviceApiHandle::DeviceApiHandle(Crt::Allocator *allocator) noexcept { aws_iotdevice_library_init(allocator); }
-
-        DeviceApiHandle::~DeviceApiHandle() { aws_iotdevice_library_clean_up(); }
-
         void ReportTask::s_onDefenderV1TaskCancelled(void *userData)
         {
             auto *taskWrapper = reinterpret_cast<ReportTask *>(userData);
@@ -56,7 +52,6 @@ namespace Aws
                            this},
               m_lastError(0)
         {
-            aws_iotdevice_library_init(allocator);
         }
 
         ReportTask::ReportTask(ReportTask &&toMove) noexcept
@@ -64,6 +59,7 @@ namespace Aws
               m_allocator(toMove.m_allocator), m_status(toMove.m_status), m_taskConfig(std::move(toMove.m_taskConfig)),
               m_owningTask(toMove.m_owningTask), m_lastError(toMove.m_lastError)
         {
+            m_taskConfig.cancellation_userdata = this;
             toMove.OnTaskCancelled = nullptr;
             toMove.cancellationUserdata = nullptr;
             toMove.m_allocator = nullptr;
@@ -75,21 +71,27 @@ namespace Aws
 
         ReportTask &ReportTask::operator=(ReportTask &&toMove) noexcept
         {
-            OnTaskCancelled = std::move(toMove.OnTaskCancelled);
-            cancellationUserdata = toMove.cancellationUserdata;
-            m_allocator = toMove.m_allocator;
-            m_status = toMove.m_status;
-            m_taskConfig = std::move(toMove.m_taskConfig);
-            m_owningTask = toMove.m_owningTask;
-            m_lastError = toMove.m_lastError;
+            if (this != &toMove)
+            {
+                this->~ReportTask();
 
-            toMove.OnTaskCancelled = nullptr;
-            toMove.cancellationUserdata = nullptr;
-            toMove.m_allocator = nullptr;
-            toMove.m_status = ReportTaskStatus::Stopped;
-            toMove.m_taskConfig = {0};
-            toMove.m_owningTask = nullptr;
-            toMove.m_lastError = AWS_ERROR_UNKNOWN;
+                OnTaskCancelled = std::move(toMove.OnTaskCancelled);
+                cancellationUserdata = toMove.cancellationUserdata;
+                m_allocator = toMove.m_allocator;
+                m_status = toMove.m_status;
+                m_taskConfig = std::move(toMove.m_taskConfig);
+                m_taskConfig.cancellation_userdata = this;
+                m_owningTask = toMove.m_owningTask;
+                m_lastError = toMove.m_lastError;
+
+                toMove.OnTaskCancelled = nullptr;
+                toMove.cancellationUserdata = nullptr;
+                toMove.m_allocator = nullptr;
+                toMove.m_status = ReportTaskStatus::Stopped;
+                toMove.m_taskConfig = {0};
+                toMove.m_owningTask = nullptr;
+                toMove.m_lastError = AWS_ERROR_UNKNOWN;
+            }
 
             return *this;
         }
@@ -133,7 +135,6 @@ namespace Aws
             this->m_allocator = nullptr;
             this->OnTaskCancelled = nullptr;
             this->cancellationUserdata = nullptr;
-            aws_iotdevice_library_clean_up();
         }
 
         ReportTaskBuilder::ReportTaskBuilder(
