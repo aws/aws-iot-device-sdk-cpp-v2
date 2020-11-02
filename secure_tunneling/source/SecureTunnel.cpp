@@ -68,7 +68,8 @@ namespace Aws
             from.m_secure_tunnel = nullptr;
         }
 
-        SecureTunnel::~SecureTunnel() {
+        SecureTunnel::~SecureTunnel()
+        {
             if (m_secure_tunnel)
             {
                 aws_secure_tunnel_release(m_secure_tunnel);
