@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-#include <aws/iotdevice/IotDevice.h>
+#include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotdevice/iotdevice.h>
 
 namespace Aws
@@ -14,12 +14,12 @@ namespace Aws
 
     }
 
-    namespace Iotdevice
+    namespace Iotdevicecommon
     {
 
         DeviceApiHandle::DeviceApiHandle(Crt::Allocator *allocator) noexcept { aws_iotdevice_library_init(allocator); }
 
         DeviceApiHandle::~DeviceApiHandle() { aws_iotdevice_library_clean_up(); }
-    } // namespace Iotdevice
+    } // namespace Iotdevicecommon
 
 } // namespace Aws

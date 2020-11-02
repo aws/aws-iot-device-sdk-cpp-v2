@@ -59,7 +59,7 @@ add_subdirectory(jobs)
 add_subdirectory(shadow)
 add_subdirectory(discovery)
 add_subdirectory(identity)
-add_subdirectory(iotdevice)
+add_subdirectory(iotdevicecommon)
 add_subdirectory(devicedefender)
 
 if (BUILD_SAMPLES)

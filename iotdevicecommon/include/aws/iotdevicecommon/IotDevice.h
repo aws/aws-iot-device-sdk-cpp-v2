@@ -5,7 +5,7 @@
  */
 
 #include <aws/crt/Types.h>
-#include <aws/iotdevice/Exports.h>
+#include <aws/iotdevicecommon/Exports.h>
 
 namespace Aws
 {
@@ -15,10 +15,10 @@ namespace Aws
 
     }
 
-    namespace Iotdevice
+    namespace Iotdevicecommon
     {
 
-        class AWS_IOTDEVICE_API DeviceApiHandle final
+        class AWS_IOTDEVICECOMMON_API DeviceApiHandle final
         {
           public:
             DeviceApiHandle(Crt::Allocator *allocator) noexcept;

@@ -97,7 +97,7 @@ endif()
 aws_use_package(aws-c-iot)
 
 if (BUILD_TESTING)
-    aws_use_package(IotDevice-cpp)
+    aws_use_package(IotDeviceCommon-cpp)
 endif()
 
 target_link_libraries(IotDeviceDefender-cpp ${DEP_AWS_LIBS})
