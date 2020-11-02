@@ -44,8 +44,13 @@ namespace Aws
                     OnSecureTunnelingStreamStart onStreamStart,
                     OnSecureTunnelingStreamReset onStreamReset,
                     OnSecureTunnelingSessionReset onSessionReset);
+                SecureTunnel(const SecureTunnel &) = delete;
+                SecureTunnel(SecureTunnel&&);
 
                 virtual ~SecureTunnel();
+
+                SecureTunnel &operator=(const SecureTunnel &) = delete;
+                SecureTunnel &operator=(SecureTunnel&&);
 
                 int Connect();
 
@@ -60,6 +65,8 @@ namespace Aws
                 aws_secure_tunnel *GetUnderlyingHandle();
 
               private:
+                void free();
+
                 // aws-c-iot callbacks
                 static void s_OnConnectionComplete(void *user_data);
                 static void s_OnSendDataComplete(int error_code, void *user_data);
