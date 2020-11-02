@@ -13,80 +13,88 @@ int s_SecureTunnelingCallbackTest(Aws::Crt::Allocator *allocator, void *ctx);
 
 namespace Aws
 {
-    namespace Crt
+    namespace Iotsecuretunneling
     {
-        namespace Iot
+        class AWS_IOTSECURETUNNELING_API DeviceApiHandle final
         {
-            // Client callback type definitions
-            using OnSecureTunnelingConnectionComplete = std::function<void(void)>;
-            using OnSecureTunnelingSendDataComplete = std::function<void(int errorCode)>;
-            using OnSecureTunnelingDataReceive = std::function<void(const ByteBuf &data)>;
-            using OnSecureTunnelingStreamStart = std::function<void()>;
-            using OnSecureTunnelingStreamReset = std::function<void(void)>;
-            using OnSecureTunnelingSessionReset = std::function<void(void)>;
+          public:
+            DeviceApiHandle(Crt::Allocator *allocator) noexcept;
+            ~DeviceApiHandle();
+            DeviceApiHandle(const DeviceApiHandle &) = delete;
+            DeviceApiHandle(DeviceApiHandle &&) = delete;
+            DeviceApiHandle &operator=(const DeviceApiHandle &) = delete;
+            DeviceApiHandle &operator=(DeviceApiHandle &&) = delete;
+        };
 
-            class AWS_IOTSECURETUNNELING_API SecureTunnel
-            {
-              public:
-                SecureTunnel(
-                    // Parameters map to aws_secure_tunneling_connection_config
-                    Allocator *allocator,
-                    Aws::Crt::Io::ClientBootstrap *clientBootstrap,
-                    Aws::Crt::Io::SocketOptions *socketOptions,
+        // Client callback type definitions
+        using OnSecureTunnelingConnectionComplete = std::function<void(void)>;
+        using OnSecureTunnelingSendDataComplete = std::function<void(int errorCode)>;
+        using OnSecureTunnelingDataReceive = std::function<void(const Crt::ByteBuf &data)>;
+        using OnSecureTunnelingStreamStart = std::function<void()>;
+        using OnSecureTunnelingStreamReset = std::function<void(void)>;
+        using OnSecureTunnelingSessionReset = std::function<void(void)>;
 
-                    std::string accessToken,
-                    aws_secure_tunneling_local_proxy_mode localProxyMode,
-                    std::string endpointHost,
+        class AWS_IOTSECURETUNNELING_API SecureTunnel final
+        {
+          public:
+            SecureTunnel(
+                // Parameters map to aws_secure_tunneling_connection_config
+                Crt::Allocator *allocator,
+                Aws::Crt::Io::ClientBootstrap *clientBootstrap,
+                Aws::Crt::Io::SocketOptions *socketOptions,
 
-                    OnSecureTunnelingConnectionComplete onConnectionComplete,
-                    OnSecureTunnelingSendDataComplete onSendDataComplete,
-                    OnSecureTunnelingDataReceive onDataReceive,
-                    OnSecureTunnelingStreamStart onStreamStart,
-                    OnSecureTunnelingStreamReset onStreamReset,
-                    OnSecureTunnelingSessionReset onSessionReset);
-                SecureTunnel(const SecureTunnel &) = delete;
-                SecureTunnel(SecureTunnel &&);
+                std::string accessToken,
+                aws_secure_tunneling_local_proxy_mode localProxyMode,
+                std::string endpointHost,
 
-                virtual ~SecureTunnel();
+                OnSecureTunnelingConnectionComplete onConnectionComplete,
+                OnSecureTunnelingSendDataComplete onSendDataComplete,
+                OnSecureTunnelingDataReceive onDataReceive,
+                OnSecureTunnelingStreamStart onStreamStart,
+                OnSecureTunnelingStreamReset onStreamReset,
+                OnSecureTunnelingSessionReset onSessionReset);
+            SecureTunnel(const SecureTunnel &) = delete;
+            SecureTunnel(SecureTunnel &&) noexcept;
 
-                SecureTunnel &operator=(const SecureTunnel &) = delete;
-                SecureTunnel &operator=(SecureTunnel &&);
+            virtual ~SecureTunnel();
 
-                int Connect();
+            SecureTunnel &operator=(const SecureTunnel &) = delete;
+            SecureTunnel &operator=(SecureTunnel &&) noexcept;
 
-                int Close();
+            int Connect();
 
-                int SendData(const ByteCursor &data);
+            int Close();
 
-                int SendStreamStart();
+            int SendData(const Crt::ByteCursor &data);
 
-                int SendStreamReset();
+            int SendStreamStart();
 
-                aws_secure_tunnel *GetUnderlyingHandle();
+            int SendStreamReset();
 
-              private:
-                void free();
+            aws_secure_tunnel *GetUnderlyingHandle();
 
-                // aws-c-iot callbacks
-                static void s_OnConnectionComplete(void *user_data);
-                static void s_OnSendDataComplete(int error_code, void *user_data);
-                static void s_OnDataReceive(const struct aws_byte_buf *data, void *user_data);
-                static void s_OnStreamStart(void *user_data);
-                static void s_OnStreamReset(void *user_data);
-                static void s_OnSessionReset(void *user_data);
+          private:
+            void free();
 
-                // Client callbacks
-                OnSecureTunnelingConnectionComplete m_OnConnectionComplete;
-                OnSecureTunnelingSendDataComplete m_OnSendDataComplete;
-                OnSecureTunnelingDataReceive m_OnDataReceive;
-                OnSecureTunnelingStreamStart m_OnStreamStart;
-                OnSecureTunnelingStreamReset m_OnStreamReset;
-                OnSecureTunnelingSessionReset m_OnSessionReset;
+            // aws-c-iot callbacks
+            static void s_OnConnectionComplete(void *user_data);
+            static void s_OnSendDataComplete(int error_code, void *user_data);
+            static void s_OnDataReceive(const struct aws_byte_buf *data, void *user_data);
+            static void s_OnStreamStart(void *user_data);
+            static void s_OnStreamReset(void *user_data);
+            static void s_OnSessionReset(void *user_data);
 
-                aws_secure_tunnel *m_secure_tunnel;
+            // Client callbacks
+            OnSecureTunnelingConnectionComplete m_OnConnectionComplete;
+            OnSecureTunnelingSendDataComplete m_OnSendDataComplete;
+            OnSecureTunnelingDataReceive m_OnDataReceive;
+            OnSecureTunnelingStreamStart m_OnStreamStart;
+            OnSecureTunnelingStreamReset m_OnStreamReset;
+            OnSecureTunnelingSessionReset m_OnSessionReset;
 
-                friend int ::s_SecureTunnelingCallbackTest(Aws::Crt::Allocator *allocator, void *ctx);
-            };
-        } // namespace Iot
-    }     // namespace Crt
+            aws_secure_tunnel *m_secure_tunnel;
+
+            friend int ::s_SecureTunnelingCallbackTest(Aws::Crt::Allocator *allocator, void *ctx);
+        };
+    } // namespace Iotsecuretunneling
 } // namespace Aws
