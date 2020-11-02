@@ -27,12 +27,12 @@ namespace Aws
         };
 
         // Client callback type definitions
-        using OnSecureTunnelingConnectionComplete = std::function<void(void)>;
-        using OnSecureTunnelingSendDataComplete = std::function<void(int errorCode)>;
-        using OnSecureTunnelingDataReceive = std::function<void(const Crt::ByteBuf &data)>;
-        using OnSecureTunnelingStreamStart = std::function<void()>;
-        using OnSecureTunnelingStreamReset = std::function<void(void)>;
-        using OnSecureTunnelingSessionReset = std::function<void(void)>;
+        using OnConnectionComplete = std::function<void(void)>;
+        using OnSendDataComplete = std::function<void(int errorCode)>;
+        using OnDataReceive = std::function<void(const Crt::ByteBuf &data)>;
+        using OnStreamStart = std::function<void()>;
+        using OnStreamReset = std::function<void(void)>;
+        using OnSessionReset = std::function<void(void)>;
 
         class AWS_IOTSECURETUNNELING_API SecureTunnel final
         {
@@ -47,12 +47,12 @@ namespace Aws
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
                 std::string endpointHost,
 
-                OnSecureTunnelingConnectionComplete onConnectionComplete,
-                OnSecureTunnelingSendDataComplete onSendDataComplete,
-                OnSecureTunnelingDataReceive onDataReceive,
-                OnSecureTunnelingStreamStart onStreamStart,
-                OnSecureTunnelingStreamReset onStreamReset,
-                OnSecureTunnelingSessionReset onSessionReset);
+                OnConnectionComplete onConnectionComplete,
+                OnSendDataComplete onSendDataComplete,
+                OnDataReceive onDataReceive,
+                OnStreamStart onStreamStart,
+                OnStreamReset onStreamReset,
+                OnSessionReset onSessionReset);
             SecureTunnel(const SecureTunnel &) = delete;
             SecureTunnel(SecureTunnel &&) noexcept;
 
@@ -74,8 +74,6 @@ namespace Aws
             aws_secure_tunnel *GetUnderlyingHandle();
 
           private:
-            void free();
-
             // aws-c-iot callbacks
             static void s_OnConnectionComplete(void *user_data);
             static void s_OnSendDataComplete(int error_code, void *user_data);
@@ -85,12 +83,12 @@ namespace Aws
             static void s_OnSessionReset(void *user_data);
 
             // Client callbacks
-            OnSecureTunnelingConnectionComplete m_OnConnectionComplete;
-            OnSecureTunnelingSendDataComplete m_OnSendDataComplete;
-            OnSecureTunnelingDataReceive m_OnDataReceive;
-            OnSecureTunnelingStreamStart m_OnStreamStart;
-            OnSecureTunnelingStreamReset m_OnStreamReset;
-            OnSecureTunnelingSessionReset m_OnSessionReset;
+            OnConnectionComplete m_OnConnectionComplete;
+            OnSendDataComplete m_OnSendDataComplete;
+            OnDataReceive m_OnDataReceive;
+            OnStreamStart m_OnStreamStart;
+            OnStreamReset m_OnStreamReset;
+            OnSessionReset m_OnSessionReset;
 
             aws_secure_tunnel *m_secure_tunnel;
 
