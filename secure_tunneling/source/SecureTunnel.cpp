@@ -60,7 +60,26 @@ namespace Aws
                 m_secure_tunnel = aws_secure_tunnel_new(&config);
             }
 
-            SecureTunnel::~SecureTunnel() { aws_secure_tunnel_release(m_secure_tunnel); }
+            SecureTunnel::SecureTunnel(SecureTunnel &&from)
+            {
+                m_secure_tunnel = from.m_secure_tunnel;
+                from.m_secure_tunnel = nullptr;
+            }
+
+            SecureTunnel::~SecureTunnel() { free(); }
+
+            SecureTunnel &SecureTunnel::operator=(SecureTunnel &&rhs)
+            {
+                if (this != &rhs)
+                {
+                    free();
+
+                    m_secure_tunnel = rhs.m_secure_tunnel;
+                    rhs.m_secure_tunnel = nullptr;
+                }
+
+                return *this;
+            }
 
             int SecureTunnel::Connect() { return aws_secure_tunnel_connect(m_secure_tunnel); }
 
@@ -76,6 +95,14 @@ namespace Aws
             int SecureTunnel::SendStreamReset() { return aws_secure_tunnel_stream_reset(m_secure_tunnel); }
 
             aws_secure_tunnel *SecureTunnel::GetUnderlyingHandle() { return m_secure_tunnel; }
+
+            void SecureTunnel::free()
+            {
+                if (m_secure_tunnel)
+                {
+                    aws_secure_tunnel_release(m_secure_tunnel);
+                }
+            }
 
             void SecureTunnel::s_OnConnectionComplete(void *user_data)
             {
