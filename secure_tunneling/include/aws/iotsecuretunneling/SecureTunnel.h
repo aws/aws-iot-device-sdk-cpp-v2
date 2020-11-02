@@ -45,12 +45,12 @@ namespace Aws
                     OnSecureTunnelingStreamReset onStreamReset,
                     OnSecureTunnelingSessionReset onSessionReset);
                 SecureTunnel(const SecureTunnel &) = delete;
-                SecureTunnel(SecureTunnel&&);
+                SecureTunnel(SecureTunnel &&);
 
                 virtual ~SecureTunnel();
 
                 SecureTunnel &operator=(const SecureTunnel &) = delete;
-                SecureTunnel &operator=(SecureTunnel&&);
+                SecureTunnel &operator=(SecureTunnel &&);
 
                 int Connect();
 
