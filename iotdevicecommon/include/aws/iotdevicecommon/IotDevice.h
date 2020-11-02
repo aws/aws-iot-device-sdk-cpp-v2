@@ -29,5 +29,5 @@ namespace Aws
             DeviceApiHandle &operator=(DeviceApiHandle &&) = delete;
         };
 
-    } // namespace Iotdevice
+    } // namespace Iotdevicecommon
 } // namespace Aws

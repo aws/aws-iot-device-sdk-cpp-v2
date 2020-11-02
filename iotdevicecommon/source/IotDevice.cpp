@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0.
  */
 
-#include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotdevice/iotdevice.h>
+#include <aws/iotdevicecommon/IotDevice.h>
 
 namespace Aws
 {
