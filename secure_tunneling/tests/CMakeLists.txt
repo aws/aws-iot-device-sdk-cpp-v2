@@ -13,5 +13,8 @@ aws_use_package(IotSecureTunneling-cpp)
 
 if (UNIX AND NOT APPLE)
     add_test_case(SecureTunnelingHandleStreamStartTest)
+    add_test_case(SecureTunnelingHandleDataReceiveTest)
+    add_test_case(SecureTunnelingHandleStreamResetTest)
+    add_test_case(SecureTunnelingHandleSessionResetTest)
     generate_cpp_test_driver(${TEST_BINARY_NAME})
 endif()
