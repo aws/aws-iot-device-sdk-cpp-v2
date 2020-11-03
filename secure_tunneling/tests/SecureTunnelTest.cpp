@@ -6,6 +6,7 @@
 #include <aws/common/byte_buf.h>
 #include <aws/http/http.h>
 #include <aws/iotdevice/private/serializer.h>
+#include <aws/iotdevicecommon/IotDevice.h>
 #include <aws/iotsecuretunneling/SecureTunnel.h>
 #include <aws/testing/aws_test_harness.h>
 
@@ -25,7 +26,7 @@ extern "C"
 
 struct SecureTunnelingTestContext
 {
-    Aws::Iotsecuretunneling::DeviceApiHandle *deviceApiHandle;
+    Aws::Iotdevicecommon::DeviceApiHandle *deviceApiHandle;
     aws_secure_tunneling_local_proxy_mode localProxyMode;
     Aws::Iotsecuretunneling::SecureTunnel *secureTunnel;
 
@@ -72,7 +73,7 @@ static int before(struct aws_allocator *allocator, void *ctx)
     auto *testContext = static_cast<SecureTunnelingTestContext *>(ctx);
 
     aws_http_library_init(allocator);
-    testContext->deviceApiHandle = new Aws::Iotsecuretunneling::DeviceApiHandle(allocator);
+    testContext->deviceApiHandle = new Aws::Iotdevicecommon::DeviceApiHandle(allocator);
 
     testContext->secureTunnel = new Aws::Iotsecuretunneling::SecureTunnel(
         allocator,

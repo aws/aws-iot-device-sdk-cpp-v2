@@ -15,17 +15,6 @@ namespace Aws
 {
     namespace Iotsecuretunneling
     {
-        class AWS_IOTSECURETUNNELING_API DeviceApiHandle final
-        {
-          public:
-            DeviceApiHandle(Crt::Allocator *allocator) noexcept;
-            ~DeviceApiHandle();
-            DeviceApiHandle(const DeviceApiHandle &) = delete;
-            DeviceApiHandle(DeviceApiHandle &&) = delete;
-            DeviceApiHandle &operator=(const DeviceApiHandle &) = delete;
-            DeviceApiHandle &operator=(DeviceApiHandle &&) = delete;
-        };
-
         // Client callback type definitions
         using OnConnectionComplete = std::function<void(void)>;
         using OnSendDataComplete = std::function<void(int errorCode)>;

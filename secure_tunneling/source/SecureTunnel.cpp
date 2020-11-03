@@ -9,10 +9,6 @@ namespace Aws
 {
     namespace Iotsecuretunneling
     {
-        DeviceApiHandle::DeviceApiHandle(Crt::Allocator *allocator) noexcept { aws_iotdevice_library_init(allocator); }
-
-        DeviceApiHandle::~DeviceApiHandle() { aws_iotdevice_library_clean_up(); }
-
         SecureTunnel::SecureTunnel(
             Crt::Allocator *allocator,
             Aws::Crt::Io::ClientBootstrap *clientBootstrap,
