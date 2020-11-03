@@ -96,7 +96,7 @@ endif()
 
 aws_use_package(aws-c-iot)
 
-target_link_libraries(IotSecureTunneling-cpp ${DEP_AWS_LIBS})
+target_link_libraries(IotSecureTunneling-cpp ${DEP_AWS_LIBS} dl)
 
 install(FILES ${AWS_IOTSECURETUNNELING_HEADERS} DESTINATION "include/aws/iotsecuretunneling/" COMPONENT Development)
 
