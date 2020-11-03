@@ -57,7 +57,6 @@ static int before(struct aws_allocator *allocator, void *ctx)
     auto *testContext = static_cast<SecureTunnelingTestContext *>(ctx);
 
     aws_http_library_init(allocator);
-//    aws_iotdevice_library_init(allocator);
     testContext->deviceApiHandle = new Aws::Iotsecuretunneling::DeviceApiHandle(allocator);
 
     testContext->secureTunnel = new Aws::Iotsecuretunneling::SecureTunnel(
@@ -85,7 +84,6 @@ static int after(struct aws_allocator *allocator, int setup_result, void *ctx)
     testContext->secureTunnel = nullptr;
 
     delete testContext->deviceApiHandle;
-//    aws_iotdevice_library_clean_up();
     aws_http_library_clean_up();
 
     return AWS_ERROR_SUCCESS;
