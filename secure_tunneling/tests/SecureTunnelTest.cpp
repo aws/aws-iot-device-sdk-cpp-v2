@@ -109,7 +109,6 @@ static void s_send_secure_tunneling_frame_to_websocket(
     struct aws_allocator *allocator,
     struct aws_secure_tunnel *secure_tunnel)
 {
-
     struct aws_byte_buf serialized_st_msg;
     aws_iot_st_msg_serialize_from_struct(&serialized_st_msg, allocator, *st_msg);
 
@@ -189,7 +188,8 @@ AWS_TEST_CASE_FIXTURE(
     SecureTunnelingHandleStreamResetTest,
     after,
     &s_testContext);
-static int SecureTunnelingHandleStreamResetTest(Aws::Crt::Allocator *allocator, void *ctx) {
+static int SecureTunnelingHandleStreamResetTest(Aws::Crt::Allocator *allocator, void *ctx)
+{
     auto *testContext = static_cast<SecureTunnelingTestContext *>(ctx);
 
     /* Send StreamStart first */
@@ -219,7 +219,8 @@ AWS_TEST_CASE_FIXTURE(
     s_SecureTunnelingHandleSessionResetTest,
     after,
     &s_testContext);
-static int s_SecureTunnelingHandleSessionResetTest(struct aws_allocator *allocator, void *ctx) {
+static int s_SecureTunnelingHandleSessionResetTest(struct aws_allocator *allocator, void *ctx)
+{
     auto *testContext = static_cast<SecureTunnelingTestContext *>(ctx);
 
     /* Send StreamStart first */
