@@ -56,8 +56,8 @@ static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, vo
         };
 
         Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, mqttConnection, eventLoopGroup, thingName);
-        taskBuilder.WithTaskPeriodSeconds((uint64_t)1UL)
-            .WithNetworkConnectionSamplePeriodSeconds((uint64_t)1UL)
+        taskBuilder.WithTaskPeriodSeconds((uint32_t)1UL)
+            .WithNetworkConnectionSamplePeriodSeconds((uint32_t)1UL)
             .WithTaskCancelledHandler(onCancelled)
             .WithTaskCancellationUserData(&callbackSuccess);
 
@@ -125,8 +125,8 @@ static int s_TestDeviceDefenderFailedTest(Aws::Crt::Allocator *allocator, void *
         Aws::Crt::String data("TestData");
 
         Aws::Iotdevicedefenderv1::ReportTaskBuilder taskBuilder(allocator, mqttConnection, eventLoopGroup, thingName);
-        taskBuilder.WithTaskPeriodSeconds((uint64_t)1UL)
-            .WithTaskPeriodSeconds((uint64_t)1UL)
+        taskBuilder.WithTaskPeriodSeconds((uint32_t)1UL)
+            .WithTaskPeriodSeconds((uint32_t)1UL)
             .WithReportFormat(Aws::Iotdevicedefenderv1::ReportFormat::AWS_IDDRF_SHORT_JSON);
 
         Aws::Iotdevicedefenderv1::ReportTask task = taskBuilder.Build();

@@ -92,8 +92,8 @@ namespace Aws
                 const Crt::String &thingName,
                 Crt::Io::EventLoopGroup &eventLoopGroup,
                 ReportFormat reportFormat,
-                uint64_t taskPeriodSeconds,
-                uint64_t networkConnectionSamplePeriodSeconds,
+                uint32_t taskPeriodSeconds,
+                uint32_t networkConnectionSamplePeriodSeconds,
                 OnTaskCancelledHandler &&onCancelled = NULL,
                 void *cancellationUserdata = nullptr) noexcept;
 
@@ -120,13 +120,13 @@ namespace Aws
             /**
              * Sets the task period seconds. Defaults to 5 minutes.
              */
-            ReportTaskBuilder &WithTaskPeriodSeconds(uint64_t taskPeriodSeconds) noexcept;
+            ReportTaskBuilder &WithTaskPeriodSeconds(uint32_t taskPeriodSeconds) noexcept;
 
             /**
              * Sets the network connection sample period seconds. Defaults to 5 minutes.
              */
             ReportTaskBuilder &WithNetworkConnectionSamplePeriodSeconds(
-                uint64_t networkConnectionSamplePeriodSeconds) noexcept;
+                uint32_t networkConnectionSamplePeriodSeconds) noexcept;
 
             /**
              * Sets the task cancelled handler function.
@@ -147,10 +147,10 @@ namespace Aws
             Crt::Allocator *m_allocator;
             std::shared_ptr<Crt::Mqtt::MqttConnection> m_mqttConnection;
             Crt::String m_thingName;
-            Crt::Io::EventLoopGroup m_eventLoopGroup;
+            Crt::Io::EventLoopGroup &m_eventLoopGroup;
             ReportFormat m_reportFormat;
-            uint64_t m_taskPeriodSeconds;
-            uint64_t m_networkConnectionSamplePeriodSeconds;
+            uint32_t m_taskPeriodSeconds;
+            uint32_t m_networkConnectionSamplePeriodSeconds;
             OnTaskCancelledHandler m_onCancelled;
             void *m_cancellationUserdata;
         };

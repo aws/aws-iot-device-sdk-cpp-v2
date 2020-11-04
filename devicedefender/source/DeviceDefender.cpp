@@ -32,8 +32,8 @@ namespace Aws
             const Crt::String &thingName,
             Crt::Io::EventLoopGroup &eventLoopGroup,
             ReportFormat reportFormat,
-            uint64_t taskPeriodSeconds,
-            uint64_t networkConnectionSamplePeriodSeconds,
+            uint32_t taskPeriodSeconds,
+            uint32_t networkConnectionSamplePeriodSeconds,
             OnTaskCancelledHandler &&onCancelled,
             void *cancellationUserdata) noexcept
             : OnTaskCancelled(std::move(onCancelled)), cancellationUserdata(cancellationUserdata),
@@ -143,7 +143,7 @@ namespace Aws
             Crt::Io::EventLoopGroup &eventLoopGroup,
             const Crt::String &thingName)
             : m_allocator(allocator), m_mqttConnection(mqttConnection), m_thingName(thingName),
-              m_eventLoopGroup(std::move(eventLoopGroup))
+              m_eventLoopGroup(eventLoopGroup)
         {
             m_reportFormat = ReportFormat::AWS_IDDRF_JSON;
             m_taskPeriodSeconds = 5UL * 60UL;
@@ -158,14 +158,14 @@ namespace Aws
             return *this;
         }
 
-        ReportTaskBuilder &ReportTaskBuilder::WithTaskPeriodSeconds(uint64_t taskPeriodSeconds) noexcept
+        ReportTaskBuilder &ReportTaskBuilder::WithTaskPeriodSeconds(uint32_t taskPeriodSeconds) noexcept
         {
             m_taskPeriodSeconds = taskPeriodSeconds;
             return *this;
         }
 
         ReportTaskBuilder &ReportTaskBuilder::WithNetworkConnectionSamplePeriodSeconds(
-            uint64_t networkConnectionSamplePeriodSeconds) noexcept
+            uint32_t networkConnectionSamplePeriodSeconds) noexcept
         {
             m_networkConnectionSamplePeriodSeconds = networkConnectionSamplePeriodSeconds;
             return *this;
