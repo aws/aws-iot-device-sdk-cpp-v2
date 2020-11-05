@@ -9,8 +9,6 @@
 #include <aws/iotdevice/secure_tunneling.h>
 #include <aws/iotsecuretunneling/Exports.h>
 
-int s_SecureTunnelingCallbackTest(Aws::Crt::Allocator *allocator, void *ctx);
-
 namespace Aws
 {
     namespace Iotsecuretunneling
@@ -80,8 +78,6 @@ namespace Aws
             OnSessionReset m_OnSessionReset;
 
             aws_secure_tunnel *m_secure_tunnel;
-
-            friend int ::s_SecureTunnelingCallbackTest(Aws::Crt::Allocator *allocator, void *ctx);
         };
     } // namespace Iotsecuretunneling
 } // namespace Aws
