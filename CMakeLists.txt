@@ -42,7 +42,6 @@ endif()
 
 if (BUILD_DEPS)
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/crt/aws-crt-cpp/crt/aws-c-common/cmake")
-    list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/crt/aws-c-iot/cmake")
 
     include(AwsFindPackage)
     set(IN_SOURCE_BUILD ON)
