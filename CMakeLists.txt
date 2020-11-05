@@ -61,6 +61,7 @@ add_subdirectory(discovery)
 add_subdirectory(identity)
 add_subdirectory(iotdevicecommon)
 add_subdirectory(devicedefender)
+add_subdirectory(secure_tunneling)
 
 if (BUILD_SAMPLES)
     message(WARNING "BUILD_SAMPLES has been deprecated. Please build each sample separately.")
