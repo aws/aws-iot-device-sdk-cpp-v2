@@ -20,6 +20,8 @@ jobs:
     strategy:
       matrix:
         image:
+          - manylinux1-x64
+          - manylinux1-x86
           - manylinux2014-x64
           - manylinux2014-x86
     steps:
@@ -107,3 +109,17 @@ jobs:
           python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
           chmod a+x builder
           ./builder build -p ${{ env.PACKAGE_NAME }} --spec=downstream
+
+  cross_compile:
+    name: Cross Compile ${{matrix.arch}}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [linux-armv6, linux-armv7, linux-arm64, android-armv7]
+
+    steps:
+      - name: Build ${{ env.PACKAGE_NAME }} + consumers
+        run: |
+          python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz?run=${{ env.RUN }}', 'builder')"
+          chmod a+x builder
+          ./builder build -p aws-crt-cpp --spec=downstream --target=${{matrix.arch}} run_tests=false
