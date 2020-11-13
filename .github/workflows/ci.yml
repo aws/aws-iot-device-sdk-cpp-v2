@@ -7,7 +7,7 @@ on:
       - "!master"
 
 env:
-  BUILDER_VERSION: v0.6.5
+  BUILDER_VERSION: v0.7.0
   BUILDER_SOURCE: releases
   BUILDER_HOST: https://d19elf31gohf1l.cloudfront.net
   PACKAGE_NAME: aws-iot-device-sdk-cpp-v2
