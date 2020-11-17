@@ -12,11 +12,11 @@ namespace Aws
         SecureTunnel::SecureTunnel(
             Crt::Allocator *allocator,
             Aws::Crt::Io::ClientBootstrap *clientBootstrap,
-            Aws::Crt::Io::SocketOptions *socketOptions,
+            const Aws::Crt::Io::SocketOptions &socketOptions,
 
-            std::string accessToken,
+            const std::string &accessToken,
             aws_secure_tunneling_local_proxy_mode localProxyMode,
-            std::string endpointHost,
+            const std::string &endpointHost,
 
             OnConnectionComplete onConnectionComplete,
             OnSendDataComplete onSendDataComplete,
@@ -33,17 +33,21 @@ namespace Aws
             m_OnStreamReset = onStreamReset;
             m_OnSessionReset = onSessionReset;
 
+            m_socketOptions = socketOptions;
+            m_accessToken = accessToken;
+            m_endpointHost = endpointHost;
+
             // Initialize aws_secure_tunneling_connection_config
             aws_secure_tunneling_connection_config config;
             AWS_ZERO_STRUCT(config);
 
             config.allocator = allocator;
             config.bootstrap = clientBootstrap ? clientBootstrap->GetUnderlyingHandle() : nullptr;
-            config.socket_options = socketOptions ? &socketOptions->GetImpl() : nullptr;
+            config.socket_options = &m_socketOptions.GetImpl();
 
-            config.access_token = aws_byte_cursor_from_c_str(accessToken.c_str());
+            config.access_token = aws_byte_cursor_from_c_str(m_accessToken.c_str());
             config.local_proxy_mode = localProxyMode;
-            config.endpoint_host = aws_byte_cursor_from_c_str(endpointHost.c_str());
+            config.endpoint_host = aws_byte_cursor_from_c_str(m_endpointHost.c_str());
 
             config.on_connection_complete = s_OnConnectionComplete;
             config.on_send_data_complete = s_OnSendDataComplete;
