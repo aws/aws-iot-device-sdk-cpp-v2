@@ -4,6 +4,7 @@
  */
 
 #include <aws/common/byte_buf.h>
+#include <aws/crt/io/SocketOptions.h>
 #include <aws/http/http.h>
 #include <aws/iotdevice/private/serializer.h>
 #include <aws/iotdevicecommon/IotDevice.h>
@@ -38,7 +39,6 @@ struct SecureTunnelingTestContext
     }
 };
 static SecureTunnelingTestContext s_testContext;
-static Aws::Crt::Io::SocketOptions s_socketOptions;
 
 // Client callbacks implementation
 static void s_OnConnectionComplete() {}
@@ -79,7 +79,7 @@ static int before(struct aws_allocator *allocator, void *ctx)
     testContext->secureTunnel = new Aws::Iotsecuretunneling::SecureTunnel(
         allocator,
         nullptr,
-        s_socketOptions,
+        Aws::Crt::Io::SocketOptions(),
         "access_token",
         testContext->localProxyMode,
         "endpoint",
