@@ -38,6 +38,7 @@ struct SecureTunnelingTestContext
     }
 };
 static SecureTunnelingTestContext s_testContext;
+static Aws::Crt::Io::SocketOptions s_socketOptions;
 
 // Client callbacks implementation
 static void s_OnConnectionComplete() {}
@@ -78,7 +79,7 @@ static int before(struct aws_allocator *allocator, void *ctx)
     testContext->secureTunnel = new Aws::Iotsecuretunneling::SecureTunnel(
         allocator,
         nullptr,
-        nullptr,
+        s_socketOptions,
         "access_token",
         testContext->localProxyMode,
         "endpoint",

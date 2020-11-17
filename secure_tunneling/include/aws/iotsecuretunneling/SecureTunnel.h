@@ -26,13 +26,13 @@ namespace Aws
           public:
             SecureTunnel(
                 // Parameters map to aws_secure_tunneling_connection_config
-                Crt::Allocator *allocator,
-                Aws::Crt::Io::ClientBootstrap *clientBootstrap,
-                Aws::Crt::Io::SocketOptions *socketOptions,
+                Crt::Allocator *allocator,                        // Should out live this object
+                Aws::Crt::Io::ClientBootstrap *clientBootstrap,   // Should out live this object
+                const Aws::Crt::Io::SocketOptions &socketOptions, // Make a copy and save in this object
 
-                std::string accessToken,
+                const std::string &accessToken, // Make a copy and save in this object
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
-                std::string endpointHost,
+                const std::string &endpointHost, // Make a copy and save in this object
 
                 OnConnectionComplete onConnectionComplete,
                 OnSendDataComplete onSendDataComplete,
@@ -76,6 +76,10 @@ namespace Aws
             OnStreamStart m_OnStreamStart;
             OnStreamReset m_OnStreamReset;
             OnSessionReset m_OnSessionReset;
+
+            Aws::Crt::Io::SocketOptions m_socketOptions;
+            std::string m_accessToken;
+            std::string m_endpointHost;
 
             aws_secure_tunnel *m_secure_tunnel;
         };
