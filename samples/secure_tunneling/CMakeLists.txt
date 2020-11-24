@@ -24,4 +24,4 @@ find_package(IotSecureTunneling-cpp REQUIRED)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp IotDeviceCommon-cpp AWS::IotSecureTunneling-cpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE AWS::aws-crt-cpp AWS::IotDeviceCommon-cpp AWS::IotSecureTunneling-cpp)
