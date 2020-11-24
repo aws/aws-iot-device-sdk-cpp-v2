@@ -340,6 +340,16 @@ and receive.
 </pre>
 </details>
 
+## Secure Tunneling
+
+This sample uses the AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to receive a tunnel notification.
+
+This sample requires you to create a tunnel for your thing. See [instructions here](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial.html).
+
+On startup, the sample will wait until it receives, and then displays the tunnel notification.
+
+Source: `samples/secure_tunneling`
+
 ## Greengrass discovery
 
 This sample is intended for direct usage with the Greengrass tutorial found [here](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html).

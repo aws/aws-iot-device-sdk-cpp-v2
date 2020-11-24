@@ -115,11 +115,11 @@ install(EXPORT "IotDeviceDefender-cpp-targets"
         NAMESPACE AWS::
         COMPONENT Development)
 
-configure_file("cmake/IotDeviceDefender-cpp-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/IotDeviceDefender-cpp-config.cmake"
+configure_file("cmake/iotdevicedefender-cpp-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/iotdevicedefender-cpp-config.cmake"
         @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/IotDeviceDefender-cpp-config.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotdevicedefender-cpp-config.cmake"
         DESTINATION "lib/IotDeviceDefender-cpp/cmake/"
         COMPONENT Development)
 

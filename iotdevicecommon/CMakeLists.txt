@@ -111,10 +111,10 @@ install(EXPORT "IotDeviceCommon-cpp-targets"
         NAMESPACE AWS::
         COMPONENT Development)
 
-configure_file("cmake/IotDeviceCommon-cpp-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/IotDeviceCommon-cpp-config.cmake"
+configure_file("cmake/iotdevicecommon-cpp-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/iotdevicecommon-cpp-config.cmake"
         @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/IotDeviceCommon-cpp-config.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotdevicecommon-cpp-config.cmake"
         DESTINATION "lib/IotDeviceCommon-cpp/cmake/"
         COMPONENT Development)

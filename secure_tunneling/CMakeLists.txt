@@ -115,11 +115,11 @@ install(EXPORT "IotSecureTunneling-cpp-targets"
         NAMESPACE AWS::
         COMPONENT Development)
 
-configure_file("cmake/IotSecureTunneling-cpp-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/IotSecureTunneling-cpp-config.cmake"
+configure_file("cmake/iotsecuretunneling-cpp-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/iotsecuretunneling-cpp-config.cmake"
         @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/IotSecureTunneling-cpp-config.cmake"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotsecuretunneling-cpp-config.cmake"
         DESTINATION "lib/IotSecureTunneling-cpp/cmake/"
         COMPONENT Development)
 
