@@ -62,10 +62,22 @@ namespace Aws
             m_secure_tunnel = aws_secure_tunnel_new(&config);
         }
 
-        SecureTunnel::SecureTunnel(SecureTunnel &&from) noexcept
+        SecureTunnel::SecureTunnel(SecureTunnel &&other) noexcept
         {
-            m_secure_tunnel = from.m_secure_tunnel;
-            from.m_secure_tunnel = nullptr;
+            m_OnConnectionComplete = other.m_OnConnectionComplete;
+            m_OnSendDataComplete = other.m_OnSendDataComplete;
+            m_OnDataReceive = other.m_OnDataReceive;
+            m_OnStreamStart = other.m_OnStreamStart;
+            m_OnStreamReset = other.m_OnStreamReset;
+            m_OnSessionReset = other.m_OnSessionReset;
+
+            m_socketOptions = other.m_socketOptions;
+            m_accessToken = std::move(other.m_accessToken);
+            m_endpointHost = std::move(other.m_endpointHost);
+
+            m_secure_tunnel = other.m_secure_tunnel;
+
+            other.m_secure_tunnel = nullptr;
         }
 
         SecureTunnel::~SecureTunnel()
@@ -76,14 +88,26 @@ namespace Aws
             }
         }
 
-        SecureTunnel &SecureTunnel::operator=(SecureTunnel &&rhs) noexcept
+        SecureTunnel &SecureTunnel::operator=(SecureTunnel &&other) noexcept
         {
-            if (this != &rhs)
+            if (this != &other)
             {
                 this->~SecureTunnel();
 
-                m_secure_tunnel = rhs.m_secure_tunnel;
-                rhs.m_secure_tunnel = nullptr;
+                m_OnConnectionComplete = other.m_OnConnectionComplete;
+                m_OnSendDataComplete = other.m_OnSendDataComplete;
+                m_OnDataReceive = other.m_OnDataReceive;
+                m_OnStreamStart = other.m_OnStreamStart;
+                m_OnStreamReset = other.m_OnStreamReset;
+                m_OnSessionReset = other.m_OnSessionReset;
+
+                m_socketOptions = other.m_socketOptions;
+                m_accessToken = std::move(other.m_accessToken);
+                m_endpointHost = std::move(other.m_endpointHost);
+
+                m_secure_tunnel = other.m_secure_tunnel;
+
+                other.m_secure_tunnel = nullptr;
             }
 
             return *this;
