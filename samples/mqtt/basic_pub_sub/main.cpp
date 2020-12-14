@@ -302,10 +302,9 @@ int main(int argc, char *argv[])
 
         if (!proxyUsername.empty())
         {
-            auto basicAuthenticationStrategy =
-                Aws::Crt::Http::HttpProxyStrategyFactory::CreateBasicHttpProxyStrategyFactory(
-                    AWS_HPCT_HTTP_TUNNEL, proxyUsername, proxyPassword);
-            proxyOptions.ProxyStrategyFactory = basicAuthenticationStrategy;
+            proxyOptions.ProxyStrategyFactory =
+                Aws::Crt::Http::HttpProxyStrategyFactory::CreateExperimentalHttpProxyStrategyFactory(
+                    proxyUsername, proxyPassword);
         }
 
         if (useX509)
