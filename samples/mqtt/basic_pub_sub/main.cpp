@@ -5,6 +5,7 @@
 #include <aws/crt/Api.h>
 #include <aws/crt/StlAllocator.h>
 #include <aws/crt/auth/Credentials.h>
+#include <aws/crt/http/HttpProxyStrategy.h>
 #include <aws/crt/io/TlsOptions.h>
 
 #include <aws/iot/MqttClient.h>
@@ -25,6 +26,7 @@ static void s_printHelp()
         "basic-pub-sub --endpoint <endpoint> --cert <path to cert>"
         " --key <path to key> --topic <topic> --ca_file <optional: path to custom ca>"
         " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>"
+        " --proxy_username <username> --proxy_password <password>"
         " --x509 --x509_role_alias <role_alias> --x509_endpoint <endpoint> --x509_thing <thing_name>"
         " --x509_cert <path to cert> --x509_key <path to key> --x509_rootca <path to root ca>\n\n");
     fprintf(stdout, "endpoint: the endpoint of the mqtt server not including a port\n");
@@ -47,7 +49,8 @@ static void s_printHelp()
     fprintf(stdout, "proxy_host: if you want to use a proxy with websockets, specify the host here (optional).\n");
     fprintf(
         stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n");
-
+    fprintf(stdout, "proxy_username: (basic authentication) username to use when connecting to proxy (optional).\n");
+    fprintf(stdout, "proxy_username: (basic authentication) password to use when connecting to proxy (optional).\n");
     fprintf(stdout, "  x509: Use the x509 credentials provider while using websockets (optional)\n");
     fprintf(stdout, "  x509_role_alias: Role alias to use with the x509 credentials provider (required for x509)\n");
     fprintf(stdout, "  x509_endpoint: Endpoint to fetch x509 credentials from (required for x509)\n");
@@ -86,6 +89,7 @@ int main(int argc, char *argv[])
      * Do the global initialization for the API.
      */
     ApiHandle apiHandle;
+    apiHandle.InitializeLogging(Aws::Crt::LogLevel::Debug, "/tmp/log.txt");
 
     String endpoint;
     String certificatePath;
@@ -96,6 +100,8 @@ int main(int argc, char *argv[])
     String signingRegion;
     String proxyHost;
     uint16_t proxyPort(8080);
+    String proxyUsername;
+    String proxyPassword;
 
     String x509Endpoint;
     String x509ThingName;
@@ -164,6 +170,16 @@ int main(int argc, char *argv[])
         if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
         {
             proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
+        }
+
+        if (s_cmdOptionExists(argv, argv + argc, "--proxy_username"))
+        {
+            proxyUsername = s_getCmdOption(argv, argv + argc, "--proxy_username");
+        }
+
+        if (s_cmdOptionExists(argv, argv + argc, "--proxy_password"))
+        {
+            proxyPassword = s_getCmdOption(argv, argv + argc, "--proxy_password");
         }
     }
 
@@ -281,7 +297,15 @@ int main(int argc, char *argv[])
         {
             proxyOptions.HostName = proxyHost;
             proxyOptions.Port = proxyPort;
-            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+            proxyOptions.ProxyConnectionType = AWS_HPCT_HTTP_TUNNEL;
+        }
+
+        if (!proxyUsername.empty())
+        {
+            auto basicAuthenticationStrategy =
+                Aws::Crt::Http::HttpProxyStrategyFactory::CreateBasicHttpProxyStrategyFactory(
+                    AWS_HPCT_HTTP_TUNNEL, proxyUsername, proxyPassword);
+            proxyOptions.ProxyStrategyFactory = basicAuthenticationStrategy;
         }
 
         if (useX509)
