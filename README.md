@@ -88,7 +88,7 @@ We need your help in making this SDK great. Please participate in the community 
 * [Contributions Guidelines](CONTRIBUTING.md)
 * Articulate your feature request or upvote existing ones on our [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues?q=is%3Aissue+is%3Aopen+label%3Afeature-request) page.
 * Submit [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
-main
+
 ## More Resources
 
 * [AWS IoT Core Documentation](https://docs.aws.amazon.com/iot/)
