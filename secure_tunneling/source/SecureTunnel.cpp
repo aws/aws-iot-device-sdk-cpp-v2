@@ -17,6 +17,7 @@ namespace Aws
             const std::string &accessToken,
             aws_secure_tunneling_local_proxy_mode localProxyMode,
             const std::string &endpointHost,
+            const std::string &rootCa,
 
             OnConnectionComplete onConnectionComplete,
             OnSendDataComplete onSendDataComplete,
@@ -36,6 +37,7 @@ namespace Aws
             m_socketOptions = socketOptions;
             m_accessToken = accessToken;
             m_endpointHost = endpointHost;
+            m_rootCa = rootCa;
 
             // Initialize aws_secure_tunneling_connection_config
             aws_secure_tunneling_connection_config config;
@@ -48,6 +50,7 @@ namespace Aws
             config.access_token = aws_byte_cursor_from_c_str(m_accessToken.c_str());
             config.local_proxy_mode = localProxyMode;
             config.endpoint_host = aws_byte_cursor_from_c_str(m_endpointHost.c_str());
+            config.root_ca = m_rootCa.c_str();
 
             config.on_connection_complete = s_OnConnectionComplete;
             config.on_send_data_complete = s_OnSendDataComplete;
@@ -62,10 +65,23 @@ namespace Aws
             m_secure_tunnel = aws_secure_tunnel_new(&config);
         }
 
-        SecureTunnel::SecureTunnel(SecureTunnel &&from) noexcept
+        SecureTunnel::SecureTunnel(SecureTunnel &&other) noexcept
         {
-            m_secure_tunnel = from.m_secure_tunnel;
-            from.m_secure_tunnel = nullptr;
+            m_OnConnectionComplete = other.m_OnConnectionComplete;
+            m_OnSendDataComplete = other.m_OnSendDataComplete;
+            m_OnDataReceive = other.m_OnDataReceive;
+            m_OnStreamStart = other.m_OnStreamStart;
+            m_OnStreamReset = other.m_OnStreamReset;
+            m_OnSessionReset = other.m_OnSessionReset;
+
+            m_socketOptions = other.m_socketOptions;
+            m_accessToken = std::move(other.m_accessToken);
+            m_endpointHost = std::move(other.m_endpointHost);
+            m_rootCa = std::move(other.m_rootCa);
+
+            m_secure_tunnel = other.m_secure_tunnel;
+
+            other.m_secure_tunnel = nullptr;
         }
 
         SecureTunnel::~SecureTunnel()
@@ -76,14 +92,27 @@ namespace Aws
             }
         }
 
-        SecureTunnel &SecureTunnel::operator=(SecureTunnel &&rhs) noexcept
+        SecureTunnel &SecureTunnel::operator=(SecureTunnel &&other) noexcept
         {
-            if (this != &rhs)
+            if (this != &other)
             {
                 this->~SecureTunnel();
 
-                m_secure_tunnel = rhs.m_secure_tunnel;
-                rhs.m_secure_tunnel = nullptr;
+                m_OnConnectionComplete = other.m_OnConnectionComplete;
+                m_OnSendDataComplete = other.m_OnSendDataComplete;
+                m_OnDataReceive = other.m_OnDataReceive;
+                m_OnStreamStart = other.m_OnStreamStart;
+                m_OnStreamReset = other.m_OnStreamReset;
+                m_OnSessionReset = other.m_OnSessionReset;
+
+                m_socketOptions = other.m_socketOptions;
+                m_accessToken = std::move(other.m_accessToken);
+                m_endpointHost = std::move(other.m_endpointHost);
+                m_rootCa = std::move(other.m_rootCa);
+
+                m_secure_tunnel = other.m_secure_tunnel;
+
+                other.m_secure_tunnel = nullptr;
             }
 
             return *this;

@@ -83,6 +83,7 @@ static int before(struct aws_allocator *allocator, void *ctx)
         "access_token",
         testContext->localProxyMode,
         "endpoint",
+        "",
         s_OnConnectionComplete,
         s_OnSendDataComplete,
         s_OnDataReceive,

@@ -33,6 +33,7 @@ namespace Aws
                 const std::string &accessToken, // Make a copy and save in this object
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
                 const std::string &endpointHost, // Make a copy and save in this object
+                const std::string &rootCa,       // Make a copy and save in this object
 
                 OnConnectionComplete onConnectionComplete,
                 OnSendDataComplete onSendDataComplete,
@@ -80,6 +81,7 @@ namespace Aws
             Aws::Crt::Io::SocketOptions m_socketOptions;
             std::string m_accessToken;
             std::string m_endpointHost;
+            std::string m_rootCa;
 
             aws_secure_tunnel *m_secure_tunnel;
         };
