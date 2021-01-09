@@ -42,6 +42,7 @@ static SecureTunnelingTestContext s_testContext;
 
 // Client callbacks implementation
 static void s_OnConnectionComplete() {}
+static void s_OnConnectionShutdown() {}
 
 static void s_OnSendDataComplete(int errorCode) {}
 
@@ -85,6 +86,7 @@ static int before(struct aws_allocator *allocator, void *ctx)
         "endpoint",
         "",
         s_OnConnectionComplete,
+        s_OnConnectionShutdown,
         s_OnSendDataComplete,
         s_OnDataReceive,
         s_OnStreamStart,

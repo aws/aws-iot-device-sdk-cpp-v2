@@ -20,6 +20,7 @@ namespace Aws
             const std::string &rootCa,
 
             OnConnectionComplete onConnectionComplete,
+            OnConnectionShutdown onConnectionShutdown,
             OnSendDataComplete onSendDataComplete,
             OnDataReceive onDataReceive,
             OnStreamStart onStreamStart,
@@ -28,6 +29,7 @@ namespace Aws
         {
             // Client callbacks
             m_OnConnectionComplete = onConnectionComplete;
+            m_OnConnectionShutdown = onConnectionShutdown;
             m_OnSendDataComplete = onSendDataComplete;
             m_OnDataReceive = onDataReceive;
             m_OnStreamStart = onStreamStart;
@@ -53,6 +55,7 @@ namespace Aws
             config.root_ca = m_rootCa.c_str();
 
             config.on_connection_complete = s_OnConnectionComplete;
+            config.on_connection_shutdown = s_OnConnectionShutdown;
             config.on_send_data_complete = s_OnSendDataComplete;
             config.on_data_receive = s_OnDataReceive;
             config.on_stream_start = s_OnStreamStart;
@@ -68,6 +71,7 @@ namespace Aws
         SecureTunnel::SecureTunnel(SecureTunnel &&other) noexcept
         {
             m_OnConnectionComplete = other.m_OnConnectionComplete;
+            m_OnConnectionShutdown = other.m_OnConnectionShutdown;
             m_OnSendDataComplete = other.m_OnSendDataComplete;
             m_OnDataReceive = other.m_OnDataReceive;
             m_OnStreamStart = other.m_OnStreamStart;
@@ -99,6 +103,7 @@ namespace Aws
                 this->~SecureTunnel();
 
                 m_OnConnectionComplete = other.m_OnConnectionComplete;
+                m_OnConnectionShutdown = other.m_OnConnectionShutdown;
                 m_OnSendDataComplete = other.m_OnSendDataComplete;
                 m_OnDataReceive = other.m_OnDataReceive;
                 m_OnStreamStart = other.m_OnStreamStart;
@@ -137,6 +142,12 @@ namespace Aws
         {
             auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
             secureTunnel->m_OnConnectionComplete();
+        }
+
+        void SecureTunnel::s_OnConnectionShutdown(void *user_data)
+        {
+            auto *secureTunnel = static_cast<SecureTunnel *>(user_data);
+            secureTunnel->m_OnConnectionShutdown();
         }
 
         void SecureTunnel::s_OnSendDataComplete(int error_code, void *user_data)
