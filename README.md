@@ -37,7 +37,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 Note: `-DCMAKE_INSTALL_PREFIX` can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here. And `--config` is only REQUIRED for multi-configuration build tools.
 
-##### MaxOS and Linux
+#### MaxOS and Linux
 
 ``` sh
 mkdir sdk-cpp-workspace
@@ -49,7 +49,7 @@ cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEP
 cmake --build . --target install --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-##### Windows
+#### Windows
 
 ``` sh
 mkdir sdk-cpp-workspace
@@ -61,6 +61,8 @@ cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DCMAKE_PRE
 cmake --build . --target install --config "<Release|RelWithDebInfo|Debug>"
 ```
 
+Due to maximum path length limitations in the Windows API, we recommend [enabling long paths](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) on your development machines, or cloning to a short path like: `C:\dev\iotsdk`
+
 #### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
 
 ``` sh
@@ -69,10 +71,6 @@ cd aws-iot-device-sdk-cpp-v2-build
 cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=OFF ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install
 ```
-
-#### Building on Windows
-
-Due to maximum path length limitations in the Windows API, we recommend [enabling long paths](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) on your development machines, or cloning to a short path like: `C:\dev\iotsdk`
 
 ### Mac-Only TLS Behavior
 
