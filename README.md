@@ -61,7 +61,6 @@ cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DCMAKE_PRE
 cmake --build . --target install --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-
 #### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
 
 ``` sh
