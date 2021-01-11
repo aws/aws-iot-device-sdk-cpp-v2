@@ -81,6 +81,52 @@ char *s_getCmdOption(char **begin, char **end, const String &option)
     return 0;
 }
 
+/*option to print kerberos http status, can be used for any strategy*/
+void send_kerberos_status(int httpStatusCode)
+{
+    std::cout << "httpStatusCode = " << httpStatusCode;
+}
+
+/*get kerberos usertoken*/
+char *get_kerb_usertoken() 
+{
+   char *kerb_usertoken = "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";
+   return kerb_usertoken;
+
+}
+
+/*get ntlm response*/
+char *get_ntlm_resp()
+{
+    char *ntlm_response = "TlRMTVNTUAADAAAAGAAYAKQAAAA4ATgBvAAAABQAFABYAAAAHgAeAGwAAAAaABoAigAAAAAAAAD0AQAABYKIogoAY0UAAAAPlNhvNNGe0bsIkyaVjEArQlMAUQBVAEkARABQAFIATwBYAFkAcAByAGEAcwBoAGEAbgB0AC4AbQBpAHMAaAByAGEAVgBNAFcASQBOADEAMABDAEwASQBFAE4AVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQcMmU+PSMpzaeU80QQK58AQEAAAAAAABWhuo+o5DWARLzwJAEeKm8AAAAAAIAFABTAFEAVQBJAEQAUABSAE8AWABZAAEAEAB2AG0AVwBTADIAMAAxADkABAAeAHMAcQB1AGkAZABwAHIAbwB4AHkALgB0AGUAcwB0AAMAMAB2AG0AVwBTADIAMAAxADkALgBzAHEAdQBpAGQAcAByAG8AeAB5AC4AdABlAHMAdAAFAB4AcwBxAHUAaQBkAHAAcgBvAHgAeQAuAHQAZQBzAHQABwAIAFaG6j6jkNYBBgAEAAIAAAAIADAAMAAAAAAAAAABAAAAACAAALkrYulSiMODvsv0PGjGFbEJqZnejGV/GLnxq2Mpk50vCgAQAAAAAAAAAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAA=";
+    return ntlm_response;
+}
+
+/*get ntlm credentials*/
+char *get_ntlm_cred()
+{
+    char *ntlm_credential = "TlRMTVNTUAABAAAAB7IIogoACgA1AAAADQANACgAAAAKAGNFAAAAD1ZNV0lOMTBDTElFTlRTUVVJRFBST1hZ";
+    return ntlm_credential;
+}
+
+/*print ntlm challenge header*/
+void send_ntlm_chall_header(
+    size_t length,
+    uint8_t *httpHeader,
+    size_t length1,
+    uint8_t *httpHeader1,
+    size_t num_headers)
+{
+    for (size_t i = 0; i < num_headers; ++i)
+    {
+        std::cout.write((char *)httpHeader, length);
+        std::cout << ": ";
+        std::cout.write((char *)httpHeader1, length1);
+        std::cout << std::endl;
+    }
+}
+
+
 int main(int argc, char *argv[])
 {
 
@@ -112,6 +158,7 @@ int main(int argc, char *argv[])
     String x509RootCAFile;
 
     bool useWebSocket = false;
+    bool useNTLM = false;
     bool useX509 = false;
 
     /*********************** Parse Arguments ***************************/
@@ -182,7 +229,7 @@ int main(int argc, char *argv[])
         {
             proxyPassword = s_getCmdOption(argv, argv + argc, "--proxy_password");
         }
-
+        
         if (s_cmdOptionExists(argv, argv + argc, "--proxy_usertoken"))
         {
             
@@ -191,7 +238,10 @@ int main(int argc, char *argv[])
             proxyUsertoken = "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";
         }
 
-        
+        if (s_cmdOptionExists(argv, argv + argc, "--use_NTLM"))
+        {
+            useNTLM = true;
+        }
     }
 
     bool usingMtls = !certificatePath.empty() && !keyPath.empty();
@@ -318,10 +368,17 @@ int main(int argc, char *argv[])
                     proxyUsername, proxyPassword);
         }
 
+        else if (useNTLM)
+        {
+
+            proxyOptions.ProxyStrategyFactory =
+                Aws::Crt::Http::HttpProxyStrategyFactory::CreateAdaptiveNtlmHttpProxyStrategyFactory();
+        }
+
         else if (!proxyUsertoken.empty())
         {
         
-            /* Create a strategy with usertoken as input parameter*/
+            /* Create a strategy with kerberos usertoken as input parameter*/
             proxyOptions.ProxyStrategyFactory =
                 Aws::Crt::Http::HttpProxyStrategyFactory::CreateKerberosHttpProxyStrategyFactory(
                     AWS_HPCT_HTTP_TUNNEL, proxyUsertoken);
@@ -330,11 +387,9 @@ int main(int argc, char *argv[])
 
         else
         {
-        
             proxyOptions.ProxyStrategyFactory =
                 Aws::Crt::Http::HttpProxyStrategyFactory::CreateAdaptiveKerberosHttpProxyStrategyFactory();
-        
-        
+
         }
 
         if (useX509)
