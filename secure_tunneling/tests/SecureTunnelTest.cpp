@@ -40,10 +40,7 @@ struct SecureTunnelingTestContext
 
     aws_secure_tunneling_local_proxy_mode localProxyMode;
 
-    SecureTunnelingTestContext()
-    {
-        localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
-    }
+    SecureTunnelingTestContext() { localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE; }
 };
 static SecureTunnelingTestContext s_testContext;
 
@@ -86,7 +83,8 @@ static int before(struct aws_allocator *allocator, void *ctx)
     testContext->deviceApiHandle = unique_ptr<DeviceApiHandle>(new DeviceApiHandle(allocator));
     testContext->elGroup = unique_ptr<EventLoopGroup>(new EventLoopGroup(1, allocator));
     testContext->resolver = unique_ptr<HostResolver>(new DefaultHostResolver(*testContext->elGroup, 8, 30, allocator));
-    testContext->clientBootstrap = unique_ptr<ClientBootstrap>(new ClientBootstrap(*testContext->elGroup, *testContext->resolver, allocator));
+    testContext->clientBootstrap =
+        unique_ptr<ClientBootstrap>(new ClientBootstrap(*testContext->elGroup, *testContext->resolver, allocator));
     testContext->secureTunnel = unique_ptr<SecureTunnel>(new SecureTunnel(
         allocator,
         testContext->clientBootstrap.get(),
