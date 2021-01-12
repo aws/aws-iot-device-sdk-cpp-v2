@@ -35,8 +35,6 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 #### Automatically Build and Install AWS Dependencies
 
-Note: `-DCMAKE_INSTALL_PREFIX` can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here. And `--config` is only REQUIRED for multi-configuration build tools.
-
 #### MaxOS and Linux
 
 ``` sh
@@ -45,8 +43,8 @@ cd sdk-cpp-workspace
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=ON -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ../aws-iot-device-sdk-cpp-v2
-cmake --build . --target install --config "<Release|RelWithDebInfo|Debug>"
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2
+cmake --build . --target install
 ```
 
 #### Windows
@@ -62,6 +60,8 @@ cmake --build . --target install --config "<Release|RelWithDebInfo|Debug>"
 ```
 
 Due to maximum path length limitations in the Windows API, we recommend [enabling long paths](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) on your development machines, or cloning to a short path like: `C:\dev\iotsdk`
+
+Note: `-DCMAKE_INSTALL_PREFIX` can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here. And `--config` is only REQUIRED for multi-configuration build tools (VisualStudio/MsBuild being the most common).
 
 #### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
 
