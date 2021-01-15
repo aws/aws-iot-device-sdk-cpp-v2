@@ -108,9 +108,6 @@ static int after(struct aws_allocator *allocator, int setup_result, void *ctx)
 {
     auto *testContext = static_cast<SecureTunnelingTestContext *>(ctx);
 
-    // Normally this memory is released within the ping task.
-    aws_mem_release(allocator, testContext->secureTunnel->GetUnderlyingHandle()->ping_task_context);
-
     testContext->secureTunnel.reset();
     testContext->clientBootstrap.reset();
     testContext->resolver.reset();
