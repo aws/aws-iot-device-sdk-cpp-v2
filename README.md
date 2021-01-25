@@ -20,8 +20,8 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 * [Installation](#Installation)
 * [Samples](samples)
 * [Getting Help](#Getting-Help)
+* [FAQ](FAQ)
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
-* [More Resources](#More-Resources)
 
 ## Installation
 
@@ -65,23 +65,6 @@ Due to maximum path length limitations in the Windows API, we recommend [enablin
 
 `--config` is only REQUIRED for multi-configuration build tools (VisualStudio/MsBuild being the most common).
 
-#### Using a Pre-Built aws-crt-cpp (Most useful for development of this package)
-
-``` sh
-mkdir aws-iot-device-sdk-cpp-v2-build
-cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>"  -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=OFF ../aws-iot-device-sdk-cpp-v2
-cmake --build . --target install
-```
-
-### Mac-Only TLS Behavior
-
-Please note that on Mac, once a private key is used with a certificate, that certificate-key pair is imported into the Mac Keychain.  All subsequent uses of that certificate will use the stored private key and ignore anything passed in programmatically.  Beginning in v1.7.3, when a stored private key from the Keychain is used, the following will be logged at the "info" log level:
-
-```
-static: certificate has an existing certificate-key pair that was previously imported into the Keychain.  Using key from Keychain instead of the one provided.
-```
-
 ## Samples
 
 [Samples README](samples)
@@ -90,8 +73,15 @@ static: certificate has an existing certificate-key pair that was previously imp
 
 Use the following sources for information :
 
-* Check api and developer guides.
-* Check for similar issues already opened.
+* Check [FAQ](https://github.com/aws/aws-iot-device-sdk-cpp-v2/FAQ.md)
+* Check [Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
+* Check for similar [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
+* [AWS IoT Core Documentation](https://docs.aws.amazon.com/iot/)
+* [Dev Blog](https://aws.amazon.com/blogs/?awsf.blog-master-iot=category-internet-of-things%23amazon-freertos%7Ccategory-internet-of-things%23aws-greengrass%7Ccategory-internet-of-things%23aws-iot-analytics%7Ccategory-internet-of-things%23aws-iot-button%7Ccategory-internet-of-things%23aws-iot-device-defender%7Ccategory-internet-of-things%23aws-iot-device-management%7Ccategory-internet-of-things%23aws-iot-platform)
+* Integration with AWS IoT Services such as
+[Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
+and [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
+is provided by code that been generated from a model of the service.
 
 If you still can’t find a solution to your problem open an [issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
 
@@ -102,18 +92,6 @@ We need your help in making this SDK great. Please participate in the community 
 * [Contributions Guidelines](CONTRIBUTING.md)
 * Articulate your feature request or upvote existing ones on our [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues?q=is%3Aissue+is%3Aopen+label%3Afeature-request) page.
 * Submit [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
-
-## More Resources
-
-* [AWS IoT Core Documentation](https://docs.aws.amazon.com/iot/)
-* [Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
-* [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
-* [Dev Blog](https://aws.amazon.com/blogs/?awsf.blog-master-iot=category-internet-of-things%23amazon-freertos%7Ccategory-internet-of-things%23aws-greengrass%7Ccategory-internet-of-things%23aws-iot-analytics%7Ccategory-internet-of-things%23aws-iot-button%7Ccategory-internet-of-things%23aws-iot-device-defender%7Ccategory-internet-of-things%23aws-iot-device-management%7Ccategory-internet-of-things%23aws-iot-platform)
-
-Integration with AWS IoT Services such as
-[Device Shadow](https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
-and [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
-is provided by code that been generated from a model of the service.
 
 ## License
 
