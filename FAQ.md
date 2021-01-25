@@ -39,7 +39,8 @@ CMake Error at CMakeLists.txt:46 (include):
  include could not find load file:
   AwsFindPackage
 ```
-Make sure use `--recursive` in the git clone command
+Make sure to use `--recursive` in the git clone command
+
 `git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git`
 
 
