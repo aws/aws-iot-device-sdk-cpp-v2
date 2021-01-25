@@ -20,7 +20,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 * [Installation](#Installation)
 * [Samples](samples)
 * [Getting Help](#Getting-Help)
-* [FAQ](FAQ)
+* [FAQ](FAQ.md)
 * [Giving Feedback and Contributions](#Giving-Feedback-and-Contributions)
 
 ## Installation
@@ -73,7 +73,7 @@ Due to maximum path length limitations in the Windows API, we recommend [enablin
 
 Use the following sources for information :
 
-* Check [FAQ](https://github.com/aws/aws-iot-device-sdk-cpp-v2/FAQ.md)
+* Check [FAQ](FAQ.md)
 * Check [Developer Guide](https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html) ([source](https://github.com/awsdocs/aws-iot-docs))
 * Check for similar [Issues](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
 * [AWS IoT Core Documentation](https://docs.aws.amazon.com/iot/)
