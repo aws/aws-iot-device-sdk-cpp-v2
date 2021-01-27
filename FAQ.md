@@ -32,7 +32,7 @@ After getting it working make sure to only allow the actions and resources that 
 Add `-DBUILD_SHARED_LIBS=ON` to your first cmake command
 
 
-### Depenedencies are bad.
+### Dependencies are bad.
 If you get the following Error:
 ```
 CMake Error at CMakeLists.txt:46 (include):
@@ -44,7 +44,7 @@ Make sure to use `--recursive` in the git clone command
 `git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git`
 
 
-### Connection Issues (tldr use keepAliveTimeSecs and pingTimeoutMs)
+### Detecting connection loss (tldr use keepAliveTimeSecs and pingTimeoutMs)
 
 There are 3 mechanisms for detecting connection loss:
 1. The keepAliveTimeSecs and pingTimeoutMs arguments passed to MqttConnection::Connect(). These control how often the SDK sends a PINGREQ, and how long the SDK will wait for a PINGRESP before assuming the connection is lost. YOU SHOULD USE THIS TO RELIABLY DETECT CONNECTION LOSS.
