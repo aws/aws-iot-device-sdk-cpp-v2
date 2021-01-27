@@ -85,8 +85,6 @@ Please make sure to check out our resources too before opening an issue:
 and [Jobs](https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html)
 is provided by code that been generated from a model of the service.
 
-If you still can’t find a solution to your problem open an [issue](https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues)
-
 ## Giving Feedback and Contributions
 
 We need your help in making this SDK great. Please participate in the community and contribute to this effort by submitting issues, participating in discussion forums and submitting pull requests through the following channels.
