@@ -4,6 +4,7 @@
  */
 
 #include <aws/common/byte_buf.h>
+#include <aws/common/thread.h>
 #include <aws/crt/io/SocketOptions.h>
 #include <aws/http/http.h>
 #include <aws/iotdevice/private/serializer.h>
@@ -113,7 +114,7 @@ static int after(struct aws_allocator *allocator, int setup_result, void *ctx)
     testContext->resolver.reset();
     testContext->elGroup.reset();
     testContext->deviceApiHandle.reset();
-    ASSERT_SUCCESS(aws_global_thread_creator_shutdown_wait_for(10));
+    aws_thread_join_all_managed();
 
     aws_http_library_clean_up();
 
