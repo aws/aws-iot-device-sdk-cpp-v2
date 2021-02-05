@@ -239,7 +239,10 @@ int main(int argc, char *argv[])
                     {
                         auto onPublish = [&](Mqtt::MqttConnection & /*connection*/,
                                              const String &receivedOnTopic,
-                                             const ByteBuf &payload) {
+                                             const ByteBuf &payload,
+                                             bool /*dup*/,
+                                             Mqtt::QOS /*qos*/,
+                                             bool /*retain*/) {
                             fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
                             fprintf(stdout, "Message: \n");
                             fwrite(payload.buffer, 1, payload.len, stdout);
