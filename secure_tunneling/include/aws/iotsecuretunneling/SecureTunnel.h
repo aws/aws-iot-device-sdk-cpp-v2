@@ -15,6 +15,7 @@ namespace Aws
     {
         // Client callback type definitions
         using OnConnectionComplete = std::function<void(void)>;
+        using OnConnectionShutdown = std::function<void(void)>;
         using OnSendDataComplete = std::function<void(int errorCode)>;
         using OnDataReceive = std::function<void(const Crt::ByteBuf &data)>;
         using OnStreamStart = std::function<void()>;
@@ -33,8 +34,10 @@ namespace Aws
                 const std::string &accessToken, // Make a copy and save in this object
                 aws_secure_tunneling_local_proxy_mode localProxyMode,
                 const std::string &endpointHost, // Make a copy and save in this object
+                const std::string &rootCa,       // Make a copy and save in this object
 
                 OnConnectionComplete onConnectionComplete,
+                OnConnectionShutdown onConnectionShutdown,
                 OnSendDataComplete onSendDataComplete,
                 OnDataReceive onDataReceive,
                 OnStreamStart onStreamStart,
@@ -63,6 +66,7 @@ namespace Aws
           private:
             // aws-c-iot callbacks
             static void s_OnConnectionComplete(void *user_data);
+            static void s_OnConnectionShutdown(void *user_data);
             static void s_OnSendDataComplete(int error_code, void *user_data);
             static void s_OnDataReceive(const struct aws_byte_buf *data, void *user_data);
             static void s_OnStreamStart(void *user_data);
@@ -71,6 +75,7 @@ namespace Aws
 
             // Client callbacks
             OnConnectionComplete m_OnConnectionComplete;
+            OnConnectionShutdown m_OnConnectionShutdown;
             OnSendDataComplete m_OnSendDataComplete;
             OnDataReceive m_OnDataReceive;
             OnStreamStart m_OnStreamStart;
@@ -80,6 +85,7 @@ namespace Aws
             Aws::Crt::Io::SocketOptions m_socketOptions;
             std::string m_accessToken;
             std::string m_endpointHost;
+            std::string m_rootCa;
 
             aws_secure_tunnel *m_secure_tunnel;
         };

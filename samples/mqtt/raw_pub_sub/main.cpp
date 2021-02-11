@@ -41,7 +41,7 @@ static void s_printHelp()
         stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n");
     fprintf(stdout, "user_name: User name to send with mqtt connect.\n");
     fprintf(stdout, "password: Password to send with mqtt connect.\n");
-    fprintf(stdout, "protocol_name: (optional) defaults to mqtt.\n");
+    fprintf(stdout, "protocol_name: (optional) defaults to x-amzn-mqtt-ca.\n");
     fprintf(
         stdout,
         "auth_params: (optional) Comma delimited list of auth parameters. For websockets these will be set as headers. "

@@ -11,6 +11,11 @@
 #include <aws/iotsecuretunneling/SecureTunnel.h>
 #include <aws/testing/aws_test_harness.h>
 
+using namespace std;
+using namespace Aws::Crt::Io;
+using namespace Aws::Iotdevicecommon;
+using namespace Aws::Iotsecuretunneling;
+
 #define INVALID_STREAM_ID 0
 #define STREAM_ID 10
 #define PAYLOAD "secure tunneling data payload"
@@ -27,21 +32,21 @@ extern "C"
 
 struct SecureTunnelingTestContext
 {
-    Aws::Iotdevicecommon::DeviceApiHandle *deviceApiHandle;
-    aws_secure_tunneling_local_proxy_mode localProxyMode;
-    Aws::Iotsecuretunneling::SecureTunnel *secureTunnel;
+    unique_ptr<DeviceApiHandle> deviceApiHandle;
+    unique_ptr<EventLoopGroup> elGroup;
+    unique_ptr<HostResolver> resolver;
+    unique_ptr<ClientBootstrap> clientBootstrap;
+    unique_ptr<SecureTunnel> secureTunnel;
 
-    SecureTunnelingTestContext()
-    {
-        deviceApiHandle = nullptr;
-        localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE;
-        secureTunnel = nullptr;
-    }
+    aws_secure_tunneling_local_proxy_mode localProxyMode;
+
+    SecureTunnelingTestContext() { localProxyMode = AWS_SECURE_TUNNELING_DESTINATION_MODE; }
 };
 static SecureTunnelingTestContext s_testContext;
 
 // Client callbacks implementation
 static void s_OnConnectionComplete() {}
+static void s_OnConnectionShutdown() {}
 
 static void s_OnSendDataComplete(int errorCode) {}
 
@@ -74,21 +79,27 @@ static int before(struct aws_allocator *allocator, void *ctx)
     auto *testContext = static_cast<SecureTunnelingTestContext *>(ctx);
 
     aws_http_library_init(allocator);
-    testContext->deviceApiHandle = new Aws::Iotdevicecommon::DeviceApiHandle(allocator);
 
-    testContext->secureTunnel = new Aws::Iotsecuretunneling::SecureTunnel(
+    testContext->deviceApiHandle = unique_ptr<DeviceApiHandle>(new DeviceApiHandle(allocator));
+    testContext->elGroup = unique_ptr<EventLoopGroup>(new EventLoopGroup(1, allocator));
+    testContext->resolver = unique_ptr<HostResolver>(new DefaultHostResolver(*testContext->elGroup, 8, 30, allocator));
+    testContext->clientBootstrap =
+        unique_ptr<ClientBootstrap>(new ClientBootstrap(*testContext->elGroup, *testContext->resolver, allocator));
+    testContext->secureTunnel = unique_ptr<SecureTunnel>(new SecureTunnel(
         allocator,
-        nullptr,
-        Aws::Crt::Io::SocketOptions(),
+        testContext->clientBootstrap.get(),
+        SocketOptions(),
         "access_token",
         testContext->localProxyMode,
         "endpoint",
+        "",
         s_OnConnectionComplete,
+        s_OnConnectionShutdown,
         s_OnSendDataComplete,
         s_OnDataReceive,
         s_OnStreamStart,
         s_OnStreamReset,
-        s_OnSessionReset);
+        s_OnSessionReset));
 
     return AWS_ERROR_SUCCESS;
 }
@@ -97,10 +108,13 @@ static int after(struct aws_allocator *allocator, int setup_result, void *ctx)
 {
     auto *testContext = static_cast<SecureTunnelingTestContext *>(ctx);
 
-    delete testContext->secureTunnel;
-    testContext->secureTunnel = nullptr;
+    testContext->secureTunnel.reset();
+    testContext->clientBootstrap.reset();
+    testContext->resolver.reset();
+    testContext->elGroup.reset();
+    testContext->deviceApiHandle.reset();
+    ASSERT_SUCCESS(aws_global_thread_creator_shutdown_wait_for(10));
 
-    delete testContext->deviceApiHandle;
     aws_http_library_clean_up();
 
     return AWS_ERROR_SUCCESS;
