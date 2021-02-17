@@ -237,9 +237,12 @@ int main(int argc, char *argv[])
 
                     if (mode == "both" || mode == "subscribe")
                     {
-                        auto onPublish = [&](Mqtt::MqttConnection & /*connection*/,
+                        auto onMessage = [&](Mqtt::MqttConnection & /*connection*/,
                                              const String &receivedOnTopic,
-                                             const ByteBuf &payload) {
+                                             const ByteBuf &payload,
+                                             bool /*dup*/,
+                                             Mqtt::QOS /*qos*/,
+                                             bool /*retain*/) {
                             fprintf(stdout, "Publish received on topic %s\n", receivedOnTopic.c_str());
                             fprintf(stdout, "Message: \n");
                             fwrite(payload.buffer, 1, payload.len, stdout);
@@ -267,7 +270,7 @@ int main(int argc, char *argv[])
                             }
                         };
 
-                        conn.Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onPublish, onSubAck);
+                        conn.Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_MOST_ONCE, onMessage, onSubAck);
                     }
                     else
                     {
