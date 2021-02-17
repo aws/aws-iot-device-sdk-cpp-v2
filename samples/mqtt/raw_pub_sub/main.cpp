@@ -357,7 +357,7 @@ int main(int argc, char *argv[])
         /*
          * This is invoked upon the receipt of a Publish on a subscribed topic.
          */
-        auto onPublish = [&](Mqtt::MqttConnection &,
+        auto onMessage = [&](Mqtt::MqttConnection &,
                              const String &topic,
                              const ByteBuf &byteBuf,
                              bool /*dup*/,
@@ -395,7 +395,7 @@ int main(int argc, char *argv[])
                 subscribeFinishedPromise.set_value();
             };
 
-        connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onPublish, onSubAck);
+        connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
 
         while (true)
