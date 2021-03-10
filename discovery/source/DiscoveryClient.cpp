@@ -31,6 +31,12 @@ namespace Aws
             Crt::StringStream ss;
             ss << "greengrass-ats.iot." << clientConfig.Region << ".amazonaws.com";
 
+            // Temporary fix for connection with china endpoint
+            if (clientConfig.Region == "cn-north-1")
+            {
+                ss << ".cn";
+            }
+
             Crt::Io::TlsConnectionOptions tlsConnectionOptions = clientConfig.TlsContext->NewConnectionOptions();
             uint16_t port = 443;
 
