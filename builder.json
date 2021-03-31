@@ -5,13 +5,6 @@
     "-DPERFORM_HEADER_CHECK=OFF",
     "-DS2N_NO_PQ_ASM=ON"
   ],
-  "targets": {
-    "linux": {
-      "imports": [
-        "s2n"
-      ]
-    }
-  },
   "search_dirs": [
     "crt"
   ],
@@ -36,10 +29,7 @@
       "-Hsamples/mqtt/basic_pub_sub/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
-      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
-      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
     ],
     [
       "cmake",
@@ -58,10 +48,7 @@
       "-Hsamples/mqtt/raw_pub_sub/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
-      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
-      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
     ],
     [
       "cmake",
@@ -80,10 +67,7 @@
       "-Hsamples/shadow/shadow_sync/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
-      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
-      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
     ],
     [
       "cmake",
@@ -102,10 +86,7 @@
       "-Hsamples/greengrass/basic_discovery/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
-      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
-      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
     ],
     [
       "cmake",
@@ -124,10 +105,7 @@
       "-Hsamples/identity/fleet_provisioning/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
-      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
-      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
     ],
     [
       "cmake",
@@ -146,10 +124,7 @@
       "-Hsamples/jobs/describe_job_execution/",
       "-DCMAKE_INSTALL_PREFIX={install_dir}",
       "-DCMAKE_PREFIX_PATH={install_dir}",
-      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-      "-DLibCrypto_INCLUDE_DIR={deps_dir}/libcrypto/include",
-      "-DLibCrypto_SHARED_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.so",
-      "-DLibCrypto_STATIC_LIBRARY={deps_dir}/libcrypto/lib/libcrypto.a"
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
     ],
     [
       "cmake",

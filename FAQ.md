@@ -27,11 +27,6 @@ This could be many different things but it most likely is a policy issue. Start 
 After getting it working make sure to only allow the actions and resources that you need. More info about IoT IAM policies can be found [here](https://docs.aws.amazon.com/iot/latest/developerguide/security_iam_service-with-iam.html).
 
 
-### Could NOT find LibCrypto (missing: LibCrypto_LIBRARY)
-
-Add `-DBUILD_SHARED_LIBS=ON` to your first cmake command
-
-
 ### Dependencies are bad.
 If you get the following Error:
 ```

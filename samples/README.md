@@ -28,16 +28,6 @@ cmake --build . --config "<Release|RelWithDebInfo|Debug>"
 
 * `-DCMAKE_BUILD_TYPE` and `--config` needs to match the CMAKE_BUILD_TYPE when aws-iot-device-sdk-cpp-v2 built. `--config` is only REQUIRED for multi-configuration build tools.
 
-* **For linux machine, you will need to indicate the path to libcrypto, by adding the following configuration to the cmake config process:**
-  * LibCrypto_INCLUDE_DIR="\<path to include dir\>"
-  * LibCrypto_STATIC_LIBRARY="\<path to libcrypto.a file\>"
-
-  Like the following commands:
-
-  ``` sh
-  cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DLibCrypto_INCLUDE_DIR="<path to include dir>" -DLibCrypto_STATIC_LIBRARY="<path to libcrypto.a file>" ..
-  ```
-
 ## Basic MQTT Pub-Sub
 
 This sample uses the

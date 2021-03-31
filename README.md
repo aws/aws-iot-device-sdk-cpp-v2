@@ -61,7 +61,7 @@ cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DCMAKE_PRE
 cmake --build . --target install --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-Due to maximum path length limitations in the Windows API, we recommend [enabling long paths](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) on your development machines, or cloning to a short path like: `C:\dev\iotsdk`
+Due to maximum path length limitations in the Windows API, we recommend cloning to a short path like: `C:\dev\iotsdk`
 
 `--config` is only REQUIRED for multi-configuration build tools (VisualStudio/MsBuild being the most common).
 
