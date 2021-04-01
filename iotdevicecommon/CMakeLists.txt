@@ -116,5 +116,5 @@ configure_file("cmake/iotdevicecommon-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotdevicecommon-cpp-config.cmake"
-        DESTINATION "lib/IotDeviceCommon-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotDeviceCommon-cpp/cmake/"
         COMPONENT Development)
