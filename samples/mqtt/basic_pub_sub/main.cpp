@@ -265,7 +265,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    Aws::Crt::Io::TlsContext x509TlsCtx;
+    Aws::Crt::Io::TlsContext tlsCtx;
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
 
     if (!certificatePath.empty() && !keyPath.empty())
@@ -302,19 +302,19 @@ int main(int argc, char *argv[])
                 tlsCtxOptions.OverrideDefaultTrustStore(nullptr, x509RootCAFile.c_str());
             }
 
-            x509TlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
-            if (!x509TlsCtx)
+            tlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
+            if (!tlsCtx)
             {
                 fprintf(
                     stderr,
                     "Unable to create tls context, error: %s!\n",
-                    ErrorDebugString(x509TlsCtx.GetInitializationError()));
+                    ErrorDebugString(tlsCtx.GetInitializationError()));
                 return -1;
             }
 
             Aws::Crt::Auth::CredentialsProviderX509Config x509Config;
 
-            x509Config.TlsOptions = x509TlsCtx.NewConnectionOptions();
+            x509Config.TlsOptions = tlsCtx.NewConnectionOptions();
             if (!x509Config.TlsOptions)
             {
                 fprintf(
@@ -338,8 +338,21 @@ int main(int argc, char *argv[])
         }
         else
         {
+            Aws::Crt::Io::TlsContextOptions tlsCtxOptions = Aws::Crt::Io::TlsContextOptions::InitDefaultClient();
+
+            tlsCtx = Aws::Crt::Io::TlsContext(tlsCtxOptions, Aws::Crt::Io::TlsMode::CLIENT);
+            if (!tlsCtx)
+            {
+                fprintf(
+                    stderr,
+                    "Unable to create tls context, error: %s!\n",
+                    ErrorDebugString(tlsCtx.GetInitializationError()));
+                return -1;
+            }
+
             Aws::Crt::Auth::CredentialsProviderChainDefaultConfig defaultConfig;
             defaultConfig.Bootstrap = &bootstrap;
+            defaultConfig.TlsContext = &tlsCtx;
 
             provider = Aws::Crt::Auth::CredentialsProvider::CreateCredentialsProviderChainDefault(defaultConfig);
         }
