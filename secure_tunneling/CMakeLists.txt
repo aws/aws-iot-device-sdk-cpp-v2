@@ -120,7 +120,7 @@ configure_file("cmake/iotsecuretunneling-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotsecuretunneling-cpp-config.cmake"
-        DESTINATION "lib/IotSecureTunneling-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotSecureTunneling-cpp/cmake/"
         COMPONENT Development)
 
 if (BUILD_TESTING)
