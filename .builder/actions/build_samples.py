@@ -25,7 +25,7 @@ class BuildSamples(Builder.Action):
                           f'-H{sample_path}',
                           f'-DCMAKE_PREFIX_PATH={env.install_dir}',
                           '-DCMAKE_BUILD_TYPE=RelWithDebInfo'])
-            steps.append(['cmake3',
+            steps.append(['cmake',
                           '--build', build_path,
                           '--config', 'RelWithDebInfo'])
 
