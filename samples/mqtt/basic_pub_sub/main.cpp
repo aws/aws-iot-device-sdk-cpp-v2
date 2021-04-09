@@ -540,12 +540,9 @@ int main(int argc, char *argv[])
                 break;
             }
 
-            ByteBuf payload = ByteBufNewCopy(DefaultAllocator(), (const uint8_t *)input.data(), input.length());
-            ByteBuf *payloadPtr = &payload;
+            ByteBuf payload = ByteBufFromArray((const uint8_t *)input.data(), input.length());
 
-            auto onPublishComplete = [payloadPtr](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
-                aws_byte_buf_clean_up(payloadPtr);
-
+            auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
                 if (packetId)
                 {
                     fprintf(stdout, "Operation on packetId %d Succeeded\n", packetId);
