@@ -37,7 +37,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 Note: `-DCMAKE_INSTALL_PREFIX` can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here.
 
-#### MaxOS and Linux
+#### MacOS and Linux
 
 ``` sh
 mkdir sdk-cpp-workspace
