@@ -80,7 +80,6 @@ char *s_getCmdOption(char **begin, char **end, const String &option)
 
 int main(int argc, char *argv[])
 {
-
     /************************ Setup the Lib ****************************/
     /*
      * Do the global initialization for the API.
@@ -125,13 +124,14 @@ int main(int argc, char *argv[])
     {
         certificatePath = s_getCmdOption(argv, argv + argc, "--cert");
     }
-
+#ifndef _WIN32
     if (keyPath.empty() != certificatePath.empty())
     {
         fprintf(stdout, "Using mtls (cert and key) requires both the certificate and the private key\n");
         s_printHelp();
         return 1;
     }
+#endif
     if (s_getCmdOption(argv, argv + argc, "--topic"))
     {
         topic = s_getCmdOption(argv, argv + argc, "--topic");
@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    bool usingMtls = !certificatePath.empty() && !keyPath.empty();
+    bool usingMtls = !certificatePath.empty();
 
     /* one or the other, but not both nor neither */
     if (useWebSocket == usingMtls)
@@ -268,9 +268,16 @@ int main(int argc, char *argv[])
     Aws::Crt::Io::TlsContext x509TlsCtx;
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
 
-    if (!certificatePath.empty() && !keyPath.empty())
+    if (!certificatePath.empty())
     {
-        builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
+        if (!keyPath.empty())
+        {
+            builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str(), keyPath.c_str());
+        }
+        else
+        {
+            builder = Aws::Iot::MqttClientConnectionConfigBuilder(certificatePath.c_str());
+        }
     }
     else if (useWebSocket)
     {
