@@ -113,7 +113,6 @@ static int after(struct aws_allocator *allocator, int setup_result, void *ctx)
     testContext->resolver.reset();
     testContext->elGroup.reset();
     testContext->deviceApiHandle.reset();
-    ASSERT_SUCCESS(aws_global_thread_creator_shutdown_wait_for(10));
 
     aws_http_library_clean_up();
 
