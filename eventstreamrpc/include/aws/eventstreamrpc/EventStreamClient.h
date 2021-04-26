@@ -49,15 +49,11 @@ namespace Aws
         using OnConnect = std::function<void(const std::shared_ptr<EventstreamRpcConnection> &connection)>;
 
         /**
-         * Invoked upon connection shutdown. `connection` will always be a valid pointer. `errorCode` will specify
+         * Invoked upon connection shutdown. `errorCode` will specify
          * shutdown reason. A graceful connection close will set `errorCode` to AWS_ERROR_SUCCESS.
-         * Internally, the connection pointer will be unreferenced immediately after this call; if you took a
-         * reference to it in OnConnect(), you'll need to release your reference before the underlying
-         * memory is released. If you never took a reference to it, the resources for the connection will be
-         * immediately released after completion of this callback.
          */
         using OnDisconnect =
-            std::function<void(const std::shared_ptr<EventstreamRpcConnection> &newConnection, int errorCode)>;
+            std::function<void(int errorCode)>;
 
         using OnError = std::function<bool(int errorCode)>;
 

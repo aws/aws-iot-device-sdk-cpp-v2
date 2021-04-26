@@ -354,13 +354,22 @@ namespace Aws
                     {
                         MessageAmendment &connectAmendment = callbackData->connectMessageAmender();
                         auto &defaultHeaderList = connectionObj->m_defaultConnectHeaders;
-                        for (auto& connectHeader : connectAmendment.GetHeaders())
+                        auto &amenderHeaderList = connectAmendment.GetHeaders();
+                        auto it = amenderHeaderList.begin();
+                        while (it != amenderHeaderList.end())
                         {
                             /* The connect amender must not add headers with the same name. */
-                            if (std::find(defaultHeaderList.begin(), defaultHeaderList.end(), connectHeader) ==
+                            if (std::find(defaultHeaderList.begin(), defaultHeaderList.end(), *it) ==
                                 defaultHeaderList.end())
                             {
-                                messageAmendment.AddHeader(std::move(connectHeader));
+                                /* Since the header is being moved, the entry from its original list
+                                 * must also be erased. */
+                                messageAmendment.AddHeader(std::move(*it));
+                                amenderHeaderList.erase(it++);
+                            }
+                            else
+                            {
+                                ++it;
                             }
                         }
                         messageAmendment.SetPayload(connectAmendment.GetPayload());
@@ -401,7 +410,7 @@ namespace Aws
             (void)connection;
             auto *callbackData = static_cast<ConnectionCallbackData *>(userData);
 
-            callbackData->onDisconnect(callbackData->connection, errorCode);
+            callbackData->onDisconnect(errorCode);
 
             Crt::Delete(callbackData, callbackData->allocator);
         }

@@ -25,7 +25,7 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
 
         Aws::Crt::Io::TlsConnectionOptions tlsConnectionOptions = tlsContext.NewConnectionOptions();
         Aws::Crt::Io::SocketOptions socketOptions;
-        socketOptions.SetConnectTimeoutMs(1000);
+        socketOptions.SetConnectTimeoutMs(2000);
 
         Aws::Crt::Io::EventLoopGroup eventLoopGroup(0, allocator);
         ASSERT_TRUE(eventLoopGroup);
@@ -36,14 +36,10 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         Aws::Crt::Io::ClientBootstrap clientBootstrap(eventLoopGroup, defaultHostResolver, allocator);
         ASSERT_TRUE(clientBootstrap);
         clientBootstrap.EnableBlockingShutdown();
-        Aws::Crt::List<EventStreamHeader> authHeaders;
-        authHeaders.push_back(EventStreamHeader(
-            Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
-        MessageAmendment connectionAmendment(authHeaders);
+        MessageAmendment connectionAmendment;
         auto messageAmender = [&](void) -> MessageAmendment & { return connectionAmendment; };
         std::shared_ptr<EventstreamRpcConnection> connection(nullptr);
-        bool errorOccured = true;
-        bool connectionShutdown = false;
+        int lastErrorCode = AWS_OP_SUCCESS;
 
         std::condition_variable semaphore;
         std::mutex semaphoreLock;
@@ -58,20 +54,17 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             semaphore.notify_one();
         };
 
-        auto onDisconnect = [&](const std::shared_ptr<EventstreamRpcConnection> &newConnection, int errorCode) {
+        auto onDisconnect = [&](int errorCode) {
             std::lock_guard<std::mutex> lockGuard(semaphoreLock);
 
             std::cout << "Disconnected" << std::endl;
 
             if (errorCode)
             {
-                std::cout << "An error occured, prompting disconnection." << std::endl;
-                errorOccured = true;
+                std::cout << "An error " << errorCode << " occured, prompting disconnection." << std::endl;
             }
-            else
-                connectionShutdown = true;
 
-            connection = newConnection;
+            lastErrorCode = errorCode;
 
             semaphore.notify_one();
         };
@@ -88,24 +81,35 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         options.OnErrorCallback = nullptr;
         options.OnPingCallback = nullptr;
 
+        std::unique_lock<std::mutex> semaphoreULock(semaphoreLock);
+
+
         /* Happy path case. */
         {
-            std::unique_lock<std::mutex> semaphoreULock(semaphoreLock);
+            connectionAmendment.AddHeader(EventStreamHeader(
+            Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
             semaphore.wait(semaphoreULock, [&]() { return connection; });
             ASSERT_TRUE(connection);
             connection->Close();
-            semaphore.wait(semaphoreULock, [&]() { return connectionShutdown; });
-            ASSERT_TRUE(connectionShutdown);
+            semaphore.wait(semaphoreULock, [&]() { return lastErrorCode == AWS_OP_SUCCESS; });
+            ASSERT_TRUE(lastErrorCode == AWS_OP_SUCCESS);
+        }
+
+        /* Rejected client-name header. */
+        {
+            connectionAmendment.AddHeader(EventStreamHeader(
+            Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
+            ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
+            semaphore.wait(semaphoreULock, [&]() { return lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+            ASSERT_TRUE(lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
         }
 
         /* Empty amendment headers. */
         {
-            connectionAmendment.GetHeaders().clear();
-            std::unique_lock<std::mutex> semaphoreULock(semaphoreLock);
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
-            semaphore.wait(semaphoreULock, [&]() { return errorOccured; });
-            ASSERT_TRUE(errorOccured);
+            semaphore.wait(semaphoreULock, [&]() { return lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+            ASSERT_TRUE(lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
         }
     }
 
