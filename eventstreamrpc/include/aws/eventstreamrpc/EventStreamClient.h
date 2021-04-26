@@ -128,6 +128,7 @@ namespace Aws
                 const Crt::List<EventStreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload) noexcept;
             MessageAmendment(const Crt::List<EventStreamHeader> &headers) noexcept;
+            MessageAmendment(Crt::List<EventStreamHeader> &&headers) noexcept;
             MessageAmendment(const Crt::ByteBuf &payload) noexcept;
             Crt::List<EventStreamHeader> &GetHeaders() noexcept;
             void AddHeader(EventStreamHeader &&header) noexcept;
@@ -207,6 +208,7 @@ namespace Aws
                 struct aws_event_stream_rpc_client_connection *connection,
                 Crt::Allocator *allocator) noexcept;
             struct aws_event_stream_rpc_client_connection *m_underlyingConnection;
+            Crt::List<EventStreamHeader> m_defaultConnectHeaders;
 
           private:
             enum ClientState
@@ -219,7 +221,6 @@ namespace Aws
             };
             Crt::Allocator *m_allocator;
             ClientState m_clientState;
-            Crt::List<EventStreamHeader> m_defaultConnectHeaders;
 
             void SendProtocolMessage(
                 const Crt::List<EventStreamHeader> &headers,

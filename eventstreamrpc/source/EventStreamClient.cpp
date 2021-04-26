@@ -50,6 +50,11 @@ namespace Aws
         {
         }
 
+        MessageAmendment::MessageAmendment(Crt::List<EventStreamHeader> &&headers) noexcept
+            : m_headers(headers), m_payload()
+        {
+        }
+
         MessageAmendment::MessageAmendment(
             const Crt::List<EventStreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload) noexcept
@@ -92,6 +97,7 @@ namespace Aws
                     aws_event_stream_rpc_client_connection_release(m_underlyingConnection);
                     m_underlyingConnection = nullptr;
                 }
+                m_defaultConnectHeaders.clear();
             }
         };
 
@@ -348,7 +354,7 @@ namespace Aws
                     {
                         MessageAmendment &connectAmendment = callbackData->connectMessageAmender();
                         auto &defaultHeaderList = connectionObj->m_defaultConnectHeaders;
-                        for (auto connectHeader : connectAmendment.GetHeaders())
+                        for (auto& connectHeader : connectAmendment.GetHeaders())
                         {
                             /* The connect amender must not add headers with the same name. */
                             if (std::find(defaultHeaderList.begin(), defaultHeaderList.end(), connectHeader) ==
@@ -424,7 +430,7 @@ namespace Aws
                         else
                         {
                             connectionObj->m_clientState = DISCONNECTING;
-                            connectionObj->Close();
+                            connectionObj->Close(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
                         }
                     }
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING:

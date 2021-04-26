@@ -64,7 +64,10 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             std::cout << "Disconnected" << std::endl;
 
             if (errorCode)
+            {
+                std::cout << "An error occured, prompting disconnection." << std::endl;
                 errorOccured = true;
+            }
             else
                 connectionShutdown = true;
 
@@ -85,12 +88,24 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         options.OnErrorCallback = nullptr;
         options.OnPingCallback = nullptr;
 
+        /* Happy path case. */
         {
             std::unique_lock<std::mutex> semaphoreULock(semaphoreLock);
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
             semaphore.wait(semaphoreULock, [&]() { return connection; });
             ASSERT_TRUE(connection);
             connection->Close();
+            semaphore.wait(semaphoreULock, [&]() { return connectionShutdown; });
+            ASSERT_TRUE(connectionShutdown);
+        }
+
+        /* Empty amendment headers. */
+        {
+            connectionAmendment.GetHeaders().clear();
+            std::unique_lock<std::mutex> semaphoreULock(semaphoreLock);
+            ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
+            semaphore.wait(semaphoreULock, [&]() { return errorOccured; });
+            ASSERT_TRUE(errorOccured);
         }
     }
 
