@@ -8,8 +8,9 @@
 
 #include <aws/testing/aws_test_harness.h>
 
-#include <sstream>
 #include <iostream>
+#include <sstream>
+
 
 using namespace Aws::Eventstreamrpc;
 
@@ -36,11 +37,10 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         ASSERT_TRUE(clientBootstrap);
         clientBootstrap.EnableBlockingShutdown();
         Aws::Crt::List<EventStreamHeader> authHeaders;
-        authHeaders.push_back(EventStreamHeader(Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
+        authHeaders.push_back(EventStreamHeader(
+            Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
         MessageAmendment connectionAmendment(authHeaders);
-        auto messageAmender = [&](void) -> MessageAmendment& {
-            return connectionAmendment;
-        };
+        auto messageAmender = [&](void) -> MessageAmendment & { return connectionAmendment; };
         std::shared_ptr<EventstreamRpcConnection> connection(nullptr);
         bool errorOccured = true;
         bool connectionShutdown = false;
@@ -58,14 +58,15 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             semaphore.notify_one();
         };
 
-        auto onDisconnect = [&](const std::shared_ptr<EventstreamRpcConnection> &newConnection,
-                                int errorCode) 
-        {
+        auto onDisconnect = [&](const std::shared_ptr<EventstreamRpcConnection> &newConnection, int errorCode) {
             std::lock_guard<std::mutex> lockGuard(semaphoreLock);
 
             std::cout << "Disconnected" << std::endl;
 
-            if(errorCode) errorOccured = true; else connectionShutdown = true;
+            if (errorCode)
+                errorOccured = true;
+            else
+                connectionShutdown = true;
 
             connection = newConnection;
 
