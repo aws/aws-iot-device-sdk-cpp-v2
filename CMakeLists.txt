@@ -62,6 +62,7 @@ add_subdirectory(jobs)
 add_subdirectory(shadow)
 add_subdirectory(discovery)
 add_subdirectory(identity)
+add_subdirectory(eventstreamrpc)
 if (NOT BYO_CRYPTO)
     # TODO: get these working with BYO_CRYPTO
     add_subdirectory(iotdevicecommon)
