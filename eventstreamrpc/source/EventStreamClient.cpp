@@ -4,6 +4,10 @@
  */
 #include <aws/eventstreamrpc/EventStreamClient.h>
 
+#include <aws/crt/Api.h>
+#include <aws/crt/Config.h>
+#include <aws/crt/auth/Credentials.h>
+
 #include <algorithm>
 #include <iostream>
 
