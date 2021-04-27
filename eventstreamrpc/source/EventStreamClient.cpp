@@ -362,8 +362,8 @@ namespace Aws
                             if (std::find(defaultHeaderList.begin(), defaultHeaderList.end(), *it) ==
                                 defaultHeaderList.end())
                             {
-                                /* Since the header is being moved, the entry from its original list
-                                 * must also be erased. */
+                                /* Since the header is being moved to another list,
+                                 * the entry from its original list must be erased. */
                                 messageAmendment.AddHeader(std::move(*it));
                                 amenderHeaderList.erase(it++);
                             }
@@ -442,6 +442,7 @@ namespace Aws
                             connectionObj->Close(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
                         }
                     }
+                    break;
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING:
                     if (callbackData->onPing)
                     {
@@ -461,7 +462,7 @@ namespace Aws
                     break;
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PROTOCOL_ERROR:
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_INTERNAL_ERROR:
-                    callbackData->onError(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR);
+                    if(callbackData->onError(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR))
                     connectionObj->Close(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR);
                     break;
                 default:

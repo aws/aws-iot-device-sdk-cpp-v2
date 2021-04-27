@@ -126,12 +126,13 @@ namespace Aws
             MessageAmendment(const Crt::List<EventStreamHeader> &headers) noexcept;
             MessageAmendment(Crt::List<EventStreamHeader> &&headers) noexcept;
             MessageAmendment(const Crt::ByteBuf &payload) noexcept;
-            Crt::List<EventStreamHeader> &GetHeaders() noexcept;
             void AddHeader(EventStreamHeader &&header) noexcept;
-            Crt::Optional<Crt::ByteBuf> &GetPayload() noexcept;
             void SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept;
 
           private:
+            friend class EventstreamRpcConnection;
+            Crt::List<EventStreamHeader> &GetHeaders() noexcept;
+            Crt::Optional<Crt::ByteBuf> &GetPayload() noexcept;
             Crt::List<EventStreamHeader> m_headers;
             Crt::Optional<Crt::ByteBuf> m_payload;
         };

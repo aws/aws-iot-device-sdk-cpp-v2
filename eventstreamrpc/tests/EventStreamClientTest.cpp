@@ -47,8 +47,6 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         auto onConnect = [&](const std::shared_ptr<EventstreamRpcConnection> &newConnection) {
             std::lock_guard<std::mutex> lockGuard(semaphoreLock);
 
-            std::cout << "Connected" << std::endl;
-
             connection = newConnection;
 
             semaphore.notify_one();
@@ -56,13 +54,6 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
 
         auto onDisconnect = [&](int errorCode) {
             std::lock_guard<std::mutex> lockGuard(semaphoreLock);
-
-            std::cout << "Disconnected" << std::endl;
-
-            if (errorCode)
-            {
-                std::cout << "An error " << errorCode << " occured, prompting disconnection." << std::endl;
-            }
 
             lastErrorCode = errorCode;
 
