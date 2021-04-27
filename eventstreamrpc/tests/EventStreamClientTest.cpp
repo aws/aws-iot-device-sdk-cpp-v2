@@ -11,7 +11,6 @@
 #include <iostream>
 #include <sstream>
 
-
 using namespace Aws::Eventstreamrpc;
 
 static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
@@ -38,16 +37,16 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         clientBootstrap.EnableBlockingShutdown();
         MessageAmendment connectionAmendment;
         auto messageAmender = [&](void) -> MessageAmendment & { return connectionAmendment; };
-        EventstreamRpcConnection* connection;
+        EventstreamRpcConnection *connection;
         int lastErrorCode = AWS_OP_SUCCESS;
 
         std::condition_variable semaphore;
         std::mutex semaphoreLock;
 
-        auto onConnect = [&](const Aws::Crt::ScopedResource<EventstreamRpcConnection> &newConnection) {
+        auto onConnect = [&](EventstreamRpcConnection *newConnection) {
             std::lock_guard<std::mutex> lockGuard(semaphoreLock);
 
-            connection = newConnection.get();
+            connection = newConnection;
 
             semaphore.notify_one();
         };
@@ -74,11 +73,10 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
 
         std::unique_lock<std::mutex> semaphoreULock(semaphoreLock);
 
-
         /* Happy path case. */
         {
             connectionAmendment.AddHeader(EventStreamHeader(
-            Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
+                Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
             semaphore.wait(semaphoreULock, [&]() { return connection; });
             ASSERT_NOT_NULL(connection);
@@ -90,16 +88,18 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         /* Rejected client-name header. */
         {
             connectionAmendment.AddHeader(EventStreamHeader(
-            Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
+                Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
-            semaphore.wait(semaphoreULock, [&]() { return lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+            semaphore.wait(
+                semaphoreULock, [&]() { return lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
             ASSERT_INT_EQUALS(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED, lastErrorCode);
         }
 
         /* Empty amendment headers. */
         {
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
-            semaphore.wait(semaphoreULock, [&]() { return lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+            semaphore.wait(
+                semaphoreULock, [&]() { return lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
             ASSERT_INT_EQUALS(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED, lastErrorCode);
         }
     }

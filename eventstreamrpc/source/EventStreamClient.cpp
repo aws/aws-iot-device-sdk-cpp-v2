@@ -352,18 +352,19 @@ namespace Aws
 
             if (!errorCode)
             {
-                Crt::ScopedResource<EventstreamRpcConnection> connectionObj(
+                Crt::ScopedResource<EventstreamRpcConnection> connectionResource(
                     Crt::New<UnmanagedConnection>(callbackData->allocator, connection, callbackData->allocator),
                     EventstreamRpcConnection::s_customDeleter);
-                if (connectionObj)
+                if (connectionResource)
                 {
-                    connectionObj->m_defaultConnectHeaders.push_back(
+                    /* The version header is necessary for establishing the connection. */
+                    connectionResource->m_defaultConnectHeaders.push_back(
                         EventStreamHeader(Crt::String(":version"), Crt::String("0.1.0"), callbackData->allocator));
-                    MessageAmendment messageAmendment(connectionObj->m_defaultConnectHeaders);
+                    MessageAmendment messageAmendment(connectionResource->m_defaultConnectHeaders);
                     if (callbackData->connectMessageAmender)
                     {
                         MessageAmendment &connectAmendment = callbackData->connectMessageAmender();
-                        auto &defaultHeaderList = connectionObj->m_defaultConnectHeaders;
+                        auto &defaultHeaderList = connectionResource->m_defaultConnectHeaders;
                         auto &amenderHeaderList = connectAmendment.GetHeaders();
                         auto it = amenderHeaderList.begin();
                         while (it != amenderHeaderList.end())
@@ -386,14 +387,14 @@ namespace Aws
                     }
                     /* Send a CONNECT packet to the server. */
                     s_sendProtocolMessage(
-                        connectionObj.get(),
+                        connectionResource.get(),
                         messageAmendment.GetHeaders(),
                         messageAmendment.GetPayload(),
                         AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT,
                         0,
                         nullptr);
-                    connectionObj->m_clientState = WAITING_FOR_CONNECT_ACK;
-                    callbackData->connection = std::move(connectionObj);
+                    connectionResource->m_clientState = WAITING_FOR_CONNECT_ACK;
+                    callbackData->connection = std::move(connectionResource);
                     return;
                 }
 
@@ -434,22 +435,22 @@ namespace Aws
             (void)connection;
 
             auto *callbackData = static_cast<ConnectionCallbackData *>(userData);
-            Crt::ScopedResource<EventstreamRpcConnection> &ownedConnection = callbackData->connection;
+            Crt::ScopedResource<EventstreamRpcConnection> &connectionResource = callbackData->connection;
 
             switch (messageArgs->message_type)
             {
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT_ACK:
-                    if (ownedConnection->m_clientState == WAITING_FOR_CONNECT_ACK)
+                    if (connectionResource->m_clientState == WAITING_FOR_CONNECT_ACK)
                     {
                         if (messageArgs->message_flags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_CONNECTION_ACCEPTED)
                         {
-                            ownedConnection->m_clientState = CONNECTED;
-                            callbackData->onConnect(ownedConnection);
+                            connectionResource->m_clientState = CONNECTED;
+                            callbackData->onConnect(connectionResource.get());
                         }
                         else
                         {
-                            ownedConnection->m_clientState = DISCONNECTING;
-                            ownedConnection->Close(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
+                            connectionResource->m_clientState = DISCONNECTING;
+                            connectionResource->Close(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
                         }
                     }
                     break;
@@ -473,7 +474,7 @@ namespace Aws
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PROTOCOL_ERROR:
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_INTERNAL_ERROR:
                     if (callbackData->onError(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR))
-                        ownedConnection->Close(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR);
+                        connectionResource->Close(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR);
                     break;
                 default:
                     return;
