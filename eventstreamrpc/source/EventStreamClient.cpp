@@ -35,6 +35,7 @@ namespace Aws
             std::weak_ptr<EventstreamRpcConnection> connection;
             Crt::Allocator *allocator;
             OnMessageFlush onMessageFlush;
+            OnError onError;
             struct aws_array_list *headersArray;
         };
 
@@ -222,21 +223,23 @@ namespace Aws
             /* Check if the connection has expired before attempting to send. */
             if (auto connectionPtr = connection.lock())
             {
-                if (aws_event_stream_headers_list_init(&headersArray, connectionPtr->m_allocator))
+                ProtocolMessageCallbackData *callbackData = nullptr;
+                int errorCode = aws_event_stream_headers_list_init(&headersArray, connectionPtr->m_allocator);
+                if (!errorCode)
                 {
-                    onMessageFlushCallback(AWS_OP_ERR);
-                }
-                else
-                {
-                    msg_args.message_flags = flags;
-                    msg_args.message_type = messageType;
-
                     /* Populate the array with the underlying handle of each EventStreamHeader. */
                     for (auto &i : headers)
                     {
-                        aws_array_list_push_back(&headersArray, i.GetUnderlyingHandle());
+                        errorCode = aws_array_list_push_back(&headersArray, i.GetUnderlyingHandle());
+                        if (errorCode)
+                            break;
                     }
+                }
 
+                if (!errorCode)
+                {
+                    msg_args.message_flags = flags;
+                    msg_args.message_type = messageType;
                     msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
                     msg_args.headers_count = aws_array_list_length(&headersArray);
 
@@ -245,21 +248,25 @@ namespace Aws
                         msg_args.payload = &payload.value();
                     }
 
-                    auto *callbackData =
+                    callbackData =
                         Crt::New<ProtocolMessageCallbackData>(connectionPtr->m_allocator, connectionPtr->m_allocator);
                     callbackData->connection = connectionPtr;
                     callbackData->onMessageFlush = onMessageFlushCallback;
                     callbackData->headersArray = &headersArray;
 
-                    if (aws_event_stream_rpc_client_connection_send_protocol_message(
-                            connectionPtr->m_underlyingConnection, &msg_args, s_protocolMessageCallback, callbackData))
-                    {
-                    }
+                    errorCode = aws_event_stream_rpc_client_connection_send_protocol_message(
+                        connectionPtr->m_underlyingConnection, &msg_args, s_protocolMessageCallback, callbackData);
+                }
 
-                    if (aws_array_list_is_valid(callbackData->headersArray))
-                    {
-                        aws_array_list_clean_up(callbackData->headersArray);
-                    }
+                if (errorCode)
+                {
+                    onMessageFlushCallback(errorCode);
+                    Crt::Delete(callbackData, connectionPtr->m_allocator);
+                }
+
+                if (aws_array_list_is_valid(&headersArray))
+                {
+                    aws_array_list_clean_up(&headersArray);
                 }
             }
         }
@@ -462,8 +469,8 @@ namespace Aws
                     break;
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PROTOCOL_ERROR:
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_INTERNAL_ERROR:
-                    if(callbackData->onError(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR))
-                    connectionObj->Close(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR);
+                    if (callbackData->onError(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR))
+                        connectionObj->Close(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR);
                     break;
                 default:
                     return;
