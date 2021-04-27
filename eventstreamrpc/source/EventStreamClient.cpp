@@ -11,12 +11,13 @@
 #include <algorithm>
 #include <iostream>
 
+#define EVENTSTREAM_VERSION_HEADER ":version"
+#define EVENTSTREAM_VERSION "0.1.0"
+
 namespace Aws
 {
     namespace Eventstreamrpc
     {
-        /* This exists to handle aws_event_stream_rpc_client_connection's shutdown callback, which might fire after
-         * EventstreamRpcConnection has been destroyed. */
         struct ConnectionCallbackData
         {
             explicit ConnectionCallbackData(Crt::Allocator *allocator) : allocator(allocator) {}
@@ -358,8 +359,10 @@ namespace Aws
                 if (connectionResource)
                 {
                     /* The version header is necessary for establishing the connection. */
-                    connectionResource->m_defaultConnectHeaders.push_back(
-                        EventStreamHeader(Crt::String(":version"), Crt::String("0.1.0"), callbackData->allocator));
+                    connectionResource->m_defaultConnectHeaders.push_back(EventStreamHeader(
+                        Crt::String(EVENTSTREAM_VERSION_HEADER),
+                        Crt::String(EVENTSTREAM_VERSION),
+                        callbackData->allocator));
                     MessageAmendment messageAmendment(connectionResource->m_defaultConnectHeaders);
                     if (callbackData->connectMessageAmender)
                     {

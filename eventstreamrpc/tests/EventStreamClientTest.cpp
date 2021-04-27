@@ -59,15 +59,14 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             semaphore.notify_one();
         };
 
-        Aws::Crt::String hostName = "127.0.0.1";
         EventstreamRpcConnectionOptions options;
         options.Bootstrap = &clientBootstrap;
         options.SocketOptions = socketOptions;
-        options.HostName = hostName;
+        options.HostName = Aws::Crt::String("127.0.0.1");
         options.Port = 8033;
-        options.ConnectMessageAmenderCallback = messageAmender;
-        options.OnConnectCallback = onConnect;
-        options.OnDisconnectCallback = onDisconnect;
+        options.ConnectMessageAmenderCallback = std::move(messageAmender);
+        options.OnConnectCallback = std::move(onConnect);
+        options.OnDisconnectCallback = std::move(onDisconnect);
         options.OnErrorCallback = nullptr;
         options.OnPingCallback = nullptr;
 
