@@ -39,31 +39,31 @@ namespace Aws
             struct aws_array_list *headersArray;
         };
 
-        EventStreamHeader::EventStreamHeader(const struct aws_event_stream_header_value_pair &header)
+        EventstreamHeader::EventstreamHeader(const struct aws_event_stream_header_value_pair &header)
             : m_underlyingHandle(header)
         {
         }
 
         MessageAmendment::MessageAmendment(const Crt::ByteBuf &payload) noexcept : m_headers(), m_payload(payload) {}
 
-        MessageAmendment::MessageAmendment(const Crt::List<EventStreamHeader> &headers) noexcept
+        MessageAmendment::MessageAmendment(const Crt::List<EventstreamHeader> &headers) noexcept
             : m_headers(headers), m_payload()
         {
         }
 
-        MessageAmendment::MessageAmendment(Crt::List<EventStreamHeader> &&headers) noexcept
+        MessageAmendment::MessageAmendment(Crt::List<EventstreamHeader> &&headers) noexcept
             : m_headers(headers), m_payload()
         {
         }
 
         MessageAmendment::MessageAmendment(
-            const Crt::List<EventStreamHeader> &headers,
+            const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload) noexcept
             : m_headers(headers), m_payload(payload)
         {
         }
 
-        Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() noexcept { return m_headers; }
+        Crt::List<EventstreamHeader> &MessageAmendment::GetHeaders() noexcept { return m_headers; }
 
         Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() noexcept { return m_payload; }
 
@@ -139,13 +139,13 @@ namespace Aws
             return true;
         }
 
-        const struct aws_event_stream_header_value_pair *EventStreamHeader::GetUnderlyingHandle() const
+        const struct aws_event_stream_header_value_pair *EventstreamHeader::GetUnderlyingHandle() const
         {
             return &m_underlyingHandle;
         }
 
         void EventstreamRpcConnection::SendPing(
-            const Crt::List<EventStreamHeader> &headers,
+            const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlush onMessageFlushCallback) noexcept
         {
@@ -153,7 +153,7 @@ namespace Aws
         }
 
         void EventstreamRpcConnection::SendPingResponse(
-            const Crt::List<EventStreamHeader> &headers,
+            const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlush onMessageFlushCallback) noexcept
         {
@@ -162,7 +162,7 @@ namespace Aws
 
         void EventstreamRpcConnection::s_sendPing(
             EventstreamRpcConnection *connection,
-            const Crt::List<EventStreamHeader> &headers,
+            const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlush onMessageFlushCallback) noexcept
         {
@@ -172,7 +172,7 @@ namespace Aws
 
         void EventstreamRpcConnection::s_sendPingResponse(
             EventstreamRpcConnection *connection,
-            const Crt::List<EventStreamHeader> &headers,
+            const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlush onMessageFlushCallback) noexcept
         {
@@ -186,7 +186,7 @@ namespace Aws
         }
 
         void EventstreamRpcConnection::SendProtocolMessage(
-            const Crt::List<EventStreamHeader> &headers,
+            const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
             uint32_t flags,
@@ -208,7 +208,7 @@ namespace Aws
 
         void EventstreamRpcConnection::s_sendProtocolMessage(
             EventstreamRpcConnection *connection,
-            const Crt::List<EventStreamHeader> &headers,
+            const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
             uint32_t flags,
@@ -226,7 +226,7 @@ namespace Aws
                 int errorCode = aws_event_stream_headers_list_init(&headersArray, connection->m_allocator);
                 if (!errorCode)
                 {
-                    /* Populate the array with the underlying handle of each EventStreamHeader. */
+                    /* Populate the array with the underlying handle of each EventstreamHeader. */
                     for (auto &i : headers)
                     {
                         errorCode = aws_array_list_push_back(&headersArray, i.GetUnderlyingHandle());
@@ -281,7 +281,7 @@ namespace Aws
             this->m_clientState = DISCONNECTED;
         }
 
-        EventStreamHeader::EventStreamHeader(
+        EventstreamHeader::EventstreamHeader(
             const Crt::String &name,
             const Crt::String &value,
             Crt::Allocator *allocator) noexcept
@@ -295,7 +295,7 @@ namespace Aws
             m_underlyingHandle.header_value_len = (uint16_t)m_valueByteBuf.len;
         }
 
-        bool EventStreamHeader::operator==(const EventStreamHeader &other) const noexcept
+        bool EventstreamHeader::operator==(const EventstreamHeader &other) const noexcept
         {
             if (other.m_underlyingHandle.header_name_len != m_underlyingHandle.header_name_len)
             {
@@ -311,9 +311,9 @@ namespace Aws
             return true;
         }
 
-        EventStreamHeader::~EventStreamHeader() { Crt::ByteBufDelete(m_valueByteBuf); }
+        EventstreamHeader::~EventstreamHeader() { Crt::ByteBufDelete(m_valueByteBuf); }
 
-        EventStreamHeader::EventStreamHeader(const EventStreamHeader &lhs) noexcept
+        EventstreamHeader::EventstreamHeader(const EventstreamHeader &lhs) noexcept
             : m_allocator(lhs.m_allocator),
               m_valueByteBuf(
                   Crt::ByteBufNewCopy(lhs.m_valueByteBuf.allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len)),
@@ -323,7 +323,7 @@ namespace Aws
             m_underlyingHandle.header_value_len = m_valueByteBuf.len;
         }
 
-        EventStreamHeader::EventStreamHeader(EventStreamHeader &&rhs) noexcept
+        EventstreamHeader::EventstreamHeader(EventstreamHeader &&rhs) noexcept
             : m_allocator(rhs.m_allocator), m_valueByteBuf(rhs.m_valueByteBuf),
               m_underlyingHandle(rhs.m_underlyingHandle)
         {
@@ -331,7 +331,7 @@ namespace Aws
             rhs.m_valueByteBuf.buffer = NULL;
         }
 
-        Crt::String EventStreamHeader::GetHeaderName() noexcept
+        Crt::String EventstreamHeader::GetHeaderName() noexcept
         {
             return Crt::String(m_underlyingHandle.header_name, m_underlyingHandle.header_name_len);
         }
@@ -359,7 +359,7 @@ namespace Aws
                 if (connectionResource)
                 {
                     /* The version header is necessary for establishing the connection. */
-                    connectionResource->m_defaultConnectHeaders.push_back(EventStreamHeader(
+                    connectionResource->m_defaultConnectHeaders.push_back(EventstreamHeader(
                         Crt::String(EVENTSTREAM_VERSION_HEADER),
                         Crt::String(EVENTSTREAM_VERSION),
                         callbackData->allocator));
@@ -414,7 +414,7 @@ namespace Aws
             Crt::Delete(callbackData, callbackData->allocator);
         }
 
-        void MessageAmendment::AddHeader(EventStreamHeader &&header) noexcept { m_headers.push_back(header); }
+        void MessageAmendment::AddHeader(EventstreamHeader &&header) noexcept { m_headers.push_back(header); }
 
         void EventstreamRpcConnection::s_onConnectionShutdown(
             struct aws_event_stream_rpc_client_connection *connection,
@@ -460,10 +460,10 @@ namespace Aws
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING:
                     if (callbackData->onPing)
                     {
-                        Crt::List<EventStreamHeader> pingHeaders;
+                        Crt::List<EventstreamHeader> pingHeaders;
                         for (size_t i = 0; i < messageArgs->headers_count; ++i)
                         {
-                            pingHeaders.push_back(EventStreamHeader(messageArgs->headers[i]));
+                            pingHeaders.push_back(EventstreamHeader(messageArgs->headers[i]));
                         }
                         if (messageArgs->payload)
                             callbackData->onPing(pingHeaders, *messageArgs->payload);

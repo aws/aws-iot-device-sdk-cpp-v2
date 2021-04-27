@@ -31,7 +31,7 @@ namespace Aws
     } // namespace Crt
     namespace Eventstreamrpc
     {
-        class EventStreamHeader;
+        class EventstreamHeader;
         class EventstreamRpcClient;
         class EventstreamRpcConnection;
         class MessageAmendment;
@@ -42,11 +42,11 @@ namespace Aws
         using OnMessageFlush = std::function<void(int errorCode)>;
 
         /**
-         * This callback is only invoked upon receiving a `CONNECT_ACK` with the
-         * `CONNECTION_ACCEPTED` flag set by the server. Therefore, the `connection`
+         * This callback is only invoked upon receiving a CONNECT_ACK with the
+         * CONNECTION_ACCEPTED flag set by the server. Therefore, the `connection`
          * pointer is always guaranteed to be valid during invocation. However, it
-         * is guaranteed to be invalidated when `OnDisconnect` is invoked and
-         * could possibly also be invalidated when `OnError` is invoked.
+         * is guaranteed to be invalidated when `OnDisconnect` is invoked or 
+         * when `OnError` is invoked and returns true.
          */
         using OnConnect = std::function<void(EventstreamRpcConnection *connection)>;
 
@@ -59,42 +59,43 @@ namespace Aws
 
         /**
          * Invoked upon receiving any error. Use the return value to determine
-         * whether or not to force the connection to close.
+         * whether or not to force the connection to close. Keep in mind that once
+         * closed, the pointer reference from `OnConnect` is no longer safe to use.
          */
         using OnError = std::function<bool(int errorCode)>;
 
         /**
          * Invoked upon receiving a ping from the server. The `headers` and `payload`
-         * refer to what is contained in the ping.
+         * refer to what is contained in the ping message.
          */
         using OnPing = std::function<
-            void(const Crt::List<EventStreamHeader> &headers, const Crt::Optional<Crt::ByteBuf> &payload)>;
+            void(const Crt::List<EventstreamHeader> &headers, const Crt::Optional<Crt::ByteBuf> &payload)>;
 
         /**
-         * Allows the application to append headers and change the payload of the `CONNECT`
+         * Allows the application to append headers and change the payload of the CONNECT
          * packet being sent out.
          */
         using ConnectMessageAmender = std::function<MessageAmendment &(void)>;
 
-        class AWS_EVENTSTREAMRPC_API EventStreamHeader final
+        class AWS_EVENTSTREAMRPC_API EventstreamHeader final
         {
           public:
-            EventStreamHeader(const EventStreamHeader &lhs) noexcept;
-            EventStreamHeader(EventStreamHeader &&rhs) noexcept;
-            ~EventStreamHeader() noexcept;
-            EventStreamHeader(const struct aws_event_stream_header_value_pair &header);
-            EventStreamHeader(const Crt::String &name, bool value);
-            EventStreamHeader(const Crt::String &name, int8_t value);
-            EventStreamHeader(const Crt::String &name, int16_t value);
-            EventStreamHeader(const Crt::String &name, int32_t value);
-            EventStreamHeader(const Crt::String &name, int64_t value);
-            EventStreamHeader(const Crt::String &name, Crt::DateTime &value);
-            EventStreamHeader(
+            EventstreamHeader(const EventstreamHeader &lhs) noexcept;
+            EventstreamHeader(EventstreamHeader &&rhs) noexcept;
+            ~EventstreamHeader() noexcept;
+            EventstreamHeader(const struct aws_event_stream_header_value_pair &header);
+            EventstreamHeader(const Crt::String &name, bool value);
+            EventstreamHeader(const Crt::String &name, int8_t value);
+            EventstreamHeader(const Crt::String &name, int16_t value);
+            EventstreamHeader(const Crt::String &name, int32_t value);
+            EventstreamHeader(const Crt::String &name, int64_t value);
+            EventstreamHeader(const Crt::String &name, Crt::DateTime &value);
+            EventstreamHeader(
                 const Crt::String &name,
                 const Crt::String &value,
                 Crt::Allocator *allocator = Crt::g_allocator) noexcept;
-            EventStreamHeader(const Crt::String &name, Crt::ByteBuf &value);
-            EventStreamHeader(const Crt::String &name, Crt::UUID value);
+            EventstreamHeader(const Crt::String &name, Crt::ByteBuf &value);
+            EventstreamHeader(const Crt::String &name, Crt::UUID value);
 
             HeaderType GetHeaderType();
             Crt::String GetHeaderName() noexcept;
@@ -120,7 +121,7 @@ namespace Aws
 
             const struct aws_event_stream_header_value_pair *GetUnderlyingHandle() const;
 
-            bool operator==(const EventStreamHeader &other) const noexcept;
+            bool operator==(const EventstreamHeader &other) const noexcept;
 
           private:
             Crt::Allocator *m_allocator;
@@ -135,19 +136,19 @@ namespace Aws
             MessageAmendment(const MessageAmendment &lhs) = default;
             MessageAmendment(MessageAmendment &&rhs) = default;
             MessageAmendment(
-                const Crt::List<EventStreamHeader> &headers,
+                const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload) noexcept;
-            MessageAmendment(const Crt::List<EventStreamHeader> &headers) noexcept;
-            MessageAmendment(Crt::List<EventStreamHeader> &&headers) noexcept;
+            MessageAmendment(const Crt::List<EventstreamHeader> &headers) noexcept;
+            MessageAmendment(Crt::List<EventstreamHeader> &&headers) noexcept;
             MessageAmendment(const Crt::ByteBuf &payload) noexcept;
-            void AddHeader(EventStreamHeader &&header) noexcept;
+            void AddHeader(EventstreamHeader &&header) noexcept;
             void SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept;
 
           private:
             friend class EventstreamRpcConnection;
-            Crt::List<EventStreamHeader> &GetHeaders() noexcept;
+            Crt::List<EventstreamHeader> &GetHeaders() noexcept;
             Crt::Optional<Crt::ByteBuf> &GetPayload() noexcept;
-            Crt::List<EventStreamHeader> m_headers;
+            Crt::List<EventstreamHeader> m_headers;
             Crt::Optional<Crt::ByteBuf> m_payload;
         };
 
@@ -192,12 +193,12 @@ namespace Aws
                 Crt::Allocator *allocator) noexcept;
 
             void SendPing(
-                const Crt::List<EventStreamHeader> &headers,
+                const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlush onMessageFlushCallback) noexcept;
 
             void SendPingResponse(
-                const Crt::List<EventStreamHeader> &headers,
+                const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlush onMessageFlushCallback) noexcept;
 
@@ -218,7 +219,7 @@ namespace Aws
                 struct aws_event_stream_rpc_client_connection *connection,
                 Crt::Allocator *allocator) noexcept;
             struct aws_event_stream_rpc_client_connection *m_underlyingConnection;
-            Crt::List<EventStreamHeader> m_defaultConnectHeaders;
+            Crt::List<EventstreamHeader> m_defaultConnectHeaders;
 
           private:
             enum ClientState
@@ -233,7 +234,7 @@ namespace Aws
             ClientState m_clientState;
             static void s_customDeleter(EventstreamRpcConnection *connection) noexcept;
             void SendProtocolMessage(
-                const Crt::List<EventStreamHeader> &headers,
+                const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
                 uint32_t flags,
@@ -255,7 +256,7 @@ namespace Aws
             static void s_protocolMessageCallback(int errorCode, void *userData) noexcept;
             static void s_sendProtocolMessage(
                 EventstreamRpcConnection *connection,
-                const Crt::List<EventStreamHeader> &headers,
+                const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
                 uint32_t flags,
@@ -263,13 +264,13 @@ namespace Aws
 
             static void s_sendPing(
                 EventstreamRpcConnection *connection,
-                const Crt::List<EventStreamHeader> &headers,
+                const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlush onMessageFlushCallback) noexcept;
 
             static void s_sendPingResponse(
                 EventstreamRpcConnection *connection,
-                const Crt::List<EventStreamHeader> &headers,
+                const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlush onMessageFlushCallback) noexcept;
         };

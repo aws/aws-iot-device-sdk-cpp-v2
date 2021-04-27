@@ -74,7 +74,7 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
 
         /* Happy path case. */
         {
-            connectionAmendment.AddHeader(EventStreamHeader(
+            connectionAmendment.AddHeader(EventstreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
             semaphore.wait(semaphoreULock, [&]() { return connection; });
@@ -86,7 +86,7 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
 
         /* Rejected client-name header. */
         {
-            connectionAmendment.AddHeader(EventStreamHeader(
+            connectionAmendment.AddHeader(EventstreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
             semaphore.wait(
