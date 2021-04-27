@@ -25,7 +25,7 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
 
         Aws::Crt::Io::TlsConnectionOptions tlsConnectionOptions = tlsContext.NewConnectionOptions();
         Aws::Crt::Io::SocketOptions socketOptions;
-        socketOptions.SetConnectTimeoutMs(2000);
+        socketOptions.SetConnectTimeoutMs(1000);
 
         Aws::Crt::Io::EventLoopGroup eventLoopGroup(0, allocator);
         ASSERT_TRUE(eventLoopGroup);
@@ -38,16 +38,16 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         clientBootstrap.EnableBlockingShutdown();
         MessageAmendment connectionAmendment;
         auto messageAmender = [&](void) -> MessageAmendment & { return connectionAmendment; };
-        std::shared_ptr<EventstreamRpcConnection> connection(nullptr);
+        EventstreamRpcConnection* connection;
         int lastErrorCode = AWS_OP_SUCCESS;
 
         std::condition_variable semaphore;
         std::mutex semaphoreLock;
 
-        auto onConnect = [&](const std::shared_ptr<EventstreamRpcConnection> &newConnection) {
+        auto onConnect = [&](const Aws::Crt::ScopedResource<EventstreamRpcConnection> &newConnection) {
             std::lock_guard<std::mutex> lockGuard(semaphoreLock);
 
-            connection = newConnection;
+            connection = newConnection.get();
 
             semaphore.notify_one();
         };
@@ -81,7 +81,7 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
             semaphore.wait(semaphoreULock, [&]() { return connection; });
-            ASSERT_TRUE(connection);
+            ASSERT_NOT_NULL(connection);
             connection->Close();
             semaphore.wait(semaphoreULock, [&]() { return lastErrorCode == AWS_OP_SUCCESS; });
             ASSERT_TRUE(lastErrorCode == AWS_OP_SUCCESS);
@@ -93,14 +93,14 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
             semaphore.wait(semaphoreULock, [&]() { return lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
-            ASSERT_TRUE(lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
+            ASSERT_INT_EQUALS(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED, lastErrorCode);
         }
 
         /* Empty amendment headers. */
         {
             ASSERT_TRUE(EventstreamRpcConnection::CreateConnection(options, allocator));
             semaphore.wait(semaphoreULock, [&]() { return lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
-            ASSERT_TRUE(lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
+            ASSERT_INT_EQUALS(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED, lastErrorCode);
         }
     }
 

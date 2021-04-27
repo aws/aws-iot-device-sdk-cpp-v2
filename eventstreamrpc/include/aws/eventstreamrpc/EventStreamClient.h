@@ -46,7 +46,7 @@ namespace Aws
          * server with the `CONNECTION_ACCEPTED` flag set. Therefore, the connection
          * pointer is always guaranteed to be valid during invocation.
          */
-        using OnConnect = std::function<void(const std::shared_ptr<EventstreamRpcConnection> &connection)>;
+        using OnConnect = std::function<void(const Crt::ScopedResource<EventstreamRpcConnection> &connection)>;
 
         /**
          * Invoked upon connection shutdown. `errorCode` will specify
@@ -165,7 +165,6 @@ namespace Aws
         };
 
         class AWS_EVENTSTREAMRPC_API EventstreamRpcConnection
-            : public std::enable_shared_from_this<EventstreamRpcConnection>
         {
           public:
             virtual ~EventstreamRpcConnection() = default;
@@ -218,7 +217,7 @@ namespace Aws
             };
             Crt::Allocator *m_allocator;
             ClientState m_clientState;
-
+            static void s_customDeleter(EventstreamRpcConnection* connection) noexcept;
             void SendProtocolMessage(
                 const Crt::List<EventStreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
@@ -241,7 +240,7 @@ namespace Aws
 
             static void s_protocolMessageCallback(int errorCode, void *userData) noexcept;
             static void s_sendProtocolMessage(
-                std::weak_ptr<EventstreamRpcConnection> connection,
+                EventstreamRpcConnection* connection,
                 const Crt::List<EventStreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
@@ -249,13 +248,13 @@ namespace Aws
                 OnMessageFlush onMessageFlushCallback) noexcept;
 
             static void s_sendPing(
-                std::weak_ptr<EventstreamRpcConnection> connection,
+                EventstreamRpcConnection* connection,
                 const Crt::List<EventStreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlush onMessageFlushCallback) noexcept;
 
             static void s_sendPingResponse(
-                std::weak_ptr<EventstreamRpcConnection> connection,
+                EventstreamRpcConnection* connection,
                 const Crt::List<EventStreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlush onMessageFlushCallback) noexcept;
