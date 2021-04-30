@@ -100,6 +100,22 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             connection.Close();
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
         }
+
+        /* Empty amendment headers. */
+        {
+            TestLifecycleHandler lifecycleHandler;
+            ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
+            lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+        }
+
+        /* Rejected client-name header. */
+        {
+            TestLifecycleHandler lifecycleHandler;
+            connectionAmendment.AddHeader(EventstreamHeader(
+                Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
+            ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
+            lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+        }
     }
 
     return AWS_OP_SUCCESS;
