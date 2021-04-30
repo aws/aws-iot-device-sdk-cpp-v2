@@ -18,25 +18,12 @@ namespace Aws
 {
     namespace Eventstreamrpc
     {
-        struct ConnectionCallbackData
+        /* Because `std::function` cannot be typecasted to void *, we must contain it in a struct. */
+        struct OnMessageFlushCallbackContainer
         {
-            explicit ConnectionCallbackData(Crt::Allocator *allocator) : allocator(allocator) {}
-            Crt::ScopedResource<EventstreamRpcConnection> connection;
-            Crt::Allocator *allocator;
-            OnConnect onConnect;
-            OnDisconnect onDisconnect;
-            OnError onError;
-            OnPing onPing;
-            ConnectMessageAmender connectMessageAmender;
-        };
-
-        struct ProtocolMessageCallbackData
-        {
-            explicit ProtocolMessageCallbackData(Crt::Allocator *allocator) : allocator(allocator) {}
+            explicit OnMessageFlushCallbackContainer(Crt::Allocator *allocator) : allocator(allocator) {}
             Crt::Allocator *allocator;
             OnMessageFlush onMessageFlush;
-            OnError onError;
-            struct aws_array_list *headersArray;
         };
 
         EventstreamHeader::EventstreamHeader(const struct aws_event_stream_header_value_pair &header)
@@ -70,50 +57,46 @@ namespace Aws
         void MessageAmendment::SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept { m_payload = payload; }
 
         EventstreamRpcConnectionOptions::EventstreamRpcConnectionOptions()
-            : Bootstrap(), SocketOptions(), TlsOptions(), HostName(), Port(0), OnDisconnectCallback(),
-              OnErrorCallback(), OnPingCallback(), ConnectMessageAmenderCallback()
+            : Bootstrap(), SocketOptions(), TlsOptions(), HostName(), Port(0)
         {
         }
 
         EventstreamRpcConnection::EventstreamRpcConnection(
-            struct aws_event_stream_rpc_client_connection *connection,
             Crt::Allocator *allocator) noexcept
-            : m_underlyingConnection(connection), m_allocator(allocator)
+            : m_allocator(allocator)
         {
         }
 
-        class UnmanagedConnection final : public EventstreamRpcConnection
+        EventstreamRpcConnection::~EventstreamRpcConnection() noexcept
         {
-          public:
-            UnmanagedConnection(struct aws_event_stream_rpc_client_connection *connection, Crt::Allocator *allocator)
-                : EventstreamRpcConnection(connection, allocator)
+            if (m_underlyingConnection)
             {
+                aws_event_stream_rpc_client_connection_release(m_underlyingConnection);
+                m_underlyingConnection = nullptr;
             }
+        }
 
-            ~UnmanagedConnection() override
-            {
-                if (m_underlyingConnection)
-                {
-                    aws_event_stream_rpc_client_connection_release(m_underlyingConnection);
-                    m_underlyingConnection = nullptr;
-                }
-                m_defaultConnectHeaders.clear();
-            }
-        };
+        bool ConnectionLifecycleHandler::OnErrorCallback(int errorCode) { return true; }
 
-        bool EventstreamRpcConnection::CreateConnection(
+        void ConnectionLifecycleHandler::OnPingCallback(
+            const Crt::List<EventstreamHeader> &headers,
+            const Crt::Optional<Crt::ByteBuf> &payload)
+        {
+            (void)headers;
+            (void)payload;
+        }
+
+        void ConnectionLifecycleHandler::OnConnectCallback() {}
+
+        void ConnectionLifecycleHandler::OnDisconnectCallback(int errorCode) { (void)errorCode; }
+
+        bool EventstreamRpcConnection::Connect(
             const EventstreamRpcConnectionOptions &connectionOptions,
-            Crt::Allocator *allocator) noexcept
+            ConnectionLifecycleHandler* connectionLifecycleHandler,
+            ConnectMessageAmender connectMessageAmender) noexcept
         {
-            auto *callbackData = Crt::New<ConnectionCallbackData>(allocator, allocator);
-            callbackData->allocator = allocator;
-            callbackData->connection = nullptr;
-            callbackData->onConnect = connectionOptions.OnConnectCallback;
-            callbackData->onDisconnect = connectionOptions.OnDisconnectCallback;
-            callbackData->onError = connectionOptions.OnErrorCallback;
-            callbackData->onPing = connectionOptions.OnPingCallback;
-            callbackData->connectMessageAmender = connectionOptions.ConnectMessageAmenderCallback;
-
+            m_lifecycleHandler = connectionLifecycleHandler;
+            m_connectMessageAmender = connectMessageAmender;
             struct aws_event_stream_rpc_client_connection_options connOptions;
             AWS_ZERO_STRUCT(connOptions);
             connOptions.host_name = connectionOptions.HostName.c_str();
@@ -123,16 +106,15 @@ namespace Aws
             connOptions.on_connection_setup = EventstreamRpcConnection::s_onConnectionSetup;
             connOptions.on_connection_protocol_message = EventstreamRpcConnection::s_onProtocolMessage;
             connOptions.on_connection_shutdown = EventstreamRpcConnection::s_onConnectionShutdown;
-            connOptions.user_data = callbackData;
+            connOptions.user_data = reinterpret_cast<void *>(this);
 
             if (connectionOptions.TlsOptions.has_value())
             {
                 connOptions.tls_options = connectionOptions.TlsOptions->GetUnderlyingHandle();
             }
 
-            if (aws_event_stream_rpc_client_connection_connect(allocator, &connOptions))
+            if (aws_event_stream_rpc_client_connection_connect(m_allocator, &connOptions))
             {
-                Crt::Delete(callbackData, allocator);
                 return false;
             }
 
@@ -197,7 +179,7 @@ namespace Aws
 
         void EventstreamRpcConnection::s_protocolMessageCallback(int errorCode, void *userData) noexcept
         {
-            auto *callbackData = static_cast<ProtocolMessageCallbackData *>(userData);
+            auto *callbackData = static_cast<OnMessageFlushCallbackContainer *>(userData);
 
             /* Call the user-provided callback. */
             if (callbackData->onMessageFlush)
@@ -222,7 +204,7 @@ namespace Aws
             /* Check if the connection has expired before attempting to send. */
             if (connection)
             {
-                ProtocolMessageCallbackData *callbackData = nullptr;
+                OnMessageFlushCallbackContainer *callbackContainer = nullptr;
                 int errorCode = aws_event_stream_headers_list_init(&headersArray, connection->m_allocator);
                 if (!errorCode)
                 {
@@ -247,19 +229,23 @@ namespace Aws
                         msg_args.payload = &payload.value();
                     }
 
-                    callbackData =
-                        Crt::New<ProtocolMessageCallbackData>(connection->m_allocator, connection->m_allocator);
-                    callbackData->onMessageFlush = onMessageFlushCallback;
-                    callbackData->headersArray = &headersArray;
+                    /* This heap allocation is necessary so that the callback can still be invoked after this function
+                     * returns. */
+                    callbackContainer =
+                        Crt::New<OnMessageFlushCallbackContainer>(connection->m_allocator, connection->m_allocator);
+                    callbackContainer->onMessageFlush = onMessageFlushCallback;
 
                     errorCode = aws_event_stream_rpc_client_connection_send_protocol_message(
-                        connection->m_underlyingConnection, &msg_args, s_protocolMessageCallback, callbackData);
+                        connection->m_underlyingConnection,
+                        &msg_args,
+                        s_protocolMessageCallback,
+                        reinterpret_cast<void *>(callbackContainer));
                 }
 
                 if (errorCode)
                 {
                     onMessageFlushCallback(errorCode);
-                    Crt::Delete(callbackData, connection->m_allocator);
+                    Crt::Delete(callbackContainer, connection->m_allocator);
                 }
 
                 if (aws_array_list_is_valid(&headersArray))
@@ -336,82 +322,69 @@ namespace Aws
             return Crt::String(m_underlyingHandle.header_name, m_underlyingHandle.header_name_len);
         }
 
-        void EventstreamRpcConnection::s_customDeleter(EventstreamRpcConnection *connection) noexcept
-        {
-            Crt::Delete(connection, connection->m_allocator);
-        }
-
         void EventstreamRpcConnection::s_onConnectionSetup(
             struct aws_event_stream_rpc_client_connection *connection,
             int errorCode,
             void *userData)
         {
-            /**
-             * Allocate an EventstreamRpcConnection and seat it to `ConnectionCallbackData`'s shared_ptr.
-             */
-            auto *callbackData = static_cast<ConnectionCallbackData *>(userData);
+            /* The `userData` pointer is used to pass `this`. */
+            auto *thisConnection = static_cast<EventstreamRpcConnection *>(userData);
 
             if (!errorCode)
             {
-                Crt::ScopedResource<EventstreamRpcConnection> connectionResource(
-                    Crt::New<UnmanagedConnection>(callbackData->allocator, connection, callbackData->allocator),
-                    EventstreamRpcConnection::s_customDeleter);
-                if (connectionResource)
+                thisConnection->m_underlyingConnection = connection;
+                /* The version header is necessary for establishing the connection. */
+                Crt::List<EventstreamHeader> defaultConnectHeaders;
+                defaultConnectHeaders.push_back(EventstreamHeader(
+                    Crt::String(EVENTSTREAM_VERSION_HEADER),
+                    Crt::String(EVENTSTREAM_VERSION),
+                    thisConnection->m_allocator));
+                MessageAmendment messageAmendment(defaultConnectHeaders);
+                if (thisConnection->m_connectMessageAmender)
                 {
-                    /* The version header is necessary for establishing the connection. */
-                    connectionResource->m_defaultConnectHeaders.push_back(EventstreamHeader(
-                        Crt::String(EVENTSTREAM_VERSION_HEADER),
-                        Crt::String(EVENTSTREAM_VERSION),
-                        callbackData->allocator));
-                    MessageAmendment messageAmendment(connectionResource->m_defaultConnectHeaders);
-                    if (callbackData->connectMessageAmender)
+                    MessageAmendment &connectAmendment = thisConnection->m_connectMessageAmender();
+                    auto &defaultHeaderList = defaultConnectHeaders;
+                    auto &amenderHeaderList = connectAmendment.GetHeaders();
+                    auto it = amenderHeaderList.begin();
+                    while (it != amenderHeaderList.end())
                     {
-                        MessageAmendment &connectAmendment = callbackData->connectMessageAmender();
-                        auto &defaultHeaderList = connectionResource->m_defaultConnectHeaders;
-                        auto &amenderHeaderList = connectAmendment.GetHeaders();
-                        auto it = amenderHeaderList.begin();
-                        while (it != amenderHeaderList.end())
+                        /* The connect amender must not add headers with the same name. */
+                        if (std::find(defaultHeaderList.begin(), defaultHeaderList.end(), *it) ==
+                            defaultHeaderList.end())
                         {
-                            /* The connect amender must not add headers with the same name. */
-                            if (std::find(defaultHeaderList.begin(), defaultHeaderList.end(), *it) ==
-                                defaultHeaderList.end())
-                            {
-                                /* Since the header is being moved to another list,
-                                 * the entry from its original list must be erased. */
-                                messageAmendment.AddHeader(std::move(*it));
-                                amenderHeaderList.erase(it++);
-                            }
-                            else
-                            {
-                                ++it;
-                            }
+                            /* Since the header is being moved to another list,
+                             * the entry from its original list must be erased. */
+                            messageAmendment.AddHeader(std::move(*it));
+                            amenderHeaderList.erase(it++);
                         }
-                        messageAmendment.SetPayload(connectAmendment.GetPayload());
+                        else
+                        {
+                            ++it;
+                        }
                     }
-                    /* Send a CONNECT packet to the server. */
-                    s_sendProtocolMessage(
-                        connectionResource.get(),
-                        messageAmendment.GetHeaders(),
-                        messageAmendment.GetPayload(),
-                        AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT,
-                        0,
-                        nullptr);
-                    connectionResource->m_clientState = WAITING_FOR_CONNECT_ACK;
-                    callbackData->connection = std::move(connectionResource);
-                    return;
+                    messageAmendment.SetPayload(connectAmendment.GetPayload());
                 }
+                /* Send a CONNECT packet to the server. */
+                s_sendProtocolMessage(
+                    thisConnection,
+                    messageAmendment.GetHeaders(),
+                    messageAmendment.GetPayload(),
+                    AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT,
+                    0,
+                    nullptr);
+                thisConnection->m_clientState = WAITING_FOR_CONNECT_ACK;
+                return;
 
                 /* Release if we're unable to allocate the connection's containing object. */
                 aws_event_stream_rpc_client_connection_release(connection);
                 errorCode = aws_last_error();
             }
 
-            callbackData->connection->m_clientState = DISCONNECTED;
-            if (callbackData->onError(errorCode))
+            thisConnection->m_clientState = DISCONNECTED;
+            if (thisConnection->m_lifecycleHandler->OnErrorCallback(errorCode))
             {
-                callbackData->connection->Close(errorCode);
+                thisConnection->Close(errorCode);
             }
-            Crt::Delete(callbackData, callbackData->allocator);
         }
 
         void MessageAmendment::AddHeader(EventstreamHeader &&header) noexcept { m_headers.push_back(header); }
@@ -422,11 +395,10 @@ namespace Aws
             void *userData)
         {
             (void)connection;
-            auto *callbackData = static_cast<ConnectionCallbackData *>(userData);
+            /* The `userData` pointer is used to pass `this`. */
+            auto *thisConnection = static_cast<EventstreamRpcConnection *>(userData);
 
-            callbackData->onDisconnect(errorCode);
-
-            Crt::Delete(callbackData, callbackData->allocator);
+            thisConnection->m_lifecycleHandler->OnDisconnectCallback(errorCode);
         }
 
         void EventstreamRpcConnection::s_onProtocolMessage(
@@ -437,47 +409,44 @@ namespace Aws
             AWS_FATAL_ASSERT(messageArgs);
             (void)connection;
 
-            auto *callbackData = static_cast<ConnectionCallbackData *>(userData);
-            Crt::ScopedResource<EventstreamRpcConnection> &connectionResource = callbackData->connection;
+            /* The `userData` pointer is used to pass `this`. */
+            auto *thisConnection = static_cast<EventstreamRpcConnection *>(userData);
+            Crt::List<EventstreamHeader> pingHeaders;
 
             switch (messageArgs->message_type)
             {
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT_ACK:
-                    if (connectionResource->m_clientState == WAITING_FOR_CONNECT_ACK)
+                    if (thisConnection->m_clientState == WAITING_FOR_CONNECT_ACK)
                     {
                         if (messageArgs->message_flags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_CONNECTION_ACCEPTED)
                         {
-                            connectionResource->m_clientState = CONNECTED;
-                            callbackData->onConnect(connectionResource.get());
+                            thisConnection->m_clientState = CONNECTED;
+                            thisConnection->m_lifecycleHandler->OnConnectCallback();
                         }
                         else
                         {
-                            connectionResource->m_clientState = DISCONNECTING;
-                            connectionResource->Close(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
+                            thisConnection->m_clientState = DISCONNECTING;
+                            thisConnection->Close(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
                         }
                     }
                     break;
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING:
-                    if (callbackData->onPing)
+                    for (size_t i = 0; i < messageArgs->headers_count; ++i)
                     {
-                        Crt::List<EventstreamHeader> pingHeaders;
-                        for (size_t i = 0; i < messageArgs->headers_count; ++i)
-                        {
-                            pingHeaders.push_back(EventstreamHeader(messageArgs->headers[i]));
-                        }
-                        if (messageArgs->payload)
-                            callbackData->onPing(pingHeaders, *messageArgs->payload);
-                        else
-                            callbackData->onPing(pingHeaders, Crt::Optional<Crt::ByteBuf>());
+                        pingHeaders.push_back(EventstreamHeader(messageArgs->headers[i]));
                     }
+                    if (messageArgs->payload)
+                        thisConnection->m_lifecycleHandler->OnPingCallback(pingHeaders, *messageArgs->payload);
+                    else
+                        thisConnection->m_lifecycleHandler->OnPingCallback(pingHeaders, Crt::Optional<Crt::ByteBuf>());
                     break;
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING_RESPONSE:
                     return;
                     break;
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PROTOCOL_ERROR:
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_INTERNAL_ERROR:
-                    if (callbackData->onError(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR))
-                        connectionResource->Close(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR);
+                    if (thisConnection->m_lifecycleHandler->OnErrorCallback(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR))
+                        thisConnection->Close(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR);
                     break;
                 default:
                     return;

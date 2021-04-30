@@ -143,11 +143,11 @@ namespace Aws
             MessageAmendment(const Crt::ByteBuf &payload) noexcept;
             void AddHeader(EventstreamHeader &&header) noexcept;
             void SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept;
+            Crt::List<EventstreamHeader> &GetHeaders() noexcept;
+            Crt::Optional<Crt::ByteBuf> &GetPayload() noexcept;
 
           private:
             friend class EventstreamRpcConnection;
-            Crt::List<EventstreamHeader> &GetHeaders() noexcept;
-            Crt::Optional<Crt::ByteBuf> &GetPayload() noexcept;
             Crt::List<EventstreamHeader> m_headers;
             Crt::Optional<Crt::ByteBuf> m_payload;
         };
@@ -172,25 +172,36 @@ namespace Aws
             Crt::Optional<Crt::Io::TlsConnectionOptions> TlsOptions;
             Crt::String HostName;
             uint16_t Port;
-            OnConnect OnConnectCallback;
-            OnDisconnect OnDisconnectCallback;
-            OnError OnErrorCallback;
-            OnPing OnPingCallback;
-            ConnectMessageAmender ConnectMessageAmenderCallback;
+        };
+
+        class AWS_EVENTSTREAMRPC_API ConnectionLifecycleHandler
+        {
+            public:
+                virtual void OnConnectCallback();
+                virtual void OnDisconnectCallback(int errorCode);
+                virtual bool OnErrorCallback(int errorCode);
+                virtual void OnPingCallback(const Crt::List<EventstreamHeader> &headers, const Crt::Optional<Crt::ByteBuf> &payload);
         };
 
         class AWS_EVENTSTREAMRPC_API EventstreamRpcConnection
         {
           public:
-            virtual ~EventstreamRpcConnection() = default;
+            enum ConnectStatus {
+
+            };
+            EventstreamRpcConnection(
+                Crt::Allocator *allocator) noexcept;
+            ~EventstreamRpcConnection() noexcept;
             EventstreamRpcConnection(const EventstreamRpcConnection &) = delete;
             EventstreamRpcConnection(EventstreamRpcConnection &&) = delete;
             EventstreamRpcConnection &operator=(const EventstreamRpcConnection &) = delete;
             EventstreamRpcConnection &operator=(EventstreamRpcConnection &&) = delete;
 
-            static bool CreateConnection(
-                const EventstreamRpcConnectionOptions &config,
-                Crt::Allocator *allocator) noexcept;
+            bool Connect(
+                const EventstreamRpcConnectionOptions &connectionOptions,
+                ConnectionLifecycleHandler* connectionLifecycleHandler,
+                ConnectMessageAmender connectMessageAmender
+                ) noexcept;
 
             void SendPing(
                 const Crt::List<EventstreamHeader> &headers,
@@ -214,13 +225,6 @@ namespace Aws
              */
             int LastError() const noexcept;
 
-          protected:
-            EventstreamRpcConnection(
-                struct aws_event_stream_rpc_client_connection *connection,
-                Crt::Allocator *allocator) noexcept;
-            struct aws_event_stream_rpc_client_connection *m_underlyingConnection;
-            Crt::List<EventstreamHeader> m_defaultConnectHeaders;
-
           private:
             enum ClientState
             {
@@ -231,7 +235,10 @@ namespace Aws
                 DISCONNECTING,
             };
             Crt::Allocator *m_allocator;
+            struct aws_event_stream_rpc_client_connection *m_underlyingConnection;
             ClientState m_clientState;
+            ConnectionLifecycleHandler* m_lifecycleHandler;
+            ConnectMessageAmender m_connectMessageAmender;
             static void s_customDeleter(EventstreamRpcConnection *connection) noexcept;
             void SendProtocolMessage(
                 const Crt::List<EventstreamHeader> &headers,
