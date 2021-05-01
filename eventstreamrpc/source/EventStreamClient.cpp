@@ -26,46 +26,46 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback;
         };
 
-        EventstreamHeader::EventstreamHeader(const struct aws_event_stream_header_value_pair &header)
+        EventStreamHeader::EventStreamHeader(const struct aws_event_stream_header_value_pair &header)
             : m_underlyingHandle(header)
         {
         }
 
         MessageAmendment::MessageAmendment(const Crt::ByteBuf &payload) noexcept : m_headers(), m_payload(payload) {}
 
-        MessageAmendment::MessageAmendment(const Crt::List<EventstreamHeader> &headers) noexcept
+        MessageAmendment::MessageAmendment(const Crt::List<EventStreamHeader> &headers) noexcept
             : m_headers(headers), m_payload()
         {
         }
 
-        MessageAmendment::MessageAmendment(Crt::List<EventstreamHeader> &&headers) noexcept
+        MessageAmendment::MessageAmendment(Crt::List<EventStreamHeader> &&headers) noexcept
             : m_headers(headers), m_payload()
         {
         }
 
         MessageAmendment::MessageAmendment(
-            const Crt::List<EventstreamHeader> &headers,
+            const Crt::List<EventStreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload) noexcept
             : m_headers(headers), m_payload(payload)
         {
         }
 
-        Crt::List<EventstreamHeader> &MessageAmendment::GetHeaders() noexcept { return m_headers; }
+        Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() noexcept { return m_headers; }
 
         Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() noexcept { return m_payload; }
 
         void MessageAmendment::SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept { m_payload = payload; }
 
-        EventstreamRpcConnectionOptions::EventstreamRpcConnectionOptions()
+        ClientConnectionOptions::ClientConnectionOptions()
             : Bootstrap(), SocketOptions(), TlsOptions(), HostName(), Port(0)
         {
         }
 
-        EventstreamRpcConnection::EventstreamRpcConnection(Crt::Allocator *allocator) noexcept : m_allocator(allocator)
+        ClientConnection::ClientConnection(Crt::Allocator *allocator) noexcept : m_allocator(allocator)
         {
         }
 
-        EventstreamRpcConnection::~EventstreamRpcConnection() noexcept
+        ClientConnection::~ClientConnection() noexcept
         {
             if (m_underlyingConnection)
             {
@@ -77,7 +77,7 @@ namespace Aws
         bool ConnectionLifecycleHandler::OnErrorCallback(int errorCode) { return true; }
 
         void ConnectionLifecycleHandler::OnPingCallback(
-            const Crt::List<EventstreamHeader> &headers,
+            const Crt::List<EventStreamHeader> &headers,
             const Crt::Optional<Crt::ByteBuf> &payload)
         {
             (void)headers;
@@ -88,8 +88,8 @@ namespace Aws
 
         void ConnectionLifecycleHandler::OnDisconnectCallback(int errorCode) { (void)errorCode; }
 
-        bool EventstreamRpcConnection::Connect(
-            const EventstreamRpcConnectionOptions &connectionOptions,
+        bool ClientConnection::Connect(
+            const ClientConnectionOptions &connectionOptions,
             ConnectionLifecycleHandler *connectionLifecycleHandler,
             ConnectMessageAmender connectMessageAmender) noexcept
         {
@@ -103,9 +103,9 @@ namespace Aws
             connOptions.port = connectionOptions.Port;
             connOptions.socket_options = &connectionOptions.SocketOptions.GetImpl();
             connOptions.bootstrap = connectionOptions.Bootstrap->GetUnderlyingHandle();
-            connOptions.on_connection_setup = EventstreamRpcConnection::s_onConnectionSetup;
-            connOptions.on_connection_protocol_message = EventstreamRpcConnection::s_onProtocolMessage;
-            connOptions.on_connection_shutdown = EventstreamRpcConnection::s_onConnectionShutdown;
+            connOptions.on_connection_setup = ClientConnection::s_onConnectionSetup;
+            connOptions.on_connection_protocol_message = ClientConnection::s_onProtocolMessage;
+            connOptions.on_connection_shutdown = ClientConnection::s_onConnectionShutdown;
             connOptions.user_data = reinterpret_cast<void *>(this);
             m_lifecycleHandler = connectionLifecycleHandler;
             m_connectMessageAmender = connectMessageAmender;
@@ -123,30 +123,30 @@ namespace Aws
             return true;
         }
 
-        const struct aws_event_stream_header_value_pair *EventstreamHeader::GetUnderlyingHandle() const
+        const struct aws_event_stream_header_value_pair *EventStreamHeader::GetUnderlyingHandle() const
         {
             return &m_underlyingHandle;
         }
 
-        void EventstreamRpcConnection::SendPing(
-            const Crt::List<EventstreamHeader> &headers,
+        void ClientConnection::SendPing(
+            const Crt::List<EventStreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendPing(this, headers, payload, onMessageFlushCallback);
         }
 
-        void EventstreamRpcConnection::SendPingResponse(
-            const Crt::List<EventstreamHeader> &headers,
+        void ClientConnection::SendPingResponse(
+            const Crt::List<EventStreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendPingResponse(this, headers, payload, onMessageFlushCallback);
         }
 
-        void EventstreamRpcConnection::s_sendPing(
-            EventstreamRpcConnection *connection,
-            const Crt::List<EventstreamHeader> &headers,
+        void ClientConnection::s_sendPing(
+            ClientConnection *connection,
+            const Crt::List<EventStreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
@@ -154,9 +154,9 @@ namespace Aws
                 connection, headers, payload, AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING, 0, onMessageFlushCallback);
         }
 
-        void EventstreamRpcConnection::s_sendPingResponse(
-            EventstreamRpcConnection *connection,
-            const Crt::List<EventstreamHeader> &headers,
+        void ClientConnection::s_sendPingResponse(
+            ClientConnection *connection,
+            const Crt::List<EventStreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
@@ -169,8 +169,8 @@ namespace Aws
                 onMessageFlushCallback);
         }
 
-        void EventstreamRpcConnection::SendProtocolMessage(
-            const Crt::List<EventstreamHeader> &headers,
+        void ClientConnection::SendProtocolMessage(
+            const Crt::List<EventStreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
             uint32_t flags,
@@ -179,7 +179,7 @@ namespace Aws
             s_sendProtocolMessage(this, headers, payload, messageType, flags, onMessageFlushCallback);
         }
 
-        void EventstreamRpcConnection::s_protocolMessageCallback(int errorCode, void *userData) noexcept
+        void ClientConnection::s_protocolMessageCallback(int errorCode, void *userData) noexcept
         {
             auto *callbackData = static_cast<OnMessageFlushCallbackContainer *>(userData);
 
@@ -190,9 +190,9 @@ namespace Aws
             Crt::Delete(callbackData, callbackData->allocator);
         }
 
-        void EventstreamRpcConnection::s_sendProtocolMessage(
-            EventstreamRpcConnection *connection,
-            const Crt::List<EventstreamHeader> &headers,
+        void ClientConnection::s_sendProtocolMessage(
+            ClientConnection *connection,
+            const Crt::List<EventStreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
             uint32_t flags,
@@ -210,7 +210,7 @@ namespace Aws
                 int errorCode = aws_event_stream_headers_list_init(&headersArray, connection->m_allocator);
                 if (!errorCode)
                 {
-                    /* Populate the array with the underlying handle of each EventstreamHeader. */
+                    /* Populate the array with the underlying handle of each EventStreamHeader. */
                     for (auto &i : headers)
                     {
                         errorCode = aws_array_list_push_back(&headersArray, i.GetUnderlyingHandle());
@@ -257,19 +257,19 @@ namespace Aws
             }
         }
 
-        void EventstreamRpcConnection::Close() noexcept
+        void ClientConnection::Close() noexcept
         {
             aws_event_stream_rpc_client_connection_close(this->m_underlyingConnection, AWS_OP_SUCCESS);
             this->m_clientState = DISCONNECTED;
         }
 
-        void EventstreamRpcConnection::Close(int errorCode) noexcept
+        void ClientConnection::Close(int errorCode) noexcept
         {
             aws_event_stream_rpc_client_connection_close(this->m_underlyingConnection, errorCode);
             this->m_clientState = DISCONNECTED;
         }
 
-        EventstreamHeader::EventstreamHeader(
+        EventStreamHeader::EventStreamHeader(
             const Crt::String &name,
             const Crt::String &value,
             Crt::Allocator *allocator) noexcept
@@ -283,9 +283,9 @@ namespace Aws
             m_underlyingHandle.header_value_len = (uint16_t)m_valueByteBuf.len;
         }
 
-        EventstreamHeader::~EventstreamHeader() { Crt::ByteBufDelete(m_valueByteBuf); }
+        EventStreamHeader::~EventStreamHeader() { Crt::ByteBufDelete(m_valueByteBuf); }
 
-        EventstreamHeader::EventstreamHeader(const EventstreamHeader &lhs) noexcept
+        EventStreamHeader::EventStreamHeader(const EventStreamHeader &lhs) noexcept
             : m_allocator(lhs.m_allocator),
               m_valueByteBuf(
                   Crt::ByteBufNewCopy(lhs.m_valueByteBuf.allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len)),
@@ -295,7 +295,7 @@ namespace Aws
             m_underlyingHandle.header_value_len = m_valueByteBuf.len;
         }
 
-        EventstreamHeader::EventstreamHeader(EventstreamHeader &&rhs) noexcept
+        EventStreamHeader::EventStreamHeader(EventStreamHeader &&rhs) noexcept
             : m_allocator(rhs.m_allocator), m_valueByteBuf(rhs.m_valueByteBuf),
               m_underlyingHandle(rhs.m_underlyingHandle)
         {
@@ -303,18 +303,18 @@ namespace Aws
             rhs.m_valueByteBuf.buffer = NULL;
         }
 
-        Crt::String EventstreamHeader::GetHeaderName() noexcept
+        Crt::String EventStreamHeader::GetHeaderName() noexcept
         {
             return Crt::String(m_underlyingHandle.header_name, m_underlyingHandle.header_name_len);
         }
 
-        void EventstreamRpcConnection::s_onConnectionSetup(
+        void ClientConnection::s_onConnectionSetup(
             struct aws_event_stream_rpc_client_connection *connection,
             int errorCode,
             void *userData)
         {
             /* The `userData` pointer is used to pass `this`. */
-            auto *thisConnection = static_cast<EventstreamRpcConnection *>(userData);
+            auto *thisConnection = static_cast<ClientConnection *>(userData);
 
             if (!errorCode)
             {
@@ -326,7 +326,7 @@ namespace Aws
                     MessageAmendment &connectAmendment = thisConnection->m_connectMessageAmender();
                     auto &amenderHeaderList = connectAmendment.GetHeaders();
                     /* The version header is necessary for establishing the connection. */
-                    messageAmendment.AddHeader(EventstreamHeader(
+                    messageAmendment.AddHeader(EventStreamHeader(
                         Crt::String(EVENTSTREAM_VERSION_HEADER),
                         Crt::String(EVENTSTREAM_VERSION),
                         thisConnection->m_allocator));
@@ -357,21 +357,21 @@ namespace Aws
             }
         }
 
-        void MessageAmendment::AddHeader(EventstreamHeader &&header) noexcept { m_headers.push_back(header); }
+        void MessageAmendment::AddHeader(EventStreamHeader &&header) noexcept { m_headers.push_back(header); }
 
-        void EventstreamRpcConnection::s_onConnectionShutdown(
+        void ClientConnection::s_onConnectionShutdown(
             struct aws_event_stream_rpc_client_connection *connection,
             int errorCode,
             void *userData)
         {
             (void)connection;
             /* The `userData` pointer is used to pass `this`. */
-            auto *thisConnection = static_cast<EventstreamRpcConnection *>(userData);
+            auto *thisConnection = static_cast<ClientConnection *>(userData);
 
             thisConnection->m_lifecycleHandler->OnDisconnectCallback(errorCode);
         }
 
-        void EventstreamRpcConnection::s_onProtocolMessage(
+        void ClientConnection::s_onProtocolMessage(
             struct aws_event_stream_rpc_client_connection *connection,
             const struct aws_event_stream_rpc_message_args *messageArgs,
             void *userData)
@@ -380,8 +380,8 @@ namespace Aws
             (void)connection;
 
             /* The `userData` pointer is used to pass `this`. */
-            auto *thisConnection = static_cast<EventstreamRpcConnection *>(userData);
-            Crt::List<EventstreamHeader> pingHeaders;
+            auto *thisConnection = static_cast<ClientConnection *>(userData);
+            Crt::List<EventStreamHeader> pingHeaders;
 
             switch (messageArgs->message_type)
             {
@@ -403,7 +403,7 @@ namespace Aws
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING:
                     for (size_t i = 0; i < messageArgs->headers_count; ++i)
                     {
-                        pingHeaders.push_back(EventstreamHeader(messageArgs->headers[i]));
+                        pingHeaders.push_back(EventStreamHeader(messageArgs->headers[i]));
                     }
                     if (messageArgs->payload)
                         thisConnection->m_lifecycleHandler->OnPingCallback(pingHeaders, *messageArgs->payload);

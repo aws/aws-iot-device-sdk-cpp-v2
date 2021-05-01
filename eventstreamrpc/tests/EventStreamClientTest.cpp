@@ -82,20 +82,20 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         MessageAmendment connectionAmendment;
         auto messageAmender = [&](void) -> MessageAmendment & { return connectionAmendment; };
 
-        EventstreamRpcConnectionOptions options;
+        ClientConnectionOptions options;
         options.Bootstrap = &clientBootstrap;
         options.SocketOptions = socketOptions;
         options.HostName = Aws::Crt::String("127.0.0.1");
         options.Port = 8033;
 
-        EventstreamRpcConnection connection(allocator);
+        ClientConnection connection(allocator);
 
         /* Happy path case. */
         {
             TestLifecycleHandler lifecycleHandler;
-            Aws::Crt::List<EventstreamHeader> pingHeaders;
+            Aws::Crt::List<EventStreamHeader> pingHeaders;
             Aws::Crt::Optional<Aws::Crt::ByteBuf> optional;
-            connectionAmendment.AddHeader(EventstreamHeader(
+            connectionAmendment.AddHeader(EventStreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
             ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.isConnected; });
@@ -117,7 +117,7 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         /* Rejected client-name header. */
         {
             TestLifecycleHandler lifecycleHandler;
-            connectionAmendment.AddHeader(EventstreamHeader(
+            connectionAmendment.AddHeader(EventStreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
             ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
