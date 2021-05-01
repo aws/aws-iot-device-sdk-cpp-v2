@@ -145,41 +145,44 @@ namespace Aws
 
         class AWS_EVENTSTREAMRPC_API ConnectionLifecycleHandler
         {
-            public:
-                /**
-                 * This callback is only invoked upon receiving a CONNECT_ACK with the
-                 * CONNECTION_ACCEPTED flag set by the server. Therefore, once this callback
-                 * is invoked, the `ClientConnection` is ready to be used for sending messages.
-                 */
-                virtual void OnConnectCallback();
-                /**
-                 * Invoked upon connection shutdown. `errorCode` will specify
-                 * shutdown reason. A graceful connection close will set `errorCode` to
-                 * `AWS_ERROR_SUCCESS` or 0.
-                 */
-                virtual void OnDisconnectCallback(int errorCode);
-                /**
-                 * Invoked upon receiving any connection error. Use the return value to determine
-                 * whether or not to force the connection to close. Keep in mind that once
-                 * closed, the `ClientConnection` can no longer send messages.
-                 */
-                virtual bool OnErrorCallback(int errorCode);
-                /**
-                 * Invoked upon receiving a ping from the server. The `headers` and `payload`
-                 * refer to what is contained in the ping message.
-                 */
-                virtual void OnPingCallback(const Crt::List<EventStreamHeader> &headers, const Crt::Optional<Crt::ByteBuf> &payload);
+          public:
+            /**
+             * This callback is only invoked upon receiving a CONNECT_ACK with the
+             * CONNECTION_ACCEPTED flag set by the server. Therefore, once this callback
+             * is invoked, the `ClientConnection` is ready to be used for sending messages.
+             */
+            virtual void OnConnectCallback();
+            /**
+             * Invoked upon connection shutdown. `errorCode` will specify
+             * shutdown reason. A graceful connection close will set `errorCode` to
+             * `AWS_ERROR_SUCCESS` or 0.
+             */
+            virtual void OnDisconnectCallback(int errorCode);
+            /**
+             * Invoked upon receiving any connection error. Use the return value to determine
+             * whether or not to force the connection to close. Keep in mind that once
+             * closed, the `ClientConnection` can no longer send messages.
+             */
+            virtual bool OnErrorCallback(int errorCode);
+            /**
+             * Invoked upon receiving a ping from the server. The `headers` and `payload`
+             * refer to what is contained in the ping message.
+             */
+            virtual void OnPingCallback(
+                const Crt::List<EventStreamHeader> &headers,
+                const Crt::Optional<Crt::ByteBuf> &payload);
         };
 
         class AWS_EVENTSTREAMRPC_API ClientConnection final
         {
           public:
-            enum ConnectStatus {
+            enum ConnectStatus
+            {
                 /* If error messages are added to `aws_event_stream_errors`, this will need to be updated. */
-                AWS_ERROR_EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE = AWS_ERROR_EVENT_STREAM_RPC_STREAM_NOT_ACTIVATED+1
+                AWS_ERROR_EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE =
+                    AWS_ERROR_EVENT_STREAM_RPC_STREAM_NOT_ACTIVATED + 1
             };
-            ClientConnection(
-                Crt::Allocator *allocator) noexcept;
+            ClientConnection(Crt::Allocator *allocator) noexcept;
             ~ClientConnection() noexcept;
             ClientConnection(const ClientConnection &) = delete;
             ClientConnection(ClientConnection &&) = delete;
@@ -188,9 +191,8 @@ namespace Aws
 
             bool Connect(
                 const ClientConnectionOptions &connectionOptions,
-                ConnectionLifecycleHandler* connectionLifecycleHandler,
-                ConnectMessageAmender connectMessageAmender
-                ) noexcept;
+                ConnectionLifecycleHandler *connectionLifecycleHandler,
+                ConnectMessageAmender connectMessageAmender) noexcept;
 
             void SendPing(
                 const Crt::List<EventStreamHeader> &headers,
@@ -226,7 +228,7 @@ namespace Aws
             Crt::Allocator *m_allocator;
             struct aws_event_stream_rpc_client_connection *m_underlyingConnection;
             ClientState m_clientState;
-            ConnectionLifecycleHandler* m_lifecycleHandler;
+            ConnectionLifecycleHandler *m_lifecycleHandler;
             ConnectMessageAmender m_connectMessageAmender;
             static void s_customDeleter(ClientConnection *connection) noexcept;
             void SendProtocolMessage(

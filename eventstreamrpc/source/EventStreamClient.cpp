@@ -61,9 +61,7 @@ namespace Aws
         {
         }
 
-        ClientConnection::ClientConnection(Crt::Allocator *allocator) noexcept : m_allocator(allocator)
-        {
-        }
+        ClientConnection::ClientConnection(Crt::Allocator *allocator) noexcept : m_allocator(allocator) {}
 
         ClientConnection::~ClientConnection() noexcept
         {
@@ -228,7 +226,7 @@ namespace Aws
 
                     if (payload.has_value())
                     {
-                        msg_args.payload = (aws_byte_buf*)&payload.value();
+                        msg_args.payload = (aws_byte_buf *)&payload.value();
                     }
 
                     /* This heap allocation is necessary so that the callback can still be invoked after this function
