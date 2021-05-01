@@ -97,6 +97,13 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
                 Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
             ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.isConnected; });
+            /* Send ping request. */
+            Aws::Crt::List<EventstreamHeader> pingHeaders;
+            Aws::Crt::Optional<Aws::Crt::ByteBuf> optional;
+            /* Test all protocol messages. */
+            connection.SendPing(pingHeaders, optional, nullptr);
+            connection.SendPingResponse(pingHeaders, optional, nullptr);
+            /* Send ping response. */
             connection.Close();
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
         }

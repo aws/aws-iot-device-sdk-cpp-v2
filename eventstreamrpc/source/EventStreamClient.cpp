@@ -61,9 +61,7 @@ namespace Aws
         {
         }
 
-        EventstreamRpcConnection::EventstreamRpcConnection(
-            Crt::Allocator *allocator) noexcept
-            : m_allocator(allocator)
+        EventstreamRpcConnection::EventstreamRpcConnection(Crt::Allocator *allocator) noexcept : m_allocator(allocator)
         {
         }
 
@@ -92,11 +90,13 @@ namespace Aws
 
         bool EventstreamRpcConnection::Connect(
             const EventstreamRpcConnectionOptions &connectionOptions,
-            ConnectionLifecycleHandler* connectionLifecycleHandler,
+            ConnectionLifecycleHandler *connectionLifecycleHandler,
             ConnectMessageAmender connectMessageAmender) noexcept
         {
-            m_lifecycleHandler = connectionLifecycleHandler;
-            m_connectMessageAmender = connectMessageAmender;
+            if (connectionLifecycleHandler == NULL)
+            {
+                return false;
+            }
             struct aws_event_stream_rpc_client_connection_options connOptions;
             AWS_ZERO_STRUCT(connOptions);
             connOptions.host_name = connectionOptions.HostName.c_str();
@@ -107,6 +107,8 @@ namespace Aws
             connOptions.on_connection_protocol_message = EventstreamRpcConnection::s_onProtocolMessage;
             connOptions.on_connection_shutdown = EventstreamRpcConnection::s_onConnectionShutdown;
             connOptions.user_data = reinterpret_cast<void *>(this);
+            m_lifecycleHandler = connectionLifecycleHandler;
+            m_connectMessageAmender = connectMessageAmender;
 
             if (connectionOptions.TlsOptions.has_value())
             {
