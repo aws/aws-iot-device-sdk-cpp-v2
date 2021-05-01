@@ -17,44 +17,41 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx);
 
 class TestLifecycleHandler : public ConnectionLifecycleHandler
 {
-    public:
-        TestLifecycleHandler()
-        {
-            semaphoreULock = std::unique_lock<std::mutex>(semaphoreLock);
-            isConnected = false;
-            lastErrorCode = AWS_OP_ERR;
-        }
+  public:
+    TestLifecycleHandler()
+    {
+        semaphoreULock = std::unique_lock<std::mutex>(semaphoreLock);
+        isConnected = false;
+        lastErrorCode = AWS_OP_ERR;
+    }
 
-        void OnConnectCallback() override
-        {
-            std::lock_guard<std::mutex> lockGuard(semaphoreLock);
+    void OnConnectCallback() override
+    {
+        std::lock_guard<std::mutex> lockGuard(semaphoreLock);
 
-            isConnected = true;
+        isConnected = true;
 
-            semaphore.notify_one();
-        }
+        semaphore.notify_one();
+    }
 
-        void OnDisconnectCallback(int errorCode) override
-        {
-            std::lock_guard<std::mutex> lockGuard(semaphoreLock);
+    void OnDisconnectCallback(int errorCode) override
+    {
+        std::lock_guard<std::mutex> lockGuard(semaphoreLock);
 
-            lastErrorCode = errorCode;
+        lastErrorCode = errorCode;
 
-            semaphore.notify_one();
-        }
+        semaphore.notify_one();
+    }
 
-        void WaitOnCondition(std::function<bool(void)> condition)
-        {
-            semaphore.wait(semaphoreULock, condition);
-        }
+    void WaitOnCondition(std::function<bool(void)> condition) { semaphore.wait(semaphoreULock, condition); }
 
-    private:
-        friend int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx);
-        std::condition_variable semaphore;
-        std::mutex semaphoreLock;
-        std::unique_lock<std::mutex> semaphoreULock;
-        int isConnected;
-        int lastErrorCode;
+  private:
+    friend int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx);
+    std::condition_variable semaphore;
+    std::mutex semaphoreLock;
+    std::unique_lock<std::mutex> semaphoreULock;
+    int isConnected;
+    int lastErrorCode;
 };
 
 static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
@@ -93,15 +90,14 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         /* Happy path case. */
         {
             TestLifecycleHandler lifecycleHandler;
-            Aws::Crt::List<EventStreamHeader> pingHeaders;
-            Aws::Crt::Optional<Aws::Crt::ByteBuf> optional;
             connectionAmendment.AddHeader(EventStreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
             ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.isConnected; });
             /* Test all protocol messages. */
-            connection.SendPing(pingHeaders, optional, nullptr);
-            connection.SendPingResponse(pingHeaders, optional, nullptr);
+            connection.SendPing(Aws::Crt::List<EventStreamHeader>(), Aws::Crt::Optional<Aws::Crt::ByteBuf>(), nullptr);
+            connection.SendPingResponse(
+                Aws::Crt::List<EventStreamHeader>(), Aws::Crt::Optional<Aws::Crt::ByteBuf>(), nullptr);
             /* Close connection gracefully. */
             connection.Close();
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
@@ -111,7 +107,8 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         {
             TestLifecycleHandler lifecycleHandler;
             ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
-            lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+            lifecycleHandler.WaitOnCondition(
+                [&]() { return lifecycleHandler.lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
         }
 
         /* Rejected client-name header. */
@@ -120,7 +117,8 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             connectionAmendment.AddHeader(EventStreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
             ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
-            lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+            lifecycleHandler.WaitOnCondition(
+                [&]() { return lifecycleHandler.lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
         }
     }
 

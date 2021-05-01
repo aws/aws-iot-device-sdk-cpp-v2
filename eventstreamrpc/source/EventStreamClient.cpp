@@ -130,7 +130,7 @@ namespace Aws
 
         void ClientConnection::SendPing(
             const Crt::List<EventStreamHeader> &headers,
-            Crt::Optional<Crt::ByteBuf> &payload,
+            const Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendPing(this, headers, payload, onMessageFlushCallback);
@@ -138,7 +138,7 @@ namespace Aws
 
         void ClientConnection::SendPingResponse(
             const Crt::List<EventStreamHeader> &headers,
-            Crt::Optional<Crt::ByteBuf> &payload,
+            const Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendPingResponse(this, headers, payload, onMessageFlushCallback);
@@ -147,7 +147,7 @@ namespace Aws
         void ClientConnection::s_sendPing(
             ClientConnection *connection,
             const Crt::List<EventStreamHeader> &headers,
-            Crt::Optional<Crt::ByteBuf> &payload,
+            const Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendProtocolMessage(
@@ -157,7 +157,7 @@ namespace Aws
         void ClientConnection::s_sendPingResponse(
             ClientConnection *connection,
             const Crt::List<EventStreamHeader> &headers,
-            Crt::Optional<Crt::ByteBuf> &payload,
+            const Crt::Optional<Crt::ByteBuf> &payload,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendProtocolMessage(
@@ -171,7 +171,7 @@ namespace Aws
 
         void ClientConnection::SendProtocolMessage(
             const Crt::List<EventStreamHeader> &headers,
-            Crt::Optional<Crt::ByteBuf> &payload,
+            const Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
             uint32_t flags,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
@@ -193,7 +193,7 @@ namespace Aws
         void ClientConnection::s_sendProtocolMessage(
             ClientConnection *connection,
             const Crt::List<EventStreamHeader> &headers,
-            Crt::Optional<Crt::ByteBuf> &payload,
+            const Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
             uint32_t flags,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
@@ -228,7 +228,7 @@ namespace Aws
 
                     if (payload.has_value())
                     {
-                        msg_args.payload = &payload.value();
+                        msg_args.payload = (aws_byte_buf*)&payload.value();
                     }
 
                     /* This heap allocation is necessary so that the callback can still be invoked after this function

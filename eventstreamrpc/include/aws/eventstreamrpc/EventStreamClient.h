@@ -194,12 +194,12 @@ namespace Aws
 
             void SendPing(
                 const Crt::List<EventStreamHeader> &headers,
-                Crt::Optional<Crt::ByteBuf> &payload,
+                const Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
 
             void SendPingResponse(
                 const Crt::List<EventStreamHeader> &headers,
-                Crt::Optional<Crt::ByteBuf> &payload,
+                const Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
 
             void Close() noexcept;
@@ -231,7 +231,7 @@ namespace Aws
             static void s_customDeleter(ClientConnection *connection) noexcept;
             void SendProtocolMessage(
                 const Crt::List<EventStreamHeader> &headers,
-                Crt::Optional<Crt::ByteBuf> &payload,
+                const Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
                 uint32_t flags,
                 OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
@@ -253,7 +253,7 @@ namespace Aws
             static void s_sendProtocolMessage(
                 ClientConnection *connection,
                 const Crt::List<EventStreamHeader> &headers,
-                Crt::Optional<Crt::ByteBuf> &payload,
+                const Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
                 uint32_t flags,
                 OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
@@ -261,13 +261,13 @@ namespace Aws
             static void s_sendPing(
                 ClientConnection *connection,
                 const Crt::List<EventStreamHeader> &headers,
-                Crt::Optional<Crt::ByteBuf> &payload,
+                const Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
 
             static void s_sendPingResponse(
                 ClientConnection *connection,
                 const Crt::List<EventStreamHeader> &headers,
-                Crt::Optional<Crt::ByteBuf> &payload,
+                const Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
         };
     } // namespace Eventstreamrpc
