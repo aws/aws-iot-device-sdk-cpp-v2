@@ -36,40 +36,10 @@ namespace Aws
         class EventstreamRpcConnection;
         class MessageAmendment;
 
-        using HeaderType = aws_event_stream_header_value_type;
+        using HeaderValueType = aws_event_stream_header_value_type;
         using MessageType = aws_event_stream_rpc_message_type;
 
-        using OnMessageFlush = std::function<void(int errorCode)>;
-
-        /**
-         * This callback is only invoked upon receiving a CONNECT_ACK with the
-         * CONNECTION_ACCEPTED flag set by the server. Therefore, the `connection`
-         * pointer is always guaranteed to be valid during invocation. However, it
-         * is guaranteed to be invalidated when `OnDisconnect` is invoked or 
-         * when `OnError` is invoked and returns true.
-         */
-        using OnConnect = std::function<void(EventstreamRpcConnection *connection)>;
-
-        /**
-         * Invoked upon connection shutdown. `errorCode` will specify
-         * shutdown reason. A graceful connection close will set `errorCode` to
-         * `AWS_ERROR_SUCCESS` or 0.
-         */
-        using OnDisconnect = std::function<void(int errorCode)>;
-
-        /**
-         * Invoked upon receiving any error. Use the return value to determine
-         * whether or not to force the connection to close. Keep in mind that once
-         * closed, the pointer reference from `OnConnect` is no longer safe to use.
-         */
-        using OnError = std::function<bool(int errorCode)>;
-
-        /**
-         * Invoked upon receiving a ping from the server. The `headers` and `payload`
-         * refer to what is contained in the ping message.
-         */
-        using OnPing = std::function<
-            void(const Crt::List<EventstreamHeader> &headers, const Crt::Optional<Crt::ByteBuf> &payload)>;
+        using OnMessageFlushCallback = std::function<void(int errorCode)>;
 
         /**
          * Allows the application to append headers and change the payload of the CONNECT
@@ -97,7 +67,7 @@ namespace Aws
             EventstreamHeader(const Crt::String &name, Crt::ByteBuf &value);
             EventstreamHeader(const Crt::String &name, Crt::UUID value);
 
-            HeaderType GetHeaderType();
+            HeaderValueType GetHeaderValueType();
             Crt::String GetHeaderName() noexcept;
             void SetHeaderName(Crt::String &);
 
@@ -135,19 +105,18 @@ namespace Aws
             MessageAmendment() = default;
             MessageAmendment(const MessageAmendment &lhs) = default;
             MessageAmendment(MessageAmendment &&rhs) = default;
-            MessageAmendment(
+            explicit MessageAmendment(
                 const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload) noexcept;
-            MessageAmendment(const Crt::List<EventstreamHeader> &headers) noexcept;
-            MessageAmendment(Crt::List<EventstreamHeader> &&headers) noexcept;
-            MessageAmendment(const Crt::ByteBuf &payload) noexcept;
+            explicit MessageAmendment(const Crt::List<EventstreamHeader> &headers) noexcept;
+            explicit MessageAmendment(Crt::List<EventstreamHeader> &&headers) noexcept;
+            explicit MessageAmendment(const Crt::ByteBuf &payload) noexcept;
             void AddHeader(EventstreamHeader &&header) noexcept;
             void SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept;
             Crt::List<EventstreamHeader> &GetHeaders() noexcept;
             Crt::Optional<Crt::ByteBuf> &GetPayload() noexcept;
 
           private:
-            friend class EventstreamRpcConnection;
             Crt::List<EventstreamHeader> m_headers;
             Crt::Optional<Crt::ByteBuf> m_payload;
         };
@@ -177,17 +146,37 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ConnectionLifecycleHandler
         {
             public:
+                /**
+                 * This callback is only invoked upon receiving a CONNECT_ACK with the
+                 * CONNECTION_ACCEPTED flag set by the server. Therefore, once this callback
+                 * is invoked, the `EventstreamRpcConnection` is ready to be used for sending messages.
+                 */
                 virtual void OnConnectCallback();
+                /**
+                 * Invoked upon connection shutdown. `errorCode` will specify
+                 * shutdown reason. A graceful connection close will set `errorCode` to
+                 * `AWS_ERROR_SUCCESS` or 0.
+                 */
                 virtual void OnDisconnectCallback(int errorCode);
+                /**
+                 * Invoked upon receiving any connection error. Use the return value to determine
+                 * whether or not to force the connection to close. Keep in mind that once
+                 * closed, the `EventstreamRpcConnection` can no longer send messages.
+                 */
                 virtual bool OnErrorCallback(int errorCode);
+                /**
+                 * Invoked upon receiving a ping from the server. The `headers` and `payload`
+                 * refer to what is contained in the ping message.
+                 */
                 virtual void OnPingCallback(const Crt::List<EventstreamHeader> &headers, const Crt::Optional<Crt::ByteBuf> &payload);
         };
 
-        class AWS_EVENTSTREAMRPC_API EventstreamRpcConnection
+        class AWS_EVENTSTREAMRPC_API EventstreamRpcConnection final
         {
           public:
             enum ConnectStatus {
-
+                /* If error messages are added to `aws_event_stream_errors`, this will need to be updated. */
+                AWS_ERROR_EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE = AWS_ERROR_EVENT_STREAM_RPC_STREAM_NOT_ACTIVATED+1
             };
             EventstreamRpcConnection(
                 Crt::Allocator *allocator) noexcept;
@@ -206,12 +195,12 @@ namespace Aws
             void SendPing(
                 const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlush onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
 
             void SendPingResponse(
                 const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlush onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
 
             void Close() noexcept;
             void Close(int errorCode) noexcept;
@@ -245,7 +234,7 @@ namespace Aws
                 Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
                 uint32_t flags,
-                OnMessageFlush onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
 
             static void s_onConnectionShutdown(
                 struct aws_event_stream_rpc_client_connection *connection,
@@ -267,19 +256,19 @@ namespace Aws
                 Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
                 uint32_t flags,
-                OnMessageFlush onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
 
             static void s_sendPing(
                 EventstreamRpcConnection *connection,
                 const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlush onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
 
             static void s_sendPingResponse(
                 EventstreamRpcConnection *connection,
                 const Crt::List<EventstreamHeader> &headers,
                 Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlush onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
         };
     } // namespace Eventstreamrpc
 } // namespace Aws

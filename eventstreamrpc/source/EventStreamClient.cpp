@@ -23,7 +23,7 @@ namespace Aws
         {
             explicit OnMessageFlushCallbackContainer(Crt::Allocator *allocator) : allocator(allocator) {}
             Crt::Allocator *allocator;
-            OnMessageFlush onMessageFlush;
+            OnMessageFlushCallback onMessageFlushCallback;
         };
 
         EventstreamHeader::EventstreamHeader(const struct aws_event_stream_header_value_pair &header)
@@ -131,7 +131,7 @@ namespace Aws
         void EventstreamRpcConnection::SendPing(
             const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
-            OnMessageFlush onMessageFlushCallback) noexcept
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendPing(this, headers, payload, onMessageFlushCallback);
         }
@@ -139,7 +139,7 @@ namespace Aws
         void EventstreamRpcConnection::SendPingResponse(
             const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
-            OnMessageFlush onMessageFlushCallback) noexcept
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendPingResponse(this, headers, payload, onMessageFlushCallback);
         }
@@ -148,7 +148,7 @@ namespace Aws
             EventstreamRpcConnection *connection,
             const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
-            OnMessageFlush onMessageFlushCallback) noexcept
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendProtocolMessage(
                 connection, headers, payload, AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING, 0, onMessageFlushCallback);
@@ -158,7 +158,7 @@ namespace Aws
             EventstreamRpcConnection *connection,
             const Crt::List<EventstreamHeader> &headers,
             Crt::Optional<Crt::ByteBuf> &payload,
-            OnMessageFlush onMessageFlushCallback) noexcept
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendProtocolMessage(
                 connection,
@@ -174,7 +174,7 @@ namespace Aws
             Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
             uint32_t flags,
-            OnMessageFlush onMessageFlushCallback) noexcept
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             s_sendProtocolMessage(this, headers, payload, messageType, flags, onMessageFlushCallback);
         }
@@ -184,8 +184,8 @@ namespace Aws
             auto *callbackData = static_cast<OnMessageFlushCallbackContainer *>(userData);
 
             /* Call the user-provided callback. */
-            if (callbackData->onMessageFlush)
-                callbackData->onMessageFlush(errorCode);
+            if (callbackData->onMessageFlushCallback)
+                callbackData->onMessageFlushCallback(errorCode);
 
             Crt::Delete(callbackData, callbackData->allocator);
         }
@@ -196,7 +196,7 @@ namespace Aws
             Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
             uint32_t flags,
-            OnMessageFlush onMessageFlushCallback) noexcept
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             struct aws_event_stream_rpc_message_args msg_args;
             AWS_ZERO_STRUCT(msg_args);
@@ -235,7 +235,7 @@ namespace Aws
                      * returns. */
                     callbackContainer =
                         Crt::New<OnMessageFlushCallbackContainer>(connection->m_allocator, connection->m_allocator);
-                    callbackContainer->onMessageFlush = onMessageFlushCallback;
+                    callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
 
                     errorCode = aws_event_stream_rpc_client_connection_send_protocol_message(
                         connection->m_underlyingConnection,
@@ -283,22 +283,6 @@ namespace Aws
             m_underlyingHandle.header_value_len = (uint16_t)m_valueByteBuf.len;
         }
 
-        bool EventstreamHeader::operator==(const EventstreamHeader &other) const noexcept
-        {
-            if (other.m_underlyingHandle.header_name_len != m_underlyingHandle.header_name_len)
-            {
-                return false;
-            }
-            for (size_t i = 0; i < m_underlyingHandle.header_name_len; i++)
-            {
-                if (tolower(m_underlyingHandle.header_name[i]) != tolower(other.m_underlyingHandle.header_name[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
         EventstreamHeader::~EventstreamHeader() { Crt::ByteBufDelete(m_valueByteBuf); }
 
         EventstreamHeader::EventstreamHeader(const EventstreamHeader &lhs) noexcept
@@ -335,35 +319,19 @@ namespace Aws
             if (!errorCode)
             {
                 thisConnection->m_underlyingConnection = connection;
-                /* The version header is necessary for establishing the connection. */
-                Crt::List<EventstreamHeader> defaultConnectHeaders;
-                defaultConnectHeaders.push_back(EventstreamHeader(
-                    Crt::String(EVENTSTREAM_VERSION_HEADER),
-                    Crt::String(EVENTSTREAM_VERSION),
-                    thisConnection->m_allocator));
-                MessageAmendment messageAmendment(defaultConnectHeaders);
+                MessageAmendment messageAmendment;
+                auto &messageAmendmentHeaders = messageAmendment.GetHeaders();
                 if (thisConnection->m_connectMessageAmender)
                 {
                     MessageAmendment &connectAmendment = thisConnection->m_connectMessageAmender();
-                    auto &defaultHeaderList = defaultConnectHeaders;
                     auto &amenderHeaderList = connectAmendment.GetHeaders();
-                    auto it = amenderHeaderList.begin();
-                    while (it != amenderHeaderList.end())
-                    {
-                        /* The connect amender must not add headers with the same name. */
-                        if (std::find(defaultHeaderList.begin(), defaultHeaderList.end(), *it) ==
-                            defaultHeaderList.end())
-                        {
-                            /* Since the header is being moved to another list,
-                             * the entry from its original list must be erased. */
-                            messageAmendment.AddHeader(std::move(*it));
-                            amenderHeaderList.erase(it++);
-                        }
-                        else
-                        {
-                            ++it;
-                        }
-                    }
+                    /* The version header is necessary for establishing the connection. */
+                    messageAmendment.AddHeader(EventstreamHeader(
+                        Crt::String(EVENTSTREAM_VERSION_HEADER),
+                        Crt::String(EVENTSTREAM_VERSION),
+                        thisConnection->m_allocator));
+                    /* Note that we are prepending headers from the user-provided amender. */
+                    messageAmendmentHeaders.splice(messageAmendmentHeaders.end(), amenderHeaderList);
                     messageAmendment.SetPayload(connectAmendment.GetPayload());
                 }
                 /* Send a CONNECT packet to the server. */
@@ -452,6 +420,9 @@ namespace Aws
                     break;
                 default:
                     return;
+                    if (thisConnection->m_lifecycleHandler->OnErrorCallback(
+                            AWS_ERROR_EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE))
+                        thisConnection->Close(AWS_ERROR_EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE);
                     break;
             }
         }
