@@ -34,6 +34,7 @@ namespace Aws
         class EventStreamHeader;
         class EventStreamRpcClient;
         class ClientConnection;
+        class ClientContinuation;
         class MessageAmendment;
 
         using HeaderValueType = aws_event_stream_header_value_type;
@@ -79,15 +80,6 @@ namespace Aws
             bool GetValueAsTimestamp(Crt::DateTime &);
             bool GetValueAsBytes(Crt::ByteBuf &);
             bool GetValueAsUUID(Crt::UUID &);
-
-            void SetValue(bool value);
-            void SetValue(int8_t value);
-            void SetValue(int16_t value);
-            void SetValue(int32_t value);
-            void SetValue(int64_t value);
-            void SetValue(Crt::DateTime &value);
-            void SetValue(Crt::ByteBuf value);
-            void SetValue(Crt::UUID value);
 
             const struct aws_event_stream_header_value_pair *GetUnderlyingHandle() const;
 
@@ -173,6 +165,27 @@ namespace Aws
                 const Crt::Optional<Crt::ByteBuf> &payload);
         };
 
+        class AWS_EVENTSTREAMRPC_API ClientContinuationHandler
+        {
+          public:
+            /**
+             * Invoked when a message is received on this continuation.
+             */
+            virtual void OnContinuationMessage(
+                const Crt::List<EventStreamHeader> &headers,
+                const Crt::Optional<Crt::ByteBuf> &payload,
+                MessageType messageType,
+                uint32_t messageFlags);
+            /**
+             * Invoked when the continuation is closed.
+             *
+             * Once the continuation is closed, no more messages may be sent or received.
+             * The continuation is closed when a message is sent or received with
+             * the TERMINATE_STREAM flag, or when the connection shuts down.
+             */
+            virtual void OnContinuationClosed();
+        };
+
         class AWS_EVENTSTREAMRPC_API ClientConnection final
         {
           public:
@@ -197,12 +210,14 @@ namespace Aws
             void SendPing(
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
             void SendPingResponse(
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+
+            ClientContinuation &NewStream(ClientContinuationHandler *clientContinuationHandler) noexcept;
 
             void Close() noexcept;
             void Close(int errorCode) noexcept;
@@ -217,6 +232,7 @@ namespace Aws
             int LastError() const noexcept;
 
           private:
+            friend class ClientContinuation;
             enum ClientState
             {
                 DISCONNECTED = 1,
@@ -235,21 +251,21 @@ namespace Aws
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
-                uint32_t flags,
-                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
+                uint32_t messageFlags,
+                OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
             static void s_onConnectionShutdown(
                 struct aws_event_stream_rpc_client_connection *connection,
                 int errorCode,
-                void *userData);
+                void *userData) noexcept;
             static void s_onConnectionSetup(
                 struct aws_event_stream_rpc_client_connection *connection,
                 int errorCode,
-                void *userData);
+                void *userData) noexcept;
             static void s_onProtocolMessage(
                 struct aws_event_stream_rpc_client_connection *connection,
                 const struct aws_event_stream_rpc_message_args *messageArgs,
-                void *userData);
+                void *userData) noexcept;
 
             static void s_protocolMessageCallback(int errorCode, void *userData) noexcept;
             static void s_sendProtocolMessage(
@@ -257,20 +273,57 @@ namespace Aws
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
-                uint32_t flags,
-                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
+                uint32_t messageFlags,
+                OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
             static void s_sendPing(
                 ClientConnection *connection,
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
             static void s_sendPingResponse(
                 ClientConnection *connection,
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
-                OnMessageFlushCallback OnMessageFlushCallbackCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+        };
+
+        class AWS_EVENTSTREAMRPC_API ClientContinuation final
+        {
+          public:
+            ClientContinuation(ClientContinuationHandler *handler) noexcept;
+            ~ClientContinuation() noexcept;
+            ClientContinuation(const ClientContinuation &) = delete;
+            ClientContinuation(ClientContinuation &&) = delete;
+            ClientContinuation &operator=(const ClientContinuation &) = delete;
+            ClientContinuation &operator=(ClientContinuation &&) = delete;
+            void Activate(
+                const Crt::String &operation,
+                const Crt::List<EventStreamHeader> &headers,
+                const Crt::Optional<Crt::ByteBuf> &payload,
+                MessageType messageType,
+                uint32_t messageFlags,
+                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            bool IsClosed() noexcept;
+            void SendMessage(
+                const Crt::List<EventStreamHeader> &headers,
+                const Crt::Optional<Crt::ByteBuf> &payload,
+                MessageType messageType,
+                uint32_t messageFlags,
+                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+
+          private:
+            Crt::Allocator *m_allocator;
+            ClientContinuationHandler *m_handler;
+            struct aws_event_stream_rpc_client_continuation_token *m_continuationToken;
+            static void s_onContinuationMessage(
+                struct aws_event_stream_rpc_client_continuation_token *continuationToken,
+                const struct aws_event_stream_rpc_message_args *messageArgs,
+                void *userData) noexcept;
+            static void s_onContinuationClosed(
+                struct aws_event_stream_rpc_client_continuation_token *continuationToken,
+                void *userData) noexcept;
         };
     } // namespace Eventstreamrpc
 } // namespace Aws

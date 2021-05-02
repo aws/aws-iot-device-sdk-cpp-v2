@@ -61,6 +61,37 @@ namespace Aws
         {
         }
 
+        class EventStreamCppDataStructuresToNativeC
+        {
+          private:
+            friend class ClientConnection;
+            friend class ClientContinuation;
+            static int s_fillNativeHeadersArray(
+                const Crt::List<EventStreamHeader> &headers,
+                struct aws_array_list *headersArray,
+                Crt::Allocator *m_allocator = Crt::g_allocator)
+            {
+                /* Check if the connection has expired before attempting to send. */
+                int errorCode = aws_event_stream_headers_list_init(headersArray, m_allocator);
+
+                if (!errorCode)
+                {
+                    /* Populate the array with the underlying handle of each EventStreamHeader. */
+                    for (auto &i : headers)
+                    {
+                        errorCode = aws_array_list_push_back(headersArray, i.GetUnderlyingHandle());
+
+                        if (errorCode)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                return errorCode;
+            }
+        };
+
         ClientConnection::ClientConnection(Crt::Allocator *allocator) noexcept : m_allocator(allocator) {}
 
         ClientConnection::~ClientConnection() noexcept
@@ -95,6 +126,7 @@ namespace Aws
             {
                 return false;
             }
+
             struct aws_event_stream_rpc_client_connection_options connOptions;
             AWS_ZERO_STRUCT(connOptions);
             connOptions.host_name = connectionOptions.HostName.c_str();
@@ -171,10 +203,10 @@ namespace Aws
             const Crt::List<EventStreamHeader> &headers,
             const Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
-            uint32_t flags,
+            uint32_t messageFlags,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            s_sendProtocolMessage(this, headers, payload, messageType, flags, onMessageFlushCallback);
+            s_sendProtocolMessage(this, headers, payload, messageType, messageFlags, onMessageFlushCallback);
         }
 
         void ClientConnection::s_protocolMessageCallback(int errorCode, void *userData) noexcept
@@ -183,7 +215,9 @@ namespace Aws
 
             /* Call the user-provided callback. */
             if (callbackData->onMessageFlushCallback)
+            {
                 callbackData->onMessageFlushCallback(errorCode);
+            }
 
             Crt::Delete(callbackData, callbackData->allocator);
         }
@@ -193,41 +227,28 @@ namespace Aws
             const Crt::List<EventStreamHeader> &headers,
             const Crt::Optional<Crt::ByteBuf> &payload,
             MessageType messageType,
-            uint32_t flags,
+            uint32_t messageFlags,
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            struct aws_event_stream_rpc_message_args msg_args;
-            AWS_ZERO_STRUCT(msg_args);
-            struct aws_array_list headersArray;
-            AWS_ZERO_STRUCT(headersArray);
-
             /* Check if the connection has expired before attempting to send. */
             if (connection)
             {
+                struct aws_event_stream_rpc_message_args msg_args;
+                AWS_ZERO_STRUCT(msg_args);
+                struct aws_array_list headersArray;
+                AWS_ZERO_STRUCT(headersArray);
                 OnMessageFlushCallbackContainer *callbackContainer = nullptr;
-                int errorCode = aws_event_stream_headers_list_init(&headersArray, connection->m_allocator);
-                if (!errorCode)
-                {
-                    /* Populate the array with the underlying handle of each EventStreamHeader. */
-                    for (auto &i : headers)
-                    {
-                        errorCode = aws_array_list_push_back(&headersArray, i.GetUnderlyingHandle());
-                        if (errorCode)
-                            break;
-                    }
-                }
+                int errorCode = EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(
+                    headers, &headersArray, connection->m_allocator);
 
                 if (!errorCode)
                 {
-                    msg_args.message_flags = flags;
-                    msg_args.message_type = messageType;
+                    struct aws_event_stream_rpc_message_args msg_args;
                     msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
-                    msg_args.headers_count = aws_array_list_length(&headersArray);
-
-                    if (payload.has_value())
-                    {
-                        msg_args.payload = (aws_byte_buf *)&payload.value();
-                    }
+                    msg_args.headers_count = headers.size();
+                    msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
+                    msg_args.message_type = messageType;
+                    msg_args.message_flags = messageFlags;
 
                     /* This heap allocation is necessary so that the callback can still be invoked after this function
                      * returns. */
@@ -242,6 +263,7 @@ namespace Aws
                         reinterpret_cast<void *>(callbackContainer));
                 }
 
+                /* Cleanup. */
                 if (errorCode)
                 {
                     onMessageFlushCallback(errorCode);
@@ -309,9 +331,9 @@ namespace Aws
         void ClientConnection::s_onConnectionSetup(
             struct aws_event_stream_rpc_client_connection *connection,
             int errorCode,
-            void *userData)
+            void *userData) noexcept
         {
-            /* The `userData` pointer is used to pass `this`. */
+            /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
             auto *thisConnection = static_cast<ClientConnection *>(userData);
 
             if (!errorCode)
@@ -319,6 +341,7 @@ namespace Aws
                 thisConnection->m_underlyingConnection = connection;
                 MessageAmendment messageAmendment;
                 auto &messageAmendmentHeaders = messageAmendment.GetHeaders();
+
                 if (thisConnection->m_connectMessageAmender)
                 {
                     MessageAmendment &connectAmendment = thisConnection->m_connectMessageAmender();
@@ -332,6 +355,7 @@ namespace Aws
                     messageAmendmentHeaders.splice(messageAmendmentHeaders.end(), amenderHeaderList);
                     messageAmendment.SetPayload(connectAmendment.GetPayload());
                 }
+
                 /* Send a CONNECT packet to the server. */
                 s_sendProtocolMessage(
                     thisConnection,
@@ -349,6 +373,7 @@ namespace Aws
             }
 
             thisConnection->m_clientState = DISCONNECTED;
+
             if (thisConnection->m_lifecycleHandler->OnErrorCallback(errorCode))
             {
                 thisConnection->Close(errorCode);
@@ -360,10 +385,10 @@ namespace Aws
         void ClientConnection::s_onConnectionShutdown(
             struct aws_event_stream_rpc_client_connection *connection,
             int errorCode,
-            void *userData)
+            void *userData) noexcept
         {
             (void)connection;
-            /* The `userData` pointer is used to pass `this`. */
+            /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
             auto *thisConnection = static_cast<ClientConnection *>(userData);
 
             thisConnection->m_lifecycleHandler->OnDisconnectCallback(errorCode);
@@ -372,18 +397,19 @@ namespace Aws
         void ClientConnection::s_onProtocolMessage(
             struct aws_event_stream_rpc_client_connection *connection,
             const struct aws_event_stream_rpc_message_args *messageArgs,
-            void *userData)
+            void *userData) noexcept
         {
             AWS_FATAL_ASSERT(messageArgs);
             (void)connection;
 
-            /* The `userData` pointer is used to pass `this`. */
+            /* The `userData` pointer is used to pass `this` of a `ClientConnection` object. */
             auto *thisConnection = static_cast<ClientConnection *>(userData);
             Crt::List<EventStreamHeader> pingHeaders;
 
             switch (messageArgs->message_type)
             {
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_CONNECT_ACK:
+
                     if (thisConnection->m_clientState == WAITING_FOR_CONNECT_ACK)
                     {
                         if (messageArgs->message_flags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_CONNECTION_ACCEPTED)
@@ -397,32 +423,192 @@ namespace Aws
                             thisConnection->Close(AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED);
                         }
                     }
+
                     break;
+
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING:
+
                     for (size_t i = 0; i < messageArgs->headers_count; ++i)
                     {
                         pingHeaders.push_back(EventStreamHeader(messageArgs->headers[i]));
                     }
+
                     if (messageArgs->payload)
+                    {
                         thisConnection->m_lifecycleHandler->OnPingCallback(pingHeaders, *messageArgs->payload);
+                    }
                     else
+                    {
                         thisConnection->m_lifecycleHandler->OnPingCallback(pingHeaders, Crt::Optional<Crt::ByteBuf>());
+                    }
+
                     break;
+
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PING_RESPONSE:
                     return;
                     break;
+
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PROTOCOL_ERROR:
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_INTERNAL_ERROR:
+
                     if (thisConnection->m_lifecycleHandler->OnErrorCallback(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR))
+                    {
                         thisConnection->Close(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR);
+                    }
+
                     break;
+
                 default:
                     return;
+
                     if (thisConnection->m_lifecycleHandler->OnErrorCallback(
                             AWS_ERROR_EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE))
+                    {
                         thisConnection->Close(AWS_ERROR_EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE);
+                    }
+
                     break;
             }
         }
-    } // namespace Eventstreamrpc
-} // namespace Aws
+
+        ClientContinuation::ClientContinuation(ClientContinuationHandler *handler) noexcept : m_handler(handler) {}
+
+        void ClientContinuation::s_onContinuationMessage(
+            struct aws_event_stream_rpc_client_continuation_token *continuationToken,
+            const struct aws_event_stream_rpc_message_args *messageArgs,
+            void *userData) noexcept
+        {
+            (void)continuationToken;
+            /* The `userData` pointer is used to pass `this` of a `ClientContinuation` object. */
+            auto *thisContinuationToken = static_cast<ClientContinuation *>(userData);
+
+            Crt::List<EventStreamHeader> continuationMessageHeaders;
+            for (size_t i = 0; i < messageArgs->headers_count; ++i)
+            {
+                continuationMessageHeaders.push_back(EventStreamHeader(messageArgs->headers[i]));
+            }
+
+            Crt::Optional<Crt::ByteBuf> payload;
+
+            if (messageArgs->payload)
+            {
+                payload = Crt::Optional<Crt::ByteBuf>(*messageArgs->payload);
+            }
+            else
+            {
+                payload = Crt::Optional<Crt::ByteBuf>();
+            }
+
+            thisContinuationToken->m_handler->OnContinuationMessage(
+                continuationMessageHeaders, payload, messageArgs->message_type, messageArgs->message_flags);
+        }
+
+        void ClientContinuation::s_onContinuationClosed(
+            struct aws_event_stream_rpc_client_continuation_token *continuationToken,
+            void *userData) noexcept
+        {
+            (void)continuationToken;
+            /* The `userData` pointer is used to pass `this` of a `ClientContinuation` object. */
+            auto *thisContinuationToken = static_cast<ClientContinuation *>(userData);
+
+            thisContinuationToken->m_handler->OnContinuationClosed();
+        }
+
+        void ClientContinuation::Activate(
+            const Crt::String &operationName,
+            const Crt::List<EventStreamHeader> &headers,
+            const Crt::Optional<Crt::ByteBuf> &payload,
+            MessageType messageType,
+            uint32_t messageFlags,
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            struct aws_array_list headersArray;
+
+            AWS_ZERO_STRUCT(headersArray);
+            OnMessageFlushCallbackContainer *callbackContainer = nullptr;
+
+            /* Check if the connection has expired before attempting to send. */
+            int errorCode =
+                EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
+
+            if (!errorCode)
+            {
+                struct aws_event_stream_rpc_message_args msg_args;
+                msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
+                msg_args.headers_count = headers.size();
+                msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
+                msg_args.message_type = messageType;
+                msg_args.message_flags = messageFlags;
+
+                /* This heap allocation is necessary so that the callback can still be invoked after this function
+                 * returns. */
+                callbackContainer = Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
+                callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
+                errorCode = aws_event_stream_rpc_client_continuation_activate(
+                    m_continuationToken,
+                    Crt::ByteCursorFromCString(operationName.c_str()),
+                    &msg_args,
+                    ClientConnection::s_protocolMessageCallback,
+                    reinterpret_cast<void *>(callbackContainer));
+            }
+
+            if (errorCode)
+            {
+                onMessageFlushCallback(errorCode);
+                Crt::Delete(callbackContainer, m_allocator);
+            }
+
+            if (aws_array_list_is_valid(&headersArray))
+            {
+                aws_array_list_clean_up(&headersArray);
+            }
+        }
+
+        void ClientContinuation::SendMessage(
+            const Crt::List<EventStreamHeader> &headers,
+            const Crt::Optional<Crt::ByteBuf> &payload,
+            MessageType messageType,
+            uint32_t messageFlags,
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            struct aws_array_list headersArray;
+            AWS_ZERO_STRUCT(headersArray);
+            OnMessageFlushCallbackContainer *callbackContainer = nullptr;
+
+            int errorCode =
+                EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
+
+            if (!errorCode)
+            {
+                struct aws_event_stream_rpc_message_args msg_args;
+                msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
+                msg_args.headers_count = headers.size();
+                msg_args.payload = payload.has_value() ? (aws_byte_buf *)(&(payload.value())) : nullptr;
+                msg_args.message_type = messageType;
+                msg_args.message_flags = messageFlags;
+
+                /* This heap allocation is necessary so that the callback can still be invoked after this function
+                 * returns. */
+                callbackContainer = Crt::New<OnMessageFlushCallbackContainer>(m_allocator, m_allocator);
+                callbackContainer->onMessageFlushCallback = onMessageFlushCallback;
+
+                errorCode = aws_event_stream_rpc_client_continuation_send_message(
+                    m_continuationToken,
+                    &msg_args,
+                    ClientConnection::s_protocolMessageCallback,
+                    reinterpret_cast<void *>(callbackContainer));
+            }
+
+            if (errorCode)
+            {
+                onMessageFlushCallback(errorCode);
+                Crt::Delete(callbackContainer, m_allocator);
+            }
+        }
+
+        bool ClientContinuation::IsClosed() noexcept
+        {
+            return aws_event_stream_rpc_client_continuation_is_closed(m_continuationToken);
+        }
+    } /* namespace Eventstreamrpc */
+} /* namespace Aws */
