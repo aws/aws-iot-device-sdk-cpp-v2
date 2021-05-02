@@ -217,7 +217,7 @@ namespace Aws
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
-            ClientContinuation &NewStream(ClientContinuationHandler *clientContinuationHandler) noexcept;
+            ClientContinuation NewStream(ClientContinuationHandler *clientContinuationHandler) noexcept;
 
             void Close() noexcept;
             void Close(int errorCode) noexcept;
@@ -292,12 +292,8 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ClientContinuation final
         {
           public:
-            ClientContinuation(ClientContinuationHandler *handler) noexcept;
+            ClientContinuation(ClientConnection* connection, ClientContinuationHandler *handler) noexcept;
             ~ClientContinuation() noexcept;
-            ClientContinuation(const ClientContinuation &) = delete;
-            ClientContinuation(ClientContinuation &&) = delete;
-            ClientContinuation &operator=(const ClientContinuation &) = delete;
-            ClientContinuation &operator=(ClientContinuation &&) = delete;
             void Activate(
                 const Crt::String &operation,
                 const Crt::List<EventStreamHeader> &headers,

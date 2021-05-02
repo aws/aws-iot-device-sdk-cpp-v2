@@ -328,6 +328,11 @@ namespace Aws
             return Crt::String(m_underlyingHandle.header_name, m_underlyingHandle.header_name_len);
         }
 
+        ClientContinuation ClientConnection::NewStream(ClientContinuationHandler *clientContinuationHandler) noexcept
+        {
+            return ClientContinuation(this, clientContinuationHandler);
+        }
+
         void ClientConnection::s_onConnectionSetup(
             struct aws_event_stream_rpc_client_connection *connection,
             int errorCode,
@@ -471,7 +476,19 @@ namespace Aws
             }
         }
 
-        ClientContinuation::ClientContinuation(ClientContinuationHandler *handler) noexcept : m_handler(handler) {}
+        ClientContinuation::ClientContinuation(
+            ClientConnection *connection,
+            ClientContinuationHandler *handler) noexcept
+            : m_handler(handler)
+        {
+            struct aws_event_stream_rpc_client_stream_continuation_options options;
+            options.on_continuation = ClientContinuation::s_onContinuationMessage;
+            options.on_continuation_closed = ClientContinuation::s_onContinuationClosed;
+            options.user_data = reinterpret_cast<void *>(connection);
+
+            m_continuationToken =
+                aws_event_stream_rpc_client_connection_new_stream(connection->m_underlyingConnection, &options);
+        }
 
         void ClientContinuation::s_onContinuationMessage(
             struct aws_event_stream_rpc_client_continuation_token *continuationToken,
@@ -523,16 +540,24 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             struct aws_array_list headersArray;
-
-            AWS_ZERO_STRUCT(headersArray);
             OnMessageFlushCallbackContainer *callbackContainer = nullptr;
+            int errorCode = AWS_OP_SUCCESS;
 
-            /* Check if the connection has expired before attempting to send. */
-            int errorCode =
-                EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
+            if (m_continuationToken == nullptr)
+            {
+                errorCode = AWS_OP_ERR;
+            }
 
             if (!errorCode)
             {
+                AWS_ZERO_STRUCT(headersArray);
+                errorCode = EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(
+                    headers, &headersArray, m_allocator);
+            }
+
+            if (!errorCode)
+            {
+                AWS_ZERO_STRUCT(headersArray);
                 struct aws_event_stream_rpc_message_args msg_args;
                 msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
                 msg_args.headers_count = headers.size();
@@ -572,11 +597,20 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
             struct aws_array_list headersArray;
-            AWS_ZERO_STRUCT(headersArray);
             OnMessageFlushCallbackContainer *callbackContainer = nullptr;
+            int errorCode = AWS_OP_SUCCESS;
 
-            int errorCode =
-                EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
+            if (m_continuationToken == nullptr)
+            {
+                errorCode = AWS_OP_ERR;
+            }
+
+            if (!errorCode)
+            {
+                AWS_ZERO_STRUCT(headersArray);
+                errorCode = EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(
+                    headers, &headersArray, m_allocator);
+            }
 
             if (!errorCode)
             {
@@ -603,6 +637,11 @@ namespace Aws
             {
                 onMessageFlushCallback(errorCode);
                 Crt::Delete(callbackContainer, m_allocator);
+            }
+
+            if (aws_array_list_is_valid(&headersArray))
+            {
+                aws_array_list_clean_up(&headersArray);
             }
         }
 
