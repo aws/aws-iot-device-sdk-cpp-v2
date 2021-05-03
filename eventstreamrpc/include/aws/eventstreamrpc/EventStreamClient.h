@@ -175,7 +175,7 @@ namespace Aws
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
-                uint32_t messageFlags);
+                uint32_t messageFlags) = 0;
             /**
              * Invoked when the continuation is closed.
              *
@@ -183,7 +183,7 @@ namespace Aws
              * The continuation is closed when a message is sent or received with
              * the TERMINATE_STREAM flag, or when the connection shuts down.
              */
-            virtual void OnContinuationClosed();
+            virtual void OnContinuationClosed() = 0;
         };
 
         class AWS_EVENTSTREAMRPC_API ClientConnection final
@@ -292,7 +292,10 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ClientContinuation final
         {
           public:
-            ClientContinuation(ClientConnection* connection, ClientContinuationHandler *handler) noexcept;
+            ClientContinuation(
+                ClientConnection *connection,
+                ClientContinuationHandler *handler,
+                Crt::Allocator *allocator) noexcept;
             ~ClientContinuation() noexcept;
             void Activate(
                 const Crt::String &operation,
@@ -320,6 +323,75 @@ namespace Aws
             static void s_onContinuationClosed(
                 struct aws_event_stream_rpc_client_continuation_token *continuationToken,
                 void *userData) noexcept;
+        };
+
+        class AWS_EVENTSTREAMRPC_API AbstractShapeBase
+        {
+        };
+
+        /**
+         * Base class for all operation stream handlers.
+         * For operations with a streaming response (0+ messages that may arrive
+         * after the initial response).
+         */
+        class AWS_EVENTSTREAMRPC_API StreamResponseHandler
+        {
+          public:
+            /**
+             * Invoked when a message is received on this continuation.
+             */
+            virtual void OnStreamEvent(AbstractShapeBase *shape);
+            /**
+             * Invoked when a message is received on this continuation.
+             *
+             * This callback can return true so that the connection is closed afterwards.
+             */
+            virtual bool OnStreamError(int errorCode);
+            /**
+             * Invoked when stream is closed, so no more messages will be receivied.
+             */
+            virtual void OnStreamClosed();
+        };
+
+        class AWS_EVENTSTREAMRPC_API ClientOperation
+        {
+          public:
+            ClientOperation(ClientConnection &connection, StreamResponseHandler *streamHandler) noexcept;
+            void Close(OnMessageFlushCallback onMessageFlushCallback) noexcept;
+
+          protected:
+            void FindHeaderByName(const Crt::List<EventStreamHeader> &headers, Crt::String &name) noexcept;
+            void Activate(AbstractShapeBase *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            void SendStreamEvent(AbstractShapeBase *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
+
+          private:
+            class AWS_EVENTSTREAMRPC_API OperationContinuationHandler : public ClientContinuationHandler
+            {
+              public:
+                OperationContinuationHandler() = default;
+                /**
+                 * Invoked when a message is received on this continuation.
+                 */
+                void OnContinuationMessage(
+                    const Crt::List<EventStreamHeader> &headers,
+                    const Crt::Optional<Crt::ByteBuf> &payload,
+                    MessageType messageType,
+                    uint32_t messageFlags) override
+                {
+                }
+                /**
+                 * Invoked when the continuation is closed.
+                 *
+                 * Once the continuation is closed, no more messages may be sent or received.
+                 * The continuation is closed when a message is sent or received with
+                 * the TERMINATE_STREAM flag, or when the connection shuts down.
+                 */
+                void OnContinuationClosed() override {}
+            };
+            uint32_t m_messageCount;
+            StreamResponseHandler *m_streamHandler;
+            OperationContinuationHandler m_operationContinuationHandler;
+            ClientContinuation m_clientContinuation;
         };
     } // namespace Eventstreamrpc
 } // namespace Aws

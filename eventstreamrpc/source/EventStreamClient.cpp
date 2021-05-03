@@ -12,7 +12,11 @@
 #include <iostream>
 
 #define EVENTSTREAM_VERSION_HEADER ":version"
-#define EVENTSTREAM_VERSION "0.1.0"
+#define EVENTSTREAM_VERSION_STRING "0.1.0"
+#define CONTENT_TYPE_HEADER ":content-type"
+#define CONTENT_TYPE_APPLICATION_TEXT "text/plain"
+#define CONTENT_TYPE_APPLICATION_JSON "application/json"
+#define SERVICE_MODEL_TYPE_HEADER "service-model-type"
 
 namespace Aws
 {
@@ -61,7 +65,7 @@ namespace Aws
         {
         }
 
-        class EventStreamCppDataStructuresToNativeC
+        class EventStreamCppToNativeCrtBuilder
         {
           private:
             friend class ClientConnection;
@@ -233,12 +237,10 @@ namespace Aws
             /* Check if the connection has expired before attempting to send. */
             if (connection)
             {
-                struct aws_event_stream_rpc_message_args msg_args;
-                AWS_ZERO_STRUCT(msg_args);
                 struct aws_array_list headersArray;
                 AWS_ZERO_STRUCT(headersArray);
                 OnMessageFlushCallbackContainer *callbackContainer = nullptr;
-                int errorCode = EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(
+                int errorCode = EventStreamCppToNativeCrtBuilder::s_fillNativeHeadersArray(
                     headers, &headersArray, connection->m_allocator);
 
                 if (!errorCode)
@@ -330,7 +332,7 @@ namespace Aws
 
         ClientContinuation ClientConnection::NewStream(ClientContinuationHandler *clientContinuationHandler) noexcept
         {
-            return ClientContinuation(this, clientContinuationHandler);
+            return ClientContinuation(this, clientContinuationHandler, m_allocator);
         }
 
         void ClientConnection::s_onConnectionSetup(
@@ -354,7 +356,7 @@ namespace Aws
                     /* The version header is necessary for establishing the connection. */
                     messageAmendment.AddHeader(EventStreamHeader(
                         Crt::String(EVENTSTREAM_VERSION_HEADER),
-                        Crt::String(EVENTSTREAM_VERSION),
+                        Crt::String(EVENTSTREAM_VERSION_STRING),
                         thisConnection->m_allocator));
                     /* Note that we are prepending headers from the user-provided amender. */
                     messageAmendmentHeaders.splice(messageAmendmentHeaders.end(), amenderHeaderList);
@@ -478,8 +480,9 @@ namespace Aws
 
         ClientContinuation::ClientContinuation(
             ClientConnection *connection,
-            ClientContinuationHandler *handler) noexcept
-            : m_handler(handler)
+            ClientContinuationHandler *handler,
+            Crt::Allocator *allocator) noexcept
+            : m_allocator(allocator), m_handler(handler)
         {
             struct aws_event_stream_rpc_client_stream_continuation_options options;
             options.on_continuation = ClientContinuation::s_onContinuationMessage;
@@ -545,19 +548,18 @@ namespace Aws
 
             if (m_continuationToken == nullptr)
             {
-                errorCode = AWS_OP_ERR;
+                errorCode = AWS_ERROR_INVALID_STATE;
             }
 
             if (!errorCode)
             {
                 AWS_ZERO_STRUCT(headersArray);
-                errorCode = EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(
-                    headers, &headersArray, m_allocator);
+                errorCode =
+                    EventStreamCppToNativeCrtBuilder::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
             }
 
             if (!errorCode)
             {
-                AWS_ZERO_STRUCT(headersArray);
                 struct aws_event_stream_rpc_message_args msg_args;
                 msg_args.headers = (struct aws_event_stream_header_value_pair *)headersArray.data;
                 msg_args.headers_count = headers.size();
@@ -577,6 +579,7 @@ namespace Aws
                     reinterpret_cast<void *>(callbackContainer));
             }
 
+            /* Cleanup. */
             if (errorCode)
             {
                 onMessageFlushCallback(errorCode);
@@ -602,14 +605,14 @@ namespace Aws
 
             if (m_continuationToken == nullptr)
             {
-                errorCode = AWS_OP_ERR;
+                errorCode = AWS_ERROR_INVALID_STATE;
             }
 
             if (!errorCode)
             {
                 AWS_ZERO_STRUCT(headersArray);
-                errorCode = EventStreamCppDataStructuresToNativeC::s_fillNativeHeadersArray(
-                    headers, &headersArray, m_allocator);
+                errorCode =
+                    EventStreamCppToNativeCrtBuilder::s_fillNativeHeadersArray(headers, &headersArray, m_allocator);
             }
 
             if (!errorCode)
@@ -633,6 +636,7 @@ namespace Aws
                     reinterpret_cast<void *>(callbackContainer));
             }
 
+            /* Cleanup. */
             if (errorCode)
             {
                 onMessageFlushCallback(errorCode);
@@ -648,6 +652,12 @@ namespace Aws
         bool ClientContinuation::IsClosed() noexcept
         {
             return aws_event_stream_rpc_client_continuation_is_closed(m_continuationToken);
+        }
+
+        ClientOperation::ClientOperation(ClientConnection &connection, StreamResponseHandler *streamHandler) noexcept
+            : m_messageCount(0), m_streamHandler(streamHandler), m_operationContinuationHandler(),
+              m_clientContinuation(connection.NewStream(&m_operationContinuationHandler))
+        {
         }
     } /* namespace Eventstreamrpc */
 } /* namespace Aws */
