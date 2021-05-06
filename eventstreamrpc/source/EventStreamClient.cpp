@@ -30,11 +30,6 @@ namespace Aws
             OnMessageFlushCallback onMessageFlushCallback;
         };
 
-        EventStreamHeader::EventStreamHeader(const struct aws_event_stream_header_value_pair &header)
-            : m_underlyingHandle(header)
-        {
-        }
-
         MessageAmendment::MessageAmendment(const Crt::ByteBuf &payload) noexcept : m_headers(), m_payload(payload) {}
 
         MessageAmendment::MessageAmendment(const Crt::List<EventStreamHeader> &headers) noexcept
@@ -56,7 +51,7 @@ namespace Aws
 
         Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() noexcept { return m_headers; }
 
-        Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() noexcept { return m_payload; }
+        const Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() const noexcept { return m_payload; }
 
         void MessageAmendment::SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept { m_payload = payload; }
 
@@ -155,11 +150,6 @@ namespace Aws
             }
 
             return true;
-        }
-
-        const struct aws_event_stream_header_value_pair *EventStreamHeader::GetUnderlyingHandle() const
-        {
-            return &m_underlyingHandle;
         }
 
         void ClientConnection::SendPing(
@@ -291,6 +281,11 @@ namespace Aws
             this->m_clientState = DISCONNECTED;
         }
 
+        EventStreamHeader::EventStreamHeader(const struct aws_event_stream_header_value_pair &header)
+            : m_underlyingHandle(header)
+        {
+        }
+
         EventStreamHeader::EventStreamHeader(
             const Crt::String &name,
             const Crt::String &value,
@@ -325,9 +320,26 @@ namespace Aws
             rhs.m_valueByteBuf.buffer = NULL;
         }
 
-        Crt::String EventStreamHeader::GetHeaderName() noexcept
+        const struct aws_event_stream_header_value_pair *EventStreamHeader::GetUnderlyingHandle() const
+        {
+            return &m_underlyingHandle;
+        }
+
+        Crt::String EventStreamHeader::GetHeaderName() const noexcept
         {
             return Crt::String(m_underlyingHandle.header_name, m_underlyingHandle.header_name_len);
+        }
+
+        bool EventStreamHeader::GetValueAsString(Crt::String &value) const noexcept
+        {
+            if(m_underlyingHandle.header_value_type != AWS_EVENT_STREAM_HEADER_STRING)
+            {
+                return false;
+            }
+            Crt::StringView viewFromHere = Crt::ByteCursorToStringView(Crt::ByteCursorFromByteBuf(m_valueByteBuf));
+            value = {viewFromHere.begin(), viewFromHere.end()};
+        
+            return true;
         }
 
         ClientContinuation ClientConnection::NewStream(ClientContinuationHandler *clientContinuationHandler) noexcept
@@ -476,6 +488,11 @@ namespace Aws
 
                     break;
             }
+        }
+
+        void AbstractShapeBase::s_customDeleter(AbstractShapeBase *shape) noexcept
+        {
+            Crt::Delete<AbstractShapeBase>(shape, shape->m_allocator);
         }
 
         ClientContinuation::ClientContinuation(
@@ -654,10 +671,229 @@ namespace Aws
             return aws_event_stream_rpc_client_continuation_is_closed(m_continuationToken);
         }
 
+        OperationError::OperationError() noexcept : m_errorCode(0) {}
+        OperationError::OperationError(int errorCode) noexcept : m_errorCode(errorCode) {}
+
         ClientOperation::ClientOperation(ClientConnection &connection, StreamResponseHandler *streamHandler) noexcept
-            : m_messageCount(0), m_streamHandler(streamHandler), m_operationContinuationHandler(),
-              m_clientContinuation(connection.NewStream(&m_operationContinuationHandler))
+            : m_SingleResponseNameToObject({}), m_StreamingResponseNameToObject({}), m_ErrorNameToObject({}), 
+            m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(this))
         {
         }
+
+        const EventStreamHeader *ClientOperation::GetHeaderByName(
+            const Crt::List<EventStreamHeader> &headers,
+            const Crt::String &name) noexcept
+        {
+            for (auto it = headers.begin(); it != headers.end(); ++it)
+            {
+                if (name == it->GetHeaderName())
+                {
+                    return &(*it);
+                }
+            }
+            return nullptr;
+        }
+
+        int ClientOperation::HandleData(const Crt::String &modelName, const Crt::Optional<Crt::ByteBuf> &payload)
+        {
+            const Crt::Map<Crt::String, ExpectedResponseFactory> *mapToUse;
+
+            /* Responses after the first message don't necessarily have the same shape as the first. */
+            if (m_messageCount == 1)
+            {
+                mapToUse = &m_SingleResponseNameToObject;
+            }
+            else
+            {
+                mapToUse = &m_StreamingResponseNameToObject;
+            }
+
+            auto got = mapToUse->find(this->GetResponseName());
+            if (got == mapToUse->end())
+            {
+                return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
+            }
+            else
+            {
+                if (modelName != got->first)
+                {
+                    /* TODO: Log an error */
+                    return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
+                }
+                Crt::StringView payloadStringView;
+                if (payload.has_value())
+                {
+                    payloadStringView = Crt::ByteCursorToStringView(Crt::ByteCursorFromByteBuf(payload.value()));
+                }
+                /* The value of this hashmap contains the function that generates the response object from the
+                 * payload. */
+                Crt::ScopedResource<OperationResponse> response = got->second(payloadStringView);
+                if (m_messageCount == 1)
+                {
+                    TaggedResponse taggedResponse;
+                    taggedResponse.responseType = EXPECTED_RESPONSE;
+                    taggedResponse.responseResult.response = std::move(response);
+                    m_initialResponsePromise.set_value(std::move(taggedResponse));
+                }
+                else
+                {
+                    m_streamHandler->OnStreamEvent(std::move(response));
+                }
+            }
+            return AWS_OP_SUCCESS;
+        }
+
+        int ClientOperation::HandleError(
+            const Crt::String &modelName,
+            const Crt::Optional<Crt::ByteBuf> &payload,
+            uint16_t messageFlags)
+        {
+            bool streamAlreadyTerminated = messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM;
+            auto *mapToUse = &m_ErrorNameToObject;
+            auto got = mapToUse->find(this->GetResponseName());
+            if (got == mapToUse->end())
+            {
+                return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
+            }
+            else
+            {
+                if (modelName != got->first)
+                {
+                    /* TODO: Log an error */
+                    return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
+                }
+
+                Crt::StringView payloadStringView;
+                if (payload.has_value())
+                {
+                    payloadStringView = Crt::ByteCursorToStringView(Crt::ByteCursorFromByteBuf(payload.value()));
+                }
+
+                /* The value of this hashmap contains the function that generates the error from the
+                 * payload. */
+                Crt::ScopedResource<OperationError> error = got->second(payloadStringView);
+                TaggedResponse taggedResponse;
+                taggedResponse.responseType = ERROR_RESPONSE;
+                taggedResponse.responseResult.error = std::move(error);
+
+                if (m_messageCount == 1)
+                {
+                    m_initialResponsePromise.set_value(std::move(taggedResponse));
+                    /* Close the stream unless the server already closed it for us. This condition is checked
+                     * so that TERMINATE_STREAM messages aren't resent by the client. */
+                    if (!streamAlreadyTerminated)
+                    {
+                        Close();
+                    }
+                }
+                else
+                {
+                    if (!streamAlreadyTerminated && m_streamHandler->OnStreamError(std::move(error)))
+                    {
+                        Close();
+                    }
+                }
+
+                m_streamHandler->OnStreamError(std::move(error));
+            }
+            return AWS_OP_SUCCESS;
+        }
+
+        void ClientOperation::OnContinuationMessage(
+            const Crt::List<EventStreamHeader> &headers,
+            const Crt::Optional<Crt::ByteBuf> &payload,
+            MessageType messageType,
+            uint32_t messageFlags)
+        {
+            int errorCode = AWS_OP_SUCCESS;
+            const EventStreamHeader *modelHeader = nullptr;
+            const EventStreamHeader *contentHeader = nullptr;
+
+            m_messageCount += 1;
+
+            modelHeader = GetHeaderByName(headers, Crt::String(SERVICE_MODEL_TYPE_HEADER));
+            if (modelHeader == nullptr)
+            {
+                /* TERMINATE_STREAM message can be empty. */
+                if (messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM)
+                    return;
+                /* Missing required service model type header. */
+                errorCode = AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
+            }
+
+            if (!errorCode)
+            {
+                Crt::String contentType;
+                contentHeader = GetHeaderByName(headers, Crt::String(CONTENT_TYPE_HEADER));
+                if (contentHeader == nullptr)
+                {
+                    /* Missing required content type header. */
+                    errorCode = AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
+                }
+                else if (contentHeader->GetValueAsString(contentType) && contentType != CONTENT_TYPE_APPLICATION_JSON)
+                {
+                    errorCode = AWS_ERROR_EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE;
+                }
+            }
+
+            if (!errorCode)
+            {
+                Crt::String modelName;
+                modelHeader->GetValueAsString(modelName);
+                if (messageType == AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE)
+                {
+                    errorCode = HandleData(modelName, payload);
+                }
+                else
+                {
+                    errorCode = HandleError(modelName, payload, messageFlags);
+                }
+            }
+
+            /* Cleanup. */
+            if (errorCode)
+            {
+                /* Generate an error code here. */
+                Crt::ScopedResource<OperationError> operationError(
+                    Crt::New<OperationError>(m_allocator, errorCode), OperationError::s_customDeleter);
+                if (m_streamHandler->OnStreamError(std::move(operationError)))
+                {
+                    this->Close();
+                }
+            }
+        }
+
+        void ClientOperation::OnContinuationClosed()
+        {
+            auto future = m_initialResponsePromise.get_future();
+            /* Unfortunately, there's no better way in C++11 to check if a promise has been fulfilled. */
+            if(future.valid() && future.wait_for(std::chrono::seconds(0)) != std::future_status::ready)
+            {
+                Crt::ScopedResource<OperationError> operationError(
+                    Crt::New<OperationError>(m_allocator, AWS_ERROR_EVENT_STREAM_RPC_STREAM_CLOSED_ERROR), OperationError::s_customDeleter);
+                TaggedResponse taggedResponse;
+                taggedResponse.responseType = ERROR_RESPONSE;
+                taggedResponse.responseResult.error = std::move(operationError);
+                m_initialResponsePromise.set_value(std::move(taggedResponse));
+            }
+
+            m_closedPromise.set_value();
+
+            if(m_streamHandler)
+            {
+                m_streamHandler->OnStreamClosed();
+            }
+        }
+
+        std::future<void> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            m_clientContinuation.SendMessage(Crt::List<EventStreamHeader>(), Crt::Optional<Crt::ByteBuf>(), AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE, AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM, onMessageFlushCallback);
+            return m_closedPromise.get_future();
+        }
+
+        void OperationError::s_customDeleter(OperationError *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(shape);
+        }
     } /* namespace Eventstreamrpc */
-} /* namespace Aws */
+} // namespace Aws
