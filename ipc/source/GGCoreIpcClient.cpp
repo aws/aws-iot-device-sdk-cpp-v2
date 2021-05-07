@@ -6,10 +6,10 @@ namespace Aws
     {
         namespace Ipc
         {
-            BinaryMessage::BinaryMessage(Crt::Optional<Crt::Vector<uint8_t>> &&message) noexcept : m_message(message) {}
+            BinaryMessage::BinaryMessage(Crt::Optional<Crt::Vector<uint8_t>> &&message, Crt::Allocator* allocator) noexcept : AbstractShapeBase(allocator), m_message(message) {}
 
-            BinaryMessage::BinaryMessage(const Crt::Optional<Crt::Vector<uint8_t>> &message) noexcept
-                : m_message(message)
+            BinaryMessage::BinaryMessage(const Crt::Optional<Crt::Vector<uint8_t>> &message, Crt::Allocator* allocator) noexcept
+                : AbstractShapeBase(allocator), m_message(message)
             {
             }
 
@@ -30,12 +30,19 @@ namespace Aws
                 }
             }
 
-            JsonMessage::JsonMessage(Crt::Optional<Crt::JsonObject> &&jsonObject) noexcept : m_jsonObject(jsonObject) {}
+            Crt::String BinaryMessage::GetModelName() const noexcept
+            {
+                return Crt::String("aws.greengrass#BinaryMessage");
+            }
 
-            JsonMessage::JsonMessage(const Crt::Optional<Crt::JsonObject> &jsonObject) noexcept
-                : m_jsonObject(jsonObject)
+            JsonMessage::JsonMessage(Crt::Optional<Crt::JsonObject> &&jsonObject, Crt::Allocator* allocator) noexcept : AbstractShapeBase(allocator), m_jsonObject(jsonObject) {}
+
+            JsonMessage::JsonMessage(const Crt::Optional<Crt::JsonObject> &jsonObject, Crt::Allocator* allocator) noexcept
+                : AbstractShapeBase(allocator), m_jsonObject(jsonObject)
             {
             }
+
+            Crt::String JsonMessage::GetModelName() const noexcept { return Crt::String("aws.greengrass#JsonMessage"); }
 
             void JsonMessage::SerializeToJsonObject(Crt::JsonObject &payloadObject) const
             {
@@ -55,17 +62,28 @@ namespace Aws
                 }
             }
 
+            PublishMessage::PublishMessage(Crt::Allocator* allocator) noexcept : AbstractShapeBase(allocator)
+            {
+            }
+
             PublishMessage::PublishMessage(
                 const Crt::Optional<JsonMessage> &jsonMessage,
-                const Crt::Optional<BinaryMessage> &binaryMessage) noexcept
-                : m_jsonMessage(jsonMessage), m_binaryMessage(binaryMessage)
+                const Crt::Optional<BinaryMessage> &binaryMessage,
+                Crt::Allocator* allocator) noexcept
+                : AbstractShapeBase(allocator), m_jsonMessage(jsonMessage), m_binaryMessage(binaryMessage)
             {
             }
 
             PublishMessage::PublishMessage(
                 Crt::Optional<JsonMessage> &&jsonMessage,
-                Crt::Optional<BinaryMessage> &&binaryMessage) noexcept
-                : m_jsonMessage(jsonMessage), m_binaryMessage(binaryMessage)
+                Crt::Optional<BinaryMessage> &&binaryMessage,
+                Crt::Allocator* allocator) noexcept
+                : AbstractShapeBase(allocator), m_jsonMessage(jsonMessage), m_binaryMessage(binaryMessage)
+            {
+            }
+
+            PublishToTopicOperation::PublishToTopicOperation(ClientConnection &connection, Crt::Allocator* allocator) noexcept
+                : ClientOperation(connection, nullptr, allocator)
             {
             }
 
@@ -76,21 +94,16 @@ namespace Aws
                 ClientOperation::Activate((const OperationRequest *)&request, onMessageFlushCallback);
             }
 
-            Crt::String PublishToTopicRequest::GetModelName() const noexcept
-            {
-                return Crt::String("aws.greengrass#PublishToTopicRequest");
-            }
-
             void PublishMessage::SerializeToJsonObject(Crt::JsonObject &payloadObject) const
             {
-                if(m_jsonMessage.has_value())
+                if (m_jsonMessage.has_value())
                 {
                     Aws::Crt::JsonObject jsonObject;
                     m_jsonMessage.value().SerializeToJsonObject(jsonObject);
                     payloadObject.WithObject("jsonMessage", std::move(jsonObject));
                     return;
                 }
-                if(m_binaryMessage.has_value())
+                if (m_binaryMessage.has_value())
                 {
                     Aws::Crt::JsonObject jsonObject;
                     m_binaryMessage.value().SerializeToJsonObject(jsonObject);
@@ -98,13 +111,31 @@ namespace Aws
                 }
             }
 
+            Crt::String PublishToTopicRequest::GetModelName() const noexcept
+            {
+                return Crt::String("aws.greengrass#PublishToTopicRequest");
+            }
+
+            PublishToTopicRequest::PublishToTopicRequest(
+                const Crt::Optional<Crt::String> &topic,
+                const Crt::Optional<PublishMessage> &publishMessage,
+                Crt::Allocator* allocator) noexcept
+                : OperationRequest(allocator), m_topic(topic), m_publishMessage(publishMessage)
+            {}
+            PublishToTopicRequest::PublishToTopicRequest(
+                Crt::Optional<Crt::String> &&topic,
+                Crt::Optional<PublishMessage> &&publishMessage,
+                Crt::Allocator* allocator) noexcept
+                : OperationRequest(allocator), m_topic(topic), m_publishMessage(publishMessage)
+            {}
+
             void PublishToTopicRequest::SerializeToJsonObject(Crt::JsonObject &payloadObject) const
             {
-                if(m_topic.has_value())
+                if (m_topic.has_value())
                 {
                     payloadObject.WithString("topic", m_topic.value());
                 }
-                if(m_publishMessage.has_value())
+                if (m_publishMessage.has_value())
                 {
                     Aws::Crt::JsonObject jsonObject;
                     m_publishMessage.value().SerializeToJsonObject(jsonObject);
@@ -117,7 +148,7 @@ namespace Aws
                 return Crt::String("aws.greengrass#PublishToTopic");
             }
 
-            PublishToTopicResponse::PublishToTopicResponse() noexcept {}
+            PublishToTopicResponse::PublishToTopicResponse(Crt::Allocator* allocator) noexcept : OperationResponse(allocator) {}
 
             Crt::String PublishToTopicResponse::GetModelName() const noexcept
             {
@@ -137,6 +168,17 @@ namespace Aws
             void PublishToTopicResponse::s_customDeleter(PublishToTopicResponse *response) noexcept
             {
                 OperationResponse::s_customDeleter((OperationResponse *)response);
+            }
+
+            GreengrassIpcClient::GreengrassIpcClient(ClientConnection &&connection, Crt::Allocator* allocator) noexcept
+                : m_connection(std::move(connection)), m_allocator(allocator)
+            {
+                m_ModelNameToSingleResponseObject[Crt::String("aws.greengrass#PublishToTopic")] = PublishToTopicResponse::s_loadFromPayload;
+            }
+
+            PublishToTopicOperation GreengrassIpcClient::NewPublishToTopic() noexcept
+            {
+                return PublishToTopicOperation(m_connection, m_allocator);
             }
 
         } // namespace Ipc

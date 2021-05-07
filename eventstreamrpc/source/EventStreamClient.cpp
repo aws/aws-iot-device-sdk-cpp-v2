@@ -9,7 +9,9 @@
 #include <aws/crt/auth/Credentials.h>
 
 #include <algorithm>
+#include <iostream>
 
+/* TODO: Change to constexpr */
 #define EVENTSTREAM_VERSION_HEADER ":version"
 #define EVENTSTREAM_VERSION_STRING "0.1.0"
 #define CONTENT_TYPE_HEADER ":content-type"
@@ -281,7 +283,7 @@ namespace Aws
         }
 
         EventStreamHeader::EventStreamHeader(const struct aws_event_stream_header_value_pair &header)
-            : m_underlyingHandle(header)
+            : m_allocator(nullptr), m_underlyingHandle(header)
         {
         }
 
@@ -299,12 +301,17 @@ namespace Aws
             m_underlyingHandle.header_value_len = (uint16_t)m_valueByteBuf.len;
         }
 
-        EventStreamHeader::~EventStreamHeader() { Crt::ByteBufDelete(m_valueByteBuf); }
+        EventStreamHeader::~EventStreamHeader()
+        {
+            if (m_allocator)
+            {
+                Crt::ByteBufDelete(m_valueByteBuf);
+            }
+        }
 
         EventStreamHeader::EventStreamHeader(const EventStreamHeader &lhs) noexcept
             : m_allocator(lhs.m_allocator),
-              m_valueByteBuf(
-                  Crt::ByteBufNewCopy(lhs.m_valueByteBuf.allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len)),
+              m_valueByteBuf(Crt::ByteBufNewCopy(lhs.m_allocator, lhs.m_valueByteBuf.buffer, lhs.m_valueByteBuf.len)),
               m_underlyingHandle(lhs.m_underlyingHandle)
         {
             m_underlyingHandle.header_value.variable_len_val = m_valueByteBuf.buffer;
@@ -670,23 +677,38 @@ namespace Aws
             return aws_event_stream_rpc_client_continuation_is_closed(m_continuationToken);
         }
 
-        OperationError::OperationError() noexcept : m_errorCode(0) {}
-        OperationError::OperationError(int errorCode) noexcept : m_errorCode(errorCode) {}
-
-        void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const 
+        OperationError::OperationError(Crt::Allocator *allocator) noexcept
+            : AbstractShapeBase(allocator), m_errorCode(0)
         {
-            (void)payloadObject;
+        }
+        OperationError::OperationError(int errorCode, Crt::Allocator *allocator) noexcept
+            : AbstractShapeBase(allocator), m_errorCode(errorCode)
+        {
         }
 
-        Crt::String OperationError::GetModelName() const noexcept
+        void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const { (void)payloadObject; }
+
+        Crt::String AbstractShapeBase::GetModelName() const noexcept { return Crt::String(""); }
+
+        AbstractShapeBase::AbstractShapeBase(Crt::Allocator *allocator) noexcept : m_allocator(allocator) {}
+
+        OperationResponse::OperationResponse(Crt::Allocator *allocator) noexcept : AbstractShapeBase(allocator) {}
+
+        OperationRequest::OperationRequest(Crt::Allocator *allocator) noexcept : AbstractShapeBase(allocator) {}
+
+        ClientOperation::ClientOperation(
+            ClientConnection &connection,
+            StreamResponseHandler *streamHandler,
+            Crt::Allocator *allocator) noexcept
+            : m_ModelNameToSingleResponseObject({}), m_ModelNameToStreamingResponseObject({}), m_ErrorNameToObject({}),
+              m_messageCount(0), m_allocator(allocator), m_streamHandler(streamHandler),
+              m_clientContinuation(connection.NewStream(this))
         {
-            return Crt::String("");
         }
 
-        ClientOperation::ClientOperation(ClientConnection &connection, StreamResponseHandler *streamHandler) noexcept
-            : m_SingleResponseNameToObject({}), m_StreamingResponseNameToObject({}), m_ErrorNameToObject({}),
-              m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(this))
+        std::future<TaggedResponse> ClientOperation::GetResponse() noexcept
         {
+            return m_initialResponsePromise.get_future();
         }
 
         const EventStreamHeader *ClientOperation::GetHeaderByName(
@@ -710,33 +732,33 @@ namespace Aws
             /* Responses after the first message don't necessarily have the same shape as the first. */
             if (m_messageCount == 1)
             {
-                mapToUse = &m_SingleResponseNameToObject;
+                mapToUse = &m_ModelNameToSingleResponseObject;
             }
             else
             {
-                mapToUse = &m_StreamingResponseNameToObject;
+                mapToUse = &m_ModelNameToStreamingResponseObject;
             }
 
-            auto got = mapToUse->find(this->GetResponseName());
+            auto got = mapToUse->find(GetModelName());
             if (got == mapToUse->end())
             {
                 return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
             }
             else
             {
-                if (modelName != got->first)
-                {
-                    /* TODO: Log an error */
-                    return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
-                }
                 Crt::StringView payloadStringView;
                 if (payload.has_value())
                 {
                     payloadStringView = Crt::ByteCursorToStringView(Crt::ByteCursorFromByteBuf(payload.value()));
                 }
-                /* The value of this hashmap contains the function that generates the response object from the
+                /* The value of this hashmap contains the function that allocates the response object from the
                  * payload. */
                 Crt::ScopedResource<OperationResponse> response = got->second(payloadStringView, m_allocator);
+                if (modelName != response->GetModelName())
+                {
+                    /* TODO: Log an error */
+                    return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
+                }
                 if (m_messageCount == 1)
                 {
                     TaggedResponse taggedResponse;
@@ -759,26 +781,20 @@ namespace Aws
         {
             bool streamAlreadyTerminated = messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM;
             auto *mapToUse = &m_ErrorNameToObject;
-            auto got = mapToUse->find(this->GetResponseName());
+            auto got = mapToUse->find(modelName);
             if (got == mapToUse->end())
             {
                 return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
             }
             else
             {
-                if (modelName != got->first)
-                {
-                    /* TODO: Log an error */
-                    return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
-                }
-
                 Crt::StringView payloadStringView;
                 if (payload.has_value())
                 {
                     payloadStringView = Crt::ByteCursorToStringView(Crt::ByteCursorFromByteBuf(payload.value()));
                 }
 
-                /* The value of this hashmap contains the function that generates the error from the
+                /* The value of this hashmap contains the function that allocates the error from the
                  * payload. */
                 Crt::ScopedResource<OperationError> error = got->second(payloadStringView, m_allocator);
                 TaggedResponse taggedResponse;
@@ -823,11 +839,12 @@ namespace Aws
             modelHeader = GetHeaderByName(headers, Crt::String(SERVICE_MODEL_TYPE_HEADER));
             if (modelHeader == nullptr)
             {
-                /* TERMINATE_STREAM message can be empty. */
+                /* TERMINATE_STREAM message should be empty. */
                 if (messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM)
-                    return;
-                /* Missing required service model type header. */
-                errorCode = AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
+                    errorCode = AWS_ERROR_EVENT_STREAM_RPC_STREAM_CLOSED_ERROR;
+                else
+                    /* Missing required service model type header. */
+                    errorCode = AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
             }
 
             if (!errorCode)
@@ -864,7 +881,7 @@ namespace Aws
             {
                 /* Generate an error code here. */
                 Crt::ScopedResource<OperationError> operationError(
-                    Crt::New<OperationError>(m_allocator, errorCode), OperationError::s_customDeleter);
+                    Crt::New<OperationError>(m_allocator, errorCode, m_allocator), OperationError::s_customDeleter);
                 if (m_streamHandler->OnStreamError(std::move(operationError)))
                 {
                     this->Close();
@@ -882,10 +899,11 @@ namespace Aws
             headers.push_back(EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
             Crt::JsonObject payloadObject;
             shape->SerializeToJsonObject(payloadObject);
+            Crt::String payloadString = payloadObject.View().WriteCompact();
             m_clientContinuation.Activate(
                 GetModelName(),
                 headers,
-                Crt::ByteBufFromCString(payloadObject.View().WriteCompact().c_str()),
+                Crt::ByteBufFromCString(payloadString.c_str()),
                 AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
                 0,
                 onMessageFlushCallback);
@@ -898,7 +916,7 @@ namespace Aws
             if (future.valid() && future.wait_for(std::chrono::seconds(0)) != std::future_status::ready)
             {
                 Crt::ScopedResource<OperationError> operationError(
-                    Crt::New<OperationError>(m_allocator, AWS_ERROR_EVENT_STREAM_RPC_STREAM_CLOSED_ERROR),
+                    Crt::New<OperationError>(m_allocator, AWS_ERROR_EVENT_STREAM_RPC_STREAM_CLOSED_ERROR, m_allocator),
                     OperationError::s_customDeleter);
                 TaggedResponse taggedResponse;
                 taggedResponse.responseType = ERROR_RESPONSE;

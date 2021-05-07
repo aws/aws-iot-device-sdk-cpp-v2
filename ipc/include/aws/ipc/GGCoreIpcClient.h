@@ -19,8 +19,8 @@ namespace Aws
             class BinaryMessage : public AbstractShapeBase
             {
               public:
-                BinaryMessage(const Crt::Optional<Crt::Vector<uint8_t>> &message) noexcept;
-                BinaryMessage(Crt::Optional<Crt::Vector<uint8_t>> &&message) noexcept;
+                BinaryMessage(const Crt::Optional<Crt::Vector<uint8_t>> &message, Crt::Allocator* allocator = Crt::g_allocator) noexcept;
+                BinaryMessage(Crt::Optional<Crt::Vector<uint8_t>> &&message, Crt::Allocator* allocator = Crt::g_allocator) noexcept;
                 BinaryMessage(const BinaryMessage &jsonMessage) = default;
                 BinaryMessage(BinaryMessage &&jsonMessage) = default;
                 void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
@@ -35,8 +35,8 @@ namespace Aws
             class JsonMessage : public AbstractShapeBase
             {
               public:
-                JsonMessage(Crt::Optional<Crt::JsonObject> &&jsonObject) noexcept;
-                JsonMessage(const Crt::Optional<Crt::JsonObject> &jsonObject) noexcept;
+                JsonMessage(Crt::Optional<Crt::JsonObject> &&jsonObject, Crt::Allocator* allocator = Crt::g_allocator) noexcept;
+                JsonMessage(const Crt::Optional<Crt::JsonObject> &jsonObject, Crt::Allocator* allocator = Crt::g_allocator) noexcept;
                 JsonMessage(const JsonMessage &jsonMessage) = default;
                 JsonMessage(JsonMessage &&jsonMessage) = default;
                 void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
@@ -51,15 +51,17 @@ namespace Aws
             class PublishMessage : public AbstractShapeBase
             {
               public:
-                PublishMessage() = default;
-                PublishMessage(const PublishMessage &jsonMessage) = default;
-                PublishMessage(PublishMessage &&jsonMessage) = default;
+                PublishMessage(Crt::Allocator* allocator = Crt::g_allocator) noexcept;
+                PublishMessage(const PublishMessage &publishMessage) = default;
+                PublishMessage(PublishMessage &&publishMessage) = default;
                 PublishMessage(
                     const Crt::Optional<JsonMessage> &jsonMessage,
-                    const Crt::Optional<BinaryMessage> &binaryMessage) noexcept;
+                    const Crt::Optional<BinaryMessage> &binaryMessage,
+                    Crt::Allocator* allocator = Crt::g_allocator) noexcept;
                 PublishMessage(
                     Crt::Optional<JsonMessage> &&jsonMessage,
-                    Crt::Optional<BinaryMessage> &&binaryMessage) noexcept;
+                    Crt::Optional<BinaryMessage> &&binaryMessage,
+                    Crt::Allocator* allocator = Crt::g_allocator) noexcept;
                 void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
 
               private:
@@ -69,6 +71,16 @@ namespace Aws
             class PublishToTopicRequest : public OperationRequest
             {
               public:
+                PublishToTopicRequest(const PublishToTopicRequest &) noexcept = default;
+                PublishToTopicRequest(PublishToTopicRequest &&) noexcept = default;
+                PublishToTopicRequest(
+                    const Crt::Optional<Crt::String> &topic,
+                    const Crt::Optional<PublishMessage> &publishMessage,
+                    Crt::Allocator* allocator = Crt::g_allocator) noexcept;
+                PublishToTopicRequest(
+                    Crt::Optional<Crt::String> &&topic,
+                    Crt::Optional<PublishMessage> &&publishMessage,
+                    Crt::Allocator* allocator = Crt::g_allocator) noexcept;
                 void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
 
               protected:
@@ -82,7 +94,7 @@ namespace Aws
             class PublishToTopicResponse : public OperationResponse
             {
               public:
-                PublishToTopicResponse() noexcept;
+                PublishToTopicResponse(Crt::Allocator* allocator = Crt::g_allocator) noexcept;
                 static Crt::ScopedResource<OperationResponse> s_loadFromPayload(
                     Crt::StringView stringView,
                     Crt::Allocator *allocator) noexcept;
@@ -99,12 +111,27 @@ namespace Aws
             class PublishToTopicOperation : public ClientOperation
             {
               public:
+                PublishToTopicOperation(ClientConnection &connection, Crt::Allocator* allocator) noexcept;
                 void Activate(
                     const PublishToTopicRequest &request,
                     OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
               protected:
                 Crt::String GetModelName() const noexcept override;
+            };
+
+            class GreengrassIpcClient
+            {
+              public:
+                GreengrassIpcClient(ClientConnection &&connection, Crt::Allocator* allocator = Crt::g_allocator) noexcept;
+                PublishToTopicOperation NewPublishToTopic() noexcept;
+
+              private:
+                ClientConnection m_connection;
+                Crt::Allocator* m_allocator;
+                Crt::Map<Crt::String, ExpectedResponseFactory> m_ModelNameToSingleResponseObject;
+                Crt::Map<Crt::String, ExpectedResponseFactory> m_ModelNameToStreamingResponseObject;
+                Crt::Map<Crt::String, ErrorResponseFactory> m_ErrorNameToObject;
             };
         } // namespace Ipc
 

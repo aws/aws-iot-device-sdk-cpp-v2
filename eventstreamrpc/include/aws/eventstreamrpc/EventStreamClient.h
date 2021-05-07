@@ -204,10 +204,10 @@ namespace Aws
           public:
             ClientConnection(Crt::Allocator *allocator) noexcept;
             ~ClientConnection() noexcept;
-            ClientConnection(const ClientConnection &) = delete;
-            ClientConnection(ClientConnection &&) = delete;
-            ClientConnection &operator=(const ClientConnection &) = delete;
-            ClientConnection &operator=(ClientConnection &&) = delete;
+            ClientConnection(const ClientConnection &) noexcept = delete;
+            ClientConnection &operator=(const ClientConnection &) noexcept = delete;
+            ClientConnection(ClientConnection &&) noexcept = default;
+            ClientConnection &operator=(ClientConnection &&) noexcept = default;
 
             bool Connect(
                 const ClientConnectionOptions &connectionOptions,
@@ -303,7 +303,6 @@ namespace Aws
                 ClientConnection *connection,
                 ClientContinuationHandler *handler,
                 Crt::Allocator *allocator) noexcept;
-            ~ClientContinuation() noexcept;
             void Activate(
                 const Crt::String &operation,
                 const Crt::List<EventStreamHeader> &headers,
@@ -335,10 +334,12 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API AbstractShapeBase
         {
           public:
+            AbstractShapeBase(Crt::Allocator* allocator = Crt::g_allocator) noexcept;
             static void s_customDeleter(AbstractShapeBase *shape) noexcept;
             virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const = 0;
           protected:
-            virtual Crt::String GetModelName() const noexcept = 0;
+            virtual Crt::String GetModelName() const noexcept;
+            friend class ClientOperation;
           private:
             Crt::Allocator *m_allocator;
         };
@@ -346,6 +347,7 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API OperationResponse : public AbstractShapeBase
         {
           public:
+            OperationResponse(Crt::Allocator* allocator = Crt::g_allocator) noexcept;
             static void s_customDeleter(OperationResponse *shape) noexcept;
             /* A response does not necessarily have to be serialized so provide a default implementation. */
             virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
@@ -353,20 +355,19 @@ namespace Aws
 
         class AWS_EVENTSTREAMRPC_API OperationRequest : public AbstractShapeBase
         {
+          public:
+            OperationRequest(Crt::Allocator* allocator = Crt::g_allocator) noexcept;
         };
 
         class AWS_EVENTSTREAMRPC_API OperationError : public AbstractShapeBase
         {
           public:
-            OperationError() noexcept;
-            OperationError(int errorCode) noexcept;
+            OperationError(Crt::Allocator* allocator = Crt::g_allocator) noexcept;
+            OperationError(int errorCode, Crt::Allocator* allocator) noexcept;
             const Crt::Optional<int> &GetErrorCode() const noexcept;
             void SetErrorCode(int errorCode) noexcept;
             static void s_customDeleter(OperationError *shape) noexcept;
             virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
-          protected:
-            /* An empty string by default. */
-            Crt::String GetModelName() const noexcept override;
           private:
             Crt::Optional<int> m_errorCode;
         };
@@ -434,7 +435,7 @@ namespace Aws
         class AWS_EVENTSTREAMRPC_API ClientOperation : private ClientContinuationHandler
         {
           public:
-            ClientOperation(ClientConnection &connection, StreamResponseHandler *streamHandler) noexcept;
+            ClientOperation(ClientConnection &connection, StreamResponseHandler *streamHandler, Crt::Allocator* allocator) noexcept;
             std::future<void> Close(OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
             std::future<TaggedResponse> GetResponse() noexcept;
             // virtual bool IsStreaming() = 0;
@@ -442,9 +443,8 @@ namespace Aws
           protected:
             void Activate(const OperationRequest *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
             void SendStreamEvent(OperationRequest *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
-            virtual const Crt::String &GetResponseName() = 0;
-            Crt::Map<Crt::String, ExpectedResponseFactory> m_SingleResponseNameToObject;
-            Crt::Map<Crt::String, ExpectedResponseFactory> m_StreamingResponseNameToObject;
+            Crt::Map<Crt::String, ExpectedResponseFactory> m_ModelNameToSingleResponseObject;
+            Crt::Map<Crt::String, ExpectedResponseFactory> m_ModelNameToStreamingResponseObject;
             Crt::Map<Crt::String, ErrorResponseFactory> m_ErrorNameToObject;
             virtual Crt::String GetModelName() const noexcept = 0;
 

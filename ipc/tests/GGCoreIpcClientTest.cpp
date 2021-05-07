@@ -93,15 +93,22 @@ static int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx)
                 Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
             ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.isConnected; });
+            Ipc::GreengrassIpcClient client(std::move(connection));
             /* Publish to Topic */
-            //Ipc::PublishToTopicOperation operation;
+            Ipc::PublishToTopicOperation operation = client.NewPublishToTopic();
+            Ipc::PublishMessage publishMessage(allocator);
+            Aws::Crt::String example("example");
+            Ipc::PublishToTopicRequest request(
+                Aws::Crt::Optional<Aws::Crt::String>(example),
+                Aws::Crt::Optional<Ipc::PublishMessage>(publishMessage), allocator);
+            operation.Activate(request, nullptr);
+            auto response = operation.GetResponse();
+            response.wait();
+            response.get();
             /* Close connection gracefully. */
-            //connection.NewStream()
             connection.Close();
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
         }
-
-
     }
 
     return AWS_OP_SUCCESS;
