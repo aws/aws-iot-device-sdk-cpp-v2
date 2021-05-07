@@ -9,7 +9,6 @@
 #include <aws/crt/auth/Credentials.h>
 
 #include <algorithm>
-#include <iostream>
 
 #define EVENTSTREAM_VERSION_HEADER ":version"
 #define EVENTSTREAM_VERSION_STRING "0.1.0"
@@ -332,13 +331,13 @@ namespace Aws
 
         bool EventStreamHeader::GetValueAsString(Crt::String &value) const noexcept
         {
-            if(m_underlyingHandle.header_value_type != AWS_EVENT_STREAM_HEADER_STRING)
+            if (m_underlyingHandle.header_value_type != AWS_EVENT_STREAM_HEADER_STRING)
             {
                 return false;
             }
             Crt::StringView viewFromHere = Crt::ByteCursorToStringView(Crt::ByteCursorFromByteBuf(m_valueByteBuf));
             value = {viewFromHere.begin(), viewFromHere.end()};
-        
+
             return true;
         }
 
@@ -675,8 +674,8 @@ namespace Aws
         OperationError::OperationError(int errorCode) noexcept : m_errorCode(errorCode) {}
 
         ClientOperation::ClientOperation(ClientConnection &connection, StreamResponseHandler *streamHandler) noexcept
-            : m_SingleResponseNameToObject({}), m_StreamingResponseNameToObject({}), m_ErrorNameToObject({}), 
-            m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(this))
+            : m_SingleResponseNameToObject({}), m_StreamingResponseNameToObject({}), m_ErrorNameToObject({}),
+              m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(this))
         {
         }
 
@@ -727,7 +726,7 @@ namespace Aws
                 }
                 /* The value of this hashmap contains the function that generates the response object from the
                  * payload. */
-                Crt::ScopedResource<OperationResponse> response = got->second(payloadStringView);
+                Crt::ScopedResource<OperationResponse> response = got->second(payloadStringView, m_allocator);
                 if (m_messageCount == 1)
                 {
                     TaggedResponse taggedResponse;
@@ -771,7 +770,7 @@ namespace Aws
 
                 /* The value of this hashmap contains the function that generates the error from the
                  * payload. */
-                Crt::ScopedResource<OperationError> error = got->second(payloadStringView);
+                Crt::ScopedResource<OperationError> error = got->second(payloadStringView, m_allocator);
                 TaggedResponse taggedResponse;
                 taggedResponse.responseType = ERROR_RESPONSE;
                 taggedResponse.responseResult.error = std::move(error);
@@ -863,14 +862,34 @@ namespace Aws
             }
         }
 
+        void ClientOperation::Activate(
+            const OperationRequest *shape,
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            Crt::List<EventStreamHeader> headers;
+            headers.push_back(EventStreamHeader(
+                Crt::String(CONTENT_TYPE_HEADER), Crt::String(CONTENT_TYPE_APPLICATION_JSON), m_allocator));
+            headers.push_back(EventStreamHeader(Crt::String(SERVICE_MODEL_TYPE_HEADER), GetModelName(), m_allocator));
+            Crt::JsonObject payloadObject;
+            shape->SerializeToJsonObject(payloadObject);
+            m_clientContinuation.Activate(
+                GetModelName(),
+                headers,
+                Crt::ByteBufFromCString(payloadObject.View().WriteCompact().c_str()),
+                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
+                0,
+                onMessageFlushCallback);
+        }
+
         void ClientOperation::OnContinuationClosed()
         {
             auto future = m_initialResponsePromise.get_future();
             /* Unfortunately, there's no better way in C++11 to check if a promise has been fulfilled. */
-            if(future.valid() && future.wait_for(std::chrono::seconds(0)) != std::future_status::ready)
+            if (future.valid() && future.wait_for(std::chrono::seconds(0)) != std::future_status::ready)
             {
                 Crt::ScopedResource<OperationError> operationError(
-                    Crt::New<OperationError>(m_allocator, AWS_ERROR_EVENT_STREAM_RPC_STREAM_CLOSED_ERROR), OperationError::s_customDeleter);
+                    Crt::New<OperationError>(m_allocator, AWS_ERROR_EVENT_STREAM_RPC_STREAM_CLOSED_ERROR),
+                    OperationError::s_customDeleter);
                 TaggedResponse taggedResponse;
                 taggedResponse.responseType = ERROR_RESPONSE;
                 taggedResponse.responseResult.error = std::move(operationError);
@@ -879,7 +898,7 @@ namespace Aws
 
             m_closedPromise.set_value();
 
-            if(m_streamHandler)
+            if (m_streamHandler)
             {
                 m_streamHandler->OnStreamClosed();
             }
@@ -887,7 +906,12 @@ namespace Aws
 
         std::future<void> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            m_clientContinuation.SendMessage(Crt::List<EventStreamHeader>(), Crt::Optional<Crt::ByteBuf>(), AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE, AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM, onMessageFlushCallback);
+            m_clientContinuation.SendMessage(
+                Crt::List<EventStreamHeader>(),
+                Crt::Optional<Crt::ByteBuf>(),
+                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
+                AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM,
+                onMessageFlushCallback);
             return m_closedPromise.get_future();
         }
 
@@ -895,5 +919,13 @@ namespace Aws
         {
             AbstractShapeBase::s_customDeleter(shape);
         }
+
+        void OperationResponse::s_customDeleter(OperationResponse *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(shape);
+        }
+
+        void OperationResponse::SerializeToJsonObject(Crt::JsonObject &payloadObject) const {}
+
     } /* namespace Eventstreamrpc */
 } // namespace Aws

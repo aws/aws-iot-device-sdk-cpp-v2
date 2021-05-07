@@ -13,6 +13,7 @@
 #include <aws/crt/io/EventLoopGroup.h>
 #include <aws/crt/io/SocketOptions.h>
 #include <aws/crt/io/TlsOptions.h>
+#include <aws/crt/JsonObject.h>
 
 #include <aws/event-stream/event_stream_rpc_client.h>
 
@@ -334,24 +335,36 @@ namespace Aws
         {
           public:
             static void s_customDeleter(AbstractShapeBase *shape) noexcept;
+            virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const = 0;
+          protected:
+            virtual Crt::String GetModelName() const noexcept = 0;
           private:
             Crt::Allocator *m_allocator;
         };
 
-        class AWS_EVENTSTREAMRPC_API OperationResponse : AbstractShapeBase
+        class AWS_EVENTSTREAMRPC_API OperationResponse : public AbstractShapeBase
         {
           public:
-            bool IsStreaming();
+            static void s_customDeleter(OperationResponse *shape) noexcept;
+            /* A response does not necessarily have to be serialized so provide a default implementation. */
+            virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
         };
 
-        class AWS_EVENTSTREAMRPC_API OperationError : AbstractShapeBase
+        class AWS_EVENTSTREAMRPC_API OperationRequest : public AbstractShapeBase
+        {
+        };
+
+        class AWS_EVENTSTREAMRPC_API OperationError : public AbstractShapeBase
         {
           public:
             OperationError() noexcept;
             OperationError(int errorCode) noexcept;
-            const Crt::Optional<int>& GetErrorCode() const noexcept;
+            const Crt::Optional<int> &GetErrorCode() const noexcept;
             void SetErrorCode(int errorCode) noexcept;
-            static void s_customDeleter(OperationError* shape) noexcept;
+            static void s_customDeleter(OperationError *shape) noexcept;
+            virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
+          protected:
+            Crt::String GetModelName() const noexcept override;
           private:
             Crt::Optional<int> m_errorCode;
         };
@@ -380,59 +393,65 @@ namespace Aws
             virtual void OnStreamClosed();
         };
 
-union AWS_EVENTSTREAMRPC_API ResponseResult
-{
-    ResponseResult() {}
-    ~ResponseResult() {}
-    Crt::ScopedResource<OperationResponse> response;
-    Crt::ScopedResource<OperationError> error;
-};
-
-enum AWS_EVENTSTREAMRPC_API ResponseType
-{
-    EXPECTED_RESPONSE,
-    ERROR_RESPONSE
-};
-
-struct TaggedResponse
-{
-    TaggedResponse() {}
-    TaggedResponse(TaggedResponse &&taggedResponse)
-    {
-        if (responseType == EXPECTED_RESPONSE)
+        union AWS_EVENTSTREAMRPC_API ResponseResult
         {
-            responseResult.response = std::move(taggedResponse.responseResult.response);
-        }
-        else if (responseType == ERROR_RESPONSE)
-        {
-            responseResult.error = std::move(taggedResponse.responseResult.error);
-        }
-    }
-    ResponseType responseType;
-    ResponseResult responseResult;
-};
+            ResponseResult() {}
+            ~ResponseResult() {}
+            Crt::ScopedResource<OperationResponse> response;
+            Crt::ScopedResource<OperationError> error;
+        };
 
-        using ExpectedResponseFactory = std::function<Crt::ScopedResource<OperationResponse>(const Crt::StringView &payload)>;
-        using ErrorResponseFactory = std::function<Crt::ScopedResource<OperationError>(const Crt::StringView &payload)>;
+        enum AWS_EVENTSTREAMRPC_API ResponseType
+        {
+            EXPECTED_RESPONSE,
+            ERROR_RESPONSE
+        };
+
+        struct TaggedResponse
+        {
+            TaggedResponse() {}
+            TaggedResponse(TaggedResponse &&taggedResponse)
+            {
+                if (responseType == EXPECTED_RESPONSE)
+                {
+                    responseResult.response = std::move(taggedResponse.responseResult.response);
+                }
+                else if (responseType == ERROR_RESPONSE)
+                {
+                    responseResult.error = std::move(taggedResponse.responseResult.error);
+                }
+            }
+            ResponseType responseType;
+            ResponseResult responseResult;
+        };
+
+        using ExpectedResponseFactory =
+            std::function<Crt::ScopedResource<OperationResponse>(const Crt::StringView &payload, Crt::Allocator* allocator)>;
+        using ErrorResponseFactory = std::function<Crt::ScopedResource<OperationError>(const Crt::StringView &payload, Crt::Allocator* allocator)>;
 
         class AWS_EVENTSTREAMRPC_API ClientOperation : private ClientContinuationHandler
         {
           public:
             ClientOperation(ClientConnection &connection, StreamResponseHandler *streamHandler) noexcept;
             std::future<void> Close(OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
-            //virtual bool IsStreaming() = 0;
+            std::future<TaggedResponse> GetResponse() noexcept;
+            // virtual bool IsStreaming() = 0;
 
           protected:
-            void Activate(AbstractShapeBase *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
-            void SendStreamEvent(AbstractShapeBase *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            void Activate(const OperationRequest *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            void SendStreamEvent(OperationRequest *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
             virtual const Crt::String &GetResponseName() = 0;
             Crt::Map<Crt::String, ExpectedResponseFactory> m_SingleResponseNameToObject;
             Crt::Map<Crt::String, ExpectedResponseFactory> m_StreamingResponseNameToObject;
             Crt::Map<Crt::String, ErrorResponseFactory> m_ErrorNameToObject;
+            virtual Crt::String GetModelName() const noexcept = 0;
 
           private:
             int HandleData(const Crt::String &modelName, const Crt::Optional<Crt::ByteBuf> &payload);
-            int HandleError(const Crt::String &modelName, const Crt::Optional<Crt::ByteBuf> &payload, uint16_t messageFlags);
+            int HandleError(
+                const Crt::String &modelName,
+                const Crt::Optional<Crt::ByteBuf> &payload,
+                uint16_t messageFlags);
             /**
              * Invoked when a message is received on this continuation.
              */
@@ -454,7 +473,7 @@ struct TaggedResponse
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::String &name) noexcept;
             uint32_t m_messageCount;
-            Crt::Allocator* m_allocator;
+            Crt::Allocator *m_allocator;
             StreamResponseHandler *m_streamHandler;
             ClientContinuation m_clientContinuation;
             std::promise<TaggedResponse> m_initialResponsePromise;
