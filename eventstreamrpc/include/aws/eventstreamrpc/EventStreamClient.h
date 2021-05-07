@@ -381,6 +381,12 @@ namespace Aws
         {
           public:
             /**
+             * Invoked when stream is closed, so no more messages will be receivied.
+             */
+            virtual void OnStreamClosed();
+          protected:
+            friend class ClientOperation;
+            /**
              * Invoked when a message is received on this continuation.
              */
             virtual void OnStreamEvent(Crt::ScopedResource<OperationResponse> response);
@@ -390,10 +396,6 @@ namespace Aws
              * This callback can return true so that the stream is closed afterwards.
              */
             virtual bool OnStreamError(Crt::ScopedResource<OperationError> error);
-            /**
-             * Invoked when stream is closed, so no more messages will be receivied.
-             */
-            virtual void OnStreamClosed();
         };
 
         union AWS_EVENTSTREAMRPC_API ResponseResult

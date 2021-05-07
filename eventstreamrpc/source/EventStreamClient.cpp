@@ -824,6 +824,17 @@ namespace Aws
             return AWS_OP_SUCCESS;
         }
 
+        bool StreamResponseHandler::OnStreamError(Crt::ScopedResource<OperationError> response)
+        {
+            return true;
+        }
+
+        void StreamResponseHandler::OnStreamEvent(Crt::ScopedResource<OperationResponse> response)
+        {}
+
+        void StreamResponseHandler::OnStreamClosed()
+        {}
+
         void ClientOperation::OnContinuationMessage(
             const Crt::List<EventStreamHeader> &headers,
             const Crt::Optional<Crt::ByteBuf> &payload,
