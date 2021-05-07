@@ -51,17 +51,20 @@ namespace Aws
             class PublishMessage : public AbstractShapeBase
             {
               public:
+                PublishMessage() = default;
+                PublishMessage(const PublishMessage &jsonMessage) = default;
+                PublishMessage(PublishMessage &&jsonMessage) = default;
                 PublishMessage(
                     const Crt::Optional<JsonMessage> &jsonMessage,
-                    const Crt::Optional<BinaryMessage> &optionalMessage) noexcept;
+                    const Crt::Optional<BinaryMessage> &binaryMessage) noexcept;
                 PublishMessage(
                     Crt::Optional<JsonMessage> &&jsonMessage,
-                    Crt::Optional<BinaryMessage> &&optionalMessage) noexcept;
+                    Crt::Optional<BinaryMessage> &&binaryMessage) noexcept;
                 void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
 
               private:
                 Crt::Optional<JsonMessage> m_jsonMessage;
-                Crt::Optional<BinaryMessage> m_optionalMessage;
+                Crt::Optional<BinaryMessage> m_binaryMessage;
             };
             class PublishToTopicRequest : public OperationRequest
             {

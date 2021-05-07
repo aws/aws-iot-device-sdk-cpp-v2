@@ -57,15 +57,15 @@ namespace Aws
 
             PublishMessage::PublishMessage(
                 const Crt::Optional<JsonMessage> &jsonMessage,
-                const Crt::Optional<BinaryMessage> &optionalMessage) noexcept
-                : m_jsonMessage(jsonMessage), m_optionalMessage(optionalMessage)
+                const Crt::Optional<BinaryMessage> &binaryMessage) noexcept
+                : m_jsonMessage(jsonMessage), m_binaryMessage(binaryMessage)
             {
             }
 
             PublishMessage::PublishMessage(
                 Crt::Optional<JsonMessage> &&jsonMessage,
-                Crt::Optional<BinaryMessage> &&optionalMessage) noexcept
-                : m_jsonMessage(jsonMessage), m_optionalMessage(optionalMessage)
+                Crt::Optional<BinaryMessage> &&binaryMessage) noexcept
+                : m_jsonMessage(jsonMessage), m_binaryMessage(binaryMessage)
             {
             }
 
@@ -79,6 +79,37 @@ namespace Aws
             Crt::String PublishToTopicRequest::GetModelName() const noexcept
             {
                 return Crt::String("aws.greengrass#PublishToTopicRequest");
+            }
+
+            void PublishMessage::SerializeToJsonObject(Crt::JsonObject &payloadObject) const
+            {
+                if(m_jsonMessage.has_value())
+                {
+                    Aws::Crt::JsonObject jsonObject;
+                    m_jsonMessage.value().SerializeToJsonObject(jsonObject);
+                    payloadObject.WithObject("jsonMessage", std::move(jsonObject));
+                    return;
+                }
+                if(m_binaryMessage.has_value())
+                {
+                    Aws::Crt::JsonObject jsonObject;
+                    m_binaryMessage.value().SerializeToJsonObject(jsonObject);
+                    payloadObject.WithObject("binaryMessage", std::move(jsonObject));
+                }
+            }
+
+            void PublishToTopicRequest::SerializeToJsonObject(Crt::JsonObject &payloadObject) const
+            {
+                if(m_topic.has_value())
+                {
+                    payloadObject.WithString("topic", m_topic.value());
+                }
+                if(m_publishMessage.has_value())
+                {
+                    Aws::Crt::JsonObject jsonObject;
+                    m_publishMessage.value().SerializeToJsonObject(jsonObject);
+                    payloadObject.WithObject("publishMessage", std::move(jsonObject));
+                }
             }
 
             Crt::String PublishToTopicOperation::GetModelName() const noexcept

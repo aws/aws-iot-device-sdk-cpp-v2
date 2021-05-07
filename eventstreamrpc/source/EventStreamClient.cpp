@@ -673,6 +673,16 @@ namespace Aws
         OperationError::OperationError() noexcept : m_errorCode(0) {}
         OperationError::OperationError(int errorCode) noexcept : m_errorCode(errorCode) {}
 
+        void OperationError::SerializeToJsonObject(Crt::JsonObject &payloadObject) const 
+        {
+            (void)payloadObject;
+        }
+
+        Crt::String OperationError::GetModelName() const noexcept
+        {
+            return Crt::String("");
+        }
+
         ClientOperation::ClientOperation(ClientConnection &connection, StreamResponseHandler *streamHandler) noexcept
             : m_SingleResponseNameToObject({}), m_StreamingResponseNameToObject({}), m_ErrorNameToObject({}),
               m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(this))

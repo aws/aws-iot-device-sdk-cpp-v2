@@ -35,9 +35,10 @@ namespace Aws
     {
         class EventStreamHeader;
         class EventStreamRpcClient;
+        class MessageAmendment;
         class ClientConnection;
         class ClientContinuation;
-        class MessageAmendment;
+        class ClientOperation;
 
         using HeaderValueType = aws_event_stream_header_value_type;
         using MessageType = aws_event_stream_rpc_message_type;
@@ -364,6 +365,7 @@ namespace Aws
             static void s_customDeleter(OperationError *shape) noexcept;
             virtual void SerializeToJsonObject(Crt::JsonObject &payloadObject) const override;
           protected:
+            /* An empty string by default. */
             Crt::String GetModelName() const noexcept override;
           private:
             Crt::Optional<int> m_errorCode;
