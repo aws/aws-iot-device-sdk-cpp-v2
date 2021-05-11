@@ -16,6 +16,7 @@ namespace Aws
     {
         namespace Ipc
         {
+            class GreengrassModelRetriever;
             class BinaryMessage : public AbstractShapeBase
             {
               public:
@@ -108,19 +109,19 @@ namespace Aws
                     Crt::Allocator *allocator) noexcept;
                 static void s_customDeleter(PublishToTopicResponse *response) noexcept;
 
-              protected:
+              private:
                 Crt::String GetModelName() const noexcept override;
             };
 
             class PublishToTopicOperation : public ClientOperation
             {
               public:
-                PublishToTopicOperation(ClientConnection &connection, Crt::Allocator *allocator) noexcept;
+                PublishToTopicOperation(ClientConnection &connection, const GreengrassModelRetriever* greengrassModelRetriever, Crt::Allocator *allocator) noexcept;
                 void Activate(
                     const PublishToTopicRequest &request,
                     OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
-              protected:
+              private:
                 Crt::String GetModelName() const noexcept override;
             };
 
@@ -173,7 +174,7 @@ namespace Aws
                 bool OnStreamError(Crt::ScopedResource<OperationError> error) override;
             };
 
-            class SubscribeToTopicRequest : OperationRequest
+            class SubscribeToTopicRequest : public OperationRequest
             {
               public:
                 SubscribeToTopicRequest(const SubscribeToTopicRequest &) noexcept = default;
@@ -193,7 +194,7 @@ namespace Aws
                 Crt::Optional<Crt::String> m_topic;
             };
 
-            class SubscribeToTopicResponse : OperationResponse
+            class SubscribeToTopicResponse : public OperationResponse
             {
               public:
                 SubscribeToTopicResponse(
@@ -220,6 +221,7 @@ namespace Aws
                 SubscribeToTopicOperation(
                     ClientConnection &connection,
                     SubscribeToTopicStreamHandler *m_streamHandler,
+                    const GreengrassModelRetriever* greengrassModelRetriever,
                     Crt::Allocator *allocator) noexcept;
                 void Activate(
                     const SubscribeToTopicRequest &request,
@@ -227,6 +229,19 @@ namespace Aws
 
               protected:
                 Crt::String GetModelName() const noexcept override;
+            };
+
+            class GreengrassModelRetriever : public ResponseRetriever
+            {
+              public:
+                ExpectedResponseFactory GetLoneResponseFromModelName(const Crt::String &modelName) const noexcept override;
+                ExpectedResponseFactory GetStreamingResponseFromModelName(const Crt::String &modelName) const noexcept override;
+                ErrorResponseFactory GetErrorResponseFromModelName(const Crt::String &modelName) const noexcept override;
+              private:
+                friend class GreengrassIpcClient;
+                Crt::Map<Crt::String, ExpectedResponseFactory> m_ModelNameToSoleResponseMap;
+                Crt::Map<Crt::String, ExpectedResponseFactory> m_ModelNameToStreamingResponseMap;
+                Crt::Map<Crt::String, ErrorResponseFactory> m_ModelNameToErrorResponse;
             };
 
             class GreengrassIpcClient
@@ -237,13 +252,10 @@ namespace Aws
                     Crt::Allocator *allocator = Crt::g_allocator) noexcept;
                 PublishToTopicOperation NewPublishToTopic() noexcept;
                 SubscribeToTopicOperation NewSubscribeToTopic(SubscribeToTopicStreamHandler *streamHandler) noexcept;
-
               private:
+                GreengrassModelRetriever m_greengrassModelRetriever;
                 ClientConnection m_connection;
                 Crt::Allocator *m_allocator;
-                Crt::Map<Crt::String, ExpectedResponseFactory> m_ModelNameToSingleResponseObject;
-                Crt::Map<Crt::String, ExpectedResponseFactory> m_ModelNameToStreamingResponseObject;
-                Crt::Map<Crt::String, ErrorResponseFactory> m_ErrorNameToObject;
             };
         } // namespace Ipc
 

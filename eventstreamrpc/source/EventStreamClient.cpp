@@ -699,11 +699,75 @@ namespace Aws
         ClientOperation::ClientOperation(
             ClientConnection &connection,
             StreamResponseHandler *streamHandler,
+            const ResponseRetriever *responseRetriever,
             Crt::Allocator *allocator) noexcept
-            : m_ModelNameToSingleResponseObject({}), m_ModelNameToStreamingResponseObject({}), m_ErrorNameToObject({}),
-              m_messageCount(0), m_allocator(allocator), m_streamHandler(streamHandler),
-              m_clientContinuation(connection.NewStream(this))
+            : m_messageCount(0), m_allocator(allocator), m_streamHandler(streamHandler),
+              m_responseRetriever(responseRetriever), m_clientContinuation(connection.NewStream(this))
         {
+        }
+
+        TaggedResponse::TaggedResponse(Crt::ScopedResource<OperationResponse> response) noexcept
+            : m_responseType(EXPECTED_RESPONSE)
+        {
+            m_responseResult.m_response = std::move(response);
+        }
+
+        TaggedResponse::TaggedResponse(Crt::ScopedResource<OperationError> error) noexcept
+            : m_responseType(ERROR_RESPONSE)
+        {
+            m_responseResult.m_error = std::move(error);
+        }
+
+        TaggedResponse::TaggedResponse(TaggedResponse &&taggedResponse) noexcept
+        {
+            if (m_responseType == EXPECTED_RESPONSE)
+            {
+                m_responseResult.m_response = std::move(taggedResponse.m_responseResult.m_response);
+            }
+            else if (m_responseType == ERROR_RESPONSE)
+            {
+                m_responseResult.m_error = std::move(taggedResponse.m_responseResult.m_error);
+            }
+        }
+
+        TaggedResponse::operator bool() const noexcept
+        {
+            if (m_responseType == EXPECTED_RESPONSE)
+            {
+                return true;
+            }
+            else if (m_responseType == ERROR_RESPONSE)
+            {
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        OperationResponse *TaggedResponse::GetResponse()
+        {
+            if (m_responseType == EXPECTED_RESPONSE)
+            {
+                return m_responseResult.m_response.get();
+            }
+            else
+            {
+                return nullptr;
+            }
+        }
+
+        OperationError *TaggedResponse::GetError()
+        {
+            if (m_responseType == ERROR_RESPONSE)
+            {
+                return m_responseResult.m_error.get();
+            }
+            else
+            {
+                return nullptr;
+            }
         }
 
         std::future<TaggedResponse> ClientOperation::GetResponse() noexcept
@@ -727,20 +791,19 @@ namespace Aws
 
         int ClientOperation::HandleData(const Crt::String &modelName, const Crt::Optional<Crt::ByteBuf> &payload)
         {
-            const Crt::Map<Crt::String, ExpectedResponseFactory> *mapToUse;
+            ExpectedResponseFactory responseFactory = nullptr;
 
             /* Responses after the first message don't necessarily have the same shape as the first. */
             if (m_messageCount == 1)
             {
-                mapToUse = &m_ModelNameToSingleResponseObject;
+                responseFactory = m_responseRetriever->GetLoneResponseFromModelName(GetModelName());
             }
             else
             {
-                mapToUse = &m_ModelNameToStreamingResponseObject;
+                responseFactory = m_responseRetriever->GetStreamingResponseFromModelName(GetModelName());
             }
 
-            auto got = mapToUse->find(GetModelName());
-            if (got == mapToUse->end())
+            if (responseFactory == nullptr)
             {
                 return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
             }
@@ -753,7 +816,7 @@ namespace Aws
                 }
                 /* The value of this hashmap contains the function that allocates the response object from the
                  * payload. */
-                Crt::ScopedResource<OperationResponse> response = got->second(payloadStringView, m_allocator);
+                Crt::ScopedResource<OperationResponse> response = responseFactory(payloadStringView, m_allocator);
                 if (modelName != response->GetModelName())
                 {
                     /* TODO: Log an error */
@@ -761,9 +824,7 @@ namespace Aws
                 }
                 if (m_messageCount == 1)
                 {
-                    TaggedResponse taggedResponse;
-                    taggedResponse.responseType = EXPECTED_RESPONSE;
-                    taggedResponse.responseResult.response = std::move(response);
+                    TaggedResponse taggedResponse(std::move(response));
                     m_initialResponsePromise.set_value(std::move(taggedResponse));
                 }
                 else
@@ -780,9 +841,8 @@ namespace Aws
             uint16_t messageFlags)
         {
             bool streamAlreadyTerminated = messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM;
-            auto *mapToUse = &m_ErrorNameToObject;
-            auto got = mapToUse->find(modelName);
-            if (got == mapToUse->end())
+            ErrorResponseFactory errorFactory = m_responseRetriever->GetErrorResponseFromModelName(modelName);
+            if (errorFactory == nullptr)
             {
                 return AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA;
             }
@@ -796,11 +856,8 @@ namespace Aws
 
                 /* The value of this hashmap contains the function that allocates the error from the
                  * payload. */
-                Crt::ScopedResource<OperationError> error = got->second(payloadStringView, m_allocator);
-                TaggedResponse taggedResponse;
-                taggedResponse.responseType = ERROR_RESPONSE;
-                taggedResponse.responseResult.error = std::move(error);
-
+                Crt::ScopedResource<OperationError> error = errorFactory(payloadStringView, m_allocator);
+                TaggedResponse taggedResponse(std::move(error));
                 if (m_messageCount == 1)
                 {
                     m_initialResponsePromise.set_value(std::move(taggedResponse));
@@ -824,16 +881,11 @@ namespace Aws
             return AWS_OP_SUCCESS;
         }
 
-        bool StreamResponseHandler::OnStreamError(Crt::ScopedResource<OperationError> response)
-        {
-            return true;
-        }
+        bool StreamResponseHandler::OnStreamError(Crt::ScopedResource<OperationError> response) { return true; }
 
-        void StreamResponseHandler::OnStreamEvent(Crt::ScopedResource<OperationResponse> response)
-        {}
+        void StreamResponseHandler::OnStreamEvent(Crt::ScopedResource<OperationResponse> response) {}
 
-        void StreamResponseHandler::OnStreamClosed()
-        {}
+        void StreamResponseHandler::OnStreamClosed() {}
 
         void ClientOperation::OnContinuationMessage(
             const Crt::List<EventStreamHeader> &headers,
@@ -929,9 +981,7 @@ namespace Aws
                 Crt::ScopedResource<OperationError> operationError(
                     Crt::New<OperationError>(m_allocator, AWS_ERROR_EVENT_STREAM_RPC_STREAM_CLOSED_ERROR, m_allocator),
                     OperationError::s_customDeleter);
-                TaggedResponse taggedResponse;
-                taggedResponse.responseType = ERROR_RESPONSE;
-                taggedResponse.responseResult.error = std::move(operationError);
+                TaggedResponse taggedResponse(std::move(operationError));
                 m_initialResponsePromise.set_value(std::move(taggedResponse));
             }
 

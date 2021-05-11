@@ -94,8 +94,9 @@ namespace Aws
 
             PublishToTopicOperation::PublishToTopicOperation(
                 ClientConnection &connection,
+                const GreengrassModelRetriever* greengrassModelRetriever,
                 Crt::Allocator *allocator) noexcept
-                : ClientOperation(connection, nullptr, allocator)
+                : ClientOperation(connection, nullptr, greengrassModelRetriever, allocator)
             {
             }
 
@@ -109,8 +110,9 @@ namespace Aws
             SubscribeToTopicOperation::SubscribeToTopicOperation(
                 ClientConnection &connection,
                 SubscribeToTopicStreamHandler *streamHandler,
+                const GreengrassModelRetriever* greengrassModelRetriever,
                 Crt::Allocator *allocator) noexcept
-                : ClientOperation(connection, streamHandler, allocator)
+                : ClientOperation(connection, streamHandler, greengrassModelRetriever, allocator)
             {
             }
 
@@ -320,23 +322,62 @@ namespace Aws
             GreengrassIpcClient::GreengrassIpcClient(ClientConnection &&connection, Crt::Allocator *allocator) noexcept
                 : m_connection(std::move(connection)), m_allocator(allocator)
             {
-                m_ModelNameToSingleResponseObject[Crt::String("aws.greengrass#PublishToTopic")] =
+                m_greengrassModelRetriever.m_ModelNameToSoleResponseMap[Crt::String("aws.greengrass#PublishToTopic")] =
                     PublishToTopicResponse::s_loadFromPayload;
-                m_ModelNameToSingleResponseObject[Crt::String("aws.greengrass#SubscribeToTopic")] =
+                m_greengrassModelRetriever.m_ModelNameToSoleResponseMap[Crt::String("aws.greengrass#SubscribeToTopic")] =
                     SubscribeToTopicResponse::s_loadFromPayload;
-                m_ModelNameToStreamingResponseObject[Crt::String("aws.greengrass#SubscribeToTopic")] =
+                m_greengrassModelRetriever.m_ModelNameToStreamingResponseMap[Crt::String("aws.greengrass#SubscribeToTopic")] =
                     SubscriptionResponseMessage::s_loadFromPayload;
+            }
+
+            ExpectedResponseFactory GreengrassModelRetriever::GetLoneResponseFromModelName(const Crt::String &modelName) const noexcept
+            {
+                auto it = m_ModelNameToSoleResponseMap.find(modelName);
+                if (it == m_ModelNameToSoleResponseMap.end())
+                {
+                    return nullptr;
+                }
+                else
+                {
+                    return it->second;
+                }
+            }
+
+            ExpectedResponseFactory GreengrassModelRetriever::GetStreamingResponseFromModelName(const Crt::String &modelName) const noexcept
+            {
+                auto it = m_ModelNameToStreamingResponseMap.find(modelName);
+                if (it == m_ModelNameToStreamingResponseMap.end())
+                {
+                    return nullptr;
+                }
+                else
+                {
+                    return it->second;
+                }
+            }
+
+            ErrorResponseFactory GreengrassModelRetriever::GetErrorResponseFromModelName(const Crt::String &modelName) const noexcept
+            {
+                auto it = m_ModelNameToErrorResponse.find(modelName);
+                if (it == m_ModelNameToErrorResponse.end())
+                {
+                    return nullptr;
+                }
+                else
+                {
+                    return it->second;
+                }
             }
 
             PublishToTopicOperation GreengrassIpcClient::NewPublishToTopic() noexcept
             {
-                return PublishToTopicOperation(m_connection, m_allocator);
+                return PublishToTopicOperation(m_connection, &m_greengrassModelRetriever, m_allocator);
             }
 
             SubscribeToTopicOperation GreengrassIpcClient::NewSubscribeToTopic(
                 SubscribeToTopicStreamHandler *streamHandler) noexcept
             {
-                return SubscribeToTopicOperation(m_connection, streamHandler, m_allocator);
+                return SubscribeToTopicOperation(m_connection, streamHandler, &m_greengrassModelRetriever, m_allocator);
             }
 
             void SubscribeToTopicStreamHandler::OnStreamEvent(Crt::ScopedResource<OperationResponse> response)
