@@ -190,13 +190,41 @@ namespace Aws
             virtual void OnContinuationClosed() = 0;
         };
 
-        enum EventStreamErrors
+        enum EventStreamRpcError
         {
             /* If error messages are added to `aws_event_stream_errors`, this will need to be updated. */
-            AWS_ERROR_EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE = AWS_ERROR_EVENT_STREAM_RPC_STREAM_NOT_ACTIVATED + 1,
-            AWS_ERROR_EVENT_STREAM_RPC_UNMAPPED_DATA,
-            AWS_ERROR_EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
-            AWS_ERROR_EVENT_STREAM_RPC_STREAM_CLOSED_ERROR
+            EVENT_STREAM_RPC_SUCCESS = 0,
+            EVENT_STREAM_RPC_NULL_PARAMETER,
+            EVENT_STREAM_RPC_CONNECTION_CLOSED_BEFORE_CONNACK,
+            EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE,
+            EVENT_STREAM_RPC_UNMAPPED_DATA,
+            EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
+            EVENT_STREAM_RPC_STREAM_CLOSED_ERROR,
+            EVENT_STREAM_RPC_UNEXPECTED_ERROR,
+            EVENT_STREAM_RPC_CRT_ERROR
+        };
+
+        struct EventStreamRpcStatus
+        {
+          EventStreamRpcError baseStatus;
+          int crtError;
+        };
+
+        template <class T>
+        class ProtectedPromise
+        {
+          /* A wrapper around std::promise so that it cannot be set twice without having to throw exceptions. */
+          public:
+            ProtectedPromise() noexcept;
+            ProtectedPromise(std::promise<T>&& promise) noexcept;
+            void SetValue(T&& r) noexcept;
+            void SetValue(const T& r) noexcept;
+            std::future<T> GetFuture() noexcept;
+            void Reset() noexcept;
+          private:
+            bool m_fulfilled;
+            std::promise<T> m_promise;
+            std::mutex m_mutex;
         };
 
         class AWS_EVENTSTREAMRPC_API ClientConnection final
@@ -209,17 +237,17 @@ namespace Aws
             ClientConnection(ClientConnection &&) noexcept = default;
             ClientConnection &operator=(ClientConnection &&) noexcept = default;
 
-            bool Connect(
+            std::future<EventStreamRpcStatus> Connect(
                 const ClientConnectionOptions &connectionOptions,
                 ConnectionLifecycleHandler *connectionLifecycleHandler,
                 ConnectMessageAmender connectMessageAmender) noexcept;
 
-            void SendPing(
+            std::future<EventStreamRpcStatus> SendPing(
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
-            void SendPingResponse(
+            std::future<EventStreamRpcStatus> SendPingResponse(
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
@@ -253,8 +281,10 @@ namespace Aws
             ClientState m_clientState;
             ConnectionLifecycleHandler *m_lifecycleHandler;
             ConnectMessageAmender m_connectMessageAmender;
+            ProtectedPromise<EventStreamRpcStatus> m_connectAckedPromise;
+            OnMessageFlushCallback m_onConnectRequestCallback;
             static void s_customDeleter(ClientConnection *connection) noexcept;
-            void SendProtocolMessage(
+            std::future<EventStreamRpcStatus> SendProtocolMessage(
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
@@ -275,7 +305,7 @@ namespace Aws
                 void *userData) noexcept;
 
             static void s_protocolMessageCallback(int errorCode, void *userData) noexcept;
-            static void s_sendProtocolMessage(
+            static std::future<EventStreamRpcStatus> s_sendProtocolMessage(
                 ClientConnection *connection,
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
@@ -283,13 +313,13 @@ namespace Aws
                 uint32_t messageFlags,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
-            static void s_sendPing(
+            static std::future<EventStreamRpcStatus> s_sendPing(
                 ClientConnection *connection,
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
-            static void s_sendPingResponse(
+            static std::future<EventStreamRpcStatus> s_sendPingResponse(
                 ClientConnection *connection,
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
@@ -303,7 +333,7 @@ namespace Aws
                 ClientConnection *connection,
                 ClientContinuationHandler *handler,
                 Crt::Allocator *allocator) noexcept;
-            void Activate(
+            std::future<EventStreamRpcStatus> Activate(
                 const Crt::String &operation,
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
@@ -311,7 +341,7 @@ namespace Aws
                 uint32_t messageFlags,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
             bool IsClosed() noexcept;
-            void SendMessage(
+            std::future<EventStreamRpcStatus> SendMessage(
                 const Crt::List<EventStreamHeader> &headers,
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 MessageType messageType,
@@ -466,8 +496,8 @@ namespace Aws
             // virtual bool IsStreaming() = 0;
 
           protected:
-            void Activate(const OperationRequest *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
-            void SendStreamEvent(OperationRequest *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            std::future<EventStreamRpcStatus> Activate(const OperationRequest *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            std::future<EventStreamRpcStatus> SendStreamEvent(OperationRequest *shape, OnMessageFlushCallback onMessageFlushCallback) noexcept;
             virtual Crt::String GetModelName() const noexcept = 0;
             const ResponseRetriever* m_ResponseRetriever;
 
@@ -502,7 +532,7 @@ namespace Aws
             StreamResponseHandler *m_streamHandler;
             const ResponseRetriever* m_responseRetriever;
             ClientContinuation m_clientContinuation;
-            std::promise<TaggedResponse> m_initialResponsePromise;
+            ProtectedPromise<TaggedResponse> m_initialResponsePromise;
             std::promise<void> m_closedPromise;
         };
     } // namespace Eventstreamrpc

@@ -92,7 +92,8 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             TestLifecycleHandler lifecycleHandler;
             connectionAmendment.AddHeader(EventStreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
-            ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
+            auto future = connection.Connect(options, &lifecycleHandler, messageAmender);
+            ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.isConnected; });
             /* Test all protocol messages. */
             connection.SendPing(Aws::Crt::List<EventStreamHeader>(), Aws::Crt::Optional<Aws::Crt::ByteBuf>(), nullptr);
@@ -106,9 +107,10 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         /* Empty amendment headers. */
         {
             TestLifecycleHandler lifecycleHandler;
-            ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
+            auto future = connection.Connect(options, &lifecycleHandler, messageAmender);
+            ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED_BEFORE_CONNACK);
             lifecycleHandler.WaitOnCondition(
-                [&]() { return lifecycleHandler.lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+                [&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
         }
 
         /* Rejected client-name header. */
@@ -116,9 +118,10 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
             TestLifecycleHandler lifecycleHandler;
             connectionAmendment.AddHeader(EventStreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
-            ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
+            auto future = connection.Connect(options, &lifecycleHandler, messageAmender);
+            ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED_BEFORE_CONNACK);
             lifecycleHandler.WaitOnCondition(
-                [&]() { return lifecycleHandler.lastErrorCode == AWS_ERROR_EVENT_STREAM_RPC_CONNECTION_CLOSED; });
+                [&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
         }
     }
 
