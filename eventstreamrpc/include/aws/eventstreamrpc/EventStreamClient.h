@@ -15,7 +15,10 @@
 #include <aws/crt/io/SocketOptions.h>
 #include <aws/crt/io/TlsOptions.h>
 
+#include <aws/crt/io/HostResolver.h>
+
 #include <aws/event-stream/event_stream_rpc_client.h>
+#include <aws/io/host_resolver.h>
 
 #include <atomic>
 #include <functional>
@@ -115,6 +118,49 @@ namespace Aws
           private:
             Crt::List<EventStreamHeader> m_headers;
             Crt::Optional<Crt::ByteBuf> m_payload;
+        };
+
+        class AWS_CRT_CPP_API UnixSocketResolver final : public Crt::Io::HostResolver
+        {
+          public:
+            /**
+             * Resolves UNIX sockets.
+             */
+            UnixSocketResolver(Crt::Io::EventLoopGroup &elGroup, size_t maxHosts, Crt::Allocator *allocator = Crt::g_allocator) noexcept;
+            ~UnixSocketResolver();
+            UnixSocketResolver(const UnixSocketResolver &) = delete;
+            UnixSocketResolver &operator=(const UnixSocketResolver &) = delete;
+            UnixSocketResolver(UnixSocketResolver &&) = delete;
+            UnixSocketResolver &operator=(UnixSocketResolver &&) = delete;
+
+            bool ResolveHost(const Crt::String &host, const Crt::Io::OnHostResolved &onResolved) noexcept override;
+
+            /**
+             * @return true if the instance is in a valid state, false otherwise.
+             */
+            operator bool() const noexcept { return m_initialized; }
+            /**
+             * @return the value of the last aws error encountered by operations on this instance.
+             */
+            int LastError() const noexcept { return aws_last_error(); }
+
+            /// @private
+            aws_host_resolver *GetUnderlyingHandle() noexcept override { return m_resolver; }
+            /// @private
+            aws_host_resolution_config *GetConfig() noexcept override { return &m_config; }
+
+          private:
+            aws_host_resolver *m_resolver;
+            aws_host_resolution_config m_config;
+            Crt::Allocator *m_allocator;
+            bool m_initialized;
+
+            static void s_onHostResolved(
+                    struct aws_host_resolver *resolver,
+                    const struct aws_string *host_name,
+                    int err_code,
+                    const struct aws_array_list *host_addresses,
+                    void *user_data);
         };
 
         /**
@@ -548,8 +594,8 @@ namespace Aws
                 const Crt::String &name) noexcept;
             uint32_t m_messageCount;
             Crt::Allocator *m_allocator;
-            StreamResponseHandler* m_streamHandler;
-            const ResponseRetriever& m_responseRetriever;
+            StreamResponseHandler *m_streamHandler;
+            const ResponseRetriever &m_responseRetriever;
             ClientContinuation m_clientContinuation;
             ProtectedPromise<TaggedResponse> m_initialResponsePromise;
             /* ProtectedPromise not necessary because it's only ever being set by one thread. */

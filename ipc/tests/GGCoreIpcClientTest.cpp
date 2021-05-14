@@ -29,10 +29,10 @@ static int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx)
         Aws::Crt::Io::EventLoopGroup eventLoopGroup(0, allocator);
         ASSERT_TRUE(eventLoopGroup);
 
-        Aws::Crt::Io::DefaultHostResolver defaultHostResolver(eventLoopGroup, 8, 30, allocator);
-        ASSERT_TRUE(defaultHostResolver);
+        UnixSocketResolver unixSocketResolver(eventLoopGroup, 8, allocator);
+        ASSERT_TRUE(unixSocketResolver);
 
-        Aws::Crt::Io::ClientBootstrap clientBootstrap(eventLoopGroup, defaultHostResolver, allocator);
+        Aws::Crt::Io::ClientBootstrap clientBootstrap(eventLoopGroup, unixSocketResolver, allocator);
         ASSERT_TRUE(clientBootstrap);
         clientBootstrap.EnableBlockingShutdown();
         MessageAmendment connectionAmendment;

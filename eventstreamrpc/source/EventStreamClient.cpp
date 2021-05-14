@@ -57,6 +57,38 @@ namespace Aws
 
         void MessageAmendment::SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept { m_payload = payload; }
 
+        UnixSocketResolver::UnixSocketResolver(
+            Crt::Io::EventLoopGroup &elGroup,
+            size_t maxHosts,
+            Crt::Allocator *allocator) noexcept
+            : m_resolver(nullptr), m_allocator(allocator), m_initialized(false)
+        {
+            AWS_ZERO_STRUCT(m_config);
+
+            struct aws_host_resolver_default_options resolver_options;
+            AWS_ZERO_STRUCT(resolver_options);
+            resolver_options.max_entries = maxHosts;
+            resolver_options.el_group = elGroup.GetUnderlyingHandle();
+
+            m_resolver = aws_host_resolver_new_default(allocator, &resolver_options);
+            if (m_resolver != nullptr)
+            {
+                m_initialized = true;
+            }
+        }
+
+        bool UnixSocketResolver::ResolveHost(const Crt::String &host, const Crt::Io::OnHostResolved &onResolved) noexcept
+        {
+            // Nothing to resolve
+            return true;
+        }
+
+        UnixSocketResolver::~UnixSocketResolver()
+        {
+            aws_host_resolver_release(m_resolver);
+            m_initialized = false;
+        }
+
         ClientConnectionOptions::ClientConnectionOptions()
             : Bootstrap(), SocketOptions(), TlsOptions(), HostName(), Port(0)
         {
