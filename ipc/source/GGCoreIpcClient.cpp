@@ -1,6 +1,8 @@
 #include <aws/crt/Api.h>
 #include <aws/ipc/GGCoreIpcClient.h>
 
+#include <sstream>
+
 namespace Aws
 {
     namespace Eventstreamrpc
@@ -355,15 +357,19 @@ namespace Aws
                     finalIpcSocket = Crt::String(std::getenv("AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT"));
                 }
 
-                const char *finalAuthToken;
+                Crt::String finalAuthToken;
                 if (authToken.has_value())
                 {
-                    finalAuthToken = authToken.value().c_str();
+                    finalAuthToken = authToken.value();
                 }
                 else
                 {
-                    finalAuthToken = std::getenv("SVCUID");
+                    finalAuthToken = Crt::String(std::getenv("SVCUID"));
                 }
+
+                /* Encode authToken as JSON. */
+                Crt::StringStream authTokenPayloadSS;
+                authTokenPayloadSS << "{\"authToken\":\"" << finalAuthToken << "\"}";
 
                 if(!m_clientBootstrap)
                 {
@@ -381,7 +387,7 @@ namespace Aws
                 connectionOptions.HostName = finalIpcSocket;
                 connectionOptions.Port = 0;
 
-                MessageAmendment connectionAmendment(Crt::ByteBufFromCString(finalAuthToken));
+                MessageAmendment connectionAmendment(Crt::ByteBufFromCString(authTokenPayloadSS.str().c_str()));
                 auto messageAmender = [&](void) -> MessageAmendment & { return connectionAmendment; };
 
                 return m_connection.Connect(connectionOptions, lifecycleHandler, messageAmender);
