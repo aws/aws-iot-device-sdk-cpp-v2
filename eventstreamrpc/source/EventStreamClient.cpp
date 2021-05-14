@@ -536,10 +536,8 @@ namespace Aws
             thisConnection->m_clientState = DISCONNECTED;
             thisConnection->m_stateMutex.unlock();
 
-            if (thisConnection->m_lifecycleHandler.OnErrorCallback(errorCode))
-            {
-                thisConnection->Close();
-            }
+            /* No connection to close here, so no need to check return value. */
+            (void) thisConnection->m_lifecycleHandler.OnErrorCallback(errorCode);
         }
 
         void MessageAmendment::AddHeader(EventStreamHeader &&header) noexcept { m_headers.push_back(header); }
