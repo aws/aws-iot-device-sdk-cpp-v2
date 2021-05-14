@@ -371,7 +371,7 @@ namespace Aws
                 Crt::StringStream authTokenPayloadSS;
                 authTokenPayloadSS << "{\"authToken\":\"" << finalAuthToken << "\"}";
 
-                if(!m_clientBootstrap)
+                if (!m_clientBootstrap)
                 {
                     initializationPromise.set_value({EVENT_STREAM_RPC_INITIALIZATION_ERROR, 0});
                     return initializationPromise.get_future();
@@ -393,10 +393,7 @@ namespace Aws
                 return m_connection.Connect(connectionOptions, lifecycleHandler, messageAmender);
             }
 
-            void GreengrassIpcClient::Close() noexcept
-            {
-                m_connection.Close();
-            }
+            void GreengrassIpcClient::Close() noexcept { m_connection.Close(); }
 
             GreengrassIpcClient::~GreengrassIpcClient() noexcept
             {
@@ -452,7 +449,7 @@ namespace Aws
             }
 
             SubscribeToTopicOperation GreengrassIpcClient::NewSubscribeToTopic(
-                SubscribeToTopicStreamHandler& streamHandler) noexcept
+                SubscribeToTopicStreamHandler &streamHandler) noexcept
             {
                 return SubscribeToTopicOperation(m_connection, &streamHandler, m_greengrassModelRetriever, m_allocator);
             }
