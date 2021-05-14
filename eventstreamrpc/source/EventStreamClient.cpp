@@ -212,7 +212,6 @@ namespace Aws
             Crt::Allocator *allocator) noexcept
             : m_allocator(allocator), m_lifecycleHandler(connectionLifecycleHandler)
         {
-            std::cout << aws_error_str(1059) << std::endl;
         }
 
         ClientConnection::~ClientConnection() noexcept

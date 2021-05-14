@@ -371,9 +371,13 @@ namespace Aws
                     return initializationPromise.get_future();
                 }
 
+                Crt::Io::SocketOptions socketOptions;
+                socketOptions.SetSocketDomain(Crt::Io::SocketDomain::Local);
+                socketOptions.SetSocketType(Crt::Io::SocketType::Stream);
+
                 ClientConnectionOptions connectionOptions;
                 connectionOptions.Bootstrap = &m_clientBootstrap;
-                connectionOptions.SocketOptions = Crt::Io::SocketOptions();
+                connectionOptions.SocketOptions = std::move(socketOptions);
                 connectionOptions.HostName = finalIpcSocket;
                 connectionOptions.Port = 0;
 

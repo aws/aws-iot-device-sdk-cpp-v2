@@ -41,7 +41,7 @@ static int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx)
         ConnectionLifecycleHandler lifecycleHandler;
         Ipc::GreengrassIpcClient client(lifecycleHandler, clientBootstrap);
         auto connectedStatus = client.Connect(lifecycleHandler);
-        connectedStatus.get();
+        ASSERT_TRUE(connectedStatus.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
 
         /* Subscribe to Topic */
         {
