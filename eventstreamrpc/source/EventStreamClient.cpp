@@ -509,7 +509,9 @@ namespace Aws
                         Crt::String(EVENTSTREAM_VERSION_STRING),
                         thisConnection->m_allocator));
                     /* Note that we are prepending headers from the user-provided amender. */
-                    messageAmendmentHeaders.splice(messageAmendmentHeaders.end(), amenderHeaderList);
+                    if(amenderHeaderList.size() > 0) {
+                        messageAmendmentHeaders.splice(messageAmendmentHeaders.end(), amenderHeaderList);
+                    }
                     messageAmendment.SetPayload(connectAmendment.GetPayload());
                 }
 
