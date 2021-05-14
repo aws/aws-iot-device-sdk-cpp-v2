@@ -345,14 +345,14 @@ namespace Aws
             {
                 std::promise<EventStreamRpcStatus> initializationPromise;
 
-                const char *finalIpcSocket;
+                Crt::String finalIpcSocket;
                 if (ipcSocket.has_value())
                 {
-                    finalIpcSocket = ipcSocket.value().c_str();
+                    finalIpcSocket = ipcSocket.value();
                 }
                 else
                 {
-                    finalIpcSocket = std::getenv("AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT");
+                    finalIpcSocket = Crt::String(std::getenv("AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT"));
                 }
 
                 const char *finalAuthToken;
