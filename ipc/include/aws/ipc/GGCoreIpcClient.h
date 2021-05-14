@@ -118,7 +118,7 @@ namespace Aws
               public:
                 PublishToTopicOperation(
                     ClientConnection &connection,
-                    const GreengrassModelRetriever *greengrassModelRetriever,
+                    const GreengrassModelRetriever &greengrassModelRetriever,
                     Crt::Allocator *allocator) noexcept;
                 std::future<EventStreamRpcStatus> Activate(
                     const PublishToTopicRequest &request,
@@ -224,7 +224,7 @@ namespace Aws
                 SubscribeToTopicOperation(
                     ClientConnection &connection,
                     SubscribeToTopicStreamHandler *m_streamHandler,
-                    const GreengrassModelRetriever *greengrassModelRetriever,
+                    const GreengrassModelRetriever &greengrassModelRetriever,
                     Crt::Allocator *allocator) noexcept;
                 std::future<EventStreamRpcStatus> Activate(
                     const SubscribeToTopicRequest &request,
@@ -264,14 +264,13 @@ namespace Aws
                     const Crt::Optional<Crt::String> &authToken = Crt::Optional<Crt::String>()) noexcept;
                 void Close() noexcept;
                 PublishToTopicOperation NewPublishToTopic() noexcept;
-                SubscribeToTopicOperation NewSubscribeToTopic(SubscribeToTopicStreamHandler *streamHandler) noexcept;
+                SubscribeToTopicOperation NewSubscribeToTopic(SubscribeToTopicStreamHandler& streamHandler) noexcept;
                 ~GreengrassIpcClient() noexcept;
               private:
                 GreengrassModelRetriever m_greengrassModelRetriever;
                 ClientConnection m_connection;
                 Crt::Io::ClientBootstrap& m_clientBootstrap;
                 Crt::Allocator *m_allocator;
-                MessageAmendment m_connectionAmendment;
             };
         } // namespace Ipc
 

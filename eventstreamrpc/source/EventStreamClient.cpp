@@ -450,7 +450,7 @@ namespace Aws
             return true;
         }
 
-        ClientContinuation ClientConnection::NewStream(ClientContinuationHandler *clientContinuationHandler) noexcept
+        ClientContinuation ClientConnection::NewStream(ClientContinuationHandler &clientContinuationHandler) noexcept
         {
             return ClientContinuation(this, clientContinuationHandler, m_allocator);
         }
@@ -625,9 +625,9 @@ namespace Aws
 
         ClientContinuation::ClientContinuation(
             ClientConnection *connection,
-            ClientContinuationHandler *handler,
+            ClientContinuationHandler &continuationHandler,
             Crt::Allocator *allocator) noexcept
-            : m_allocator(allocator), m_handler(handler)
+            : m_allocator(allocator), m_continuationHandler(continuationHandler)
         {
             struct aws_event_stream_rpc_client_stream_continuation_options options;
             options.on_continuation = ClientContinuation::s_onContinuationMessage;
@@ -664,7 +664,7 @@ namespace Aws
                 payload = Crt::Optional<Crt::ByteBuf>();
             }
 
-            thisContinuationToken->m_handler->OnContinuationMessage(
+            thisContinuationToken->m_continuationHandler.OnContinuationMessage(
                 continuationMessageHeaders, payload, messageArgs->message_type, messageArgs->message_flags);
         }
 
@@ -676,7 +676,7 @@ namespace Aws
             /* The `userData` pointer is used to pass `this` of a `ClientContinuation` object. */
             auto *thisContinuationToken = static_cast<ClientContinuation *>(userData);
 
-            thisContinuationToken->m_handler->OnContinuationClosed();
+            thisContinuationToken->m_continuationHandler.OnContinuationClosed();
         }
 
         std::future<EventStreamRpcStatus> ClientContinuation::Activate(
@@ -833,17 +833,17 @@ namespace Aws
         ClientOperation::ClientOperation(
             ClientConnection &connection,
             StreamResponseHandler *streamHandler,
-            const ResponseRetriever *responseRetriever,
+            const ResponseRetriever &responseRetriever,
             Crt::Allocator *allocator) noexcept
             : m_messageCount(0), m_allocator(allocator), m_streamHandler(streamHandler),
-              m_responseRetriever(responseRetriever), m_clientContinuation(connection.NewStream(this)),
+              m_responseRetriever(responseRetriever), m_clientContinuation(connection.NewStream(*this)),
               m_isClosed(false)
         {
         }
 
         ClientOperation::ClientOperation(ClientOperation &&rhs) noexcept
             : m_messageCount(std::move(rhs.m_messageCount)), m_allocator(std::move(rhs.m_allocator)),
-              m_streamHandler(std::move(rhs.m_streamHandler)),
+              m_streamHandler(rhs.m_streamHandler), m_responseRetriever(rhs.m_responseRetriever),
               m_clientContinuation(std::move(rhs.m_clientContinuation)),
               m_initialResponsePromise(std::move(rhs.m_initialResponsePromise)),
               m_closedPromise(std::move(m_closedPromise))
@@ -851,10 +851,7 @@ namespace Aws
             m_isClosed.store(rhs.m_isClosed.load());
         }
 
-        ClientOperation::~ClientOperation() noexcept
-        {
-            Close().wait();
-        }
+        ClientOperation::~ClientOperation() noexcept { Close().wait(); }
 
         TaggedResponse::TaggedResponse(Crt::ScopedResource<OperationResponse> response) noexcept
             : m_responseType(EXPECTED_RESPONSE)
@@ -946,11 +943,11 @@ namespace Aws
             /* Responses after the first message don't necessarily have the same shape as the first. */
             if (m_messageCount == 1)
             {
-                responseFactory = m_responseRetriever->GetLoneResponseFromModelName(GetModelName());
+                responseFactory = m_responseRetriever.GetLoneResponseFromModelName(GetModelName());
             }
             else
             {
-                responseFactory = m_responseRetriever->GetStreamingResponseFromModelName(GetModelName());
+                responseFactory = m_responseRetriever.GetStreamingResponseFromModelName(GetModelName());
             }
 
             if (responseFactory == nullptr)
@@ -979,7 +976,8 @@ namespace Aws
                 }
                 else
                 {
-                    m_streamHandler->OnStreamEvent(std::move(response));
+                    if (m_streamHandler)
+                        m_streamHandler->OnStreamEvent(std::move(response));
                 }
             }
             return EVENT_STREAM_RPC_SUCCESS;
@@ -992,12 +990,12 @@ namespace Aws
         {
             bool streamAlreadyTerminated = messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM;
 
-            if(streamAlreadyTerminated)
+            if (streamAlreadyTerminated)
             {
                 m_isClosed.store(true);
             }
 
-            ErrorResponseFactory errorFactory = m_responseRetriever->GetErrorResponseFromModelName(modelName);
+            ErrorResponseFactory errorFactory = m_responseRetriever.GetErrorResponseFromModelName(modelName);
             if (errorFactory == nullptr)
             {
                 return EVENT_STREAM_RPC_UNMAPPED_DATA;
@@ -1026,7 +1024,9 @@ namespace Aws
                 }
                 else
                 {
-                    bool shouldCloseNow = m_streamHandler->OnStreamError(std::move(error));
+                    bool shouldCloseNow = true;
+                    if (m_streamHandler)
+                        shouldCloseNow = m_streamHandler->OnStreamError(std::move(error));
                     if (!streamAlreadyTerminated && shouldCloseNow && !m_isClosed.exchange(true))
                     {
                         Close().wait();
@@ -1107,7 +1107,9 @@ namespace Aws
                 }
                 else
                 {
-                    bool shouldClose = m_streamHandler->OnStreamError(std::move(operationError));
+                    bool shouldClose = true;
+                    if (m_streamHandler)
+                        shouldClose = m_streamHandler->OnStreamError(std::move(operationError));
                     if (!m_isClosed.load() && shouldClose)
                     {
                         Close().wait();
@@ -1166,13 +1168,15 @@ namespace Aws
                 std::promise<EventStreamRpcStatus> alreadyClosedPromise;
                 alreadyClosedPromise.set_value({EVENT_STREAM_RPC_STREAM_CLOSED_ERROR, 0});
                 return alreadyClosedPromise.get_future();
-            } else {
+            }
+            else
+            {
                 return m_clientContinuation.SendMessage(
-                Crt::List<EventStreamHeader>(),
-                Crt::Optional<Crt::ByteBuf>(),
-                AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
-                AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM,
-                onMessageFlushCallback);
+                    Crt::List<EventStreamHeader>(),
+                    Crt::Optional<Crt::ByteBuf>(),
+                    AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_APPLICATION_MESSAGE,
+                    AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM,
+                    onMessageFlushCallback);
             }
         }
 

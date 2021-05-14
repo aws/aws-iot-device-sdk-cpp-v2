@@ -258,7 +258,7 @@ namespace Aws
                 const Crt::Optional<Crt::ByteBuf> &payload,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
-            ClientContinuation NewStream(ClientContinuationHandler *clientContinuationHandler) noexcept;
+            ClientContinuation NewStream(ClientContinuationHandler &clientContinuationHandler) noexcept;
 
             void Close() noexcept;
 
@@ -338,7 +338,7 @@ namespace Aws
           public:
             ClientContinuation(
                 ClientConnection *connection,
-                ClientContinuationHandler *handler,
+                ClientContinuationHandler &continuationHandler,
                 Crt::Allocator *allocator) noexcept;
             std::future<EventStreamRpcStatus> Activate(
                 const Crt::String &operation,
@@ -357,7 +357,7 @@ namespace Aws
 
           private:
             Crt::Allocator *m_allocator;
-            ClientContinuationHandler *m_handler;
+            ClientContinuationHandler &m_continuationHandler;
             struct aws_event_stream_rpc_client_continuation_token *m_continuationToken;
             static void s_onContinuationMessage(
                 struct aws_event_stream_rpc_client_continuation_token *continuationToken,
@@ -502,7 +502,7 @@ namespace Aws
             ClientOperation(
                 ClientConnection &connection,
                 StreamResponseHandler *streamHandler,
-                const ResponseRetriever *responseRetriever,
+                const ResponseRetriever &responseRetriever,
                 Crt::Allocator *allocator) noexcept;
             ~ClientOperation() noexcept;
             ClientOperation(const ClientOperation &clientOperation) noexcept = default;
@@ -519,7 +519,6 @@ namespace Aws
                 OperationRequest *shape,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept;
             virtual Crt::String GetModelName() const noexcept = 0;
-            const ResponseRetriever *m_ResponseRetriever;
 
           private:
             int HandleData(const Crt::String &modelName, const Crt::Optional<Crt::ByteBuf> &payload);
@@ -549,8 +548,8 @@ namespace Aws
                 const Crt::String &name) noexcept;
             uint32_t m_messageCount;
             Crt::Allocator *m_allocator;
-            StreamResponseHandler *m_streamHandler;
-            const ResponseRetriever *m_responseRetriever;
+            StreamResponseHandler* m_streamHandler;
+            const ResponseRetriever& m_responseRetriever;
             ClientContinuation m_clientContinuation;
             ProtectedPromise<TaggedResponse> m_initialResponsePromise;
             /* ProtectedPromise not necessary because it's only ever being set by one thread. */

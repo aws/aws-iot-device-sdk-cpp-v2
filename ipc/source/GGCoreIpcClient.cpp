@@ -95,7 +95,7 @@ namespace Aws
 
             PublishToTopicOperation::PublishToTopicOperation(
                 ClientConnection &connection,
-                const GreengrassModelRetriever *greengrassModelRetriever,
+                const GreengrassModelRetriever &greengrassModelRetriever,
                 Crt::Allocator *allocator) noexcept
                 : ClientOperation(connection, nullptr, greengrassModelRetriever, allocator)
             {
@@ -111,7 +111,7 @@ namespace Aws
             SubscribeToTopicOperation::SubscribeToTopicOperation(
                 ClientConnection &connection,
                 SubscribeToTopicStreamHandler *streamHandler,
-                const GreengrassModelRetriever *greengrassModelRetriever,
+                const GreengrassModelRetriever &greengrassModelRetriever,
                 Crt::Allocator *allocator) noexcept
                 : ClientOperation(connection, streamHandler, greengrassModelRetriever, allocator)
             {
@@ -378,8 +378,7 @@ namespace Aws
                 connectionOptions.Port = 0;
 
                 MessageAmendment connectionAmendment(Crt::ByteBufFromCString(finalAuthToken));
-                m_connectionAmendment.SetPayload(Crt::ByteBufFromCString(finalAuthToken));
-                auto messageAmender = [&](void) -> MessageAmendment & { return m_connectionAmendment; };
+                auto messageAmender = [&](void) -> MessageAmendment & { return connectionAmendment; };
 
                 return m_connection.Connect(connectionOptions, lifecycleHandler, messageAmender);
             }
@@ -439,13 +438,13 @@ namespace Aws
 
             PublishToTopicOperation GreengrassIpcClient::NewPublishToTopic() noexcept
             {
-                return PublishToTopicOperation(m_connection, &m_greengrassModelRetriever, m_allocator);
+                return PublishToTopicOperation(m_connection, m_greengrassModelRetriever, m_allocator);
             }
 
             SubscribeToTopicOperation GreengrassIpcClient::NewSubscribeToTopic(
-                SubscribeToTopicStreamHandler *streamHandler) noexcept
+                SubscribeToTopicStreamHandler& streamHandler) noexcept
             {
-                return SubscribeToTopicOperation(m_connection, streamHandler, &m_greengrassModelRetriever, m_allocator);
+                return SubscribeToTopicOperation(m_connection, &streamHandler, m_greengrassModelRetriever, m_allocator);
             }
 
             void SubscribeToTopicStreamHandler::OnStreamEvent(Crt::ScopedResource<OperationResponse> response)

@@ -46,7 +46,7 @@ static int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx)
         /* Subscribe to Topic */
         {
             Ipc::SubscribeToTopicStreamHandler streamHandler;
-            Ipc::SubscribeToTopicOperation operation = client.NewSubscribeToTopic(&streamHandler);
+            Ipc::SubscribeToTopicOperation operation = client.NewSubscribeToTopic(streamHandler);
             Ipc::SubscribeToTopicRequest request(Aws::Crt::String("topic"), allocator);
             auto activate = operation.Activate(request, nullptr);
             activate.wait();
