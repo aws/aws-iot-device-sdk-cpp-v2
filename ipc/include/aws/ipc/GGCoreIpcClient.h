@@ -116,8 +116,11 @@ namespace Aws
             class PublishToTopicOperation : public ClientOperation
             {
               public:
-                PublishToTopicOperation(ClientConnection &connection, const GreengrassModelRetriever* greengrassModelRetriever, Crt::Allocator *allocator) noexcept;
-                void Activate(
+                PublishToTopicOperation(
+                    ClientConnection &connection,
+                    const GreengrassModelRetriever *greengrassModelRetriever,
+                    Crt::Allocator *allocator) noexcept;
+                std::future<EventStreamRpcStatus> Activate(
                     const PublishToTopicRequest &request,
                     OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
@@ -221,9 +224,9 @@ namespace Aws
                 SubscribeToTopicOperation(
                     ClientConnection &connection,
                     SubscribeToTopicStreamHandler *m_streamHandler,
-                    const GreengrassModelRetriever* greengrassModelRetriever,
+                    const GreengrassModelRetriever *greengrassModelRetriever,
                     Crt::Allocator *allocator) noexcept;
-                void Activate(
+                std::future<EventStreamRpcStatus> Activate(
                     const SubscribeToTopicRequest &request,
                     OnMessageFlushCallback onMessageFlushCallback) noexcept;
 
@@ -234,9 +237,13 @@ namespace Aws
             class GreengrassModelRetriever : public ResponseRetriever
             {
               public:
-                ExpectedResponseFactory GetLoneResponseFromModelName(const Crt::String &modelName) const noexcept override;
-                ExpectedResponseFactory GetStreamingResponseFromModelName(const Crt::String &modelName) const noexcept override;
-                ErrorResponseFactory GetErrorResponseFromModelName(const Crt::String &modelName) const noexcept override;
+                ExpectedResponseFactory GetLoneResponseFromModelName(
+                    const Crt::String &modelName) const noexcept override;
+                ExpectedResponseFactory GetStreamingResponseFromModelName(
+                    const Crt::String &modelName) const noexcept override;
+                ErrorResponseFactory GetErrorResponseFromModelName(
+                    const Crt::String &modelName) const noexcept override;
+
               private:
                 friend class GreengrassIpcClient;
                 Crt::Map<Crt::String, ExpectedResponseFactory> m_ModelNameToSoleResponseMap;
@@ -248,14 +255,23 @@ namespace Aws
             {
               public:
                 GreengrassIpcClient(
-                    ClientConnection &&connection,
+                    ConnectionLifecycleHandler &lifecycleHandler,
+                    Crt::Io::ClientBootstrap &clientBootstrap,
                     Crt::Allocator *allocator = Crt::g_allocator) noexcept;
+                std::future<EventStreamRpcStatus> Connect(
+                    ConnectionLifecycleHandler &lifecycleHandler,
+                    const Crt::Optional<Crt::String> &ipcSocket = Crt::Optional<Crt::String>(),
+                    const Crt::Optional<Crt::String> &authToken = Crt::Optional<Crt::String>()) noexcept;
+                void Close() noexcept;
                 PublishToTopicOperation NewPublishToTopic() noexcept;
                 SubscribeToTopicOperation NewSubscribeToTopic(SubscribeToTopicStreamHandler *streamHandler) noexcept;
+                ~GreengrassIpcClient() noexcept;
               private:
                 GreengrassModelRetriever m_greengrassModelRetriever;
                 ClientConnection m_connection;
+                Crt::Io::ClientBootstrap& m_clientBootstrap;
                 Crt::Allocator *m_allocator;
+                MessageAmendment m_connectionAmendment;
             };
         } // namespace Ipc
 

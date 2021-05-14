@@ -1,3 +1,4 @@
+#include <aws/crt/Api.h>
 #include <aws/ipc/GGCoreIpcClient.h>
 
 namespace Aws
@@ -94,33 +95,33 @@ namespace Aws
 
             PublishToTopicOperation::PublishToTopicOperation(
                 ClientConnection &connection,
-                const GreengrassModelRetriever* greengrassModelRetriever,
+                const GreengrassModelRetriever *greengrassModelRetriever,
                 Crt::Allocator *allocator) noexcept
                 : ClientOperation(connection, nullptr, greengrassModelRetriever, allocator)
             {
             }
 
-            void PublishToTopicOperation::Activate(
+            std::future<EventStreamRpcStatus> PublishToTopicOperation::Activate(
                 const PublishToTopicRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept
             {
-                ClientOperation::Activate((const OperationRequest *)&request, onMessageFlushCallback);
+                return ClientOperation::Activate((const OperationRequest *)&request, onMessageFlushCallback);
             }
 
             SubscribeToTopicOperation::SubscribeToTopicOperation(
                 ClientConnection &connection,
                 SubscribeToTopicStreamHandler *streamHandler,
-                const GreengrassModelRetriever* greengrassModelRetriever,
+                const GreengrassModelRetriever *greengrassModelRetriever,
                 Crt::Allocator *allocator) noexcept
                 : ClientOperation(connection, streamHandler, greengrassModelRetriever, allocator)
             {
             }
 
-            void SubscribeToTopicOperation::Activate(
+            std::future<EventStreamRpcStatus> SubscribeToTopicOperation::Activate(
                 const SubscribeToTopicRequest &request,
                 OnMessageFlushCallback onMessageFlushCallback) noexcept
             {
-                ClientOperation::Activate((const OperationRequest *)&request, onMessageFlushCallback);
+                return ClientOperation::Activate((const OperationRequest *)&request, onMessageFlushCallback);
             }
 
             Crt::String SubscribeToTopicOperation::GetModelName() const noexcept
@@ -319,18 +320,83 @@ namespace Aws
                 OperationResponse::s_customDeleter((OperationResponse *)response);
             }
 
-            GreengrassIpcClient::GreengrassIpcClient(ClientConnection &&connection, Crt::Allocator *allocator) noexcept
-                : m_connection(std::move(connection)), m_allocator(allocator)
+            GreengrassIpcClient::GreengrassIpcClient(
+                ConnectionLifecycleHandler &lifecycleHandler,
+                Crt::Io::ClientBootstrap &clientBootstrap,
+                Crt::Allocator *allocator) noexcept
+                : m_connection(lifecycleHandler, allocator), m_clientBootstrap(clientBootstrap), m_allocator(allocator)
             {
+                aws_event_stream_library_init(m_allocator);
+
                 m_greengrassModelRetriever.m_ModelNameToSoleResponseMap[Crt::String("aws.greengrass#PublishToTopic")] =
                     PublishToTopicResponse::s_loadFromPayload;
-                m_greengrassModelRetriever.m_ModelNameToSoleResponseMap[Crt::String("aws.greengrass#SubscribeToTopic")] =
+                m_greengrassModelRetriever
+                    .m_ModelNameToSoleResponseMap[Crt::String("aws.greengrass#SubscribeToTopic")] =
                     SubscribeToTopicResponse::s_loadFromPayload;
-                m_greengrassModelRetriever.m_ModelNameToStreamingResponseMap[Crt::String("aws.greengrass#SubscribeToTopic")] =
+                m_greengrassModelRetriever
+                    .m_ModelNameToStreamingResponseMap[Crt::String("aws.greengrass#SubscribeToTopic")] =
                     SubscriptionResponseMessage::s_loadFromPayload;
             }
 
-            ExpectedResponseFactory GreengrassModelRetriever::GetLoneResponseFromModelName(const Crt::String &modelName) const noexcept
+            std::future<EventStreamRpcStatus> GreengrassIpcClient::Connect(
+                ConnectionLifecycleHandler &lifecycleHandler,
+                const Crt::Optional<Crt::String> &ipcSocket,
+                const Crt::Optional<Crt::String> &authToken) noexcept
+            {
+                std::promise<EventStreamRpcStatus> initializationPromise;
+
+                const char *finalIpcSocket;
+                if (ipcSocket.has_value())
+                {
+                    finalIpcSocket = ipcSocket.value().c_str();
+                }
+                else
+                {
+                    finalIpcSocket = std::getenv("AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT");
+                }
+
+                const char *finalAuthToken;
+                if (authToken.has_value())
+                {
+                    finalAuthToken = authToken.value().c_str();
+                }
+                else
+                {
+                    finalAuthToken = std::getenv("SVCUID");
+                }
+
+                if(!m_clientBootstrap)
+                {
+                    initializationPromise.set_value({EVENT_STREAM_RPC_INITIALIZATION_ERROR, 0});
+                    return initializationPromise.get_future();
+                }
+
+                ClientConnectionOptions connectionOptions;
+                connectionOptions.Bootstrap = &m_clientBootstrap;
+                connectionOptions.SocketOptions = Crt::Io::SocketOptions();
+                connectionOptions.HostName = finalIpcSocket;
+                connectionOptions.Port = 0;
+
+                MessageAmendment connectionAmendment(Crt::ByteBufFromCString(finalAuthToken));
+                m_connectionAmendment.SetPayload(Crt::ByteBufFromCString(finalAuthToken));
+                auto messageAmender = [&](void) -> MessageAmendment & { return m_connectionAmendment; };
+
+                return m_connection.Connect(connectionOptions, lifecycleHandler, messageAmender);
+            }
+
+            void GreengrassIpcClient::Close() noexcept
+            {
+                m_connection.Close();
+            }
+
+            GreengrassIpcClient::~GreengrassIpcClient() noexcept
+            {
+                Close();
+                aws_event_stream_library_clean_up();
+            }
+
+            ExpectedResponseFactory GreengrassModelRetriever::GetLoneResponseFromModelName(
+                const Crt::String &modelName) const noexcept
             {
                 auto it = m_ModelNameToSoleResponseMap.find(modelName);
                 if (it == m_ModelNameToSoleResponseMap.end())
@@ -343,7 +409,8 @@ namespace Aws
                 }
             }
 
-            ExpectedResponseFactory GreengrassModelRetriever::GetStreamingResponseFromModelName(const Crt::String &modelName) const noexcept
+            ExpectedResponseFactory GreengrassModelRetriever::GetStreamingResponseFromModelName(
+                const Crt::String &modelName) const noexcept
             {
                 auto it = m_ModelNameToStreamingResponseMap.find(modelName);
                 if (it == m_ModelNameToStreamingResponseMap.end())
@@ -356,7 +423,8 @@ namespace Aws
                 }
             }
 
-            ErrorResponseFactory GreengrassModelRetriever::GetErrorResponseFromModelName(const Crt::String &modelName) const noexcept
+            ErrorResponseFactory GreengrassModelRetriever::GetErrorResponseFromModelName(
+                const Crt::String &modelName) const noexcept
             {
                 auto it = m_ModelNameToErrorResponse.find(modelName);
                 if (it == m_ModelNameToErrorResponse.end())
@@ -385,9 +453,7 @@ namespace Aws
                 OnStreamEvent(static_cast<SubscriptionResponseMessage *>(response.get()));
             }
 
-            void SubscribeToTopicStreamHandler::OnStreamEvent(SubscriptionResponseMessage *response)
-            {
-            }
+            void SubscribeToTopicStreamHandler::OnStreamEvent(SubscriptionResponseMessage *response) {}
 
             bool SubscribeToTopicStreamHandler::OnStreamError(Crt::ScopedResource<OperationError> response)
             {

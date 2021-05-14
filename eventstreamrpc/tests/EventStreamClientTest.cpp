@@ -85,20 +85,22 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         options.HostName = Aws::Crt::String("127.0.0.1");
         options.Port = 8033;
 
-        ClientConnection connection(allocator);
-
         /* Happy path case. */
         {
             TestLifecycleHandler lifecycleHandler;
+            ClientConnection connection(lifecycleHandler, allocator);
             connectionAmendment.AddHeader(EventStreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
-            auto future = connection.Connect(options, &lifecycleHandler, messageAmender);
+            auto future = connection.Connect(options, lifecycleHandler, messageAmender);
             ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.isConnected; });
             /* Test all protocol messages. */
-            connection.SendPing(Aws::Crt::List<EventStreamHeader>(), Aws::Crt::Optional<Aws::Crt::ByteBuf>(), nullptr);
-            connection.SendPingResponse(
+            future = connection.SendPing(
                 Aws::Crt::List<EventStreamHeader>(), Aws::Crt::Optional<Aws::Crt::ByteBuf>(), nullptr);
+            ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
+            future = connection.SendPingResponse(
+                Aws::Crt::List<EventStreamHeader>(), Aws::Crt::Optional<Aws::Crt::ByteBuf>(), nullptr);
+            ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_SUCCESS);
             /* Close connection gracefully. */
             connection.Close();
             lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
@@ -107,21 +109,21 @@ static int s_TestEventStreamConnect(struct aws_allocator *allocator, void *ctx)
         /* Empty amendment headers. */
         {
             TestLifecycleHandler lifecycleHandler;
-            auto future = connection.Connect(options, &lifecycleHandler, messageAmender);
+            ClientConnection connection(lifecycleHandler, allocator);
+            auto future = connection.Connect(options, lifecycleHandler, messageAmender);
             ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED_BEFORE_CONNACK);
-            lifecycleHandler.WaitOnCondition(
-                [&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
+            lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
         }
 
         /* Rejected client-name header. */
         {
             TestLifecycleHandler lifecycleHandler;
+            ClientConnection connection(lifecycleHandler, allocator);
             connectionAmendment.AddHeader(EventStreamHeader(
                 Aws::Crt::String("client-name"), Aws::Crt::String("rejected.testy_mc_testerson"), allocator));
-            auto future = connection.Connect(options, &lifecycleHandler, messageAmender);
+            auto future = connection.Connect(options, lifecycleHandler, messageAmender);
             ASSERT_TRUE(future.get().baseStatus == EVENT_STREAM_RPC_CONNECTION_CLOSED_BEFORE_CONNACK);
-            lifecycleHandler.WaitOnCondition(
-                [&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
+            lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
         }
     }
 

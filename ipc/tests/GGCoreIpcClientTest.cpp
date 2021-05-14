@@ -15,45 +15,6 @@ using namespace Aws::Eventstreamrpc;
 
 static int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx);
 
-class TestLifecycleHandler : public ConnectionLifecycleHandler
-{
-  public:
-    TestLifecycleHandler()
-    {
-        semaphoreULock = std::unique_lock<std::mutex>(semaphoreLock);
-        isConnected = false;
-        lastErrorCode = AWS_OP_ERR;
-    }
-
-    void OnConnectCallback() override
-    {
-        std::lock_guard<std::mutex> lockGuard(semaphoreLock);
-
-        isConnected = true;
-
-        semaphore.notify_one();
-    }
-
-    void OnDisconnectCallback(int errorCode) override
-    {
-        std::lock_guard<std::mutex> lockGuard(semaphoreLock);
-
-        lastErrorCode = errorCode;
-
-        semaphore.notify_one();
-    }
-
-    void WaitOnCondition(std::function<bool(void)> condition) { semaphore.wait(semaphoreULock, condition); }
-
-  private:
-    friend int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx);
-    std::condition_variable semaphore;
-    std::mutex semaphoreLock;
-    std::unique_lock<std::mutex> semaphoreULock;
-    int isConnected;
-    int lastErrorCode;
-};
-
 static int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx)
 {
     (void)ctx;
@@ -64,8 +25,6 @@ static int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx)
         ASSERT_TRUE(tlsContext);
 
         Aws::Crt::Io::TlsConnectionOptions tlsConnectionOptions = tlsContext.NewConnectionOptions();
-        Aws::Crt::Io::SocketOptions socketOptions;
-        socketOptions.SetConnectTimeoutMs(1000);
 
         Aws::Crt::Io::EventLoopGroup eventLoopGroup(0, allocator);
         ASSERT_TRUE(eventLoopGroup);
@@ -79,32 +38,20 @@ static int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx)
         MessageAmendment connectionAmendment;
         auto messageAmender = [&](void) -> MessageAmendment & { return connectionAmendment; };
 
-        ClientConnectionOptions options;
-        options.Bootstrap = &clientBootstrap;
-        options.SocketOptions = socketOptions;
-        options.HostName = Aws::Crt::String("127.0.0.1");
-        options.Port = 8033;
-
-        ClientConnection connection(allocator);
-        TestLifecycleHandler lifecycleHandler;
-        connectionAmendment.AddHeader(EventStreamHeader(
-            Aws::Crt::String("client-name"), Aws::Crt::String("accepted.testy_mc_testerson"), allocator));
-        ASSERT_TRUE(connection.Connect(options, &lifecycleHandler, messageAmender));
-        lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.isConnected; });
-        Ipc::GreengrassIpcClient client(std::move(connection));
+        ConnectionLifecycleHandler lifecycleHandler;
+        Ipc::GreengrassIpcClient client(lifecycleHandler, clientBootstrap);
+        auto connectedStatus = client.Connect(lifecycleHandler);
+        connectedStatus.get();
 
         /* Subscribe to Topic */
         {
             Ipc::SubscribeToTopicStreamHandler streamHandler;
             Ipc::SubscribeToTopicOperation operation = client.NewSubscribeToTopic(&streamHandler);
             Ipc::SubscribeToTopicRequest request(Aws::Crt::String("topic"), allocator);
-            operation.Activate(request, nullptr);
+            auto activate = operation.Activate(request, nullptr);
+            activate.wait();
             auto response = operation.GetResponse();
             response.wait();
-            response.get();
-            /* Close connection gracefully. */
-            connection.Close();
-            lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
         }
 
         /* Publish to Topic */
@@ -113,14 +60,13 @@ static int s_PublishToIoTCore(struct aws_allocator *allocator, void *ctx)
             Ipc::PublishMessage publishMessage(allocator);
             Ipc::PublishToTopicRequest request(
                 Aws::Crt::String("example"), Ipc::PublishMessage(publishMessage), allocator);
-            operation.Activate(request, nullptr);
+            auto activate = operation.Activate(request, nullptr);
+            activate.wait();
             auto response = operation.GetResponse();
-            response.wait();
             response.get();
-            /* Close connection gracefully. */
-            connection.Close();
-            lifecycleHandler.WaitOnCondition([&]() { return lifecycleHandler.lastErrorCode == AWS_OP_SUCCESS; });
         }
+
+        client.Close();
     }
 
     return AWS_OP_SUCCESS;
