@@ -147,11 +147,10 @@ namespace Aws
             /// @private
             aws_host_resolver *GetUnderlyingHandle() noexcept override { return m_resolver; }
             /// @private
-            aws_host_resolution_config *GetConfig() noexcept override { return &m_config; }
+            aws_host_resolution_config *GetConfig() noexcept override { return NULL; }
 
           private:
             aws_host_resolver *m_resolver;
-            aws_host_resolution_config m_config;
             Crt::Allocator *m_allocator;
             bool m_initialized;
 

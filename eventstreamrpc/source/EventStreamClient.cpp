@@ -63,8 +63,6 @@ namespace Aws
             Crt::Allocator *allocator) noexcept
             : m_resolver(nullptr), m_allocator(allocator), m_initialized(false)
         {
-            AWS_ZERO_STRUCT(m_config);
-
             struct aws_host_resolver_default_options resolver_options;
             AWS_ZERO_STRUCT(resolver_options);
             resolver_options.max_entries = maxHosts;
