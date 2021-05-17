@@ -120,7 +120,7 @@ configure_file("cmake/iotdevicedefender-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotdevicedefender-cpp-config.cmake"
-        DESTINATION "lib/IotDeviceDefender-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotDeviceDefender-cpp/cmake/"
         COMPONENT Development)
 
 if (BUILD_TESTING)
