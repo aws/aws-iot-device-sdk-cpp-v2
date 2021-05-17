@@ -36,9 +36,8 @@ static void s_printHelp()
         " in your trust store, set this.\n");
     fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
     fprintf(stdout, "use_websocket: if specified, uses a websocket over https (optional)\n");
-    fprintf(stdout, "proxy_host: if you want to use a proxy with websockets, specify the host here (optional).\n");
-    fprintf(
-        stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n");
+    fprintf(stdout, "proxy_host: host name of the http proxy to use (optional).\n");
+    fprintf(stdout, "proxy_port: port of the http proxy to use (optional).\n");
     fprintf(stdout, "user_name: User name to send with mqtt connect.\n");
     fprintf(stdout, "password: Password to send with mqtt connect.\n");
     fprintf(stdout, "protocol_name: (optional) defaults to x-amzn-mqtt-ca.\n");
@@ -124,15 +123,16 @@ int main(int argc, char *argv[])
     {
         protocolName = "http/1.1";
         useWebSocket = true;
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
-        {
-            proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
-        }
+    }
 
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
-        {
-            proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
-        }
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
+    {
+        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
+    }
+
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
+    {
+        proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
     }
 
     if (s_cmdOptionExists(argv, argv + argc, "--user_name"))
@@ -274,7 +274,7 @@ int main(int argc, char *argv[])
         Http::HttpClientConnectionProxyOptions proxyOptions;
         proxyOptions.HostName = proxyHost;
         proxyOptions.Port = proxyPort;
-        connection->SetWebsocketProxyOptions(proxyOptions);
+        connection->SetHttpProxyOptions(proxyOptions);
     }
 
     /*

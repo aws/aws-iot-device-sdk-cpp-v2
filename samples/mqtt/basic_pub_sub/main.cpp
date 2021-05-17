@@ -44,9 +44,8 @@ static void s_printHelp()
         stdout,
         "signing_region: used for websocket signer it should only be specific if websockets are used. (required for "
         "websockets)\n");
-    fprintf(stdout, "proxy_host: if you want to use a proxy with websockets, specify the host here (optional).\n");
-    fprintf(
-        stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n");
+    fprintf(stdout, "proxy_host: host name of the http proxy to use (optional).\n");
+    fprintf(stdout, "proxy_port: port of the http proxy to use (optional).\n");
 
     fprintf(stdout, "  x509: Use the x509 credentials provider while using websockets (optional)\n");
     fprintf(stdout, "  x509_role_alias: Role alias to use with the x509 credentials provider (required for x509)\n");
@@ -155,16 +154,16 @@ int main(int argc, char *argv[])
         }
         useWebSocket = true;
         signingRegion = s_getCmdOption(argv, argv + argc, "--signing_region");
+    }
 
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
-        {
-            proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
-        }
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
+    {
+        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
+    }
 
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
-        {
-            proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
-        }
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
+    {
+        proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
     }
 
     bool usingMtls = !certificatePath.empty() && !keyPath.empty();
@@ -265,6 +264,14 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
+    Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+    if (!proxyHost.empty())
+    {
+        proxyOptions.HostName = proxyHost;
+        proxyOptions.Port = proxyPort;
+        proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+    }
+
     Aws::Crt::Io::TlsContext x509TlsCtx;
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
 
@@ -275,15 +282,6 @@ int main(int argc, char *argv[])
     else if (useWebSocket)
     {
         std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
-
-        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
-        if (!proxyHost.empty())
-        {
-            proxyOptions.HostName = proxyHost;
-            proxyOptions.Port = proxyPort;
-            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
-        }
-
         if (useX509)
         {
             Aws::Crt::Io::TlsContextOptions tlsCtxOptions =
@@ -351,16 +349,16 @@ int main(int argc, char *argv[])
         }
 
         Aws::Iot::WebsocketConfig config(signingRegion, provider);
-        if (!proxyHost.empty())
-        {
-            config.ProxyOptions = proxyOptions;
-        }
-
         builder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
     }
     else
     {
         s_printHelp();
+    }
+
+    if (!proxyHost.empty())
+    {
+        builder.WithHttpProxyOptions(proxyOptions);
     }
 
     if (!caFile.empty())
