@@ -163,7 +163,11 @@ int main(int argc, char *argv[])
 
     if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
     {
-        proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
+        int port = atoi(s_getCmdOption(argv, argv + argc, "--proxy_port"));
+        if (port > 0 && port <= UINT16_MAX)
+        {
+            proxyPort = static_cast<uint16_t>(port);
+        }
     }
 
     bool usingMtls = !certificatePath.empty() && !keyPath.empty();

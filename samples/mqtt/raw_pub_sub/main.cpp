@@ -7,10 +7,11 @@
 
 #include <aws/crt/http/HttpRequestResponse.h>
 #include <aws/crt/mqtt/MqttClient.h>
+#include <aws/crt/UUID.h>
 
 #include <algorithm>
-#include <aws/crt/UUID.h>
 #include <condition_variable>
+#include <cstdint>
 #include <iostream>
 #include <mutex>
 
@@ -132,7 +133,11 @@ int main(int argc, char *argv[])
 
     if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
     {
-        proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
+        int port = atoi(s_getCmdOption(argv, argv + argc, "--proxy_port"));
+        if (port > 0 && port <= UINT16_MAX)
+        {
+            proxyPort = static_cast<uint16_t>(port);
+        }
     }
 
     if (s_cmdOptionExists(argv, argv + argc, "--user_name"))
