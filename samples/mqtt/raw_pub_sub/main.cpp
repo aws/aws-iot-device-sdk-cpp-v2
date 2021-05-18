@@ -5,11 +5,11 @@
 #include <aws/crt/Api.h>
 #include <aws/crt/StlAllocator.h>
 
-#include <aws/crt/UUID.h>
 #include <aws/crt/http/HttpRequestResponse.h>
 #include <aws/crt/mqtt/MqttClient.h>
 
 #include <algorithm>
+#include <aws/crt/UUID.h>
 #include <condition_variable>
 #include <cstdint>
 #include <iostream>
