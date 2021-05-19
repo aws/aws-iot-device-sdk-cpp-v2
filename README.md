@@ -29,7 +29,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 * C++ 11 or higher
 * CMake 3.1+
-* Clang 3.9+ or GCC 4.4+ or MSVC 2015+
+* Clang 3.9+ or GCC 4.8+ or MSVC 2015+
 
 ### Build from source
 
