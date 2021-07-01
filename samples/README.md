@@ -1,4 +1,32 @@
-# Samples
+# Sample apps for the AWS IoT Device SDK for C++ v2
+
+* [Basic MQTT Pub-Sub](#basic-mqtt-pub-sub)
+* [Raw MQTT Pub-Sub](#raw-mqtt-pub-sub)
+* [Fleet provisioning](#fleet-provisioning)
+* [Shadow](#shadow)
+* [Jobs](#jobs)
+* [Greengrass discovery](#greengrass-discovery)
+
+## Build Instruction
+
+Firstly, build and install aws-iot-devices-sdk-cpp-v2 with following instructions from [Installation](../README.md#Installation).
+
+### Build samples
+
+Change directory into one of the samples. Under the directory of the sample, run the following commands:
+
+``` sh
+mkdir build
+cd build
+cmake -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ..
+cmake --build . --config "<Release|RelWithDebInfo|Debug>"
+```
+
+#### Note
+
+* `-DCMAKE_PREFIX_PATH` needs to be set to the path aws-iot-device-sdk-cpp-v2 installed. Since [Installation](../README.md#Installation) takes sdk-cpp-workspace as an example, here takes that as an example too.
+
+* `-DCMAKE_BUILD_TYPE` and `--config` needs to match the CMAKE_BUILD_TYPE when aws-iot-device-sdk-cpp-v2 built. `--config` is only REQUIRED for multi-configuration build tools.
 
 ## Basic MQTT Pub-Sub
 
@@ -414,7 +442,17 @@ using a permanent certificate set, replace the paths specified in the `--cert` a
         --csr /tmp/deviceCert.csr
 ```
 
-## Greengrass Discovery
+## Secure Tunneling
+
+This sample uses the AWS IoT [Secure Tunneling](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling.html) Service to receive a tunnel notification.
+
+This sample requires you to create a tunnel for your thing. See [instructions here](https://docs.aws.amazon.com/iot/latest/developerguide/secure-tunneling-tutorial.html).
+
+On startup, the sample will wait until it receives, and then displays the tunnel notification.
+
+Source: `samples/secure_tunneling`
+
+## Greengrass discovery
 
 This sample intended for use directly with the
 [Getting Started with AWS IoT Greengrass](https://docs.aws.amazon.com/greengrass/latest/developerguide/gg-gs.html) guide.

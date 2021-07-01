@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <aws/crt/UUID.h>
 #include <condition_variable>
+#include <cstdint>
 #include <iostream>
 #include <mutex>
 
@@ -36,12 +37,11 @@ static void s_printHelp()
         " in your trust store, set this.\n");
     fprintf(stdout, "\tIt's the path to a CA file in PEM format\n");
     fprintf(stdout, "use_websocket: if specified, uses a websocket over https (optional)\n");
-    fprintf(stdout, "proxy_host: if you want to use a proxy with websockets, specify the host here (optional).\n");
-    fprintf(
-        stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n");
+    fprintf(stdout, "proxy_host: host name of the http proxy to use (optional).\n");
+    fprintf(stdout, "proxy_port: port of the http proxy to use (optional).\n");
     fprintf(stdout, "user_name: User name to send with mqtt connect.\n");
     fprintf(stdout, "password: Password to send with mqtt connect.\n");
-    fprintf(stdout, "protocol_name: (optional) defaults to mqtt.\n");
+    fprintf(stdout, "protocol_name: (optional) defaults to x-amzn-mqtt-ca.\n");
     fprintf(
         stdout,
         "auth_params: (optional) Comma delimited list of auth parameters. For websockets these will be set as headers. "
@@ -82,7 +82,10 @@ int main(int argc, char *argv[])
     uint16_t proxyPort(8080);
     String userName;
     String password;
-    String protocolName("mqtt");
+    // Valid protocol names are documented on page:
+    // https://docs.aws.amazon.com/iot/latest/developerguide/protocols.html
+    // Use "mqtt" for Custom Authentication
+    String protocolName("x-amzn-mqtt-ca"); // X.509 client certificate auth
     Vector<String> authParams;
 
     bool useWebSocket = false;
@@ -121,14 +124,19 @@ int main(int argc, char *argv[])
     {
         protocolName = "http/1.1";
         useWebSocket = true;
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
-        {
-            proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
-        }
+    }
 
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
+    {
+        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
+    }
+
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
+    {
+        int port = atoi(s_getCmdOption(argv, argv + argc, "--proxy_port"));
+        if (port > 0 && port <= UINT16_MAX)
         {
-            proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
+            proxyPort = static_cast<uint16_t>(port);
         }
     }
 
@@ -271,7 +279,7 @@ int main(int argc, char *argv[])
         Http::HttpClientConnectionProxyOptions proxyOptions;
         proxyOptions.HostName = proxyHost;
         proxyOptions.Port = proxyPort;
-        connection->SetWebsocketProxyOptions(proxyOptions);
+        connection->SetHttpProxyOptions(proxyOptions);
     }
 
     /*
@@ -326,7 +334,12 @@ int main(int argc, char *argv[])
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
-    connection->SetOnMessageHandler([](Mqtt::MqttConnection &, const String &topic, const ByteBuf &payload) {
+    connection->SetOnMessageHandler([](Mqtt::MqttConnection &,
+                                       const String &topic,
+                                       const ByteBuf &payload,
+                                       bool /*dup*/,
+                                       Mqtt::QOS /*qos*/,
+                                       bool /*retain*/) {
         fprintf(stdout, "Generic Publish received on topic %s, payload:\n", topic.c_str());
         fwrite(payload.buffer, 1, payload.len, stdout);
         fprintf(stdout, "\n");
@@ -349,7 +362,12 @@ int main(int argc, char *argv[])
         /*
          * This is invoked upon the receipt of a Publish on a subscribed topic.
          */
-        auto onPublish = [&](Mqtt::MqttConnection &, const String &topic, const ByteBuf &byteBuf) {
+        auto onMessage = [&](Mqtt::MqttConnection &,
+                             const String &topic,
+                             const ByteBuf &byteBuf,
+                             bool /*dup*/,
+                             Mqtt::QOS /*qos*/,
+                             bool /*retain*/) {
             fprintf(stdout, "Publish received on topic %s\n", topic.c_str());
             fprintf(stdout, "\n Message:\n");
             fwrite(byteBuf.buffer, 1, byteBuf.len, stdout);
@@ -382,7 +400,7 @@ int main(int argc, char *argv[])
                 subscribeFinishedPromise.set_value();
             };
 
-        connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onPublish, onSubAck);
+        connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
 
         while (true)
@@ -400,12 +418,9 @@ int main(int argc, char *argv[])
                 break;
             }
 
-            ByteBuf payload = ByteBufNewCopy(DefaultAllocator(), (const uint8_t *)input.data(), input.length());
-            ByteBuf *payloadPtr = &payload;
+            ByteBuf payload = ByteBufFromArray((const uint8_t *)input.data(), input.length());
 
-            auto onPublishComplete = [payloadPtr](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
-                aws_byte_buf_clean_up(payloadPtr);
-
+            auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
                 if (packetId)
                 {
                     fprintf(stdout, "Operation on packetId %d Succeeded\n", packetId);

@@ -109,11 +109,10 @@ install(EXPORT "Discovery-cpp-targets"
         NAMESPACE AWS::
         COMPONENT Development)
 
-configure_file("cmake/Discovery-cpp-config.cmake"
-        "${CMAKE_CURRENT_BINARY_DIR}/Discovery-cpp-config.cmake"
+configure_file("cmake/discovery-cpp-config.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/discovery-cpp-config.cmake"
         @ONLY)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/Discovery-cpp-config.cmake"
-        DESTINATION "lib/Discovery-cpp/cmake/"
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/discovery-cpp-config.cmake"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/Discovery-cpp/cmake/"
         COMPONENT Development)
-
