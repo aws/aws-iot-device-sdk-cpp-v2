@@ -551,11 +551,9 @@ namespace Aws
             std::mutex m_continuationMutex;
             bool m_resultReceived;
             std::promise<TaggedResult> m_initialResponsePromise;
-            CloseState m_closeState;
-            std::atomic_int m_numCloses;
+            std::atomic_int m_expectedCloses;
             std::atomic_bool m_streamClosedCalled;
-            std::promise<void> m_closedPromise;
-            std::condition_variable m_promiseReady;
+            std::condition_variable m_closeReady;
         };
 
         class AWS_EVENTSTREAMRPC_API ClientConnection final

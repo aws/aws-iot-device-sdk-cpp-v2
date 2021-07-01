@@ -1068,7 +1068,7 @@ namespace Aws
             Crt::Allocator *allocator) noexcept
             : m_operationModelContext(operationModelContext), m_messageCount(0), m_allocator(allocator),
               m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(*this)),
-              m_closeState(WONT_CLOSE), m_numCloses(0), m_streamClosedCalled(false)
+              m_expectedCloses(0), m_streamClosedCalled(false)
         {
         }
 
@@ -1083,10 +1083,8 @@ namespace Aws
         ClientOperation::~ClientOperation() noexcept
         {
             Close().wait();
-            if (m_numCloses.load() > 0)
-            {
-                m_closedPromise.get_future().wait();
-            }
+            std::unique_lock<std::mutex> lock(m_continuationMutex);
+            m_closeReady.wait(lock, [this]{return m_expectedCloses.load() == 0;});
         }
 
         TaggedResult::TaggedResult(Crt::ScopedResource<AbstractShapeBase> operationResponse) noexcept
@@ -1326,8 +1324,7 @@ namespace Aws
             if (messageFlags & AWS_EVENT_STREAM_RPC_MESSAGE_FLAG_TERMINATE_STREAM)
             {
                 const std::lock_guard<std::mutex> lock(m_continuationMutex);
-                m_closeState = WILL_CLOSE;
-                m_numCloses.fetch_add(1);
+                m_expectedCloses.fetch_add(1);
             }
 
             m_messageCount += 1;
@@ -1434,12 +1431,10 @@ namespace Aws
             /* Promises must be reset in case the client would like to send a subsequent request with the same
              * `ClientOperation`. */
             m_initialResponsePromise = {};
-            m_closedPromise = {};
+            //m_closedPromise = {};
             {
                 const std::lock_guard<std::mutex> lock(m_continuationMutex);
                 m_resultReceived = false;
-                if (m_closeState != WILL_CLOSE)
-                    m_closeState = WONT_CLOSE;
             }
 
             Crt::List<EventStreamHeader> headers;
@@ -1461,29 +1456,29 @@ namespace Aws
 
         void ClientOperation::OnContinuationClosed()
         {
-            std::unique_lock<std::mutex> lock(m_continuationMutex);
+            const std::lock_guard<std::mutex> lock(m_continuationMutex);
             if (!m_resultReceived)
             {
                 m_initialResponsePromise.set_value(TaggedResult({EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0}));
                 m_resultReceived = true;
             }
 
-            m_numCloses.fetch_sub(1);
-            if (m_numCloses.load() == 0 && m_closeState != ALREADY_CLOSED)
+            if (m_expectedCloses.load() > 0)
             {
-                m_closedPromise.set_value();
-                m_closeState = ALREADY_CLOSED;
+                m_expectedCloses.fetch_sub(1);
                 if (!m_streamClosedCalled.load() && m_streamHandler)
                 {
                     m_streamHandler->OnStreamClosed();
                     m_streamClosedCalled.store(true);
                 }
+                m_closeReady.notify_one();
             }
         }
 
         std::future<RpcError> ClientOperation::Close(OnMessageFlushCallback onMessageFlushCallback) noexcept
         {
-            if (m_numCloses.load() > 0 || m_clientContinuation.IsClosed())
+            const std::lock_guard<std::mutex> lock(m_continuationMutex);
+            if (m_expectedCloses.load() > 0 || m_clientContinuation.IsClosed())
             {
                 std::promise<RpcError> errorPromise;
                 errorPromise.set_value({EVENT_STREAM_RPC_CONTINUATION_CLOSED, 0});
@@ -1530,9 +1525,7 @@ namespace Aws
                 }
                 else
                 {
-                    const std::lock_guard<std::mutex> lock(m_continuationMutex);
-                    m_closeState = WILL_CLOSE;
-                    m_numCloses.fetch_add(1);
+                    m_expectedCloses.fetch_add(1);
                     return callbackContainer->onFlushPromise.get_future();
                 }
 

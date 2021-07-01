@@ -380,10 +380,9 @@ class ThreadPool
     ThreadPool(int numThreads = std::thread::hardware_concurrency()) noexcept
         : m_numThreads(numThreads), m_stopped(false)
     {
-        m_terminatePool = false;
         for (int i = 0; i < numThreads; i++)
         {
-            m_threadPool.push_back(std::thread(&ThreadPool::TaskConsumer, this));
+            m_threadPool.push_back(std::thread(&ThreadPool::TaskWorker, this));
         }
         m_taskErrorCode = AWS_OP_SUCCESS;
     }
@@ -399,11 +398,6 @@ class ThreadPool
 
     void Shutdown() noexcept
     {
-        {
-            std::unique_lock<std::mutex> lock(m_poolMutex);
-            m_terminatePool = true;
-        }
-
         /* Wake up all threads so that they can complete. */
         m_taskReady.notify_all();
 
@@ -425,7 +419,14 @@ class ThreadPool
             {
                 if (m_queue.empty())
                 {
+                    m_stopped = true;
                     m_queueMutex.unlock();
+                    /* Wait for all threads to complete. */
+                    m_taskReady.notify_all();
+                    for (std::thread &thread : m_threadPool)
+                    {
+                        thread.join();
+                    }
                     break;
                 }
                 else
@@ -452,30 +453,30 @@ class ThreadPool
     std::mutex m_queueMutex;
     std::queue<std::function<int()>> m_queue;
     std::condition_variable m_taskReady;
-    bool m_terminatePool;
     int m_taskErrorCode;
     bool m_stopped;
 
-    void TaskConsumer()
+    void TaskWorker()
     {
         while (true)
         {
             {
                 std::unique_lock<std::mutex> lock(m_queueMutex);
 
-                m_taskReady.wait(lock, [this] { return !m_queue.empty() || m_terminatePool; });
+                m_taskReady.wait(lock, [this] { return !m_queue.empty() || m_stopped; });
                 if (!m_queue.empty())
                 {
                     std::function<int()> currentJob = m_queue.front();
+                    m_queue.pop();
+                    lock.unlock();
                     if (currentJob)
                     {
                         int errorCode = currentJob();
                         if (errorCode)
                             m_taskErrorCode = errorCode;
                     }
-                    m_queue.pop();
                 }
-                if (m_terminatePool)
+                else if (m_stopped)
                 {
                     break;
                 }
@@ -504,7 +505,17 @@ static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
             messageData.SetStringMessage(expectedMessage);
             echoMessageRequest.SetMessage(messageData);
             auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
-            requestFuture.wait();
+            std::future_status status = requestFuture.wait_for(std::chrono::seconds(1));
+            if (status != std::future_status::ready)
+            {
+                return AWS_OP_SUCCESS;
+            }
+            auto resultFuture = echoMessage.GetResult();
+            status = resultFuture.wait_for(std::chrono::seconds(1));
+            if (status != std::future_status::ready)
+            {
+                return AWS_OP_SUCCESS;
+            }
             auto result = echoMessage.GetResult().get();
             ASSERT_TRUE(result);
             auto response = result.GetOperationResponse();
@@ -514,7 +525,7 @@ static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
             return AWS_OP_SUCCESS;
         };
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 10000; i++)
             threadPool.AddTask(invokeOperation);
 
         threadPool.BlockUntilTasksFinish();
