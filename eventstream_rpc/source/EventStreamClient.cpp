@@ -12,7 +12,6 @@
 #include <string.h>
 
 #include <algorithm>
-#include <iostream>
 
 constexpr auto EVENTSTREAM_VERSION_HEADER = ":version";
 constexpr auto EVENTSTREAM_VERSION_STRING = "0.1.0";
@@ -1268,6 +1267,13 @@ namespace Aws
                 m_operationModelContext.AllocateOperationErrorFromPayload(modelName, payloadStringView, m_allocator);
             if (error.get() == nullptr)
                 return EVENT_STREAM_RPC_UNMAPPED_DATA;
+            if (error->GetMessage().has_value())
+            {
+                AWS_LOGF_ERROR(
+                    AWS_LS_EVENT_STREAM_RPC_CLIENT,
+                    "An error was received from the server: %s",
+                    error->GetMessage().value().c_str());
+            }
             TaggedResult taggedResult(std::move(error));
             if (m_messageCount == 1)
             {

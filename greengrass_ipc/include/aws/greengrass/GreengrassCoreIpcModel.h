@@ -2340,7 +2340,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error response from the server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
@@ -2524,7 +2524,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error response from the server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
@@ -2766,7 +2766,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error response from the server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
@@ -2965,7 +2965,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error response from the server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
@@ -3980,7 +3980,7 @@ namespace Aws
             }
 
             /**
-             * A callback that is invoked upon receiving an error response from the server.
+             * A callback that is invoked upon receiving ANY error response from the server.
              * @param operationError The error message being received.
              */
             virtual bool OnStreamError(OperationError *operationError)
