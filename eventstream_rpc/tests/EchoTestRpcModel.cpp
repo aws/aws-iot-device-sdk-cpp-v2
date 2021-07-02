@@ -1066,7 +1066,7 @@ namespace Awstest
         RpcError rpcError)
     {
         bool streamShouldTerminate = false;
-        if (operationError == nullptr && rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
+        if (rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
         {
             streamShouldTerminate = OnStreamError(rpcError);
         }
@@ -1158,7 +1158,7 @@ namespace Awstest
         RpcError rpcError)
     {
         bool streamShouldTerminate = false;
-        if (operationError == nullptr && rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
+        if (rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
         {
             streamShouldTerminate = OnStreamError(rpcError);
         }
