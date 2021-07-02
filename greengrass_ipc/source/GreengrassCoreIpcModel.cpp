@@ -4681,17 +4681,26 @@ namespace Aws
             Aws::Crt::ScopedResource<OperationError> operationError,
             RpcError rpcError)
         {
-            if (operationError == nullptr)
-                return OnStreamError(rpcError);
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError"))
+            bool streamShouldTerminate = false;
+            if (operationError == nullptr && rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
             {
-                return OnStreamError(static_cast<ServiceError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(rpcError);
             }
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#UnauthorizedError"))
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError") &&
+                !streamShouldTerminate)
             {
-                return OnStreamError(static_cast<UnauthorizedError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(static_cast<ServiceError *>(operationError.get()));
             }
-            return true;
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#UnauthorizedError") &&
+                !streamShouldTerminate)
+            {
+                streamShouldTerminate = OnStreamError(static_cast<UnauthorizedError *>(operationError.get()));
+            }
+            if (operationError != nullptr && !streamShouldTerminate)
+                streamShouldTerminate = OnStreamError(operationError.get());
+            return streamShouldTerminate;
         }
 
         SubscribeToIoTCoreOperationContext::SubscribeToIoTCoreOperationContext(
@@ -4841,17 +4850,26 @@ namespace Aws
             Aws::Crt::ScopedResource<OperationError> operationError,
             RpcError rpcError)
         {
-            if (operationError == nullptr)
-                return OnStreamError(rpcError);
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError"))
+            bool streamShouldTerminate = false;
+            if (operationError == nullptr && rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
             {
-                return OnStreamError(static_cast<ServiceError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(rpcError);
             }
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ResourceNotFoundError"))
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError") &&
+                !streamShouldTerminate)
             {
-                return OnStreamError(static_cast<ResourceNotFoundError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(static_cast<ServiceError *>(operationError.get()));
             }
-            return true;
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ResourceNotFoundError") &&
+                !streamShouldTerminate)
+            {
+                streamShouldTerminate = OnStreamError(static_cast<ResourceNotFoundError *>(operationError.get()));
+            }
+            if (operationError != nullptr && !streamShouldTerminate)
+                streamShouldTerminate = OnStreamError(operationError.get());
+            return streamShouldTerminate;
         }
 
         SubscribeToConfigurationUpdateOperationContext::SubscribeToConfigurationUpdateOperationContext(
@@ -5071,13 +5089,20 @@ namespace Aws
             Aws::Crt::ScopedResource<OperationError> operationError,
             RpcError rpcError)
         {
-            if (operationError == nullptr)
-                return OnStreamError(rpcError);
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError"))
+            bool streamShouldTerminate = false;
+            if (operationError == nullptr && rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
             {
-                return OnStreamError(static_cast<ServiceError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(rpcError);
             }
-            return true;
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError") &&
+                !streamShouldTerminate)
+            {
+                streamShouldTerminate = OnStreamError(static_cast<ServiceError *>(operationError.get()));
+            }
+            if (operationError != nullptr && !streamShouldTerminate)
+                streamShouldTerminate = OnStreamError(operationError.get());
+            return streamShouldTerminate;
         }
 
         SubscribeToValidateConfigurationUpdatesOperationContext::
@@ -5230,21 +5255,32 @@ namespace Aws
             Aws::Crt::ScopedResource<OperationError> operationError,
             RpcError rpcError)
         {
-            if (operationError == nullptr)
-                return OnStreamError(rpcError);
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#InvalidArgumentsError"))
+            bool streamShouldTerminate = false;
+            if (operationError == nullptr && rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
             {
-                return OnStreamError(static_cast<InvalidArgumentsError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(rpcError);
             }
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError"))
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#InvalidArgumentsError") &&
+                !streamShouldTerminate)
             {
-                return OnStreamError(static_cast<ServiceError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(static_cast<InvalidArgumentsError *>(operationError.get()));
             }
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#UnauthorizedError"))
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError") &&
+                !streamShouldTerminate)
             {
-                return OnStreamError(static_cast<UnauthorizedError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(static_cast<ServiceError *>(operationError.get()));
             }
-            return true;
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#UnauthorizedError") &&
+                !streamShouldTerminate)
+            {
+                streamShouldTerminate = OnStreamError(static_cast<UnauthorizedError *>(operationError.get()));
+            }
+            if (operationError != nullptr && !streamShouldTerminate)
+                streamShouldTerminate = OnStreamError(operationError.get());
+            return streamShouldTerminate;
         }
 
         SubscribeToTopicOperationContext::SubscribeToTopicOperationContext(
@@ -6293,17 +6329,26 @@ namespace Aws
             Aws::Crt::ScopedResource<OperationError> operationError,
             RpcError rpcError)
         {
-            if (operationError == nullptr)
-                return OnStreamError(rpcError);
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError"))
+            bool streamShouldTerminate = false;
+            if (operationError == nullptr && rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
             {
-                return OnStreamError(static_cast<ServiceError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(rpcError);
             }
-            if (operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ResourceNotFoundError"))
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ServiceError") &&
+                !streamShouldTerminate)
             {
-                return OnStreamError(static_cast<ResourceNotFoundError *>(operationError.get()), rpcError);
+                streamShouldTerminate = OnStreamError(static_cast<ServiceError *>(operationError.get()));
             }
-            return true;
+            if (operationError != nullptr &&
+                operationError->GetModelName() == Aws::Crt::String("aws.greengrass#ResourceNotFoundError") &&
+                !streamShouldTerminate)
+            {
+                streamShouldTerminate = OnStreamError(static_cast<ResourceNotFoundError *>(operationError.get()));
+            }
+            if (operationError != nullptr && !streamShouldTerminate)
+                streamShouldTerminate = OnStreamError(operationError.get());
+            return streamShouldTerminate;
         }
 
         SubscribeToComponentUpdatesOperationContext::SubscribeToComponentUpdatesOperationContext(

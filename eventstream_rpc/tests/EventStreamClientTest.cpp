@@ -504,14 +504,11 @@ static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
             auto echoMessage = client.NewEchoMessage();
             messageData.SetStringMessage(expectedMessage);
             echoMessageRequest.SetMessage(messageData);
-            auto requestFuture = echoMessage.Activate(echoMessageRequest, s_onMessageFlush);
-            std::future_status status = requestFuture.wait_for(std::chrono::seconds(1));
-            if (status != std::future_status::ready)
-            {
-                return AWS_OP_SUCCESS;
-            }
+            auto requestStatus = echoMessage.Activate(echoMessageRequest, s_onMessageFlush).get();
             auto resultFuture = echoMessage.GetResult();
-            status = resultFuture.wait_for(std::chrono::seconds(1));
+            /* The response may never arrive depending on how many ongoing requests are made
+             * so in case of timeout, assume success. */
+            std::future_status status = resultFuture.wait_for(std::chrono::seconds(5));
             if (status != std::future_status::ready)
             {
                 return AWS_OP_SUCCESS;
@@ -525,7 +522,7 @@ static int s_TestStressClient(struct aws_allocator *allocator, void *ctx)
             return AWS_OP_SUCCESS;
         };
 
-        for (int i = 0; i < 10000; i++)
+        for (int i = 0; i < 1000; i++)
             threadPool.AddTask(invokeOperation);
 
         threadPool.BlockUntilTasksFinish();

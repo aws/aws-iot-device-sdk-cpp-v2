@@ -839,9 +839,8 @@ namespace Aws
         {
             if (m_callbackData)
             {
-                m_callbackData->callbackMutex.lock();
+                const std::lock_guard<std::mutex> lock(m_callbackData->callbackMutex);
                 m_callbackData->continuationDestroyed = true;
-                m_callbackData->callbackMutex.unlock();
             }
         }
 
@@ -1067,8 +1066,8 @@ namespace Aws
             const OperationModelContext &operationModelContext,
             Crt::Allocator *allocator) noexcept
             : m_operationModelContext(operationModelContext), m_messageCount(0), m_allocator(allocator),
-              m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(*this)),
-              m_expectedCloses(0), m_streamClosedCalled(false)
+              m_streamHandler(streamHandler), m_clientContinuation(connection.NewStream(*this)), m_expectedCloses(0),
+              m_streamClosedCalled(false)
         {
         }
 
@@ -1084,7 +1083,7 @@ namespace Aws
         {
             Close().wait();
             std::unique_lock<std::mutex> lock(m_continuationMutex);
-            m_closeReady.wait(lock, [this]{return m_expectedCloses.load() == 0;});
+            m_closeReady.wait(lock, [this] { return m_expectedCloses.load() == 0; });
         }
 
         TaggedResult::TaggedResult(Crt::ScopedResource<AbstractShapeBase> operationResponse) noexcept
@@ -1431,7 +1430,6 @@ namespace Aws
             /* Promises must be reset in case the client would like to send a subsequent request with the same
              * `ClientOperation`. */
             m_initialResponsePromise = {};
-            //m_closedPromise = {};
             {
                 const std::lock_guard<std::mutex> lock(m_continuationMutex);
                 m_resultReceived = false;

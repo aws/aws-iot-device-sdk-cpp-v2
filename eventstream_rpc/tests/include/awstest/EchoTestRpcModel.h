@@ -475,10 +475,10 @@ namespace Awstest
         GetAllProductsOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::String GetRequestModelName() const noexcept override;
         Aws::Crt::String GetInitialResponseModelName() const noexcept override;
         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -513,10 +513,19 @@ namespace Awstest
         GetAllProductsOperation(
             ClientConnection &connection,
             const GetAllProductsOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+        /**
+         * Used to activate a stream for the `GetAllProductsOperation`
+         * @param request The request used for the `GetAllProductsOperation`
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
+         */
         std::future<RpcError> Activate(
             const GetAllProductsRequest &request,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+        /**
+         * Retrieve the result from activating the stream.
+         */
         std::future<GetAllProductsResult> GetResult() noexcept;
 
       protected:
@@ -529,10 +538,10 @@ namespace Awstest
         CauseServiceErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::String GetRequestModelName() const noexcept override;
         Aws::Crt::String GetInitialResponseModelName() const noexcept override;
         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -567,10 +576,19 @@ namespace Awstest
         CauseServiceErrorOperation(
             ClientConnection &connection,
             const CauseServiceErrorOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+        /**
+         * Used to activate a stream for the `CauseServiceErrorOperation`
+         * @param request The request used for the `CauseServiceErrorOperation`
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
+         */
         std::future<RpcError> Activate(
             const CauseServiceErrorRequest &request,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+        /**
+         * Retrieve the result from activating the stream.
+         */
         std::future<CauseServiceErrorResult> GetResult() noexcept;
 
       protected:
@@ -581,16 +599,34 @@ namespace Awstest
     {
       public:
         virtual void OnStreamEvent(EchoStreamingMessage *response) { (void)response; }
+
+        /**
+         * A callback that is invoked when an error occurs while parsing a message from the stream.
+         * @param rpcError The RPC error containing the status and possibly a CRT error.
+         */
         virtual bool OnStreamError(RpcError rpcError)
         {
             (void)rpcError;
             return true;
         }
 
-        virtual bool OnStreamError(ServiceError *operationError, RpcError rpcError)
+        /**
+         * A callback that is invoked upon receiving an error of type `ServiceError`.
+         * @param operationError The error message being received.
+         */
+        virtual bool OnStreamError(ServiceError *operationError)
         {
             (void)operationError;
-            (void)rpcError;
+            return true;
+        }
+
+        /**
+         * A callback that is invoked upon receiving an error response from the server.
+         * @param operationError The error message being received.
+         */
+        virtual bool OnStreamError(OperationError *operationError)
+        {
+            (void)operationError;
             return true;
         }
 
@@ -612,10 +648,10 @@ namespace Awstest
         CauseStreamServiceToErrorOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::String GetRequestModelName() const noexcept override;
         Aws::Crt::String GetInitialResponseModelName() const noexcept override;
         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -653,10 +689,19 @@ namespace Awstest
             ClientConnection &connection,
             CauseStreamServiceToErrorStreamHandler *streamHandler,
             const CauseStreamServiceToErrorOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+        /**
+         * Used to activate a stream for the `CauseStreamServiceToErrorOperation`
+         * @param request The request used for the `CauseStreamServiceToErrorOperation`
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
+         */
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+        /**
+         * Retrieve the result from activating the stream.
+         */
         std::future<CauseStreamServiceToErrorResult> GetResult() noexcept;
 
       protected:
@@ -667,9 +712,24 @@ namespace Awstest
     {
       public:
         virtual void OnStreamEvent(EchoStreamingMessage *response) { (void)response; }
+
+        /**
+         * A callback that is invoked when an error occurs while parsing a message from the stream.
+         * @param rpcError The RPC error containing the status and possibly a CRT error.
+         */
         virtual bool OnStreamError(RpcError rpcError)
         {
             (void)rpcError;
+            return true;
+        }
+
+        /**
+         * A callback that is invoked upon receiving an error response from the server.
+         * @param operationError The error message being received.
+         */
+        virtual bool OnStreamError(OperationError *operationError)
+        {
+            (void)operationError;
             return true;
         }
 
@@ -691,10 +751,10 @@ namespace Awstest
         EchoStreamMessagesOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::String GetRequestModelName() const noexcept override;
         Aws::Crt::String GetInitialResponseModelName() const noexcept override;
         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -730,10 +790,19 @@ namespace Awstest
             ClientConnection &connection,
             EchoStreamMessagesStreamHandler *streamHandler,
             const EchoStreamMessagesOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+        /**
+         * Used to activate a stream for the `EchoStreamMessagesOperation`
+         * @param request The request used for the `EchoStreamMessagesOperation`
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
+         */
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+        /**
+         * Retrieve the result from activating the stream.
+         */
         std::future<EchoStreamMessagesResult> GetResult() noexcept;
 
       protected:
@@ -746,10 +815,10 @@ namespace Awstest
         EchoMessageOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::String GetRequestModelName() const noexcept override;
         Aws::Crt::String GetInitialResponseModelName() const noexcept override;
         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -784,10 +853,19 @@ namespace Awstest
         EchoMessageOperation(
             ClientConnection &connection,
             const EchoMessageOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+        /**
+         * Used to activate a stream for the `EchoMessageOperation`
+         * @param request The request used for the `EchoMessageOperation`
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
+         */
         std::future<RpcError> Activate(
             const EchoMessageRequest &request,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+        /**
+         * Retrieve the result from activating the stream.
+         */
         std::future<EchoMessageResult> GetResult() noexcept;
 
       protected:
@@ -800,10 +878,10 @@ namespace Awstest
         GetAllCustomersOperationContext(const EchoTestRpcServiceModel &serviceModel) noexcept;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         Aws::Crt::String GetRequestModelName() const noexcept override;
         Aws::Crt::String GetInitialResponseModelName() const noexcept override;
         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -838,10 +916,19 @@ namespace Awstest
         GetAllCustomersOperation(
             ClientConnection &connection,
             const GetAllCustomersOperationContext &operationContext,
-            Aws::Crt::Allocator *allocator) noexcept;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+        /**
+         * Used to activate a stream for the `GetAllCustomersOperation`
+         * @param request The request used for the `GetAllCustomersOperation`
+         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was activated.
+         */
         std::future<RpcError> Activate(
             const GetAllCustomersRequest &request,
-            OnMessageFlushCallback onMessageFlushCallback) noexcept;
+            OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+        /**
+         * Retrieve the result from activating the stream.
+         */
         std::future<GetAllCustomersResult> GetResult() noexcept;
 
       protected:
@@ -855,7 +942,7 @@ namespace Awstest
         Aws::Crt::ScopedResource<OperationError> AllocateOperationErrorFromPayload(
             const Aws::Crt::String &errorModelName,
             Aws::Crt::StringView stringView,
-            Aws::Crt::Allocator *allocator) const noexcept override;
+            Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
         void AssignModelNameToErrorResponse(Aws::Crt::String, ErrorResponseFactory) noexcept;
 
       private:

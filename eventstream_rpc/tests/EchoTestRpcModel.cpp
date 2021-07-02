@@ -1065,13 +1065,19 @@ namespace Awstest
         Aws::Crt::ScopedResource<OperationError> operationError,
         RpcError rpcError)
     {
-        if (operationError == nullptr)
-            return OnStreamError(rpcError);
-        if (operationError->GetModelName() == Aws::Crt::String("awstest#ServiceError"))
+        bool streamShouldTerminate = false;
+        if (operationError == nullptr && rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
         {
-            return OnStreamError(static_cast<ServiceError *>(operationError.get()), rpcError);
+            streamShouldTerminate = OnStreamError(rpcError);
         }
-        return true;
+        if (operationError != nullptr && operationError->GetModelName() == Aws::Crt::String("awstest#ServiceError") &&
+            !streamShouldTerminate)
+        {
+            streamShouldTerminate = OnStreamError(static_cast<ServiceError *>(operationError.get()));
+        }
+        if (operationError != nullptr && !streamShouldTerminate)
+            streamShouldTerminate = OnStreamError(operationError.get());
+        return streamShouldTerminate;
     }
 
     CauseStreamServiceToErrorOperationContext::CauseStreamServiceToErrorOperationContext(
@@ -1151,9 +1157,14 @@ namespace Awstest
         Aws::Crt::ScopedResource<OperationError> operationError,
         RpcError rpcError)
     {
-        if (operationError == nullptr)
-            return OnStreamError(rpcError);
-        return true;
+        bool streamShouldTerminate = false;
+        if (operationError == nullptr && rpcError.baseStatus != EVENT_STREAM_RPC_SUCCESS)
+        {
+            streamShouldTerminate = OnStreamError(rpcError);
+        }
+        if (operationError != nullptr && !streamShouldTerminate)
+            streamShouldTerminate = OnStreamError(operationError.get());
+        return streamShouldTerminate;
     }
 
     EchoStreamMessagesOperationContext::EchoStreamMessagesOperationContext(

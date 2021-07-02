@@ -2308,23 +2308,44 @@ namespace Aws
         {
           public:
             virtual void OnStreamEvent(IoTCoreMessage *response) { (void)response; }
+
+            /**
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
+             */
             virtual bool OnStreamError(RpcError rpcError)
             {
                 (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(ServiceError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `ServiceError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ServiceError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(UnauthorizedError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `UnauthorizedError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(UnauthorizedError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error response from the server.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(OperationError *operationError)
+            {
+                (void)operationError;
                 return true;
             }
 
@@ -2346,10 +2367,10 @@ namespace Aws
             SubscribeToIoTCoreOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2385,10 +2406,19 @@ namespace Aws
                 ClientConnection &connection,
                 SubscribeToIoTCoreStreamHandler *streamHandler,
                 const SubscribeToIoTCoreOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `SubscribeToIoTCoreOperation`
+             * @param request The request used for the `SubscribeToIoTCoreOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const SubscribeToIoTCoreRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<SubscribeToIoTCoreResult> GetResult() noexcept;
 
           protected:
@@ -2401,10 +2431,10 @@ namespace Aws
             PublishToIoTCoreOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2439,10 +2469,19 @@ namespace Aws
             PublishToIoTCoreOperation(
                 ClientConnection &connection,
                 const PublishToIoTCoreOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `PublishToIoTCoreOperation`
+             * @param request The request used for the `PublishToIoTCoreOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const PublishToIoTCoreRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<PublishToIoTCoreResult> GetResult() noexcept;
 
           protected:
@@ -2453,23 +2492,44 @@ namespace Aws
         {
           public:
             virtual void OnStreamEvent(ConfigurationUpdateEvents *response) { (void)response; }
+
+            /**
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
+             */
             virtual bool OnStreamError(RpcError rpcError)
             {
                 (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(ServiceError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `ServiceError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ServiceError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(ResourceNotFoundError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `ResourceNotFoundError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ResourceNotFoundError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error response from the server.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(OperationError *operationError)
+            {
+                (void)operationError;
                 return true;
             }
 
@@ -2491,10 +2551,10 @@ namespace Aws
             SubscribeToConfigurationUpdateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2533,10 +2593,19 @@ namespace Aws
                 ClientConnection &connection,
                 SubscribeToConfigurationUpdateStreamHandler *streamHandler,
                 const SubscribeToConfigurationUpdateOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `SubscribeToConfigurationUpdateOperation`
+             * @param request The request used for the `SubscribeToConfigurationUpdateOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const SubscribeToConfigurationUpdateRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<SubscribeToConfigurationUpdateResult> GetResult() noexcept;
 
           protected:
@@ -2549,10 +2618,10 @@ namespace Aws
             DeleteThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2587,10 +2656,19 @@ namespace Aws
             DeleteThingShadowOperation(
                 ClientConnection &connection,
                 const DeleteThingShadowOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `DeleteThingShadowOperation`
+             * @param request The request used for the `DeleteThingShadowOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const DeleteThingShadowRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<DeleteThingShadowResult> GetResult() noexcept;
 
           protected:
@@ -2603,10 +2681,10 @@ namespace Aws
             DeferComponentUpdateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2643,10 +2721,19 @@ namespace Aws
             DeferComponentUpdateOperation(
                 ClientConnection &connection,
                 const DeferComponentUpdateOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `DeferComponentUpdateOperation`
+             * @param request The request used for the `DeferComponentUpdateOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const DeferComponentUpdateRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<DeferComponentUpdateResult> GetResult() noexcept;
 
           protected:
@@ -2657,16 +2744,34 @@ namespace Aws
         {
           public:
             virtual void OnStreamEvent(ValidateConfigurationUpdateEvents *response) { (void)response; }
+
+            /**
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
+             */
             virtual bool OnStreamError(RpcError rpcError)
             {
                 (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(ServiceError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `ServiceError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ServiceError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error response from the server.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(OperationError *operationError)
+            {
+                (void)operationError;
                 return true;
             }
 
@@ -2689,10 +2794,10 @@ namespace Aws
                 const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2732,10 +2837,19 @@ namespace Aws
                 ClientConnection &connection,
                 SubscribeToValidateConfigurationUpdatesStreamHandler *streamHandler,
                 const SubscribeToValidateConfigurationUpdatesOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `SubscribeToValidateConfigurationUpdatesOperation`
+             * @param request The request used for the `SubscribeToValidateConfigurationUpdatesOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const SubscribeToValidateConfigurationUpdatesRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<SubscribeToValidateConfigurationUpdatesResult> GetResult() noexcept;
 
           protected:
@@ -2748,10 +2862,10 @@ namespace Aws
             GetConfigurationOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2786,10 +2900,19 @@ namespace Aws
             GetConfigurationOperation(
                 ClientConnection &connection,
                 const GetConfigurationOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `GetConfigurationOperation`
+             * @param request The request used for the `GetConfigurationOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const GetConfigurationRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<GetConfigurationResult> GetResult() noexcept;
 
           protected:
@@ -2800,30 +2923,54 @@ namespace Aws
         {
           public:
             virtual void OnStreamEvent(SubscriptionResponseMessage *response) { (void)response; }
+
+            /**
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
+             */
             virtual bool OnStreamError(RpcError rpcError)
             {
                 (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(InvalidArgumentsError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `InvalidArgumentsError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(InvalidArgumentsError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(ServiceError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `ServiceError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ServiceError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(UnauthorizedError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `UnauthorizedError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(UnauthorizedError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error response from the server.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(OperationError *operationError)
+            {
+                (void)operationError;
                 return true;
             }
 
@@ -2845,10 +2992,10 @@ namespace Aws
             SubscribeToTopicOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2884,10 +3031,19 @@ namespace Aws
                 ClientConnection &connection,
                 SubscribeToTopicStreamHandler *streamHandler,
                 const SubscribeToTopicOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `SubscribeToTopicOperation`
+             * @param request The request used for the `SubscribeToTopicOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const SubscribeToTopicRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<SubscribeToTopicResult> GetResult() noexcept;
 
           protected:
@@ -2900,10 +3056,10 @@ namespace Aws
             GetComponentDetailsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2938,10 +3094,19 @@ namespace Aws
             GetComponentDetailsOperation(
                 ClientConnection &connection,
                 const GetComponentDetailsOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `GetComponentDetailsOperation`
+             * @param request The request used for the `GetComponentDetailsOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const GetComponentDetailsRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<GetComponentDetailsResult> GetResult() noexcept;
 
           protected:
@@ -2954,10 +3119,10 @@ namespace Aws
             PublishToTopicOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -2992,10 +3157,19 @@ namespace Aws
             PublishToTopicOperation(
                 ClientConnection &connection,
                 const PublishToTopicOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `PublishToTopicOperation`
+             * @param request The request used for the `PublishToTopicOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const PublishToTopicRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<PublishToTopicResult> GetResult() noexcept;
 
           protected:
@@ -3008,10 +3182,10 @@ namespace Aws
             ListComponentsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3046,10 +3220,19 @@ namespace Aws
             ListComponentsOperation(
                 ClientConnection &connection,
                 const ListComponentsOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `ListComponentsOperation`
+             * @param request The request used for the `ListComponentsOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const ListComponentsRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<ListComponentsResult> GetResult() noexcept;
 
           protected:
@@ -3062,10 +3245,10 @@ namespace Aws
             CreateDebugPasswordOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3100,10 +3283,19 @@ namespace Aws
             CreateDebugPasswordOperation(
                 ClientConnection &connection,
                 const CreateDebugPasswordOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `CreateDebugPasswordOperation`
+             * @param request The request used for the `CreateDebugPasswordOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const CreateDebugPasswordRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<CreateDebugPasswordResult> GetResult() noexcept;
 
           protected:
@@ -3116,10 +3308,10 @@ namespace Aws
             GetThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3154,10 +3346,19 @@ namespace Aws
             GetThingShadowOperation(
                 ClientConnection &connection,
                 const GetThingShadowOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `GetThingShadowOperation`
+             * @param request The request used for the `GetThingShadowOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const GetThingShadowRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<GetThingShadowResult> GetResult() noexcept;
 
           protected:
@@ -3170,10 +3371,10 @@ namespace Aws
             SendConfigurationValidityReportOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3211,10 +3412,19 @@ namespace Aws
             SendConfigurationValidityReportOperation(
                 ClientConnection &connection,
                 const SendConfigurationValidityReportOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `SendConfigurationValidityReportOperation`
+             * @param request The request used for the `SendConfigurationValidityReportOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const SendConfigurationValidityReportRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<SendConfigurationValidityReportResult> GetResult() noexcept;
 
           protected:
@@ -3227,10 +3437,10 @@ namespace Aws
             UpdateThingShadowOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3265,10 +3475,19 @@ namespace Aws
             UpdateThingShadowOperation(
                 ClientConnection &connection,
                 const UpdateThingShadowOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `UpdateThingShadowOperation`
+             * @param request The request used for the `UpdateThingShadowOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const UpdateThingShadowRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<UpdateThingShadowResult> GetResult() noexcept;
 
           protected:
@@ -3281,10 +3500,10 @@ namespace Aws
             UpdateConfigurationOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3319,10 +3538,19 @@ namespace Aws
             UpdateConfigurationOperation(
                 ClientConnection &connection,
                 const UpdateConfigurationOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `UpdateConfigurationOperation`
+             * @param request The request used for the `UpdateConfigurationOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const UpdateConfigurationRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<UpdateConfigurationResult> GetResult() noexcept;
 
           protected:
@@ -3335,10 +3563,10 @@ namespace Aws
             ValidateAuthorizationTokenOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3376,10 +3604,19 @@ namespace Aws
             ValidateAuthorizationTokenOperation(
                 ClientConnection &connection,
                 const ValidateAuthorizationTokenOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `ValidateAuthorizationTokenOperation`
+             * @param request The request used for the `ValidateAuthorizationTokenOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const ValidateAuthorizationTokenRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<ValidateAuthorizationTokenResult> GetResult() noexcept;
 
           protected:
@@ -3392,10 +3629,10 @@ namespace Aws
             RestartComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3430,10 +3667,19 @@ namespace Aws
             RestartComponentOperation(
                 ClientConnection &connection,
                 const RestartComponentOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `RestartComponentOperation`
+             * @param request The request used for the `RestartComponentOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const RestartComponentRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<RestartComponentResult> GetResult() noexcept;
 
           protected:
@@ -3446,10 +3692,10 @@ namespace Aws
             GetLocalDeploymentStatusOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3487,10 +3733,19 @@ namespace Aws
             GetLocalDeploymentStatusOperation(
                 ClientConnection &connection,
                 const GetLocalDeploymentStatusOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `GetLocalDeploymentStatusOperation`
+             * @param request The request used for the `GetLocalDeploymentStatusOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const GetLocalDeploymentStatusRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<GetLocalDeploymentStatusResult> GetResult() noexcept;
 
           protected:
@@ -3503,10 +3758,10 @@ namespace Aws
             GetSecretValueOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3541,10 +3796,19 @@ namespace Aws
             GetSecretValueOperation(
                 ClientConnection &connection,
                 const GetSecretValueOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `GetSecretValueOperation`
+             * @param request The request used for the `GetSecretValueOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const GetSecretValueRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<GetSecretValueResult> GetResult() noexcept;
 
           protected:
@@ -3557,10 +3821,10 @@ namespace Aws
             UpdateStateOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3595,10 +3859,19 @@ namespace Aws
             UpdateStateOperation(
                 ClientConnection &connection,
                 const UpdateStateOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `UpdateStateOperation`
+             * @param request The request used for the `UpdateStateOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const UpdateStateRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<UpdateStateResult> GetResult() noexcept;
 
           protected:
@@ -3611,10 +3884,10 @@ namespace Aws
             ListNamedShadowsForThingOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3652,10 +3925,19 @@ namespace Aws
             ListNamedShadowsForThingOperation(
                 ClientConnection &connection,
                 const ListNamedShadowsForThingOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `ListNamedShadowsForThingOperation`
+             * @param request The request used for the `ListNamedShadowsForThingOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const ListNamedShadowsForThingRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<ListNamedShadowsForThingResult> GetResult() noexcept;
 
           protected:
@@ -3666,23 +3948,44 @@ namespace Aws
         {
           public:
             virtual void OnStreamEvent(ComponentUpdatePolicyEvents *response) { (void)response; }
+
+            /**
+             * A callback that is invoked when an error occurs while parsing a message from the stream.
+             * @param rpcError The RPC error containing the status and possibly a CRT error.
+             */
             virtual bool OnStreamError(RpcError rpcError)
             {
                 (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(ServiceError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `ServiceError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ServiceError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
                 return true;
             }
 
-            virtual bool OnStreamError(ResourceNotFoundError *operationError, RpcError rpcError)
+            /**
+             * A callback that is invoked upon receiving an error of type `ResourceNotFoundError`.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(ResourceNotFoundError *operationError)
             {
                 (void)operationError;
-                (void)rpcError;
+                return true;
+            }
+
+            /**
+             * A callback that is invoked upon receiving an error response from the server.
+             * @param operationError The error message being received.
+             */
+            virtual bool OnStreamError(OperationError *operationError)
+            {
+                (void)operationError;
                 return true;
             }
 
@@ -3704,10 +4007,10 @@ namespace Aws
             SubscribeToComponentUpdatesOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3746,10 +4049,19 @@ namespace Aws
                 ClientConnection &connection,
                 SubscribeToComponentUpdatesStreamHandler *streamHandler,
                 const SubscribeToComponentUpdatesOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `SubscribeToComponentUpdatesOperation`
+             * @param request The request used for the `SubscribeToComponentUpdatesOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const SubscribeToComponentUpdatesRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<SubscribeToComponentUpdatesResult> GetResult() noexcept;
 
           protected:
@@ -3762,10 +4074,10 @@ namespace Aws
             ListLocalDeploymentsOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3802,10 +4114,19 @@ namespace Aws
             ListLocalDeploymentsOperation(
                 ClientConnection &connection,
                 const ListLocalDeploymentsOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `ListLocalDeploymentsOperation`
+             * @param request The request used for the `ListLocalDeploymentsOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const ListLocalDeploymentsRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<ListLocalDeploymentsResult> GetResult() noexcept;
 
           protected:
@@ -3818,10 +4139,10 @@ namespace Aws
             StopComponentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3856,10 +4177,19 @@ namespace Aws
             StopComponentOperation(
                 ClientConnection &connection,
                 const StopComponentOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `StopComponentOperation`
+             * @param request The request used for the `StopComponentOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const StopComponentRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<StopComponentResult> GetResult() noexcept;
 
           protected:
@@ -3872,10 +4202,10 @@ namespace Aws
             CreateLocalDeploymentOperationContext(const GreengrassCoreIpcServiceModel &serviceModel) noexcept;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             Aws::Crt::String GetRequestModelName() const noexcept override;
             Aws::Crt::String GetInitialResponseModelName() const noexcept override;
             Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() const noexcept override;
@@ -3912,10 +4242,19 @@ namespace Aws
             CreateLocalDeploymentOperation(
                 ClientConnection &connection,
                 const CreateLocalDeploymentOperationContext &operationContext,
-                Aws::Crt::Allocator *allocator) noexcept;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
+            /**
+             * Used to activate a stream for the `CreateLocalDeploymentOperation`
+             * @param request The request used for the `CreateLocalDeploymentOperation`
+             * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
+             * @return An `RpcError` that can be used to check whether the stream was activated.
+             */
             std::future<RpcError> Activate(
                 const CreateLocalDeploymentRequest &request,
-                OnMessageFlushCallback onMessageFlushCallback) noexcept;
+                OnMessageFlushCallback onMessageFlushCallback = nullptr) noexcept;
+            /**
+             * Retrieve the result from activating the stream.
+             */
             std::future<CreateLocalDeploymentResult> GetResult() noexcept;
 
           protected:
@@ -3929,7 +4268,7 @@ namespace Aws
             Aws::Crt::ScopedResource<OperationError> AllocateOperationErrorFromPayload(
                 const Aws::Crt::String &errorModelName,
                 Aws::Crt::StringView stringView,
-                Aws::Crt::Allocator *allocator) const noexcept override;
+                Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) const noexcept override;
             void AssignModelNameToErrorResponse(Aws::Crt::String, ErrorResponseFactory) noexcept;
 
           private:
