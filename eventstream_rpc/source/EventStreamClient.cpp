@@ -260,11 +260,11 @@ namespace Aws
             }
 
             m_onConnectRequestCallback = m_connectionConfig.GetConnectRequestCallback();
+            Crt::String hostName;
 
             if (baseError == EVENT_STREAM_RPC_SUCCESS)
             {
                 AWS_ZERO_STRUCT(connOptions);
-                Crt::String hostName;
                 if (m_connectionConfig.GetHostName().has_value())
                 {
                     hostName = m_connectionConfig.GetHostName().value();
