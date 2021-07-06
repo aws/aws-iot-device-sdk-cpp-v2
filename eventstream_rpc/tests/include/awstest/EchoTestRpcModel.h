@@ -34,6 +34,7 @@ namespace Awstest
         static void s_customDeleter(Product *) noexcept;
         /* This needs to be defined so that `Product` can be used as a key in maps. */
         bool operator<(const Product &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -62,6 +63,7 @@ namespace Awstest
         static void s_customDeleter(Customer *) noexcept;
         /* This needs to be defined so that `Customer` can be used as a key in maps. */
         bool operator<(const Customer &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -97,6 +99,7 @@ namespace Awstest
         static void s_customDeleter(Pair *) noexcept;
         /* This needs to be defined so that `Pair` can be used as a key in maps. */
         bool operator<(const Pair &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -155,6 +158,7 @@ namespace Awstest
         static void s_customDeleter(MessageData *) noexcept;
         /* This needs to be defined so that `MessageData` can be used as a key in maps. */
         bool operator<(const MessageData &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -217,6 +221,7 @@ namespace Awstest
         static void s_customDeleter(EchoStreamingMessage *) noexcept;
         /* This needs to be defined so that `EchoStreamingMessage` can be used as a key in maps. */
         bool operator<(const EchoStreamingMessage &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -246,6 +251,7 @@ namespace Awstest
         static void s_customDeleter(GetAllProductsResponse *) noexcept;
         /* This needs to be defined so that `GetAllProductsResponse` can be used as a key in maps. */
         bool operator<(const GetAllProductsResponse &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -267,6 +273,7 @@ namespace Awstest
         static void s_customDeleter(GetAllProductsRequest *) noexcept;
         /* This needs to be defined so that `GetAllProductsRequest` can be used as a key in maps. */
         bool operator<(const GetAllProductsRequest &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -289,6 +296,7 @@ namespace Awstest
         static void s_customDeleter(GetAllCustomersResponse *) noexcept;
         /* This needs to be defined so that `GetAllCustomersResponse` can be used as a key in maps. */
         bool operator<(const GetAllCustomersResponse &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -310,6 +318,7 @@ namespace Awstest
         static void s_customDeleter(GetAllCustomersRequest *) noexcept;
         /* This needs to be defined so that `GetAllCustomersRequest` can be used as a key in maps. */
         bool operator<(const GetAllCustomersRequest &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -332,6 +341,7 @@ namespace Awstest
         static void s_customDeleter(EchoMessageResponse *) noexcept;
         /* This needs to be defined so that `EchoMessageResponse` can be used as a key in maps. */
         bool operator<(const EchoMessageResponse &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -355,6 +365,7 @@ namespace Awstest
         static void s_customDeleter(EchoMessageRequest *) noexcept;
         /* This needs to be defined so that `EchoMessageRequest` can be used as a key in maps. */
         bool operator<(const EchoMessageRequest &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -376,6 +387,7 @@ namespace Awstest
         static void s_customDeleter(EchoStreamingResponse *) noexcept;
         /* This needs to be defined so that `EchoStreamingResponse` can be used as a key in maps. */
         bool operator<(const EchoStreamingResponse &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -396,6 +408,7 @@ namespace Awstest
         static void s_customDeleter(EchoStreamingRequest *) noexcept;
         /* This needs to be defined so that `EchoStreamingRequest` can be used as a key in maps. */
         bool operator<(const EchoStreamingRequest &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -420,6 +433,7 @@ namespace Awstest
         static void s_customDeleter(ServiceError *) noexcept;
         /* This needs to be defined so that `ServiceError` can be used as a key in maps. */
         bool operator<(const ServiceError &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -442,6 +456,7 @@ namespace Awstest
         static void s_customDeleter(CauseServiceErrorResponse *) noexcept;
         /* This needs to be defined so that `CauseServiceErrorResponse` can be used as a key in maps. */
         bool operator<(const CauseServiceErrorResponse &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;
@@ -462,6 +477,7 @@ namespace Awstest
         static void s_customDeleter(CauseServiceErrorRequest *) noexcept;
         /* This needs to be defined so that `CauseServiceErrorRequest` can be used as a key in maps. */
         bool operator<(const CauseServiceErrorRequest &) const noexcept;
+        static Aws::Crt::String s_getModelName() noexcept;
 
       protected:
         Aws::Crt::String GetModelName() const noexcept override;

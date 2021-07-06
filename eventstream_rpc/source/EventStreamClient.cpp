@@ -97,7 +97,7 @@ namespace Aws
             rhs.m_payload = Crt::Optional<Crt::ByteBuf>();
         }
 
-        Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() noexcept { return m_headers; }
+        Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() const noexcept { return m_headers; }
 
         const Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() const noexcept { return m_payload; }
 
@@ -213,10 +213,10 @@ namespace Aws
             }
         }
 
-        bool ConnectionLifecycleHandler::OnErrorCallback(int errorCode)
+        bool ConnectionLifecycleHandler::OnErrorCallback(RpcError error)
         {
-            (void)errorCode;
-            /* Returning true implies that the connection will close upon receiving an error. */
+            (void)error;
+            /* Returning true implies that the connection should close as a result of encountering this error. */
             return true;
         }
 
@@ -230,7 +230,43 @@ namespace Aws
 
         void ConnectionLifecycleHandler::OnConnectCallback() {}
 
-        void ConnectionLifecycleHandler::OnDisconnectCallback(int errorCode) { (void)errorCode; }
+        void ConnectionLifecycleHandler::OnDisconnectCallback(RpcError error) { (void)error; }
+
+        Crt::String RpcError::StatusToString()
+        {
+            switch (baseStatus)
+            {
+                case EVENT_STREAM_RPC_SUCCESS:
+                    return "EVENT_STREAM_RPC_SUCCESS";
+                case EVENT_STREAM_RPC_NULL_PARAMETER:
+                    return "EVENT_STREAM_RPC_NULL_PARAMETER";
+                case EVENT_STREAM_RPC_UNINITIALIZED:
+                    return "EVENT_STREAM_RPC_UNINITIALIZED";
+                case EVENT_STREAM_RPC_ALLOCATION_ERROR:
+                    return "EVENT_STREAM_RPC_ALLOCATION_ERROR";
+                case EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED:
+                    return "EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED";
+                case EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED:
+                    return "EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED";
+                case EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED:
+                    return "EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED";
+                case EVENT_STREAM_RPC_CONNECTION_CLOSED:
+                    return "EVENT_STREAM_RPC_CONNECTION_CLOSED";
+                case EVENT_STREAM_RPC_CONTINUATION_CLOSED:
+                    return "EVENT_STREAM_RPC_CONTINUATION_CLOSED";
+                case EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE:
+                    return "EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE";
+                case EVENT_STREAM_RPC_UNMAPPED_DATA:
+                    return "EVENT_STREAM_RPC_UNMAPPED_DATA";
+                case EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE:
+                    return "EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE";
+                case EVENT_STREAM_RPC_CRT_ERROR:
+                    Crt::String ret = "Failed with EVENT_STREAM_RPC_CRT_ERROR, the CRT error was ";
+                    ret += Crt::ErrorDebugString(crtError);
+                    return ret;
+            }
+            return "Unknown status code";
+        }
 
         std::future<RpcError> ClientConnection::Connect(
             const ConnectionConfig &connectionConfig,
@@ -320,7 +356,7 @@ namespace Aws
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
                     "A CRT error occurred while attempting to establish the connection: %s",
-                    aws_error_debug_str(crtError));
+                    Crt::ErrorDebugString(crtError));
                 errorPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, crtError});
                 return errorPromise.get_future();
             }
@@ -393,7 +429,7 @@ namespace Aws
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
                     "A CRT error occurred while attempting to send a message: %s",
-                    aws_error_debug_str(errorCode));
+                    Crt::ErrorDebugString(errorCode));
                 callbackData->onFlushPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
             }
             else
@@ -463,7 +499,7 @@ namespace Aws
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
                     "A CRT error occurred while queueing a message to be sent on the connection: %s",
-                    aws_error_debug_str(errorCode));
+                    Crt::ErrorDebugString(errorCode));
                 onFlushPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
                 Crt::Delete(callbackContainer, connection->m_allocator);
             }
@@ -607,12 +643,12 @@ namespace Aws
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
                     "A CRT error occurred while setting up the connection: %s",
-                    aws_error_debug_str(errorCode));
+                    Crt::ErrorDebugString(errorCode));
                 thisConnection->m_connectAckedPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
                 aws_event_stream_rpc_client_connection_release(connection);
                 thisConnection->m_underlyingConnection = nullptr;
                 /* No connection to close on error, so no need to check return value of the callback. */
-                (void)thisConnection->m_lifecycleHandler->OnErrorCallback(errorCode);
+                (void)thisConnection->m_lifecycleHandler->OnErrorCallback({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
             }
             else if (thisConnection->m_clientState == DISCONNECTING || thisConnection->m_clientState == DISCONNECTED)
             {
@@ -687,7 +723,14 @@ namespace Aws
 
             if (thisConnection->m_onConnectCalled)
             {
-                thisConnection->m_lifecycleHandler->OnDisconnectCallback(errorCode);
+                if (errorCode)
+                {
+                    thisConnection->m_lifecycleHandler->OnDisconnectCallback({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
+                }
+                else
+                {
+                    thisConnection->m_lifecycleHandler->OnDisconnectCallback({EVENT_STREAM_RPC_SUCCESS, 0});
+                }
                 thisConnection->m_onConnectCalled = false;
             }
 
@@ -696,7 +739,7 @@ namespace Aws
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
                     "A CRT error occurred while shutting down the connection: %s",
-                    aws_error_debug_str(errorCode));
+                    Crt::ErrorDebugString(errorCode));
                 thisConnection->m_closedPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
             }
             else
@@ -770,7 +813,8 @@ namespace Aws
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_PROTOCOL_ERROR:
                 case AWS_EVENT_STREAM_RPC_MESSAGE_TYPE_INTERNAL_ERROR:
 
-                    if (thisConnection->m_lifecycleHandler->OnErrorCallback(AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR))
+                    if (thisConnection->m_lifecycleHandler->OnErrorCallback(
+                            {EVENT_STREAM_RPC_CRT_ERROR, AWS_ERROR_EVENT_STREAM_RPC_PROTOCOL_ERROR}))
                     {
                         thisConnection->Close();
                     }
@@ -780,7 +824,8 @@ namespace Aws
                 default:
                     return;
 
-                    if (thisConnection->m_lifecycleHandler->OnErrorCallback(EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE))
+                    if (thisConnection->m_lifecycleHandler->OnErrorCallback(
+                            {EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE, 0}))
                     {
                         thisConnection->Close();
                     }
@@ -1022,7 +1067,7 @@ namespace Aws
                 AWS_LOGF_ERROR(
                     AWS_LS_EVENT_STREAM_RPC_CLIENT,
                     "A CRT error occurred while queueing a message to be sent on a stream: %s",
-                    aws_error_debug_str(errorCode));
+                    Crt::ErrorDebugString(errorCode));
                 onFlushPromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
                 Crt::Delete(callbackContainer, m_allocator);
             }
@@ -1307,7 +1352,8 @@ namespace Aws
         {
             (void)operationError;
             (void)rpcError;
-            /* Note: Always returning true forces the stream to close when an error occurs. */
+            /* Note: Always returning true implies that the stream should close
+             * as a result of encountering this error. */
             return true;
         }
 
@@ -1523,7 +1569,7 @@ namespace Aws
                     AWS_LOGF_ERROR(
                         AWS_LS_EVENT_STREAM_RPC_CLIENT,
                         "A CRT error occurred while closing the stream: %s",
-                        aws_error_debug_str(errorCode));
+                        Crt::ErrorDebugString(errorCode));
                     onTerminatePromise.set_value({EVENT_STREAM_RPC_CRT_ERROR, errorCode});
                     Crt::Delete(callbackContainer, m_allocator);
                 }

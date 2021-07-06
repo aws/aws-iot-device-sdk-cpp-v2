@@ -134,11 +134,11 @@ namespace Aws
             MessageAmendment(const Crt::ByteBuf &payload, Crt::Allocator *allocator = Crt::g_allocator) noexcept;
             void AddHeader(EventStreamHeader &&header) noexcept;
             void SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept;
-            Crt::List<EventStreamHeader> &GetHeaders() noexcept;
+            Crt::List<EventStreamHeader> &GetHeaders() const noexcept;
             const Crt::Optional<Crt::ByteBuf> &GetPayload() const noexcept;
 
           private:
-            Crt::List<EventStreamHeader> m_headers;
+            mutable Crt::List<EventStreamHeader> m_headers;
             Crt::Optional<Crt::ByteBuf> m_payload;
             Crt::Allocator *m_allocator;
         };
@@ -198,6 +198,31 @@ namespace Aws
             OnMessageFlushCallback m_connectRequestCallback;
         };
 
+        enum EventStreamRpcStatusCode
+        {
+            EVENT_STREAM_RPC_SUCCESS = 0,
+            EVENT_STREAM_RPC_NULL_PARAMETER,
+            EVENT_STREAM_RPC_UNINITIALIZED,
+            EVENT_STREAM_RPC_ALLOCATION_ERROR,
+            EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED,
+            EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED,
+            EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED,
+            EVENT_STREAM_RPC_CONNECTION_CLOSED,
+            EVENT_STREAM_RPC_CONTINUATION_CLOSED,
+            EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE,
+            EVENT_STREAM_RPC_UNMAPPED_DATA,
+            EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
+            EVENT_STREAM_RPC_CRT_ERROR
+        };
+
+        struct RpcError
+        {
+            EventStreamRpcStatusCode baseStatus;
+            int crtError;
+            operator bool() const noexcept { return baseStatus == EVENT_STREAM_RPC_SUCCESS; }
+            Crt::String StatusToString();
+        };
+
         class AWS_EVENTSTREAMRPC_API ConnectionLifecycleHandler
         {
           public:
@@ -208,17 +233,19 @@ namespace Aws
              */
             virtual void OnConnectCallback();
             /**
-             * Invoked upon connection shutdown. `errorCode` will specify
-             * shutdown reason. A graceful connection close will set `errorCode` to
-             * `AWS_ERROR_SUCCESS` or 0.
+             * Invoked upon connection shutdown.
+             * @param status The status upon disconnection. It can be treated as a bool
+             * with true implying a successful disconnection.
              */
-            virtual void OnDisconnectCallback(int errorCode);
+            virtual void OnDisconnectCallback(RpcError status);
             /**
              * Invoked upon receiving an error. Use the return value to determine
              * whether or not to force the connection to close. Keep in mind that once
              * closed, the `ClientConnection` can no longer send messages.
+             * @param status The status upon disconnection. It can be treated as a bool
+             * with true implying a successful disconnection.
              */
-            virtual bool OnErrorCallback(int errorCode);
+            virtual bool OnErrorCallback(RpcError status);
             /**
              * Invoked upon receiving a ping from the server. The `headers` and `payload`
              * refer to what is contained in the ping message.
@@ -270,31 +297,6 @@ namespace Aws
           private:
             friend class ClientContinuation;
             ContinuationCallbackData *m_callbackData;
-        };
-
-        enum EventStreamRpcStatusCode
-        {
-            EVENT_STREAM_RPC_SUCCESS = 0,
-            EVENT_STREAM_RPC_NULL_PARAMETER,
-            EVENT_STREAM_RPC_UNINITIALIZED,
-            EVENT_STREAM_RPC_ALLOCATION_ERROR,
-            EVENT_STREAM_RPC_CONNECTION_SETUP_FAILED,
-            EVENT_STREAM_RPC_CONNECTION_ACCESS_DENIED,
-            EVENT_STREAM_RPC_CONNECTION_ALREADY_ESTABLISHED,
-            EVENT_STREAM_RPC_CONNECTION_CLOSED,
-            EVENT_STREAM_RPC_CONTINUATION_CLOSED,
-            EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE,
-            EVENT_STREAM_RPC_UNMAPPED_DATA,
-            EVENT_STREAM_RPC_UNSUPPORTED_CONTENT_TYPE,
-            EVENT_STREAM_RPC_CRT_ERROR
-        };
-
-        struct RpcError
-        {
-            EventStreamRpcStatusCode baseStatus;
-            int crtError;
-            operator bool() const noexcept { return baseStatus == EVENT_STREAM_RPC_SUCCESS; }
-            Crt::String ErrorToString();
         };
 
         class AWS_EVENTSTREAMRPC_API ClientContinuation final

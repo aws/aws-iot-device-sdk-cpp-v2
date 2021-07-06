@@ -76,11 +76,11 @@ class TestLifecycleHandler : public ConnectionLifecycleHandler
         semaphore.notify_one();
     }
 
-    void OnDisconnectCallback(int errorCode) override
+    void OnDisconnectCallback(RpcError error) override
     {
         std::lock_guard<std::mutex> lockGuard(semaphoreLock);
 
-        lastErrorCode = errorCode;
+        lastErrorCode = error.baseStatus;
 
         semaphore.notify_one();
     }

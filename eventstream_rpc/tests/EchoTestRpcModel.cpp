@@ -27,7 +27,9 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::String Product::GetModelName() const noexcept { return Aws::Crt::String("awstest#Product"); }
+    Aws::Crt::String Product::s_getModelName() noexcept { return Aws::Crt::String("awstest#Product"); }
+
+    Aws::Crt::String Product::GetModelName() const noexcept { return Product::s_getModelName(); }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> Product::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -81,7 +83,9 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::String Customer::GetModelName() const noexcept { return Aws::Crt::String("awstest#Customer"); }
+    Aws::Crt::String Customer::s_getModelName() noexcept { return Aws::Crt::String("awstest#Customer"); }
+
+    Aws::Crt::String Customer::GetModelName() const noexcept { return Customer::s_getModelName(); }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> Customer::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -127,7 +131,9 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::String Pair::GetModelName() const noexcept { return Aws::Crt::String("awstest#Pair"); }
+    Aws::Crt::String Pair::s_getModelName() noexcept { return Aws::Crt::String("awstest#Pair"); }
+
+    Aws::Crt::String Pair::GetModelName() const noexcept { return Pair::s_getModelName(); }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> Pair::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -328,7 +334,9 @@ namespace Awstest
         return Aws::Crt::Optional<FruitEnum>();
     }
 
-    Aws::Crt::String MessageData::GetModelName() const noexcept { return Aws::Crt::String("awstest#MessageData"); }
+    Aws::Crt::String MessageData::s_getModelName() noexcept { return Aws::Crt::String("awstest#MessageData"); }
+
+    Aws::Crt::String MessageData::GetModelName() const noexcept { return MessageData::s_getModelName(); }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> MessageData::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -402,9 +410,14 @@ namespace Awstest
         return *this;
     }
 
-    Aws::Crt::String EchoStreamingMessage::GetModelName() const noexcept
+    Aws::Crt::String EchoStreamingMessage::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#EchoStreamingMessage");
+    }
+
+    Aws::Crt::String EchoStreamingMessage::GetModelName() const noexcept
+    {
+        return EchoStreamingMessage::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingMessage::s_allocateFromPayload(
@@ -460,9 +473,14 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::String GetAllProductsResponse::GetModelName() const noexcept
+    Aws::Crt::String GetAllProductsResponse::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#GetAllProductsResponse");
+    }
+
+    Aws::Crt::String GetAllProductsResponse::GetModelName() const noexcept
+    {
+        return GetAllProductsResponse::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> GetAllProductsResponse::s_allocateFromPayload(
@@ -499,9 +517,14 @@ namespace Awstest
         (void)jsonView;
     }
 
-    Aws::Crt::String GetAllProductsRequest::GetModelName() const noexcept
+    Aws::Crt::String GetAllProductsRequest::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#GetAllProductsRequest");
+    }
+
+    Aws::Crt::String GetAllProductsRequest::GetModelName() const noexcept
+    {
+        return GetAllProductsRequest::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> GetAllProductsRequest::s_allocateFromPayload(
@@ -559,9 +582,14 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::String GetAllCustomersResponse::GetModelName() const noexcept
+    Aws::Crt::String GetAllCustomersResponse::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#GetAllCustomersResponse");
+    }
+
+    Aws::Crt::String GetAllCustomersResponse::GetModelName() const noexcept
+    {
+        return GetAllCustomersResponse::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> GetAllCustomersResponse::s_allocateFromPayload(
@@ -598,9 +626,14 @@ namespace Awstest
         (void)jsonView;
     }
 
-    Aws::Crt::String GetAllCustomersRequest::GetModelName() const noexcept
+    Aws::Crt::String GetAllCustomersRequest::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#GetAllCustomersRequest");
+    }
+
+    Aws::Crt::String GetAllCustomersRequest::GetModelName() const noexcept
+    {
+        return GetAllCustomersRequest::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> GetAllCustomersRequest::s_allocateFromPayload(
@@ -645,9 +678,14 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::String EchoMessageResponse::GetModelName() const noexcept
+    Aws::Crt::String EchoMessageResponse::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#EchoMessageResponse");
+    }
+
+    Aws::Crt::String EchoMessageResponse::GetModelName() const noexcept
+    {
+        return EchoMessageResponse::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoMessageResponse::s_allocateFromPayload(
@@ -692,10 +730,12 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::String EchoMessageRequest::GetModelName() const noexcept
+    Aws::Crt::String EchoMessageRequest::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#EchoMessageRequest");
     }
+
+    Aws::Crt::String EchoMessageRequest::GetModelName() const noexcept { return EchoMessageRequest::s_getModelName(); }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoMessageRequest::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -731,9 +771,14 @@ namespace Awstest
         (void)jsonView;
     }
 
-    Aws::Crt::String EchoStreamingResponse::GetModelName() const noexcept
+    Aws::Crt::String EchoStreamingResponse::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#EchoStreamingResponse");
+    }
+
+    Aws::Crt::String EchoStreamingResponse::GetModelName() const noexcept
+    {
+        return EchoStreamingResponse::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingResponse::s_allocateFromPayload(
@@ -770,9 +815,14 @@ namespace Awstest
         (void)jsonView;
     }
 
-    Aws::Crt::String EchoStreamingRequest::GetModelName() const noexcept
+    Aws::Crt::String EchoStreamingRequest::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#EchoStreamingRequest");
+    }
+
+    Aws::Crt::String EchoStreamingRequest::GetModelName() const noexcept
+    {
+        return EchoStreamingRequest::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> EchoStreamingRequest::s_allocateFromPayload(
@@ -820,7 +870,9 @@ namespace Awstest
         }
     }
 
-    Aws::Crt::String ServiceError::GetModelName() const noexcept { return Aws::Crt::String("awstest#ServiceError"); }
+    Aws::Crt::String ServiceError::s_getModelName() noexcept { return Aws::Crt::String("awstest#ServiceError"); }
+
+    Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::s_getModelName(); }
 
     Aws::Crt::ScopedResource<OperationError> ServiceError::s_allocateFromPayload(
         Aws::Crt::StringView stringView,
@@ -856,9 +908,14 @@ namespace Awstest
         (void)jsonView;
     }
 
-    Aws::Crt::String CauseServiceErrorResponse::GetModelName() const noexcept
+    Aws::Crt::String CauseServiceErrorResponse::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#CauseServiceErrorResponse");
+    }
+
+    Aws::Crt::String CauseServiceErrorResponse::GetModelName() const noexcept
+    {
+        return CauseServiceErrorResponse::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> CauseServiceErrorResponse::s_allocateFromPayload(
@@ -895,9 +952,14 @@ namespace Awstest
         (void)jsonView;
     }
 
-    Aws::Crt::String CauseServiceErrorRequest::GetModelName() const noexcept
+    Aws::Crt::String CauseServiceErrorRequest::s_getModelName() noexcept
     {
         return Aws::Crt::String("awstest#CauseServiceErrorRequest");
+    }
+
+    Aws::Crt::String CauseServiceErrorRequest::GetModelName() const noexcept
+    {
+        return CauseServiceErrorRequest::s_getModelName();
     }
 
     Aws::Crt::ScopedResource<AbstractShapeBase> CauseServiceErrorRequest::s_allocateFromPayload(
