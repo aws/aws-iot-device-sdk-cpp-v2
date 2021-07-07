@@ -33,14 +33,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ValidateConfigurationUpdateEvent::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ValidateConfigurationUpdateEvent");
-        }
+        const char *ValidateConfigurationUpdateEvent::MODEL_NAME = "aws.greengrass#ValidateConfigurationUpdateEvent";
 
         Aws::Crt::String ValidateConfigurationUpdateEvent::GetModelName() const noexcept
         {
-            return ValidateConfigurationUpdateEvent::s_getModelName();
+            return ValidateConfigurationUpdateEvent::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ValidateConfigurationUpdateEvent::s_allocateFromPayload(
@@ -96,12 +93,9 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String MQTTMessage::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#MQTTMessage");
-        }
+        const char *MQTTMessage::MODEL_NAME = "aws.greengrass#MQTTMessage";
 
-        Aws::Crt::String MQTTMessage::GetModelName() const noexcept { return MQTTMessage::s_getModelName(); }
+        Aws::Crt::String MQTTMessage::GetModelName() const noexcept { return MQTTMessage::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> MQTTMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -166,14 +160,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ConfigurationUpdateEvent::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ConfigurationUpdateEvent");
-        }
+        const char *ConfigurationUpdateEvent::MODEL_NAME = "aws.greengrass#ConfigurationUpdateEvent";
 
         Aws::Crt::String ConfigurationUpdateEvent::GetModelName() const noexcept
         {
-            return ConfigurationUpdateEvent::s_getModelName();
+            return ConfigurationUpdateEvent::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ConfigurationUpdateEvent::s_allocateFromPayload(
@@ -216,14 +207,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String PostComponentUpdateEvent::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#PostComponentUpdateEvent");
-        }
+        const char *PostComponentUpdateEvent::MODEL_NAME = "aws.greengrass#PostComponentUpdateEvent";
 
         Aws::Crt::String PostComponentUpdateEvent::GetModelName() const noexcept
         {
-            return PostComponentUpdateEvent::s_getModelName();
+            return PostComponentUpdateEvent::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PostComponentUpdateEvent::s_allocateFromPayload(
@@ -275,14 +263,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String PreComponentUpdateEvent::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#PreComponentUpdateEvent");
-        }
+        const char *PreComponentUpdateEvent::MODEL_NAME = "aws.greengrass#PreComponentUpdateEvent";
 
         Aws::Crt::String PreComponentUpdateEvent::GetModelName() const noexcept
         {
-            return PreComponentUpdateEvent::s_getModelName();
+            return PreComponentUpdateEvent::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PreComponentUpdateEvent::s_allocateFromPayload(
@@ -331,12 +316,9 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String BinaryMessage::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#BinaryMessage");
-        }
+        const char *BinaryMessage::MODEL_NAME = "aws.greengrass#BinaryMessage";
 
-        Aws::Crt::String BinaryMessage::GetModelName() const noexcept { return BinaryMessage::s_getModelName(); }
+        Aws::Crt::String BinaryMessage::GetModelName() const noexcept { return BinaryMessage::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> BinaryMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -376,12 +358,9 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String JsonMessage::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#JsonMessage");
-        }
+        const char *JsonMessage::MODEL_NAME = "aws.greengrass#JsonMessage";
 
-        Aws::Crt::String JsonMessage::GetModelName() const noexcept { return JsonMessage::s_getModelName(); }
+        Aws::Crt::String JsonMessage::GetModelName() const noexcept { return JsonMessage::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> JsonMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -420,12 +399,9 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String RunWithInfo::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#RunWithInfo");
-        }
+        const char *RunWithInfo::MODEL_NAME = "aws.greengrass#RunWithInfo";
 
-        Aws::Crt::String RunWithInfo::GetModelName() const noexcept { return RunWithInfo::s_getModelName(); }
+        Aws::Crt::String RunWithInfo::GetModelName() const noexcept { return RunWithInfo::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> RunWithInfo::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -487,14 +463,11 @@ namespace Aws
             return *this;
         }
 
-        Aws::Crt::String ValidateConfigurationUpdateEvents::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ValidateConfigurationUpdateEvents");
-        }
+        const char *ValidateConfigurationUpdateEvents::MODEL_NAME = "aws.greengrass#ValidateConfigurationUpdateEvents";
 
         Aws::Crt::String ValidateConfigurationUpdateEvents::GetModelName() const noexcept
         {
-            return ValidateConfigurationUpdateEvents::s_getModelName();
+            return ValidateConfigurationUpdateEvents::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ValidateConfigurationUpdateEvents::s_allocateFromPayload(
@@ -571,14 +544,11 @@ namespace Aws
             return *this;
         }
 
-        Aws::Crt::String SubscriptionResponseMessage::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscriptionResponseMessage");
-        }
+        const char *SubscriptionResponseMessage::MODEL_NAME = "aws.greengrass#SubscriptionResponseMessage";
 
         Aws::Crt::String SubscriptionResponseMessage::GetModelName() const noexcept
         {
-            return SubscriptionResponseMessage::s_getModelName();
+            return SubscriptionResponseMessage::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscriptionResponseMessage::s_allocateFromPayload(
@@ -634,12 +604,9 @@ namespace Aws
             return *this;
         }
 
-        Aws::Crt::String IoTCoreMessage::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#IoTCoreMessage");
-        }
+        const char *IoTCoreMessage::MODEL_NAME = "aws.greengrass#IoTCoreMessage";
 
-        Aws::Crt::String IoTCoreMessage::GetModelName() const noexcept { return IoTCoreMessage::s_getModelName(); }
+        Aws::Crt::String IoTCoreMessage::GetModelName() const noexcept { return IoTCoreMessage::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> IoTCoreMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -697,14 +664,11 @@ namespace Aws
             return *this;
         }
 
-        Aws::Crt::String ConfigurationUpdateEvents::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ConfigurationUpdateEvents");
-        }
+        const char *ConfigurationUpdateEvents::MODEL_NAME = "aws.greengrass#ConfigurationUpdateEvents";
 
         Aws::Crt::String ConfigurationUpdateEvents::GetModelName() const noexcept
         {
-            return ConfigurationUpdateEvents::s_getModelName();
+            return ConfigurationUpdateEvents::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ConfigurationUpdateEvents::s_allocateFromPayload(
@@ -780,14 +744,11 @@ namespace Aws
             return *this;
         }
 
-        Aws::Crt::String ComponentUpdatePolicyEvents::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ComponentUpdatePolicyEvents");
-        }
+        const char *ComponentUpdatePolicyEvents::MODEL_NAME = "aws.greengrass#ComponentUpdatePolicyEvents";
 
         Aws::Crt::String ComponentUpdatePolicyEvents::GetModelName() const noexcept
         {
-            return ComponentUpdatePolicyEvents::s_getModelName();
+            return ComponentUpdatePolicyEvents::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ComponentUpdatePolicyEvents::s_allocateFromPayload(
@@ -879,14 +840,11 @@ namespace Aws
             return Aws::Crt::Optional<ConfigurationValidityStatus>();
         }
 
-        Aws::Crt::String ConfigurationValidityReport::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ConfigurationValidityReport");
-        }
+        const char *ConfigurationValidityReport::MODEL_NAME = "aws.greengrass#ConfigurationValidityReport";
 
         Aws::Crt::String ConfigurationValidityReport::GetModelName() const noexcept
         {
-            return ConfigurationValidityReport::s_getModelName();
+            return ConfigurationValidityReport::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ConfigurationValidityReport::s_allocateFromPayload(
@@ -961,12 +919,9 @@ namespace Aws
             return *this;
         }
 
-        Aws::Crt::String PublishMessage::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#PublishMessage");
-        }
+        const char *PublishMessage::MODEL_NAME = "aws.greengrass#PublishMessage";
 
-        Aws::Crt::String PublishMessage::GetModelName() const noexcept { return PublishMessage::s_getModelName(); }
+        Aws::Crt::String PublishMessage::GetModelName() const noexcept { return PublishMessage::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishMessage::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1037,12 +992,9 @@ namespace Aws
             return *this;
         }
 
-        Aws::Crt::String SecretValue::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SecretValue");
-        }
+        const char *SecretValue::MODEL_NAME = "aws.greengrass#SecretValue";
 
-        Aws::Crt::String SecretValue::GetModelName() const noexcept { return SecretValue::s_getModelName(); }
+        Aws::Crt::String SecretValue::GetModelName() const noexcept { return SecretValue::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SecretValue::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1137,12 +1089,9 @@ namespace Aws
             return Aws::Crt::Optional<DeploymentStatus>();
         }
 
-        Aws::Crt::String LocalDeployment::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#LocalDeployment");
-        }
+        const char *LocalDeployment::MODEL_NAME = "aws.greengrass#LocalDeployment";
 
-        Aws::Crt::String LocalDeployment::GetModelName() const noexcept { return LocalDeployment::s_getModelName(); }
+        Aws::Crt::String LocalDeployment::GetModelName() const noexcept { return LocalDeployment::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> LocalDeployment::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1282,12 +1231,9 @@ namespace Aws
             return Aws::Crt::Optional<LifecycleState>();
         }
 
-        Aws::Crt::String ComponentDetails::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ComponentDetails");
-        }
+        const char *ComponentDetails::MODEL_NAME = "aws.greengrass#ComponentDetails";
 
-        Aws::Crt::String ComponentDetails::GetModelName() const noexcept { return ComponentDetails::s_getModelName(); }
+        Aws::Crt::String ComponentDetails::GetModelName() const noexcept { return ComponentDetails::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ComponentDetails::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1328,15 +1274,9 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String InvalidTokenError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#InvalidTokenError");
-        }
+        const char *InvalidTokenError::MODEL_NAME = "aws.greengrass#InvalidTokenError";
 
-        Aws::Crt::String InvalidTokenError::GetModelName() const noexcept
-        {
-            return InvalidTokenError::s_getModelName();
-        }
+        Aws::Crt::String InvalidTokenError::GetModelName() const noexcept { return InvalidTokenError::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<OperationError> InvalidTokenError::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1378,14 +1318,12 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ValidateAuthorizationTokenResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ValidateAuthorizationTokenResponse");
-        }
+        const char *ValidateAuthorizationTokenResponse::MODEL_NAME =
+            "aws.greengrass#ValidateAuthorizationTokenResponse";
 
         Aws::Crt::String ValidateAuthorizationTokenResponse::GetModelName() const noexcept
         {
-            return ValidateAuthorizationTokenResponse::s_getModelName();
+            return ValidateAuthorizationTokenResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ValidateAuthorizationTokenResponse::s_allocateFromPayload(
@@ -1430,14 +1368,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ValidateAuthorizationTokenRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ValidateAuthorizationTokenRequest");
-        }
+        const char *ValidateAuthorizationTokenRequest::MODEL_NAME = "aws.greengrass#ValidateAuthorizationTokenRequest";
 
         Aws::Crt::String ValidateAuthorizationTokenRequest::GetModelName() const noexcept
         {
-            return ValidateAuthorizationTokenRequest::s_getModelName();
+            return ValidateAuthorizationTokenRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ValidateAuthorizationTokenRequest::s_allocateFromPayload(
@@ -1487,14 +1422,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String UpdateThingShadowResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#UpdateThingShadowResponse");
-        }
+        const char *UpdateThingShadowResponse::MODEL_NAME = "aws.greengrass#UpdateThingShadowResponse";
 
         Aws::Crt::String UpdateThingShadowResponse::GetModelName() const noexcept
         {
-            return UpdateThingShadowResponse::s_getModelName();
+            return UpdateThingShadowResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateThingShadowResponse::s_allocateFromPayload(
@@ -1561,14 +1493,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String UpdateThingShadowRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#UpdateThingShadowRequest");
-        }
+        const char *UpdateThingShadowRequest::MODEL_NAME = "aws.greengrass#UpdateThingShadowRequest";
 
         Aws::Crt::String UpdateThingShadowRequest::GetModelName() const noexcept
         {
-            return UpdateThingShadowRequest::s_getModelName();
+            return UpdateThingShadowRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateThingShadowRequest::s_allocateFromPayload(
@@ -1605,15 +1534,9 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String UpdateStateResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#UpdateStateResponse");
-        }
+        const char *UpdateStateResponse::MODEL_NAME = "aws.greengrass#UpdateStateResponse";
 
-        Aws::Crt::String UpdateStateResponse::GetModelName() const noexcept
-        {
-            return UpdateStateResponse::s_getModelName();
-        }
+        Aws::Crt::String UpdateStateResponse::GetModelName() const noexcept { return UpdateStateResponse::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateStateResponse::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1685,15 +1608,9 @@ namespace Aws
             return Aws::Crt::Optional<ReportedLifecycleState>();
         }
 
-        Aws::Crt::String UpdateStateRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#UpdateStateRequest");
-        }
+        const char *UpdateStateRequest::MODEL_NAME = "aws.greengrass#UpdateStateRequest";
 
-        Aws::Crt::String UpdateStateRequest::GetModelName() const noexcept
-        {
-            return UpdateStateRequest::s_getModelName();
-        }
+        Aws::Crt::String UpdateStateRequest::GetModelName() const noexcept { return UpdateStateRequest::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateStateRequest::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1735,14 +1652,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String FailedUpdateConditionCheckError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#FailedUpdateConditionCheckError");
-        }
+        const char *FailedUpdateConditionCheckError::MODEL_NAME = "aws.greengrass#FailedUpdateConditionCheckError";
 
         Aws::Crt::String FailedUpdateConditionCheckError::GetModelName() const noexcept
         {
-            return FailedUpdateConditionCheckError::s_getModelName();
+            return FailedUpdateConditionCheckError::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<OperationError> FailedUpdateConditionCheckError::s_allocateFromPayload(
@@ -1785,12 +1699,9 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ConflictError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ConflictError");
-        }
+        const char *ConflictError::MODEL_NAME = "aws.greengrass#ConflictError";
 
-        Aws::Crt::String ConflictError::GetModelName() const noexcept { return ConflictError::s_getModelName(); }
+        Aws::Crt::String ConflictError::GetModelName() const noexcept { return ConflictError::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<OperationError> ConflictError::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -1826,14 +1737,11 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String UpdateConfigurationResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#UpdateConfigurationResponse");
-        }
+        const char *UpdateConfigurationResponse::MODEL_NAME = "aws.greengrass#UpdateConfigurationResponse";
 
         Aws::Crt::String UpdateConfigurationResponse::GetModelName() const noexcept
         {
-            return UpdateConfigurationResponse::s_getModelName();
+            return UpdateConfigurationResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateConfigurationResponse::s_allocateFromPayload(
@@ -1908,14 +1816,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String UpdateConfigurationRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#UpdateConfigurationRequest");
-        }
+        const char *UpdateConfigurationRequest::MODEL_NAME = "aws.greengrass#UpdateConfigurationRequest";
 
         Aws::Crt::String UpdateConfigurationRequest::GetModelName() const noexcept
         {
-            return UpdateConfigurationRequest::s_getModelName();
+            return UpdateConfigurationRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> UpdateConfigurationRequest::s_allocateFromPayload(
@@ -1953,14 +1858,12 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String SubscribeToValidateConfigurationUpdatesResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToValidateConfigurationUpdatesResponse");
-        }
+        const char *SubscribeToValidateConfigurationUpdatesResponse::MODEL_NAME =
+            "aws.greengrass#SubscribeToValidateConfigurationUpdatesResponse";
 
         Aws::Crt::String SubscribeToValidateConfigurationUpdatesResponse::GetModelName() const noexcept
         {
-            return SubscribeToValidateConfigurationUpdatesResponse::s_getModelName();
+            return SubscribeToValidateConfigurationUpdatesResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToValidateConfigurationUpdatesResponse::
@@ -1999,14 +1902,12 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String SubscribeToValidateConfigurationUpdatesRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToValidateConfigurationUpdatesRequest");
-        }
+        const char *SubscribeToValidateConfigurationUpdatesRequest::MODEL_NAME =
+            "aws.greengrass#SubscribeToValidateConfigurationUpdatesRequest";
 
         Aws::Crt::String SubscribeToValidateConfigurationUpdatesRequest::GetModelName() const noexcept
         {
-            return SubscribeToValidateConfigurationUpdatesRequest::s_getModelName();
+            return SubscribeToValidateConfigurationUpdatesRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToValidateConfigurationUpdatesRequest::
@@ -2050,14 +1951,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String SubscribeToTopicResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToTopicResponse");
-        }
+        const char *SubscribeToTopicResponse::MODEL_NAME = "aws.greengrass#SubscribeToTopicResponse";
 
         Aws::Crt::String SubscribeToTopicResponse::GetModelName() const noexcept
         {
-            return SubscribeToTopicResponse::s_getModelName();
+            return SubscribeToTopicResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToTopicResponse::s_allocateFromPayload(
@@ -2099,14 +1997,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String SubscribeToTopicRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToTopicRequest");
-        }
+        const char *SubscribeToTopicRequest::MODEL_NAME = "aws.greengrass#SubscribeToTopicRequest";
 
         Aws::Crt::String SubscribeToTopicRequest::GetModelName() const noexcept
         {
-            return SubscribeToTopicRequest::s_getModelName();
+            return SubscribeToTopicRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToTopicRequest::s_allocateFromPayload(
@@ -2143,14 +2038,11 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String SubscribeToIoTCoreResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToIoTCoreResponse");
-        }
+        const char *SubscribeToIoTCoreResponse::MODEL_NAME = "aws.greengrass#SubscribeToIoTCoreResponse";
 
         Aws::Crt::String SubscribeToIoTCoreResponse::GetModelName() const noexcept
         {
-            return SubscribeToIoTCoreResponse::s_getModelName();
+            return SubscribeToIoTCoreResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreResponse::s_allocateFromPayload(
@@ -2232,14 +2124,11 @@ namespace Aws
             return Aws::Crt::Optional<QOS>();
         }
 
-        Aws::Crt::String SubscribeToIoTCoreRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToIoTCoreRequest");
-        }
+        const char *SubscribeToIoTCoreRequest::MODEL_NAME = "aws.greengrass#SubscribeToIoTCoreRequest";
 
         Aws::Crt::String SubscribeToIoTCoreRequest::GetModelName() const noexcept
         {
-            return SubscribeToIoTCoreRequest::s_getModelName();
+            return SubscribeToIoTCoreRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToIoTCoreRequest::s_allocateFromPayload(
@@ -2277,14 +2166,12 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String SubscribeToConfigurationUpdateResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToConfigurationUpdateResponse");
-        }
+        const char *SubscribeToConfigurationUpdateResponse::MODEL_NAME =
+            "aws.greengrass#SubscribeToConfigurationUpdateResponse";
 
         Aws::Crt::String SubscribeToConfigurationUpdateResponse::GetModelName() const noexcept
         {
-            return SubscribeToConfigurationUpdateResponse::s_getModelName();
+            return SubscribeToConfigurationUpdateResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToConfigurationUpdateResponse::s_allocateFromPayload(
@@ -2353,14 +2240,12 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String SubscribeToConfigurationUpdateRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToConfigurationUpdateRequest");
-        }
+        const char *SubscribeToConfigurationUpdateRequest::MODEL_NAME =
+            "aws.greengrass#SubscribeToConfigurationUpdateRequest";
 
         Aws::Crt::String SubscribeToConfigurationUpdateRequest::GetModelName() const noexcept
         {
-            return SubscribeToConfigurationUpdateRequest::s_getModelName();
+            return SubscribeToConfigurationUpdateRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToConfigurationUpdateRequest::s_allocateFromPayload(
@@ -2400,14 +2285,12 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String SubscribeToComponentUpdatesResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToComponentUpdatesResponse");
-        }
+        const char *SubscribeToComponentUpdatesResponse::MODEL_NAME =
+            "aws.greengrass#SubscribeToComponentUpdatesResponse";
 
         Aws::Crt::String SubscribeToComponentUpdatesResponse::GetModelName() const noexcept
         {
-            return SubscribeToComponentUpdatesResponse::s_getModelName();
+            return SubscribeToComponentUpdatesResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToComponentUpdatesResponse::s_allocateFromPayload(
@@ -2446,14 +2329,12 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String SubscribeToComponentUpdatesRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SubscribeToComponentUpdatesRequest");
-        }
+        const char *SubscribeToComponentUpdatesRequest::MODEL_NAME =
+            "aws.greengrass#SubscribeToComponentUpdatesRequest";
 
         Aws::Crt::String SubscribeToComponentUpdatesRequest::GetModelName() const noexcept
         {
-            return SubscribeToComponentUpdatesRequest::s_getModelName();
+            return SubscribeToComponentUpdatesRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SubscribeToComponentUpdatesRequest::s_allocateFromPayload(
@@ -2536,14 +2417,11 @@ namespace Aws
             return Aws::Crt::Optional<RequestStatus>();
         }
 
-        Aws::Crt::String StopComponentResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#StopComponentResponse");
-        }
+        const char *StopComponentResponse::MODEL_NAME = "aws.greengrass#StopComponentResponse";
 
         Aws::Crt::String StopComponentResponse::GetModelName() const noexcept
         {
-            return StopComponentResponse::s_getModelName();
+            return StopComponentResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> StopComponentResponse::s_allocateFromPayload(
@@ -2586,14 +2464,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String StopComponentRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#StopComponentRequest");
-        }
+        const char *StopComponentRequest::MODEL_NAME = "aws.greengrass#StopComponentRequest";
 
         Aws::Crt::String StopComponentRequest::GetModelName() const noexcept
         {
-            return StopComponentRequest::s_getModelName();
+            return StopComponentRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> StopComponentRequest::s_allocateFromPayload(
@@ -2631,14 +2506,12 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String SendConfigurationValidityReportResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SendConfigurationValidityReportResponse");
-        }
+        const char *SendConfigurationValidityReportResponse::MODEL_NAME =
+            "aws.greengrass#SendConfigurationValidityReportResponse";
 
         Aws::Crt::String SendConfigurationValidityReportResponse::GetModelName() const noexcept
         {
-            return SendConfigurationValidityReportResponse::s_getModelName();
+            return SendConfigurationValidityReportResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SendConfigurationValidityReportResponse::s_allocateFromPayload(
@@ -2688,14 +2561,12 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String SendConfigurationValidityReportRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#SendConfigurationValidityReportRequest");
-        }
+        const char *SendConfigurationValidityReportRequest::MODEL_NAME =
+            "aws.greengrass#SendConfigurationValidityReportRequest";
 
         Aws::Crt::String SendConfigurationValidityReportRequest::GetModelName() const noexcept
         {
-            return SendConfigurationValidityReportRequest::s_getModelName();
+            return SendConfigurationValidityReportRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> SendConfigurationValidityReportRequest::s_allocateFromPayload(
@@ -2739,14 +2610,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ComponentNotFoundError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ComponentNotFoundError");
-        }
+        const char *ComponentNotFoundError::MODEL_NAME = "aws.greengrass#ComponentNotFoundError";
 
         Aws::Crt::String ComponentNotFoundError::GetModelName() const noexcept
         {
-            return ComponentNotFoundError::s_getModelName();
+            return ComponentNotFoundError::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<OperationError> ComponentNotFoundError::s_allocateFromPayload(
@@ -2829,14 +2697,11 @@ namespace Aws
             return Aws::Crt::Optional<RequestStatus>();
         }
 
-        Aws::Crt::String RestartComponentResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#RestartComponentResponse");
-        }
+        const char *RestartComponentResponse::MODEL_NAME = "aws.greengrass#RestartComponentResponse";
 
         Aws::Crt::String RestartComponentResponse::GetModelName() const noexcept
         {
-            return RestartComponentResponse::s_getModelName();
+            return RestartComponentResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> RestartComponentResponse::s_allocateFromPayload(
@@ -2879,14 +2744,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String RestartComponentRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#RestartComponentRequest");
-        }
+        const char *RestartComponentRequest::MODEL_NAME = "aws.greengrass#RestartComponentRequest";
 
         Aws::Crt::String RestartComponentRequest::GetModelName() const noexcept
         {
-            return RestartComponentRequest::s_getModelName();
+            return RestartComponentRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> RestartComponentRequest::s_allocateFromPayload(
@@ -2923,14 +2785,11 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String PublishToTopicResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#PublishToTopicResponse");
-        }
+        const char *PublishToTopicResponse::MODEL_NAME = "aws.greengrass#PublishToTopicResponse";
 
         Aws::Crt::String PublishToTopicResponse::GetModelName() const noexcept
         {
-            return PublishToTopicResponse::s_getModelName();
+            return PublishToTopicResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToTopicResponse::s_allocateFromPayload(
@@ -2984,14 +2843,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String PublishToTopicRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#PublishToTopicRequest");
-        }
+        const char *PublishToTopicRequest::MODEL_NAME = "aws.greengrass#PublishToTopicRequest";
 
         Aws::Crt::String PublishToTopicRequest::GetModelName() const noexcept
         {
-            return PublishToTopicRequest::s_getModelName();
+            return PublishToTopicRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToTopicRequest::s_allocateFromPayload(
@@ -3028,14 +2884,11 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String PublishToIoTCoreResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#PublishToIoTCoreResponse");
-        }
+        const char *PublishToIoTCoreResponse::MODEL_NAME = "aws.greengrass#PublishToIoTCoreResponse";
 
         Aws::Crt::String PublishToIoTCoreResponse::GetModelName() const noexcept
         {
-            return PublishToIoTCoreResponse::s_getModelName();
+            return PublishToIoTCoreResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToIoTCoreResponse::s_allocateFromPayload(
@@ -3132,14 +2985,11 @@ namespace Aws
             return Aws::Crt::Optional<QOS>();
         }
 
-        Aws::Crt::String PublishToIoTCoreRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#PublishToIoTCoreRequest");
-        }
+        const char *PublishToIoTCoreRequest::MODEL_NAME = "aws.greengrass#PublishToIoTCoreRequest";
 
         Aws::Crt::String PublishToIoTCoreRequest::GetModelName() const noexcept
         {
-            return PublishToIoTCoreRequest::s_getModelName();
+            return PublishToIoTCoreRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> PublishToIoTCoreRequest::s_allocateFromPayload(
@@ -3214,14 +3064,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ListNamedShadowsForThingResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ListNamedShadowsForThingResponse");
-        }
+        const char *ListNamedShadowsForThingResponse::MODEL_NAME = "aws.greengrass#ListNamedShadowsForThingResponse";
 
         Aws::Crt::String ListNamedShadowsForThingResponse::GetModelName() const noexcept
         {
-            return ListNamedShadowsForThingResponse::s_getModelName();
+            return ListNamedShadowsForThingResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListNamedShadowsForThingResponse::s_allocateFromPayload(
@@ -3282,14 +3129,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ListNamedShadowsForThingRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ListNamedShadowsForThingRequest");
-        }
+        const char *ListNamedShadowsForThingRequest::MODEL_NAME = "aws.greengrass#ListNamedShadowsForThingRequest";
 
         Aws::Crt::String ListNamedShadowsForThingRequest::GetModelName() const noexcept
         {
-            return ListNamedShadowsForThingRequest::s_getModelName();
+            return ListNamedShadowsForThingRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListNamedShadowsForThingRequest::s_allocateFromPayload(
@@ -3350,14 +3194,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ListLocalDeploymentsResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ListLocalDeploymentsResponse");
-        }
+        const char *ListLocalDeploymentsResponse::MODEL_NAME = "aws.greengrass#ListLocalDeploymentsResponse";
 
         Aws::Crt::String ListLocalDeploymentsResponse::GetModelName() const noexcept
         {
-            return ListLocalDeploymentsResponse::s_getModelName();
+            return ListLocalDeploymentsResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListLocalDeploymentsResponse::s_allocateFromPayload(
@@ -3394,14 +3235,11 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String ListLocalDeploymentsRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ListLocalDeploymentsRequest");
-        }
+        const char *ListLocalDeploymentsRequest::MODEL_NAME = "aws.greengrass#ListLocalDeploymentsRequest";
 
         Aws::Crt::String ListLocalDeploymentsRequest::GetModelName() const noexcept
         {
-            return ListLocalDeploymentsRequest::s_getModelName();
+            return ListLocalDeploymentsRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListLocalDeploymentsRequest::s_allocateFromPayload(
@@ -3459,14 +3297,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ListComponentsResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ListComponentsResponse");
-        }
+        const char *ListComponentsResponse::MODEL_NAME = "aws.greengrass#ListComponentsResponse";
 
         Aws::Crt::String ListComponentsResponse::GetModelName() const noexcept
         {
-            return ListComponentsResponse::s_getModelName();
+            return ListComponentsResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListComponentsResponse::s_allocateFromPayload(
@@ -3503,14 +3338,11 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String ListComponentsRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ListComponentsRequest");
-        }
+        const char *ListComponentsRequest::MODEL_NAME = "aws.greengrass#ListComponentsRequest";
 
         Aws::Crt::String ListComponentsRequest::GetModelName() const noexcept
         {
-            return ListComponentsRequest::s_getModelName();
+            return ListComponentsRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> ListComponentsRequest::s_allocateFromPayload(
@@ -3559,14 +3391,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetThingShadowResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetThingShadowResponse");
-        }
+        const char *GetThingShadowResponse::MODEL_NAME = "aws.greengrass#GetThingShadowResponse";
 
         Aws::Crt::String GetThingShadowResponse::GetModelName() const noexcept
         {
-            return GetThingShadowResponse::s_getModelName();
+            return GetThingShadowResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetThingShadowResponse::s_allocateFromPayload(
@@ -3618,14 +3447,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetThingShadowRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetThingShadowRequest");
-        }
+        const char *GetThingShadowRequest::MODEL_NAME = "aws.greengrass#GetThingShadowRequest";
 
         Aws::Crt::String GetThingShadowRequest::GetModelName() const noexcept
         {
-            return GetThingShadowRequest::s_getModelName();
+            return GetThingShadowRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetThingShadowRequest::s_allocateFromPayload(
@@ -3712,14 +3538,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetSecretValueResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetSecretValueResponse");
-        }
+        const char *GetSecretValueResponse::MODEL_NAME = "aws.greengrass#GetSecretValueResponse";
 
         Aws::Crt::String GetSecretValueResponse::GetModelName() const noexcept
         {
-            return GetSecretValueResponse::s_getModelName();
+            return GetSecretValueResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetSecretValueResponse::s_allocateFromPayload(
@@ -3779,14 +3602,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetSecretValueRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetSecretValueRequest");
-        }
+        const char *GetSecretValueRequest::MODEL_NAME = "aws.greengrass#GetSecretValueRequest";
 
         Aws::Crt::String GetSecretValueRequest::GetModelName() const noexcept
         {
-            return GetSecretValueRequest::s_getModelName();
+            return GetSecretValueRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetSecretValueRequest::s_allocateFromPayload(
@@ -3832,14 +3652,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetLocalDeploymentStatusResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetLocalDeploymentStatusResponse");
-        }
+        const char *GetLocalDeploymentStatusResponse::MODEL_NAME = "aws.greengrass#GetLocalDeploymentStatusResponse";
 
         Aws::Crt::String GetLocalDeploymentStatusResponse::GetModelName() const noexcept
         {
-            return GetLocalDeploymentStatusResponse::s_getModelName();
+            return GetLocalDeploymentStatusResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetLocalDeploymentStatusResponse::s_allocateFromPayload(
@@ -3883,14 +3700,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetLocalDeploymentStatusRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetLocalDeploymentStatusRequest");
-        }
+        const char *GetLocalDeploymentStatusRequest::MODEL_NAME = "aws.greengrass#GetLocalDeploymentStatusRequest";
 
         Aws::Crt::String GetLocalDeploymentStatusRequest::GetModelName() const noexcept
         {
-            return GetLocalDeploymentStatusRequest::s_getModelName();
+            return GetLocalDeploymentStatusRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetLocalDeploymentStatusRequest::s_allocateFromPayload(
@@ -3943,14 +3757,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetConfigurationResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetConfigurationResponse");
-        }
+        const char *GetConfigurationResponse::MODEL_NAME = "aws.greengrass#GetConfigurationResponse";
 
         Aws::Crt::String GetConfigurationResponse::GetModelName() const noexcept
         {
-            return GetConfigurationResponse::s_getModelName();
+            return GetConfigurationResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetConfigurationResponse::s_allocateFromPayload(
@@ -4016,14 +3827,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetConfigurationRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetConfigurationRequest");
-        }
+        const char *GetConfigurationRequest::MODEL_NAME = "aws.greengrass#GetConfigurationRequest";
 
         Aws::Crt::String GetConfigurationRequest::GetModelName() const noexcept
         {
-            return GetConfigurationRequest::s_getModelName();
+            return GetConfigurationRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetConfigurationRequest::s_allocateFromPayload(
@@ -4069,14 +3877,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetComponentDetailsResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetComponentDetailsResponse");
-        }
+        const char *GetComponentDetailsResponse::MODEL_NAME = "aws.greengrass#GetComponentDetailsResponse";
 
         Aws::Crt::String GetComponentDetailsResponse::GetModelName() const noexcept
         {
-            return GetComponentDetailsResponse::s_getModelName();
+            return GetComponentDetailsResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetComponentDetailsResponse::s_allocateFromPayload(
@@ -4119,14 +3924,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String GetComponentDetailsRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#GetComponentDetailsRequest");
-        }
+        const char *GetComponentDetailsRequest::MODEL_NAME = "aws.greengrass#GetComponentDetailsRequest";
 
         Aws::Crt::String GetComponentDetailsRequest::GetModelName() const noexcept
         {
-            return GetComponentDetailsRequest::s_getModelName();
+            return GetComponentDetailsRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> GetComponentDetailsRequest::s_allocateFromPayload(
@@ -4175,14 +3977,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String DeleteThingShadowResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#DeleteThingShadowResponse");
-        }
+        const char *DeleteThingShadowResponse::MODEL_NAME = "aws.greengrass#DeleteThingShadowResponse";
 
         Aws::Crt::String DeleteThingShadowResponse::GetModelName() const noexcept
         {
-            return DeleteThingShadowResponse::s_getModelName();
+            return DeleteThingShadowResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeleteThingShadowResponse::s_allocateFromPayload(
@@ -4234,14 +4033,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String DeleteThingShadowRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#DeleteThingShadowRequest");
-        }
+        const char *DeleteThingShadowRequest::MODEL_NAME = "aws.greengrass#DeleteThingShadowRequest";
 
         Aws::Crt::String DeleteThingShadowRequest::GetModelName() const noexcept
         {
-            return DeleteThingShadowRequest::s_getModelName();
+            return DeleteThingShadowRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeleteThingShadowRequest::s_allocateFromPayload(
@@ -4301,14 +4097,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ResourceNotFoundError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ResourceNotFoundError");
-        }
+        const char *ResourceNotFoundError::MODEL_NAME = "aws.greengrass#ResourceNotFoundError";
 
         Aws::Crt::String ResourceNotFoundError::GetModelName() const noexcept
         {
-            return ResourceNotFoundError::s_getModelName();
+            return ResourceNotFoundError::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<OperationError> ResourceNotFoundError::s_allocateFromPayload(
@@ -4345,14 +4138,11 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String DeferComponentUpdateResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#DeferComponentUpdateResponse");
-        }
+        const char *DeferComponentUpdateResponse::MODEL_NAME = "aws.greengrass#DeferComponentUpdateResponse";
 
         Aws::Crt::String DeferComponentUpdateResponse::GetModelName() const noexcept
         {
-            return DeferComponentUpdateResponse::s_getModelName();
+            return DeferComponentUpdateResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeferComponentUpdateResponse::s_allocateFromPayload(
@@ -4413,14 +4203,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String DeferComponentUpdateRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#DeferComponentUpdateRequest");
-        }
+        const char *DeferComponentUpdateRequest::MODEL_NAME = "aws.greengrass#DeferComponentUpdateRequest";
 
         Aws::Crt::String DeferComponentUpdateRequest::GetModelName() const noexcept
         {
-            return DeferComponentUpdateRequest::s_getModelName();
+            return DeferComponentUpdateRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> DeferComponentUpdateRequest::s_allocateFromPayload(
@@ -4462,14 +4249,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String InvalidArgumentsError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#InvalidArgumentsError");
-        }
+        const char *InvalidArgumentsError::MODEL_NAME = "aws.greengrass#InvalidArgumentsError";
 
         Aws::Crt::String InvalidArgumentsError::GetModelName() const noexcept
         {
-            return InvalidArgumentsError::s_getModelName();
+            return InvalidArgumentsError::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<OperationError> InvalidArgumentsError::s_allocateFromPayload(
@@ -4513,14 +4297,12 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String InvalidArtifactsDirectoryPathError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#InvalidArtifactsDirectoryPathError");
-        }
+        const char *InvalidArtifactsDirectoryPathError::MODEL_NAME =
+            "aws.greengrass#InvalidArtifactsDirectoryPathError";
 
         Aws::Crt::String InvalidArtifactsDirectoryPathError::GetModelName() const noexcept
         {
-            return InvalidArtifactsDirectoryPathError::s_getModelName();
+            return InvalidArtifactsDirectoryPathError::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<OperationError> InvalidArtifactsDirectoryPathError::s_allocateFromPayload(
@@ -4564,14 +4346,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String InvalidRecipeDirectoryPathError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#InvalidRecipeDirectoryPathError");
-        }
+        const char *InvalidRecipeDirectoryPathError::MODEL_NAME = "aws.greengrass#InvalidRecipeDirectoryPathError";
 
         Aws::Crt::String InvalidRecipeDirectoryPathError::GetModelName() const noexcept
         {
-            return InvalidRecipeDirectoryPathError::s_getModelName();
+            return InvalidRecipeDirectoryPathError::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<OperationError> InvalidRecipeDirectoryPathError::s_allocateFromPayload(
@@ -4615,14 +4394,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String CreateLocalDeploymentResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#CreateLocalDeploymentResponse");
-        }
+        const char *CreateLocalDeploymentResponse::MODEL_NAME = "aws.greengrass#CreateLocalDeploymentResponse";
 
         Aws::Crt::String CreateLocalDeploymentResponse::GetModelName() const noexcept
         {
-            return CreateLocalDeploymentResponse::s_getModelName();
+            return CreateLocalDeploymentResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateLocalDeploymentResponse::s_allocateFromPayload(
@@ -4785,14 +4561,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String CreateLocalDeploymentRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#CreateLocalDeploymentRequest");
-        }
+        const char *CreateLocalDeploymentRequest::MODEL_NAME = "aws.greengrass#CreateLocalDeploymentRequest";
 
         Aws::Crt::String CreateLocalDeploymentRequest::GetModelName() const noexcept
         {
-            return CreateLocalDeploymentRequest::s_getModelName();
+            return CreateLocalDeploymentRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateLocalDeploymentRequest::s_allocateFromPayload(
@@ -4832,12 +4605,9 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String ServiceError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#ServiceError");
-        }
+        const char *ServiceError::MODEL_NAME = "aws.greengrass#ServiceError";
 
-        Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::s_getModelName(); }
+        Aws::Crt::String ServiceError::GetModelName() const noexcept { return ServiceError::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<OperationError> ServiceError::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -4878,15 +4648,9 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String UnauthorizedError::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#UnauthorizedError");
-        }
+        const char *UnauthorizedError::MODEL_NAME = "aws.greengrass#UnauthorizedError";
 
-        Aws::Crt::String UnauthorizedError::GetModelName() const noexcept
-        {
-            return UnauthorizedError::s_getModelName();
-        }
+        Aws::Crt::String UnauthorizedError::GetModelName() const noexcept { return UnauthorizedError::MODEL_NAME; }
 
         Aws::Crt::ScopedResource<OperationError> UnauthorizedError::s_allocateFromPayload(
             Aws::Crt::StringView stringView,
@@ -4964,14 +4728,11 @@ namespace Aws
             }
         }
 
-        Aws::Crt::String CreateDebugPasswordResponse::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#CreateDebugPasswordResponse");
-        }
+        const char *CreateDebugPasswordResponse::MODEL_NAME = "aws.greengrass#CreateDebugPasswordResponse";
 
         Aws::Crt::String CreateDebugPasswordResponse::GetModelName() const noexcept
         {
-            return CreateDebugPasswordResponse::s_getModelName();
+            return CreateDebugPasswordResponse::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateDebugPasswordResponse::s_allocateFromPayload(
@@ -5008,14 +4769,11 @@ namespace Aws
             (void)jsonView;
         }
 
-        Aws::Crt::String CreateDebugPasswordRequest::s_getModelName() noexcept
-        {
-            return Aws::Crt::String("aws.greengrass#CreateDebugPasswordRequest");
-        }
+        const char *CreateDebugPasswordRequest::MODEL_NAME = "aws.greengrass#CreateDebugPasswordRequest";
 
         Aws::Crt::String CreateDebugPasswordRequest::GetModelName() const noexcept
         {
-            return CreateDebugPasswordRequest::s_getModelName();
+            return CreateDebugPasswordRequest::MODEL_NAME;
         }
 
         Aws::Crt::ScopedResource<AbstractShapeBase> CreateDebugPasswordRequest::s_allocateFromPayload(

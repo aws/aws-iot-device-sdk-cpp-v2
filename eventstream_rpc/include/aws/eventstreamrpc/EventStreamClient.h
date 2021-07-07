@@ -134,11 +134,11 @@ namespace Aws
             MessageAmendment(const Crt::ByteBuf &payload, Crt::Allocator *allocator = Crt::g_allocator) noexcept;
             void AddHeader(EventStreamHeader &&header) noexcept;
             void SetPayload(const Crt::Optional<Crt::ByteBuf> &payload) noexcept;
-            Crt::List<EventStreamHeader> &GetHeaders() const noexcept;
+            const Crt::List<EventStreamHeader> &GetHeaders() const noexcept;
             const Crt::Optional<Crt::ByteBuf> &GetPayload() const noexcept;
 
           private:
-            mutable Crt::List<EventStreamHeader> m_headers;
+            Crt::List<EventStreamHeader> m_headers;
             Crt::Optional<Crt::ByteBuf> m_payload;
             Crt::Allocator *m_allocator;
         };

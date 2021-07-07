@@ -97,7 +97,7 @@ namespace Aws
             rhs.m_payload = Crt::Optional<Crt::ByteBuf>();
         }
 
-        Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() const noexcept { return m_headers; }
+        const Crt::List<EventStreamHeader> &MessageAmendment::GetHeaders() const noexcept { return m_headers; }
 
         const Crt::Optional<Crt::ByteBuf> &MessageAmendment::GetPayload() const noexcept { return m_payload; }
 
@@ -661,12 +661,12 @@ namespace Aws
                 thisConnection->m_clientState = WAITING_FOR_CONNECT_ACK;
                 thisConnection->m_underlyingConnection = connection;
                 MessageAmendment messageAmendment;
-                auto &messageAmendmentHeaders = messageAmendment.GetHeaders();
+                Crt::List<EventStreamHeader> messageAmendmentHeaders = messageAmendment.GetHeaders();
 
                 if (thisConnection->m_connectMessageAmender)
                 {
                     MessageAmendment connectAmendment(thisConnection->m_connectMessageAmender());
-                    auto &amenderHeaderList = connectAmendment.GetHeaders();
+                    Crt::List<EventStreamHeader> amenderHeaderList = connectAmendment.GetHeaders();
                     /* The version header is necessary for establishing the connection. */
                     messageAmendment.AddHeader(EventStreamHeader(
                         Crt::String(EVENTSTREAM_VERSION_HEADER),

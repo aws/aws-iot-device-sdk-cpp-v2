@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
     auto subscribeResultFuture = subscribeOperation.GetResult();
     /*
     // To avoid throwing exceptions, wait on the result for a specified timeout:
-    if (subscribeResultFuture.wait_for(std::chrono::seconds(10)) != std::future_status::ready)
+    if (subscribeResultFuture.wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
     {
         fprintf(stderr, "Timed out while waiting for response from Greengrass Core\n");
         exit(-1);
@@ -181,7 +181,7 @@ int main(int argc, char *argv[])
             OperationError *error = subscribeResult.GetOperationError();
             /*
              * This pointer can be casted to any error type like so:
-             * if(error->GetModelName() == UnauthorizedError::s_getModelName())
+             * if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
              *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
              */
             if (error->GetMessage().has_value())
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
     auto publishResultFuture = publishOperation.GetResult();
     /*
     // To avoid throwing exceptions, wait on the result for a specified timeout:
-    if (publishResultFuture.wait_for(std::chrono::seconds(10)) != std::future_status::ready)
+    if (publishResultFuture.wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
     {
         fprintf(stderr, "Timed out while waiting for response from Greengrass Core\n");
         exit(-1);
@@ -241,7 +241,7 @@ int main(int argc, char *argv[])
             OperationError *error = publishResult.GetOperationError();
             /*
              * This pointer can be casted to any error type like so:
-             * if(error->GetModelName() == UnauthorizedError::s_getModelName())
+             * if(error->GetModelName() == UnauthorizedError::MODEL_NAME)
              *    UnauthorizedError *unauthorizedError = static_cast<UnauthorizedError*>(error);
              */
             if (error->GetMessage().has_value())
