@@ -459,4 +459,6 @@ This sample is intended for direct usage with the Greengrass Discovery tutorial 
 
 ## Greengrass IPC
 
-This sample is intended for direct usage with the Greengrass IPC tutorial found [here](https://docs.aws.amazon.com/greengrass/v2/developerguide/ipc-iot-core-mqtt.html).
+This sample must be run from within a Greengrass V2 component using an appropriate policy to perform `aws.greengrass#PublishToIoTCore` and `aws.greengrass#SubscribeToIoTCore` operations on `test/topic` or any other topic passed as a CLI argument.
+
+For more information about Greengrass interprocess communication (IPC), see [here](https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html). This sample uses IPC to perform [IoT Core MQTT operations](https://docs.aws.amazon.com/greengrass/v2/developerguide/ipc-iot-core-mqtt.html).
