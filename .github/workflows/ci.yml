@@ -38,6 +38,10 @@ jobs:
   al2:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
@@ -52,6 +56,10 @@ jobs:
       matrix:
         version: [3, 6, 8, 9]
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
@@ -66,6 +74,10 @@ jobs:
       matrix:
         version: [4.8, 5, 6, 7, 8]
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
@@ -77,6 +89,10 @@ jobs:
   byo-crypto:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
@@ -88,6 +104,10 @@ jobs:
   windows-vs16:
     runs-on: windows-latest
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           md D:\a\work
@@ -101,6 +121,10 @@ jobs:
       matrix:
         arch: [x86, x64]
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           toolset: 14.0
@@ -117,6 +141,10 @@ jobs:
   osx:
     runs-on: macos-latest
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       - name: Build ${{ env.PACKAGE_NAME }} + consumers
         run: |
           python3 -c "from urllib.request import urlretrieve; urlretrieve('${{ env.BUILDER_HOST }}/${{ env.BUILDER_SOURCE }}/${{ env.BUILDER_VERSION }}/builder.pyz', 'builder')"
