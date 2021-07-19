@@ -13,7 +13,6 @@ env:
   PACKAGE_NAME: STAGING-aws-iot-device-sdk-cpp-v2
   LINUX_BASE_IMAGE: ubuntu-16-x64
   RUN: ${{ github.run_id }}-${{ github.run_number }}
-  ACCESS_TOKEN: ${{secrets.BOT_PAT}}
 
 jobs:
   linux-compat:
@@ -24,11 +23,6 @@ jobs:
           - manylinux2014-x64
           - manylinux2014-x86
     steps:
-      - name: Checkout Sources
-        uses: actions/checkout@v2.3.1
-        with:
-          token: ${{ env.ACCESS_TOKEN }}
-          submodules: "recursive"
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
