@@ -23,6 +23,10 @@ jobs:
           - manylinux2014-x64
           - manylinux2014-x86
     steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
       # We can't use the `uses: docker://image` version yet, GitHub lacks authentication for actions -> packages
       - name: Build ${{ env.PACKAGE_NAME }}
         run: |
