@@ -29,7 +29,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 * C++ 11 or higher
 * CMake 3.1+
-* Clang 3.9+ or GCC 4.4+ or MSVC 2015+
+* Clang 3.9+ or GCC 4.8+ or MSVC 2015+
 
 ### Build from source
 
@@ -37,7 +37,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 Note: `-DCMAKE_INSTALL_PREFIX` can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here.
 
-#### MaxOS and Linux
+#### MacOS and Linux
 
 ``` sh
 mkdir sdk-cpp-workspace
@@ -45,7 +45,7 @@ cd sdk-cpp-workspace
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=ON -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ../aws-iot-device-sdk-cpp-v2
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DCMAKE_BUILD_TYPE="<Release|RelWithDebInfo|Debug>" ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install
 ```
 
@@ -57,11 +57,11 @@ cd sdk-cpp-workspace
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
 mkdir aws-iot-device-sdk-cpp-v2-build
 cd aws-iot-device-sdk-cpp-v2-build
-cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" -DCMAKE_PREFIX_PATH="<absolute path sdk-cpp-workspace dir>" -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2
+cmake -DCMAKE_INSTALL_PREFIX="<absolute path sdk-cpp-workspace dir>" ../aws-iot-device-sdk-cpp-v2
 cmake --build . --target install --config "<Release|RelWithDebInfo|Debug>"
 ```
 
-Due to maximum path length limitations in the Windows API, we recommend [enabling long paths](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) on your development machines, or cloning to a short path like: `C:\dev\iotsdk`
+Due to maximum path length limitations in the Windows API, we recommend cloning to a short path like: `C:\dev\iotsdk`
 
 `--config` is only REQUIRED for multi-configuration build tools (VisualStudio/MsBuild being the most common).
 
