@@ -124,7 +124,7 @@ jobs:
       - name: Checkout Sources
         uses: actions/checkout@v2
         with:
-          submodules: true
+          submodules: "recursive"
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           toolset: 14.0
