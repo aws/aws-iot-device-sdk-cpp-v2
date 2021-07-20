@@ -10,7 +10,7 @@ if NOT type $CLANG_FORMAT 2> /dev/null ; then
 fi
 
 FAIL=0
-SOURCE_FILES=`find devicedefender discovery iotdevicecommon jobs shadow samples -type f \( -name '*.h' -o -name '*.cpp' \)`
+SOURCE_FILES=`find devicedefender discovery eventstream_rpc greengrass_ipc identity iotdevicecommon jobs shadow samples -type f \( -name '*.h' -o -name '*.cpp' \)`
 for i in $SOURCE_FILES
 do
     $CLANG_FORMAT -output-replacements-xml $i | grep -c "<replacement " > /dev/null
