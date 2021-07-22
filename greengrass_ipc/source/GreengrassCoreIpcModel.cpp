@@ -5,6 +5,60 @@ namespace Aws
 {
     namespace Greengrass
     {
+        void SystemResourceLimits::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_memory.has_value())
+            {
+                payloadObject.WithInt64("memory", m_memory.value());
+            }
+            if (m_cpus.has_value())
+            {
+                payloadObject.WithDouble("cpus", m_cpus.value());
+            }
+        }
+
+        void SystemResourceLimits::s_loadFromJsonView(
+            SystemResourceLimits &systemResourceLimits,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("memory"))
+            {
+                systemResourceLimits.m_memory = Aws::Crt::Optional<int64_t>(jsonView.GetInt64("memory"));
+            }
+            if (jsonView.ValueExists("cpus"))
+            {
+                systemResourceLimits.m_cpus = Aws::Crt::Optional<double>(jsonView.GetDouble("cpus"));
+            }
+        }
+
+        const char *SystemResourceLimits::MODEL_NAME = "aws.greengrass#SystemResourceLimits";
+
+        Aws::Crt::String SystemResourceLimits::GetModelName() const noexcept
+        {
+            return SystemResourceLimits::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> SystemResourceLimits::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<SystemResourceLimits> shape(
+                Aws::Crt::New<SystemResourceLimits>(allocator), SystemResourceLimits::s_customDeleter);
+            shape->m_allocator = allocator;
+            SystemResourceLimits::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void SystemResourceLimits::s_customDeleter(SystemResourceLimits *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
         void ValidateConfigurationUpdateEvent::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_configuration.has_value())
@@ -389,6 +443,12 @@ namespace Aws
             {
                 payloadObject.WithString("posixUser", m_posixUser.value());
             }
+            if (m_systemResourceLimits.has_value())
+            {
+                Aws::Crt::JsonObject systemResourceLimitsValue;
+                m_systemResourceLimits.value().SerializeToJsonObject(systemResourceLimitsValue);
+                payloadObject.WithObject("systemResourceLimits", std::move(systemResourceLimitsValue));
+            }
         }
 
         void RunWithInfo::s_loadFromJsonView(RunWithInfo &runWithInfo, const Aws::Crt::JsonView &jsonView) noexcept
@@ -396,6 +456,12 @@ namespace Aws
             if (jsonView.ValueExists("posixUser"))
             {
                 runWithInfo.m_posixUser = Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("posixUser"));
+            }
+            if (jsonView.ValueExists("systemResourceLimits"))
+            {
+                runWithInfo.m_systemResourceLimits = SystemResourceLimits();
+                SystemResourceLimits::s_loadFromJsonView(
+                    runWithInfo.m_systemResourceLimits.value(), jsonView.GetJsonObject("systemResourceLimits"));
             }
         }
 
@@ -2592,6 +2658,94 @@ namespace Aws
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
 
+        void ResumeComponentResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            (void)payloadObject;
+        }
+
+        void ResumeComponentResponse::s_loadFromJsonView(
+            ResumeComponentResponse &resumeComponentResponse,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            (void)resumeComponentResponse;
+            (void)jsonView;
+        }
+
+        const char *ResumeComponentResponse::MODEL_NAME = "aws.greengrass#ResumeComponentResponse";
+
+        Aws::Crt::String ResumeComponentResponse::GetModelName() const noexcept
+        {
+            return ResumeComponentResponse::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> ResumeComponentResponse::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<ResumeComponentResponse> shape(
+                Aws::Crt::New<ResumeComponentResponse>(allocator), ResumeComponentResponse::s_customDeleter);
+            shape->m_allocator = allocator;
+            ResumeComponentResponse::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void ResumeComponentResponse::s_customDeleter(ResumeComponentResponse *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void ResumeComponentRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_componentName.has_value())
+            {
+                payloadObject.WithString("componentName", m_componentName.value());
+            }
+        }
+
+        void ResumeComponentRequest::s_loadFromJsonView(
+            ResumeComponentRequest &resumeComponentRequest,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("componentName"))
+            {
+                resumeComponentRequest.m_componentName =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("componentName"));
+            }
+        }
+
+        const char *ResumeComponentRequest::MODEL_NAME = "aws.greengrass#ResumeComponentRequest";
+
+        Aws::Crt::String ResumeComponentRequest::GetModelName() const noexcept
+        {
+            return ResumeComponentRequest::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> ResumeComponentRequest::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<ResumeComponentRequest> shape(
+                Aws::Crt::New<ResumeComponentRequest>(allocator), ResumeComponentRequest::s_customDeleter);
+            shape->m_allocator = allocator;
+            ResumeComponentRequest::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void ResumeComponentRequest::s_customDeleter(ResumeComponentRequest *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
         void ComponentNotFoundError::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
         {
             if (m_message.has_value())
@@ -3009,6 +3163,94 @@ namespace Aws
         }
 
         void PublishToIoTCoreRequest::s_customDeleter(PublishToIoTCoreRequest *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void PauseComponentResponse::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            (void)payloadObject;
+        }
+
+        void PauseComponentResponse::s_loadFromJsonView(
+            PauseComponentResponse &pauseComponentResponse,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            (void)pauseComponentResponse;
+            (void)jsonView;
+        }
+
+        const char *PauseComponentResponse::MODEL_NAME = "aws.greengrass#PauseComponentResponse";
+
+        Aws::Crt::String PauseComponentResponse::GetModelName() const noexcept
+        {
+            return PauseComponentResponse::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> PauseComponentResponse::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<PauseComponentResponse> shape(
+                Aws::Crt::New<PauseComponentResponse>(allocator), PauseComponentResponse::s_customDeleter);
+            shape->m_allocator = allocator;
+            PauseComponentResponse::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void PauseComponentResponse::s_customDeleter(PauseComponentResponse *shape) noexcept
+        {
+            AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
+        }
+
+        void PauseComponentRequest::SerializeToJsonObject(Aws::Crt::JsonObject &payloadObject) const noexcept
+        {
+            if (m_componentName.has_value())
+            {
+                payloadObject.WithString("componentName", m_componentName.value());
+            }
+        }
+
+        void PauseComponentRequest::s_loadFromJsonView(
+            PauseComponentRequest &pauseComponentRequest,
+            const Aws::Crt::JsonView &jsonView) noexcept
+        {
+            if (jsonView.ValueExists("componentName"))
+            {
+                pauseComponentRequest.m_componentName =
+                    Aws::Crt::Optional<Aws::Crt::String>(jsonView.GetString("componentName"));
+            }
+        }
+
+        const char *PauseComponentRequest::MODEL_NAME = "aws.greengrass#PauseComponentRequest";
+
+        Aws::Crt::String PauseComponentRequest::GetModelName() const noexcept
+        {
+            return PauseComponentRequest::MODEL_NAME;
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> PauseComponentRequest::s_allocateFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) noexcept
+        {
+            Aws::Crt::String payload = {stringView.begin(), stringView.end()};
+            Aws::Crt::JsonObject jsonObject(payload);
+            Aws::Crt::JsonView jsonView(jsonObject);
+
+            Aws::Crt::ScopedResource<PauseComponentRequest> shape(
+                Aws::Crt::New<PauseComponentRequest>(allocator), PauseComponentRequest::s_customDeleter);
+            shape->m_allocator = allocator;
+            PauseComponentRequest::s_loadFromJsonView(*shape, jsonView);
+            auto operationResponse = static_cast<AbstractShapeBase *>(shape.release());
+            return Aws::Crt::ScopedResource<AbstractShapeBase>(operationResponse, AbstractShapeBase::s_customDeleter);
+        }
+
+        void PauseComponentRequest::s_customDeleter(PauseComponentRequest *shape) noexcept
         {
             AbstractShapeBase::s_customDeleter(static_cast<AbstractShapeBase *>(shape));
         }
@@ -4896,6 +5138,75 @@ namespace Aws
             return m_operationModelContext.GetOperationName();
         }
 
+        ResumeComponentOperationContext::ResumeComponentOperationContext(
+            const GreengrassCoreIpcServiceModel &serviceModel) noexcept
+            : OperationModelContext(serviceModel)
+        {
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> ResumeComponentOperationContext::AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) const noexcept
+        {
+            return ResumeComponentResponse::s_allocateFromPayload(stringView, allocator);
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> ResumeComponentOperationContext::
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
+            noexcept
+        {
+            (void)stringView;
+            (void)allocator;
+            return nullptr;
+        }
+
+        Aws::Crt::String ResumeComponentOperationContext::GetRequestModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#ResumeComponentRequest");
+        }
+
+        Aws::Crt::String ResumeComponentOperationContext::GetInitialResponseModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#ResumeComponentResponse");
+        }
+
+        Aws::Crt::Optional<Aws::Crt::String> ResumeComponentOperationContext::GetStreamingResponseModelName() const
+            noexcept
+        {
+            return Aws::Crt::Optional<Aws::Crt::String>();
+        }
+
+        Aws::Crt::String ResumeComponentOperationContext::GetOperationName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#ResumeComponent");
+        }
+
+        std::future<ResumeComponentResult> ResumeComponentOperation::GetResult() noexcept
+        {
+            return std::async(
+                std::launch::deferred, [this]() { return ResumeComponentResult(GetOperationResult().get()); });
+        }
+
+        ResumeComponentOperation::ResumeComponentOperation(
+            ClientConnection &connection,
+            const ResumeComponentOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, nullptr, operationContext, allocator)
+        {
+        }
+
+        std::future<RpcError> ResumeComponentOperation::Activate(
+            const ResumeComponentRequest &request,
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+        }
+
+        Aws::Crt::String ResumeComponentOperation::GetModelName() const noexcept
+        {
+            return m_operationModelContext.GetOperationName();
+        }
+
         PublishToIoTCoreOperationContext::PublishToIoTCoreOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
             : OperationModelContext(serviceModel)
@@ -6683,6 +6994,75 @@ namespace Aws
             return m_operationModelContext.GetOperationName();
         }
 
+        PauseComponentOperationContext::PauseComponentOperationContext(
+            const GreengrassCoreIpcServiceModel &serviceModel) noexcept
+            : OperationModelContext(serviceModel)
+        {
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> PauseComponentOperationContext::AllocateInitialResponseFromPayload(
+            Aws::Crt::StringView stringView,
+            Aws::Crt::Allocator *allocator) const noexcept
+        {
+            return PauseComponentResponse::s_allocateFromPayload(stringView, allocator);
+        }
+
+        Aws::Crt::ScopedResource<AbstractShapeBase> PauseComponentOperationContext::
+            AllocateStreamingResponseFromPayload(Aws::Crt::StringView stringView, Aws::Crt::Allocator *allocator) const
+            noexcept
+        {
+            (void)stringView;
+            (void)allocator;
+            return nullptr;
+        }
+
+        Aws::Crt::String PauseComponentOperationContext::GetRequestModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#PauseComponentRequest");
+        }
+
+        Aws::Crt::String PauseComponentOperationContext::GetInitialResponseModelName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#PauseComponentResponse");
+        }
+
+        Aws::Crt::Optional<Aws::Crt::String> PauseComponentOperationContext::GetStreamingResponseModelName() const
+            noexcept
+        {
+            return Aws::Crt::Optional<Aws::Crt::String>();
+        }
+
+        Aws::Crt::String PauseComponentOperationContext::GetOperationName() const noexcept
+        {
+            return Aws::Crt::String("aws.greengrass#PauseComponent");
+        }
+
+        std::future<PauseComponentResult> PauseComponentOperation::GetResult() noexcept
+        {
+            return std::async(
+                std::launch::deferred, [this]() { return PauseComponentResult(GetOperationResult().get()); });
+        }
+
+        PauseComponentOperation::PauseComponentOperation(
+            ClientConnection &connection,
+            const PauseComponentOperationContext &operationContext,
+            Aws::Crt::Allocator *allocator) noexcept
+            : ClientOperation(connection, nullptr, operationContext, allocator)
+        {
+        }
+
+        std::future<RpcError> PauseComponentOperation::Activate(
+            const PauseComponentRequest &request,
+            OnMessageFlushCallback onMessageFlushCallback) noexcept
+        {
+            return ClientOperation::Activate(static_cast<const AbstractShapeBase *>(&request), onMessageFlushCallback);
+        }
+
+        Aws::Crt::String PauseComponentOperation::GetModelName() const noexcept
+        {
+            return m_operationModelContext.GetOperationName();
+        }
+
         CreateLocalDeploymentOperationContext::CreateLocalDeploymentOperationContext(
             const GreengrassCoreIpcServiceModel &serviceModel) noexcept
             : OperationModelContext(serviceModel)
@@ -6753,9 +7133,9 @@ namespace Aws
         }
 
         GreengrassCoreIpcServiceModel::GreengrassCoreIpcServiceModel() noexcept
-            : m_subscribeToIoTCoreOperationContext(*this), m_publishToIoTCoreOperationContext(*this),
-              m_subscribeToConfigurationUpdateOperationContext(*this), m_deleteThingShadowOperationContext(*this),
-              m_deferComponentUpdateOperationContext(*this),
+            : m_subscribeToIoTCoreOperationContext(*this), m_resumeComponentOperationContext(*this),
+              m_publishToIoTCoreOperationContext(*this), m_subscribeToConfigurationUpdateOperationContext(*this),
+              m_deleteThingShadowOperationContext(*this), m_deferComponentUpdateOperationContext(*this),
               m_subscribeToValidateConfigurationUpdatesOperationContext(*this),
               m_getConfigurationOperationContext(*this), m_subscribeToTopicOperationContext(*this),
               m_getComponentDetailsOperationContext(*this), m_publishToTopicOperationContext(*this),
@@ -6766,7 +7146,8 @@ namespace Aws
               m_getLocalDeploymentStatusOperationContext(*this), m_getSecretValueOperationContext(*this),
               m_updateStateOperationContext(*this), m_listNamedShadowsForThingOperationContext(*this),
               m_subscribeToComponentUpdatesOperationContext(*this), m_listLocalDeploymentsOperationContext(*this),
-              m_stopComponentOperationContext(*this), m_createLocalDeploymentOperationContext(*this)
+              m_stopComponentOperationContext(*this), m_pauseComponentOperationContext(*this),
+              m_createLocalDeploymentOperationContext(*this)
         {
         }
 

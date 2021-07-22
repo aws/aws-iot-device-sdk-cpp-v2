@@ -56,6 +56,11 @@ namespace Aws
                 m_greengrassCoreIpcServiceModel.m_subscribeToIoTCoreOperationContext,
                 m_allocator);
         }
+        ResumeComponentOperation GreengrassCoreIpcClient::NewResumeComponent() noexcept
+        {
+            return ResumeComponentOperation(
+                m_connection, m_greengrassCoreIpcServiceModel.m_resumeComponentOperationContext, m_allocator);
+        }
         PublishToIoTCoreOperation GreengrassCoreIpcClient::NewPublishToIoTCore() noexcept
         {
             return PublishToIoTCoreOperation(
@@ -196,6 +201,11 @@ namespace Aws
         {
             return StopComponentOperation(
                 m_connection, m_greengrassCoreIpcServiceModel.m_stopComponentOperationContext, m_allocator);
+        }
+        PauseComponentOperation GreengrassCoreIpcClient::NewPauseComponent() noexcept
+        {
+            return PauseComponentOperation(
+                m_connection, m_greengrassCoreIpcServiceModel.m_pauseComponentOperationContext, m_allocator);
         }
         CreateLocalDeploymentOperation GreengrassCoreIpcClient::NewCreateLocalDeployment() noexcept
         {
