@@ -2,6 +2,8 @@
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
  */
+#include "aws/crt/Types.h"
+#include "aws/iotdevice/device_defender.h"
 #include <aws/common/clock.h>
 #include <aws/iotdevicedefender/DeviceDefender.h>
 
@@ -38,33 +40,32 @@ namespace Aws
             void *cancellationUserdata) noexcept
             : OnTaskCancelled(std::move(onCancelled)), cancellationUserdata(cancellationUserdata),
               m_allocator(allocator), m_status(ReportTaskStatus::Ready),
-              m_taskConfig{mqttConnection.get()->GetUnderlyingConnection(),
-                           ByteCursorFromString(thingName),
-                           aws_event_loop_group_get_next_loop(eventLoopGroup.GetUnderlyingHandle()),
-                           reportFormat,
-                           aws_timestamp_convert(taskPeriodSeconds, AWS_TIMESTAMP_SECS, AWS_TIMESTAMP_NANOS, NULL),
-                           aws_timestamp_convert(
-                               networkConnectionSamplePeriodSeconds,
-                               AWS_TIMESTAMP_SECS,
-                               AWS_TIMESTAMP_NANOS,
-                               NULL),
-                           ReportTask::s_onDefenderV1TaskCancelled,
-                           this},
-              m_lastError(0)
+              m_taskConfig{nullptr},
+              m_lastError(0),
+              m_mqttConnection{mqttConnection},
+              m_eventLoopGroup{eventLoopGroup}
         {
+            struct aws_byte_cursor thingNameCursor = Crt::ByteCursorFromString(thingName);
+            m_lastError = aws_iotdevice_defender_config_create(&m_taskConfig, allocator, &thingNameCursor, reportFormat);
+            if (AWS_OP_SUCCESS == m_lastError)
+            {
+                aws_iotdevice_defender_config_set_task_cancelation_fn(m_taskConfig, s_onDefenderV1TaskCancelled);
+                aws_iotdevice_defender_config_set_callback_userdata(m_taskConfig, this);
+                aws_iotdevice_defender_config_set_task_period_ns(m_taskConfig,
+                    aws_timestamp_convert(taskPeriodSeconds, AWS_TIMESTAMP_SECS, AWS_TIMESTAMP_NANOS, NULL));
+            }
         }
 
         ReportTask::ReportTask(ReportTask &&toMove) noexcept
             : OnTaskCancelled(std::move(toMove.OnTaskCancelled)), cancellationUserdata(toMove.cancellationUserdata),
               m_allocator(toMove.m_allocator), m_status(toMove.m_status), m_taskConfig(std::move(toMove.m_taskConfig)),
-              m_owningTask(toMove.m_owningTask), m_lastError(toMove.m_lastError)
+              m_owningTask(toMove.m_owningTask), m_lastError(toMove.m_lastError),
+              m_mqttConnection(toMove.m_mqttConnection), m_eventLoopGroup(toMove.m_eventLoopGroup)
         {
-            m_taskConfig.cancellation_userdata = this;
-            toMove.OnTaskCancelled = nullptr;
-            toMove.cancellationUserdata = nullptr;
-            toMove.m_allocator = nullptr;
+            toMove.m_taskConfig = m_taskConfig;
+            toMove.m_owningTask = m_owningTask;
+            m_owningTask = nullptr;
             toMove.m_status = ReportTaskStatus::Stopped;
-            toMove.m_taskConfig = {0};
             toMove.m_owningTask = nullptr;
             toMove.m_lastError = AWS_ERROR_UNKNOWN;
         }
@@ -79,8 +80,7 @@ namespace Aws
                 cancellationUserdata = toMove.cancellationUserdata;
                 m_allocator = toMove.m_allocator;
                 m_status = toMove.m_status;
-                m_taskConfig = std::move(toMove.m_taskConfig);
-                m_taskConfig.cancellation_userdata = this;
+                m_taskConfig = toMove.m_taskConfig;
                 m_owningTask = toMove.m_owningTask;
                 m_lastError = toMove.m_lastError;
 
@@ -88,7 +88,6 @@ namespace Aws
                 toMove.cancellationUserdata = nullptr;
                 toMove.m_allocator = nullptr;
                 toMove.m_status = ReportTaskStatus::Stopped;
-                toMove.m_taskConfig = {0};
                 toMove.m_owningTask = nullptr;
                 toMove.m_lastError = AWS_ERROR_UNKNOWN;
             }
@@ -100,10 +99,11 @@ namespace Aws
 
         int ReportTask::StartTask() noexcept
         {
-            if (this->GetStatus() == ReportTaskStatus::Ready || this->GetStatus() == ReportTaskStatus::Stopped)
+          if (m_taskConfig != nullptr && (this->GetStatus() == ReportTaskStatus::Ready || this->GetStatus() == ReportTaskStatus::Stopped))
             {
-
-                this->m_owningTask = aws_iotdevice_defender_v1_report_task(this->m_allocator, &this->m_taskConfig);
+              m_lastError = aws_iotdevice_defender_task_create(&m_owningTask, this->m_taskConfig,
+                                                               m_mqttConnection->GetUnderlyingConnection(),
+                                                               aws_event_loop_group_get_next_loop(m_eventLoopGroup.GetUnderlyingHandle()));
 
                 if (this->m_owningTask == nullptr)
                 {
@@ -123,7 +123,7 @@ namespace Aws
         {
             if (this->GetStatus() == ReportTaskStatus::Running)
             {
-                aws_iotdevice_defender_v1_stop_task(this->m_owningTask);
+                aws_iotdevice_defender_task_clean_up(this->m_owningTask);
                 this->m_owningTask = nullptr;
             }
         }
@@ -131,7 +131,9 @@ namespace Aws
         ReportTask::~ReportTask()
         {
             StopTask();
+            aws_iotdevice_defender_config_clean_up(m_taskConfig);
             this->m_owningTask = nullptr;
+            this->m_taskConfig = nullptr;
             this->m_allocator = nullptr;
             this->OnTaskCancelled = nullptr;
             this->cancellationUserdata = nullptr;

@@ -82,9 +82,11 @@ namespace Aws
           private:
             Crt::Allocator *m_allocator;
             ReportTaskStatus m_status;
-            aws_iotdevice_defender_report_task_config m_taskConfig;
-            aws_iotdevice_defender_v1_task *m_owningTask;
+            aws_iotdevice_defender_task_config *m_taskConfig;
+            aws_iotdevice_defender_task *m_owningTask;
             int m_lastError;
+            std::shared_ptr<Crt::Mqtt::MqttConnection> m_mqttConnection;
+            Crt::Io::EventLoopGroup &m_eventLoopGroup;
 
             ReportTask(
                 Crt::Allocator *allocator,
