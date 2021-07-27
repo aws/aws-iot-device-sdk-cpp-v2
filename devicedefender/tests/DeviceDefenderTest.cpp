@@ -8,7 +8,6 @@
 #include <aws/iotdevicedefender/DeviceDefender.h>
 #include <aws/testing/aws_test_harness.h>
 #include <utility>
-#include <iostream>
 
 static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, void *ctx)
 {

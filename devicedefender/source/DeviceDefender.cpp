@@ -39,20 +39,18 @@ namespace Aws
             OnTaskCancelledHandler &&onCancelled,
             void *cancellationUserdata) noexcept
             : OnTaskCancelled(std::move(onCancelled)), cancellationUserdata(cancellationUserdata),
-              m_allocator(allocator), m_status(ReportTaskStatus::Ready),
-              m_taskConfig{nullptr},
-              m_owningTask{nullptr},
-              m_lastError(0),
-              m_mqttConnection{mqttConnection},
-              m_eventLoopGroup{eventLoopGroup}
+              m_allocator(allocator), m_status(ReportTaskStatus::Ready), m_taskConfig{nullptr}, m_owningTask{nullptr},
+              m_lastError(0), m_mqttConnection{mqttConnection}, m_eventLoopGroup{eventLoopGroup}
         {
             struct aws_byte_cursor thingNameCursor = Crt::ByteCursorFromString(thingName);
-            m_lastError = aws_iotdevice_defender_config_create(&m_taskConfig, allocator, &thingNameCursor, reportFormat);
+            m_lastError =
+                aws_iotdevice_defender_config_create(&m_taskConfig, allocator, &thingNameCursor, reportFormat);
             if (AWS_OP_SUCCESS == m_lastError)
             {
                 aws_iotdevice_defender_config_set_task_cancelation_fn(m_taskConfig, s_onDefenderV1TaskCancelled);
                 aws_iotdevice_defender_config_set_callback_userdata(m_taskConfig, this);
-                aws_iotdevice_defender_config_set_task_period_ns(m_taskConfig,
+                aws_iotdevice_defender_config_set_task_period_ns(
+                    m_taskConfig,
                     aws_timestamp_convert(taskPeriodSeconds, AWS_TIMESTAMP_SECS, AWS_TIMESTAMP_NANOS, NULL));
             }
             else
@@ -104,11 +102,13 @@ namespace Aws
 
         int ReportTask::StartTask() noexcept
         {
-            if (m_taskConfig != nullptr && !m_lastError && (this->GetStatus() == ReportTaskStatus::Ready || this->GetStatus() == ReportTaskStatus::Stopped))
+            if (m_taskConfig != nullptr && !m_lastError &&
+                (this->GetStatus() == ReportTaskStatus::Ready || this->GetStatus() == ReportTaskStatus::Stopped))
             {
-                if (AWS_OP_SUCCESS != aws_iotdevice_defender_task_create(&m_owningTask, this->m_taskConfig,
-                                                               m_mqttConnection->GetUnderlyingConnection(),
-                                                                         aws_event_loop_group_get_next_loop(m_eventLoopGroup.GetUnderlyingHandle())))
+                if (AWS_OP_SUCCESS != aws_iotdevice_defender_task_create(
+                                          &m_owningTask, this->m_taskConfig,
+                                          m_mqttConnection->GetUnderlyingConnection(),
+                                          aws_event_loop_group_get_next_loop(m_eventLoopGroup.GetUnderlyingHandle())))
                 {
                     this->m_lastError = aws_last_error();
                     aws_raise_error(this->m_lastError);
