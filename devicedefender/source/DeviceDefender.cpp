@@ -41,6 +41,7 @@ namespace Aws
             : OnTaskCancelled(std::move(onCancelled)), cancellationUserdata(cancellationUserdata),
               m_allocator(allocator), m_status(ReportTaskStatus::Ready),
               m_taskConfig{nullptr},
+              m_owningTask{nullptr},
               m_lastError(0),
               m_mqttConnection{mqttConnection},
               m_eventLoopGroup{eventLoopGroup}
@@ -116,7 +117,7 @@ namespace Aws
                     this->m_status = ReportTaskStatus::Running;
                 }
             }
-            return AWS_OP_SUCCESS;
+            return AWS_OP_ERR;
         }
 
         void ReportTask::StopTask() noexcept
@@ -131,9 +132,12 @@ namespace Aws
         ReportTask::~ReportTask()
         {
             StopTask();
-            aws_iotdevice_defender_config_clean_up(m_taskConfig);
+            if (m_taskConfig)
+            {
+                aws_iotdevice_defender_config_clean_up(m_taskConfig);
+                this->m_taskConfig = nullptr;
+            }
             this->m_owningTask = nullptr;
-            this->m_taskConfig = nullptr;
             this->m_allocator = nullptr;
             this->OnTaskCancelled = nullptr;
             this->cancellationUserdata = nullptr;
