@@ -40,7 +40,7 @@ namespace Aws
             void *cancellationUserdata) noexcept
             : OnTaskCancelled(std::move(onCancelled)), cancellationUserdata(cancellationUserdata),
               m_allocator(allocator), m_status(ReportTaskStatus::Ready), m_taskConfig{nullptr}, m_owningTask{nullptr},
-              m_lastError(0), m_mqttConnection{mqttConnection}, m_eventLoopGroup{eventLoopGroup}
+              m_lastError(0), m_mqttConnection{mqttConnection}, m_eventLoopGroup(eventLoopGroup)
         {
             (void)networkConnectionSamplePeriodSeconds;
             struct aws_byte_cursor thingNameCursor = Crt::ByteCursorFromString(thingName);
