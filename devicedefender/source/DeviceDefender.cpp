@@ -42,6 +42,7 @@ namespace Aws
               m_allocator(allocator), m_status(ReportTaskStatus::Ready), m_taskConfig{nullptr}, m_owningTask{nullptr},
               m_lastError(0), m_mqttConnection{mqttConnection}, m_eventLoopGroup{eventLoopGroup}
         {
+            (void)networkConnectionSamplePeriodSeconds;
             struct aws_byte_cursor thingNameCursor = Crt::ByteCursorFromString(thingName);
             m_lastError =
                 aws_iotdevice_defender_config_create(&m_taskConfig, allocator, &thingNameCursor, reportFormat);
