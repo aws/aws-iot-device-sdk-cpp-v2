@@ -106,7 +106,8 @@ namespace Aws
                 (this->GetStatus() == ReportTaskStatus::Ready || this->GetStatus() == ReportTaskStatus::Stopped))
             {
                 if (AWS_OP_SUCCESS != aws_iotdevice_defender_task_create(
-                                          &m_owningTask, this->m_taskConfig,
+                                          &m_owningTask,
+                                          this->m_taskConfig,
                                           m_mqttConnection->GetUnderlyingConnection(),
                                           aws_event_loop_group_get_next_loop(m_eventLoopGroup.GetUnderlyingHandle())))
                 {
