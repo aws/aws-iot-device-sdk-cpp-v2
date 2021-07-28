@@ -65,7 +65,7 @@ static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, vo
 
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Ready, (int)task.GetStatus());
 
-        task.StartTask();
+        ASSERT_SUCCESS(task.StartTask());
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running, (int)task.GetStatus());
         task.StopTask();
 

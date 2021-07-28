@@ -103,6 +103,7 @@ namespace Aws
 
         int ReportTask::StartTask() noexcept
         {
+            int return_code = AWS_OP_ERR;
             if (m_taskConfig != nullptr && !m_lastError &&
                 (this->GetStatus() == ReportTaskStatus::Ready || this->GetStatus() == ReportTaskStatus::Stopped))
             {
@@ -114,14 +115,14 @@ namespace Aws
                 {
                     this->m_lastError = aws_last_error();
                     aws_raise_error(this->m_lastError);
-                    return AWS_OP_ERR;
                 }
                 else
                 {
                     this->m_status = ReportTaskStatus::Running;
+                    return_code = AWS_OP_SUCCESS;
                 }
             }
-            return AWS_OP_ERR;
+            return return_code;
         }
 
         void ReportTask::StopTask() noexcept
