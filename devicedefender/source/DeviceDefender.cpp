@@ -131,6 +131,7 @@ namespace Aws
             {
                 aws_iotdevice_defender_task_clean_up(this->m_owningTask);
                 this->m_owningTask = nullptr;
+                m_status = ReportTaskStatus::Stopped;
             }
         }
 

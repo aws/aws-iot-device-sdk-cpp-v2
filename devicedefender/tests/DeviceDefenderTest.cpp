@@ -69,6 +69,8 @@ static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, vo
         ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running, (int)task.GetStatus());
         task.StopTask();
 
+        ASSERT_TRUE(task.GetStatus() == Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped);
+
         {
             std::unique_lock<std::mutex> lock(mutex);
             cv.wait(lock, [&]() { return taskStopped; });
