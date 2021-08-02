@@ -822,7 +822,6 @@ namespace Aws
                     break;
 
                 default:
-                    return;
 
                     if (thisConnection->m_lifecycleHandler->OnErrorCallback(
                             {EVENT_STREAM_RPC_UNKNOWN_PROTOCOL_MESSAGE, 0}))
