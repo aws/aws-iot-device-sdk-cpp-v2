@@ -61,7 +61,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(Customer *) noexcept;
-        /* This needs to be defined so that `Customer` can be used as a key in maps. */
+        /* This needs to be defined so that `Customer` can be used as a key in maps.
+         */
         bool operator<(const Customer &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -156,7 +157,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(MessageData *) noexcept;
-        /* This needs to be defined so that `MessageData` can be used as a key in maps. */
+        /* This needs to be defined so that `MessageData` can be used as a key in
+         * maps. */
         bool operator<(const MessageData &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -219,7 +221,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoStreamingMessage *) noexcept;
-        /* This needs to be defined so that `EchoStreamingMessage` can be used as a key in maps. */
+        /* This needs to be defined so that `EchoStreamingMessage` can be used as a
+         * key in maps. */
         bool operator<(const EchoStreamingMessage &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -249,7 +252,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(GetAllProductsResponse *) noexcept;
-        /* This needs to be defined so that `GetAllProductsResponse` can be used as a key in maps. */
+        /* This needs to be defined so that `GetAllProductsResponse` can be used as a
+         * key in maps. */
         bool operator<(const GetAllProductsResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -271,7 +275,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(GetAllProductsRequest *) noexcept;
-        /* This needs to be defined so that `GetAllProductsRequest` can be used as a key in maps. */
+        /* This needs to be defined so that `GetAllProductsRequest` can be used as a
+         * key in maps. */
         bool operator<(const GetAllProductsRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -294,7 +299,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(GetAllCustomersResponse *) noexcept;
-        /* This needs to be defined so that `GetAllCustomersResponse` can be used as a key in maps. */
+        /* This needs to be defined so that `GetAllCustomersResponse` can be used as a
+         * key in maps. */
         bool operator<(const GetAllCustomersResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -316,7 +322,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(GetAllCustomersRequest *) noexcept;
-        /* This needs to be defined so that `GetAllCustomersRequest` can be used as a key in maps. */
+        /* This needs to be defined so that `GetAllCustomersRequest` can be used as a
+         * key in maps. */
         bool operator<(const GetAllCustomersRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -339,7 +346,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoMessageResponse *) noexcept;
-        /* This needs to be defined so that `EchoMessageResponse` can be used as a key in maps. */
+        /* This needs to be defined so that `EchoMessageResponse` can be used as a key
+         * in maps. */
         bool operator<(const EchoMessageResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -363,7 +371,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoMessageRequest *) noexcept;
-        /* This needs to be defined so that `EchoMessageRequest` can be used as a key in maps. */
+        /* This needs to be defined so that `EchoMessageRequest` can be used as a key
+         * in maps. */
         bool operator<(const EchoMessageRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -385,7 +394,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoStreamingResponse *) noexcept;
-        /* This needs to be defined so that `EchoStreamingResponse` can be used as a key in maps. */
+        /* This needs to be defined so that `EchoStreamingResponse` can be used as a
+         * key in maps. */
         bool operator<(const EchoStreamingResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -406,7 +416,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(EchoStreamingRequest *) noexcept;
-        /* This needs to be defined so that `EchoStreamingRequest` can be used as a key in maps. */
+        /* This needs to be defined so that `EchoStreamingRequest` can be used as a
+         * key in maps. */
         bool operator<(const EchoStreamingRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -431,7 +442,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(ServiceError *) noexcept;
-        /* This needs to be defined so that `ServiceError` can be used as a key in maps. */
+        /* This needs to be defined so that `ServiceError` can be used as a key in
+         * maps. */
         bool operator<(const ServiceError &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -454,7 +466,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(CauseServiceErrorResponse *) noexcept;
-        /* This needs to be defined so that `CauseServiceErrorResponse` can be used as a key in maps. */
+        /* This needs to be defined so that `CauseServiceErrorResponse` can be used as
+         * a key in maps. */
         bool operator<(const CauseServiceErrorResponse &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -475,7 +488,8 @@ namespace Awstest
             Aws::Crt::StringView,
             Aws::Crt::Allocator *) noexcept;
         static void s_customDeleter(CauseServiceErrorRequest *) noexcept;
-        /* This needs to be defined so that `CauseServiceErrorRequest` can be used as a key in maps. */
+        /* This needs to be defined so that `CauseServiceErrorRequest` can be used as
+         * a key in maps. */
         bool operator<(const CauseServiceErrorRequest &) const noexcept;
         static const char *MODEL_NAME;
 
@@ -533,8 +547,10 @@ namespace Awstest
         /**
          * Used to activate a stream for the `GetAllProductsOperation`
          * @param request The request used for the `GetAllProductsOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the
+         * request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was
+         * activated.
          */
         std::future<RpcError> Activate(
             const GetAllProductsRequest &request,
@@ -596,8 +612,10 @@ namespace Awstest
         /**
          * Used to activate a stream for the `CauseServiceErrorOperation`
          * @param request The request used for the `CauseServiceErrorOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the
+         * request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was
+         * activated.
          */
         std::future<RpcError> Activate(
             const CauseServiceErrorRequest &request,
@@ -617,8 +635,10 @@ namespace Awstest
         virtual void OnStreamEvent(EchoStreamingMessage *response) { (void)response; }
 
         /**
-         * A callback that is invoked when an error occurs while parsing a message from the stream.
-         * @param rpcError The RPC error containing the status and possibly a CRT error.
+         * A callback that is invoked when an error occurs while parsing a message
+         * from the stream.
+         * @param rpcError The RPC error containing the status and possibly a CRT
+         * error.
          */
         virtual bool OnStreamError(RpcError rpcError)
         {
@@ -637,7 +657,8 @@ namespace Awstest
         }
 
         /**
-         * A callback that is invoked upon receiving ANY error response from the server.
+         * A callback that is invoked upon receiving ANY error response from the
+         * server.
          * @param operationError The error message being received.
          */
         virtual bool OnStreamError(OperationError *operationError)
@@ -652,7 +673,8 @@ namespace Awstest
          */
         void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
         /**
-         * Invoked when a message is received on this continuation but results in an error.
+         * Invoked when a message is received on this continuation but results in an
+         * error.
          *
          * This callback can return true so that the stream is closed afterwards.
          */
@@ -708,9 +730,12 @@ namespace Awstest
             Aws::Crt::Allocator *allocator = Aws::Crt::g_allocator) noexcept;
         /**
          * Used to activate a stream for the `CauseStreamServiceToErrorOperation`
-         * @param request The request used for the `CauseStreamServiceToErrorOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was activated.
+         * @param request The request used for the
+         * `CauseStreamServiceToErrorOperation`
+         * @param onMessageFlushCallback An optional callback that is invoked when the
+         * request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was
+         * activated.
          */
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
@@ -730,8 +755,10 @@ namespace Awstest
         virtual void OnStreamEvent(EchoStreamingMessage *response) { (void)response; }
 
         /**
-         * A callback that is invoked when an error occurs while parsing a message from the stream.
-         * @param rpcError The RPC error containing the status and possibly a CRT error.
+         * A callback that is invoked when an error occurs while parsing a message
+         * from the stream.
+         * @param rpcError The RPC error containing the status and possibly a CRT
+         * error.
          */
         virtual bool OnStreamError(RpcError rpcError)
         {
@@ -740,7 +767,8 @@ namespace Awstest
         }
 
         /**
-         * A callback that is invoked upon receiving ANY error response from the server.
+         * A callback that is invoked upon receiving ANY error response from the
+         * server.
          * @param operationError The error message being received.
          */
         virtual bool OnStreamError(OperationError *operationError)
@@ -755,7 +783,8 @@ namespace Awstest
          */
         void OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) override;
         /**
-         * Invoked when a message is received on this continuation but results in an error.
+         * Invoked when a message is received on this continuation but results in an
+         * error.
          *
          * This callback can return true so that the stream is closed afterwards.
          */
@@ -810,8 +839,10 @@ namespace Awstest
         /**
          * Used to activate a stream for the `EchoStreamMessagesOperation`
          * @param request The request used for the `EchoStreamMessagesOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the
+         * request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was
+         * activated.
          */
         std::future<RpcError> Activate(
             const EchoStreamingRequest &request,
@@ -873,8 +904,10 @@ namespace Awstest
         /**
          * Used to activate a stream for the `EchoMessageOperation`
          * @param request The request used for the `EchoMessageOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the
+         * request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was
+         * activated.
          */
         std::future<RpcError> Activate(
             const EchoMessageRequest &request,
@@ -936,8 +969,10 @@ namespace Awstest
         /**
          * Used to activate a stream for the `GetAllCustomersOperation`
          * @param request The request used for the `GetAllCustomersOperation`
-         * @param onMessageFlushCallback An optional callback that is invoked when the request is flushed.
-         * @return An `RpcError` that can be used to check whether the stream was activated.
+         * @param onMessageFlushCallback An optional callback that is invoked when the
+         * request is flushed.
+         * @return An `RpcError` that can be used to check whether the stream was
+         * activated.
          */
         std::future<RpcError> Activate(
             const GetAllCustomersRequest &request,
