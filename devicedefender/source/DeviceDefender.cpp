@@ -2,6 +2,7 @@
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
  */
+#include "aws/common/error.h"
 #include "aws/crt/Types.h"
 #include "aws/iotdevice/device_defender.h"
 #include <aws/common/clock.h>
@@ -60,45 +61,6 @@ namespace Aws
             }
         }
 
-        ReportTask::ReportTask(ReportTask &&toMove) noexcept
-            : OnTaskCancelled(std::move(toMove.OnTaskCancelled)), cancellationUserdata(toMove.cancellationUserdata),
-              m_allocator(toMove.m_allocator), m_status(toMove.m_status), m_taskConfig(std::move(toMove.m_taskConfig)),
-              m_owningTask(toMove.m_owningTask), m_lastError(toMove.m_lastError),
-              m_mqttConnection(toMove.m_mqttConnection), m_eventLoopGroup(toMove.m_eventLoopGroup)
-        {
-            toMove.m_taskConfig = m_taskConfig;
-            toMove.m_owningTask = m_owningTask;
-            m_owningTask = nullptr;
-            toMove.m_status = ReportTaskStatus::Stopped;
-            toMove.m_owningTask = nullptr;
-            toMove.m_lastError = AWS_ERROR_UNKNOWN;
-        }
-
-        ReportTask &ReportTask::operator=(ReportTask &&toMove) noexcept
-        {
-            if (this != &toMove)
-            {
-                this->~ReportTask();
-
-                OnTaskCancelled = std::move(toMove.OnTaskCancelled);
-                cancellationUserdata = toMove.cancellationUserdata;
-                m_allocator = toMove.m_allocator;
-                m_status = toMove.m_status;
-                m_taskConfig = toMove.m_taskConfig;
-                m_owningTask = toMove.m_owningTask;
-                m_lastError = toMove.m_lastError;
-
-                toMove.OnTaskCancelled = nullptr;
-                toMove.cancellationUserdata = nullptr;
-                toMove.m_allocator = nullptr;
-                toMove.m_status = ReportTaskStatus::Stopped;
-                toMove.m_owningTask = nullptr;
-                toMove.m_lastError = AWS_ERROR_UNKNOWN;
-            }
-
-            return *this;
-        }
-
         ReportTaskStatus ReportTask::GetStatus() noexcept { return this->m_status; }
 
         int ReportTask::StartTask() noexcept
@@ -114,13 +76,16 @@ namespace Aws
                                           aws_event_loop_group_get_next_loop(m_eventLoopGroup.GetUnderlyingHandle())))
                 {
                     this->m_lastError = aws_last_error();
-                    aws_raise_error(this->m_lastError);
                 }
                 else
                 {
                     this->m_status = ReportTaskStatus::Running;
                     return_code = AWS_OP_SUCCESS;
                 }
+            }
+            else
+            {
+                aws_raise_error(AWS_ERROR_INVALID_STATE);
             }
             return return_code;
         }
@@ -195,10 +160,9 @@ namespace Aws
             return *this;
         }
 
-        ReportTask ReportTaskBuilder::Build() noexcept
+        std::shared_ptr<ReportTask> ReportTaskBuilder::Build() noexcept
         {
-
-            return ReportTask(
+          return std::shared_ptr<ReportTask>(new ReportTask(
                 m_allocator,
                 m_mqttConnection,
                 m_thingName,
@@ -207,7 +171,7 @@ namespace Aws
                 m_taskPeriodSeconds,
                 m_networkConnectionSamplePeriodSeconds,
                 static_cast<OnTaskCancelledHandler &&>(m_onCancelled),
-                m_cancellationUserdata);
+                m_cancellationUserdata));
         }
 
     } // namespace Iotdevicedefenderv1

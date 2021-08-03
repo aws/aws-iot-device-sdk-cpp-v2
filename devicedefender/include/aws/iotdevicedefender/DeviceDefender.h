@@ -51,9 +51,7 @@ namespace Aws
           public:
             ~ReportTask();
             ReportTask(const ReportTask &) = delete;
-            ReportTask(ReportTask &&) noexcept;
             ReportTask &operator=(const ReportTask &) = delete;
-            ReportTask &operator=(ReportTask &&) noexcept;
 
             /**
              * Initiates stopping of the Defender V1 task.
@@ -143,7 +141,7 @@ namespace Aws
             /**
              * Builds a device defender v1 task object from the set options.
              */
-            ReportTask Build() noexcept;
+            std::shared_ptr<ReportTask> Build() noexcept;
 
           private:
             Crt::Allocator *m_allocator;
