@@ -45,9 +45,9 @@ namespace Aws
         {
             (void)networkConnectionSamplePeriodSeconds;
             struct aws_byte_cursor thingNameCursor = Crt::ByteCursorFromString(thingName);
-            m_lastError =
+            int return_code =
                 aws_iotdevice_defender_config_create(&m_taskConfig, allocator, &thingNameCursor, reportFormat);
-            if (AWS_OP_SUCCESS == m_lastError)
+            if (AWS_OP_SUCCESS == return_code)
             {
                 aws_iotdevice_defender_config_set_task_cancelation_fn(m_taskConfig, s_onDefenderV1TaskCancelled);
                 aws_iotdevice_defender_config_set_callback_userdata(m_taskConfig, this);
