@@ -162,7 +162,7 @@ namespace Aws
 
         std::shared_ptr<ReportTask> ReportTaskBuilder::Build() noexcept
         {
-          return std::shared_ptr<ReportTask>(new ReportTask(
+            return std::shared_ptr<ReportTask>(new ReportTask(
                 m_allocator,
                 m_mqttConnection,
                 m_thingName,
