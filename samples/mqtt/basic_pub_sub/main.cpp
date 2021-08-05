@@ -262,7 +262,8 @@ int main(int argc, char *argv[])
     if (s_cmdOptionExists(argv, argv + argc, "--count"))
     {
         int count = atoi(s_getCmdOption(argv, argv + argc, "--count"));
-        if (count > 0) {
+        if (count > 0)
+        {
             messageCount = count;
         }
     }
@@ -506,7 +507,6 @@ int main(int argc, char *argv[])
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
                              bool /*retain*/) {
-
             {
                 std::lock_guard<std::mutex> lock(receiveMutex);
                 ++receivedCount;
@@ -553,7 +553,7 @@ int main(int argc, char *argv[])
         {
             ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
 
-            auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t , int ) {};
+            auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t, int) {};
             connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
             ++publishedCount;
 
@@ -578,7 +578,9 @@ int main(int argc, char *argv[])
         {
             connectionClosedPromise.get_future().wait();
         }
-    } else {
+    }
+    else
+    {
         exit(-1);
     }
 
