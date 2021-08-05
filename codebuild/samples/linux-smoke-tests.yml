@@ -6,7 +6,7 @@ phases:
       - add-apt-repository ppa:ubuntu-toolchain-r/test
       - apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main"
       - apt-get update -y
-      - apt-get install clang-8 cmake3 -y -f
+      - apt-get install clang-8 cmake -y -f
   pre_build:
     commands:
       - export CC=clang-8
