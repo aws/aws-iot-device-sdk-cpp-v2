@@ -25,7 +25,7 @@ static void s_printHelp()
         stdout,
         "basic-pub-sub --endpoint <endpoint> --cert <path to cert>"
         " --key <path to key> --topic <topic> --message <message> --count <count>"
-        " --ca_file <optional: path to custom ca>"
+        " --client_id <client id> --ca_file <optional: path to custom ca>"
         " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>"
         " --x509 --x509_role_alias <role_alias> --x509_endpoint <endpoint> --x509_thing <thing_name>"
         " --x509_cert <path to cert> --x509_key <path to key> --x509_rootca <path to root ca>\n\n");
@@ -37,7 +37,6 @@ static void s_printHelp()
     fprintf(stdout, "topic: topic to publish, subscribe to. (optional)\n");
     fprintf(stdout, "message: override payload of published messages. (optional, defaults to \"Hello world!\"))\n");
     fprintf(stdout, "count: number of messages to publish. (optional, defaults to 10)\n");
-    fprintf(stdout, "topic: topic to publish, subscribe to. (optional)\n");
     fprintf(stdout, "client_id: client id to use (optional)\n");
     fprintf(
         stdout,
