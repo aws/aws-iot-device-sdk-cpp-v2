@@ -2,11 +2,11 @@ version: 0.2
 phases:
   install:
     commands:
-      - wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-      - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-      - sudo apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main"
-      - sudo apt-get update -y
-      - sudo apt-get install clang-8 cmake3 -y -f
+      - wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+      - add-apt-repository ppa:ubuntu-toolchain-r/test
+      - apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main"
+      - apt-get update -y
+      - apt-get install clang-8 cmake3 -y -f
   pre_build:
     commands:
       - export CC=clang-8
