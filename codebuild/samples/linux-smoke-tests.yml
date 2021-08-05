@@ -4,17 +4,13 @@ phases:
     commands:
       - wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
       - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-      - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main"
+      - sudo apt-add-repository "deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main"
       - sudo apt-get update -y
-      - sudo apt-get install clang-6.0 cmake3 clang-tidy-6.0 clang-format-6.0 -y -f
-      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
-      - unzip -q -d /tmp /tmp/awscliv2.zip
-      - sudo /tmp/aws/install
+      - sudo apt-get install clang-8 cmake3 -y -f
   pre_build:
     commands:
-      - export CC=clang-6.0
-      - export CXX=clang++-6.0
-      - export CLANG_FORMAT=clang-format-6.0
+      - export CC=clang-8
+      - export CXX=clang++-8
   build:
     commands:
       - echo Build started on `date`
