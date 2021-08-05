@@ -561,7 +561,7 @@ int main(int argc, char *argv[])
 
         {
             std::unique_lock<std::mutex> receivedLock(receiveMutex);
-            receiveSignal.wait(receivedLock, [&] { return receivedCount == messageCount; });
+            receiveSignal.wait(receivedLock, [&] { return receivedCount >= messageCount; });
         }
 
         /*
