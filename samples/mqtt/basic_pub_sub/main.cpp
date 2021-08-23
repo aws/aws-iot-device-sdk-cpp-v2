@@ -11,6 +11,7 @@
 
 #include <algorithm>
 #include <aws/crt/UUID.h>
+#include <chrono>
 #include <condition_variable>
 #include <iostream>
 #include <mutex>
@@ -23,7 +24,8 @@ static void s_printHelp()
     fprintf(
         stdout,
         "basic-pub-sub --endpoint <endpoint> --cert <path to cert>"
-        " --key <path to key> --topic <topic> --ca_file <optional: path to custom ca>"
+        " --key <path to key> --topic <topic> --message <message> --count <count>"
+        " --client_id <client id> --ca_file <optional: path to custom ca>"
         " --use_websocket --signing_region <region> --proxy_host <host> --proxy_port <port>"
         " --x509 --x509_role_alias <role_alias> --x509_endpoint <endpoint> --x509_thing <thing_name>"
         " --x509_cert <path to cert> --x509_key <path to key> --x509_rootca <path to root ca>\n\n");
@@ -33,6 +35,8 @@ static void s_printHelp()
         "cert: path to your client certificate in PEM format. If this is not set you must specify use_websocket\n");
     fprintf(stdout, "key: path to your key in PEM format. If this is not set you must specify use_websocket\n");
     fprintf(stdout, "topic: topic to publish, subscribe to. (optional)\n");
+    fprintf(stdout, "message: override payload of published messages. (optional, defaults to \"Hello world!\"))\n");
+    fprintf(stdout, "count: number of messages to publish. (optional, defaults to 10)\n");
     fprintf(stdout, "client_id: client id to use (optional)\n");
     fprintf(
         stdout,
@@ -44,9 +48,8 @@ static void s_printHelp()
         stdout,
         "signing_region: used for websocket signer it should only be specific if websockets are used. (required for "
         "websockets)\n");
-    fprintf(stdout, "proxy_host: if you want to use a proxy with websockets, specify the host here (optional).\n");
-    fprintf(
-        stdout, "proxy_port: defaults to 8080 is proxy_host is set. Set this to any value you'd like (optional).\n");
+    fprintf(stdout, "proxy_host: host name of the http proxy to use (optional).\n");
+    fprintf(stdout, "proxy_port: port of the http proxy to use (optional).\n");
 
     fprintf(stdout, "  x509: Use the x509 credentials provider while using websockets (optional)\n");
     fprintf(stdout, "  x509_role_alias: Role alias to use with the x509 credentials provider (required for x509)\n");
@@ -107,6 +110,9 @@ int main(int argc, char *argv[])
     bool useWebSocket = false;
     bool useX509 = false;
 
+    uint32_t messageCount = 10;
+    String messagePayload("Hello world!");
+
     /*********************** Parse Arguments ***************************/
     if (!s_cmdOptionExists(argv, argv + argc, "--endpoint"))
     {
@@ -155,15 +161,19 @@ int main(int argc, char *argv[])
         }
         useWebSocket = true;
         signingRegion = s_getCmdOption(argv, argv + argc, "--signing_region");
+    }
 
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
-        {
-            proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
-        }
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy_host"))
+    {
+        proxyHost = s_getCmdOption(argv, argv + argc, "--proxy_host");
+    }
 
-        if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
+    if (s_cmdOptionExists(argv, argv + argc, "--proxy_port"))
+    {
+        int port = atoi(s_getCmdOption(argv, argv + argc, "--proxy_port"));
+        if (port > 0 && port <= UINT16_MAX)
         {
-            proxyPort = static_cast<uint16_t>(atoi(s_getCmdOption(argv, argv + argc, "--proxy_port")));
+            proxyPort = static_cast<uint16_t>(port);
         }
     }
 
@@ -243,6 +253,20 @@ int main(int argc, char *argv[])
         useX509 = true;
     }
 
+    if (s_cmdOptionExists(argv, argv + argc, "--message"))
+    {
+        messagePayload = s_getCmdOption(argv, argv + argc, "--message");
+    }
+
+    if (s_cmdOptionExists(argv, argv + argc, "--count"))
+    {
+        int count = atoi(s_getCmdOption(argv, argv + argc, "--count"));
+        if (count > 0)
+        {
+            messageCount = count;
+        }
+    }
+
     /********************** Now Setup an Mqtt Client ******************/
     /*
      * You need an event loop group to process IO events.
@@ -265,6 +289,14 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
+    Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
+    if (!proxyHost.empty())
+    {
+        proxyOptions.HostName = proxyHost;
+        proxyOptions.Port = proxyPort;
+        proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
+    }
+
     Aws::Crt::Io::TlsContext x509TlsCtx;
     Aws::Iot::MqttClientConnectionConfigBuilder builder;
 
@@ -275,15 +307,6 @@ int main(int argc, char *argv[])
     else if (useWebSocket)
     {
         std::shared_ptr<Aws::Crt::Auth::ICredentialsProvider> provider = nullptr;
-
-        Aws::Crt::Http::HttpClientConnectionProxyOptions proxyOptions;
-        if (!proxyHost.empty())
-        {
-            proxyOptions.HostName = proxyHost;
-            proxyOptions.Port = proxyPort;
-            proxyOptions.AuthType = Aws::Crt::Http::AwsHttpProxyAuthenticationType::None;
-        }
-
         if (useX509)
         {
             Aws::Crt::Io::TlsContextOptions tlsCtxOptions =
@@ -351,16 +374,16 @@ int main(int argc, char *argv[])
         }
 
         Aws::Iot::WebsocketConfig config(signingRegion, provider);
-        if (!proxyHost.empty())
-        {
-            config.ProxyOptions = proxyOptions;
-        }
-
         builder = Aws::Iot::MqttClientConnectionConfigBuilder(config);
     }
     else
     {
         s_printHelp();
+    }
+
+    if (!proxyHost.empty())
+    {
+        builder.WithHttpProxyOptions(proxyOptions);
     }
 
     if (!caFile.empty())
@@ -456,17 +479,6 @@ int main(int argc, char *argv[])
     connection->OnConnectionInterrupted = std::move(onInterrupted);
     connection->OnConnectionResumed = std::move(onResumed);
 
-    connection->SetOnMessageHandler([](Mqtt::MqttConnection &,
-                                       const String &topic,
-                                       const ByteBuf &payload,
-                                       bool /*dup*/,
-                                       Mqtt::QOS /*qos*/,
-                                       bool /*retain*/) {
-        fprintf(stdout, "Generic Publish received on topic %s, payload:\n", topic.c_str());
-        fwrite(payload.buffer, 1, payload.len, stdout);
-        fprintf(stdout, "\n");
-    });
-
     /*
      * Actually perform the connect dance.
      * This will use default ping behavior of 1 hour and 3 second timeouts.
@@ -481,6 +493,10 @@ int main(int argc, char *argv[])
 
     if (connectionCompletedPromise.get_future().get())
     {
+        std::mutex receiveMutex;
+        std::condition_variable receiveSignal;
+        uint32_t receivedCount = 0;
+
         /*
          * This is invoked upon the receipt of a Publish on a subscribed topic.
          */
@@ -490,10 +506,16 @@ int main(int argc, char *argv[])
                              bool /*dup*/,
                              Mqtt::QOS /*qos*/,
                              bool /*retain*/) {
-            fprintf(stdout, "Publish received on topic %s\n", topic.c_str());
-            fprintf(stdout, "\n Message:\n");
-            fwrite(byteBuf.buffer, 1, byteBuf.len, stdout);
-            fprintf(stdout, "\n");
+            {
+                std::lock_guard<std::mutex> lock(receiveMutex);
+                ++receivedCount;
+                fprintf(stdout, "Publish #%d received on topic %s\n", receivedCount, topic.c_str());
+                fprintf(stdout, "Message: ");
+                fwrite(byteBuf.buffer, 1, byteBuf.len, stdout);
+                fprintf(stdout, "\n");
+            }
+
+            receiveSignal.notify_all();
         };
 
         /*
@@ -525,34 +547,21 @@ int main(int argc, char *argv[])
         connection->Subscribe(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, onMessage, onSubAck);
         subscribeFinishedPromise.get_future().wait();
 
-        while (true)
+        uint32_t publishedCount = 0;
+        while (publishedCount < messageCount)
         {
-            String input;
-            fprintf(
-                stdout,
-                "Enter the message you want to publish to topic %s and press enter. Enter 'exit' to exit this "
-                "program.\n",
-                topic.c_str());
-            std::getline(std::cin, input);
+            ByteBuf payload = ByteBufFromArray((const uint8_t *)messagePayload.data(), messagePayload.length());
 
-            if (input == "exit")
-            {
-                break;
-            }
-
-            ByteBuf payload = ByteBufFromArray((const uint8_t *)input.data(), input.length());
-
-            auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t packetId, int errorCode) {
-                if (packetId)
-                {
-                    fprintf(stdout, "Operation on packetId %d Succeeded\n", packetId);
-                }
-                else
-                {
-                    fprintf(stdout, "Operation failed with error %s\n", aws_error_debug_str(errorCode));
-                }
-            };
+            auto onPublishComplete = [](Mqtt::MqttConnection &, uint16_t, int) {};
             connection->Publish(topic.c_str(), AWS_MQTT_QOS_AT_LEAST_ONCE, false, payload, onPublishComplete);
+            ++publishedCount;
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        }
+
+        {
+            std::unique_lock<std::mutex> receivedLock(receiveMutex);
+            receiveSignal.wait(receivedLock, [&] { return receivedCount >= messageCount; });
         }
 
         /*
@@ -562,12 +571,17 @@ int main(int argc, char *argv[])
         connection->Unsubscribe(
             topic.c_str(), [&](Mqtt::MqttConnection &, uint16_t, int) { unsubscribeFinishedPromise.set_value(); });
         unsubscribeFinishedPromise.get_future().wait();
+
+        /* Disconnect */
+        if (connection->Disconnect())
+        {
+            connectionClosedPromise.get_future().wait();
+        }
+    }
+    else
+    {
+        exit(-1);
     }
 
-    /* Disconnect */
-    if (connection->Disconnect())
-    {
-        connectionClosedPromise.get_future().wait();
-    }
     return 0;
 }

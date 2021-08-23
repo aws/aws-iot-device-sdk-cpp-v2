@@ -29,7 +29,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 * C++ 11 or higher
 * CMake 3.1+
-* Clang 3.9+ or GCC 4.4+ or MSVC 2015+
+* Clang 3.9+ or GCC 4.8+ or MSVC 2015+
 
 ### Build from source
 
@@ -37,7 +37,7 @@ to C++ by the [aws-crt-cpp](https://github.com/awslabs/aws-crt-cpp) package.
 
 Note: `-DCMAKE_INSTALL_PREFIX` can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here.
 
-#### MaxOS and Linux
+#### MacOS and Linux
 
 ``` sh
 mkdir sdk-cpp-workspace

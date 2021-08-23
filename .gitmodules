@@ -1,4 +1,4 @@
-[submodule "aws-common-runtime/aws-crt-cpp"]
+[submodule "crt/aws-crt-cpp"]
 	path = crt/aws-crt-cpp
 	url = https://github.com/awslabs/aws-crt-cpp.git
 [submodule "crt/aws-c-iot"]

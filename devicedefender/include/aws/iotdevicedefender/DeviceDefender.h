@@ -51,9 +51,7 @@ namespace Aws
           public:
             ~ReportTask();
             ReportTask(const ReportTask &) = delete;
-            ReportTask(ReportTask &&) noexcept;
             ReportTask &operator=(const ReportTask &) = delete;
-            ReportTask &operator=(ReportTask &&) noexcept;
 
             /**
              * Initiates stopping of the Defender V1 task.
@@ -82,9 +80,11 @@ namespace Aws
           private:
             Crt::Allocator *m_allocator;
             ReportTaskStatus m_status;
-            aws_iotdevice_defender_report_task_config m_taskConfig;
-            aws_iotdevice_defender_v1_task *m_owningTask;
+            aws_iotdevice_defender_task_config *m_taskConfig;
+            aws_iotdevice_defender_task *m_owningTask;
             int m_lastError;
+            std::shared_ptr<Crt::Mqtt::MqttConnection> m_mqttConnection;
+            Crt::Io::EventLoopGroup &m_eventLoopGroup;
 
             ReportTask(
                 Crt::Allocator *allocator,
@@ -141,7 +141,7 @@ namespace Aws
             /**
              * Builds a device defender v1 task object from the set options.
              */
-            ReportTask Build() noexcept;
+            std::shared_ptr<ReportTask> Build() noexcept;
 
           private:
             Crt::Allocator *m_allocator;
