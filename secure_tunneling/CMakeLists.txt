@@ -90,11 +90,12 @@ target_include_directories(IotSecureTunneling-cpp PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>)
 
-if (NOT IS_SUBDIRECTORY_INCLUDE)
-    aws_use_package(aws-crt-cpp)
+if (BUILD_DEPS)
+	if (NOT IS_SUBDIRECTORY_INCLUDE)
+		aws_use_package(aws-crt-cpp)
+	endif()
+	aws_use_package(aws-c-iot)
 endif()
-
-aws_use_package(aws-c-iot)
 
 if (BUILD_TESTING)
     aws_use_package(IotDeviceCommon-cpp)
@@ -120,7 +121,7 @@ configure_file("cmake/iotsecuretunneling-cpp-config.cmake"
         @ONLY)
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/iotsecuretunneling-cpp-config.cmake"
-        DESTINATION "lib/IotSecureTunneling-cpp/cmake/"
+        DESTINATION "${CMAKE_INSTALL_LIBDIR}/IotSecureTunneling-cpp/cmake/"
         COMPONENT Development)
 
 if (BUILD_TESTING)

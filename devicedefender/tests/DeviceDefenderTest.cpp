@@ -2,6 +2,7 @@
  * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0.
  */
+#include "aws/common/error.h"
 #include <aws/crt/Api.h>
 
 #include <aws/iotdevicecommon/IotDevice.h>
@@ -61,13 +62,17 @@ static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, vo
             .WithTaskCancelledHandler(onCancelled)
             .WithTaskCancellationUserData(&callbackSuccess);
 
-        Aws::Iotdevicedefenderv1::ReportTask task = taskBuilder.Build();
+        std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
-        ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Ready, (int)task.GetStatus());
+        ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Ready, (int)task->GetStatus());
 
-        task.StartTask();
-        ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running, (int)task.GetStatus());
-        task.StopTask();
+        ASSERT_SUCCESS(task->StartTask());
+        ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Running, (int)task->GetStatus());
+        ASSERT_FAILS(task->StartTask());
+        ASSERT_TRUE(aws_last_error() == AWS_ERROR_INVALID_STATE);
+        task->StopTask();
+
+        ASSERT_TRUE(task->GetStatus() == Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped);
 
         {
             std::unique_lock<std::mutex> lock(mutex);
@@ -81,7 +86,7 @@ static int s_TestDeviceDefenderResourceSafety(Aws::Crt::Allocator *allocator, vo
 
         ASSERT_FALSE(mqttClient);
 
-        ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task.GetStatus());
+        ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Stopped, (int)task->GetStatus());
     }
 
     return AWS_ERROR_SUCCESS;
@@ -129,12 +134,13 @@ static int s_TestDeviceDefenderFailedTest(Aws::Crt::Allocator *allocator, void *
             .WithTaskPeriodSeconds((uint32_t)1UL)
             .WithReportFormat(Aws::Iotdevicedefenderv1::ReportFormat::AWS_IDDRF_SHORT_JSON);
 
-        Aws::Iotdevicedefenderv1::ReportTask task = taskBuilder.Build();
+        std::shared_ptr<Aws::Iotdevicedefenderv1::ReportTask> task = taskBuilder.Build();
 
-        ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Ready, (int)task.GetStatus());
+        ASSERT_INT_EQUALS((int)Aws::Iotdevicedefenderv1::ReportTaskStatus::Ready, (int)task->GetStatus());
 
-        ASSERT_INT_EQUALS(AWS_OP_ERR, task.StartTask());
-        ASSERT_INT_EQUALS(AWS_ERROR_IOTDEVICE_DEFENDER_UNSUPPORTED_REPORT_FORMAT, task.LastError());
+        ASSERT_INT_EQUALS(AWS_ERROR_IOTDEVICE_DEFENDER_UNSUPPORTED_REPORT_FORMAT, task->LastError());
+        ASSERT_FAILS(task->StartTask());
+        ASSERT_TRUE(aws_last_error() == AWS_ERROR_INVALID_STATE);
 
         mqttConnection->Disconnect();
         ASSERT_TRUE(mqttConnection);
