@@ -1,0 +1,301 @@
+\hypertarget{channel__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/channel\+\_\+test.c File Reference}
+\label{channel__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/channel\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/channel\_test.c}}
+{\ttfamily \#include $<$aws/common/atomics.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/condition\+\_\+variable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel\+\_\+bootstrap.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/socket.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}mock\+\_\+dns\+\_\+resolver.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}read\+\_\+write\+\_\+test\+\_\+handler.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structchannel__setup__test__args}{channel\+\_\+setup\+\_\+test\+\_\+args}}
+\item 
+struct \mbox{\hyperlink{structtasks__run__data}{tasks\+\_\+run\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structchannel__connect__test__args}{channel\+\_\+connect\+\_\+test\+\_\+args}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{channel__test_8c_a1e24c04407570b128deb5a9ed1487731}{tasks\+\_\+run\+\_\+id}} \{ \newline
+\mbox{\hyperlink{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a2101f07a1e612cdf4e413ac17d00adea}{TASK\+\_\+\+NOW\+\_\+\+OFF\+\_\+\+THREAD}}
+, \mbox{\hyperlink{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a42aa9b9988395f399d68607e06fa61ce}{TASK\+\_\+\+NOW\+\_\+\+ON\+\_\+\+THREAD}}
+, \mbox{\hyperlink{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a53d8fdd1600d23c5a284db460e7398a2}{TASK\+\_\+\+FUTURE\+\_\+\+OFF\+\_\+\+THREAD}}
+, \mbox{\hyperlink{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a565f48d88a18f8bbc47870ea65653f55}{TASK\+\_\+\+FUTURE\+\_\+\+ON\+\_\+\+THREAD}}
+, \newline
+\mbox{\hyperlink{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a91535596df4c19a73c0aaad08784fc3b}{TASK\+\_\+\+COUNT}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{channel__test_8c_a4022e246776490900acfbc63d23de4d9}{s\+\_\+channel\+\_\+setup\+\_\+test\+\_\+on\+\_\+setup\+\_\+completed}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{channel__test_8c_a08d550dbe87442baeb61109d57210953}{s\+\_\+channel\+\_\+setup\+\_\+test\+\_\+setup\+\_\+completed\+\_\+predicate}} (void $\ast$arg)
+\item 
+static int \mbox{\hyperlink{channel__test_8c_ade11eef976e5887df4102829bfc6b295}{s\+\_\+channel\+\_\+setup\+\_\+create\+\_\+and\+\_\+wait}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__channel__options}{aws\+\_\+channel\+\_\+options}} $\ast$args, struct \mbox{\hyperlink{structchannel__setup__test__args}{channel\+\_\+setup\+\_\+test\+\_\+args}} $\ast$test\+\_\+args, struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$$\ast$returned\+\_\+channel)
+\item 
+static int \mbox{\hyperlink{channel__test_8c_a6c0c1ca696a24fedde63472a4d858344}{s\+\_\+test\+\_\+channel\+\_\+setup}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{channel__test_8c_ab2a82b81b83dd7dd5e1b4dbcc325623b}{s\+\_\+test\+\_\+channel\+\_\+single\+\_\+slot\+\_\+cleans\+\_\+up}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{channel__test_8c_adb9636b2e8d8178daff8d5611426193b}{s\+\_\+test\+\_\+channel\+\_\+slots\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{channel__test_8c_a7d618cabba3b71829341a0c2bb7a4a1c}{s\+\_\+wait\+\_\+a\+\_\+bit\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static int \mbox{\hyperlink{channel__test_8c_a62af44a612bf121120c215bfd4afea7d}{s\+\_\+wait\+\_\+a\+\_\+bit}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$loop)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{channel__test_8c_a59cf5147c3bdbf08898327dbda9d8a82}{s\+\_\+atomic\+\_\+var\+\_\+is\+\_\+set\+\_\+predicate}} (void $\ast$arg)
+\item 
+static int \mbox{\hyperlink{channel__test_8c_ae5ca18693e1c62942690f687095c1ab5}{s\+\_\+test\+\_\+channel\+\_\+refcount}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{channel__test_8c_aeec434212e6fbdcc38bc6c870ba0643b}{s\+\_\+channel\+\_\+post\+\_\+shutdown\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{channel__test_8c_a6798cdf723f9e477a1ab40179b1b82d1}{s\+\_\+channel\+\_\+test\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{channel__test_8c_a07b3e7ee218a8aeb82edc64cdabfc09b}{s\+\_\+channel\+\_\+test\+\_\+shutdown\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{channel__test_8c_ae5e3ed8113f1f5c03c4616a5c1926474}{s\+\_\+tasks\+\_\+run\+\_\+fn}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{channel__test_8c_aaf3823e0a5626601659976c7e9dddede}{s\+\_\+schedule\+\_\+on\+\_\+thread\+\_\+tasks\+\_\+fn}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{channel__test_8c_a1b4771ff4b930643d35a7b84a20c110b}{s\+\_\+tasks\+\_\+run\+\_\+done\+\_\+pred}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{channel__test_8c_a2e67e529b3ae1cb5707dbeabc5eec7ec}{s\+\_\+test\+\_\+channel\+\_\+tasks\+\_\+run}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{channel__test_8c_a41169ff3d73df426817e88a54197b90c}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (channel\+\_\+tasks\+\_\+run, \mbox{\hyperlink{channel__test_8c_a2e67e529b3ae1cb5707dbeabc5eec7ec}{s\+\_\+test\+\_\+channel\+\_\+tasks\+\_\+run}})
+\item 
+static int \mbox{\hyperlink{channel__test_8c_ad351a417c29603a2068653213754122a}{s\+\_\+test\+\_\+channel\+\_\+rejects\+\_\+post\+\_\+shutdown\+\_\+tasks}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{channel__test_8c_a4b5bd92a1d6841eaa872fcf3e4b5c596}{s\+\_\+test\+\_\+channel\+\_\+cancels\+\_\+pending\+\_\+tasks}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{channel__test_8c_a5608b60aef403e0f1530cac2241ac6e9}{s\+\_\+test\+\_\+channel\+\_\+duplicate\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{channel__test_8c_a91b1350ecb9f5bb0a4f80bf9e0091fc5}{s\+\_\+test\+\_\+channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout\+\_\+setup}} (struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$bootstrap, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{channel__test_8c_a2a6db46437da1bb39872feed43e392cd}{s\+\_\+test\+\_\+channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$bootstrap, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{channel__test_8c_aff63c91a4851c5375605985ef6cd44b5}{s\+\_\+setup\+\_\+complete\+\_\+pred}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{channel__test_8c_aabc4b3e1c96bde7af5359dc976c76c8a}{s\+\_\+shutdown\+\_\+complete\+\_\+pred}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{channel__test_8c_a5945efc4e50c8f50d2993593f5030410}{s\+\_\+test\+\_\+channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{channel__test_8c_ab941d5aeea238aed2f21aaacf25c4c6e}{AWS\+\_\+\+TEST\+\_\+\+CASE}} (channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout, \mbox{\hyperlink{channel__test_8c_a5945efc4e50c8f50d2993593f5030410}{s\+\_\+test\+\_\+channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structtasks__run__data}{tasks\+\_\+run\+\_\+data}} \mbox{\hyperlink{channel__test_8c_ad9c4d88ec4689a5e2609d0141e101e89}{s\+\_\+tasks\+\_\+run\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{channel__test_8c_a1e24c04407570b128deb5a9ed1487731}\label{channel__test_8c_a1e24c04407570b128deb5a9ed1487731}} 
+\index{channel\_test.c@{channel\_test.c}!tasks\_run\_id@{tasks\_run\_id}}
+\index{tasks\_run\_id@{tasks\_run\_id}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{tasks\_run\_id}{tasks\_run\_id}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{channel__test_8c_a1e24c04407570b128deb5a9ed1487731}{tasks\+\_\+run\+\_\+id}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_NOW\_OFF\_THREAD@{TASK\_NOW\_OFF\_THREAD}!channel\_test.c@{channel\_test.c}}\index{channel\_test.c@{channel\_test.c}!TASK\_NOW\_OFF\_THREAD@{TASK\_NOW\_OFF\_THREAD}}}\mbox{\Hypertarget{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a2101f07a1e612cdf4e413ac17d00adea}\label{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a2101f07a1e612cdf4e413ac17d00adea}} 
+TASK\+\_\+\+NOW\+\_\+\+OFF\+\_\+\+THREAD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_NOW\_ON\_THREAD@{TASK\_NOW\_ON\_THREAD}!channel\_test.c@{channel\_test.c}}\index{channel\_test.c@{channel\_test.c}!TASK\_NOW\_ON\_THREAD@{TASK\_NOW\_ON\_THREAD}}}\mbox{\Hypertarget{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a42aa9b9988395f399d68607e06fa61ce}\label{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a42aa9b9988395f399d68607e06fa61ce}} 
+TASK\+\_\+\+NOW\+\_\+\+ON\+\_\+\+THREAD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_FUTURE\_OFF\_THREAD@{TASK\_FUTURE\_OFF\_THREAD}!channel\_test.c@{channel\_test.c}}\index{channel\_test.c@{channel\_test.c}!TASK\_FUTURE\_OFF\_THREAD@{TASK\_FUTURE\_OFF\_THREAD}}}\mbox{\Hypertarget{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a53d8fdd1600d23c5a284db460e7398a2}\label{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a53d8fdd1600d23c5a284db460e7398a2}} 
+TASK\+\_\+\+FUTURE\+\_\+\+OFF\+\_\+\+THREAD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_FUTURE\_ON\_THREAD@{TASK\_FUTURE\_ON\_THREAD}!channel\_test.c@{channel\_test.c}}\index{channel\_test.c@{channel\_test.c}!TASK\_FUTURE\_ON\_THREAD@{TASK\_FUTURE\_ON\_THREAD}}}\mbox{\Hypertarget{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a565f48d88a18f8bbc47870ea65653f55}\label{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a565f48d88a18f8bbc47870ea65653f55}} 
+TASK\+\_\+\+FUTURE\+\_\+\+ON\+\_\+\+THREAD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TASK\_COUNT@{TASK\_COUNT}!channel\_test.c@{channel\_test.c}}\index{channel\_test.c@{channel\_test.c}!TASK\_COUNT@{TASK\_COUNT}}}\mbox{\Hypertarget{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a91535596df4c19a73c0aaad08784fc3b}\label{channel__test_8c_a1e24c04407570b128deb5a9ed1487731a91535596df4c19a73c0aaad08784fc3b}} 
+TASK\+\_\+\+COUNT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{channel__test_8c_ab941d5aeea238aed2f21aaacf25c4c6e}\label{channel__test_8c_ab941d5aeea238aed2f21aaacf25c4c6e}} 
+\index{channel\_test.c@{channel\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout}]{,  }\item[{\mbox{\hyperlink{channel__test_8c_a5945efc4e50c8f50d2993593f5030410}{s\+\_\+test\+\_\+channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{channel__test_8c_a41169ff3d73df426817e88a54197b90c}\label{channel__test_8c_a41169ff3d73df426817e88a54197b90c}} 
+\index{channel\_test.c@{channel\_test.c}!AWS\_TEST\_CASE@{AWS\_TEST\_CASE}}
+\index{AWS\_TEST\_CASE@{AWS\_TEST\_CASE}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_TEST\_CASE()}{AWS\_TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily AWS\+\_\+\+TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{channel\+\_\+tasks\+\_\+run}]{,  }\item[{\mbox{\hyperlink{channel__test_8c_a2e67e529b3ae1cb5707dbeabc5eec7ec}{s\+\_\+test\+\_\+channel\+\_\+tasks\+\_\+run}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{channel__test_8c_a59cf5147c3bdbf08898327dbda9d8a82}\label{channel__test_8c_a59cf5147c3bdbf08898327dbda9d8a82}} 
+\index{channel\_test.c@{channel\_test.c}!s\_atomic\_var\_is\_set\_predicate@{s\_atomic\_var\_is\_set\_predicate}}
+\index{s\_atomic\_var\_is\_set\_predicate@{s\_atomic\_var\_is\_set\_predicate}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_atomic\_var\_is\_set\_predicate()}{s\_atomic\_var\_is\_set\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+atomic\+\_\+var\+\_\+is\+\_\+set\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_aeec434212e6fbdcc38bc6c870ba0643b}\label{channel__test_8c_aeec434212e6fbdcc38bc6c870ba0643b}} 
+\index{channel\_test.c@{channel\_test.c}!s\_channel\_post\_shutdown\_task@{s\_channel\_post\_shutdown\_task}}
+\index{s\_channel\_post\_shutdown\_task@{s\_channel\_post\_shutdown\_task}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_post\_shutdown\_task()}{s\_channel\_post\_shutdown\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+channel\+\_\+post\+\_\+shutdown\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_ade11eef976e5887df4102829bfc6b295}\label{channel__test_8c_ade11eef976e5887df4102829bfc6b295}} 
+\index{channel\_test.c@{channel\_test.c}!s\_channel\_setup\_create\_and\_wait@{s\_channel\_setup\_create\_and\_wait}}
+\index{s\_channel\_setup\_create\_and\_wait@{s\_channel\_setup\_create\_and\_wait}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_setup\_create\_and\_wait()}{s\_channel\_setup\_create\_and\_wait()}}
+{\footnotesize\ttfamily static int s\+\_\+channel\+\_\+setup\+\_\+create\+\_\+and\+\_\+wait (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__channel__options}{aws\+\_\+channel\+\_\+options}} $\ast$}]{args,  }\item[{struct \mbox{\hyperlink{structchannel__setup__test__args}{channel\+\_\+setup\+\_\+test\+\_\+args}} $\ast$}]{test\+\_\+args,  }\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$$\ast$}]{returned\+\_\+channel }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a4022e246776490900acfbc63d23de4d9}\label{channel__test_8c_a4022e246776490900acfbc63d23de4d9}} 
+\index{channel\_test.c@{channel\_test.c}!s\_channel\_setup\_test\_on\_setup\_completed@{s\_channel\_setup\_test\_on\_setup\_completed}}
+\index{s\_channel\_setup\_test\_on\_setup\_completed@{s\_channel\_setup\_test\_on\_setup\_completed}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_setup\_test\_on\_setup\_completed()}{s\_channel\_setup\_test\_on\_setup\_completed()}}
+{\footnotesize\ttfamily static void s\+\_\+channel\+\_\+setup\+\_\+test\+\_\+on\+\_\+setup\+\_\+completed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a08d550dbe87442baeb61109d57210953}\label{channel__test_8c_a08d550dbe87442baeb61109d57210953}} 
+\index{channel\_test.c@{channel\_test.c}!s\_channel\_setup\_test\_setup\_completed\_predicate@{s\_channel\_setup\_test\_setup\_completed\_predicate}}
+\index{s\_channel\_setup\_test\_setup\_completed\_predicate@{s\_channel\_setup\_test\_setup\_completed\_predicate}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_setup\_test\_setup\_completed\_predicate()}{s\_channel\_setup\_test\_setup\_completed\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+channel\+\_\+setup\+\_\+test\+\_\+setup\+\_\+completed\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a6798cdf723f9e477a1ab40179b1b82d1}\label{channel__test_8c_a6798cdf723f9e477a1ab40179b1b82d1}} 
+\index{channel\_test.c@{channel\_test.c}!s\_channel\_test\_shutdown@{s\_channel\_test\_shutdown}}
+\index{s\_channel\_test\_shutdown@{s\_channel\_test\_shutdown}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_test\_shutdown()}{s\_channel\_test\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+channel\+\_\+test\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a07b3e7ee218a8aeb82edc64cdabfc09b}\label{channel__test_8c_a07b3e7ee218a8aeb82edc64cdabfc09b}} 
+\index{channel\_test.c@{channel\_test.c}!s\_channel\_test\_shutdown\_predicate@{s\_channel\_test\_shutdown\_predicate}}
+\index{s\_channel\_test\_shutdown\_predicate@{s\_channel\_test\_shutdown\_predicate}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_channel\_test\_shutdown\_predicate()}{s\_channel\_test\_shutdown\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+channel\+\_\+test\+\_\+shutdown\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_aaf3823e0a5626601659976c7e9dddede}\label{channel__test_8c_aaf3823e0a5626601659976c7e9dddede}} 
+\index{channel\_test.c@{channel\_test.c}!s\_schedule\_on\_thread\_tasks\_fn@{s\_schedule\_on\_thread\_tasks\_fn}}
+\index{s\_schedule\_on\_thread\_tasks\_fn@{s\_schedule\_on\_thread\_tasks\_fn}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_on\_thread\_tasks\_fn()}{s\_schedule\_on\_thread\_tasks\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+on\+\_\+thread\+\_\+tasks\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_aff63c91a4851c5375605985ef6cd44b5}\label{channel__test_8c_aff63c91a4851c5375605985ef6cd44b5}} 
+\index{channel\_test.c@{channel\_test.c}!s\_setup\_complete\_pred@{s\_setup\_complete\_pred}}
+\index{s\_setup\_complete\_pred@{s\_setup\_complete\_pred}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_setup\_complete\_pred()}{s\_setup\_complete\_pred()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+setup\+\_\+complete\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_aabc4b3e1c96bde7af5359dc976c76c8a}\label{channel__test_8c_aabc4b3e1c96bde7af5359dc976c76c8a}} 
+\index{channel\_test.c@{channel\_test.c}!s\_shutdown\_complete\_pred@{s\_shutdown\_complete\_pred}}
+\index{s\_shutdown\_complete\_pred@{s\_shutdown\_complete\_pred}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_shutdown\_complete\_pred()}{s\_shutdown\_complete\_pred()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+shutdown\+\_\+complete\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a1b4771ff4b930643d35a7b84a20c110b}\label{channel__test_8c_a1b4771ff4b930643d35a7b84a20c110b}} 
+\index{channel\_test.c@{channel\_test.c}!s\_tasks\_run\_done\_pred@{s\_tasks\_run\_done\_pred}}
+\index{s\_tasks\_run\_done\_pred@{s\_tasks\_run\_done\_pred}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_tasks\_run\_done\_pred()}{s\_tasks\_run\_done\_pred()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+tasks\+\_\+run\+\_\+done\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_ae5e3ed8113f1f5c03c4616a5c1926474}\label{channel__test_8c_ae5e3ed8113f1f5c03c4616a5c1926474}} 
+\index{channel\_test.c@{channel\_test.c}!s\_tasks\_run\_fn@{s\_tasks\_run\_fn}}
+\index{s\_tasks\_run\_fn@{s\_tasks\_run\_fn}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_tasks\_run\_fn()}{s\_tasks\_run\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+tasks\+\_\+run\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a4b5bd92a1d6841eaa872fcf3e4b5c596}\label{channel__test_8c_a4b5bd92a1d6841eaa872fcf3e4b5c596}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_cancels\_pending\_tasks@{s\_test\_channel\_cancels\_pending\_tasks}}
+\index{s\_test\_channel\_cancels\_pending\_tasks@{s\_test\_channel\_cancels\_pending\_tasks}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_cancels\_pending\_tasks()}{s\_test\_channel\_cancels\_pending\_tasks()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+channel\+\_\+cancels\+\_\+pending\+\_\+tasks (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a5945efc4e50c8f50d2993593f5030410}\label{channel__test_8c_a5945efc4e50c8f50d2993593f5030410}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_connect\_some\_hosts\_timeout@{s\_test\_channel\_connect\_some\_hosts\_timeout}}
+\index{s\_test\_channel\_connect\_some\_hosts\_timeout@{s\_test\_channel\_connect\_some\_hosts\_timeout}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_connect\_some\_hosts\_timeout()}{s\_test\_channel\_connect\_some\_hosts\_timeout()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a91b1350ecb9f5bb0a4f80bf9e0091fc5}\label{channel__test_8c_a91b1350ecb9f5bb0a4f80bf9e0091fc5}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_connect\_some\_hosts\_timeout\_setup@{s\_test\_channel\_connect\_some\_hosts\_timeout\_setup}}
+\index{s\_test\_channel\_connect\_some\_hosts\_timeout\_setup@{s\_test\_channel\_connect\_some\_hosts\_timeout\_setup}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_connect\_some\_hosts\_timeout\_setup()}{s\_test\_channel\_connect\_some\_hosts\_timeout\_setup()}}
+{\footnotesize\ttfamily static void s\+\_\+test\+\_\+channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$}]{bootstrap,  }\item[{int}]{error\+\_\+code,  }\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a2a6db46437da1bb39872feed43e392cd}\label{channel__test_8c_a2a6db46437da1bb39872feed43e392cd}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_connect\_some\_hosts\_timeout\_shutdown@{s\_test\_channel\_connect\_some\_hosts\_timeout\_shutdown}}
+\index{s\_test\_channel\_connect\_some\_hosts\_timeout\_shutdown@{s\_test\_channel\_connect\_some\_hosts\_timeout\_shutdown}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_connect\_some\_hosts\_timeout\_shutdown()}{s\_test\_channel\_connect\_some\_hosts\_timeout\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+test\+\_\+channel\+\_\+connect\+\_\+some\+\_\+hosts\+\_\+timeout\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$}]{bootstrap,  }\item[{int}]{error\+\_\+code,  }\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a5608b60aef403e0f1530cac2241ac6e9}\label{channel__test_8c_a5608b60aef403e0f1530cac2241ac6e9}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_duplicate\_shutdown@{s\_test\_channel\_duplicate\_shutdown}}
+\index{s\_test\_channel\_duplicate\_shutdown@{s\_test\_channel\_duplicate\_shutdown}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_duplicate\_shutdown()}{s\_test\_channel\_duplicate\_shutdown()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+channel\+\_\+duplicate\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_ae5ca18693e1c62942690f687095c1ab5}\label{channel__test_8c_ae5ca18693e1c62942690f687095c1ab5}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_refcount@{s\_test\_channel\_refcount}}
+\index{s\_test\_channel\_refcount@{s\_test\_channel\_refcount}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_refcount()}{s\_test\_channel\_refcount()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+channel\+\_\+refcount (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_ad351a417c29603a2068653213754122a}\label{channel__test_8c_ad351a417c29603a2068653213754122a}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_rejects\_post\_shutdown\_tasks@{s\_test\_channel\_rejects\_post\_shutdown\_tasks}}
+\index{s\_test\_channel\_rejects\_post\_shutdown\_tasks@{s\_test\_channel\_rejects\_post\_shutdown\_tasks}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_rejects\_post\_shutdown\_tasks()}{s\_test\_channel\_rejects\_post\_shutdown\_tasks()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+channel\+\_\+rejects\+\_\+post\+\_\+shutdown\+\_\+tasks (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a6c0c1ca696a24fedde63472a4d858344}\label{channel__test_8c_a6c0c1ca696a24fedde63472a4d858344}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_setup@{s\_test\_channel\_setup}}
+\index{s\_test\_channel\_setup@{s\_test\_channel\_setup}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_setup()}{s\_test\_channel\_setup()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+channel\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_ab2a82b81b83dd7dd5e1b4dbcc325623b}\label{channel__test_8c_ab2a82b81b83dd7dd5e1b4dbcc325623b}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_single\_slot\_cleans\_up@{s\_test\_channel\_single\_slot\_cleans\_up}}
+\index{s\_test\_channel\_single\_slot\_cleans\_up@{s\_test\_channel\_single\_slot\_cleans\_up}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_single\_slot\_cleans\_up()}{s\_test\_channel\_single\_slot\_cleans\_up()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+channel\+\_\+single\+\_\+slot\+\_\+cleans\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_adb9636b2e8d8178daff8d5611426193b}\label{channel__test_8c_adb9636b2e8d8178daff8d5611426193b}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_slots\_clean\_up@{s\_test\_channel\_slots\_clean\_up}}
+\index{s\_test\_channel\_slots\_clean\_up@{s\_test\_channel\_slots\_clean\_up}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_slots\_clean\_up()}{s\_test\_channel\_slots\_clean\_up()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+channel\+\_\+slots\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a2e67e529b3ae1cb5707dbeabc5eec7ec}\label{channel__test_8c_a2e67e529b3ae1cb5707dbeabc5eec7ec}} 
+\index{channel\_test.c@{channel\_test.c}!s\_test\_channel\_tasks\_run@{s\_test\_channel\_tasks\_run}}
+\index{s\_test\_channel\_tasks\_run@{s\_test\_channel\_tasks\_run}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_channel\_tasks\_run()}{s\_test\_channel\_tasks\_run()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+channel\+\_\+tasks\+\_\+run (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a62af44a612bf121120c215bfd4afea7d}\label{channel__test_8c_a62af44a612bf121120c215bfd4afea7d}} 
+\index{channel\_test.c@{channel\_test.c}!s\_wait\_a\_bit@{s\_wait\_a\_bit}}
+\index{s\_wait\_a\_bit@{s\_wait\_a\_bit}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_wait\_a\_bit()}{s\_wait\_a\_bit()}}
+{\footnotesize\ttfamily static int s\+\_\+wait\+\_\+a\+\_\+bit (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{channel__test_8c_a7d618cabba3b71829341a0c2bb7a4a1c}\label{channel__test_8c_a7d618cabba3b71829341a0c2bb7a4a1c}} 
+\index{channel\_test.c@{channel\_test.c}!s\_wait\_a\_bit\_task@{s\_wait\_a\_bit\_task}}
+\index{s\_wait\_a\_bit\_task@{s\_wait\_a\_bit\_task}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_wait\_a\_bit\_task()}{s\_wait\_a\_bit\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+wait\+\_\+a\+\_\+bit\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{channel__test_8c_ad9c4d88ec4689a5e2609d0141e101e89}\label{channel__test_8c_ad9c4d88ec4689a5e2609d0141e101e89}} 
+\index{channel\_test.c@{channel\_test.c}!s\_tasks\_run\_data@{s\_tasks\_run\_data}}
+\index{s\_tasks\_run\_data@{s\_tasks\_run\_data}!channel\_test.c@{channel\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_tasks\_run\_data}{s\_tasks\_run\_data}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtasks__run__data}{tasks\+\_\+run\+\_\+data}} s\+\_\+tasks\+\_\+run\+\_\+data\hspace{0.3cm}{\ttfamily [static]}}
+

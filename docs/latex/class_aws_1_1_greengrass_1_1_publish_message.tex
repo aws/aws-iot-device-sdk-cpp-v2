@@ -1,0 +1,160 @@
+\hypertarget{class_aws_1_1_greengrass_1_1_publish_message}{}\doxysection{Aws\+::Greengrass\+::Publish\+Message Class Reference}
+\label{class_aws_1_1_greengrass_1_1_publish_message}\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+
+
+{\ttfamily \#include $<$Greengrass\+Core\+Ipc\+Model.\+h$>$}
+
+Inheritance diagram for Aws\+::Greengrass\+::Publish\+Message\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_aws_1_1_greengrass_1_1_publish_message}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_a3046f69921b89929ebed25d7cd27945a}{Publish\+Message}} () noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \& \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_ab91e23f05b83da987a7421148c4154a6}{operator=}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \&) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_aa9d5ce5b03f71b09ce9b959612682a36}{Publish\+Message}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \&object\+To\+Copy)
+\item 
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_a53acd8c98124fed6cad0e3612781a4f5}{Set\+Json\+Message}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&json\+Message) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_a7be776cbe0a6ea026ccc476dea5f16be}{Get\+Json\+Message}} () noexcept
+\item 
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_a1422faa5c74b02ed3e005b49eab4ab01}{Set\+Binary\+Message}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_binary_message}{Binary\+Message}} \&binary\+Message) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_binary_message}{Binary\+Message}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_a7c0dbe4e555c4ff702d168a032bf1734}{Get\+Binary\+Message}} () noexcept
+\item 
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_a7ffc97aa1b464bad5a46aa3097e9ec51}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&payload\+Object) const noexcept override
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_a0f80394ecc08d07d5301c45b29497372}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \&) const noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_ae146357efab2e9412b580937222704b3}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \&, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&) noexcept
+\item 
+static \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_a6121d7d89375a023a078e178a9b2e2c2}{s\+\_\+allocate\+From\+Payload}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$) noexcept
+\item 
+static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_ab1ad066e70088829a1054f8563873631}{s\+\_\+custom\+Deleter}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} $\ast$) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_ab3aad2c9b515c2e217621f6f1983a1a8}{MODEL\+\_\+\+NAME}} = \char`\"{}aws.\+greengrass\#\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}}\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message_af79d0ad7a62928359ec49a88636d5c86}{Get\+Model\+Name}} () const noexcept override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_a3046f69921b89929ebed25d7cd27945a}\label{class_aws_1_1_greengrass_1_1_publish_message_a3046f69921b89929ebed25d7cd27945a}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!PublishMessage@{PublishMessage}}
+\index{PublishMessage@{PublishMessage}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{PublishMessage()}{PublishMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Aws\+::\+Greengrass\+::\+Publish\+Message\+::\+Publish\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_aa9d5ce5b03f71b09ce9b959612682a36}\label{class_aws_1_1_greengrass_1_1_publish_message_aa9d5ce5b03f71b09ce9b959612682a36}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!PublishMessage@{PublishMessage}}
+\index{PublishMessage@{PublishMessage}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{PublishMessage()}{PublishMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Aws\+::\+Greengrass\+::\+Publish\+Message\+::\+Publish\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \&}]{object\+To\+Copy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_a7c0dbe4e555c4ff702d168a032bf1734}\label{class_aws_1_1_greengrass_1_1_publish_message_a7c0dbe4e555c4ff702d168a032bf1734}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!GetBinaryMessage@{GetBinaryMessage}}
+\index{GetBinaryMessage@{GetBinaryMessage}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{GetBinaryMessage()}{GetBinaryMessage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_binary_message}{Binary\+Message}}$>$ Aws\+::\+Greengrass\+::\+Publish\+Message\+::\+Get\+Binary\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_a7be776cbe0a6ea026ccc476dea5f16be}\label{class_aws_1_1_greengrass_1_1_publish_message_a7be776cbe0a6ea026ccc476dea5f16be}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!GetJsonMessage@{GetJsonMessage}}
+\index{GetJsonMessage@{GetJsonMessage}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{GetJsonMessage()}{GetJsonMessage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}}$>$ Aws\+::\+Greengrass\+::\+Publish\+Message\+::\+Get\+Json\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_af79d0ad7a62928359ec49a88636d5c86}\label{class_aws_1_1_greengrass_1_1_publish_message_af79d0ad7a62928359ec49a88636d5c86}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!GetModelName@{GetModelName}}
+\index{GetModelName@{GetModelName}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Aws\+::\+Greengrass\+::\+Publish\+Message\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_ad3c43ceb1c92e03f75880aedfaca2e96}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_a0f80394ecc08d07d5301c45b29497372}\label{class_aws_1_1_greengrass_1_1_publish_message_a0f80394ecc08d07d5301c45b29497372}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Publish\+Message\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_ab91e23f05b83da987a7421148c4154a6}\label{class_aws_1_1_greengrass_1_1_publish_message_ab91e23f05b83da987a7421148c4154a6}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \& Aws\+::\+Greengrass\+::\+Publish\+Message\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \&}]{object\+To\+Copy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_a6121d7d89375a023a078e178a9b2e2c2}\label{class_aws_1_1_greengrass_1_1_publish_message_a6121d7d89375a023a078e178a9b2e2c2}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!s\_allocateFromPayload@{s\_allocateFromPayload}}
+\index{s\_allocateFromPayload@{s\_allocateFromPayload}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{s\_allocateFromPayload()}{s\_allocateFromPayload()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Aws\+::\+Greengrass\+::\+Publish\+Message\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}}]{string\+View,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_ab1ad066e70088829a1054f8563873631}\label{class_aws_1_1_greengrass_1_1_publish_message_ab1ad066e70088829a1054f8563873631}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!s\_customDeleter@{s\_customDeleter}}
+\index{s\_customDeleter@{s\_customDeleter}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{s\_customDeleter()}{s\_customDeleter()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Publish\+Message\+::s\+\_\+custom\+Deleter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} $\ast$}]{shape }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_ae146357efab2e9412b580937222704b3}\label{class_aws_1_1_greengrass_1_1_publish_message_ae146357efab2e9412b580937222704b3}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!s\_loadFromJsonView@{s\_loadFromJsonView}}
+\index{s\_loadFromJsonView@{s\_loadFromJsonView}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{s\_loadFromJsonView()}{s\_loadFromJsonView()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Publish\+Message\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}} \&}]{publish\+Message,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_a7ffc97aa1b464bad5a46aa3097e9ec51}\label{class_aws_1_1_greengrass_1_1_publish_message_a7ffc97aa1b464bad5a46aa3097e9ec51}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!SerializeToJsonObject@{SerializeToJsonObject}}
+\index{SerializeToJsonObject@{SerializeToJsonObject}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Publish\+Message\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_a20ac68efd9842d7234b52e440d0df17b}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_a1422faa5c74b02ed3e005b49eab4ab01}\label{class_aws_1_1_greengrass_1_1_publish_message_a1422faa5c74b02ed3e005b49eab4ab01}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!SetBinaryMessage@{SetBinaryMessage}}
+\index{SetBinaryMessage@{SetBinaryMessage}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{SetBinaryMessage()}{SetBinaryMessage()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Publish\+Message\+::\+Set\+Binary\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_binary_message}{Binary\+Message}} \&}]{binary\+Message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_a53acd8c98124fed6cad0e3612781a4f5}\label{class_aws_1_1_greengrass_1_1_publish_message_a53acd8c98124fed6cad0e3612781a4f5}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!SetJsonMessage@{SetJsonMessage}}
+\index{SetJsonMessage@{SetJsonMessage}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{SetJsonMessage()}{SetJsonMessage()}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Publish\+Message\+::\+Set\+Json\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&}]{json\+Message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_publish_message_ab3aad2c9b515c2e217621f6f1983a1a8}\label{class_aws_1_1_greengrass_1_1_publish_message_ab3aad2c9b515c2e217621f6f1983a1a8}} 
+\index{Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}!MODEL\_NAME@{MODEL\_NAME}}
+\index{MODEL\_NAME@{MODEL\_NAME}!Aws::Greengrass::PublishMessage@{Aws::Greengrass::PublishMessage}}
+\doxysubsubsection{\texorpdfstring{MODEL\_NAME}{MODEL\_NAME}}
+{\footnotesize\ttfamily const char $\ast$ Aws\+::\+Greengrass\+::\+Publish\+Message\+::\+MODEL\+\_\+\+NAME = \char`\"{}aws.\+greengrass\#\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_message}{Publish\+Message}}\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+greengrass\+\_\+ipc/include/aws/greengrass/\mbox{\hyperlink{_greengrass_core_ipc_model_8h}{Greengrass\+Core\+Ipc\+Model.\+h}}\item 
+greengrass\+\_\+ipc/source/\mbox{\hyperlink{_greengrass_core_ipc_model_8cpp}{Greengrass\+Core\+Ipc\+Model.\+cpp}}\end{DoxyCompactItemize}

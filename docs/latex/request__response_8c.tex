@@ -1,0 +1,589 @@
+\hypertarget{request__response_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/request\+\_\+response.c File Reference}
+\label{request__response_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/request\_response.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/request\_response.c}}
+{\ttfamily \#include $<$aws/common/array\+\_\+list.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/mutex.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/connection\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/request\+\_\+response\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/strutil.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/server.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/status\+\_\+code.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/stream.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}}
+\item 
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{request__response_8c_a77867ab4129f63159b37bca3b652a798a428b852c114338737c1ae45aebd51dc0}{AWS\+\_\+\+HTTP\+\_\+\+REQUEST\+\_\+\+NUM\+\_\+\+RESERVED\+\_\+\+HEADERS}} = 16
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{request__response_8c_a23856866f362e2483f5ec41fcb197220}{aws\+\_\+http\+\_\+header\+\_\+name\+\_\+eq}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} name\+\_\+a, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} name\+\_\+b)
+\item 
+struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$ \mbox{\hyperlink{request__response_8c_acb4bef56dc2550b66db12aa43e32fe60}{aws\+\_\+http\+\_\+headers\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{request__response_8c_a1aeba37de4cbfb4b5103cb5630f0b5d4}{aws\+\_\+http\+\_\+headers\+\_\+release}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers)
+\item 
+void \mbox{\hyperlink{request__response_8c_a3e497c022c6778b1a8d0d3f1f21b07ff}{aws\+\_\+http\+\_\+headers\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers)
+\item 
+int \mbox{\hyperlink{request__response_8c_a75f3c985e3b53077653919929d2a365f}{aws\+\_\+http\+\_\+headers\+\_\+add\+\_\+header}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header)
+\item 
+int \mbox{\hyperlink{request__response_8c_a54602264e74f405c0e7e63cbde536307}{aws\+\_\+http\+\_\+headers\+\_\+add}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} value)
+\item 
+void \mbox{\hyperlink{request__response_8c_a807e4227f34bdc6efbf1844dc63a1644}{aws\+\_\+http\+\_\+headers\+\_\+clear}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers)
+\item 
+static void \mbox{\hyperlink{request__response_8c_a519c463e1b360b42676e60be3bcbbe51}{s\+\_\+http\+\_\+headers\+\_\+erase\+\_\+index}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+\item 
+int \mbox{\hyperlink{request__response_8c_a37b83f8ebfdc1218a19fb10fd265b607}{aws\+\_\+http\+\_\+headers\+\_\+erase\+\_\+index}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+\item 
+static int \mbox{\hyperlink{request__response_8c_a508177a760900bed75a7a014ff35c517}{s\+\_\+http\+\_\+headers\+\_\+erase}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, size\+\_\+t end\+\_\+index)
+\item 
+int \mbox{\hyperlink{request__response_8c_a611de78b303b48ff913f87b1c4ed9fd5}{aws\+\_\+http\+\_\+headers\+\_\+erase}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}})
+\item 
+int \mbox{\hyperlink{request__response_8c_a478f943dcc6d153f94f21f1a82605e6b}{aws\+\_\+http\+\_\+headers\+\_\+erase\+\_\+value}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} value)
+\item 
+int \mbox{\hyperlink{request__response_8c_a8126dde9a7b274eb0415e3d2c2172cd3}{aws\+\_\+http\+\_\+headers\+\_\+add\+\_\+array}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$array, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+\item 
+int \mbox{\hyperlink{request__response_8c_aa6231e0356be4e42a11bb529e4ad1d60}{aws\+\_\+http\+\_\+headers\+\_\+set}} (struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} value)
+\item 
+size\+\_\+t \mbox{\hyperlink{request__response_8c_ad4180cd3240ee73153bdb9129eb30c60}{aws\+\_\+http\+\_\+headers\+\_\+count}} (const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers)
+\item 
+int \mbox{\hyperlink{request__response_8c_a3997f93698b1cd4dea6a9e05803c4068}{aws\+\_\+http\+\_\+headers\+\_\+get\+\_\+index}} (const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}}, struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$out\+\_\+header)
+\item 
+int \mbox{\hyperlink{request__response_8c_a231c282b5b473a57a4c957d4fd6cbce5}{aws\+\_\+http\+\_\+headers\+\_\+get}} (const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+value)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{request__response_8c_aa0f6801bd1cc505f14d14d392710cb16}{aws\+\_\+http\+\_\+headers\+\_\+has}} (const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}})
+\item 
+static int \mbox{\hyperlink{request__response_8c_a5c535285e06f82b27818a7794508337f}{s\+\_\+set\+\_\+string\+\_\+from\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$dst, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
+\item 
+static struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{request__response_8c_a6341238c05d3b3152279c517c5cd3d87}{s\+\_\+message\+\_\+new\+\_\+common}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$existing\+\_\+headers)
+\item 
+static struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{request__response_8c_a3c2f6003ec24a571535786fd8682099e}{s\+\_\+message\+\_\+new\+\_\+request\+\_\+common}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$existing\+\_\+headers)
+\item 
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{request__response_8c_a1876b93be0bf330acabd88185a6cbecc}{aws\+\_\+http\+\_\+message\+\_\+new\+\_\+request\+\_\+with\+\_\+headers}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$existing\+\_\+headers)
+\item 
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{request__response_8c_a69e9fc272a7bf49e4eb3aab2294da034}{aws\+\_\+http\+\_\+message\+\_\+new\+\_\+request}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{request__response_8c_a17bdd1cc1259b664dbe2f707581f5ede}{aws\+\_\+http\+\_\+message\+\_\+new\+\_\+response}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{request__response_8c_ae946225416b8b13f82a07237c6ff8f5b}{aws\+\_\+http\+\_\+message\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+void \mbox{\hyperlink{request__response_8c_a9f992b309f7b1ffee25257a1a65bc5d1}{aws\+\_\+http\+\_\+message\+\_\+release}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+void \mbox{\hyperlink{request__response_8c_a85daa863507bbe72b79a3db49ee09a7a}{aws\+\_\+http\+\_\+message\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{request__response_8c_a95c2b738bf04e169a4e8b4b2dc5ff3ce}{aws\+\_\+http\+\_\+message\+\_\+is\+\_\+request}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{request__response_8c_af54a9aad7831ac42a8899502e3f38276}{aws\+\_\+http\+\_\+message\+\_\+is\+\_\+response}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+int \mbox{\hyperlink{request__response_8c_ab38adb3a38c98fc580fae7b6bfd68f67}{aws\+\_\+http\+\_\+message\+\_\+set\+\_\+request\+\_\+method}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request\+\_\+message, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} method)
+\item 
+int \mbox{\hyperlink{request__response_8c_aac66bd989b8378adc278304907b4afe1}{aws\+\_\+http\+\_\+message\+\_\+get\+\_\+request\+\_\+method}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request\+\_\+message, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+method)
+\item 
+int \mbox{\hyperlink{request__response_8c_a2be07ba27d7185fc3a843703df6213c3}{aws\+\_\+http\+\_\+message\+\_\+set\+\_\+request\+\_\+path}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request\+\_\+message, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} path)
+\item 
+int \mbox{\hyperlink{request__response_8c_adaa0bf35f276a2d0a96f315b3a3f735e}{aws\+\_\+http\+\_\+message\+\_\+get\+\_\+request\+\_\+path}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request\+\_\+message, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+path)
+\item 
+int \mbox{\hyperlink{request__response_8c_ae715b9c70cd6f523e1657ba85f79048f}{aws\+\_\+http\+\_\+message\+\_\+get\+\_\+response\+\_\+status}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$response\+\_\+message, int $\ast$out\+\_\+status\+\_\+code)
+\item 
+int \mbox{\hyperlink{request__response_8c_ae8cc77fc4bb8ce3ffa64a2f6f17dde52}{aws\+\_\+http\+\_\+message\+\_\+set\+\_\+response\+\_\+status}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$response\+\_\+message, int status\+\_\+code)
+\item 
+void \mbox{\hyperlink{request__response_8c_a34fc8a0d88f56fb7301014122db293e9}{aws\+\_\+http\+\_\+message\+\_\+set\+\_\+body\+\_\+stream}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$body\+\_\+stream)
+\item 
+int \mbox{\hyperlink{request__response_8c_ae47efe6dfda2a767cea87d1d0c86225e}{aws\+\_\+http1\+\_\+stream\+\_\+write\+\_\+chunk}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http1\+\_\+stream, const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$options)
+\item 
+struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{request__response_8c_a55fa734feb6179fdccd204fdabd28907}{aws\+\_\+http\+\_\+message\+\_\+get\+\_\+body\+\_\+stream}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$ \mbox{\hyperlink{request__response_8c_a380a84a7617417e3ba80b9b8b1075a56}{aws\+\_\+http\+\_\+message\+\_\+get\+\_\+headers}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$ \mbox{\hyperlink{request__response_8c_ada0328336bdf47bf66163243ea4c4ca2}{aws\+\_\+http\+\_\+message\+\_\+get\+\_\+const\+\_\+headers}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+int \mbox{\hyperlink{request__response_8c_a2dd179211eb54c82ca75507fb9f227b9}{aws\+\_\+http\+\_\+message\+\_\+add\+\_\+header}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} header)
+\item 
+int \mbox{\hyperlink{request__response_8c_a3934b76c194aec92942b8fb3b620c969}{aws\+\_\+http\+\_\+message\+\_\+add\+\_\+header\+\_\+array}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$headers, size\+\_\+t num\+\_\+headers)
+\item 
+int \mbox{\hyperlink{request__response_8c_a739d16de20d93e3a34ea63a4ddef0136}{aws\+\_\+http\+\_\+message\+\_\+erase\+\_\+header}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+\item 
+size\+\_\+t \mbox{\hyperlink{request__response_8c_acd3d32be830510a0fa6ce1f13940ea63}{aws\+\_\+http\+\_\+message\+\_\+get\+\_\+header\+\_\+count}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+\item 
+int \mbox{\hyperlink{request__response_8c_aa375745b67022416d276b9e8924b20be}{aws\+\_\+http\+\_\+message\+\_\+get\+\_\+header}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$out\+\_\+header, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+\item 
+struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ \mbox{\hyperlink{request__response_8c_a290f9cf96865a9d4dd418652a2d9f651}{aws\+\_\+http\+\_\+connection\+\_\+make\+\_\+request}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$client\+\_\+connection, const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$options)
+\item 
+int \mbox{\hyperlink{request__response_8c_acab4c7f8d2b16598a387adf95161f71b}{aws\+\_\+http\+\_\+stream\+\_\+activate}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ \mbox{\hyperlink{request__response_8c_a6faac07659c348a677d0af402de4d287}{aws\+\_\+http\+\_\+stream\+\_\+new\+\_\+server\+\_\+request\+\_\+handler}} (const struct \mbox{\hyperlink{structaws__http__request__handler__options}{aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options}} $\ast$options)
+\item 
+int \mbox{\hyperlink{request__response_8c_a58d967df057d637d74562061b7e8a530}{aws\+\_\+http\+\_\+stream\+\_\+send\+\_\+response}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$response)
+\item 
+void \mbox{\hyperlink{request__response_8c_add20a9efb3742544aedda2b5c83d59c4}{aws\+\_\+http\+\_\+stream\+\_\+release}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{request__response_8c_a7b555aa06246afd5c942de1d04d9e617}{aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+connection}} (const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+int \mbox{\hyperlink{request__response_8c_a96964da97db19bccedac64639ff8efc3}{aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+incoming\+\_\+response\+\_\+status}} (const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, int $\ast$out\+\_\+status)
+\item 
+int \mbox{\hyperlink{request__response_8c_a687b0bb7b550c05bf7828a3d57c0c9d6}{aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+incoming\+\_\+request\+\_\+method}} (const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+method)
+\item 
+int \mbox{\hyperlink{request__response_8c_a032e3def8b552f33a0b1e73101ed5c4b}{aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+incoming\+\_\+request\+\_\+uri}} (const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+uri)
+\item 
+void \mbox{\hyperlink{request__response_8c_ae3ba46a9ed4a94c3f81c40500b2ee5a8}{aws\+\_\+http\+\_\+stream\+\_\+update\+\_\+window}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, size\+\_\+t increment\+\_\+size)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{request__response_8c_a6052372ac29faf98a91c506fd823b1cb}{aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+id}} (const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+int \mbox{\hyperlink{request__response_8c_ab244604aa93ed648d3ad6b972f59f7cd}{aws\+\_\+http2\+\_\+stream\+\_\+reset}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http2\+\_\+stream, uint32\+\_\+t http2\+\_\+error)
+\item 
+int \mbox{\hyperlink{request__response_8c_a1221719064bc0e1271b466ece078b1f1}{aws\+\_\+http2\+\_\+stream\+\_\+get\+\_\+received\+\_\+reset\+\_\+error\+\_\+code}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http2\+\_\+stream, uint32\+\_\+t $\ast$out\+\_\+http2\+\_\+error)
+\item 
+int \mbox{\hyperlink{request__response_8c_a798af8a786835f90b861e44c616ca40d}{aws\+\_\+http2\+\_\+stream\+\_\+get\+\_\+sent\+\_\+reset\+\_\+error\+\_\+code}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http2\+\_\+stream, uint32\+\_\+t $\ast$out\+\_\+http2\+\_\+error)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{request__response_8c_a77867ab4129f63159b37bca3b652a798}\label{request__response_8c_a77867ab4129f63159b37bca3b652a798}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HTTP\_REQUEST\_NUM\_RESERVED\_HEADERS@{AWS\_HTTP\_REQUEST\_NUM\_RESERVED\_HEADERS}!request\_response.c@{request\_response.c}}\index{request\_response.c@{request\_response.c}!AWS\_HTTP\_REQUEST\_NUM\_RESERVED\_HEADERS@{AWS\_HTTP\_REQUEST\_NUM\_RESERVED\_HEADERS}}}\mbox{\Hypertarget{request__response_8c_a77867ab4129f63159b37bca3b652a798a428b852c114338737c1ae45aebd51dc0}\label{request__response_8c_a77867ab4129f63159b37bca3b652a798a428b852c114338737c1ae45aebd51dc0}} 
+AWS\+\_\+\+HTTP\+\_\+\+REQUEST\+\_\+\+NUM\+\_\+\+RESERVED\+\_\+\+HEADERS&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{request__response_8c_ae47efe6dfda2a767cea87d1d0c86225e}\label{request__response_8c_ae47efe6dfda2a767cea87d1d0c86225e}} 
+\index{request\_response.c@{request\_response.c}!aws\_http1\_stream\_write\_chunk@{aws\_http1\_stream\_write\_chunk}}
+\index{aws\_http1\_stream\_write\_chunk@{aws\_http1\_stream\_write\_chunk}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http1\_stream\_write\_chunk()}{aws\_http1\_stream\_write\_chunk()}}
+{\footnotesize\ttfamily int aws\+\_\+http1\+\_\+stream\+\_\+write\+\_\+chunk (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{http1\+\_\+stream,  }\item[{const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+Submit a chunk of data to be sent on an HTTP/1.\+1 stream. The stream must have specified \char`\"{}chunked\char`\"{} in a \char`\"{}transfer-\/encoding\char`\"{} header. For client streams, activate() must be called before any chunks are submitted. For server streams, the response must be submitted before any chunks. A final chunk with size 0 must be submitted to successfully complete the HTTP-\/stream.
+
+Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS if the chunk has been submitted. The chunk\textquotesingle{}s completion callback will be invoked when the HTTP-\/stream is done with the chunk data, whether or not it was successfully sent (see {\ttfamily aws\+\_\+http1\+\_\+stream\+\_\+write\+\_\+chunk\+\_\+complete\+\_\+fn}). The chunk data must remain valid until the completion callback is invoked.
+
+Returns AWS\+\_\+\+OP\+\_\+\+ERR and raises an error if the chunk could not be submitted. In this case, the chunk\textquotesingle{}s completion callback will never be invoked. Note that it is always possible for the HTTP-\/stream to terminate unexpectedly prior to this call being made, in which case the error raised is AWS\+\_\+\+ERROR\+\_\+\+HTTP\+\_\+\+STREAM\+\_\+\+HAS\+\_\+\+COMPLETED. \mbox{\Hypertarget{request__response_8c_a1221719064bc0e1271b466ece078b1f1}\label{request__response_8c_a1221719064bc0e1271b466ece078b1f1}} 
+\index{request\_response.c@{request\_response.c}!aws\_http2\_stream\_get\_received\_reset\_error\_code@{aws\_http2\_stream\_get\_received\_reset\_error\_code}}
+\index{aws\_http2\_stream\_get\_received\_reset\_error\_code@{aws\_http2\_stream\_get\_received\_reset\_error\_code}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http2\_stream\_get\_received\_reset\_error\_code()}{aws\_http2\_stream\_get\_received\_reset\_error\_code()}}
+{\footnotesize\ttfamily int aws\+\_\+http2\+\_\+stream\+\_\+get\+\_\+received\+\_\+reset\+\_\+error\+\_\+code (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{http2\+\_\+stream,  }\item[{uint32\+\_\+t $\ast$}]{out\+\_\+http2\+\_\+error }\end{DoxyParamCaption})}
+
+Get the error code received in rst\+\_\+stream. Only valid if the stream has completed, and an RST\+\_\+\+STREAM frame has received.
+
+
+\begin{DoxyParams}{Parameters}
+{\em http2\+\_\+stream} & HTTP/2 stream. \\
+\hline
+{\em out\+\_\+http2\+\_\+error} & Gets to set to HTTP/2 error code received in rst\+\_\+stream. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{request__response_8c_a798af8a786835f90b861e44c616ca40d}\label{request__response_8c_a798af8a786835f90b861e44c616ca40d}} 
+\index{request\_response.c@{request\_response.c}!aws\_http2\_stream\_get\_sent\_reset\_error\_code@{aws\_http2\_stream\_get\_sent\_reset\_error\_code}}
+\index{aws\_http2\_stream\_get\_sent\_reset\_error\_code@{aws\_http2\_stream\_get\_sent\_reset\_error\_code}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http2\_stream\_get\_sent\_reset\_error\_code()}{aws\_http2\_stream\_get\_sent\_reset\_error\_code()}}
+{\footnotesize\ttfamily int aws\+\_\+http2\+\_\+stream\+\_\+get\+\_\+sent\+\_\+reset\+\_\+error\+\_\+code (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{http2\+\_\+stream,  }\item[{uint32\+\_\+t $\ast$}]{out\+\_\+http2\+\_\+error }\end{DoxyParamCaption})}
+
+Get the HTTP/2 error code sent in the RST\+\_\+\+STREAM frame (HTTP/2 only). Only valid if the stream has completed, and has sent an RST\+\_\+\+STREAM frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em http2\+\_\+stream} & HTTP/2 stream. \\
+\hline
+{\em out\+\_\+http2\+\_\+error} & Gets to set to HTTP/2 error code sent in rst\+\_\+stream. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{request__response_8c_ab244604aa93ed648d3ad6b972f59f7cd}\label{request__response_8c_ab244604aa93ed648d3ad6b972f59f7cd}} 
+\index{request\_response.c@{request\_response.c}!aws\_http2\_stream\_reset@{aws\_http2\_stream\_reset}}
+\index{aws\_http2\_stream\_reset@{aws\_http2\_stream\_reset}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http2\_stream\_reset()}{aws\_http2\_stream\_reset()}}
+{\footnotesize\ttfamily int aws\+\_\+http2\+\_\+stream\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{http2\+\_\+stream,  }\item[{uint32\+\_\+t}]{http2\+\_\+error }\end{DoxyParamCaption})}
+
+Reset the HTTP/2 stream (HTTP/2 only). Note that if the stream closes before this async call is fully processed, the RST\+\_\+\+STREAM frame will not be sent.
+
+
+\begin{DoxyParams}{Parameters}
+{\em http2\+\_\+stream} & HTTP/2 stream. \\
+\hline
+{\em http2\+\_\+error} & aws\+\_\+http2\+\_\+error\+\_\+code. Reason to reset the stream. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{request__response_8c_a290f9cf96865a9d4dd418652a2d9f651}\label{request__response_8c_a290f9cf96865a9d4dd418652a2d9f651}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_connection\_make\_request@{aws\_http\_connection\_make\_request}}
+\index{aws\_http\_connection\_make\_request@{aws\_http\_connection\_make\_request}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_make\_request()}{aws\_http\_connection\_make\_request()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+make\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{client\+\_\+connection,  }\item[{const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+Create a stream, with a client connection sending a request. The request does not start sending automatically once the stream is created. You must call aws\+\_\+http\+\_\+stream\+\_\+activate to begin execution of the request.
+
+The {\ttfamily options} are copied during this call.
+
+Tip for language bindings\+: Do not bind the {\ttfamily options} struct. Use something more natural for your language, such as Builder Pattern in Java, or Python\textquotesingle{}s ability to take many optional arguments by name. \mbox{\Hypertarget{request__response_8c_a23856866f362e2483f5ec41fcb197220}\label{request__response_8c_a23856866f362e2483f5ec41fcb197220}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_header\_name\_eq@{aws\_http\_header\_name\_eq}}
+\index{aws\_http\_header\_name\_eq@{aws\_http\_header\_name\_eq}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_header\_name\_eq()}{aws\_http\_header\_name\_eq()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+header\+\_\+name\+\_\+eq (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{name\+\_\+a,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{name\+\_\+b }\end{DoxyParamCaption})}
+
+Return whether both names are equivalent. This is a case-\/insensitive string comparison.
+
+Example Matches\+: \char`\"{}\+Content-\/\+Length\char`\"{} == \char`\"{}content-\/length\char`\"{} // upper or lower case ok
+
+Example Mismatches\+: \char`\"{}\+Content-\/\+Length\char`\"{} != \char`\"{} Content-\/\+Length\char`\"{} // leading whitespace bad \mbox{\Hypertarget{request__response_8c_a3e497c022c6778b1a8d0d3f1f21b07ff}\label{request__response_8c_a3e497c022c6778b1a8d0d3f1f21b07ff}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_acquire@{aws\_http\_headers\_acquire}}
+\index{aws\_http\_headers\_acquire@{aws\_http\_headers\_acquire}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_acquire()}{aws\_http\_headers\_acquire()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+headers\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers }\end{DoxyParamCaption})}
+
+Acquire a hold on the object, preventing it from being deleted until \mbox{\hyperlink{request__response_8h_a6fef6e2529fa0f345fd6e1d3614145bd}{aws\+\_\+http\+\_\+headers\+\_\+release()}} is called by all those with a hold on it. \mbox{\Hypertarget{request__response_8c_a54602264e74f405c0e7e63cbde536307}\label{request__response_8c_a54602264e74f405c0e7e63cbde536307}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_add@{aws\_http\_headers\_add}}
+\index{aws\_http\_headers\_add@{aws\_http\_headers\_add}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_add()}{aws\_http\_headers\_add()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+headers\+\_\+add (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{name,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{value }\end{DoxyParamCaption})}
+
+Add a header. The underlying strings are copied. \mbox{\Hypertarget{request__response_8c_a8126dde9a7b274eb0415e3d2c2172cd3}\label{request__response_8c_a8126dde9a7b274eb0415e3d2c2172cd3}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_add\_array@{aws\_http\_headers\_add\_array}}
+\index{aws\_http\_headers\_add\_array@{aws\_http\_headers\_add\_array}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_add\_array()}{aws\_http\_headers\_add\_array()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+headers\+\_\+add\+\_\+array (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{array,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+Add an array of headers. The underlying strings are copied. \mbox{\Hypertarget{request__response_8c_a75f3c985e3b53077653919929d2a365f}\label{request__response_8c_a75f3c985e3b53077653919929d2a365f}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_add\_header@{aws\_http\_headers\_add\_header}}
+\index{aws\_http\_headers\_add\_header@{aws\_http\_headers\_add\_header}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_add\_header()}{aws\_http\_headers\_add\_header()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+headers\+\_\+add\+\_\+header (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header }\end{DoxyParamCaption})}
+
+Add a header. The underlying strings are copied. \mbox{\Hypertarget{request__response_8c_a807e4227f34bdc6efbf1844dc63a1644}\label{request__response_8c_a807e4227f34bdc6efbf1844dc63a1644}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_clear@{aws\_http\_headers\_clear}}
+\index{aws\_http\_headers\_clear@{aws\_http\_headers\_clear}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_clear()}{aws\_http\_headers\_clear()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+headers\+\_\+clear (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers }\end{DoxyParamCaption})}
+
+Clear all headers. \mbox{\Hypertarget{request__response_8c_ad4180cd3240ee73153bdb9129eb30c60}\label{request__response_8c_ad4180cd3240ee73153bdb9129eb30c60}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_count@{aws\_http\_headers\_count}}
+\index{aws\_http\_headers\_count@{aws\_http\_headers\_count}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_count()}{aws\_http\_headers\_count()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+headers\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers }\end{DoxyParamCaption})}
+
+Get the total number of headers. \mbox{\Hypertarget{request__response_8c_a611de78b303b48ff913f87b1c4ed9fd5}\label{request__response_8c_a611de78b303b48ff913f87b1c4ed9fd5}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_erase@{aws\_http\_headers\_erase}}
+\index{aws\_http\_headers\_erase@{aws\_http\_headers\_erase}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_erase()}{aws\_http\_headers\_erase()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+headers\+\_\+erase (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{name }\end{DoxyParamCaption})}
+
+Remove all headers with this name. AWS\+\_\+\+ERROR\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+NOT\+\_\+\+FOUND is raised if no headers with this name are found. \mbox{\Hypertarget{request__response_8c_a37b83f8ebfdc1218a19fb10fd265b607}\label{request__response_8c_a37b83f8ebfdc1218a19fb10fd265b607}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_erase\_index@{aws\_http\_headers\_erase\_index}}
+\index{aws\_http\_headers\_erase\_index@{aws\_http\_headers\_erase\_index}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_erase\_index()}{aws\_http\_headers\_erase\_index()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+headers\+\_\+erase\+\_\+index (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+Remove the header at the specified index.
+
+AWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+INDEX is raised if the index is invalid. \mbox{\Hypertarget{request__response_8c_a478f943dcc6d153f94f21f1a82605e6b}\label{request__response_8c_a478f943dcc6d153f94f21f1a82605e6b}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_erase\_value@{aws\_http\_headers\_erase\_value}}
+\index{aws\_http\_headers\_erase\_value@{aws\_http\_headers\_erase\_value}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_erase\_value()}{aws\_http\_headers\_erase\_value()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+headers\+\_\+erase\+\_\+value (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{name,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{value }\end{DoxyParamCaption})}
+
+Remove the first header found with this name and value. AWS\+\_\+\+ERROR\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+NOT\+\_\+\+FOUND is raised if no such header is found. \mbox{\Hypertarget{request__response_8c_a231c282b5b473a57a4c957d4fd6cbce5}\label{request__response_8c_a231c282b5b473a57a4c957d4fd6cbce5}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_get@{aws\_http\_headers\_get}}
+\index{aws\_http\_headers\_get@{aws\_http\_headers\_get}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_get()}{aws\_http\_headers\_get()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+headers\+\_\+get (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{name,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{out\+\_\+value }\end{DoxyParamCaption})}
+
+Get the first value for this name, ignoring any additional values. AWS\+\_\+\+ERROR\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+NOT\+\_\+\+FOUND is raised if the name is not found. \mbox{\Hypertarget{request__response_8c_a3997f93698b1cd4dea6a9e05803c4068}\label{request__response_8c_a3997f93698b1cd4dea6a9e05803c4068}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_get\_index@{aws\_http\_headers\_get\_index}}
+\index{aws\_http\_headers\_get\_index@{aws\_http\_headers\_get\_index}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_get\_index()}{aws\_http\_headers\_get\_index()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+headers\+\_\+get\+\_\+index (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{size\+\_\+t}]{index,  }\item[{struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{out\+\_\+header }\end{DoxyParamCaption})}
+
+Get the header at the specified index. The index of a given header may change any time headers are modified. When iterating headers, the following ordering rules apply\+:
+
+
+\begin{DoxyItemize}
+\item Headers with the same name will always be in the same order, relative to one another. If \char`\"{}\+A\+: one\char`\"{} is added before \char`\"{}\+A\+: two\char`\"{}, then \char`\"{}\+A\+: one\char`\"{} will always precede \char`\"{}\+A\+: two\char`\"{}.
+\item Headers with different names could be in any order, relative to one another. If \char`\"{}\+A\+: one\char`\"{} is seen before \char`\"{}\+B\+: bee\char`\"{} in one iteration, you might see \char`\"{}\+B\+: bee\char`\"{} before \char`\"{}\+A\+: one\char`\"{} on the next.
+\end{DoxyItemize}
+
+AWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+INDEX is raised if the index is invalid. \mbox{\Hypertarget{request__response_8c_aa0f6801bd1cc505f14d14d392710cb16}\label{request__response_8c_aa0f6801bd1cc505f14d14d392710cb16}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_has@{aws\_http\_headers\_has}}
+\index{aws\_http\_headers\_has@{aws\_http\_headers\_has}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_has()}{aws\_http\_headers\_has()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+headers\+\_\+has (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{name }\end{DoxyParamCaption})}
+
+Test if header name exists or not in headers \mbox{\Hypertarget{request__response_8c_acb4bef56dc2550b66db12aa43e32fe60}\label{request__response_8c_acb4bef56dc2550b66db12aa43e32fe60}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_new@{aws\_http\_headers\_new}}
+\index{aws\_http\_headers\_new@{aws\_http\_headers\_new}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_new()}{aws\_http\_headers\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}}$\ast$ aws\+\_\+http\+\_\+headers\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Create a new headers object. The caller has a hold on the object and must call \mbox{\hyperlink{request__response_8h_a6fef6e2529fa0f345fd6e1d3614145bd}{aws\+\_\+http\+\_\+headers\+\_\+release()}} when they are done with it. \mbox{\Hypertarget{request__response_8c_a1aeba37de4cbfb4b5103cb5630f0b5d4}\label{request__response_8c_a1aeba37de4cbfb4b5103cb5630f0b5d4}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_release@{aws\_http\_headers\_release}}
+\index{aws\_http\_headers\_release@{aws\_http\_headers\_release}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_release()}{aws\_http\_headers\_release()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+headers\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers }\end{DoxyParamCaption})}
+
+Release a hold on the object. The object is deleted when all holds on it are released. \mbox{\Hypertarget{request__response_8c_aa6231e0356be4e42a11bb529e4ad1d60}\label{request__response_8c_aa6231e0356be4e42a11bb529e4ad1d60}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_headers\_set@{aws\_http\_headers\_set}}
+\index{aws\_http\_headers\_set@{aws\_http\_headers\_set}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_headers\_set()}{aws\_http\_headers\_set()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+headers\+\_\+set (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{name,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{value }\end{DoxyParamCaption})}
+
+Set a header value. The header is added if necessary and any existing values for this name are removed. The underlying strings are copied. \mbox{\Hypertarget{request__response_8c_a85daa863507bbe72b79a3db49ee09a7a}\label{request__response_8c_a85daa863507bbe72b79a3db49ee09a7a}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_acquire@{aws\_http\_message\_acquire}}
+\index{aws\_http\_message\_acquire@{aws\_http\_message\_acquire}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_acquire()}{aws\_http\_message\_acquire()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+message\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+Acquire a hold on the object, preventing it from being deleted until \mbox{\hyperlink{request__response_8h_ad1a5ee96f1e9e291bf38266cf2d22ff1}{aws\+\_\+http\+\_\+message\+\_\+release()}} is called by all those with a hold on it. \mbox{\Hypertarget{request__response_8c_a2dd179211eb54c82ca75507fb9f227b9}\label{request__response_8c_a2dd179211eb54c82ca75507fb9f227b9}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_add\_header@{aws\_http\_message\_add\_header}}
+\index{aws\_http\_message\_add\_header@{aws\_http\_message\_add\_header}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_add\_header()}{aws\_http\_message\_add\_header()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+add\+\_\+header (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message,  }\item[{struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}}}]{header }\end{DoxyParamCaption})}
+
+Add a header to the end of the array. The message makes its own copy of the underlying strings. \mbox{\Hypertarget{request__response_8c_a3934b76c194aec92942b8fb3b620c969}\label{request__response_8c_a3934b76c194aec92942b8fb3b620c969}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_add\_header\_array@{aws\_http\_message\_add\_header\_array}}
+\index{aws\_http\_message\_add\_header\_array@{aws\_http\_message\_add\_header\_array}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_add\_header\_array()}{aws\_http\_message\_add\_header\_array()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+add\+\_\+header\+\_\+array (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{headers,  }\item[{size\+\_\+t}]{num\+\_\+headers }\end{DoxyParamCaption})}
+
+Add an array of headers to the end of the header array. The message makes its own copy of the underlying strings.
+
+This is a helper function useful when it\textquotesingle{}s easier to define headers as a stack array, rather than calling add\+\_\+header repeatedly. \mbox{\Hypertarget{request__response_8c_ae946225416b8b13f82a07237c6ff8f5b}\label{request__response_8c_ae946225416b8b13f82a07237c6ff8f5b}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_destroy@{aws\_http\_message\_destroy}}
+\index{aws\_http\_message\_destroy@{aws\_http\_message\_destroy}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_destroy()}{aws\_http\_message\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+message\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+Deprecated. This is equivalent to \mbox{\hyperlink{request__response_8h_ad1a5ee96f1e9e291bf38266cf2d22ff1}{aws\+\_\+http\+\_\+message\+\_\+release()}}. \mbox{\Hypertarget{request__response_8c_a739d16de20d93e3a34ea63a4ddef0136}\label{request__response_8c_a739d16de20d93e3a34ea63a4ddef0136}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_erase\_header@{aws\_http\_message\_erase\_header}}
+\index{aws\_http\_message\_erase\_header@{aws\_http\_message\_erase\_header}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_erase\_header()}{aws\_http\_message\_erase\_header()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+erase\+\_\+header (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+Remove the header at the specified index. Headers after this index are all shifted back one position.
+
+This function cannot fail if a valid index is provided. Otherwise, AWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+INDEX will be raised. \mbox{\Hypertarget{request__response_8c_a55fa734feb6179fdccd204fdabd28907}\label{request__response_8c_a55fa734feb6179fdccd204fdabd28907}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_get\_body\_stream@{aws\_http\_message\_get\_body\_stream}}
+\index{aws\_http\_message\_get\_body\_stream@{aws\_http\_message\_get\_body\_stream}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_get\_body\_stream()}{aws\_http\_message\_get\_body\_stream()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}}$\ast$ aws\+\_\+http\+\_\+message\+\_\+get\+\_\+body\+\_\+stream (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+Get the body stream. Returns NULL if no body stream is set. \mbox{\Hypertarget{request__response_8c_ada0328336bdf47bf66163243ea4c4ca2}\label{request__response_8c_ada0328336bdf47bf66163243ea4c4ca2}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_get\_const\_headers@{aws\_http\_message\_get\_const\_headers}}
+\index{aws\_http\_message\_get\_const\_headers@{aws\_http\_message\_get\_const\_headers}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_get\_const\_headers()}{aws\_http\_message\_get\_const\_headers()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}}$\ast$ aws\+\_\+http\+\_\+message\+\_\+get\+\_\+const\+\_\+headers (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+Get the message\textquotesingle{}s const \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}}. \mbox{\Hypertarget{request__response_8c_aa375745b67022416d276b9e8924b20be}\label{request__response_8c_aa375745b67022416d276b9e8924b20be}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_get\_header@{aws\_http\_message\_get\_header}}
+\index{aws\_http\_message\_get\_header@{aws\_http\_message\_get\_header}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_get\_header()}{aws\_http\_message\_get\_header()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+get\+\_\+header (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message,  }\item[{struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{out\+\_\+header,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+Get the header at the specified index. This function cannot fail if a valid index is provided. Otherwise, AWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+INDEX will be raised.
+
+The underlying strings are stored within the message. \mbox{\Hypertarget{request__response_8c_acd3d32be830510a0fa6ce1f13940ea63}\label{request__response_8c_acd3d32be830510a0fa6ce1f13940ea63}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_get\_header\_count@{aws\_http\_message\_get\_header\_count}}
+\index{aws\_http\_message\_get\_header\_count@{aws\_http\_message\_get\_header\_count}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_get\_header\_count()}{aws\_http\_message\_get\_header\_count()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+message\+\_\+get\+\_\+header\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+Get the number of headers. \mbox{\Hypertarget{request__response_8c_a380a84a7617417e3ba80b9b8b1075a56}\label{request__response_8c_a380a84a7617417e3ba80b9b8b1075a56}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_get\_headers@{aws\_http\_message\_get\_headers}}
+\index{aws\_http\_message\_get\_headers@{aws\_http\_message\_get\_headers}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_get\_headers()}{aws\_http\_message\_get\_headers()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}}$\ast$ aws\+\_\+http\+\_\+message\+\_\+get\+\_\+headers (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+Get the message\textquotesingle{}s \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}}.
+
+This datastructure has more functions for inspecting and modifying headers than are available on the \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} datastructure. \mbox{\Hypertarget{request__response_8c_aac66bd989b8378adc278304907b4afe1}\label{request__response_8c_aac66bd989b8378adc278304907b4afe1}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_get\_request\_method@{aws\_http\_message\_get\_request\_method}}
+\index{aws\_http\_message\_get\_request\_method@{aws\_http\_message\_get\_request\_method}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_get\_request\_method()}{aws\_http\_message\_get\_request\_method()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+get\+\_\+request\+\_\+method (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{request\+\_\+message,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{out\+\_\+method }\end{DoxyParamCaption})}
+
+Get the method (request messages only). \mbox{\Hypertarget{request__response_8c_adaa0bf35f276a2d0a96f315b3a3f735e}\label{request__response_8c_adaa0bf35f276a2d0a96f315b3a3f735e}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_get\_request\_path@{aws\_http\_message\_get\_request\_path}}
+\index{aws\_http\_message\_get\_request\_path@{aws\_http\_message\_get\_request\_path}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_get\_request\_path()}{aws\_http\_message\_get\_request\_path()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+get\+\_\+request\+\_\+path (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{request\+\_\+message,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{out\+\_\+path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{request__response_8c_ae715b9c70cd6f523e1657ba85f79048f}\label{request__response_8c_ae715b9c70cd6f523e1657ba85f79048f}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_get\_response\_status@{aws\_http\_message\_get\_response\_status}}
+\index{aws\_http\_message\_get\_response\_status@{aws\_http\_message\_get\_response\_status}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_get\_response\_status()}{aws\_http\_message\_get\_response\_status()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+get\+\_\+response\+\_\+status (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{response\+\_\+message,  }\item[{int $\ast$}]{out\+\_\+status\+\_\+code }\end{DoxyParamCaption})}
+
+Get the status code (response messages only). If no status is set, AWS\+\_\+\+ERROR\+\_\+\+HTTP\+\_\+\+DATA\+\_\+\+NOT\+\_\+\+AVAILABLE is raised. \mbox{\Hypertarget{request__response_8c_a95c2b738bf04e169a4e8b4b2dc5ff3ce}\label{request__response_8c_a95c2b738bf04e169a4e8b4b2dc5ff3ce}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_is\_request@{aws\_http\_message\_is\_request}}
+\index{aws\_http\_message\_is\_request@{aws\_http\_message\_is\_request}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_is\_request()}{aws\_http\_message\_is\_request()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+message\+\_\+is\+\_\+request (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{request__response_8c_af54a9aad7831ac42a8899502e3f38276}\label{request__response_8c_af54a9aad7831ac42a8899502e3f38276}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_is\_response@{aws\_http\_message\_is\_response}}
+\index{aws\_http\_message\_is\_response@{aws\_http\_message\_is\_response}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_is\_response()}{aws\_http\_message\_is\_response()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+message\+\_\+is\+\_\+response (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{request__response_8c_a69e9fc272a7bf49e4eb3aab2294da034}\label{request__response_8c_a69e9fc272a7bf49e4eb3aab2294da034}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_new\_request@{aws\_http\_message\_new\_request}}
+\index{aws\_http\_message\_new\_request@{aws\_http\_message\_new\_request}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_new\_request()}{aws\_http\_message\_new\_request()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ aws\+\_\+http\+\_\+message\+\_\+new\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Create a new request message. The message is blank, all properties (method, path, etc) must be set individually.
+
+The caller has a hold on the object and must call \mbox{\hyperlink{request__response_8h_ad1a5ee96f1e9e291bf38266cf2d22ff1}{aws\+\_\+http\+\_\+message\+\_\+release()}} when they are done with it. \mbox{\Hypertarget{request__response_8c_a1876b93be0bf330acabd88185a6cbecc}\label{request__response_8c_a1876b93be0bf330acabd88185a6cbecc}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_new\_request\_with\_headers@{aws\_http\_message\_new\_request\_with\_headers}}
+\index{aws\_http\_message\_new\_request\_with\_headers@{aws\_http\_message\_new\_request\_with\_headers}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_new\_request\_with\_headers()}{aws\_http\_message\_new\_request\_with\_headers()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ aws\+\_\+http\+\_\+message\+\_\+new\+\_\+request\+\_\+with\+\_\+headers (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{existing\+\_\+headers }\end{DoxyParamCaption})}
+
+Like \mbox{\hyperlink{request__response_8h_aa06fc9a137ef22925c56084ee0a380a0}{aws\+\_\+http\+\_\+message\+\_\+new\+\_\+request()}}, but uses existing \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} instead of creating a new one. Acquires a hold on the headers, and releases it when the request is destroyed. \mbox{\Hypertarget{request__response_8c_a17bdd1cc1259b664dbe2f707581f5ede}\label{request__response_8c_a17bdd1cc1259b664dbe2f707581f5ede}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_new\_response@{aws\_http\_message\_new\_response}}
+\index{aws\_http\_message\_new\_response@{aws\_http\_message\_new\_response}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_new\_response()}{aws\_http\_message\_new\_response()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ aws\+\_\+http\+\_\+message\+\_\+new\+\_\+response (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Create a new response message. The message is blank, all properties (status, headers, etc) must be set individually.
+
+The caller has a hold on the object and must call \mbox{\hyperlink{request__response_8h_ad1a5ee96f1e9e291bf38266cf2d22ff1}{aws\+\_\+http\+\_\+message\+\_\+release()}} when they are done with it. \mbox{\Hypertarget{request__response_8c_a9f992b309f7b1ffee25257a1a65bc5d1}\label{request__response_8c_a9f992b309f7b1ffee25257a1a65bc5d1}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_release@{aws\_http\_message\_release}}
+\index{aws\_http\_message\_release@{aws\_http\_message\_release}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_release()}{aws\_http\_message\_release()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+message\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})}
+
+Release a hold on the object. The object is deleted when all holds on it are released. \mbox{\Hypertarget{request__response_8c_a34fc8a0d88f56fb7301014122db293e9}\label{request__response_8c_a34fc8a0d88f56fb7301014122db293e9}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_set\_body\_stream@{aws\_http\_message\_set\_body\_stream}}
+\index{aws\_http\_message\_set\_body\_stream@{aws\_http\_message\_set\_body\_stream}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_set\_body\_stream()}{aws\_http\_message\_set\_body\_stream()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+message\+\_\+set\+\_\+body\+\_\+stream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message,  }\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{body\+\_\+stream }\end{DoxyParamCaption})}
+
+Set the body stream. NULL is an acceptable value for messages with no body. Note\+: The message does NOT take ownership of the body stream. The stream must not be destroyed until the message is complete. \mbox{\Hypertarget{request__response_8c_ab38adb3a38c98fc580fae7b6bfd68f67}\label{request__response_8c_ab38adb3a38c98fc580fae7b6bfd68f67}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_set\_request\_method@{aws\_http\_message\_set\_request\_method}}
+\index{aws\_http\_message\_set\_request\_method@{aws\_http\_message\_set\_request\_method}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_set\_request\_method()}{aws\_http\_message\_set\_request\_method()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+set\+\_\+request\+\_\+method (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{request\+\_\+message,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{method }\end{DoxyParamCaption})}
+
+Set the method (request messages only). The request makes its own copy of the underlying string. \mbox{\Hypertarget{request__response_8c_a2be07ba27d7185fc3a843703df6213c3}\label{request__response_8c_a2be07ba27d7185fc3a843703df6213c3}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_set\_request\_path@{aws\_http\_message\_set\_request\_path}}
+\index{aws\_http\_message\_set\_request\_path@{aws\_http\_message\_set\_request\_path}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_set\_request\_path()}{aws\_http\_message\_set\_request\_path()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+set\+\_\+request\+\_\+path (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{request\+\_\+message,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{path }\end{DoxyParamCaption})}
+
+Set the path-\/and-\/query value (request messages only). The request makes its own copy of the underlying string. \mbox{\Hypertarget{request__response_8c_ae8cc77fc4bb8ce3ffa64a2f6f17dde52}\label{request__response_8c_ae8cc77fc4bb8ce3ffa64a2f6f17dde52}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_message\_set\_response\_status@{aws\_http\_message\_set\_response\_status}}
+\index{aws\_http\_message\_set\_response\_status@{aws\_http\_message\_set\_response\_status}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_message\_set\_response\_status()}{aws\_http\_message\_set\_response\_status()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+message\+\_\+set\+\_\+response\+\_\+status (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{response\+\_\+message,  }\item[{int}]{status\+\_\+code }\end{DoxyParamCaption})}
+
+Set the status code (response messages only). \mbox{\Hypertarget{request__response_8c_acab4c7f8d2b16598a387adf95161f71b}\label{request__response_8c_acab4c7f8d2b16598a387adf95161f71b}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_activate@{aws\_http\_stream\_activate}}
+\index{aws\_http\_stream\_activate@{aws\_http\_stream\_activate}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_activate()}{aws\_http\_stream\_activate()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+stream\+\_\+activate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+Only used for client initiated streams (immediately following a call to aws\+\_\+http\+\_\+connection\+\_\+make\+\_\+request).
+
+Activates the request\textquotesingle{}s outgoing stream processing. \mbox{\Hypertarget{request__response_8c_a7b555aa06246afd5c942de1d04d9e617}\label{request__response_8c_a7b555aa06246afd5c942de1d04d9e617}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_get\_connection@{aws\_http\_stream\_get\_connection}}
+\index{aws\_http\_stream\_get\_connection@{aws\_http\_stream\_get\_connection}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_get\_connection()}{aws\_http\_stream\_get\_connection()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+connection (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{request__response_8c_a6052372ac29faf98a91c506fd823b1cb}\label{request__response_8c_a6052372ac29faf98a91c506fd823b1cb}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_get\_id@{aws\_http\_stream\_get\_id}}
+\index{aws\_http\_stream\_get\_id@{aws\_http\_stream\_get\_id}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_get\_id()}{aws\_http\_stream\_get\_id()}}
+{\footnotesize\ttfamily uint32\+\_\+t aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+id (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+Gets the HTTP/2 id associated with a stream. Even h1 streams have an id (using the same allocation procedure as http/2) for easier tracking purposes. For client streams, this will only be non-\/zero after a successful call to \mbox{\hyperlink{request__response_8h_ae56f3dd7a22acc21f7195b0f2ae50987}{aws\+\_\+http\+\_\+stream\+\_\+activate()}} \mbox{\Hypertarget{request__response_8c_a687b0bb7b550c05bf7828a3d57c0c9d6}\label{request__response_8c_a687b0bb7b550c05bf7828a3d57c0c9d6}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_get\_incoming\_request\_method@{aws\_http\_stream\_get\_incoming\_request\_method}}
+\index{aws\_http\_stream\_get\_incoming\_request\_method@{aws\_http\_stream\_get\_incoming\_request\_method}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_get\_incoming\_request\_method()}{aws\_http\_stream\_get\_incoming\_request\_method()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+incoming\+\_\+request\+\_\+method (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{out\+\_\+method }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{request__response_8c_a032e3def8b552f33a0b1e73101ed5c4b}\label{request__response_8c_a032e3def8b552f33a0b1e73101ed5c4b}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_get\_incoming\_request\_uri@{aws\_http\_stream\_get\_incoming\_request\_uri}}
+\index{aws\_http\_stream\_get\_incoming\_request\_uri@{aws\_http\_stream\_get\_incoming\_request\_uri}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_get\_incoming\_request\_uri()}{aws\_http\_stream\_get\_incoming\_request\_uri()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+incoming\+\_\+request\+\_\+uri (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{out\+\_\+uri }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{request__response_8c_a96964da97db19bccedac64639ff8efc3}\label{request__response_8c_a96964da97db19bccedac64639ff8efc3}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_get\_incoming\_response\_status@{aws\_http\_stream\_get\_incoming\_response\_status}}
+\index{aws\_http\_stream\_get\_incoming\_response\_status@{aws\_http\_stream\_get\_incoming\_response\_status}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_get\_incoming\_response\_status()}{aws\_http\_stream\_get\_incoming\_response\_status()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+stream\+\_\+get\+\_\+incoming\+\_\+response\+\_\+status (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{int $\ast$}]{out\+\_\+status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{request__response_8c_a6faac07659c348a677d0af402de4d287}\label{request__response_8c_a6faac07659c348a677d0af402de4d287}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_new\_server\_request\_handler@{aws\_http\_stream\_new\_server\_request\_handler}}
+\index{aws\_http\_stream\_new\_server\_request\_handler@{aws\_http\_stream\_new\_server\_request\_handler}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_new\_server\_request\_handler()}{aws\_http\_stream\_new\_server\_request\_handler()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$ aws\+\_\+http\+\_\+stream\+\_\+new\+\_\+server\+\_\+request\+\_\+handler (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__request__handler__options}{aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+Create a stream, with a server connection receiving and responding to a request. This function can only be called from the {\ttfamily aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+request\+\_\+fn} callback. \mbox{\hyperlink{request__response_8h_a6a1c5dc48bdb3212f0376459f26f28d5}{aws\+\_\+http\+\_\+stream\+\_\+send\+\_\+response()}} should be used to send a response. \mbox{\Hypertarget{request__response_8c_add20a9efb3742544aedda2b5c83d59c4}\label{request__response_8c_add20a9efb3742544aedda2b5c83d59c4}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_release@{aws\_http\_stream\_release}}
+\index{aws\_http\_stream\_release@{aws\_http\_stream\_release}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_release()}{aws\_http\_stream\_release()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+stream\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+Users must release the stream when they are done with it, or its memory will never be cleaned up. This will not cancel the stream, its callbacks will still fire if the stream is still in progress.
+
+Tips for language bindings\+:
+\begin{DoxyItemize}
+\item Invoke this from the wrapper class\textquotesingle{}s finalizer/destructor.
+\item Do not let the wrapper class be destroyed until on\+\_\+complete() has fired. 
+\end{DoxyItemize}\mbox{\Hypertarget{request__response_8c_a58d967df057d637d74562061b7e8a530}\label{request__response_8c_a58d967df057d637d74562061b7e8a530}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_send\_response@{aws\_http\_stream\_send\_response}}
+\index{aws\_http\_stream\_send\_response@{aws\_http\_stream\_send\_response}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_send\_response()}{aws\_http\_stream\_send\_response()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+stream\+\_\+send\+\_\+response (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{response }\end{DoxyParamCaption})}
+
+Send response (only callable from \char`\"{}request handler\char`\"{} streams) The response object must stay alive at least until the stream\textquotesingle{}s on\+\_\+complete is called. \mbox{\Hypertarget{request__response_8c_ae3ba46a9ed4a94c3f81c40500b2ee5a8}\label{request__response_8c_ae3ba46a9ed4a94c3f81c40500b2ee5a8}} 
+\index{request\_response.c@{request\_response.c}!aws\_http\_stream\_update\_window@{aws\_http\_stream\_update\_window}}
+\index{aws\_http\_stream\_update\_window@{aws\_http\_stream\_update\_window}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_stream\_update\_window()}{aws\_http\_stream\_update\_window()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+stream\+\_\+update\+\_\+window (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{size\+\_\+t}]{increment\+\_\+size }\end{DoxyParamCaption})}
+
+Increment the stream\textquotesingle{}s flow-\/control window to keep data flowing.
+
+If the connection was created with {\ttfamily manual\+\_\+window\+\_\+management} set true, the flow-\/control window of each stream will shrink as body data is received (headers, padding, and other metadata do not affect the window). The connection\textquotesingle{}s {\ttfamily initial\+\_\+window\+\_\+size} determines the starting size of each stream\textquotesingle{}s window. If a stream\textquotesingle{}s flow-\/control window reaches 0, no further data will be received.
+
+If {\ttfamily manual\+\_\+window\+\_\+management} is false, this call will have no effect. The connection maintains its flow-\/control windows such that no back-\/pressure is applied and data arrives as fast as possible. \mbox{\Hypertarget{request__response_8c_a508177a760900bed75a7a014ff35c517}\label{request__response_8c_a508177a760900bed75a7a014ff35c517}} 
+\index{request\_response.c@{request\_response.c}!s\_http\_headers\_erase@{s\_http\_headers\_erase}}
+\index{s\_http\_headers\_erase@{s\_http\_headers\_erase}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{s\_http\_headers\_erase()}{s\_http\_headers\_erase()}}
+{\footnotesize\ttfamily static int s\+\_\+http\+\_\+headers\+\_\+erase (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{name,  }\item[{size\+\_\+t}]{end\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{request__response_8c_a519c463e1b360b42676e60be3bcbbe51}\label{request__response_8c_a519c463e1b360b42676e60be3bcbbe51}} 
+\index{request\_response.c@{request\_response.c}!s\_http\_headers\_erase\_index@{s\_http\_headers\_erase\_index}}
+\index{s\_http\_headers\_erase\_index@{s\_http\_headers\_erase\_index}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{s\_http\_headers\_erase\_index()}{s\_http\_headers\_erase\_index()}}
+{\footnotesize\ttfamily static void s\+\_\+http\+\_\+headers\+\_\+erase\+\_\+index (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{request__response_8c_a6341238c05d3b3152279c517c5cd3d87}\label{request__response_8c_a6341238c05d3b3152279c517c5cd3d87}} 
+\index{request\_response.c@{request\_response.c}!s\_message\_new\_common@{s\_message\_new\_common}}
+\index{s\_message\_new\_common@{s\_message\_new\_common}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{s\_message\_new\_common()}{s\_message\_new\_common()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ s\+\_\+message\+\_\+new\+\_\+common (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{existing\+\_\+headers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{request__response_8c_a3c2f6003ec24a571535786fd8682099e}\label{request__response_8c_a3c2f6003ec24a571535786fd8682099e}} 
+\index{request\_response.c@{request\_response.c}!s\_message\_new\_request\_common@{s\_message\_new\_request\_common}}
+\index{s\_message\_new\_request\_common@{s\_message\_new\_request\_common}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{s\_message\_new\_request\_common()}{s\_message\_new\_request\_common()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ s\+\_\+message\+\_\+new\+\_\+request\+\_\+common (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{existing\+\_\+headers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{request__response_8c_a5c535285e06f82b27818a7794508337f}\label{request__response_8c_a5c535285e06f82b27818a7794508337f}} 
+\index{request\_response.c@{request\_response.c}!s\_set\_string\_from\_cursor@{s\_set\_string\_from\_cursor}}
+\index{s\_set\_string\_from\_cursor@{s\_set\_string\_from\_cursor}!request\_response.c@{request\_response.c}}
+\doxysubsubsection{\texorpdfstring{s\_set\_string\_from\_cursor()}{s\_set\_string\_from\_cursor()}}
+{\footnotesize\ttfamily static int s\+\_\+set\+\_\+string\+\_\+from\+\_\+cursor (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$}]{dst,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{cursor,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

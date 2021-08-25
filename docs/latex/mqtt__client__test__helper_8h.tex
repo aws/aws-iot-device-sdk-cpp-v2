@@ -1,0 +1,26 @@
+\hypertarget{mqtt__client__test__helper_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/mqtt\+\_\+client\+\_\+test\+\_\+helper.h File Reference}
+\label{mqtt__client__test__helper_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/mqtt\_client\_test\_helper.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/mqtt\_client\_test\_helper.h}}
+{\ttfamily \#include $<$aws/common/stdint.\+h$>$}\newline
+{\ttfamily \#include $<$aws/mqtt/exports.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} void \mbox{\hyperlink{mqtt__client__test__helper_8h_ad32ea16546f99f31864b820ca2d08d3f}{aws\+\_\+mqtt\+\_\+client\+\_\+get\+\_\+payload\+\_\+for\+\_\+outstanding\+\_\+publish\+\_\+packet}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$result)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} void \mbox{\hyperlink{mqtt__client__test__helper_8h_a6eb75eacc9adbf9d9e84bb439455f5a3}{aws\+\_\+mqtt\+\_\+client\+\_\+get\+\_\+topic\+\_\+for\+\_\+outstanding\+\_\+publish\+\_\+packet}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$result)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mqtt__client__test__helper_8h_ad32ea16546f99f31864b820ca2d08d3f}\label{mqtt__client__test__helper_8h_ad32ea16546f99f31864b820ca2d08d3f}} 
+\index{mqtt\_client\_test\_helper.h@{mqtt\_client\_test\_helper.h}!aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet@{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet}}
+\index{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet@{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet}!mqtt\_client\_test\_helper.h@{mqtt\_client\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet()}{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} void aws\+\_\+mqtt\+\_\+client\+\_\+get\+\_\+payload\+\_\+for\+\_\+outstanding\+\_\+publish\+\_\+packet (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{result }\end{DoxyParamCaption})}
+
+This is for testing applications sending MQTT payloads. Don\textquotesingle{}t ever include this file outside of a unit test. \mbox{\Hypertarget{mqtt__client__test__helper_8h_a6eb75eacc9adbf9d9e84bb439455f5a3}\label{mqtt__client__test__helper_8h_a6eb75eacc9adbf9d9e84bb439455f5a3}} 
+\index{mqtt\_client\_test\_helper.h@{mqtt\_client\_test\_helper.h}!aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet@{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet}}
+\index{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet@{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet}!mqtt\_client\_test\_helper.h@{mqtt\_client\_test\_helper.h}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet()}{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} void aws\+\_\+mqtt\+\_\+client\+\_\+get\+\_\+topic\+\_\+for\+\_\+outstanding\+\_\+publish\+\_\+packet (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$}]{result }\end{DoxyParamCaption})}
+

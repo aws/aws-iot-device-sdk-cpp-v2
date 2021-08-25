@@ -1,0 +1,62 @@
+\hypertarget{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_source}{}\doxysection{hash.\+h}
+\label{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/include/aws/cal/hash.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/include/aws/cal/hash.h}}
+\mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_CAL\_HASH\_H\_}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_CAL\_HASH\_H\_}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h}{aws/cal/exports.h}}>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{byte__buf_8h}{aws/common/byte\_buf.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define AWS\_SHA256\_LEN 32}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define AWS\_MD5\_LEN 16}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash}{aws\_hash}};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash__vtable}{aws\_hash\_vtable}} \{}
+\DoxyCodeLine{18     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structaws__hash__vtable_a374b3da07ea9391ba20db28cfdbf0463}{alg\_name}};}
+\DoxyCodeLine{19     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structaws__hash__vtable_aefa4ba5ed439090a8f7c807c666e2a8c}{provider}};}
+\DoxyCodeLine{20     void (*\mbox{\hyperlink{structaws__hash__vtable_aab92fd5dc1b9fdd98faa81f3d4b5bff7}{destroy}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash}{aws\_hash}} *hash);}
+\DoxyCodeLine{21     int (*\mbox{\hyperlink{structaws__hash__vtable_a1c8be267473f4d5cc45a4923307f90c1}{update}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash}{aws\_hash}} *hash, \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}});}
+\DoxyCodeLine{22     int (*\mbox{\hyperlink{structaws__hash__vtable_ad6a35eca6974048d996fabd08b1c3366}{finalize}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash}{aws\_hash}} *hash, \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *out);}
+\DoxyCodeLine{23 \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash}{aws\_hash}} \{}
+\DoxyCodeLine{26     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__hash_a832d3540f88e172025de74cf17488503}{allocator}};}
+\DoxyCodeLine{27     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash__vtable}{aws\_hash\_vtable}} *\mbox{\hyperlink{structaws__hash_aa364a3f94fbe6d4e80e057f2850c33c4}{vtable}};}
+\DoxyCodeLine{28     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__hash_a3fa3a1c94f98156d8c8506cba20835e1}{digest\_size}};}
+\DoxyCodeLine{29     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__hash_a4b199639d80b597ab9412e7c6516add2}{good}};}
+\DoxyCodeLine{30     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__hash_a0a4a6a503a60fb67916600b318d7589d}{impl}};}
+\DoxyCodeLine{31 \};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash}{aws\_hash}} *(\mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a8156c335c3fb63355fa5a5b9c00535d8}{aws\_hash\_new\_fn}})(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{39 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash}{aws\_hash}} *\mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_ac7b3c3bf19d726194350533ea8de0177}{aws\_sha256\_new}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{43 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash}{aws\_hash}} *\mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_aedf9125a94b5e0e09951571d1296a8eb}{aws\_md5\_new}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{47 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_afb0de255571816215084d89d409476b0}{aws\_hash\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hash}{aws\_hash}} *hash);}
+\DoxyCodeLine{51 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a6fb9b1b052c7eae654e2b0b3bf99c9bb}{aws\_hash\_update}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hash}{aws\_hash}} *hash, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *to\_hash);}
+\DoxyCodeLine{60 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a135d765bf592cdc5396a33459757916a}{aws\_hash\_finalize}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hash}{aws\_hash}} *hash, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \textcolor{keywordtype}{size\_t} truncate\_to);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{67 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a22c4313beb61833b5b187bc8197ac654}{aws\_md5\_compute}}(}
+\DoxyCodeLine{68     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{69     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *input,}
+\DoxyCodeLine{70     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}},}
+\DoxyCodeLine{71     \textcolor{keywordtype}{size\_t} truncate\_to);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{81 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a16ef58152f4b8ca819a272b82f31e9cf}{aws\_sha256\_compute}}(}
+\DoxyCodeLine{82     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{83     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *input,}
+\DoxyCodeLine{84     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}},}
+\DoxyCodeLine{85     \textcolor{keywordtype}{size\_t} truncate\_to);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{94 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_af44ce2b6006d52b14e5446f9a5d2a93d}{aws\_set\_md5\_new\_fn}}(\mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a8156c335c3fb63355fa5a5b9c00535d8}{aws\_hash\_new\_fn}} *fn);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{103 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_ab8db60c891981de1f0516c08659f977b}{aws\_set\_sha256\_new\_fn}}(\mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a8156c335c3fb63355fa5a5b9c00535d8}{aws\_hash\_new\_fn}} *fn);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_CAL\_HASH\_H\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

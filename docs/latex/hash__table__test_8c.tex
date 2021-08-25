@@ -1,0 +1,487 @@
+\hypertarget{hash__table__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/hash\+\_\+table\+\_\+test.c File Reference}
+\label{hash__table__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/hash\_table\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/hash\_table\_test.c}}
+{\ttfamily \#include $<$aws/common/hash\+\_\+table.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structchurn__entry}{churn\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{hash__table__test_8c_a283a46608b733727a68fbbf7da6e469d}{ASSERT\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ENTRY\+\_\+\+COUNT}}(map,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})~    \mbox{\hyperlink{connection__state__test_8c_af35a2123951c664625d2bb83999e5a16}{ASSERT\+\_\+\+UINT\+\_\+\+EQUALS}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, \mbox{\hyperlink{hash__table_8c_a7c28b23d5bdbd23595fecf981d4198fc}{aws\+\_\+hash\+\_\+table\+\_\+get\+\_\+entry\+\_\+count}}(map), \char`\"{}Hash map should have \%d entries\char`\"{}, count)
+\item 
+\#define \mbox{\hyperlink{hash__table__test_8c_a0e30ab8c7fcc8ccb901237045a17d586}{ASSERT\+\_\+\+NO\+\_\+\+KEY}}(hash\+\_\+table,  key)
+\item 
+\#define \mbox{\hyperlink{hash__table__test_8c_aa5efaaea5158a7810d3cf19a900b8c61}{ASSERT\+\_\+\+KEY\+\_\+\+VALUE}}(hash\+\_\+table,  key,  expected)
+\item 
+\#define \mbox{\hyperlink{hash__table__test_8c_ab8712a9bc776f249bb178e09064247ec}{ASSERT\+\_\+\+ORDER}}(iter, ...)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_aa8757021eb7b0584f7eee0efe04c75b2}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+create\+\_\+find\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a4a43d9a8e81cbb0288d76206eb44aed4}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+string\+\_\+create\+\_\+find\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{hash__table__test_8c_a8cc1a3b9cab5f784965a01062dbf9316}{destroy\+\_\+key\+\_\+record}} (void $\ast$key)
+\item 
+static void \mbox{\hyperlink{hash__table__test_8c_ac633b921894826c74df651f7ae9d9c7a}{destroy\+\_\+value\+\_\+record}} (void $\ast$value)
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_abf26fb27f90143e95df128ca6c57cb63}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+put\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_adb17d00e98867938013b01bd4e13ce1b}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+put\+\_\+null\+\_\+dtor\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a85899865ba6b98c9ea4747a0e1b4b84b}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+swap\+\_\+move}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_ad35cf09df2c82c1b4b4f5145824293ae}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+string\+\_\+clean\+\_\+up\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{hash__table__test_8c_a84a207d2b7f95198fd195beaf109e6e1}{hash\+\_\+collide}} (const void $\ast$a)
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a979511bf700a7eaab4411d205e679752}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+hash\+\_\+collision\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a5eb2df5ce91e633c0a0b4511f1c0b13c}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+hash\+\_\+overwrite\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{hash__table__test_8c_a28b2c20cd47ebd4310eb018cfb1c83f7}{s\+\_\+destroy\+\_\+key\+\_\+fn}} (void $\ast$key)
+\item 
+static void \mbox{\hyperlink{hash__table__test_8c_a80948da843cbfd9f08bc3a3922ebe61f}{s\+\_\+destroy\+\_\+value\+\_\+fn}} (void $\ast$value)
+\item 
+static void \mbox{\hyperlink{hash__table__test_8c_a22dc8972307a2ad841ab67a487a1005e}{s\+\_\+reset\+\_\+destroy\+\_\+ck}} (void)
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a06933888928c257a2d24fd7ceea9ed27}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+hash\+\_\+remove\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a11667871103b881e3bf1acc6cb125c12}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+hash\+\_\+clear\+\_\+allows\+\_\+cleanup\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a2dd5d7818c731d8f638ed3f65b309d38}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+on\+\_\+resize\+\_\+returns\+\_\+correct\+\_\+entry\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a884bb3122a3284a075be8c2d5e7c3ada}{s\+\_\+foreach\+\_\+cb\+\_\+tomask}} (void $\ast$context, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+element)
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a2fdb810f592f5b296255c7639cf76ccb}{s\+\_\+foreach\+\_\+cb\+\_\+deltarget}} (void $\ast$context, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+element)
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_ae1ab0cc3f77fe0f71033db31540a829e}{s\+\_\+foreach\+\_\+cb\+\_\+cutoff}} (void $\ast$context, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+element)
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a2e8805d09f46442785d91c5cfdacab83}{s\+\_\+foreach\+\_\+cb\+\_\+cutoff\+\_\+del}} (void $\ast$context, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+element)
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_ae91f31d2e951224caf5682d4a7a6d2c0}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+foreach\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{hash__table__test_8c_a7b69d615424c576be4b808e3ce1f4a02}{s\+\_\+hash\+\_\+uint64\+\_\+identity}} (const void $\ast$a)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table__test_8c_ab47a418c70bfecd6656f2d2f555ca2a5}{s\+\_\+hash\+\_\+uint64\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a0bb55ffb007242b2c51c954be01662f8}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+iter\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a40b53bc3dbeb18d7418a4498384ed7a3}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+empty\+\_\+iter\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a52968e8db42b66560a0d1ae6af1821cd}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+iter\+\_\+detail}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{hash__table__test_8c_a2120951a8797a6479d5aefe4784776eb}{bad\+\_\+hash\+\_\+fn}} (const void $\ast$key)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table__test_8c_af84903166057223d2b88b8fbae9895da}{everything\+\_\+is\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a9d1f64fba16117d461ac2238509fbe2b}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+eq}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a8b276a1ad8a23bc8abe1f89e7a5ba21e}{s\+\_\+qsort\+\_\+churn\+\_\+entry}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+static long \mbox{\hyperlink{hash__table__test_8c_a62ac4f1d66689c85206f7d567bff9788}{s\+\_\+timestamp}} (void)
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a8454d6f5a82017b8e5ef812c853f9e33}{s\+\_\+test\+\_\+hash\+\_\+churn\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_ac65bda5b384990612f470b356501fb6c}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+cleanup\+\_\+idempotent\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{hash__table__test_8c_a589eb47bbc210654e59e763715095eca}{s\+\_\+hash\+\_\+table\+\_\+entry\+\_\+destroy}} (void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_aa997664d6adf555e24e51bd0a7ca390c}{s\+\_\+test\+\_\+hash\+\_\+table\+\_\+byte\+\_\+cursor\+\_\+create\+\_\+find\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_aaa1a964b80a6974327b0a3542dfa21da}{s\+\_\+test\+\_\+hash\+\_\+combine\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{hash__table__test_8c_a4ba1dd2d91db26066c0895fa45695196}{TEST\+\_\+\+STR\+\_\+1}} = \char`\"{}test 1\char`\"{}
+\item 
+static const char $\ast$ \mbox{\hyperlink{hash__table__test_8c_a75f1217021da1a5b531f7d4fcb4f5dfc}{TEST\+\_\+\+STR\+\_\+2}} = \char`\"{}test 2\char`\"{}
+\item 
+static const char $\ast$ \mbox{\hyperlink{hash__table__test_8c_ad6e11af268720d5f1f3ba5c2ab656429}{TEST\+\_\+\+VAL\+\_\+\+STR\+\_\+1}} = \char`\"{}value 1\char`\"{}
+\item 
+static const char $\ast$ \mbox{\hyperlink{hash__table__test_8c_a6f63379dee578e765c237923ffa669ef}{TEST\+\_\+\+VAL\+\_\+\+STR\+\_\+2}} = \char`\"{}value 2\char`\"{}
+\item 
+static const void $\ast$ \mbox{\hyperlink{hash__table__test_8c_aee2ff7566b462b43b7b468065401ed11}{last\+\_\+key}}
+\item 
+static const void $\ast$ \mbox{\hyperlink{hash__table__test_8c_addc402c6628a9e5ef751cffcaf52d53e}{last\+\_\+value}}
+\item 
+static void $\ast$ \mbox{\hyperlink{hash__table__test_8c_a2f1f138997826ea41fb4854d73db9186}{s\+\_\+last\+\_\+removed\+\_\+key}}
+\item 
+static void $\ast$ \mbox{\hyperlink{hash__table__test_8c_a1a1554e7cc36fcf58beb2b48881c27a5}{s\+\_\+last\+\_\+removed\+\_\+value}}
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a6cd1be7f7a7ee6300fa0e47feae22b42}{s\+\_\+key\+\_\+removal\+\_\+counter}} = 0
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_a73ee73fc336a02b43f59b56ba716429c}{s\+\_\+value\+\_\+removal\+\_\+counter}} = 0
+\item 
+static int \mbox{\hyperlink{hash__table__test_8c_aa090ec190e72b2e97104687b3dfa19b8}{s\+\_\+iter\+\_\+count}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{hash__table__test_8c_a283a46608b733727a68fbbf7da6e469d}\label{hash__table__test_8c_a283a46608b733727a68fbbf7da6e469d}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!ASSERT\_HASH\_TABLE\_ENTRY\_COUNT@{ASSERT\_HASH\_TABLE\_ENTRY\_COUNT}}
+\index{ASSERT\_HASH\_TABLE\_ENTRY\_COUNT@{ASSERT\_HASH\_TABLE\_ENTRY\_COUNT}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_HASH\_TABLE\_ENTRY\_COUNT}{ASSERT\_HASH\_TABLE\_ENTRY\_COUNT}}
+{\footnotesize\ttfamily \#define ASSERT\+\_\+\+HASH\+\_\+\+TABLE\+\_\+\+ENTRY\+\_\+\+COUNT(\begin{DoxyParamCaption}\item[{}]{map,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}} }\end{DoxyParamCaption})~    \mbox{\hyperlink{connection__state__test_8c_af35a2123951c664625d2bb83999e5a16}{ASSERT\+\_\+\+UINT\+\_\+\+EQUALS}}(\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, \mbox{\hyperlink{hash__table_8c_a7c28b23d5bdbd23595fecf981d4198fc}{aws\+\_\+hash\+\_\+table\+\_\+get\+\_\+entry\+\_\+count}}(map), \char`\"{}Hash map should have \%d entries\char`\"{}, count)}
+
+\mbox{\Hypertarget{hash__table__test_8c_aa5efaaea5158a7810d3cf19a900b8c61}\label{hash__table__test_8c_aa5efaaea5158a7810d3cf19a900b8c61}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!ASSERT\_KEY\_VALUE@{ASSERT\_KEY\_VALUE}}
+\index{ASSERT\_KEY\_VALUE@{ASSERT\_KEY\_VALUE}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_KEY\_VALUE}{ASSERT\_KEY\_VALUE}}
+{\footnotesize\ttfamily \#define ASSERT\+\_\+\+KEY\+\_\+\+VALUE(\begin{DoxyParamCaption}\item[{}]{hash\+\_\+table,  }\item[{}]{key,  }\item[{}]{expected }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        AWS\_STATIC\_STRING\_FROM\_LITERAL(assert\_key, key);                                                               \(\backslash\)}
+\DoxyCodeLine{        AWS\_STATIC\_STRING\_FROM\_LITERAL(assert\_value, expected);                                                        \(\backslash\)}
+\DoxyCodeLine{        struct \mbox{\hyperlink{structaws__hash__element}{aws\_hash\_element}} *pElem\_assert;                                                                         \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_SUCCESS(\mbox{\hyperlink{hash__table_8h_a755ddae77d97ed2fa8f4ef66002c6958}{aws\_hash\_table\_find}}((hash\_table), (\textcolor{keywordtype}{void} *)assert\_key, \&pElem\_assert));                          \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_NOT\_NULL(pElem\_assert, \textcolor{stringliteral}{"{}Expected key to be present: "{}} key);                                             \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_TRUE(                                                                                                   \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{string_8h_a3cbe89d724a4c5fa09aa4202b50de010}{aws\_string\_eq}}(assert\_value, (\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *)pElem\_assert-\/>value),                               \(\backslash\)}
+\DoxyCodeLine{            \textcolor{stringliteral}{"{}Expected key \(\backslash\)"{}"{}} key \textcolor{stringliteral}{"{}\(\backslash\)"{} to have value \(\backslash\)"{}"{}} expected \textcolor{stringliteral}{"{}\(\backslash\)"{}; actually had value \(\backslash\)"{}\%s\(\backslash\)"{}"{}},                      \(\backslash\)}
+\DoxyCodeLine{            \mbox{\hyperlink{string_8h_a7d27e1ad9bf231152343c07699a4a1a3}{aws\_string\_bytes}}((\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *)pElem\_assert-\/>value));                                         \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{hash__table__test_8c_a0e30ab8c7fcc8ccb901237045a17d586}\label{hash__table__test_8c_a0e30ab8c7fcc8ccb901237045a17d586}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!ASSERT\_NO\_KEY@{ASSERT\_NO\_KEY}}
+\index{ASSERT\_NO\_KEY@{ASSERT\_NO\_KEY}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_NO\_KEY}{ASSERT\_NO\_KEY}}
+{\footnotesize\ttfamily \#define ASSERT\+\_\+\+NO\+\_\+\+KEY(\begin{DoxyParamCaption}\item[{}]{hash\+\_\+table,  }\item[{}]{key }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        AWS\_STATIC\_STRING\_FROM\_LITERAL(assert\_key, key);                                                               \(\backslash\)}
+\DoxyCodeLine{        struct \mbox{\hyperlink{structaws__hash__element}{aws\_hash\_element}} *pElem\_assert;                                                                         \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_SUCCESS(\mbox{\hyperlink{hash__table_8h_a755ddae77d97ed2fa8f4ef66002c6958}{aws\_hash\_table\_find}}((hash\_table), (\textcolor{keywordtype}{void} *)assert\_key, \&pElem\_assert));                          \(\backslash\)}
+\DoxyCodeLine{        ASSERT\_NULL(pElem\_assert, \textcolor{stringliteral}{"{}Expected key to not be present: "{}} key);                                             \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{hash__table__test_8c_ab8712a9bc776f249bb178e09064247ec}\label{hash__table__test_8c_ab8712a9bc776f249bb178e09064247ec}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!ASSERT\_ORDER@{ASSERT\_ORDER}}
+\index{ASSERT\_ORDER@{ASSERT\_ORDER}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT\_ORDER}{ASSERT\_ORDER}}
+{\footnotesize\ttfamily \#define ASSERT\+\_\+\+ORDER(\begin{DoxyParamCaption}\item[{}]{iter,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                                                                                               \(\backslash\)}
+\DoxyCodeLine{        uint64\_t expected[] = \{\_\_VA\_ARGS\_\_\};                                                                           \(\backslash\)}
+\DoxyCodeLine{        size\_t \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}} = \textcolor{keyword}{sizeof}(expected) / \textcolor{keyword}{sizeof}(*expected);                                                           \(\backslash\)}
+\DoxyCodeLine{        for (\textcolor{keywordtype}{size\_t} i = 0; i < \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}; i++) \{                                                                           \(\backslash\)}
+\DoxyCodeLine{            ASSERT\_FALSE(\mbox{\hyperlink{hash__table_8h_ad63e4bb4f6e910a13852b787e7cbfb8a}{aws\_hash\_iter\_done}}(\&(iter)));                                                                 \(\backslash\)}
+\DoxyCodeLine{            ASSERT\_INT\_EQUALS(expected[i], *(\textcolor{keyword}{const} uint64\_t *)(iter).element.key);                                     \(\backslash\)}
+\DoxyCodeLine{            ASSERT\_INT\_EQUALS(expected[i] + 100, *(\textcolor{keyword}{const} uint64\_t *)(iter).element.value);                             \(\backslash\)}
+\DoxyCodeLine{            aws\_hash\_iter\_next(\&(iter));                                                                               \(\backslash\)}
+\DoxyCodeLine{        \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hash__table__test_8c_a2120951a8797a6479d5aefe4784776eb}\label{hash__table__test_8c_a2120951a8797a6479d5aefe4784776eb}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!bad\_hash\_fn@{bad\_hash\_fn}}
+\index{bad\_hash\_fn@{bad\_hash\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{bad\_hash\_fn()}{bad\_hash\_fn()}}
+{\footnotesize\ttfamily static uint64\+\_\+t bad\+\_\+hash\+\_\+fn (\begin{DoxyParamCaption}\item[{const void $\ast$}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a8cc1a3b9cab5f784965a01062dbf9316}\label{hash__table__test_8c_a8cc1a3b9cab5f784965a01062dbf9316}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!destroy\_key\_record@{destroy\_key\_record}}
+\index{destroy\_key\_record@{destroy\_key\_record}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{destroy\_key\_record()}{destroy\_key\_record()}}
+{\footnotesize\ttfamily static void destroy\+\_\+key\+\_\+record (\begin{DoxyParamCaption}\item[{void $\ast$}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_ac633b921894826c74df651f7ae9d9c7a}\label{hash__table__test_8c_ac633b921894826c74df651f7ae9d9c7a}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!destroy\_value\_record@{destroy\_value\_record}}
+\index{destroy\_value\_record@{destroy\_value\_record}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{destroy\_value\_record()}{destroy\_value\_record()}}
+{\footnotesize\ttfamily static void destroy\+\_\+value\+\_\+record (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_af84903166057223d2b88b8fbae9895da}\label{hash__table__test_8c_af84903166057223d2b88b8fbae9895da}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!everything\_is\_eq@{everything\_is\_eq}}
+\index{everything\_is\_eq@{everything\_is\_eq}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{everything\_is\_eq()}{everything\_is\_eq()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} everything\+\_\+is\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a84a207d2b7f95198fd195beaf109e6e1}\label{hash__table__test_8c_a84a207d2b7f95198fd195beaf109e6e1}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!hash\_collide@{hash\_collide}}
+\index{hash\_collide@{hash\_collide}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{hash\_collide()}{hash\_collide()}}
+{\footnotesize\ttfamily static uint64\+\_\+t hash\+\_\+collide (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a28b2c20cd47ebd4310eb018cfb1c83f7}\label{hash__table__test_8c_a28b2c20cd47ebd4310eb018cfb1c83f7}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_destroy\_key\_fn@{s\_destroy\_key\_fn}}
+\index{s\_destroy\_key\_fn@{s\_destroy\_key\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_destroy\_key\_fn()}{s\_destroy\_key\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+destroy\+\_\+key\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a80948da843cbfd9f08bc3a3922ebe61f}\label{hash__table__test_8c_a80948da843cbfd9f08bc3a3922ebe61f}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_destroy\_value\_fn@{s\_destroy\_value\_fn}}
+\index{s\_destroy\_value\_fn@{s\_destroy\_value\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_destroy\_value\_fn()}{s\_destroy\_value\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+destroy\+\_\+value\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_ae1ab0cc3f77fe0f71033db31540a829e}\label{hash__table__test_8c_ae1ab0cc3f77fe0f71033db31540a829e}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_foreach\_cb\_cutoff@{s\_foreach\_cb\_cutoff}}
+\index{s\_foreach\_cb\_cutoff@{s\_foreach\_cb\_cutoff}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_foreach\_cb\_cutoff()}{s\_foreach\_cb\_cutoff()}}
+{\footnotesize\ttfamily static int s\+\_\+foreach\+\_\+cb\+\_\+cutoff (\begin{DoxyParamCaption}\item[{void $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+element }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a2e8805d09f46442785d91c5cfdacab83}\label{hash__table__test_8c_a2e8805d09f46442785d91c5cfdacab83}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_foreach\_cb\_cutoff\_del@{s\_foreach\_cb\_cutoff\_del}}
+\index{s\_foreach\_cb\_cutoff\_del@{s\_foreach\_cb\_cutoff\_del}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_foreach\_cb\_cutoff\_del()}{s\_foreach\_cb\_cutoff\_del()}}
+{\footnotesize\ttfamily static int s\+\_\+foreach\+\_\+cb\+\_\+cutoff\+\_\+del (\begin{DoxyParamCaption}\item[{void $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+element }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a2fdb810f592f5b296255c7639cf76ccb}\label{hash__table__test_8c_a2fdb810f592f5b296255c7639cf76ccb}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_foreach\_cb\_deltarget@{s\_foreach\_cb\_deltarget}}
+\index{s\_foreach\_cb\_deltarget@{s\_foreach\_cb\_deltarget}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_foreach\_cb\_deltarget()}{s\_foreach\_cb\_deltarget()}}
+{\footnotesize\ttfamily static int s\+\_\+foreach\+\_\+cb\+\_\+deltarget (\begin{DoxyParamCaption}\item[{void $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+element }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a884bb3122a3284a075be8c2d5e7c3ada}\label{hash__table__test_8c_a884bb3122a3284a075be8c2d5e7c3ada}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_foreach\_cb\_tomask@{s\_foreach\_cb\_tomask}}
+\index{s\_foreach\_cb\_tomask@{s\_foreach\_cb\_tomask}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_foreach\_cb\_tomask()}{s\_foreach\_cb\_tomask()}}
+{\footnotesize\ttfamily static int s\+\_\+foreach\+\_\+cb\+\_\+tomask (\begin{DoxyParamCaption}\item[{void $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$}]{p\+\_\+element }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a589eb47bbc210654e59e763715095eca}\label{hash__table__test_8c_a589eb47bbc210654e59e763715095eca}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_hash\_table\_entry\_destroy@{s\_hash\_table\_entry\_destroy}}
+\index{s\_hash\_table\_entry\_destroy@{s\_hash\_table\_entry\_destroy}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_hash\_table\_entry\_destroy()}{s\_hash\_table\_entry\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+hash\+\_\+table\+\_\+entry\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_ab47a418c70bfecd6656f2d2f555ca2a5}\label{hash__table__test_8c_ab47a418c70bfecd6656f2d2f555ca2a5}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_hash\_uint64\_eq@{s\_hash\_uint64\_eq}}
+\index{s\_hash\_uint64\_eq@{s\_hash\_uint64\_eq}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_hash\_uint64\_eq()}{s\_hash\_uint64\_eq()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+hash\+\_\+uint64\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a7b69d615424c576be4b808e3ce1f4a02}\label{hash__table__test_8c_a7b69d615424c576be4b808e3ce1f4a02}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_hash\_uint64\_identity@{s\_hash\_uint64\_identity}}
+\index{s\_hash\_uint64\_identity@{s\_hash\_uint64\_identity}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_hash\_uint64\_identity()}{s\_hash\_uint64\_identity()}}
+{\footnotesize\ttfamily static uint64\+\_\+t s\+\_\+hash\+\_\+uint64\+\_\+identity (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a8b276a1ad8a23bc8abe1f89e7a5ba21e}\label{hash__table__test_8c_a8b276a1ad8a23bc8abe1f89e7a5ba21e}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_qsort\_churn\_entry@{s\_qsort\_churn\_entry}}
+\index{s\_qsort\_churn\_entry@{s\_qsort\_churn\_entry}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_qsort\_churn\_entry()}{s\_qsort\_churn\_entry()}}
+{\footnotesize\ttfamily static int s\+\_\+qsort\+\_\+churn\+\_\+entry (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a22dc8972307a2ad841ab67a487a1005e}\label{hash__table__test_8c_a22dc8972307a2ad841ab67a487a1005e}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_reset\_destroy\_ck@{s\_reset\_destroy\_ck}}
+\index{s\_reset\_destroy\_ck@{s\_reset\_destroy\_ck}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_reset\_destroy\_ck()}{s\_reset\_destroy\_ck()}}
+{\footnotesize\ttfamily static void s\+\_\+reset\+\_\+destroy\+\_\+ck (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a8454d6f5a82017b8e5ef812c853f9e33}\label{hash__table__test_8c_a8454d6f5a82017b8e5ef812c853f9e33}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_churn\_fn@{s\_test\_hash\_churn\_fn}}
+\index{s\_test\_hash\_churn\_fn@{s\_test\_hash\_churn\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_churn\_fn()}{s\_test\_hash\_churn\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+churn\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_aaa1a964b80a6974327b0a3542dfa21da}\label{hash__table__test_8c_aaa1a964b80a6974327b0a3542dfa21da}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_combine\_fn@{s\_test\_hash\_combine\_fn}}
+\index{s\_test\_hash\_combine\_fn@{s\_test\_hash\_combine\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_combine\_fn()}{s\_test\_hash\_combine\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+combine\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_aa997664d6adf555e24e51bd0a7ca390c}\label{hash__table__test_8c_aa997664d6adf555e24e51bd0a7ca390c}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_byte\_cursor\_create\_find\_fn@{s\_test\_hash\_table\_byte\_cursor\_create\_find\_fn}}
+\index{s\_test\_hash\_table\_byte\_cursor\_create\_find\_fn@{s\_test\_hash\_table\_byte\_cursor\_create\_find\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_byte\_cursor\_create\_find\_fn()}{s\_test\_hash\_table\_byte\_cursor\_create\_find\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+byte\+\_\+cursor\+\_\+create\+\_\+find\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_ac65bda5b384990612f470b356501fb6c}\label{hash__table__test_8c_ac65bda5b384990612f470b356501fb6c}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_cleanup\_idempotent\_fn@{s\_test\_hash\_table\_cleanup\_idempotent\_fn}}
+\index{s\_test\_hash\_table\_cleanup\_idempotent\_fn@{s\_test\_hash\_table\_cleanup\_idempotent\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_cleanup\_idempotent\_fn()}{s\_test\_hash\_table\_cleanup\_idempotent\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+cleanup\+\_\+idempotent\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_aa8757021eb7b0584f7eee0efe04c75b2}\label{hash__table__test_8c_aa8757021eb7b0584f7eee0efe04c75b2}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_create\_find\_fn@{s\_test\_hash\_table\_create\_find\_fn}}
+\index{s\_test\_hash\_table\_create\_find\_fn@{s\_test\_hash\_table\_create\_find\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_create\_find\_fn()}{s\_test\_hash\_table\_create\_find\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+create\+\_\+find\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a40b53bc3dbeb18d7418a4498384ed7a3}\label{hash__table__test_8c_a40b53bc3dbeb18d7418a4498384ed7a3}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_empty\_iter\_fn@{s\_test\_hash\_table\_empty\_iter\_fn}}
+\index{s\_test\_hash\_table\_empty\_iter\_fn@{s\_test\_hash\_table\_empty\_iter\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_empty\_iter\_fn()}{s\_test\_hash\_table\_empty\_iter\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+empty\+\_\+iter\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a9d1f64fba16117d461ac2238509fbe2b}\label{hash__table__test_8c_a9d1f64fba16117d461ac2238509fbe2b}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_eq@{s\_test\_hash\_table\_eq}}
+\index{s\_test\_hash\_table\_eq@{s\_test\_hash\_table\_eq}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_eq()}{s\_test\_hash\_table\_eq()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+eq (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_ae91f31d2e951224caf5682d4a7a6d2c0}\label{hash__table__test_8c_ae91f31d2e951224caf5682d4a7a6d2c0}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_foreach\_fn@{s\_test\_hash\_table\_foreach\_fn}}
+\index{s\_test\_hash\_table\_foreach\_fn@{s\_test\_hash\_table\_foreach\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_foreach\_fn()}{s\_test\_hash\_table\_foreach\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+foreach\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a11667871103b881e3bf1acc6cb125c12}\label{hash__table__test_8c_a11667871103b881e3bf1acc6cb125c12}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_hash\_clear\_allows\_cleanup\_fn@{s\_test\_hash\_table\_hash\_clear\_allows\_cleanup\_fn}}
+\index{s\_test\_hash\_table\_hash\_clear\_allows\_cleanup\_fn@{s\_test\_hash\_table\_hash\_clear\_allows\_cleanup\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_hash\_clear\_allows\_cleanup\_fn()}{s\_test\_hash\_table\_hash\_clear\_allows\_cleanup\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+hash\+\_\+clear\+\_\+allows\+\_\+cleanup\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a979511bf700a7eaab4411d205e679752}\label{hash__table__test_8c_a979511bf700a7eaab4411d205e679752}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_hash\_collision\_fn@{s\_test\_hash\_table\_hash\_collision\_fn}}
+\index{s\_test\_hash\_table\_hash\_collision\_fn@{s\_test\_hash\_table\_hash\_collision\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_hash\_collision\_fn()}{s\_test\_hash\_table\_hash\_collision\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+hash\+\_\+collision\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a5eb2df5ce91e633c0a0b4511f1c0b13c}\label{hash__table__test_8c_a5eb2df5ce91e633c0a0b4511f1c0b13c}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_hash\_overwrite\_fn@{s\_test\_hash\_table\_hash\_overwrite\_fn}}
+\index{s\_test\_hash\_table\_hash\_overwrite\_fn@{s\_test\_hash\_table\_hash\_overwrite\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_hash\_overwrite\_fn()}{s\_test\_hash\_table\_hash\_overwrite\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+hash\+\_\+overwrite\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a06933888928c257a2d24fd7ceea9ed27}\label{hash__table__test_8c_a06933888928c257a2d24fd7ceea9ed27}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_hash\_remove\_fn@{s\_test\_hash\_table\_hash\_remove\_fn}}
+\index{s\_test\_hash\_table\_hash\_remove\_fn@{s\_test\_hash\_table\_hash\_remove\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_hash\_remove\_fn()}{s\_test\_hash\_table\_hash\_remove\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+hash\+\_\+remove\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a52968e8db42b66560a0d1ae6af1821cd}\label{hash__table__test_8c_a52968e8db42b66560a0d1ae6af1821cd}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_iter\_detail@{s\_test\_hash\_table\_iter\_detail}}
+\index{s\_test\_hash\_table\_iter\_detail@{s\_test\_hash\_table\_iter\_detail}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_iter\_detail()}{s\_test\_hash\_table\_iter\_detail()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+iter\+\_\+detail (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a0bb55ffb007242b2c51c954be01662f8}\label{hash__table__test_8c_a0bb55ffb007242b2c51c954be01662f8}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_iter\_fn@{s\_test\_hash\_table\_iter\_fn}}
+\index{s\_test\_hash\_table\_iter\_fn@{s\_test\_hash\_table\_iter\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_iter\_fn()}{s\_test\_hash\_table\_iter\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+iter\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a2dd5d7818c731d8f638ed3f65b309d38}\label{hash__table__test_8c_a2dd5d7818c731d8f638ed3f65b309d38}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_on\_resize\_returns\_correct\_entry\_fn@{s\_test\_hash\_table\_on\_resize\_returns\_correct\_entry\_fn}}
+\index{s\_test\_hash\_table\_on\_resize\_returns\_correct\_entry\_fn@{s\_test\_hash\_table\_on\_resize\_returns\_correct\_entry\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_on\_resize\_returns\_correct\_entry\_fn()}{s\_test\_hash\_table\_on\_resize\_returns\_correct\_entry\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+on\+\_\+resize\+\_\+returns\+\_\+correct\+\_\+entry\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_abf26fb27f90143e95df128ca6c57cb63}\label{hash__table__test_8c_abf26fb27f90143e95df128ca6c57cb63}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_put\_fn@{s\_test\_hash\_table\_put\_fn}}
+\index{s\_test\_hash\_table\_put\_fn@{s\_test\_hash\_table\_put\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_put\_fn()}{s\_test\_hash\_table\_put\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+put\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_adb17d00e98867938013b01bd4e13ce1b}\label{hash__table__test_8c_adb17d00e98867938013b01bd4e13ce1b}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_put\_null\_dtor\_fn@{s\_test\_hash\_table\_put\_null\_dtor\_fn}}
+\index{s\_test\_hash\_table\_put\_null\_dtor\_fn@{s\_test\_hash\_table\_put\_null\_dtor\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_put\_null\_dtor\_fn()}{s\_test\_hash\_table\_put\_null\_dtor\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+put\+\_\+null\+\_\+dtor\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_ad35cf09df2c82c1b4b4f5145824293ae}\label{hash__table__test_8c_ad35cf09df2c82c1b4b4f5145824293ae}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_string\_clean\_up\_fn@{s\_test\_hash\_table\_string\_clean\_up\_fn}}
+\index{s\_test\_hash\_table\_string\_clean\_up\_fn@{s\_test\_hash\_table\_string\_clean\_up\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_string\_clean\_up\_fn()}{s\_test\_hash\_table\_string\_clean\_up\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+string\+\_\+clean\+\_\+up\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a4a43d9a8e81cbb0288d76206eb44aed4}\label{hash__table__test_8c_a4a43d9a8e81cbb0288d76206eb44aed4}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_string\_create\_find\_fn@{s\_test\_hash\_table\_string\_create\_find\_fn}}
+\index{s\_test\_hash\_table\_string\_create\_find\_fn@{s\_test\_hash\_table\_string\_create\_find\_fn}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_string\_create\_find\_fn()}{s\_test\_hash\_table\_string\_create\_find\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+string\+\_\+create\+\_\+find\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a85899865ba6b98c9ea4747a0e1b4b84b}\label{hash__table__test_8c_a85899865ba6b98c9ea4747a0e1b4b84b}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_test\_hash\_table\_swap\_move@{s\_test\_hash\_table\_swap\_move}}
+\index{s\_test\_hash\_table\_swap\_move@{s\_test\_hash\_table\_swap\_move}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_hash\_table\_swap\_move()}{s\_test\_hash\_table\_swap\_move()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+hash\+\_\+table\+\_\+swap\+\_\+move (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a62ac4f1d66689c85206f7d567bff9788}\label{hash__table__test_8c_a62ac4f1d66689c85206f7d567bff9788}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_timestamp@{s\_timestamp}}
+\index{s\_timestamp@{s\_timestamp}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_timestamp()}{s\_timestamp()}}
+{\footnotesize\ttfamily static long s\+\_\+timestamp (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{hash__table__test_8c_aee2ff7566b462b43b7b468065401ed11}\label{hash__table__test_8c_aee2ff7566b462b43b7b468065401ed11}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!last\_key@{last\_key}}
+\index{last\_key@{last\_key}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{last\_key}{last\_key}}
+{\footnotesize\ttfamily const void$\ast$ last\+\_\+key\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_addc402c6628a9e5ef751cffcaf52d53e}\label{hash__table__test_8c_addc402c6628a9e5ef751cffcaf52d53e}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!last\_value@{last\_value}}
+\index{last\_value@{last\_value}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{last\_value}{last\_value}}
+{\footnotesize\ttfamily const void $\ast$ last\+\_\+value\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_aa090ec190e72b2e97104687b3dfa19b8}\label{hash__table__test_8c_aa090ec190e72b2e97104687b3dfa19b8}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_iter\_count@{s\_iter\_count}}
+\index{s\_iter\_count@{s\_iter\_count}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_iter\_count}{s\_iter\_count}}
+{\footnotesize\ttfamily int s\+\_\+iter\+\_\+count = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a6cd1be7f7a7ee6300fa0e47feae22b42}\label{hash__table__test_8c_a6cd1be7f7a7ee6300fa0e47feae22b42}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_key\_removal\_counter@{s\_key\_removal\_counter}}
+\index{s\_key\_removal\_counter@{s\_key\_removal\_counter}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_key\_removal\_counter}{s\_key\_removal\_counter}}
+{\footnotesize\ttfamily int s\+\_\+key\+\_\+removal\+\_\+counter = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a2f1f138997826ea41fb4854d73db9186}\label{hash__table__test_8c_a2f1f138997826ea41fb4854d73db9186}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_last\_removed\_key@{s\_last\_removed\_key}}
+\index{s\_last\_removed\_key@{s\_last\_removed\_key}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_last\_removed\_key}{s\_last\_removed\_key}}
+{\footnotesize\ttfamily void$\ast$ s\+\_\+last\+\_\+removed\+\_\+key\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a1a1554e7cc36fcf58beb2b48881c27a5}\label{hash__table__test_8c_a1a1554e7cc36fcf58beb2b48881c27a5}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_last\_removed\_value@{s\_last\_removed\_value}}
+\index{s\_last\_removed\_value@{s\_last\_removed\_value}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_last\_removed\_value}{s\_last\_removed\_value}}
+{\footnotesize\ttfamily void$\ast$ s\+\_\+last\+\_\+removed\+\_\+value\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a73ee73fc336a02b43f59b56ba716429c}\label{hash__table__test_8c_a73ee73fc336a02b43f59b56ba716429c}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!s\_value\_removal\_counter@{s\_value\_removal\_counter}}
+\index{s\_value\_removal\_counter@{s\_value\_removal\_counter}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_value\_removal\_counter}{s\_value\_removal\_counter}}
+{\footnotesize\ttfamily int s\+\_\+value\+\_\+removal\+\_\+counter = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a4ba1dd2d91db26066c0895fa45695196}\label{hash__table__test_8c_a4ba1dd2d91db26066c0895fa45695196}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!TEST\_STR\_1@{TEST\_STR\_1}}
+\index{TEST\_STR\_1@{TEST\_STR\_1}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_STR\_1}{TEST\_STR\_1}}
+{\footnotesize\ttfamily const char$\ast$ TEST\+\_\+\+STR\+\_\+1 = \char`\"{}test 1\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{hash__table__test_8c_a75f1217021da1a5b531f7d4fcb4f5dfc}\label{hash__table__test_8c_a75f1217021da1a5b531f7d4fcb4f5dfc}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!TEST\_STR\_2@{TEST\_STR\_2}}
+\index{TEST\_STR\_2@{TEST\_STR\_2}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_STR\_2}{TEST\_STR\_2}}
+{\footnotesize\ttfamily const char$\ast$ TEST\+\_\+\+STR\+\_\+2 = \char`\"{}test 2\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_ad6e11af268720d5f1f3ba5c2ab656429}\label{hash__table__test_8c_ad6e11af268720d5f1f3ba5c2ab656429}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!TEST\_VAL\_STR\_1@{TEST\_VAL\_STR\_1}}
+\index{TEST\_VAL\_STR\_1@{TEST\_VAL\_STR\_1}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_VAL\_STR\_1}{TEST\_VAL\_STR\_1}}
+{\footnotesize\ttfamily const char$\ast$ TEST\+\_\+\+VAL\+\_\+\+STR\+\_\+1 = \char`\"{}value 1\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{hash__table__test_8c_a6f63379dee578e765c237923ffa669ef}\label{hash__table__test_8c_a6f63379dee578e765c237923ffa669ef}} 
+\index{hash\_table\_test.c@{hash\_table\_test.c}!TEST\_VAL\_STR\_2@{TEST\_VAL\_STR\_2}}
+\index{TEST\_VAL\_STR\_2@{TEST\_VAL\_STR\_2}!hash\_table\_test.c@{hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_VAL\_STR\_2}{TEST\_VAL\_STR\_2}}
+{\footnotesize\ttfamily const char$\ast$ TEST\+\_\+\+VAL\+\_\+\+STR\+\_\+2 = \char`\"{}value 2\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+

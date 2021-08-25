@@ -1,0 +1,34 @@
+\hypertarget{lru__cache_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/lru\+\_\+cache.h File Reference}
+\label{lru__cache_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/lru\_cache.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/lru\_cache.h}}
+{\ttfamily \#include $<$aws/common/cache.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$ \mbox{\hyperlink{lru__cache_8h_a186582aa5a1e169f39aefd65c8996a55}{aws\+\_\+cache\+\_\+new\+\_\+lru}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\+\_\+hash\+\_\+fn}} $\ast$hash\+\_\+fn, \mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$equals\+\_\+fn, \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$destroy\+\_\+key\+\_\+fn, \mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$destroy\+\_\+value\+\_\+fn, size\+\_\+t max\+\_\+items)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void $\ast$ \mbox{\hyperlink{lru__cache_8h_aa2fea78835e55e4a6b6713ab85410929}{aws\+\_\+lru\+\_\+cache\+\_\+use\+\_\+lru\+\_\+element}} (struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void $\ast$ \mbox{\hyperlink{lru__cache_8h_a7774697fce6d2faf3d46e4eaed2ba70e}{aws\+\_\+lru\+\_\+cache\+\_\+get\+\_\+mru\+\_\+element}} (const struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$cache)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lru__cache_8h_a186582aa5a1e169f39aefd65c8996a55}\label{lru__cache_8h_a186582aa5a1e169f39aefd65c8996a55}} 
+\index{lru\_cache.h@{lru\_cache.h}!aws\_cache\_new\_lru@{aws\_cache\_new\_lru}}
+\index{aws\_cache\_new\_lru@{aws\_cache\_new\_lru}!lru\_cache.h@{lru\_cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_cache\_new\_lru()}{aws\_cache\_new\_lru()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}}$\ast$ aws\+\_\+cache\+\_\+new\+\_\+lru (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{hash__table_8h_a9538a6cea5ae96678de8456865b2f18a}{aws\+\_\+hash\+\_\+fn}} $\ast$}]{hash\+\_\+fn,  }\item[{\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$}]{equals\+\_\+fn,  }\item[{\mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$}]{destroy\+\_\+key\+\_\+fn,  }\item[{\mbox{\hyperlink{hash__table_8h_a5f8e4476b6d413463590d13536b6bdc0}{aws\+\_\+hash\+\_\+callback\+\_\+destroy\+\_\+fn}} $\ast$}]{destroy\+\_\+value\+\_\+fn,  }\item[{size\+\_\+t}]{max\+\_\+items }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Initializes the Least-\/recently-\/used cache. Sets up the underlying linked hash table. Once {\ttfamily max\+\_\+items} elements have been added, the least recently used item will be removed. For the other parameters, see \mbox{\hyperlink{hash__table_8h}{aws/common/hash\+\_\+table.\+h}}. Hash table semantics of these arguments are preserved.(Yes the one that was the answer to that interview question that one time). \mbox{\Hypertarget{lru__cache_8h_a7774697fce6d2faf3d46e4eaed2ba70e}\label{lru__cache_8h_a7774697fce6d2faf3d46e4eaed2ba70e}} 
+\index{lru\_cache.h@{lru\_cache.h}!aws\_lru\_cache\_get\_mru\_element@{aws\_lru\_cache\_get\_mru\_element}}
+\index{aws\_lru\_cache\_get\_mru\_element@{aws\_lru\_cache\_get\_mru\_element}!lru\_cache.h@{lru\_cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_lru\_cache\_get\_mru\_element()}{aws\_lru\_cache\_get\_mru\_element()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void$\ast$ aws\+\_\+lru\+\_\+cache\+\_\+get\+\_\+mru\+\_\+element (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+Accesses the most-\/recently-\/used element and returns its value. \mbox{\Hypertarget{lru__cache_8h_aa2fea78835e55e4a6b6713ab85410929}\label{lru__cache_8h_aa2fea78835e55e4a6b6713ab85410929}} 
+\index{lru\_cache.h@{lru\_cache.h}!aws\_lru\_cache\_use\_lru\_element@{aws\_lru\_cache\_use\_lru\_element}}
+\index{aws\_lru\_cache\_use\_lru\_element@{aws\_lru\_cache\_use\_lru\_element}!lru\_cache.h@{lru\_cache.h}}
+\doxysubsubsection{\texorpdfstring{aws\_lru\_cache\_use\_lru\_element()}{aws\_lru\_cache\_use\_lru\_element()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void$\ast$ aws\+\_\+lru\+\_\+cache\+\_\+use\+\_\+lru\+\_\+element (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$}]{cache }\end{DoxyParamCaption})}
+
+Accesses the least-\/recently-\/used element, sets it to most-\/recently-\/used element, and returns the value. 

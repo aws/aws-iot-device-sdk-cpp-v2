@@ -1,0 +1,201 @@
+\hypertarget{hpack_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/hpack.h File Reference}
+\label{hpack_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/hpack.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/hpack.h}}
+{\ttfamily \#include $<$aws/http/request\+\_\+response.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__hpack__decode__result}{aws\+\_\+hpack\+\_\+decode\+\_\+result}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}{aws\+\_\+hpack\+\_\+huffman\+\_\+mode}} \{ \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aafc45671c54799f03be253d2c98d86b46}{AWS\+\_\+\+HPACK\+\_\+\+HUFFMAN\+\_\+\+SMALLEST}}
+, \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aab8eb33ea03585eb9ee0c7b4011cf4489}{AWS\+\_\+\+HPACK\+\_\+\+HUFFMAN\+\_\+\+NEVER}}
+, \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aa8ac62ead067c6d39846bfa006f19bae7}{AWS\+\_\+\+HPACK\+\_\+\+HUFFMAN\+\_\+\+ALWAYS}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{hpack_8h_a48f932bea53b6aee6dc0f136cd1c88c8}{aws\+\_\+hpack\+\_\+static\+\_\+table\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{hpack_8h_a737eeeb03d7d758d21e98ac8f062ff37}{aws\+\_\+hpack\+\_\+static\+\_\+table\+\_\+clean\+\_\+up}} (void)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$ \mbox{\hyperlink{hpack_8h_a56f07ec24c872a6342046c3e71e7c5e4}{aws\+\_\+hpack\+\_\+context\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, enum \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528}{aws\+\_\+http\+\_\+log\+\_\+subject}} log\+\_\+subject, const void $\ast$log\+\_\+id)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{hpack_8h_a54c09188e45dad357dba8452c86c37e7}{aws\+\_\+hpack\+\_\+context\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{hpack_8h_ac13df4eb6f43f47dd9cd5353e13570c1}{aws\+\_\+hpack\+\_\+decode}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+decode, struct \mbox{\hyperlink{structaws__hpack__decode__result}{aws\+\_\+hpack\+\_\+decode\+\_\+result}} $\ast$result)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{hpack_8h_a920de22112f220f8bfdf0d761745e8a3}{aws\+\_\+hpack\+\_\+encode\+\_\+header\+\_\+block}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} size\+\_\+t \mbox{\hyperlink{hpack_8h_a16efc4a54da55184ca1ccef73fe8d3da}{aws\+\_\+hpack\+\_\+get\+\_\+header\+\_\+size}} (const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} size\+\_\+t \mbox{\hyperlink{hpack_8h_a71a87c0e00eb91c0fc0a0ecca1579471}{aws\+\_\+hpack\+\_\+get\+\_\+dynamic\+\_\+table\+\_\+num\+\_\+elements}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$ \mbox{\hyperlink{hpack_8h_acb5ad6373afbee733f627b364ca13762}{aws\+\_\+hpack\+\_\+get\+\_\+header}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} size\+\_\+t \mbox{\hyperlink{hpack_8h_a42ffb4ec6b57371f94df277c90e903ee}{aws\+\_\+hpack\+\_\+find\+\_\+index}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} search\+\_\+value, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$found\+\_\+value)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{hpack_8h_af90a69bb768fb3bf941980574b95fd81}{aws\+\_\+hpack\+\_\+insert\+\_\+header}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{hpack_8h_a711056043201065623c020ad4784d38c}{aws\+\_\+hpack\+\_\+resize\+\_\+dynamic\+\_\+table}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, size\+\_\+t new\+\_\+max\+\_\+size)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{hpack_8h_aa4183d214e627a4ddf82032a9ad66476}{aws\+\_\+hpack\+\_\+set\+\_\+max\+\_\+table\+\_\+size}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, uint32\+\_\+t new\+\_\+max\+\_\+size)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{hpack_8h_aebea22528c7c5719f49194d38f1508a7}{aws\+\_\+hpack\+\_\+set\+\_\+protocol\+\_\+max\+\_\+size\+\_\+setting}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, uint32\+\_\+t setting\+\_\+max\+\_\+size)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{hpack_8h_afb9e1397b88172f61a05fb905bf176c8}{aws\+\_\+hpack\+\_\+set\+\_\+huffman\+\_\+mode}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, enum \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}{aws\+\_\+hpack\+\_\+huffman\+\_\+mode}} mode)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{hpack_8h_a1fc8f59d970baeef630a9efc41de6dae}{aws\+\_\+hpack\+\_\+encode\+\_\+integer}} (uint64\+\_\+t integer, uint8\+\_\+t starting\+\_\+bits, uint8\+\_\+t prefix\+\_\+size, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{hpack_8h_a3f274326dabfba0f229bea26fb71c2ff}{aws\+\_\+hpack\+\_\+decode\+\_\+integer}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+decode, uint8\+\_\+t prefix\+\_\+size, uint64\+\_\+t $\ast$integer, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$complete)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{hpack_8h_a0e501a023872fb2b8f25accec0a9190c}{aws\+\_\+hpack\+\_\+encode\+\_\+string}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{hpack_8h_afa171bd9830ea872d5e046cc3e8df444}{aws\+\_\+hpack\+\_\+decode\+\_\+string}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+decode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$complete)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}\label{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_huffman\_mode@{aws\_hpack\_huffman\_mode}}
+\index{aws\_hpack\_huffman\_mode@{aws\_hpack\_huffman\_mode}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_huffman\_mode}{aws\_hpack\_huffman\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}{aws\+\_\+hpack\+\_\+huffman\+\_\+mode}}}
+
+Controls whether non-\/indexed strings will use Huffman encoding. In SMALLEST mode, strings will only be sent with Huffman encoding if it makes them smaller.
+
+Note\+: This does not control compression via \char`\"{}indexing\char`\"{}, for that, see {\ttfamily aws\+\_\+http\+\_\+header\+\_\+compression}. This only controls how string values are encoded when they\textquotesingle{}re not already in a table. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HPACK\_HUFFMAN\_SMALLEST@{AWS\_HPACK\_HUFFMAN\_SMALLEST}!hpack.h@{hpack.h}}\index{hpack.h@{hpack.h}!AWS\_HPACK\_HUFFMAN\_SMALLEST@{AWS\_HPACK\_HUFFMAN\_SMALLEST}}}\mbox{\Hypertarget{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aafc45671c54799f03be253d2c98d86b46}\label{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aafc45671c54799f03be253d2c98d86b46}} 
+AWS\+\_\+\+HPACK\+\_\+\+HUFFMAN\+\_\+\+SMALLEST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HPACK\_HUFFMAN\_NEVER@{AWS\_HPACK\_HUFFMAN\_NEVER}!hpack.h@{hpack.h}}\index{hpack.h@{hpack.h}!AWS\_HPACK\_HUFFMAN\_NEVER@{AWS\_HPACK\_HUFFMAN\_NEVER}}}\mbox{\Hypertarget{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aab8eb33ea03585eb9ee0c7b4011cf4489}\label{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aab8eb33ea03585eb9ee0c7b4011cf4489}} 
+AWS\+\_\+\+HPACK\+\_\+\+HUFFMAN\+\_\+\+NEVER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HPACK\_HUFFMAN\_ALWAYS@{AWS\_HPACK\_HUFFMAN\_ALWAYS}!hpack.h@{hpack.h}}\index{hpack.h@{hpack.h}!AWS\_HPACK\_HUFFMAN\_ALWAYS@{AWS\_HPACK\_HUFFMAN\_ALWAYS}}}\mbox{\Hypertarget{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aa8ac62ead067c6d39846bfa006f19bae7}\label{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aa8ac62ead067c6d39846bfa006f19bae7}} 
+AWS\+\_\+\+HPACK\+\_\+\+HUFFMAN\+\_\+\+ALWAYS&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{hpack_8h_a54c09188e45dad357dba8452c86c37e7}\label{hpack_8h_a54c09188e45dad357dba8452c86c37e7}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_context\_destroy@{aws\_hpack\_context\_destroy}}
+\index{aws\_hpack\_context\_destroy@{aws\_hpack\_context\_destroy}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_context\_destroy()}{aws\_hpack\_context\_destroy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+hpack\+\_\+context\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_a56f07ec24c872a6342046c3e71e7c5e4}\label{hpack_8h_a56f07ec24c872a6342046c3e71e7c5e4}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_context\_new@{aws\_hpack\_context\_new}}
+\index{aws\_hpack\_context\_new@{aws\_hpack\_context\_new}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_context\_new()}{aws\_hpack\_context\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}}$\ast$ aws\+\_\+hpack\+\_\+context\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{enum \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528}{aws\+\_\+http\+\_\+log\+\_\+subject}}}]{log\+\_\+subject,  }\item[{const void $\ast$}]{log\+\_\+id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_ac13df4eb6f43f47dd9cd5353e13570c1}\label{hpack_8h_ac13df4eb6f43f47dd9cd5353e13570c1}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_decode@{aws\_hpack\_decode}}
+\index{aws\_hpack\_decode@{aws\_hpack\_decode}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_decode()}{aws\_hpack\_decode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+hpack\+\_\+decode (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{to\+\_\+decode,  }\item[{struct \mbox{\hyperlink{structaws__hpack__decode__result}{aws\+\_\+hpack\+\_\+decode\+\_\+result}} $\ast$}]{result }\end{DoxyParamCaption})}
+
+Decode the next entry in the header-\/block-\/fragment. If result-\/\texorpdfstring{$>$}{>}type is ONGOING, then call \mbox{\hyperlink{bike__r1_2functions__renaming_8h_ab3b6fbae1833ae95a744df95f366bb23}{decode()}} again with more data to resume decoding. Otherwise, type is either a HEADER\+\_\+\+FIELD or a DYNAMIC\+\_\+\+TABLE\+\_\+\+RESIZE.
+
+If an error occurs, the decoder is broken and \mbox{\hyperlink{bike__r1_2functions__renaming_8h_ab3b6fbae1833ae95a744df95f366bb23}{decode()}} must not be called again. \mbox{\Hypertarget{hpack_8h_a3f274326dabfba0f229bea26fb71c2ff}\label{hpack_8h_a3f274326dabfba0f229bea26fb71c2ff}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_decode\_integer@{aws\_hpack\_decode\_integer}}
+\index{aws\_hpack\_decode\_integer@{aws\_hpack\_decode\_integer}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_decode\_integer()}{aws\_hpack\_decode\_integer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+hpack\+\_\+decode\+\_\+integer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{to\+\_\+decode,  }\item[{uint8\+\_\+t}]{prefix\+\_\+size,  }\item[{uint64\+\_\+t $\ast$}]{integer,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{complete }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_afa171bd9830ea872d5e046cc3e8df444}\label{hpack_8h_afa171bd9830ea872d5e046cc3e8df444}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_decode\_string@{aws\_hpack\_decode\_string}}
+\index{aws\_hpack\_decode\_string@{aws\_hpack\_decode\_string}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_decode\_string()}{aws\_hpack\_decode\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+hpack\+\_\+decode\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{to\+\_\+decode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{complete }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_a920de22112f220f8bfdf0d761745e8a3}\label{hpack_8h_a920de22112f220f8bfdf0d761745e8a3}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_encode\_header\_block@{aws\_hpack\_encode\_header\_block}}
+\index{aws\_hpack\_encode\_header\_block@{aws\_hpack\_encode\_header\_block}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_encode\_header\_block()}{aws\_hpack\_encode\_header\_block()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+hpack\+\_\+encode\+\_\+header\+\_\+block (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output }\end{DoxyParamCaption})}
+
+Encode header-\/block into the output. This function will mutate the hpack context, so an error means the context can no longer be used. Note that output will be dynamically resized if it\textquotesingle{}s too short. \mbox{\Hypertarget{hpack_8h_a1fc8f59d970baeef630a9efc41de6dae}\label{hpack_8h_a1fc8f59d970baeef630a9efc41de6dae}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_encode\_integer@{aws\_hpack\_encode\_integer}}
+\index{aws\_hpack\_encode\_integer@{aws\_hpack\_encode\_integer}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_encode\_integer()}{aws\_hpack\_encode\_integer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+hpack\+\_\+encode\+\_\+integer (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{integer,  }\item[{uint8\+\_\+t}]{starting\+\_\+bits,  }\item[{uint8\+\_\+t}]{prefix\+\_\+size,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_a0e501a023872fb2b8f25accec0a9190c}\label{hpack_8h_a0e501a023872fb2b8f25accec0a9190c}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_encode\_string@{aws\_hpack\_encode\_string}}
+\index{aws\_hpack\_encode\_string@{aws\_hpack\_encode\_string}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_encode\_string()}{aws\_hpack\_encode\_string()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+hpack\+\_\+encode\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{to\+\_\+encode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_a42ffb4ec6b57371f94df277c90e903ee}\label{hpack_8h_a42ffb4ec6b57371f94df277c90e903ee}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_find\_index@{aws\_hpack\_find\_index}}
+\index{aws\_hpack\_find\_index@{aws\_hpack\_find\_index}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_find\_index()}{aws\_hpack\_find\_index()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} size\+\_\+t aws\+\_\+hpack\+\_\+find\+\_\+index (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{search\+\_\+value,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{found\+\_\+value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_a71a87c0e00eb91c0fc0a0ecca1579471}\label{hpack_8h_a71a87c0e00eb91c0fc0a0ecca1579471}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_get\_dynamic\_table\_num\_elements@{aws\_hpack\_get\_dynamic\_table\_num\_elements}}
+\index{aws\_hpack\_get\_dynamic\_table\_num\_elements@{aws\_hpack\_get\_dynamic\_table\_num\_elements}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_get\_dynamic\_table\_num\_elements()}{aws\_hpack\_get\_dynamic\_table\_num\_elements()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} size\+\_\+t aws\+\_\+hpack\+\_\+get\+\_\+dynamic\+\_\+table\+\_\+num\+\_\+elements (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_acb5ad6373afbee733f627b364ca13762}\label{hpack_8h_acb5ad6373afbee733f627b364ca13762}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_get\_header@{aws\_hpack\_get\_header}}
+\index{aws\_hpack\_get\_header@{aws\_hpack\_get\_header}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_get\_header()}{aws\_hpack\_get\_header()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}}$\ast$ aws\+\_\+hpack\+\_\+get\+\_\+header (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_a16efc4a54da55184ca1ccef73fe8d3da}\label{hpack_8h_a16efc4a54da55184ca1ccef73fe8d3da}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_get\_header\_size@{aws\_hpack\_get\_header\_size}}
+\index{aws\_hpack\_get\_header\_size@{aws\_hpack\_get\_header\_size}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_get\_header\_size()}{aws\_hpack\_get\_header\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} size\+\_\+t aws\+\_\+hpack\+\_\+get\+\_\+header\+\_\+size (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_af90a69bb768fb3bf941980574b95fd81}\label{hpack_8h_af90a69bb768fb3bf941980574b95fd81}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_insert\_header@{aws\_hpack\_insert\_header}}
+\index{aws\_hpack\_insert\_header@{aws\_hpack\_insert\_header}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_insert\_header()}{aws\_hpack\_insert\_header()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+hpack\+\_\+insert\+\_\+header (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_a711056043201065623c020ad4784d38c}\label{hpack_8h_a711056043201065623c020ad4784d38c}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_resize\_dynamic\_table@{aws\_hpack\_resize\_dynamic\_table}}
+\index{aws\_hpack\_resize\_dynamic\_table@{aws\_hpack\_resize\_dynamic\_table}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_resize\_dynamic\_table()}{aws\_hpack\_resize\_dynamic\_table()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+hpack\+\_\+resize\+\_\+dynamic\+\_\+table (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{size\+\_\+t}]{new\+\_\+max\+\_\+size }\end{DoxyParamCaption})}
+
+Set the max size of the dynamic table (in octets). The size of each header is name.\+len + value.\+len + 32 \mbox{[}4.\+1\mbox{]}. \mbox{\Hypertarget{hpack_8h_afb9e1397b88172f61a05fb905bf176c8}\label{hpack_8h_afb9e1397b88172f61a05fb905bf176c8}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_set\_huffman\_mode@{aws\_hpack\_set\_huffman\_mode}}
+\index{aws\_hpack\_set\_huffman\_mode@{aws\_hpack\_set\_huffman\_mode}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_set\_huffman\_mode()}{aws\_hpack\_set\_huffman\_mode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+hpack\+\_\+set\+\_\+huffman\+\_\+mode (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{enum \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}{aws\+\_\+hpack\+\_\+huffman\+\_\+mode}}}]{mode }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_aa4183d214e627a4ddf82032a9ad66476}\label{hpack_8h_aa4183d214e627a4ddf82032a9ad66476}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_set\_max\_table\_size@{aws\_hpack\_set\_max\_table\_size}}
+\index{aws\_hpack\_set\_max\_table\_size@{aws\_hpack\_set\_max\_table\_size}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_set\_max\_table\_size()}{aws\_hpack\_set\_max\_table\_size()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+hpack\+\_\+set\+\_\+max\+\_\+table\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{uint32\+\_\+t}]{new\+\_\+max\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_aebea22528c7c5719f49194d38f1508a7}\label{hpack_8h_aebea22528c7c5719f49194d38f1508a7}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_set\_protocol\_max\_size\_setting@{aws\_hpack\_set\_protocol\_max\_size\_setting}}
+\index{aws\_hpack\_set\_protocol\_max\_size\_setting@{aws\_hpack\_set\_protocol\_max\_size\_setting}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_set\_protocol\_max\_size\_setting()}{aws\_hpack\_set\_protocol\_max\_size\_setting()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+hpack\+\_\+set\+\_\+protocol\+\_\+max\+\_\+size\+\_\+setting (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{uint32\+\_\+t}]{setting\+\_\+max\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_a737eeeb03d7d758d21e98ac8f062ff37}\label{hpack_8h_a737eeeb03d7d758d21e98ac8f062ff37}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_static\_table\_clean\_up@{aws\_hpack\_static\_table\_clean\_up}}
+\index{aws\_hpack\_static\_table\_clean\_up@{aws\_hpack\_static\_table\_clean\_up}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_static\_table\_clean\_up()}{aws\_hpack\_static\_table\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+hpack\+\_\+static\+\_\+table\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{hpack_8h_a48f932bea53b6aee6dc0f136cd1c88c8}\label{hpack_8h_a48f932bea53b6aee6dc0f136cd1c88c8}} 
+\index{hpack.h@{hpack.h}!aws\_hpack\_static\_table\_init@{aws\_hpack\_static\_table\_init}}
+\index{aws\_hpack\_static\_table\_init@{aws\_hpack\_static\_table\_init}!hpack.h@{hpack.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hpack\_static\_table\_init()}{aws\_hpack\_static\_table\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+hpack\+\_\+static\+\_\+table\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+

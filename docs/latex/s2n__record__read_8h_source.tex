@@ -1,0 +1,61 @@
+\hypertarget{s2n__record__read_8h_source}{}\doxysection{s2n\+\_\+record\+\_\+read.\+h}
+\label{s2n__record__read_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_record\_read.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_record\_read.h}}
+\mbox{\hyperlink{s2n__record__read_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__connection_8h}{tls/s2n\_connection.h}}"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__record__read_8h_a86cb8ebfa3a63a63cf23c01089e4459a}{s2n\_record\_parse\_aead}}(}
+\DoxyCodeLine{21     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cipher__suite}{s2n\_cipher\_suite}} *cipher\_suite,}
+\DoxyCodeLine{22     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn,}
+\DoxyCodeLine{23     uint8\_t content\_type,}
+\DoxyCodeLine{24     uint16\_t encrypted\_length,}
+\DoxyCodeLine{25     uint8\_t * implicit\_iv,}
+\DoxyCodeLine{26     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hmac__state}{s2n\_hmac\_state}} *mac,}
+\DoxyCodeLine{27     uint8\_t * sequence\_number,}
+\DoxyCodeLine{28     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__session__key}{s2n\_session\_key}} *session\_key);}
+\DoxyCodeLine{29 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__record__read_8h_a2d6fb587c478c56fb335d92d412f3476}{s2n\_record\_parse\_cbc}}(}
+\DoxyCodeLine{30     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cipher__suite}{s2n\_cipher\_suite}} *cipher\_suite,}
+\DoxyCodeLine{31     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn,}
+\DoxyCodeLine{32     uint8\_t content\_type,}
+\DoxyCodeLine{33     uint16\_t encrypted\_length,}
+\DoxyCodeLine{34     uint8\_t * implicit\_iv,}
+\DoxyCodeLine{35     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hmac__state}{s2n\_hmac\_state}} *mac,}
+\DoxyCodeLine{36     uint8\_t * sequence\_number,}
+\DoxyCodeLine{37     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__session__key}{s2n\_session\_key}} *session\_key);}
+\DoxyCodeLine{38 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__record__read_8h_a0d0cbafe7aaa368b3c9cd505000ffebd}{s2n\_record\_parse\_composite}}(}
+\DoxyCodeLine{39     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cipher__suite}{s2n\_cipher\_suite}} *cipher\_suite,}
+\DoxyCodeLine{40     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn,}
+\DoxyCodeLine{41     uint8\_t content\_type,}
+\DoxyCodeLine{42     uint16\_t encrypted\_length,}
+\DoxyCodeLine{43     uint8\_t * implicit\_iv,}
+\DoxyCodeLine{44     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hmac__state}{s2n\_hmac\_state}} *mac,}
+\DoxyCodeLine{45     uint8\_t * sequence\_number,}
+\DoxyCodeLine{46     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__session__key}{s2n\_session\_key}} *session\_key);}
+\DoxyCodeLine{47 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__record__read_8h_a26bd2a4c7cf23b6b50dc09376e5e8cc0}{s2n\_record\_parse\_stream}}(}
+\DoxyCodeLine{48     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cipher__suite}{s2n\_cipher\_suite}} *cipher\_suite,}
+\DoxyCodeLine{49     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn,}
+\DoxyCodeLine{50     uint8\_t content\_type,}
+\DoxyCodeLine{51     uint16\_t encrypted\_length,}
+\DoxyCodeLine{52     uint8\_t * implicit\_iv,}
+\DoxyCodeLine{53     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hmac__state}{s2n\_hmac\_state}} *mac,}
+\DoxyCodeLine{54     uint8\_t * sequence\_number,}
+\DoxyCodeLine{55     \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__session__key}{s2n\_session\_key}} *session\_key);}
+
+\end{DoxyCode}

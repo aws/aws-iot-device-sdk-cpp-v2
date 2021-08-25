@@ -1,0 +1,33 @@
+\hypertarget{s2n__ocsp__stapling_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+ocsp\+\_\+stapling.c File Reference}
+\label{s2n__ocsp__stapling_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_ocsp\_stapling.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_ocsp\_stapling.c}}
+{\ttfamily \#include $<$strings.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+x509\+\_\+validator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+server\+\_\+certificate\+\_\+status.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__ocsp__stapling_8c_af4c440c5d4b149bdc7b42a1fdf06b334}{s2n\+\_\+server\+\_\+status\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__ocsp__stapling_8c_a6688277e6e5d779a28d99ec6d023a949}{s2n\+\_\+server\+\_\+status\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__ocsp__stapling_8c_a6688277e6e5d779a28d99ec6d023a949}\label{s2n__ocsp__stapling_8c_a6688277e6e5d779a28d99ec6d023a949}} 
+\index{s2n\_ocsp\_stapling.c@{s2n\_ocsp\_stapling.c}!s2n\_server\_status\_recv@{s2n\_server\_status\_recv}}
+\index{s2n\_server\_status\_recv@{s2n\_server\_status\_recv}!s2n\_ocsp\_stapling.c@{s2n\_ocsp\_stapling.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_status\_recv()}{s2n\_server\_status\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+status\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__ocsp__stapling_8c_af4c440c5d4b149bdc7b42a1fdf06b334}\label{s2n__ocsp__stapling_8c_af4c440c5d4b149bdc7b42a1fdf06b334}} 
+\index{s2n\_ocsp\_stapling.c@{s2n\_ocsp\_stapling.c}!s2n\_server\_status\_send@{s2n\_server\_status\_send}}
+\index{s2n\_server\_status\_send@{s2n\_server\_status\_send}!s2n\_ocsp\_stapling.c@{s2n\_ocsp\_stapling.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_status\_send()}{s2n\_server\_status\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+status\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+

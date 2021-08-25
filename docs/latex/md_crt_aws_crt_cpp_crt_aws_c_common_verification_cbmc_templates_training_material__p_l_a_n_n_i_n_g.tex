@@ -1,0 +1,47 @@
+{\bfseries{Table of Contents}}
+
+
+\begin{DoxyItemize}
+\item \href{\#how-to-select-what-proofs-to-attempt-in-what-order}{\texttt{ How to select what proofs to attempt, in what order}}
+\item \href{\#how-to-get-a-sense-of-the-work-cbmc-will-involve}{\texttt{ How to get a sense of the work CBMC will involve}}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_l_a_n_n_i_n_g_autotoc_md159}{}\doxysection{How to select what proofs to attempt, in what order}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_l_a_n_n_i_n_g_autotoc_md159}
+
+\begin{DoxyEnumerate}
+\item Make a dependency graph of the modules in your program. There are a number of tools that can help with this, including \href{https://www.doxygen.nl/manual/}{\texttt{ doxygen}}. In addition, you can manually determine a good approximation to the dependency graph using the {\ttfamily .h} files. If a module includes the {\ttfamily .h} file of another module, it likely depends on it.
+\item Select the leaves of the graph -\/ those modules which other modules depend upon, but which do not depend on other modules themselves. Typically, these include the basic data-\/structures and algorithms used by the rest of the codebase. Which one of these you choose is a matter of style\+: you can use the \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__c_o_d_i_n_g__f_o_r__v_e_r_i_f_i_c_a_t_i_o_n}{guidelines for coding for verification}} to help select modules which are likely to be good verification targets.
+\item Inside a given module, select the best initial verification target. This is often, but not always, one of the simpler functions. In particular, you are looking for a function which is both easy to verify, and will give good insight into the data-\/structure invariants of the data-\/structures used in the given module. The more a function conforms to our \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__c_o_d_i_n_g__f_o_r__v_e_r_i_f_i_c_a_t_i_o_n}{guidelines for coding for verification}}, the easiest it will be to verify. In our experience, it often makes sense to start with allocation or initialization functions (which often have named that end in {\ttfamily \+\_\+alloc()} or {\ttfamily \+\_\+init()}.
+\item The first proof for a given module is typically the hardest. It typically requires the creation of an {\ttfamily \+\_\+is\+\_\+valid()} function and an {\ttfamily \+\_\+ensure\+\_\+is\+\_\+allocated()} function. However, once these have been written once, the remainder of the module becomes much easier. The amount of time needed to complete a proof can vary significantly, from hours for a simple proof to days for a complex one. If the function has few dependencies, and conforms to the guidelines for coding for verification, we would expect an initial proof to take perhaps a day\textquotesingle{}s work.\mbox{[}TODO I made up this number. We need data\mbox{]} If it is taking longer than this, try a different entry-\/point.
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_l_a_n_n_i_n_g_autotoc_md160}{}\doxysection{How to get a sense of the work CBMC will involve}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_l_a_n_n_i_n_g_autotoc_md160}
+We recommend selecting a few (2-\/3) modules from the leaves of the dependency graph, and then doing 2-\/3 proofs from each module. This will give you a sense of
+
+
+\begin{DoxyEnumerate}
+\item How much work the first proof in a new module is
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item How much work subsequent proofs in that module is, once the {\ttfamily \+\_\+is\+\_\+valid()} and {\ttfamily \+\_\+ensure\+\_\+is\+\_\+allocated()} functions are written.
+\end{DoxyEnumerate}
+
+Predicting precisely how hard a piece of code will be to verify can be difficult. In general, however, the more code conforms to our \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__c_o_d_i_n_g__f_o_r__v_e_r_i_f_i_c_a_t_i_o_n}{guidelines for coding for verification}}, the easier it will be to verify. We recommend trying modules of different verification complexity to get a sense of overall expected effort.
+
+Particular features to look for are\+:
+
+
+\begin{DoxyEnumerate}
+\item Does the code have loops?
+\begin{DoxyEnumerate}
+\item If so, are those loops nested? Since CBMC unrolls loops before verifying them, nested loops can lead to a quadratic (or worse) increase in the amount of work CBMC will need to perform.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Are they over fixed sizes, or do they vary with the size of inputs? If loops are of fixed size, it may be hard to simplify the problem if CBMC is having performance issues as the proof is being developed. On the other hand, once the proof is complete, functions with fixed-\/sized loops may have higher assurance proofs, since data-\/structures do not need to be bounded for performance reasons.
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Does the code use inductive data-\/structures (e.\+g. linked lists, trees)? Inductive data-\/structures are much harder to model and verify than linear structures such as arrays.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Does the code have function pointers? Function pointers are hard to model. They can also cause performance problems for CBMC.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Does the code have an simple and obvious specification? One of the main challenges in verification is writing the specification. The simpler the specification of the code being verified, the easier it is to verify. Similarly, the better the documentation, the easier it is. 
+\end{DoxyEnumerate}

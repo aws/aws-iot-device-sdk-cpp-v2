@@ -1,0 +1,149 @@
+\hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream}{}\doxysection{Aws\+::Crt\+::Http\+::Http\+Stream Class Reference}
+\label{class_aws_1_1_crt_1_1_http_1_1_http_stream}\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+
+
+{\ttfamily \#include $<$Http\+Connection.\+h$>$}
+
+Inheritance diagram for Aws\+::Crt\+::Http\+::Http\+Stream\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_aws_1_1_crt_1_1_http_1_1_http_stream}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_ab36c99afd2980ab123123016550dc8f2}{$\sim$\+Http\+Stream}} ()
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_a08fe714047c2b89382f6ed4a99cbfb69}{Http\+Stream}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_a731d454b2bd3fcc030a9ab81faefe462}{Http\+Stream}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \&\&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_abe3fb9cb0d878e46caff31c3069b5654}{operator=}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_ae0fe1bed35f0d5009c91a22cdae7f3d4}{operator=}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \&\&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{Http\+Client\+Connection}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_a244bdc5b01cb2a5c636ed6586fc1f58b}{Get\+Connection}} () const noexcept
+\item 
+virtual int \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_a77bf0d1d99890125f7b2e9749030391c}{Get\+Response\+Status\+Code}} () const noexcept=0
+\item 
+void \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_ad27cd3913c91ba66ebdd166ac9bc1f2e}{Update\+Window}} (std\+::size\+\_\+t increment\+Size) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_ab05c6def1a28d56238a55b888fbac4ae}{Http\+Stream}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{Http\+Client\+Connection}} $>$ \&connection) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_a075fa80e5ceae5a3ad370a9f70bf9f62}{m\+\_\+stream}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{Http\+Client\+Connection}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_ad2bb86a505fec35eb357bc66c0009262}{m\+\_\+connection}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_a11a38cfaaeb753536df9e6ccb846d5d1}{Http\+Client\+Connection}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a single http message exchange (request/response) or in H2, it can also represent a PUSH\+\_\+\+PROMISE followed by the accompanying Response. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_ab36c99afd2980ab123123016550dc8f2}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_ab36c99afd2980ab123123016550dc8f2}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!````~HttpStream@{$\sim$HttpStream}}
+\index{````~HttpStream@{$\sim$HttpStream}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{$\sim$HttpStream()}{~HttpStream()}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::$\sim$\+Http\+Stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_a08fe714047c2b89382f6ed4a99cbfb69}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_a08fe714047c2b89382f6ed4a99cbfb69}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!HttpStream@{HttpStream}}
+\index{HttpStream@{HttpStream}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{HttpStream()}{HttpStream()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::\+Http\+Stream (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_a731d454b2bd3fcc030a9ab81faefe462}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_a731d454b2bd3fcc030a9ab81faefe462}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!HttpStream@{HttpStream}}
+\index{HttpStream@{HttpStream}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{HttpStream()}{HttpStream()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::\+Http\+Stream (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_ab05c6def1a28d56238a55b888fbac4ae}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_ab05c6def1a28d56238a55b888fbac4ae}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!HttpStream@{HttpStream}}
+\index{HttpStream@{HttpStream}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{HttpStream()}{HttpStream()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::\+Http\+Stream (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{Http\+Client\+Connection}} $>$ \&}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_a244bdc5b01cb2a5c636ed6586fc1f58b}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_a244bdc5b01cb2a5c636ed6586fc1f58b}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!GetConnection@{GetConnection}}
+\index{GetConnection@{GetConnection}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{GetConnection()}{GetConnection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{Http\+Client\+Connection}} \& Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::\+Get\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Get the underlying connection for the stream. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_a77bf0d1d99890125f7b2e9749030391c}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_a77bf0d1d99890125f7b2e9749030391c}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!GetResponseStatusCode@{GetResponseStatusCode}}
+\index{GetResponseStatusCode@{GetResponseStatusCode}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{GetResponseStatusCode()}{GetResponseStatusCode()}}
+{\footnotesize\ttfamily virtual int Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::\+Get\+Response\+Status\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_stream_a4b00b71c6d210c4fb53d9ad057b51ca8}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Stream}}.
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_abe3fb9cb0d878e46caff31c3069b5654}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_abe3fb9cb0d878e46caff31c3069b5654}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}}\& Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_ae0fe1bed35f0d5009c91a22cdae7f3d4}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_ae0fe1bed35f0d5009c91a22cdae7f3d4}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}}\& Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Http\+Stream}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_ad27cd3913c91ba66ebdd166ac9bc1f2e}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_ad27cd3913c91ba66ebdd166ac9bc1f2e}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!UpdateWindow@{UpdateWindow}}
+\index{UpdateWindow@{UpdateWindow}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{UpdateWindow()}{UpdateWindow()}}
+{\footnotesize\ttfamily void Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::\+Update\+Window (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{increment\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Updates the read window on the connection. In \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http}{Http}} 1.\+1 this relieves TCP back pressure, in H2 this will trigger two WINDOW\+\_\+\+UPDATE frames, one for the connection and one for the stream.
+
+You do not need to call this unless you utilized the {\ttfamily out\+Window\+Update\+Size} in {\ttfamily On\+Incoming\+Body}. See {\ttfamily On\+Incoming\+Body} for more information.
+
+{\ttfamily increment\+Size} is the amount to update the read window by. 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_a11a38cfaaeb753536df9e6ccb846d5d1}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_a11a38cfaaeb753536df9e6ccb846d5d1}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!HttpClientConnection@{HttpClientConnection}}
+\index{HttpClientConnection@{HttpClientConnection}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{HttpClientConnection}{HttpClientConnection}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{Http\+Client\+Connection}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_ad2bb86a505fec35eb357bc66c0009262}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_ad2bb86a505fec35eb357bc66c0009262}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!m\_connection@{m\_connection}}
+\index{m\_connection@{m\_connection}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{m\_connection}{m\_connection}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{Http\+Client\+Connection}}$>$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::m\+\_\+connection\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_stream_a075fa80e5ceae5a3ad370a9f70bf9f62}\label{class_aws_1_1_crt_1_1_http_1_1_http_stream_a075fa80e5ceae5a3ad370a9f70bf9f62}} 
+\index{Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}!m\_stream@{m\_stream}}
+\index{m\_stream@{m\_stream}!Aws::Crt::Http::HttpStream@{Aws::Crt::Http::HttpStream}}
+\doxysubsubsection{\texorpdfstring{m\_stream}{m\_stream}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream\+::m\+\_\+stream\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/include/aws/crt/http/\mbox{\hyperlink{_http_connection_8h}{Http\+Connection.\+h}}\item 
+crt/aws-\/crt-\/cpp/source/http/\mbox{\hyperlink{_http_connection_8cpp}{Http\+Connection.\+cpp}}\end{DoxyCompactItemize}

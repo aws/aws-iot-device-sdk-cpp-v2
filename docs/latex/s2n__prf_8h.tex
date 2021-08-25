@@ -1,0 +1,93 @@
+\hypertarget{s2n__prf_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+prf.h File Reference}
+\label{s2n__prf_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_prf.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_prf.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hmac.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+openssl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structp__hash__state}{p\+\_\+hash\+\_\+state}}
+\item 
+struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}}
+\item 
+struct \mbox{\hyperlink{structs2n__p__hash__hmac}{s2n\+\_\+p\+\_\+hash\+\_\+hmac}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__prf_8h_af7acec73bf7560b3ba6a6e8097ae986a}{S2\+N\+\_\+\+MAX\+\_\+\+KEY\+\_\+\+BLOCK\+\_\+\+LEN}}~160
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__prf_8h_a17bd54c706160d1c5fdd67b32b9a9344}{s2n\+\_\+prf\+\_\+new}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__prf_8h_af2288749810fb34819cb25fed45ea328}{s2n\+\_\+prf\+\_\+free}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__prf_8h_a4014572c10b4fd05b559b71d860595e3}{s2n\+\_\+tls\+\_\+prf\+\_\+master\+\_\+secret}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$premaster\+\_\+secret)
+\item 
+int \mbox{\hyperlink{s2n__prf_8h_af3fdd7f81f19fbe15d1fbc68673bbea6}{s2n\+\_\+hybrid\+\_\+prf\+\_\+master\+\_\+secret}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$premaster\+\_\+secret)
+\item 
+int \mbox{\hyperlink{s2n__prf_8h_a1425bb608ed69a0cc582af0a57955e1f}{s2n\+\_\+prf\+\_\+key\+\_\+expansion}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__prf_8h_a4d977ca107f8b2ac76823eb6281ca69b}{s2n\+\_\+prf\+\_\+server\+\_\+finished}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__prf_8h_a809931120983e64ed6602dbac2b9b1fc}{s2n\+\_\+prf\+\_\+client\+\_\+finished}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__prf_8h_af7acec73bf7560b3ba6a6e8097ae986a}\label{s2n__prf_8h_af7acec73bf7560b3ba6a6e8097ae986a}} 
+\index{s2n\_prf.h@{s2n\_prf.h}!S2N\_MAX\_KEY\_BLOCK\_LEN@{S2N\_MAX\_KEY\_BLOCK\_LEN}}
+\index{S2N\_MAX\_KEY\_BLOCK\_LEN@{S2N\_MAX\_KEY\_BLOCK\_LEN}!s2n\_prf.h@{s2n\_prf.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_MAX\_KEY\_BLOCK\_LEN}{S2N\_MAX\_KEY\_BLOCK\_LEN}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+MAX\+\_\+\+KEY\+\_\+\+BLOCK\+\_\+\+LEN~160}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__prf_8h_af3fdd7f81f19fbe15d1fbc68673bbea6}\label{s2n__prf_8h_af3fdd7f81f19fbe15d1fbc68673bbea6}} 
+\index{s2n\_prf.h@{s2n\_prf.h}!s2n\_hybrid\_prf\_master\_secret@{s2n\_hybrid\_prf\_master\_secret}}
+\index{s2n\_hybrid\_prf\_master\_secret@{s2n\_hybrid\_prf\_master\_secret}!s2n\_prf.h@{s2n\_prf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hybrid\_prf\_master\_secret()}{s2n\_hybrid\_prf\_master\_secret()}}
+{\footnotesize\ttfamily int s2n\+\_\+hybrid\+\_\+prf\+\_\+master\+\_\+secret (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{premaster\+\_\+secret }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8h_a809931120983e64ed6602dbac2b9b1fc}\label{s2n__prf_8h_a809931120983e64ed6602dbac2b9b1fc}} 
+\index{s2n\_prf.h@{s2n\_prf.h}!s2n\_prf\_client\_finished@{s2n\_prf\_client\_finished}}
+\index{s2n\_prf\_client\_finished@{s2n\_prf\_client\_finished}!s2n\_prf.h@{s2n\_prf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_client\_finished()}{s2n\_prf\_client\_finished()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+client\+\_\+finished (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8h_af2288749810fb34819cb25fed45ea328}\label{s2n__prf_8h_af2288749810fb34819cb25fed45ea328}} 
+\index{s2n\_prf.h@{s2n\_prf.h}!s2n\_prf\_free@{s2n\_prf\_free}}
+\index{s2n\_prf\_free@{s2n\_prf\_free}!s2n\_prf.h@{s2n\_prf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_free()}{s2n\_prf\_free()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8h_a1425bb608ed69a0cc582af0a57955e1f}\label{s2n__prf_8h_a1425bb608ed69a0cc582af0a57955e1f}} 
+\index{s2n\_prf.h@{s2n\_prf.h}!s2n\_prf\_key\_expansion@{s2n\_prf\_key\_expansion}}
+\index{s2n\_prf\_key\_expansion@{s2n\_prf\_key\_expansion}!s2n\_prf.h@{s2n\_prf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_key\_expansion()}{s2n\_prf\_key\_expansion()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+key\+\_\+expansion (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8h_a17bd54c706160d1c5fdd67b32b9a9344}\label{s2n__prf_8h_a17bd54c706160d1c5fdd67b32b9a9344}} 
+\index{s2n\_prf.h@{s2n\_prf.h}!s2n\_prf\_new@{s2n\_prf\_new}}
+\index{s2n\_prf\_new@{s2n\_prf\_new}!s2n\_prf.h@{s2n\_prf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_new()}{s2n\_prf\_new()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8h_a4d977ca107f8b2ac76823eb6281ca69b}\label{s2n__prf_8h_a4d977ca107f8b2ac76823eb6281ca69b}} 
+\index{s2n\_prf.h@{s2n\_prf.h}!s2n\_prf\_server\_finished@{s2n\_prf\_server\_finished}}
+\index{s2n\_prf\_server\_finished@{s2n\_prf\_server\_finished}!s2n\_prf.h@{s2n\_prf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_server\_finished()}{s2n\_prf\_server\_finished()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+server\+\_\+finished (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8h_a4014572c10b4fd05b559b71d860595e3}\label{s2n__prf_8h_a4014572c10b4fd05b559b71d860595e3}} 
+\index{s2n\_prf.h@{s2n\_prf.h}!s2n\_tls\_prf\_master\_secret@{s2n\_tls\_prf\_master\_secret}}
+\index{s2n\_tls\_prf\_master\_secret@{s2n\_tls\_prf\_master\_secret}!s2n\_prf.h@{s2n\_prf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls\_prf\_master\_secret()}{s2n\_tls\_prf\_master\_secret()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls\+\_\+prf\+\_\+master\+\_\+secret (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{premaster\+\_\+secret }\end{DoxyParamCaption})}
+

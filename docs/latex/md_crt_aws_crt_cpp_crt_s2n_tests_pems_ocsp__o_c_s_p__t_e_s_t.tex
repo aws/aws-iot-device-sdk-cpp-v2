@@ -1,0 +1,67 @@
+The files in this directory represent a cert hierarchy to test OCSP response stapling.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md559}{}\doxysection{CA}\label{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md559}
+
+\begin{DoxyItemize}
+\item ca\+\_\+cert.\+pem
+\item ca\+\_\+key.\+pem
+\end{DoxyItemize}
+
+Issuer for all of the other certs in the directory. Since this is a test PKI, we do an intermediate for issuing leaf cert(s).\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md560}{}\doxysection{OCSP}\label{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md560}
+
+\begin{DoxyItemize}
+\item ocsp\+\_\+cert.\+pem
+\item ocsp\+\_\+key.\+pem
+\end{DoxyItemize}
+
+Cert/key for the test OCSP responder. OCSP responses will be signed by the key. The CN for this cert matches the URI in the Server Cert\textquotesingle{}s \char`\"{}\+Authority Information Access\char`\"{} x509 extension.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md561}{}\doxysection{Server Cert}\label{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md561}
+
+\begin{DoxyItemize}
+\item server\+\_\+cert.\+pem
+\item server\+\_\+key.\+pem
+\end{DoxyItemize}
+
+The leaf cert/key. OCSP responses will be generated for this cert.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md562}{}\doxysection{OCSP response}\label{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md562}
+
+\begin{DoxyItemize}
+\item ocsp\+\_\+response.\+der
+\end{DoxyItemize}
+
+DER formatted OCSP response for the Server Cert. This file will be configured in s2n for stapling.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md563}{}\doxysection{Generating a new OCSP response for the leaf cert}\label{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md563}
+Should not be necessary. The current response expires in 100 years.
+
+From the current directory\+:\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md564}{}\doxysubsection{Run the server}\label{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md564}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# With nextUpdate}
+\DoxyCodeLine{openssl ocsp -\/port 8889 -\/text -\/CA ca\_cert.pem \(\backslash\)                                                                                                                                                             ocsp\_test ✭ ✱ ◼}
+\DoxyCodeLine{      -\/index certs.txt \(\backslash\)}
+\DoxyCodeLine{      -\/rkey ocsp\_key.pem \(\backslash\)}
+\DoxyCodeLine{      -\/rsigner ocsp\_cert.pem \(\backslash\)}
+\DoxyCodeLine{      -\/nrequest 1 \(\backslash\)}
+\DoxyCodeLine{      -\/ndays \$(( 365 * 100 ))}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Without nextUpdate}
+\DoxyCodeLine{openssl ocsp -\/port 8890 -\/text -\/CA ca\_cert.pem \(\backslash\)                                                                                                                                                             ocsp\_test ✭ ✱ ◼}
+\DoxyCodeLine{      -\/index certs.txt \(\backslash\)}
+\DoxyCodeLine{      -\/rkey ocsp\_key.pem \(\backslash\)}
+\DoxyCodeLine{      -\/rsigner ocsp\_cert.pem \(\backslash\)}
+\DoxyCodeLine{      -\/nrequest 1}
+
+\end{DoxyCode}
+\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md565}{}\doxysubsection{Run the client and save the result to file}\label{md_crt_aws_crt_cpp_crt_s2n_tests_pems_ocsp__o_c_s_p__t_e_s_t_autotoc_md565}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\# With nextUpdate}
+\DoxyCodeLine{openssl ocsp -\/CAfile ca\_cert.pem \(\backslash\)                                                                                                                                                                          ocsp\_test ✭ ✱ ◼}
+\DoxyCodeLine{      -\/url http://127.0.0.1:8889 \(\backslash\)}
+\DoxyCodeLine{      -\/issuer ca\_cert.pem \(\backslash\)}
+\DoxyCodeLine{      -\/verify\_other ocsp\_cert.pem \(\backslash\)}
+\DoxyCodeLine{      -\/cert server\_cert.pem -\/respout ocsp\_response.der}
+\DoxyCodeLine{\# Without nextUpdate}
+\DoxyCodeLine{openssl ocsp -\/CAfile ca\_cert.pem \(\backslash\)                                                                                                                                                                          ocsp\_test ✭ ✱ ◼}
+\DoxyCodeLine{      -\/url http://127.0.0.1:8890 \(\backslash\)}
+\DoxyCodeLine{      -\/issuer ca\_cert.pem \(\backslash\)}
+\DoxyCodeLine{      -\/verify\_other ocsp\_cert.pem \(\backslash\)}
+\DoxyCodeLine{      -\/cert server\_cert.pem -\/respout ocsp\_response\_no\_next\_update.der}
+
+\end{DoxyCode}
+ 

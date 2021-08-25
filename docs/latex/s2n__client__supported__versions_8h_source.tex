@@ -1,0 +1,32 @@
+\hypertarget{s2n__client__supported__versions_8h_source}{}\doxysection{s2n\+\_\+client\+\_\+supported\+\_\+versions.\+h}
+\label{s2n__client__supported__versions_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_supported\_versions.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_supported\_versions.h}}
+\mbox{\hyperlink{s2n__client__supported__versions_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__connection_8h}{tls/s2n\_connection.h}}"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__stuffer_8h}{stuffer/s2n\_stuffer.h}}"{}}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{extern} \textcolor{keyword}{const} \mbox{\hyperlink{structs2n__extension__type}{s2n\_extension\_type}} \mbox{\hyperlink{s2n__client__supported__versions_8h_a36c7478cf834fbd1929c8b342c9b1eb3}{s2n\_client\_supported\_versions\_extension}};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{comment}{/* Old-\/style extension functions -\/-\/ remove after extensions refactor is complete */}}
+\DoxyCodeLine{24 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__client__supported__versions_8h_a8620945cd71d1fe5524fd5516b2f016c}{s2n\_extensions\_client\_supported\_versions\_recv}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *extension);}
+\DoxyCodeLine{25 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__client__supported__versions_8h_a919b7bd9d2377bcf111f77d8c1a82c32}{s2n\_extensions\_client\_supported\_versions\_size}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{26 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__client__supported__versions_8h_afa7b83e11dd7d9c8b499337747604380}{s2n\_extensions\_client\_supported\_versions\_send}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *out);}
+
+\end{DoxyCode}

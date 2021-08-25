@@ -1,0 +1,97 @@
+\hypertarget{s2n__client__supported__versions_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+client\+\_\+supported\+\_\+versions.c File Reference}
+\label{s2n__client__supported__versions_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_supported\_versions.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_client\_supported\_versions.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+client\+\_\+supported\+\_\+versions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+supported\+\_\+versions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+alerts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+preferences.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+parameters.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__client__supported__versions_8c_a2c24ccc9aa6bf47759466460a35040e1}{s2n\+\_\+client\+\_\+supported\+\_\+versions\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+static int \mbox{\hyperlink{s2n__client__supported__versions_8c_ab3e2fa61a19d547f2c2ec2dfaf591eb9}{s2n\+\_\+client\+\_\+supported\+\_\+versions\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in)
+\item 
+static int \mbox{\hyperlink{s2n__client__supported__versions_8c_a3c8d4d37e5fe3ae20838b7a2240fc278}{s2n\+\_\+extensions\+\_\+client\+\_\+supported\+\_\+versions\+\_\+process}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\item 
+int \mbox{\hyperlink{s2n__client__supported__versions_8c_a919b7bd9d2377bcf111f77d8c1a82c32}{s2n\+\_\+extensions\+\_\+client\+\_\+supported\+\_\+versions\+\_\+size}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__client__supported__versions_8c_a8620945cd71d1fe5524fd5516b2f016c}{s2n\+\_\+extensions\+\_\+client\+\_\+supported\+\_\+versions\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\item 
+int \mbox{\hyperlink{s2n__client__supported__versions_8c_afa7b83e11dd7d9c8b499337747604380}{s2n\+\_\+extensions\+\_\+client\+\_\+supported\+\_\+versions\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__client__supported__versions_8c_a36c7478cf834fbd1929c8b342c9b1eb3}{s2n\+\_\+client\+\_\+supported\+\_\+versions\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__supported__versions_8c_ab3e2fa61a19d547f2c2ec2dfaf591eb9}\label{s2n__client__supported__versions_8c_ab3e2fa61a19d547f2c2ec2dfaf591eb9}} 
+\index{s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}!s2n\_client\_supported\_versions\_recv@{s2n\_client\_supported\_versions\_recv}}
+\index{s2n\_client\_supported\_versions\_recv@{s2n\_client\_supported\_versions\_recv}!s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_supported\_versions\_recv()}{s2n\_client\_supported\_versions\_recv()}}
+{\footnotesize\ttfamily static int s2n\+\_\+client\+\_\+supported\+\_\+versions\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__supported__versions_8c_a2c24ccc9aa6bf47759466460a35040e1}\label{s2n__client__supported__versions_8c_a2c24ccc9aa6bf47759466460a35040e1}} 
+\index{s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}!s2n\_client\_supported\_versions\_send@{s2n\_client\_supported\_versions\_send}}
+\index{s2n\_client\_supported\_versions\_send@{s2n\_client\_supported\_versions\_send}!s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_supported\_versions\_send()}{s2n\_client\_supported\_versions\_send()}}
+{\footnotesize\ttfamily static int s2n\+\_\+client\+\_\+supported\+\_\+versions\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Specified in \href{https://tools.ietf.org/html/rfc8446\#section-4.2.1}{\texttt{ https\+://tools.\+ietf.\+org/html/rfc8446\#section-\/4.\+2.\+1}}
+
+\char`\"{}\+The \char`\"{}supported\+\_\+versions\char`\"{} extension is used by the client to indicate which versions of TLS it supports and by the server to indicate which version it is using. The extension contains a list of supported versions in preference order, with the most preferred version first.\char`\"{}
+
+Structure\+: Extension type (2 bytes) Extension size (2 bytes) Version list length (1 byte) Version list (number of versions $\ast$ 2 bytes)
+
+Note\+: We assume in these functions that the supported version numbers are consecutive. This is true because S2N does not support SSLv2, and is already an assumption made in the old client hello version handling. \mbox{\Hypertarget{s2n__client__supported__versions_8c_a3c8d4d37e5fe3ae20838b7a2240fc278}\label{s2n__client__supported__versions_8c_a3c8d4d37e5fe3ae20838b7a2240fc278}} 
+\index{s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}!s2n\_extensions\_client\_supported\_versions\_process@{s2n\_extensions\_client\_supported\_versions\_process}}
+\index{s2n\_extensions\_client\_supported\_versions\_process@{s2n\_extensions\_client\_supported\_versions\_process}!s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_client\_supported\_versions\_process()}{s2n\_extensions\_client\_supported\_versions\_process()}}
+{\footnotesize\ttfamily static int s2n\+\_\+extensions\+\_\+client\+\_\+supported\+\_\+versions\+\_\+process (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__supported__versions_8c_a8620945cd71d1fe5524fd5516b2f016c}\label{s2n__client__supported__versions_8c_a8620945cd71d1fe5524fd5516b2f016c}} 
+\index{s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}!s2n\_extensions\_client\_supported\_versions\_recv@{s2n\_extensions\_client\_supported\_versions\_recv}}
+\index{s2n\_extensions\_client\_supported\_versions\_recv@{s2n\_extensions\_client\_supported\_versions\_recv}!s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_client\_supported\_versions\_recv()}{s2n\_extensions\_client\_supported\_versions\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+client\+\_\+supported\+\_\+versions\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__supported__versions_8c_afa7b83e11dd7d9c8b499337747604380}\label{s2n__client__supported__versions_8c_afa7b83e11dd7d9c8b499337747604380}} 
+\index{s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}!s2n\_extensions\_client\_supported\_versions\_send@{s2n\_extensions\_client\_supported\_versions\_send}}
+\index{s2n\_extensions\_client\_supported\_versions\_send@{s2n\_extensions\_client\_supported\_versions\_send}!s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_client\_supported\_versions\_send()}{s2n\_extensions\_client\_supported\_versions\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+client\+\_\+supported\+\_\+versions\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__supported__versions_8c_a919b7bd9d2377bcf111f77d8c1a82c32}\label{s2n__client__supported__versions_8c_a919b7bd9d2377bcf111f77d8c1a82c32}} 
+\index{s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}!s2n\_extensions\_client\_supported\_versions\_size@{s2n\_extensions\_client\_supported\_versions\_size}}
+\index{s2n\_extensions\_client\_supported\_versions\_size@{s2n\_extensions\_client\_supported\_versions\_size}!s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_client\_supported\_versions\_size()}{s2n\_extensions\_client\_supported\_versions\_size()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+client\+\_\+supported\+\_\+versions\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__client__supported__versions_8c_a36c7478cf834fbd1929c8b342c9b1eb3}\label{s2n__client__supported__versions_8c_a36c7478cf834fbd1929c8b342c9b1eb3}} 
+\index{s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}!s2n\_client\_supported\_versions\_extension@{s2n\_client\_supported\_versions\_extension}}
+\index{s2n\_client\_supported\_versions\_extension@{s2n\_client\_supported\_versions\_extension}!s2n\_client\_supported\_versions.c@{s2n\_client\_supported\_versions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_supported\_versions\_extension}{s2n\_client\_supported\_versions\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+client\+\_\+supported\+\_\+versions\+\_\+extension}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .iana\_value = \mbox{\hyperlink{s2n__tls__parameters_8h_a9f4caf58afa362bc813c4b74e3acbaa3}{TLS\_EXTENSION\_SUPPORTED\_VERSIONS}},}
+\DoxyCodeLine{    .is\_response = \textcolor{keyword}{false},}
+\DoxyCodeLine{    .send = \mbox{\hyperlink{s2n__client__supported__versions_8c_a2c24ccc9aa6bf47759466460a35040e1}{s2n\_client\_supported\_versions\_send}},}
+\DoxyCodeLine{    .recv = \mbox{\hyperlink{s2n__client__supported__versions_8c_ab3e2fa61a19d547f2c2ec2dfaf591eb9}{s2n\_client\_supported\_versions\_recv}},}
+\DoxyCodeLine{    .should\_send = \mbox{\hyperlink{s2n__extension__type_8c_aabd95606ea44116bc4a067af049ecbaf}{s2n\_extension\_send\_if\_tls13\_connection}},}
+\DoxyCodeLine{    .if\_missing = \mbox{\hyperlink{s2n__extension__type_8c_a732ba945ae582c3a38a17901c599298a}{s2n\_extension\_noop\_if\_missing}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

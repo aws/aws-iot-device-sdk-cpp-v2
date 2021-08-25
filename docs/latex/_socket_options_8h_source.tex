@@ -1,0 +1,69 @@
+\hypertarget{_socket_options_8h_source}{}\doxysection{Socket\+Options.\+h}
+\label{_socket_options_8h_source}\index{crt/aws-\/crt-\/cpp/include/aws/crt/io/SocketOptions.h@{crt/aws-\/crt-\/cpp/include/aws/crt/io/SocketOptions.h}}
+\mbox{\hyperlink{_socket_options_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h}{aws/crt/Exports.h}}>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{socket_8h}{aws/io/socket.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
+\DoxyCodeLine{12 \{}
+\DoxyCodeLine{13     \textcolor{keyword}{namespace }Crt}
+\DoxyCodeLine{14     \{}
+\DoxyCodeLine{15         \textcolor{keyword}{namespace }Io}
+\DoxyCodeLine{16         \{}
+\DoxyCodeLine{17             \textcolor{keyword}{enum class} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_ae5f9aa2fd04a14dfa0cd50a8b56e6b8e}{SocketType}}}
+\DoxyCodeLine{18             \{}
+\DoxyCodeLine{24                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_ae5f9aa2fd04a14dfa0cd50a8b56e6b8eaeae835e83c0494a376229f254f7d3392}{Stream}} = \mbox{\hyperlink{socket_8h_ae5fbe6e25ef1b13b8eeda1400fffebf9a04771bfc266645d1dcc011f9cf84b006}{AWS\_SOCKET\_STREAM}},}
+\DoxyCodeLine{30                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_ae5f9aa2fd04a14dfa0cd50a8b56e6b8eac3177658ef36637801bea6fd4f1a1e92}{Dgram}} = \mbox{\hyperlink{socket_8h_ae5fbe6e25ef1b13b8eeda1400fffebf9ac7adaa420c8ae5be46ea7e46f9a2ea89}{AWS\_SOCKET\_DGRAM}},}
+\DoxyCodeLine{31             \};}
+\DoxyCodeLine{32             \textcolor{keyword}{enum class} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a12c31e83beb297296621c8a361b58f8e}{SocketDomain}}}
+\DoxyCodeLine{33             \{}
+\DoxyCodeLine{34                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a12c31e83beb297296621c8a361b58f8ea42a9137a05a60eb752dcdf982e717626}{IPv4}} = \mbox{\hyperlink{socket_8h_a762bf5ee3d69214af59f9eeb56e8ffdda910527180f6a1d33ef06f83723da08d6}{AWS\_SOCKET\_IPV4}},}
+\DoxyCodeLine{35                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a12c31e83beb297296621c8a361b58f8eafdb7cb8f657426e7c409bfd6d1a36ce4}{IPv6}} = \mbox{\hyperlink{socket_8h_a762bf5ee3d69214af59f9eeb56e8ffdda3ea052eba3e9fe34dfebb1aba2388cea}{AWS\_SOCKET\_IPV6}},}
+\DoxyCodeLine{39                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a12c31e83beb297296621c8a361b58f8ea509820290d57f333403f490dde7316f4}{Local}} = \mbox{\hyperlink{socket_8h_a762bf5ee3d69214af59f9eeb56e8ffdda3237dcce240f7ed36ad3cf4d92bf9889}{AWS\_SOCKET\_LOCAL}},}
+\DoxyCodeLine{40             \};}
+\DoxyCodeLine{44             \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{SocketOptions}}}
+\DoxyCodeLine{45             \{}
+\DoxyCodeLine{46               \textcolor{keyword}{public}:}
+\DoxyCodeLine{47                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{SocketOptions}}();}
+\DoxyCodeLine{48                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_a2c727acc2fb48714414f4a7a436193e7}{SocketOptions}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{SocketOptions}} \&rhs) = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{49                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_af1be2a66410a13a472bb256636499ea1}{SocketOptions}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{SocketOptions}} \&\&rhs) = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{SocketOptions}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_ab1d59b2d73797cbc3adaa7a5d3981788}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{SocketOptions}} \&rhs) = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{52                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{SocketOptions}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_a04a1afbbc253079ec1b12148eecaad03}{operator=}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{SocketOptions}} \&\&rhs) = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{57                 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_aa4539b3d8ae69a646d5e1c9de3a2f0f3}{SetSocketType}}(\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_ae5f9aa2fd04a14dfa0cd50a8b56e6b8e}{SocketType}} \mbox{\hyperlink{namespace_aws_a5256b1ff01fae77769fee34ff8ef45a7}{type}}) \{ options.type = (\textcolor{keyword}{enum} \mbox{\hyperlink{socket_8h_ae5fbe6e25ef1b13b8eeda1400fffebf9}{aws\_socket\_type}})\mbox{\hyperlink{namespace_aws_a5256b1ff01fae77769fee34ff8ef45a7}{type}}; \}}
+\DoxyCodeLine{58                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_ae5f9aa2fd04a14dfa0cd50a8b56e6b8e}{SocketType}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_ab3f15fd43d8239d4900a1a94a84030bf}{GetSocketType}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_ae5f9aa2fd04a14dfa0cd50a8b56e6b8e}{SocketType}})options.type; \}}
+\DoxyCodeLine{63                 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_aa43034341f19b6cc4c35e83c238fd543}{SetSocketDomain}}(\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a12c31e83beb297296621c8a361b58f8e}{SocketDomain}} domain) \{ options.domain = (\textcolor{keyword}{enum} \mbox{\hyperlink{socket_8h_a762bf5ee3d69214af59f9eeb56e8ffdd}{aws\_socket\_domain}})domain; \}}
+\DoxyCodeLine{64                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a12c31e83beb297296621c8a361b58f8e}{SocketDomain}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_abe860c9db9fec78f9ff21e75b9066e1d}{GetSocketDomain}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a12c31e83beb297296621c8a361b58f8e}{SocketDomain}})options.domain; \}}
+\DoxyCodeLine{69                 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_ab94fd569a92ef5cafb44f589023910e2}{SetConnectTimeoutMs}}(uint32\_t timeout) \{ options.connect\_timeout\_ms = timeout; \}}
+\DoxyCodeLine{70                 uint32\_t \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_a807294198f6870f158366c886e301085}{GetConnectTimeoutMs}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} options.connect\_timeout\_ms; \}}
+\DoxyCodeLine{76                 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_aafc7da8e670cb929594f20759bec8679}{SetKeepAliveIntervalSec}}(uint16\_t keepAliveInterval)}
+\DoxyCodeLine{77                 \{}
+\DoxyCodeLine{78                     options.keep\_alive\_interval\_sec = keepAliveInterval;}
+\DoxyCodeLine{79                 \}}
+\DoxyCodeLine{80                 uint16\_t \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_af26f6acc8828eec69c3d48caae523e96}{GetKeepAliveIntervalSec}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} options.keep\_alive\_interval\_sec; \}}
+\DoxyCodeLine{86                 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_aa821f8fe9b4ff242ca136e183270c4c6}{SetKeepAliveTimeoutSec}}(uint16\_t keepAliveTimeout)}
+\DoxyCodeLine{87                 \{}
+\DoxyCodeLine{88                     options.keep\_alive\_timeout\_sec = keepAliveTimeout;}
+\DoxyCodeLine{89                 \}}
+\DoxyCodeLine{90                 uint16\_t \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_aeaec6a6bba4da287db68119c03c13e44}{GetKeepAliveTimeoutSec}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} options.keep\_alive\_timeout\_sec; \}}
+\DoxyCodeLine{96                 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_a2c3d435cde37ba74acb5bff0f4d1764f}{SetKeepAliveMaxFailedProbes}}(uint16\_t maxProbes)}
+\DoxyCodeLine{97                 \{}
+\DoxyCodeLine{98                     options.keep\_alive\_max\_failed\_probes = maxProbes;}
+\DoxyCodeLine{99                 \}}
+\DoxyCodeLine{100                 uint16\_t \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_adab1d2b3b3b9368fe751d29770d8b688}{GetKeepAliveMaxFailedProbes}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} options.keep\_alive\_max\_failed\_probes; \}}
+\DoxyCodeLine{105                 \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_acd47d078f5f48fe3eefababd23d5c163}{SetKeepAlive}}(\textcolor{keywordtype}{bool} keepAlive) \{ options.keepalive = keepAlive; \}}
+\DoxyCodeLine{106                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options_affb94e37116c4a6ccd80ebe3f0950806}{GetKeepAlive}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} options.keepalive; \}}
+\DoxyCodeLine{108                 \mbox{\hyperlink{structaws__socket__options}{aws\_socket\_options}} \&GetImpl() \{ \textcolor{keywordflow}{return} options; \}}
+\DoxyCodeLine{110                 \textcolor{keyword}{const} \mbox{\hyperlink{structaws__socket__options}{aws\_socket\_options}} \&GetImpl()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} options; \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112               \textcolor{keyword}{private}:}
+\DoxyCodeLine{113                 \mbox{\hyperlink{structaws__socket__options}{aws\_socket\_options}} options;}
+\DoxyCodeLine{114             \};}
+\DoxyCodeLine{115         \} \textcolor{comment}{// namespace Io}}
+\DoxyCodeLine{116     \}     \textcolor{comment}{// namespace Crt}}
+\DoxyCodeLine{117 \} \textcolor{comment}{// namespace Aws}}
+
+\end{DoxyCode}

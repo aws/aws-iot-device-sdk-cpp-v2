@@ -1,0 +1,81 @@
+\hypertarget{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_source}{}\doxysection{uri.\+h}
+\label{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/uri.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/uri.h}}
+\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_IO\_URI\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_IO\_URI\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{io_8h}{aws/io/io.h}}>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{byte__buf_8h}{aws/common/byte\_buf.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{15 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__uri}{aws\_uri}} \{}
+\DoxyCodeLine{16     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__uri_a0678d5a1ae9b1d6802844b17696c72fb}{self\_size}};}
+\DoxyCodeLine{17     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__uri_a3081b16922ce4a160252ec26b10460c9}{allocator}};}
+\DoxyCodeLine{18     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structaws__uri_a8b08eaa9aaa48f21aacb82e2fd1e4a06}{uri\_str}};}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri_ae47823bd374de53e9daf5925c1d57438}{scheme}};}
+\DoxyCodeLine{20     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri_a4b2f18845d8add840e4a3703a06fa1eb}{authority}};}
+\DoxyCodeLine{21     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri_af036482af267cfdc4e0852d0925f3957}{host\_name}};}
+\DoxyCodeLine{22     uint16\_t \mbox{\hyperlink{structaws__uri_aca0d67e33dd5e13f33d0be4a914662a0}{port}};}
+\DoxyCodeLine{23     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri_adea1494109db0d9388187e4ff39a1274}{path}};}
+\DoxyCodeLine{24     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri_a72d18d8814576f7492986ee1f47b3767}{query\_string}};}
+\DoxyCodeLine{25     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri_aa2c7e64abd80838094bf5944f1a30925}{path\_and\_query}};}
+\DoxyCodeLine{26 \};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{32 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__uri__param}{aws\_uri\_param}} \{}
+\DoxyCodeLine{33     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri__param_a5891e04163de853aaa96c9c8d827af5c}{key}};}
+\DoxyCodeLine{34     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri__param_a1436eff794c390c1d0e3b2edf4001882}{value}};}
+\DoxyCodeLine{35 \};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{44 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__uri__builder__options}{aws\_uri\_builder\_options}} \{}
+\DoxyCodeLine{45     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri__builder__options_ac4496da59ef9684f8fa9d9eba238c7f4}{scheme}};}
+\DoxyCodeLine{46     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri__builder__options_a9c8a6ab51e5dd0c8f41635444598cfd5}{path}};}
+\DoxyCodeLine{47     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri__builder__options_a88a3b969f3f67afb8cf0c0acbe5a55ee}{host\_name}};}
+\DoxyCodeLine{48     uint16\_t \mbox{\hyperlink{structaws__uri__builder__options_a72e7b338f7b3a08f157a8590a67ca179}{port}};}
+\DoxyCodeLine{49     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *\mbox{\hyperlink{structaws__uri__builder__options_ad807b034b096e955cdcbcfe325f09c49}{query\_params}};}
+\DoxyCodeLine{50     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__uri__builder__options_a9e9d4eee7e491a6bb57c99666823d883}{query\_string}};}
+\DoxyCodeLine{51 \};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{59 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_abca8339afcf42d8da7697fadee87b427}{aws\_uri\_init\_parse}}(}
+\DoxyCodeLine{60     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri,}
+\DoxyCodeLine{61     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{62     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *uri\_str);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{68 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_ac043ea24b141906cb74aacd88860ffef}{aws\_uri\_init\_from\_builder\_options}}(}
+\DoxyCodeLine{69     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri,}
+\DoxyCodeLine{70     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{71     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri__builder__options}{aws\_uri\_builder\_options}} *options);}
+\DoxyCodeLine{72 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_a9165c49976c5198886a2746ae11ecae4}{aws\_uri\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{79 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_a72aa34b24e09295ea1fb1bb82048331f}{aws\_uri\_scheme}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri);}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{85 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_aaf566e398a7d570660f747d71a4388d7}{aws\_uri\_authority}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{90 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_adc12b92e869b46ff3e8840c70cbfadc9}{aws\_uri\_path}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{95 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_a4debf15d02b0db20c6bb4eed308444da}{aws\_uri\_query\_string}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{100 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_aaf5c542844de1bf1bb3976b4c4e9762b}{aws\_uri\_host\_name}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{106 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} uint16\_t \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_ab2cf45ac099ecd0b208d81a37dcdebbf}{aws\_uri\_port}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri);}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{111 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_a83103af93bcc5f09283e1e8a373f8af0}{aws\_uri\_path\_and\_query}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{126 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_ab982d5e61768eed9d79530935df41203}{aws\_uri\_query\_string\_next\_param}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri__param}{aws\_uri\_param}} *param);}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{133 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_a110f59bf9eadf8d0a3296a8c0103ee77}{aws\_uri\_query\_string\_params}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__uri}{aws\_uri}} *uri, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *out\_params);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{139 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_a6fd6986684877f39b1d2dd23bbaac69c}{aws\_byte\_buf\_append\_encoding\_uri\_path}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *cursor);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{145 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_a4698fb70a874a69698873b5799d54d01}{aws\_byte\_buf\_append\_encoding\_uri\_param}}(}
+\DoxyCodeLine{146     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}},}
+\DoxyCodeLine{147     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *cursor);}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{154 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h_a67f448576d9fe06f65639c5dd05ccc9e}{aws\_byte\_buf\_append\_decoding\_uri}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *cursor);}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_IO\_URI\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

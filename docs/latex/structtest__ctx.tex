@@ -1,0 +1,120 @@
+\hypertarget{structtest__ctx}{}\doxysection{test\+\_\+ctx Struct Reference}
+\label{structtest__ctx}\index{test\_ctx@{test\_ctx}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structtest__ctx_a9547865f37254f3aff4f1bcdb273387d}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}} $\ast$ \mbox{\hyperlink{structtest__ctx_a58bbeb2091b3776cbe8986dfcec3c19f}{event\+\_\+loop\+\_\+group}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{structtest__ctx_a8740bf64e47cf0062d065415deb5c1da}{host\+\_\+resolver}}
+\item 
+struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}} $\ast$ \mbox{\hyperlink{structtest__ctx_abc5a412bd2cfb41e7ec1019dba69e986}{tls\+\_\+ctx}}
+\item 
+struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structtest__ctx_adfd8aaac4611052c795407f9922a104d}{client\+\_\+bootstrap}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structtest__ctx_a164b0a7c83ce76399fadf800ef3438da}{client\+\_\+connection}}
+\item 
+struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ \mbox{\hyperlink{structtest__ctx_aa5fbdddf7ebf724038104cc1ece54fb2}{stream}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtest__ctx_a90713869ae730949228017140deeffce}{body\+\_\+size}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__ctx_a7ebe03af8eb34225a7f66beb3b78d8fd}{stream\+\_\+complete}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__ctx_a91aebfa12aa33eec4e43735aa5a88bfa}{client\+\_\+connection\+\_\+is\+\_\+shutdown}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structtest__ctx_afc5d05bb6389e117df1fa57e861fbd14}{wait\+\_\+lock}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structtest__ctx_ae946131203e3ef352946b07fab82c6fe}{wait\+\_\+cvar}}
+\item 
+int \mbox{\hyperlink{structtest__ctx_ae54e19faf7b65eac6cf4d1bed9323afb}{wait\+\_\+result}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structtest__ctx_a9547865f37254f3aff4f1bcdb273387d}\label{structtest__ctx_a9547865f37254f3aff4f1bcdb273387d}} 
+\index{test\_ctx@{test\_ctx}!alloc@{alloc}}
+\index{alloc@{alloc}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ test\+\_\+ctx\+::alloc}
+
+\mbox{\Hypertarget{structtest__ctx_a90713869ae730949228017140deeffce}\label{structtest__ctx_a90713869ae730949228017140deeffce}} 
+\index{test\_ctx@{test\_ctx}!body\_size@{body\_size}}
+\index{body\_size@{body\_size}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{body\_size}{body\_size}}
+{\footnotesize\ttfamily size\+\_\+t test\+\_\+ctx\+::body\+\_\+size}
+
+\mbox{\Hypertarget{structtest__ctx_adfd8aaac4611052c795407f9922a104d}\label{structtest__ctx_adfd8aaac4611052c795407f9922a104d}} 
+\index{test\_ctx@{test\_ctx}!client\_bootstrap@{client\_bootstrap}}
+\index{client\_bootstrap@{client\_bootstrap}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{client\_bootstrap}{client\_bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}}$\ast$ test\+\_\+ctx\+::client\+\_\+bootstrap}
+
+\mbox{\Hypertarget{structtest__ctx_a164b0a7c83ce76399fadf800ef3438da}\label{structtest__ctx_a164b0a7c83ce76399fadf800ef3438da}} 
+\index{test\_ctx@{test\_ctx}!client\_connection@{client\_connection}}
+\index{client\_connection@{client\_connection}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{client\_connection}{client\_connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ test\+\_\+ctx\+::client\+\_\+connection}
+
+\mbox{\Hypertarget{structtest__ctx_a91aebfa12aa33eec4e43735aa5a88bfa}\label{structtest__ctx_a91aebfa12aa33eec4e43735aa5a88bfa}} 
+\index{test\_ctx@{test\_ctx}!client\_connection\_is\_shutdown@{client\_connection\_is\_shutdown}}
+\index{client\_connection\_is\_shutdown@{client\_connection\_is\_shutdown}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{client\_connection\_is\_shutdown}{client\_connection\_is\_shutdown}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+ctx\+::client\+\_\+connection\+\_\+is\+\_\+shutdown}
+
+\mbox{\Hypertarget{structtest__ctx_a58bbeb2091b3776cbe8986dfcec3c19f}\label{structtest__ctx_a58bbeb2091b3776cbe8986dfcec3c19f}} 
+\index{test\_ctx@{test\_ctx}!event\_loop\_group@{event\_loop\_group}}
+\index{event\_loop\_group@{event\_loop\_group}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{event\_loop\_group}{event\_loop\_group}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}}$\ast$ test\+\_\+ctx\+::event\+\_\+loop\+\_\+group}
+
+\mbox{\Hypertarget{structtest__ctx_a8740bf64e47cf0062d065415deb5c1da}\label{structtest__ctx_a8740bf64e47cf0062d065415deb5c1da}} 
+\index{test\_ctx@{test\_ctx}!host\_resolver@{host\_resolver}}
+\index{host\_resolver@{host\_resolver}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{host\_resolver}{host\_resolver}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}}$\ast$ test\+\_\+ctx\+::host\+\_\+resolver}
+
+\mbox{\Hypertarget{structtest__ctx_aa5fbdddf7ebf724038104cc1ece54fb2}\label{structtest__ctx_aa5fbdddf7ebf724038104cc1ece54fb2}} 
+\index{test\_ctx@{test\_ctx}!stream@{stream}}
+\index{stream@{stream}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{stream}{stream}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$ test\+\_\+ctx\+::stream}
+
+\mbox{\Hypertarget{structtest__ctx_a7ebe03af8eb34225a7f66beb3b78d8fd}\label{structtest__ctx_a7ebe03af8eb34225a7f66beb3b78d8fd}} 
+\index{test\_ctx@{test\_ctx}!stream\_complete@{stream\_complete}}
+\index{stream\_complete@{stream\_complete}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{stream\_complete}{stream\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+ctx\+::stream\+\_\+complete}
+
+\mbox{\Hypertarget{structtest__ctx_abc5a412bd2cfb41e7ec1019dba69e986}\label{structtest__ctx_abc5a412bd2cfb41e7ec1019dba69e986}} 
+\index{test\_ctx@{test\_ctx}!tls\_ctx@{tls\_ctx}}
+\index{tls\_ctx@{tls\_ctx}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{tls\_ctx}{tls\_ctx}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}}$\ast$ test\+\_\+ctx\+::tls\+\_\+ctx}
+
+\mbox{\Hypertarget{structtest__ctx_ae946131203e3ef352946b07fab82c6fe}\label{structtest__ctx_ae946131203e3ef352946b07fab82c6fe}} 
+\index{test\_ctx@{test\_ctx}!wait\_cvar@{wait\_cvar}}
+\index{wait\_cvar@{wait\_cvar}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{wait\_cvar}{wait\_cvar}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} test\+\_\+ctx\+::wait\+\_\+cvar}
+
+\mbox{\Hypertarget{structtest__ctx_afc5d05bb6389e117df1fa57e861fbd14}\label{structtest__ctx_afc5d05bb6389e117df1fa57e861fbd14}} 
+\index{test\_ctx@{test\_ctx}!wait\_lock@{wait\_lock}}
+\index{wait\_lock@{wait\_lock}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{wait\_lock}{wait\_lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} test\+\_\+ctx\+::wait\+\_\+lock}
+
+\mbox{\Hypertarget{structtest__ctx_ae54e19faf7b65eac6cf4d1bed9323afb}\label{structtest__ctx_ae54e19faf7b65eac6cf4d1bed9323afb}} 
+\index{test\_ctx@{test\_ctx}!wait\_result@{wait\_result}}
+\index{wait\_result@{wait\_result}!test\_ctx@{test\_ctx}}
+\doxysubsubsection{\texorpdfstring{wait\_result}{wait\_result}}
+{\footnotesize\ttfamily int test\+\_\+ctx\+::wait\+\_\+result}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/\mbox{\hyperlink{test__tls_8c}{test\+\_\+tls.\+c}}\end{DoxyCompactItemize}

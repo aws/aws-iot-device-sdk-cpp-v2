@@ -1,0 +1,107 @@
+\hypertarget{bcrypt__hmac_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/source/windows/bcrypt\+\_\+hmac.c File Reference}
+\label{bcrypt__hmac_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/source/windows/bcrypt\_hmac.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/source/windows/bcrypt\_hmac.c}}
+{\ttfamily \#include $<$aws/cal/hmac.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include $<$bcrypt.\+h$>$}\newline
+{\ttfamily \#include $<$winerror.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbcrypt__hmac__handle}{bcrypt\+\_\+hmac\+\_\+handle}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{bcrypt__hmac_8c_a184786fa0b6ee372c62563acc0b4fc73}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__hmac}{aws\+\_\+hmac}} $\ast$hash)
+\item 
+static int \mbox{\hyperlink{bcrypt__hmac_8c_a6d7d039ee3a2f1ab107a4cd14a5b7259}{s\+\_\+update}} (struct \mbox{\hyperlink{structaws__hmac}{aws\+\_\+hmac}} $\ast$hash, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+hash)
+\item 
+static int \mbox{\hyperlink{bcrypt__hmac_8c_a94aa905c2ed8066437d7f2d970a6f6b3}{s\+\_\+finalize}} (struct \mbox{\hyperlink{structaws__hmac}{aws\+\_\+hmac}} $\ast$hash, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+static void \mbox{\hyperlink{bcrypt__hmac_8c_a9e0600578e078766f210718541a052ec}{s\+\_\+load\+\_\+alg\+\_\+handle}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+struct \mbox{\hyperlink{structaws__hmac}{aws\+\_\+hmac}} $\ast$ \mbox{\hyperlink{bcrypt__hmac_8c_a2a75179fa3671f67e910908180bbb138}{aws\+\_\+sha256\+\_\+hmac\+\_\+default\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$secret)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static BCRYPT\+\_\+\+ALG\+\_\+\+HANDLE \mbox{\hyperlink{bcrypt__hmac_8c_afe5150d3d53601bd0f82ddaae7c126d6}{s\+\_\+sha256\+\_\+hmac\+\_\+alg}} = NULL
+\item 
+static size\+\_\+t \mbox{\hyperlink{bcrypt__hmac_8c_a7f8753779ae36af50b487b106d70dc1c}{s\+\_\+sha256\+\_\+hmac\+\_\+obj\+\_\+len}} = 0
+\item 
+static \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} \mbox{\hyperlink{bcrypt__hmac_8c_af873abcebdd2e7c369c0dc8bcebb3686}{s\+\_\+sha256\+\_\+hmac\+\_\+once}} = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}
+\item 
+static struct \mbox{\hyperlink{structaws__hmac__vtable}{aws\+\_\+hmac\+\_\+vtable}} \mbox{\hyperlink{bcrypt__hmac_8c_a3a32201fbfffa6796199df4565f34002}{s\+\_\+sha256\+\_\+hmac\+\_\+vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bcrypt__hmac_8c_a2a75179fa3671f67e910908180bbb138}\label{bcrypt__hmac_8c_a2a75179fa3671f67e910908180bbb138}} 
+\index{bcrypt\_hmac.c@{bcrypt\_hmac.c}!aws\_sha256\_hmac\_default\_new@{aws\_sha256\_hmac\_default\_new}}
+\index{aws\_sha256\_hmac\_default\_new@{aws\_sha256\_hmac\_default\_new}!bcrypt\_hmac.c@{bcrypt\_hmac.c}}
+\doxysubsubsection{\texorpdfstring{aws\_sha256\_hmac\_default\_new()}{aws\_sha256\_hmac\_default\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hmac}{aws\+\_\+hmac}}$\ast$ aws\+\_\+sha256\+\_\+hmac\+\_\+default\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{secret }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{bcrypt__hmac_8c_a184786fa0b6ee372c62563acc0b4fc73}\label{bcrypt__hmac_8c_a184786fa0b6ee372c62563acc0b4fc73}} 
+\index{bcrypt\_hmac.c@{bcrypt\_hmac.c}!s\_destroy@{s\_destroy}}
+\index{s\_destroy@{s\_destroy}!bcrypt\_hmac.c@{bcrypt\_hmac.c}}
+\doxysubsubsection{\texorpdfstring{s\_destroy()}{s\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hmac}{aws\+\_\+hmac}} $\ast$}]{hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hmac_8c_a94aa905c2ed8066437d7f2d970a6f6b3}\label{bcrypt__hmac_8c_a94aa905c2ed8066437d7f2d970a6f6b3}} 
+\index{bcrypt\_hmac.c@{bcrypt\_hmac.c}!s\_finalize@{s\_finalize}}
+\index{s\_finalize@{s\_finalize}!bcrypt\_hmac.c@{bcrypt\_hmac.c}}
+\doxysubsubsection{\texorpdfstring{s\_finalize()}{s\_finalize()}}
+{\footnotesize\ttfamily static int s\+\_\+finalize (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hmac}{aws\+\_\+hmac}} $\ast$}]{hash,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hmac_8c_a9e0600578e078766f210718541a052ec}\label{bcrypt__hmac_8c_a9e0600578e078766f210718541a052ec}} 
+\index{bcrypt\_hmac.c@{bcrypt\_hmac.c}!s\_load\_alg\_handle@{s\_load\_alg\_handle}}
+\index{s\_load\_alg\_handle@{s\_load\_alg\_handle}!bcrypt\_hmac.c@{bcrypt\_hmac.c}}
+\doxysubsubsection{\texorpdfstring{s\_load\_alg\_handle()}{s\_load\_alg\_handle()}}
+{\footnotesize\ttfamily static void s\+\_\+load\+\_\+alg\+\_\+handle (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hmac_8c_a6d7d039ee3a2f1ab107a4cd14a5b7259}\label{bcrypt__hmac_8c_a6d7d039ee3a2f1ab107a4cd14a5b7259}} 
+\index{bcrypt\_hmac.c@{bcrypt\_hmac.c}!s\_update@{s\_update}}
+\index{s\_update@{s\_update}!bcrypt\_hmac.c@{bcrypt\_hmac.c}}
+\doxysubsubsection{\texorpdfstring{s\_update()}{s\_update()}}
+{\footnotesize\ttfamily static int s\+\_\+update (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hmac}{aws\+\_\+hmac}} $\ast$}]{hash,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{to\+\_\+hash }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{bcrypt__hmac_8c_afe5150d3d53601bd0f82ddaae7c126d6}\label{bcrypt__hmac_8c_afe5150d3d53601bd0f82ddaae7c126d6}} 
+\index{bcrypt\_hmac.c@{bcrypt\_hmac.c}!s\_sha256\_hmac\_alg@{s\_sha256\_hmac\_alg}}
+\index{s\_sha256\_hmac\_alg@{s\_sha256\_hmac\_alg}!bcrypt\_hmac.c@{bcrypt\_hmac.c}}
+\doxysubsubsection{\texorpdfstring{s\_sha256\_hmac\_alg}{s\_sha256\_hmac\_alg}}
+{\footnotesize\ttfamily BCRYPT\+\_\+\+ALG\+\_\+\+HANDLE s\+\_\+sha256\+\_\+hmac\+\_\+alg = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{bcrypt__hmac_8c_a7f8753779ae36af50b487b106d70dc1c}\label{bcrypt__hmac_8c_a7f8753779ae36af50b487b106d70dc1c}} 
+\index{bcrypt\_hmac.c@{bcrypt\_hmac.c}!s\_sha256\_hmac\_obj\_len@{s\_sha256\_hmac\_obj\_len}}
+\index{s\_sha256\_hmac\_obj\_len@{s\_sha256\_hmac\_obj\_len}!bcrypt\_hmac.c@{bcrypt\_hmac.c}}
+\doxysubsubsection{\texorpdfstring{s\_sha256\_hmac\_obj\_len}{s\_sha256\_hmac\_obj\_len}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+sha256\+\_\+hmac\+\_\+obj\+\_\+len = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hmac_8c_af873abcebdd2e7c369c0dc8bcebb3686}\label{bcrypt__hmac_8c_af873abcebdd2e7c369c0dc8bcebb3686}} 
+\index{bcrypt\_hmac.c@{bcrypt\_hmac.c}!s\_sha256\_hmac\_once@{s\_sha256\_hmac\_once}}
+\index{s\_sha256\_hmac\_once@{s\_sha256\_hmac\_once}!bcrypt\_hmac.c@{bcrypt\_hmac.c}}
+\doxysubsubsection{\texorpdfstring{s\_sha256\_hmac\_once}{s\_sha256\_hmac\_once}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} s\+\_\+sha256\+\_\+hmac\+\_\+once = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{bcrypt__hmac_8c_a3a32201fbfffa6796199df4565f34002}\label{bcrypt__hmac_8c_a3a32201fbfffa6796199df4565f34002}} 
+\index{bcrypt\_hmac.c@{bcrypt\_hmac.c}!s\_sha256\_hmac\_vtable@{s\_sha256\_hmac\_vtable}}
+\index{s\_sha256\_hmac\_vtable@{s\_sha256\_hmac\_vtable}!bcrypt\_hmac.c@{bcrypt\_hmac.c}}
+\doxysubsubsection{\texorpdfstring{s\_sha256\_hmac\_vtable}{s\_sha256\_hmac\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hmac__vtable}{aws\+\_\+hmac\+\_\+vtable}} s\+\_\+sha256\+\_\+hmac\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{bcrypt__hmac_8c_a184786fa0b6ee372c62563acc0b4fc73}{s\_destroy}},}
+\DoxyCodeLine{    .update = \mbox{\hyperlink{bcrypt__hmac_8c_a6d7d039ee3a2f1ab107a4cd14a5b7259}{s\_update}},}
+\DoxyCodeLine{    .finalize = \mbox{\hyperlink{bcrypt__hmac_8c_a94aa905c2ed8066437d7f2d970a6f6b3}{s\_finalize}},}
+\DoxyCodeLine{    .alg\_name = \textcolor{stringliteral}{"{}SHA256 HMAC"{}},}
+\DoxyCodeLine{    .provider = \textcolor{stringliteral}{"{}Windows CNG"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

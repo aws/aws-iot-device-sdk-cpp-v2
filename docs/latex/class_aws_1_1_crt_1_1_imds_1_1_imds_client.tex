@@ -1,0 +1,541 @@
+\hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{}\doxysection{Aws\+::Crt\+::Imds\+::Imds\+Client Class Reference}
+\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client}\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+
+
+{\ttfamily \#include $<$Imds\+Client.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aba073e01e6b25d3161d8026d4de12be1}{Imds\+Client}} (const \mbox{\hyperlink{struct_aws_1_1_crt_1_1_imds_1_1_imds_client_config}{Imds\+Client\+Config}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a702df157822e6c52f88a185ea4f98c0c}{$\sim$\+Imds\+Client}} ()
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aba34bceabbe67d395f34ff65e54045d6}{Imds\+Client}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a818a03546072f4741051932704ae827f}{Imds\+Client}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \&\&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a9b32b159213780b2e4e3d63f5e950550}{operator=}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a8520b878c9268b29456dcebde4ffa110}{operator=}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \&\&)=delete
+\item 
+\mbox{\hyperlink{structaws__imds__client}{aws\+\_\+imds\+\_\+client}} $\ast$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_af5f55a24e03738fe41784ce36136c6c5}{Get\+Underlying\+Handle}} ()
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_adedfc6f412c60af085b8559118aeb8a2}{Get\+Resource}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{String\+View}} \&resource\+Path, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a3d68c59a5843592b74cf77bba9e5ef59}{Get\+Ami\+Id}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a2fda5c5997a0ea92f6845b1300bad086}{Get\+Ami\+Launch\+Index}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a2679f6fdc990ff97285d4c05901e8ba4}{Get\+Ami\+Manifest\+Path}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a9150b98c5e3fd48fc8228f1b6dd99685}{Get\+Ancestor\+Ami\+Ids}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a4ce6aef15cb36890f185ecf248d30712}{On\+Vector\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a7b7b347e792d3965a6348d573664ab41}{Get\+Instance\+Action}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a0b507aea0f37ad8869a2843a0f6dc193}{Get\+Instance\+Id}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a8f5e6efaf86845970440caa55cb4e7a9}{Get\+Instance\+Type}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a533df9814c9cbfa9b3c5d017f2de2a98}{Get\+Mac\+Address}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aa328071b4d07c97b4d722028cef28c85}{Get\+Private\+Ip\+Address}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a60cbfa733123fca142e5fb78914410b4}{Get\+Availability\+Zone}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_abe3282ea860b0e6c92553c53969222ed}{Get\+Product\+Codes}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a8d17f28c07feeed8772b15f8ae9683ba}{Get\+Public\+Key}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_ac11c0961f5cc15e133e08a4c89ad3c78}{Get\+Ram\+Disk\+Id}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a908828a8756321058d51fb2fec762f80}{Get\+Reservation\+Id}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a85cb1e49862ac2c68d8314c1431fe50d}{Get\+Security\+Groups}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a4ce6aef15cb36890f185ecf248d30712}{On\+Vector\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a240e067ba846ab22b40a60f8474c0d07}{Get\+Block\+Device\+Mapping}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a4ce6aef15cb36890f185ecf248d30712}{On\+Vector\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a25f8924a8e94a74f216b8be6348efc5f}{Get\+Attached\+Iam\+Role}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a153bb985a76af85adae802d3ad903003}{Get\+Credentials}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{String\+View}} \&iam\+Role\+Name, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a51cb8da17668b755179a5d704f01cd27}{On\+Credentials\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aaf4f6e224255c5f4e9d2e478aa3ebe90}{Get\+Iam\+Profile}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_acb4baa05bed08f126ed31aa1420daa9c}{On\+Iam\+Profile\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a2506035fff6b614d5abe95538d94cf2b}{Get\+User\+Data}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a9f396b93ed67a888ed005a8341f03c26}{Get\+Instance\+Signature}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}} callback, void $\ast$user\+Data)
+\item 
+int \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client_afbe60685d1692bef0c97c97024a63ecd}{Get\+Instance\+Info}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_aa99312f69ba2053eac58e527cdcb27f8}{On\+Instance\+Info\+Acquired}} callback, void $\ast$user\+Data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aba073e01e6b25d3161d8026d4de12be1}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aba073e01e6b25d3161d8026d4de12be1}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!ImdsClient@{ImdsClient}}
+\index{ImdsClient@{ImdsClient}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{ImdsClient()}{ImdsClient()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Imds\+Client (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_aws_1_1_crt_1_1_imds_1_1_imds_client_config}{Imds\+Client\+Config}} \&}]{config,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a702df157822e6c52f88a185ea4f98c0c}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a702df157822e6c52f88a185ea4f98c0c}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!````~ImdsClient@{$\sim$ImdsClient}}
+\index{````~ImdsClient@{$\sim$ImdsClient}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{$\sim$ImdsClient()}{~ImdsClient()}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::$\sim$\+Imds\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aba34bceabbe67d395f34ff65e54045d6}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aba34bceabbe67d395f34ff65e54045d6}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!ImdsClient@{ImdsClient}}
+\index{ImdsClient@{ImdsClient}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{ImdsClient()}{ImdsClient()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Imds\+Client (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a818a03546072f4741051932704ae827f}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a818a03546072f4741051932704ae827f}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!ImdsClient@{ImdsClient}}
+\index{ImdsClient@{ImdsClient}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{ImdsClient()}{ImdsClient()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Imds\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a3d68c59a5843592b74cf77bba9e5ef59}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a3d68c59a5843592b74cf77bba9e5ef59}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetAmiId@{GetAmiId}}
+\index{GetAmiId@{GetAmiId}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetAmiId()}{GetAmiId()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Ami\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the ami id of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a2fda5c5997a0ea92f6845b1300bad086}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a2fda5c5997a0ea92f6845b1300bad086}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetAmiLaunchIndex@{GetAmiLaunchIndex}}
+\index{GetAmiLaunchIndex@{GetAmiLaunchIndex}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetAmiLaunchIndex()}{GetAmiLaunchIndex()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Ami\+Launch\+Index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the ami launch index of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a2679f6fdc990ff97285d4c05901e8ba4}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a2679f6fdc990ff97285d4c05901e8ba4}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetAmiManifestPath@{GetAmiManifestPath}}
+\index{GetAmiManifestPath@{GetAmiManifestPath}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetAmiManifestPath()}{GetAmiManifestPath()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Ami\+Manifest\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the ami manifest path of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a9150b98c5e3fd48fc8228f1b6dd99685}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a9150b98c5e3fd48fc8228f1b6dd99685}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetAncestorAmiIds@{GetAncestorAmiIds}}
+\index{GetAncestorAmiIds@{GetAncestorAmiIds}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetAncestorAmiIds()}{GetAncestorAmiIds()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Ancestor\+Ami\+Ids (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a4ce6aef15cb36890f185ecf248d30712}{On\+Vector\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the list of ancestor ami ids of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a25f8924a8e94a74f216b8be6348efc5f}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a25f8924a8e94a74f216b8be6348efc5f}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetAttachedIamRole@{GetAttachedIamRole}}
+\index{GetAttachedIamRole@{GetAttachedIamRole}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetAttachedIamRole()}{GetAttachedIamRole()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Attached\+Iam\+Role (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the attached iam role of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a60cbfa733123fca142e5fb78914410b4}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a60cbfa733123fca142e5fb78914410b4}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetAvailabilityZone@{GetAvailabilityZone}}
+\index{GetAvailabilityZone@{GetAvailabilityZone}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetAvailabilityZone()}{GetAvailabilityZone()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Availability\+Zone (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the availability zone of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a240e067ba846ab22b40a60f8474c0d07}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a240e067ba846ab22b40a60f8474c0d07}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetBlockDeviceMapping@{GetBlockDeviceMapping}}
+\index{GetBlockDeviceMapping@{GetBlockDeviceMapping}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetBlockDeviceMapping()}{GetBlockDeviceMapping()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Block\+Device\+Mapping (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a4ce6aef15cb36890f185ecf248d30712}{On\+Vector\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the list of block device mappings of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a153bb985a76af85adae802d3ad903003}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a153bb985a76af85adae802d3ad903003}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetCredentials@{GetCredentials}}
+\index{GetCredentials@{GetCredentials}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetCredentials()}{GetCredentials()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Credentials (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{String\+View}} \&}]{iam\+Role\+Name,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a51cb8da17668b755179a5d704f01cd27}{On\+Credentials\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets temporary credentials based on the attached iam role of the ec2 instance
+
+
+\begin{DoxyParams}{Parameters}
+{\em iam\+Role\+Name} & iam role name to get temporary credentials through \\
+\hline
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aaf4f6e224255c5f4e9d2e478aa3ebe90}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aaf4f6e224255c5f4e9d2e478aa3ebe90}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetIamProfile@{GetIamProfile}}
+\index{GetIamProfile@{GetIamProfile}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetIamProfile()}{GetIamProfile()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Iam\+Profile (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_acb4baa05bed08f126ed31aa1420daa9c}{On\+Iam\+Profile\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the iam profile information of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a7b7b347e792d3965a6348d573664ab41}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a7b7b347e792d3965a6348d573664ab41}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetInstanceAction@{GetInstanceAction}}
+\index{GetInstanceAction@{GetInstanceAction}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetInstanceAction()}{GetInstanceAction()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Instance\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the instance-\/action of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a0b507aea0f37ad8869a2843a0f6dc193}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a0b507aea0f37ad8869a2843a0f6dc193}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetInstanceId@{GetInstanceId}}
+\index{GetInstanceId@{GetInstanceId}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetInstanceId()}{GetInstanceId()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Instance\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the instance id of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_afbe60685d1692bef0c97c97024a63ecd}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_afbe60685d1692bef0c97c97024a63ecd}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetInstanceInfo@{GetInstanceInfo}}
+\index{GetInstanceInfo@{GetInstanceInfo}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetInstanceInfo()}{GetInstanceInfo()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Instance\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_aa99312f69ba2053eac58e527cdcb27f8}{On\+Instance\+Info\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the instance information data block of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a9f396b93ed67a888ed005a8341f03c26}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a9f396b93ed67a888ed005a8341f03c26}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetInstanceSignature@{GetInstanceSignature}}
+\index{GetInstanceSignature@{GetInstanceSignature}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetInstanceSignature()}{GetInstanceSignature()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Instance\+Signature (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the signature of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a8f5e6efaf86845970440caa55cb4e7a9}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a8f5e6efaf86845970440caa55cb4e7a9}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetInstanceType@{GetInstanceType}}
+\index{GetInstanceType@{GetInstanceType}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetInstanceType()}{GetInstanceType()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Instance\+Type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the instance type of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a533df9814c9cbfa9b3c5d017f2de2a98}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a533df9814c9cbfa9b3c5d017f2de2a98}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetMacAddress@{GetMacAddress}}
+\index{GetMacAddress@{GetMacAddress}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetMacAddress()}{GetMacAddress()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Mac\+Address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the mac address of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aa328071b4d07c97b4d722028cef28c85}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_aa328071b4d07c97b4d722028cef28c85}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetPrivateIpAddress@{GetPrivateIpAddress}}
+\index{GetPrivateIpAddress@{GetPrivateIpAddress}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetPrivateIpAddress()}{GetPrivateIpAddress()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Private\+Ip\+Address (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the private ip address of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_abe3282ea860b0e6c92553c53969222ed}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_abe3282ea860b0e6c92553c53969222ed}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetProductCodes@{GetProductCodes}}
+\index{GetProductCodes@{GetProductCodes}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetProductCodes()}{GetProductCodes()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Product\+Codes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the product codes of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a8d17f28c07feeed8772b15f8ae9683ba}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a8d17f28c07feeed8772b15f8ae9683ba}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetPublicKey@{GetPublicKey}}
+\index{GetPublicKey@{GetPublicKey}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetPublicKey()}{GetPublicKey()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Public\+Key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the public key of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_ac11c0961f5cc15e133e08a4c89ad3c78}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_ac11c0961f5cc15e133e08a4c89ad3c78}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetRamDiskId@{GetRamDiskId}}
+\index{GetRamDiskId@{GetRamDiskId}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetRamDiskId()}{GetRamDiskId()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Ram\+Disk\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the ramdisk id of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a908828a8756321058d51fb2fec762f80}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a908828a8756321058d51fb2fec762f80}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetReservationId@{GetReservationId}}
+\index{GetReservationId@{GetReservationId}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetReservationId()}{GetReservationId()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Reservation\+Id (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the reservation id of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_adedfc6f412c60af085b8559118aeb8a2}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_adedfc6f412c60af085b8559118aeb8a2}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetResource@{GetResource}}
+\index{GetResource@{GetResource}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetResource()}{GetResource()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Resource (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{String\+View}} \&}]{resource\+Path,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Queries a generic resource (string) from the ec2 instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em resource\+Path} & path of the resource to query \\
+\hline
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a85cb1e49862ac2c68d8314c1431fe50d}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a85cb1e49862ac2c68d8314c1431fe50d}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetSecurityGroups@{GetSecurityGroups}}
+\index{GetSecurityGroups@{GetSecurityGroups}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetSecurityGroups()}{GetSecurityGroups()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Security\+Groups (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a4ce6aef15cb36890f185ecf248d30712}{On\+Vector\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the list of the security groups of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_af5f55a24e03738fe41784ce36136c6c5}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_af5f55a24e03738fe41784ce36136c6c5}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetUnderlyingHandle@{GetUnderlyingHandle}}
+\index{GetUnderlyingHandle@{GetUnderlyingHandle}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetUnderlyingHandle()}{GetUnderlyingHandle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structaws__imds__client}{aws\+\_\+imds\+\_\+client}}$\ast$ Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+Underlying\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a2506035fff6b614d5abe95538d94cf2b}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a2506035fff6b614d5abe95538d94cf2b}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!GetUserData@{GetUserData}}
+\index{GetUserData@{GetUserData}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{GetUserData()}{GetUserData()}}
+{\footnotesize\ttfamily int Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::\+Get\+User\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_imds_a23cb692edf9ebc52b70e7ba33f93bae7}{On\+Resource\+Acquired}}}]{callback,  }\item[{void $\ast$}]{user\+Data }\end{DoxyParamCaption})}
+
+Gets the user data of the ec2 instance from the instance metadata document
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & callback function to invoke on query success or failure \\
+\hline
+{\em user\+Data} & opaque data to invoke the completion callback with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the query was successfully started, AWS\+\_\+\+OP\+\_\+\+ERR otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a9b32b159213780b2e4e3d63f5e950550}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a9b32b159213780b2e4e3d63f5e950550}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}}\& Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a8520b878c9268b29456dcebde4ffa110}\label{class_aws_1_1_crt_1_1_imds_1_1_imds_client_a8520b878c9268b29456dcebde4ffa110}} 
+\index{Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Imds::ImdsClient@{Aws::Crt::Imds::ImdsClient}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}}\& Aws\+::\+Crt\+::\+Imds\+::\+Imds\+Client\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_imds_1_1_imds_client}{Imds\+Client}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/include/aws/crt/\mbox{\hyperlink{_imds_client_8h}{Imds\+Client.\+h}}\item 
+crt/aws-\/crt-\/cpp/source/\mbox{\hyperlink{_imds_client_8cpp}{Imds\+Client.\+cpp}}\end{DoxyCompactItemize}

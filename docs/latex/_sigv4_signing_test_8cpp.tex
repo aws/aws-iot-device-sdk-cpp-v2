@@ -1,0 +1,79 @@
+\hypertarget{_sigv4_signing_test_8cpp}{}\doxysection{crt/aws-\/crt-\/cpp/tests/\+Sigv4\+Signing\+Test.cpp File Reference}
+\label{_sigv4_signing_test_8cpp}\index{crt/aws-\/crt-\/cpp/tests/Sigv4SigningTest.cpp@{crt/aws-\/crt-\/cpp/tests/Sigv4SigningTest.cpp}}
+{\ttfamily \#include $<$aws/crt/\+Api.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/auth/\+Credentials.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/auth/\+Sigv4\+Signing.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/http/\+Http\+Request\+Response.\+h$>$}\newline
+{\ttfamily \#include $<$aws/auth/credentials.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/request\+\_\+response.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+allocators.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_sign_waiter}{Sign\+Waiter}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{Http\+Request}} $>$ \mbox{\hyperlink{_sigv4_signing_test_8cpp_a6e26531cac76d734c34718785ceb710f}{s\+\_\+\+Make\+Dummy\+Request}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_credentials}{Credentials}} $>$ \mbox{\hyperlink{_sigv4_signing_test_8cpp_acefdb39aac4fe0de054b03af3c297ca7}{s\+\_\+\+Make\+Dummy\+Credentials}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_credentials_provider}{Credentials\+Provider}} $>$ \mbox{\hyperlink{_sigv4_signing_test_8cpp_af743431e7c22b282e54c0db8fd9afd1c}{s\+\_\+\+Make\+Async\+Static\+Provider}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Aws\+::\+Crt\+::\+Io\+::\+Client\+Bootstrap}} \&bootstrap)
+\item 
+static int \mbox{\hyperlink{_sigv4_signing_test_8cpp_a048527110705b9661e0800abe10429fd}{s\+\_\+\+Sigv4\+Signing\+Test\+Create\+Destroy}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_sigv4_signing_test_8cpp_a90c0622034af448a5bf6bfc61750313a}{s\+\_\+\+Sigv4\+Signing\+Test\+Simple}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_sigv4_signing_test_8cpp_a3a20737470755b1f2fe49b7098b81e6f}{s\+\_\+\+Sigv4\+Signing\+Test\+Credentials}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{_sigv4_signing_test_8cpp_ada97d56c4c5b33220d71442de8dbef9d}{s\+\_\+\+Sigv4\+Signing\+Test\+Unsigned\+Payload}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_sigv4_signing_test_8cpp_af743431e7c22b282e54c0db8fd9afd1c}\label{_sigv4_signing_test_8cpp_af743431e7c22b282e54c0db8fd9afd1c}} 
+\index{Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}!s\_MakeAsyncStaticProvider@{s\_MakeAsyncStaticProvider}}
+\index{s\_MakeAsyncStaticProvider@{s\_MakeAsyncStaticProvider}!Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_MakeAsyncStaticProvider()}{s\_MakeAsyncStaticProvider()}}
+{\footnotesize\ttfamily static std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_credentials_provider}{Credentials\+Provider}}$>$ s\+\_\+\+Make\+Async\+Static\+Provider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Aws\+::\+Crt\+::\+Io\+::\+Client\+Bootstrap}} \&}]{bootstrap }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_sigv4_signing_test_8cpp_acefdb39aac4fe0de054b03af3c297ca7}\label{_sigv4_signing_test_8cpp_acefdb39aac4fe0de054b03af3c297ca7}} 
+\index{Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}!s\_MakeDummyCredentials@{s\_MakeDummyCredentials}}
+\index{s\_MakeDummyCredentials@{s\_MakeDummyCredentials}!Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_MakeDummyCredentials()}{s\_MakeDummyCredentials()}}
+{\footnotesize\ttfamily static std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_credentials}{Credentials}}$>$ s\+\_\+\+Make\+Dummy\+Credentials (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_sigv4_signing_test_8cpp_a6e26531cac76d734c34718785ceb710f}\label{_sigv4_signing_test_8cpp_a6e26531cac76d734c34718785ceb710f}} 
+\index{Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}!s\_MakeDummyRequest@{s\_MakeDummyRequest}}
+\index{s\_MakeDummyRequest@{s\_MakeDummyRequest}!Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_MakeDummyRequest()}{s\_MakeDummyRequest()}}
+{\footnotesize\ttfamily static std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{Http\+Request}}$>$ s\+\_\+\+Make\+Dummy\+Request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_sigv4_signing_test_8cpp_a048527110705b9661e0800abe10429fd}\label{_sigv4_signing_test_8cpp_a048527110705b9661e0800abe10429fd}} 
+\index{Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}!s\_Sigv4SigningTestCreateDestroy@{s\_Sigv4SigningTestCreateDestroy}}
+\index{s\_Sigv4SigningTestCreateDestroy@{s\_Sigv4SigningTestCreateDestroy}!Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_Sigv4SigningTestCreateDestroy()}{s\_Sigv4SigningTestCreateDestroy()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Sigv4\+Signing\+Test\+Create\+Destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_sigv4_signing_test_8cpp_a3a20737470755b1f2fe49b7098b81e6f}\label{_sigv4_signing_test_8cpp_a3a20737470755b1f2fe49b7098b81e6f}} 
+\index{Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}!s\_Sigv4SigningTestCredentials@{s\_Sigv4SigningTestCredentials}}
+\index{s\_Sigv4SigningTestCredentials@{s\_Sigv4SigningTestCredentials}!Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_Sigv4SigningTestCredentials()}{s\_Sigv4SigningTestCredentials()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Sigv4\+Signing\+Test\+Credentials (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_sigv4_signing_test_8cpp_a90c0622034af448a5bf6bfc61750313a}\label{_sigv4_signing_test_8cpp_a90c0622034af448a5bf6bfc61750313a}} 
+\index{Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}!s\_Sigv4SigningTestSimple@{s\_Sigv4SigningTestSimple}}
+\index{s\_Sigv4SigningTestSimple@{s\_Sigv4SigningTestSimple}!Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_Sigv4SigningTestSimple()}{s\_Sigv4SigningTestSimple()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Sigv4\+Signing\+Test\+Simple (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{_sigv4_signing_test_8cpp_ada97d56c4c5b33220d71442de8dbef9d}\label{_sigv4_signing_test_8cpp_ada97d56c4c5b33220d71442de8dbef9d}} 
+\index{Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}!s\_Sigv4SigningTestUnsignedPayload@{s\_Sigv4SigningTestUnsignedPayload}}
+\index{s\_Sigv4SigningTestUnsignedPayload@{s\_Sigv4SigningTestUnsignedPayload}!Sigv4SigningTest.cpp@{Sigv4SigningTest.cpp}}
+\doxysubsubsection{\texorpdfstring{s\_Sigv4SigningTestUnsignedPayload()}{s\_Sigv4SigningTestUnsignedPayload()}}
+{\footnotesize\ttfamily static int s\+\_\+\+Sigv4\+Signing\+Test\+Unsigned\+Payload (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

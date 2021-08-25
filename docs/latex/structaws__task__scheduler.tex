@@ -1,0 +1,50 @@
+\hypertarget{structaws__task__scheduler}{}\doxysection{aws\+\_\+task\+\_\+scheduler Struct Reference}
+\label{structaws__task__scheduler}\index{aws\_task\_scheduler@{aws\_task\_scheduler}}
+
+
+{\ttfamily \#include $<$task\+\_\+scheduler.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__task__scheduler_ac7c8ab5e397f2e394edeac71277f9f4f}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__priority__queue}{aws\+\_\+priority\+\_\+queue}} \mbox{\hyperlink{structaws__task__scheduler_aa90e7d21f1aa41c7e67e084f6fd2615d}{timed\+\_\+queue}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} \mbox{\hyperlink{structaws__task__scheduler_acac49d1f6b7fefe19071e613c51454e0}{timed\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} \mbox{\hyperlink{structaws__task__scheduler_aa61034f778aa6df1a40e9e165a1196fd}{asap\+\_\+list}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__task__scheduler_ac7c8ab5e397f2e394edeac71277f9f4f}\label{structaws__task__scheduler_ac7c8ab5e397f2e394edeac71277f9f4f}} 
+\index{aws\_task\_scheduler@{aws\_task\_scheduler}!alloc@{alloc}}
+\index{alloc@{alloc}!aws\_task\_scheduler@{aws\_task\_scheduler}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ aws\+\_\+task\+\_\+scheduler\+::alloc}
+
+\mbox{\Hypertarget{structaws__task__scheduler_aa61034f778aa6df1a40e9e165a1196fd}\label{structaws__task__scheduler_aa61034f778aa6df1a40e9e165a1196fd}} 
+\index{aws\_task\_scheduler@{aws\_task\_scheduler}!asap\_list@{asap\_list}}
+\index{asap\_list@{asap\_list}!aws\_task\_scheduler@{aws\_task\_scheduler}}
+\doxysubsubsection{\texorpdfstring{asap\_list}{asap\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+task\+\_\+scheduler\+::asap\+\_\+list}
+
+\mbox{\Hypertarget{structaws__task__scheduler_acac49d1f6b7fefe19071e613c51454e0}\label{structaws__task__scheduler_acac49d1f6b7fefe19071e613c51454e0}} 
+\index{aws\_task\_scheduler@{aws\_task\_scheduler}!timed\_list@{timed\_list}}
+\index{timed\_list@{timed\_list}!aws\_task\_scheduler@{aws\_task\_scheduler}}
+\doxysubsubsection{\texorpdfstring{timed\_list}{timed\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+task\+\_\+scheduler\+::timed\+\_\+list}
+
+\mbox{\Hypertarget{structaws__task__scheduler_aa90e7d21f1aa41c7e67e084f6fd2615d}\label{structaws__task__scheduler_aa90e7d21f1aa41c7e67e084f6fd2615d}} 
+\index{aws\_task\_scheduler@{aws\_task\_scheduler}!timed\_queue@{timed\_queue}}
+\index{timed\_queue@{timed\_queue}!aws\_task\_scheduler@{aws\_task\_scheduler}}
+\doxysubsubsection{\texorpdfstring{timed\_queue}{timed\_queue}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__priority__queue}{aws\+\_\+priority\+\_\+queue}} aws\+\_\+task\+\_\+scheduler\+::timed\+\_\+queue}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/\mbox{\hyperlink{task__scheduler_8h}{task\+\_\+scheduler.\+h}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/\mbox{\hyperlink{preamble_8h}{preamble.\+h}}\end{DoxyCompactItemize}

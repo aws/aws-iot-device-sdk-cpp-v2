@@ -1,0 +1,53 @@
+\hypertarget{s2n__send_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+send.c File Reference}
+\label{s2n__send_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_send.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_send.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+post\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+record.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+cipher.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__send_8c_a76828dc199bf174409532010ccbf2a07}{s2n\+\_\+flush}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}})
+\item 
+\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} \mbox{\hyperlink{s2n__send_8c_abf508c561ce8383625ffaea4cfd0784b}{s2n\+\_\+sendv\+\_\+with\+\_\+offset}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const struct iovec $\ast$bufs, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} offs, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}})
+\item 
+\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} \mbox{\hyperlink{s2n__send_8c_a5f46d4a86674cdab00c4aa2b9f3ce216}{s2n\+\_\+sendv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const struct iovec $\ast$bufs, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}})
+\item 
+\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} \mbox{\hyperlink{s2n__send_8c_a5036f0d514a9d8355519c14498a52735}{s2n\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} size, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__send_8c_a76828dc199bf174409532010ccbf2a07}\label{s2n__send_8c_a76828dc199bf174409532010ccbf2a07}} 
+\index{s2n\_send.c@{s2n\_send.c}!s2n\_flush@{s2n\_flush}}
+\index{s2n\_flush@{s2n\_flush}!s2n\_send.c@{s2n\_send.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_flush()}{s2n\_flush()}}
+{\footnotesize\ttfamily int s2n\+\_\+flush (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$}]{blocked }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__send_8c_a5036f0d514a9d8355519c14498a52735}\label{s2n__send_8c_a5036f0d514a9d8355519c14498a52735}} 
+\index{s2n\_send.c@{s2n\_send.c}!s2n\_send@{s2n\_send}}
+\index{s2n\_send@{s2n\_send}!s2n\_send.c@{s2n\_send.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_send()}{s2n\_send()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} s2n\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{const void $\ast$}]{buf,  }\item[{\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}}}]{size,  }\item[{\mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$}]{blocked }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__send_8c_a5f46d4a86674cdab00c4aa2b9f3ce216}\label{s2n__send_8c_a5f46d4a86674cdab00c4aa2b9f3ce216}} 
+\index{s2n\_send.c@{s2n\_send.c}!s2n\_sendv@{s2n\_sendv}}
+\index{s2n\_sendv@{s2n\_sendv}!s2n\_send.c@{s2n\_send.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_sendv()}{s2n\_sendv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} s2n\+\_\+sendv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{const struct iovec $\ast$}]{bufs,  }\item[{\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}}}]{count,  }\item[{\mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$}]{blocked }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__send_8c_abf508c561ce8383625ffaea4cfd0784b}\label{s2n__send_8c_abf508c561ce8383625ffaea4cfd0784b}} 
+\index{s2n\_send.c@{s2n\_send.c}!s2n\_sendv\_with\_offset@{s2n\_sendv\_with\_offset}}
+\index{s2n\_sendv\_with\_offset@{s2n\_sendv\_with\_offset}!s2n\_send.c@{s2n\_send.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_sendv\_with\_offset()}{s2n\_sendv\_with\_offset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} s2n\+\_\+sendv\+\_\+with\+\_\+offset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{const struct iovec $\ast$}]{bufs,  }\item[{\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}}}]{count,  }\item[{\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}}}]{offs,  }\item[{\mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$}]{blocked }\end{DoxyParamCaption})}
+

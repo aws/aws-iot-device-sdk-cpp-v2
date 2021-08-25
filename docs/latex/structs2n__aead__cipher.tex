@@ -1,0 +1,57 @@
+\hypertarget{structs2n__aead__cipher}{}\doxysection{s2n\+\_\+aead\+\_\+cipher Struct Reference}
+\label{structs2n__aead__cipher}\index{s2n\_aead\_cipher@{s2n\_aead\_cipher}}
+
+
+{\ttfamily \#include $<$s2n\+\_\+cipher.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__aead__cipher_a6a6ef0a4e2d8d5afd0a22c4fe8dbb65e}{fixed\+\_\+iv\+\_\+size}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__aead__cipher_ad1b58ef5211fdb55236071613bbb4b85}{record\+\_\+iv\+\_\+size}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__aead__cipher_a6c1eb3ebfdce8451b27df7c5a26bc559}{tag\+\_\+size}}
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__aead__cipher_afdbb0c04c4ef38ab777493f4713a08a4}{decrypt}} )(struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$add, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)
+\item 
+int($\ast$ \mbox{\hyperlink{structs2n__aead__cipher_a17c58fe7ebddcc31c113eea997e882b0}{encrypt}} )(struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$add, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structs2n__aead__cipher_afdbb0c04c4ef38ab777493f4713a08a4}\label{structs2n__aead__cipher_afdbb0c04c4ef38ab777493f4713a08a4}} 
+\index{s2n\_aead\_cipher@{s2n\_aead\_cipher}!decrypt@{decrypt}}
+\index{decrypt@{decrypt}!s2n\_aead\_cipher@{s2n\_aead\_cipher}}
+\doxysubsubsection{\texorpdfstring{decrypt}{decrypt}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+aead\+\_\+cipher\+::decrypt) (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$add, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)}
+
+\mbox{\Hypertarget{structs2n__aead__cipher_a17c58fe7ebddcc31c113eea997e882b0}\label{structs2n__aead__cipher_a17c58fe7ebddcc31c113eea997e882b0}} 
+\index{s2n\_aead\_cipher@{s2n\_aead\_cipher}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!s2n\_aead\_cipher@{s2n\_aead\_cipher}}
+\doxysubsubsection{\texorpdfstring{encrypt}{encrypt}}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+aead\+\_\+cipher\+::encrypt) (struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$add, struct s2n\+\_\+blob $\ast$in, struct s2n\+\_\+blob $\ast$out)}
+
+\mbox{\Hypertarget{structs2n__aead__cipher_a6a6ef0a4e2d8d5afd0a22c4fe8dbb65e}\label{structs2n__aead__cipher_a6a6ef0a4e2d8d5afd0a22c4fe8dbb65e}} 
+\index{s2n\_aead\_cipher@{s2n\_aead\_cipher}!fixed\_iv\_size@{fixed\_iv\_size}}
+\index{fixed\_iv\_size@{fixed\_iv\_size}!s2n\_aead\_cipher@{s2n\_aead\_cipher}}
+\doxysubsubsection{\texorpdfstring{fixed\_iv\_size}{fixed\_iv\_size}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+aead\+\_\+cipher\+::fixed\+\_\+iv\+\_\+size}
+
+\mbox{\Hypertarget{structs2n__aead__cipher_ad1b58ef5211fdb55236071613bbb4b85}\label{structs2n__aead__cipher_ad1b58ef5211fdb55236071613bbb4b85}} 
+\index{s2n\_aead\_cipher@{s2n\_aead\_cipher}!record\_iv\_size@{record\_iv\_size}}
+\index{record\_iv\_size@{record\_iv\_size}!s2n\_aead\_cipher@{s2n\_aead\_cipher}}
+\doxysubsubsection{\texorpdfstring{record\_iv\_size}{record\_iv\_size}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+aead\+\_\+cipher\+::record\+\_\+iv\+\_\+size}
+
+\mbox{\Hypertarget{structs2n__aead__cipher_a6c1eb3ebfdce8451b27df7c5a26bc559}\label{structs2n__aead__cipher_a6c1eb3ebfdce8451b27df7c5a26bc559}} 
+\index{s2n\_aead\_cipher@{s2n\_aead\_cipher}!tag\_size@{tag\_size}}
+\index{tag\_size@{tag\_size}!s2n\_aead\_cipher@{s2n\_aead\_cipher}}
+\doxysubsubsection{\texorpdfstring{tag\_size}{tag\_size}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+aead\+\_\+cipher\+::tag\+\_\+size}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/s2n/crypto/\mbox{\hyperlink{s2n__cipher_8h}{s2n\+\_\+cipher.\+h}}\end{DoxyCompactItemize}

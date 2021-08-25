@@ -1,0 +1,45 @@
+\hypertarget{_iot_jobs_client_8h}{}\doxysection{jobs/include/aws/iotjobs/\+Iot\+Jobs\+Client.h File Reference}
+\label{_iot_jobs_client_8h}\index{jobs/include/aws/iotjobs/IotJobsClient.h@{jobs/include/aws/iotjobs/IotJobsClient.h}}
+{\ttfamily \#include $<$aws/iotjobs/\+Exports.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/\+Stl\+Allocator.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/\+Types.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/mqtt/\+Mqtt\+Client.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_iot_jobs_client}{Aws\+::\+Iotjobs\+::\+Iot\+Jobs\+Client}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_aws}{Aws}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_iotjobs}{Aws\+::\+Iotjobs}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+Complete}} = std\+::function$<$ void(int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a8d27af0de5aa5b8553313acac5320300}{Aws\+::\+Iotjobs\+::\+On\+Publish\+Complete}} = std\+::function$<$ void(int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a81764500347710f52d7edc3c0b8b23d8}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Update\+Job\+Execution\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_update_job_execution_response}{Aws\+::\+Iotjobs\+::\+Update\+Job\+Execution\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_aae67f2cdbc784dc39016d094d8d89acd}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Get\+Pending\+Job\+Executions\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_rejected_error}{Aws\+::\+Iotjobs\+::\+Rejected\+Error}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a6f8bbf847d29433e0a5323c1123b422d}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Describe\+Job\+Execution\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_describe_job_execution_response}{Aws\+::\+Iotjobs\+::\+Describe\+Job\+Execution\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a9e74b89263116bf7dd5b346f42646c62}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Describe\+Job\+Execution\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_rejected_error}{Aws\+::\+Iotjobs\+::\+Rejected\+Error}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_ac7064a46b3ac78b975defeb7c81b5c14}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Update\+Job\+Execution\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_rejected_error}{Aws\+::\+Iotjobs\+::\+Rejected\+Error}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_aa0b211a092dfec90561b82f2c2b72a40}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Job\+Executions\+Changed\+Events\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event}{Aws\+::\+Iotjobs\+::\+Job\+Executions\+Changed\+Event}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_adaf640572f9062ba4a340d333f561490}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Start\+Next\+Pending\+Job\+Execution\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_rejected_error}{Aws\+::\+Iotjobs\+::\+Rejected\+Error}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_aa671f953f53affebb5d9ec07c77a1859}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Next\+Job\+Execution\+Changed\+Events\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_next_job_execution_changed_event}{Aws\+::\+Iotjobs\+::\+Next\+Job\+Execution\+Changed\+Event}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a8e8c67348df86ba4ca3e354476cbb9eb}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Get\+Pending\+Job\+Executions\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response}{Aws\+::\+Iotjobs\+::\+Get\+Pending\+Job\+Executions\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a306c6931b270dccc3be328ad410e252d}{Aws\+::\+Iotjobs\+::\+On\+Subscribe\+To\+Start\+Next\+Pending\+Job\+Execution\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_start_next_job_execution_response}{Aws\+::\+Iotjobs\+::\+Start\+Next\+Job\+Execution\+Response}} $\ast$, int io\+Err)$>$
+\end{DoxyCompactItemize}

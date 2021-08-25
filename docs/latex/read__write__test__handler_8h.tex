@@ -1,0 +1,90 @@
+\hypertarget{read__write__test__handler_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/read\+\_\+write\+\_\+test\+\_\+handler.h File Reference}
+\label{read__write__test__handler_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/read\_write\_test\_handler.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/read\_write\_test\_handler.h}}
+{\ttfamily \#include $<$aws/io/io.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/task\+\_\+scheduler.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}}() \mbox{\hyperlink{read__write__test__handler_8h_ad2a714e3e11a0e5f34363efbc9f3c76f}{rw\+\_\+handler\+\_\+driver\+\_\+fn}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$data\+\_\+read, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{read__write__test__handler_8h_af73626595eccac8a0200a18c9904dd5c}{rw\+\_\+handler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{read__write__test__handler_8h_ad2a714e3e11a0e5f34363efbc9f3c76f}{rw\+\_\+handler\+\_\+driver\+\_\+fn}} $\ast$on\+\_\+read, \mbox{\hyperlink{read__write__test__handler_8h_ad2a714e3e11a0e5f34363efbc9f3c76f}{rw\+\_\+handler\+\_\+driver\+\_\+fn}} $\ast$on\+\_\+write, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} event\+\_\+loop\+\_\+driven, size\+\_\+t window, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+void \mbox{\hyperlink{read__write__test__handler_8h_a3a781c284fd254ccdcd0c34e1d770f77}{rw\+\_\+handler\+\_\+enable\+\_\+wait\+\_\+on\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$destroy\+\_\+called, struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$\mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\+\_\+variable}})
+\item 
+void \mbox{\hyperlink{read__write__test__handler_8h_ac2154c09db4fee4436a237bc3c166272}{rw\+\_\+handler\+\_\+write}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
+\item 
+void \mbox{\hyperlink{read__write__test__handler_8h_a2e92801a82eafee9db786a5db98f6457}{rw\+\_\+handler\+\_\+trigger\+\_\+read}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{read__write__test__handler_8h_acb2947e9c690d29504e2de674c826ec7}{rw\+\_\+handler\+\_\+shutdown\+\_\+called}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{read__write__test__handler_8h_afd5e96be494d1d330ded77784579be67}{rw\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window\+\_\+called}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+void \mbox{\hyperlink{read__write__test__handler_8h_a1c364c671deab44d803bd2175a4ca651}{rw\+\_\+handler\+\_\+trigger\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t window\+\_\+update)
+\item 
+void \mbox{\hyperlink{read__write__test__handler_8h_aa817b1024f0c9f56e3c75330f4c1f1e3}{increment\+\_\+read\+\_\+window\+\_\+task}} (void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} task\+\_\+status)
+\item 
+int \mbox{\hyperlink{read__write__test__handler_8h_acccce622766e2de7f519f89301bf87ea}{rw\+\_\+handler\+\_\+last\+\_\+error\+\_\+code}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{read__write__test__handler_8h_aa817b1024f0c9f56e3c75330f4c1f1e3}\label{read__write__test__handler_8h_aa817b1024f0c9f56e3c75330f4c1f1e3}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!increment\_read\_window\_task@{increment\_read\_window\_task}}
+\index{increment\_read\_window\_task@{increment\_read\_window\_task}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{increment\_read\_window\_task()}{increment\_read\_window\_task()}}
+{\footnotesize\ttfamily void increment\+\_\+read\+\_\+window\+\_\+task (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{task\+\_\+status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{read__write__test__handler_8h_ad2a714e3e11a0e5f34363efbc9f3c76f}\label{read__write__test__handler_8h_ad2a714e3e11a0e5f34363efbc9f3c76f}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!rw\_handler\_driver\_fn@{rw\_handler\_driver\_fn}}
+\index{rw\_handler\_driver\_fn@{rw\_handler\_driver\_fn}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{rw\_handler\_driver\_fn()}{rw\_handler\_driver\_fn()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}}() rw\+\_\+handler\+\_\+driver\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{data\+\_\+read,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{read__write__test__handler_8h_a3a781c284fd254ccdcd0c34e1d770f77}\label{read__write__test__handler_8h_a3a781c284fd254ccdcd0c34e1d770f77}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!rw\_handler\_enable\_wait\_on\_destroy@{rw\_handler\_enable\_wait\_on\_destroy}}
+\index{rw\_handler\_enable\_wait\_on\_destroy@{rw\_handler\_enable\_wait\_on\_destroy}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{rw\_handler\_enable\_wait\_on\_destroy()}{rw\_handler\_enable\_wait\_on\_destroy()}}
+{\footnotesize\ttfamily void rw\+\_\+handler\+\_\+enable\+\_\+wait\+\_\+on\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} $\ast$}]{destroy\+\_\+called,  }\item[{struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} $\ast$}]{condition\+\_\+variable }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{read__write__test__handler_8h_afd5e96be494d1d330ded77784579be67}\label{read__write__test__handler_8h_afd5e96be494d1d330ded77784579be67}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!rw\_handler\_increment\_read\_window\_called@{rw\_handler\_increment\_read\_window\_called}}
+\index{rw\_handler\_increment\_read\_window\_called@{rw\_handler\_increment\_read\_window\_called}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{rw\_handler\_increment\_read\_window\_called()}{rw\_handler\_increment\_read\_window\_called()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} rw\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window\+\_\+called (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{read__write__test__handler_8h_acccce622766e2de7f519f89301bf87ea}\label{read__write__test__handler_8h_acccce622766e2de7f519f89301bf87ea}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!rw\_handler\_last\_error\_code@{rw\_handler\_last\_error\_code}}
+\index{rw\_handler\_last\_error\_code@{rw\_handler\_last\_error\_code}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{rw\_handler\_last\_error\_code()}{rw\_handler\_last\_error\_code()}}
+{\footnotesize\ttfamily int rw\+\_\+handler\+\_\+last\+\_\+error\+\_\+code (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{read__write__test__handler_8h_af73626595eccac8a0200a18c9904dd5c}\label{read__write__test__handler_8h_af73626595eccac8a0200a18c9904dd5c}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!rw\_handler\_new@{rw\_handler\_new}}
+\index{rw\_handler\_new@{rw\_handler\_new}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{rw\_handler\_new()}{rw\_handler\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}}$\ast$ rw\+\_\+handler\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{read__write__test__handler_8h_ad2a714e3e11a0e5f34363efbc9f3c76f}{rw\+\_\+handler\+\_\+driver\+\_\+fn}} $\ast$}]{on\+\_\+read,  }\item[{\mbox{\hyperlink{read__write__test__handler_8h_ad2a714e3e11a0e5f34363efbc9f3c76f}{rw\+\_\+handler\+\_\+driver\+\_\+fn}} $\ast$}]{on\+\_\+write,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{event\+\_\+loop\+\_\+driven,  }\item[{size\+\_\+t}]{window,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{read__write__test__handler_8h_acb2947e9c690d29504e2de674c826ec7}\label{read__write__test__handler_8h_acb2947e9c690d29504e2de674c826ec7}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!rw\_handler\_shutdown\_called@{rw\_handler\_shutdown\_called}}
+\index{rw\_handler\_shutdown\_called@{rw\_handler\_shutdown\_called}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{rw\_handler\_shutdown\_called()}{rw\_handler\_shutdown\_called()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} rw\+\_\+handler\+\_\+shutdown\+\_\+called (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{read__write__test__handler_8h_a1c364c671deab44d803bd2175a4ca651}\label{read__write__test__handler_8h_a1c364c671deab44d803bd2175a4ca651}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!rw\_handler\_trigger\_increment\_read\_window@{rw\_handler\_trigger\_increment\_read\_window}}
+\index{rw\_handler\_trigger\_increment\_read\_window@{rw\_handler\_trigger\_increment\_read\_window}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{rw\_handler\_trigger\_increment\_read\_window()}{rw\_handler\_trigger\_increment\_read\_window()}}
+{\footnotesize\ttfamily void rw\+\_\+handler\+\_\+trigger\+\_\+increment\+\_\+read\+\_\+window (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{size\+\_\+t}]{window\+\_\+update }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{read__write__test__handler_8h_a2e92801a82eafee9db786a5db98f6457}\label{read__write__test__handler_8h_a2e92801a82eafee9db786a5db98f6457}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!rw\_handler\_trigger\_read@{rw\_handler\_trigger\_read}}
+\index{rw\_handler\_trigger\_read@{rw\_handler\_trigger\_read}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{rw\_handler\_trigger\_read()}{rw\_handler\_trigger\_read()}}
+{\footnotesize\ttfamily void rw\+\_\+handler\+\_\+trigger\+\_\+read (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{read__write__test__handler_8h_ac2154c09db4fee4436a237bc3c166272}\label{read__write__test__handler_8h_ac2154c09db4fee4436a237bc3c166272}} 
+\index{read\_write\_test\_handler.h@{read\_write\_test\_handler.h}!rw\_handler\_write@{rw\_handler\_write}}
+\index{rw\_handler\_write@{rw\_handler\_write}!read\_write\_test\_handler.h@{read\_write\_test\_handler.h}}
+\doxysubsubsection{\texorpdfstring{rw\_handler\_write()}{rw\_handler\_write()}}
+{\footnotesize\ttfamily void rw\+\_\+handler\+\_\+write (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer }\end{DoxyParamCaption})}
+

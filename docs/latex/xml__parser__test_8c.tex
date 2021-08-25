@@ -1,0 +1,328 @@
+\hypertarget{xml__parser__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/xml\+\_\+parser\+\_\+test.c File Reference}
+\label{xml__parser__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/xml\_parser\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/xml\_parser\_test.c}}
+{\ttfamily \#include $<$aws/common/xml\+\_\+parser.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structroot__with__text__capture}{root\+\_\+with\+\_\+text\+\_\+capture}}
+\item 
+struct \mbox{\hyperlink{structchild__text__capture}{child\+\_\+text\+\_\+capture}}
+\item 
+struct \mbox{\hyperlink{structsibling__text__capture}{sibling\+\_\+text\+\_\+capture}}
+\item 
+struct \mbox{\hyperlink{structpreamble__and__attributes__capture}{preamble\+\_\+and\+\_\+attributes\+\_\+capture}}
+\item 
+struct \mbox{\hyperlink{structnested__node__capture}{nested\+\_\+node\+\_\+capture}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_a8526cd664321e5f370924a2ed61c521c}{s\+\_\+root\+\_\+with\+\_\+text\+\_\+root\+\_\+node}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{xml__parser__test_8c_a697ce287fae57e95e9c11ef4724f2ad0}{s\+\_\+xml\+\_\+parser\+\_\+root\+\_\+with\+\_\+text\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_ae9e92c388de9664823be8d4a37c80155}{s\+\_\+child\+\_\+with\+\_\+text\+\_\+root\+\_\+node}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_a995fe58c60f715354040d414841e876f}{s\+\_\+root\+\_\+with\+\_\+child}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{xml__parser__test_8c_a713274dfbc0221979dc6091327137e7c}{s\+\_\+xml\+\_\+parser\+\_\+child\+\_\+with\+\_\+text\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_a0999eeb10a16362c11d4e8917e5cb914}{s\+\_\+sibling\+\_\+with\+\_\+text\+\_\+root\+\_\+node}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_ac69f6b0b2d8998e020f30695e9fc100d}{s\+\_\+root\+\_\+with\+\_\+child\+\_\+siblings}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{xml__parser__test_8c_a2b7e3aa2374c82ae090be454b72723d9}{s\+\_\+xml\+\_\+parser\+\_\+siblings\+\_\+with\+\_\+text\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_a4c4bd40e7da5c6b78eb1cf13d2da702e}{s\+\_\+preamble\+\_\+and\+\_\+attributes\+\_\+child\+\_\+node}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_a1e8c7d30ae049defc2654287487bd05b}{s\+\_\+preamble\+\_\+and\+\_\+attributes}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{xml__parser__test_8c_a1a6d48371934fb186129232ad12c18eb}{s\+\_\+xml\+\_\+parser\+\_\+preamble\+\_\+and\+\_\+attributes\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_a301d13ab656779e30300eb92d1801707}{s\+\_\+nested\+\_\+node}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{xml__parser__test_8c_ad0699018425dfe65a5f168b7ab0300ea}{s\+\_\+xml\+\_\+parser\+\_\+nested\+\_\+node\+\_\+same\+\_\+name\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_ac9841d8a19330514c290a3859e50e1ed}{s\+\_\+nested\+\_\+node\+\_\+deep\+\_\+recursion}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{xml__parser__test_8c_a1d0d93300f63bbe500e5caa718dd48e2}{s\+\_\+xml\+\_\+parser\+\_\+nested\+\_\+node\+\_\+deep\+\_\+recursion\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_ac90672f713b73b5bfb541ad98576edd8}{s\+\_\+too\+\_\+many\+\_\+attributes}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{xml__parser__test_8c_ae2483a7174302a5fc383fcef313247c3}{s\+\_\+xml\+\_\+parser\+\_\+too\+\_\+many\+\_\+attributes\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser__test_8c_acdcd9dc0c9eb5c6103e678c1503b4a64}{s\+\_\+too\+\_\+long}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{xml__parser__test_8c_a650cdbbcfafe9dad1b5f4fc397ff21a6}{s\+\_\+xml\+\_\+parser\+\_\+name\+\_\+too\+\_\+long\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{xml__parser__test_8c_aa88fc97292463cdeb4f12245e2405919}{root\+\_\+with\+\_\+text}} = \char`\"{}$<$?xml version=\textbackslash{}\char`\"{}1.\+0\textbackslash{}\char`\"{} encoding=\textbackslash{}\char`\"{}UTF-\/8\textbackslash{}\char`\"{}?$>$$<$root\+Node$>$Test\+Body$<$/root\+Node$>$\char`\"{}
+\item 
+const char $\ast$ \mbox{\hyperlink{xml__parser__test_8c_a453e03d8711c28c32717fe5232a04624}{child\+\_\+with\+\_\+text}}
+\item 
+const char $\ast$ \mbox{\hyperlink{xml__parser__test_8c_a0c510853e4ca12062be0ab7de6b2c40c}{siblings\+\_\+with\+\_\+text}}
+\item 
+const char $\ast$ \mbox{\hyperlink{xml__parser__test_8c_a13c001d86068d27fa765049a5655be86}{preamble\+\_\+and\+\_\+attributes}}
+\item 
+const char $\ast$ \mbox{\hyperlink{xml__parser__test_8c_ae08ed877aa986400149546e5217455c1}{nested\+\_\+nodes\+\_\+same\+\_\+name\+\_\+doc}}
+\item 
+const char $\ast$ \mbox{\hyperlink{xml__parser__test_8c_a66a4dd240f0c6faaf2810adc9539d097}{nested\+\_\+nodes\+\_\+deep\+\_\+recursion\+\_\+doc}}
+\item 
+const char $\ast$ \mbox{\hyperlink{xml__parser__test_8c_a50b09d67f9d4fa5cfc4bf994688b2b5d}{too\+\_\+many\+\_\+attributes}}
+\item 
+const char $\ast$ \mbox{\hyperlink{xml__parser__test_8c_ab974b7456b65a00ef9653ee8bd143b23}{node\+\_\+name\+\_\+too\+\_\+long}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{xml__parser__test_8c_ae9e92c388de9664823be8d4a37c80155}\label{xml__parser__test_8c_ae9e92c388de9664823be8d4a37c80155}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_child\_with\_text\_root\_node@{s\_child\_with\_text\_root\_node}}
+\index{s\_child\_with\_text\_root\_node@{s\_child\_with\_text\_root\_node}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_child\_with\_text\_root\_node()}{s\_child\_with\_text\_root\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+child\+\_\+with\+\_\+text\+\_\+root\+\_\+node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a301d13ab656779e30300eb92d1801707}\label{xml__parser__test_8c_a301d13ab656779e30300eb92d1801707}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_nested\_node@{s\_nested\_node}}
+\index{s\_nested\_node@{s\_nested\_node}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_nested\_node()}{s\_nested\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+nested\+\_\+node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_ac9841d8a19330514c290a3859e50e1ed}\label{xml__parser__test_8c_ac9841d8a19330514c290a3859e50e1ed}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_nested\_node\_deep\_recursion@{s\_nested\_node\_deep\_recursion}}
+\index{s\_nested\_node\_deep\_recursion@{s\_nested\_node\_deep\_recursion}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_nested\_node\_deep\_recursion()}{s\_nested\_node\_deep\_recursion()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+nested\+\_\+node\+\_\+deep\+\_\+recursion (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a1e8c7d30ae049defc2654287487bd05b}\label{xml__parser__test_8c_a1e8c7d30ae049defc2654287487bd05b}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_preamble\_and\_attributes@{s\_preamble\_and\_attributes}}
+\index{s\_preamble\_and\_attributes@{s\_preamble\_and\_attributes}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_preamble\_and\_attributes()}{s\_preamble\_and\_attributes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+preamble\+\_\+and\+\_\+attributes (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a4c4bd40e7da5c6b78eb1cf13d2da702e}\label{xml__parser__test_8c_a4c4bd40e7da5c6b78eb1cf13d2da702e}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_preamble\_and\_attributes\_child\_node@{s\_preamble\_and\_attributes\_child\_node}}
+\index{s\_preamble\_and\_attributes\_child\_node@{s\_preamble\_and\_attributes\_child\_node}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_preamble\_and\_attributes\_child\_node()}{s\_preamble\_and\_attributes\_child\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+preamble\+\_\+and\+\_\+attributes\+\_\+child\+\_\+node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a995fe58c60f715354040d414841e876f}\label{xml__parser__test_8c_a995fe58c60f715354040d414841e876f}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_root\_with\_child@{s\_root\_with\_child}}
+\index{s\_root\_with\_child@{s\_root\_with\_child}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_root\_with\_child()}{s\_root\_with\_child()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+root\+\_\+with\+\_\+child (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_ac69f6b0b2d8998e020f30695e9fc100d}\label{xml__parser__test_8c_ac69f6b0b2d8998e020f30695e9fc100d}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_root\_with\_child\_siblings@{s\_root\_with\_child\_siblings}}
+\index{s\_root\_with\_child\_siblings@{s\_root\_with\_child\_siblings}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_root\_with\_child\_siblings()}{s\_root\_with\_child\_siblings()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+root\+\_\+with\+\_\+child\+\_\+siblings (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a8526cd664321e5f370924a2ed61c521c}\label{xml__parser__test_8c_a8526cd664321e5f370924a2ed61c521c}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_root\_with\_text\_root\_node@{s\_root\_with\_text\_root\_node}}
+\index{s\_root\_with\_text\_root\_node@{s\_root\_with\_text\_root\_node}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_root\_with\_text\_root\_node()}{s\_root\_with\_text\_root\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+root\+\_\+with\+\_\+text\+\_\+root\+\_\+node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a0999eeb10a16362c11d4e8917e5cb914}\label{xml__parser__test_8c_a0999eeb10a16362c11d4e8917e5cb914}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_sibling\_with\_text\_root\_node@{s\_sibling\_with\_text\_root\_node}}
+\index{s\_sibling\_with\_text\_root\_node@{s\_sibling\_with\_text\_root\_node}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_sibling\_with\_text\_root\_node()}{s\_sibling\_with\_text\_root\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+sibling\+\_\+with\+\_\+text\+\_\+root\+\_\+node (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_acdcd9dc0c9eb5c6103e678c1503b4a64}\label{xml__parser__test_8c_acdcd9dc0c9eb5c6103e678c1503b4a64}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_too\_long@{s\_too\_long}}
+\index{s\_too\_long@{s\_too\_long}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_too\_long()}{s\_too\_long()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+too\+\_\+long (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_ac90672f713b73b5bfb541ad98576edd8}\label{xml__parser__test_8c_ac90672f713b73b5bfb541ad98576edd8}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_too\_many\_attributes@{s\_too\_many\_attributes}}
+\index{s\_too\_many\_attributes@{s\_too\_many\_attributes}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_too\_many\_attributes()}{s\_too\_many\_attributes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+too\+\_\+many\+\_\+attributes (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a713274dfbc0221979dc6091327137e7c}\label{xml__parser__test_8c_a713274dfbc0221979dc6091327137e7c}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_xml\_parser\_child\_with\_text\_test@{s\_xml\_parser\_child\_with\_text\_test}}
+\index{s\_xml\_parser\_child\_with\_text\_test@{s\_xml\_parser\_child\_with\_text\_test}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_xml\_parser\_child\_with\_text\_test()}{s\_xml\_parser\_child\_with\_text\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+xml\+\_\+parser\+\_\+child\+\_\+with\+\_\+text\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a650cdbbcfafe9dad1b5f4fc397ff21a6}\label{xml__parser__test_8c_a650cdbbcfafe9dad1b5f4fc397ff21a6}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_xml\_parser\_name\_too\_long\_test@{s\_xml\_parser\_name\_too\_long\_test}}
+\index{s\_xml\_parser\_name\_too\_long\_test@{s\_xml\_parser\_name\_too\_long\_test}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_xml\_parser\_name\_too\_long\_test()}{s\_xml\_parser\_name\_too\_long\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+xml\+\_\+parser\+\_\+name\+\_\+too\+\_\+long\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a1d0d93300f63bbe500e5caa718dd48e2}\label{xml__parser__test_8c_a1d0d93300f63bbe500e5caa718dd48e2}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_xml\_parser\_nested\_node\_deep\_recursion\_test@{s\_xml\_parser\_nested\_node\_deep\_recursion\_test}}
+\index{s\_xml\_parser\_nested\_node\_deep\_recursion\_test@{s\_xml\_parser\_nested\_node\_deep\_recursion\_test}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_xml\_parser\_nested\_node\_deep\_recursion\_test()}{s\_xml\_parser\_nested\_node\_deep\_recursion\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+xml\+\_\+parser\+\_\+nested\+\_\+node\+\_\+deep\+\_\+recursion\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{xml__parser__test_8c_ad0699018425dfe65a5f168b7ab0300ea}\label{xml__parser__test_8c_ad0699018425dfe65a5f168b7ab0300ea}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_xml\_parser\_nested\_node\_same\_name\_test@{s\_xml\_parser\_nested\_node\_same\_name\_test}}
+\index{s\_xml\_parser\_nested\_node\_same\_name\_test@{s\_xml\_parser\_nested\_node\_same\_name\_test}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_xml\_parser\_nested\_node\_same\_name\_test()}{s\_xml\_parser\_nested\_node\_same\_name\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+xml\+\_\+parser\+\_\+nested\+\_\+node\+\_\+same\+\_\+name\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a1a6d48371934fb186129232ad12c18eb}\label{xml__parser__test_8c_a1a6d48371934fb186129232ad12c18eb}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_xml\_parser\_preamble\_and\_attributes\_test@{s\_xml\_parser\_preamble\_and\_attributes\_test}}
+\index{s\_xml\_parser\_preamble\_and\_attributes\_test@{s\_xml\_parser\_preamble\_and\_attributes\_test}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_xml\_parser\_preamble\_and\_attributes\_test()}{s\_xml\_parser\_preamble\_and\_attributes\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+xml\+\_\+parser\+\_\+preamble\+\_\+and\+\_\+attributes\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a697ce287fae57e95e9c11ef4724f2ad0}\label{xml__parser__test_8c_a697ce287fae57e95e9c11ef4724f2ad0}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_xml\_parser\_root\_with\_text\_test@{s\_xml\_parser\_root\_with\_text\_test}}
+\index{s\_xml\_parser\_root\_with\_text\_test@{s\_xml\_parser\_root\_with\_text\_test}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_xml\_parser\_root\_with\_text\_test()}{s\_xml\_parser\_root\_with\_text\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+xml\+\_\+parser\+\_\+root\+\_\+with\+\_\+text\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{xml__parser__test_8c_a2b7e3aa2374c82ae090be454b72723d9}\label{xml__parser__test_8c_a2b7e3aa2374c82ae090be454b72723d9}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_xml\_parser\_siblings\_with\_text\_test@{s\_xml\_parser\_siblings\_with\_text\_test}}
+\index{s\_xml\_parser\_siblings\_with\_text\_test@{s\_xml\_parser\_siblings\_with\_text\_test}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_xml\_parser\_siblings\_with\_text\_test()}{s\_xml\_parser\_siblings\_with\_text\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+xml\+\_\+parser\+\_\+siblings\+\_\+with\+\_\+text\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{xml__parser__test_8c_ae2483a7174302a5fc383fcef313247c3}\label{xml__parser__test_8c_ae2483a7174302a5fc383fcef313247c3}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!s\_xml\_parser\_too\_many\_attributes\_test@{s\_xml\_parser\_too\_many\_attributes\_test}}
+\index{s\_xml\_parser\_too\_many\_attributes\_test@{s\_xml\_parser\_too\_many\_attributes\_test}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_xml\_parser\_too\_many\_attributes\_test()}{s\_xml\_parser\_too\_many\_attributes\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+xml\+\_\+parser\+\_\+too\+\_\+many\+\_\+attributes\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{xml__parser__test_8c_a453e03d8711c28c32717fe5232a04624}\label{xml__parser__test_8c_a453e03d8711c28c32717fe5232a04624}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!child\_with\_text@{child\_with\_text}}
+\index{child\_with\_text@{child\_with\_text}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{child\_with\_text}{child\_with\_text}}
+{\footnotesize\ttfamily const char$\ast$ child\+\_\+with\+\_\+text}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}<?xml version=\(\backslash\)"{}1.0\(\backslash\)"{} encoding=\(\backslash\)"{}UTF-\/8\(\backslash\)"{}?><rootNode><child1>TestBody</child1></rootNode>"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{xml__parser__test_8c_a66a4dd240f0c6faaf2810adc9539d097}\label{xml__parser__test_8c_a66a4dd240f0c6faaf2810adc9539d097}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!nested\_nodes\_deep\_recursion\_doc@{nested\_nodes\_deep\_recursion\_doc}}
+\index{nested\_nodes\_deep\_recursion\_doc@{nested\_nodes\_deep\_recursion\_doc}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{nested\_nodes\_deep\_recursion\_doc}{nested\_nodes\_deep\_recursion\_doc}}
+{\footnotesize\ttfamily const char$\ast$ nested\+\_\+nodes\+\_\+deep\+\_\+recursion\+\_\+doc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{stringliteral}{"{}<?xml version=\(\backslash\)"{}1.0\(\backslash\)"{} encoding=\(\backslash\)"{}UTF-\/8\(\backslash\)"{}?>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                              \textcolor{stringliteral}{"{}<!DOCTYPE html \(\backslash\)n"{}}}
+\DoxyCodeLine{                                              \textcolor{stringliteral}{"{} PUBLIC \(\backslash\)"{}-\///W3C//DTD XHTML 1.0 Strict//EN\(\backslash\)"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{                                              \textcolor{stringliteral}{"{}\(\backslash\)"{}http://www.w3.org/TR/xhtml1/DTD/xhtml1-\/strict.dtd\(\backslash\)"{}> "{}}}
+\DoxyCodeLine{                                              \textcolor{stringliteral}{"{}<Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                              \textcolor{stringliteral}{"{}    <Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                              \textcolor{stringliteral}{"{}        <Node></Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                              \textcolor{stringliteral}{"{}    </Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                              \textcolor{stringliteral}{"{}</Node>"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{xml__parser__test_8c_ae08ed877aa986400149546e5217455c1}\label{xml__parser__test_8c_ae08ed877aa986400149546e5217455c1}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!nested\_nodes\_same\_name\_doc@{nested\_nodes\_same\_name\_doc}}
+\index{nested\_nodes\_same\_name\_doc@{nested\_nodes\_same\_name\_doc}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{nested\_nodes\_same\_name\_doc}{nested\_nodes\_same\_name\_doc}}
+{\footnotesize\ttfamily const char$\ast$ nested\+\_\+nodes\+\_\+same\+\_\+name\+\_\+doc}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{stringliteral}{"{}<?xml version=\(\backslash\)"{}1.0\(\backslash\)"{} encoding=\(\backslash\)"{}UTF-\/8\(\backslash\)"{}?>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}<!DOCTYPE html \(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{} PUBLIC \(\backslash\)"{}-\///W3C//DTD XHTML 1.0 Strict//EN\(\backslash\)"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}\(\backslash\)"{}http://www.w3.org/TR/xhtml1/DTD/xhtml1-\/strict.dtd\(\backslash\)"{}> "{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}<Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}    <Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}        <Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}            <Node>TestBody</Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}        </Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}     </Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}     <Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}         <Node>TestBody2</Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}     </Node>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                         \textcolor{stringliteral}{"{}</Node>"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{xml__parser__test_8c_ab974b7456b65a00ef9653ee8bd143b23}\label{xml__parser__test_8c_ab974b7456b65a00ef9653ee8bd143b23}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!node\_name\_too\_long@{node\_name\_too\_long}}
+\index{node\_name\_too\_long@{node\_name\_too\_long}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{node\_name\_too\_long}{node\_name\_too\_long}}
+{\footnotesize\ttfamily const char$\ast$ node\+\_\+name\+\_\+too\+\_\+long}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}<?xml version=\(\backslash\)"{}1.0\(\backslash\)"{} encoding=\(\backslash\)"{}UTF-\/8\(\backslash\)"{}?>\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}<!DOCTYPE html \(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{} PUBLIC \(\backslash\)"{}-\///W3C//DTD XHTML 1.0 Strict//EN\(\backslash\)"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}\(\backslash\)"{}http://www.w3.org/TR/xhtml1/DTD/xhtml1-\/strict.dtd\(\backslash\)"{}> "{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}<abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghi"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}jklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrs"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}tuvwxyzabcdefghijklmnopqrstuvwxyz>"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}</"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghij"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}klmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrst"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}uvwxyzabcdefghijklmnopqrstuvwxyz>"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{xml__parser__test_8c_a13c001d86068d27fa765049a5655be86}\label{xml__parser__test_8c_a13c001d86068d27fa765049a5655be86}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!preamble\_and\_attributes@{preamble\_and\_attributes}}
+\index{preamble\_and\_attributes@{preamble\_and\_attributes}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{preamble\_and\_attributes}{preamble\_and\_attributes}}
+{\footnotesize\ttfamily const char$\ast$ preamble\+\_\+and\+\_\+attributes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}<?xml version=\(\backslash\)"{}1.0\(\backslash\)"{} encoding=\(\backslash\)"{}UTF-\/8\(\backslash\)"{}?>\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}<!DOCTYPE html \(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{} PUBLIC \(\backslash\)"{}-\///W3C//DTD XHTML 1.0 Strict//EN\(\backslash\)"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}\(\backslash\)"{}http://www.w3.org/TR/xhtml1/DTD/xhtml1-\/strict.dtd\(\backslash\)"{}> "{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}<rootNode attribute1=\(\backslash\)"{}abc\(\backslash\)"{} attribute2=\(\backslash\)"{}def\(\backslash\)"{}>\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}<child1>TestBody</child1><child2 attribute3=\(\backslash\)"{}childAttr\(\backslash\)"{}>TestBody2</child2></rootNode>"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{xml__parser__test_8c_aa88fc97292463cdeb4f12245e2405919}\label{xml__parser__test_8c_aa88fc97292463cdeb4f12245e2405919}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!root\_with\_text@{root\_with\_text}}
+\index{root\_with\_text@{root\_with\_text}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{root\_with\_text}{root\_with\_text}}
+{\footnotesize\ttfamily const char$\ast$ root\+\_\+with\+\_\+text = \char`\"{}$<$?xml version=\textbackslash{}\char`\"{}1.\+0\textbackslash{}\char`\"{} encoding=\textbackslash{}\char`\"{}UTF-\/8\textbackslash{}\char`\"{}?$>$$<$root\+Node$>$Test\+Body$<$/root\+Node$>$\char`\"{}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{xml__parser__test_8c_a0c510853e4ca12062be0ab7de6b2c40c}\label{xml__parser__test_8c_a0c510853e4ca12062be0ab7de6b2c40c}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!siblings\_with\_text@{siblings\_with\_text}}
+\index{siblings\_with\_text@{siblings\_with\_text}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{siblings\_with\_text}{siblings\_with\_text}}
+{\footnotesize\ttfamily const char$\ast$ siblings\+\_\+with\+\_\+text}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}<?xml version=\(\backslash\)"{}1.0\(\backslash\)"{} "{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}encoding=\(\backslash\)"{}UTF-\/8\(\backslash\)"{}?><rootNode><child1>TestBody</child1><child2>TestBody2</child2></rootNode>"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{xml__parser__test_8c_a50b09d67f9d4fa5cfc4bf994688b2b5d}\label{xml__parser__test_8c_a50b09d67f9d4fa5cfc4bf994688b2b5d}} 
+\index{xml\_parser\_test.c@{xml\_parser\_test.c}!too\_many\_attributes@{too\_many\_attributes}}
+\index{too\_many\_attributes@{too\_many\_attributes}!xml\_parser\_test.c@{xml\_parser\_test.c}}
+\doxysubsubsection{\texorpdfstring{too\_many\_attributes}{too\_many\_attributes}}
+{\footnotesize\ttfamily const char$\ast$ too\+\_\+many\+\_\+attributes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \textcolor{stringliteral}{"{}<?xml version=\(\backslash\)"{}1.0\(\backslash\)"{} encoding=\(\backslash\)"{}UTF-\/8\(\backslash\)"{}?>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}<!DOCTYPE html \(\backslash\)n"{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{} PUBLIC \(\backslash\)"{}-\///W3C//DTD XHTML 1.0 Strict//EN\(\backslash\)"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}\(\backslash\)"{}http://www.w3.org/TR/xhtml1/DTD/xhtml1-\/strict.dtd\(\backslash\)"{}> "{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}<rootNode attribute1=\(\backslash\)"{}abc\(\backslash\)"{} attribute2=\(\backslash\)"{}def\(\backslash\)"{} attribute3=\(\backslash\)"{}def\(\backslash\)"{} "{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}attribute4=\(\backslash\)"{}def\(\backslash\)"{} attribute5=\(\backslash\)"{}def\(\backslash\)"{} attribute6=\(\backslash\)"{}def\(\backslash\)"{} attribute7=\(\backslash\)"{}def\(\backslash\)"{} "{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}attribute8=\(\backslash\)"{}def\(\backslash\)"{} attribute9=\(\backslash\)"{}def\(\backslash\)"{} attribute10=\(\backslash\)"{}def\(\backslash\)"{} attribute11=\(\backslash\)"{}def\(\backslash\)"{}>\(\backslash\)n"{}}}
+\DoxyCodeLine{                                  \textcolor{stringliteral}{"{}</rootNode>"{}}}
+
+\end{DoxyCode}

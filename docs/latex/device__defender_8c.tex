@@ -1,0 +1,97 @@
+\hypertarget{device__defender_8c}{}\doxysection{crt/aws-\/c-\/iot/source/device\+\_\+defender.c File Reference}
+\label{device__defender_8c}\index{crt/aws-\/c-\/iot/source/device\_defender.c@{crt/aws-\/c-\/iot/source/device\_defender.c}}
+{\ttfamily \#include $<$aws/iotdevice/device\+\_\+defender.\+h$>$}\newline
+{\ttfamily \#include $<$aws/iotdevice/external/c\+JSON.\+h$>$}\newline
+{\ttfamily \#include $<$aws/iotdevice/private/network.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/allocator.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/atomics.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/hash\+\_\+table.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/task\+\_\+scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/mqtt/client.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__iotdevice__defender__v1__task}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+task}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{device__defender_8c_ab194694b60e813909ea645339b3ff060}{s\+\_\+mqtt\+\_\+on\+\_\+suback}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{device__defender_8c_af40603f13042a89f7bdbb21808703578}{s\+\_\+on\+\_\+report\+\_\+puback}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{device__defender_8c_a9bfc38ecb1f8ebebe9c1d4b8509e558d}{s\+\_\+on\+\_\+report\+\_\+response\+\_\+rejected}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}}, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} retain, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{device__defender_8c_a7305f810e6e38cc6b2372529e94eae6c}{s\+\_\+on\+\_\+report\+\_\+response\+\_\+accepted}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}}, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} retain, void $\ast$userdata)
+\item 
+static int \mbox{\hyperlink{device__defender_8c_a14c8882526be280643884415597b2364}{s\+\_\+get\+\_\+metric\+\_\+report\+\_\+json}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$json\+\_\+out, struct \mbox{\hyperlink{structaws__iotdevice__defender__v1__task}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+task}} $\ast$task, uint64\+\_\+t report\+\_\+id, const struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$net\+\_\+xfer, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$net\+\_\+conns)
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{device__defender_8c_ac4e78709a6716eeb2d7b37be11206269}{s\+\_\+defender\+\_\+report\+\_\+id\+\_\+epoch\+\_\+time\+\_\+ms}} (struct \mbox{\hyperlink{structaws__iotdevice__defender__v1__task}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+task}} $\ast$\mbox{\hyperlink{aws__iot__devicedefender__client__test_8c_a0e6aa088a8c64e02e491134c27911bc6}{defender\+\_\+task}})
+\item 
+static void \mbox{\hyperlink{device__defender_8c_af5e37a247055f8e178eba2fd7856bc00}{s\+\_\+reporting\+\_\+task\+\_\+fn}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$userdata, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+struct \mbox{\hyperlink{structaws__iotdevice__defender__v1__task}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+task}} $\ast$ \mbox{\hyperlink{device__defender_8c_a0cf32eb65251d15697bc8cea3b62bb22}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+report\+\_\+task}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__iotdevice__defender__report__task__config}{aws\+\_\+iotdevice\+\_\+defender\+\_\+report\+\_\+task\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+void \mbox{\hyperlink{device__defender_8c_af89d09ac50ad21e02e42b5deb1d5ba94}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+stop\+\_\+task}} (struct \mbox{\hyperlink{structaws__iotdevice__defender__v1__task}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+task}} $\ast$\mbox{\hyperlink{aws__iot__devicedefender__client__test_8c_a0e6aa088a8c64e02e491134c27911bc6}{defender\+\_\+task}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{device__defender_8c_a0cf32eb65251d15697bc8cea3b62bb22}\label{device__defender_8c_a0cf32eb65251d15697bc8cea3b62bb22}} 
+\index{device\_defender.c@{device\_defender.c}!aws\_iotdevice\_defender\_v1\_report\_task@{aws\_iotdevice\_defender\_v1\_report\_task}}
+\index{aws\_iotdevice\_defender\_v1\_report\_task@{aws\_iotdevice\_defender\_v1\_report\_task}!device\_defender.c@{device\_defender.c}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_defender\_v1\_report\_task()}{aws\_iotdevice\_defender\_v1\_report\_task()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__iotdevice__defender__v1__task}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+task}}$\ast$ aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+report\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__iotdevice__defender__report__task__config}{aws\+\_\+iotdevice\+\_\+defender\+\_\+report\+\_\+task\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+Creates a new reporting task for Device Defender metrics \mbox{\Hypertarget{device__defender_8c_af89d09ac50ad21e02e42b5deb1d5ba94}\label{device__defender_8c_af89d09ac50ad21e02e42b5deb1d5ba94}} 
+\index{device\_defender.c@{device\_defender.c}!aws\_iotdevice\_defender\_v1\_stop\_task@{aws\_iotdevice\_defender\_v1\_stop\_task}}
+\index{aws\_iotdevice\_defender\_v1\_stop\_task@{aws\_iotdevice\_defender\_v1\_stop\_task}!device\_defender.c@{device\_defender.c}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_defender\_v1\_stop\_task()}{aws\_iotdevice\_defender\_v1\_stop\_task()}}
+{\footnotesize\ttfamily void aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+stop\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__iotdevice__defender__v1__task}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+task}} $\ast$}]{defender\+\_\+task }\end{DoxyParamCaption})}
+
+Cancels the running task reporting Device Defender metrics \mbox{\Hypertarget{device__defender_8c_ac4e78709a6716eeb2d7b37be11206269}\label{device__defender_8c_ac4e78709a6716eeb2d7b37be11206269}} 
+\index{device\_defender.c@{device\_defender.c}!s\_defender\_report\_id\_epoch\_time\_ms@{s\_defender\_report\_id\_epoch\_time\_ms}}
+\index{s\_defender\_report\_id\_epoch\_time\_ms@{s\_defender\_report\_id\_epoch\_time\_ms}!device\_defender.c@{device\_defender.c}}
+\doxysubsubsection{\texorpdfstring{s\_defender\_report\_id\_epoch\_time\_ms()}{s\_defender\_report\_id\_epoch\_time\_ms()}}
+{\footnotesize\ttfamily static uint64\+\_\+t s\+\_\+defender\+\_\+report\+\_\+id\+\_\+epoch\+\_\+time\+\_\+ms (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__iotdevice__defender__v1__task}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+task}} $\ast$}]{defender\+\_\+task }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{device__defender_8c_a14c8882526be280643884415597b2364}\label{device__defender_8c_a14c8882526be280643884415597b2364}} 
+\index{device\_defender.c@{device\_defender.c}!s\_get\_metric\_report\_json@{s\_get\_metric\_report\_json}}
+\index{s\_get\_metric\_report\_json@{s\_get\_metric\_report\_json}!device\_defender.c@{device\_defender.c}}
+\doxysubsubsection{\texorpdfstring{s\_get\_metric\_report\_json()}{s\_get\_metric\_report\_json()}}
+{\footnotesize\ttfamily static int s\+\_\+get\+\_\+metric\+\_\+report\+\_\+json (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{json\+\_\+out,  }\item[{struct \mbox{\hyperlink{structaws__iotdevice__defender__v1__task}{aws\+\_\+iotdevice\+\_\+defender\+\_\+v1\+\_\+task}} $\ast$}]{task,  }\item[{uint64\+\_\+t}]{report\+\_\+id,  }\item[{const struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$}]{net\+\_\+xfer,  }\item[{const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{net\+\_\+conns }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{device__defender_8c_ab194694b60e813909ea645339b3ff060}\label{device__defender_8c_ab194694b60e813909ea645339b3ff060}} 
+\index{device\_defender.c@{device\_defender.c}!s\_mqtt\_on\_suback@{s\_mqtt\_on\_suback}}
+\index{s\_mqtt\_on\_suback@{s\_mqtt\_on\_suback}!device\_defender.c@{device\_defender.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_on\_suback()}{s\_mqtt\_on\_suback()}}
+{\footnotesize\ttfamily static void s\+\_\+mqtt\+\_\+on\+\_\+suback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{device__defender_8c_af40603f13042a89f7bdbb21808703578}\label{device__defender_8c_af40603f13042a89f7bdbb21808703578}} 
+\index{device\_defender.c@{device\_defender.c}!s\_on\_report\_puback@{s\_on\_report\_puback}}
+\index{s\_on\_report\_puback@{s\_on\_report\_puback}!device\_defender.c@{device\_defender.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_report\_puback()}{s\_on\_report\_puback()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+report\+\_\+puback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{device__defender_8c_a7305f810e6e38cc6b2372529e94eae6c}\label{device__defender_8c_a7305f810e6e38cc6b2372529e94eae6c}} 
+\index{device\_defender.c@{device\_defender.c}!s\_on\_report\_response\_accepted@{s\_on\_report\_response\_accepted}}
+\index{s\_on\_report\_response\_accepted@{s\_on\_report\_response\_accepted}!device\_defender.c@{device\_defender.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_report\_response\_accepted()}{s\_on\_report\_response\_accepted()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+report\+\_\+response\+\_\+accepted (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{payload,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{dup,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{retain,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{device__defender_8c_a9bfc38ecb1f8ebebe9c1d4b8509e558d}\label{device__defender_8c_a9bfc38ecb1f8ebebe9c1d4b8509e558d}} 
+\index{device\_defender.c@{device\_defender.c}!s\_on\_report\_response\_rejected@{s\_on\_report\_response\_rejected}}
+\index{s\_on\_report\_response\_rejected@{s\_on\_report\_response\_rejected}!device\_defender.c@{device\_defender.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_report\_response\_rejected()}{s\_on\_report\_response\_rejected()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+report\+\_\+response\+\_\+rejected (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{payload,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{dup,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{retain,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{device__defender_8c_af5e37a247055f8e178eba2fd7856bc00}\label{device__defender_8c_af5e37a247055f8e178eba2fd7856bc00}} 
+\index{device\_defender.c@{device\_defender.c}!s\_reporting\_task\_fn@{s\_reporting\_task\_fn}}
+\index{s\_reporting\_task\_fn@{s\_reporting\_task\_fn}!device\_defender.c@{device\_defender.c}}
+\doxysubsubsection{\texorpdfstring{s\_reporting\_task\_fn()}{s\_reporting\_task\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+reporting\+\_\+task\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{userdata,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

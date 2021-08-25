@@ -1,0 +1,112 @@
+\hypertarget{endian_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/cbmc\+\_\+proof/endian.h File Reference}
+\label{endian_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/cbmc\_proof/endian.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/cbmc\_proof/endian.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{endian_8h_ae6261b4011f94182d891a5a074dfce0d}{\+\_\+\+\_\+\+LONG\+\_\+\+LONG\+\_\+\+PAIR}}(HI,  LO)~LO, HI
+\item 
+\#define \mbox{\hyperlink{endian_8h_a4b9167199621b390f82c3e5361ba6df6}{htobe16}}(x)~\+\_\+\+\_\+builtin\+\_\+bswap16(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_a3ea73a6089f61223b225c46e2ba58a47}{htole16}}(x)~(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_abb9b3120f6457dc04471c134fee1d221}{be16toh}}(x)~\+\_\+\+\_\+builtin\+\_\+bswap16(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_a684a5d26d1989cbd925e97292cc81c72}{le16toh}}(x)~(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_aa65407014913309932b9a5ea3c16a86d}{htobe32}}(x)~\+\_\+\+\_\+builtin\+\_\+bswap32(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_a9bea1e76e277f13ae39ac86095510bfa}{htole32}}(x)~(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_a6acac399720b3a57d9050420aa0aac41}{be32toh}}(x)~\+\_\+\+\_\+builtin\+\_\+bswap32(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_ad2dfbafcefb3add65ea44e581398e90a}{le32toh}}(x)~(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_a5c81b75e6da4507e0a90b6f6169c4787}{htobe64}}(x)~\+\_\+\+\_\+builtin\+\_\+bswap64(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_a3070a5f8867dbc37bdafcb1a7cd491bf}{htole64}}(x)~(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_af94eb043f5be14b4f260fb9b4c89ca2e}{be64toh}}(x)~\+\_\+\+\_\+builtin\+\_\+bswap64(x)
+\item 
+\#define \mbox{\hyperlink{endian_8h_afeefd2e03c936cc08821e7fa67946c4a}{le64toh}}(x)~(x)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{endian_8h_ae6261b4011f94182d891a5a074dfce0d}\label{endian_8h_ae6261b4011f94182d891a5a074dfce0d}} 
+\index{endian.h@{endian.h}!\_\_LONG\_LONG\_PAIR@{\_\_LONG\_LONG\_PAIR}}
+\index{\_\_LONG\_LONG\_PAIR@{\_\_LONG\_LONG\_PAIR}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{\_\_LONG\_LONG\_PAIR}{\_\_LONG\_LONG\_PAIR}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+LONG\+\_\+\+LONG\+\_\+\+PAIR(\begin{DoxyParamCaption}\item[{}]{HI,  }\item[{}]{LO }\end{DoxyParamCaption})~LO, HI}
+
+\mbox{\Hypertarget{endian_8h_abb9b3120f6457dc04471c134fee1d221}\label{endian_8h_abb9b3120f6457dc04471c134fee1d221}} 
+\index{endian.h@{endian.h}!be16toh@{be16toh}}
+\index{be16toh@{be16toh}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{be16toh}{be16toh}}
+{\footnotesize\ttfamily \#define be16toh(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+bswap16(x)}
+
+\mbox{\Hypertarget{endian_8h_a6acac399720b3a57d9050420aa0aac41}\label{endian_8h_a6acac399720b3a57d9050420aa0aac41}} 
+\index{endian.h@{endian.h}!be32toh@{be32toh}}
+\index{be32toh@{be32toh}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{be32toh}{be32toh}}
+{\footnotesize\ttfamily \#define be32toh(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+bswap32(x)}
+
+\mbox{\Hypertarget{endian_8h_af94eb043f5be14b4f260fb9b4c89ca2e}\label{endian_8h_af94eb043f5be14b4f260fb9b4c89ca2e}} 
+\index{endian.h@{endian.h}!be64toh@{be64toh}}
+\index{be64toh@{be64toh}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{be64toh}{be64toh}}
+{\footnotesize\ttfamily \#define be64toh(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+bswap64(x)}
+
+\mbox{\Hypertarget{endian_8h_a4b9167199621b390f82c3e5361ba6df6}\label{endian_8h_a4b9167199621b390f82c3e5361ba6df6}} 
+\index{endian.h@{endian.h}!htobe16@{htobe16}}
+\index{htobe16@{htobe16}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{htobe16}{htobe16}}
+{\footnotesize\ttfamily \#define htobe16(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+bswap16(x)}
+
+\mbox{\Hypertarget{endian_8h_aa65407014913309932b9a5ea3c16a86d}\label{endian_8h_aa65407014913309932b9a5ea3c16a86d}} 
+\index{endian.h@{endian.h}!htobe32@{htobe32}}
+\index{htobe32@{htobe32}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{htobe32}{htobe32}}
+{\footnotesize\ttfamily \#define htobe32(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+bswap32(x)}
+
+\mbox{\Hypertarget{endian_8h_a5c81b75e6da4507e0a90b6f6169c4787}\label{endian_8h_a5c81b75e6da4507e0a90b6f6169c4787}} 
+\index{endian.h@{endian.h}!htobe64@{htobe64}}
+\index{htobe64@{htobe64}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{htobe64}{htobe64}}
+{\footnotesize\ttfamily \#define htobe64(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~\+\_\+\+\_\+builtin\+\_\+bswap64(x)}
+
+\mbox{\Hypertarget{endian_8h_a3ea73a6089f61223b225c46e2ba58a47}\label{endian_8h_a3ea73a6089f61223b225c46e2ba58a47}} 
+\index{endian.h@{endian.h}!htole16@{htole16}}
+\index{htole16@{htole16}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{htole16}{htole16}}
+{\footnotesize\ttfamily \#define htole16(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(x)}
+
+\mbox{\Hypertarget{endian_8h_a9bea1e76e277f13ae39ac86095510bfa}\label{endian_8h_a9bea1e76e277f13ae39ac86095510bfa}} 
+\index{endian.h@{endian.h}!htole32@{htole32}}
+\index{htole32@{htole32}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{htole32}{htole32}}
+{\footnotesize\ttfamily \#define htole32(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(x)}
+
+\mbox{\Hypertarget{endian_8h_a3070a5f8867dbc37bdafcb1a7cd491bf}\label{endian_8h_a3070a5f8867dbc37bdafcb1a7cd491bf}} 
+\index{endian.h@{endian.h}!htole64@{htole64}}
+\index{htole64@{htole64}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{htole64}{htole64}}
+{\footnotesize\ttfamily \#define htole64(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(x)}
+
+\mbox{\Hypertarget{endian_8h_a684a5d26d1989cbd925e97292cc81c72}\label{endian_8h_a684a5d26d1989cbd925e97292cc81c72}} 
+\index{endian.h@{endian.h}!le16toh@{le16toh}}
+\index{le16toh@{le16toh}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{le16toh}{le16toh}}
+{\footnotesize\ttfamily \#define le16toh(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(x)}
+
+\mbox{\Hypertarget{endian_8h_ad2dfbafcefb3add65ea44e581398e90a}\label{endian_8h_ad2dfbafcefb3add65ea44e581398e90a}} 
+\index{endian.h@{endian.h}!le32toh@{le32toh}}
+\index{le32toh@{le32toh}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{le32toh}{le32toh}}
+{\footnotesize\ttfamily \#define le32toh(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(x)}
+
+\mbox{\Hypertarget{endian_8h_afeefd2e03c936cc08821e7fa67946c4a}\label{endian_8h_afeefd2e03c936cc08821e7fa67946c4a}} 
+\index{endian.h@{endian.h}!le64toh@{le64toh}}
+\index{le64toh@{le64toh}!endian.h@{endian.h}}
+\doxysubsubsection{\texorpdfstring{le64toh}{le64toh}}
+{\footnotesize\ttfamily \#define le64toh(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(x)}
+

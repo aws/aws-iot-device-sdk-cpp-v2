@@ -1,0 +1,30 @@
+\hypertarget{structaws__http1__connection__options}{}\doxysection{aws\+\_\+http1\+\_\+connection\+\_\+options Struct Reference}
+\label{structaws__http1__connection__options}\index{aws\_http1\_connection\_options@{aws\_http1\_connection\_options}}
+
+
+{\ttfamily \#include $<$connection.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http1__connection__options_a8fee5c92a264487b6e584f06ca3f340b}{read\+\_\+buffer\+\_\+capacity}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Options specific to HTTP/1.\+x connections. Initialize with AWS\+\_\+\+HTTP1\+\_\+\+CONNECTION\+\_\+\+OPTIONS\+\_\+\+INIT to set default values. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http1__connection__options_a8fee5c92a264487b6e584f06ca3f340b}\label{structaws__http1__connection__options_a8fee5c92a264487b6e584f06ca3f340b}} 
+\index{aws\_http1\_connection\_options@{aws\_http1\_connection\_options}!read\_buffer\_capacity@{read\_buffer\_capacity}}
+\index{read\_buffer\_capacity@{read\_buffer\_capacity}!aws\_http1\_connection\_options@{aws\_http1\_connection\_options}}
+\doxysubsubsection{\texorpdfstring{read\_buffer\_capacity}{read\_buffer\_capacity}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http1\+\_\+connection\+\_\+options\+::read\+\_\+buffer\+\_\+capacity}
+
+Optional Capacity in bytes of the HTTP/1 connection\textquotesingle{}s read buffer. The buffer grows if the flow-\/control window of the incoming HTTP-\/stream reaches zero. If the buffer reaches capacity, no further socket data is read until the HTTP-\/stream\textquotesingle{}s window opens again, allowing data to resume flowing.
+
+Ignored if {\ttfamily manual\+\_\+window\+\_\+management} is false. If zero is specified (the default) then a default capacity is chosen. A capacity that is too small may hinder throughput. A capacity that is too big may waste memory without helping throughput. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/\mbox{\hyperlink{connection_8h}{connection.\+h}}\end{DoxyCompactItemize}

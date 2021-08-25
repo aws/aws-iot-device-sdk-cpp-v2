@@ -1,0 +1,81 @@
+\hypertarget{class_test_lifecycle_handler}{}\doxysection{Test\+Lifecycle\+Handler Class Reference}
+\label{class_test_lifecycle_handler}\index{TestLifecycleHandler@{TestLifecycleHandler}}
+Inheritance diagram for Test\+Lifecycle\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_test_lifecycle_handler}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_test_lifecycle_handler_a50c082b8d70df1c20e37bafdc1707460}{Test\+Lifecycle\+Handler}} ()
+\item 
+void \mbox{\hyperlink{class_test_lifecycle_handler_a842e3d848f98221676e46d2ab0cfa71b}{On\+Connect\+Callback}} () override
+\item 
+void \mbox{\hyperlink{class_test_lifecycle_handler_a3fe18bc4894b7ff93c738ab63ba5f0c6}{On\+Disconnect\+Callback}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} \mbox{\hyperlink{structerror}{error}}) override
+\item 
+void \mbox{\hyperlink{class_test_lifecycle_handler_a244b6d3072e00e74070d962b2b5a12d0}{Wait\+On\+Condition}} (std\+::function$<$ \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}(void)$>$ condition)
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_test_lifecycle_handler_a1afb3ca19e8a0ee04a5f8802f51ed4a7}{s\+\_\+\+Test\+Event\+Stream\+Connect}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_test_lifecycle_handler_a50c082b8d70df1c20e37bafdc1707460}\label{class_test_lifecycle_handler_a50c082b8d70df1c20e37bafdc1707460}} 
+\index{TestLifecycleHandler@{TestLifecycleHandler}!TestLifecycleHandler@{TestLifecycleHandler}}
+\index{TestLifecycleHandler@{TestLifecycleHandler}!TestLifecycleHandler@{TestLifecycleHandler}}
+\doxysubsubsection{\texorpdfstring{TestLifecycleHandler()}{TestLifecycleHandler()}}
+{\footnotesize\ttfamily Test\+Lifecycle\+Handler\+::\+Test\+Lifecycle\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_test_lifecycle_handler_a842e3d848f98221676e46d2ab0cfa71b}\label{class_test_lifecycle_handler_a842e3d848f98221676e46d2ab0cfa71b}} 
+\index{TestLifecycleHandler@{TestLifecycleHandler}!OnConnectCallback@{OnConnectCallback}}
+\index{OnConnectCallback@{OnConnectCallback}!TestLifecycleHandler@{TestLifecycleHandler}}
+\doxysubsubsection{\texorpdfstring{OnConnectCallback()}{OnConnectCallback()}}
+{\footnotesize\ttfamily void Test\+Lifecycle\+Handler\+::\+On\+Connect\+Callback (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+This callback is only invoked upon receiving a CONNECT\+\_\+\+ACK with the CONNECTION\+\_\+\+ACCEPTED flag set by the server. Therefore, once this callback is invoked, the {\ttfamily Client\+Connection} is ready to be used for sending messages. 
+
+Reimplemented from \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler_a8fbad88f9a456de5cb338d6a97de6292}{Aws\+::\+Eventstreamrpc\+::\+Connection\+Lifecycle\+Handler}}.
+
+\mbox{\Hypertarget{class_test_lifecycle_handler_a3fe18bc4894b7ff93c738ab63ba5f0c6}\label{class_test_lifecycle_handler_a3fe18bc4894b7ff93c738ab63ba5f0c6}} 
+\index{TestLifecycleHandler@{TestLifecycleHandler}!OnDisconnectCallback@{OnDisconnectCallback}}
+\index{OnDisconnectCallback@{OnDisconnectCallback}!TestLifecycleHandler@{TestLifecycleHandler}}
+\doxysubsubsection{\texorpdfstring{OnDisconnectCallback()}{OnDisconnectCallback()}}
+{\footnotesize\ttfamily void Test\+Lifecycle\+Handler\+::\+On\+Disconnect\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Invoked upon connection shutdown. 
+\begin{DoxyParams}{Parameters}
+{\em status} & The status upon disconnection. It can be treated as a bool with true implying a successful disconnection. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler_a6d2146b6751947b6f4bfe25f502270ae}{Aws\+::\+Eventstreamrpc\+::\+Connection\+Lifecycle\+Handler}}.
+
+\mbox{\Hypertarget{class_test_lifecycle_handler_a244b6d3072e00e74070d962b2b5a12d0}\label{class_test_lifecycle_handler_a244b6d3072e00e74070d962b2b5a12d0}} 
+\index{TestLifecycleHandler@{TestLifecycleHandler}!WaitOnCondition@{WaitOnCondition}}
+\index{WaitOnCondition@{WaitOnCondition}!TestLifecycleHandler@{TestLifecycleHandler}}
+\doxysubsubsection{\texorpdfstring{WaitOnCondition()}{WaitOnCondition()}}
+{\footnotesize\ttfamily void Test\+Lifecycle\+Handler\+::\+Wait\+On\+Condition (\begin{DoxyParamCaption}\item[{std\+::function$<$ \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}(void)$>$}]{condition }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_test_lifecycle_handler_a1afb3ca19e8a0ee04a5f8802f51ed4a7}\label{class_test_lifecycle_handler_a1afb3ca19e8a0ee04a5f8802f51ed4a7}} 
+\index{TestLifecycleHandler@{TestLifecycleHandler}!s\_TestEventStreamConnect@{s\_TestEventStreamConnect}}
+\index{s\_TestEventStreamConnect@{s\_TestEventStreamConnect}!TestLifecycleHandler@{TestLifecycleHandler}}
+\doxysubsubsection{\texorpdfstring{s\_TestEventStreamConnect}{s\_TestEventStreamConnect}}
+{\footnotesize\ttfamily int s\+\_\+\+Test\+Event\+Stream\+Connect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+eventstream\+\_\+rpc/tests/\mbox{\hyperlink{_event_stream_client_test_8cpp}{Event\+Stream\+Client\+Test.\+cpp}}\end{DoxyCompactItemize}

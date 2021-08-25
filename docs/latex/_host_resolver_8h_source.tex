@@ -1,0 +1,75 @@
+\hypertarget{_host_resolver_8h_source}{}\doxysection{Host\+Resolver.\+h}
+\label{_host_resolver_8h_source}\index{crt/aws-\/crt-\/cpp/include/aws/crt/io/HostResolver.h@{crt/aws-\/crt-\/cpp/include/aws/crt/io/HostResolver.h}}
+\mbox{\hyperlink{_host_resolver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{aws/crt/Types.h}}>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{host__resolver_8h}{aws/io/host\_resolver.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
+\DoxyCodeLine{13 \{}
+\DoxyCodeLine{14     \textcolor{keyword}{namespace }Crt}
+\DoxyCodeLine{15     \{}
+\DoxyCodeLine{16         \textcolor{keyword}{namespace }Io}
+\DoxyCodeLine{17         \{}
+\DoxyCodeLine{18             \textcolor{keyword}{class }EventLoopGroup;}
+\DoxyCodeLine{19             \textcolor{keyword}{class }HostResolver;}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21             \textcolor{keyword}{using} \mbox{\hyperlink{structaws__host__address}{HostAddress}} = \mbox{\hyperlink{structaws__host__address}{aws\_host\_address}};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{28             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_acbf0e730c9b86819e74f33f7b5eed73d}{OnHostResolved}} =}
+\DoxyCodeLine{29                 std::function<void(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_host_resolver}{HostResolver}} \&resolver, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Vector<HostAddress>}} \&addresses, \textcolor{keywordtype}{int} errorCode)>;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31             \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_host_resolver}{HostResolver}}}
+\DoxyCodeLine{32             \{}
+\DoxyCodeLine{33               \textcolor{keyword}{public}:}
+\DoxyCodeLine{34                 \textcolor{keyword}{virtual} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_host_resolver}{\string~HostResolver}}();}
+\DoxyCodeLine{35                 \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_host_resolver_abb01a7459c39c5ece3fc4db34a6ed57f}{ResolveHost}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&host, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_acbf0e730c9b86819e74f33f7b5eed73d}{OnHostResolved}} \&onResolved) \textcolor{keyword}{noexcept} = 0;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{38                 \textcolor{keyword}{virtual} \mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *GetUnderlyingHandle() noexcept = 0;}
+\DoxyCodeLine{40                 virtual \mbox{\hyperlink{structaws__host__resolution__config}{aws\_host\_resolution\_config}} *GetConfig() noexcept = 0;}
+\DoxyCodeLine{41             \};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43             class \mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}} : public \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_host_resolver}{HostResolver}}}
+\DoxyCodeLine{44             \{}
+\DoxyCodeLine{45               \textcolor{keyword}{public}:}
+\DoxyCodeLine{52                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}}(}
+\DoxyCodeLine{53                     \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}} \&elGroup,}
+\DoxyCodeLine{54                     \textcolor{keywordtype}{size\_t} maxHosts,}
+\DoxyCodeLine{55                     \textcolor{keywordtype}{size\_t} maxTTL,}
+\DoxyCodeLine{56                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{57                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{\string~DefaultHostResolver}}();}
+\DoxyCodeLine{58                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a59e25b42b810a6f62b31b9db794536cd}{DefaultHostResolver}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{59                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a30475299241bd247372e095b7a6cc14d}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{60                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a3b8ceca8e65d425eadffc389225b0010}{DefaultHostResolver}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{61                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a163c9a7c75b092334491d2838157cf1e}{operator=}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{66                 \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_initialized; \}}
+\DoxyCodeLine{70                 \textcolor{keywordtype}{int} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a9565cc5a541c28081416f05723276916}{LastError}}() const noexcept \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\_last\_error}}(); \}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{78                 \textcolor{keywordtype}{bool} ResolveHost(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&host, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_acbf0e730c9b86819e74f33f7b5eed73d}{OnHostResolved}} \&onResolved) \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{81                 \mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *GetUnderlyingHandle() noexcept\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} m\_resolver; \}}
+\DoxyCodeLine{83                 \mbox{\hyperlink{structaws__host__resolution__config}{aws\_host\_resolution\_config}} *GetConfig() noexcept\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \&m\_config; \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85               \textcolor{keyword}{private}:}
+\DoxyCodeLine{86                 \mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *m\_resolver;}
+\DoxyCodeLine{87                 \mbox{\hyperlink{structaws__host__resolution__config}{aws\_host\_resolution\_config}} m\_config;}
+\DoxyCodeLine{88                 \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} *m\_allocator;}
+\DoxyCodeLine{89                 \textcolor{keywordtype}{bool} m\_initialized;}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91                 \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_onHostResolved(}
+\DoxyCodeLine{92                     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *resolver,}
+\DoxyCodeLine{93                     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *host\_name,}
+\DoxyCodeLine{94                     \textcolor{keywordtype}{int} err\_code,}
+\DoxyCodeLine{95                     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *host\_addresses,}
+\DoxyCodeLine{96                     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{97             \};}
+\DoxyCodeLine{98         \} \textcolor{comment}{// namespace Io}}
+\DoxyCodeLine{99     \}     \textcolor{comment}{// namespace Crt}}
+\DoxyCodeLine{100 \} \textcolor{comment}{// namespace Aws}}
+
+\end{DoxyCode}

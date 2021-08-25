@@ -1,0 +1,68 @@
+\hypertarget{_http_connection_8h}{}\doxysection{crt/aws-\/crt-\/cpp/include/aws/crt/http/\+Http\+Connection.h File Reference}
+\label{_http_connection_8h}\index{crt/aws-\/crt-\/cpp/include/aws/crt/http/HttpConnection.h@{crt/aws-\/crt-\/cpp/include/aws/crt/http/HttpConnection.h}}
+{\ttfamily \#include $<$aws/http/connection.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/request\+\_\+response.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/\+Types.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/io/\+Bootstrap.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/io/\+Socket\+Options.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/io/\+Tls\+Options.\+h$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_http_1_1_http_request_options}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Request\+Options}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Stream}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_http_1_1_client_stream_callback_data}{Aws\+::\+Crt\+::\+Http\+::\+Client\+Stream\+Callback\+Data}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_stream}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Stream}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Proxy\+Options}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_aws}{Aws}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_crt}{Aws\+::\+Crt}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io}{Aws\+::\+Crt\+::\+Io}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http}{Aws\+::\+Crt\+::\+Http}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a06495cd28f64029ef3dbd3b831d7b932}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Header}} = \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}}
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_abf7cbfe9deb17e6abd259b1db3850c6d}{Aws\+::\+Crt\+::\+Http\+::\+On\+Connection\+Setup}} = std\+::function$<$ void(const std\+::shared\+\_\+ptr$<$ Http\+Client\+Connection $>$ \&connection, int error\+Code)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a38b7bf171ad1910c2d8d95eef6f8ee13}{Aws\+::\+Crt\+::\+Http\+::\+On\+Connection\+Shutdown}} = std\+::function$<$ void(Http\+Client\+Connection \&connection, int error\+Code)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_ab2a1bca19494ff57966accc70a833834}{Aws\+::\+Crt\+::\+Http\+::\+On\+Incoming\+Headers}} = std\+::function$<$ void(Http\+Stream \&stream, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} header\+Block, const Http\+Header $\ast$headers\+Array, std\+::size\+\_\+t headers\+Count)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a8d646e4c6ffcdfa23c42e95403ac388d}{Aws\+::\+Crt\+::\+Http\+::\+On\+Incoming\+Headers\+Block\+Done}} = std\+::function$<$ void(Http\+Stream \&stream, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_abc77003769a91c513b54ce1fa42d1231}{Aws\+::\+Crt\+::\+Http\+::\+On\+Incoming\+Body}} = std\+::function$<$ void(Http\+Stream \&stream, const Byte\+Cursor \&data)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a486282cdd28a7f05e50e1534797c4a3f}{Aws\+::\+Crt\+::\+Http\+::\+On\+Stream\+Complete}} = std\+::function$<$ void(Http\+Stream \&stream, int error\+Code)$>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_af3cef7161b636a6450f5cb4a50021979}{Aws\+::\+Crt\+::\+Http\+::\+Aws\+Http\+Proxy\+Authentication\+Type}} \{ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_af3cef7161b636a6450f5cb4a50021979a6adf97f83acf6453d4a6a4b1070f3754}{Aws\+::\+Crt\+::\+Http\+::\+None}} = AWS\+\_\+\+HPAT\+\_\+\+NONE
+, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_af3cef7161b636a6450f5cb4a50021979a972e73b7a882d0802a4e3a16946a2f94}{Aws\+::\+Crt\+::\+Http\+::\+Basic}} = AWS\+\_\+\+HPAT\+\_\+\+BASIC
+ \}
+\item 
+enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_afba23b4ec95a8d1b95d18b2ffe5d82e5}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Version}} \{ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_afba23b4ec95a8d1b95d18b2ffe5d82e5a88183b946cc5f0e8c96b2e66e1c74a7e}{Aws\+::\+Crt\+::\+Http\+::\+Unknown}} = AWS\+\_\+\+HTTP\+\_\+\+VERSION\+\_\+\+UNKNOWN
+, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_afba23b4ec95a8d1b95d18b2ffe5d82e5aa820a7cca3410e94af1e51058023680a}{Aws\+::\+Crt\+::\+Http\+::\+Http1\+\_\+0}} = AWS\+\_\+\+HTTP\+\_\+\+VERSION\+\_\+1\+\_\+0
+, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_afba23b4ec95a8d1b95d18b2ffe5d82e5a2c494112f4c9bef921aacd3650fd34ea}{Aws\+::\+Crt\+::\+Http\+::\+Http1\+\_\+1}} = AWS\+\_\+\+HTTP\+\_\+\+VERSION\+\_\+1\+\_\+1
+, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_afba23b4ec95a8d1b95d18b2ffe5d82e5ab354a53a47e18f05f6cc27c7259e0791}{Aws\+::\+Crt\+::\+Http\+::\+Http2}} = AWS\+\_\+\+HTTP\+\_\+\+VERSION\+\_\+2
+ \}
+\end{DoxyCompactItemize}

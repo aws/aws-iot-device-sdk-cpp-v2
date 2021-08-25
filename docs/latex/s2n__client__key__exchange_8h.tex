@@ -1,0 +1,114 @@
+\hypertarget{s2n__client__key__exchange_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+client\+\_\+key\+\_\+exchange.h File Reference}
+\label{s2n__client__key__exchange_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_client\_key\_exchange.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_client\_key\_exchange.h}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_a78bd96660cfef4c618018e96674ce52d}{s2n\+\_\+dhe\+\_\+client\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_ad8406da3aa226085db31586200a548ba}{s2n\+\_\+ecdhe\+\_\+client\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_a00a7d4e06f27911e116cc04c5ffe2d1d}{s2n\+\_\+rsa\+\_\+client\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_a584c100855585dd572540d9ee7e2be11}{s2n\+\_\+kem\+\_\+client\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_a0969e3780822c5daba11a31647213c95}{s2n\+\_\+hybrid\+\_\+client\+\_\+key\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_a89a8809865e6844cc9a31650d9f5b6ec}{s2n\+\_\+dhe\+\_\+client\+\_\+key\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_acaa3a96e0cba99757e4f858659645700}{s2n\+\_\+ecdhe\+\_\+client\+\_\+key\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_a3189be6ffa9dc24179dbb320db153295}{s2n\+\_\+rsa\+\_\+client\+\_\+key\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_a96f0877e01830cb3b7eec31e7af9b5df}{s2n\+\_\+kem\+\_\+client\+\_\+key\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_a06155419ba0a94cdbfe506668853dfab}{s2n\+\_\+hybrid\+\_\+client\+\_\+key\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_af55216c1c73158434825126331219c45}{s2n\+\_\+dhe\+\_\+client\+\_\+key\+\_\+external}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_a28343ba0acd63bc920fd3125b8c428ac}{s2n\+\_\+ecdhe\+\_\+client\+\_\+key\+\_\+external}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__client__key__exchange_8h_af59ccea07a7428b5bb057a2162161b0f}{s2n\+\_\+rsa\+\_\+client\+\_\+key\+\_\+external}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_af55216c1c73158434825126331219c45}\label{s2n__client__key__exchange_8h_af55216c1c73158434825126331219c45}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_dhe\_client\_key\_external@{s2n\_dhe\_client\_key\_external}}
+\index{s2n\_dhe\_client\_key\_external@{s2n\_dhe\_client\_key\_external}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_client\_key\_external()}{s2n\_dhe\_client\_key\_external()}}
+{\footnotesize\ttfamily int s2n\+\_\+dhe\+\_\+client\+\_\+key\+\_\+external (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_a89a8809865e6844cc9a31650d9f5b6ec}\label{s2n__client__key__exchange_8h_a89a8809865e6844cc9a31650d9f5b6ec}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_dhe\_client\_key\_recv@{s2n\_dhe\_client\_key\_recv}}
+\index{s2n\_dhe\_client\_key\_recv@{s2n\_dhe\_client\_key\_recv}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_client\_key\_recv()}{s2n\_dhe\_client\_key\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+dhe\+\_\+client\+\_\+key\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_a78bd96660cfef4c618018e96674ce52d}\label{s2n__client__key__exchange_8h_a78bd96660cfef4c618018e96674ce52d}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_dhe\_client\_key\_send@{s2n\_dhe\_client\_key\_send}}
+\index{s2n\_dhe\_client\_key\_send@{s2n\_dhe\_client\_key\_send}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_client\_key\_send()}{s2n\_dhe\_client\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+dhe\+\_\+client\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_a28343ba0acd63bc920fd3125b8c428ac}\label{s2n__client__key__exchange_8h_a28343ba0acd63bc920fd3125b8c428ac}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_ecdhe\_client\_key\_external@{s2n\_ecdhe\_client\_key\_external}}
+\index{s2n\_ecdhe\_client\_key\_external@{s2n\_ecdhe\_client\_key\_external}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_client\_key\_external()}{s2n\_ecdhe\_client\_key\_external()}}
+{\footnotesize\ttfamily int s2n\+\_\+ecdhe\+\_\+client\+\_\+key\+\_\+external (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_acaa3a96e0cba99757e4f858659645700}\label{s2n__client__key__exchange_8h_acaa3a96e0cba99757e4f858659645700}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_ecdhe\_client\_key\_recv@{s2n\_ecdhe\_client\_key\_recv}}
+\index{s2n\_ecdhe\_client\_key\_recv@{s2n\_ecdhe\_client\_key\_recv}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_client\_key\_recv()}{s2n\_ecdhe\_client\_key\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+ecdhe\+\_\+client\+\_\+key\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_ad8406da3aa226085db31586200a548ba}\label{s2n__client__key__exchange_8h_ad8406da3aa226085db31586200a548ba}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_ecdhe\_client\_key\_send@{s2n\_ecdhe\_client\_key\_send}}
+\index{s2n\_ecdhe\_client\_key\_send@{s2n\_ecdhe\_client\_key\_send}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_client\_key\_send()}{s2n\_ecdhe\_client\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+ecdhe\+\_\+client\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_a06155419ba0a94cdbfe506668853dfab}\label{s2n__client__key__exchange_8h_a06155419ba0a94cdbfe506668853dfab}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_hybrid\_client\_key\_recv@{s2n\_hybrid\_client\_key\_recv}}
+\index{s2n\_hybrid\_client\_key\_recv@{s2n\_hybrid\_client\_key\_recv}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hybrid\_client\_key\_recv()}{s2n\_hybrid\_client\_key\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+hybrid\+\_\+client\+\_\+key\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_a0969e3780822c5daba11a31647213c95}\label{s2n__client__key__exchange_8h_a0969e3780822c5daba11a31647213c95}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_hybrid\_client\_key\_send@{s2n\_hybrid\_client\_key\_send}}
+\index{s2n\_hybrid\_client\_key\_send@{s2n\_hybrid\_client\_key\_send}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hybrid\_client\_key\_send()}{s2n\_hybrid\_client\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+hybrid\+\_\+client\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_a96f0877e01830cb3b7eec31e7af9b5df}\label{s2n__client__key__exchange_8h_a96f0877e01830cb3b7eec31e7af9b5df}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_kem\_client\_key\_recv@{s2n\_kem\_client\_key\_recv}}
+\index{s2n\_kem\_client\_key\_recv@{s2n\_kem\_client\_key\_recv}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_client\_key\_recv()}{s2n\_kem\_client\_key\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+client\+\_\+key\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_a584c100855585dd572540d9ee7e2be11}\label{s2n__client__key__exchange_8h_a584c100855585dd572540d9ee7e2be11}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_kem\_client\_key\_send@{s2n\_kem\_client\_key\_send}}
+\index{s2n\_kem\_client\_key\_send@{s2n\_kem\_client\_key\_send}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_kem\_client\_key\_send()}{s2n\_kem\_client\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+kem\+\_\+client\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_af59ccea07a7428b5bb057a2162161b0f}\label{s2n__client__key__exchange_8h_af59ccea07a7428b5bb057a2162161b0f}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_rsa\_client\_key\_external@{s2n\_rsa\_client\_key\_external}}
+\index{s2n\_rsa\_client\_key\_external@{s2n\_rsa\_client\_key\_external}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_client\_key\_external()}{s2n\_rsa\_client\_key\_external()}}
+{\footnotesize\ttfamily int s2n\+\_\+rsa\+\_\+client\+\_\+key\+\_\+external (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_a3189be6ffa9dc24179dbb320db153295}\label{s2n__client__key__exchange_8h_a3189be6ffa9dc24179dbb320db153295}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_rsa\_client\_key\_recv@{s2n\_rsa\_client\_key\_recv}}
+\index{s2n\_rsa\_client\_key\_recv@{s2n\_rsa\_client\_key\_recv}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_client\_key\_recv()}{s2n\_rsa\_client\_key\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+rsa\+\_\+client\+\_\+key\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__exchange_8h_a00a7d4e06f27911e116cc04c5ffe2d1d}\label{s2n__client__key__exchange_8h_a00a7d4e06f27911e116cc04c5ffe2d1d}} 
+\index{s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}!s2n\_rsa\_client\_key\_send@{s2n\_rsa\_client\_key\_send}}
+\index{s2n\_rsa\_client\_key\_send@{s2n\_rsa\_client\_key\_send}!s2n\_client\_key\_exchange.h@{s2n\_client\_key\_exchange.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_client\_key\_send()}{s2n\_rsa\_client\_key\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+rsa\+\_\+client\+\_\+key\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+key }\end{DoxyParamCaption})}
+

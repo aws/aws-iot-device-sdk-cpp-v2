@@ -1,0 +1,38 @@
+\hypertarget{_event_loop_group_8h_source}{}\doxysection{Event\+Loop\+Group.\+h}
+\label{_event_loop_group_8h_source}\index{crt/aws-\/crt-\/cpp/include/aws/crt/io/EventLoopGroup.h@{crt/aws-\/crt-\/cpp/include/aws/crt/io/EventLoopGroup.h}}
+\mbox{\hyperlink{_event_loop_group_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{aws/crt/Types.h}}>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{event__loop_8h}{aws/io/event\_loop.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \textcolor{keyword}{namespace }Crt}
+\DoxyCodeLine{13     \{}
+\DoxyCodeLine{14         \textcolor{keyword}{namespace }Io}
+\DoxyCodeLine{15         \{}
+\DoxyCodeLine{32             \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{33             \{}
+\DoxyCodeLine{34               \textcolor{keyword}{public}:}
+\DoxyCodeLine{39                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}}(uint16\_t threadCount = 0, \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{40                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{\string~EventLoopGroup}}();}
+\DoxyCodeLine{41                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group_ac36da407ce7f648549e32ce05f9a490d}{EventLoopGroup}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}} \&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{42                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}} \&\&) noexcept;}
+\DoxyCodeLine{43                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}} \&operator=(const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}} \&) = delete;}
+\DoxyCodeLine{44                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}} \&operator=(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}} \&\&) noexcept;}
+\DoxyCodeLine{48                 operator \textcolor{keywordtype}{bool}() const;}
+\DoxyCodeLine{52                 \textcolor{keywordtype}{int} \mbox{\hyperlink{namespace_aws_1_1_crt_aec41cfe367315d4e4e1712f19e3d3061}{LastError}}() const;}
+\DoxyCodeLine{54                 \mbox{\hyperlink{structaws__event__loop__group}{aws\_event\_loop\_group}} *GetUnderlyingHandle() noexcept;}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56               private:}
+\DoxyCodeLine{57                 \mbox{\hyperlink{structaws__event__loop__group}{aws\_event\_loop\_group}} *m\_eventLoopGroup;}
+\DoxyCodeLine{58                 \textcolor{keywordtype}{int} m\_lastError;}
+\DoxyCodeLine{59             \};}
+\DoxyCodeLine{60         \} \textcolor{comment}{// namespace Io}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     \} \textcolor{comment}{// namespace Crt}}
+\DoxyCodeLine{63 \} \textcolor{comment}{// namespace Aws}}
+
+\end{DoxyCode}

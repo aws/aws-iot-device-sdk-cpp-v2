@@ -1,0 +1,258 @@
+\hypertarget{channel_8h_source}{}\doxysection{channel.\+h}
+\label{channel_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/channel.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/channel.h}}
+\mbox{\hyperlink{channel_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_IO\_CHANNEL\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_IO\_CHANNEL\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{io_8h}{aws/io/io.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h}{aws/common/statistics.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{task__scheduler_8h}{aws/common/task\_scheduler.h}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{enum} \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\_channel\_direction}} \{}
+\DoxyCodeLine{14     \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cacaba21b9e0b5bd35d10c8e1923cc52ec73}{AWS\_CHANNEL\_DIR\_READ}},}
+\DoxyCodeLine{15     \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407caca37d96991be6fea2a8980ca16d9bae7a4}{AWS\_CHANNEL\_DIR\_WRITE}},}
+\DoxyCodeLine{16 \};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel}{aws\_channel}};}
+\DoxyCodeLine{19 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}};}
+\DoxyCodeLine{20 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}};}
+\DoxyCodeLine{21 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}};}
+\DoxyCodeLine{22 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop__local__object}{aws\_event\_loop\_local\_object}};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{channel_8h_a4194ec3bfdd4996d5096e8bfb74db771}{aws\_channel\_on\_setup\_completed\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{/* Callback called when a channel is completely shutdown. error\_code refers to the reason the channel was closed. */}}
+\DoxyCodeLine{27 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{channel_8h_a7c14ceb5857ea36d97716ec4e03c2922}{aws\_channel\_on\_shutdown\_completed\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} \{}
+\DoxyCodeLine{30     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__channel__slot_a4a9dba0ad603efe7bc66624bc15614ed}{alloc}};}
+\DoxyCodeLine{31     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel}{aws\_channel}} *\mbox{\hyperlink{structaws__channel__slot_acf9149b8c5532c294351786e05433310}{channel}};}
+\DoxyCodeLine{32     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *\mbox{\hyperlink{structaws__channel__slot_a7b87eeba9f93d2bcfd0f6f135e20b1a1}{adj\_left}};}
+\DoxyCodeLine{33     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *\mbox{\hyperlink{structaws__channel__slot_aee993d9b9169de1d5320ee9d2050f3cd}{adj\_right}};}
+\DoxyCodeLine{34     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{structaws__channel__slot_a91d31b00b5f59f19a693f3a2c23ff90a}{handler}};}
+\DoxyCodeLine{35     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__channel__slot_a1973ac925483ecfa49416593e4207c46}{window\_size}};}
+\DoxyCodeLine{36     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__channel__slot_ac907d38baefcbc425ef551788842b33e}{upstream\_message\_overhead}};}
+\DoxyCodeLine{37     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__channel__slot_a0a2b85af20c16c65e0e0cdb585e87bf4}{current\_window\_update\_batch\_size}};}
+\DoxyCodeLine{38 \};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}};}
+\DoxyCodeLine{41 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{channel_8h_af19f695ba5e5d8dc58cce82c4c1c645e}{aws\_channel\_task\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}} *channel\_task, \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__channel__task_a23153a7135d48f80cb80f63ab53f2a95}{arg}}, \textcolor{keyword}{enum} \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\_task\_status}} status);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}} \{}
+\DoxyCodeLine{44     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task}{aws\_task}} \mbox{\hyperlink{structaws__channel__task_ae22aab672229d1dafa26ee51e25df7e0}{wrapper\_task}};}
+\DoxyCodeLine{45     \mbox{\hyperlink{channel_8h_af19f695ba5e5d8dc58cce82c4c1c645e}{aws\_channel\_task\_fn}} *\mbox{\hyperlink{structaws__channel__task_a23a4a19a8849d12cb82b6375aa43bbf2}{task\_fn}};}
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__channel__task_a23153a7135d48f80cb80f63ab53f2a95}{arg}};}
+\DoxyCodeLine{47     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structaws__channel__task_abf40c909ea218e89b5557998e411ff31}{type\_tag}};}
+\DoxyCodeLine{48     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} \mbox{\hyperlink{structaws__channel__task_adc68bb04991a8fcc6297891a668415a3}{node}};}
+\DoxyCodeLine{49 \};}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler__vtable}{aws\_channel\_handler\_vtable}} \{}
+\DoxyCodeLine{59     int (*\mbox{\hyperlink{structaws__channel__handler__vtable_a42cad3f2f2b8b776ecc90294ec3eb042}{process\_read\_message}})(}
+\DoxyCodeLine{60         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{61         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{62         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}});}
+\DoxyCodeLine{67     int (*\mbox{\hyperlink{structaws__channel__handler__vtable_a79d6b3c1d0f641f7cd6ea186ff25102c}{process\_write\_message}})(}
+\DoxyCodeLine{68         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{69         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{70         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}});}
+\DoxyCodeLine{76     int (*\mbox{\hyperlink{structaws__channel__handler__vtable_a172a19693e5d65c214a79eac9137847c}{increment\_read\_window}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot, \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{90     int (*\mbox{\hyperlink{structaws__channel__handler__vtable_a567d721a9215cfc2770d017c73e466ca}{shutdown}})(}
+\DoxyCodeLine{91         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{92         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{93         \textcolor{keyword}{enum} \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\_channel\_direction}} dir,}
+\DoxyCodeLine{94         \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{95         \textcolor{keywordtype}{bool} free\_scarce\_resources\_immediately);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{100     size\_t (*\mbox{\hyperlink{structaws__channel__handler__vtable_a02967719e454242de8e141f6a1da9631}{initial\_window\_size}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{104     size\_t (*\mbox{\hyperlink{structaws__channel__handler__vtable_a8d2df398af57d94324d7650c7d27bf39}{message\_overhead}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{110     void (*\mbox{\hyperlink{structaws__channel__handler__vtable_aa0cc17a227ee0633b9a04bd15bfef82c}{destroy}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{115     void (*\mbox{\hyperlink{structaws__channel__handler__vtable_a2904736f9a38fec2340aeb65bc4a2bb3}{reset\_statistics}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{121     void (*\mbox{\hyperlink{structaws__channel__handler__vtable_ae0155a6543c4a4a7e2d75eb26a3258d7}{gather\_statistics}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *stats\_list);}
+\DoxyCodeLine{122 \};}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} \{}
+\DoxyCodeLine{125     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler__vtable}{aws\_channel\_handler\_vtable}} *\mbox{\hyperlink{structaws__channel__handler_ad22dc5a407aeddf0033f6266f41587b5}{vtable}};}
+\DoxyCodeLine{126     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__channel__handler_a2f1088a9f9d242b263462b3d0da72e6b}{alloc}};}
+\DoxyCodeLine{127     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *\mbox{\hyperlink{structaws__channel__handler_aacd0130a225a17d8c4d34fcebdb4b0c6}{slot}};}
+\DoxyCodeLine{128     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__channel__handler_a0bcaa03eb33824ffbab30336266336ba}{impl}};}
+\DoxyCodeLine{129 \};}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{144 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__options}{aws\_channel\_options}} \{}
+\DoxyCodeLine{145     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{structaws__channel__options_adb6f75fea6eaab84d8086496fe01f031}{event\_loop}};}
+\DoxyCodeLine{146     \mbox{\hyperlink{channel_8h_a4194ec3bfdd4996d5096e8bfb74db771}{aws\_channel\_on\_setup\_completed\_fn}} *\mbox{\hyperlink{structaws__channel__options_a3c45c5a76739ae036b0fa59b367c48b8}{on\_setup\_completed}};}
+\DoxyCodeLine{147     \mbox{\hyperlink{channel_8h_a7c14ceb5857ea36d97716ec4e03c2922}{aws\_channel\_on\_shutdown\_completed\_fn}} *\mbox{\hyperlink{structaws__channel__options_a09ed243520b12714edd2bfd7ac7ec25c}{on\_shutdown\_completed}};}
+\DoxyCodeLine{148     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__channel__options_a72c36a82ad26d204db09392e92631d92}{setup\_user\_data}};}
+\DoxyCodeLine{149     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__channel__options_a177d5ad30281ff8e2d8c2e9bb3fe817e}{shutdown\_user\_data}};}
+\DoxyCodeLine{150     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__channel__options_a3406dccce906b594ec9ef579a53df293}{enable\_read\_back\_pressure}};}
+\DoxyCodeLine{151 \};}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{keyword}{extern} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{channel_8h_a232600f4a6382fbd522a1eaaaefe3eef}{g\_aws\_channel\_max\_fragment\_size}};}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{160 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{161 \textcolor{keywordtype}{void} \mbox{\hyperlink{channel_8h_ad38c1fc60248fb3d6a85991c26e9c70a}{aws\_channel\_task\_init}}(}
+\DoxyCodeLine{162     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}} *channel\_task,}
+\DoxyCodeLine{163     \mbox{\hyperlink{channel_8h_af19f695ba5e5d8dc58cce82c4c1c645e}{aws\_channel\_task\_fn}} *\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_abbaac6de4b607959ddeab2c29055a668}{task\_fn}},}
+\DoxyCodeLine{164     \textcolor{keywordtype}{void} *arg,}
+\DoxyCodeLine{165     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *type\_tag);}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{171 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{172 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel}{aws\_channel}} *\mbox{\hyperlink{channel_8h_a5d4a43fc2d4f7c2989796a8fdc9acd25}{aws\_channel\_new}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__options}{aws\_channel\_options}} *creation\_args);}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{181 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{182 \textcolor{keywordtype}{void} \mbox{\hyperlink{channel_8h_a775ccd151af122ab38243fa91c5c93a1}{aws\_channel\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel);}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{193 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{194 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_abff5ab83fc216f5dc84a3cc3576de872}{aws\_channel\_shutdown}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}});}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{202 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{203 \textcolor{keywordtype}{void} \mbox{\hyperlink{channel_8h_ae552264682f9ec8786d246fbb7eaa967}{aws\_channel\_acquire\_hold}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel);}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{209 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{210 \textcolor{keywordtype}{void} \mbox{\hyperlink{channel_8h_ad007559c3290b51ee22c0ce071f8a8d7}{aws\_channel\_release\_hold}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel);}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{218 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{219 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *\mbox{\hyperlink{channel_8h_a604bcb192d4aef1e4809db8c78533a8b}{aws\_channel\_slot\_new}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *\mbox{\hyperlink{structaws__channel__slot_acf9149b8c5532c294351786e05433310}{channel}});}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{224 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{225 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *\mbox{\hyperlink{channel_8h_a470766e364e77c0615ae7560fa476dc4}{aws\_channel\_get\_event\_loop}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel);}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{230 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{231 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a404ded5f7fd625d7bc18f0a4c59ffcf7}{aws\_channel\_current\_clock\_time}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel, uint64\_t *time\_nanos);}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{236 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{237 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a3b28700afac4c3811ed75ce626022125}{aws\_channel\_fetch\_local\_object}}(}
+\DoxyCodeLine{238     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel,}
+\DoxyCodeLine{239     \textcolor{keyword}{const} \textcolor{keywordtype}{void} *key,}
+\DoxyCodeLine{240     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop__local__object}{aws\_event\_loop\_local\_object}} *obj);}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{245 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{246 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a79ed1f0c8324635fbb99ddce9db6c0eb}{aws\_channel\_put\_local\_object}}(}
+\DoxyCodeLine{247     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel,}
+\DoxyCodeLine{248     \textcolor{keyword}{const} \textcolor{keywordtype}{void} *key,}
+\DoxyCodeLine{249     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop__local__object}{aws\_event\_loop\_local\_object}} *obj);}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{254 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{255 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_ad5afcad77030e2669c77f1994e594a56}{aws\_channel\_remove\_local\_object}}(}
+\DoxyCodeLine{256     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel,}
+\DoxyCodeLine{257     \textcolor{keyword}{const} \textcolor{keywordtype}{void} *key,}
+\DoxyCodeLine{258     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop__local__object}{aws\_event\_loop\_local\_object}} *removed\_obj);}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{265 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{266 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *\mbox{\hyperlink{channel_8h_ac496d05db725dd4678a25ddbc471b011}{aws\_channel\_acquire\_message\_from\_pool}}(}
+\DoxyCodeLine{267     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel,}
+\DoxyCodeLine{268     \textcolor{keyword}{enum} \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\_io\_message\_type}} \mbox{\hyperlink{event__stream__rpc__client__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\_type}},}
+\DoxyCodeLine{269     \textcolor{keywordtype}{size\_t} size\_hint);}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{278 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{279 \textcolor{keywordtype}{void} \mbox{\hyperlink{channel_8h_a51c2120a0975dfc93ade9eaf727fed3b}{aws\_channel\_schedule\_task\_now}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}} *task);}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{289 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{290 \textcolor{keywordtype}{void} \mbox{\hyperlink{channel_8h_a7a658c7231a979e7326fa3170db2c457}{aws\_channel\_schedule\_task\_future}}(}
+\DoxyCodeLine{291     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel,}
+\DoxyCodeLine{292     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}} *task,}
+\DoxyCodeLine{293     uint64\_t run\_at\_nanos);}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{306 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{307 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a55119c6f02d991d4ef7955aee7102382}{aws\_channel\_set\_statistics\_handler}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{313 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{314 \textcolor{keywordtype}{bool} \mbox{\hyperlink{channel_8h_ad9b9ae95b32036cb22b5c9d9b9f33ff5}{aws\_channel\_thread\_is\_callers\_thread}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel);}
+\DoxyCodeLine{315 }
+\DoxyCodeLine{320 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{321 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a38ac356246a57ddce19a49e732785211}{aws\_channel\_slot\_set\_handler}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{326 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{327 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a4df982c1c3a985ad6b49119edb8e7aa7}{aws\_channel\_slot\_remove}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot);}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{332 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{333 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a96ffa23c49f6a13a5d1d6b72832f83d5}{aws\_channel\_slot\_replace}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *remove, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *new\_slot);}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{339 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{340 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a941a727ccb6e9150a1940a7c56d96294}{aws\_channel\_slot\_insert\_right}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *to\_add);}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{346 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{347 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a13d4654db8dc96af9518ad4867d33a76}{aws\_channel\_slot\_insert\_end}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *to\_add);}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{353 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{354 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_ad940cb961369ae438817dc43e0611d47}{aws\_channel\_slot\_insert\_left}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *to\_add);}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{364 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{365 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a0f2aaef86179344f59c80fe1e83397c5}{aws\_channel\_slot\_send\_message}}(}
+\DoxyCodeLine{366     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{367     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
+\DoxyCodeLine{368     \textcolor{keyword}{enum} \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\_channel\_direction}} dir);}
+\DoxyCodeLine{369 }
+\DoxyCodeLine{375 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{376 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *\mbox{\hyperlink{channel_8h_ab8661b01912d7a78c14f62a39baf25d7}{aws\_channel\_slot\_acquire\_max\_message\_for\_write}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot);}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{381 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{382 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a40e6d14a73bb436af692a8ab840a01f2}{aws\_channel\_slot\_increment\_read\_window}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot, \textcolor{keywordtype}{size\_t} window);}
+\DoxyCodeLine{383 }
+\DoxyCodeLine{388 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{389 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a42b2307f270363452d4ae84389357f02}{aws\_channel\_slot\_on\_handler\_shutdown\_complete}}(}
+\DoxyCodeLine{390     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{391     \textcolor{keyword}{enum} \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\_channel\_direction}} dir,}
+\DoxyCodeLine{392     \textcolor{keywordtype}{int} err\_code,}
+\DoxyCodeLine{393     \textcolor{keywordtype}{bool} free\_scarce\_resources\_immediately);}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{399 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{400 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_af86f7cc011a9200ec2f8793ce31c2b33}{aws\_channel\_slot\_shutdown}}(}
+\DoxyCodeLine{401     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{402     \textcolor{keyword}{enum} \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\_channel\_direction}} dir,}
+\DoxyCodeLine{403     \textcolor{keywordtype}{int} err\_code,}
+\DoxyCodeLine{404     \textcolor{keywordtype}{bool} free\_scarce\_resources\_immediately);}
+\DoxyCodeLine{405 }
+\DoxyCodeLine{410 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{411 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{channel_8h_a42b1ec5d617da3932f308ddddd958632}{aws\_channel\_slot\_downstream\_read\_window}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot);}
+\DoxyCodeLine{412 }
+\DoxyCodeLine{414 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{415 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{channel_8h_ad46b040032dcdf577f55300123c0d235}{aws\_channel\_slot\_upstream\_message\_overhead}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot);}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{420 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{421 \textcolor{keywordtype}{void} \mbox{\hyperlink{channel_8h_adfe0b5153a282ceaba5279126329c0d0}{aws\_channel\_handler\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{426 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{427 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a7479c439c225dadee4f8401b7d7e2b00}{aws\_channel\_handler\_process\_read\_message}}(}
+\DoxyCodeLine{428     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{429     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{430     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}});}
+\DoxyCodeLine{431 }
+\DoxyCodeLine{435 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{436 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_aa4c2c6ae64cd725a8ab68c24e9d3cc4a}{aws\_channel\_handler\_process\_write\_message}}(}
+\DoxyCodeLine{437     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{438     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{439     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}});}
+\DoxyCodeLine{440 }
+\DoxyCodeLine{444 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{445 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_afbd2a6fac4eed052d496f6f8479dacd1}{aws\_channel\_handler\_increment\_read\_window}}(}
+\DoxyCodeLine{446     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{447     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{448     \textcolor{keywordtype}{size\_t} size);}
+\DoxyCodeLine{449 }
+\DoxyCodeLine{453 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{454 \textcolor{keywordtype}{int} \mbox{\hyperlink{channel_8h_a93831fb0b5301b49b835a82abbdb6dd8}{aws\_channel\_handler\_shutdown}}(}
+\DoxyCodeLine{455     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{456     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
+\DoxyCodeLine{457     \textcolor{keyword}{enum} \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\_channel\_direction}} dir,}
+\DoxyCodeLine{458     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{459     \textcolor{keywordtype}{bool} free\_scarce\_resources\_immediately);}
+\DoxyCodeLine{460 }
+\DoxyCodeLine{464 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{465 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{channel_8h_a3bfc82ec73dd41a841e82dfdc1a5975c}{aws\_channel\_handler\_initial\_window\_size}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{466 }
+\DoxyCodeLine{467 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
+\DoxyCodeLine{468 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *\mbox{\hyperlink{channel_8h_ae5b17821786e4b0c99b01fb2ddaadb79}{aws\_channel\_get\_first\_slot}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel}{aws\_channel}} *\mbox{\hyperlink{structaws__channel__slot_acf9149b8c5532c294351786e05433310}{channel}});}
+\DoxyCodeLine{469 }
+\DoxyCodeLine{470 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{471 }
+\DoxyCodeLine{472 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_IO\_CHANNEL\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

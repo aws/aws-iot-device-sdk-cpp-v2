@@ -1,0 +1,126 @@
+\hypertarget{s2n__client__key__recv__fuzz__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/s2n\+\_\+client\+\_\+key\+\_\+recv\+\_\+fuzz\+\_\+test.c File Reference}
+\label{s2n__client__key__recv__fuzz__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/s2n\_client\_key\_recv\_fuzz\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/fuzz/s2n\_client\_key\_recv\_fuzz\_test.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/crypto.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/err.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+client\+\_\+key\+\_\+exchange.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kex.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}api/s2n.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+preferences.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a5c744bf12003a56df6b3f724c357ba2e}{s2n\+\_\+fuzz\+\_\+init}} (int $\ast$argc, char $\ast$$\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a5480e6808a29ceb2b848a5eef329a1de}{s2n\+\_\+fuzz\+\_\+test}} (const uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+\item 
+static void \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_aca6f8aa594d2cdc1ff15d51509eb0d9e}{s2n\+\_\+fuzz\+\_\+cleanup}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a0eb092c46904d21ae82f1a0a0c49ec7b}{TLS\+\_\+\+VERSIONS}} \mbox{[}$\,$\mbox{]} = \{\mbox{\hyperlink{s2n_8h_ab16c04a1d8479546aa124c4e52a1703f}{S2\+N\+\_\+\+TLS10}}, \mbox{\hyperlink{s2n_8h_a2e4a51448d3a9ea14b506ac2573f9bae}{S2\+N\+\_\+\+TLS11}}, \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2\+N\+\_\+\+TLS12}}\}
+\item 
+char $\ast$ \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_afe7b0f9b616ebe87d4d14178d9bb5188}{cert\+\_\+chain\+\_\+pem}}
+\item 
+char $\ast$ \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a21bdfa791001d9f2f5df9c0d3602a1e1}{private\+\_\+key\+\_\+pem}}
+\item 
+char $\ast$ \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_aac3b2fbc2d3a68db0f32d1af9530a8a4}{dhparams\+\_\+pem}}
+\item 
+struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$ \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}
+\item 
+struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$ \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_aac2a6f1aab996a327b37797f9c1209ae}{chain\+\_\+and\+\_\+key}}
+\item 
+struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$ \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}{cert}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$$\ast$ \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a4f30a985ee2d82ba2a30a0e757c04860}{test\+\_\+suites}}
+\item 
+int \mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_aa3c353f8f52c1d09973ddc1ece4dfebd}{num\+\_\+suites}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_aca6f8aa594d2cdc1ff15d51509eb0d9e}\label{s2n__client__key__recv__fuzz__test_8c_aca6f8aa594d2cdc1ff15d51509eb0d9e}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!s2n\_fuzz\_cleanup@{s2n\_fuzz\_cleanup}}
+\index{s2n\_fuzz\_cleanup@{s2n\_fuzz\_cleanup}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_fuzz\_cleanup()}{s2n\_fuzz\_cleanup()}}
+{\footnotesize\ttfamily static void s2n\+\_\+fuzz\+\_\+cleanup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_a5c744bf12003a56df6b3f724c357ba2e}\label{s2n__client__key__recv__fuzz__test_8c_a5c744bf12003a56df6b3f724c357ba2e}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!s2n\_fuzz\_init@{s2n\_fuzz\_init}}
+\index{s2n\_fuzz\_init@{s2n\_fuzz\_init}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_fuzz\_init()}{s2n\_fuzz\_init()}}
+{\footnotesize\ttfamily int s2n\+\_\+fuzz\+\_\+init (\begin{DoxyParamCaption}\item[{int $\ast$}]{argc,  }\item[{char $\ast$$\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_a5480e6808a29ceb2b848a5eef329a1de}\label{s2n__client__key__recv__fuzz__test_8c_a5480e6808a29ceb2b848a5eef329a1de}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!s2n\_fuzz\_test@{s2n\_fuzz\_test}}
+\index{s2n\_fuzz\_test@{s2n\_fuzz\_test}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_fuzz\_test()}{s2n\_fuzz\_test()}}
+{\footnotesize\ttfamily int s2n\+\_\+fuzz\+\_\+test (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buf,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}\label{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!cert@{cert}}
+\index{cert@{cert}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{cert}{cert}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}}$\ast$ cert}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_afe7b0f9b616ebe87d4d14178d9bb5188}\label{s2n__client__key__recv__fuzz__test_8c_afe7b0f9b616ebe87d4d14178d9bb5188}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!cert\_chain\_pem@{cert\_chain\_pem}}
+\index{cert\_chain\_pem@{cert\_chain\_pem}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{cert\_chain\_pem}{cert\_chain\_pem}}
+{\footnotesize\ttfamily char$\ast$ cert\+\_\+chain\+\_\+pem}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_aac2a6f1aab996a327b37797f9c1209ae}\label{s2n__client__key__recv__fuzz__test_8c_aac2a6f1aab996a327b37797f9c1209ae}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!chain\_and\_key@{chain\_and\_key}}
+\index{chain\_and\_key@{chain\_and\_key}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{chain\_and\_key}{chain\_and\_key}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}}$\ast$ chain\+\_\+and\+\_\+key}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}\label{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!config@{config}}
+\index{config@{config}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}}$\ast$ config}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_aac3b2fbc2d3a68db0f32d1af9530a8a4}\label{s2n__client__key__recv__fuzz__test_8c_aac3b2fbc2d3a68db0f32d1af9530a8a4}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!dhparams\_pem@{dhparams\_pem}}
+\index{dhparams\_pem@{dhparams\_pem}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{dhparams\_pem}{dhparams\_pem}}
+{\footnotesize\ttfamily char$\ast$ dhparams\+\_\+pem}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_aa3c353f8f52c1d09973ddc1ece4dfebd}\label{s2n__client__key__recv__fuzz__test_8c_aa3c353f8f52c1d09973ddc1ece4dfebd}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!num\_suites@{num\_suites}}
+\index{num\_suites@{num\_suites}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{num\_suites}{num\_suites}}
+{\footnotesize\ttfamily int num\+\_\+suites}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_a21bdfa791001d9f2f5df9c0d3602a1e1}\label{s2n__client__key__recv__fuzz__test_8c_a21bdfa791001d9f2f5df9c0d3602a1e1}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!private\_key\_pem@{private\_key\_pem}}
+\index{private\_key\_pem@{private\_key\_pem}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{private\_key\_pem}{private\_key\_pem}}
+{\footnotesize\ttfamily char$\ast$ private\+\_\+key\+\_\+pem}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_a4f30a985ee2d82ba2a30a0e757c04860}\label{s2n__client__key__recv__fuzz__test_8c_a4f30a985ee2d82ba2a30a0e757c04860}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!test\_suites@{test\_suites}}
+\index{test\_suites@{test\_suites}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_suites}{test\_suites}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$$\ast$ test\+\_\+suites}
+
+\mbox{\Hypertarget{s2n__client__key__recv__fuzz__test_8c_a0eb092c46904d21ae82f1a0a0c49ec7b}\label{s2n__client__key__recv__fuzz__test_8c_a0eb092c46904d21ae82f1a0a0c49ec7b}} 
+\index{s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}!TLS\_VERSIONS@{TLS\_VERSIONS}}
+\index{TLS\_VERSIONS@{TLS\_VERSIONS}!s2n\_client\_key\_recv\_fuzz\_test.c@{s2n\_client\_key\_recv\_fuzz\_test.c}}
+\doxysubsubsection{\texorpdfstring{TLS\_VERSIONS}{TLS\_VERSIONS}}
+{\footnotesize\ttfamily const uint8\+\_\+t TLS\+\_\+\+VERSIONS\mbox{[}$\,$\mbox{]} = \{\mbox{\hyperlink{s2n_8h_ab16c04a1d8479546aa124c4e52a1703f}{S2\+N\+\_\+\+TLS10}}, \mbox{\hyperlink{s2n_8h_a2e4a51448d3a9ea14b506ac2573f9bae}{S2\+N\+\_\+\+TLS11}}, \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2\+N\+\_\+\+TLS12}}\}\hspace{0.3cm}{\ttfamily [static]}}
+

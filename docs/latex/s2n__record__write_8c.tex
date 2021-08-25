@@ -1,0 +1,92 @@
+\hypertarget{s2n__record__write_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+record\+\_\+write.c File Reference}
+\label{s2n__record__write_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_record\_write.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_record\_write.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+record.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+crypto.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+sequence.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+cipher.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hmac.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+random.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__record__write_8c_ae264707f73250401ac689c9fa065379d}{s2n\+\_\+tls\+\_\+record\+\_\+overhead}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint16\+\_\+t $\ast$out)
+\item 
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__record__write_8c_a5f712a98aa5bc33e96302d844e12923b}{s2n\+\_\+record\+\_\+max\+\_\+write\+\_\+payload\+\_\+size}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint16\+\_\+t $\ast$max\+\_\+fragment\+\_\+size)
+\item 
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__record__write_8c_af57bdb56fda83ba385937ff18722a809}{s2n\+\_\+record\+\_\+min\+\_\+write\+\_\+payload\+\_\+size}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint16\+\_\+t $\ast$payload\+\_\+size)
+\item 
+int \mbox{\hyperlink{s2n__record__write_8c_ace92de291faf5890b3115d863f7283d4}{s2n\+\_\+record\+\_\+write\+\_\+protocol\+\_\+version}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__record__write_8c_a9923fa6ef61298ce3c670c511b8dd233}{s2n\+\_\+record\+\_\+encrypt}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite, struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$session\+\_\+key, struct s2n\+\_\+blob $\ast$iv, struct s2n\+\_\+blob $\ast$aad, struct s2n\+\_\+blob $\ast$en, uint8\+\_\+t $\ast$implicit\+\_\+iv, uint16\+\_\+t block\+\_\+size)
+\item 
+int \mbox{\hyperlink{s2n__record__write_8c_a508821bcbefaa99624325c6fc2c7d229}{s2n\+\_\+record\+\_\+writev}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t content\+\_\+type, const struct iovec $\ast$in, int in\+\_\+count, size\+\_\+t offs, size\+\_\+t to\+\_\+write)
+\item 
+int \mbox{\hyperlink{s2n__record__write_8c_a345384c81da35d41574e7a2c8319c7e3}{s2n\+\_\+record\+\_\+write}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t content\+\_\+type, struct s2n\+\_\+blob $\ast$in)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{s2n__record__write_8c_ad5a7e348cbdec0362cfe222d43cfdb93}{s2n\+\_\+unknown\+\_\+protocol\+\_\+version}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__record__write_8c_a9923fa6ef61298ce3c670c511b8dd233}\label{s2n__record__write_8c_a9923fa6ef61298ce3c670c511b8dd233}} 
+\index{s2n\_record\_write.c@{s2n\_record\_write.c}!s2n\_record\_encrypt@{s2n\_record\_encrypt}}
+\index{s2n\_record\_encrypt@{s2n\_record\_encrypt}!s2n\_record\_write.c@{s2n\_record\_write.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_encrypt()}{s2n\_record\_encrypt()}}
+{\footnotesize\ttfamily static int s2n\+\_\+record\+\_\+encrypt (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{const struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$}]{cipher\+\_\+suite,  }\item[{struct \mbox{\hyperlink{structs2n__session__key}{s2n\+\_\+session\+\_\+key}} $\ast$}]{session\+\_\+key,  }\item[{struct s2n\+\_\+blob $\ast$}]{iv,  }\item[{struct s2n\+\_\+blob $\ast$}]{aad,  }\item[{struct s2n\+\_\+blob $\ast$}]{en,  }\item[{uint8\+\_\+t $\ast$}]{implicit\+\_\+iv,  }\item[{uint16\+\_\+t}]{block\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__record__write_8c_a5f712a98aa5bc33e96302d844e12923b}\label{s2n__record__write_8c_a5f712a98aa5bc33e96302d844e12923b}} 
+\index{s2n\_record\_write.c@{s2n\_record\_write.c}!s2n\_record\_max\_write\_payload\_size@{s2n\_record\_max\_write\_payload\_size}}
+\index{s2n\_record\_max\_write\_payload\_size@{s2n\_record\_max\_write\_payload\_size}!s2n\_record\_write.c@{s2n\_record\_write.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_max\_write\_payload\_size()}{s2n\_record\_max\_write\_payload\_size()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+record\+\_\+max\+\_\+write\+\_\+payload\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint16\+\_\+t $\ast$}]{max\+\_\+fragment\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__record__write_8c_af57bdb56fda83ba385937ff18722a809}\label{s2n__record__write_8c_af57bdb56fda83ba385937ff18722a809}} 
+\index{s2n\_record\_write.c@{s2n\_record\_write.c}!s2n\_record\_min\_write\_payload\_size@{s2n\_record\_min\_write\_payload\_size}}
+\index{s2n\_record\_min\_write\_payload\_size@{s2n\_record\_min\_write\_payload\_size}!s2n\_record\_write.c@{s2n\_record\_write.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_min\_write\_payload\_size()}{s2n\_record\_min\_write\_payload\_size()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+record\+\_\+min\+\_\+write\+\_\+payload\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint16\+\_\+t $\ast$}]{payload\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__record__write_8c_a345384c81da35d41574e7a2c8319c7e3}\label{s2n__record__write_8c_a345384c81da35d41574e7a2c8319c7e3}} 
+\index{s2n\_record\_write.c@{s2n\_record\_write.c}!s2n\_record\_write@{s2n\_record\_write}}
+\index{s2n\_record\_write@{s2n\_record\_write}!s2n\_record\_write.c@{s2n\_record\_write.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_write()}{s2n\_record\_write()}}
+{\footnotesize\ttfamily int s2n\+\_\+record\+\_\+write (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t}]{content\+\_\+type,  }\item[{struct s2n\+\_\+blob $\ast$}]{in }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__record__write_8c_ace92de291faf5890b3115d863f7283d4}\label{s2n__record__write_8c_ace92de291faf5890b3115d863f7283d4}} 
+\index{s2n\_record\_write.c@{s2n\_record\_write.c}!s2n\_record\_write\_protocol\_version@{s2n\_record\_write\_protocol\_version}}
+\index{s2n\_record\_write\_protocol\_version@{s2n\_record\_write\_protocol\_version}!s2n\_record\_write.c@{s2n\_record\_write.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_write\_protocol\_version()}{s2n\_record\_write\_protocol\_version()}}
+{\footnotesize\ttfamily int s2n\+\_\+record\+\_\+write\+\_\+protocol\+\_\+version (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__record__write_8c_a508821bcbefaa99624325c6fc2c7d229}\label{s2n__record__write_8c_a508821bcbefaa99624325c6fc2c7d229}} 
+\index{s2n\_record\_write.c@{s2n\_record\_write.c}!s2n\_record\_writev@{s2n\_record\_writev}}
+\index{s2n\_record\_writev@{s2n\_record\_writev}!s2n\_record\_write.c@{s2n\_record\_write.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_writev()}{s2n\_record\_writev()}}
+{\footnotesize\ttfamily int s2n\+\_\+record\+\_\+writev (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t}]{content\+\_\+type,  }\item[{const struct iovec $\ast$}]{in,  }\item[{int}]{in\+\_\+count,  }\item[{size\+\_\+t}]{offs,  }\item[{size\+\_\+t}]{to\+\_\+write }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__record__write_8c_ae264707f73250401ac689c9fa065379d}\label{s2n__record__write_8c_ae264707f73250401ac689c9fa065379d}} 
+\index{s2n\_record\_write.c@{s2n\_record\_write.c}!s2n\_tls\_record\_overhead@{s2n\_tls\_record\_overhead}}
+\index{s2n\_tls\_record\_overhead@{s2n\_tls\_record\_overhead}!s2n\_record\_write.c@{s2n\_record\_write.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls\_record\_overhead()}{s2n\_tls\_record\_overhead()}}
+{\footnotesize\ttfamily static S2\+N\+\_\+\+RESULT s2n\+\_\+tls\+\_\+record\+\_\+overhead (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint16\+\_\+t $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__record__write_8c_ad5a7e348cbdec0362cfe222d43cfdb93}\label{s2n__record__write_8c_ad5a7e348cbdec0362cfe222d43cfdb93}} 
+\index{s2n\_record\_write.c@{s2n\_record\_write.c}!s2n\_unknown\_protocol\_version@{s2n\_unknown\_protocol\_version}}
+\index{s2n\_unknown\_protocol\_version@{s2n\_unknown\_protocol\_version}!s2n\_record\_write.c@{s2n\_record\_write.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_unknown\_protocol\_version}{s2n\_unknown\_protocol\_version}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+unknown\+\_\+protocol\+\_\+version\hspace{0.3cm}{\ttfamily [extern]}}
+

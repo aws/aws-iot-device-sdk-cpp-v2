@@ -1,0 +1,228 @@
+\hypertarget{ec_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/ec.h File Reference}
+\label{ec_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/ec.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/ec.h}}
+{\ttfamily \#include $<$openssl/asn1.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/bn.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/objects.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/ossl\+\_\+typ.\+h$>$}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct ec\+\_\+group\+\_\+st \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}}
+\item 
+typedef struct ECDSA\+\_\+\+SIG\+\_\+st \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5}{point\+\_\+conversion\+\_\+form\+\_\+t}} \{ \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5a5ca3242771ea537db8de597535d7e93b}{POINT\+\_\+\+CONVERSION\+\_\+\+COMPRESSED}} = 2
+, \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5a32895bf2cf57d0d9ae0cea7bcaa7d3d8}{POINT\+\_\+\+CONVERSION\+\_\+\+UNCOMPRESSED}} = 4
+, \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5aceef1aa5a423148d080037f4cec84264}{POINT\+\_\+\+CONVERSION\+\_\+\+HYBRID}} = 6
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$ \mbox{\hyperlink{ec_8h_af1835d9d4df427dab59138519c295a1e}{EC\+\_\+\+GROUP\+\_\+new\+\_\+by\+\_\+curve\+\_\+name}} (int nid)
+\item 
+void \mbox{\hyperlink{ec_8h_a45ebb4cf75da21493521c5f79db202b8}{EC\+\_\+\+GROUP\+\_\+set\+\_\+point\+\_\+conversion\+\_\+form}} (\mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$group, \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5}{point\+\_\+conversion\+\_\+form\+\_\+t}} form)
+\item 
+const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$ \mbox{\hyperlink{ec_8h_a9836936f8b99c4412a04064126b536cf}{EC\+\_\+\+GROUP\+\_\+get0\+\_\+order}} (const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$group)
+\item 
+void \mbox{\hyperlink{ec_8h_a7d7ba223c4dffba134c295ff77e56a90}{EC\+\_\+\+GROUP\+\_\+free}} (\mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$group)
+\item 
+\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$ \mbox{\hyperlink{ec_8h_ad45e4b316aefae25a6c9de0b58048717}{EC\+\_\+\+KEY\+\_\+new}} (void)
+\item 
+int \mbox{\hyperlink{ec_8h_a384a92a00677065b4d2d3a5cc56f1e5b}{EC\+\_\+\+KEY\+\_\+set\+\_\+group}} (\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$key, const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$group)
+\item 
+void \mbox{\hyperlink{ec_8h_a37f9b4e6ced97d63032dd168f4b46ec6}{EC\+\_\+\+KEY\+\_\+set\+\_\+conv\+\_\+form}} (\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$eckey, \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5}{point\+\_\+conversion\+\_\+form\+\_\+t}} cform)
+\item 
+int \mbox{\hyperlink{ec_8h_ac71ebd801dd40f9b9c42b61aff685f3d}{EC\+\_\+\+KEY\+\_\+set\+\_\+private\+\_\+key}} (\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$key, const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$prv)
+\item 
+int \mbox{\hyperlink{ec_8h_a690c3227c776f6b53a004e22d03055da}{EC\+\_\+\+KEY\+\_\+generate\+\_\+key}} (\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$key)
+\item 
+int \mbox{\hyperlink{ec_8h_afbb443e03f2370b52852d91f8d00a6b1}{EC\+\_\+\+KEY\+\_\+up\+\_\+ref}} (\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$r)
+\item 
+const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$ \mbox{\hyperlink{ec_8h_aa11ad233e9c9a49d34d33e2feef70c33}{EC\+\_\+\+KEY\+\_\+get0\+\_\+group}} (const \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$key)
+\item 
+const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$ \mbox{\hyperlink{ec_8h_ab41d893f425f8a2cd22cb9bbc83a85be}{EC\+\_\+\+KEY\+\_\+get0\+\_\+private\+\_\+key}} (const \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$key)
+\item 
+void \mbox{\hyperlink{ec_8h_af3759e18dd8bf0c3144527c0377668a7}{EC\+\_\+\+KEY\+\_\+free}} (\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$key)
+\item 
+\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$ \mbox{\hyperlink{ec_8h_a628017a03d4a4600b9f62ccb56699239}{o2i\+\_\+\+ECPublic\+Key}} (\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$$\ast$key, const unsigned char $\ast$$\ast$in, long \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+\item 
+int \mbox{\hyperlink{ec_8h_a1a93f5739c093586ef83517b52b44a0c}{i2o\+\_\+\+ECPublic\+Key}} (\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$key, unsigned char $\ast$$\ast$out)
+\item 
+void \mbox{\hyperlink{ec_8h_aa0ad424eeb5c9c34c12d77cd3dc9dbf1}{ECDSA\+\_\+\+SIG\+\_\+get0}} (const \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$sig, const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$$\ast$pr, const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$$\ast$ps)
+\item 
+int \mbox{\hyperlink{ec_8h_ae2f28de42b8345422b7ac3b28f330b9b}{ECDSA\+\_\+\+SIG\+\_\+set0}} (\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$sig, \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$r, \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$s)
+\item 
+void \mbox{\hyperlink{ec_8h_acd70808233eacdcb183148deca9c8b64}{ECDSA\+\_\+\+SIG\+\_\+free}} (\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$sig)
+\item 
+\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$ \mbox{\hyperlink{ec_8h_afb26eca66faca7d8c56176b3babfa044}{d2i\+\_\+\+ECDSA\+\_\+\+SIG}} (\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$$\ast$sig, const unsigned char $\ast$$\ast$pp, long \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+\item 
+int \mbox{\hyperlink{ec_8h_a08c0aa1ccdf1879fc4b0eb98c9ba0fb7}{i2d\+\_\+\+ECDSA\+\_\+\+SIG}} (const \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$sig, unsigned char $\ast$$\ast$pp)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{ec_8h_aca3c2dfa5546740e0f575013960a598a}\label{ec_8h_aca3c2dfa5546740e0f575013960a598a}} 
+\index{ec.h@{ec.h}!EC\_GROUP@{EC\_GROUP}}
+\index{EC\_GROUP@{EC\_GROUP}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_GROUP}{EC\_GROUP}}
+{\footnotesize\ttfamily typedef struct ec\+\_\+group\+\_\+st \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}}}
+
+\mbox{\Hypertarget{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}\label{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}} 
+\index{ec.h@{ec.h}!ECDSA\_SIG@{ECDSA\_SIG}}
+\index{ECDSA\_SIG@{ECDSA\_SIG}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{ECDSA\_SIG}{ECDSA\_SIG}}
+{\footnotesize\ttfamily typedef struct ECDSA\+\_\+\+SIG\+\_\+st \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{ec_8h_aa2c7ec2902c397d59393d357921e14b5}\label{ec_8h_aa2c7ec2902c397d59393d357921e14b5}} 
+\index{ec.h@{ec.h}!point\_conversion\_form\_t@{point\_conversion\_form\_t}}
+\index{point\_conversion\_form\_t@{point\_conversion\_form\_t}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{point\_conversion\_form\_t}{point\_conversion\_form\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5}{point\+\_\+conversion\+\_\+form\+\_\+t}}}
+
+Enum for the point conversion form as defined in X9.\+62 (ECDSA) for the encoding of a elliptic curve point (x,y) \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POINT\_CONVERSION\_COMPRESSED@{POINT\_CONVERSION\_COMPRESSED}!ec.h@{ec.h}}\index{ec.h@{ec.h}!POINT\_CONVERSION\_COMPRESSED@{POINT\_CONVERSION\_COMPRESSED}}}\mbox{\Hypertarget{ec_8h_aa2c7ec2902c397d59393d357921e14b5a5ca3242771ea537db8de597535d7e93b}\label{ec_8h_aa2c7ec2902c397d59393d357921e14b5a5ca3242771ea537db8de597535d7e93b}} 
+POINT\+\_\+\+CONVERSION\+\_\+\+COMPRESSED&the point is encoded as z$\vert$$\vert$x, where the octet z specifies which solution of the quadratic equation y is ~\newline
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POINT\_CONVERSION\_UNCOMPRESSED@{POINT\_CONVERSION\_UNCOMPRESSED}!ec.h@{ec.h}}\index{ec.h@{ec.h}!POINT\_CONVERSION\_UNCOMPRESSED@{POINT\_CONVERSION\_UNCOMPRESSED}}}\mbox{\Hypertarget{ec_8h_aa2c7ec2902c397d59393d357921e14b5a32895bf2cf57d0d9ae0cea7bcaa7d3d8}\label{ec_8h_aa2c7ec2902c397d59393d357921e14b5a32895bf2cf57d0d9ae0cea7bcaa7d3d8}} 
+POINT\+\_\+\+CONVERSION\+\_\+\+UNCOMPRESSED&the point is encoded as z$\vert$$\vert$x$\vert$$\vert$y, where z is the octet 0x04 ~\newline
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POINT\_CONVERSION\_HYBRID@{POINT\_CONVERSION\_HYBRID}!ec.h@{ec.h}}\index{ec.h@{ec.h}!POINT\_CONVERSION\_HYBRID@{POINT\_CONVERSION\_HYBRID}}}\mbox{\Hypertarget{ec_8h_aa2c7ec2902c397d59393d357921e14b5aceef1aa5a423148d080037f4cec84264}\label{ec_8h_aa2c7ec2902c397d59393d357921e14b5aceef1aa5a423148d080037f4cec84264}} 
+POINT\+\_\+\+CONVERSION\+\_\+\+HYBRID&the point is encoded as z$\vert$$\vert$x$\vert$$\vert$y, where the octet z specifies which solution of the quadratic equation y is ~\newline
+ \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ec_8h_afb26eca66faca7d8c56176b3babfa044}\label{ec_8h_afb26eca66faca7d8c56176b3babfa044}} 
+\index{ec.h@{ec.h}!d2i\_ECDSA\_SIG@{d2i\_ECDSA\_SIG}}
+\index{d2i\_ECDSA\_SIG@{d2i\_ECDSA\_SIG}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{d2i\_ECDSA\_SIG()}{d2i\_ECDSA\_SIG()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}}$\ast$ d2i\+\_\+\+ECDSA\+\_\+\+SIG (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$$\ast$}]{sig,  }\item[{const unsigned char $\ast$$\ast$}]{pp,  }\item[{long}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_a7d7ba223c4dffba134c295ff77e56a90}\label{ec_8h_a7d7ba223c4dffba134c295ff77e56a90}} 
+\index{ec.h@{ec.h}!EC\_GROUP\_free@{EC\_GROUP\_free}}
+\index{EC\_GROUP\_free@{EC\_GROUP\_free}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_GROUP\_free()}{EC\_GROUP\_free()}}
+{\footnotesize\ttfamily void EC\+\_\+\+GROUP\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$}]{group }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_a9836936f8b99c4412a04064126b536cf}\label{ec_8h_a9836936f8b99c4412a04064126b536cf}} 
+\index{ec.h@{ec.h}!EC\_GROUP\_get0\_order@{EC\_GROUP\_get0\_order}}
+\index{EC\_GROUP\_get0\_order@{EC\_GROUP\_get0\_order}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_GROUP\_get0\_order()}{EC\_GROUP\_get0\_order()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}}$\ast$ EC\+\_\+\+GROUP\+\_\+get0\+\_\+order (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$}]{group }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_af1835d9d4df427dab59138519c295a1e}\label{ec_8h_af1835d9d4df427dab59138519c295a1e}} 
+\index{ec.h@{ec.h}!EC\_GROUP\_new\_by\_curve\_name@{EC\_GROUP\_new\_by\_curve\_name}}
+\index{EC\_GROUP\_new\_by\_curve\_name@{EC\_GROUP\_new\_by\_curve\_name}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_GROUP\_new\_by\_curve\_name()}{EC\_GROUP\_new\_by\_curve\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}}$\ast$ EC\+\_\+\+GROUP\+\_\+new\+\_\+by\+\_\+curve\+\_\+name (\begin{DoxyParamCaption}\item[{int}]{nid }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_a45ebb4cf75da21493521c5f79db202b8}\label{ec_8h_a45ebb4cf75da21493521c5f79db202b8}} 
+\index{ec.h@{ec.h}!EC\_GROUP\_set\_point\_conversion\_form@{EC\_GROUP\_set\_point\_conversion\_form}}
+\index{EC\_GROUP\_set\_point\_conversion\_form@{EC\_GROUP\_set\_point\_conversion\_form}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_GROUP\_set\_point\_conversion\_form()}{EC\_GROUP\_set\_point\_conversion\_form()}}
+{\footnotesize\ttfamily void EC\+\_\+\+GROUP\+\_\+set\+\_\+point\+\_\+conversion\+\_\+form (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$}]{group,  }\item[{\mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5}{point\+\_\+conversion\+\_\+form\+\_\+t}}}]{form }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_af3759e18dd8bf0c3144527c0377668a7}\label{ec_8h_af3759e18dd8bf0c3144527c0377668a7}} 
+\index{ec.h@{ec.h}!EC\_KEY\_free@{EC\_KEY\_free}}
+\index{EC\_KEY\_free@{EC\_KEY\_free}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_KEY\_free()}{EC\_KEY\_free()}}
+{\footnotesize\ttfamily void EC\+\_\+\+KEY\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_a690c3227c776f6b53a004e22d03055da}\label{ec_8h_a690c3227c776f6b53a004e22d03055da}} 
+\index{ec.h@{ec.h}!EC\_KEY\_generate\_key@{EC\_KEY\_generate\_key}}
+\index{EC\_KEY\_generate\_key@{EC\_KEY\_generate\_key}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_KEY\_generate\_key()}{EC\_KEY\_generate\_key()}}
+{\footnotesize\ttfamily int EC\+\_\+\+KEY\+\_\+generate\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_aa11ad233e9c9a49d34d33e2feef70c33}\label{ec_8h_aa11ad233e9c9a49d34d33e2feef70c33}} 
+\index{ec.h@{ec.h}!EC\_KEY\_get0\_group@{EC\_KEY\_get0\_group}}
+\index{EC\_KEY\_get0\_group@{EC\_KEY\_get0\_group}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_KEY\_get0\_group()}{EC\_KEY\_get0\_group()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}}$\ast$ EC\+\_\+\+KEY\+\_\+get0\+\_\+group (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_ab41d893f425f8a2cd22cb9bbc83a85be}\label{ec_8h_ab41d893f425f8a2cd22cb9bbc83a85be}} 
+\index{ec.h@{ec.h}!EC\_KEY\_get0\_private\_key@{EC\_KEY\_get0\_private\_key}}
+\index{EC\_KEY\_get0\_private\_key@{EC\_KEY\_get0\_private\_key}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_KEY\_get0\_private\_key()}{EC\_KEY\_get0\_private\_key()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}}$\ast$ EC\+\_\+\+KEY\+\_\+get0\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_ad45e4b316aefae25a6c9de0b58048717}\label{ec_8h_ad45e4b316aefae25a6c9de0b58048717}} 
+\index{ec.h@{ec.h}!EC\_KEY\_new@{EC\_KEY\_new}}
+\index{EC\_KEY\_new@{EC\_KEY\_new}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_KEY\_new()}{EC\_KEY\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}}$\ast$ EC\+\_\+\+KEY\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_a37f9b4e6ced97d63032dd168f4b46ec6}\label{ec_8h_a37f9b4e6ced97d63032dd168f4b46ec6}} 
+\index{ec.h@{ec.h}!EC\_KEY\_set\_conv\_form@{EC\_KEY\_set\_conv\_form}}
+\index{EC\_KEY\_set\_conv\_form@{EC\_KEY\_set\_conv\_form}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_KEY\_set\_conv\_form()}{EC\_KEY\_set\_conv\_form()}}
+{\footnotesize\ttfamily void EC\+\_\+\+KEY\+\_\+set\+\_\+conv\+\_\+form (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{eckey,  }\item[{\mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5}{point\+\_\+conversion\+\_\+form\+\_\+t}}}]{cform }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_a384a92a00677065b4d2d3a5cc56f1e5b}\label{ec_8h_a384a92a00677065b4d2d3a5cc56f1e5b}} 
+\index{ec.h@{ec.h}!EC\_KEY\_set\_group@{EC\_KEY\_set\_group}}
+\index{EC\_KEY\_set\_group@{EC\_KEY\_set\_group}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_KEY\_set\_group()}{EC\_KEY\_set\_group()}}
+{\footnotesize\ttfamily int EC\+\_\+\+KEY\+\_\+set\+\_\+group (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{key,  }\item[{const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$}]{group }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_ac71ebd801dd40f9b9c42b61aff685f3d}\label{ec_8h_ac71ebd801dd40f9b9c42b61aff685f3d}} 
+\index{ec.h@{ec.h}!EC\_KEY\_set\_private\_key@{EC\_KEY\_set\_private\_key}}
+\index{EC\_KEY\_set\_private\_key@{EC\_KEY\_set\_private\_key}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_KEY\_set\_private\_key()}{EC\_KEY\_set\_private\_key()}}
+{\footnotesize\ttfamily int EC\+\_\+\+KEY\+\_\+set\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{key,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$}]{prv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_afbb443e03f2370b52852d91f8d00a6b1}\label{ec_8h_afbb443e03f2370b52852d91f8d00a6b1}} 
+\index{ec.h@{ec.h}!EC\_KEY\_up\_ref@{EC\_KEY\_up\_ref}}
+\index{EC\_KEY\_up\_ref@{EC\_KEY\_up\_ref}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{EC\_KEY\_up\_ref()}{EC\_KEY\_up\_ref()}}
+{\footnotesize\ttfamily int EC\+\_\+\+KEY\+\_\+up\+\_\+ref (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{r }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_acd70808233eacdcb183148deca9c8b64}\label{ec_8h_acd70808233eacdcb183148deca9c8b64}} 
+\index{ec.h@{ec.h}!ECDSA\_SIG\_free@{ECDSA\_SIG\_free}}
+\index{ECDSA\_SIG\_free@{ECDSA\_SIG\_free}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{ECDSA\_SIG\_free()}{ECDSA\_SIG\_free()}}
+{\footnotesize\ttfamily void ECDSA\+\_\+\+SIG\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$}]{sig }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_aa0ad424eeb5c9c34c12d77cd3dc9dbf1}\label{ec_8h_aa0ad424eeb5c9c34c12d77cd3dc9dbf1}} 
+\index{ec.h@{ec.h}!ECDSA\_SIG\_get0@{ECDSA\_SIG\_get0}}
+\index{ECDSA\_SIG\_get0@{ECDSA\_SIG\_get0}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{ECDSA\_SIG\_get0()}{ECDSA\_SIG\_get0()}}
+{\footnotesize\ttfamily void ECDSA\+\_\+\+SIG\+\_\+get0 (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$}]{sig,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$$\ast$}]{pr,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$$\ast$}]{ps }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_ae2f28de42b8345422b7ac3b28f330b9b}\label{ec_8h_ae2f28de42b8345422b7ac3b28f330b9b}} 
+\index{ec.h@{ec.h}!ECDSA\_SIG\_set0@{ECDSA\_SIG\_set0}}
+\index{ECDSA\_SIG\_set0@{ECDSA\_SIG\_set0}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{ECDSA\_SIG\_set0()}{ECDSA\_SIG\_set0()}}
+{\footnotesize\ttfamily int ECDSA\+\_\+\+SIG\+\_\+set0 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$}]{sig,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$}]{r,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_a08c0aa1ccdf1879fc4b0eb98c9ba0fb7}\label{ec_8h_a08c0aa1ccdf1879fc4b0eb98c9ba0fb7}} 
+\index{ec.h@{ec.h}!i2d\_ECDSA\_SIG@{i2d\_ECDSA\_SIG}}
+\index{i2d\_ECDSA\_SIG@{i2d\_ECDSA\_SIG}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{i2d\_ECDSA\_SIG()}{i2d\_ECDSA\_SIG()}}
+{\footnotesize\ttfamily int i2d\+\_\+\+ECDSA\+\_\+\+SIG (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\+\_\+\+SIG}} $\ast$}]{sig,  }\item[{unsigned char $\ast$$\ast$}]{pp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_a1a93f5739c093586ef83517b52b44a0c}\label{ec_8h_a1a93f5739c093586ef83517b52b44a0c}} 
+\index{ec.h@{ec.h}!i2o\_ECPublicKey@{i2o\_ECPublicKey}}
+\index{i2o\_ECPublicKey@{i2o\_ECPublicKey}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{i2o\_ECPublicKey()}{i2o\_ECPublicKey()}}
+{\footnotesize\ttfamily int i2o\+\_\+\+ECPublic\+Key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{key,  }\item[{unsigned char $\ast$$\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ec_8h_a628017a03d4a4600b9f62ccb56699239}\label{ec_8h_a628017a03d4a4600b9f62ccb56699239}} 
+\index{ec.h@{ec.h}!o2i\_ECPublicKey@{o2i\_ECPublicKey}}
+\index{o2i\_ECPublicKey@{o2i\_ECPublicKey}!ec.h@{ec.h}}
+\doxysubsubsection{\texorpdfstring{o2i\_ECPublicKey()}{o2i\_ECPublicKey()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}}$\ast$ o2i\+\_\+\+ECPublic\+Key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$$\ast$}]{key,  }\item[{const unsigned char $\ast$$\ast$}]{in,  }\item[{long}]{len }\end{DoxyParamCaption})}
+

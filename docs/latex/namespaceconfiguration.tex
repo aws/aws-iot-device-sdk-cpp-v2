@@ -1,0 +1,153 @@
+\hypertarget{namespaceconfiguration}{}\doxysection{configuration Namespace Reference}
+\label{namespaceconfiguration}\index{configuration@{configuration}}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \mbox{\hyperlink{namespaceconfiguration_a43c86fe4a367be2046875b0675927048}{BOOLEAN}} = \mbox{[}True, False\mbox{]}
+\item 
+list \mbox{\hyperlink{namespaceconfiguration_a496f93b055642206829b874923eba792}{PROTOCOLS}}
+\item 
+list \mbox{\hyperlink{namespaceconfiguration_a27300072c51c1be345551cc0f5fa3976}{PROVIDERS}} = \mbox{[}\mbox{\hyperlink{classproviders_1_1_s2_n}{S2N}}, \mbox{\hyperlink{classproviders_1_1_open_s_s_l}{Open\+SSL}}, \mbox{\hyperlink{classproviders_1_1_java_s_s_l}{Java\+SSL}}\mbox{]}
+\item 
+list \mbox{\hyperlink{namespaceconfiguration_aebaf3aecfcfba97a6c7e6ab1699a1a94}{TLS13}} = \mbox{[}True, False\mbox{]}
+\item 
+list \mbox{\hyperlink{namespaceconfiguration_afb944d8a29ada0bee603fc294364ea43}{ALL\+\_\+\+TEST\+\_\+\+CURVES}}
+\item 
+list \mbox{\hyperlink{namespaceconfiguration_a12c1dd111cbeb3e1dca8e99984393c31}{ALL\+\_\+\+TEST\+\_\+\+CERTS}}
+\item 
+list \mbox{\hyperlink{namespaceconfiguration_a488b8a02aebe163b27c8348459d51cbc}{ALL\+\_\+\+TEST\+\_\+\+CIPHERS}}
+\item 
+list \mbox{\hyperlink{namespaceconfiguration_aceabfdaa854df70135aaa661afba5f1a}{TLS13\+\_\+\+CIPHERS}}
+\item 
+\mbox{\hyperlink{namespaceconfiguration_ad23f776e02b0f105ed2399e61c9b908f}{available\+\_\+ports}} = \mbox{\hyperlink{classcommon_1_1_available_ports}{Available\+Ports}}()
+\item 
+dictionary \mbox{\hyperlink{namespaceconfiguration_afe5846cf0add310079a6090998ce0f38}{SNI\+\_\+\+CERTS}}
+\item 
+\mbox{\hyperlink{namespaceconfiguration_a5c0df0d8dc927b2e7fe6851edf588d2d}{Multi\+Cert\+Test}} = collections.\+namedtuple(\textquotesingle{}Multi\+Cert\+Test\textquotesingle{}, \textquotesingle{}description server\+\_\+certs client\+\_\+sni client\+\_\+ciphers expected\+\_\+cert expect\+\_\+matching\+\_\+hostname\textquotesingle{})
+\item 
+list \mbox{\hyperlink{namespaceconfiguration_acebae551c2b07b2b0da74780cc064b47}{MULTI\+\_\+\+CERT\+\_\+\+TEST\+\_\+\+CASES}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceconfiguration_a12c1dd111cbeb3e1dca8e99984393c31}\label{namespaceconfiguration_a12c1dd111cbeb3e1dca8e99984393c31}} 
+\index{configuration@{configuration}!ALL\_TEST\_CERTS@{ALL\_TEST\_CERTS}}
+\index{ALL\_TEST\_CERTS@{ALL\_TEST\_CERTS}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{ALL\_TEST\_CERTS}{ALL\_TEST\_CERTS}}
+{\footnotesize\ttfamily list configuration.\+ALL\+\_\+\+TEST\+\_\+\+CERTS}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     Certificates.RSA\_1024\_SHA256,}
+\DoxyCodeLine{3     Certificates.RSA\_1024\_SHA384,}
+\DoxyCodeLine{4     Certificates.RSA\_1024\_SHA512,}
+\DoxyCodeLine{5     Certificates.RSA\_2048\_SHA256,}
+\DoxyCodeLine{6     Certificates.RSA\_2048\_SHA384,}
+\DoxyCodeLine{7     Certificates.RSA\_2048\_SHA512,}
+\DoxyCodeLine{8     Certificates.RSA\_3072\_SHA256,}
+\DoxyCodeLine{9     Certificates.RSA\_3072\_SHA384,}
+\DoxyCodeLine{10     Certificates.RSA\_3072\_SHA512,}
+\DoxyCodeLine{11     Certificates.RSA\_4096\_SHA256,}
+\DoxyCodeLine{12     Certificates.RSA\_4096\_SHA384,}
+\DoxyCodeLine{13     Certificates.RSA\_4096\_SHA512,}
+\DoxyCodeLine{14     Certificates.ECDSA\_256,}
+\DoxyCodeLine{15     Certificates.ECDSA\_384,}
+\DoxyCodeLine{16     Certificates.RSA\_PSS\_2048\_SHA256,}
+\DoxyCodeLine{17 ]}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceconfiguration_a488b8a02aebe163b27c8348459d51cbc}\label{namespaceconfiguration_a488b8a02aebe163b27c8348459d51cbc}} 
+\index{configuration@{configuration}!ALL\_TEST\_CIPHERS@{ALL\_TEST\_CIPHERS}}
+\index{ALL\_TEST\_CIPHERS@{ALL\_TEST\_CIPHERS}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{ALL\_TEST\_CIPHERS}{ALL\_TEST\_CIPHERS}}
+{\footnotesize\ttfamily list configuration.\+ALL\+\_\+\+TEST\+\_\+\+CIPHERS}
+
+\mbox{\Hypertarget{namespaceconfiguration_afb944d8a29ada0bee603fc294364ea43}\label{namespaceconfiguration_afb944d8a29ada0bee603fc294364ea43}} 
+\index{configuration@{configuration}!ALL\_TEST\_CURVES@{ALL\_TEST\_CURVES}}
+\index{ALL\_TEST\_CURVES@{ALL\_TEST\_CURVES}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{ALL\_TEST\_CURVES}{ALL\_TEST\_CURVES}}
+{\footnotesize\ttfamily list configuration.\+ALL\+\_\+\+TEST\+\_\+\+CURVES}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     Curves.X25519,}
+\DoxyCodeLine{3     Curves.P256,}
+\DoxyCodeLine{4     Curves.P384,}
+\DoxyCodeLine{5 ]}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceconfiguration_ad23f776e02b0f105ed2399e61c9b908f}\label{namespaceconfiguration_ad23f776e02b0f105ed2399e61c9b908f}} 
+\index{configuration@{configuration}!available\_ports@{available\_ports}}
+\index{available\_ports@{available\_ports}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{available\_ports}{available\_ports}}
+{\footnotesize\ttfamily configuration.\+available\+\_\+ports = \mbox{\hyperlink{classcommon_1_1_available_ports}{Available\+Ports}}()}
+
+\mbox{\Hypertarget{namespaceconfiguration_a43c86fe4a367be2046875b0675927048}\label{namespaceconfiguration_a43c86fe4a367be2046875b0675927048}} 
+\index{configuration@{configuration}!BOOLEAN@{BOOLEAN}}
+\index{BOOLEAN@{BOOLEAN}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{BOOLEAN}{BOOLEAN}}
+{\footnotesize\ttfamily list configuration.\+BOOLEAN = \mbox{[}True, False\mbox{]}}
+
+\mbox{\Hypertarget{namespaceconfiguration_acebae551c2b07b2b0da74780cc064b47}\label{namespaceconfiguration_acebae551c2b07b2b0da74780cc064b47}} 
+\index{configuration@{configuration}!MULTI\_CERT\_TEST\_CASES@{MULTI\_CERT\_TEST\_CASES}}
+\index{MULTI\_CERT\_TEST\_CASES@{MULTI\_CERT\_TEST\_CASES}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{MULTI\_CERT\_TEST\_CASES}{MULTI\_CERT\_TEST\_CASES}}
+{\footnotesize\ttfamily list configuration.\+MULTI\+\_\+\+CERT\+\_\+\+TEST\+\_\+\+CASES}
+
+\mbox{\Hypertarget{namespaceconfiguration_a5c0df0d8dc927b2e7fe6851edf588d2d}\label{namespaceconfiguration_a5c0df0d8dc927b2e7fe6851edf588d2d}} 
+\index{configuration@{configuration}!MultiCertTest@{MultiCertTest}}
+\index{MultiCertTest@{MultiCertTest}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{MultiCertTest}{MultiCertTest}}
+{\footnotesize\ttfamily configuration.\+Multi\+Cert\+Test = collections.\+namedtuple(\textquotesingle{}Multi\+Cert\+Test\textquotesingle{}, \textquotesingle{}description server\+\_\+certs client\+\_\+sni client\+\_\+ciphers expected\+\_\+cert expect\+\_\+matching\+\_\+hostname\textquotesingle{})}
+
+\mbox{\Hypertarget{namespaceconfiguration_a496f93b055642206829b874923eba792}\label{namespaceconfiguration_a496f93b055642206829b874923eba792}} 
+\index{configuration@{configuration}!PROTOCOLS@{PROTOCOLS}}
+\index{PROTOCOLS@{PROTOCOLS}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{PROTOCOLS}{PROTOCOLS}}
+{\footnotesize\ttfamily list configuration.\+PROTOCOLS}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     Protocols.TLS13,}
+\DoxyCodeLine{3     Protocols.TLS12,}
+\DoxyCodeLine{4     Protocols.TLS11,}
+\DoxyCodeLine{5     Protocols.TLS10,}
+\DoxyCodeLine{6 ]}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceconfiguration_a27300072c51c1be345551cc0f5fa3976}\label{namespaceconfiguration_a27300072c51c1be345551cc0f5fa3976}} 
+\index{configuration@{configuration}!PROVIDERS@{PROVIDERS}}
+\index{PROVIDERS@{PROVIDERS}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{PROVIDERS}{PROVIDERS}}
+{\footnotesize\ttfamily list configuration.\+PROVIDERS = \mbox{[}\mbox{\hyperlink{classproviders_1_1_s2_n}{S2N}}, \mbox{\hyperlink{classproviders_1_1_open_s_s_l}{Open\+SSL}}, \mbox{\hyperlink{classproviders_1_1_java_s_s_l}{Java\+SSL}}\mbox{]}}
+
+\mbox{\Hypertarget{namespaceconfiguration_afe5846cf0add310079a6090998ce0f38}\label{namespaceconfiguration_afe5846cf0add310079a6090998ce0f38}} 
+\index{configuration@{configuration}!SNI\_CERTS@{SNI\_CERTS}}
+\index{SNI\_CERTS@{SNI\_CERTS}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{SNI\_CERTS}{SNI\_CERTS}}
+{\footnotesize\ttfamily dictionary configuration.\+SNI\+\_\+\+CERTS}
+
+\mbox{\Hypertarget{namespaceconfiguration_aebaf3aecfcfba97a6c7e6ab1699a1a94}\label{namespaceconfiguration_aebaf3aecfcfba97a6c7e6ab1699a1a94}} 
+\index{configuration@{configuration}!TLS13@{TLS13}}
+\index{TLS13@{TLS13}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{TLS13}{TLS13}}
+{\footnotesize\ttfamily list configuration.\+TLS13 = \mbox{[}True, False\mbox{]}}
+
+\mbox{\Hypertarget{namespaceconfiguration_aceabfdaa854df70135aaa661afba5f1a}\label{namespaceconfiguration_aceabfdaa854df70135aaa661afba5f1a}} 
+\index{configuration@{configuration}!TLS13\_CIPHERS@{TLS13\_CIPHERS}}
+\index{TLS13\_CIPHERS@{TLS13\_CIPHERS}!configuration@{configuration}}
+\doxysubsubsection{\texorpdfstring{TLS13\_CIPHERS}{TLS13\_CIPHERS}}
+{\footnotesize\ttfamily list configuration.\+TLS13\+\_\+\+CIPHERS}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     Ciphers.CHACHA20\_POLY1305\_SHA256,}
+\DoxyCodeLine{3     Ciphers.AES128\_GCM\_SHA256,}
+\DoxyCodeLine{4     Ciphers.AES256\_GCM\_SHA384,}
+\DoxyCodeLine{5 ]}
+
+\end{DoxyCode}

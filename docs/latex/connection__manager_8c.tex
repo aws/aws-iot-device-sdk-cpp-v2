@@ -1,0 +1,325 @@
+\hypertarget{connection__manager_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/connection\+\_\+manager.c File Reference}
+\label{connection__manager_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/connection\_manager.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/connection\_manager.c}}
+{\ttfamily \#include $<$aws/http/connection\+\_\+manager.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/connection.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/connection\+\_\+manager\+\_\+system\+\_\+vtable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/connection\+\_\+monitor.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/http\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/proxy\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel\+\_\+bootstrap.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/socket.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/tls\+\_\+channel\+\_\+handler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/hash\+\_\+table.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/linked\+\_\+list.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/mutex.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__idle__connection}{aws\+\_\+idle\+\_\+connection}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__manager__snapshot}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+snapshot}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__acquisition}{aws\+\_\+http\+\_\+connection\+\_\+acquisition}}
+\item 
+struct \mbox{\hyperlink{structaws__connection__management__transaction}{aws\+\_\+connection\+\_\+management\+\_\+transaction}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+state\+\_\+type}} \{ \mbox{\hyperlink{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4adf5cce08f398dd8ef17c7dc114867994}{AWS\+\_\+\+HCMST\+\_\+\+UNINITIALIZED}}
+, \mbox{\hyperlink{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4a01a63c55b94b8c7ac64787383f64155a}{AWS\+\_\+\+HCMST\+\_\+\+READY}}
+, \mbox{\hyperlink{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4a29023393e4847e3c15f80b114d7a6b39}{AWS\+\_\+\+HCMST\+\_\+\+SHUTTING\+\_\+\+DOWN}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{connection__manager_8c_afc30da4e9f0eb5ed0d3caef8a4bbd5ec}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$table)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_a274e93d7f08f80c5216dc5e74fd1b947}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+get\+\_\+snapshot}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, struct \mbox{\hyperlink{structaws__http__connection__manager__snapshot}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+snapshot}} $\ast$snapshot)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_ac06381c7b55499b9607767453197bf24}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+log\+\_\+snapshot}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, struct \mbox{\hyperlink{structaws__http__connection__manager__snapshot}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+snapshot}} $\ast$snapshot)
+\item 
+void \mbox{\hyperlink{connection__manager_8c_a5ff7355fc2366d497b14bccfc3413d22}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+set\+\_\+system\+\_\+vtable}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$system\+\_\+vtable)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{connection__manager_8c_a04314cc78de4bd98bac0be894de9c74d}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+should\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_a8d4fa19713a4c8b955f043194d64428d}{s\+\_\+connection\+\_\+acquisition\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_aa83aacca387d3cc75dc1b43b7be78eb2}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+complete\+\_\+acquisitions}} (struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$acquisitions, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_aef5d1a292661c24fff2ddf17ce357d9b}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+move\+\_\+front\+\_\+acquisition}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$output\+\_\+list)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_a7b06648608212d606ae2bf39214d4a30}{s\+\_\+aws\+\_\+connection\+\_\+management\+\_\+transaction\+\_\+init}} (struct \mbox{\hyperlink{structaws__connection__management__transaction}{aws\+\_\+connection\+\_\+management\+\_\+transaction}} $\ast$work, struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_a4ede491a0f5e00579d9536b74f75ec47}{s\+\_\+aws\+\_\+connection\+\_\+management\+\_\+transaction\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__connection__management__transaction}{aws\+\_\+connection\+\_\+management\+\_\+transaction}} $\ast$work)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_acbdc0392c6eec5b898a7e28eda507d9f}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+build\+\_\+transaction}} (struct \mbox{\hyperlink{structaws__connection__management__transaction}{aws\+\_\+connection\+\_\+management\+\_\+transaction}} $\ast$work)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_aab35b45e0a0e4f5d605d6357a06568c8}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+execute\+\_\+transaction}} (struct \mbox{\hyperlink{structaws__connection__management__transaction}{aws\+\_\+connection\+\_\+management\+\_\+transaction}} $\ast$work)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_a8a648556bd3348504aca8c64286ecbfb}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+finish\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_aa08aa3a7d9b0656b98605ef498ea9329}{s\+\_\+final\+\_\+destruction\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_a99a2a2a2240b8eabf401710e9af1d843}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+begin\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_a051ef2a68c1a0b0b3306c086bd2d9013}{s\+\_\+cull\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_a8b942cb6ac087c1cf7bca0be71962cec}{s\+\_\+schedule\+\_\+connection\+\_\+culling}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$ \mbox{\hyperlink{connection__manager_8c_a0282f0aa13e6630c603b88f6ce436c64}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__connection__manager__options}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+options}} $\ast$options)
+\item 
+void \mbox{\hyperlink{connection__manager_8c_a853b7269b1ef0af0b68029ab5127d71a}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
+\item 
+void \mbox{\hyperlink{connection__manager_8c_aed5293ec948668a2d0be66dc68114af9}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+release}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_afc4a61024bd8cc833605ec5af6067602}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_ae80d6b744260854c2ec0e4c212e5a989}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{connection__manager_8c_aa7486eb0dbdfa86f14c6facb2bb2c6a2}{s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+new\+\_\+connection}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
+\item 
+void \mbox{\hyperlink{connection__manager_8c_a82e95810e2aad07d321c6302f5d84d7f}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+acquire\+\_\+connection}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, \mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}} $\ast$callback, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{connection__manager_8c_a26f9d02ce6fbfbdb32176887764b6b9a}{s\+\_\+idle\+\_\+connection}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+int \mbox{\hyperlink{connection__manager_8c_a51dfa9e65a0549b9a8927ab441fdfd76}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+release\+\_\+connection}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+static void \mbox{\hyperlink{connection__manager_8c_a5ae5380dc29c68d748e126478a5676f4}{s\+\_\+cull\+\_\+idle\+\_\+connections}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} \mbox{\hyperlink{connection__manager_8c_a709593770b0e62939dba459ca60e846c}{s\+\_\+default\+\_\+system\+\_\+vtable}}
+\item 
+const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$ \mbox{\hyperlink{connection__manager_8c_ae35c6fdb9100aa743cca89f9b2932c11}{g\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+default\+\_\+system\+\_\+vtable\+\_\+ptr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4}\label{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4}} 
+\index{connection\_manager.c@{connection\_manager.c}!aws\_http\_connection\_manager\_state\_type@{aws\_http\_connection\_manager\_state\_type}}
+\index{aws\_http\_connection\_manager\_state\_type@{aws\_http\_connection\_manager\_state\_type}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_state\_type}{aws\_http\_connection\_manager\_state\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+state\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HCMST\_UNINITIALIZED@{AWS\_HCMST\_UNINITIALIZED}!connection\_manager.c@{connection\_manager.c}}\index{connection\_manager.c@{connection\_manager.c}!AWS\_HCMST\_UNINITIALIZED@{AWS\_HCMST\_UNINITIALIZED}}}\mbox{\Hypertarget{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4adf5cce08f398dd8ef17c7dc114867994}\label{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4adf5cce08f398dd8ef17c7dc114867994}} 
+AWS\+\_\+\+HCMST\+\_\+\+UNINITIALIZED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HCMST\_READY@{AWS\_HCMST\_READY}!connection\_manager.c@{connection\_manager.c}}\index{connection\_manager.c@{connection\_manager.c}!AWS\_HCMST\_READY@{AWS\_HCMST\_READY}}}\mbox{\Hypertarget{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4a01a63c55b94b8c7ac64787383f64155a}\label{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4a01a63c55b94b8c7ac64787383f64155a}} 
+AWS\+\_\+\+HCMST\+\_\+\+READY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_HCMST\_SHUTTING\_DOWN@{AWS\_HCMST\_SHUTTING\_DOWN}!connection\_manager.c@{connection\_manager.c}}\index{connection\_manager.c@{connection\_manager.c}!AWS\_HCMST\_SHUTTING\_DOWN@{AWS\_HCMST\_SHUTTING\_DOWN}}}\mbox{\Hypertarget{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4a29023393e4847e3c15f80b114d7a6b39}\label{connection__manager_8c_a9561305e5e429bb1c0f059c252194bf4a29023393e4847e3c15f80b114d7a6b39}} 
+AWS\+\_\+\+HCMST\+\_\+\+SHUTTING\+\_\+\+DOWN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{connection__manager_8c_a853b7269b1ef0af0b68029ab5127d71a}\label{connection__manager_8c_a853b7269b1ef0af0b68029ab5127d71a}} 
+\index{connection\_manager.c@{connection\_manager.c}!aws\_http\_connection\_manager\_acquire@{aws\_http\_connection\_manager\_acquire}}
+\index{aws\_http\_connection\_manager\_acquire@{aws\_http\_connection\_manager\_acquire}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_acquire()}{aws\_http\_connection\_manager\_acquire()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{connection__manager_8c_a82e95810e2aad07d321c6302f5d84d7f}\label{connection__manager_8c_a82e95810e2aad07d321c6302f5d84d7f}} 
+\index{connection\_manager.c@{connection\_manager.c}!aws\_http\_connection\_manager\_acquire\_connection@{aws\_http\_connection\_manager\_acquire\_connection}}
+\index{aws\_http\_connection\_manager\_acquire\_connection@{aws\_http\_connection\_manager\_acquire\_connection}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_acquire\_connection()}{aws\_http\_connection\_manager\_acquire\_connection()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+acquire\+\_\+connection (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager,  }\item[{\mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}} $\ast$}]{callback,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{connection__manager_8c_a0282f0aa13e6630c603b88f6ce436c64}\label{connection__manager_8c_a0282f0aa13e6630c603b88f6ce436c64}} 
+\index{connection\_manager.c@{connection\_manager.c}!aws\_http\_connection\_manager\_new@{aws\_http\_connection\_manager\_new}}
+\index{aws\_http\_connection\_manager\_new@{aws\_http\_connection\_manager\_new}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_new()}{aws\_http\_connection\_manager\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__http__connection__manager__options}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{connection__manager_8c_aed5293ec948668a2d0be66dc68114af9}\label{connection__manager_8c_aed5293ec948668a2d0be66dc68114af9}} 
+\index{connection\_manager.c@{connection\_manager.c}!aws\_http\_connection\_manager\_release@{aws\_http\_connection\_manager\_release}}
+\index{aws\_http\_connection\_manager\_release@{aws\_http\_connection\_manager\_release}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_release()}{aws\_http\_connection\_manager\_release()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{connection__manager_8c_a51dfa9e65a0549b9a8927ab441fdfd76}\label{connection__manager_8c_a51dfa9e65a0549b9a8927ab441fdfd76}} 
+\index{connection\_manager.c@{connection\_manager.c}!aws\_http\_connection\_manager\_release\_connection@{aws\_http\_connection\_manager\_release\_connection}}
+\index{aws\_http\_connection\_manager\_release\_connection@{aws\_http\_connection\_manager\_release\_connection}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_release\_connection()}{aws\_http\_connection\_manager\_release\_connection()}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+release\+\_\+connection (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager,  }\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{connection__manager_8c_a5ff7355fc2366d497b14bccfc3413d22}\label{connection__manager_8c_a5ff7355fc2366d497b14bccfc3413d22}} 
+\index{connection\_manager.c@{connection\_manager.c}!aws\_http\_connection\_manager\_set\_system\_vtable@{aws\_http\_connection\_manager\_set\_system\_vtable}}
+\index{aws\_http\_connection\_manager\_set\_system\_vtable@{aws\_http\_connection\_manager\_set\_system\_vtable}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_set\_system\_vtable()}{aws\_http\_connection\_manager\_set\_system\_vtable()}}
+{\footnotesize\ttfamily void aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+set\+\_\+system\+\_\+vtable (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager,  }\item[{const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$}]{system\+\_\+vtable }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{connection__manager_8c_afc30da4e9f0eb5ed0d3caef8a4bbd5ec}\label{connection__manager_8c_afc30da4e9f0eb5ed0d3caef8a4bbd5ec}} 
+\index{connection\_manager.c@{connection\_manager.c}!aws\_http\_connection\_manager\_system\_vtable\_is\_valid@{aws\_http\_connection\_manager\_system\_vtable\_is\_valid}}
+\index{aws\_http\_connection\_manager\_system\_vtable\_is\_valid@{aws\_http\_connection\_manager\_system\_vtable\_is\_valid}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_system\_vtable\_is\_valid()}{aws\_http\_connection\_manager\_system\_vtable\_is\_valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$}]{table }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{connection__manager_8c_a4ede491a0f5e00579d9536b74f75ec47}\label{connection__manager_8c_a4ede491a0f5e00579d9536b74f75ec47}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_connection\_management\_transaction\_clean\_up@{s\_aws\_connection\_management\_transaction\_clean\_up}}
+\index{s\_aws\_connection\_management\_transaction\_clean\_up@{s\_aws\_connection\_management\_transaction\_clean\_up}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_connection\_management\_transaction\_clean\_up()}{s\_aws\_connection\_management\_transaction\_clean\_up()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+connection\+\_\+management\+\_\+transaction\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__connection__management__transaction}{aws\+\_\+connection\+\_\+management\+\_\+transaction}} $\ast$}]{work }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a7b06648608212d606ae2bf39214d4a30}\label{connection__manager_8c_a7b06648608212d606ae2bf39214d4a30}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_connection\_management\_transaction\_init@{s\_aws\_connection\_management\_transaction\_init}}
+\index{s\_aws\_connection\_management\_transaction\_init@{s\_aws\_connection\_management\_transaction\_init}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_connection\_management\_transaction\_init()}{s\_aws\_connection\_management\_transaction\_init()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+connection\+\_\+management\+\_\+transaction\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__connection__management__transaction}{aws\+\_\+connection\+\_\+management\+\_\+transaction}} $\ast$}]{work,  }\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a99a2a2a2240b8eabf401710e9af1d843}\label{connection__manager_8c_a99a2a2a2240b8eabf401710e9af1d843}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_begin\_destroy@{s\_aws\_http\_connection\_manager\_begin\_destroy}}
+\index{s\_aws\_http\_connection\_manager\_begin\_destroy@{s\_aws\_http\_connection\_manager\_begin\_destroy}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_begin\_destroy()}{s\_aws\_http\_connection\_manager\_begin\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+begin\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_acbdc0392c6eec5b898a7e28eda507d9f}\label{connection__manager_8c_acbdc0392c6eec5b898a7e28eda507d9f}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_build\_transaction@{s\_aws\_http\_connection\_manager\_build\_transaction}}
+\index{s\_aws\_http\_connection\_manager\_build\_transaction@{s\_aws\_http\_connection\_manager\_build\_transaction}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_build\_transaction()}{s\_aws\_http\_connection\_manager\_build\_transaction()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+build\+\_\+transaction (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__connection__management__transaction}{aws\+\_\+connection\+\_\+management\+\_\+transaction}} $\ast$}]{work }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_aa83aacca387d3cc75dc1b43b7be78eb2}\label{connection__manager_8c_aa83aacca387d3cc75dc1b43b7be78eb2}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_complete\_acquisitions@{s\_aws\_http\_connection\_manager\_complete\_acquisitions}}
+\index{s\_aws\_http\_connection\_manager\_complete\_acquisitions@{s\_aws\_http\_connection\_manager\_complete\_acquisitions}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_complete\_acquisitions()}{s\_aws\_http\_connection\_manager\_complete\_acquisitions()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+complete\+\_\+acquisitions (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{acquisitions,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_aab35b45e0a0e4f5d605d6357a06568c8}\label{connection__manager_8c_aab35b45e0a0e4f5d605d6357a06568c8}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_execute\_transaction@{s\_aws\_http\_connection\_manager\_execute\_transaction}}
+\index{s\_aws\_http\_connection\_manager\_execute\_transaction@{s\_aws\_http\_connection\_manager\_execute\_transaction}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_execute\_transaction()}{s\_aws\_http\_connection\_manager\_execute\_transaction()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+execute\+\_\+transaction (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__connection__management__transaction}{aws\+\_\+connection\+\_\+management\+\_\+transaction}} $\ast$}]{work }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a8a648556bd3348504aca8c64286ecbfb}\label{connection__manager_8c_a8a648556bd3348504aca8c64286ecbfb}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_finish\_destroy@{s\_aws\_http\_connection\_manager\_finish\_destroy}}
+\index{s\_aws\_http\_connection\_manager\_finish\_destroy@{s\_aws\_http\_connection\_manager\_finish\_destroy}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_finish\_destroy()}{s\_aws\_http\_connection\_manager\_finish\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+finish\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a274e93d7f08f80c5216dc5e74fd1b947}\label{connection__manager_8c_a274e93d7f08f80c5216dc5e74fd1b947}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_get\_snapshot@{s\_aws\_http\_connection\_manager\_get\_snapshot}}
+\index{s\_aws\_http\_connection\_manager\_get\_snapshot@{s\_aws\_http\_connection\_manager\_get\_snapshot}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_get\_snapshot()}{s\_aws\_http\_connection\_manager\_get\_snapshot()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+get\+\_\+snapshot (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager,  }\item[{struct \mbox{\hyperlink{structaws__http__connection__manager__snapshot}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+snapshot}} $\ast$}]{snapshot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_ac06381c7b55499b9607767453197bf24}\label{connection__manager_8c_ac06381c7b55499b9607767453197bf24}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_log\_snapshot@{s\_aws\_http\_connection\_manager\_log\_snapshot}}
+\index{s\_aws\_http\_connection\_manager\_log\_snapshot@{s\_aws\_http\_connection\_manager\_log\_snapshot}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_log\_snapshot()}{s\_aws\_http\_connection\_manager\_log\_snapshot()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+log\+\_\+snapshot (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager,  }\item[{struct \mbox{\hyperlink{structaws__http__connection__manager__snapshot}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+snapshot}} $\ast$}]{snapshot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_aef5d1a292661c24fff2ddf17ce357d9b}\label{connection__manager_8c_aef5d1a292661c24fff2ddf17ce357d9b}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_move\_front\_acquisition@{s\_aws\_http\_connection\_manager\_move\_front\_acquisition}}
+\index{s\_aws\_http\_connection\_manager\_move\_front\_acquisition@{s\_aws\_http\_connection\_manager\_move\_front\_acquisition}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_move\_front\_acquisition()}{s\_aws\_http\_connection\_manager\_move\_front\_acquisition()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+move\+\_\+front\+\_\+acquisition (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager,  }\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{output\+\_\+list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_aa7486eb0dbdfa86f14c6facb2bb2c6a2}\label{connection__manager_8c_aa7486eb0dbdfa86f14c6facb2bb2c6a2}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_new\_connection@{s\_aws\_http\_connection\_manager\_new\_connection}}
+\index{s\_aws\_http\_connection\_manager\_new\_connection@{s\_aws\_http\_connection\_manager\_new\_connection}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_new\_connection()}{s\_aws\_http\_connection\_manager\_new\_connection()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+new\+\_\+connection (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_afc4a61024bd8cc833605ec5af6067602}\label{connection__manager_8c_afc4a61024bd8cc833605ec5af6067602}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_on\_connection\_setup@{s\_aws\_http\_connection\_manager\_on\_connection\_setup}}
+\index{s\_aws\_http\_connection\_manager\_on\_connection\_setup@{s\_aws\_http\_connection\_manager\_on\_connection\_setup}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_on\_connection\_setup()}{s\_aws\_http\_connection\_manager\_on\_connection\_setup()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_ae80d6b744260854c2ec0e4c212e5a989}\label{connection__manager_8c_ae80d6b744260854c2ec0e4c212e5a989}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_on\_connection\_shutdown@{s\_aws\_http\_connection\_manager\_on\_connection\_shutdown}}
+\index{s\_aws\_http\_connection\_manager\_on\_connection\_shutdown@{s\_aws\_http\_connection\_manager\_on\_connection\_shutdown}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_on\_connection\_shutdown()}{s\_aws\_http\_connection\_manager\_on\_connection\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a04314cc78de4bd98bac0be894de9c74d}\label{connection__manager_8c_a04314cc78de4bd98bac0be894de9c74d}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_aws\_http\_connection\_manager\_should\_destroy@{s\_aws\_http\_connection\_manager\_should\_destroy}}
+\index{s\_aws\_http\_connection\_manager\_should\_destroy@{s\_aws\_http\_connection\_manager\_should\_destroy}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_http\_connection\_manager\_should\_destroy()}{s\_aws\_http\_connection\_manager\_should\_destroy()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+should\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a8d4fa19713a4c8b955f043194d64428d}\label{connection__manager_8c_a8d4fa19713a4c8b955f043194d64428d}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_connection\_acquisition\_task@{s\_connection\_acquisition\_task}}
+\index{s\_connection\_acquisition\_task@{s\_connection\_acquisition\_task}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_connection\_acquisition\_task()}{s\_connection\_acquisition\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+connection\+\_\+acquisition\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{channel\+\_\+task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a5ae5380dc29c68d748e126478a5676f4}\label{connection__manager_8c_a5ae5380dc29c68d748e126478a5676f4}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_cull\_idle\_connections@{s\_cull\_idle\_connections}}
+\index{s\_cull\_idle\_connections@{s\_cull\_idle\_connections}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_cull\_idle\_connections()}{s\_cull\_idle\_connections()}}
+{\footnotesize\ttfamily static void s\+\_\+cull\+\_\+idle\+\_\+connections (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a051ef2a68c1a0b0b3306c086bd2d9013}\label{connection__manager_8c_a051ef2a68c1a0b0b3306c086bd2d9013}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_cull\_task@{s\_cull\_task}}
+\index{s\_cull\_task@{s\_cull\_task}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_cull\_task()}{s\_cull\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+cull\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_aa08aa3a7d9b0656b98605ef498ea9329}\label{connection__manager_8c_aa08aa3a7d9b0656b98605ef498ea9329}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_final\_destruction\_task@{s\_final\_destruction\_task}}
+\index{s\_final\_destruction\_task@{s\_final\_destruction\_task}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_final\_destruction\_task()}{s\_final\_destruction\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+final\+\_\+destruction\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a26f9d02ce6fbfbdb32176887764b6b9a}\label{connection__manager_8c_a26f9d02ce6fbfbdb32176887764b6b9a}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_idle\_connection@{s\_idle\_connection}}
+\index{s\_idle\_connection@{s\_idle\_connection}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_idle\_connection()}{s\_idle\_connection()}}
+{\footnotesize\ttfamily static int s\+\_\+idle\+\_\+connection (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager,  }\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{connection__manager_8c_a8b942cb6ac087c1cf7bca0be71962cec}\label{connection__manager_8c_a8b942cb6ac087c1cf7bca0be71962cec}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_schedule\_connection\_culling@{s\_schedule\_connection\_culling}}
+\index{s\_schedule\_connection\_culling@{s\_schedule\_connection\_culling}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_connection\_culling()}{s\_schedule\_connection\_culling()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+connection\+\_\+culling (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$}]{manager }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{connection__manager_8c_ae35c6fdb9100aa743cca89f9b2932c11}\label{connection__manager_8c_ae35c6fdb9100aa743cca89f9b2932c11}} 
+\index{connection\_manager.c@{connection\_manager.c}!g\_aws\_http\_connection\_manager\_default\_system\_vtable\_ptr@{g\_aws\_http\_connection\_manager\_default\_system\_vtable\_ptr}}
+\index{g\_aws\_http\_connection\_manager\_default\_system\_vtable\_ptr@{g\_aws\_http\_connection\_manager\_default\_system\_vtable\_ptr}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{g\_aws\_http\_connection\_manager\_default\_system\_vtable\_ptr}{g\_aws\_http\_connection\_manager\_default\_system\_vtable\_ptr}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}}$\ast$ g\+\_\+aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+default\+\_\+system\+\_\+vtable\+\_\+ptr}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \&\mbox{\hyperlink{connection__manager_8c_a709593770b0e62939dba459ca60e846c}{s\_default\_system\_vtable}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{connection__manager_8c_a709593770b0e62939dba459ca60e846c}\label{connection__manager_8c_a709593770b0e62939dba459ca60e846c}} 
+\index{connection\_manager.c@{connection\_manager.c}!s\_default\_system\_vtable@{s\_default\_system\_vtable}}
+\index{s\_default\_system\_vtable@{s\_default\_system\_vtable}!connection\_manager.c@{connection\_manager.c}}
+\doxysubsubsection{\texorpdfstring{s\_default\_system\_vtable}{s\_default\_system\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} s\+\_\+default\+\_\+system\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .create\_connection = \mbox{\hyperlink{connection_8h_a7c28ee84b16932c212b117c770997c00}{aws\_http\_client\_connect}},}
+\DoxyCodeLine{    .release\_connection = \mbox{\hyperlink{connection_8h_aa5716b9666fb5b33415dcbcfee9386d1}{aws\_http\_connection\_release}},}
+\DoxyCodeLine{    .close\_connection = \mbox{\hyperlink{connection_8h_a22ac3366f8c97f99fa2abf5992dd36a7}{aws\_http\_connection\_close}},}
+\DoxyCodeLine{    .is\_connection\_available = \mbox{\hyperlink{connection_8h_a5f6cd57ead8878ff019d9b187de484a2}{aws\_http\_connection\_new\_requests\_allowed}},}
+\DoxyCodeLine{    .get\_monotonic\_time = \mbox{\hyperlink{clock_8h_a054c8b4ddd0c84dc4c6fa19eb2755924}{aws\_high\_res\_clock\_get\_ticks}},}
+\DoxyCodeLine{    .is\_callers\_thread = \mbox{\hyperlink{channel_8h_ad9b9ae95b32036cb22b5c9d9b9f33ff5}{aws\_channel\_thread\_is\_callers\_thread}},}
+\DoxyCodeLine{    .connection\_get\_channel = \mbox{\hyperlink{connection_8h_abcd9ff73d2e6c8c3a4768223e373e298}{aws\_http\_connection\_get\_channel}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

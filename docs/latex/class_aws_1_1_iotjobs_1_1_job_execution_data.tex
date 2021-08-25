@@ -1,0 +1,139 @@
+\hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data}{}\doxysection{Aws\+::Iotjobs\+::Job\+Execution\+Data Class Reference}
+\label{class_aws_1_1_iotjobs_1_1_job_execution_data}\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+
+
+{\ttfamily \#include $<$Job\+Execution\+Data.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a1ea2e70c7675e9566b9c41973ebbb09c}{Job\+Execution\+Data}} ()=default
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a553fa8f218afe28d9b2765233ee10de7}{Job\+Execution\+Data}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt\+::\+Json\+View}} \&doc)
+\item 
+\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data}{Job\+Execution\+Data}} \& \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a5499f3c652d3f95ab9f229d591991fa8}{operator=}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt\+::\+Json\+View}} \&doc)
+\item 
+void \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a5a2c7556a7949829810980fe713feac4}{Serialize\+To\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt\+::\+Json\+Object}} \&doc) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_aa2caf4518305c6cb8d32a96c5181b6bf}{Job\+Id}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a082c439c8d6af3b2ae44ec9c41685bba}{Job\+Document}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_iotjobs_ab23745174d4d2f57ebf542bdbd1bacf0}{Aws\+::\+Iotjobs\+::\+Job\+Status}} $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a944fb868dff4fe09276cf8c44875eee6}{Status}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ int32\+\_\+t $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a10899656061dace205353c3638a8a051}{Version\+Number}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_date_time}{Aws\+::\+Crt\+::\+Date\+Time}} $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a1cfa7bf1a00972f2a2dd9110d1a8b60f}{Queued\+At}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_ab34057425924c7cefbd7bbf6a0e306b5}{Thing\+Name}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ int64\+\_\+t $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a362885d7f280e0226360b8ced0c23e22}{Execution\+Number}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a1cf42e328e4553fa884d30468915df73}{Aws\+::\+Crt\+::\+Map}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} $>$ $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a87715a394c53f39f0c43976dd6d1b3a0}{Status\+Details}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_date_time}{Aws\+::\+Crt\+::\+Date\+Time}} $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a6a3829f3812fffda4bf9de8e19d0f665}{Last\+Updated\+At}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_date_time}{Aws\+::\+Crt\+::\+Date\+Time}} $>$ \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data_a18487f5fb6f95d5b3451f84c477a6381}{Started\+At}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a1ea2e70c7675e9566b9c41973ebbb09c}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a1ea2e70c7675e9566b9c41973ebbb09c}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!JobExecutionData@{JobExecutionData}}
+\index{JobExecutionData@{JobExecutionData}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{JobExecutionData()}{JobExecutionData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Job\+Execution\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a553fa8f218afe28d9b2765233ee10de7}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a553fa8f218afe28d9b2765233ee10de7}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!JobExecutionData@{JobExecutionData}}
+\index{JobExecutionData@{JobExecutionData}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{JobExecutionData()}{JobExecutionData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Job\+Execution\+Data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt\+::\+Json\+View}} \&}]{doc }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a5499f3c652d3f95ab9f229d591991fa8}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a5499f3c652d3f95ab9f229d591991fa8}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_data}{Job\+Execution\+Data}} \& Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt\+::\+Json\+View}} \&}]{doc }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a5a2c7556a7949829810980fe713feac4}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a5a2c7556a7949829810980fe713feac4}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!SerializeToObject@{SerializeToObject}}
+\index{SerializeToObject@{SerializeToObject}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{SerializeToObject()}{SerializeToObject()}}
+{\footnotesize\ttfamily void Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Serialize\+To\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt\+::\+Json\+Object}} \&}]{doc }\end{DoxyParamCaption}) const}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a362885d7f280e0226360b8ced0c23e22}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a362885d7f280e0226360b8ced0c23e22}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!ExecutionNumber@{ExecutionNumber}}
+\index{ExecutionNumber@{ExecutionNumber}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{ExecutionNumber}{ExecutionNumber}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$int64\+\_\+t$>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Execution\+Number}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a082c439c8d6af3b2ae44ec9c41685bba}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a082c439c8d6af3b2ae44ec9c41685bba}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!JobDocument@{JobDocument}}
+\index{JobDocument@{JobDocument}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{JobDocument}{JobDocument}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}}$>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Job\+Document}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_aa2caf4518305c6cb8d32a96c5181b6bf}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_aa2caf4518305c6cb8d32a96c5181b6bf}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!JobId@{JobId}}
+\index{JobId@{JobId}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{JobId}{JobId}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}$>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Job\+Id}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a6a3829f3812fffda4bf9de8e19d0f665}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a6a3829f3812fffda4bf9de8e19d0f665}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!LastUpdatedAt@{LastUpdatedAt}}
+\index{LastUpdatedAt@{LastUpdatedAt}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{LastUpdatedAt}{LastUpdatedAt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_date_time}{Aws\+::\+Crt\+::\+Date\+Time}}$>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Last\+Updated\+At}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a1cfa7bf1a00972f2a2dd9110d1a8b60f}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a1cfa7bf1a00972f2a2dd9110d1a8b60f}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!QueuedAt@{QueuedAt}}
+\index{QueuedAt@{QueuedAt}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{QueuedAt}{QueuedAt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_date_time}{Aws\+::\+Crt\+::\+Date\+Time}}$>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Queued\+At}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a18487f5fb6f95d5b3451f84c477a6381}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a18487f5fb6f95d5b3451f84c477a6381}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!StartedAt@{StartedAt}}
+\index{StartedAt@{StartedAt}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{StartedAt}{StartedAt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_date_time}{Aws\+::\+Crt\+::\+Date\+Time}}$>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Started\+At}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a944fb868dff4fe09276cf8c44875eee6}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a944fb868dff4fe09276cf8c44875eee6}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!Status@{Status}}
+\index{Status@{Status}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{Status}{Status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_iotjobs_ab23745174d4d2f57ebf542bdbd1bacf0}{Aws\+::\+Iotjobs\+::\+Job\+Status}}$>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Status}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a87715a394c53f39f0c43976dd6d1b3a0}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a87715a394c53f39f0c43976dd6d1b3a0}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!StatusDetails@{StatusDetails}}
+\index{StatusDetails@{StatusDetails}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{StatusDetails}{StatusDetails}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a1cf42e328e4553fa884d30468915df73}{Aws\+::\+Crt\+::\+Map}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}$>$ $>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Status\+Details}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_ab34057425924c7cefbd7bbf6a0e306b5}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_ab34057425924c7cefbd7bbf6a0e306b5}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!ThingName@{ThingName}}
+\index{ThingName@{ThingName}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{ThingName}{ThingName}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}$>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Thing\+Name}
+
+\mbox{\Hypertarget{class_aws_1_1_iotjobs_1_1_job_execution_data_a10899656061dace205353c3638a8a051}\label{class_aws_1_1_iotjobs_1_1_job_execution_data_a10899656061dace205353c3638a8a051}} 
+\index{Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}!VersionNumber@{VersionNumber}}
+\index{VersionNumber@{VersionNumber}!Aws::Iotjobs::JobExecutionData@{Aws::Iotjobs::JobExecutionData}}
+\doxysubsubsection{\texorpdfstring{VersionNumber}{VersionNumber}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$int32\+\_\+t$>$ Aws\+::\+Iotjobs\+::\+Job\+Execution\+Data\+::\+Version\+Number}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+jobs/include/aws/iotjobs/\mbox{\hyperlink{_job_execution_data_8h}{Job\+Execution\+Data.\+h}}\item 
+jobs/source/\mbox{\hyperlink{_job_execution_data_8cpp}{Job\+Execution\+Data.\+cpp}}\end{DoxyCompactItemize}

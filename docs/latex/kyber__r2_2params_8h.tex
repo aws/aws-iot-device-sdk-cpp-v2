@@ -1,0 +1,144 @@
+\hypertarget{kyber__r2_2params_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\+\_\+r2/params.h File Reference}
+\label{kyber__r2_2params_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\_r2/params.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\_r2/params.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_add4f22a10cc799b6846a517183c7f4cb}{KYBER\+\_\+N}}~256
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a874d765cb6e25f657aec2f225d8505a6}{KYBER\+\_\+Q}}~3329
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_ac8c59c0803b7f85b57e4b585fce7076e}{KYBER\+\_\+\+ETA}}~2
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a132bbc78e88ea5e14e93e0963dd5d0f9}{KYBER\+\_\+\+SYMBYTES}}~32   /$\ast$ size in bytes of hashes, and seeds $\ast$/
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a5054c9269277412d8536eb82cfffbe15}{KYBER\+\_\+\+SSBYTES}}~32   /$\ast$ size in bytes of shared key $\ast$/
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_af66bcd4f5c1ee3377ed637b38ed8f356}{KYBER\+\_\+\+POLYBYTES}}~384
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a173c9a0c50ab5c98875d52bae2de1858}{KYBER\+\_\+\+POLYVECBYTES}}~(\mbox{\hyperlink{kyber__r2_2params_8h_a1e66e19d25aceeae49d1184a077f92db}{KYBER\+\_\+K}} $\ast$ \mbox{\hyperlink{kyber__r2_2params_8h_af66bcd4f5c1ee3377ed637b38ed8f356}{KYBER\+\_\+\+POLYBYTES}})
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a1e66e19d25aceeae49d1184a077f92db}{KYBER\+\_\+K}}~2
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a51140554139d44ac9793c4d37dddb6c5}{KYBER\+\_\+\+POLYCOMPRESSEDBYTES}}~96
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a13592b90b6472cdf6d69416092fddb40}{KYBER\+\_\+\+POLYVECCOMPRESSEDBYTES}}~(\mbox{\hyperlink{kyber__r2_2params_8h_a1e66e19d25aceeae49d1184a077f92db}{KYBER\+\_\+K}} $\ast$ 320)
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_afbda72968986f789dc91f6ca3368a628}{KYBER\+\_\+\+INDCPA\+\_\+\+MSGBYTES}}~\mbox{\hyperlink{kyber__r2_2params_8h_a132bbc78e88ea5e14e93e0963dd5d0f9}{KYBER\+\_\+\+SYMBYTES}}
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a4c9f2345946a0d01dc2051b493c2bda4}{KYBER\+\_\+\+INDCPA\+\_\+\+PUBLICKEYBYTES}}~(\mbox{\hyperlink{kyber__r2_2params_8h_a173c9a0c50ab5c98875d52bae2de1858}{KYBER\+\_\+\+POLYVECBYTES}} + \mbox{\hyperlink{kyber__r2_2params_8h_a132bbc78e88ea5e14e93e0963dd5d0f9}{KYBER\+\_\+\+SYMBYTES}})
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a7258274ad7836627403880fe8dda0cfa}{KYBER\+\_\+\+INDCPA\+\_\+\+SECRETKEYBYTES}}~(\mbox{\hyperlink{kyber__r2_2params_8h_a173c9a0c50ab5c98875d52bae2de1858}{KYBER\+\_\+\+POLYVECBYTES}})
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a14d4b725309e5e2664245eedc25ef4c4}{KYBER\+\_\+\+INDCPA\+\_\+\+BYTES}}~(\mbox{\hyperlink{kyber__r2_2params_8h_a13592b90b6472cdf6d69416092fddb40}{KYBER\+\_\+\+POLYVECCOMPRESSEDBYTES}} + \mbox{\hyperlink{kyber__r2_2params_8h_a51140554139d44ac9793c4d37dddb6c5}{KYBER\+\_\+\+POLYCOMPRESSEDBYTES}})
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a7663b32715a32f12eb70420793753ce3}{KYBER\+\_\+\+PUBLICKEYBYTES}}~(\mbox{\hyperlink{kyber__r2_2params_8h_a4c9f2345946a0d01dc2051b493c2bda4}{KYBER\+\_\+\+INDCPA\+\_\+\+PUBLICKEYBYTES}})
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a7f9a2f9ae6937442f988816af97babb3}{KYBER\+\_\+\+SECRETKEYBYTES}}~(\mbox{\hyperlink{kyber__r2_2params_8h_a7258274ad7836627403880fe8dda0cfa}{KYBER\+\_\+\+INDCPA\+\_\+\+SECRETKEYBYTES}} +  \mbox{\hyperlink{kyber__r2_2params_8h_a4c9f2345946a0d01dc2051b493c2bda4}{KYBER\+\_\+\+INDCPA\+\_\+\+PUBLICKEYBYTES}} + 2$\ast$\mbox{\hyperlink{kyber__r2_2params_8h_a132bbc78e88ea5e14e93e0963dd5d0f9}{KYBER\+\_\+\+SYMBYTES}}) /$\ast$ 32 bytes of additional space to save H(pk) $\ast$/
+\item 
+\#define \mbox{\hyperlink{kyber__r2_2params_8h_a356cca49fc302b0c34c18f4bbda6e5fe}{KYBER\+\_\+\+CIPHERTEXTBYTES}}~\mbox{\hyperlink{kyber__r2_2params_8h_a14d4b725309e5e2664245eedc25ef4c4}{KYBER\+\_\+\+INDCPA\+\_\+\+BYTES}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{kyber__r2_2params_8h_a356cca49fc302b0c34c18f4bbda6e5fe}\label{kyber__r2_2params_8h_a356cca49fc302b0c34c18f4bbda6e5fe}} 
+\index{params.h@{params.h}!KYBER\_CIPHERTEXTBYTES@{KYBER\_CIPHERTEXTBYTES}}
+\index{KYBER\_CIPHERTEXTBYTES@{KYBER\_CIPHERTEXTBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_CIPHERTEXTBYTES}{KYBER\_CIPHERTEXTBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+CIPHERTEXTBYTES~\mbox{\hyperlink{kyber__r2_2params_8h_a14d4b725309e5e2664245eedc25ef4c4}{KYBER\+\_\+\+INDCPA\+\_\+\+BYTES}}}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_ac8c59c0803b7f85b57e4b585fce7076e}\label{kyber__r2_2params_8h_ac8c59c0803b7f85b57e4b585fce7076e}} 
+\index{params.h@{params.h}!KYBER\_ETA@{KYBER\_ETA}}
+\index{KYBER\_ETA@{KYBER\_ETA}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_ETA}{KYBER\_ETA}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+ETA~2}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a14d4b725309e5e2664245eedc25ef4c4}\label{kyber__r2_2params_8h_a14d4b725309e5e2664245eedc25ef4c4}} 
+\index{params.h@{params.h}!KYBER\_INDCPA\_BYTES@{KYBER\_INDCPA\_BYTES}}
+\index{KYBER\_INDCPA\_BYTES@{KYBER\_INDCPA\_BYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_INDCPA\_BYTES}{KYBER\_INDCPA\_BYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+INDCPA\+\_\+\+BYTES~(\mbox{\hyperlink{kyber__r2_2params_8h_a13592b90b6472cdf6d69416092fddb40}{KYBER\+\_\+\+POLYVECCOMPRESSEDBYTES}} + \mbox{\hyperlink{kyber__r2_2params_8h_a51140554139d44ac9793c4d37dddb6c5}{KYBER\+\_\+\+POLYCOMPRESSEDBYTES}})}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_afbda72968986f789dc91f6ca3368a628}\label{kyber__r2_2params_8h_afbda72968986f789dc91f6ca3368a628}} 
+\index{params.h@{params.h}!KYBER\_INDCPA\_MSGBYTES@{KYBER\_INDCPA\_MSGBYTES}}
+\index{KYBER\_INDCPA\_MSGBYTES@{KYBER\_INDCPA\_MSGBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_INDCPA\_MSGBYTES}{KYBER\_INDCPA\_MSGBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+INDCPA\+\_\+\+MSGBYTES~\mbox{\hyperlink{kyber__r2_2params_8h_a132bbc78e88ea5e14e93e0963dd5d0f9}{KYBER\+\_\+\+SYMBYTES}}}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a4c9f2345946a0d01dc2051b493c2bda4}\label{kyber__r2_2params_8h_a4c9f2345946a0d01dc2051b493c2bda4}} 
+\index{params.h@{params.h}!KYBER\_INDCPA\_PUBLICKEYBYTES@{KYBER\_INDCPA\_PUBLICKEYBYTES}}
+\index{KYBER\_INDCPA\_PUBLICKEYBYTES@{KYBER\_INDCPA\_PUBLICKEYBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_INDCPA\_PUBLICKEYBYTES}{KYBER\_INDCPA\_PUBLICKEYBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+INDCPA\+\_\+\+PUBLICKEYBYTES~(\mbox{\hyperlink{kyber__r2_2params_8h_a173c9a0c50ab5c98875d52bae2de1858}{KYBER\+\_\+\+POLYVECBYTES}} + \mbox{\hyperlink{kyber__r2_2params_8h_a132bbc78e88ea5e14e93e0963dd5d0f9}{KYBER\+\_\+\+SYMBYTES}})}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a7258274ad7836627403880fe8dda0cfa}\label{kyber__r2_2params_8h_a7258274ad7836627403880fe8dda0cfa}} 
+\index{params.h@{params.h}!KYBER\_INDCPA\_SECRETKEYBYTES@{KYBER\_INDCPA\_SECRETKEYBYTES}}
+\index{KYBER\_INDCPA\_SECRETKEYBYTES@{KYBER\_INDCPA\_SECRETKEYBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_INDCPA\_SECRETKEYBYTES}{KYBER\_INDCPA\_SECRETKEYBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+INDCPA\+\_\+\+SECRETKEYBYTES~(\mbox{\hyperlink{kyber__r2_2params_8h_a173c9a0c50ab5c98875d52bae2de1858}{KYBER\+\_\+\+POLYVECBYTES}})}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a1e66e19d25aceeae49d1184a077f92db}\label{kyber__r2_2params_8h_a1e66e19d25aceeae49d1184a077f92db}} 
+\index{params.h@{params.h}!KYBER\_K@{KYBER\_K}}
+\index{KYBER\_K@{KYBER\_K}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_K}{KYBER\_K}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+K~2}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_add4f22a10cc799b6846a517183c7f4cb}\label{kyber__r2_2params_8h_add4f22a10cc799b6846a517183c7f4cb}} 
+\index{params.h@{params.h}!KYBER\_N@{KYBER\_N}}
+\index{KYBER\_N@{KYBER\_N}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_N}{KYBER\_N}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+N~256}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_af66bcd4f5c1ee3377ed637b38ed8f356}\label{kyber__r2_2params_8h_af66bcd4f5c1ee3377ed637b38ed8f356}} 
+\index{params.h@{params.h}!KYBER\_POLYBYTES@{KYBER\_POLYBYTES}}
+\index{KYBER\_POLYBYTES@{KYBER\_POLYBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_POLYBYTES}{KYBER\_POLYBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+POLYBYTES~384}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a51140554139d44ac9793c4d37dddb6c5}\label{kyber__r2_2params_8h_a51140554139d44ac9793c4d37dddb6c5}} 
+\index{params.h@{params.h}!KYBER\_POLYCOMPRESSEDBYTES@{KYBER\_POLYCOMPRESSEDBYTES}}
+\index{KYBER\_POLYCOMPRESSEDBYTES@{KYBER\_POLYCOMPRESSEDBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_POLYCOMPRESSEDBYTES}{KYBER\_POLYCOMPRESSEDBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+POLYCOMPRESSEDBYTES~96}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a173c9a0c50ab5c98875d52bae2de1858}\label{kyber__r2_2params_8h_a173c9a0c50ab5c98875d52bae2de1858}} 
+\index{params.h@{params.h}!KYBER\_POLYVECBYTES@{KYBER\_POLYVECBYTES}}
+\index{KYBER\_POLYVECBYTES@{KYBER\_POLYVECBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_POLYVECBYTES}{KYBER\_POLYVECBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+POLYVECBYTES~(\mbox{\hyperlink{kyber__r2_2params_8h_a1e66e19d25aceeae49d1184a077f92db}{KYBER\+\_\+K}} $\ast$ \mbox{\hyperlink{kyber__r2_2params_8h_af66bcd4f5c1ee3377ed637b38ed8f356}{KYBER\+\_\+\+POLYBYTES}})}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a13592b90b6472cdf6d69416092fddb40}\label{kyber__r2_2params_8h_a13592b90b6472cdf6d69416092fddb40}} 
+\index{params.h@{params.h}!KYBER\_POLYVECCOMPRESSEDBYTES@{KYBER\_POLYVECCOMPRESSEDBYTES}}
+\index{KYBER\_POLYVECCOMPRESSEDBYTES@{KYBER\_POLYVECCOMPRESSEDBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_POLYVECCOMPRESSEDBYTES}{KYBER\_POLYVECCOMPRESSEDBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+POLYVECCOMPRESSEDBYTES~(\mbox{\hyperlink{kyber__r2_2params_8h_a1e66e19d25aceeae49d1184a077f92db}{KYBER\+\_\+K}} $\ast$ 320)}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a7663b32715a32f12eb70420793753ce3}\label{kyber__r2_2params_8h_a7663b32715a32f12eb70420793753ce3}} 
+\index{params.h@{params.h}!KYBER\_PUBLICKEYBYTES@{KYBER\_PUBLICKEYBYTES}}
+\index{KYBER\_PUBLICKEYBYTES@{KYBER\_PUBLICKEYBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_PUBLICKEYBYTES}{KYBER\_PUBLICKEYBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+PUBLICKEYBYTES~(\mbox{\hyperlink{kyber__r2_2params_8h_a4c9f2345946a0d01dc2051b493c2bda4}{KYBER\+\_\+\+INDCPA\+\_\+\+PUBLICKEYBYTES}})}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a874d765cb6e25f657aec2f225d8505a6}\label{kyber__r2_2params_8h_a874d765cb6e25f657aec2f225d8505a6}} 
+\index{params.h@{params.h}!KYBER\_Q@{KYBER\_Q}}
+\index{KYBER\_Q@{KYBER\_Q}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_Q}{KYBER\_Q}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+Q~3329}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a7f9a2f9ae6937442f988816af97babb3}\label{kyber__r2_2params_8h_a7f9a2f9ae6937442f988816af97babb3}} 
+\index{params.h@{params.h}!KYBER\_SECRETKEYBYTES@{KYBER\_SECRETKEYBYTES}}
+\index{KYBER\_SECRETKEYBYTES@{KYBER\_SECRETKEYBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_SECRETKEYBYTES}{KYBER\_SECRETKEYBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+SECRETKEYBYTES~(\mbox{\hyperlink{kyber__r2_2params_8h_a7258274ad7836627403880fe8dda0cfa}{KYBER\+\_\+\+INDCPA\+\_\+\+SECRETKEYBYTES}} +  \mbox{\hyperlink{kyber__r2_2params_8h_a4c9f2345946a0d01dc2051b493c2bda4}{KYBER\+\_\+\+INDCPA\+\_\+\+PUBLICKEYBYTES}} + 2$\ast$\mbox{\hyperlink{kyber__r2_2params_8h_a132bbc78e88ea5e14e93e0963dd5d0f9}{KYBER\+\_\+\+SYMBYTES}}) /$\ast$ 32 bytes of additional space to save H(pk) $\ast$/}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a5054c9269277412d8536eb82cfffbe15}\label{kyber__r2_2params_8h_a5054c9269277412d8536eb82cfffbe15}} 
+\index{params.h@{params.h}!KYBER\_SSBYTES@{KYBER\_SSBYTES}}
+\index{KYBER\_SSBYTES@{KYBER\_SSBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_SSBYTES}{KYBER\_SSBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+SSBYTES~32   /$\ast$ size in bytes of shared key $\ast$/}
+
+\mbox{\Hypertarget{kyber__r2_2params_8h_a132bbc78e88ea5e14e93e0963dd5d0f9}\label{kyber__r2_2params_8h_a132bbc78e88ea5e14e93e0963dd5d0f9}} 
+\index{params.h@{params.h}!KYBER\_SYMBYTES@{KYBER\_SYMBYTES}}
+\index{KYBER\_SYMBYTES@{KYBER\_SYMBYTES}!params.h@{params.h}}
+\doxysubsubsection{\texorpdfstring{KYBER\_SYMBYTES}{KYBER\_SYMBYTES}}
+{\footnotesize\ttfamily \#define KYBER\+\_\+\+SYMBYTES~32   /$\ast$ size in bytes of hashes, and seeds $\ast$/}
+

@@ -1,0 +1,69 @@
+\hypertarget{s2n__self__talk__tls12__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+self\+\_\+talk\+\_\+tls12\+\_\+test.c File Reference}
+\label{s2n__self__talk__tls12__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_self\_talk\_tls12\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_self\_talk\_tls12\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}~(2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{s2n__self__talk__tls12__test_8c_a5a225c83201bf39da62fc38a9e011644}{mock\+\_\+client}} (struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$io\+\_\+pair)
+\item 
+int \mbox{\hyperlink{s2n__self__talk__tls12__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{s2n__self__talk__tls12__test_8c_a28773f914f41c64cd23873f9840844cf}{certificate\+\_\+paths}} \mbox{[}\mbox{\hyperlink{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}\mbox{]} = \{ \mbox{\hyperlink{s2n__testlib_8h_a724fd851deadd0d011007b44d2f639ae}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS1\+\_\+\+CERT\+\_\+\+CHAIN}}, \mbox{\hyperlink{s2n__testlib_8h_ac5e192e299f50f6b3287a670e412ffcf}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS8\+\_\+\+CERT\+\_\+\+CHAIN}} \}
+\item 
+static const char $\ast$ \mbox{\hyperlink{s2n__self__talk__tls12__test_8c_ab45c69bb64ee823d93f86bc851df5b03}{private\+\_\+key\+\_\+paths}} \mbox{[}\mbox{\hyperlink{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}\mbox{]} = \{ \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS1\+\_\+\+KEY}}, \mbox{\hyperlink{s2n__testlib_8h_ae2a3ba21a8b5a5a1f88a2910980d8317}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS8\+\_\+\+KEY}} \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}\label{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}} 
+\index{s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}!SUPPORTED\_CERTIFICATE\_FORMATS@{SUPPORTED\_CERTIFICATE\_FORMATS}}
+\index{SUPPORTED\_CERTIFICATE\_FORMATS@{SUPPORTED\_CERTIFICATE\_FORMATS}!s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}}
+\doxysubsubsection{\texorpdfstring{SUPPORTED\_CERTIFICATE\_FORMATS}{SUPPORTED\_CERTIFICATE\_FORMATS}}
+{\footnotesize\ttfamily \#define SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS~(2)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__self__talk__tls12__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__self__talk__tls12__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}!main@{main}}
+\index{main@{main}!s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__tls12__test_8c_a5a225c83201bf39da62fc38a9e011644}\label{s2n__self__talk__tls12__test_8c_a5a225c83201bf39da62fc38a9e011644}} 
+\index{s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}!mock\_client@{mock\_client}}
+\index{mock\_client@{mock\_client}!s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}}
+\doxysubsubsection{\texorpdfstring{mock\_client()}{mock\_client()}}
+{\footnotesize\ttfamily void mock\+\_\+client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$}]{io\+\_\+pair }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__self__talk__tls12__test_8c_a28773f914f41c64cd23873f9840844cf}\label{s2n__self__talk__tls12__test_8c_a28773f914f41c64cd23873f9840844cf}} 
+\index{s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}!certificate\_paths@{certificate\_paths}}
+\index{certificate\_paths@{certificate\_paths}!s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}}
+\doxysubsubsection{\texorpdfstring{certificate\_paths}{certificate\_paths}}
+{\footnotesize\ttfamily const char$\ast$ certificate\+\_\+paths\mbox{[}\mbox{\hyperlink{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}\mbox{]} = \{ \mbox{\hyperlink{s2n__testlib_8h_a724fd851deadd0d011007b44d2f639ae}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS1\+\_\+\+CERT\+\_\+\+CHAIN}}, \mbox{\hyperlink{s2n__testlib_8h_ac5e192e299f50f6b3287a670e412ffcf}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS8\+\_\+\+CERT\+\_\+\+CHAIN}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__self__talk__tls12__test_8c_ab45c69bb64ee823d93f86bc851df5b03}\label{s2n__self__talk__tls12__test_8c_ab45c69bb64ee823d93f86bc851df5b03}} 
+\index{s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}!private\_key\_paths@{private\_key\_paths}}
+\index{private\_key\_paths@{private\_key\_paths}!s2n\_self\_talk\_tls12\_test.c@{s2n\_self\_talk\_tls12\_test.c}}
+\doxysubsubsection{\texorpdfstring{private\_key\_paths}{private\_key\_paths}}
+{\footnotesize\ttfamily const char$\ast$ private\+\_\+key\+\_\+paths\mbox{[}\mbox{\hyperlink{s2n__self__talk__tls12__test_8c_aefc912d24efacc751dc43b39e6a199c1}{SUPPORTED\+\_\+\+CERTIFICATE\+\_\+\+FORMATS}}\mbox{]} = \{ \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS1\+\_\+\+KEY}}, \mbox{\hyperlink{s2n__testlib_8h_ae2a3ba21a8b5a5a1f88a2910980d8317}{S2\+N\+\_\+\+RSA\+\_\+2048\+\_\+\+PKCS8\+\_\+\+KEY}} \}\hspace{0.3cm}{\ttfamily [static]}}
+

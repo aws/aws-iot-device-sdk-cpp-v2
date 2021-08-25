@@ -1,0 +1,20 @@
+\hypertarget{aws-c-common_2verification_2cbmc_2stubs_2abort__override__assert__false_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/abort\+\_\+override\+\_\+assert\+\_\+false.c File Reference}
+\label{aws-c-common_2verification_2cbmc_2stubs_2abort__override__assert__false_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/abort\_override\_assert\_false.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/abort\_override\_assert\_false.c}}
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2stubs_2abort__override__assert__false_8c_ac54f53dc342019e8db34f4aa581a5792}{abort}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws-c-common_2verification_2cbmc_2stubs_2abort__override__assert__false_8c_ac54f53dc342019e8db34f4aa581a5792}\label{aws-c-common_2verification_2cbmc_2stubs_2abort__override__assert__false_8c_ac54f53dc342019e8db34f4aa581a5792}} 
+\index{abort\_override\_assert\_false.c@{abort\_override\_assert\_false.c}!abort@{abort}}
+\index{abort@{abort}!abort\_override\_assert\_false.c@{abort\_override\_assert\_false.c}}
+\doxysubsubsection{\texorpdfstring{abort()}{abort()}}
+{\footnotesize\ttfamily void abort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. FUNCTION\+: abort
+
+We override abort to be an assert(0) so that it is caught by CBMC 

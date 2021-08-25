@@ -1,0 +1,146 @@
+\hypertarget{lookup3_8inl}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/lookup3.inl File Reference}
+\label{lookup3_8inl}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/lookup3.inl@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/lookup3.inl}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lookup3_8inl_aeadb24296d18d6e4c93b18a2b9893d8f}{AWS\+\_\+\+COMMON\+\_\+\+PRIVATE\+\_\+\+LOOKUP3\+\_\+\+INL}}
+\item 
+\#define \mbox{\hyperlink{lookup3_8inl_a8c49a94782a573ded31a7bb1949cbf47}{HASH\+\_\+\+LITTLE\+\_\+\+ENDIAN}}~0
+\item 
+\#define \mbox{\hyperlink{lookup3_8inl_a129f72057b84147c7c3e2a6d107f0e3b}{HASH\+\_\+\+BIG\+\_\+\+ENDIAN}}~0
+\item 
+\#define \mbox{\hyperlink{lookup3_8inl_a86173ca25b300cf3276b088d3fc6bdaf}{hashsize}}(n)~((uint32\+\_\+t)1$<$$<$(n))
+\item 
+\#define \mbox{\hyperlink{lookup3_8inl_aacd6ed104463685849b2550389d05ff3}{hashmask}}(n)~(\mbox{\hyperlink{lookup3_8inl_a86173ca25b300cf3276b088d3fc6bdaf}{hashsize}}(n)-\/1)
+\item 
+\#define \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(x,  k)~(((x)$<$$<$(k)) $\vert$ ((x)$>$$>$(32-\/(k))))
+\item 
+\#define \mbox{\hyperlink{lookup3_8inl_afd9fa1747724ec6142812721997394c3}{mix}}(a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  c)
+\item 
+\#define \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}(a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  c)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{lookup3_8inl_ac52e996ae5688c7555c023aa0c942b60}{hashword}} (const uint32\+\_\+t $\ast$k, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t initval)
+\item 
+static void \mbox{\hyperlink{lookup3_8inl_a5f3b02792f6b4ebe1412304fa6a2e4ca}{hashword2}} (const uint32\+\_\+t $\ast$k, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t $\ast$pc, uint32\+\_\+t $\ast$pb)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{lookup3_8inl_a15c573fadebca185329f4cf2d206a27d}{hashlittle}} (const void $\ast$key, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t initval)
+\item 
+static void \mbox{\hyperlink{lookup3_8inl_aca28605cd8c2c53361585579afe8021e}{hashlittle2}} (const void $\ast$key, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t $\ast$pc, uint32\+\_\+t $\ast$pb)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{lookup3_8inl_a5ff4a31d44c6bc96864702eb6e6a0362}{hashbig}} (const void $\ast$key, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t initval)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lookup3_8inl_aeadb24296d18d6e4c93b18a2b9893d8f}\label{lookup3_8inl_aeadb24296d18d6e4c93b18a2b9893d8f}} 
+\index{lookup3.inl@{lookup3.inl}!AWS\_COMMON\_PRIVATE\_LOOKUP3\_INL@{AWS\_COMMON\_PRIVATE\_LOOKUP3\_INL}}
+\index{AWS\_COMMON\_PRIVATE\_LOOKUP3\_INL@{AWS\_COMMON\_PRIVATE\_LOOKUP3\_INL}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{AWS\_COMMON\_PRIVATE\_LOOKUP3\_INL}{AWS\_COMMON\_PRIVATE\_LOOKUP3\_INL}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+COMMON\+\_\+\+PRIVATE\+\_\+\+LOOKUP3\+\_\+\+INL}
+
+\mbox{\Hypertarget{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}\label{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}} 
+\index{lookup3.inl@{lookup3.inl}!final@{final}}
+\index{final@{final}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{final}{final}}
+{\footnotesize\ttfamily \#define final(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  }\item[{}]{c }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{  c \string^= \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}; c -\/= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},14); \(\backslash\)}
+\DoxyCodeLine{  a \string^= c; \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}} -\/= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(c,11); \(\backslash\)}
+\DoxyCodeLine{  b \string^= \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}; \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} -\/= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}},25); \(\backslash\)}
+\DoxyCodeLine{  c \string^= \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}; c -\/= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},16); \(\backslash\)}
+\DoxyCodeLine{  a \string^= c; \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}} -\/= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(c,4);  \(\backslash\)}
+\DoxyCodeLine{  b \string^= \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}; \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} -\/= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}},14); \(\backslash\)}
+\DoxyCodeLine{  c \string^= \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}; c -\/= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},24); \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{lookup3_8inl_a129f72057b84147c7c3e2a6d107f0e3b}\label{lookup3_8inl_a129f72057b84147c7c3e2a6d107f0e3b}} 
+\index{lookup3.inl@{lookup3.inl}!HASH\_BIG\_ENDIAN@{HASH\_BIG\_ENDIAN}}
+\index{HASH\_BIG\_ENDIAN@{HASH\_BIG\_ENDIAN}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{HASH\_BIG\_ENDIAN}{HASH\_BIG\_ENDIAN}}
+{\footnotesize\ttfamily \#define HASH\+\_\+\+BIG\+\_\+\+ENDIAN~0}
+
+\mbox{\Hypertarget{lookup3_8inl_a8c49a94782a573ded31a7bb1949cbf47}\label{lookup3_8inl_a8c49a94782a573ded31a7bb1949cbf47}} 
+\index{lookup3.inl@{lookup3.inl}!HASH\_LITTLE\_ENDIAN@{HASH\_LITTLE\_ENDIAN}}
+\index{HASH\_LITTLE\_ENDIAN@{HASH\_LITTLE\_ENDIAN}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{HASH\_LITTLE\_ENDIAN}{HASH\_LITTLE\_ENDIAN}}
+{\footnotesize\ttfamily \#define HASH\+\_\+\+LITTLE\+\_\+\+ENDIAN~0}
+
+\mbox{\Hypertarget{lookup3_8inl_aacd6ed104463685849b2550389d05ff3}\label{lookup3_8inl_aacd6ed104463685849b2550389d05ff3}} 
+\index{lookup3.inl@{lookup3.inl}!hashmask@{hashmask}}
+\index{hashmask@{hashmask}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{hashmask}{hashmask}}
+{\footnotesize\ttfamily \#define hashmask(\begin{DoxyParamCaption}\item[{}]{n }\end{DoxyParamCaption})~(\mbox{\hyperlink{lookup3_8inl_a86173ca25b300cf3276b088d3fc6bdaf}{hashsize}}(n)-\/1)}
+
+\mbox{\Hypertarget{lookup3_8inl_a86173ca25b300cf3276b088d3fc6bdaf}\label{lookup3_8inl_a86173ca25b300cf3276b088d3fc6bdaf}} 
+\index{lookup3.inl@{lookup3.inl}!hashsize@{hashsize}}
+\index{hashsize@{hashsize}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{hashsize}{hashsize}}
+{\footnotesize\ttfamily \#define hashsize(\begin{DoxyParamCaption}\item[{}]{n }\end{DoxyParamCaption})~((uint32\+\_\+t)1$<$$<$(n))}
+
+\mbox{\Hypertarget{lookup3_8inl_afd9fa1747724ec6142812721997394c3}\label{lookup3_8inl_afd9fa1747724ec6142812721997394c3}} 
+\index{lookup3.inl@{lookup3.inl}!mix@{mix}}
+\index{mix@{mix}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{mix}{mix}}
+{\footnotesize\ttfamily \#define mix(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  }\item[{}]{c }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{ \(\backslash\)}
+\DoxyCodeLine{  a -\/= c;  \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}} \string^= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(c, 4);  c += \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}; \(\backslash\)}
+\DoxyCodeLine{  b -\/= \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}};  \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} \string^= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, 6);  \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}} += c; \(\backslash\)}
+\DoxyCodeLine{  c -\/= \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}};  c \string^= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, 8);  \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} += \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}; \(\backslash\)}
+\DoxyCodeLine{  a -\/= c;  \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}} \string^= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(c,16);  c += \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}; \(\backslash\)}
+\DoxyCodeLine{  b -\/= \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}};  \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} \string^= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}},19);  \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}} += c; \(\backslash\)}
+\DoxyCodeLine{  c -\/= \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}};  c \string^= \mbox{\hyperlink{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}{rot}}(\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, 4);  \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} += \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}; \(\backslash\)}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}\label{lookup3_8inl_aae44e21ada356d9d84450d5440fbb0c4}} 
+\index{lookup3.inl@{lookup3.inl}!rot@{rot}}
+\index{rot@{rot}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{rot}{rot}}
+{\footnotesize\ttfamily \#define rot(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{k }\end{DoxyParamCaption})~(((x)$<$$<$(k)) $\vert$ ((x)$>$$>$(32-\/(k))))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lookup3_8inl_a5ff4a31d44c6bc96864702eb6e6a0362}\label{lookup3_8inl_a5ff4a31d44c6bc96864702eb6e6a0362}} 
+\index{lookup3.inl@{lookup3.inl}!hashbig@{hashbig}}
+\index{hashbig@{hashbig}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{hashbig()}{hashbig()}}
+{\footnotesize\ttfamily static uint32\+\_\+t hashbig (\begin{DoxyParamCaption}\item[{const void $\ast$}]{key,  }\item[{size\+\_\+t}]{length,  }\item[{uint32\+\_\+t}]{initval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{lookup3_8inl_a15c573fadebca185329f4cf2d206a27d}\label{lookup3_8inl_a15c573fadebca185329f4cf2d206a27d}} 
+\index{lookup3.inl@{lookup3.inl}!hashlittle@{hashlittle}}
+\index{hashlittle@{hashlittle}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{hashlittle()}{hashlittle()}}
+{\footnotesize\ttfamily static uint32\+\_\+t hashlittle (\begin{DoxyParamCaption}\item[{const void $\ast$}]{key,  }\item[{size\+\_\+t}]{length,  }\item[{uint32\+\_\+t}]{initval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{lookup3_8inl_aca28605cd8c2c53361585579afe8021e}\label{lookup3_8inl_aca28605cd8c2c53361585579afe8021e}} 
+\index{lookup3.inl@{lookup3.inl}!hashlittle2@{hashlittle2}}
+\index{hashlittle2@{hashlittle2}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{hashlittle2()}{hashlittle2()}}
+{\footnotesize\ttfamily static void hashlittle2 (\begin{DoxyParamCaption}\item[{const void $\ast$}]{key,  }\item[{size\+\_\+t}]{length,  }\item[{uint32\+\_\+t $\ast$}]{pc,  }\item[{uint32\+\_\+t $\ast$}]{pb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{lookup3_8inl_ac52e996ae5688c7555c023aa0c942b60}\label{lookup3_8inl_ac52e996ae5688c7555c023aa0c942b60}} 
+\index{lookup3.inl@{lookup3.inl}!hashword@{hashword}}
+\index{hashword@{hashword}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{hashword()}{hashword()}}
+{\footnotesize\ttfamily static uint32\+\_\+t hashword (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t $\ast$}]{k,  }\item[{size\+\_\+t}]{length,  }\item[{uint32\+\_\+t}]{initval }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{lookup3_8inl_a5f3b02792f6b4ebe1412304fa6a2e4ca}\label{lookup3_8inl_a5f3b02792f6b4ebe1412304fa6a2e4ca}} 
+\index{lookup3.inl@{lookup3.inl}!hashword2@{hashword2}}
+\index{hashword2@{hashword2}!lookup3.inl@{lookup3.inl}}
+\doxysubsubsection{\texorpdfstring{hashword2()}{hashword2()}}
+{\footnotesize\ttfamily static void hashword2 (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t $\ast$}]{k,  }\item[{size\+\_\+t}]{length,  }\item[{uint32\+\_\+t $\ast$}]{pc,  }\item[{uint32\+\_\+t $\ast$}]{pb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

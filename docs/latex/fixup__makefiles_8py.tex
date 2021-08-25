@@ -1,0 +1,33 @@
+\hypertarget{fixup__makefiles_8py}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/proofs/scripts/fixup\+\_\+makefiles.py File Reference}
+\label{fixup__makefiles_8py}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/proofs/scripts/fixup\_makefiles.py@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/proofs/scripts/fixup\_makefiles.py}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacefixup__makefiles}{fixup\+\_\+makefiles}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacefixup__makefiles_a56de7a02e11040a787ddc04fc45db6dc}{fixup\+\_\+makefiles.\+replace}} (makefile, included)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespacefixup__makefiles_a1d0fe4b12c21aeb619448293d7fe822c}{fixup\+\_\+makefiles.\+ok}} = True
+\item 
+\mbox{\hyperlink{namespacefixup__makefiles_a47a8cb67654b2abcb1a55fdf8eaf9018}{fixup\+\_\+makefiles.\+pat}} = re.\+compile(\char`\"{}include\textbackslash{}s+(?P$<$path$>$\mbox{[}-\//.\textbackslash{}w\mbox{]}+)\char`\"{})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespacefixup__makefiles_a9c2fc2ae4db81f6ac16f8a5996473c4d}{fixup\+\_\+makefiles.\+this\+\_\+ok}} = True
+\item 
+list \mbox{\hyperlink{namespacefixup__makefiles_a05c4c55a6acb0ea9fac454157ecf5493}{fixup\+\_\+makefiles.\+buf}} = \mbox{[}$\,$\mbox{]}
+\item 
+\mbox{\hyperlink{namespacefixup__makefiles_a5e26abe70faebb0ef1e8af214967f145}{fixup\+\_\+makefiles.\+line}} = line.\+rstrip()
+\item 
+\mbox{\hyperlink{namespacefixup__makefiles_a690b8b46c434356872afb233fd3044b8}{fixup\+\_\+makefiles.\+m}} = pat.\+match(line)
+\item 
+\mbox{\hyperlink{namespacefixup__makefiles_aaafb05a3626c380a45ae0fc79f11a4a7}{fixup\+\_\+makefiles.\+included}} = fyle.\+parent / m\mbox{[}\char`\"{}path\char`\"{}\mbox{]}
+\item 
+def \mbox{\hyperlink{namespacefixup__makefiles_a6890ce602b840fe2c02a6beb78b4019e}{fixup\+\_\+makefiles.\+rep}} = replace(fyle, m\mbox{[}\char`\"{}path\char`\"{}\mbox{]})
+\item 
+\mbox{\hyperlink{namespacefixup__makefiles_a48861649c723a22094b936f074258210}{fixup\+\_\+makefiles.\+file}}
+\end{DoxyCompactItemize}

@@ -1,0 +1,156 @@
+\hypertarget{class_awstest_1_1_service_error}{}\doxysection{Awstest\+::Service\+Error Class Reference}
+\label{class_awstest_1_1_service_error}\index{Awstest::ServiceError@{Awstest::ServiceError}}
+
+
+{\ttfamily \#include $<$Echo\+Test\+Rpc\+Model.\+h$>$}
+
+Inheritance diagram for Awstest\+::Service\+Error\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_awstest_1_1_service_error}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_awstest_1_1_service_error_a208273cd03efc69fd24b95d975be794c}{Service\+Error}} () noexcept
+\item 
+\mbox{\hyperlink{class_awstest_1_1_service_error_a773ec5bc227cf842bdf9533ae845f92d}{Service\+Error}} (const \mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}} \&)=default
+\item 
+void \mbox{\hyperlink{class_awstest_1_1_service_error_a69b4b5ef6c9540645ab13adc81e57ed9}{Set\+Message}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} $>$ \mbox{\hyperlink{class_awstest_1_1_service_error_ac4b0e279f0c88647f7513a97eefbc199}{Get\+Message}} () noexcept override
+\item 
+void \mbox{\hyperlink{class_awstest_1_1_service_error_a4d3be2c51b4852e030b6dcc7db09deac}{Set\+Value}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&value) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} $>$ \mbox{\hyperlink{class_awstest_1_1_service_error_a9d62f6945686a809dcacd76f9c14af96}{Get\+Value}} () noexcept
+\item 
+void \mbox{\hyperlink{class_awstest_1_1_service_error_a68c9bd0fc715d315ceb1d90a8c0e5828}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&payload\+Object) const noexcept override
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_awstest_1_1_service_error_a557db9615c0d844f4c99daba089c59bd}{operator$<$}} (const \mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}} \&) const noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_awstest_1_1_service_error_a8e9cd04735a6ba6fcad22d77e40f76a3}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}} \&, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&) noexcept
+\item 
+static \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ \mbox{\hyperlink{class_awstest_1_1_service_error_a8d8d08f01cdd090ff02797a91c24cced}{s\+\_\+allocate\+From\+Payload}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$) noexcept
+\item 
+static void \mbox{\hyperlink{class_awstest_1_1_service_error_a8d922bba0cf3d12333917d476719858c}{s\+\_\+custom\+Deleter}} (\mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}} $\ast$) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{class_awstest_1_1_service_error_aeab899d93cacc22125c14fefe4014418}{MODEL\+\_\+\+NAME}} = \char`\"{}awstest\#\mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}}\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_awstest_1_1_service_error_a0217bd4a24c4d00558839c2c1181d820}{Get\+Model\+Name}} () const noexcept override
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a208273cd03efc69fd24b95d975be794c}\label{class_awstest_1_1_service_error_a208273cd03efc69fd24b95d975be794c}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!ServiceError@{ServiceError}}
+\index{ServiceError@{ServiceError}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{ServiceError()}{ServiceError()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Awstest\+::\+Service\+Error\+::\+Service\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a773ec5bc227cf842bdf9533ae845f92d}\label{class_awstest_1_1_service_error_a773ec5bc227cf842bdf9533ae845f92d}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!ServiceError@{ServiceError}}
+\index{ServiceError@{ServiceError}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{ServiceError()}{ServiceError()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Awstest\+::\+Service\+Error\+::\+Service\+Error (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_awstest_1_1_service_error_ac4b0e279f0c88647f7513a97eefbc199}\label{class_awstest_1_1_service_error_ac4b0e279f0c88647f7513a97eefbc199}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!GetMessage@{GetMessage}}
+\index{GetMessage@{GetMessage}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{GetMessage()}{GetMessage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}$>$ Awstest\+::\+Service\+Error\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_a213d0a0bda1842d332acdc839dd8af4c}{Aws\+::\+Eventstreamrpc\+::\+Operation\+Error}}.
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a0217bd4a24c4d00558839c2c1181d820}\label{class_awstest_1_1_service_error_a0217bd4a24c4d00558839c2c1181d820}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!GetModelName@{GetModelName}}
+\index{GetModelName@{GetModelName}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Awstest\+::\+Service\+Error\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_ad3c43ceb1c92e03f75880aedfaca2e96}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a9d62f6945686a809dcacd76f9c14af96}\label{class_awstest_1_1_service_error_a9d62f6945686a809dcacd76f9c14af96}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!GetValue@{GetValue}}
+\index{GetValue@{GetValue}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{GetValue()}{GetValue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}$>$ Awstest\+::\+Service\+Error\+::\+Get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a557db9615c0d844f4c99daba089c59bd}\label{class_awstest_1_1_service_error_a557db9615c0d844f4c99daba089c59bd}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Awstest\+::\+Service\+Error\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a8d8d08f01cdd090ff02797a91c24cced}\label{class_awstest_1_1_service_error_a8d8d08f01cdd090ff02797a91c24cced}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!s\_allocateFromPayload@{s\_allocateFromPayload}}
+\index{s\_allocateFromPayload@{s\_allocateFromPayload}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{s\_allocateFromPayload()}{s\_allocateFromPayload()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ Awstest\+::\+Service\+Error\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}}]{string\+View,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a8d922bba0cf3d12333917d476719858c}\label{class_awstest_1_1_service_error_a8d922bba0cf3d12333917d476719858c}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!s\_customDeleter@{s\_customDeleter}}
+\index{s\_customDeleter@{s\_customDeleter}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{s\_customDeleter()}{s\_customDeleter()}}
+{\footnotesize\ttfamily void Awstest\+::\+Service\+Error\+::s\+\_\+custom\+Deleter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}} $\ast$}]{shape }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a8e9cd04735a6ba6fcad22d77e40f76a3}\label{class_awstest_1_1_service_error_a8e9cd04735a6ba6fcad22d77e40f76a3}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!s\_loadFromJsonView@{s\_loadFromJsonView}}
+\index{s\_loadFromJsonView@{s\_loadFromJsonView}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{s\_loadFromJsonView()}{s\_loadFromJsonView()}}
+{\footnotesize\ttfamily void Awstest\+::\+Service\+Error\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}} \&}]{service\+Error,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a68c9bd0fc715d315ceb1d90a8c0e5828}\label{class_awstest_1_1_service_error_a68c9bd0fc715d315ceb1d90a8c0e5828}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!SerializeToJsonObject@{SerializeToJsonObject}}
+\index{SerializeToJsonObject@{SerializeToJsonObject}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
+{\footnotesize\ttfamily void Awstest\+::\+Service\+Error\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_aa51a004a6e20921224bef0c665830d59}{Aws\+::\+Eventstreamrpc\+::\+Operation\+Error}}.
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a69b4b5ef6c9540645ab13adc81e57ed9}\label{class_awstest_1_1_service_error_a69b4b5ef6c9540645ab13adc81e57ed9}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!SetMessage@{SetMessage}}
+\index{SetMessage@{SetMessage}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{SetMessage()}{SetMessage()}}
+{\footnotesize\ttfamily void Awstest\+::\+Service\+Error\+::\+Set\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_awstest_1_1_service_error_a4d3be2c51b4852e030b6dcc7db09deac}\label{class_awstest_1_1_service_error_a4d3be2c51b4852e030b6dcc7db09deac}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{SetValue()}{SetValue()}}
+{\footnotesize\ttfamily void Awstest\+::\+Service\+Error\+::\+Set\+Value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_awstest_1_1_service_error_aeab899d93cacc22125c14fefe4014418}\label{class_awstest_1_1_service_error_aeab899d93cacc22125c14fefe4014418}} 
+\index{Awstest::ServiceError@{Awstest::ServiceError}!MODEL\_NAME@{MODEL\_NAME}}
+\index{MODEL\_NAME@{MODEL\_NAME}!Awstest::ServiceError@{Awstest::ServiceError}}
+\doxysubsubsection{\texorpdfstring{MODEL\_NAME}{MODEL\_NAME}}
+{\footnotesize\ttfamily const char $\ast$ Awstest\+::\+Service\+Error\+::\+MODEL\+\_\+\+NAME = \char`\"{}awstest\#\mbox{\hyperlink{class_awstest_1_1_service_error}{Service\+Error}}\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eventstream\+\_\+rpc/tests/include/awstest/\mbox{\hyperlink{_echo_test_rpc_model_8h}{Echo\+Test\+Rpc\+Model.\+h}}\item 
+eventstream\+\_\+rpc/tests/\mbox{\hyperlink{_echo_test_rpc_model_8cpp}{Echo\+Test\+Rpc\+Model.\+cpp}}\end{DoxyCompactItemize}

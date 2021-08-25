@@ -1,0 +1,221 @@
+\hypertarget{auth_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/include/aws/auth/auth.h File Reference}
+\label{auth_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/include/aws/auth/auth.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/include/aws/auth/auth.h}}
+{\ttfamily \#include $<$aws/auth/exports.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{auth_8h_a369a52e106552da725bade0ea2e50d35}{AWS\+\_\+\+C\+\_\+\+AUTH\+\_\+\+PACKAGE\+\_\+\+ID}}~6
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335}{aws\+\_\+auth\+\_\+errors}} \{ \newline
+\mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a8632fddb38df1455856ded424354a901}{AWS\+\_\+\+AUTH\+\_\+\+PROFILE\+\_\+\+PARSE\+\_\+\+RECOVERABLE\+\_\+\+ERROR}} = AWS\+\_\+\+ERROR\+\_\+\+ENUM\+\_\+\+BEGIN\+\_\+\+RANGE(AWS\+\_\+\+C\+\_\+\+AUTH\+\_\+\+PACKAGE\+\_\+\+ID)
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a159602e98136ca59f06b1e7b98ed0768}{AWS\+\_\+\+AUTH\+\_\+\+PROFILE\+\_\+\+PARSE\+\_\+\+FATAL\+\_\+\+ERROR}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a49b61c32a8dfaad43eccdb9e8a957629}{AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+UNSUPPORTED\+\_\+\+ALGORITHM}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a58009210fa2279276c42a75adb0592ec}{AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+MISMATCHED\+\_\+\+CONFIGURATION}}
+, \newline
+\mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335af88c472cde272919a91385f8e6966c67}{AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+NO\+\_\+\+CREDENTIALS}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335adca592a9978f0b62606470f60096a78a}{AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+ILLEGAL\+\_\+\+REQUEST\+\_\+\+QUERY\+\_\+\+PARAM}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335aca88f57d1abef91a73e69cc7d7154e61}{AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+ILLEGAL\+\_\+\+REQUEST\+\_\+\+HEADER}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335ad8d0d85a647cef3fcd5c7095f9720152}{AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+INVALID\+\_\+\+CONFIGURATION}}
+, \newline
+\mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a4a4e7d850e8a7b1053810afa47e48068}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+INVALID\+\_\+\+ENVIRONMENT}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a2fa2a28b649e0106a1f70bb7c4b6b4f6}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+INVALID\+\_\+\+DELEGATE}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a2f1441a25bf0925d372e23aa5accf076}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+PROFILE\+\_\+\+SOURCE\+\_\+\+FAILURE}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a46d59676070f28c1ae466145eeb50abd}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+IMDS\+\_\+\+SOURCE\+\_\+\+FAILURE}}
+, \newline
+\mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335af5ab72769b4673ed8018b4591cf78bf4}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+STS\+\_\+\+SOURCE\+\_\+\+FAILURE}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335acbb484735af7a084cac368ff49bc1699}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+HTTP\+\_\+\+STATUS\+\_\+\+FAILURE}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a94560de95e279bf4585ef799d4f60959}{AWS\+\_\+\+AUTH\+\_\+\+PROVIDER\+\_\+\+PARSER\+\_\+\+UNEXPECTED\+\_\+\+RESPONSE}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a37cec7e0f4af01ee03aa0ab8fd2d18f1}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+ECS\+\_\+\+SOURCE\+\_\+\+FAILURE}}
+, \newline
+\mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a0620e3b4d0e5ea98f97b7d87ea980736}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+X509\+\_\+\+SOURCE\+\_\+\+FAILURE}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a094b234bed2be82709ee10c3e4c7b90d}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+PROCESS\+\_\+\+SOURCE\+\_\+\+FAILURE}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335ac9a0d37f8f0a8ee0229da3834b07f268}{AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+STS\+\_\+\+WEB\+\_\+\+IDENTITY\+\_\+\+SOURCE\+\_\+\+FAILURE}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a71aaf2fe1c8bd0f40ed75403805ac582}{AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+UNSUPPORTED\+\_\+\+SIGNATURE\+\_\+\+TYPE}}
+, \newline
+\mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a911eb2a23203190e70129eaa26c9620b}{AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+MISSING\+\_\+\+PREVIOUS\+\_\+\+SIGNATURE}}
+, \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335a835f62053504c9c504937ae07664b118}{AWS\+\_\+\+AUTH\+\_\+\+ERROR\+\_\+\+END\+\_\+\+RANGE}} = AWS\+\_\+\+ERROR\+\_\+\+ENUM\+\_\+\+END\+\_\+\+RANGE(AWS\+\_\+\+C\+\_\+\+AUTH\+\_\+\+PACKAGE\+\_\+\+ID)
+ \}
+\item 
+enum \mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671}{aws\+\_\+auth\+\_\+log\+\_\+subject}} \{ \newline
+\mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a1f459385c700432c7e2f0608a97956d7}{AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+GENERAL}} = AWS\+\_\+\+LOG\+\_\+\+SUBJECT\+\_\+\+BEGIN\+\_\+\+RANGE(AWS\+\_\+\+C\+\_\+\+AUTH\+\_\+\+PACKAGE\+\_\+\+ID)
+, \mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671af7faa8d9ea959bcdf964214cbd0a0126}{AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+PROFILE}}
+, \mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671ad61f3f4b01ebdb910e5c2b136bb41457}{AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER}}
+, \mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a4c4599103de06f3d2c19dcda46ee5ed3}{AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+SIGNING}}
+, \newline
+\mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a3ec894c66346a90934e277801acdd89f}{AWS\+\_\+\+LS\+\_\+\+IMDS\+\_\+\+CLIENT}}
+, \mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a0a76bcf26a79361a1e9666a2652aa5e2}{AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+LAST}} = AWS\+\_\+\+LOG\+\_\+\+SUBJECT\+\_\+\+END\+\_\+\+RANGE(AWS\+\_\+\+C\+\_\+\+AUTH\+\_\+\+PACKAGE\+\_\+\+ID)
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} void \mbox{\hyperlink{auth_8h_addceaa165e1140d801f5f530d9d7c109}{aws\+\_\+auth\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} void \mbox{\hyperlink{auth_8h_a12e8adc2c3df824ebda4eb4bfc8a655c}{aws\+\_\+auth\+\_\+library\+\_\+clean\+\_\+up}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{auth_8h_a369a52e106552da725bade0ea2e50d35}\label{auth_8h_a369a52e106552da725bade0ea2e50d35}} 
+\index{auth.h@{auth.h}!AWS\_C\_AUTH\_PACKAGE\_ID@{AWS\_C\_AUTH\_PACKAGE\_ID}}
+\index{AWS\_C\_AUTH\_PACKAGE\_ID@{AWS\_C\_AUTH\_PACKAGE\_ID}!auth.h@{auth.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_C\_AUTH\_PACKAGE\_ID}{AWS\_C\_AUTH\_PACKAGE\_ID}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+C\+\_\+\+AUTH\+\_\+\+PACKAGE\+\_\+\+ID~6}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335}} 
+\index{auth.h@{auth.h}!aws\_auth\_errors@{aws\_auth\_errors}}
+\index{aws\_auth\_errors@{aws\_auth\_errors}!auth.h@{auth.h}}
+\doxysubsubsection{\texorpdfstring{aws\_auth\_errors}{aws\_auth\_errors}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{auth_8h_a546f6e3c7eb68ac037313b786495f335}{aws\+\_\+auth\+\_\+errors}}}
+
+Auth-\/specific error codes \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_PROFILE\_PARSE\_RECOVERABLE\_ERROR@{AWS\_AUTH\_PROFILE\_PARSE\_RECOVERABLE\_ERROR}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_PROFILE\_PARSE\_RECOVERABLE\_ERROR@{AWS\_AUTH\_PROFILE\_PARSE\_RECOVERABLE\_ERROR}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a8632fddb38df1455856ded424354a901}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a8632fddb38df1455856ded424354a901}} 
+AWS\+\_\+\+AUTH\+\_\+\+PROFILE\+\_\+\+PARSE\+\_\+\+RECOVERABLE\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_PROFILE\_PARSE\_FATAL\_ERROR@{AWS\_AUTH\_PROFILE\_PARSE\_FATAL\_ERROR}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_PROFILE\_PARSE\_FATAL\_ERROR@{AWS\_AUTH\_PROFILE\_PARSE\_FATAL\_ERROR}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a159602e98136ca59f06b1e7b98ed0768}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a159602e98136ca59f06b1e7b98ed0768}} 
+AWS\+\_\+\+AUTH\+\_\+\+PROFILE\+\_\+\+PARSE\+\_\+\+FATAL\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_SIGNING\_UNSUPPORTED\_ALGORITHM@{AWS\_AUTH\_SIGNING\_UNSUPPORTED\_ALGORITHM}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_SIGNING\_UNSUPPORTED\_ALGORITHM@{AWS\_AUTH\_SIGNING\_UNSUPPORTED\_ALGORITHM}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a49b61c32a8dfaad43eccdb9e8a957629}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a49b61c32a8dfaad43eccdb9e8a957629}} 
+AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+UNSUPPORTED\+\_\+\+ALGORITHM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_SIGNING\_MISMATCHED\_CONFIGURATION@{AWS\_AUTH\_SIGNING\_MISMATCHED\_CONFIGURATION}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_SIGNING\_MISMATCHED\_CONFIGURATION@{AWS\_AUTH\_SIGNING\_MISMATCHED\_CONFIGURATION}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a58009210fa2279276c42a75adb0592ec}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a58009210fa2279276c42a75adb0592ec}} 
+AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+MISMATCHED\+\_\+\+CONFIGURATION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_SIGNING\_NO\_CREDENTIALS@{AWS\_AUTH\_SIGNING\_NO\_CREDENTIALS}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_SIGNING\_NO\_CREDENTIALS@{AWS\_AUTH\_SIGNING\_NO\_CREDENTIALS}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335af88c472cde272919a91385f8e6966c67}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335af88c472cde272919a91385f8e6966c67}} 
+AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+NO\+\_\+\+CREDENTIALS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_SIGNING\_ILLEGAL\_REQUEST\_QUERY\_PARAM@{AWS\_AUTH\_SIGNING\_ILLEGAL\_REQUEST\_QUERY\_PARAM}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_SIGNING\_ILLEGAL\_REQUEST\_QUERY\_PARAM@{AWS\_AUTH\_SIGNING\_ILLEGAL\_REQUEST\_QUERY\_PARAM}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335adca592a9978f0b62606470f60096a78a}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335adca592a9978f0b62606470f60096a78a}} 
+AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+ILLEGAL\+\_\+\+REQUEST\+\_\+\+QUERY\+\_\+\+PARAM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_SIGNING\_ILLEGAL\_REQUEST\_HEADER@{AWS\_AUTH\_SIGNING\_ILLEGAL\_REQUEST\_HEADER}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_SIGNING\_ILLEGAL\_REQUEST\_HEADER@{AWS\_AUTH\_SIGNING\_ILLEGAL\_REQUEST\_HEADER}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335aca88f57d1abef91a73e69cc7d7154e61}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335aca88f57d1abef91a73e69cc7d7154e61}} 
+AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+ILLEGAL\+\_\+\+REQUEST\+\_\+\+HEADER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_SIGNING\_INVALID\_CONFIGURATION@{AWS\_AUTH\_SIGNING\_INVALID\_CONFIGURATION}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_SIGNING\_INVALID\_CONFIGURATION@{AWS\_AUTH\_SIGNING\_INVALID\_CONFIGURATION}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335ad8d0d85a647cef3fcd5c7095f9720152}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335ad8d0d85a647cef3fcd5c7095f9720152}} 
+AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+INVALID\+\_\+\+CONFIGURATION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_INVALID\_ENVIRONMENT@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_INVALID\_ENVIRONMENT}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_INVALID\_ENVIRONMENT@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_INVALID\_ENVIRONMENT}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a4a4e7d850e8a7b1053810afa47e48068}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a4a4e7d850e8a7b1053810afa47e48068}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+INVALID\+\_\+\+ENVIRONMENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_INVALID\_DELEGATE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_INVALID\_DELEGATE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_INVALID\_DELEGATE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_INVALID\_DELEGATE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a2fa2a28b649e0106a1f70bb7c4b6b4f6}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a2fa2a28b649e0106a1f70bb7c4b6b4f6}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+INVALID\+\_\+\+DELEGATE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_PROFILE\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_PROFILE\_SOURCE\_FAILURE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_PROFILE\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_PROFILE\_SOURCE\_FAILURE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a2f1441a25bf0925d372e23aa5accf076}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a2f1441a25bf0925d372e23aa5accf076}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+PROFILE\+\_\+\+SOURCE\+\_\+\+FAILURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_IMDS\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_IMDS\_SOURCE\_FAILURE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_IMDS\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_IMDS\_SOURCE\_FAILURE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a46d59676070f28c1ae466145eeb50abd}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a46d59676070f28c1ae466145eeb50abd}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+IMDS\+\_\+\+SOURCE\+\_\+\+FAILURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_STS\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_STS\_SOURCE\_FAILURE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_STS\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_STS\_SOURCE\_FAILURE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335af5ab72769b4673ed8018b4591cf78bf4}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335af5ab72769b4673ed8018b4591cf78bf4}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+STS\+\_\+\+SOURCE\+\_\+\+FAILURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_HTTP\_STATUS\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_HTTP\_STATUS\_FAILURE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_HTTP\_STATUS\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_HTTP\_STATUS\_FAILURE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335acbb484735af7a084cac368ff49bc1699}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335acbb484735af7a084cac368ff49bc1699}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+HTTP\+\_\+\+STATUS\+\_\+\+FAILURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_PROVIDER\_PARSER\_UNEXPECTED\_RESPONSE@{AWS\_AUTH\_PROVIDER\_PARSER\_UNEXPECTED\_RESPONSE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_PROVIDER\_PARSER\_UNEXPECTED\_RESPONSE@{AWS\_AUTH\_PROVIDER\_PARSER\_UNEXPECTED\_RESPONSE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a94560de95e279bf4585ef799d4f60959}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a94560de95e279bf4585ef799d4f60959}} 
+AWS\+\_\+\+AUTH\+\_\+\+PROVIDER\+\_\+\+PARSER\+\_\+\+UNEXPECTED\+\_\+\+RESPONSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_ECS\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_ECS\_SOURCE\_FAILURE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_ECS\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_ECS\_SOURCE\_FAILURE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a37cec7e0f4af01ee03aa0ab8fd2d18f1}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a37cec7e0f4af01ee03aa0ab8fd2d18f1}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+ECS\+\_\+\+SOURCE\+\_\+\+FAILURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_X509\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_X509\_SOURCE\_FAILURE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_X509\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_X509\_SOURCE\_FAILURE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a0620e3b4d0e5ea98f97b7d87ea980736}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a0620e3b4d0e5ea98f97b7d87ea980736}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+X509\+\_\+\+SOURCE\+\_\+\+FAILURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_PROCESS\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_PROCESS\_SOURCE\_FAILURE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_PROCESS\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_PROCESS\_SOURCE\_FAILURE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a094b234bed2be82709ee10c3e4c7b90d}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a094b234bed2be82709ee10c3e4c7b90d}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+PROCESS\+\_\+\+SOURCE\+\_\+\+FAILURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_STS\_WEB\_IDENTITY\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_STS\_WEB\_IDENTITY\_SOURCE\_FAILURE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_CREDENTIALS\_PROVIDER\_STS\_WEB\_IDENTITY\_SOURCE\_FAILURE@{AWS\_AUTH\_CREDENTIALS\_PROVIDER\_STS\_WEB\_IDENTITY\_SOURCE\_FAILURE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335ac9a0d37f8f0a8ee0229da3834b07f268}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335ac9a0d37f8f0a8ee0229da3834b07f268}} 
+AWS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER\+\_\+\+STS\+\_\+\+WEB\+\_\+\+IDENTITY\+\_\+\+SOURCE\+\_\+\+FAILURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_SIGNING\_UNSUPPORTED\_SIGNATURE\_TYPE@{AWS\_AUTH\_SIGNING\_UNSUPPORTED\_SIGNATURE\_TYPE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_SIGNING\_UNSUPPORTED\_SIGNATURE\_TYPE@{AWS\_AUTH\_SIGNING\_UNSUPPORTED\_SIGNATURE\_TYPE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a71aaf2fe1c8bd0f40ed75403805ac582}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a71aaf2fe1c8bd0f40ed75403805ac582}} 
+AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+UNSUPPORTED\+\_\+\+SIGNATURE\+\_\+\+TYPE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_SIGNING\_MISSING\_PREVIOUS\_SIGNATURE@{AWS\_AUTH\_SIGNING\_MISSING\_PREVIOUS\_SIGNATURE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_SIGNING\_MISSING\_PREVIOUS\_SIGNATURE@{AWS\_AUTH\_SIGNING\_MISSING\_PREVIOUS\_SIGNATURE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a911eb2a23203190e70129eaa26c9620b}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a911eb2a23203190e70129eaa26c9620b}} 
+AWS\+\_\+\+AUTH\+\_\+\+SIGNING\+\_\+\+MISSING\+\_\+\+PREVIOUS\+\_\+\+SIGNATURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_AUTH\_ERROR\_END\_RANGE@{AWS\_AUTH\_ERROR\_END\_RANGE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_AUTH\_ERROR\_END\_RANGE@{AWS\_AUTH\_ERROR\_END\_RANGE}}}\mbox{\Hypertarget{auth_8h_a546f6e3c7eb68ac037313b786495f335a835f62053504c9c504937ae07664b118}\label{auth_8h_a546f6e3c7eb68ac037313b786495f335a835f62053504c9c504937ae07664b118}} 
+AWS\+\_\+\+AUTH\+\_\+\+ERROR\+\_\+\+END\+\_\+\+RANGE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{auth_8h_a21bef094d855bb8a0fb8054a32b2f671}\label{auth_8h_a21bef094d855bb8a0fb8054a32b2f671}} 
+\index{auth.h@{auth.h}!aws\_auth\_log\_subject@{aws\_auth\_log\_subject}}
+\index{aws\_auth\_log\_subject@{aws\_auth\_log\_subject}!auth.h@{auth.h}}
+\doxysubsubsection{\texorpdfstring{aws\_auth\_log\_subject}{aws\_auth\_log\_subject}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{auth_8h_a21bef094d855bb8a0fb8054a32b2f671}{aws\+\_\+auth\+\_\+log\+\_\+subject}}}
+
+Auth-\/specific logging subjects \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_LS\_AUTH\_GENERAL@{AWS\_LS\_AUTH\_GENERAL}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_LS\_AUTH\_GENERAL@{AWS\_LS\_AUTH\_GENERAL}}}\mbox{\Hypertarget{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a1f459385c700432c7e2f0608a97956d7}\label{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a1f459385c700432c7e2f0608a97956d7}} 
+AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+GENERAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_LS\_AUTH\_PROFILE@{AWS\_LS\_AUTH\_PROFILE}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_LS\_AUTH\_PROFILE@{AWS\_LS\_AUTH\_PROFILE}}}\mbox{\Hypertarget{auth_8h_a21bef094d855bb8a0fb8054a32b2f671af7faa8d9ea959bcdf964214cbd0a0126}\label{auth_8h_a21bef094d855bb8a0fb8054a32b2f671af7faa8d9ea959bcdf964214cbd0a0126}} 
+AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+PROFILE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_LS\_AUTH\_CREDENTIALS\_PROVIDER@{AWS\_LS\_AUTH\_CREDENTIALS\_PROVIDER}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_LS\_AUTH\_CREDENTIALS\_PROVIDER@{AWS\_LS\_AUTH\_CREDENTIALS\_PROVIDER}}}\mbox{\Hypertarget{auth_8h_a21bef094d855bb8a0fb8054a32b2f671ad61f3f4b01ebdb910e5c2b136bb41457}\label{auth_8h_a21bef094d855bb8a0fb8054a32b2f671ad61f3f4b01ebdb910e5c2b136bb41457}} 
+AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+CREDENTIALS\+\_\+\+PROVIDER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_LS\_AUTH\_SIGNING@{AWS\_LS\_AUTH\_SIGNING}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_LS\_AUTH\_SIGNING@{AWS\_LS\_AUTH\_SIGNING}}}\mbox{\Hypertarget{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a4c4599103de06f3d2c19dcda46ee5ed3}\label{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a4c4599103de06f3d2c19dcda46ee5ed3}} 
+AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+SIGNING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_LS\_IMDS\_CLIENT@{AWS\_LS\_IMDS\_CLIENT}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_LS\_IMDS\_CLIENT@{AWS\_LS\_IMDS\_CLIENT}}}\mbox{\Hypertarget{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a3ec894c66346a90934e277801acdd89f}\label{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a3ec894c66346a90934e277801acdd89f}} 
+AWS\+\_\+\+LS\+\_\+\+IMDS\+\_\+\+CLIENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_LS\_AUTH\_LAST@{AWS\_LS\_AUTH\_LAST}!auth.h@{auth.h}}\index{auth.h@{auth.h}!AWS\_LS\_AUTH\_LAST@{AWS\_LS\_AUTH\_LAST}}}\mbox{\Hypertarget{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a0a76bcf26a79361a1e9666a2652aa5e2}\label{auth_8h_a21bef094d855bb8a0fb8054a32b2f671a0a76bcf26a79361a1e9666a2652aa5e2}} 
+AWS\+\_\+\+LS\+\_\+\+AUTH\+\_\+\+LAST&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{auth_8h_a12e8adc2c3df824ebda4eb4bfc8a655c}\label{auth_8h_a12e8adc2c3df824ebda4eb4bfc8a655c}} 
+\index{auth.h@{auth.h}!aws\_auth\_library\_clean\_up@{aws\_auth\_library\_clean\_up}}
+\index{aws\_auth\_library\_clean\_up@{aws\_auth\_library\_clean\_up}!auth.h@{auth.h}}
+\doxysubsubsection{\texorpdfstring{aws\_auth\_library\_clean\_up()}{aws\_auth\_library\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} void aws\+\_\+auth\+\_\+library\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Clean up internal datastructures used by aws-\/c-\/auth. Must not be called until application is done using functionality in aws-\/c-\/auth. \mbox{\Hypertarget{auth_8h_addceaa165e1140d801f5f530d9d7c109}\label{auth_8h_addceaa165e1140d801f5f530d9d7c109}} 
+\index{auth.h@{auth.h}!aws\_auth\_library\_init@{aws\_auth\_library\_init}}
+\index{aws\_auth\_library\_init@{aws\_auth\_library\_init}!auth.h@{auth.h}}
+\doxysubsubsection{\texorpdfstring{aws\_auth\_library\_init()}{aws\_auth\_library\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} void aws\+\_\+auth\+\_\+library\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Initializes internal datastructures used by aws-\/c-\/auth. Must be called before using any functionality in aws-\/c-\/auth.
+
+
+\begin{DoxyParams}{Parameters}
+{\em allocator} & memory allocator to use for any module-\/level memory allocation \\
+\hline
+\end{DoxyParams}

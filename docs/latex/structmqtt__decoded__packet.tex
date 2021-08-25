@@ -1,0 +1,177 @@
+\hypertarget{structmqtt__decoded__packet}{}\doxysection{mqtt\+\_\+decoded\+\_\+packet Struct Reference}
+\label{structmqtt__decoded__packet}\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+
+
+{\ttfamily \#include $<$mqtt\+\_\+mock\+\_\+server\+\_\+handler.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76b}{aws\+\_\+mqtt\+\_\+packet\+\_\+type}} \mbox{\hyperlink{structmqtt__decoded__packet_a010ed7de437c176501cd2edb79d15145}{type}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structmqtt__decoded__packet_af551eec136f985213a654998da324670}{alloc}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structmqtt__decoded__packet_a315a217e1b3e4e63e5a6f2c9776ab710}{clean\+\_\+session}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structmqtt__decoded__packet_a925c1287591bcfd257aee11483ad04aa}{has\+\_\+will}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structmqtt__decoded__packet_a3a777f98ba6e15dc2ae71d88ee0025d3}{will\+\_\+retain}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structmqtt__decoded__packet_a732bb4a04e9cb5f5dedb1d3213b34e68}{has\+\_\+password}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structmqtt__decoded__packet_a302c77190d9646eb2ea087e07f72f251}{has\+\_\+username}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structmqtt__decoded__packet_ab97e0e7abc05d7b0d90fbb838e0410e5}{keep\+\_\+alive\+\_\+timeout}}
+\item 
+enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{structmqtt__decoded__packet_a860ae40b4578720c65d6c61fb8571191}{will\+\_\+qos}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structmqtt__decoded__packet_a92e979683ecdf5fe96bbd536d3d902ab}{client\+\_\+identifier}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structmqtt__decoded__packet_a570058de3e121d6198784d72ba3515e5}{will\+\_\+topic}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structmqtt__decoded__packet_af001d81875aabaab1ed896cea9e5d075}{will\+\_\+message}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structmqtt__decoded__packet_a018177a550ab21950a3bcae1fc5cf0b8}{username}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structmqtt__decoded__packet_a20db4a0c0ac948acc23cd8feca892f6d}{password}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structmqtt__decoded__packet_ae36c7d18dd27b0dec44af73215be9b68}{packet\+\_\+identifier}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structmqtt__decoded__packet_a4b5d2436fd9996ae7cab178402241add}{topic\+\_\+name}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structmqtt__decoded__packet_ab64039e5f287d4f443efc4a3d2ce3ae4}{publish\+\_\+payload}}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structmqtt__decoded__packet_a8e98561355bab90042ad353e397ce579}{sub\+\_\+topic\+\_\+filters}}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structmqtt__decoded__packet_a029a2c161afa815163f5a3465c5f8dd1}{unsub\+\_\+topic\+\_\+filters}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structmqtt__decoded__packet_a6e791af6fcd69674287e586ade67fa9c}{index}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structmqtt__decoded__packet_af551eec136f985213a654998da324670}\label{structmqtt__decoded__packet_af551eec136f985213a654998da324670}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!alloc@{alloc}}
+\index{alloc@{alloc}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ mqtt\+\_\+decoded\+\_\+packet\+::alloc}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a315a217e1b3e4e63e5a6f2c9776ab710}\label{structmqtt__decoded__packet_a315a217e1b3e4e63e5a6f2c9776ab710}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!clean\_session@{clean\_session}}
+\index{clean\_session@{clean\_session}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{clean\_session}{clean\_session}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} mqtt\+\_\+decoded\+\_\+packet\+::clean\+\_\+session}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a92e979683ecdf5fe96bbd536d3d902ab}\label{structmqtt__decoded__packet_a92e979683ecdf5fe96bbd536d3d902ab}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!client\_identifier@{client\_identifier}}
+\index{client\_identifier@{client\_identifier}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{client\_identifier}{client\_identifier}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} mqtt\+\_\+decoded\+\_\+packet\+::client\+\_\+identifier}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a732bb4a04e9cb5f5dedb1d3213b34e68}\label{structmqtt__decoded__packet_a732bb4a04e9cb5f5dedb1d3213b34e68}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!has\_password@{has\_password}}
+\index{has\_password@{has\_password}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{has\_password}{has\_password}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} mqtt\+\_\+decoded\+\_\+packet\+::has\+\_\+password}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a302c77190d9646eb2ea087e07f72f251}\label{structmqtt__decoded__packet_a302c77190d9646eb2ea087e07f72f251}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!has\_username@{has\_username}}
+\index{has\_username@{has\_username}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{has\_username}{has\_username}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} mqtt\+\_\+decoded\+\_\+packet\+::has\+\_\+username}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a925c1287591bcfd257aee11483ad04aa}\label{structmqtt__decoded__packet_a925c1287591bcfd257aee11483ad04aa}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!has\_will@{has\_will}}
+\index{has\_will@{has\_will}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{has\_will}{has\_will}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} mqtt\+\_\+decoded\+\_\+packet\+::has\+\_\+will}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a6e791af6fcd69674287e586ade67fa9c}\label{structmqtt__decoded__packet_a6e791af6fcd69674287e586ade67fa9c}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!index@{index}}
+\index{index@{index}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily size\+\_\+t mqtt\+\_\+decoded\+\_\+packet\+::index}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_ab97e0e7abc05d7b0d90fbb838e0410e5}\label{structmqtt__decoded__packet_ab97e0e7abc05d7b0d90fbb838e0410e5}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!keep\_alive\_timeout@{keep\_alive\_timeout}}
+\index{keep\_alive\_timeout@{keep\_alive\_timeout}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{keep\_alive\_timeout}{keep\_alive\_timeout}}
+{\footnotesize\ttfamily uint16\+\_\+t mqtt\+\_\+decoded\+\_\+packet\+::keep\+\_\+alive\+\_\+timeout}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_ae36c7d18dd27b0dec44af73215be9b68}\label{structmqtt__decoded__packet_ae36c7d18dd27b0dec44af73215be9b68}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!packet\_identifier@{packet\_identifier}}
+\index{packet\_identifier@{packet\_identifier}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{packet\_identifier}{packet\_identifier}}
+{\footnotesize\ttfamily uint16\+\_\+t mqtt\+\_\+decoded\+\_\+packet\+::packet\+\_\+identifier}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a20db4a0c0ac948acc23cd8feca892f6d}\label{structmqtt__decoded__packet_a20db4a0c0ac948acc23cd8feca892f6d}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!password@{password}}
+\index{password@{password}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{password}{password}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} mqtt\+\_\+decoded\+\_\+packet\+::password}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_ab64039e5f287d4f443efc4a3d2ce3ae4}\label{structmqtt__decoded__packet_ab64039e5f287d4f443efc4a3d2ce3ae4}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!publish\_payload@{publish\_payload}}
+\index{publish\_payload@{publish\_payload}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{publish\_payload}{publish\_payload}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} mqtt\+\_\+decoded\+\_\+packet\+::publish\+\_\+payload}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a8e98561355bab90042ad353e397ce579}\label{structmqtt__decoded__packet_a8e98561355bab90042ad353e397ce579}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!sub\_topic\_filters@{sub\_topic\_filters}}
+\index{sub\_topic\_filters@{sub\_topic\_filters}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{sub\_topic\_filters}{sub\_topic\_filters}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} mqtt\+\_\+decoded\+\_\+packet\+::sub\+\_\+topic\+\_\+filters}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a4b5d2436fd9996ae7cab178402241add}\label{structmqtt__decoded__packet_a4b5d2436fd9996ae7cab178402241add}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!topic\_name@{topic\_name}}
+\index{topic\_name@{topic\_name}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{topic\_name}{topic\_name}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} mqtt\+\_\+decoded\+\_\+packet\+::topic\+\_\+name}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a010ed7de437c176501cd2edb79d15145}\label{structmqtt__decoded__packet_a010ed7de437c176501cd2edb79d15145}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!type@{type}}
+\index{type@{type}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76b}{aws\+\_\+mqtt\+\_\+packet\+\_\+type}} mqtt\+\_\+decoded\+\_\+packet\+::type}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a029a2c161afa815163f5a3465c5f8dd1}\label{structmqtt__decoded__packet_a029a2c161afa815163f5a3465c5f8dd1}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!unsub\_topic\_filters@{unsub\_topic\_filters}}
+\index{unsub\_topic\_filters@{unsub\_topic\_filters}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{unsub\_topic\_filters}{unsub\_topic\_filters}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} mqtt\+\_\+decoded\+\_\+packet\+::unsub\+\_\+topic\+\_\+filters}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a018177a550ab21950a3bcae1fc5cf0b8}\label{structmqtt__decoded__packet_a018177a550ab21950a3bcae1fc5cf0b8}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!username@{username}}
+\index{username@{username}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{username}{username}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} mqtt\+\_\+decoded\+\_\+packet\+::username}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_af001d81875aabaab1ed896cea9e5d075}\label{structmqtt__decoded__packet_af001d81875aabaab1ed896cea9e5d075}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!will\_message@{will\_message}}
+\index{will\_message@{will\_message}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{will\_message}{will\_message}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} mqtt\+\_\+decoded\+\_\+packet\+::will\+\_\+message}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a860ae40b4578720c65d6c61fb8571191}\label{structmqtt__decoded__packet_a860ae40b4578720c65d6c61fb8571191}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!will\_qos@{will\_qos}}
+\index{will\_qos@{will\_qos}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{will\_qos}{will\_qos}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} mqtt\+\_\+decoded\+\_\+packet\+::will\+\_\+qos}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a3a777f98ba6e15dc2ae71d88ee0025d3}\label{structmqtt__decoded__packet_a3a777f98ba6e15dc2ae71d88ee0025d3}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!will\_retain@{will\_retain}}
+\index{will\_retain@{will\_retain}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{will\_retain}{will\_retain}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} mqtt\+\_\+decoded\+\_\+packet\+::will\+\_\+retain}
+
+\mbox{\Hypertarget{structmqtt__decoded__packet_a570058de3e121d6198784d72ba3515e5}\label{structmqtt__decoded__packet_a570058de3e121d6198784d72ba3515e5}} 
+\index{mqtt\_decoded\_packet@{mqtt\_decoded\_packet}!will\_topic@{will\_topic}}
+\index{will\_topic@{will\_topic}!mqtt\_decoded\_packet@{mqtt\_decoded\_packet}}
+\doxysubsubsection{\texorpdfstring{will\_topic}{will\_topic}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} mqtt\+\_\+decoded\+\_\+packet\+::will\+\_\+topic}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/tests/\mbox{\hyperlink{mqtt__mock__server__handler_8h}{mqtt\+\_\+mock\+\_\+server\+\_\+handler.\+h}}\end{DoxyCompactItemize}

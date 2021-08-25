@@ -1,0 +1,69 @@
+\hypertarget{ct-verif_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/include/ct-\/verif.h File Reference}
+\label{ct-verif_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/include/ct-\/verif.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/include/ct-\/verif.h}}
+{\ttfamily \#include $<$smack.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ct-verif_8h_a00dbd8421c52de73a9c1c5d887ce3436}{\+\_\+\+\_\+disjoint\+\_\+regions}}(addr1,  len1,  addr2,  len2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ct-verif_8h_a2b4f7f2e481a510f5d0981bec8bdcf90}{public\+\_\+in}} (smack\+\_\+value\+\_\+t)
+\item 
+void \mbox{\hyperlink{ct-verif_8h_a4f574f9ae8acc54c2765fe2abb3c221f}{public\+\_\+out}} (smack\+\_\+value\+\_\+t)
+\item 
+void \mbox{\hyperlink{ct-verif_8h_a429bbce474b0c8cf41748f207ba68036}{declassified\+\_\+out}} (smack\+\_\+value\+\_\+t)
+\item 
+void \mbox{\hyperlink{ct-verif_8h_a0421b068ce360029d8155e6e4a1f935b}{public\+\_\+invariant}} (smack\+\_\+value\+\_\+t)
+\item 
+void \mbox{\hyperlink{ct-verif_8h_a121fb0762ab87f580749174241581d4b}{benign}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ct-verif_8h_a00dbd8421c52de73a9c1c5d887ce3436}\label{ct-verif_8h_a00dbd8421c52de73a9c1c5d887ce3436}} 
+\index{ct-\/verif.h@{ct-\/verif.h}!\_\_disjoint\_regions@{\_\_disjoint\_regions}}
+\index{\_\_disjoint\_regions@{\_\_disjoint\_regions}!ct-\/verif.h@{ct-\/verif.h}}
+\doxysubsubsection{\texorpdfstring{\_\_disjoint\_regions}{\_\_disjoint\_regions}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+disjoint\+\_\+regions(\begin{DoxyParamCaption}\item[{}]{addr1,  }\item[{}]{len1,  }\item[{}]{addr2,  }\item[{}]{len2 }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  assume(addr1 + len1 * \textcolor{keyword}{sizeof}(*addr1) < addr2 || \(\backslash\)}
+\DoxyCodeLine{         addr2 + len2 * \textcolor{keyword}{sizeof}(*addr2) < addr1)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ct-verif_8h_a121fb0762ab87f580749174241581d4b}\label{ct-verif_8h_a121fb0762ab87f580749174241581d4b}} 
+\index{ct-\/verif.h@{ct-\/verif.h}!benign@{benign}}
+\index{benign@{benign}!ct-\/verif.h@{ct-\/verif.h}}
+\doxysubsubsection{\texorpdfstring{benign()}{benign()}}
+{\footnotesize\ttfamily void benign (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ct-verif_8h_a429bbce474b0c8cf41748f207ba68036}\label{ct-verif_8h_a429bbce474b0c8cf41748f207ba68036}} 
+\index{ct-\/verif.h@{ct-\/verif.h}!declassified\_out@{declassified\_out}}
+\index{declassified\_out@{declassified\_out}!ct-\/verif.h@{ct-\/verif.h}}
+\doxysubsubsection{\texorpdfstring{declassified\_out()}{declassified\_out()}}
+{\footnotesize\ttfamily void declassified\+\_\+out (\begin{DoxyParamCaption}\item[{smack\+\_\+value\+\_\+t}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ct-verif_8h_a2b4f7f2e481a510f5d0981bec8bdcf90}\label{ct-verif_8h_a2b4f7f2e481a510f5d0981bec8bdcf90}} 
+\index{ct-\/verif.h@{ct-\/verif.h}!public\_in@{public\_in}}
+\index{public\_in@{public\_in}!ct-\/verif.h@{ct-\/verif.h}}
+\doxysubsubsection{\texorpdfstring{public\_in()}{public\_in()}}
+{\footnotesize\ttfamily void public\+\_\+in (\begin{DoxyParamCaption}\item[{smack\+\_\+value\+\_\+t}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ct-verif_8h_a0421b068ce360029d8155e6e4a1f935b}\label{ct-verif_8h_a0421b068ce360029d8155e6e4a1f935b}} 
+\index{ct-\/verif.h@{ct-\/verif.h}!public\_invariant@{public\_invariant}}
+\index{public\_invariant@{public\_invariant}!ct-\/verif.h@{ct-\/verif.h}}
+\doxysubsubsection{\texorpdfstring{public\_invariant()}{public\_invariant()}}
+{\footnotesize\ttfamily void public\+\_\+invariant (\begin{DoxyParamCaption}\item[{smack\+\_\+value\+\_\+t}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ct-verif_8h_a4f574f9ae8acc54c2765fe2abb3c221f}\label{ct-verif_8h_a4f574f9ae8acc54c2765fe2abb3c221f}} 
+\index{ct-\/verif.h@{ct-\/verif.h}!public\_out@{public\_out}}
+\index{public\_out@{public\_out}!ct-\/verif.h@{ct-\/verif.h}}
+\doxysubsubsection{\texorpdfstring{public\_out()}{public\_out()}}
+{\footnotesize\ttfamily void public\+\_\+out (\begin{DoxyParamCaption}\item[{smack\+\_\+value\+\_\+t}]{ }\end{DoxyParamCaption})}
+

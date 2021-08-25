@@ -1,0 +1,45 @@
+\hypertarget{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_source}{}\doxysection{Exports.\+h}
+\label{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_source}\index{crt/aws-\/crt-\/cpp/include/aws/crt/Exports.h@{crt/aws-\/crt-\/cpp/include/aws/crt/Exports.h}}
+\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{comment}{/*}}
+\DoxyCodeLine{4 \textcolor{comment}{ *Copyright 2010-\/2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ *icensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{7 \textcolor{comment}{ *You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{8 \textcolor{comment}{ *A copy of the License is located at}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{13 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{14 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{15 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{16 \textcolor{comment}{ */}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#if defined(USE\_WINDOWS\_DLL\_SEMANTICS) || defined(WIN32)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#    ifdef \_MSC\_VER}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#        pragma warning(disable : 4251)}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{// \_MSC\_VER}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#    ifdef AWS\_CRT\_CPP\_USE\_IMPORT\_EXPORT}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#        ifdef AWS\_CRT\_CPP\_EXPORTS}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#            define AWS\_CRT\_CPP\_API \_\_declspec(dllexport)}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#        else}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#            define AWS\_CRT\_CPP\_API \_\_declspec(dllimport)}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#        endif }\textcolor{comment}{/* AWS\_CRT\_CPP\_API */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#        define AWS\_CRT\_CPP\_API}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{// AWS\_CRT\_CPP\_USE\_IMPORT\_EXPORT}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#else }\textcolor{comment}{// defined (USE\_WINDOWS\_DLL\_SEMANTICS) || defined (WIN32)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#    if ((\_\_GNUC\_\_ >= 4) || defined(\_\_clang\_\_)) \&\& defined(AWS\_CRT\_CPP\_USE\_IMPORT\_EXPORT) \&\&                           \(\backslash\)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{        defined(AWS\_CRT\_CPP\_EXPORTS)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#        define AWS\_CRT\_CPP\_API \_\_attribute\_\_((visibility("{}default"{}})))}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#        define AWS\_CRT\_CPP\_API}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{// \_\_GNUC\_\_ >= 4 || defined(\_\_clang\_\_)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

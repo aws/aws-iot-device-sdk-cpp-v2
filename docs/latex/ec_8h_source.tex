@@ -1,0 +1,67 @@
+\hypertarget{ec_8h_source}{}\doxysection{ec.\+h}
+\label{ec_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/ec.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/ec.h}}
+\mbox{\hyperlink{ec_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Changes to OpenSSL version 1.1.1.}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Copyright Amazon.com, Inc. All Rights Reserved.}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright 1995-\/2017 The OpenSSL Project Authors. All Rights Reserved.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{7 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{8 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{13 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{14 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{15 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{16 \textcolor{comment}{ */}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef HEADER\_EC\_H}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define HEADER\_EC\_H}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{asn1_8h}{openssl/asn1.h}}>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{bn_8h}{openssl/bn.h}}>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{objects_8h}{openssl/objects.h}}>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{ossl__typ_8h}{openssl/ossl\_typ.h}}>}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{28 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{31     \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5a5ca3242771ea537db8de597535d7e93b}{POINT\_CONVERSION\_COMPRESSED}} = 2,}
+\DoxyCodeLine{33     \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5a32895bf2cf57d0d9ae0cea7bcaa7d3d8}{POINT\_CONVERSION\_UNCOMPRESSED}} = 4,}
+\DoxyCodeLine{36     \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5aceef1aa5a423148d080037f4cec84264}{POINT\_CONVERSION\_HYBRID}} = 6}
+\DoxyCodeLine{37 \} \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5}{point\_conversion\_form\_t}};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }ec\_group\_st \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\_GROUP}};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\_GROUP}} *    \mbox{\hyperlink{ec_8h_af1835d9d4df427dab59138519c295a1e}{EC\_GROUP\_new\_by\_curve\_name}}(\textcolor{keywordtype}{int} nid);}
+\DoxyCodeLine{42 \textcolor{keywordtype}{void}          \mbox{\hyperlink{ec_8h_a45ebb4cf75da21493521c5f79db202b8}{EC\_GROUP\_set\_point\_conversion\_form}}(\mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\_GROUP}} *group, \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5}{point\_conversion\_form\_t}} form);}
+\DoxyCodeLine{43 \textcolor{keyword}{const} \mbox{\hyperlink{structbignum__st}{BIGNUM}} *\mbox{\hyperlink{ec_8h_a9836936f8b99c4412a04064126b536cf}{EC\_GROUP\_get0\_order}}(\textcolor{keyword}{const} \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\_GROUP}} *group);}
+\DoxyCodeLine{44 \textcolor{keywordtype}{void}          \mbox{\hyperlink{ec_8h_a7d7ba223c4dffba134c295ff77e56a90}{EC\_GROUP\_free}}(\mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\_GROUP}} *group);}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }ECDSA\_SIG\_st \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\_SIG}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *        \mbox{\hyperlink{ec_8h_ad45e4b316aefae25a6c9de0b58048717}{EC\_KEY\_new}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{49 \textcolor{keywordtype}{int}             \mbox{\hyperlink{ec_8h_a384a92a00677065b4d2d3a5cc56f1e5b}{EC\_KEY\_set\_group}}(\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *key, \textcolor{keyword}{const} \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\_GROUP}} *group);}
+\DoxyCodeLine{50 \textcolor{keywordtype}{void}            \mbox{\hyperlink{ec_8h_a37f9b4e6ced97d63032dd168f4b46ec6}{EC\_KEY\_set\_conv\_form}}(\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *eckey, \mbox{\hyperlink{ec_8h_aa2c7ec2902c397d59393d357921e14b5}{point\_conversion\_form\_t}} cform);}
+\DoxyCodeLine{51 \textcolor{keywordtype}{int}             \mbox{\hyperlink{ec_8h_ac71ebd801dd40f9b9c42b61aff685f3d}{EC\_KEY\_set\_private\_key}}(\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *key, \textcolor{keyword}{const} \mbox{\hyperlink{structbignum__st}{BIGNUM}} *prv);}
+\DoxyCodeLine{52 \textcolor{keywordtype}{int}             \mbox{\hyperlink{ec_8h_a690c3227c776f6b53a004e22d03055da}{EC\_KEY\_generate\_key}}(\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *key);}
+\DoxyCodeLine{53 \textcolor{keywordtype}{int}             \mbox{\hyperlink{ec_8h_afbb443e03f2370b52852d91f8d00a6b1}{EC\_KEY\_up\_ref}}(\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *r);}
+\DoxyCodeLine{54 \textcolor{keyword}{const} \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\_GROUP}} *\mbox{\hyperlink{ec_8h_aa11ad233e9c9a49d34d33e2feef70c33}{EC\_KEY\_get0\_group}}(\textcolor{keyword}{const} \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *key);}
+\DoxyCodeLine{55 \textcolor{keyword}{const} \mbox{\hyperlink{structbignum__st}{BIGNUM}} *  \mbox{\hyperlink{ec_8h_ab41d893f425f8a2cd22cb9bbc83a85be}{EC\_KEY\_get0\_private\_key}}(\textcolor{keyword}{const} \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *key);}
+\DoxyCodeLine{56 \textcolor{keywordtype}{int}             \mbox{\hyperlink{ec_8h_a690c3227c776f6b53a004e22d03055da}{EC\_KEY\_generate\_key}}(\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *key);}
+\DoxyCodeLine{57 \textcolor{keywordtype}{void}            \mbox{\hyperlink{ec_8h_af3759e18dd8bf0c3144527c0377668a7}{EC\_KEY\_free}}(\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *key);}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *\mbox{\hyperlink{ec_8h_a628017a03d4a4600b9f62ccb56699239}{o2i\_ECPublicKey}}(\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} **key, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} **in, \textcolor{keywordtype}{long} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}});}
+\DoxyCodeLine{60 \textcolor{keywordtype}{int}     \mbox{\hyperlink{ec_8h_a1a93f5739c093586ef83517b52b44a0c}{i2o\_ECPublicKey}}(\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\_KEY}} *key, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} **out);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{keywordtype}{void}       \mbox{\hyperlink{ec_8h_aa0ad424eeb5c9c34c12d77cd3dc9dbf1}{ECDSA\_SIG\_get0}}(\textcolor{keyword}{const} \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\_SIG}} *sig, \textcolor{keyword}{const} \mbox{\hyperlink{structbignum__st}{BIGNUM}} **pr, \textcolor{keyword}{const} \mbox{\hyperlink{structbignum__st}{BIGNUM}} **ps);}
+\DoxyCodeLine{63 \textcolor{keywordtype}{int}        \mbox{\hyperlink{ec_8h_ae2f28de42b8345422b7ac3b28f330b9b}{ECDSA\_SIG\_set0}}(\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\_SIG}} *sig, \mbox{\hyperlink{structbignum__st}{BIGNUM}} *r, \mbox{\hyperlink{structbignum__st}{BIGNUM}} *s);}
+\DoxyCodeLine{64 \textcolor{keywordtype}{void}       \mbox{\hyperlink{ec_8h_acd70808233eacdcb183148deca9c8b64}{ECDSA\_SIG\_free}}(\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\_SIG}} *sig);}
+\DoxyCodeLine{65 \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\_SIG}} *\mbox{\hyperlink{ec_8h_afb26eca66faca7d8c56176b3babfa044}{d2i\_ECDSA\_SIG}}(\mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\_SIG}} **sig, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} **pp, \textcolor{keywordtype}{long} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}});}
+\DoxyCodeLine{66 \textcolor{keywordtype}{int}        \mbox{\hyperlink{ec_8h_a08c0aa1ccdf1879fc4b0eb98c9ba0fb7}{i2d\_ECDSA\_SIG}}(\textcolor{keyword}{const} \mbox{\hyperlink{ec_8h_a6b7e6f59c093d0f4f501d5b55c8eb5c6}{ECDSA\_SIG}} *sig, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} **pp);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

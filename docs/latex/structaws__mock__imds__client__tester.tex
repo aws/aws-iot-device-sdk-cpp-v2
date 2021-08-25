@@ -1,0 +1,181 @@
+\hypertarget{structaws__mock__imds__client__tester}{}\doxysection{aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester Struct Reference}
+\label{structaws__mock__imds__client__tester}\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a6b236a24e642a1b8a839c762e8f0f07e}{request\+\_\+uris}} \mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a5d7ff2c1eebab2777f072191310eff0d}{response\+\_\+data\+\_\+callbacks}} \mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__mock__imds__client__tester_a1b0b6bf7d37cd04fea05992e211ff65a}{allocator}}
+\item 
+int \mbox{\hyperlink{structaws__mock__imds__client__tester_a9dceafb2cccea126a413f258cd0fa67d}{current\+\_\+request}}
+\item 
+int \mbox{\hyperlink{structaws__mock__imds__client__tester_a8e29b24b82af82fe8cca9a50793402bf}{token\+\_\+response\+\_\+code}}
+\item 
+int \mbox{\hyperlink{structaws__mock__imds__client__tester_a115ee9ee8c012017fffa25efa928ed16}{token\+\_\+request\+\_\+idx}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a793e7e3888c953a3fea7ad49ceec4e25}{insecure\+\_\+then\+\_\+secure\+\_\+attempt}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a99af4e24ed2ff9a78e814486e259ccf8}{is\+\_\+connection\+\_\+acquire\+\_\+successful}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a3e6f83d81dc9ea74129f357f6f322da1}{lock}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a9377a884cd04286bced9f1f6a52f7e97}{signal}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}} $\ast$ \mbox{\hyperlink{structaws__mock__imds__client__tester_aa559c88d1617df398a5424aaa27bc09a}{el\+\_\+group}}
+\item 
+struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structaws__mock__imds__client__tester_aab4b5441beeef6c031669091bc3db352}{bootstrap}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a062da46b4b5ce32943aedcabe3dfd2e3}{has\+\_\+received\+\_\+resource\+\_\+callback}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a6ed245ec7f6291fac3ecb5d7183a15e7}{has\+\_\+received\+\_\+shutdown\+\_\+callback}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a69cc8de0c6025a314883d9fbdbad97a2}{token\+\_\+ttl\+\_\+header\+\_\+exist}} \mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a502af874cb5e45e1d8dde913cda5c95e}{token\+\_\+ttl\+\_\+header\+\_\+expected}} \mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a13f23d34353a55a23faa0042b1fcceb2}{token\+\_\+header\+\_\+exist}} \mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__imds__client__tester_a2d9a72f50ec8a90a625ab25eacfaf06f}{token\+\_\+header\+\_\+expected}} \mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__mock__imds__client__tester_af318c1c14fe0899f5a5708d2d822be1d}{alternate\+\_\+closed\+\_\+connections}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__mock__imds__client__tester_af370b0e1d475dc0a1ad080aba6a527d6}{resource}}
+\item 
+int \mbox{\hyperlink{structaws__mock__imds__client__tester_a51c10f43d7b4baa6fefb5b18626e5340}{successful\+\_\+requests}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a1b0b6bf7d37cd04fea05992e211ff65a}\label{structaws__mock__imds__client__tester_a1b0b6bf7d37cd04fea05992e211ff65a}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::allocator}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_af318c1c14fe0899f5a5708d2d822be1d}\label{structaws__mock__imds__client__tester_af318c1c14fe0899f5a5708d2d822be1d}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!alternate\_closed\_connections@{alternate\_closed\_connections}}
+\index{alternate\_closed\_connections@{alternate\_closed\_connections}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{alternate\_closed\_connections}{alternate\_closed\_connections}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::alternate\+\_\+closed\+\_\+connections}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_aab4b5441beeef6c031669091bc3db352}\label{structaws__mock__imds__client__tester_aab4b5441beeef6c031669091bc3db352}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!bootstrap@{bootstrap}}
+\index{bootstrap@{bootstrap}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{bootstrap}{bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}}$\ast$ aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::bootstrap}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a9dceafb2cccea126a413f258cd0fa67d}\label{structaws__mock__imds__client__tester_a9dceafb2cccea126a413f258cd0fa67d}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!current\_request@{current\_request}}
+\index{current\_request@{current\_request}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{current\_request}{current\_request}}
+{\footnotesize\ttfamily int aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::current\+\_\+request}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_aa559c88d1617df398a5424aaa27bc09a}\label{structaws__mock__imds__client__tester_aa559c88d1617df398a5424aaa27bc09a}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!el\_group@{el\_group}}
+\index{el\_group@{el\_group}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{el\_group}{el\_group}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}}$\ast$ aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::el\+\_\+group}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a062da46b4b5ce32943aedcabe3dfd2e3}\label{structaws__mock__imds__client__tester_a062da46b4b5ce32943aedcabe3dfd2e3}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!has\_received\_resource\_callback@{has\_received\_resource\_callback}}
+\index{has\_received\_resource\_callback@{has\_received\_resource\_callback}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{has\_received\_resource\_callback}{has\_received\_resource\_callback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::has\+\_\+received\+\_\+resource\+\_\+callback}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a6ed245ec7f6291fac3ecb5d7183a15e7}\label{structaws__mock__imds__client__tester_a6ed245ec7f6291fac3ecb5d7183a15e7}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!has\_received\_shutdown\_callback@{has\_received\_shutdown\_callback}}
+\index{has\_received\_shutdown\_callback@{has\_received\_shutdown\_callback}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{has\_received\_shutdown\_callback}{has\_received\_shutdown\_callback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::has\+\_\+received\+\_\+shutdown\+\_\+callback}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a793e7e3888c953a3fea7ad49ceec4e25}\label{structaws__mock__imds__client__tester_a793e7e3888c953a3fea7ad49ceec4e25}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!insecure\_then\_secure\_attempt@{insecure\_then\_secure\_attempt}}
+\index{insecure\_then\_secure\_attempt@{insecure\_then\_secure\_attempt}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{insecure\_then\_secure\_attempt}{insecure\_then\_secure\_attempt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::insecure\+\_\+then\+\_\+secure\+\_\+attempt}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a99af4e24ed2ff9a78e814486e259ccf8}\label{structaws__mock__imds__client__tester_a99af4e24ed2ff9a78e814486e259ccf8}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!is\_connection\_acquire\_successful@{is\_connection\_acquire\_successful}}
+\index{is\_connection\_acquire\_successful@{is\_connection\_acquire\_successful}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{is\_connection\_acquire\_successful}{is\_connection\_acquire\_successful}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::is\+\_\+connection\+\_\+acquire\+\_\+successful}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a3e6f83d81dc9ea74129f357f6f322da1}\label{structaws__mock__imds__client__tester_a3e6f83d81dc9ea74129f357f6f322da1}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!lock@{lock}}
+\index{lock@{lock}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::lock}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a6b236a24e642a1b8a839c762e8f0f07e}\label{structaws__mock__imds__client__tester_a6b236a24e642a1b8a839c762e8f0f07e}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!request\_uris@{request\_uris}}
+\index{request\_uris@{request\_uris}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{request\_uris}{request\_uris}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::request\+\_\+uris\mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_af370b0e1d475dc0a1ad080aba6a527d6}\label{structaws__mock__imds__client__tester_af370b0e1d475dc0a1ad080aba6a527d6}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!resource@{resource}}
+\index{resource@{resource}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{resource}{resource}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::resource}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a5d7ff2c1eebab2777f072191310eff0d}\label{structaws__mock__imds__client__tester_a5d7ff2c1eebab2777f072191310eff0d}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!response\_data\_callbacks@{response\_data\_callbacks}}
+\index{response\_data\_callbacks@{response\_data\_callbacks}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{response\_data\_callbacks}{response\_data\_callbacks}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::response\+\_\+data\+\_\+callbacks\mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a9377a884cd04286bced9f1f6a52f7e97}\label{structaws__mock__imds__client__tester_a9377a884cd04286bced9f1f6a52f7e97}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!signal@{signal}}
+\index{signal@{signal}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{signal}{signal}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::signal}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a51c10f43d7b4baa6fefb5b18626e5340}\label{structaws__mock__imds__client__tester_a51c10f43d7b4baa6fefb5b18626e5340}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!successful\_requests@{successful\_requests}}
+\index{successful\_requests@{successful\_requests}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{successful\_requests}{successful\_requests}}
+{\footnotesize\ttfamily int aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::successful\+\_\+requests}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a13f23d34353a55a23faa0042b1fcceb2}\label{structaws__mock__imds__client__tester_a13f23d34353a55a23faa0042b1fcceb2}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!token\_header\_exist@{token\_header\_exist}}
+\index{token\_header\_exist@{token\_header\_exist}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{token\_header\_exist}{token\_header\_exist}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::token\+\_\+header\+\_\+exist\mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a2d9a72f50ec8a90a625ab25eacfaf06f}\label{structaws__mock__imds__client__tester_a2d9a72f50ec8a90a625ab25eacfaf06f}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!token\_header\_expected@{token\_header\_expected}}
+\index{token\_header\_expected@{token\_header\_expected}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{token\_header\_expected}{token\_header\_expected}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::token\+\_\+header\+\_\+expected\mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a115ee9ee8c012017fffa25efa928ed16}\label{structaws__mock__imds__client__tester_a115ee9ee8c012017fffa25efa928ed16}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!token\_request\_idx@{token\_request\_idx}}
+\index{token\_request\_idx@{token\_request\_idx}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{token\_request\_idx}{token\_request\_idx}}
+{\footnotesize\ttfamily int aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::token\+\_\+request\+\_\+idx}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a8e29b24b82af82fe8cca9a50793402bf}\label{structaws__mock__imds__client__tester_a8e29b24b82af82fe8cca9a50793402bf}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!token\_response\_code@{token\_response\_code}}
+\index{token\_response\_code@{token\_response\_code}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{token\_response\_code}{token\_response\_code}}
+{\footnotesize\ttfamily int aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::token\+\_\+response\+\_\+code}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a69cc8de0c6025a314883d9fbdbad97a2}\label{structaws__mock__imds__client__tester_a69cc8de0c6025a314883d9fbdbad97a2}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!token\_ttl\_header\_exist@{token\_ttl\_header\_exist}}
+\index{token\_ttl\_header\_exist@{token\_ttl\_header\_exist}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{token\_ttl\_header\_exist}{token\_ttl\_header\_exist}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::token\+\_\+ttl\+\_\+header\+\_\+exist\mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}}
+
+\mbox{\Hypertarget{structaws__mock__imds__client__tester_a502af874cb5e45e1d8dde913cda5c95e}\label{structaws__mock__imds__client__tester_a502af874cb5e45e1d8dde913cda5c95e}} 
+\index{aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}!token\_ttl\_header\_expected@{token\_ttl\_header\_expected}}
+\index{token\_ttl\_header\_expected@{token\_ttl\_header\_expected}!aws\_mock\_imds\_client\_tester@{aws\_mock\_imds\_client\_tester}}
+\doxysubsubsection{\texorpdfstring{token\_ttl\_header\_expected}{token\_ttl\_header\_expected}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mock\+\_\+imds\+\_\+client\+\_\+tester\+::token\+\_\+ttl\+\_\+header\+\_\+expected\mbox{[}\mbox{\hyperlink{aws__imds__client__test_8c_a27ddb1ddadd807a2feb36285ecf25e02}{IMDS\+\_\+\+CLIENT\+\_\+\+MAX\+\_\+\+REQUESTS}}\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/tests/\mbox{\hyperlink{aws__imds__client__test_8c}{aws\+\_\+imds\+\_\+client\+\_\+test.\+c}}\end{DoxyCompactItemize}

@@ -1,0 +1,100 @@
+\hypertarget{structaws__task}{}\doxysection{aws\+\_\+task Struct Reference}
+\label{structaws__task}\index{aws\_task@{aws\_task}}
+
+
+{\ttfamily \#include $<$task\+\_\+scheduler.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\+\_\+task\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__task_abfc64c6ba2daa37981662fb7ebcd616d}{fn}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structaws__task_ab21a93bdb5ffeff38d1a0d6483518ad3}{timestamp}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} \mbox{\hyperlink{structaws__task_adb32096bd375e5fa5fd0b17f1a87ec9f}{node}}
+\item 
+struct \mbox{\hyperlink{structaws__priority__queue__node}{aws\+\_\+priority\+\_\+queue\+\_\+node}} \mbox{\hyperlink{structaws__task_aca9c82e3ebb5769ee4ff2325ce1a4eb3}{priority\+\_\+queue\+\_\+node}}
+\item 
+const char $\ast$ \mbox{\hyperlink{structaws__task_a98d174d61670d1bb89ebac74229c5916}{type\+\_\+tag}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__task_a5e21079a2aca649961fe487a69e99a8d}{scheduled}}\\
+\>size\_t \mbox{\hyperlink{structaws__task_a25a7529c36bcac9f281538de47bdf6da}{reserved}}\\
+\} \mbox{\hyperlink{structaws__task_a6c4edfd78d6c3816449b11d418b6eb0b}{abi\_extension}}\\
+
+\end{tabbing}\item 
+\mbox{\hyperlink{preamble_8h_a9ab08dfffe1eac0c510f4b3b15e7bf57}{aws\+\_\+task\+\_\+fn\+\_\+ptr}} \mbox{\hyperlink{structaws__task_ac3797fc1e55289dd94cc506b7c265357}{fn}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__task_a6c4edfd78d6c3816449b11d418b6eb0b}\label{structaws__task_a6c4edfd78d6c3816449b11d418b6eb0b}} 
+\index{aws\_task@{aws\_task}!abi\_extension@{abi\_extension}}
+\index{abi\_extension@{abi\_extension}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily union  \{ ... \}  aws\+\_\+task\+::abi\+\_\+extension}
+
+\mbox{\Hypertarget{structaws__task_a25552ad61c11c2b0bde99077804fb55a}\label{structaws__task_a25552ad61c11c2b0bde99077804fb55a}} 
+\index{aws\_task@{aws\_task}!arg@{arg}}
+\index{arg@{arg}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{arg}{arg}}
+{\footnotesize\ttfamily void $\ast$ aws\+\_\+task\+::arg}
+
+\mbox{\Hypertarget{structaws__task_abfc64c6ba2daa37981662fb7ebcd616d}\label{structaws__task_abfc64c6ba2daa37981662fb7ebcd616d}} 
+\index{aws\_task@{aws\_task}!fn@{fn}}
+\index{fn@{fn}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{fn}{fn}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\+\_\+task\+\_\+fn}}$\ast$ aws\+\_\+task\+::fn}
+
+\mbox{\Hypertarget{structaws__task_ac3797fc1e55289dd94cc506b7c265357}\label{structaws__task_ac3797fc1e55289dd94cc506b7c265357}} 
+\index{aws\_task@{aws\_task}!fn@{fn}}
+\index{fn@{fn}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{fn}{fn}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a9ab08dfffe1eac0c510f4b3b15e7bf57}{aws\+\_\+task\+\_\+fn\+\_\+ptr}} aws\+\_\+task\+::fn}
+
+\mbox{\Hypertarget{structaws__task_adb32096bd375e5fa5fd0b17f1a87ec9f}\label{structaws__task_adb32096bd375e5fa5fd0b17f1a87ec9f}} 
+\index{aws\_task@{aws\_task}!node@{node}}
+\index{node@{node}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} aws\+\_\+task\+::node}
+
+\mbox{\Hypertarget{structaws__task_aca9c82e3ebb5769ee4ff2325ce1a4eb3}\label{structaws__task_aca9c82e3ebb5769ee4ff2325ce1a4eb3}} 
+\index{aws\_task@{aws\_task}!priority\_queue\_node@{priority\_queue\_node}}
+\index{priority\_queue\_node@{priority\_queue\_node}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{priority\_queue\_node}{priority\_queue\_node}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__priority__queue__node}{aws\+\_\+priority\+\_\+queue\+\_\+node}} aws\+\_\+task\+::priority\+\_\+queue\+\_\+node}
+
+\mbox{\Hypertarget{structaws__task_a25a7529c36bcac9f281538de47bdf6da}\label{structaws__task_a25a7529c36bcac9f281538de47bdf6da}} 
+\index{aws\_task@{aws\_task}!reserved@{reserved}}
+\index{reserved@{reserved}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{reserved}{reserved}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+task\+::reserved}
+
+\mbox{\Hypertarget{structaws__task_a5e21079a2aca649961fe487a69e99a8d}\label{structaws__task_a5e21079a2aca649961fe487a69e99a8d}} 
+\index{aws\_task@{aws\_task}!scheduled@{scheduled}}
+\index{scheduled@{scheduled}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{scheduled}{scheduled}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+task\+::scheduled}
+
+\mbox{\Hypertarget{structaws__task_ab21a93bdb5ffeff38d1a0d6483518ad3}\label{structaws__task_ab21a93bdb5ffeff38d1a0d6483518ad3}} 
+\index{aws\_task@{aws\_task}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily uint64\+\_\+t aws\+\_\+task\+::timestamp}
+
+\mbox{\Hypertarget{structaws__task_a98d174d61670d1bb89ebac74229c5916}\label{structaws__task_a98d174d61670d1bb89ebac74229c5916}} 
+\index{aws\_task@{aws\_task}!type\_tag@{type\_tag}}
+\index{type\_tag@{type\_tag}!aws\_task@{aws\_task}}
+\doxysubsubsection{\texorpdfstring{type\_tag}{type\_tag}}
+{\footnotesize\ttfamily const char $\ast$ aws\+\_\+task\+::type\+\_\+tag}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/\mbox{\hyperlink{task__scheduler_8h}{task\+\_\+scheduler.\+h}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/\mbox{\hyperlink{preamble_8h}{preamble.\+h}}\end{DoxyCompactItemize}

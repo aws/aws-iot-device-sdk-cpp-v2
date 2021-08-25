@@ -1,0 +1,34 @@
+\hypertarget{s2n__client__cert_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+client\+\_\+cert.c File Reference}
+\label{s2n__client__cert_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_client\_cert.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_client\_cert.c}}
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+certificate.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__client__cert_8c_a7b28360a5b67d7f32acec43dbec76637}{s2n\+\_\+client\+\_\+cert\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__client__cert_8c_aec2517429bf91b18a66bfb5abb794eef}{s2n\+\_\+client\+\_\+cert\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__cert_8c_a7b28360a5b67d7f32acec43dbec76637}\label{s2n__client__cert_8c_a7b28360a5b67d7f32acec43dbec76637}} 
+\index{s2n\_client\_cert.c@{s2n\_client\_cert.c}!s2n\_client\_cert\_recv@{s2n\_client\_cert\_recv}}
+\index{s2n\_client\_cert\_recv@{s2n\_client\_cert\_recv}!s2n\_client\_cert.c@{s2n\_client\_cert.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_cert\_recv()}{s2n\_client\_cert\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+client\+\_\+cert\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__cert_8c_aec2517429bf91b18a66bfb5abb794eef}\label{s2n__client__cert_8c_aec2517429bf91b18a66bfb5abb794eef}} 
+\index{s2n\_client\_cert.c@{s2n\_client\_cert.c}!s2n\_client\_cert\_send@{s2n\_client\_cert\_send}}
+\index{s2n\_client\_cert\_send@{s2n\_client\_cert\_send}!s2n\_client\_cert.c@{s2n\_client\_cert.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_cert\_send()}{s2n\_client\_cert\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+client\+\_\+cert\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+

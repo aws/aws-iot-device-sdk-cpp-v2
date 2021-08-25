@@ -1,0 +1,77 @@
+\hypertarget{structaws__http__connection__acquisition}{}\doxysection{aws\+\_\+http\+\_\+connection\+\_\+acquisition Struct Reference}
+\label{structaws__http__connection__acquisition}\index{aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__http__connection__acquisition_a28d812307384fcf479d09a9a5554c0b8}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} \mbox{\hyperlink{structaws__http__connection__acquisition_a6958ebba2a2f96903a60ab19980c8e68}{node}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$ \mbox{\hyperlink{structaws__http__connection__acquisition_a992afa7d31d07602b819cc2c1dfff250}{manager}}
+\item 
+\mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__connection__acquisition_ab488dd89d9a3add5b7228d3807cbfd36}{callback}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__http__connection__acquisition_ae38d2ba23538988b9379e01a4ab22f0a}{user\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structaws__http__connection__acquisition_a037da2fb9c4fc200959c3a5d56235d51}{connection}}
+\item 
+int \mbox{\hyperlink{structaws__http__connection__acquisition_a5d99e06eeb9895c09b3264ecf0203977}{error\+\_\+code}}
+\item 
+struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \mbox{\hyperlink{structaws__http__connection__acquisition_a28c945a07ba827297aeddf9d1a77da21}{acquisition\+\_\+task}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__connection__acquisition_a28c945a07ba827297aeddf9d1a77da21}\label{structaws__http__connection__acquisition_a28c945a07ba827297aeddf9d1a77da21}} 
+\index{aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}!acquisition\_task@{acquisition\_task}}
+\index{acquisition\_task@{acquisition\_task}!aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}}
+\doxysubsubsection{\texorpdfstring{acquisition\_task}{acquisition\_task}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} aws\+\_\+http\+\_\+connection\+\_\+acquisition\+::acquisition\+\_\+task}
+
+\mbox{\Hypertarget{structaws__http__connection__acquisition_a28d812307384fcf479d09a9a5554c0b8}\label{structaws__http__connection__acquisition_a28d812307384fcf479d09a9a5554c0b8}} 
+\index{aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+acquisition\+::allocator}
+
+\mbox{\Hypertarget{structaws__http__connection__acquisition_ab488dd89d9a3add5b7228d3807cbfd36}\label{structaws__http__connection__acquisition_ab488dd89d9a3add5b7228d3807cbfd36}} 
+\index{aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}!callback@{callback}}
+\index{callback@{callback}!aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}}
+\doxysubsubsection{\texorpdfstring{callback}{callback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+acquisition\+::callback}
+
+\mbox{\Hypertarget{structaws__http__connection__acquisition_a037da2fb9c4fc200959c3a5d56235d51}\label{structaws__http__connection__acquisition_a037da2fb9c4fc200959c3a5d56235d51}} 
+\index{aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}!connection@{connection}}
+\index{connection@{connection}!aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+acquisition\+::connection}
+
+\mbox{\Hypertarget{structaws__http__connection__acquisition_a5d99e06eeb9895c09b3264ecf0203977}\label{structaws__http__connection__acquisition_a5d99e06eeb9895c09b3264ecf0203977}} 
+\index{aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}!error\_code@{error\_code}}
+\index{error\_code@{error\_code}!aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}}
+\doxysubsubsection{\texorpdfstring{error\_code}{error\_code}}
+{\footnotesize\ttfamily int aws\+\_\+http\+\_\+connection\+\_\+acquisition\+::error\+\_\+code}
+
+\mbox{\Hypertarget{structaws__http__connection__acquisition_a992afa7d31d07602b819cc2c1dfff250}\label{structaws__http__connection__acquisition_a992afa7d31d07602b819cc2c1dfff250}} 
+\index{aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}!manager@{manager}}
+\index{manager@{manager}!aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}}
+\doxysubsubsection{\texorpdfstring{manager}{manager}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+acquisition\+::manager}
+
+\mbox{\Hypertarget{structaws__http__connection__acquisition_a6958ebba2a2f96903a60ab19980c8e68}\label{structaws__http__connection__acquisition_a6958ebba2a2f96903a60ab19980c8e68}} 
+\index{aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}!node@{node}}
+\index{node@{node}!aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} aws\+\_\+http\+\_\+connection\+\_\+acquisition\+::node}
+
+\mbox{\Hypertarget{structaws__http__connection__acquisition_ae38d2ba23538988b9379e01a4ab22f0a}\label{structaws__http__connection__acquisition_ae38d2ba23538988b9379e01a4ab22f0a}} 
+\index{aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!aws\_http\_connection\_acquisition@{aws\_http\_connection\_acquisition}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+http\+\_\+connection\+\_\+acquisition\+::user\+\_\+data}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/\mbox{\hyperlink{connection__manager_8c}{connection\+\_\+manager.\+c}}\end{DoxyCompactItemize}

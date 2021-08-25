@@ -1,0 +1,80 @@
+\hypertarget{test__signable_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/tests/test\+\_\+signable.c File Reference}
+\label{test__signable_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/tests/test\_signable.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/tests/test\_signable.c}}
+{\ttfamily \#include \char`\"{}test\+\_\+signable.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$aws/auth/signable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__signable__test__impl}{aws\+\_\+signable\+\_\+test\+\_\+impl}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{test__signable_8c_a7b7a94fca354a49f86389583d209c770}{s\+\_\+aws\+\_\+signable\+\_\+test\+\_\+get\+\_\+property}} (const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+value)
+\item 
+static int \mbox{\hyperlink{test__signable_8c_afe05224f81dd2e703110c67dd8dc0dbe}{s\+\_\+aws\+\_\+signable\+\_\+test\+\_\+get\+\_\+property\+\_\+list}} (const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$$\ast$out\+\_\+list)
+\item 
+static int \mbox{\hyperlink{test__signable_8c_a3db3481b0ef601b761909f5fdf83e6e7}{s\+\_\+aws\+\_\+signable\+\_\+test\+\_\+get\+\_\+payload\+\_\+stream}} (const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$$\ast$out\+\_\+input\+\_\+stream)
+\item 
+static void \mbox{\hyperlink{test__signable_8c_a3daed9499340318eb766b5abd1f834dc}{s\+\_\+aws\+\_\+signable\+\_\+test\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable)
+\item 
+struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$ \mbox{\hyperlink{test__signable_8c_a71a3a412f0574dfb567e9b2065395dc6}{aws\+\_\+signable\+\_\+new\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$method, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$uri, struct \mbox{\hyperlink{structaws__signable__property__list__pair}{aws\+\_\+signable\+\_\+property\+\_\+list\+\_\+pair}} $\ast$headers, size\+\_\+t header\+\_\+count, struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$body\+\_\+stream)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__signable__vtable}{aws\+\_\+signable\+\_\+vtable}} \mbox{\hyperlink{test__signable_8c_a35834d04870b996a0d7395a906dc35a8}{s\+\_\+signable\+\_\+test\+\_\+vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__signable_8c_a71a3a412f0574dfb567e9b2065395dc6}\label{test__signable_8c_a71a3a412f0574dfb567e9b2065395dc6}} 
+\index{test\_signable.c@{test\_signable.c}!aws\_signable\_new\_test@{aws\_signable\_new\_test}}
+\index{aws\_signable\_new\_test@{aws\_signable\_new\_test}!test\_signable.c@{test\_signable.c}}
+\doxysubsubsection{\texorpdfstring{aws\_signable\_new\_test()}{aws\_signable\_new\_test()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}}$\ast$ aws\+\_\+signable\+\_\+new\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{method,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{uri,  }\item[{struct \mbox{\hyperlink{structaws__signable__property__list__pair}{aws\+\_\+signable\+\_\+property\+\_\+list\+\_\+pair}} $\ast$}]{headers,  }\item[{size\+\_\+t}]{header\+\_\+count,  }\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{body\+\_\+stream }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__signable_8c_a3daed9499340318eb766b5abd1f834dc}\label{test__signable_8c_a3daed9499340318eb766b5abd1f834dc}} 
+\index{test\_signable.c@{test\_signable.c}!s\_aws\_signable\_test\_destroy@{s\_aws\_signable\_test\_destroy}}
+\index{s\_aws\_signable\_test\_destroy@{s\_aws\_signable\_test\_destroy}!test\_signable.c@{test\_signable.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_signable\_test\_destroy()}{s\_aws\_signable\_test\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+signable\+\_\+test\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$}]{signable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__signable_8c_a3db3481b0ef601b761909f5fdf83e6e7}\label{test__signable_8c_a3db3481b0ef601b761909f5fdf83e6e7}} 
+\index{test\_signable.c@{test\_signable.c}!s\_aws\_signable\_test\_get\_payload\_stream@{s\_aws\_signable\_test\_get\_payload\_stream}}
+\index{s\_aws\_signable\_test\_get\_payload\_stream@{s\_aws\_signable\_test\_get\_payload\_stream}!test\_signable.c@{test\_signable.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_signable\_test\_get\_payload\_stream()}{s\_aws\_signable\_test\_get\_payload\_stream()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+signable\+\_\+test\+\_\+get\+\_\+payload\+\_\+stream (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$}]{signable,  }\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$$\ast$}]{out\+\_\+input\+\_\+stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__signable_8c_a7b7a94fca354a49f86389583d209c770}\label{test__signable_8c_a7b7a94fca354a49f86389583d209c770}} 
+\index{test\_signable.c@{test\_signable.c}!s\_aws\_signable\_test\_get\_property@{s\_aws\_signable\_test\_get\_property}}
+\index{s\_aws\_signable\_test\_get\_property@{s\_aws\_signable\_test\_get\_property}!test\_signable.c@{test\_signable.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_signable\_test\_get\_property()}{s\_aws\_signable\_test\_get\_property()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+signable\+\_\+test\+\_\+get\+\_\+property (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$}]{signable,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{name,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{out\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__signable_8c_afe05224f81dd2e703110c67dd8dc0dbe}\label{test__signable_8c_afe05224f81dd2e703110c67dd8dc0dbe}} 
+\index{test\_signable.c@{test\_signable.c}!s\_aws\_signable\_test\_get\_property\_list@{s\_aws\_signable\_test\_get\_property\_list}}
+\index{s\_aws\_signable\_test\_get\_property\_list@{s\_aws\_signable\_test\_get\_property\_list}!test\_signable.c@{test\_signable.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_signable\_test\_get\_property\_list()}{s\_aws\_signable\_test\_get\_property\_list()}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+signable\+\_\+test\+\_\+get\+\_\+property\+\_\+list (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$}]{signable,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{name,  }\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$$\ast$}]{out\+\_\+list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{test__signable_8c_a35834d04870b996a0d7395a906dc35a8}\label{test__signable_8c_a35834d04870b996a0d7395a906dc35a8}} 
+\index{test\_signable.c@{test\_signable.c}!s\_signable\_test\_vtable@{s\_signable\_test\_vtable}}
+\index{s\_signable\_test\_vtable@{s\_signable\_test\_vtable}!test\_signable.c@{test\_signable.c}}
+\doxysubsubsection{\texorpdfstring{s\_signable\_test\_vtable}{s\_signable\_test\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__signable__vtable}{aws\+\_\+signable\+\_\+vtable}} s\+\_\+signable\+\_\+test\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .get\_property = \mbox{\hyperlink{test__signable_8c_a7b7a94fca354a49f86389583d209c770}{s\_aws\_signable\_test\_get\_property}},}
+\DoxyCodeLine{    .get\_property\_list = \mbox{\hyperlink{test__signable_8c_afe05224f81dd2e703110c67dd8dc0dbe}{s\_aws\_signable\_test\_get\_property\_list}},}
+\DoxyCodeLine{    .get\_payload\_stream = \mbox{\hyperlink{test__signable_8c_a3db3481b0ef601b761909f5fdf83e6e7}{s\_aws\_signable\_test\_get\_payload\_stream}},}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{test__signable_8c_a3daed9499340318eb766b5abd1f834dc}{s\_aws\_signable\_test\_destroy}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

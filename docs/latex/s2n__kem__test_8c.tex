@@ -1,0 +1,203 @@
+\hypertarget{s2n__kem__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+kem\+\_\+test.c File Reference}
+\label{s2n__kem__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_kem\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_kem\_test.c}}
+{\ttfamily \#include \char`\"{}tests/s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+preferences.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kem\+\_\+preferences.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kex.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+parameters.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+key\+\_\+share.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+ecc\+\_\+evp.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__kem__test_8c_a0cf7e6cd7ad21bcbe0e8ca960a1bdaf9}{TEST\+\_\+\+PUBLIC\+\_\+\+KEY\+\_\+\+LENGTH}}~2
+\item 
+\#define \mbox{\hyperlink{s2n__kem__test_8c_aad074a67511390e95417d26b52cc6cb4}{TEST\+\_\+\+PRIVATE\+\_\+\+KEY\+\_\+\+LENGTH}}~3
+\item 
+\#define \mbox{\hyperlink{s2n__kem__test_8c_a3d3082840c99738e75dde88f4b2ffbed}{TEST\+\_\+\+SHARED\+\_\+\+SECRET\+\_\+\+LENGTH}}~4
+\item 
+\#define \mbox{\hyperlink{s2n__kem__test_8c_a48356f1c17c88572fd88433f69ed86a9}{TEST\+\_\+\+CIPHERTEXT\+\_\+\+LENGTH}}~5
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__kem__test_8c_ac937799a4a13b24f8373519417ec19bd}{alloc\+\_\+test\+\_\+kem\+\_\+params}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\item 
+int \mbox{\hyperlink{s2n__kem__test_8c_a57393c588a1ecce2c303279a209ae37e}{assert\+\_\+kem\+\_\+params\+\_\+free}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+\item 
+int \mbox{\hyperlink{s2n__kem__test_8c_a165f1609ee1298ec5907c0549fac1eff}{s2n\+\_\+test\+\_\+generate\+\_\+keypair}} (unsigned char $\ast$\mbox{\hyperlink{s2n__certificate__extensions__test_8c_a0124f9df67a96a9c6c341981efef8f84}{public\+\_\+key}}, unsigned char $\ast$\mbox{\hyperlink{s2n__tls13__cert__verify__recv__test_8c_aedf5a766b5642910e7edb7f8f13fbeb3}{private\+\_\+key}})
+\item 
+int \mbox{\hyperlink{s2n__kem__test_8c_aced22438f12d578bad83af385753d402}{s2n\+\_\+test\+\_\+encrypt}} (unsigned char $\ast$ciphertext, unsigned char $\ast$shared\+\_\+secret, const unsigned char $\ast$\mbox{\hyperlink{s2n__certificate__extensions__test_8c_a0124f9df67a96a9c6c341981efef8f84}{public\+\_\+key}})
+\item 
+int \mbox{\hyperlink{s2n__kem__test_8c_afb6cce19ec050656660352354d5f9beb}{s2n\+\_\+test\+\_\+decrypt}} (unsigned char $\ast$shared\+\_\+secret, const unsigned char $\ast$ciphertext, const unsigned char $\ast$\mbox{\hyperlink{s2n__tls13__cert__verify__recv__test_8c_aedf5a766b5642910e7edb7f8f13fbeb3}{private\+\_\+key}})
+\item 
+static int \mbox{\hyperlink{s2n__kem__test_8c_afb6ba4522e8f771f0837885d04a4ddf1}{check\+\_\+client\+\_\+server\+\_\+agreed\+\_\+kem}} (const uint8\+\_\+t iana\+\_\+value\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]}, uint8\+\_\+t $\ast$client\+\_\+kem\+\_\+ids, const uint8\+\_\+t num\+\_\+client\+\_\+kems, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$server\+\_\+kem\+\_\+pref\+\_\+list\mbox{[}$\,$\mbox{]}, const uint8\+\_\+t num\+\_\+server\+\_\+supported\+\_\+kems, \mbox{\hyperlink{s2n__kem_8h_a81b345122713c5da133f22798727415d}{kem\+\_\+extension\+\_\+size}} expected\+\_\+kem\+\_\+id)
+\item 
+int \mbox{\hyperlink{s2n__kem__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__kem__test_8c_a9f8ad3830f8f085c3965620fee51002f}{TEST\+\_\+\+PUBLIC\+\_\+\+KEY}} \mbox{[}$\,$\mbox{]} = \{ 2, 2 \}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__kem__test_8c_a5430733a8630034b252770bf8731e075}{TEST\+\_\+\+PRIVATE\+\_\+\+KEY}} \mbox{[}$\,$\mbox{]} = \{ 3, 3, 3 \}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__kem__test_8c_a7a0d90580e75053e91a5a2e77f35ee25}{TEST\+\_\+\+SHARED\+\_\+\+SECRET}} \mbox{[}$\,$\mbox{]} = \{ 4, 4, 4, 4 \}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__kem__test_8c_a3967aec74c4c5d1c9e532f1249f3e620}{TEST\+\_\+\+CIPHERTEXT}} \mbox{[}$\,$\mbox{]} = \{ 5, 5, 5, 5, 5 \}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{s2n__kem__test_8c_a33aedf3593a7c4505860b45230806bfd}{kyber\+\_\+iana}} \mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]} = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a4bd71467a86331083c947fab47974216}{TLS\+\_\+\+ECDHE\+\_\+\+KYBER\+\_\+\+RSA\+\_\+\+WITH\+\_\+\+AES\+\_\+256\+\_\+\+GCM\+\_\+\+SHA384}} \}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{s2n__kem__test_8c_a383ce6cc50acab9d301b30db393b573b}{bike\+\_\+iana}} \mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]} = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a345c01eb6e33e1ea97bbd02939958c2a}{TLS\+\_\+\+ECDHE\+\_\+\+BIKE\+\_\+\+RSA\+\_\+\+WITH\+\_\+\+AES\+\_\+256\+\_\+\+GCM\+\_\+\+SHA384}} \}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{s2n__kem__test_8c_a64366e51a380018b2f45965cfe856b3b}{sike\+\_\+iana}} \mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]} = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a19b42d767234f51481db2d80db6bd863}{TLS\+\_\+\+ECDHE\+\_\+\+SIKE\+\_\+\+RSA\+\_\+\+WITH\+\_\+\+AES\+\_\+256\+\_\+\+GCM\+\_\+\+SHA384}} \}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{s2n__kem__test_8c_a4ff0b23db101012b0b3386c5ce04e4cb}{classic\+\_\+ecdhe\+\_\+iana}} \mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]} = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a5c065d6a1ed19fefcca6bf712188f2ea}{TLS\+\_\+\+ECDHE\+\_\+\+ECDSA\+\_\+\+WITH\+\_\+\+AES\+\_\+128\+\_\+\+CBC\+\_\+\+SHA}} \}
+\item 
+const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} \mbox{\hyperlink{s2n__kem__test_8c_ac6fb705f79b9544189052630fe85ea59}{s2n\+\_\+test\+\_\+kem}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__kem__test_8c_a48356f1c17c88572fd88433f69ed86a9}\label{s2n__kem__test_8c_a48356f1c17c88572fd88433f69ed86a9}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!TEST\_CIPHERTEXT\_LENGTH@{TEST\_CIPHERTEXT\_LENGTH}}
+\index{TEST\_CIPHERTEXT\_LENGTH@{TEST\_CIPHERTEXT\_LENGTH}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CIPHERTEXT\_LENGTH}{TEST\_CIPHERTEXT\_LENGTH}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+CIPHERTEXT\+\_\+\+LENGTH~5}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_aad074a67511390e95417d26b52cc6cb4}\label{s2n__kem__test_8c_aad074a67511390e95417d26b52cc6cb4}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!TEST\_PRIVATE\_KEY\_LENGTH@{TEST\_PRIVATE\_KEY\_LENGTH}}
+\index{TEST\_PRIVATE\_KEY\_LENGTH@{TEST\_PRIVATE\_KEY\_LENGTH}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_PRIVATE\_KEY\_LENGTH}{TEST\_PRIVATE\_KEY\_LENGTH}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+PRIVATE\+\_\+\+KEY\+\_\+\+LENGTH~3}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a0cf7e6cd7ad21bcbe0e8ca960a1bdaf9}\label{s2n__kem__test_8c_a0cf7e6cd7ad21bcbe0e8ca960a1bdaf9}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!TEST\_PUBLIC\_KEY\_LENGTH@{TEST\_PUBLIC\_KEY\_LENGTH}}
+\index{TEST\_PUBLIC\_KEY\_LENGTH@{TEST\_PUBLIC\_KEY\_LENGTH}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_PUBLIC\_KEY\_LENGTH}{TEST\_PUBLIC\_KEY\_LENGTH}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+PUBLIC\+\_\+\+KEY\+\_\+\+LENGTH~2}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a3d3082840c99738e75dde88f4b2ffbed}\label{s2n__kem__test_8c_a3d3082840c99738e75dde88f4b2ffbed}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!TEST\_SHARED\_SECRET\_LENGTH@{TEST\_SHARED\_SECRET\_LENGTH}}
+\index{TEST\_SHARED\_SECRET\_LENGTH@{TEST\_SHARED\_SECRET\_LENGTH}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_SHARED\_SECRET\_LENGTH}{TEST\_SHARED\_SECRET\_LENGTH}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+SHARED\+\_\+\+SECRET\+\_\+\+LENGTH~4}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__kem__test_8c_ac937799a4a13b24f8373519417ec19bd}\label{s2n__kem__test_8c_ac937799a4a13b24f8373519417ec19bd}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!alloc\_test\_kem\_params@{alloc\_test\_kem\_params}}
+\index{alloc\_test\_kem\_params@{alloc\_test\_kem\_params}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{alloc\_test\_kem\_params()}{alloc\_test\_kem\_params()}}
+{\footnotesize\ttfamily int alloc\+\_\+test\+\_\+kem\+\_\+params (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a57393c588a1ecce2c303279a209ae37e}\label{s2n__kem__test_8c_a57393c588a1ecce2c303279a209ae37e}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!assert\_kem\_params\_free@{assert\_kem\_params\_free}}
+\index{assert\_kem\_params\_free@{assert\_kem\_params\_free}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{assert\_kem\_params\_free()}{assert\_kem\_params\_free()}}
+{\footnotesize\ttfamily int assert\+\_\+kem\+\_\+params\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$}]{kem\+\_\+params }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_afb6ba4522e8f771f0837885d04a4ddf1}\label{s2n__kem__test_8c_afb6ba4522e8f771f0837885d04a4ddf1}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!check\_client\_server\_agreed\_kem@{check\_client\_server\_agreed\_kem}}
+\index{check\_client\_server\_agreed\_kem@{check\_client\_server\_agreed\_kem}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{check\_client\_server\_agreed\_kem()}{check\_client\_server\_agreed\_kem()}}
+{\footnotesize\ttfamily static int check\+\_\+client\+\_\+server\+\_\+agreed\+\_\+kem (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{iana\+\_\+value\mbox{[}\+S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN\mbox{]},  }\item[{uint8\+\_\+t $\ast$}]{client\+\_\+kem\+\_\+ids,  }\item[{const uint8\+\_\+t}]{num\+\_\+client\+\_\+kems,  }\item[{const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$}]{server\+\_\+kem\+\_\+pref\+\_\+list\mbox{[}$\,$\mbox{]},  }\item[{const uint8\+\_\+t}]{num\+\_\+server\+\_\+supported\+\_\+kems,  }\item[{\mbox{\hyperlink{s2n__kem_8h_a81b345122713c5da133f22798727415d}{kem\+\_\+extension\+\_\+size}}}]{expected\+\_\+kem\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__kem__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!main@{main}}
+\index{main@{main}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_afb6cce19ec050656660352354d5f9beb}\label{s2n__kem__test_8c_afb6cce19ec050656660352354d5f9beb}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!s2n\_test\_decrypt@{s2n\_test\_decrypt}}
+\index{s2n\_test\_decrypt@{s2n\_test\_decrypt}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_decrypt()}{s2n\_test\_decrypt()}}
+{\footnotesize\ttfamily int s2n\+\_\+test\+\_\+decrypt (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{shared\+\_\+secret,  }\item[{const unsigned char $\ast$}]{ciphertext,  }\item[{const unsigned char $\ast$}]{private\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_aced22438f12d578bad83af385753d402}\label{s2n__kem__test_8c_aced22438f12d578bad83af385753d402}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!s2n\_test\_encrypt@{s2n\_test\_encrypt}}
+\index{s2n\_test\_encrypt@{s2n\_test\_encrypt}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_encrypt()}{s2n\_test\_encrypt()}}
+{\footnotesize\ttfamily int s2n\+\_\+test\+\_\+encrypt (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{ciphertext,  }\item[{unsigned char $\ast$}]{shared\+\_\+secret,  }\item[{const unsigned char $\ast$}]{public\+\_\+key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a165f1609ee1298ec5907c0549fac1eff}\label{s2n__kem__test_8c_a165f1609ee1298ec5907c0549fac1eff}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!s2n\_test\_generate\_keypair@{s2n\_test\_generate\_keypair}}
+\index{s2n\_test\_generate\_keypair@{s2n\_test\_generate\_keypair}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_generate\_keypair()}{s2n\_test\_generate\_keypair()}}
+{\footnotesize\ttfamily int s2n\+\_\+test\+\_\+generate\+\_\+keypair (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{public\+\_\+key,  }\item[{unsigned char $\ast$}]{private\+\_\+key }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__kem__test_8c_a383ce6cc50acab9d301b30db393b573b}\label{s2n__kem__test_8c_a383ce6cc50acab9d301b30db393b573b}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!bike\_iana@{bike\_iana}}
+\index{bike\_iana@{bike\_iana}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{bike\_iana}{bike\_iana}}
+{\footnotesize\ttfamily const uint8\+\_\+t bike\+\_\+iana\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]} = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a345c01eb6e33e1ea97bbd02939958c2a}{TLS\+\_\+\+ECDHE\+\_\+\+BIKE\+\_\+\+RSA\+\_\+\+WITH\+\_\+\+AES\+\_\+256\+\_\+\+GCM\+\_\+\+SHA384}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a4ff0b23db101012b0b3386c5ce04e4cb}\label{s2n__kem__test_8c_a4ff0b23db101012b0b3386c5ce04e4cb}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!classic\_ecdhe\_iana@{classic\_ecdhe\_iana}}
+\index{classic\_ecdhe\_iana@{classic\_ecdhe\_iana}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{classic\_ecdhe\_iana}{classic\_ecdhe\_iana}}
+{\footnotesize\ttfamily const uint8\+\_\+t classic\+\_\+ecdhe\+\_\+iana\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]} = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a5c065d6a1ed19fefcca6bf712188f2ea}{TLS\+\_\+\+ECDHE\+\_\+\+ECDSA\+\_\+\+WITH\+\_\+\+AES\+\_\+128\+\_\+\+CBC\+\_\+\+SHA}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a33aedf3593a7c4505860b45230806bfd}\label{s2n__kem__test_8c_a33aedf3593a7c4505860b45230806bfd}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!kyber\_iana@{kyber\_iana}}
+\index{kyber\_iana@{kyber\_iana}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{kyber\_iana}{kyber\_iana}}
+{\footnotesize\ttfamily const uint8\+\_\+t kyber\+\_\+iana\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]} = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a4bd71467a86331083c947fab47974216}{TLS\+\_\+\+ECDHE\+\_\+\+KYBER\+\_\+\+RSA\+\_\+\+WITH\+\_\+\+AES\+\_\+256\+\_\+\+GCM\+\_\+\+SHA384}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_ac6fb705f79b9544189052630fe85ea59}\label{s2n__kem__test_8c_ac6fb705f79b9544189052630fe85ea59}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!s2n\_test\_kem@{s2n\_test\_kem}}
+\index{s2n\_test\_kem@{s2n\_test\_kem}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_kem}{s2n\_test\_kem}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} s2n\+\_\+test\+\_\+kem}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .public\_key\_length = \mbox{\hyperlink{s2n__kem__test_8c_a0cf7e6cd7ad21bcbe0e8ca960a1bdaf9}{TEST\_PUBLIC\_KEY\_LENGTH}},}
+\DoxyCodeLine{    .private\_key\_length = \mbox{\hyperlink{s2n__kem__test_8c_aad074a67511390e95417d26b52cc6cb4}{TEST\_PRIVATE\_KEY\_LENGTH}},}
+\DoxyCodeLine{    .shared\_secret\_key\_length = \mbox{\hyperlink{s2n__kem__test_8c_a3d3082840c99738e75dde88f4b2ffbed}{TEST\_SHARED\_SECRET\_LENGTH}},}
+\DoxyCodeLine{    .ciphertext\_length = \mbox{\hyperlink{s2n__kem__test_8c_a48356f1c17c88572fd88433f69ed86a9}{TEST\_CIPHERTEXT\_LENGTH}},}
+\DoxyCodeLine{    .generate\_keypair = \&\mbox{\hyperlink{s2n__kem__test_8c_a165f1609ee1298ec5907c0549fac1eff}{s2n\_test\_generate\_keypair}},}
+\DoxyCodeLine{    .encapsulate = \&\mbox{\hyperlink{s2n__kem__test_8c_aced22438f12d578bad83af385753d402}{s2n\_test\_encrypt}},}
+\DoxyCodeLine{    .decapsulate = \&\mbox{\hyperlink{s2n__kem__test_8c_afb6cce19ec050656660352354d5f9beb}{s2n\_test\_decrypt}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__kem__test_8c_a64366e51a380018b2f45965cfe856b3b}\label{s2n__kem__test_8c_a64366e51a380018b2f45965cfe856b3b}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!sike\_iana@{sike\_iana}}
+\index{sike\_iana@{sike\_iana}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{sike\_iana}{sike\_iana}}
+{\footnotesize\ttfamily const uint8\+\_\+t sike\+\_\+iana\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]} = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a19b42d767234f51481db2d80db6bd863}{TLS\+\_\+\+ECDHE\+\_\+\+SIKE\+\_\+\+RSA\+\_\+\+WITH\+\_\+\+AES\+\_\+256\+\_\+\+GCM\+\_\+\+SHA384}} \}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a3967aec74c4c5d1c9e532f1249f3e620}\label{s2n__kem__test_8c_a3967aec74c4c5d1c9e532f1249f3e620}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!TEST\_CIPHERTEXT@{TEST\_CIPHERTEXT}}
+\index{TEST\_CIPHERTEXT@{TEST\_CIPHERTEXT}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CIPHERTEXT}{TEST\_CIPHERTEXT}}
+{\footnotesize\ttfamily const uint8\+\_\+t TEST\+\_\+\+CIPHERTEXT\mbox{[}$\,$\mbox{]} = \{ 5, 5, 5, 5, 5 \}}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a5430733a8630034b252770bf8731e075}\label{s2n__kem__test_8c_a5430733a8630034b252770bf8731e075}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!TEST\_PRIVATE\_KEY@{TEST\_PRIVATE\_KEY}}
+\index{TEST\_PRIVATE\_KEY@{TEST\_PRIVATE\_KEY}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_PRIVATE\_KEY}{TEST\_PRIVATE\_KEY}}
+{\footnotesize\ttfamily const uint8\+\_\+t TEST\+\_\+\+PRIVATE\+\_\+\+KEY\mbox{[}$\,$\mbox{]} = \{ 3, 3, 3 \}}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a9f8ad3830f8f085c3965620fee51002f}\label{s2n__kem__test_8c_a9f8ad3830f8f085c3965620fee51002f}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!TEST\_PUBLIC\_KEY@{TEST\_PUBLIC\_KEY}}
+\index{TEST\_PUBLIC\_KEY@{TEST\_PUBLIC\_KEY}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_PUBLIC\_KEY}{TEST\_PUBLIC\_KEY}}
+{\footnotesize\ttfamily const uint8\+\_\+t TEST\+\_\+\+PUBLIC\+\_\+\+KEY\mbox{[}$\,$\mbox{]} = \{ 2, 2 \}}
+
+\mbox{\Hypertarget{s2n__kem__test_8c_a7a0d90580e75053e91a5a2e77f35ee25}\label{s2n__kem__test_8c_a7a0d90580e75053e91a5a2e77f35ee25}} 
+\index{s2n\_kem\_test.c@{s2n\_kem\_test.c}!TEST\_SHARED\_SECRET@{TEST\_SHARED\_SECRET}}
+\index{TEST\_SHARED\_SECRET@{TEST\_SHARED\_SECRET}!s2n\_kem\_test.c@{s2n\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_SHARED\_SECRET}{TEST\_SHARED\_SECRET}}
+{\footnotesize\ttfamily const uint8\+\_\+t TEST\+\_\+\+SHARED\+\_\+\+SECRET\mbox{[}$\,$\mbox{]} = \{ 4, 4, 4, 4 \}}
+

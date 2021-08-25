@@ -1,0 +1,81 @@
+\hypertarget{structaws__http__request__handler__options}{}\doxysection{aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options Struct Reference}
+\label{structaws__http__request__handler__options}\index{aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}}
+
+
+{\ttfamily \#include $<$request\+\_\+response.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__http__request__handler__options_ab763c8c884a48de379a8f68c088f262d}{self\+\_\+size}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structaws__http__request__handler__options_a8ab4029393c5fcced0d4ee0b9010913c}{server\+\_\+connection}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__http__request__handler__options_ac04c53deede4316782faf0d0893f2e8b}{user\+\_\+data}}
+\item 
+\mbox{\hyperlink{request__response_8h_a0c2d80ea8a29a2ad5c7fd6a624b26a3a}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__request__handler__options_a43210c3a511ba9900de20d574c210fff}{on\+\_\+request\+\_\+headers}}
+\item 
+\mbox{\hyperlink{request__response_8h_a335feeb23b523ff7272b71a023591c18}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__request__handler__options_acc444029a7d41694e5558664d9d4561d}{on\+\_\+request\+\_\+header\+\_\+block\+\_\+done}}
+\item 
+\mbox{\hyperlink{request__response_8h_a0d81447ae81759e6da37ac6fbb83e16d}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+body\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__request__handler__options_abf8d3b526b93d49ae9d929f10336cb9a}{on\+\_\+request\+\_\+body}}
+\item 
+\mbox{\hyperlink{request__response_8h_afcc0da887f34a70585ba517c2981fc07}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+request\+\_\+done\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__request__handler__options_ac906cfadeb807915678e0a85cc217d7a}{on\+\_\+request\+\_\+done}}
+\item 
+\mbox{\hyperlink{request__response_8h_a4afcb8e02af09a7e4a50d9ab278f3459}{aws\+\_\+http\+\_\+on\+\_\+stream\+\_\+complete\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__http__request__handler__options_aa158414b7178d0effc3c8b9456e558da}{on\+\_\+complete}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__request__handler__options_aa158414b7178d0effc3c8b9456e558da}\label{structaws__http__request__handler__options_aa158414b7178d0effc3c8b9456e558da}} 
+\index{aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}!on\_complete@{on\_complete}}
+\index{on\_complete@{on\_complete}!aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}}
+\doxysubsubsection{\texorpdfstring{on\_complete}{on\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a4afcb8e02af09a7e4a50d9ab278f3459}{aws\+\_\+http\+\_\+on\+\_\+stream\+\_\+complete\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options\+::on\+\_\+complete}
+
+Invoked when request/response stream is complete, whether successful or unsuccessful Optional. See {\ttfamily aws\+\_\+http\+\_\+on\+\_\+stream\+\_\+complete\+\_\+fn}. \mbox{\Hypertarget{structaws__http__request__handler__options_abf8d3b526b93d49ae9d929f10336cb9a}\label{structaws__http__request__handler__options_abf8d3b526b93d49ae9d929f10336cb9a}} 
+\index{aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}!on\_request\_body@{on\_request\_body}}
+\index{on\_request\_body@{on\_request\_body}!aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}}
+\doxysubsubsection{\texorpdfstring{on\_request\_body}{on\_request\_body}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a0d81447ae81759e6da37ac6fbb83e16d}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+body\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options\+::on\+\_\+request\+\_\+body}
+
+Invoked as body data is received. Optional. See {\ttfamily aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+body\+\_\+fn}. \mbox{\Hypertarget{structaws__http__request__handler__options_ac906cfadeb807915678e0a85cc217d7a}\label{structaws__http__request__handler__options_ac906cfadeb807915678e0a85cc217d7a}} 
+\index{aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}!on\_request\_done@{on\_request\_done}}
+\index{on\_request\_done@{on\_request\_done}!aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}}
+\doxysubsubsection{\texorpdfstring{on\_request\_done}{on\_request\_done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_afcc0da887f34a70585ba517c2981fc07}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+request\+\_\+done\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options\+::on\+\_\+request\+\_\+done}
+
+Invoked when request has been completely read. Optional. See {\ttfamily aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+request\+\_\+done\+\_\+fn}. \mbox{\Hypertarget{structaws__http__request__handler__options_acc444029a7d41694e5558664d9d4561d}\label{structaws__http__request__handler__options_acc444029a7d41694e5558664d9d4561d}} 
+\index{aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}!on\_request\_header\_block\_done@{on\_request\_header\_block\_done}}
+\index{on\_request\_header\_block\_done@{on\_request\_header\_block\_done}!aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}}
+\doxysubsubsection{\texorpdfstring{on\_request\_header\_block\_done}{on\_request\_header\_block\_done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a335feeb23b523ff7272b71a023591c18}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options\+::on\+\_\+request\+\_\+header\+\_\+block\+\_\+done}
+
+Invoked when the request header block has been completely read. Optional. See {\ttfamily aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+fn}. \mbox{\Hypertarget{structaws__http__request__handler__options_a43210c3a511ba9900de20d574c210fff}\label{structaws__http__request__handler__options_a43210c3a511ba9900de20d574c210fff}} 
+\index{aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}!on\_request\_headers@{on\_request\_headers}}
+\index{on\_request\_headers@{on\_request\_headers}!aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}}
+\doxysubsubsection{\texorpdfstring{on\_request\_headers}{on\_request\_headers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a0c2d80ea8a29a2ad5c7fd6a624b26a3a}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+fn}}$\ast$ aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options\+::on\+\_\+request\+\_\+headers}
+
+Invoked repeatedly times as headers are received. Optional. See {\ttfamily aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+fn}. \mbox{\Hypertarget{structaws__http__request__handler__options_ab763c8c884a48de379a8f68c088f262d}\label{structaws__http__request__handler__options_ab763c8c884a48de379a8f68c088f262d}} 
+\index{aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}!self\_size@{self\_size}}
+\index{self\_size@{self\_size}!aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}}
+\doxysubsubsection{\texorpdfstring{self\_size}{self\_size}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options\+::self\+\_\+size}
+
+\mbox{\Hypertarget{structaws__http__request__handler__options_a8ab4029393c5fcced0d4ee0b9010913c}\label{structaws__http__request__handler__options_a8ab4029393c5fcced0d4ee0b9010913c}} 
+\index{aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}!server\_connection@{server\_connection}}
+\index{server\_connection@{server\_connection}!aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}}
+\doxysubsubsection{\texorpdfstring{server\_connection}{server\_connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options\+::server\+\_\+connection}
+
+Required. \mbox{\Hypertarget{structaws__http__request__handler__options_ac04c53deede4316782faf0d0893f2e8b}\label{structaws__http__request__handler__options_ac04c53deede4316782faf0d0893f2e8b}} 
+\index{aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!aws\_http\_request\_handler\_options@{aws\_http\_request\_handler\_options}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options\+::user\+\_\+data}
+
+user\+\_\+data passed to callbacks. Optional. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/\mbox{\hyperlink{request__response_8h}{request\+\_\+response.\+h}}\end{DoxyCompactItemize}

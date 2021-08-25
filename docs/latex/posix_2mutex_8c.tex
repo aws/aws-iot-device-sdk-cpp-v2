@@ -1,0 +1,52 @@
+\hypertarget{posix_2mutex_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/posix/mutex.c File Reference}
+\label{posix_2mutex_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/posix/mutex.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/posix/mutex.c}}
+{\ttfamily \#include $<$aws/common/mutex.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/posix/common.\+inl$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{posix_2mutex_8c_a0f9ffce49d01e07197b120f98a1123bf}{aws\+\_\+mutex\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+\item 
+int \mbox{\hyperlink{posix_2mutex_8c_a5aee3bbf14de883f01e955d128672a3f}{aws\+\_\+mutex\+\_\+init}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+\item 
+int \mbox{\hyperlink{posix_2mutex_8c_aacc66391354928908d46ef8848fcb4fe}{aws\+\_\+mutex\+\_\+lock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+\item 
+int \mbox{\hyperlink{posix_2mutex_8c_a5fbce9e5b64fbdceb2c34a35cc28bc34}{aws\+\_\+mutex\+\_\+try\+\_\+lock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+\item 
+int \mbox{\hyperlink{posix_2mutex_8c_a820a01feb83a05beab7ba1f0bac5fb44}{aws\+\_\+mutex\+\_\+unlock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{posix_2mutex_8c_a0f9ffce49d01e07197b120f98a1123bf}\label{posix_2mutex_8c_a0f9ffce49d01e07197b120f98a1123bf}} 
+\index{mutex.c@{mutex.c}!aws\_mutex\_clean\_up@{aws\_mutex\_clean\_up}}
+\index{aws\_mutex\_clean\_up@{aws\_mutex\_clean\_up}!mutex.c@{mutex.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mutex\_clean\_up()}{aws\_mutex\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+mutex\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{posix_2mutex_8c_a5aee3bbf14de883f01e955d128672a3f}\label{posix_2mutex_8c_a5aee3bbf14de883f01e955d128672a3f}} 
+\index{mutex.c@{mutex.c}!aws\_mutex\_init@{aws\_mutex\_init}}
+\index{aws\_mutex\_init@{aws\_mutex\_init}!mutex.c@{mutex.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mutex\_init()}{aws\_mutex\_init()}}
+{\footnotesize\ttfamily int aws\+\_\+mutex\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+
+Initializes a new platform instance of mutex. \mbox{\Hypertarget{posix_2mutex_8c_aacc66391354928908d46ef8848fcb4fe}\label{posix_2mutex_8c_aacc66391354928908d46ef8848fcb4fe}} 
+\index{mutex.c@{mutex.c}!aws\_mutex\_lock@{aws\_mutex\_lock}}
+\index{aws\_mutex\_lock@{aws\_mutex\_lock}!mutex.c@{mutex.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mutex\_lock()}{aws\_mutex\_lock()}}
+{\footnotesize\ttfamily int aws\+\_\+mutex\+\_\+lock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+
+Blocks until it acquires the lock. While on some platforms such as Windows, this may behave as a reentrant mutex, you should not treat it like one. On platforms it is possible for it to be non-\/reentrant, it will be. \mbox{\Hypertarget{posix_2mutex_8c_a5fbce9e5b64fbdceb2c34a35cc28bc34}\label{posix_2mutex_8c_a5fbce9e5b64fbdceb2c34a35cc28bc34}} 
+\index{mutex.c@{mutex.c}!aws\_mutex\_try\_lock@{aws\_mutex\_try\_lock}}
+\index{aws\_mutex\_try\_lock@{aws\_mutex\_try\_lock}!mutex.c@{mutex.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mutex\_try\_lock()}{aws\_mutex\_try\_lock()}}
+{\footnotesize\ttfamily int aws\+\_\+mutex\+\_\+try\+\_\+lock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+
+Attempts to acquire the lock but returns immediately if it can not. While on some platforms such as Windows, this may behave as a reentrant mutex, you should not treat it like one. On platforms it is possible for it to be non-\/reentrant, it will be. \mbox{\Hypertarget{posix_2mutex_8c_a820a01feb83a05beab7ba1f0bac5fb44}\label{posix_2mutex_8c_a820a01feb83a05beab7ba1f0bac5fb44}} 
+\index{mutex.c@{mutex.c}!aws\_mutex\_unlock@{aws\_mutex\_unlock}}
+\index{aws\_mutex\_unlock@{aws\_mutex\_unlock}!mutex.c@{mutex.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mutex\_unlock()}{aws\_mutex\_unlock()}}
+{\footnotesize\ttfamily int aws\+\_\+mutex\+\_\+unlock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex }\end{DoxyParamCaption})}
+
+Releases the lock. 

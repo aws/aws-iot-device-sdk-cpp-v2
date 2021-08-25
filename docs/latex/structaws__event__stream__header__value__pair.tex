@@ -1,0 +1,83 @@
+\hypertarget{structaws__event__stream__header__value__pair}{}\doxysection{aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair Struct Reference}
+\label{structaws__event__stream__header__value__pair}\index{aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}}
+
+
+{\ttfamily \#include $<$event\+\_\+stream.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structaws__event__stream__header__value__pair_acfedc05f001dd3aa4a6e3937afbef002}{header\+\_\+name\+\_\+len}}
+\item 
+char \mbox{\hyperlink{structaws__event__stream__header__value__pair_aa4c857feb6c94979ba698a30661e6abe}{header\+\_\+name}} \mbox{[}INT8\+\_\+\+MAX\mbox{]}
+\item 
+enum \mbox{\hyperlink{event__stream_8h_a729457a0cd08dd8b9a0623d3f77ef074}{aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+type}} \mbox{\hyperlink{structaws__event__stream__header__value__pair_a036dc16705405808bceb449d72576585}{header\+\_\+value\+\_\+type}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>uint8\_t $\ast$ \mbox{\hyperlink{structaws__event__stream__header__value__pair_a3f69d13cf5be8d22bbb376275cec5c2a}{variable\_len\_val}}\\
+\>uint8\_t \mbox{\hyperlink{structaws__event__stream__header__value__pair_a3d1947663aae77f015453c534ea36abd}{static\_val}} \mbox{[}16\mbox{]}\\
+\} \mbox{\hyperlink{structaws__event__stream__header__value__pair_a84bafeca328e8bb02dffc4ca19f0fce9}{header\_value}}\\
+
+\end{tabbing}\item 
+uint16\+\_\+t \mbox{\hyperlink{structaws__event__stream__header__value__pair_adfc2768f85a7466bb84aa83f3faded5a}{header\+\_\+value\+\_\+len}}
+\item 
+int8\+\_\+t \mbox{\hyperlink{structaws__event__stream__header__value__pair_a62cdab2e7a34def959cf9cbb0fe3f205}{value\+\_\+owned}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__event__stream__header__value__pair_aa4c857feb6c94979ba698a30661e6abe}\label{structaws__event__stream__header__value__pair_aa4c857feb6c94979ba698a30661e6abe}} 
+\index{aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}!header\_name@{header\_name}}
+\index{header\_name@{header\_name}!aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}}
+\doxysubsubsection{\texorpdfstring{header\_name}{header\_name}}
+{\footnotesize\ttfamily char aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair\+::header\+\_\+name\mbox{[}INT8\+\_\+\+MAX\mbox{]}}
+
+\mbox{\Hypertarget{structaws__event__stream__header__value__pair_acfedc05f001dd3aa4a6e3937afbef002}\label{structaws__event__stream__header__value__pair_acfedc05f001dd3aa4a6e3937afbef002}} 
+\index{aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}!header\_name\_len@{header\_name\_len}}
+\index{header\_name\_len@{header\_name\_len}!aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}}
+\doxysubsubsection{\texorpdfstring{header\_name\_len}{header\_name\_len}}
+{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair\+::header\+\_\+name\+\_\+len}
+
+\mbox{\Hypertarget{structaws__event__stream__header__value__pair_a84bafeca328e8bb02dffc4ca19f0fce9}\label{structaws__event__stream__header__value__pair_a84bafeca328e8bb02dffc4ca19f0fce9}} 
+\index{aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}!header\_value@{header\_value}}
+\index{header\_value@{header\_value}!aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily union  \{ ... \}  aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair\+::header\+\_\+value}
+
+\mbox{\Hypertarget{structaws__event__stream__header__value__pair_adfc2768f85a7466bb84aa83f3faded5a}\label{structaws__event__stream__header__value__pair_adfc2768f85a7466bb84aa83f3faded5a}} 
+\index{aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}!header\_value\_len@{header\_value\_len}}
+\index{header\_value\_len@{header\_value\_len}!aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}}
+\doxysubsubsection{\texorpdfstring{header\_value\_len}{header\_value\_len}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair\+::header\+\_\+value\+\_\+len}
+
+\mbox{\Hypertarget{structaws__event__stream__header__value__pair_a036dc16705405808bceb449d72576585}\label{structaws__event__stream__header__value__pair_a036dc16705405808bceb449d72576585}} 
+\index{aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}!header\_value\_type@{header\_value\_type}}
+\index{header\_value\_type@{header\_value\_type}!aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}}
+\doxysubsubsection{\texorpdfstring{header\_value\_type}{header\_value\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{event__stream_8h_a729457a0cd08dd8b9a0623d3f77ef074}{aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+type}} aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair\+::header\+\_\+value\+\_\+type}
+
+\mbox{\Hypertarget{structaws__event__stream__header__value__pair_a3d1947663aae77f015453c534ea36abd}\label{structaws__event__stream__header__value__pair_a3d1947663aae77f015453c534ea36abd}} 
+\index{aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}!static\_val@{static\_val}}
+\index{static\_val@{static\_val}!aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}}
+\doxysubsubsection{\texorpdfstring{static\_val}{static\_val}}
+{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair\+::static\+\_\+val\mbox{[}16\mbox{]}}
+
+\mbox{\Hypertarget{structaws__event__stream__header__value__pair_a62cdab2e7a34def959cf9cbb0fe3f205}\label{structaws__event__stream__header__value__pair_a62cdab2e7a34def959cf9cbb0fe3f205}} 
+\index{aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}!value\_owned@{value\_owned}}
+\index{value\_owned@{value\_owned}!aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}}
+\doxysubsubsection{\texorpdfstring{value\_owned}{value\_owned}}
+{\footnotesize\ttfamily int8\+\_\+t aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair\+::value\+\_\+owned}
+
+\mbox{\Hypertarget{structaws__event__stream__header__value__pair_a3f69d13cf5be8d22bbb376275cec5c2a}\label{structaws__event__stream__header__value__pair_a3f69d13cf5be8d22bbb376275cec5c2a}} 
+\index{aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}!variable\_len\_val@{variable\_len\_val}}
+\index{variable\_len\_val@{variable\_len\_val}!aws\_event\_stream\_header\_value\_pair@{aws\_event\_stream\_header\_value\_pair}}
+\doxysubsubsection{\texorpdfstring{variable\_len\_val}{variable\_len\_val}}
+{\footnotesize\ttfamily uint8\+\_\+t$\ast$ aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+pair\+::variable\+\_\+len\+\_\+val}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/event-\/stream/include/aws/event-\/stream/\mbox{\hyperlink{event__stream_8h}{event\+\_\+stream.\+h}}\end{DoxyCompactItemize}

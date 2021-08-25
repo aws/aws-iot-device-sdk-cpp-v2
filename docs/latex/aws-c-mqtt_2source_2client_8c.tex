@@ -1,0 +1,812 @@
+\hypertarget{aws-c-mqtt_2source_2client_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/source/client.c File Reference}
+\label{aws-c-mqtt_2source_2client_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/source/client.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/source/client.c}}
+{\ttfamily \#include $<$aws/mqtt/client.\+h$>$}\newline
+{\ttfamily \#include $<$aws/mqtt/private/client\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/mqtt/private/mqtt\+\_\+client\+\_\+test\+\_\+helper.\+h$>$}\newline
+{\ttfamily \#include $<$aws/mqtt/private/packets.\+h$>$}\newline
+{\ttfamily \#include $<$aws/mqtt/private/topic\+\_\+tree.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel\+\_\+bootstrap.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/socket.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/tls\+\_\+channel\+\_\+handler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/uri.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/task\+\_\+scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsubscribe__local__task__arg}{subscribe\+\_\+local\+\_\+task\+\_\+arg}}
+\item 
+struct \mbox{\hyperlink{structunsubscribe__task__arg}{unsubscribe\+\_\+task\+\_\+arg}}
+\item 
+struct \mbox{\hyperlink{structpublish__task__arg}{publish\+\_\+task\+\_\+arg}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a952a635230a8fa4b1693b47e00c4fa07}{s\+\_\+mqtt\+\_\+client\+\_\+connect}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{client_8h_a4cdd60b71e0103c78979e02175c05d05}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+connection\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+connection\+\_\+complete, void $\ast$userdata)
+\item 
+void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_af57c3fba26d1b9b394ce34dc8d037542}{mqtt\+\_\+connection\+\_\+lock\+\_\+synced\+\_\+data}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\item 
+void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a652fe56f612008f1a403369d835327de}{mqtt\+\_\+connection\+\_\+unlock\+\_\+synced\+\_\+data}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ad6c0e63cf7be38e49cf118a288bac8c3}{s\+\_\+aws\+\_\+mqtt\+\_\+client\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$client)
+\item 
+void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a6281aa3a8012dc5654d0a930c1149014}{mqtt\+\_\+connection\+\_\+set\+\_\+state}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, enum \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+state}} \mbox{\hyperlink{structstate}{state}})
+\item 
+struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$ \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ab979cebc70c98ae55b17e861f9ddbc4e}{aws\+\_\+mqtt\+\_\+client\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$bootstrap)
+\item 
+struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$ \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ae04cdb7c12200dbbd8bcf07fdb39269c}{aws\+\_\+mqtt\+\_\+client\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$client)
+\item 
+void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a6ae5cd2fe69f3a11dbf90e672f3a5f02}{aws\+\_\+mqtt\+\_\+client\+\_\+release}} (struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$client)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a4e24d8132c4076a8ef6a59e127efc7ba}{s\+\_\+mqtt\+\_\+client\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$bootstrap, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ad857f98ea68bdf0d85643ef019f31433}{s\+\_\+connack\+\_\+received\+\_\+timeout}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_aeba90e170ba122113de96e16cc441095}{s\+\_\+mqtt\+\_\+client\+\_\+init}} (struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$bootstrap, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_af31261645c8052999d9aaa1bd7ee07de}{s\+\_\+attempt\+\_\+reconnect}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$userdata, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_afc9d61af57df369e1bb174958ee09244}{aws\+\_\+create\+\_\+reconnect\+\_\+task}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ab988bd368b44c006b336cb690e2f10cb}{s\+\_\+hash\+\_\+uint16\+\_\+t}} (const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a10b8dfd7091a7b8d21e32c9673f747b2}{s\+\_\+uint16\+\_\+t\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ae25514f08888f179a2579259385c09e2}{s\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+destroy\+\_\+final}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a111cd00ca194c7d1c5f1f9aec62cfb04}{s\+\_\+on\+\_\+final\+\_\+disconnect}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a32e99cb41c774d26211615ae63d122c3}{s\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+start\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\item 
+struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$ \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ae7b523b2000a05e3330b1bf348cc7bfd}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+new}} (struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$client)
+\item 
+struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$ \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a637965163381acf32edf58c225ad1cb2}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\item 
+void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_aefba76482bac8840bea5cb455e8c8a4d}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+release}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\item 
+static int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a5f4581493065922c061fe88c8e8b6918}{s\+\_\+check\+\_\+connection\+\_\+state\+\_\+for\+\_\+configuration}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a4fe5564d0ffa341dfb1efb029e718b03}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+will}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} retain, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}})
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a41b01bbbd1cbb7514ea6922620ceacc5}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+login}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a6e350427887d766b20857e72025d592c}{username}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_af7b550f3b3dbd60c52719a28b826fdd8}{password}})
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a85e3b39408a338deb99b4fb351ec8cbb}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+reconnect\+\_\+timeout}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint64\+\_\+t min\+\_\+timeout, uint64\+\_\+t max\+\_\+timeout)
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a09e89df66cdec8b9a0a09dabf598626e}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+connection\+\_\+interruption\+\_\+handlers}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{client_8h_aaea81ec53050fb24e6e53db4f3c78f3a}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+connection\+\_\+interrupted\+\_\+fn}} $\ast$on\+\_\+interrupted, void $\ast$on\+\_\+interrupted\+\_\+ud, \mbox{\hyperlink{client_8h_a453dfd16edcee3bf1c4a2f3766c8adbc}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+connection\+\_\+resumed\+\_\+fn}} $\ast$on\+\_\+resumed, void $\ast$on\+\_\+resumed\+\_\+ud)
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a11d09a509630de622ce3ecc0de68dd24}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+on\+\_\+any\+\_\+publish\+\_\+handler}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\+\_\+mqtt\+\_\+client\+\_\+publish\+\_\+received\+\_\+fn}} $\ast$on\+\_\+any\+\_\+publish, void $\ast$on\+\_\+any\+\_\+publish\+\_\+ud)
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a29f08fd97b03b412187bbb6a28560b29}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+use\+\_\+websockets}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{client_8h_a1c976c194b00ab431b1d688483cf985b}{aws\+\_\+mqtt\+\_\+transform\+\_\+websocket\+\_\+handshake\+\_\+fn}} $\ast$transformer, void $\ast$transformer\+\_\+ud, \mbox{\hyperlink{client_8h_a7bcec246282fbf6ad17a94b6b376539a}{aws\+\_\+mqtt\+\_\+validate\+\_\+websocket\+\_\+handshake\+\_\+fn}} $\ast$validator, void $\ast$validator\+\_\+ud)
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_aa9d54fb8797ca8db1b4b22531e83d04b}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+websocket\+\_\+proxy\+\_\+options}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, struct \mbox{\hyperlink{structaws__http__proxy__options}{aws\+\_\+http\+\_\+proxy\+\_\+options}} $\ast$proxy\+\_\+options)
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a8eb40401e427bda8ae165be39306481f}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+connect}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__mqtt__connection__options}{aws\+\_\+mqtt\+\_\+connection\+\_\+options}} $\ast$\mbox{\hyperlink{connection__state__test_8c_afe7db95b0401b8dbd61145beab76a3c4}{connection\+\_\+options}})
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a2f7e17b08c7b3c700c8ddd8fafd33455}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+reconnect}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{client_8h_a4cdd60b71e0103c78979e02175c05d05}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+connection\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+connection\+\_\+complete, void $\ast$userdata)
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a46ad1d4bfa7d3e0da2ad2b42a57d2e39}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+disconnect}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{client_8h_a2d0ff0373f9059b34af07aaf87147e04}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+disconnect\+\_\+fn}} $\ast$on\+\_\+disconnect, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ac6db36893b819cb3f64de4139cab771b}{s\+\_\+on\+\_\+publish\+\_\+client\+\_\+wrapper}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}}, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} retain, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ad38c9e391295b271f24c73654097e33c}{s\+\_\+task\+\_\+topic\+\_\+release}} (void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a4b28ab33578bee78fb9aef9aacb10a60}{s\+\_\+task\+\_\+topic\+\_\+clean\+\_\+up}} (void $\ast$userdata)
+\item 
+static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_aed2fcd3325446bdbcef54d7b21f925ee}{s\+\_\+subscribe\+\_\+send}} (uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+first\+\_\+attempt, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a27d5da63b781e949f64c5c429f7f621c}{s\+\_\+subscribe\+\_\+complete}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a246ffe1e8c60488851db2ca3037d8d5f}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+subscribe\+\_\+multiple}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$\mbox{\hyperlink{connection__state__test_8c_acf32dc1de721690a3a4aa9723d66b3a7}{topic\+\_\+filters}}, \mbox{\hyperlink{client_8h_a11a3408e5ffe9d1c61fe6c15617b8728}{aws\+\_\+mqtt\+\_\+suback\+\_\+multi\+\_\+fn}} $\ast$on\+\_\+suback, void $\ast$on\+\_\+suback\+\_\+ud)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a3dbb674a2c55bfaa01c04fb548ae60d7}{s\+\_\+subscribe\+\_\+single\+\_\+complete}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a9c4800f328dac4432923c058c46778c4}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+subscribe}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic\+\_\+filter, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\+\_\+mqtt\+\_\+client\+\_\+publish\+\_\+received\+\_\+fn}} $\ast$\mbox{\hyperlink{topic__tree__test_8c_ad7276cd5ba4292cd3ff3633137b853f8}{on\+\_\+publish}}, void $\ast$on\+\_\+publish\+\_\+ud, \mbox{\hyperlink{mqtt_8h_a4c072048c5bd312923466806b23cea73}{aws\+\_\+mqtt\+\_\+userdata\+\_\+cleanup\+\_\+fn}} $\ast$on\+\_\+ud\+\_\+cleanup, \mbox{\hyperlink{client_8h_a57a5b13d3ef0e02da483985f1a24eb10}{aws\+\_\+mqtt\+\_\+suback\+\_\+fn}} $\ast$on\+\_\+suback, void $\ast$on\+\_\+suback\+\_\+ud)
+\item 
+static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_aaa4758c211da956e65d62a32e5c77441}{s\+\_\+subscribe\+\_\+local\+\_\+send}} (uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+first\+\_\+attempt, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a304111f531bca55d3fa08424501860c9}{s\+\_\+subscribe\+\_\+local\+\_\+complete}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_add697b6a87e6fe14441967e251668cb0}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+subscribe\+\_\+local}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic\+\_\+filter, \mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\+\_\+mqtt\+\_\+client\+\_\+publish\+\_\+received\+\_\+fn}} $\ast$\mbox{\hyperlink{topic__tree__test_8c_ad7276cd5ba4292cd3ff3633137b853f8}{on\+\_\+publish}}, void $\ast$on\+\_\+publish\+\_\+ud, \mbox{\hyperlink{mqtt_8h_a4c072048c5bd312923466806b23cea73}{aws\+\_\+mqtt\+\_\+userdata\+\_\+cleanup\+\_\+fn}} $\ast$on\+\_\+ud\+\_\+cleanup, \mbox{\hyperlink{client_8h_a57a5b13d3ef0e02da483985f1a24eb10}{aws\+\_\+mqtt\+\_\+suback\+\_\+fn}} $\ast$on\+\_\+suback, void $\ast$on\+\_\+suback\+\_\+ud)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_acf45cc46b2cc56b15651469e7522d8cc}{s\+\_\+reconnect\+\_\+resub\+\_\+iterator}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a46b133177fe9761b1e28a0c1f76cbb76}{s\+\_\+resubscribe\+\_\+send}} (uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+first\+\_\+attempt, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a415715aab0fc02ca92bd16a3cfeae22b}{s\+\_\+resubscribe\+\_\+complete}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a299532c0b48e1c00cd64f9f42d48b46f}{aws\+\_\+mqtt\+\_\+resubscribe\+\_\+existing\+\_\+topics}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{client_8h_a11a3408e5ffe9d1c61fe6c15617b8728}{aws\+\_\+mqtt\+\_\+suback\+\_\+multi\+\_\+fn}} $\ast$on\+\_\+suback, void $\ast$on\+\_\+suback\+\_\+ud)
+\item 
+static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ab6bf067d60eaa78eaf5853405ada7b4d}{s\+\_\+unsubscribe\+\_\+send}} (uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+first\+\_\+attempt, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a351ac0b0e40a7c9228ee724f1072be95}{s\+\_\+unsubscribe\+\_\+complete}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a41f67e523e334e53db81a3ae6bd29054}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+unsubscribe}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic\+\_\+filter, \mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\+\_\+mqtt\+\_\+op\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+unsuback, void $\ast$on\+\_\+unsuback\+\_\+ud)
+\item 
+static int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ad286746e67188a3037cb187f347d5d00}{s\+\_\+get\+\_\+element\+\_\+from\+\_\+outstanding\+\_\+requests\+\_\+table}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$elem)
+\item 
+void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_aa24a8640648ea96d2473a98c661e2123}{aws\+\_\+mqtt\+\_\+client\+\_\+get\+\_\+payload\+\_\+for\+\_\+outstanding\+\_\+publish\+\_\+packet}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$result)
+\item 
+void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a9d7ff1b53c2e0fff612f53d0f6531c2c}{aws\+\_\+mqtt\+\_\+client\+\_\+get\+\_\+topic\+\_\+for\+\_\+outstanding\+\_\+publish\+\_\+packet}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$result)
+\item 
+static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a433cbe3a96219f387a1bf6cafb918eb4}{s\+\_\+publish\+\_\+send}} (uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+first\+\_\+attempt, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a1c4de1cff5dd8c8396991c7e166c7f5b}{s\+\_\+publish\+\_\+complete}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ad71e05a338c989ae7f5d2a139a863deb}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+publish}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} retain, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\+\_\+mqtt\+\_\+op\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+complete, void $\ast$userdata)
+\item 
+static void \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a9463b1c0fbe60dfd360b14ad55d3defd}{s\+\_\+pingresp\+\_\+received\+\_\+timeout}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a90294daccefe4c262243c33c6e27a773}{s\+\_\+pingreq\+\_\+send}} (uint16\+\_\+t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\+\_\+id}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+first\+\_\+attempt, void $\ast$userdata)
+\item 
+int \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_ad1357fcdd5a328766f43781a2a7ddc01}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+ping}} (struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$connection)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_aa4a48c9576149d867bfa73858ac7e5c2}{s\+\_\+default\+\_\+request\+\_\+timeout\+\_\+ns}} = 3000000000
+\item 
+static const uint16\+\_\+t \mbox{\hyperlink{aws-c-mqtt_2source_2client_8c_a2dd6c95cf2e98421533524ca014263cc}{s\+\_\+default\+\_\+keep\+\_\+alive\+\_\+sec}} = 1200
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_afc9d61af57df369e1bb174958ee09244}\label{aws-c-mqtt_2source_2client_8c_afc9d61af57df369e1bb174958ee09244}} 
+\index{client.c@{client.c}!aws\_create\_reconnect\_task@{aws\_create\_reconnect\_task}}
+\index{aws\_create\_reconnect\_task@{aws\_create\_reconnect\_task}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_create\_reconnect\_task()}{aws\_create\_reconnect\_task()}}
+{\footnotesize\ttfamily void aws\+\_\+create\+\_\+reconnect\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ae04cdb7c12200dbbd8bcf07fdb39269c}\label{aws-c-mqtt_2source_2client_8c_ae04cdb7c12200dbbd8bcf07fdb39269c}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_acquire@{aws\_mqtt\_client\_acquire}}
+\index{aws\_mqtt\_client\_acquire@{aws\_mqtt\_client\_acquire}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_acquire()}{aws\_mqtt\_client\_acquire()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}}$\ast$ aws\+\_\+mqtt\+\_\+client\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$}]{client }\end{DoxyParamCaption})}
+
+Increments the ref count to an mqtt client, allowing the caller to take a reference to it
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em client} & The client to increment the ref count on\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the mqtt client 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a637965163381acf32edf58c225ad1cb2}\label{aws-c-mqtt_2source_2client_8c_a637965163381acf32edf58c225ad1cb2}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_acquire@{aws\_mqtt\_client\_connection\_acquire}}
+\index{aws\_mqtt\_client\_connection\_acquire@{aws\_mqtt\_client\_connection\_acquire}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_acquire()}{aws\_mqtt\_client\_connection\_acquire()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}}$\ast$ aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+Increments the ref count to an mqtt client connection, allowing the caller to take a reference to it
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the mqtt connection 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a8eb40401e427bda8ae165be39306481f}\label{aws-c-mqtt_2source_2client_8c_a8eb40401e427bda8ae165be39306481f}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_connect@{aws\_mqtt\_client\_connection\_connect}}
+\index{aws\_mqtt\_client\_connection\_connect@{aws\_mqtt\_client\_connection\_connect}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_connect()}{aws\_mqtt\_client\_connection\_connect()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+connect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__mqtt__connection__options}{aws\+\_\+mqtt\+\_\+connection\+\_\+options}} $\ast$}]{connection\+\_\+options }\end{DoxyParamCaption})}
+
+Opens the actual connection defined by aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+new. Once the connection is opened, on\+\_\+connack will be called. Only called when connection is disconnected.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the connection has been successfully initiated, otherwise AWS\+\_\+\+OP\+\_\+\+ERR and \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\+\_\+last\+\_\+error()}} will be set. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a46ad1d4bfa7d3e0da2ad2b42a57d2e39}\label{aws-c-mqtt_2source_2client_8c_a46ad1d4bfa7d3e0da2ad2b42a57d2e39}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_disconnect@{aws\_mqtt\_client\_connection\_disconnect}}
+\index{aws\_mqtt\_client\_connection\_disconnect@{aws\_mqtt\_client\_connection\_disconnect}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_disconnect()}{aws\_mqtt\_client\_connection\_disconnect()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+disconnect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{client_8h_a2d0ff0373f9059b34af07aaf87147e04}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+disconnect\+\_\+fn}} $\ast$}]{on\+\_\+disconnect,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})}
+
+Closes the connection asynchronously, calls the on\+\_\+disconnect callback. All uncompleted requests (publish/subscribe/unsubscribe) will be cancelled, regardless to the status of clean\+\_\+session. DISCONNECT packet will be sent, which deletes the will message from server.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection to close\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the connection is open and is being shutdown, otherwise AWS\+\_\+\+OP\+\_\+\+ERR and \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\+\_\+last\+\_\+error()}} is set. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ae7b523b2000a05e3330b1bf348cc7bfd}\label{aws-c-mqtt_2source_2client_8c_ae7b523b2000a05e3330b1bf348cc7bfd}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_new@{aws\_mqtt\_client\_connection\_new}}
+\index{aws\_mqtt\_client\_connection\_new@{aws\_mqtt\_client\_connection\_new}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_new()}{aws\_mqtt\_client\_connection\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}}$\ast$ aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$}]{client }\end{DoxyParamCaption})}
+
+Spawns a new connection object.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em client} & The client to spawn the connection from\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a new mqtt connection on success, NULL otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ad1357fcdd5a328766f43781a2a7ddc01}\label{aws-c-mqtt_2source_2client_8c_ad1357fcdd5a328766f43781a2a7ddc01}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_ping@{aws\_mqtt\_client\_connection\_ping}}
+\index{aws\_mqtt\_client\_connection\_ping@{aws\_mqtt\_client\_connection\_ping}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_ping()}{aws\_mqtt\_client\_connection\_ping()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+ping (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ad71e05a338c989ae7f5d2a139a863deb}\label{aws-c-mqtt_2source_2client_8c_ad71e05a338c989ae7f5d2a139a863deb}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_publish@{aws\_mqtt\_client\_connection\_publish}}
+\index{aws\_mqtt\_client\_connection\_publish@{aws\_mqtt\_client\_connection\_publish}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_publish()}{aws\_mqtt\_client\_connection\_publish()}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+publish (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{retain,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{payload,  }\item[{\mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\+\_\+mqtt\+\_\+op\+\_\+complete\+\_\+fn}} $\ast$}]{on\+\_\+complete,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})}
+
+Send a PUBLISH packet over connection.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection to publish on \\
+\hline
+\mbox{\texttt{ in}}  & {\em topic} & The topic to publish on \\
+\hline
+\mbox{\texttt{ in}}  & {\em qos} & The requested QoS of the packet \\
+\hline
+\mbox{\texttt{ in}}  & {\em retain} & True to have the server save the packet, and send to all new subscriptions matching topic \\
+\hline
+\mbox{\texttt{ in}}  & {\em payload} & The data to send as the payload of the publish \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+complete} & For QoS 0, called as soon as the packet is sent For QoS 1, called when PUBACK is received For QoS 2, called when PUBCOMP is received\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The packet id of the publish packet if successfully sent, otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a2f7e17b08c7b3c700c8ddd8fafd33455}\label{aws-c-mqtt_2source_2client_8c_a2f7e17b08c7b3c700c8ddd8fafd33455}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_reconnect@{aws\_mqtt\_client\_connection\_reconnect}}
+\index{aws\_mqtt\_client\_connection\_reconnect@{aws\_mqtt\_client\_connection\_reconnect}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_reconnect()}{aws\_mqtt\_client\_connection\_reconnect()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+reconnect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{client_8h_a4cdd60b71e0103c78979e02175c05d05}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+connection\+\_\+complete\+\_\+fn}} $\ast$}]{on\+\_\+connection\+\_\+complete,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})}
+
+DEPRECATED Opens the actual connection defined by aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+new. Once the connection is opened, on\+\_\+connack will be called.
+
+Must be called on a connection that has previously been open, as the parameters passed during the last connection will be reused.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+connection\+\_\+complete} & The callback to fire when the connection attempt completes \\
+\hline
+\mbox{\texttt{ in}}  & {\em userdata} & Passed to the userdata param of on\+\_\+connection\+\_\+complete\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+AWS\+\_\+\+OP\+\_\+\+SUCCESS if the connection has been successfully initiated, otherwise AWS\+\_\+\+OP\+\_\+\+ERR and \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\+\_\+last\+\_\+error()}} will be set. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_aefba76482bac8840bea5cb455e8c8a4d}\label{aws-c-mqtt_2source_2client_8c_aefba76482bac8840bea5cb455e8c8a4d}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_release@{aws\_mqtt\_client\_connection\_release}}
+\index{aws\_mqtt\_client\_connection\_release@{aws\_mqtt\_client\_connection\_release}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_release()}{aws\_mqtt\_client\_connection\_release()}}
+{\footnotesize\ttfamily void aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+Decrements the ref count on an mqtt connection. If the ref count drops to zero, the connection is cleaned up. Note\+: cannot call this with lock held, since it will start the destroy process and cause a dead lock.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a09e89df66cdec8b9a0a09dabf598626e}\label{aws-c-mqtt_2source_2client_8c_a09e89df66cdec8b9a0a09dabf598626e}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_set\_connection\_interruption\_handlers@{aws\_mqtt\_client\_connection\_set\_connection\_interruption\_handlers}}
+\index{aws\_mqtt\_client\_connection\_set\_connection\_interruption\_handlers@{aws\_mqtt\_client\_connection\_set\_connection\_interruption\_handlers}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_set\_connection\_interruption\_handlers()}{aws\_mqtt\_client\_connection\_set\_connection\_interruption\_handlers()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+connection\+\_\+interruption\+\_\+handlers (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{client_8h_aaea81ec53050fb24e6e53db4f3c78f3a}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+connection\+\_\+interrupted\+\_\+fn}} $\ast$}]{on\+\_\+interrupted,  }\item[{void $\ast$}]{on\+\_\+interrupted\+\_\+ud,  }\item[{\mbox{\hyperlink{client_8h_a453dfd16edcee3bf1c4a2f3766c8adbc}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+connection\+\_\+resumed\+\_\+fn}} $\ast$}]{on\+\_\+resumed,  }\item[{void $\ast$}]{on\+\_\+resumed\+\_\+ud }\end{DoxyParamCaption})}
+
+Sets the callbacks to call when a connection is interrupted and resumed.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+interrupted} & The function to call when a connection is lost \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+interrupted\+\_\+ud} & Userdata for on\+\_\+interrupted \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+resumed} & The function to call when a connection is resumed (if clean\+\_\+session is true, calling aws\+\_\+mqtt\+\_\+resubscribe\+\_\+existing\+\_\+topics is suggested) \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+resumed\+\_\+ud} & Userdata for on\+\_\+resumed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a41b01bbbd1cbb7514ea6922620ceacc5}\label{aws-c-mqtt_2source_2client_8c_a41b01bbbd1cbb7514ea6922620ceacc5}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_set\_login@{aws\_mqtt\_client\_connection\_set\_login}}
+\index{aws\_mqtt\_client\_connection\_set\_login@{aws\_mqtt\_client\_connection\_set\_login}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_set\_login()}{aws\_mqtt\_client\_connection\_set\_login()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+login (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{username,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{password }\end{DoxyParamCaption})}
+
+Sets the username and/or password to send with the CONNECT packet.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object \\
+\hline
+\mbox{\texttt{ in}}  & {\em username} & The username to connect with \\
+\hline
+\mbox{\texttt{ in}}  & {\em password} & \mbox{[}optional\mbox{]} The password to connect with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a11d09a509630de622ce3ecc0de68dd24}\label{aws-c-mqtt_2source_2client_8c_a11d09a509630de622ce3ecc0de68dd24}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_set\_on\_any\_publish\_handler@{aws\_mqtt\_client\_connection\_set\_on\_any\_publish\_handler}}
+\index{aws\_mqtt\_client\_connection\_set\_on\_any\_publish\_handler@{aws\_mqtt\_client\_connection\_set\_on\_any\_publish\_handler}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_set\_on\_any\_publish\_handler()}{aws\_mqtt\_client\_connection\_set\_on\_any\_publish\_handler()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+on\+\_\+any\+\_\+publish\+\_\+handler (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\+\_\+mqtt\+\_\+client\+\_\+publish\+\_\+received\+\_\+fn}} $\ast$}]{on\+\_\+any\+\_\+publish,  }\item[{void $\ast$}]{on\+\_\+any\+\_\+publish\+\_\+ud }\end{DoxyParamCaption})}
+
+Sets the callback to call whenever ANY publish packet is received. Only safe to set when connection is not connected.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+any\+\_\+publish} & The function to call when a publish is received (pass NULL to unset) \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+any\+\_\+publish\+\_\+ud} & Userdata for on\+\_\+any\+\_\+publish \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a85e3b39408a338deb99b4fb351ec8cbb}\label{aws-c-mqtt_2source_2client_8c_a85e3b39408a338deb99b4fb351ec8cbb}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_set\_reconnect\_timeout@{aws\_mqtt\_client\_connection\_set\_reconnect\_timeout}}
+\index{aws\_mqtt\_client\_connection\_set\_reconnect\_timeout@{aws\_mqtt\_client\_connection\_set\_reconnect\_timeout}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_set\_reconnect\_timeout()}{aws\_mqtt\_client\_connection\_set\_reconnect\_timeout()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+reconnect\+\_\+timeout (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint64\+\_\+t}]{min\+\_\+timeout,  }\item[{uint64\+\_\+t}]{max\+\_\+timeout }\end{DoxyParamCaption})}
+
+Sets the minimum and maximum reconnect timeouts.
+
+The time between reconnect attempts will start at min and multiply by 2 until max is reached.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object \\
+\hline
+\mbox{\texttt{ in}}  & {\em min\+\_\+timeout} & The timeout to start with \\
+\hline
+\mbox{\texttt{ in}}  & {\em max\+\_\+timeout} & The highest allowable wait time between reconnect attempts \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_aa9d54fb8797ca8db1b4b22531e83d04b}\label{aws-c-mqtt_2source_2client_8c_aa9d54fb8797ca8db1b4b22531e83d04b}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_set\_websocket\_proxy\_options@{aws\_mqtt\_client\_connection\_set\_websocket\_proxy\_options}}
+\index{aws\_mqtt\_client\_connection\_set\_websocket\_proxy\_options@{aws\_mqtt\_client\_connection\_set\_websocket\_proxy\_options}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_set\_websocket\_proxy\_options()}{aws\_mqtt\_client\_connection\_set\_websocket\_proxy\_options()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+websocket\+\_\+proxy\+\_\+options (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{struct \mbox{\hyperlink{structaws__http__proxy__options}{aws\+\_\+http\+\_\+proxy\+\_\+options}} $\ast$}]{proxy\+\_\+options }\end{DoxyParamCaption})}
+
+Set proxy options for the websocket connection. \mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a4fe5564d0ffa341dfb1efb029e718b03}\label{aws-c-mqtt_2source_2client_8c_a4fe5564d0ffa341dfb1efb029e718b03}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_set\_will@{aws\_mqtt\_client\_connection\_set\_will}}
+\index{aws\_mqtt\_client\_connection\_set\_will@{aws\_mqtt\_client\_connection\_set\_will}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_set\_will()}{aws\_mqtt\_client\_connection\_set\_will()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+set\+\_\+will (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{retain,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{payload }\end{DoxyParamCaption})}
+
+Sets the will message to send with the CONNECT packet.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object \\
+\hline
+\mbox{\texttt{ in}}  & {\em topic} & The topic to publish the will on \\
+\hline
+\mbox{\texttt{ in}}  & {\em qos} & The QoS to publish the will with \\
+\hline
+\mbox{\texttt{ in}}  & {\em retain} & The retain flag to publish the will with \\
+\hline
+\mbox{\texttt{ in}}  & {\em payload} & The data if the will message \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a9c4800f328dac4432923c058c46778c4}\label{aws-c-mqtt_2source_2client_8c_a9c4800f328dac4432923c058c46778c4}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_subscribe@{aws\_mqtt\_client\_connection\_subscribe}}
+\index{aws\_mqtt\_client\_connection\_subscribe@{aws\_mqtt\_client\_connection\_subscribe}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_subscribe()}{aws\_mqtt\_client\_connection\_subscribe()}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+subscribe (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic\+\_\+filter,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{\mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\+\_\+mqtt\+\_\+client\+\_\+publish\+\_\+received\+\_\+fn}} $\ast$}]{on\+\_\+publish,  }\item[{void $\ast$}]{on\+\_\+publish\+\_\+ud,  }\item[{\mbox{\hyperlink{mqtt_8h_a4c072048c5bd312923466806b23cea73}{aws\+\_\+mqtt\+\_\+userdata\+\_\+cleanup\+\_\+fn}} $\ast$}]{on\+\_\+ud\+\_\+cleanup,  }\item[{\mbox{\hyperlink{client_8h_a57a5b13d3ef0e02da483985f1a24eb10}{aws\+\_\+mqtt\+\_\+suback\+\_\+fn}} $\ast$}]{on\+\_\+suback,  }\item[{void $\ast$}]{on\+\_\+suback\+\_\+ud }\end{DoxyParamCaption})}
+
+Subscribe to a single topic filter. on\+\_\+publish will be called when a PUBLISH matching topic\+\_\+filter is received.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection to subscribe on \\
+\hline
+\mbox{\texttt{ in}}  & {\em topic\+\_\+filter} & The topic filter to subscribe on. This resource must persist until on\+\_\+suback. \\
+\hline
+\mbox{\texttt{ in}}  & {\em qos} & The maximum QoS of messages to receive \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+publish} & Called when a PUBLISH packet matching topic\+\_\+filter is received \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+publish\+\_\+ud} & Passed to on\+\_\+publish \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+ud\+\_\+cleanup} & Called when a subscription is removed, on\+\_\+publish\+\_\+ud is passed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+suback} & Called when a SUBACK has been received from the server and the subscription is complete \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+suback\+\_\+ud} & Passed to on\+\_\+suback\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The packet id of the subscribe packet if successfully sent, otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_add697b6a87e6fe14441967e251668cb0}\label{aws-c-mqtt_2source_2client_8c_add697b6a87e6fe14441967e251668cb0}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_subscribe\_local@{aws\_mqtt\_client\_connection\_subscribe\_local}}
+\index{aws\_mqtt\_client\_connection\_subscribe\_local@{aws\_mqtt\_client\_connection\_subscribe\_local}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_subscribe\_local()}{aws\_mqtt\_client\_connection\_subscribe\_local()}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+subscribe\+\_\+local (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic\+\_\+filter,  }\item[{\mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\+\_\+mqtt\+\_\+client\+\_\+publish\+\_\+received\+\_\+fn}} $\ast$}]{on\+\_\+publish,  }\item[{void $\ast$}]{on\+\_\+publish\+\_\+ud,  }\item[{\mbox{\hyperlink{mqtt_8h_a4c072048c5bd312923466806b23cea73}{aws\+\_\+mqtt\+\_\+userdata\+\_\+cleanup\+\_\+fn}} $\ast$}]{on\+\_\+ud\+\_\+cleanup,  }\item[{\mbox{\hyperlink{client_8h_a57a5b13d3ef0e02da483985f1a24eb10}{aws\+\_\+mqtt\+\_\+suback\+\_\+fn}} $\ast$}]{on\+\_\+suback,  }\item[{void $\ast$}]{on\+\_\+suback\+\_\+ud }\end{DoxyParamCaption})}
+
+Subscribe to a single topic filter WITHOUT sending a SUBSCRIBE packet. This is useful if you expect the broker to send PUBLISHES without first subscribing. on\+\_\+publish will be called when a PUBLISH matching topic\+\_\+filter is received.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection to subscribe on \\
+\hline
+\mbox{\texttt{ in}}  & {\em topic\+\_\+filter} & The topic filter to subscribe on. This resource must persist until on\+\_\+suback. \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+publish} & Called when a PUBLISH packet matching topic\+\_\+filter is received \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+publish\+\_\+ud} & Passed to on\+\_\+publish \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+ud\+\_\+cleanup} & Called when a subscription is removed, on\+\_\+publish\+\_\+ud is passed. \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+suback} & Called when a SUBACK has been received from the server and the subscription is complete \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+suback\+\_\+ud} & Passed to on\+\_\+suback\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \char`\"{}packet id\char`\"{} of the operation if successfully initiated, otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a246ffe1e8c60488851db2ca3037d8d5f}\label{aws-c-mqtt_2source_2client_8c_a246ffe1e8c60488851db2ca3037d8d5f}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_subscribe\_multiple@{aws\_mqtt\_client\_connection\_subscribe\_multiple}}
+\index{aws\_mqtt\_client\_connection\_subscribe\_multiple@{aws\_mqtt\_client\_connection\_subscribe\_multiple}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_subscribe\_multiple()}{aws\_mqtt\_client\_connection\_subscribe\_multiple()}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+subscribe\+\_\+multiple (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{topic\+\_\+filters,  }\item[{\mbox{\hyperlink{client_8h_a11a3408e5ffe9d1c61fe6c15617b8728}{aws\+\_\+mqtt\+\_\+suback\+\_\+multi\+\_\+fn}} $\ast$}]{on\+\_\+suback,  }\item[{void $\ast$}]{on\+\_\+suback\+\_\+ud }\end{DoxyParamCaption})}
+
+Subscribe to topic filters. on\+\_\+publish will be called when a PUBLISH matching each topic\+\_\+filter is received.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection to subscribe on \\
+\hline
+\mbox{\texttt{ in}}  & {\em topic\+\_\+filters} & An array\+\_\+list of \mbox{\hyperlink{structaws__mqtt__topic__subscription}{aws\+\_\+mqtt\+\_\+topic\+\_\+subscription}} (NOT pointers) describing the requests. \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+suback} & Called when a SUBACK has been received from the server and the subscription is complete Broker may fail one of the topics, check the qos in \mbox{\hyperlink{structaws__mqtt__topic__subscription}{aws\+\_\+mqtt\+\_\+topic\+\_\+subscription}} from the callback \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+suback\+\_\+ud} & Passed to on\+\_\+suback\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The packet id of the subscribe packet if successfully sent, otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a41f67e523e334e53db81a3ae6bd29054}\label{aws-c-mqtt_2source_2client_8c_a41f67e523e334e53db81a3ae6bd29054}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_unsubscribe@{aws\_mqtt\_client\_connection\_unsubscribe}}
+\index{aws\_mqtt\_client\_connection\_unsubscribe@{aws\_mqtt\_client\_connection\_unsubscribe}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_unsubscribe()}{aws\_mqtt\_client\_connection\_unsubscribe()}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+unsubscribe (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic\+\_\+filter,  }\item[{\mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\+\_\+mqtt\+\_\+op\+\_\+complete\+\_\+fn}} $\ast$}]{on\+\_\+unsuback,  }\item[{void $\ast$}]{on\+\_\+unsuback\+\_\+ud }\end{DoxyParamCaption})}
+
+Unsubscribe to a topic filter.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection to unsubscribe on \\
+\hline
+\mbox{\texttt{ in}}  & {\em topic\+\_\+filter} & The topic filter to unsubscribe on. This resource must persist until on\+\_\+unsuback. \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+unsuback} & Called when a UNSUBACK has been received from the server and the subscription is removed \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+unsuback\+\_\+ud} & Passed to on\+\_\+unsuback\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The packet id of the unsubscribe packet if successfully sent, otherwise 0. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a29f08fd97b03b412187bbb6a28560b29}\label{aws-c-mqtt_2source_2client_8c_a29f08fd97b03b412187bbb6a28560b29}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_connection\_use\_websockets@{aws\_mqtt\_client\_connection\_use\_websockets}}
+\index{aws\_mqtt\_client\_connection\_use\_websockets@{aws\_mqtt\_client\_connection\_use\_websockets}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_connection\_use\_websockets()}{aws\_mqtt\_client\_connection\_use\_websockets()}}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+use\+\_\+websockets (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{client_8h_a1c976c194b00ab431b1d688483cf985b}{aws\+\_\+mqtt\+\_\+transform\+\_\+websocket\+\_\+handshake\+\_\+fn}} $\ast$}]{transformer,  }\item[{void $\ast$}]{transformer\+\_\+ud,  }\item[{\mbox{\hyperlink{client_8h_a7bcec246282fbf6ad17a94b6b376539a}{aws\+\_\+mqtt\+\_\+validate\+\_\+websocket\+\_\+handshake\+\_\+fn}} $\ast$}]{validator,  }\item[{void $\ast$}]{validator\+\_\+ud }\end{DoxyParamCaption})}
+
+Use MQTT over websockets when connecting. Requires the MQTT\+\_\+\+WITH\+\_\+\+WEBSOCKETS build option.
+
+In this scenario, an HTTP connection is established, which is then upgraded to a websocket connection, which is then used to send MQTT data.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection object. \\
+\hline
+\mbox{\texttt{ in}}  & {\em transformer} & \mbox{[}optional\mbox{]} Function that may transform the websocket handshake request. See {\ttfamily aws\+\_\+mqtt\+\_\+transform\+\_\+websocket\+\_\+handshake\+\_\+fn} for more info. \\
+\hline
+\mbox{\texttt{ in}}  & {\em transformer\+\_\+ud} & \mbox{[}optional\mbox{]} Userdata for request\+\_\+transformer. \\
+\hline
+\mbox{\texttt{ in}}  & {\em validator} & \mbox{[}optional\mbox{]} Function that may reject the websocket handshake response. \\
+\hline
+\mbox{\texttt{ in}}  & {\em validator\+\_\+ud} & \mbox{[}optional\mbox{]} Userdata for response\+\_\+validator. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_aa24a8640648ea96d2473a98c661e2123}\label{aws-c-mqtt_2source_2client_8c_aa24a8640648ea96d2473a98c661e2123}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet@{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet}}
+\index{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet@{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet()}{aws\_mqtt\_client\_get\_payload\_for\_outstanding\_publish\_packet()}}
+{\footnotesize\ttfamily void aws\+\_\+mqtt\+\_\+client\+\_\+get\+\_\+payload\+\_\+for\+\_\+outstanding\+\_\+publish\+\_\+packet (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{result }\end{DoxyParamCaption})}
+
+This is for testing applications sending MQTT payloads. Don\textquotesingle{}t ever include this file outside of a unit test. \mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a9d7ff1b53c2e0fff612f53d0f6531c2c}\label{aws-c-mqtt_2source_2client_8c_a9d7ff1b53c2e0fff612f53d0f6531c2c}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet@{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet}}
+\index{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet@{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet()}{aws\_mqtt\_client\_get\_topic\_for\_outstanding\_publish\_packet()}}
+{\footnotesize\ttfamily void aws\+\_\+mqtt\+\_\+client\+\_\+get\+\_\+topic\+\_\+for\+\_\+outstanding\+\_\+publish\+\_\+packet (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$}]{result }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ab979cebc70c98ae55b17e861f9ddbc4e}\label{aws-c-mqtt_2source_2client_8c_ab979cebc70c98ae55b17e861f9ddbc4e}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_new@{aws\_mqtt\_client\_new}}
+\index{aws\_mqtt\_client\_new@{aws\_mqtt\_client\_new}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_new()}{aws\_mqtt\_client\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}}$\ast$ aws\+\_\+mqtt\+\_\+client\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$}]{bootstrap }\end{DoxyParamCaption})}
+
+Creates an instance of \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em allocator} & The allocator the client will use for all future allocations \\
+\hline
+\mbox{\texttt{ in}}  & {\em bootstrap} & The client bootstrap to use to initiate new socket connections\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a new instance of an \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} if successful, NULL otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a6ae5cd2fe69f3a11dbf90e672f3a5f02}\label{aws-c-mqtt_2source_2client_8c_a6ae5cd2fe69f3a11dbf90e672f3a5f02}} 
+\index{client.c@{client.c}!aws\_mqtt\_client\_release@{aws\_mqtt\_client\_release}}
+\index{aws\_mqtt\_client\_release@{aws\_mqtt\_client\_release}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_client\_release()}{aws\_mqtt\_client\_release()}}
+{\footnotesize\ttfamily void aws\+\_\+mqtt\+\_\+client\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$}]{client }\end{DoxyParamCaption})}
+
+Decrements the ref count on an mqtt client. If the ref count drops to zero, the client is cleaned up.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em client} & The client to release a ref count on \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a299532c0b48e1c00cd64f9f42d48b46f}\label{aws-c-mqtt_2source_2client_8c_a299532c0b48e1c00cd64f9f42d48b46f}} 
+\index{client.c@{client.c}!aws\_mqtt\_resubscribe\_existing\_topics@{aws\_mqtt\_resubscribe\_existing\_topics}}
+\index{aws\_mqtt\_resubscribe\_existing\_topics@{aws\_mqtt\_resubscribe\_existing\_topics}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{aws\_mqtt\_resubscribe\_existing\_topics()}{aws\_mqtt\_resubscribe\_existing\_topics()}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+mqtt\+\_\+resubscribe\+\_\+existing\+\_\+topics (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{client_8h_a11a3408e5ffe9d1c61fe6c15617b8728}{aws\+\_\+mqtt\+\_\+suback\+\_\+multi\+\_\+fn}} $\ast$}]{on\+\_\+suback,  }\item[{void $\ast$}]{on\+\_\+suback\+\_\+ud }\end{DoxyParamCaption})}
+
+Resubscribe to all topics currently subscribed to. This is to help when resuming a connection with a clean session.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em connection} & The connection to subscribe on \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+suback} & Called when a SUBACK has been received from the server and the subscription is complete \\
+\hline
+\mbox{\texttt{ in}}  & {\em on\+\_\+suback\+\_\+ud} & Passed to on\+\_\+suback\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The packet id of the subscribe packet if successfully sent, otherwise 0 (and \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\+\_\+last\+\_\+error()}} will be set). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_af57c3fba26d1b9b394ce34dc8d037542}\label{aws-c-mqtt_2source_2client_8c_af57c3fba26d1b9b394ce34dc8d037542}} 
+\index{client.c@{client.c}!mqtt\_connection\_lock\_synced\_data@{mqtt\_connection\_lock\_synced\_data}}
+\index{mqtt\_connection\_lock\_synced\_data@{mqtt\_connection\_lock\_synced\_data}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{mqtt\_connection\_lock\_synced\_data()}{mqtt\_connection\_lock\_synced\_data()}}
+{\footnotesize\ttfamily void mqtt\+\_\+connection\+\_\+lock\+\_\+synced\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a6281aa3a8012dc5654d0a930c1149014}\label{aws-c-mqtt_2source_2client_8c_a6281aa3a8012dc5654d0a930c1149014}} 
+\index{client.c@{client.c}!mqtt\_connection\_set\_state@{mqtt\_connection\_set\_state}}
+\index{mqtt\_connection\_set\_state@{mqtt\_connection\_set\_state}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{mqtt\_connection\_set\_state()}{mqtt\_connection\_set\_state()}}
+{\footnotesize\ttfamily void mqtt\+\_\+connection\+\_\+set\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{enum \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7}{aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+state}}}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a652fe56f612008f1a403369d835327de}\label{aws-c-mqtt_2source_2client_8c_a652fe56f612008f1a403369d835327de}} 
+\index{client.c@{client.c}!mqtt\_connection\_unlock\_synced\_data@{mqtt\_connection\_unlock\_synced\_data}}
+\index{mqtt\_connection\_unlock\_synced\_data@{mqtt\_connection\_unlock\_synced\_data}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{mqtt\_connection\_unlock\_synced\_data()}{mqtt\_connection\_unlock\_synced\_data()}}
+{\footnotesize\ttfamily void mqtt\+\_\+connection\+\_\+unlock\+\_\+synced\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_af31261645c8052999d9aaa1bd7ee07de}\label{aws-c-mqtt_2source_2client_8c_af31261645c8052999d9aaa1bd7ee07de}} 
+\index{client.c@{client.c}!s\_attempt\_reconnect@{s\_attempt\_reconnect}}
+\index{s\_attempt\_reconnect@{s\_attempt\_reconnect}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_attempt\_reconnect()}{s\_attempt\_reconnect()}}
+{\footnotesize\ttfamily static void s\+\_\+attempt\+\_\+reconnect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{userdata,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ad6c0e63cf7be38e49cf118a288bac8c3}\label{aws-c-mqtt_2source_2client_8c_ad6c0e63cf7be38e49cf118a288bac8c3}} 
+\index{client.c@{client.c}!s\_aws\_mqtt\_client\_destroy@{s\_aws\_mqtt\_client\_destroy}}
+\index{s\_aws\_mqtt\_client\_destroy@{s\_aws\_mqtt\_client\_destroy}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_mqtt\_client\_destroy()}{s\_aws\_mqtt\_client\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+aws\+\_\+mqtt\+\_\+client\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$}]{client }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a5f4581493065922c061fe88c8e8b6918}\label{aws-c-mqtt_2source_2client_8c_a5f4581493065922c061fe88c8e8b6918}} 
+\index{client.c@{client.c}!s\_check\_connection\_state\_for\_configuration@{s\_check\_connection\_state\_for\_configuration}}
+\index{s\_check\_connection\_state\_for\_configuration@{s\_check\_connection\_state\_for\_configuration}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_check\_connection\_state\_for\_configuration()}{s\_check\_connection\_state\_for\_configuration()}}
+{\footnotesize\ttfamily static int s\+\_\+check\+\_\+connection\+\_\+state\+\_\+for\+\_\+configuration (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ad857f98ea68bdf0d85643ef019f31433}\label{aws-c-mqtt_2source_2client_8c_ad857f98ea68bdf0d85643ef019f31433}} 
+\index{client.c@{client.c}!s\_connack\_received\_timeout@{s\_connack\_received\_timeout}}
+\index{s\_connack\_received\_timeout@{s\_connack\_received\_timeout}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_connack\_received\_timeout()}{s\_connack\_received\_timeout()}}
+{\footnotesize\ttfamily static void s\+\_\+connack\+\_\+received\+\_\+timeout (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{channel\+\_\+task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ad286746e67188a3037cb187f347d5d00}\label{aws-c-mqtt_2source_2client_8c_ad286746e67188a3037cb187f347d5d00}} 
+\index{client.c@{client.c}!s\_get\_element\_from\_outstanding\_requests\_table@{s\_get\_element\_from\_outstanding\_requests\_table}}
+\index{s\_get\_element\_from\_outstanding\_requests\_table@{s\_get\_element\_from\_outstanding\_requests\_table}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_get\_element\_from\_outstanding\_requests\_table()}{s\_get\_element\_from\_outstanding\_requests\_table()}}
+{\footnotesize\ttfamily static int s\+\_\+get\+\_\+element\+\_\+from\+\_\+outstanding\+\_\+requests\+\_\+table (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$}]{elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ab988bd368b44c006b336cb690e2f10cb}\label{aws-c-mqtt_2source_2client_8c_ab988bd368b44c006b336cb690e2f10cb}} 
+\index{client.c@{client.c}!s\_hash\_uint16\_t@{s\_hash\_uint16\_t}}
+\index{s\_hash\_uint16\_t@{s\_hash\_uint16\_t}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_hash\_uint16\_t()}{s\_hash\_uint16\_t()}}
+{\footnotesize\ttfamily static uint64\+\_\+t s\+\_\+hash\+\_\+uint16\+\_\+t (\begin{DoxyParamCaption}\item[{const void $\ast$}]{item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a952a635230a8fa4b1693b47e00c4fa07}\label{aws-c-mqtt_2source_2client_8c_a952a635230a8fa4b1693b47e00c4fa07}} 
+\index{client.c@{client.c}!s\_mqtt\_client\_connect@{s\_mqtt\_client\_connect}}
+\index{s\_mqtt\_client\_connect@{s\_mqtt\_client\_connect}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_client\_connect()}{s\_mqtt\_client\_connect()}}
+{\footnotesize\ttfamily static int s\+\_\+mqtt\+\_\+client\+\_\+connect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{client_8h_a4cdd60b71e0103c78979e02175c05d05}{aws\+\_\+mqtt\+\_\+client\+\_\+on\+\_\+connection\+\_\+complete\+\_\+fn}} $\ast$}]{on\+\_\+connection\+\_\+complete,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ae25514f08888f179a2579259385c09e2}\label{aws-c-mqtt_2source_2client_8c_ae25514f08888f179a2579259385c09e2}} 
+\index{client.c@{client.c}!s\_mqtt\_client\_connection\_destroy\_final@{s\_mqtt\_client\_connection\_destroy\_final}}
+\index{s\_mqtt\_client\_connection\_destroy\_final@{s\_mqtt\_client\_connection\_destroy\_final}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_client\_connection\_destroy\_final()}{s\_mqtt\_client\_connection\_destroy\_final()}}
+{\footnotesize\ttfamily static void s\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+destroy\+\_\+final (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a32e99cb41c774d26211615ae63d122c3}\label{aws-c-mqtt_2source_2client_8c_a32e99cb41c774d26211615ae63d122c3}} 
+\index{client.c@{client.c}!s\_mqtt\_client\_connection\_start\_destroy@{s\_mqtt\_client\_connection\_start\_destroy}}
+\index{s\_mqtt\_client\_connection\_start\_destroy@{s\_mqtt\_client\_connection\_start\_destroy}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_client\_connection\_start\_destroy()}{s\_mqtt\_client\_connection\_start\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+start\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_aeba90e170ba122113de96e16cc441095}\label{aws-c-mqtt_2source_2client_8c_aeba90e170ba122113de96e16cc441095}} 
+\index{client.c@{client.c}!s\_mqtt\_client\_init@{s\_mqtt\_client\_init}}
+\index{s\_mqtt\_client\_init@{s\_mqtt\_client\_init}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_client\_init()}{s\_mqtt\_client\_init()}}
+{\footnotesize\ttfamily static void s\+\_\+mqtt\+\_\+client\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$}]{bootstrap,  }\item[{int}]{error\+\_\+code,  }\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Channel has been initialized callback. Sets up channel handler and sends out CONNECT packet. The on\+\_\+connack callback is called with the CONNACK packet is received from the server. \mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a4e24d8132c4076a8ef6a59e127efc7ba}\label{aws-c-mqtt_2source_2client_8c_a4e24d8132c4076a8ef6a59e127efc7ba}} 
+\index{client.c@{client.c}!s\_mqtt\_client\_shutdown@{s\_mqtt\_client\_shutdown}}
+\index{s\_mqtt\_client\_shutdown@{s\_mqtt\_client\_shutdown}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_mqtt\_client\_shutdown()}{s\_mqtt\_client\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+mqtt\+\_\+client\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$}]{bootstrap,  }\item[{int}]{error\+\_\+code,  }\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a111cd00ca194c7d1c5f1f9aec62cfb04}\label{aws-c-mqtt_2source_2client_8c_a111cd00ca194c7d1c5f1f9aec62cfb04}} 
+\index{client.c@{client.c}!s\_on\_final\_disconnect@{s\_on\_final\_disconnect}}
+\index{s\_on\_final\_disconnect@{s\_on\_final\_disconnect}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_final\_disconnect()}{s\_on\_final\_disconnect()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+final\+\_\+disconnect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ac6db36893b819cb3f64de4139cab771b}\label{aws-c-mqtt_2source_2client_8c_ac6db36893b819cb3f64de4139cab771b}} 
+\index{client.c@{client.c}!s\_on\_publish\_client\_wrapper@{s\_on\_publish\_client\_wrapper}}
+\index{s\_on\_publish\_client\_wrapper@{s\_on\_publish\_client\_wrapper}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_publish\_client\_wrapper()}{s\_on\_publish\_client\_wrapper()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+publish\+\_\+client\+\_\+wrapper (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{payload,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{dup,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{retain,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a90294daccefe4c262243c33c6e27a773}\label{aws-c-mqtt_2source_2client_8c_a90294daccefe4c262243c33c6e27a773}} 
+\index{client.c@{client.c}!s\_pingreq\_send@{s\_pingreq\_send}}
+\index{s\_pingreq\_send@{s\_pingreq\_send}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_pingreq\_send()}{s\_pingreq\_send()}}
+{\footnotesize\ttfamily static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} s\+\_\+pingreq\+\_\+send (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+first\+\_\+attempt,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a9463b1c0fbe60dfd360b14ad55d3defd}\label{aws-c-mqtt_2source_2client_8c_a9463b1c0fbe60dfd360b14ad55d3defd}} 
+\index{client.c@{client.c}!s\_pingresp\_received\_timeout@{s\_pingresp\_received\_timeout}}
+\index{s\_pingresp\_received\_timeout@{s\_pingresp\_received\_timeout}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_pingresp\_received\_timeout()}{s\_pingresp\_received\_timeout()}}
+{\footnotesize\ttfamily static void s\+\_\+pingresp\+\_\+received\+\_\+timeout (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{channel\+\_\+task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a1c4de1cff5dd8c8396991c7e166c7f5b}\label{aws-c-mqtt_2source_2client_8c_a1c4de1cff5dd8c8396991c7e166c7f5b}} 
+\index{client.c@{client.c}!s\_publish\_complete@{s\_publish\_complete}}
+\index{s\_publish\_complete@{s\_publish\_complete}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_publish\_complete()}{s\_publish\_complete()}}
+{\footnotesize\ttfamily static void s\+\_\+publish\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a433cbe3a96219f387a1bf6cafb918eb4}\label{aws-c-mqtt_2source_2client_8c_a433cbe3a96219f387a1bf6cafb918eb4}} 
+\index{client.c@{client.c}!s\_publish\_send@{s\_publish\_send}}
+\index{s\_publish\_send@{s\_publish\_send}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_publish\_send()}{s\_publish\_send()}}
+{\footnotesize\ttfamily static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} s\+\_\+publish\+\_\+send (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+first\+\_\+attempt,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_acf45cc46b2cc56b15651469e7522d8cc}\label{aws-c-mqtt_2source_2client_8c_acf45cc46b2cc56b15651469e7522d8cc}} 
+\index{client.c@{client.c}!s\_reconnect\_resub\_iterator@{s\_reconnect\_resub\_iterator}}
+\index{s\_reconnect\_resub\_iterator@{s\_reconnect\_resub\_iterator}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_reconnect\_resub\_iterator()}{s\_reconnect\_resub\_iterator()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+reconnect\+\_\+resub\+\_\+iterator (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a415715aab0fc02ca92bd16a3cfeae22b}\label{aws-c-mqtt_2source_2client_8c_a415715aab0fc02ca92bd16a3cfeae22b}} 
+\index{client.c@{client.c}!s\_resubscribe\_complete@{s\_resubscribe\_complete}}
+\index{s\_resubscribe\_complete@{s\_resubscribe\_complete}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_resubscribe\_complete()}{s\_resubscribe\_complete()}}
+{\footnotesize\ttfamily static void s\+\_\+resubscribe\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a46b133177fe9761b1e28a0c1f76cbb76}\label{aws-c-mqtt_2source_2client_8c_a46b133177fe9761b1e28a0c1f76cbb76}} 
+\index{client.c@{client.c}!s\_resubscribe\_send@{s\_resubscribe\_send}}
+\index{s\_resubscribe\_send@{s\_resubscribe\_send}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_resubscribe\_send()}{s\_resubscribe\_send()}}
+{\footnotesize\ttfamily static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} s\+\_\+resubscribe\+\_\+send (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+first\+\_\+attempt,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a27d5da63b781e949f64c5c429f7f621c}\label{aws-c-mqtt_2source_2client_8c_a27d5da63b781e949f64c5c429f7f621c}} 
+\index{client.c@{client.c}!s\_subscribe\_complete@{s\_subscribe\_complete}}
+\index{s\_subscribe\_complete@{s\_subscribe\_complete}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_subscribe\_complete()}{s\_subscribe\_complete()}}
+{\footnotesize\ttfamily static void s\+\_\+subscribe\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a304111f531bca55d3fa08424501860c9}\label{aws-c-mqtt_2source_2client_8c_a304111f531bca55d3fa08424501860c9}} 
+\index{client.c@{client.c}!s\_subscribe\_local\_complete@{s\_subscribe\_local\_complete}}
+\index{s\_subscribe\_local\_complete@{s\_subscribe\_local\_complete}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_subscribe\_local\_complete()}{s\_subscribe\_local\_complete()}}
+{\footnotesize\ttfamily static void s\+\_\+subscribe\+\_\+local\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_aaa4758c211da956e65d62a32e5c77441}\label{aws-c-mqtt_2source_2client_8c_aaa4758c211da956e65d62a32e5c77441}} 
+\index{client.c@{client.c}!s\_subscribe\_local\_send@{s\_subscribe\_local\_send}}
+\index{s\_subscribe\_local\_send@{s\_subscribe\_local\_send}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_subscribe\_local\_send()}{s\_subscribe\_local\_send()}}
+{\footnotesize\ttfamily static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} s\+\_\+subscribe\+\_\+local\+\_\+send (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+first\+\_\+attempt,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_aed2fcd3325446bdbcef54d7b21f925ee}\label{aws-c-mqtt_2source_2client_8c_aed2fcd3325446bdbcef54d7b21f925ee}} 
+\index{client.c@{client.c}!s\_subscribe\_send@{s\_subscribe\_send}}
+\index{s\_subscribe\_send@{s\_subscribe\_send}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_subscribe\_send()}{s\_subscribe\_send()}}
+{\footnotesize\ttfamily static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} s\+\_\+subscribe\+\_\+send (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+first\+\_\+attempt,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a3dbb674a2c55bfaa01c04fb548ae60d7}\label{aws-c-mqtt_2source_2client_8c_a3dbb674a2c55bfaa01c04fb548ae60d7}} 
+\index{client.c@{client.c}!s\_subscribe\_single\_complete@{s\_subscribe\_single\_complete}}
+\index{s\_subscribe\_single\_complete@{s\_subscribe\_single\_complete}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_subscribe\_single\_complete()}{s\_subscribe\_single\_complete()}}
+{\footnotesize\ttfamily static void s\+\_\+subscribe\+\_\+single\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a4b28ab33578bee78fb9aef9aacb10a60}\label{aws-c-mqtt_2source_2client_8c_a4b28ab33578bee78fb9aef9aacb10a60}} 
+\index{client.c@{client.c}!s\_task\_topic\_clean\_up@{s\_task\_topic\_clean\_up}}
+\index{s\_task\_topic\_clean\_up@{s\_task\_topic\_clean\_up}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_task\_topic\_clean\_up()}{s\_task\_topic\_clean\_up()}}
+{\footnotesize\ttfamily static void s\+\_\+task\+\_\+topic\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ad38c9e391295b271f24c73654097e33c}\label{aws-c-mqtt_2source_2client_8c_ad38c9e391295b271f24c73654097e33c}} 
+\index{client.c@{client.c}!s\_task\_topic\_release@{s\_task\_topic\_release}}
+\index{s\_task\_topic\_release@{s\_task\_topic\_release}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_task\_topic\_release()}{s\_task\_topic\_release()}}
+{\footnotesize\ttfamily static void s\+\_\+task\+\_\+topic\+\_\+release (\begin{DoxyParamCaption}\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a10b8dfd7091a7b8d21e32c9673f747b2}\label{aws-c-mqtt_2source_2client_8c_a10b8dfd7091a7b8d21e32c9673f747b2}} 
+\index{client.c@{client.c}!s\_uint16\_t\_eq@{s\_uint16\_t\_eq}}
+\index{s\_uint16\_t\_eq@{s\_uint16\_t\_eq}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_uint16\_t\_eq()}{s\_uint16\_t\_eq()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+uint16\+\_\+t\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a351ac0b0e40a7c9228ee724f1072be95}\label{aws-c-mqtt_2source_2client_8c_a351ac0b0e40a7c9228ee724f1072be95}} 
+\index{client.c@{client.c}!s\_unsubscribe\_complete@{s\_unsubscribe\_complete}}
+\index{s\_unsubscribe\_complete@{s\_unsubscribe\_complete}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_unsubscribe\_complete()}{s\_unsubscribe\_complete()}}
+{\footnotesize\ttfamily static void s\+\_\+unsubscribe\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$}]{connection,  }\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_ab6bf067d60eaa78eaf5853405ada7b4d}\label{aws-c-mqtt_2source_2client_8c_ab6bf067d60eaa78eaf5853405ada7b4d}} 
+\index{client.c@{client.c}!s\_unsubscribe\_send@{s\_unsubscribe\_send}}
+\index{s\_unsubscribe\_send@{s\_unsubscribe\_send}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_unsubscribe\_send()}{s\_unsubscribe\_send()}}
+{\footnotesize\ttfamily static enum \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\+\_\+mqtt\+\_\+client\+\_\+request\+\_\+state}} s\+\_\+unsubscribe\+\_\+send (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{packet\+\_\+id,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+first\+\_\+attempt,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_a2dd6c95cf2e98421533524ca014263cc}\label{aws-c-mqtt_2source_2client_8c_a2dd6c95cf2e98421533524ca014263cc}} 
+\index{client.c@{client.c}!s\_default\_keep\_alive\_sec@{s\_default\_keep\_alive\_sec}}
+\index{s\_default\_keep\_alive\_sec@{s\_default\_keep\_alive\_sec}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_default\_keep\_alive\_sec}{s\_default\_keep\_alive\_sec}}
+{\footnotesize\ttfamily const uint16\+\_\+t s\+\_\+default\+\_\+keep\+\_\+alive\+\_\+sec = 1200\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-mqtt_2source_2client_8c_aa4a48c9576149d867bfa73858ac7e5c2}\label{aws-c-mqtt_2source_2client_8c_aa4a48c9576149d867bfa73858ac7e5c2}} 
+\index{client.c@{client.c}!s\_default\_request\_timeout\_ns@{s\_default\_request\_timeout\_ns}}
+\index{s\_default\_request\_timeout\_ns@{s\_default\_request\_timeout\_ns}!client.c@{client.c}}
+\doxysubsubsection{\texorpdfstring{s\_default\_request\_timeout\_ns}{s\_default\_request\_timeout\_ns}}
+{\footnotesize\ttfamily const uint64\+\_\+t s\+\_\+default\+\_\+request\+\_\+timeout\+\_\+ns = 3000000000\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

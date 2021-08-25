@@ -1,0 +1,236 @@
+\hypertarget{s2n__async__pkey_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+async\+\_\+pkey.c File Reference}
+\label{s2n__async__pkey_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_async\_pkey.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_async\_pkey.c}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+async\+\_\+pkey.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+signature.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}s2n.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+mem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+result.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__async__pkey__decrypt__data}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structs2n__async__pkey__sign__data}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}}
+\item 
+struct \mbox{\hyperlink{structs2n__async__pkey__op__actions}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+actions}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+type}} \{ \mbox{\hyperlink{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972a04689780ebbcaa8e273be618310de5a0}{S2\+N\+\_\+\+ASYNC\+\_\+\+DECRYPT}}
+, \mbox{\hyperlink{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972a36aff920193a5e4a57f18579cedcae31}{S2\+N\+\_\+\+ASYNC\+\_\+\+SIGN}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a47901b10863df43efb929f717e4de982}{s2n\+\_\+async\+\_\+get\+\_\+actions}} (\mbox{\hyperlink{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+type}} type, const struct \mbox{\hyperlink{structs2n__async__pkey__op__actions}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+actions}} $\ast$$\ast$actions)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a69ad6708ea416ae98449f838b259ee4a}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+allocate}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$$\ast$op)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a2981a1dee94d8d802011c2e967997693}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+async}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}} sig\+\_\+alg, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$digest, \mbox{\hyperlink{s2n__async__pkey_8h_ab0ae41ea1fe8196572d6131efc73939f}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+complete}} on\+\_\+complete)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a6e5554f9a5dc9864ca0d5412a1cc100d}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+sync}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}} sig\+\_\+alg, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$digest, \mbox{\hyperlink{s2n__async__pkey_8h_ab0ae41ea1fe8196572d6131efc73939f}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+complete}} on\+\_\+complete)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a5ccb776dd9dfd5c6d2b718a8c21864ca}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+async}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$encrypted, struct s2n\+\_\+blob $\ast$init\+\_\+decrypted, \mbox{\hyperlink{s2n__async__pkey_8h_aed227739da6e57341c0d04484879d0e7}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete}} on\+\_\+complete)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a3f96ed93050763cd72fc6c97a8feda97}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+sync}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$encrypted, struct s2n\+\_\+blob $\ast$init\+\_\+decrypted, \mbox{\hyperlink{s2n__async__pkey_8h_aed227739da6e57341c0d04484879d0e7}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete}} on\+\_\+complete)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a7269e2b8232430ee47749749a332b792}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+perform}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op, \mbox{\hyperlink{s2n_8h_a9abfa5333181eedc5c2e59bccbe60700}{s2n\+\_\+cert\+\_\+private\+\_\+key}} $\ast$pkey)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a842ca95dad3c6268eb644897541ad98b}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+apply}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a4ca797bce950a83440d0cd927e976642}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+free}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_af4351b4b9df8a2cd74c937b0fb46a8a7}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+perform}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op, \mbox{\hyperlink{s2n_8h_a9abfa5333181eedc5c2e59bccbe60700}{s2n\+\_\+cert\+\_\+private\+\_\+key}} $\ast$pkey)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a79d9c9820fec3da0cc7f88441b3347af}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+apply}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a20ac2e7aa28211d379fd75e6a279aa4d}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+free}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op)
+\item 
+\mbox{\hyperlink{s2n__async__pkey_8c_a4ca559f9b5a50e56e3d82b874002b2b1}{DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$, \mbox{\hyperlink{s2n__async__pkey_8h_a1b0969d5027ec527296b0be240c8f440}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+free}})
+\item 
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_af67b5746aa73664a39f925afae45f2b9}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$encrypted, struct s2n\+\_\+blob $\ast$init\+\_\+decrypted, \mbox{\hyperlink{s2n__async__pkey_8h_aed227739da6e57341c0d04484879d0e7}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete}} on\+\_\+complete)
+\item 
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8c_a40030bf55355d66a65892e5c4af6ff05}{s2n\+\_\+async\+\_\+pkey\+\_\+sign}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}} sig\+\_\+alg, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$digest, \mbox{\hyperlink{s2n__async__pkey_8h_ab0ae41ea1fe8196572d6131efc73939f}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+complete}} on\+\_\+complete)
+\item 
+int \mbox{\hyperlink{s2n__async__pkey_8c_a47687920829578eb45be9a47c826490d}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+perform}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op, \mbox{\hyperlink{s2n_8h_a9abfa5333181eedc5c2e59bccbe60700}{s2n\+\_\+cert\+\_\+private\+\_\+key}} $\ast$key)
+\item 
+int \mbox{\hyperlink{s2n__async__pkey_8c_ad144bdf2d201c8a8c032563251545cbf}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+apply}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__async__pkey_8c_a1b0969d5027ec527296b0be240c8f440}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+free}} (struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const struct \mbox{\hyperlink{structs2n__async__pkey__op__actions}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+actions}} \mbox{\hyperlink{s2n__async__pkey_8c_a597c76dece9197e0e801e9a92d4f9f98}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+op}}
+\item 
+static const struct \mbox{\hyperlink{structs2n__async__pkey__op__actions}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+actions}} \mbox{\hyperlink{s2n__async__pkey_8c_a359cab631bcd09b02d516c845c3d0734}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+op}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972}\label{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_op\_type@{s2n\_async\_pkey\_op\_type}}
+\index{s2n\_async\_pkey\_op\_type@{s2n\_async\_pkey\_op\_type}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_op\_type}{s2n\_async\_pkey\_op\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_ASYNC\_DECRYPT@{S2N\_ASYNC\_DECRYPT}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!S2N\_ASYNC\_DECRYPT@{S2N\_ASYNC\_DECRYPT}}}\mbox{\Hypertarget{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972a04689780ebbcaa8e273be618310de5a0}\label{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972a04689780ebbcaa8e273be618310de5a0}} 
+S2\+N\+\_\+\+ASYNC\+\_\+\+DECRYPT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_ASYNC\_SIGN@{S2N\_ASYNC\_SIGN}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!S2N\_ASYNC\_SIGN@{S2N\_ASYNC\_SIGN}}}\mbox{\Hypertarget{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972a36aff920193a5e4a57f18579cedcae31}\label{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972a36aff920193a5e4a57f18579cedcae31}} 
+S2\+N\+\_\+\+ASYNC\+\_\+\+SIGN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__async__pkey_8c_a4ca559f9b5a50e56e3d82b874002b2b1}\label{s2n__async__pkey_8c_a4ca559f9b5a50e56e3d82b874002b2b1}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!DEFINE\_POINTER\_CLEANUP\_FUNC@{DEFINE\_POINTER\_CLEANUP\_FUNC}}
+\index{DEFINE\_POINTER\_CLEANUP\_FUNC@{DEFINE\_POINTER\_CLEANUP\_FUNC}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_POINTER\_CLEANUP\_FUNC()}{DEFINE\_POINTER\_CLEANUP\_FUNC()}}
+{\footnotesize\ttfamily DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{,  }\item[{\mbox{\hyperlink{s2n__async__pkey_8h_a1b0969d5027ec527296b0be240c8f440}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+free}}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a47901b10863df43efb929f717e4de982}\label{s2n__async__pkey_8c_a47901b10863df43efb929f717e4de982}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_get\_actions@{s2n\_async\_get\_actions}}
+\index{s2n\_async\_get\_actions@{s2n\_async\_get\_actions}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_get\_actions()}{s2n\_async\_get\_actions()}}
+{\footnotesize\ttfamily static S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+get\+\_\+actions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__async__pkey_8c_aedafc6dd8cb741ba7001beb50f3aa972}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+type}}}]{type,  }\item[{const struct \mbox{\hyperlink{structs2n__async__pkey__op__actions}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+actions}} $\ast$$\ast$}]{actions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_af67b5746aa73664a39f925afae45f2b9}\label{s2n__async__pkey_8c_af67b5746aa73664a39f925afae45f2b9}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_decrypt@{s2n\_async\_pkey\_decrypt}}
+\index{s2n\_async\_pkey\_decrypt@{s2n\_async\_pkey\_decrypt}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_decrypt()}{s2n\_async\_pkey\_decrypt()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+decrypt (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{encrypted,  }\item[{struct s2n\+\_\+blob $\ast$}]{init\+\_\+decrypted,  }\item[{\mbox{\hyperlink{s2n__async__pkey_8h_aed227739da6e57341c0d04484879d0e7}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete}}}]{on\+\_\+complete }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a842ca95dad3c6268eb644897541ad98b}\label{s2n__async__pkey_8c_a842ca95dad3c6268eb644897541ad98b}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_decrypt\_apply@{s2n\_async\_pkey\_decrypt\_apply}}
+\index{s2n\_async\_pkey\_decrypt\_apply@{s2n\_async\_pkey\_decrypt\_apply}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_decrypt\_apply()}{s2n\_async\_pkey\_decrypt\_apply()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+apply (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op,  }\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a5ccb776dd9dfd5c6d2b718a8c21864ca}\label{s2n__async__pkey_8c_a5ccb776dd9dfd5c6d2b718a8c21864ca}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_decrypt\_async@{s2n\_async\_pkey\_decrypt\_async}}
+\index{s2n\_async\_pkey\_decrypt\_async@{s2n\_async\_pkey\_decrypt\_async}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_decrypt\_async()}{s2n\_async\_pkey\_decrypt\_async()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+async (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{encrypted,  }\item[{struct s2n\+\_\+blob $\ast$}]{init\+\_\+decrypted,  }\item[{\mbox{\hyperlink{s2n__async__pkey_8h_aed227739da6e57341c0d04484879d0e7}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete}}}]{on\+\_\+complete }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a4ca797bce950a83440d0cd927e976642}\label{s2n__async__pkey_8c_a4ca797bce950a83440d0cd927e976642}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_decrypt\_free@{s2n\_async\_pkey\_decrypt\_free}}
+\index{s2n\_async\_pkey\_decrypt\_free@{s2n\_async\_pkey\_decrypt\_free}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_decrypt\_free()}{s2n\_async\_pkey\_decrypt\_free()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a7269e2b8232430ee47749749a332b792}\label{s2n__async__pkey_8c_a7269e2b8232430ee47749749a332b792}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_decrypt\_perform@{s2n\_async\_pkey\_decrypt\_perform}}
+\index{s2n\_async\_pkey\_decrypt\_perform@{s2n\_async\_pkey\_decrypt\_perform}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_decrypt\_perform()}{s2n\_async\_pkey\_decrypt\_perform()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+perform (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op,  }\item[{\mbox{\hyperlink{s2n_8h_a9abfa5333181eedc5c2e59bccbe60700}{s2n\+\_\+cert\+\_\+private\+\_\+key}} $\ast$}]{pkey }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a3f96ed93050763cd72fc6c97a8feda97}\label{s2n__async__pkey_8c_a3f96ed93050763cd72fc6c97a8feda97}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_decrypt\_sync@{s2n\_async\_pkey\_decrypt\_sync}}
+\index{s2n\_async\_pkey\_decrypt\_sync@{s2n\_async\_pkey\_decrypt\_sync}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_decrypt\_sync()}{s2n\_async\_pkey\_decrypt\_sync()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+sync (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{encrypted,  }\item[{struct s2n\+\_\+blob $\ast$}]{init\+\_\+decrypted,  }\item[{\mbox{\hyperlink{s2n__async__pkey_8h_aed227739da6e57341c0d04484879d0e7}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete}}}]{on\+\_\+complete }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a69ad6708ea416ae98449f838b259ee4a}\label{s2n__async__pkey_8c_a69ad6708ea416ae98449f838b259ee4a}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_op\_allocate@{s2n\_async\_pkey\_op\_allocate}}
+\index{s2n\_async\_pkey\_op\_allocate@{s2n\_async\_pkey\_op\_allocate}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_op\_allocate()}{s2n\_async\_pkey\_op\_allocate()}}
+{\footnotesize\ttfamily static S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+allocate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$$\ast$}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_ad144bdf2d201c8a8c032563251545cbf}\label{s2n__async__pkey_8c_ad144bdf2d201c8a8c032563251545cbf}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_op\_apply@{s2n\_async\_pkey\_op\_apply}}
+\index{s2n\_async\_pkey\_op\_apply@{s2n\_async\_pkey\_op\_apply}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_op\_apply()}{s2n\_async\_pkey\_op\_apply()}}
+{\footnotesize\ttfamily int s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+apply (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op,  }\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a1b0969d5027ec527296b0be240c8f440}\label{s2n__async__pkey_8c_a1b0969d5027ec527296b0be240c8f440}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_op\_free@{s2n\_async\_pkey\_op\_free}}
+\index{s2n\_async\_pkey\_op\_free@{s2n\_async\_pkey\_op\_free}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_op\_free()}{s2n\_async\_pkey\_op\_free()}}
+{\footnotesize\ttfamily int s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a47687920829578eb45be9a47c826490d}\label{s2n__async__pkey_8c_a47687920829578eb45be9a47c826490d}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_op\_perform@{s2n\_async\_pkey\_op\_perform}}
+\index{s2n\_async\_pkey\_op\_perform@{s2n\_async\_pkey\_op\_perform}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_op\_perform()}{s2n\_async\_pkey\_op\_perform()}}
+{\footnotesize\ttfamily int s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+perform (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op,  }\item[{\mbox{\hyperlink{s2n_8h_a9abfa5333181eedc5c2e59bccbe60700}{s2n\+\_\+cert\+\_\+private\+\_\+key}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a40030bf55355d66a65892e5c4af6ff05}\label{s2n__async__pkey_8c_a40030bf55355d66a65892e5c4af6ff05}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_sign@{s2n\_async\_pkey\_sign}}
+\index{s2n\_async\_pkey\_sign@{s2n\_async\_pkey\_sign}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_sign()}{s2n\_async\_pkey\_sign()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+sign (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}}}]{sig\+\_\+alg,  }\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{digest,  }\item[{\mbox{\hyperlink{s2n__async__pkey_8h_ab0ae41ea1fe8196572d6131efc73939f}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+complete}}}]{on\+\_\+complete }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a79d9c9820fec3da0cc7f88441b3347af}\label{s2n__async__pkey_8c_a79d9c9820fec3da0cc7f88441b3347af}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_sign\_apply@{s2n\_async\_pkey\_sign\_apply}}
+\index{s2n\_async\_pkey\_sign\_apply@{s2n\_async\_pkey\_sign\_apply}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_sign\_apply()}{s2n\_async\_pkey\_sign\_apply()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+apply (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op,  }\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a2981a1dee94d8d802011c2e967997693}\label{s2n__async__pkey_8c_a2981a1dee94d8d802011c2e967997693}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_sign\_async@{s2n\_async\_pkey\_sign\_async}}
+\index{s2n\_async\_pkey\_sign\_async@{s2n\_async\_pkey\_sign\_async}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_sign\_async()}{s2n\_async\_pkey\_sign\_async()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+async (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}}}]{sig\+\_\+alg,  }\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{digest,  }\item[{\mbox{\hyperlink{s2n__async__pkey_8h_ab0ae41ea1fe8196572d6131efc73939f}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+complete}}}]{on\+\_\+complete }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a20ac2e7aa28211d379fd75e6a279aa4d}\label{s2n__async__pkey_8c_a20ac2e7aa28211d379fd75e6a279aa4d}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_sign\_free@{s2n\_async\_pkey\_sign\_free}}
+\index{s2n\_async\_pkey\_sign\_free@{s2n\_async\_pkey\_sign\_free}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_sign\_free()}{s2n\_async\_pkey\_sign\_free()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_af4351b4b9df8a2cd74c937b0fb46a8a7}\label{s2n__async__pkey_8c_af4351b4b9df8a2cd74c937b0fb46a8a7}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_sign\_perform@{s2n\_async\_pkey\_sign\_perform}}
+\index{s2n\_async\_pkey\_sign\_perform@{s2n\_async\_pkey\_sign\_perform}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_sign\_perform()}{s2n\_async\_pkey\_sign\_perform()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+perform (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op,  }\item[{\mbox{\hyperlink{s2n_8h_a9abfa5333181eedc5c2e59bccbe60700}{s2n\+\_\+cert\+\_\+private\+\_\+key}} $\ast$}]{pkey }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey_8c_a6e5554f9a5dc9864ca0d5412a1cc100d}\label{s2n__async__pkey_8c_a6e5554f9a5dc9864ca0d5412a1cc100d}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_sign\_sync@{s2n\_async\_pkey\_sign\_sync}}
+\index{s2n\_async\_pkey\_sign\_sync@{s2n\_async\_pkey\_sign\_sync}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_sign\_sync()}{s2n\_async\_pkey\_sign\_sync()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+sync (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}}}]{sig\+\_\+alg,  }\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{digest,  }\item[{\mbox{\hyperlink{s2n__async__pkey_8h_ab0ae41ea1fe8196572d6131efc73939f}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+complete}}}]{on\+\_\+complete }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__async__pkey_8c_a597c76dece9197e0e801e9a92d4f9f98}\label{s2n__async__pkey_8c_a597c76dece9197e0e801e9a92d4f9f98}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_decrypt\_op@{s2n\_async\_pkey\_decrypt\_op}}
+\index{s2n\_async\_pkey\_decrypt\_op@{s2n\_async\_pkey\_decrypt\_op}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_decrypt\_op}{s2n\_async\_pkey\_decrypt\_op}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__async__pkey__op__actions}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+actions}} s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+op\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{ .perform = \&\mbox{\hyperlink{s2n__async__pkey_8c_a7269e2b8232430ee47749749a332b792}{s2n\_async\_pkey\_decrypt\_perform}},}
+\DoxyCodeLine{                                                                            .apply   = \&\mbox{\hyperlink{s2n__async__pkey_8c_a842ca95dad3c6268eb644897541ad98b}{s2n\_async\_pkey\_decrypt\_apply}},}
+\DoxyCodeLine{                                                                            .free    = \&\mbox{\hyperlink{s2n__async__pkey_8c_a4ca797bce950a83440d0cd927e976642}{s2n\_async\_pkey\_decrypt\_free}} \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__async__pkey_8c_a359cab631bcd09b02d516c845c3d0734}\label{s2n__async__pkey_8c_a359cab631bcd09b02d516c845c3d0734}} 
+\index{s2n\_async\_pkey.c@{s2n\_async\_pkey.c}!s2n\_async\_pkey\_sign\_op@{s2n\_async\_pkey\_sign\_op}}
+\index{s2n\_async\_pkey\_sign\_op@{s2n\_async\_pkey\_sign\_op}!s2n\_async\_pkey.c@{s2n\_async\_pkey.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_sign\_op}{s2n\_async\_pkey\_sign\_op}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__async__pkey__op__actions}{s2n\+\_\+async\+\_\+pkey\+\_\+op\+\_\+actions}} s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+op\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{ .perform = \&\mbox{\hyperlink{s2n__async__pkey_8c_af4351b4b9df8a2cd74c937b0fb46a8a7}{s2n\_async\_pkey\_sign\_perform}},}
+\DoxyCodeLine{                                                                         .apply   = \&\mbox{\hyperlink{s2n__async__pkey_8c_a79d9c9820fec3da0cc7f88441b3347af}{s2n\_async\_pkey\_sign\_apply}},}
+\DoxyCodeLine{                                                                         .free    = \&\mbox{\hyperlink{s2n__async__pkey_8c_a20ac2e7aa28211d379fd75e6a279aa4d}{s2n\_async\_pkey\_sign\_free}} \}}
+
+\end{DoxyCode}

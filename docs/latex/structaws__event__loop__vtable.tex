@@ -1,0 +1,105 @@
+\hypertarget{structaws__event__loop__vtable}{}\doxysection{aws\+\_\+event\+\_\+loop\+\_\+vtable Struct Reference}
+\label{structaws__event__loop__vtable}\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+
+
+{\ttfamily \#include $<$event\+\_\+loop.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_a2914d2d921378d886473636283f03529}{destroy}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_af5154badb001e3dcbcbb205ab4443c5b}{run}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_a8878dbee166aac39feac462e2d19582f}{stop}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_ad9056c82594a8aedfce12462ad478f59}{wait\+\_\+for\+\_\+stop\+\_\+completion}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_aa031027b4d33e13c4acfb1b535f06da4}{schedule\+\_\+task\+\_\+now}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_a619355ac6e68e872e0a53e57faf0aedf}{schedule\+\_\+task\+\_\+future}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_a3e417f019bdfb4a82c9596cb29a20199}{cancel\+\_\+task}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_af5625aa2f9176b8de1606de00028e093}{subscribe\+\_\+to\+\_\+io\+\_\+events}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, \mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}} $\ast$\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}{on\+\_\+event}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_a011a90a9046a88e530248fd51dfbf9c5}{unsubscribe\+\_\+from\+\_\+io\+\_\+events}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_ac2987cd414e8492053ab256bc3692071}{free\+\_\+io\+\_\+event\+\_\+resources}} )(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$ \mbox{\hyperlink{structaws__event__loop__vtable_a5f5fd9d2ff03021989f4db101ca03b9f}{is\+\_\+on\+\_\+callers\+\_\+thread}} )(struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__event__loop__vtable_a3e417f019bdfb4a82c9596cb29a20199}\label{structaws__event__loop__vtable_a3e417f019bdfb4a82c9596cb29a20199}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!cancel\_task@{cancel\_task}}
+\index{cancel\_task@{cancel\_task}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{cancel\_task}{cancel\_task}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::cancel\+\_\+task) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_a2914d2d921378d886473636283f03529}\label{structaws__event__loop__vtable_a2914d2d921378d886473636283f03529}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!destroy@{destroy}}
+\index{destroy@{destroy}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{destroy}{destroy}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::destroy) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_ac2987cd414e8492053ab256bc3692071}\label{structaws__event__loop__vtable_ac2987cd414e8492053ab256bc3692071}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!free\_io\_event\_resources@{free\_io\_event\_resources}}
+\index{free\_io\_event\_resources@{free\_io\_event\_resources}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{free\_io\_event\_resources}{free\_io\_event\_resources}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::free\+\_\+io\+\_\+event\+\_\+resources) (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_a5f5fd9d2ff03021989f4db101ca03b9f}\label{structaws__event__loop__vtable_a5f5fd9d2ff03021989f4db101ca03b9f}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!is\_on\_callers\_thread@{is\_on\_callers\_thread}}
+\index{is\_on\_callers\_thread@{is\_on\_callers\_thread}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{is\_on\_callers\_thread}{is\_on\_callers\_thread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::is\+\_\+on\+\_\+callers\+\_\+thread) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_af5154badb001e3dcbcbb205ab4443c5b}\label{structaws__event__loop__vtable_af5154badb001e3dcbcbb205ab4443c5b}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!run@{run}}
+\index{run@{run}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{run}{run}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::run) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_a619355ac6e68e872e0a53e57faf0aedf}\label{structaws__event__loop__vtable_a619355ac6e68e872e0a53e57faf0aedf}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!schedule\_task\_future@{schedule\_task\_future}}
+\index{schedule\_task\_future@{schedule\_task\_future}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{schedule\_task\_future}{schedule\_task\_future}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::schedule\+\_\+task\+\_\+future) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_aa031027b4d33e13c4acfb1b535f06da4}\label{structaws__event__loop__vtable_aa031027b4d33e13c4acfb1b535f06da4}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!schedule\_task\_now@{schedule\_task\_now}}
+\index{schedule\_task\_now@{schedule\_task\_now}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{schedule\_task\_now}{schedule\_task\_now}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::schedule\+\_\+task\+\_\+now) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_a8878dbee166aac39feac462e2d19582f}\label{structaws__event__loop__vtable_a8878dbee166aac39feac462e2d19582f}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!stop@{stop}}
+\index{stop@{stop}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{stop}{stop}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::stop) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_af5625aa2f9176b8de1606de00028e093}\label{structaws__event__loop__vtable_af5625aa2f9176b8de1606de00028e093}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!subscribe\_to\_io\_events@{subscribe\_to\_io\_events}}
+\index{subscribe\_to\_io\_events@{subscribe\_to\_io\_events}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{subscribe\_to\_io\_events}{subscribe\_to\_io\_events}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::subscribe\+\_\+to\+\_\+io\+\_\+events) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, \mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}} $\ast$\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}{on\+\_\+event}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_a011a90a9046a88e530248fd51dfbf9c5}\label{structaws__event__loop__vtable_a011a90a9046a88e530248fd51dfbf9c5}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!unsubscribe\_from\_io\_events@{unsubscribe\_from\_io\_events}}
+\index{unsubscribe\_from\_io\_events@{unsubscribe\_from\_io\_events}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{unsubscribe\_from\_io\_events}{unsubscribe\_from\_io\_events}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::unsubscribe\+\_\+from\+\_\+io\+\_\+events) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)}
+
+\mbox{\Hypertarget{structaws__event__loop__vtable_ad9056c82594a8aedfce12462ad478f59}\label{structaws__event__loop__vtable_ad9056c82594a8aedfce12462ad478f59}} 
+\index{aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}!wait\_for\_stop\_completion@{wait\_for\_stop\_completion}}
+\index{wait\_for\_stop\_completion@{wait\_for\_stop\_completion}!aws\_event\_loop\_vtable@{aws\_event\_loop\_vtable}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_stop\_completion}{wait\_for\_stop\_completion}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+event\+\_\+loop\+\_\+vtable\+::wait\+\_\+for\+\_\+stop\+\_\+completion) (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/\mbox{\hyperlink{event__loop_8h}{event\+\_\+loop.\+h}}\end{DoxyCompactItemize}

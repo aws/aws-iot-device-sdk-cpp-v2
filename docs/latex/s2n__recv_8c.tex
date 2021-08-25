@@ -1,0 +1,78 @@
+\hypertarget{s2n__recv_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+recv.c File Reference}
+\label{s2n__recv_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_recv.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_recv.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+record.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+resume.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+alerts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+post\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+socket.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__recv_8c_a78c99ffd76a7bb3c8c74db76207e9ab4}{\+\_\+\+XOPEN\+\_\+\+SOURCE}}~500
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__recv_8c_a8cf2911199525c145a2686a56ed6e47b}{s2n\+\_\+read\+\_\+in\+\_\+bytes}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, uint32\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+\item 
+int \mbox{\hyperlink{s2n__recv_8c_a807adeb1baad4849f782cfd4de10d113}{s2n\+\_\+read\+\_\+full\+\_\+record}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$record\+\_\+type, int $\ast$is\+SSLv2)
+\item 
+\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} \mbox{\hyperlink{s2n__recv_8c_afede11e597a4db3024ec2b68733a643d}{s2n\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} size, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}})
+\item 
+uint32\+\_\+t \mbox{\hyperlink{s2n__recv_8c_af406aca136e7ea94d80e368e6c7142d7}{s2n\+\_\+peek}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__recv_8c_ae859ce8ed78bbade19bf53c23cf6dec8}{s2n\+\_\+recv\+\_\+close\+\_\+notify}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$\mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__recv_8c_a78c99ffd76a7bb3c8c74db76207e9ab4}\label{s2n__recv_8c_a78c99ffd76a7bb3c8c74db76207e9ab4}} 
+\index{s2n\_recv.c@{s2n\_recv.c}!\_XOPEN\_SOURCE@{\_XOPEN\_SOURCE}}
+\index{\_XOPEN\_SOURCE@{\_XOPEN\_SOURCE}!s2n\_recv.c@{s2n\_recv.c}}
+\doxysubsubsection{\texorpdfstring{\_XOPEN\_SOURCE}{\_XOPEN\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+XOPEN\+\_\+\+SOURCE~500}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__recv_8c_af406aca136e7ea94d80e368e6c7142d7}\label{s2n__recv_8c_af406aca136e7ea94d80e368e6c7142d7}} 
+\index{s2n\_recv.c@{s2n\_recv.c}!s2n\_peek@{s2n\_peek}}
+\index{s2n\_peek@{s2n\_peek}!s2n\_recv.c@{s2n\_recv.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_peek()}{s2n\_peek()}}
+{\footnotesize\ttfamily uint32\+\_\+t s2n\+\_\+peek (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__recv_8c_a807adeb1baad4849f782cfd4de10d113}\label{s2n__recv_8c_a807adeb1baad4849f782cfd4de10d113}} 
+\index{s2n\_recv.c@{s2n\_recv.c}!s2n\_read\_full\_record@{s2n\_read\_full\_record}}
+\index{s2n\_read\_full\_record@{s2n\_read\_full\_record}!s2n\_recv.c@{s2n\_recv.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_read\_full\_record()}{s2n\_read\_full\_record()}}
+{\footnotesize\ttfamily int s2n\+\_\+read\+\_\+full\+\_\+record (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t $\ast$}]{record\+\_\+type,  }\item[{int $\ast$}]{is\+SSLv2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__recv_8c_a8cf2911199525c145a2686a56ed6e47b}\label{s2n__recv_8c_a8cf2911199525c145a2686a56ed6e47b}} 
+\index{s2n\_recv.c@{s2n\_recv.c}!s2n\_read\_in\_bytes@{s2n\_read\_in\_bytes}}
+\index{s2n\_read\_in\_bytes@{s2n\_read\_in\_bytes}!s2n\_recv.c@{s2n\_recv.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_read\_in\_bytes()}{s2n\_read\_in\_bytes()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+read\+\_\+in\+\_\+bytes (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{output,  }\item[{uint32\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__recv_8c_afede11e597a4db3024ec2b68733a643d}\label{s2n__recv_8c_afede11e597a4db3024ec2b68733a643d}} 
+\index{s2n\_recv.c@{s2n\_recv.c}!s2n\_recv@{s2n\_recv}}
+\index{s2n\_recv@{s2n\_recv}!s2n\_recv.c@{s2n\_recv.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_recv()}{s2n\_recv()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}} s2n\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{void $\ast$}]{buf,  }\item[{\mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\+\_\+t}}}]{size,  }\item[{\mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$}]{blocked }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__recv_8c_ae859ce8ed78bbade19bf53c23cf6dec8}\label{s2n__recv_8c_ae859ce8ed78bbade19bf53c23cf6dec8}} 
+\index{s2n\_recv.c@{s2n\_recv.c}!s2n\_recv\_close\_notify@{s2n\_recv\_close\_notify}}
+\index{s2n\_recv\_close\_notify@{s2n\_recv\_close\_notify}!s2n\_recv.c@{s2n\_recv.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_recv\_close\_notify()}{s2n\_recv\_close\_notify()}}
+{\footnotesize\ttfamily int s2n\+\_\+recv\+\_\+close\+\_\+notify (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} $\ast$}]{blocked }\end{DoxyParamCaption})}
+

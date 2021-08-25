@@ -1,0 +1,170 @@
+\hypertarget{s2n__stuffer__pem_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/stuffer/s2n\+\_\+stuffer\+\_\+pem.c File Reference}
+\label{s2n__stuffer__pem_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/stuffer/s2n\_stuffer\_pem.c@{crt/aws-\/crt-\/cpp/crt/s2n/stuffer/s2n\_stuffer\_pem.c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_aad477949c4b8ad675445030666ae7008}{S2\+N\+\_\+\+PEM\+\_\+\+DELIMTER\+\_\+\+CHAR}}~\textquotesingle{}-\/\textquotesingle{}
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_a7cd2f01b2cc7f05e7fecb38d7a7adc6f}{S2\+N\+\_\+\+PEM\+\_\+\+DELIMITER\+\_\+\+MIN\+\_\+\+COUNT}}~1
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_a292fcf62f6dce414d87d01fe1362c8ff}{S2\+N\+\_\+\+PEM\+\_\+\+DELIMITER\+\_\+\+MAX\+\_\+\+COUNT}}~64
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_a9c42081c0ae95fbc79511c4a1e5b7c26}{S2\+N\+\_\+\+PEM\+\_\+\+BEGIN\+\_\+\+TOKEN}}~\char`\"{}BEGIN \char`\"{}
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_abc84ce20c371a3cff9f8fa9eaf31c6b1}{S2\+N\+\_\+\+PEM\+\_\+\+END\+\_\+\+TOKEN}}~\char`\"{}END \char`\"{}
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_aeb55b56f72f67ceee1ebec9eaf2d844c}{S2\+N\+\_\+\+PEM\+\_\+\+PKCS1\+\_\+\+RSA\+\_\+\+PRIVATE\+\_\+\+KEY}}~\char`\"{}RSA PRIVATE KEY\char`\"{}
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_a38286e4457c707030713f9c3a39420d0}{S2\+N\+\_\+\+PEM\+\_\+\+PKCS1\+\_\+\+EC\+\_\+\+PRIVATE\+\_\+\+KEY}}~\char`\"{}EC PRIVATE KEY\char`\"{}
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_a2ea8580d4993b1bc62119abf1b89dfdf}{S2\+N\+\_\+\+PEM\+\_\+\+PKCS8\+\_\+\+PRIVATE\+\_\+\+KEY}}~\char`\"{}PRIVATE KEY\char`\"{}
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_a1b3638be5765bdded425561798b6442b}{S2\+N\+\_\+\+PEM\+\_\+\+DH\+\_\+\+PARAMETERS}}~\char`\"{}DH PARAMETERS\char`\"{}
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_a0fcc04e567fe5c7a4e2416408bcbe103}{S2\+N\+\_\+\+PEM\+\_\+\+EC\+\_\+\+PARAMETERS}}~\char`\"{}EC PARAMETERS\char`\"{}
+\item 
+\#define \mbox{\hyperlink{s2n__stuffer__pem_8c_ab82a1d1346ff69a8a16c71a386f9f22b}{S2\+N\+\_\+\+PEM\+\_\+\+CERTIFICATE}}~\char`\"{}CERTIFICATE\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__stuffer__pem_8c_ae8775150df1d7e3198c9bac734c8e4a7}{s2n\+\_\+stuffer\+\_\+pem\+\_\+read\+\_\+encapsulation\+\_\+line}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pem, const char $\ast$encap\+\_\+marker, const char $\ast$keyword)
+\item 
+static int \mbox{\hyperlink{s2n__stuffer__pem_8c_a78a895bfe129bd43a026acedad453456}{s2n\+\_\+stuffer\+\_\+pem\+\_\+read\+\_\+begin}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pem, const char $\ast$keyword)
+\item 
+static int \mbox{\hyperlink{s2n__stuffer__pem_8c_ae170d2edc7f86b84f9702b1735258779}{s2n\+\_\+stuffer\+\_\+pem\+\_\+read\+\_\+end}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pem, const char $\ast$keyword)
+\item 
+static int \mbox{\hyperlink{s2n__stuffer__pem_8c_a10a723dcf49f5b8c520a375172a28a31}{s2n\+\_\+stuffer\+\_\+pem\+\_\+read\+\_\+contents}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pem, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$asn1)
+\item 
+static int \mbox{\hyperlink{s2n__stuffer__pem_8c_aa7c2c13877c27dbcb7a673eceace74a0}{s2n\+\_\+stuffer\+\_\+data\+\_\+from\+\_\+pem}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pem, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$asn1, const char $\ast$keyword)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__pem_8c_a4982ccf6e07a54d46a3da819d9e916e9}{s2n\+\_\+stuffer\+\_\+private\+\_\+key\+\_\+from\+\_\+pem}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pem, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$asn1)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__pem_8c_abdb8ea972bc65569944ce760b97283cf}{s2n\+\_\+stuffer\+\_\+certificate\+\_\+from\+\_\+pem}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pem, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$asn1)
+\item 
+int \mbox{\hyperlink{s2n__stuffer__pem_8c_acc09d820f511dde4633ecad55f062a87}{s2n\+\_\+stuffer\+\_\+dhparams\+\_\+from\+\_\+pem}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pem, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pkcs3)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a9c42081c0ae95fbc79511c4a1e5b7c26}\label{s2n__stuffer__pem_8c_a9c42081c0ae95fbc79511c4a1e5b7c26}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_BEGIN\_TOKEN@{S2N\_PEM\_BEGIN\_TOKEN}}
+\index{S2N\_PEM\_BEGIN\_TOKEN@{S2N\_PEM\_BEGIN\_TOKEN}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_BEGIN\_TOKEN}{S2N\_PEM\_BEGIN\_TOKEN}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+BEGIN\+\_\+\+TOKEN~\char`\"{}BEGIN \char`\"{}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_ab82a1d1346ff69a8a16c71a386f9f22b}\label{s2n__stuffer__pem_8c_ab82a1d1346ff69a8a16c71a386f9f22b}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_CERTIFICATE@{S2N\_PEM\_CERTIFICATE}}
+\index{S2N\_PEM\_CERTIFICATE@{S2N\_PEM\_CERTIFICATE}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_CERTIFICATE}{S2N\_PEM\_CERTIFICATE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+CERTIFICATE~\char`\"{}CERTIFICATE\char`\"{}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a292fcf62f6dce414d87d01fe1362c8ff}\label{s2n__stuffer__pem_8c_a292fcf62f6dce414d87d01fe1362c8ff}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_DELIMITER\_MAX\_COUNT@{S2N\_PEM\_DELIMITER\_MAX\_COUNT}}
+\index{S2N\_PEM\_DELIMITER\_MAX\_COUNT@{S2N\_PEM\_DELIMITER\_MAX\_COUNT}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_DELIMITER\_MAX\_COUNT}{S2N\_PEM\_DELIMITER\_MAX\_COUNT}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+DELIMITER\+\_\+\+MAX\+\_\+\+COUNT~64}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a7cd2f01b2cc7f05e7fecb38d7a7adc6f}\label{s2n__stuffer__pem_8c_a7cd2f01b2cc7f05e7fecb38d7a7adc6f}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_DELIMITER\_MIN\_COUNT@{S2N\_PEM\_DELIMITER\_MIN\_COUNT}}
+\index{S2N\_PEM\_DELIMITER\_MIN\_COUNT@{S2N\_PEM\_DELIMITER\_MIN\_COUNT}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_DELIMITER\_MIN\_COUNT}{S2N\_PEM\_DELIMITER\_MIN\_COUNT}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+DELIMITER\+\_\+\+MIN\+\_\+\+COUNT~1}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_aad477949c4b8ad675445030666ae7008}\label{s2n__stuffer__pem_8c_aad477949c4b8ad675445030666ae7008}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_DELIMTER\_CHAR@{S2N\_PEM\_DELIMTER\_CHAR}}
+\index{S2N\_PEM\_DELIMTER\_CHAR@{S2N\_PEM\_DELIMTER\_CHAR}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_DELIMTER\_CHAR}{S2N\_PEM\_DELIMTER\_CHAR}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+DELIMTER\+\_\+\+CHAR~\textquotesingle{}-\/\textquotesingle{}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a1b3638be5765bdded425561798b6442b}\label{s2n__stuffer__pem_8c_a1b3638be5765bdded425561798b6442b}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_DH\_PARAMETERS@{S2N\_PEM\_DH\_PARAMETERS}}
+\index{S2N\_PEM\_DH\_PARAMETERS@{S2N\_PEM\_DH\_PARAMETERS}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_DH\_PARAMETERS}{S2N\_PEM\_DH\_PARAMETERS}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+DH\+\_\+\+PARAMETERS~\char`\"{}DH PARAMETERS\char`\"{}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a0fcc04e567fe5c7a4e2416408bcbe103}\label{s2n__stuffer__pem_8c_a0fcc04e567fe5c7a4e2416408bcbe103}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_EC\_PARAMETERS@{S2N\_PEM\_EC\_PARAMETERS}}
+\index{S2N\_PEM\_EC\_PARAMETERS@{S2N\_PEM\_EC\_PARAMETERS}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_EC\_PARAMETERS}{S2N\_PEM\_EC\_PARAMETERS}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+EC\+\_\+\+PARAMETERS~\char`\"{}EC PARAMETERS\char`\"{}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_abc84ce20c371a3cff9f8fa9eaf31c6b1}\label{s2n__stuffer__pem_8c_abc84ce20c371a3cff9f8fa9eaf31c6b1}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_END\_TOKEN@{S2N\_PEM\_END\_TOKEN}}
+\index{S2N\_PEM\_END\_TOKEN@{S2N\_PEM\_END\_TOKEN}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_END\_TOKEN}{S2N\_PEM\_END\_TOKEN}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+END\+\_\+\+TOKEN~\char`\"{}END \char`\"{}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a38286e4457c707030713f9c3a39420d0}\label{s2n__stuffer__pem_8c_a38286e4457c707030713f9c3a39420d0}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_PKCS1\_EC\_PRIVATE\_KEY@{S2N\_PEM\_PKCS1\_EC\_PRIVATE\_KEY}}
+\index{S2N\_PEM\_PKCS1\_EC\_PRIVATE\_KEY@{S2N\_PEM\_PKCS1\_EC\_PRIVATE\_KEY}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_PKCS1\_EC\_PRIVATE\_KEY}{S2N\_PEM\_PKCS1\_EC\_PRIVATE\_KEY}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+PKCS1\+\_\+\+EC\+\_\+\+PRIVATE\+\_\+\+KEY~\char`\"{}EC PRIVATE KEY\char`\"{}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_aeb55b56f72f67ceee1ebec9eaf2d844c}\label{s2n__stuffer__pem_8c_aeb55b56f72f67ceee1ebec9eaf2d844c}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_PKCS1\_RSA\_PRIVATE\_KEY@{S2N\_PEM\_PKCS1\_RSA\_PRIVATE\_KEY}}
+\index{S2N\_PEM\_PKCS1\_RSA\_PRIVATE\_KEY@{S2N\_PEM\_PKCS1\_RSA\_PRIVATE\_KEY}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_PKCS1\_RSA\_PRIVATE\_KEY}{S2N\_PEM\_PKCS1\_RSA\_PRIVATE\_KEY}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+PKCS1\+\_\+\+RSA\+\_\+\+PRIVATE\+\_\+\+KEY~\char`\"{}RSA PRIVATE KEY\char`\"{}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a2ea8580d4993b1bc62119abf1b89dfdf}\label{s2n__stuffer__pem_8c_a2ea8580d4993b1bc62119abf1b89dfdf}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!S2N\_PEM\_PKCS8\_PRIVATE\_KEY@{S2N\_PEM\_PKCS8\_PRIVATE\_KEY}}
+\index{S2N\_PEM\_PKCS8\_PRIVATE\_KEY@{S2N\_PEM\_PKCS8\_PRIVATE\_KEY}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PEM\_PKCS8\_PRIVATE\_KEY}{S2N\_PEM\_PKCS8\_PRIVATE\_KEY}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PEM\+\_\+\+PKCS8\+\_\+\+PRIVATE\+\_\+\+KEY~\char`\"{}PRIVATE KEY\char`\"{}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_abdb8ea972bc65569944ce760b97283cf}\label{s2n__stuffer__pem_8c_abdb8ea972bc65569944ce760b97283cf}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!s2n\_stuffer\_certificate\_from\_pem@{s2n\_stuffer\_certificate\_from\_pem}}
+\index{s2n\_stuffer\_certificate\_from\_pem@{s2n\_stuffer\_certificate\_from\_pem}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_certificate\_from\_pem()}{s2n\_stuffer\_certificate\_from\_pem()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+certificate\+\_\+from\+\_\+pem (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{pem,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{asn1 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_aa7c2c13877c27dbcb7a673eceace74a0}\label{s2n__stuffer__pem_8c_aa7c2c13877c27dbcb7a673eceace74a0}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!s2n\_stuffer\_data\_from\_pem@{s2n\_stuffer\_data\_from\_pem}}
+\index{s2n\_stuffer\_data\_from\_pem@{s2n\_stuffer\_data\_from\_pem}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_data\_from\_pem()}{s2n\_stuffer\_data\_from\_pem()}}
+{\footnotesize\ttfamily static int s2n\+\_\+stuffer\+\_\+data\+\_\+from\+\_\+pem (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{pem,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{asn1,  }\item[{const char $\ast$}]{keyword }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_acc09d820f511dde4633ecad55f062a87}\label{s2n__stuffer__pem_8c_acc09d820f511dde4633ecad55f062a87}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!s2n\_stuffer\_dhparams\_from\_pem@{s2n\_stuffer\_dhparams\_from\_pem}}
+\index{s2n\_stuffer\_dhparams\_from\_pem@{s2n\_stuffer\_dhparams\_from\_pem}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_dhparams\_from\_pem()}{s2n\_stuffer\_dhparams\_from\_pem()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+dhparams\+\_\+from\+\_\+pem (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{pem,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{pkcs3 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a78a895bfe129bd43a026acedad453456}\label{s2n__stuffer__pem_8c_a78a895bfe129bd43a026acedad453456}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!s2n\_stuffer\_pem\_read\_begin@{s2n\_stuffer\_pem\_read\_begin}}
+\index{s2n\_stuffer\_pem\_read\_begin@{s2n\_stuffer\_pem\_read\_begin}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_pem\_read\_begin()}{s2n\_stuffer\_pem\_read\_begin()}}
+{\footnotesize\ttfamily static int s2n\+\_\+stuffer\+\_\+pem\+\_\+read\+\_\+begin (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{pem,  }\item[{const char $\ast$}]{keyword }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a10a723dcf49f5b8c520a375172a28a31}\label{s2n__stuffer__pem_8c_a10a723dcf49f5b8c520a375172a28a31}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!s2n\_stuffer\_pem\_read\_contents@{s2n\_stuffer\_pem\_read\_contents}}
+\index{s2n\_stuffer\_pem\_read\_contents@{s2n\_stuffer\_pem\_read\_contents}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_pem\_read\_contents()}{s2n\_stuffer\_pem\_read\_contents()}}
+{\footnotesize\ttfamily static int s2n\+\_\+stuffer\+\_\+pem\+\_\+read\+\_\+contents (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{pem,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{asn1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_ae8775150df1d7e3198c9bac734c8e4a7}\label{s2n__stuffer__pem_8c_ae8775150df1d7e3198c9bac734c8e4a7}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!s2n\_stuffer\_pem\_read\_encapsulation\_line@{s2n\_stuffer\_pem\_read\_encapsulation\_line}}
+\index{s2n\_stuffer\_pem\_read\_encapsulation\_line@{s2n\_stuffer\_pem\_read\_encapsulation\_line}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_pem\_read\_encapsulation\_line()}{s2n\_stuffer\_pem\_read\_encapsulation\_line()}}
+{\footnotesize\ttfamily static int s2n\+\_\+stuffer\+\_\+pem\+\_\+read\+\_\+encapsulation\+\_\+line (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{pem,  }\item[{const char $\ast$}]{encap\+\_\+marker,  }\item[{const char $\ast$}]{keyword }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_ae170d2edc7f86b84f9702b1735258779}\label{s2n__stuffer__pem_8c_ae170d2edc7f86b84f9702b1735258779}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!s2n\_stuffer\_pem\_read\_end@{s2n\_stuffer\_pem\_read\_end}}
+\index{s2n\_stuffer\_pem\_read\_end@{s2n\_stuffer\_pem\_read\_end}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_pem\_read\_end()}{s2n\_stuffer\_pem\_read\_end()}}
+{\footnotesize\ttfamily static int s2n\+\_\+stuffer\+\_\+pem\+\_\+read\+\_\+end (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{pem,  }\item[{const char $\ast$}]{keyword }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__stuffer__pem_8c_a4982ccf6e07a54d46a3da819d9e916e9}\label{s2n__stuffer__pem_8c_a4982ccf6e07a54d46a3da819d9e916e9}} 
+\index{s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}!s2n\_stuffer\_private\_key\_from\_pem@{s2n\_stuffer\_private\_key\_from\_pem}}
+\index{s2n\_stuffer\_private\_key\_from\_pem@{s2n\_stuffer\_private\_key\_from\_pem}!s2n\_stuffer\_pem.c@{s2n\_stuffer\_pem.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_stuffer\_private\_key\_from\_pem()}{s2n\_stuffer\_private\_key\_from\_pem()}}
+{\footnotesize\ttfamily int s2n\+\_\+stuffer\+\_\+private\+\_\+key\+\_\+from\+\_\+pem (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{pem,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{asn1 }\end{DoxyParamCaption})}
+

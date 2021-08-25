@@ -1,0 +1,61 @@
+\hypertarget{bike__r1_2gf2x_8h_source}{}\doxysection{gf2x.\+h}
+\label{bike__r1_2gf2x_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/gf2x.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/gf2x.h}}
+\mbox{\hyperlink{bike__r1_2gf2x_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{2 \textcolor{comment}{ * SPDX-\/License-\/Identifier: Apache-\/2.0"{}}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Written by Nir Drucker and Shay Gueron,}}
+\DoxyCodeLine{5 \textcolor{comment}{ * AWS Cryptographic Algorithms Group.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * (ndrucker@amazon.com, gueron@amazon.com)}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{types.h}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#ifdef USE\_OPENSSL}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#  include "{}openssl\_utils.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#ifdef USE\_OPENSSL\_GF2M}}
+\DoxyCodeLine{18 \textcolor{comment}{// res = a*b mod (x\string^r -\/ 1)}}
+\DoxyCodeLine{19 \textcolor{comment}{// Note: the caller must allocate twice the size of res.}}
+\DoxyCodeLine{20 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\_t}}}
+\DoxyCodeLine{21 \mbox{\hyperlink{bike__r1_2gf2x_8h_ab3694dbfc259301f41ec914fced4e758}{gf2x\_mod\_mul}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\_t *res, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23   \textcolor{keywordflow}{return} \mbox{\hyperlink{bike__r1_2functions__renaming_8h_a16727cca13850b2e903940f610987e5e}{cyclic\_product}}((uint8\_t *)res, (\textcolor{keyword}{const} uint8\_t *)\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, (\textcolor{keyword}{const} uint8\_t *)\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}});}
+\DoxyCodeLine{24 \}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{// A wrapper for other gf2x\_add implementations.}}
+\DoxyCodeLine{27 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\_t}}}
+\DoxyCodeLine{28 \mbox{\hyperlink{bike__r1_2gf2x_8h_a50cd6b13dd11ff93a97a701f62ed113a}{gf2x\_add}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint8\_t *res,}
+\DoxyCodeLine{29          \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}},}
+\DoxyCodeLine{30          \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},}
+\DoxyCodeLine{31          \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t size)}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33   \mbox{\hyperlink{bike__r1_2defs_8h_a719a520e55d429526f5ab238693401da}{BIKE\_UNUSED}}(size);}
+\DoxyCodeLine{34   \textcolor{keywordflow}{return} \mbox{\hyperlink{bike__r1_2functions__renaming_8h_ae1ea21f7db114b1385e644261d227545}{ossl\_add}}((uint8\_t *)res, \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}});}
+\DoxyCodeLine{35 \}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#else }\textcolor{comment}{// USE\_OPENSSL\_GF2M}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\_t}}}
+\DoxyCodeLine{39 \mbox{\hyperlink{bike__r1_2gf2x_8h_a50cd6b13dd11ff93a97a701f62ed113a}{gf2x\_add}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint8\_t *res,}
+\DoxyCodeLine{40          \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}},}
+\DoxyCodeLine{41          \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},}
+\DoxyCodeLine{42          \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t bytelen)}
+\DoxyCodeLine{43 \{}
+\DoxyCodeLine{44   \textcolor{keywordflow}{for}(uint64\_t i = 0; i < bytelen; i++)}
+\DoxyCodeLine{45   \{}
+\DoxyCodeLine{46     res[i] = \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}[i] \string^ \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}[i];}
+\DoxyCodeLine{47   \}}
+\DoxyCodeLine{48   \textcolor{keywordflow}{return} \mbox{\hyperlink{aws__test__harness_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{49 \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{comment}{// res = a*b mod (x\string^r -\/ 1)}}
+\DoxyCodeLine{52 \textcolor{comment}{// the caller must allocate twice the size of res!}}
+\DoxyCodeLine{53 \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\_t}}}
+\DoxyCodeLine{54 \mbox{\hyperlink{bike__r1_2gf2x_8h_ab3694dbfc259301f41ec914fced4e758}{gf2x\_mod\_mul}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\_t *res, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}});}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

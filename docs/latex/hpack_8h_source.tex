@@ -1,0 +1,138 @@
+\hypertarget{hpack_8h_source}{}\doxysection{hpack.\+h}
+\label{hpack_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/hpack.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/hpack.h}}
+\mbox{\hyperlink{hpack_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_HTTP\_HPACK\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_HTTP\_HPACK\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{request__response_8h}{aws/http/request\_response.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}};}
+\DoxyCodeLine{11 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}};}
+\DoxyCodeLine{12 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__header}{aws\_http\_header}};}
+\DoxyCodeLine{13 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{20 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hpack__decode__result}{aws\_hpack\_decode\_result}} \{}
+\DoxyCodeLine{21     \textcolor{keyword}{enum} \mbox{\hyperlink{structaws__hpack__decode__result_a557dfcf4470bf3e035ea3219ad9cc298}{aws\_hpack\_decode\_type}} \{}
+\DoxyCodeLine{22         \mbox{\hyperlink{structaws__hpack__decode__result_a557dfcf4470bf3e035ea3219ad9cc298a15a1efe5bbe5c38fba41192a6f75bb57}{AWS\_HPACK\_DECODE\_T\_ONGOING}},}
+\DoxyCodeLine{23         \mbox{\hyperlink{structaws__hpack__decode__result_a557dfcf4470bf3e035ea3219ad9cc298ab11df6fbb984fdbef1b5a1f07c55c0b1}{AWS\_HPACK\_DECODE\_T\_HEADER\_FIELD}},}
+\DoxyCodeLine{24         \mbox{\hyperlink{structaws__hpack__decode__result_a557dfcf4470bf3e035ea3219ad9cc298ad5c97255349ba426fdbd8aed6009de35}{AWS\_HPACK\_DECODE\_T\_DYNAMIC\_TABLE\_RESIZE}},}
+\DoxyCodeLine{25     \} \mbox{\hyperlink{structaws__hpack__decode__result_a36ac2314c687973cda4dd33d9d077b4a}{type}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{keyword}{union }\{}
+\DoxyCodeLine{28         \textcolor{comment}{/* If type is AWS\_HPACK\_DECODE\_T\_HEADER\_FIELD */}}
+\DoxyCodeLine{29         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__header}{aws\_http\_header}} \mbox{\hyperlink{structaws__hpack__decode__result_aae57f66f086d8b442d17f174d1187879}{header\_field}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31         \textcolor{comment}{/* If type is AWS\_HPACK\_DECODE\_T\_DYNAMIC\_TABLE\_RESIZE */}}
+\DoxyCodeLine{32         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__hpack__decode__result_aa3e738be366e87eb2a2451bc530d4636}{dynamic\_table\_resize}};}
+\DoxyCodeLine{33     \} \mbox{\hyperlink{structaws__hpack__decode__result_a1d2596e075ff179ff212a4172777ebd0}{data}};}
+\DoxyCodeLine{34 \};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{44 \textcolor{keyword}{enum} \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}{aws\_hpack\_huffman\_mode}} \{}
+\DoxyCodeLine{45     \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aafc45671c54799f03be253d2c98d86b46}{AWS\_HPACK\_HUFFMAN\_SMALLEST}},}
+\DoxyCodeLine{46     \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aab8eb33ea03585eb9ee0c7b4011cf4489}{AWS\_HPACK\_HUFFMAN\_NEVER}},}
+\DoxyCodeLine{47     \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708aa8ac62ead067c6d39846bfa006f19bae7}{AWS\_HPACK\_HUFFMAN\_ALWAYS}},}
+\DoxyCodeLine{48 \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{comment}{/* Library-\/level init and shutdown */}}
+\DoxyCodeLine{53 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{54 \textcolor{keywordtype}{void} \mbox{\hyperlink{hpack_8h_a48f932bea53b6aee6dc0f136cd1c88c8}{aws\_hpack\_static\_table\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{57 \textcolor{keywordtype}{void} \mbox{\hyperlink{hpack_8h_a737eeeb03d7d758d21e98ac8f062ff37}{aws\_hpack\_static\_table\_clean\_up}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{comment}{/* General HPACK API */}}
+\DoxyCodeLine{60 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{61 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *\mbox{\hyperlink{hpack_8h_a56f07ec24c872a6342046c3e71e7c5e4}{aws\_hpack\_context\_new}}(}
+\DoxyCodeLine{62     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{63     \textcolor{keyword}{enum} \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528}{aws\_http\_log\_subject}} \mbox{\hyperlink{structaws__hpack__context_a9dcafea064a66f2c17a43321193e3914}{log\_subject}},}
+\DoxyCodeLine{64     \textcolor{keyword}{const} \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__hpack__context_a769cc5adcf2c7ec2ea0091ef19c8f822}{log\_id}});}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{67 \textcolor{keywordtype}{void} \mbox{\hyperlink{hpack_8h_a54c09188e45dad357dba8452c86c37e7}{aws\_hpack\_context\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context);}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{76 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{77 \textcolor{keywordtype}{int} \mbox{\hyperlink{hpack_8h_ac13df4eb6f43f47dd9cd5353e13570c1}{aws\_hpack\_decode}}(}
+\DoxyCodeLine{78     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context,}
+\DoxyCodeLine{79     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *to\_decode,}
+\DoxyCodeLine{80     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__decode__result}{aws\_hpack\_decode\_result}} *result);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{87 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{88 \textcolor{keywordtype}{int} \mbox{\hyperlink{hpack_8h_a920de22112f220f8bfdf0d761745e8a3}{aws\_hpack\_encode\_header\_block}}(}
+\DoxyCodeLine{89     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context,}
+\DoxyCodeLine{90     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__headers}{aws\_http\_headers}} *headers,}
+\DoxyCodeLine{91     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{comment}{/* Returns the hpack size of a header (name.len + value.len + 32) [4.1] */}}
+\DoxyCodeLine{94 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{95 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{hpack_8h_a16efc4a54da55184ca1ccef73fe8d3da}{aws\_hpack\_get\_header\_size}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__header}{aws\_http\_header}} *header);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{comment}{/* Returns the number of elements in dynamic table now */}}
+\DoxyCodeLine{98 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{99 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{hpack_8h_a71a87c0e00eb91c0fc0a0ecca1579471}{aws\_hpack\_get\_dynamic\_table\_num\_elements}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{102 \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__header}{aws\_http\_header}} *\mbox{\hyperlink{hpack_8h_acb5ad6373afbee733f627b364ca13762}{aws\_hpack\_get\_header}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context, \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}});}
+\DoxyCodeLine{103 \textcolor{comment}{/* A return value of 0 indicates that the header wasn't found */}}
+\DoxyCodeLine{104 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{105 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{hpack_8h_a42ffb4ec6b57371f94df277c90e903ee}{aws\_hpack\_find\_index}}(}
+\DoxyCodeLine{106     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context,}
+\DoxyCodeLine{107     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__header}{aws\_http\_header}} *header,}
+\DoxyCodeLine{108     \textcolor{keywordtype}{bool} search\_value,}
+\DoxyCodeLine{109     \textcolor{keywordtype}{bool} *found\_value);}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{112 \textcolor{keywordtype}{int} \mbox{\hyperlink{hpack_8h_af90a69bb768fb3bf941980574b95fd81}{aws\_hpack\_insert\_header}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__header}{aws\_http\_header}} *header);}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{117 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{118 \textcolor{keywordtype}{int} \mbox{\hyperlink{hpack_8h_a711056043201065623c020ad4784d38c}{aws\_hpack\_resize\_dynamic\_table}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context, \textcolor{keywordtype}{size\_t} new\_max\_size);}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{comment}{/* When setting for table size changes, call this function to memorize all updates between the transmission of}}
+\DoxyCodeLine{121 \textcolor{comment}{ * two header blocks. The dynamic table resize and the dynamic table size update entry will be handled properly when we}}
+\DoxyCodeLine{122 \textcolor{comment}{ * encode the next header block  */}}
+\DoxyCodeLine{123 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{124 \textcolor{keywordtype}{void} \mbox{\hyperlink{hpack_8h_aa4183d214e627a4ddf82032a9ad66476}{aws\_hpack\_set\_max\_table\_size}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context, uint32\_t new\_max\_size);}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{127 \textcolor{keywordtype}{void} \mbox{\hyperlink{hpack_8h_aebea22528c7c5719f49194d38f1508a7}{aws\_hpack\_set\_protocol\_max\_size\_setting}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context, uint32\_t setting\_max\_size);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{130 \textcolor{keywordtype}{void} \mbox{\hyperlink{hpack_8h_afb9e1397b88172f61a05fb905bf176c8}{aws\_hpack\_set\_huffman\_mode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context, \textcolor{keyword}{enum} \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}{aws\_hpack\_huffman\_mode}} mode);}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{comment}{/* Public for testing purposes.}}
+\DoxyCodeLine{133 \textcolor{comment}{ * Output will be dynamically resized if it's too short */}}
+\DoxyCodeLine{134 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{135 \textcolor{keywordtype}{int} \mbox{\hyperlink{hpack_8h_a1fc8f59d970baeef630a9efc41de6dae}{aws\_hpack\_encode\_integer}}(uint64\_t integer, uint8\_t starting\_bits, uint8\_t prefix\_size, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{comment}{/* Public for testing purposes */}}
+\DoxyCodeLine{138 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{139 \textcolor{keywordtype}{int} \mbox{\hyperlink{hpack_8h_a3f274326dabfba0f229bea26fb71c2ff}{aws\_hpack\_decode\_integer}}(}
+\DoxyCodeLine{140     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context,}
+\DoxyCodeLine{141     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *to\_decode,}
+\DoxyCodeLine{142     uint8\_t prefix\_size,}
+\DoxyCodeLine{143     uint64\_t *integer,}
+\DoxyCodeLine{144     \textcolor{keywordtype}{bool} *complete);}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{comment}{/* Public for testing purposes.}}
+\DoxyCodeLine{147 \textcolor{comment}{ * Output will be dynamically resized if it's too short */}}
+\DoxyCodeLine{148 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{149 \textcolor{keywordtype}{int} \mbox{\hyperlink{hpack_8h_a0e501a023872fb2b8f25accec0a9190c}{aws\_hpack\_encode\_string}}(}
+\DoxyCodeLine{150     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context,}
+\DoxyCodeLine{151     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} to\_encode,}
+\DoxyCodeLine{152     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{comment}{/* Public for testing purposes */}}
+\DoxyCodeLine{155 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
+\DoxyCodeLine{156 \textcolor{keywordtype}{int} \mbox{\hyperlink{hpack_8h_afa171bd9830ea872d5e046cc3e8df444}{aws\_hpack\_decode\_string}}(}
+\DoxyCodeLine{157     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__hpack__context}{aws\_hpack\_context}} *context,}
+\DoxyCodeLine{158     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *to\_decode,}
+\DoxyCodeLine{159     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}},}
+\DoxyCodeLine{160     \textcolor{keywordtype}{bool} *complete);}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_HTTP\_HPACK\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

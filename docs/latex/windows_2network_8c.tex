@@ -1,0 +1,47 @@
+\hypertarget{windows_2network_8c}{}\doxysection{crt/aws-\/c-\/iot/source/windows/network.c File Reference}
+\label{windows_2network_8c}\index{crt/aws-\/c-\/iot/source/windows/network.c@{crt/aws-\/c-\/iot/source/windows/network.c}}
+{\ttfamily \#include $<$aws/common/error.\+h$>$}\newline
+{\ttfamily \#include $<$aws/iotdevice/private/network.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__iotdevice__network__iface}{aws\+\_\+iotdevice\+\_\+network\+\_\+iface}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{windows_2network_8c_a6193c646f7510c04e8619a6d13552a74}{get\+\_\+system\+\_\+network\+\_\+total}} (struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$total, struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$ifconfig)
+\item 
+int \mbox{\hyperlink{windows_2network_8c_a4d39961ec19aabbdda714a0ca9765f91}{get\+\_\+network\+\_\+config\+\_\+and\+\_\+transfer}} (struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$ifconfig, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+int \mbox{\hyperlink{windows_2network_8c_aaa817c263ca12662ba9178a47c3cb55e}{get\+\_\+network\+\_\+connections}} (struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$net\+\_\+conns, struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$ifconfig, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{windows_2network_8c_ab1801f59c280e657c6bbc59c0a51c8a4}{get\+\_\+network\+\_\+total\+\_\+delta}} (struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$delta, struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$prev\+\_\+total, struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$curr\+\_\+total)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{windows_2network_8c_a4d39961ec19aabbdda714a0ca9765f91}\label{windows_2network_8c_a4d39961ec19aabbdda714a0ca9765f91}} 
+\index{network.c@{network.c}!get\_network\_config\_and\_transfer@{get\_network\_config\_and\_transfer}}
+\index{get\_network\_config\_and\_transfer@{get\_network\_config\_and\_transfer}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{get\_network\_config\_and\_transfer()}{get\_network\_config\_and\_transfer()}}
+{\footnotesize\ttfamily int get\+\_\+network\+\_\+config\+\_\+and\+\_\+transfer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$}]{ifconfig,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2network_8c_aaa817c263ca12662ba9178a47c3cb55e}\label{windows_2network_8c_aaa817c263ca12662ba9178a47c3cb55e}} 
+\index{network.c@{network.c}!get\_network\_connections@{get\_network\_connections}}
+\index{get\_network\_connections@{get\_network\_connections}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{get\_network\_connections()}{get\_network\_connections()}}
+{\footnotesize\ttfamily int get\+\_\+network\+\_\+connections (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{net\+\_\+conns,  }\item[{struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$}]{ifconfig,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2network_8c_ab1801f59c280e657c6bbc59c0a51c8a4}\label{windows_2network_8c_ab1801f59c280e657c6bbc59c0a51c8a4}} 
+\index{network.c@{network.c}!get\_network\_total\_delta@{get\_network\_total\_delta}}
+\index{get\_network\_total\_delta@{get\_network\_total\_delta}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{get\_network\_total\_delta()}{get\_network\_total\_delta()}}
+{\footnotesize\ttfamily void get\+\_\+network\+\_\+total\+\_\+delta (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$}]{delta,  }\item[{struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$}]{prev\+\_\+total,  }\item[{struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$}]{curr\+\_\+total }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2network_8c_a6193c646f7510c04e8619a6d13552a74}\label{windows_2network_8c_a6193c646f7510c04e8619a6d13552a74}} 
+\index{network.c@{network.c}!get\_system\_network\_total@{get\_system\_network\_total}}
+\index{get\_system\_network\_total@{get\_system\_network\_total}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{get\_system\_network\_total()}{get\_system\_network\_total()}}
+{\footnotesize\ttfamily void get\+\_\+system\+\_\+network\+\_\+total (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$}]{total,  }\item[{struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$}]{ifconfig }\end{DoxyParamCaption})}
+

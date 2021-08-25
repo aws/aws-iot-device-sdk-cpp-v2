@@ -1,0 +1,144 @@
+\hypertarget{bike__r2_2defs_8h_source}{}\doxysection{defs.\+h}
+\label{bike__r2_2defs_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/defs.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/defs.h}}
+\mbox{\hyperlink{bike__r2_2defs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{2 \textcolor{comment}{ * SPDX-\/License-\/Identifier: Apache-\/2.0"{}}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Written by Nir Drucker and Shay Gueron}}
+\DoxyCodeLine{5 \textcolor{comment}{ * AWS Cryptographic Algorithms Group.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * (ndrucker@amazon.com, gueron@amazon.com)}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{12 \textcolor{comment}{//             Basic defs}}
+\DoxyCodeLine{14 \textcolor{comment}{}\textcolor{preprocessor}{\#define FUNC\_PREFIX BIKE1\_L1\_R2}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{bike__r2_2functions__renaming_8h}{functions\_renaming.h}}"{}}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#  define EXTERNC extern "{}C"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#  define EXTERNC}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{comment}{// For code clarity.}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define IN}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define OUT}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define ALIGN(n)        \_\_attribute\_\_((aligned(n)))}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define BIKE\_UNUSED(x)  (void)(x)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define BIKE\_UNUSED\_ATT \_\_attribute\_\_((unused))}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define \_INLINE\_ static inline}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{comment}{// In asm the symbols '==' and '?' are not allowed therefore if using}}
+\DoxyCodeLine{34 \textcolor{comment}{// divide\_and\_ceil in asm files we must ensure with static\_assert its validity}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#if(\_\_cplusplus >= 201103L) || defined(static\_assert)}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#  define bike\_static\_assert(COND, MSG) static\_assert(COND, "{}MSG"{}})}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#  define bike\_static\_assert(COND, MSG) \(\backslash\)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{    typedef char static\_assertion\_\#\#MSG[(COND) ? 1 : -\/1] BIKE\_UNUSED\_ATT}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{comment}{// Divide by the divider and round up to next integer}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define DIVIDE\_AND\_CEIL(x, divider) (((x) + (divider)) / (divider))}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define BIT(len) (1ULL << (len))}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define MASK(len)      (BIT(len) -\/ 1)}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define SIZEOF\_BITS(b) (sizeof(b) * 8)}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define QW\_SIZE  0x8}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define XMM\_SIZE 0x10}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define YMM\_SIZE 0x20}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define ZMM\_SIZE 0x40}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#define ALL\_YMM\_SIZE (16 * YMM\_SIZE)}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define ALL\_ZMM\_SIZE (32 * ZMM\_SIZE)}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{comment}{// Copied from (Kaz answer)}}
+\DoxyCodeLine{59 \textcolor{comment}{// https://stackoverflow.com/questions/466204/rounding-\/up-\/to-\/next-\/power-\/of-\/2}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define UPTOPOW2\_0(v) ((v)-\/1)}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define UPTOPOW2\_1(v) (UPTOPOW2\_0(v) | (UPTOPOW2\_0(v) >> 1))}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#define UPTOPOW2\_2(v) (UPTOPOW2\_1(v) | (UPTOPOW2\_1(v) >> 2))}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#define UPTOPOW2\_3(v) (UPTOPOW2\_2(v) | (UPTOPOW2\_2(v) >> 4))}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define UPTOPOW2\_4(v) (UPTOPOW2\_3(v) | (UPTOPOW2\_3(v) >> 8))}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#define UPTOPOW2\_5(v) (UPTOPOW2\_4(v) | (UPTOPOW2\_4(v) >> 16))}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define UPTOPOW2(v) (UPTOPOW2\_5(v) + 1)}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{comment}{// Works only for 0 < v < 512}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#define LOG2\_MSB(v)                                                       \(\backslash\)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{  ((v) == 0                                                               \(\backslash\)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{       ? 0                                                                \(\backslash\)}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{       : ((v) < 2                                                         \(\backslash\)}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{              ? 1                                                         \(\backslash\)}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{              : ((v) < 4                                                  \(\backslash\)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{                     ? 2                                                  \(\backslash\)}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{                     : ((v) < 8                                           \(\backslash\)}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{                            ? 3                                           \(\backslash\)}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{                            : ((v) < 16                                   \(\backslash\)}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{                                   ? 4                                    \(\backslash\)}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{                                   : ((v) < 32                            \(\backslash\)}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{                                          ? 5                             \(\backslash\)}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{                                          : ((v) < 64 ? 6                 \(\backslash\)}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{                                                      : ((v) < 128        \(\backslash\)}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{                                                             ? 7          \(\backslash\)}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{                                                             : ((v) < 256 \(\backslash\)}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{                                                                    ? 8   \(\backslash\)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{                                                                    : 9)))))))))}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{91 \textcolor{comment}{//             Debug}}
+\DoxyCodeLine{93 \textcolor{comment}{}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#ifndef VERBOSE}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#  define VERBOSE 0}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{preprocessor}{\#if(VERBOSE == 4)}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#  define MSG(...)         \(\backslash\)}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{    \{                      \(\backslash\)}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{      printf(\_\_VA\_ARGS\_\_); \(\backslash\)}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{    \}}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#  define DMSG(...)   MSG(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#  define EDMSG(...)  MSG(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#  define SEDMSG(...) MSG(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#elif(VERBOSE == 3)}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#  define MSG(...)         \(\backslash\)}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{    \{                      \(\backslash\)}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{      printf(\_\_VA\_ARGS\_\_); \(\backslash\)}}
+\DoxyCodeLine{112 \textcolor{preprocessor}{    \}}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#  define DMSG(...)  MSG(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#  define EDMSG(...) MSG(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#  define SEDMSG(...)}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{\#elif(VERBOSE == 2)}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#  define MSG(...)         \(\backslash\)}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{    \{                      \(\backslash\)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{      printf(\_\_VA\_ARGS\_\_); \(\backslash\)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{    \}}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#  define DMSG(...) MSG(\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#  define EDMSG(...)}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#  define SEDMSG(...)}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#elif(VERBOSE == 1)}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#  define MSG(...)         \(\backslash\)}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{    \{                      \(\backslash\)}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{      printf(\_\_VA\_ARGS\_\_); \(\backslash\)}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{    \}}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{\#  define DMSG(...)}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{\#  define EDMSG(...)}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{\#  define SEDMSG(...)}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#  define MSG(...)}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#  define DMSG(...)}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#  define EDMSG(...)}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#  define SEDMSG(...)}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{140 \textcolor{comment}{//              Printing}}
+\DoxyCodeLine{142 \textcolor{comment}{}\textcolor{comment}{//\#define PRINT\_IN\_BE}}
+\DoxyCodeLine{143 \textcolor{comment}{//\#define NO\_SPACE}}
+\DoxyCodeLine{144 \textcolor{comment}{//\#define NO\_NEWLINE}}
+
+\end{DoxyCode}

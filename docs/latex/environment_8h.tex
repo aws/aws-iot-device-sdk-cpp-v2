@@ -1,0 +1,33 @@
+\hypertarget{environment_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/environment.h File Reference}
+\label{environment_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/environment.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/environment.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{environment_8h_a97f1b982b52ce4da5f38ce988a3c7878}{aws\+\_\+get\+\_\+environment\+\_\+value}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$variable\+\_\+name, struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$value\+\_\+out)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{environment_8h_a42ddb207cd16c13e5da9df316b2d618e}{aws\+\_\+set\+\_\+environment\+\_\+value}} (const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$variable\+\_\+name, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$value)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{environment_8h_a50415e3370ad088b0987a1f9f9fd9782}{aws\+\_\+unset\+\_\+environment\+\_\+value}} (const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$variable\+\_\+name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{environment_8h_a97f1b982b52ce4da5f38ce988a3c7878}\label{environment_8h_a97f1b982b52ce4da5f38ce988a3c7878}} 
+\index{environment.h@{environment.h}!aws\_get\_environment\_value@{aws\_get\_environment\_value}}
+\index{aws\_get\_environment\_value@{aws\_get\_environment\_value}!environment.h@{environment.h}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_environment\_value()}{aws\_get\_environment\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+get\+\_\+environment\+\_\+value (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{variable\+\_\+name,  }\item[{struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$$\ast$}]{value\+\_\+out }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{environment_8h_a42ddb207cd16c13e5da9df316b2d618e}\label{environment_8h_a42ddb207cd16c13e5da9df316b2d618e}} 
+\index{environment.h@{environment.h}!aws\_set\_environment\_value@{aws\_set\_environment\_value}}
+\index{aws\_set\_environment\_value@{aws\_set\_environment\_value}!environment.h@{environment.h}}
+\doxysubsubsection{\texorpdfstring{aws\_set\_environment\_value()}{aws\_set\_environment\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+set\+\_\+environment\+\_\+value (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{variable\+\_\+name,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{environment_8h_a50415e3370ad088b0987a1f9f9fd9782}\label{environment_8h_a50415e3370ad088b0987a1f9f9fd9782}} 
+\index{environment.h@{environment.h}!aws\_unset\_environment\_value@{aws\_unset\_environment\_value}}
+\index{aws\_unset\_environment\_value@{aws\_unset\_environment\_value}!environment.h@{environment.h}}
+\doxysubsubsection{\texorpdfstring{aws\_unset\_environment\_value()}{aws\_unset\_environment\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+unset\+\_\+environment\+\_\+value (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{variable\+\_\+name }\end{DoxyParamCaption})}
+

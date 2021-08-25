@@ -1,0 +1,157 @@
+\hypertarget{structhost__entry}{}\doxysection{host\+\_\+entry Struct Reference}
+\label{structhost__entry}\index{host\_entry@{host\_entry}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structhost__entry_ad33da52d58a267c15b99fd4edf5d58d5}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{structhost__entry_a48f207c16eeaea608d9814fc90719051}{resolver}}
+\item 
+struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} \mbox{\hyperlink{structhost__entry_a1767b27d08dcb7656a4bd082a8654441}{resolver\+\_\+thread}}
+\item 
+const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structhost__entry_af588ecef04dc799adae63dd3b636a905}{host\+\_\+name}}
+\item 
+int64\+\_\+t \mbox{\hyperlink{structhost__entry_a27b5b6840d406cb1b893a5ea36ebb9df}{resolve\+\_\+frequency\+\_\+ns}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} \mbox{\hyperlink{structhost__entry_a91bc8755fa8c0fb91c224313339932ef}{resolution\+\_\+config}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structhost__entry_a3418105806a7fefaf661611f64822d4a}{entry\+\_\+lock}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structhost__entry_a37cd3c93a1d45da053cc71b68a156bc8}{entry\+\_\+signal}}
+\item 
+struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$ \mbox{\hyperlink{structhost__entry_a25710754c083f48ab24a0fd3b2629cc9}{aaaa\+\_\+records}}
+\item 
+struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$ \mbox{\hyperlink{structhost__entry_a136d575acb8294d31db0e16d1b6d7799}{a\+\_\+records}}
+\item 
+struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$ \mbox{\hyperlink{structhost__entry_a017ba5adb5678eb63ec1753754c95b05}{failed\+\_\+connection\+\_\+aaaa\+\_\+records}}
+\item 
+struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}} $\ast$ \mbox{\hyperlink{structhost__entry_a8a8f2c3f3233deaefcc08125c014c543}{failed\+\_\+connection\+\_\+a\+\_\+records}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} \mbox{\hyperlink{structhost__entry_ac79ffa074ee33e2b67439d15e604d78a}{pending\+\_\+resolution\+\_\+callbacks}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structhost__entry_ad5ed06c24a3ec0c7384252a5c2a4c138}{resolves\+\_\+since\+\_\+last\+\_\+request}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structhost__entry_a879bcf8db7c16ea808a29469b5319648}{last\+\_\+resolve\+\_\+request\+\_\+timestamp\+\_\+ns}}
+\item 
+enum \mbox{\hyperlink{host__resolver_8c_ae3514ed634926a8404d7b5901e38b0e2}{default\+\_\+resolver\+\_\+state}} \mbox{\hyperlink{structhost__entry_a03a61e206478c7bea1f0ddf53319cbd5}{state}}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structhost__entry_a0402fe8fc3e06df4086e411bf458236e}{new\+\_\+addresses}}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structhost__entry_a130261d152f7b4c660e6046281a7038b}{expired\+\_\+addresses}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structhost__entry_a136d575acb8294d31db0e16d1b6d7799}\label{structhost__entry_a136d575acb8294d31db0e16d1b6d7799}} 
+\index{host\_entry@{host\_entry}!a\_records@{a\_records}}
+\index{a\_records@{a\_records}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{a\_records}{a\_records}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}}$\ast$ host\+\_\+entry\+::a\+\_\+records}
+
+\mbox{\Hypertarget{structhost__entry_a25710754c083f48ab24a0fd3b2629cc9}\label{structhost__entry_a25710754c083f48ab24a0fd3b2629cc9}} 
+\index{host\_entry@{host\_entry}!aaaa\_records@{aaaa\_records}}
+\index{aaaa\_records@{aaaa\_records}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{aaaa\_records}{aaaa\_records}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}}$\ast$ host\+\_\+entry\+::aaaa\+\_\+records}
+
+\mbox{\Hypertarget{structhost__entry_ad33da52d58a267c15b99fd4edf5d58d5}\label{structhost__entry_ad33da52d58a267c15b99fd4edf5d58d5}} 
+\index{host\_entry@{host\_entry}!allocator@{allocator}}
+\index{allocator@{allocator}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ host\+\_\+entry\+::allocator}
+
+\mbox{\Hypertarget{structhost__entry_a3418105806a7fefaf661611f64822d4a}\label{structhost__entry_a3418105806a7fefaf661611f64822d4a}} 
+\index{host\_entry@{host\_entry}!entry\_lock@{entry\_lock}}
+\index{entry\_lock@{entry\_lock}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{entry\_lock}{entry\_lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} host\+\_\+entry\+::entry\+\_\+lock}
+
+\mbox{\Hypertarget{structhost__entry_a37cd3c93a1d45da053cc71b68a156bc8}\label{structhost__entry_a37cd3c93a1d45da053cc71b68a156bc8}} 
+\index{host\_entry@{host\_entry}!entry\_signal@{entry\_signal}}
+\index{entry\_signal@{entry\_signal}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{entry\_signal}{entry\_signal}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} host\+\_\+entry\+::entry\+\_\+signal}
+
+\mbox{\Hypertarget{structhost__entry_a130261d152f7b4c660e6046281a7038b}\label{structhost__entry_a130261d152f7b4c660e6046281a7038b}} 
+\index{host\_entry@{host\_entry}!expired\_addresses@{expired\_addresses}}
+\index{expired\_addresses@{expired\_addresses}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{expired\_addresses}{expired\_addresses}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} host\+\_\+entry\+::expired\+\_\+addresses}
+
+\mbox{\Hypertarget{structhost__entry_a8a8f2c3f3233deaefcc08125c014c543}\label{structhost__entry_a8a8f2c3f3233deaefcc08125c014c543}} 
+\index{host\_entry@{host\_entry}!failed\_connection\_a\_records@{failed\_connection\_a\_records}}
+\index{failed\_connection\_a\_records@{failed\_connection\_a\_records}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{failed\_connection\_a\_records}{failed\_connection\_a\_records}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}}$\ast$ host\+\_\+entry\+::failed\+\_\+connection\+\_\+a\+\_\+records}
+
+\mbox{\Hypertarget{structhost__entry_a017ba5adb5678eb63ec1753754c95b05}\label{structhost__entry_a017ba5adb5678eb63ec1753754c95b05}} 
+\index{host\_entry@{host\_entry}!failed\_connection\_aaaa\_records@{failed\_connection\_aaaa\_records}}
+\index{failed\_connection\_aaaa\_records@{failed\_connection\_aaaa\_records}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{failed\_connection\_aaaa\_records}{failed\_connection\_aaaa\_records}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__cache}{aws\+\_\+cache}}$\ast$ host\+\_\+entry\+::failed\+\_\+connection\+\_\+aaaa\+\_\+records}
+
+\mbox{\Hypertarget{structhost__entry_af588ecef04dc799adae63dd3b636a905}\label{structhost__entry_af588ecef04dc799adae63dd3b636a905}} 
+\index{host\_entry@{host\_entry}!host\_name@{host\_name}}
+\index{host\_name@{host\_name}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{host\_name}{host\_name}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ host\+\_\+entry\+::host\+\_\+name}
+
+\mbox{\Hypertarget{structhost__entry_a879bcf8db7c16ea808a29469b5319648}\label{structhost__entry_a879bcf8db7c16ea808a29469b5319648}} 
+\index{host\_entry@{host\_entry}!last\_resolve\_request\_timestamp\_ns@{last\_resolve\_request\_timestamp\_ns}}
+\index{last\_resolve\_request\_timestamp\_ns@{last\_resolve\_request\_timestamp\_ns}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{last\_resolve\_request\_timestamp\_ns}{last\_resolve\_request\_timestamp\_ns}}
+{\footnotesize\ttfamily uint64\+\_\+t host\+\_\+entry\+::last\+\_\+resolve\+\_\+request\+\_\+timestamp\+\_\+ns}
+
+\mbox{\Hypertarget{structhost__entry_a0402fe8fc3e06df4086e411bf458236e}\label{structhost__entry_a0402fe8fc3e06df4086e411bf458236e}} 
+\index{host\_entry@{host\_entry}!new\_addresses@{new\_addresses}}
+\index{new\_addresses@{new\_addresses}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{new\_addresses}{new\_addresses}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} host\+\_\+entry\+::new\+\_\+addresses}
+
+\mbox{\Hypertarget{structhost__entry_ac79ffa074ee33e2b67439d15e604d78a}\label{structhost__entry_ac79ffa074ee33e2b67439d15e604d78a}} 
+\index{host\_entry@{host\_entry}!pending\_resolution\_callbacks@{pending\_resolution\_callbacks}}
+\index{pending\_resolution\_callbacks@{pending\_resolution\_callbacks}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{pending\_resolution\_callbacks}{pending\_resolution\_callbacks}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} host\+\_\+entry\+::pending\+\_\+resolution\+\_\+callbacks}
+
+\mbox{\Hypertarget{structhost__entry_a91bc8755fa8c0fb91c224313339932ef}\label{structhost__entry_a91bc8755fa8c0fb91c224313339932ef}} 
+\index{host\_entry@{host\_entry}!resolution\_config@{resolution\_config}}
+\index{resolution\_config@{resolution\_config}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{resolution\_config}{resolution\_config}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} host\+\_\+entry\+::resolution\+\_\+config}
+
+\mbox{\Hypertarget{structhost__entry_a27b5b6840d406cb1b893a5ea36ebb9df}\label{structhost__entry_a27b5b6840d406cb1b893a5ea36ebb9df}} 
+\index{host\_entry@{host\_entry}!resolve\_frequency\_ns@{resolve\_frequency\_ns}}
+\index{resolve\_frequency\_ns@{resolve\_frequency\_ns}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{resolve\_frequency\_ns}{resolve\_frequency\_ns}}
+{\footnotesize\ttfamily int64\+\_\+t host\+\_\+entry\+::resolve\+\_\+frequency\+\_\+ns}
+
+\mbox{\Hypertarget{structhost__entry_a48f207c16eeaea608d9814fc90719051}\label{structhost__entry_a48f207c16eeaea608d9814fc90719051}} 
+\index{host\_entry@{host\_entry}!resolver@{resolver}}
+\index{resolver@{resolver}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{resolver}{resolver}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}}$\ast$ host\+\_\+entry\+::resolver}
+
+\mbox{\Hypertarget{structhost__entry_a1767b27d08dcb7656a4bd082a8654441}\label{structhost__entry_a1767b27d08dcb7656a4bd082a8654441}} 
+\index{host\_entry@{host\_entry}!resolver\_thread@{resolver\_thread}}
+\index{resolver\_thread@{resolver\_thread}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{resolver\_thread}{resolver\_thread}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} host\+\_\+entry\+::resolver\+\_\+thread}
+
+\mbox{\Hypertarget{structhost__entry_ad5ed06c24a3ec0c7384252a5c2a4c138}\label{structhost__entry_ad5ed06c24a3ec0c7384252a5c2a4c138}} 
+\index{host\_entry@{host\_entry}!resolves\_since\_last\_request@{resolves\_since\_last\_request}}
+\index{resolves\_since\_last\_request@{resolves\_since\_last\_request}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{resolves\_since\_last\_request}{resolves\_since\_last\_request}}
+{\footnotesize\ttfamily uint32\+\_\+t host\+\_\+entry\+::resolves\+\_\+since\+\_\+last\+\_\+request}
+
+\mbox{\Hypertarget{structhost__entry_a03a61e206478c7bea1f0ddf53319cbd5}\label{structhost__entry_a03a61e206478c7bea1f0ddf53319cbd5}} 
+\index{host\_entry@{host\_entry}!state@{state}}
+\index{state@{state}!host\_entry@{host\_entry}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{host__resolver_8c_ae3514ed634926a8404d7b5901e38b0e2}{default\+\_\+resolver\+\_\+state}} host\+\_\+entry\+::state}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/\mbox{\hyperlink{host__resolver_8c}{host\+\_\+resolver.\+c}}\end{DoxyCompactItemize}

@@ -1,0 +1,202 @@
+\hypertarget{structaws__hpack__context}{}\doxysection{aws\+\_\+hpack\+\_\+context Struct Reference}
+\label{structaws__hpack__context}\index{aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__entry}{hpack\+\_\+progress\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__integer}{hpack\+\_\+progress\+\_\+integer}}
+\item 
+struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__string}{hpack\+\_\+progress\+\_\+string}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__hpack__context_af10e9e0468373d550be94ded6baff1d3}{allocator}}
+\item 
+enum \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}{aws\+\_\+hpack\+\_\+huffman\+\_\+mode}} \mbox{\hyperlink{structaws__hpack__context_abf30c482f1f0f972f47e86b15df37f32}{huffman\+\_\+mode}}
+\item 
+enum \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528}{aws\+\_\+http\+\_\+log\+\_\+subject}} \mbox{\hyperlink{structaws__hpack__context_a9dcafea064a66f2c17a43321193e3914}{log\+\_\+subject}}
+\item 
+const void $\ast$ \mbox{\hyperlink{structaws__hpack__context_a769cc5adcf2c7ec2ea0091ef19c8f822}{log\+\_\+id}}
+\item 
+struct \mbox{\hyperlink{structaws__huffman__encoder}{aws\+\_\+huffman\+\_\+encoder}} \mbox{\hyperlink{structaws__hpack__context_ad146cffefec61883b1e3a5c02f845d3e}{encoder}}
+\item 
+struct \mbox{\hyperlink{structaws__huffman__decoder}{aws\+\_\+huffman\+\_\+decoder}} \mbox{\hyperlink{structaws__hpack__context_a62fc30be0ffaa3df21e2cd9e32346102}{decoder}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>size\_t \mbox{\hyperlink{structaws__hpack__context_a1e23c112e852bf3d8b6c0b2ea381fe81}{last\_value}}\\
+\>size\_t \mbox{\hyperlink{structaws__hpack__context_a856266a99285f763dba28fcfd06190cf}{smallest\_value}}\\
+\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__hpack__context_acafd12cd3568fa95da7310f4ddf8d6bb}{pending}}\\
+\} \mbox{\hyperlink{structaws__hpack__context_abbad9f5aad66e240f2e0ef11edad49d6}{dynamic\_table\_size\_update}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structaws__http__header}{aws\_http\_header}} $\ast$ \mbox{\hyperlink{structaws__hpack__context_a71d60c0cc736668877e3aa583622965b}{buffer}}\\
+\>size\_t \mbox{\hyperlink{structaws__hpack__context_a940e956ed0772bf0bf9a16a3f86819ec}{buffer\_capacity}}\\
+\>size\_t \mbox{\hyperlink{structaws__hpack__context_a75867d8d8de80ed3f106e62e8dbfa987}{num\_elements}}\\
+\>size\_t \mbox{\hyperlink{structaws__hpack__context_aba7eb7417f6b5ece921000dbfc792996}{index\_0}}\\
+\>size\_t \mbox{\hyperlink{structaws__hpack__context_a62aaaee11e4b1aeb639ab036e6b081b1}{size}}\\
+\>size\_t \mbox{\hyperlink{structaws__hpack__context_a3543b7c2c11ed858f346a43b1d0294a2}{max\_size}}\\
+\>size\_t \mbox{\hyperlink{structaws__hpack__context_a219351937379ea50c555cea567012fc5}{protocol\_max\_size\_setting}}\\
+\>struct \mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structaws__hpack__context_ac8976897199ad82e77af2f61699b6109}{reverse\_lookup}}\\
+\>struct \mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structaws__hpack__context_a9ac21e8a33f70b4defb63eeab3808a79}{reverse\_lookup\_name\_only}}\\
+\} \mbox{\hyperlink{structaws__hpack__context_af932ef3166cde5bfad27546411f6e7e4}{dynamic\_table}}\\
+
+\end{tabbing}\item 
+struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__integer}{aws\+\_\+hpack\+\_\+context\+::hpack\+\_\+progress\+\_\+integer}} \mbox{\hyperlink{structaws__hpack__context_a9a844b8bf692eabca62009a49dda346c}{progress\+\_\+integer}}
+\item 
+struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__string}{aws\+\_\+hpack\+\_\+context\+::hpack\+\_\+progress\+\_\+string}} \mbox{\hyperlink{structaws__hpack__context_a2dd79d5e93bafe1a20f1f1f6e74a81f6}{progress\+\_\+string}}
+\item 
+struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__entry}{aws\+\_\+hpack\+\_\+context\+::hpack\+\_\+progress\+\_\+entry}} \mbox{\hyperlink{structaws__hpack__context_a87290c8418d881edd8e18ca4e7665b08}{progress\+\_\+entry}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__hpack__context_af10e9e0468373d550be94ded6baff1d3}\label{structaws__hpack__context_af10e9e0468373d550be94ded6baff1d3}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+hpack\+\_\+context\+::allocator}
+
+\mbox{\Hypertarget{structaws__hpack__context_a71d60c0cc736668877e3aa583622965b}\label{structaws__hpack__context_a71d60c0cc736668877e3aa583622965b}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!buffer@{buffer}}
+\index{buffer@{buffer}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}}$\ast$ aws\+\_\+hpack\+\_\+context\+::buffer}
+
+\mbox{\Hypertarget{structaws__hpack__context_a940e956ed0772bf0bf9a16a3f86819ec}\label{structaws__hpack__context_a940e956ed0772bf0bf9a16a3f86819ec}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!buffer\_capacity@{buffer\_capacity}}
+\index{buffer\_capacity@{buffer\_capacity}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{buffer\_capacity}{buffer\_capacity}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+context\+::buffer\+\_\+capacity}
+
+\mbox{\Hypertarget{structaws__hpack__context_a62fc30be0ffaa3df21e2cd9e32346102}\label{structaws__hpack__context_a62fc30be0ffaa3df21e2cd9e32346102}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!decoder@{decoder}}
+\index{decoder@{decoder}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{decoder}{decoder}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__huffman__decoder}{aws\+\_\+huffman\+\_\+decoder}} aws\+\_\+hpack\+\_\+context\+::decoder}
+
+\mbox{\Hypertarget{structaws__hpack__context_af932ef3166cde5bfad27546411f6e7e4}\label{structaws__hpack__context_af932ef3166cde5bfad27546411f6e7e4}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!dynamic\_table@{dynamic\_table}}
+\index{dynamic\_table@{dynamic\_table}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  aws\+\_\+hpack\+\_\+context\+::dynamic\+\_\+table}
+
+\mbox{\Hypertarget{structaws__hpack__context_abbad9f5aad66e240f2e0ef11edad49d6}\label{structaws__hpack__context_abbad9f5aad66e240f2e0ef11edad49d6}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!dynamic\_table\_size\_update@{dynamic\_table\_size\_update}}
+\index{dynamic\_table\_size\_update@{dynamic\_table\_size\_update}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  aws\+\_\+hpack\+\_\+context\+::dynamic\+\_\+table\+\_\+size\+\_\+update}
+
+\mbox{\Hypertarget{structaws__hpack__context_ad146cffefec61883b1e3a5c02f845d3e}\label{structaws__hpack__context_ad146cffefec61883b1e3a5c02f845d3e}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!encoder@{encoder}}
+\index{encoder@{encoder}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{encoder}{encoder}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__huffman__encoder}{aws\+\_\+huffman\+\_\+encoder}} aws\+\_\+hpack\+\_\+context\+::encoder}
+
+\mbox{\Hypertarget{structaws__hpack__context_abf30c482f1f0f972f47e86b15df37f32}\label{structaws__hpack__context_abf30c482f1f0f972f47e86b15df37f32}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!huffman\_mode@{huffman\_mode}}
+\index{huffman\_mode@{huffman\_mode}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{huffman\_mode}{huffman\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{hpack_8h_a63dc9c1ecf224c39ca8a5f3c94db708a}{aws\+\_\+hpack\+\_\+huffman\+\_\+mode}} aws\+\_\+hpack\+\_\+context\+::huffman\+\_\+mode}
+
+\mbox{\Hypertarget{structaws__hpack__context_aba7eb7417f6b5ece921000dbfc792996}\label{structaws__hpack__context_aba7eb7417f6b5ece921000dbfc792996}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!index\_0@{index\_0}}
+\index{index\_0@{index\_0}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{index\_0}{index\_0}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+context\+::index\+\_\+0}
+
+\mbox{\Hypertarget{structaws__hpack__context_a1e23c112e852bf3d8b6c0b2ea381fe81}\label{structaws__hpack__context_a1e23c112e852bf3d8b6c0b2ea381fe81}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!last\_value@{last\_value}}
+\index{last\_value@{last\_value}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{last\_value}{last\_value}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+context\+::last\+\_\+value}
+
+\mbox{\Hypertarget{structaws__hpack__context_a769cc5adcf2c7ec2ea0091ef19c8f822}\label{structaws__hpack__context_a769cc5adcf2c7ec2ea0091ef19c8f822}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!log\_id@{log\_id}}
+\index{log\_id@{log\_id}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{log\_id}{log\_id}}
+{\footnotesize\ttfamily const void$\ast$ aws\+\_\+hpack\+\_\+context\+::log\+\_\+id}
+
+\mbox{\Hypertarget{structaws__hpack__context_a9dcafea064a66f2c17a43321193e3914}\label{structaws__hpack__context_a9dcafea064a66f2c17a43321193e3914}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!log\_subject@{log\_subject}}
+\index{log\_subject@{log\_subject}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{log\_subject}{log\_subject}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528}{aws\+\_\+http\+\_\+log\+\_\+subject}} aws\+\_\+hpack\+\_\+context\+::log\+\_\+subject}
+
+\mbox{\Hypertarget{structaws__hpack__context_a3543b7c2c11ed858f346a43b1d0294a2}\label{structaws__hpack__context_a3543b7c2c11ed858f346a43b1d0294a2}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!max\_size@{max\_size}}
+\index{max\_size@{max\_size}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{max\_size}{max\_size}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+context\+::max\+\_\+size}
+
+\mbox{\Hypertarget{structaws__hpack__context_a75867d8d8de80ed3f106e62e8dbfa987}\label{structaws__hpack__context_a75867d8d8de80ed3f106e62e8dbfa987}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!num\_elements@{num\_elements}}
+\index{num\_elements@{num\_elements}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{num\_elements}{num\_elements}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+context\+::num\+\_\+elements}
+
+\mbox{\Hypertarget{structaws__hpack__context_acafd12cd3568fa95da7310f4ddf8d6bb}\label{structaws__hpack__context_acafd12cd3568fa95da7310f4ddf8d6bb}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!pending@{pending}}
+\index{pending@{pending}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{pending}{pending}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hpack\+\_\+context\+::pending}
+
+\mbox{\Hypertarget{structaws__hpack__context_a87290c8418d881edd8e18ca4e7665b08}\label{structaws__hpack__context_a87290c8418d881edd8e18ca4e7665b08}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!progress\_entry@{progress\_entry}}
+\index{progress\_entry@{progress\_entry}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{progress\_entry}{progress\_entry}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__entry}{aws\+\_\+hpack\+\_\+context\+::hpack\+\_\+progress\+\_\+entry}} aws\+\_\+hpack\+\_\+context\+::progress\+\_\+entry}
+
+\mbox{\Hypertarget{structaws__hpack__context_a9a844b8bf692eabca62009a49dda346c}\label{structaws__hpack__context_a9a844b8bf692eabca62009a49dda346c}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!progress\_integer@{progress\_integer}}
+\index{progress\_integer@{progress\_integer}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{progress\_integer}{progress\_integer}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__integer}{aws\+\_\+hpack\+\_\+context\+::hpack\+\_\+progress\+\_\+integer}} aws\+\_\+hpack\+\_\+context\+::progress\+\_\+integer}
+
+\mbox{\Hypertarget{structaws__hpack__context_a2dd79d5e93bafe1a20f1f1f6e74a81f6}\label{structaws__hpack__context_a2dd79d5e93bafe1a20f1f1f6e74a81f6}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!progress\_string@{progress\_string}}
+\index{progress\_string@{progress\_string}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{progress\_string}{progress\_string}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__string}{aws\+\_\+hpack\+\_\+context\+::hpack\+\_\+progress\+\_\+string}} aws\+\_\+hpack\+\_\+context\+::progress\+\_\+string}
+
+\mbox{\Hypertarget{structaws__hpack__context_a219351937379ea50c555cea567012fc5}\label{structaws__hpack__context_a219351937379ea50c555cea567012fc5}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!protocol\_max\_size\_setting@{protocol\_max\_size\_setting}}
+\index{protocol\_max\_size\_setting@{protocol\_max\_size\_setting}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{protocol\_max\_size\_setting}{protocol\_max\_size\_setting}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+context\+::protocol\+\_\+max\+\_\+size\+\_\+setting}
+
+\mbox{\Hypertarget{structaws__hpack__context_ac8976897199ad82e77af2f61699b6109}\label{structaws__hpack__context_ac8976897199ad82e77af2f61699b6109}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!reverse\_lookup@{reverse\_lookup}}
+\index{reverse\_lookup@{reverse\_lookup}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{reverse\_lookup}{reverse\_lookup}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} aws\+\_\+hpack\+\_\+context\+::reverse\+\_\+lookup}
+
+\mbox{\Hypertarget{structaws__hpack__context_a9ac21e8a33f70b4defb63eeab3808a79}\label{structaws__hpack__context_a9ac21e8a33f70b4defb63eeab3808a79}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!reverse\_lookup\_name\_only@{reverse\_lookup\_name\_only}}
+\index{reverse\_lookup\_name\_only@{reverse\_lookup\_name\_only}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{reverse\_lookup\_name\_only}{reverse\_lookup\_name\_only}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} aws\+\_\+hpack\+\_\+context\+::reverse\+\_\+lookup\+\_\+name\+\_\+only}
+
+\mbox{\Hypertarget{structaws__hpack__context_a62aaaee11e4b1aeb639ab036e6b081b1}\label{structaws__hpack__context_a62aaaee11e4b1aeb639ab036e6b081b1}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!size@{size}}
+\index{size@{size}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+context\+::size}
+
+\mbox{\Hypertarget{structaws__hpack__context_a856266a99285f763dba28fcfd06190cf}\label{structaws__hpack__context_a856266a99285f763dba28fcfd06190cf}} 
+\index{aws\_hpack\_context@{aws\_hpack\_context}!smallest\_value@{smallest\_value}}
+\index{smallest\_value@{smallest\_value}!aws\_hpack\_context@{aws\_hpack\_context}}
+\doxysubsubsection{\texorpdfstring{smallest\_value}{smallest\_value}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+context\+::smallest\+\_\+value}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/\mbox{\hyperlink{hpack_8c}{hpack.\+c}}\end{DoxyCompactItemize}

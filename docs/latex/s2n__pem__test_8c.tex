@@ -1,0 +1,82 @@
+\hypertarget{s2n__pem__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+pem\+\_\+test.c File Reference}
+\label{s2n__pem__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_pem\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_pem\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__pem__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char $\ast$ \mbox{\hyperlink{s2n__pem__test_8c_a0812b1d2d2c8c0107aed256735375160}{valid\+\_\+pem\+\_\+pairs}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\item 
+static const char $\ast$ \mbox{\hyperlink{s2n__pem__test_8c_a1e50e8d7045069a2bdb35666001626d6}{invalid\+\_\+pem\+\_\+pairs}} \mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__pem__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__pem__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_pem\_test.c@{s2n\_pem\_test.c}!main@{main}}
+\index{main@{main}!s2n\_pem\_test.c@{s2n\_pem\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__pem__test_8c_a1e50e8d7045069a2bdb35666001626d6}\label{s2n__pem__test_8c_a1e50e8d7045069a2bdb35666001626d6}} 
+\index{s2n\_pem\_test.c@{s2n\_pem\_test.c}!invalid\_pem\_pairs@{invalid\_pem\_pairs}}
+\index{invalid\_pem\_pairs@{invalid\_pem\_pairs}!s2n\_pem\_test.c@{s2n\_pem\_test.c}}
+\doxysubsubsection{\texorpdfstring{invalid\_pem\_pairs}{invalid\_pem\_pairs}}
+{\footnotesize\ttfamily const char$\ast$ invalid\+\_\+pem\+\_\+pairs\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_ad2bda1c44aacf668ce870fc1e9382932}{S2N\_UNKNOWN\_KEYWORD\_CERT\_CHAIN}},         \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}}  \},}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a724fd851deadd0d011007b44d2f639ae}{S2N\_RSA\_2048\_PKCS1\_CERT\_CHAIN}},          \mbox{\hyperlink{s2n__testlib_8h_a7401e388b999535660eaf26b27f801d3}{S2N\_INVALID\_HEADER\_KEY}}  \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a724fd851deadd0d011007b44d2f639ae}{S2N\_RSA\_2048\_PKCS1\_CERT\_CHAIN}},          \mbox{\hyperlink{s2n__testlib_8h_a12a457c64e556b653fd01d40e3644409}{S2N\_UNKNOWN\_KEYWORD\_KEY}} \},}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_ad2bda1c44aacf668ce870fc1e9382932}{S2N\_UNKNOWN\_KEYWORD\_CERT\_CHAIN}},         \mbox{\hyperlink{s2n__testlib_8h_a12a457c64e556b653fd01d40e3644409}{S2N\_UNKNOWN\_KEYWORD\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_ac84f7b5613943c5a9295aaf731a6339c}{S2N\_NO\_DASHES\_CERT\_CHAIN}},               \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}}  \},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__pem__test_8c_a0812b1d2d2c8c0107aed256735375160}\label{s2n__pem__test_8c_a0812b1d2d2c8c0107aed256735375160}} 
+\index{s2n\_pem\_test.c@{s2n\_pem\_test.c}!valid\_pem\_pairs@{valid\_pem\_pairs}}
+\index{valid\_pem\_pairs@{valid\_pem\_pairs}!s2n\_pem\_test.c@{s2n\_pem\_test.c}}
+\doxysubsubsection{\texorpdfstring{valid\_pem\_pairs}{valid\_pem\_pairs}}
+{\footnotesize\ttfamily const char$\ast$ valid\+\_\+pem\+\_\+pairs\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_ac5e192e299f50f6b3287a670e412ffcf}{S2N\_RSA\_2048\_PKCS8\_CERT\_CHAIN}},          \mbox{\hyperlink{s2n__testlib_8h_ae2a3ba21a8b5a5a1f88a2910980d8317}{S2N\_RSA\_2048\_PKCS8\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a724fd851deadd0d011007b44d2f639ae}{S2N\_RSA\_2048\_PKCS1\_CERT\_CHAIN}},          \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a5d18ca7e4c1c05d926512ac5a5b9df9a}{S2N\_RSA\_2048\_PKCS1\_LEAF\_CERT}},           \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_ac26bb377145892ea45c08f746bba23ff}{S2N\_RSA\_CERT\_CHAIN\_CRLF}},                \mbox{\hyperlink{s2n__testlib_8h_ad44423b32946c0650dadf49313f35081}{S2N\_RSA\_KEY\_CRLF}}       \},}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a93ff87c41ced7819d6042c800c0fbce7}{S2N\_LEAF\_WHITESPACE\_CERT\_CHAIN}},         \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a91289b48fcd246f42fd55051972b41d7}{S2N\_INTERMEDIATE\_WHITESPACE\_CERT\_CHAIN}}, \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a3cb4e766ddedbf0e4570fd5f95593a1b}{S2N\_ROOT\_WHITESPACE\_CERT\_CHAIN}},         \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a70d18c5802517d8bc841870725cec8be}{S2N\_TRAILING\_WHITESPACE\_CERT\_CHAIN}},     \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a840e12a22aaf284cccf864cc1c15d263}{S2N\_LEADING\_COMMENT\_TEXT\_CERT\_CHAIN}},    \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_adf8b5dbc421a4b1d62bed816d21549b0}{S2N\_LONG\_BASE64\_LINES\_CERT\_CHAIN}},       \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_af32c848649890f43a86e5a271ab93685}{S2N\_MISSING\_LINE\_ENDINGS\_CERT\_CHAIN}},    \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}} \},}
+\DoxyCodeLine{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a7365a860c79a7f17d4e12f97ebe6bb0d}{S2N\_INVALID\_HEADER\_CERT\_CHAIN}},          \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}}  \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a8f4ce7186743bbf1e38458613d69c9ec}{S2N\_INVALID\_TRAILER\_CERT\_CHAIN}},         \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}}  \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a724fd851deadd0d011007b44d2f639ae}{S2N\_RSA\_2048\_PKCS1\_CERT\_CHAIN}},          \mbox{\hyperlink{s2n__testlib_8h_a1d8bbc499e3a3ba196dfa69eeadef7df}{S2N\_INVALID\_TRAILER\_KEY}} \},}
+\DoxyCodeLine{    \{ \mbox{\hyperlink{s2n__testlib_8h_a2bebf26ee903ad3a33e6149b813dd419}{S2N\_WEIRD\_DASHES\_CERT\_CHAIN}},            \mbox{\hyperlink{s2n__testlib_8h_af8869950f01a43c07825d7ec9b2052f6}{S2N\_RSA\_2048\_PKCS1\_KEY}}  \},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

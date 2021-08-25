@@ -1,0 +1,109 @@
+\hypertarget{network_8h}{}\doxysection{crt/aws-\/c-\/iot/include/aws/iotdevice/private/network.h File Reference}
+\label{network_8h}\index{crt/aws-\/c-\/iot/include/aws/iotdevice/private/network.h@{crt/aws-\/c-\/iot/include/aws/iotdevice/private/network.h}}
+{\ttfamily \#include $<$aws/common/hash\+\_\+table.\+h$>$}\newline
+{\ttfamily \#include $<$aws/iotdevice/exports.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}}
+\item 
+struct \mbox{\hyperlink{structaws__iotdevice__metric__net__connection}{aws\+\_\+iotdevice\+\_\+metric\+\_\+net\+\_\+connection}}
+\item 
+struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{network_8h_aaf7161ea863c329282982241fb005f05}{aws\+\_\+iotdevice\+\_\+network\+\_\+protocol}} \{ \mbox{\hyperlink{network_8h_aaf7161ea863c329282982241fb005f05ae2ef677cfbb76af433d05c8a657e1a86}{AWS\+\_\+\+IDNP\+\_\+\+UKNOWN}}
+, \mbox{\hyperlink{network_8h_aaf7161ea863c329282982241fb005f05a5524b96d96fa00c3213f4990ff791bc1}{AWS\+\_\+\+IDNP\+\_\+\+TCP}}
+, \mbox{\hyperlink{network_8h_aaf7161ea863c329282982241fb005f05a257923acc6ac5be6e4e6fdd620ae64e4}{AWS\+\_\+\+IDNP\+\_\+\+UDP}}
+ \}
+\item 
+enum \mbox{\hyperlink{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56}{aws\+\_\+iotdevice\+\_\+network\+\_\+connection\+\_\+state}} \{ \mbox{\hyperlink{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56aac75cc77086af6cb787ef44b72aaa02e}{AWS\+\_\+\+IDNCS\+\_\+\+UNKNOWN}} = 0
+, \mbox{\hyperlink{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56ab1d385610fe43f322576c4ccf8b46dcc}{AWS\+\_\+\+IDNCS\+\_\+\+ESTABLISHED}} = 1
+, \mbox{\hyperlink{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56a3144f5de4804d96dbaae07f9d3bdcf98}{AWS\+\_\+\+IDNCS\+\_\+\+LISTEN}} = 10
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} void \mbox{\hyperlink{network_8h_aa9f0b5ba5634e44ff898a05160b6e487}{get\+\_\+system\+\_\+network\+\_\+total}} (struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$total, struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$ifconfig)
+\item 
+\mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} int \mbox{\hyperlink{network_8h_a14d4052dee8d0473e0718f146fb2c365}{get\+\_\+network\+\_\+config\+\_\+and\+\_\+transfer}} (struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$ifconfig, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} int \mbox{\hyperlink{network_8h_aeda33451b9f210108c990a68e0ba7d64}{get\+\_\+network\+\_\+connections}} (struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$net\+\_\+conns, struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$ifconfig, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} void \mbox{\hyperlink{network_8h_a35e9af959b1e90c3d8dbea9ef92cff80}{get\+\_\+network\+\_\+total\+\_\+delta}} (struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$delta, struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$prev\+\_\+total, struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$curr\+\_\+total)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56}\label{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56}} 
+\index{network.h@{network.h}!aws\_iotdevice\_network\_connection\_state@{aws\_iotdevice\_network\_connection\_state}}
+\index{aws\_iotdevice\_network\_connection\_state@{aws\_iotdevice\_network\_connection\_state}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_network\_connection\_state}{aws\_iotdevice\_network\_connection\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56}{aws\+\_\+iotdevice\+\_\+network\+\_\+connection\+\_\+state}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_IDNCS\_UNKNOWN@{AWS\_IDNCS\_UNKNOWN}!network.h@{network.h}}\index{network.h@{network.h}!AWS\_IDNCS\_UNKNOWN@{AWS\_IDNCS\_UNKNOWN}}}\mbox{\Hypertarget{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56aac75cc77086af6cb787ef44b72aaa02e}\label{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56aac75cc77086af6cb787ef44b72aaa02e}} 
+AWS\+\_\+\+IDNCS\+\_\+\+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_IDNCS\_ESTABLISHED@{AWS\_IDNCS\_ESTABLISHED}!network.h@{network.h}}\index{network.h@{network.h}!AWS\_IDNCS\_ESTABLISHED@{AWS\_IDNCS\_ESTABLISHED}}}\mbox{\Hypertarget{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56ab1d385610fe43f322576c4ccf8b46dcc}\label{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56ab1d385610fe43f322576c4ccf8b46dcc}} 
+AWS\+\_\+\+IDNCS\+\_\+\+ESTABLISHED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_IDNCS\_LISTEN@{AWS\_IDNCS\_LISTEN}!network.h@{network.h}}\index{network.h@{network.h}!AWS\_IDNCS\_LISTEN@{AWS\_IDNCS\_LISTEN}}}\mbox{\Hypertarget{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56a3144f5de4804d96dbaae07f9d3bdcf98}\label{network_8h_a8d4ff23dffc8acd9cce1c2ae101e2c56a3144f5de4804d96dbaae07f9d3bdcf98}} 
+AWS\+\_\+\+IDNCS\+\_\+\+LISTEN&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{network_8h_aaf7161ea863c329282982241fb005f05}\label{network_8h_aaf7161ea863c329282982241fb005f05}} 
+\index{network.h@{network.h}!aws\_iotdevice\_network\_protocol@{aws\_iotdevice\_network\_protocol}}
+\index{aws\_iotdevice\_network\_protocol@{aws\_iotdevice\_network\_protocol}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_network\_protocol}{aws\_iotdevice\_network\_protocol}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{network_8h_aaf7161ea863c329282982241fb005f05}{aws\+\_\+iotdevice\+\_\+network\+\_\+protocol}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_IDNP\_UKNOWN@{AWS\_IDNP\_UKNOWN}!network.h@{network.h}}\index{network.h@{network.h}!AWS\_IDNP\_UKNOWN@{AWS\_IDNP\_UKNOWN}}}\mbox{\Hypertarget{network_8h_aaf7161ea863c329282982241fb005f05ae2ef677cfbb76af433d05c8a657e1a86}\label{network_8h_aaf7161ea863c329282982241fb005f05ae2ef677cfbb76af433d05c8a657e1a86}} 
+AWS\+\_\+\+IDNP\+\_\+\+UKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_IDNP\_TCP@{AWS\_IDNP\_TCP}!network.h@{network.h}}\index{network.h@{network.h}!AWS\_IDNP\_TCP@{AWS\_IDNP\_TCP}}}\mbox{\Hypertarget{network_8h_aaf7161ea863c329282982241fb005f05a5524b96d96fa00c3213f4990ff791bc1}\label{network_8h_aaf7161ea863c329282982241fb005f05a5524b96d96fa00c3213f4990ff791bc1}} 
+AWS\+\_\+\+IDNP\+\_\+\+TCP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_IDNP\_UDP@{AWS\_IDNP\_UDP}!network.h@{network.h}}\index{network.h@{network.h}!AWS\_IDNP\_UDP@{AWS\_IDNP\_UDP}}}\mbox{\Hypertarget{network_8h_aaf7161ea863c329282982241fb005f05a257923acc6ac5be6e4e6fdd620ae64e4}\label{network_8h_aaf7161ea863c329282982241fb005f05a257923acc6ac5be6e4e6fdd620ae64e4}} 
+AWS\+\_\+\+IDNP\+\_\+\+UDP&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{network_8h_a14d4052dee8d0473e0718f146fb2c365}\label{network_8h_a14d4052dee8d0473e0718f146fb2c365}} 
+\index{network.h@{network.h}!get\_network\_config\_and\_transfer@{get\_network\_config\_and\_transfer}}
+\index{get\_network\_config\_and\_transfer@{get\_network\_config\_and\_transfer}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{get\_network\_config\_and\_transfer()}{get\_network\_config\_and\_transfer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} int get\+\_\+network\+\_\+config\+\_\+and\+\_\+transfer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$}]{ifconfig,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{network_8h_aeda33451b9f210108c990a68e0ba7d64}\label{network_8h_aeda33451b9f210108c990a68e0ba7d64}} 
+\index{network.h@{network.h}!get\_network\_connections@{get\_network\_connections}}
+\index{get\_network\_connections@{get\_network\_connections}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{get\_network\_connections()}{get\_network\_connections()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} int get\+\_\+network\+\_\+connections (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{net\+\_\+conns,  }\item[{struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$}]{ifconfig,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{network_8h_a35e9af959b1e90c3d8dbea9ef92cff80}\label{network_8h_a35e9af959b1e90c3d8dbea9ef92cff80}} 
+\index{network.h@{network.h}!get\_network\_total\_delta@{get\_network\_total\_delta}}
+\index{get\_network\_total\_delta@{get\_network\_total\_delta}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{get\_network\_total\_delta()}{get\_network\_total\_delta()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} void get\+\_\+network\+\_\+total\+\_\+delta (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$}]{delta,  }\item[{struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$}]{prev\+\_\+total,  }\item[{struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$}]{curr\+\_\+total }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{network_8h_aa9f0b5ba5634e44ff898a05160b6e487}\label{network_8h_aa9f0b5ba5634e44ff898a05160b6e487}} 
+\index{network.h@{network.h}!get\_system\_network\_total@{get\_system\_network\_total}}
+\index{get\_system\_network\_total@{get\_system\_network\_total}!network.h@{network.h}}
+\doxysubsubsection{\texorpdfstring{get\_system\_network\_total()}{get\_system\_network\_total()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} void get\+\_\+system\+\_\+network\+\_\+total (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__iotdevice__metric__network__transfer}{aws\+\_\+iotdevice\+\_\+metric\+\_\+network\+\_\+transfer}} $\ast$}]{total,  }\item[{struct \mbox{\hyperlink{structaws__iotdevice__network__ifconfig}{aws\+\_\+iotdevice\+\_\+network\+\_\+ifconfig}} $\ast$}]{ifconfig }\end{DoxyParamCaption})}
+

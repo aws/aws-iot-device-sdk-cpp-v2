@@ -1,0 +1,98 @@
+\hypertarget{namespacetest__signature__algorithms}{}\doxysection{test\+\_\+signature\+\_\+algorithms Namespace Reference}
+\label{namespacetest__signature__algorithms}\index{test\_signature\_algorithms@{test\_signature\_algorithms}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacetest__signature__algorithms_a75d27bdf6b38ceae38fe0d2618b0bd59}{skip\+\_\+ciphers}} ($\ast$args, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespacetest__signature__algorithms_a9380f1e946d446879ef8cbbe7edb001b}{test\+\_\+s2n\+\_\+server\+\_\+signature\+\_\+algorithms}} (managed\+\_\+process, cipher, provider, protocol, certificate, signature, client\+\_\+auth)
+\item 
+def \mbox{\hyperlink{namespacetest__signature__algorithms_a91b2b32a6f1240fa5f61628e4e4e6d19}{test\+\_\+s2n\+\_\+client\+\_\+signature\+\_\+algorithms}} (managed\+\_\+process, cipher, provider, protocol, certificate, signature, client\+\_\+auth)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \mbox{\hyperlink{namespacetest__signature__algorithms_ac2dab553bd46432e66ae1b64662fee94}{certs}}
+\item 
+list \mbox{\hyperlink{namespacetest__signature__algorithms_a238723163dc1602d32e69e7aa06d3b1e}{all\+\_\+sigs}}
+\item 
+list \mbox{\hyperlink{namespacetest__signature__algorithms_ad981118188e6fea1d48da81ba5b51007}{unsupported\+\_\+ciphers}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacetest__signature__algorithms_a75d27bdf6b38ceae38fe0d2618b0bd59}\label{namespacetest__signature__algorithms_a75d27bdf6b38ceae38fe0d2618b0bd59}} 
+\index{test\_signature\_algorithms@{test\_signature\_algorithms}!skip\_ciphers@{skip\_ciphers}}
+\index{skip\_ciphers@{skip\_ciphers}!test\_signature\_algorithms@{test\_signature\_algorithms}}
+\doxysubsubsection{\texorpdfstring{skip\_ciphers()}{skip\_ciphers()}}
+{\footnotesize\ttfamily def test\+\_\+signature\+\_\+algorithms.\+skip\+\_\+ciphers (\begin{DoxyParamCaption}\item[{$\ast$}]{args,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacetest__signature__algorithms_a91b2b32a6f1240fa5f61628e4e4e6d19}\label{namespacetest__signature__algorithms_a91b2b32a6f1240fa5f61628e4e4e6d19}} 
+\index{test\_signature\_algorithms@{test\_signature\_algorithms}!test\_s2n\_client\_signature\_algorithms@{test\_s2n\_client\_signature\_algorithms}}
+\index{test\_s2n\_client\_signature\_algorithms@{test\_s2n\_client\_signature\_algorithms}!test\_signature\_algorithms@{test\_signature\_algorithms}}
+\doxysubsubsection{\texorpdfstring{test\_s2n\_client\_signature\_algorithms()}{test\_s2n\_client\_signature\_algorithms()}}
+{\footnotesize\ttfamily def test\+\_\+signature\+\_\+algorithms.\+test\+\_\+s2n\+\_\+client\+\_\+signature\+\_\+algorithms (\begin{DoxyParamCaption}\item[{}]{managed\+\_\+process,  }\item[{}]{cipher,  }\item[{}]{provider,  }\item[{}]{protocol,  }\item[{}]{certificate,  }\item[{}]{signature,  }\item[{}]{client\+\_\+auth }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacetest__signature__algorithms_a9380f1e946d446879ef8cbbe7edb001b}\label{namespacetest__signature__algorithms_a9380f1e946d446879ef8cbbe7edb001b}} 
+\index{test\_signature\_algorithms@{test\_signature\_algorithms}!test\_s2n\_server\_signature\_algorithms@{test\_s2n\_server\_signature\_algorithms}}
+\index{test\_s2n\_server\_signature\_algorithms@{test\_s2n\_server\_signature\_algorithms}!test\_signature\_algorithms@{test\_signature\_algorithms}}
+\doxysubsubsection{\texorpdfstring{test\_s2n\_server\_signature\_algorithms()}{test\_s2n\_server\_signature\_algorithms()}}
+{\footnotesize\ttfamily def test\+\_\+signature\+\_\+algorithms.\+test\+\_\+s2n\+\_\+server\+\_\+signature\+\_\+algorithms (\begin{DoxyParamCaption}\item[{}]{managed\+\_\+process,  }\item[{}]{cipher,  }\item[{}]{provider,  }\item[{}]{protocol,  }\item[{}]{certificate,  }\item[{}]{signature,  }\item[{}]{client\+\_\+auth }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacetest__signature__algorithms_a238723163dc1602d32e69e7aa06d3b1e}\label{namespacetest__signature__algorithms_a238723163dc1602d32e69e7aa06d3b1e}} 
+\index{test\_signature\_algorithms@{test\_signature\_algorithms}!all\_sigs@{all\_sigs}}
+\index{all\_sigs@{all\_sigs}!test\_signature\_algorithms@{test\_signature\_algorithms}}
+\doxysubsubsection{\texorpdfstring{all\_sigs}{all\_sigs}}
+{\footnotesize\ttfamily list test\+\_\+signature\+\_\+algorithms.\+all\+\_\+sigs}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     Signatures.RSA\_SHA1,}
+\DoxyCodeLine{3     Signatures.RSA\_SHA224,}
+\DoxyCodeLine{4     Signatures.RSA\_SHA256,}
+\DoxyCodeLine{5     Signatures.RSA\_SHA384,}
+\DoxyCodeLine{6     Signatures.RSA\_SHA512,}
+\DoxyCodeLine{7     Signatures.ECDSA\_SECP256r1\_SHA256,}
+\DoxyCodeLine{8     Signatures.RSA\_PSS\_SHA256,}
+\DoxyCodeLine{9 ]}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacetest__signature__algorithms_ac2dab553bd46432e66ae1b64662fee94}\label{namespacetest__signature__algorithms_ac2dab553bd46432e66ae1b64662fee94}} 
+\index{test\_signature\_algorithms@{test\_signature\_algorithms}!certs@{certs}}
+\index{certs@{certs}!test\_signature\_algorithms@{test\_signature\_algorithms}}
+\doxysubsubsection{\texorpdfstring{certs}{certs}}
+{\footnotesize\ttfamily list test\+\_\+signature\+\_\+algorithms.\+certs}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     Certificates.RSA\_2048\_SHA256,}
+\DoxyCodeLine{3     Certificates.RSA\_2048\_SHA384,}
+\DoxyCodeLine{4     Certificates.RSA\_PSS\_2048\_SHA256,}
+\DoxyCodeLine{5     Certificates.ECDSA\_256,}
+\DoxyCodeLine{6     Certificates.ECDSA\_384,}
+\DoxyCodeLine{7 ]}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacetest__signature__algorithms_ad981118188e6fea1d48da81ba5b51007}\label{namespacetest__signature__algorithms_ad981118188e6fea1d48da81ba5b51007}} 
+\index{test\_signature\_algorithms@{test\_signature\_algorithms}!unsupported\_ciphers@{unsupported\_ciphers}}
+\index{unsupported\_ciphers@{unsupported\_ciphers}!test\_signature\_algorithms@{test\_signature\_algorithms}}
+\doxysubsubsection{\texorpdfstring{unsupported\_ciphers}{unsupported\_ciphers}}
+{\footnotesize\ttfamily list test\+\_\+signature\+\_\+algorithms.\+unsupported\+\_\+ciphers}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  [}
+\DoxyCodeLine{2     Ciphers.AES128\_SHA,}
+\DoxyCodeLine{3     Ciphers.AES256\_SHA,}
+\DoxyCodeLine{4     Ciphers.AES128\_SHA256,}
+\DoxyCodeLine{5     Ciphers.AES256\_SHA256,}
+\DoxyCodeLine{6     Ciphers.AES128\_GCM\_SHA256,}
+\DoxyCodeLine{7     Ciphers.AES256\_GCM\_SHA384,}
+\DoxyCodeLine{8 ]}
+
+\end{DoxyCode}

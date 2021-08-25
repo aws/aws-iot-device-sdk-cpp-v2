@@ -1,0 +1,112 @@
+\hypertarget{thread__scheduler__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/thread\+\_\+scheduler\+\_\+test.c File Reference}
+\label{thread__scheduler__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/thread\_scheduler\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/thread\_scheduler\_test.c}}
+{\ttfamily \#include $<$aws/common/thread\+\_\+scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/condition\+\_\+variable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/task\+\_\+scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structexecuted__task__data}{executed\+\_\+task\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{thread__scheduler__test_8c_a80d27aceb09f06fc34af9ed419993ed3}{s\+\_\+task\+\_\+n\+\_\+fn}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{thread__scheduler__test_8c_a29fc31bcf44e81d6aa52bb442e9c1961}{s\+\_\+scheduled\+\_\+tasks\+\_\+ran\+\_\+predicate}} (void $\ast$arg)
+\item 
+static int \mbox{\hyperlink{thread__scheduler__test_8c_af9f0ed3fb8cb41f67d5e17df129cc171}{s\+\_\+test\+\_\+scheduler\+\_\+ordering}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{thread__scheduler__test_8c_ade54083e4d3f7f9e7e99af320bf80a96}{s\+\_\+test\+\_\+scheduler\+\_\+happy\+\_\+path\+\_\+cancellation}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{thread__scheduler__test_8c_a4684e1ac252f476dc7e285343f5ab41b}{s\+\_\+schedule\+\_\+and\+\_\+cancel\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static int \mbox{\hyperlink{thread__scheduler__test_8c_a97c2c13c3e33f3b17ad6ec90a699b035}{s\+\_\+test\+\_\+scheduler\+\_\+cancellation\+\_\+for\+\_\+pending\+\_\+scheduled\+\_\+task}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structexecuted__task__data}{executed\+\_\+task\+\_\+data}} \mbox{\hyperlink{thread__scheduler__test_8c_a85aa343d6f3d70790361bb57c11cf604}{s\+\_\+executed\+\_\+tasks}} \mbox{[}16\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{thread__scheduler__test_8c_aae2e6246db06b8d7035771ec5d8e9b40}{s\+\_\+test\+\_\+mutex}} = \mbox{\hyperlink{preamble_8h_a82cd305754a1424bf8139695ab9dd6e1}{AWS\+\_\+\+MUTEX\+\_\+\+INIT}}
+\item 
+static struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{thread__scheduler__test_8c_a761280a52b2b688df2864de5189794e5}{s\+\_\+test\+\_\+c\+\_\+var}} = \mbox{\hyperlink{condition__variable_8h_a5effb5909f01b8f646e71f1a11e31657}{AWS\+\_\+\+CONDITION\+\_\+\+VARIABLE\+\_\+\+INIT}}
+\item 
+static size\+\_\+t \mbox{\hyperlink{thread__scheduler__test_8c_a5300ef8cf146695f2e1ce7bbdd3deffc}{s\+\_\+executed\+\_\+tasks\+\_\+n}}
+\item 
+static struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} \mbox{\hyperlink{thread__scheduler__test_8c_a587511fc23bbe1d6ecc2ce8eb4c89ac7}{s\+\_\+cancel\+\_\+task}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{thread__scheduler__test_8c_a4684e1ac252f476dc7e285343f5ab41b}\label{thread__scheduler__test_8c_a4684e1ac252f476dc7e285343f5ab41b}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_schedule\_and\_cancel\_task@{s\_schedule\_and\_cancel\_task}}
+\index{s\_schedule\_and\_cancel\_task@{s\_schedule\_and\_cancel\_task}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_schedule\_and\_cancel\_task()}{s\_schedule\_and\_cancel\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+schedule\+\_\+and\+\_\+cancel\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__scheduler__test_8c_a29fc31bcf44e81d6aa52bb442e9c1961}\label{thread__scheduler__test_8c_a29fc31bcf44e81d6aa52bb442e9c1961}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_scheduled\_tasks\_ran\_predicate@{s\_scheduled\_tasks\_ran\_predicate}}
+\index{s\_scheduled\_tasks\_ran\_predicate@{s\_scheduled\_tasks\_ran\_predicate}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_scheduled\_tasks\_ran\_predicate()}{s\_scheduled\_tasks\_ran\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+scheduled\+\_\+tasks\+\_\+ran\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__scheduler__test_8c_a80d27aceb09f06fc34af9ed419993ed3}\label{thread__scheduler__test_8c_a80d27aceb09f06fc34af9ed419993ed3}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_task\_n\_fn@{s\_task\_n\_fn}}
+\index{s\_task\_n\_fn@{s\_task\_n\_fn}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_task\_n\_fn()}{s\_task\_n\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+task\+\_\+n\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__scheduler__test_8c_a97c2c13c3e33f3b17ad6ec90a699b035}\label{thread__scheduler__test_8c_a97c2c13c3e33f3b17ad6ec90a699b035}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_test\_scheduler\_cancellation\_for\_pending\_scheduled\_task@{s\_test\_scheduler\_cancellation\_for\_pending\_scheduled\_task}}
+\index{s\_test\_scheduler\_cancellation\_for\_pending\_scheduled\_task@{s\_test\_scheduler\_cancellation\_for\_pending\_scheduled\_task}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_scheduler\_cancellation\_for\_pending\_scheduled\_task()}{s\_test\_scheduler\_cancellation\_for\_pending\_scheduled\_task()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+scheduler\+\_\+cancellation\+\_\+for\+\_\+pending\+\_\+scheduled\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__scheduler__test_8c_ade54083e4d3f7f9e7e99af320bf80a96}\label{thread__scheduler__test_8c_ade54083e4d3f7f9e7e99af320bf80a96}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_test\_scheduler\_happy\_path\_cancellation@{s\_test\_scheduler\_happy\_path\_cancellation}}
+\index{s\_test\_scheduler\_happy\_path\_cancellation@{s\_test\_scheduler\_happy\_path\_cancellation}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_scheduler\_happy\_path\_cancellation()}{s\_test\_scheduler\_happy\_path\_cancellation()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+scheduler\+\_\+happy\+\_\+path\+\_\+cancellation (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__scheduler__test_8c_af9f0ed3fb8cb41f67d5e17df129cc171}\label{thread__scheduler__test_8c_af9f0ed3fb8cb41f67d5e17df129cc171}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_test\_scheduler\_ordering@{s\_test\_scheduler\_ordering}}
+\index{s\_test\_scheduler\_ordering@{s\_test\_scheduler\_ordering}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_scheduler\_ordering()}{s\_test\_scheduler\_ordering()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+scheduler\+\_\+ordering (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{thread__scheduler__test_8c_a587511fc23bbe1d6ecc2ce8eb4c89ac7}\label{thread__scheduler__test_8c_a587511fc23bbe1d6ecc2ce8eb4c89ac7}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_cancel\_task@{s\_cancel\_task}}
+\index{s\_cancel\_task@{s\_cancel\_task}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_cancel\_task}{s\_cancel\_task}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} s\+\_\+cancel\+\_\+task\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__scheduler__test_8c_a85aa343d6f3d70790361bb57c11cf604}\label{thread__scheduler__test_8c_a85aa343d6f3d70790361bb57c11cf604}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_executed\_tasks@{s\_executed\_tasks}}
+\index{s\_executed\_tasks@{s\_executed\_tasks}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_executed\_tasks}{s\_executed\_tasks}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structexecuted__task__data}{executed\+\_\+task\+\_\+data}} s\+\_\+executed\+\_\+tasks\mbox{[}16\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__scheduler__test_8c_a5300ef8cf146695f2e1ce7bbdd3deffc}\label{thread__scheduler__test_8c_a5300ef8cf146695f2e1ce7bbdd3deffc}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_executed\_tasks\_n@{s\_executed\_tasks\_n}}
+\index{s\_executed\_tasks\_n@{s\_executed\_tasks\_n}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_executed\_tasks\_n}{s\_executed\_tasks\_n}}
+{\footnotesize\ttfamily size\+\_\+t s\+\_\+executed\+\_\+tasks\+\_\+n\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__scheduler__test_8c_a761280a52b2b688df2864de5189794e5}\label{thread__scheduler__test_8c_a761280a52b2b688df2864de5189794e5}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_test\_c\_var@{s\_test\_c\_var}}
+\index{s\_test\_c\_var@{s\_test\_c\_var}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_c\_var}{s\_test\_c\_var}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} s\+\_\+test\+\_\+c\+\_\+var = \mbox{\hyperlink{condition__variable_8h_a5effb5909f01b8f646e71f1a11e31657}{AWS\+\_\+\+CONDITION\+\_\+\+VARIABLE\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{thread__scheduler__test_8c_aae2e6246db06b8d7035771ec5d8e9b40}\label{thread__scheduler__test_8c_aae2e6246db06b8d7035771ec5d8e9b40}} 
+\index{thread\_scheduler\_test.c@{thread\_scheduler\_test.c}!s\_test\_mutex@{s\_test\_mutex}}
+\index{s\_test\_mutex@{s\_test\_mutex}!thread\_scheduler\_test.c@{thread\_scheduler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_mutex}{s\_test\_mutex}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} s\+\_\+test\+\_\+mutex = \mbox{\hyperlink{preamble_8h_a82cd305754a1424bf8139695ab9dd6e1}{AWS\+\_\+\+MUTEX\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
+

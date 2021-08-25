@@ -1,0 +1,68 @@
+\hypertarget{structaws__h2__frame}{}\doxysection{aws\+\_\+h2\+\_\+frame Struct Reference}
+\label{structaws__h2__frame}\index{aws\_h2\_frame@{aws\_h2\_frame}}
+
+
+{\ttfamily \#include $<$h2\+\_\+frames.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structaws__h2__frame__vtable}{aws\+\_\+h2\+\_\+frame\+\_\+vtable}} $\ast$ \mbox{\hyperlink{structaws__h2__frame_aee2f3fffdccb76cc2d9e922dee35f205}{vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__h2__frame_a5e1482546874a5eb5e74334e53b88c54}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} \mbox{\hyperlink{structaws__h2__frame_a14290942cc51159c8f68e3424217a89c}{node}}
+\item 
+enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} \mbox{\hyperlink{structaws__h2__frame_a8ec132867ecdf298b551a28ed041311c}{type}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structaws__h2__frame_a3f192931f8ce1f5ad9c5537d3ae81aea}{stream\+\_\+id}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h2__frame_a01fc62de94caf06c164c4def61b04855}{high\+\_\+priority}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A frame to be encoded. (in the case of HEADERS and PUSH\+\_\+\+PROMISE, it might turn into multiple frames due to CONTINUATION) 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__h2__frame_a5e1482546874a5eb5e74334e53b88c54}\label{structaws__h2__frame_a5e1482546874a5eb5e74334e53b88c54}} 
+\index{aws\_h2\_frame@{aws\_h2\_frame}!alloc@{alloc}}
+\index{alloc@{alloc}!aws\_h2\_frame@{aws\_h2\_frame}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+h2\+\_\+frame\+::alloc}
+
+\mbox{\Hypertarget{structaws__h2__frame_a01fc62de94caf06c164c4def61b04855}\label{structaws__h2__frame_a01fc62de94caf06c164c4def61b04855}} 
+\index{aws\_h2\_frame@{aws\_h2\_frame}!high\_priority@{high\_priority}}
+\index{high\_priority@{high\_priority}!aws\_h2\_frame@{aws\_h2\_frame}}
+\doxysubsubsection{\texorpdfstring{high\_priority}{high\_priority}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h2\+\_\+frame\+::high\+\_\+priority}
+
+\mbox{\Hypertarget{structaws__h2__frame_a14290942cc51159c8f68e3424217a89c}\label{structaws__h2__frame_a14290942cc51159c8f68e3424217a89c}} 
+\index{aws\_h2\_frame@{aws\_h2\_frame}!node@{node}}
+\index{node@{node}!aws\_h2\_frame@{aws\_h2\_frame}}
+\doxysubsubsection{\texorpdfstring{node}{node}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list__node}{aws\+\_\+linked\+\_\+list\+\_\+node}} aws\+\_\+h2\+\_\+frame\+::node}
+
+\mbox{\Hypertarget{structaws__h2__frame_a3f192931f8ce1f5ad9c5537d3ae81aea}\label{structaws__h2__frame_a3f192931f8ce1f5ad9c5537d3ae81aea}} 
+\index{aws\_h2\_frame@{aws\_h2\_frame}!stream\_id@{stream\_id}}
+\index{stream\_id@{stream\_id}!aws\_h2\_frame@{aws\_h2\_frame}}
+\doxysubsubsection{\texorpdfstring{stream\_id}{stream\_id}}
+{\footnotesize\ttfamily uint32\+\_\+t aws\+\_\+h2\+\_\+frame\+::stream\+\_\+id}
+
+\mbox{\Hypertarget{structaws__h2__frame_a8ec132867ecdf298b551a28ed041311c}\label{structaws__h2__frame_a8ec132867ecdf298b551a28ed041311c}} 
+\index{aws\_h2\_frame@{aws\_h2\_frame}!type@{type}}
+\index{type@{type}!aws\_h2\_frame@{aws\_h2\_frame}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} aws\+\_\+h2\+\_\+frame\+::type}
+
+\mbox{\Hypertarget{structaws__h2__frame_aee2f3fffdccb76cc2d9e922dee35f205}\label{structaws__h2__frame_aee2f3fffdccb76cc2d9e922dee35f205}} 
+\index{aws\_h2\_frame@{aws\_h2\_frame}!vtable@{vtable}}
+\index{vtable@{vtable}!aws\_h2\_frame@{aws\_h2\_frame}}
+\doxysubsubsection{\texorpdfstring{vtable}{vtable}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__h2__frame__vtable}{aws\+\_\+h2\+\_\+frame\+\_\+vtable}}$\ast$ aws\+\_\+h2\+\_\+frame\+::vtable}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/\mbox{\hyperlink{h2__frames_8h}{h2\+\_\+frames.\+h}}\end{DoxyCompactItemize}

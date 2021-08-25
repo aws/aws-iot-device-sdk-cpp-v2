@@ -1,0 +1,287 @@
+\hypertarget{h2__stream_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/h2\+\_\+stream.c File Reference}
+\label{h2__stream_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/h2\_stream.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/h2\_stream.c}}
+{\ttfamily \#include $<$aws/http/private/h2\+\_\+stream.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/h2\+\_\+connection.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/strutil.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/status\+\_\+code.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{h2__stream_8c_a9689dc1056c82d2e525536c779cee910}{AWS\+\_\+\+PRECONDITION\+\_\+\+ON\+\_\+\+CHANNEL\+\_\+\+THREAD}}(STREAM)~    \mbox{\hyperlink{preamble_8h_ad3b457c5120fb126921c12f6ac4fd54d}{AWS\+\_\+\+PRECONDITION}}(\mbox{\hyperlink{channel_8c_a6f1bd887ae61a45cfd20068fa177a17f}{aws\+\_\+channel\+\_\+thread\+\_\+is\+\_\+callers\+\_\+thread}}(\mbox{\hyperlink{h2__stream_8c_a99844eff536049baba11e1ea29246336}{s\+\_\+get\+\_\+h2\+\_\+connection}}(STREAM)-\/$>$base.\+channel\+\_\+slot-\/$>$channel))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{h2__stream_8c_a3fc15a8c7c2f83682043ba6ee7c87ce7}{s\+\_\+stream\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream\+\_\+base)
+\item 
+static void \mbox{\hyperlink{h2__stream_8c_a31efaac9476cdd2cbc3293cf844454ec}{s\+\_\+stream\+\_\+update\+\_\+window}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream\+\_\+base, size\+\_\+t increment\+\_\+size)
+\item 
+static int \mbox{\hyperlink{h2__stream_8c_a9e2da4946d353b3d597d596c632c012e}{s\+\_\+stream\+\_\+reset\+\_\+stream}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream\+\_\+base, uint32\+\_\+t http2\+\_\+error)
+\item 
+static int \mbox{\hyperlink{h2__stream_8c_a19b7f3d3bf97aca3352fd83f1e78defc}{s\+\_\+stream\+\_\+get\+\_\+received\+\_\+error\+\_\+code}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream\+\_\+base, uint32\+\_\+t $\ast$out\+\_\+http2\+\_\+error)
+\item 
+static int \mbox{\hyperlink{h2__stream_8c_a2fb5f7c3d6ca693da77a101a2bb7d0ec}{s\+\_\+stream\+\_\+get\+\_\+sent\+\_\+error\+\_\+code}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream\+\_\+base, uint32\+\_\+t $\ast$out\+\_\+http2\+\_\+error)
+\item 
+static void \mbox{\hyperlink{h2__stream_8c_a6099337646e0c9c7abb521e5744d3213}{s\+\_\+stream\+\_\+cross\+\_\+thread\+\_\+work\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_a0d30536133c39f5bd7a4eda50dbe3830}{s\+\_\+send\+\_\+rst\+\_\+and\+\_\+close\+\_\+stream}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} stream\+\_\+error)
+\item 
+const char $\ast$ \mbox{\hyperlink{h2__stream_8c_aafa04dc3a832a6b40853d876f538b6d4}{aws\+\_\+h2\+\_\+stream\+\_\+state\+\_\+to\+\_\+str}} (enum \mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394d}{aws\+\_\+h2\+\_\+stream\+\_\+state}} \mbox{\hyperlink{structstate}{state}})
+\item 
+static struct \mbox{\hyperlink{structaws__h2__connection}{aws\+\_\+h2\+\_\+connection}} $\ast$ \mbox{\hyperlink{h2__stream_8c_a99844eff536049baba11e1ea29246336}{s\+\_\+get\+\_\+h2\+\_\+connection}} (const struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream)
+\item 
+static void \mbox{\hyperlink{h2__stream_8c_a3b43d13ae2447fe22d21f2dad4d0ee97}{s\+\_\+lock\+\_\+synced\+\_\+data}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream)
+\item 
+static void \mbox{\hyperlink{h2__stream_8c_a0ce2dd57e2ae00bb35f8bc4f9c899e1b}{s\+\_\+unlock\+\_\+synced\+\_\+data}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_ae01501e4e03584942badf83a8f9b701c}{s\+\_\+check\+\_\+state\+\_\+allows\+\_\+frame\+\_\+type}} (const struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} frame\+\_\+type)
+\item 
+static int \mbox{\hyperlink{h2__stream_8c_ac915076825e6d130577d55dc2b5b51ed}{s\+\_\+stream\+\_\+send\+\_\+update\+\_\+window\+\_\+frame}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, size\+\_\+t increment\+\_\+size)
+\item 
+struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$ \mbox{\hyperlink{h2__stream_8c_a2de0ecc85d495c779738315def97e823}{aws\+\_\+h2\+\_\+stream\+\_\+new\+\_\+request}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$client\+\_\+connection, const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$options)
+\item 
+enum \mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394d}{aws\+\_\+h2\+\_\+stream\+\_\+state}} \mbox{\hyperlink{h2__stream_8c_a52c3ee4ca960f68f62b77065d06a0cdf}{aws\+\_\+h2\+\_\+stream\+\_\+get\+\_\+state}} (const struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_ae67e87ebd29152e596187de3838b3365}{aws\+\_\+h2\+\_\+stream\+\_\+window\+\_\+size\+\_\+change}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, int32\+\_\+t size\+\_\+changed, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} self)
+\item 
+int \mbox{\hyperlink{h2__stream_8c_a40cb8648428b59bac90114c9c09b7147}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+activated}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$out\+\_\+has\+\_\+outgoing\+\_\+data)
+\item 
+int \mbox{\hyperlink{h2__stream_8c_a05ca23cdf2a411d9e9f31fa3e8f7378b}{aws\+\_\+h2\+\_\+stream\+\_\+encode\+\_\+data\+\_\+frame}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__h2__frame__encoder}{aws\+\_\+h2\+\_\+frame\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, int $\ast$data\+\_\+encode\+\_\+status)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_acc0feece7cabd840c4d28584c604b26c}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+headers\+\_\+begin}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_acbf7c51368d49c551847e2278fb4d5b9}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+headers\+\_\+i}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} name\+\_\+enum, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_a5f6a6a13535438ab4f2b62abec4befdf}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+headers\+\_\+end}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} malformed, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_a8e895f1e663394d7edd8d2405a59438a}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+push\+\_\+promise}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, uint32\+\_\+t promised\+\_\+stream\+\_\+id)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_aa342407cac15121a7ab79d629c92811d}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+data\+\_\+begin}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, uint32\+\_\+t payload\+\_\+len, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} end\+\_\+stream)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_ab29cf7b4b31eb14cd6e1c848ca7920bf}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+data\+\_\+i}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_a6dbbd39333aefdd03fe0947b668977c3}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+window\+\_\+update}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, uint32\+\_\+t window\+\_\+size\+\_\+increment, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$window\+\_\+resume)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_a11988f18a3dca95cd789ed16f24adef6}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+end\+\_\+stream}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream)
+\item 
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{h2__stream_8c_a85452fb586c1406e884f8d585cfc6323}{aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+rst\+\_\+stream}} (struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$stream, uint32\+\_\+t h2\+\_\+error\+\_\+code)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__http__stream__vtable}{aws\+\_\+http\+\_\+stream\+\_\+vtable}} \mbox{\hyperlink{h2__stream_8c_a060f3baf70f7fd295281139f35dcd9de}{s\+\_\+h2\+\_\+stream\+\_\+vtable}}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h2__stream_8c_a6d3aa4be1f0e91724b5be80ed76c19c0}{s\+\_\+client\+\_\+state\+\_\+allows\+\_\+frame\+\_\+type}} \mbox{[}\mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123}{AWS\+\_\+\+H2\+\_\+\+STREAM\+\_\+\+STATE\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a}{AWS\+\_\+\+H2\+\_\+\+FRAME\+\_\+\+TYPE\+\_\+\+COUNT}}\mbox{]}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h2__stream_8c_a0d7e72db0cbb62aaa267dfc2122a3a5d}{s\+\_\+server\+\_\+state\+\_\+allows\+\_\+frame\+\_\+type}} \mbox{[}\mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123}{AWS\+\_\+\+H2\+\_\+\+STREAM\+\_\+\+STATE\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a}{AWS\+\_\+\+H2\+\_\+\+FRAME\+\_\+\+TYPE\+\_\+\+COUNT}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{h2__stream_8c_a9689dc1056c82d2e525536c779cee910}\label{h2__stream_8c_a9689dc1056c82d2e525536c779cee910}} 
+\index{h2\_stream.c@{h2\_stream.c}!AWS\_PRECONDITION\_ON\_CHANNEL\_THREAD@{AWS\_PRECONDITION\_ON\_CHANNEL\_THREAD}}
+\index{AWS\_PRECONDITION\_ON\_CHANNEL\_THREAD@{AWS\_PRECONDITION\_ON\_CHANNEL\_THREAD}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_PRECONDITION\_ON\_CHANNEL\_THREAD}{AWS\_PRECONDITION\_ON\_CHANNEL\_THREAD}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+PRECONDITION\+\_\+\+ON\+\_\+\+CHANNEL\+\_\+\+THREAD(\begin{DoxyParamCaption}\item[{}]{STREAM }\end{DoxyParamCaption})~    \mbox{\hyperlink{preamble_8h_ad3b457c5120fb126921c12f6ac4fd54d}{AWS\+\_\+\+PRECONDITION}}(\mbox{\hyperlink{channel_8c_a6f1bd887ae61a45cfd20068fa177a17f}{aws\+\_\+channel\+\_\+thread\+\_\+is\+\_\+callers\+\_\+thread}}(\mbox{\hyperlink{h2__stream_8c_a99844eff536049baba11e1ea29246336}{s\+\_\+get\+\_\+h2\+\_\+connection}}(STREAM)-\/$>$base.\+channel\+\_\+slot-\/$>$channel))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{h2__stream_8c_a05ca23cdf2a411d9e9f31fa3e8f7378b}\label{h2__stream_8c_a05ca23cdf2a411d9e9f31fa3e8f7378b}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_encode\_data\_frame@{aws\_h2\_stream\_encode\_data\_frame}}
+\index{aws\_h2\_stream\_encode\_data\_frame@{aws\_h2\_stream\_encode\_data\_frame}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_encode\_data\_frame()}{aws\_h2\_stream\_encode\_data\_frame()}}
+{\footnotesize\ttfamily int aws\+\_\+h2\+\_\+stream\+\_\+encode\+\_\+data\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__h2__frame__encoder}{aws\+\_\+h2\+\_\+frame\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output,  }\item[{int $\ast$}]{data\+\_\+encode\+\_\+status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_a52c3ee4ca960f68f62b77065d06a0cdf}\label{h2__stream_8c_a52c3ee4ca960f68f62b77065d06a0cdf}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_get\_state@{aws\_h2\_stream\_get\_state}}
+\index{aws\_h2\_stream\_get\_state@{aws\_h2\_stream\_get\_state}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_get\_state()}{aws\_h2\_stream\_get\_state()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394d}{aws\+\_\+h2\+\_\+stream\+\_\+state}} aws\+\_\+h2\+\_\+stream\+\_\+get\+\_\+state (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_a2de0ecc85d495c779738315def97e823}\label{h2__stream_8c_a2de0ecc85d495c779738315def97e823}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_new\_request@{aws\_h2\_stream\_new\_request}}
+\index{aws\_h2\_stream\_new\_request@{aws\_h2\_stream\_new\_request}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_new\_request()}{aws\_h2\_stream\_new\_request()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}}$\ast$ aws\+\_\+h2\+\_\+stream\+\_\+new\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{client\+\_\+connection,  }\item[{const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_a40cb8648428b59bac90114c9c09b7147}\label{h2__stream_8c_a40cb8648428b59bac90114c9c09b7147}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_activated@{aws\_h2\_stream\_on\_activated}}
+\index{aws\_h2\_stream\_on\_activated@{aws\_h2\_stream\_on\_activated}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_activated()}{aws\_h2\_stream\_on\_activated()}}
+{\footnotesize\ttfamily int aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+activated (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{out\+\_\+has\+\_\+outgoing\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_aa342407cac15121a7ab79d629c92811d}\label{h2__stream_8c_aa342407cac15121a7ab79d629c92811d}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_decoder\_data\_begin@{aws\_h2\_stream\_on\_decoder\_data\_begin}}
+\index{aws\_h2\_stream\_on\_decoder\_data\_begin@{aws\_h2\_stream\_on\_decoder\_data\_begin}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_decoder\_data\_begin()}{aws\_h2\_stream\_on\_decoder\_data\_begin()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+data\+\_\+begin (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{uint32\+\_\+t}]{payload\+\_\+len,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{end\+\_\+stream }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_ab29cf7b4b31eb14cd6e1c848ca7920bf}\label{h2__stream_8c_ab29cf7b4b31eb14cd6e1c848ca7920bf}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_decoder\_data\_i@{aws\_h2\_stream\_on\_decoder\_data\_i}}
+\index{aws\_h2\_stream\_on\_decoder\_data\_i@{aws\_h2\_stream\_on\_decoder\_data\_i}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_decoder\_data\_i()}{aws\_h2\_stream\_on\_decoder\_data\_i()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+data\+\_\+i (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_a11988f18a3dca95cd789ed16f24adef6}\label{h2__stream_8c_a11988f18a3dca95cd789ed16f24adef6}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_decoder\_end\_stream@{aws\_h2\_stream\_on\_decoder\_end\_stream}}
+\index{aws\_h2\_stream\_on\_decoder\_end\_stream@{aws\_h2\_stream\_on\_decoder\_end\_stream}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_decoder\_end\_stream()}{aws\_h2\_stream\_on\_decoder\_end\_stream()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+end\+\_\+stream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_acc0feece7cabd840c4d28584c604b26c}\label{h2__stream_8c_acc0feece7cabd840c4d28584c604b26c}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_decoder\_headers\_begin@{aws\_h2\_stream\_on\_decoder\_headers\_begin}}
+\index{aws\_h2\_stream\_on\_decoder\_headers\_begin@{aws\_h2\_stream\_on\_decoder\_headers\_begin}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_decoder\_headers\_begin()}{aws\_h2\_stream\_on\_decoder\_headers\_begin()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+headers\+\_\+begin (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_a5f6a6a13535438ab4f2b62abec4befdf}\label{h2__stream_8c_a5f6a6a13535438ab4f2b62abec4befdf}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_decoder\_headers\_end@{aws\_h2\_stream\_on\_decoder\_headers\_end}}
+\index{aws\_h2\_stream\_on\_decoder\_headers\_end@{aws\_h2\_stream\_on\_decoder\_headers\_end}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_decoder\_headers\_end()}{aws\_h2\_stream\_on\_decoder\_headers\_end()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+headers\+\_\+end (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{malformed,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{block\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_acbf7c51368d49c551847e2278fb4d5b9}\label{h2__stream_8c_acbf7c51368d49c551847e2278fb4d5b9}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_decoder\_headers\_i@{aws\_h2\_stream\_on\_decoder\_headers\_i}}
+\index{aws\_h2\_stream\_on\_decoder\_headers\_i@{aws\_h2\_stream\_on\_decoder\_headers\_i}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_decoder\_headers\_i()}{aws\_h2\_stream\_on\_decoder\_headers\_i()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+headers\+\_\+i (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header,  }\item[{enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}}}]{name\+\_\+enum,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{block\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_a8e895f1e663394d7edd8d2405a59438a}\label{h2__stream_8c_a8e895f1e663394d7edd8d2405a59438a}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_decoder\_push\_promise@{aws\_h2\_stream\_on\_decoder\_push\_promise}}
+\index{aws\_h2\_stream\_on\_decoder\_push\_promise@{aws\_h2\_stream\_on\_decoder\_push\_promise}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_decoder\_push\_promise()}{aws\_h2\_stream\_on\_decoder\_push\_promise()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+push\+\_\+promise (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{uint32\+\_\+t}]{promised\+\_\+stream\+\_\+id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_a85452fb586c1406e884f8d585cfc6323}\label{h2__stream_8c_a85452fb586c1406e884f8d585cfc6323}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_decoder\_rst\_stream@{aws\_h2\_stream\_on\_decoder\_rst\_stream}}
+\index{aws\_h2\_stream\_on\_decoder\_rst\_stream@{aws\_h2\_stream\_on\_decoder\_rst\_stream}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_decoder\_rst\_stream()}{aws\_h2\_stream\_on\_decoder\_rst\_stream()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+rst\+\_\+stream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{uint32\+\_\+t}]{h2\+\_\+error\+\_\+code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_a6dbbd39333aefdd03fe0947b668977c3}\label{h2__stream_8c_a6dbbd39333aefdd03fe0947b668977c3}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_on\_decoder\_window\_update@{aws\_h2\_stream\_on\_decoder\_window\_update}}
+\index{aws\_h2\_stream\_on\_decoder\_window\_update@{aws\_h2\_stream\_on\_decoder\_window\_update}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_on\_decoder\_window\_update()}{aws\_h2\_stream\_on\_decoder\_window\_update()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+on\+\_\+decoder\+\_\+window\+\_\+update (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{uint32\+\_\+t}]{window\+\_\+size\+\_\+increment,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{window\+\_\+resume }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_aafa04dc3a832a6b40853d876f538b6d4}\label{h2__stream_8c_aafa04dc3a832a6b40853d876f538b6d4}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_state\_to\_str@{aws\_h2\_stream\_state\_to\_str}}
+\index{aws\_h2\_stream\_state\_to\_str@{aws\_h2\_stream\_state\_to\_str}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_state\_to\_str()}{aws\_h2\_stream\_state\_to\_str()}}
+{\footnotesize\ttfamily const char$\ast$ aws\+\_\+h2\+\_\+stream\+\_\+state\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394d}{aws\+\_\+h2\+\_\+stream\+\_\+state}}}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_ae67e87ebd29152e596187de3838b3365}\label{h2__stream_8c_ae67e87ebd29152e596187de3838b3365}} 
+\index{h2\_stream.c@{h2\_stream.c}!aws\_h2\_stream\_window\_size\_change@{aws\_h2\_stream\_window\_size\_change}}
+\index{aws\_h2\_stream\_window\_size\_change@{aws\_h2\_stream\_window\_size\_change}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{aws\_h2\_stream\_window\_size\_change()}{aws\_h2\_stream\_window\_size\_change()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} aws\+\_\+h2\+\_\+stream\+\_\+window\+\_\+size\+\_\+change (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{int32\+\_\+t}]{size\+\_\+changed,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{h2__stream_8c_ae01501e4e03584942badf83a8f9b701c}\label{h2__stream_8c_ae01501e4e03584942badf83a8f9b701c}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_check\_state\_allows\_frame\_type@{s\_check\_state\_allows\_frame\_type}}
+\index{s\_check\_state\_allows\_frame\_type@{s\_check\_state\_allows\_frame\_type}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_check\_state\_allows\_frame\_type()}{s\_check\_state\_allows\_frame\_type()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+check\+\_\+state\+\_\+allows\+\_\+frame\+\_\+type (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{frame\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a99844eff536049baba11e1ea29246336}\label{h2__stream_8c_a99844eff536049baba11e1ea29246336}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_get\_h2\_connection@{s\_get\_h2\_connection}}
+\index{s\_get\_h2\_connection@{s\_get\_h2\_connection}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_get\_h2\_connection()}{s\_get\_h2\_connection()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2__connection}{aws\+\_\+h2\+\_\+connection}}$\ast$ s\+\_\+get\+\_\+h2\+\_\+connection (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a3b43d13ae2447fe22d21f2dad4d0ee97}\label{h2__stream_8c_a3b43d13ae2447fe22d21f2dad4d0ee97}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_lock\_synced\_data@{s\_lock\_synced\_data}}
+\index{s\_lock\_synced\_data@{s\_lock\_synced\_data}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_lock\_synced\_data()}{s\_lock\_synced\_data()}}
+{\footnotesize\ttfamily static void s\+\_\+lock\+\_\+synced\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a0d30536133c39f5bd7a4eda50dbe3830}\label{h2__stream_8c_a0d30536133c39f5bd7a4eda50dbe3830}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_send\_rst\_and\_close\_stream@{s\_send\_rst\_and\_close\_stream}}
+\index{s\_send\_rst\_and\_close\_stream@{s\_send\_rst\_and\_close\_stream}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_send\_rst\_and\_close\_stream()}{s\_send\_rst\_and\_close\_stream()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+send\+\_\+rst\+\_\+and\+\_\+close\+\_\+stream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}}]{stream\+\_\+error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a6099337646e0c9c7abb521e5744d3213}\label{h2__stream_8c_a6099337646e0c9c7abb521e5744d3213}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_stream\_cross\_thread\_work\_task@{s\_stream\_cross\_thread\_work\_task}}
+\index{s\_stream\_cross\_thread\_work\_task@{s\_stream\_cross\_thread\_work\_task}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_stream\_cross\_thread\_work\_task()}{s\_stream\_cross\_thread\_work\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+stream\+\_\+cross\+\_\+thread\+\_\+work\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a3fc15a8c7c2f83682043ba6ee7c87ce7}\label{h2__stream_8c_a3fc15a8c7c2f83682043ba6ee7c87ce7}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_stream\_destroy@{s\_stream\_destroy}}
+\index{s\_stream\_destroy@{s\_stream\_destroy}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_stream\_destroy()}{s\_stream\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+stream\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream\+\_\+base }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{h2__stream_8c_a19b7f3d3bf97aca3352fd83f1e78defc}\label{h2__stream_8c_a19b7f3d3bf97aca3352fd83f1e78defc}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_stream\_get\_received\_error\_code@{s\_stream\_get\_received\_error\_code}}
+\index{s\_stream\_get\_received\_error\_code@{s\_stream\_get\_received\_error\_code}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_stream\_get\_received\_error\_code()}{s\_stream\_get\_received\_error\_code()}}
+{\footnotesize\ttfamily static int s\+\_\+stream\+\_\+get\+\_\+received\+\_\+error\+\_\+code (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream\+\_\+base,  }\item[{uint32\+\_\+t $\ast$}]{out\+\_\+http2\+\_\+error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a2fb5f7c3d6ca693da77a101a2bb7d0ec}\label{h2__stream_8c_a2fb5f7c3d6ca693da77a101a2bb7d0ec}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_stream\_get\_sent\_error\_code@{s\_stream\_get\_sent\_error\_code}}
+\index{s\_stream\_get\_sent\_error\_code@{s\_stream\_get\_sent\_error\_code}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_stream\_get\_sent\_error\_code()}{s\_stream\_get\_sent\_error\_code()}}
+{\footnotesize\ttfamily static int s\+\_\+stream\+\_\+get\+\_\+sent\+\_\+error\+\_\+code (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream\+\_\+base,  }\item[{uint32\+\_\+t $\ast$}]{out\+\_\+http2\+\_\+error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a9e2da4946d353b3d597d596c632c012e}\label{h2__stream_8c_a9e2da4946d353b3d597d596c632c012e}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_stream\_reset\_stream@{s\_stream\_reset\_stream}}
+\index{s\_stream\_reset\_stream@{s\_stream\_reset\_stream}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_stream\_reset\_stream()}{s\_stream\_reset\_stream()}}
+{\footnotesize\ttfamily static int s\+\_\+stream\+\_\+reset\+\_\+stream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream\+\_\+base,  }\item[{uint32\+\_\+t}]{http2\+\_\+error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_ac915076825e6d130577d55dc2b5b51ed}\label{h2__stream_8c_ac915076825e6d130577d55dc2b5b51ed}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_stream\_send\_update\_window\_frame@{s\_stream\_send\_update\_window\_frame}}
+\index{s\_stream\_send\_update\_window\_frame@{s\_stream\_send\_update\_window\_frame}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_stream\_send\_update\_window\_frame()}{s\_stream\_send\_update\_window\_frame()}}
+{\footnotesize\ttfamily static int s\+\_\+stream\+\_\+send\+\_\+update\+\_\+window\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream,  }\item[{size\+\_\+t}]{increment\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a31efaac9476cdd2cbc3293cf844454ec}\label{h2__stream_8c_a31efaac9476cdd2cbc3293cf844454ec}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_stream\_update\_window@{s\_stream\_update\_window}}
+\index{s\_stream\_update\_window@{s\_stream\_update\_window}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_stream\_update\_window()}{s\_stream\_update\_window()}}
+{\footnotesize\ttfamily static void s\+\_\+stream\+\_\+update\+\_\+window (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream\+\_\+base,  }\item[{size\+\_\+t}]{increment\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a0ce2dd57e2ae00bb35f8bc4f9c899e1b}\label{h2__stream_8c_a0ce2dd57e2ae00bb35f8bc4f9c899e1b}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_unlock\_synced\_data@{s\_unlock\_synced\_data}}
+\index{s\_unlock\_synced\_data@{s\_unlock\_synced\_data}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_unlock\_synced\_data()}{s\_unlock\_synced\_data()}}
+{\footnotesize\ttfamily static void s\+\_\+unlock\+\_\+synced\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h2__stream}{aws\+\_\+h2\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{h2__stream_8c_a6d3aa4be1f0e91724b5be80ed76c19c0}\label{h2__stream_8c_a6d3aa4be1f0e91724b5be80ed76c19c0}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_client\_state\_allows\_frame\_type@{s\_client\_state\_allows\_frame\_type}}
+\index{s\_client\_state\_allows\_frame\_type@{s\_client\_state\_allows\_frame\_type}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_client\_state\_allows\_frame\_type}{s\_client\_state\_allows\_frame\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+client\+\_\+state\+\_\+allows\+\_\+frame\+\_\+type\mbox{[}\mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123}{AWS\+\_\+\+H2\+\_\+\+STREAM\+\_\+\+STATE\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a}{AWS\+\_\+\+H2\+\_\+\+FRAME\+\_\+\+TYPE\+\_\+\+COUNT}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{h2__stream_8c_a060f3baf70f7fd295281139f35dcd9de}\label{h2__stream_8c_a060f3baf70f7fd295281139f35dcd9de}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_h2\_stream\_vtable@{s\_h2\_stream\_vtable}}
+\index{s\_h2\_stream\_vtable@{s\_h2\_stream\_vtable}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_h2\_stream\_vtable}{s\_h2\_stream\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__stream__vtable}{aws\+\_\+http\+\_\+stream\+\_\+vtable}} s\+\_\+h2\+\_\+stream\+\_\+vtable}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{h2__stream_8c_a3fc15a8c7c2f83682043ba6ee7c87ce7}{s\_stream\_destroy}},}
+\DoxyCodeLine{    .update\_window = \mbox{\hyperlink{h2__stream_8c_a31efaac9476cdd2cbc3293cf844454ec}{s\_stream\_update\_window}},}
+\DoxyCodeLine{    .activate = \mbox{\hyperlink{h2__stream_8h_a50383b97517a5d1a7fca165ac778fe3f}{aws\_h2\_stream\_activate}},}
+\DoxyCodeLine{    .http1\_write\_chunk = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .http2\_reset\_stream = \mbox{\hyperlink{h2__stream_8c_a9e2da4946d353b3d597d596c632c012e}{s\_stream\_reset\_stream}},}
+\DoxyCodeLine{    .http2\_get\_received\_error\_code = \mbox{\hyperlink{h2__stream_8c_a19b7f3d3bf97aca3352fd83f1e78defc}{s\_stream\_get\_received\_error\_code}},}
+\DoxyCodeLine{    .http2\_get\_sent\_error\_code = \mbox{\hyperlink{h2__stream_8c_a2fb5f7c3d6ca693da77a101a2bb7d0ec}{s\_stream\_get\_sent\_error\_code}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{h2__stream_8c_a0d7e72db0cbb62aaa267dfc2122a3a5d}\label{h2__stream_8c_a0d7e72db0cbb62aaa267dfc2122a3a5d}} 
+\index{h2\_stream.c@{h2\_stream.c}!s\_server\_state\_allows\_frame\_type@{s\_server\_state\_allows\_frame\_type}}
+\index{s\_server\_state\_allows\_frame\_type@{s\_server\_state\_allows\_frame\_type}!h2\_stream.c@{h2\_stream.c}}
+\doxysubsubsection{\texorpdfstring{s\_server\_state\_allows\_frame\_type}{s\_server\_state\_allows\_frame\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+server\+\_\+state\+\_\+allows\+\_\+frame\+\_\+type\mbox{[}\mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123}{AWS\+\_\+\+H2\+\_\+\+STREAM\+\_\+\+STATE\+\_\+\+COUNT}}\mbox{]}\mbox{[}\mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a}{AWS\+\_\+\+H2\+\_\+\+FRAME\+\_\+\+TYPE\+\_\+\+COUNT}}\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+

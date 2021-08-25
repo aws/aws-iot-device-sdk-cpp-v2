@@ -1,0 +1,49 @@
+\hypertarget{structaws__retry__token}{}\doxysection{aws\+\_\+retry\+\_\+token Struct Reference}
+\label{structaws__retry__token}\index{aws\_retry\_token@{aws\_retry\_token}}
+
+
+{\ttfamily \#include $<$retry\+\_\+strategy.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__retry__token_a6ec55d747c30e2d0808bee8b14d5aa66}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} $\ast$ \mbox{\hyperlink{structaws__retry__token_ae655df17ae741e5467cc8275b914f9b2}{retry\+\_\+strategy}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structaws__retry__token_a02a94e490c1de39c20d0b1b691b5df13}{ref\+\_\+count}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__retry__token_a9957069b8adb4e3cf33c1e8f0ce2bc78}{impl}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__retry__token_a6ec55d747c30e2d0808bee8b14d5aa66}\label{structaws__retry__token_a6ec55d747c30e2d0808bee8b14d5aa66}} 
+\index{aws\_retry\_token@{aws\_retry\_token}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_retry\_token@{aws\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+retry\+\_\+token\+::allocator}
+
+\mbox{\Hypertarget{structaws__retry__token_a9957069b8adb4e3cf33c1e8f0ce2bc78}\label{structaws__retry__token_a9957069b8adb4e3cf33c1e8f0ce2bc78}} 
+\index{aws\_retry\_token@{aws\_retry\_token}!impl@{impl}}
+\index{impl@{impl}!aws\_retry\_token@{aws\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{impl}{impl}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+retry\+\_\+token\+::impl}
+
+\mbox{\Hypertarget{structaws__retry__token_a02a94e490c1de39c20d0b1b691b5df13}\label{structaws__retry__token_a02a94e490c1de39c20d0b1b691b5df13}} 
+\index{aws\_retry\_token@{aws\_retry\_token}!ref\_count@{ref\_count}}
+\index{ref\_count@{ref\_count}!aws\_retry\_token@{aws\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{ref\_count}{ref\_count}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} aws\+\_\+retry\+\_\+token\+::ref\+\_\+count}
+
+\mbox{\Hypertarget{structaws__retry__token_ae655df17ae741e5467cc8275b914f9b2}\label{structaws__retry__token_ae655df17ae741e5467cc8275b914f9b2}} 
+\index{aws\_retry\_token@{aws\_retry\_token}!retry\_strategy@{retry\_strategy}}
+\index{retry\_strategy@{retry\_strategy}!aws\_retry\_token@{aws\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{retry\_strategy}{retry\_strategy}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}}$\ast$ aws\+\_\+retry\+\_\+token\+::retry\+\_\+strategy}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/\mbox{\hyperlink{retry__strategy_8h}{retry\+\_\+strategy.\+h}}\end{DoxyCompactItemize}

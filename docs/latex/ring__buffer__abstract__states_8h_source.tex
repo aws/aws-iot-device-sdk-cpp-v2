@@ -1,0 +1,32 @@
+\hypertarget{ring__buffer__abstract__states_8h_source}{}\doxysection{ring\+\_\+buffer\+\_\+abstract\+\_\+states.\+h}
+\label{ring__buffer__abstract__states_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/include/proof\_helpers/ring\_buffer\_abstract\_states.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/include/proof\_helpers/ring\_buffer\_abstract\_states.h}}
+\mbox{\hyperlink{ring__buffer__abstract__states_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{11 \textcolor{keywordtype}{bool} \mbox{\hyperlink{ring__buffer__abstract__states_8h_a82d02e832e97cf896062ecb13463354d}{is\_empty\_state}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ring__buffer}{aws\_ring\_buffer}} *ring\_buf) \{}
+\DoxyCodeLine{12     uint8\_t *head = \mbox{\hyperlink{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}{aws\_atomic\_load\_ptr}}(\&ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a440c067bf911959e56f4417fb649342b}{head}});}
+\DoxyCodeLine{13     uint8\_t *tail = \mbox{\hyperlink{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}{aws\_atomic\_load\_ptr}}(\&ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a3235e2b0a9261ac9d8845353f7f9008a}{tail}});}
+\DoxyCodeLine{14     \textcolor{keywordflow}{return} tail == head;}
+\DoxyCodeLine{15 \}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{20 \textcolor{keywordtype}{bool} \mbox{\hyperlink{ring__buffer__abstract__states_8h_acd6a8506a1c2f48579422452653dc330}{is\_front\_valid\_state}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ring__buffer}{aws\_ring\_buffer}} *ring\_buf) \{}
+\DoxyCodeLine{21     uint8\_t *head = \mbox{\hyperlink{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}{aws\_atomic\_load\_ptr}}(\&ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a440c067bf911959e56f4417fb649342b}{head}});}
+\DoxyCodeLine{22     uint8\_t *tail = \mbox{\hyperlink{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}{aws\_atomic\_load\_ptr}}(\&ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a3235e2b0a9261ac9d8845353f7f9008a}{tail}});}
+\DoxyCodeLine{23     \textcolor{keywordflow}{return} ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a02e57ba97c314eba6e0b4546fe03e6e5}{allocation}} == tail \&\& tail < head;}
+\DoxyCodeLine{24 \}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{29 \textcolor{keywordtype}{bool} \mbox{\hyperlink{ring__buffer__abstract__states_8h_a7c9d3c78914d24cf315ba831ef0fbe9c}{is\_middle\_valid\_state}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ring__buffer}{aws\_ring\_buffer}} *ring\_buf) \{}
+\DoxyCodeLine{30     uint8\_t *head = \mbox{\hyperlink{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}{aws\_atomic\_load\_ptr}}(\&ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a440c067bf911959e56f4417fb649342b}{head}});}
+\DoxyCodeLine{31     uint8\_t *tail = \mbox{\hyperlink{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}{aws\_atomic\_load\_ptr}}(\&ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a3235e2b0a9261ac9d8845353f7f9008a}{tail}});}
+\DoxyCodeLine{32     \textcolor{keywordflow}{return} ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a02e57ba97c314eba6e0b4546fe03e6e5}{allocation}} < tail \&\& tail < head;}
+\DoxyCodeLine{33 \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{38 \textcolor{keywordtype}{bool} \mbox{\hyperlink{ring__buffer__abstract__states_8h_a09c165fd064dfefba22714ceb2de4747}{is\_ends\_valid\_state}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ring__buffer}{aws\_ring\_buffer}} *ring\_buf) \{}
+\DoxyCodeLine{39     uint8\_t *head = \mbox{\hyperlink{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}{aws\_atomic\_load\_ptr}}(\&ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a440c067bf911959e56f4417fb649342b}{head}});}
+\DoxyCodeLine{40     uint8\_t *tail = \mbox{\hyperlink{atomics_8h_a97ee191879cdf842532fa45f5bef8a1f}{aws\_atomic\_load\_ptr}}(\&ring\_buf-\/>\mbox{\hyperlink{structaws__ring__buffer_a3235e2b0a9261ac9d8845353f7f9008a}{tail}});}
+\DoxyCodeLine{41     \textcolor{keywordflow}{return} tail > head;}
+\DoxyCodeLine{42 \}}
+
+\end{DoxyCode}

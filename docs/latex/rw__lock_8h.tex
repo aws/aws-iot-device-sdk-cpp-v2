@@ -1,0 +1,95 @@
+\hypertarget{rw__lock_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/rw\+\_\+lock.h File Reference}
+\label{rw__lock_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/rw\_lock.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/rw\_lock.h}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{rw__lock_8h_a42a29367f37fe57b514939554c14356b}{AWS\+\_\+\+RW\+\_\+\+LOCK\+\_\+\+INIT}}~        \{ .lock\+\_\+handle = PTHREAD\+\_\+\+RWLOCK\+\_\+\+INITIALIZER \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{rw__lock_8h_a8f52aafd70aefdb81ebbbf77405f93e0}{aws\+\_\+rw\+\_\+lock\+\_\+init}} (struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$lock)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{rw__lock_8h_a7e634dbb2e8b963917fd0242af1bee09}{aws\+\_\+rw\+\_\+lock\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$lock)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{rw__lock_8h_aa83e9faa5a36f3694912afb498f04719}{aws\+\_\+rw\+\_\+lock\+\_\+rlock}} (struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$lock)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{rw__lock_8h_a4ac99448803a543c6c6b27232f5edfd1}{aws\+\_\+rw\+\_\+lock\+\_\+wlock}} (struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$lock)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{rw__lock_8h_a0831ef63014f6651e659d13bed5af862}{aws\+\_\+rw\+\_\+lock\+\_\+try\+\_\+rlock}} (struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$lock)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{rw__lock_8h_a72b4152d339d86a2e05a93d5770143d8}{aws\+\_\+rw\+\_\+lock\+\_\+try\+\_\+wlock}} (struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$lock)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{rw__lock_8h_a136a3599601812976e0c5e059066fce2}{aws\+\_\+rw\+\_\+lock\+\_\+runlock}} (struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$lock)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{rw__lock_8h_aec7767c2d4825ce6b5125de3756592ae}{aws\+\_\+rw\+\_\+lock\+\_\+wunlock}} (struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$lock)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{rw__lock_8h_a42a29367f37fe57b514939554c14356b}\label{rw__lock_8h_a42a29367f37fe57b514939554c14356b}} 
+\index{rw\_lock.h@{rw\_lock.h}!AWS\_RW\_LOCK\_INIT@{AWS\_RW\_LOCK\_INIT}}
+\index{AWS\_RW\_LOCK\_INIT@{AWS\_RW\_LOCK\_INIT}!rw\_lock.h@{rw\_lock.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_RW\_LOCK\_INIT}{AWS\_RW\_LOCK\_INIT}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+RW\+\_\+\+LOCK\+\_\+\+INIT~        \{ .lock\+\_\+handle = PTHREAD\+\_\+\+RWLOCK\+\_\+\+INITIALIZER \}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{rw__lock_8h_a7e634dbb2e8b963917fd0242af1bee09}\label{rw__lock_8h_a7e634dbb2e8b963917fd0242af1bee09}} 
+\index{rw\_lock.h@{rw\_lock.h}!aws\_rw\_lock\_clean\_up@{aws\_rw\_lock\_clean\_up}}
+\index{aws\_rw\_lock\_clean\_up@{aws\_rw\_lock\_clean\_up}!rw\_lock.h@{rw\_lock.h}}
+\doxysubsubsection{\texorpdfstring{aws\_rw\_lock\_clean\_up()}{aws\_rw\_lock\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+rw\+\_\+lock\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$}]{lock }\end{DoxyParamCaption})}
+
+Cleans up internal resources. \mbox{\Hypertarget{rw__lock_8h_a8f52aafd70aefdb81ebbbf77405f93e0}\label{rw__lock_8h_a8f52aafd70aefdb81ebbbf77405f93e0}} 
+\index{rw\_lock.h@{rw\_lock.h}!aws\_rw\_lock\_init@{aws\_rw\_lock\_init}}
+\index{aws\_rw\_lock\_init@{aws\_rw\_lock\_init}!rw\_lock.h@{rw\_lock.h}}
+\doxysubsubsection{\texorpdfstring{aws\_rw\_lock\_init()}{aws\_rw\_lock\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+rw\+\_\+lock\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$}]{lock }\end{DoxyParamCaption})}
+
+Initializes a new platform instance of mutex.
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{rw__lock_8h_aa83e9faa5a36f3694912afb498f04719}\label{rw__lock_8h_aa83e9faa5a36f3694912afb498f04719}} 
+\index{rw\_lock.h@{rw\_lock.h}!aws\_rw\_lock\_rlock@{aws\_rw\_lock\_rlock}}
+\index{aws\_rw\_lock\_rlock@{aws\_rw\_lock\_rlock}!rw\_lock.h@{rw\_lock.h}}
+\doxysubsubsection{\texorpdfstring{aws\_rw\_lock\_rlock()}{aws\_rw\_lock\_rlock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+rw\+\_\+lock\+\_\+rlock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$}]{lock }\end{DoxyParamCaption})}
+
+Blocks until it acquires the lock. While on some platforms such as Windows, this may behave as a reentrant mutex, you should not treat it like one. On platforms it is possible for it to be non-\/reentrant, it will be. \mbox{\Hypertarget{rw__lock_8h_a136a3599601812976e0c5e059066fce2}\label{rw__lock_8h_a136a3599601812976e0c5e059066fce2}} 
+\index{rw\_lock.h@{rw\_lock.h}!aws\_rw\_lock\_runlock@{aws\_rw\_lock\_runlock}}
+\index{aws\_rw\_lock\_runlock@{aws\_rw\_lock\_runlock}!rw\_lock.h@{rw\_lock.h}}
+\doxysubsubsection{\texorpdfstring{aws\_rw\_lock\_runlock()}{aws\_rw\_lock\_runlock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+rw\+\_\+lock\+\_\+runlock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$}]{lock }\end{DoxyParamCaption})}
+
+Releases the lock. \mbox{\Hypertarget{rw__lock_8h_a0831ef63014f6651e659d13bed5af862}\label{rw__lock_8h_a0831ef63014f6651e659d13bed5af862}} 
+\index{rw\_lock.h@{rw\_lock.h}!aws\_rw\_lock\_try\_rlock@{aws\_rw\_lock\_try\_rlock}}
+\index{aws\_rw\_lock\_try\_rlock@{aws\_rw\_lock\_try\_rlock}!rw\_lock.h@{rw\_lock.h}}
+\doxysubsubsection{\texorpdfstring{aws\_rw\_lock\_try\_rlock()}{aws\_rw\_lock\_try\_rlock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+rw\+\_\+lock\+\_\+try\+\_\+rlock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$}]{lock }\end{DoxyParamCaption})}
+
+Attempts to acquire the lock but returns immediately if it can not. While on some platforms such as Windows, this may behave as a reentrant mutex, you should not treat it like one. On platforms it is possible for it to be non-\/reentrant, it will be. \mbox{\Hypertarget{rw__lock_8h_a72b4152d339d86a2e05a93d5770143d8}\label{rw__lock_8h_a72b4152d339d86a2e05a93d5770143d8}} 
+\index{rw\_lock.h@{rw\_lock.h}!aws\_rw\_lock\_try\_wlock@{aws\_rw\_lock\_try\_wlock}}
+\index{aws\_rw\_lock\_try\_wlock@{aws\_rw\_lock\_try\_wlock}!rw\_lock.h@{rw\_lock.h}}
+\doxysubsubsection{\texorpdfstring{aws\_rw\_lock\_try\_wlock()}{aws\_rw\_lock\_try\_wlock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+rw\+\_\+lock\+\_\+try\+\_\+wlock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$}]{lock }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{rw__lock_8h_a4ac99448803a543c6c6b27232f5edfd1}\label{rw__lock_8h_a4ac99448803a543c6c6b27232f5edfd1}} 
+\index{rw\_lock.h@{rw\_lock.h}!aws\_rw\_lock\_wlock@{aws\_rw\_lock\_wlock}}
+\index{aws\_rw\_lock\_wlock@{aws\_rw\_lock\_wlock}!rw\_lock.h@{rw\_lock.h}}
+\doxysubsubsection{\texorpdfstring{aws\_rw\_lock\_wlock()}{aws\_rw\_lock\_wlock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+rw\+\_\+lock\+\_\+wlock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$}]{lock }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{rw__lock_8h_aec7767c2d4825ce6b5125de3756592ae}\label{rw__lock_8h_aec7767c2d4825ce6b5125de3756592ae}} 
+\index{rw\_lock.h@{rw\_lock.h}!aws\_rw\_lock\_wunlock@{aws\_rw\_lock\_wunlock}}
+\index{aws\_rw\_lock\_wunlock@{aws\_rw\_lock\_wunlock}!rw\_lock.h@{rw\_lock.h}}
+\doxysubsubsection{\texorpdfstring{aws\_rw\_lock\_wunlock()}{aws\_rw\_lock\_wunlock()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+rw\+\_\+lock\+\_\+wunlock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__rw__lock}{aws\+\_\+rw\+\_\+lock}} $\ast$}]{lock }\end{DoxyParamCaption})}
+

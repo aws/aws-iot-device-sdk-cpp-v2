@@ -1,0 +1,68 @@
+\hypertarget{structaws__websocket__frame}{}\doxysection{aws\+\_\+websocket\+\_\+frame Struct Reference}
+\label{structaws__websocket__frame}\index{aws\_websocket\_frame@{aws\_websocket\_frame}}
+
+
+{\ttfamily \#include $<$websocket\+\_\+impl.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket__frame_a8915f5db1fdfa0ca75e854a92f22217b}{fin}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket__frame_a4aa9979744dd6eb4fd67b22a908a608c}{rsv}} \mbox{[}3\mbox{]}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket__frame_afef05b06fd99f6b3b93d905d8a39c7c9}{masked}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structaws__websocket__frame_a5e9ed5f8da7b2b7a0e32dee95aaadb9f}{opcode}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structaws__websocket__frame_ab51d2887ca3b6f563b30531e7cf82998}{payload\+\_\+length}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structaws__websocket__frame_aadbd4997949c1d327e18dc5888bdc6a8}{masking\+\_\+key}} \mbox{[}4\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Full contents of a websocket frame, excluding the payload. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__websocket__frame_a8915f5db1fdfa0ca75e854a92f22217b}\label{structaws__websocket__frame_a8915f5db1fdfa0ca75e854a92f22217b}} 
+\index{aws\_websocket\_frame@{aws\_websocket\_frame}!fin@{fin}}
+\index{fin@{fin}!aws\_websocket\_frame@{aws\_websocket\_frame}}
+\doxysubsubsection{\texorpdfstring{fin}{fin}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+frame\+::fin}
+
+\mbox{\Hypertarget{structaws__websocket__frame_afef05b06fd99f6b3b93d905d8a39c7c9}\label{structaws__websocket__frame_afef05b06fd99f6b3b93d905d8a39c7c9}} 
+\index{aws\_websocket\_frame@{aws\_websocket\_frame}!masked@{masked}}
+\index{masked@{masked}!aws\_websocket\_frame@{aws\_websocket\_frame}}
+\doxysubsubsection{\texorpdfstring{masked}{masked}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+frame\+::masked}
+
+\mbox{\Hypertarget{structaws__websocket__frame_aadbd4997949c1d327e18dc5888bdc6a8}\label{structaws__websocket__frame_aadbd4997949c1d327e18dc5888bdc6a8}} 
+\index{aws\_websocket\_frame@{aws\_websocket\_frame}!masking\_key@{masking\_key}}
+\index{masking\_key@{masking\_key}!aws\_websocket\_frame@{aws\_websocket\_frame}}
+\doxysubsubsection{\texorpdfstring{masking\_key}{masking\_key}}
+{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+websocket\+\_\+frame\+::masking\+\_\+key\mbox{[}4\mbox{]}}
+
+\mbox{\Hypertarget{structaws__websocket__frame_a5e9ed5f8da7b2b7a0e32dee95aaadb9f}\label{structaws__websocket__frame_a5e9ed5f8da7b2b7a0e32dee95aaadb9f}} 
+\index{aws\_websocket\_frame@{aws\_websocket\_frame}!opcode@{opcode}}
+\index{opcode@{opcode}!aws\_websocket\_frame@{aws\_websocket\_frame}}
+\doxysubsubsection{\texorpdfstring{opcode}{opcode}}
+{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+websocket\+\_\+frame\+::opcode}
+
+\mbox{\Hypertarget{structaws__websocket__frame_ab51d2887ca3b6f563b30531e7cf82998}\label{structaws__websocket__frame_ab51d2887ca3b6f563b30531e7cf82998}} 
+\index{aws\_websocket\_frame@{aws\_websocket\_frame}!payload\_length@{payload\_length}}
+\index{payload\_length@{payload\_length}!aws\_websocket\_frame@{aws\_websocket\_frame}}
+\doxysubsubsection{\texorpdfstring{payload\_length}{payload\_length}}
+{\footnotesize\ttfamily uint64\+\_\+t aws\+\_\+websocket\+\_\+frame\+::payload\+\_\+length}
+
+\mbox{\Hypertarget{structaws__websocket__frame_a4aa9979744dd6eb4fd67b22a908a608c}\label{structaws__websocket__frame_a4aa9979744dd6eb4fd67b22a908a608c}} 
+\index{aws\_websocket\_frame@{aws\_websocket\_frame}!rsv@{rsv}}
+\index{rsv@{rsv}!aws\_websocket\_frame@{aws\_websocket\_frame}}
+\doxysubsubsection{\texorpdfstring{rsv}{rsv}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+frame\+::rsv\mbox{[}3\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/\mbox{\hyperlink{websocket__impl_8h}{websocket\+\_\+impl.\+h}}\end{DoxyCompactItemize}

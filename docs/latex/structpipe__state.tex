@@ -1,0 +1,190 @@
+\hypertarget{structpipe__state}{}\doxysection{pipe\+\_\+state Struct Reference}
+\label{structpipe__state}\index{pipe\_state@{pipe\_state}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{pipe__test_8c_a010096ecd2248389d14ee50e5d319aea}{pipe\+\_\+loop\+\_\+setup}} \mbox{\hyperlink{structpipe__state_a05b59099e9eb8d86f9d2c9a604d466cc}{loop\+\_\+setup}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structpipe__state_ad433ce5702ed0242b9170aed3b4451bd}{buffer\+\_\+size}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structpipe__state_a42b6d5a122283c40092aa507ca271727}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} \mbox{\hyperlink{structpipe__state_a633a7fe89eec12ebed875bd0a55c6ead}{read\+\_\+end}}
+\item 
+struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} \mbox{\hyperlink{structpipe__state_a84dd2c1ad8a60261bf24fcd1218c362b}{write\+\_\+end}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{structpipe__state_a059e71474fe8eb5265a2950f6201c92a}{read\+\_\+loop}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{structpipe__state_ab8c088a70343c17e5fa5786eba3961e5}{write\+\_\+loop}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structpipe__state_ac5479b947c3f74dfab488214c9f11599}{mutex}}\\
+\>struct \mbox{\hyperlink{structaws__condition__variable}{aws\_condition\_variable}} \mbox{\hyperlink{structpipe__state_a543876b03cfd053eec1db48afa55bb49}{condvar}}\\
+\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structpipe__state_a22218cfa265134e919589c649b2162a9}{read\_end\_closed}}\\
+\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structpipe__state_a6c929c8f3cf3cda4b754cd03364e326d}{write\_end\_closed}}\\
+\>int \mbox{\hyperlink{structpipe__state_a0838632cf469ba32542975ce2d890afb}{status\_code}}\\
+\} \mbox{\hyperlink{structpipe__state_a0fb5e84b026022ecb380f75b9011365b}{results}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structpipe__state_a4999a41720946666fd5172a9b4c11a44}{src}}\\
+\>struct \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structpipe__state_a3151d8d894620558739d08fa7aa55886}{dst}}\\
+\>size\_t \mbox{\hyperlink{structpipe__state_a7b35a07b5587e75d219d9f68b1210507}{num\_bytes\_written}}\\
+\} \mbox{\hyperlink{structpipe__state_a4c6e8df8bc2156892cad15ee1ea66f0d}{buffers}}\\
+
+\end{tabbing}\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>int \mbox{\hyperlink{structpipe__state_a450990087e579bcc69bcd1f1627827d3}{error\_code\_to\_monitor}}\\
+\>int \mbox{\hyperlink{structpipe__state_a208993595a6e3c8fa3af130bb28a0a82}{count}}\\
+\>int \mbox{\hyperlink{structpipe__state_a0a21dfb54e6c8171e8a913dce297fc70}{close\_read\_end\_after\_n\_events}}\\
+\} \mbox{\hyperlink{structpipe__state_aa5c0ab631c438871a8870d57e70129e6}{readable\_events}}\\
+
+\end{tabbing}\item 
+void $\ast$ \mbox{\hyperlink{structpipe__state_ae845a754467e7d1fc8cb92c51f1b33b9}{test\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structpipe__state_a42b6d5a122283c40092aa507ca271727}\label{structpipe__state_a42b6d5a122283c40092aa507ca271727}} 
+\index{pipe\_state@{pipe\_state}!alloc@{alloc}}
+\index{alloc@{alloc}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ pipe\+\_\+state\+::alloc}
+
+\mbox{\Hypertarget{structpipe__state_ad433ce5702ed0242b9170aed3b4451bd}\label{structpipe__state_ad433ce5702ed0242b9170aed3b4451bd}} 
+\index{pipe\_state@{pipe\_state}!buffer\_size@{buffer\_size}}
+\index{buffer\_size@{buffer\_size}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{buffer\_size}{buffer\_size}}
+{\footnotesize\ttfamily size\+\_\+t pipe\+\_\+state\+::buffer\+\_\+size}
+
+\mbox{\Hypertarget{structpipe__state_a4c6e8df8bc2156892cad15ee1ea66f0d}\label{structpipe__state_a4c6e8df8bc2156892cad15ee1ea66f0d}} 
+\index{pipe\_state@{pipe\_state}!buffers@{buffers}}
+\index{buffers@{buffers}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  pipe\+\_\+state\+::buffers}
+
+\mbox{\Hypertarget{structpipe__state_a0a21dfb54e6c8171e8a913dce297fc70}\label{structpipe__state_a0a21dfb54e6c8171e8a913dce297fc70}} 
+\index{pipe\_state@{pipe\_state}!close\_read\_end\_after\_n\_events@{close\_read\_end\_after\_n\_events}}
+\index{close\_read\_end\_after\_n\_events@{close\_read\_end\_after\_n\_events}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{close\_read\_end\_after\_n\_events}{close\_read\_end\_after\_n\_events}}
+{\footnotesize\ttfamily int pipe\+\_\+state\+::close\+\_\+read\+\_\+end\+\_\+after\+\_\+n\+\_\+events}
+
+\mbox{\Hypertarget{structpipe__state_a543876b03cfd053eec1db48afa55bb49}\label{structpipe__state_a543876b03cfd053eec1db48afa55bb49}} 
+\index{pipe\_state@{pipe\_state}!condvar@{condvar}}
+\index{condvar@{condvar}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{condvar}{condvar}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} pipe\+\_\+state\+::condvar}
+
+\mbox{\Hypertarget{structpipe__state_a208993595a6e3c8fa3af130bb28a0a82}\label{structpipe__state_a208993595a6e3c8fa3af130bb28a0a82}} 
+\index{pipe\_state@{pipe\_state}!count@{count}}
+\index{count@{count}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{count}{count}}
+{\footnotesize\ttfamily int pipe\+\_\+state\+::count}
+
+\mbox{\Hypertarget{structpipe__state_a3151d8d894620558739d08fa7aa55886}\label{structpipe__state_a3151d8d894620558739d08fa7aa55886}} 
+\index{pipe\_state@{pipe\_state}!dst@{dst}}
+\index{dst@{dst}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{dst}{dst}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} pipe\+\_\+state\+::dst}
+
+\mbox{\Hypertarget{structpipe__state_a450990087e579bcc69bcd1f1627827d3}\label{structpipe__state_a450990087e579bcc69bcd1f1627827d3}} 
+\index{pipe\_state@{pipe\_state}!error\_code\_to\_monitor@{error\_code\_to\_monitor}}
+\index{error\_code\_to\_monitor@{error\_code\_to\_monitor}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{error\_code\_to\_monitor}{error\_code\_to\_monitor}}
+{\footnotesize\ttfamily int pipe\+\_\+state\+::error\+\_\+code\+\_\+to\+\_\+monitor}
+
+\mbox{\Hypertarget{structpipe__state_a05b59099e9eb8d86f9d2c9a604d466cc}\label{structpipe__state_a05b59099e9eb8d86f9d2c9a604d466cc}} 
+\index{pipe\_state@{pipe\_state}!loop\_setup@{loop\_setup}}
+\index{loop\_setup@{loop\_setup}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{loop\_setup}{loop\_setup}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{pipe__test_8c_a010096ecd2248389d14ee50e5d319aea}{pipe\+\_\+loop\+\_\+setup}} pipe\+\_\+state\+::loop\+\_\+setup}
+
+\mbox{\Hypertarget{structpipe__state_ac5479b947c3f74dfab488214c9f11599}\label{structpipe__state_ac5479b947c3f74dfab488214c9f11599}} 
+\index{pipe\_state@{pipe\_state}!mutex@{mutex}}
+\index{mutex@{mutex}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} pipe\+\_\+state\+::mutex}
+
+\mbox{\Hypertarget{structpipe__state_a7b35a07b5587e75d219d9f68b1210507}\label{structpipe__state_a7b35a07b5587e75d219d9f68b1210507}} 
+\index{pipe\_state@{pipe\_state}!num\_bytes\_written@{num\_bytes\_written}}
+\index{num\_bytes\_written@{num\_bytes\_written}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{num\_bytes\_written}{num\_bytes\_written}}
+{\footnotesize\ttfamily size\+\_\+t pipe\+\_\+state\+::num\+\_\+bytes\+\_\+written}
+
+\mbox{\Hypertarget{structpipe__state_a633a7fe89eec12ebed875bd0a55c6ead}\label{structpipe__state_a633a7fe89eec12ebed875bd0a55c6ead}} 
+\index{pipe\_state@{pipe\_state}!read\_end@{read\_end}}
+\index{read\_end@{read\_end}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{read\_end}{read\_end}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} pipe\+\_\+state\+::read\+\_\+end}
+
+\mbox{\Hypertarget{structpipe__state_a22218cfa265134e919589c649b2162a9}\label{structpipe__state_a22218cfa265134e919589c649b2162a9}} 
+\index{pipe\_state@{pipe\_state}!read\_end\_closed@{read\_end\_closed}}
+\index{read\_end\_closed@{read\_end\_closed}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{read\_end\_closed}{read\_end\_closed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} pipe\+\_\+state\+::read\+\_\+end\+\_\+closed}
+
+\mbox{\Hypertarget{structpipe__state_a059e71474fe8eb5265a2950f6201c92a}\label{structpipe__state_a059e71474fe8eb5265a2950f6201c92a}} 
+\index{pipe\_state@{pipe\_state}!read\_loop@{read\_loop}}
+\index{read\_loop@{read\_loop}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{read\_loop}{read\_loop}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ pipe\+\_\+state\+::read\+\_\+loop}
+
+\mbox{\Hypertarget{structpipe__state_aa5c0ab631c438871a8870d57e70129e6}\label{structpipe__state_aa5c0ab631c438871a8870d57e70129e6}} 
+\index{pipe\_state@{pipe\_state}!readable\_events@{readable\_events}}
+\index{readable\_events@{readable\_events}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  pipe\+\_\+state\+::readable\+\_\+events}
+
+\mbox{\Hypertarget{structpipe__state_a0fb5e84b026022ecb380f75b9011365b}\label{structpipe__state_a0fb5e84b026022ecb380f75b9011365b}} 
+\index{pipe\_state@{pipe\_state}!results@{results}}
+\index{results@{results}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  pipe\+\_\+state\+::results}
+
+\mbox{\Hypertarget{structpipe__state_a4999a41720946666fd5172a9b4c11a44}\label{structpipe__state_a4999a41720946666fd5172a9b4c11a44}} 
+\index{pipe\_state@{pipe\_state}!src@{src}}
+\index{src@{src}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{src}{src}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} pipe\+\_\+state\+::src}
+
+\mbox{\Hypertarget{structpipe__state_a0838632cf469ba32542975ce2d890afb}\label{structpipe__state_a0838632cf469ba32542975ce2d890afb}} 
+\index{pipe\_state@{pipe\_state}!status\_code@{status\_code}}
+\index{status\_code@{status\_code}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{status\_code}{status\_code}}
+{\footnotesize\ttfamily int pipe\+\_\+state\+::status\+\_\+code}
+
+\mbox{\Hypertarget{structpipe__state_ae845a754467e7d1fc8cb92c51f1b33b9}\label{structpipe__state_ae845a754467e7d1fc8cb92c51f1b33b9}} 
+\index{pipe\_state@{pipe\_state}!test\_data@{test\_data}}
+\index{test\_data@{test\_data}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{test\_data}{test\_data}}
+{\footnotesize\ttfamily void$\ast$ pipe\+\_\+state\+::test\+\_\+data}
+
+\mbox{\Hypertarget{structpipe__state_a84dd2c1ad8a60261bf24fcd1218c362b}\label{structpipe__state_a84dd2c1ad8a60261bf24fcd1218c362b}} 
+\index{pipe\_state@{pipe\_state}!write\_end@{write\_end}}
+\index{write\_end@{write\_end}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{write\_end}{write\_end}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} pipe\+\_\+state\+::write\+\_\+end}
+
+\mbox{\Hypertarget{structpipe__state_a6c929c8f3cf3cda4b754cd03364e326d}\label{structpipe__state_a6c929c8f3cf3cda4b754cd03364e326d}} 
+\index{pipe\_state@{pipe\_state}!write\_end\_closed@{write\_end\_closed}}
+\index{write\_end\_closed@{write\_end\_closed}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{write\_end\_closed}{write\_end\_closed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} pipe\+\_\+state\+::write\+\_\+end\+\_\+closed}
+
+\mbox{\Hypertarget{structpipe__state_ab8c088a70343c17e5fa5786eba3961e5}\label{structpipe__state_ab8c088a70343c17e5fa5786eba3961e5}} 
+\index{pipe\_state@{pipe\_state}!write\_loop@{write\_loop}}
+\index{write\_loop@{write\_loop}!pipe\_state@{pipe\_state}}
+\doxysubsubsection{\texorpdfstring{write\_loop}{write\_loop}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ pipe\+\_\+state\+::write\+\_\+loop}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/\mbox{\hyperlink{pipe__test_8c}{pipe\+\_\+test.\+c}}\end{DoxyCompactItemize}

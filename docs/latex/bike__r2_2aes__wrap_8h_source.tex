@@ -1,0 +1,77 @@
+\hypertarget{bike__r2_2aes__wrap_8h_source}{}\doxysection{aes\+\_\+wrap.\+h}
+\label{bike__r2_2aes__wrap_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/aes\_wrap.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/aes\_wrap.h}}
+\mbox{\hyperlink{bike__r2_2aes__wrap_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{2 \textcolor{comment}{ * SPDX-\/License-\/Identifier: Apache-\/2.0"{}}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Written by Nir Drucker, Shay Gueron, and Dusan Kostic,}}
+\DoxyCodeLine{5 \textcolor{comment}{ * AWS Cryptographic Algorithms Group.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * (ndrucker@amazon.com, gueron@amazon.com, dkostic@amazon.com)}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{bike__r2_2cleanup_8h}{cleanup.h}}"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{evp_8h}{openssl/evp.h}}>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define MAX\_AES\_INVOKATION (MASK(32))}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define AES256\_KEY\_SIZE   (32U)}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define AES256\_KEY\_BITS   (AES256\_KEY\_SIZE * 8)}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define AES256\_BLOCK\_SIZE (16U)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define AES256\_ROUNDS     (14U)}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{typedef} \mbox{\hyperlink{bike__r1_2aes__wrap_8h_a11851cca95ed74500e2cef2e7a7729c0}{ALIGN}}(16) struct aes256\_key\_s}
+\DoxyCodeLine{22 \{}
+\DoxyCodeLine{23   uint8\_t \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a788db922597cf2fb6389e278f822e59f}{raw}}[\mbox{\hyperlink{bike__r2_2aes__wrap_8h_a5a64a2e860ad4e5012c6dbcd19c77210}{AES256\_KEY\_SIZE}}];}
+\DoxyCodeLine{24 \} \mbox{\hyperlink{bike__r1_2aes__wrap_8h_a79c9473570a87f86eedd0d17c2ae36b7}{aes256\_key\_t}};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} \textcolor{keywordtype}{void}}
+\DoxyCodeLine{27 \mbox{\hyperlink{bike__r1_2aes__wrap_8h_ac198f87d64b799a9e632745850c837d9}{aes256\_key\_cleanup}}(\mbox{\hyperlink{bike__r1_2aes__wrap_8h_a79c9473570a87f86eedd0d17c2ae36b7}{aes256\_key\_t}} *o)}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29   \mbox{\hyperlink{bike__r1_2cleanup_8h_a900c0ad7cbed6573e4767aa18709fa66}{secure\_clean}}(o-\/>raw, \textcolor{keyword}{sizeof}(*o));}
+\DoxyCodeLine{30 \}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{comment}{// Using OpenSSL structures}}
+\DoxyCodeLine{33 \textcolor{keyword}{typedef} \mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\_CIPHER\_CTX}} *\mbox{\hyperlink{bike__r1_2aes__wrap_8h_a02339f74806faf073c6ece7ddc667c7a}{aes256\_ks\_t}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\_t}}}
+\DoxyCodeLine{36 \mbox{\hyperlink{bike__r1_2aes__wrap_8h_a807944307d8721f3b797fcf35d2074f2}{aes256\_key\_expansion}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{bike__r1_2aes_8h_a02339f74806faf073c6ece7ddc667c7a}{aes256\_ks\_t}} *ks, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} \mbox{\hyperlink{bike__r1_2aes__wrap_8h_a79c9473570a87f86eedd0d17c2ae36b7}{aes256\_key\_t}} *key)}
+\DoxyCodeLine{37 \{}
+\DoxyCodeLine{38   *ks = \mbox{\hyperlink{evp_8h_a611fc0e27e9f23ebc3c1d8fdc52c2d4f}{EVP\_CIPHER\_CTX\_new}}();}
+\DoxyCodeLine{39   \textcolor{keywordflow}{if}(*ks == \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}})}
+\DoxyCodeLine{40   \{}
+\DoxyCodeLine{41     \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_afd0143325cf546e89c70dca08cae0cd6}{BIKE\_ERROR}}(\mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4daea0e29ca080099a04169f1e9182357b0}{EXTERNAL\_LIB\_ERROR\_OPENSSL}});}
+\DoxyCodeLine{42   \}}
+\DoxyCodeLine{43   \textcolor{keywordflow}{if}(0 == \mbox{\hyperlink{evp_8h_a947e637ce26011c54011db2bc69cd89b}{EVP\_EncryptInit\_ex}}(*ks, EVP\_aes\_256\_ecb(), \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, key-\/>raw, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}))}
+\DoxyCodeLine{44   \{}
+\DoxyCodeLine{45     \mbox{\hyperlink{evp_8h_a639b710284143fc862d9d79a4b097afd}{EVP\_CIPHER\_CTX\_free}}(*ks);}
+\DoxyCodeLine{46     *ks = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}};}
+\DoxyCodeLine{47     \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_afd0143325cf546e89c70dca08cae0cd6}{BIKE\_ERROR}}(\mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4daea0e29ca080099a04169f1e9182357b0}{EXTERNAL\_LIB\_ERROR\_OPENSSL}});}
+\DoxyCodeLine{48   \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50   EVP\_CIPHER\_CTX\_set\_padding(*ks, 0);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52   \textcolor{keywordflow}{return} \mbox{\hyperlink{aws__test__harness_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{53 \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\_t}}}
+\DoxyCodeLine{56 \mbox{\hyperlink{bike__r1_2aes__wrap_8h_a8b3488b91a14b4c3801052d12eba63a7}{aes256\_enc}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint8\_t *ct, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint8\_t *pt, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} \mbox{\hyperlink{bike__r1_2aes_8h_a02339f74806faf073c6ece7ddc667c7a}{aes256\_ks\_t}} *ks)}
+\DoxyCodeLine{57 \{}
+\DoxyCodeLine{58   \textcolor{keywordtype}{int} outlen = 0;}
+\DoxyCodeLine{59   \textcolor{keywordflow}{if}(0 == \mbox{\hyperlink{evp_8h_ab2b67d1cc256418ee42bdfcd5a329cdf}{EVP\_EncryptUpdate}}(*ks, ct, \&outlen, pt, \mbox{\hyperlink{bike__r2_2aes__wrap_8h_a53a76dc39f18601d88f17ed29a71d649}{AES256\_BLOCK\_SIZE}}))}
+\DoxyCodeLine{60   \{}
+\DoxyCodeLine{61     \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_afd0143325cf546e89c70dca08cae0cd6}{BIKE\_ERROR}}(\mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4daea0e29ca080099a04169f1e9182357b0}{EXTERNAL\_LIB\_ERROR\_OPENSSL}});}
+\DoxyCodeLine{62   \}}
+\DoxyCodeLine{63   \textcolor{keywordflow}{return} \mbox{\hyperlink{aws__test__harness_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{64 \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} \textcolor{keywordtype}{void}}
+\DoxyCodeLine{67 \mbox{\hyperlink{bike__r1_2aes__wrap_8h_a1b4eab7c1996aded95a9956093e31bf6}{aes256\_free\_ks}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{bike__r1_2aes_8h_a02339f74806faf073c6ece7ddc667c7a}{aes256\_ks\_t}} *ks)}
+\DoxyCodeLine{68 \{}
+\DoxyCodeLine{69   \mbox{\hyperlink{evp_8h_a639b710284143fc862d9d79a4b097afd}{EVP\_CIPHER\_CTX\_free}}(*ks);}
+\DoxyCodeLine{70   *ks = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}};}
+\DoxyCodeLine{71 \}}
+
+\end{DoxyCode}

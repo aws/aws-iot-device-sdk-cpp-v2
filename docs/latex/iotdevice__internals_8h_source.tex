@@ -1,0 +1,46 @@
+\hypertarget{iotdevice__internals_8h_source}{}\doxysection{iotdevice\+\_\+internals.\+h}
+\label{iotdevice__internals_8h_source}\index{crt/aws-\/c-\/iot/include/aws/iotdevice/private/iotdevice\_internals.h@{crt/aws-\/c-\/iot/include/aws/iotdevice/private/iotdevice\_internals.h}}
+\mbox{\hyperlink{iotdevice__internals_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef AWS\_IOTDEVICE\_IOTDEVICE\_INTERNALS\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define AWS\_IOTDEVICE\_IOTDEVICE\_INTERNALS\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{serializer_8h}{aws/iotdevice/private/serializer.h}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}};}
+\DoxyCodeLine{11 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}};}
+\DoxyCodeLine{12 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__secure__tunnel}{aws\_secure\_tunnel}};}
+\DoxyCodeLine{13 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket}{aws\_websocket}};}
+\DoxyCodeLine{14 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket__client__connection__options}{aws\_websocket\_client\_connection\_options}};}
+\DoxyCodeLine{15 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\_websocket\_send\_frame\_options}};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\_IOTDEVICE\_API}}}
+\DoxyCodeLine{20 \textcolor{keywordtype}{int} \mbox{\hyperlink{iotdevice__internals_8h_ad75d72b9b2349845afd4f868712e319f}{secure\_tunneling\_init\_send\_frame}}(}
+\DoxyCodeLine{21     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\_websocket\_send\_frame\_options}} *frame\_options,}
+\DoxyCodeLine{22     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__secure__tunnel}{aws\_secure\_tunnel}} *secure\_tunnel,}
+\DoxyCodeLine{23     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *data,}
+\DoxyCodeLine{24     \textcolor{keyword}{enum} \mbox{\hyperlink{serializer_8h_ab9320fc39d814e580aa71730318a9c7d}{aws\_iot\_st\_message\_type}} \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}});}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\_IOTDEVICE\_API}}}
+\DoxyCodeLine{27 \textcolor{keywordtype}{void} \mbox{\hyperlink{iotdevice__internals_8h_aa3a1f4a7daa5c6a9db5055949198869f}{init\_websocket\_client\_connection\_options}}(}
+\DoxyCodeLine{28     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__secure__tunnel}{aws\_secure\_tunnel}} *secure\_tunnel,}
+\DoxyCodeLine{29     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket__client__connection__options}{aws\_websocket\_client\_connection\_options}} *websocket\_options);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\_IOTDEVICE\_API}}}
+\DoxyCodeLine{32 \textcolor{keywordtype}{int} \mbox{\hyperlink{iotdevice__internals_8h_ad75d72b9b2349845afd4f868712e319f}{secure\_tunneling\_init\_send\_frame}}(}
+\DoxyCodeLine{33     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\_websocket\_send\_frame\_options}} *frame\_options,}
+\DoxyCodeLine{34     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__secure__tunnel}{aws\_secure\_tunnel}} *secure\_tunnel,}
+\DoxyCodeLine{35     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *data,}
+\DoxyCodeLine{36     \textcolor{keyword}{enum} \mbox{\hyperlink{serializer_8h_ab9320fc39d814e580aa71730318a9c7d}{aws\_iot\_st\_message\_type}} \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}});}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\_IOTDEVICE\_API}}}
+\DoxyCodeLine{39 \textcolor{keywordtype}{bool} \mbox{\hyperlink{iotdevice__internals_8h_ac8cbbeb6346faa7ba538c27c994864e8}{secure\_tunneling\_send\_data\_call}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *websocket, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *out\_buf, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_IOTDEVICE\_IOTDEVICE\_INTERNALS\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

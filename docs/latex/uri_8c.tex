@@ -1,0 +1,369 @@
+\hypertarget{uri_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/uri.c File Reference}
+\label{uri_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/uri.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/uri.c}}
+{\ttfamily \#include $<$aws/io/uri.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void() \mbox{\hyperlink{uri_8c_a8006b58f0c4d054232b6f991fb53955e}{parse\+\_\+fn}}(struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$str)
+\item 
+typedef void() \mbox{\hyperlink{uri_8c_a24ea2b6fc602d7961f56eb04f3324d48}{unchecked\+\_\+append\+\_\+canonicalized\+\_\+character\+\_\+fn}}(struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, uint8\+\_\+t value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9}{parser\+\_\+state}} \{ \newline
+\mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9aedf9c9a3eb1d6920368a21202375ad0c}{ON\+\_\+\+WEEKDAY}}
+, \mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a4c3f0608ae93c3d04c5d0e6371d86480}{ON\+\_\+\+SPACE\+\_\+\+DELIM}}
+, \mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a5c2d9470c884454e95347bb57557b351}{ON\+\_\+\+YEAR}}
+, \mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a73f9cb2ba6cf574eec23e67478f86283}{ON\+\_\+\+MONTH}}
+, \newline
+\mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a1f8635a83c659c55cb02a573556e8261}{ON\+\_\+\+MONTH\+\_\+\+DAY}}
+, \mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a698dcb8c2cc679d3ccef5b7f0d161f0c}{ON\+\_\+\+HOUR}}
+, \mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a26a88e149439ffb68ac484f88024ac41}{ON\+\_\+\+MINUTE}}
+, \mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a498a620557f9f744d3ce7522a3f16649}{ON\+\_\+\+SECOND}}
+, \newline
+\mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9aa8b8d7c05694b2f8fa93aa37dab0d691}{ON\+\_\+\+TZ}}
+, \mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400}{FINISHED}}
+, \mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4}{ON\+\_\+\+SCHEME}}
+, \mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a0421c6f2cd147f1aa6054870f8339f11}{ON\+\_\+\+AUTHORITY}}
+, \newline
+\mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9abda4a716471d3894d12a4fa238e33ded}{ON\+\_\+\+PATH}}
+, \mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a1df2ca5459ef7baafefbba743e1454db}{ON\+\_\+\+QUERY\+\_\+\+STRING}}
+, \mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400}{FINISHED}}
+, \mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a2fd6f336d08340583bd620a7f5694c90}{ERROR}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{uri_8c_a4e588e3365971ce259117ca697e4bf4f}{s\+\_\+parse\+\_\+scheme}} (struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$str)
+\item 
+static void \mbox{\hyperlink{uri_8c_aefca228f479d66704492eecca19ce67c}{s\+\_\+parse\+\_\+authority}} (struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$str)
+\item 
+static void \mbox{\hyperlink{uri_8c_a53147e25326c74ae60ceec7d92378438}{s\+\_\+parse\+\_\+path}} (struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$str)
+\item 
+static void \mbox{\hyperlink{uri_8c_a3553110f0b8b186ad1f68339292aa46f}{s\+\_\+parse\+\_\+query\+\_\+string}} (struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$str)
+\item 
+static int \mbox{\hyperlink{uri_8c_a12916edc61874b2890a65e2367f8cdad}{s\+\_\+init\+\_\+from\+\_\+uri\+\_\+str}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
+\item 
+int \mbox{\hyperlink{uri_8c_ac0db8aecee077e0d3b419ab890808bd0}{aws\+\_\+uri\+\_\+init\+\_\+parse}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$uri\+\_\+str)
+\item 
+int \mbox{\hyperlink{uri_8c_a45679de4995ac8359726da89c6e52871}{aws\+\_\+uri\+\_\+init\+\_\+from\+\_\+builder\+\_\+options}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__uri__builder__options}{aws\+\_\+uri\+\_\+builder\+\_\+options}} $\ast$options)
+\item 
+void \mbox{\hyperlink{uri_8c_a73c8610748d0612fa20f042842edf4b0}{aws\+\_\+uri\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
+\item 
+const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$ \mbox{\hyperlink{uri_8c_a65027965fa964814667bd4a358267bf3}{aws\+\_\+uri\+\_\+scheme}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
+\item 
+const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$ \mbox{\hyperlink{uri_8c_a910de72a51e0e80d5c9050374853a40d}{aws\+\_\+uri\+\_\+authority}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
+\item 
+const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$ \mbox{\hyperlink{uri_8c_a60bf7db8b694aa382ae5eeb5cc9b7ca7}{aws\+\_\+uri\+\_\+path}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
+\item 
+const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$ \mbox{\hyperlink{uri_8c_af8ecd6ca6b9e678eb4fa1568851ef359}{aws\+\_\+uri\+\_\+query\+\_\+string}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
+\item 
+const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$ \mbox{\hyperlink{uri_8c_abb195e1d630a57d7a60fcdba0e81a131}{aws\+\_\+uri\+\_\+path\+\_\+and\+\_\+query}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
+\item 
+const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$ \mbox{\hyperlink{uri_8c_a1ff8cfb335c54c1b8ae3f6170b4e9eb8}{aws\+\_\+uri\+\_\+host\+\_\+name}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{uri_8c_af404b250543b5a8be2df320bdf3a5c80}{aws\+\_\+uri\+\_\+port}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{uri_8c_a83c4963705d2f02b65fa97c3cad517e3}{aws\+\_\+uri\+\_\+query\+\_\+string\+\_\+next\+\_\+param}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$param)
+\item 
+int \mbox{\hyperlink{uri_8c_ad7d1d65d4fd65d3291b6b3546f476a36}{aws\+\_\+uri\+\_\+query\+\_\+string\+\_\+params}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$out\+\_\+params)
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{uri_8c_a965ba1a7e77649fc4163ece979713dc8}{s\+\_\+to\+\_\+uppercase\+\_\+hex}} (uint8\+\_\+t value)
+\item 
+static void \mbox{\hyperlink{uri_8c_ac58ed5e70ee952631b14025d00e234da}{s\+\_\+unchecked\+\_\+append\+\_\+canonicalized\+\_\+path\+\_\+character}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, uint8\+\_\+t value)
+\item 
+static void \mbox{\hyperlink{uri_8c_af710e89b6c5dcde0facbe00c9b233157}{s\+\_\+raw\+\_\+append\+\_\+canonicalized\+\_\+param\+\_\+character}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, uint8\+\_\+t value)
+\item 
+static int \mbox{\hyperlink{uri_8c_af836ff9fb4a9827b4fdb209427345fbb}{s\+\_\+encode\+\_\+cursor\+\_\+to\+\_\+buffer}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor, \mbox{\hyperlink{uri_8c_a24ea2b6fc602d7961f56eb04f3324d48}{unchecked\+\_\+append\+\_\+canonicalized\+\_\+character\+\_\+fn}} $\ast$append\+\_\+canonicalized\+\_\+character)
+\item 
+int \mbox{\hyperlink{uri_8c_a0f9830c567aca22aef708357e533a41c}{aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+encoding\+\_\+uri\+\_\+path}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
+\item 
+int \mbox{\hyperlink{uri_8c_a5a2dcd27e959803ddfe6ea97bdf2a074}{aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+encoding\+\_\+uri\+\_\+param}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
+\item 
+int \mbox{\hyperlink{uri_8c_aa269f9a77df39aaa90a9812c971d069a}{aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+decoding\+\_\+uri}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{uri_8c_a8006b58f0c4d054232b6f991fb53955e}{parse\+\_\+fn}} $\ast$ \mbox{\hyperlink{uri_8c_a62cf368f41ac4e44c437abdaadc31a8a}{s\+\_\+states}} \mbox{[}$\,$\mbox{]}
+\item 
+static const char $\ast$ \mbox{\hyperlink{uri_8c_a63031f2e33b6bac9100fd2d55ad223bb}{s\+\_\+default\+\_\+path}} = \char`\"{}/\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{uri_8c_a8006b58f0c4d054232b6f991fb53955e}\label{uri_8c_a8006b58f0c4d054232b6f991fb53955e}} 
+\index{uri.c@{uri.c}!parse\_fn@{parse\_fn}}
+\index{parse\_fn@{parse\_fn}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{parse\_fn}{parse\_fn}}
+{\footnotesize\ttfamily typedef void() parse\+\_\+fn(struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$str)}
+
+\mbox{\Hypertarget{uri_8c_a24ea2b6fc602d7961f56eb04f3324d48}\label{uri_8c_a24ea2b6fc602d7961f56eb04f3324d48}} 
+\index{uri.c@{uri.c}!unchecked\_append\_canonicalized\_character\_fn@{unchecked\_append\_canonicalized\_character\_fn}}
+\index{unchecked\_append\_canonicalized\_character\_fn@{unchecked\_append\_canonicalized\_character\_fn}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{unchecked\_append\_canonicalized\_character\_fn}{unchecked\_append\_canonicalized\_character\_fn}}
+{\footnotesize\ttfamily typedef void() unchecked\+\_\+append\+\_\+canonicalized\+\_\+character\+\_\+fn(struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, uint8\+\_\+t value)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9}} 
+\index{uri.c@{uri.c}!parser\_state@{parser\_state}}
+\index{parser\_state@{parser\_state}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{parser\_state}{parser\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{date__time_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9}{parser\+\_\+state}}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_WEEKDAY@{ON\_WEEKDAY}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_WEEKDAY@{ON\_WEEKDAY}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9aedf9c9a3eb1d6920368a21202375ad0c}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9aedf9c9a3eb1d6920368a21202375ad0c}} 
+ON\+\_\+\+WEEKDAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_SPACE\_DELIM@{ON\_SPACE\_DELIM}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_SPACE\_DELIM@{ON\_SPACE\_DELIM}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a4c3f0608ae93c3d04c5d0e6371d86480}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a4c3f0608ae93c3d04c5d0e6371d86480}} 
+ON\+\_\+\+SPACE\+\_\+\+DELIM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_YEAR@{ON\_YEAR}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_YEAR@{ON\_YEAR}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a5c2d9470c884454e95347bb57557b351}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a5c2d9470c884454e95347bb57557b351}} 
+ON\+\_\+\+YEAR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_MONTH@{ON\_MONTH}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_MONTH@{ON\_MONTH}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a73f9cb2ba6cf574eec23e67478f86283}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a73f9cb2ba6cf574eec23e67478f86283}} 
+ON\+\_\+\+MONTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_MONTH\_DAY@{ON\_MONTH\_DAY}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_MONTH\_DAY@{ON\_MONTH\_DAY}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a1f8635a83c659c55cb02a573556e8261}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a1f8635a83c659c55cb02a573556e8261}} 
+ON\+\_\+\+MONTH\+\_\+\+DAY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_HOUR@{ON\_HOUR}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_HOUR@{ON\_HOUR}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a698dcb8c2cc679d3ccef5b7f0d161f0c}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a698dcb8c2cc679d3ccef5b7f0d161f0c}} 
+ON\+\_\+\+HOUR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_MINUTE@{ON\_MINUTE}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_MINUTE@{ON\_MINUTE}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a26a88e149439ffb68ac484f88024ac41}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a26a88e149439ffb68ac484f88024ac41}} 
+ON\+\_\+\+MINUTE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_SECOND@{ON\_SECOND}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_SECOND@{ON\_SECOND}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a498a620557f9f744d3ce7522a3f16649}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a498a620557f9f744d3ce7522a3f16649}} 
+ON\+\_\+\+SECOND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_TZ@{ON\_TZ}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_TZ@{ON\_TZ}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9aa8b8d7c05694b2f8fa93aa37dab0d691}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9aa8b8d7c05694b2f8fa93aa37dab0d691}} 
+ON\+\_\+\+TZ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FINISHED@{FINISHED}!uri.c@{uri.c}}\index{uri.c@{uri.c}!FINISHED@{FINISHED}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400}} 
+FINISHED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_SCHEME@{ON\_SCHEME}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_SCHEME@{ON\_SCHEME}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4}} 
+ON\+\_\+\+SCHEME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_AUTHORITY@{ON\_AUTHORITY}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_AUTHORITY@{ON\_AUTHORITY}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a0421c6f2cd147f1aa6054870f8339f11}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a0421c6f2cd147f1aa6054870f8339f11}} 
+ON\+\_\+\+AUTHORITY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_PATH@{ON\_PATH}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_PATH@{ON\_PATH}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9abda4a716471d3894d12a4fa238e33ded}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9abda4a716471d3894d12a4fa238e33ded}} 
+ON\+\_\+\+PATH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON\_QUERY\_STRING@{ON\_QUERY\_STRING}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ON\_QUERY\_STRING@{ON\_QUERY\_STRING}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a1df2ca5459ef7baafefbba743e1454db}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a1df2ca5459ef7baafefbba743e1454db}} 
+ON\+\_\+\+QUERY\+\_\+\+STRING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FINISHED@{FINISHED}!uri.c@{uri.c}}\index{uri.c@{uri.c}!FINISHED@{FINISHED}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9adbd1812bee789fbf3548cf79d3f2b400}} 
+FINISHED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ERROR@{ERROR}!uri.c@{uri.c}}\index{uri.c@{uri.c}!ERROR@{ERROR}}}\mbox{\Hypertarget{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a2fd6f336d08340583bd620a7f5694c90}\label{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a2fd6f336d08340583bd620a7f5694c90}} 
+ERROR&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{uri_8c_aa269f9a77df39aaa90a9812c971d069a}\label{uri_8c_aa269f9a77df39aaa90a9812c971d069a}} 
+\index{uri.c@{uri.c}!aws\_byte\_buf\_append\_decoding\_uri@{aws\_byte\_buf\_append\_decoding\_uri}}
+\index{aws\_byte\_buf\_append\_decoding\_uri@{aws\_byte\_buf\_append\_decoding\_uri}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_append\_decoding\_uri()}{aws\_byte\_buf\_append\_decoding\_uri()}}
+{\footnotesize\ttfamily int aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+decoding\+\_\+uri (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cursor }\end{DoxyParamCaption})}
+
+Writes the uri decoding of a UTF-\/8 cursor to a buffer, replacing xx escapes by their single byte equivalent. For example, reading \char`\"{}a\%20b\+\_\+c\char`\"{} would write \char`\"{}a b\+\_\+c\char`\"{}. \mbox{\Hypertarget{uri_8c_a5a2dcd27e959803ddfe6ea97bdf2a074}\label{uri_8c_a5a2dcd27e959803ddfe6ea97bdf2a074}} 
+\index{uri.c@{uri.c}!aws\_byte\_buf\_append\_encoding\_uri\_param@{aws\_byte\_buf\_append\_encoding\_uri\_param}}
+\index{aws\_byte\_buf\_append\_encoding\_uri\_param@{aws\_byte\_buf\_append\_encoding\_uri\_param}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_append\_encoding\_uri\_param()}{aws\_byte\_buf\_append\_encoding\_uri\_param()}}
+{\footnotesize\ttfamily int aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+encoding\+\_\+uri\+\_\+param (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cursor }\end{DoxyParamCaption})}
+
+Writes the uri query param encoding (passthrough alnum + \textquotesingle{}-\/\textquotesingle{} \textquotesingle{}\+\_\+\textquotesingle{} \textquotesingle{}$\sim$\textquotesingle{} \textquotesingle{}.\textquotesingle{}) of a UTF-\/8 cursor to a buffer For example, reading \char`\"{}a b\+\_\+c\char`\"{} would write \char`\"{}a\%20b\+\_\+c\char`\"{}. \mbox{\Hypertarget{uri_8c_a0f9830c567aca22aef708357e533a41c}\label{uri_8c_a0f9830c567aca22aef708357e533a41c}} 
+\index{uri.c@{uri.c}!aws\_byte\_buf\_append\_encoding\_uri\_path@{aws\_byte\_buf\_append\_encoding\_uri\_path}}
+\index{aws\_byte\_buf\_append\_encoding\_uri\_path@{aws\_byte\_buf\_append\_encoding\_uri\_path}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_append\_encoding\_uri\_path()}{aws\_byte\_buf\_append\_encoding\_uri\_path()}}
+{\footnotesize\ttfamily int aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+encoding\+\_\+uri\+\_\+path (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cursor }\end{DoxyParamCaption})}
+
+Writes the uri path encoding of a cursor to a buffer. This is the modified version of rfc3986 used by sigv4 signing. \mbox{\Hypertarget{uri_8c_a910de72a51e0e80d5c9050374853a40d}\label{uri_8c_a910de72a51e0e80d5c9050374853a40d}} 
+\index{uri.c@{uri.c}!aws\_uri\_authority@{aws\_uri\_authority}}
+\index{aws\_uri\_authority@{aws\_uri\_authority}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_authority()}{aws\_uri\_authority()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}$\ast$ aws\+\_\+uri\+\_\+authority (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri }\end{DoxyParamCaption})}
+
+Returns the authority portion of the uri (host\mbox{[}\+:port\mbox{]}). If it was not present, this was a request uri. In that case, the value will be empty. \mbox{\Hypertarget{uri_8c_a73c8610748d0612fa20f042842edf4b0}\label{uri_8c_a73c8610748d0612fa20f042842edf4b0}} 
+\index{uri.c@{uri.c}!aws\_uri\_clean\_up@{aws\_uri\_clean\_up}}
+\index{aws\_uri\_clean\_up@{aws\_uri\_clean\_up}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_clean\_up()}{aws\_uri\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+uri\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{uri_8c_a1ff8cfb335c54c1b8ae3f6170b4e9eb8}\label{uri_8c_a1ff8cfb335c54c1b8ae3f6170b4e9eb8}} 
+\index{uri.c@{uri.c}!aws\_uri\_host\_name@{aws\_uri\_host\_name}}
+\index{aws\_uri\_host\_name@{aws\_uri\_host\_name}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_host\_name()}{aws\_uri\_host\_name()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}$\ast$ aws\+\_\+uri\+\_\+host\+\_\+name (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri }\end{DoxyParamCaption})}
+
+Returns the \textquotesingle{}host\+\_\+name\textquotesingle{} portion of the authority. If no authority was present, this value will be empty. \mbox{\Hypertarget{uri_8c_a45679de4995ac8359726da89c6e52871}\label{uri_8c_a45679de4995ac8359726da89c6e52871}} 
+\index{uri.c@{uri.c}!aws\_uri\_init\_from\_builder\_options@{aws\_uri\_init\_from\_builder\_options}}
+\index{aws\_uri\_init\_from\_builder\_options@{aws\_uri\_init\_from\_builder\_options}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_init\_from\_builder\_options()}{aws\_uri\_init\_from\_builder\_options()}}
+{\footnotesize\ttfamily int aws\+\_\+uri\+\_\+init\+\_\+from\+\_\+builder\+\_\+options (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__uri__builder__options}{aws\+\_\+uri\+\_\+builder\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+Initializes uri to values specified in options. Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS, on success, AWS\+\_\+\+OP\+\_\+\+ERR on failure. After calling this function, the parts can be accessed. \mbox{\Hypertarget{uri_8c_ac0db8aecee077e0d3b419ab890808bd0}\label{uri_8c_ac0db8aecee077e0d3b419ab890808bd0}} 
+\index{uri.c@{uri.c}!aws\_uri\_init\_parse@{aws\_uri\_init\_parse}}
+\index{aws\_uri\_init\_parse@{aws\_uri\_init\_parse}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_init\_parse()}{aws\_uri\_init\_parse()}}
+{\footnotesize\ttfamily int aws\+\_\+uri\+\_\+init\+\_\+parse (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{uri\+\_\+str }\end{DoxyParamCaption})}
+
+Parses \textquotesingle{}uri\+\_\+str\textquotesingle{} and initializes uri. Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS, on success, AWS\+\_\+\+OP\+\_\+\+ERR on failure. After calling this function, the parts can be accessed. \mbox{\Hypertarget{uri_8c_a60bf7db8b694aa382ae5eeb5cc9b7ca7}\label{uri_8c_a60bf7db8b694aa382ae5eeb5cc9b7ca7}} 
+\index{uri.c@{uri.c}!aws\_uri\_path@{aws\_uri\_path}}
+\index{aws\_uri\_path@{aws\_uri\_path}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_path()}{aws\_uri\_path()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}$\ast$ aws\+\_\+uri\+\_\+path (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri }\end{DoxyParamCaption})}
+
+Returns the path portion of the uri. If the original value was empty, this value will be \char`\"{}/\char`\"{}. \mbox{\Hypertarget{uri_8c_abb195e1d630a57d7a60fcdba0e81a131}\label{uri_8c_abb195e1d630a57d7a60fcdba0e81a131}} 
+\index{uri.c@{uri.c}!aws\_uri\_path\_and\_query@{aws\_uri\_path\_and\_query}}
+\index{aws\_uri\_path\_and\_query@{aws\_uri\_path\_and\_query}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_path\_and\_query()}{aws\_uri\_path\_and\_query()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}$\ast$ aws\+\_\+uri\+\_\+path\+\_\+and\+\_\+query (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri }\end{DoxyParamCaption})}
+
+Returns the path and query portion of the uri (i.\+e., the thing you send accross the wire). \mbox{\Hypertarget{uri_8c_af404b250543b5a8be2df320bdf3a5c80}\label{uri_8c_af404b250543b5a8be2df320bdf3a5c80}} 
+\index{uri.c@{uri.c}!aws\_uri\_port@{aws\_uri\_port}}
+\index{aws\_uri\_port@{aws\_uri\_port}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_port()}{aws\_uri\_port()}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+uri\+\_\+port (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri }\end{DoxyParamCaption})}
+
+Returns the port portion of the authority if it was present, otherwise, returns 0. If this is 0, it is the users job to determine the correct port based on scheme and protocol. \mbox{\Hypertarget{uri_8c_af8ecd6ca6b9e678eb4fa1568851ef359}\label{uri_8c_af8ecd6ca6b9e678eb4fa1568851ef359}} 
+\index{uri.c@{uri.c}!aws\_uri\_query\_string@{aws\_uri\_query\_string}}
+\index{aws\_uri\_query\_string@{aws\_uri\_query\_string}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_query\_string()}{aws\_uri\_query\_string()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}$\ast$ aws\+\_\+uri\+\_\+query\+\_\+string (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri }\end{DoxyParamCaption})}
+
+Returns the query string portion of the uri, minus the \textquotesingle{}?\textquotesingle{}. If not present, this value will be empty. \mbox{\Hypertarget{uri_8c_a83c4963705d2f02b65fa97c3cad517e3}\label{uri_8c_a83c4963705d2f02b65fa97c3cad517e3}} 
+\index{uri.c@{uri.c}!aws\_uri\_query\_string\_next\_param@{aws\_uri\_query\_string\_next\_param}}
+\index{aws\_uri\_query\_string\_next\_param@{aws\_uri\_query\_string\_next\_param}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_query\_string\_next\_param()}{aws\_uri\_query\_string\_next\_param()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+uri\+\_\+query\+\_\+string\+\_\+next\+\_\+param (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri,  }\item[{struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$}]{param }\end{DoxyParamCaption})}
+
+For iterating over the params in the uri query string. {\ttfamily param} is an in/out argument used to track progress, it MUST be zeroed out to start. If true is returned, {\ttfamily param} contains the value of the next param. If false is returned, there are no further params.
+
+Edge cases\+: 1) Entries without \textquotesingle{}=\textquotesingle{} sign are treated as having a key and no value. Example\+: First param in query string \char`\"{}a\&b=c\char`\"{} has key=\char`\"{}a\char`\"{} value=\char`\"{}\char`\"{}
+
+2) Blank entries are skipped. Example\+: The only param in query string \char`\"{}\&\&a=b\char`\"{} is key=\char`\"{}a\char`\"{} value=\char`\"{}b\char`\"{} \mbox{\Hypertarget{uri_8c_ad7d1d65d4fd65d3291b6b3546f476a36}\label{uri_8c_ad7d1d65d4fd65d3291b6b3546f476a36}} 
+\index{uri.c@{uri.c}!aws\_uri\_query\_string\_params@{aws\_uri\_query\_string\_params}}
+\index{aws\_uri\_query\_string\_params@{aws\_uri\_query\_string\_params}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_query\_string\_params()}{aws\_uri\_query\_string\_params()}}
+{\footnotesize\ttfamily int aws\+\_\+uri\+\_\+query\+\_\+string\+\_\+params (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri,  }\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{out\+\_\+params }\end{DoxyParamCaption})}
+
+Parses query string and stores the parameters in \textquotesingle{}out\+\_\+params\textquotesingle{}. Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS on success and AWS\+\_\+\+OP\+\_\+\+ERR on failure. The user is responsible for initializing out\+\_\+params with item size of struct aws\+\_\+query\+\_\+param. The user is also responsible for cleaning up out\+\_\+params when finished. \mbox{\Hypertarget{uri_8c_a65027965fa964814667bd4a358267bf3}\label{uri_8c_a65027965fa964814667bd4a358267bf3}} 
+\index{uri.c@{uri.c}!aws\_uri\_scheme@{aws\_uri\_scheme}}
+\index{aws\_uri\_scheme@{aws\_uri\_scheme}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{aws\_uri\_scheme()}{aws\_uri\_scheme()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}$\ast$ aws\+\_\+uri\+\_\+scheme (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri }\end{DoxyParamCaption})}
+
+Returns the scheme portion of the uri (e.\+g. http, https, ftp, ftps, etc...). If the scheme was not present in the uri, the returned value will be empty. It is the users job to determine the appropriate defaults if this field is empty, based on protocol, port, etc... \mbox{\Hypertarget{uri_8c_af836ff9fb4a9827b4fdb209427345fbb}\label{uri_8c_af836ff9fb4a9827b4fdb209427345fbb}} 
+\index{uri.c@{uri.c}!s\_encode\_cursor\_to\_buffer@{s\_encode\_cursor\_to\_buffer}}
+\index{s\_encode\_cursor\_to\_buffer@{s\_encode\_cursor\_to\_buffer}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_encode\_cursor\_to\_buffer()}{s\_encode\_cursor\_to\_buffer()}}
+{\footnotesize\ttfamily static int s\+\_\+encode\+\_\+cursor\+\_\+to\+\_\+buffer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cursor,  }\item[{\mbox{\hyperlink{uri_8c_a24ea2b6fc602d7961f56eb04f3324d48}{unchecked\+\_\+append\+\_\+canonicalized\+\_\+character\+\_\+fn}} $\ast$}]{append\+\_\+canonicalized\+\_\+character }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{uri_8c_a12916edc61874b2890a65e2367f8cdad}\label{uri_8c_a12916edc61874b2890a65e2367f8cdad}} 
+\index{uri.c@{uri.c}!s\_init\_from\_uri\_str@{s\_init\_from\_uri\_str}}
+\index{s\_init\_from\_uri\_str@{s\_init\_from\_uri\_str}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_init\_from\_uri\_str()}{s\_init\_from\_uri\_str()}}
+{\footnotesize\ttfamily static int s\+\_\+init\+\_\+from\+\_\+uri\+\_\+str (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{uri_8c_aefca228f479d66704492eecca19ce67c}\label{uri_8c_aefca228f479d66704492eecca19ce67c}} 
+\index{uri.c@{uri.c}!s\_parse\_authority@{s\_parse\_authority}}
+\index{s\_parse\_authority@{s\_parse\_authority}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_authority()}{s\_parse\_authority()}}
+{\footnotesize\ttfamily static void s\+\_\+parse\+\_\+authority (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{uri_8c_a53147e25326c74ae60ceec7d92378438}\label{uri_8c_a53147e25326c74ae60ceec7d92378438}} 
+\index{uri.c@{uri.c}!s\_parse\_path@{s\_parse\_path}}
+\index{s\_parse\_path@{s\_parse\_path}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_path()}{s\_parse\_path()}}
+{\footnotesize\ttfamily static void s\+\_\+parse\+\_\+path (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{uri_8c_a3553110f0b8b186ad1f68339292aa46f}\label{uri_8c_a3553110f0b8b186ad1f68339292aa46f}} 
+\index{uri.c@{uri.c}!s\_parse\_query\_string@{s\_parse\_query\_string}}
+\index{s\_parse\_query\_string@{s\_parse\_query\_string}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_query\_string()}{s\_parse\_query\_string()}}
+{\footnotesize\ttfamily static void s\+\_\+parse\+\_\+query\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{uri_8c_a4e588e3365971ce259117ca697e4bf4f}\label{uri_8c_a4e588e3365971ce259117ca697e4bf4f}} 
+\index{uri.c@{uri.c}!s\_parse\_scheme@{s\_parse\_scheme}}
+\index{s\_parse\_scheme@{s\_parse\_scheme}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_scheme()}{s\_parse\_scheme()}}
+{\footnotesize\ttfamily static void s\+\_\+parse\+\_\+scheme (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structuri__parser}{uri\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{uri_8c_af710e89b6c5dcde0facbe00c9b233157}\label{uri_8c_af710e89b6c5dcde0facbe00c9b233157}} 
+\index{uri.c@{uri.c}!s\_raw\_append\_canonicalized\_param\_character@{s\_raw\_append\_canonicalized\_param\_character}}
+\index{s\_raw\_append\_canonicalized\_param\_character@{s\_raw\_append\_canonicalized\_param\_character}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_raw\_append\_canonicalized\_param\_character()}{s\_raw\_append\_canonicalized\_param\_character()}}
+{\footnotesize\ttfamily static void s\+\_\+raw\+\_\+append\+\_\+canonicalized\+\_\+param\+\_\+character (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{uri_8c_a965ba1a7e77649fc4163ece979713dc8}\label{uri_8c_a965ba1a7e77649fc4163ece979713dc8}} 
+\index{uri.c@{uri.c}!s\_to\_uppercase\_hex@{s\_to\_uppercase\_hex}}
+\index{s\_to\_uppercase\_hex@{s\_to\_uppercase\_hex}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_to\_uppercase\_hex()}{s\_to\_uppercase\_hex()}}
+{\footnotesize\ttfamily static uint8\+\_\+t s\+\_\+to\+\_\+uppercase\+\_\+hex (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{uri_8c_ac58ed5e70ee952631b14025d00e234da}\label{uri_8c_ac58ed5e70ee952631b14025d00e234da}} 
+\index{uri.c@{uri.c}!s\_unchecked\_append\_canonicalized\_path\_character@{s\_unchecked\_append\_canonicalized\_path\_character}}
+\index{s\_unchecked\_append\_canonicalized\_path\_character@{s\_unchecked\_append\_canonicalized\_path\_character}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_unchecked\_append\_canonicalized\_path\_character()}{s\_unchecked\_append\_canonicalized\_path\_character()}}
+{\footnotesize\ttfamily static void s\+\_\+unchecked\+\_\+append\+\_\+canonicalized\+\_\+path\+\_\+character (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{uri_8c_a63031f2e33b6bac9100fd2d55ad223bb}\label{uri_8c_a63031f2e33b6bac9100fd2d55ad223bb}} 
+\index{uri.c@{uri.c}!s\_default\_path@{s\_default\_path}}
+\index{s\_default\_path@{s\_default\_path}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_default\_path}{s\_default\_path}}
+{\footnotesize\ttfamily const char$\ast$ s\+\_\+default\+\_\+path = \char`\"{}/\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{uri_8c_a62cf368f41ac4e44c437abdaadc31a8a}\label{uri_8c_a62cf368f41ac4e44c437abdaadc31a8a}} 
+\index{uri.c@{uri.c}!s\_states@{s\_states}}
+\index{s\_states@{s\_states}!uri.c@{uri.c}}
+\doxysubsubsection{\texorpdfstring{s\_states}{s\_states}}
+{\footnotesize\ttfamily \mbox{\hyperlink{uri_8c_a8006b58f0c4d054232b6f991fb53955e}{parse\+\_\+fn}}$\ast$ s\+\_\+states\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    [\mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9ab020abbfe3eceafb620df54655dba0e4}{ON\_SCHEME}}] = \mbox{\hyperlink{uri_8c_a4e588e3365971ce259117ca697e4bf4f}{s\_parse\_scheme}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a0421c6f2cd147f1aa6054870f8339f11}{ON\_AUTHORITY}}] = \mbox{\hyperlink{uri_8c_aefca228f479d66704492eecca19ce67c}{s\_parse\_authority}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9abda4a716471d3894d12a4fa238e33ded}{ON\_PATH}}] = \mbox{\hyperlink{uri_8c_a53147e25326c74ae60ceec7d92378438}{s\_parse\_path}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{uri_8c_ab0ce6a33765cfb1c3ceb2f811cc03ce9a1df2ca5459ef7baafefbba743e1454db}{ON\_QUERY\_STRING}}] = \mbox{\hyperlink{uri_8c_a3553110f0b8b186ad1f68339292aa46f}{s\_parse\_query\_string}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

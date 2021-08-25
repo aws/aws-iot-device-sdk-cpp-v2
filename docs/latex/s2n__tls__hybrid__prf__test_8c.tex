@@ -1,0 +1,80 @@
+\hypertarget{s2n__tls__hybrid__prf__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+tls\+\_\+hybrid\+\_\+prf\+\_\+test.c File Reference}
+\label{s2n__tls__hybrid__prf__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_tls\_hybrid\_prf\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_tls\_hybrid\_prf\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include $<$tls/s2n\+\_\+cipher\+\_\+suites.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+prf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tests/testlib/s2n\+\_\+nist\+\_\+kats.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__tls__hybrid__prf__test_8c_ab830330733d617ebecaa070adb1cce81}{KAT\+\_\+\+FILE\+\_\+\+NAME}}~\char`\"{}kats/hybrid\+\_\+prf.\+kat\char`\"{}
+\item 
+\#define \mbox{\hyperlink{s2n__tls__hybrid__prf__test_8c_aeb00f245fa4f3dcf4bc0f31b52ef453e}{PREMASTER\+\_\+\+CLASSIC\+\_\+\+SECRET\+\_\+\+LENGTH}}~48
+\item 
+\#define \mbox{\hyperlink{s2n__tls__hybrid__prf__test_8c_a6e9fe42138abf55cb578522c69014e0e}{CLIENT\+\_\+\+RANDOM\+\_\+\+LENGTH}}~32
+\item 
+\#define \mbox{\hyperlink{s2n__tls__hybrid__prf__test_8c_a3f3fe12b4a54288498c7237807932d66}{SERVER\+\_\+\+RANDOM\+\_\+\+LENGTH}}~32
+\item 
+\#define \mbox{\hyperlink{s2n__tls__hybrid__prf__test_8c_ac2b28634412aa534cad696003792cc43}{MASTER\+\_\+\+SECRET\+\_\+\+LENGTH}}~48
+\item 
+\#define \mbox{\hyperlink{s2n__tls__hybrid__prf__test_8c_a34cef30644da2636507652050bbb619f}{NUM\+\_\+\+TEST\+\_\+\+VECTORS}}~10
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__tls__hybrid__prf__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__tls__hybrid__prf__test_8c_a6e9fe42138abf55cb578522c69014e0e}\label{s2n__tls__hybrid__prf__test_8c_a6e9fe42138abf55cb578522c69014e0e}} 
+\index{s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}!CLIENT\_RANDOM\_LENGTH@{CLIENT\_RANDOM\_LENGTH}}
+\index{CLIENT\_RANDOM\_LENGTH@{CLIENT\_RANDOM\_LENGTH}!s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}}
+\doxysubsubsection{\texorpdfstring{CLIENT\_RANDOM\_LENGTH}{CLIENT\_RANDOM\_LENGTH}}
+{\footnotesize\ttfamily \#define CLIENT\+\_\+\+RANDOM\+\_\+\+LENGTH~32}
+
+\mbox{\Hypertarget{s2n__tls__hybrid__prf__test_8c_ab830330733d617ebecaa070adb1cce81}\label{s2n__tls__hybrid__prf__test_8c_ab830330733d617ebecaa070adb1cce81}} 
+\index{s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}!KAT\_FILE\_NAME@{KAT\_FILE\_NAME}}
+\index{KAT\_FILE\_NAME@{KAT\_FILE\_NAME}!s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}}
+\doxysubsubsection{\texorpdfstring{KAT\_FILE\_NAME}{KAT\_FILE\_NAME}}
+{\footnotesize\ttfamily \#define KAT\+\_\+\+FILE\+\_\+\+NAME~\char`\"{}kats/hybrid\+\_\+prf.\+kat\char`\"{}}
+
+\mbox{\Hypertarget{s2n__tls__hybrid__prf__test_8c_ac2b28634412aa534cad696003792cc43}\label{s2n__tls__hybrid__prf__test_8c_ac2b28634412aa534cad696003792cc43}} 
+\index{s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}!MASTER\_SECRET\_LENGTH@{MASTER\_SECRET\_LENGTH}}
+\index{MASTER\_SECRET\_LENGTH@{MASTER\_SECRET\_LENGTH}!s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}}
+\doxysubsubsection{\texorpdfstring{MASTER\_SECRET\_LENGTH}{MASTER\_SECRET\_LENGTH}}
+{\footnotesize\ttfamily \#define MASTER\+\_\+\+SECRET\+\_\+\+LENGTH~48}
+
+\mbox{\Hypertarget{s2n__tls__hybrid__prf__test_8c_a34cef30644da2636507652050bbb619f}\label{s2n__tls__hybrid__prf__test_8c_a34cef30644da2636507652050bbb619f}} 
+\index{s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}!NUM\_TEST\_VECTORS@{NUM\_TEST\_VECTORS}}
+\index{NUM\_TEST\_VECTORS@{NUM\_TEST\_VECTORS}!s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}}
+\doxysubsubsection{\texorpdfstring{NUM\_TEST\_VECTORS}{NUM\_TEST\_VECTORS}}
+{\footnotesize\ttfamily \#define NUM\+\_\+\+TEST\+\_\+\+VECTORS~10}
+
+\mbox{\Hypertarget{s2n__tls__hybrid__prf__test_8c_aeb00f245fa4f3dcf4bc0f31b52ef453e}\label{s2n__tls__hybrid__prf__test_8c_aeb00f245fa4f3dcf4bc0f31b52ef453e}} 
+\index{s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}!PREMASTER\_CLASSIC\_SECRET\_LENGTH@{PREMASTER\_CLASSIC\_SECRET\_LENGTH}}
+\index{PREMASTER\_CLASSIC\_SECRET\_LENGTH@{PREMASTER\_CLASSIC\_SECRET\_LENGTH}!s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}}
+\doxysubsubsection{\texorpdfstring{PREMASTER\_CLASSIC\_SECRET\_LENGTH}{PREMASTER\_CLASSIC\_SECRET\_LENGTH}}
+{\footnotesize\ttfamily \#define PREMASTER\+\_\+\+CLASSIC\+\_\+\+SECRET\+\_\+\+LENGTH~48}
+
+\mbox{\Hypertarget{s2n__tls__hybrid__prf__test_8c_a3f3fe12b4a54288498c7237807932d66}\label{s2n__tls__hybrid__prf__test_8c_a3f3fe12b4a54288498c7237807932d66}} 
+\index{s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}!SERVER\_RANDOM\_LENGTH@{SERVER\_RANDOM\_LENGTH}}
+\index{SERVER\_RANDOM\_LENGTH@{SERVER\_RANDOM\_LENGTH}!s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}}
+\doxysubsubsection{\texorpdfstring{SERVER\_RANDOM\_LENGTH}{SERVER\_RANDOM\_LENGTH}}
+{\footnotesize\ttfamily \#define SERVER\+\_\+\+RANDOM\+\_\+\+LENGTH~32}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__tls__hybrid__prf__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__tls__hybrid__prf__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}!main@{main}}
+\index{main@{main}!s2n\_tls\_hybrid\_prf\_test.c@{s2n\_tls\_hybrid\_prf\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+

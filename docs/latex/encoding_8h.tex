@@ -1,0 +1,209 @@
+\hypertarget{encoding_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/encoding.h File Reference}
+\label{encoding_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/encoding.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/encoding.h}}
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+order.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$memory.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/encoding.\+inl$>$}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471}{aws\+\_\+text\+\_\+encoding}} \{ \newline
+\mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471a6ab20cee02723a042e2b4dd994c8f346}{AWS\+\_\+\+TEXT\+\_\+\+UNKNOWN}}
+, \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471a7a17956c8fdaf6d2e86a4f8733b7c9ff}{AWS\+\_\+\+TEXT\+\_\+\+UTF8}}
+, \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471ab2918f95a8742b5b60901ccca0577ab1}{AWS\+\_\+\+TEXT\+\_\+\+UTF16}}
+, \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471a002b7e014db9c01c2e99f0da77fc33df}{AWS\+\_\+\+TEXT\+\_\+\+UTF32}}
+, \newline
+\mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471a93035afbeb2e1a971b58a793bf7e4608}{AWS\+\_\+\+TEXT\+\_\+\+ASCII}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{encoding_8h_a1eec49fd11d4d133d7eff9d68bd13b4a}{aws\+\_\+hex\+\_\+compute\+\_\+encoded\+\_\+len}} (size\+\_\+t to\+\_\+encode\+\_\+len, size\+\_\+t $\ast$encoded\+\_\+length)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{encoding_8h_ac84d6b8ec7652570e4423ce3d833f379}{aws\+\_\+hex\+\_\+encode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{encoding_8h_a150572cc72ce32650f92893b4815bfb9}{aws\+\_\+hex\+\_\+encode\+\_\+append\+\_\+dynamic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{encoding_8h_aee6616a6dd311bc57c160562da683deb}{aws\+\_\+hex\+\_\+compute\+\_\+decoded\+\_\+len}} (size\+\_\+t to\+\_\+decode\+\_\+len, size\+\_\+t $\ast$decoded\+\_\+len)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{encoding_8h_ad50df47b1dcf8deb1c8b8747bd5290a4}{aws\+\_\+hex\+\_\+decode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+decode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{encoding_8h_ad1df0efcc4989e10cdc89c3df3548846}{aws\+\_\+base64\+\_\+compute\+\_\+encoded\+\_\+len}} (size\+\_\+t to\+\_\+encode\+\_\+len, size\+\_\+t $\ast$encoded\+\_\+len)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{encoding_8h_a37993bbd432b5eb1a5103d3168171e7b}{aws\+\_\+base64\+\_\+encode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{encoding_8h_a813b05c6ed7798011a9d5a513212b3ba}{aws\+\_\+base64\+\_\+compute\+\_\+decoded\+\_\+len}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+decode, size\+\_\+t $\ast$decoded\+\_\+len)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{encoding_8h_a5097b5bbf67d33303d4be54f93177a2e}{aws\+\_\+base64\+\_\+decode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+decode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{encoding_8h_a2bc7cb7f27ec06f7a97f5feb2864ccf3}{aws\+\_\+write\+\_\+u64}} (uint64\+\_\+t value, uint8\+\_\+t $\ast$buffer)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint64\+\_\+t \mbox{\hyperlink{encoding_8h_a1692b26f084453fc016abba521bd9967}{aws\+\_\+read\+\_\+u64}} (const uint8\+\_\+t $\ast$buffer)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{encoding_8h_a975e09cb9bcd8418311aa336c4dba83c}{aws\+\_\+write\+\_\+u32}} (uint32\+\_\+t value, uint8\+\_\+t $\ast$buffer)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint32\+\_\+t \mbox{\hyperlink{encoding_8h_a0531407bc82e668d5193d4a3c46c8e4b}{aws\+\_\+read\+\_\+u32}} (const uint8\+\_\+t $\ast$buffer)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{encoding_8h_a7894950f7a065b713026f40efa856c3a}{aws\+\_\+write\+\_\+u24}} (uint32\+\_\+t value, uint8\+\_\+t $\ast$buffer)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint32\+\_\+t \mbox{\hyperlink{encoding_8h_a372b0cf13f259632c03089b726243d35}{aws\+\_\+read\+\_\+u24}} (const uint8\+\_\+t $\ast$buffer)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void \mbox{\hyperlink{encoding_8h_af93c4dd01f9022eae452c46a97054cf3}{aws\+\_\+write\+\_\+u16}} (uint16\+\_\+t value, uint8\+\_\+t $\ast$buffer)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint16\+\_\+t \mbox{\hyperlink{encoding_8h_aadfc580fb531ca45be162f2919b797e0}{aws\+\_\+read\+\_\+u16}} (const uint8\+\_\+t $\ast$buffer)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} enum \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471}{aws\+\_\+text\+\_\+encoding}} \mbox{\hyperlink{encoding_8h_ad35814fcac8f78d24dbee6ac2b7df000}{aws\+\_\+text\+\_\+detect\+\_\+encoding}} (const uint8\+\_\+t $\ast$bytes, size\+\_\+t size)
+\item 
+\mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{encoding_8h_ab504f0d753da804552870fa32549a007}{aws\+\_\+text\+\_\+is\+\_\+utf8}} (const uint8\+\_\+t $\ast$bytes, size\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{encoding_8h_a52526684ad247e0167368231d6692471}\label{encoding_8h_a52526684ad247e0167368231d6692471}} 
+\index{encoding.h@{encoding.h}!aws\_text\_encoding@{aws\_text\_encoding}}
+\index{aws\_text\_encoding@{aws\_text\_encoding}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_text\_encoding}{aws\_text\_encoding}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471}{aws\+\_\+text\+\_\+encoding}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_TEXT\_UNKNOWN@{AWS\_TEXT\_UNKNOWN}!encoding.h@{encoding.h}}\index{encoding.h@{encoding.h}!AWS\_TEXT\_UNKNOWN@{AWS\_TEXT\_UNKNOWN}}}\mbox{\Hypertarget{encoding_8h_a52526684ad247e0167368231d6692471a6ab20cee02723a042e2b4dd994c8f346}\label{encoding_8h_a52526684ad247e0167368231d6692471a6ab20cee02723a042e2b4dd994c8f346}} 
+AWS\+\_\+\+TEXT\+\_\+\+UNKNOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_TEXT\_UTF8@{AWS\_TEXT\_UTF8}!encoding.h@{encoding.h}}\index{encoding.h@{encoding.h}!AWS\_TEXT\_UTF8@{AWS\_TEXT\_UTF8}}}\mbox{\Hypertarget{encoding_8h_a52526684ad247e0167368231d6692471a7a17956c8fdaf6d2e86a4f8733b7c9ff}\label{encoding_8h_a52526684ad247e0167368231d6692471a7a17956c8fdaf6d2e86a4f8733b7c9ff}} 
+AWS\+\_\+\+TEXT\+\_\+\+UTF8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_TEXT\_UTF16@{AWS\_TEXT\_UTF16}!encoding.h@{encoding.h}}\index{encoding.h@{encoding.h}!AWS\_TEXT\_UTF16@{AWS\_TEXT\_UTF16}}}\mbox{\Hypertarget{encoding_8h_a52526684ad247e0167368231d6692471ab2918f95a8742b5b60901ccca0577ab1}\label{encoding_8h_a52526684ad247e0167368231d6692471ab2918f95a8742b5b60901ccca0577ab1}} 
+AWS\+\_\+\+TEXT\+\_\+\+UTF16&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_TEXT\_UTF32@{AWS\_TEXT\_UTF32}!encoding.h@{encoding.h}}\index{encoding.h@{encoding.h}!AWS\_TEXT\_UTF32@{AWS\_TEXT\_UTF32}}}\mbox{\Hypertarget{encoding_8h_a52526684ad247e0167368231d6692471a002b7e014db9c01c2e99f0da77fc33df}\label{encoding_8h_a52526684ad247e0167368231d6692471a002b7e014db9c01c2e99f0da77fc33df}} 
+AWS\+\_\+\+TEXT\+\_\+\+UTF32&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_TEXT\_ASCII@{AWS\_TEXT\_ASCII}!encoding.h@{encoding.h}}\index{encoding.h@{encoding.h}!AWS\_TEXT\_ASCII@{AWS\_TEXT\_ASCII}}}\mbox{\Hypertarget{encoding_8h_a52526684ad247e0167368231d6692471a93035afbeb2e1a971b58a793bf7e4608}\label{encoding_8h_a52526684ad247e0167368231d6692471a93035afbeb2e1a971b58a793bf7e4608}} 
+AWS\+\_\+\+TEXT\+\_\+\+ASCII&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{encoding_8h_a813b05c6ed7798011a9d5a513212b3ba}\label{encoding_8h_a813b05c6ed7798011a9d5a513212b3ba}} 
+\index{encoding.h@{encoding.h}!aws\_base64\_compute\_decoded\_len@{aws\_base64\_compute\_decoded\_len}}
+\index{aws\_base64\_compute\_decoded\_len@{aws\_base64\_compute\_decoded\_len}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_base64\_compute\_decoded\_len()}{aws\_base64\_compute\_decoded\_len()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+base64\+\_\+compute\+\_\+decoded\+\_\+len (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{to\+\_\+decode,  }\item[{size\+\_\+t $\ast$}]{decoded\+\_\+len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_ad1df0efcc4989e10cdc89c3df3548846}\label{encoding_8h_ad1df0efcc4989e10cdc89c3df3548846}} 
+\index{encoding.h@{encoding.h}!aws\_base64\_compute\_encoded\_len@{aws\_base64\_compute\_encoded\_len}}
+\index{aws\_base64\_compute\_encoded\_len@{aws\_base64\_compute\_encoded\_len}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_base64\_compute\_encoded\_len()}{aws\_base64\_compute\_encoded\_len()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+base64\+\_\+compute\+\_\+encoded\+\_\+len (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{to\+\_\+encode\+\_\+len,  }\item[{size\+\_\+t $\ast$}]{encoded\+\_\+len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a5097b5bbf67d33303d4be54f93177a2e}\label{encoding_8h_a5097b5bbf67d33303d4be54f93177a2e}} 
+\index{encoding.h@{encoding.h}!aws\_base64\_decode@{aws\_base64\_decode}}
+\index{aws\_base64\_decode@{aws\_base64\_decode}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_base64\_decode()}{aws\_base64\_decode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+base64\+\_\+decode (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{to\+\_\+decode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{output }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a37993bbd432b5eb1a5103d3168171e7b}\label{encoding_8h_a37993bbd432b5eb1a5103d3168171e7b}} 
+\index{encoding.h@{encoding.h}!aws\_base64\_encode@{aws\_base64\_encode}}
+\index{aws\_base64\_encode@{aws\_base64\_encode}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_base64\_encode()}{aws\_base64\_encode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+base64\+\_\+encode (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{to\+\_\+encode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{output }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_aee6616a6dd311bc57c160562da683deb}\label{encoding_8h_aee6616a6dd311bc57c160562da683deb}} 
+\index{encoding.h@{encoding.h}!aws\_hex\_compute\_decoded\_len@{aws\_hex\_compute\_decoded\_len}}
+\index{aws\_hex\_compute\_decoded\_len@{aws\_hex\_compute\_decoded\_len}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hex\_compute\_decoded\_len()}{aws\_hex\_compute\_decoded\_len()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hex\+\_\+compute\+\_\+decoded\+\_\+len (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{to\+\_\+decode\+\_\+len,  }\item[{size\+\_\+t $\ast$}]{decoded\+\_\+len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a1eec49fd11d4d133d7eff9d68bd13b4a}\label{encoding_8h_a1eec49fd11d4d133d7eff9d68bd13b4a}} 
+\index{encoding.h@{encoding.h}!aws\_hex\_compute\_encoded\_len@{aws\_hex\_compute\_encoded\_len}}
+\index{aws\_hex\_compute\_encoded\_len@{aws\_hex\_compute\_encoded\_len}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hex\_compute\_encoded\_len()}{aws\_hex\_compute\_encoded\_len()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hex\+\_\+compute\+\_\+encoded\+\_\+len (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{to\+\_\+encode\+\_\+len,  }\item[{size\+\_\+t $\ast$}]{encoded\+\_\+length }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{encoding_8h_ad50df47b1dcf8deb1c8b8747bd5290a4}\label{encoding_8h_ad50df47b1dcf8deb1c8b8747bd5290a4}} 
+\index{encoding.h@{encoding.h}!aws\_hex\_decode@{aws\_hex\_decode}}
+\index{aws\_hex\_decode@{aws\_hex\_decode}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hex\_decode()}{aws\_hex\_decode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hex\+\_\+decode (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{to\+\_\+decode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{output }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_ac84d6b8ec7652570e4423ce3d833f379}\label{encoding_8h_ac84d6b8ec7652570e4423ce3d833f379}} 
+\index{encoding.h@{encoding.h}!aws\_hex\_encode@{aws\_hex\_encode}}
+\index{aws\_hex\_encode@{aws\_hex\_encode}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hex\_encode()}{aws\_hex\_encode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hex\+\_\+encode (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{to\+\_\+encode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{output }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a150572cc72ce32650f92893b4815bfb9}\label{encoding_8h_a150572cc72ce32650f92893b4815bfb9}} 
+\index{encoding.h@{encoding.h}!aws\_hex\_encode\_append\_dynamic@{aws\_hex\_encode\_append\_dynamic}}
+\index{aws\_hex\_encode\_append\_dynamic@{aws\_hex\_encode\_append\_dynamic}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_hex\_encode\_append\_dynamic()}{aws\_hex\_encode\_append\_dynamic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int aws\+\_\+hex\+\_\+encode\+\_\+append\+\_\+dynamic (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{to\+\_\+encode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{output }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_aadfc580fb531ca45be162f2919b797e0}\label{encoding_8h_aadfc580fb531ca45be162f2919b797e0}} 
+\index{encoding.h@{encoding.h}!aws\_read\_u16@{aws\_read\_u16}}
+\index{aws\_read\_u16@{aws\_read\_u16}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_read\_u16()}{aws\_read\_u16()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint16\+\_\+t aws\+\_\+read\+\_\+u16 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a372b0cf13f259632c03089b726243d35}\label{encoding_8h_a372b0cf13f259632c03089b726243d35}} 
+\index{encoding.h@{encoding.h}!aws\_read\_u24@{aws\_read\_u24}}
+\index{aws\_read\_u24@{aws\_read\_u24}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_read\_u24()}{aws\_read\_u24()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint32\+\_\+t aws\+\_\+read\+\_\+u24 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a0531407bc82e668d5193d4a3c46c8e4b}\label{encoding_8h_a0531407bc82e668d5193d4a3c46c8e4b}} 
+\index{encoding.h@{encoding.h}!aws\_read\_u32@{aws\_read\_u32}}
+\index{aws\_read\_u32@{aws\_read\_u32}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_read\_u32()}{aws\_read\_u32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint32\+\_\+t aws\+\_\+read\+\_\+u32 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a1692b26f084453fc016abba521bd9967}\label{encoding_8h_a1692b26f084453fc016abba521bd9967}} 
+\index{encoding.h@{encoding.h}!aws\_read\_u64@{aws\_read\_u64}}
+\index{aws\_read\_u64@{aws\_read\_u64}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_read\_u64()}{aws\_read\_u64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} uint64\+\_\+t aws\+\_\+read\+\_\+u64 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_ad35814fcac8f78d24dbee6ac2b7df000}\label{encoding_8h_ad35814fcac8f78d24dbee6ac2b7df000}} 
+\index{encoding.h@{encoding.h}!aws\_text\_detect\_encoding@{aws\_text\_detect\_encoding}}
+\index{aws\_text\_detect\_encoding@{aws\_text\_detect\_encoding}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_text\_detect\_encoding()}{aws\_text\_detect\_encoding()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} enum \mbox{\hyperlink{encoding_8h_a52526684ad247e0167368231d6692471}{aws\+\_\+text\+\_\+encoding}} aws\+\_\+text\+\_\+detect\+\_\+encoding (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{bytes,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_ab504f0d753da804552870fa32549a007}\label{encoding_8h_ab504f0d753da804552870fa32549a007}} 
+\index{encoding.h@{encoding.h}!aws\_text\_is\_utf8@{aws\_text\_is\_utf8}}
+\index{aws\_text\_is\_utf8@{aws\_text\_is\_utf8}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_text\_is\_utf8()}{aws\_text\_is\_utf8()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+text\+\_\+is\+\_\+utf8 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{bytes,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_af93c4dd01f9022eae452c46a97054cf3}\label{encoding_8h_af93c4dd01f9022eae452c46a97054cf3}} 
+\index{encoding.h@{encoding.h}!aws\_write\_u16@{aws\_write\_u16}}
+\index{aws\_write\_u16@{aws\_write\_u16}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_write\_u16()}{aws\_write\_u16()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+write\+\_\+u16 (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{value,  }\item[{uint8\+\_\+t $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a7894950f7a065b713026f40efa856c3a}\label{encoding_8h_a7894950f7a065b713026f40efa856c3a}} 
+\index{encoding.h@{encoding.h}!aws\_write\_u24@{aws\_write\_u24}}
+\index{aws\_write\_u24@{aws\_write\_u24}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_write\_u24()}{aws\_write\_u24()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+write\+\_\+u24 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{value,  }\item[{uint8\+\_\+t $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a975e09cb9bcd8418311aa336c4dba83c}\label{encoding_8h_a975e09cb9bcd8418311aa336c4dba83c}} 
+\index{encoding.h@{encoding.h}!aws\_write\_u32@{aws\_write\_u32}}
+\index{aws\_write\_u32@{aws\_write\_u32}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_write\_u32()}{aws\_write\_u32()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+write\+\_\+u32 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{value,  }\item[{uint8\+\_\+t $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{encoding_8h_a2bc7cb7f27ec06f7a97f5feb2864ccf3}\label{encoding_8h_a2bc7cb7f27ec06f7a97f5feb2864ccf3}} 
+\index{encoding.h@{encoding.h}!aws\_write\_u64@{aws\_write\_u64}}
+\index{aws\_write\_u64@{aws\_write\_u64}!encoding.h@{encoding.h}}
+\doxysubsubsection{\texorpdfstring{aws\_write\_u64()}{aws\_write\_u64()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{codegen_8c_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\+\_\+\+STATIC\+\_\+\+IMPL}} void aws\+\_\+write\+\_\+u64 (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{value,  }\item[{uint8\+\_\+t $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

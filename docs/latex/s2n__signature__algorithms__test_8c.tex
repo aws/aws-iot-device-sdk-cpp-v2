@@ -1,0 +1,112 @@
+\hypertarget{s2n__signature__algorithms__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+signature\+\_\+algorithms\+\_\+test.c File Reference}
+\label{s2n__signature__algorithms__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_signature\_algorithms\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_signature\_algorithms\_test.c}}
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+rsa\+\_\+pss.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+signature\+\_\+scheme.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+signature\+\_\+algorithms.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__signature__algorithms__test_8c_a30362161c93e3f1a4ee4c673f535b5a8}{LENGTH}}~3
+\item 
+\#define \mbox{\hyperlink{s2n__signature__algorithms__test_8c_ae442c6f550e8fd44744d14501d53eaf2}{STUFFER\+\_\+\+SIZE}}~(\mbox{\hyperlink{s2n__signature__algorithms__test_8c_a30362161c93e3f1a4ee4c673f535b5a8}{LENGTH}} $\ast$ \mbox{\hyperlink{s2n__tls__parameters_8h_ada01ebeacd4c2c8085a4fd53cc54184a}{TLS\+\_\+\+SIGNATURE\+\_\+\+SCHEME\+\_\+\+LEN}} + 10)
+\item 
+\#define \mbox{\hyperlink{s2n__signature__algorithms__test_8c_a0c13d4a71caec1873df50c1193343b85}{RSA\+\_\+\+CIPHER\+\_\+\+SUITE}}~\&\mbox{\hyperlink{s2n__cipher__suites_8h_a0bf7a5fcd091e8b4bef87992b37522da}{s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+md5}}
+\item 
+\#define \mbox{\hyperlink{s2n__signature__algorithms__test_8c_a42614ae1dc55458075bc93a8c3227210}{ECDSA\+\_\+\+CIPHER\+\_\+\+SUITE}}~\&\mbox{\hyperlink{s2n__cipher__suites_8h_a7f2fe8fd0fdfece68a9ac1997da7db51}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+\#define \mbox{\hyperlink{s2n__signature__algorithms__test_8c_ae14fec0975c83acc5a849c3d3ddfec93}{TLS13\+\_\+\+CIPHER\+\_\+\+SUITE}}~\&\mbox{\hyperlink{s2n__cipher__suites_8h_ac28aff94fd6a2c8995c7880912773a5e}{s2n\+\_\+tls13\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__signature__algorithms__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}} $\ast$const \mbox{\hyperlink{s2n__signature__algorithms__test_8c_af5d7016fa75e8b7be804fcae3ba26a08}{test\+\_\+signature\+\_\+schemes}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structs2n__signature__preferences}{s2n\+\_\+signature\+\_\+preferences}} \mbox{\hyperlink{s2n__signature__algorithms__test_8c_ae175c82102a14fdb45a352ef1d904629}{test\+\_\+preferences}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__signature__algorithms__test_8c_a42614ae1dc55458075bc93a8c3227210}\label{s2n__signature__algorithms__test_8c_a42614ae1dc55458075bc93a8c3227210}} 
+\index{s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}!ECDSA\_CIPHER\_SUITE@{ECDSA\_CIPHER\_SUITE}}
+\index{ECDSA\_CIPHER\_SUITE@{ECDSA\_CIPHER\_SUITE}!s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}}
+\doxysubsubsection{\texorpdfstring{ECDSA\_CIPHER\_SUITE}{ECDSA\_CIPHER\_SUITE}}
+{\footnotesize\ttfamily \#define ECDSA\+\_\+\+CIPHER\+\_\+\+SUITE~\&\mbox{\hyperlink{s2n__cipher__suites_8h_a7f2fe8fd0fdfece68a9ac1997da7db51}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}}
+
+\mbox{\Hypertarget{s2n__signature__algorithms__test_8c_a30362161c93e3f1a4ee4c673f535b5a8}\label{s2n__signature__algorithms__test_8c_a30362161c93e3f1a4ee4c673f535b5a8}} 
+\index{s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}!LENGTH@{LENGTH}}
+\index{LENGTH@{LENGTH}!s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}}
+\doxysubsubsection{\texorpdfstring{LENGTH}{LENGTH}}
+{\footnotesize\ttfamily \#define LENGTH~3}
+
+\mbox{\Hypertarget{s2n__signature__algorithms__test_8c_a0c13d4a71caec1873df50c1193343b85}\label{s2n__signature__algorithms__test_8c_a0c13d4a71caec1873df50c1193343b85}} 
+\index{s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}!RSA\_CIPHER\_SUITE@{RSA\_CIPHER\_SUITE}}
+\index{RSA\_CIPHER\_SUITE@{RSA\_CIPHER\_SUITE}!s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}}
+\doxysubsubsection{\texorpdfstring{RSA\_CIPHER\_SUITE}{RSA\_CIPHER\_SUITE}}
+{\footnotesize\ttfamily \#define RSA\+\_\+\+CIPHER\+\_\+\+SUITE~\&\mbox{\hyperlink{s2n__cipher__suites_8h_a0bf7a5fcd091e8b4bef87992b37522da}{s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+md5}}}
+
+\mbox{\Hypertarget{s2n__signature__algorithms__test_8c_ae442c6f550e8fd44744d14501d53eaf2}\label{s2n__signature__algorithms__test_8c_ae442c6f550e8fd44744d14501d53eaf2}} 
+\index{s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}!STUFFER\_SIZE@{STUFFER\_SIZE}}
+\index{STUFFER\_SIZE@{STUFFER\_SIZE}!s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}}
+\doxysubsubsection{\texorpdfstring{STUFFER\_SIZE}{STUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define STUFFER\+\_\+\+SIZE~(\mbox{\hyperlink{s2n__signature__algorithms__test_8c_a30362161c93e3f1a4ee4c673f535b5a8}{LENGTH}} $\ast$ \mbox{\hyperlink{s2n__tls__parameters_8h_ada01ebeacd4c2c8085a4fd53cc54184a}{TLS\+\_\+\+SIGNATURE\+\_\+\+SCHEME\+\_\+\+LEN}} + 10)}
+
+\mbox{\Hypertarget{s2n__signature__algorithms__test_8c_ae14fec0975c83acc5a849c3d3ddfec93}\label{s2n__signature__algorithms__test_8c_ae14fec0975c83acc5a849c3d3ddfec93}} 
+\index{s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}!TLS13\_CIPHER\_SUITE@{TLS13\_CIPHER\_SUITE}}
+\index{TLS13\_CIPHER\_SUITE@{TLS13\_CIPHER\_SUITE}!s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}}
+\doxysubsubsection{\texorpdfstring{TLS13\_CIPHER\_SUITE}{TLS13\_CIPHER\_SUITE}}
+{\footnotesize\ttfamily \#define TLS13\+\_\+\+CIPHER\+\_\+\+SUITE~\&\mbox{\hyperlink{s2n__cipher__suites_8h_ac28aff94fd6a2c8995c7880912773a5e}{s2n\+\_\+tls13\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__signature__algorithms__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__signature__algorithms__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}!main@{main}}
+\index{main@{main}!s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__signature__algorithms__test_8c_ae175c82102a14fdb45a352ef1d904629}\label{s2n__signature__algorithms__test_8c_ae175c82102a14fdb45a352ef1d904629}} 
+\index{s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}!test\_preferences@{test\_preferences}}
+\index{test\_preferences@{test\_preferences}!s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_preferences}{test\_preferences}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__signature__preferences}{s2n\+\_\+signature\+\_\+preferences}} test\+\_\+preferences}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .count = \mbox{\hyperlink{s2n__signature__algorithms__test_8c_a30362161c93e3f1a4ee4c673f535b5a8}{LENGTH}},}
+\DoxyCodeLine{        .signature\_schemes = \mbox{\hyperlink{s2n__signature__algorithms__test_8c_af5d7016fa75e8b7be804fcae3ba26a08}{test\_signature\_schemes}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__signature__algorithms__test_8c_af5d7016fa75e8b7be804fcae3ba26a08}\label{s2n__signature__algorithms__test_8c_af5d7016fa75e8b7be804fcae3ba26a08}} 
+\index{s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}!test\_signature\_schemes@{test\_signature\_schemes}}
+\index{test\_signature\_schemes@{test\_signature\_schemes}!s2n\_signature\_algorithms\_test.c@{s2n\_signature\_algorithms\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_signature\_schemes}{test\_signature\_schemes}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}}$\ast$ const test\+\_\+signature\+\_\+schemes\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        \&\mbox{\hyperlink{s2n__signature__scheme_8c_a1c1e07eb567a17a3f4190e385e6dd016}{s2n\_ecdsa\_secp384r1\_sha384}},}
+\DoxyCodeLine{        \&\mbox{\hyperlink{s2n__signature__scheme_8c_abac55302ca923faee6ff6fe3deb4c477}{s2n\_rsa\_pkcs1\_sha256}},}
+\DoxyCodeLine{        \&\mbox{\hyperlink{s2n__signature__scheme_8c_a6fad2626b830b8d5c046bb959ecb643d}{s2n\_rsa\_pkcs1\_sha224}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

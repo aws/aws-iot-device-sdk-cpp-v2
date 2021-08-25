@@ -1,0 +1,176 @@
+\hypertarget{exponential__backoff__retry__strategy_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/exponential\+\_\+backoff\+\_\+retry\+\_\+strategy.c File Reference}
+\label{exponential__backoff__retry__strategy_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/exponential\_backoff\_retry\_strategy.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/exponential\_backoff\_retry\_strategy.c}}
+{\ttfamily \#include $<$aws/io/retry\+\_\+strategy.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/device\+\_\+random.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/mutex.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/task\+\_\+scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structexponential__backoff__strategy}{exponential\+\_\+backoff\+\_\+strategy}}
+\item 
+struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef uint64\+\_\+t() \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a768ea578f12e0d3a18d6155ab86e45ce}{compute\+\_\+backoff\+\_\+fn}}(struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a397e59331bc4a0b0bea4bcee1702427c}{s\+\_\+exponential\+\_\+retry\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} $\ast$retry\+\_\+strategy)
+\item 
+static void \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a424ab3eb5ffc9ee1d5b1f94fd9e1acdc}{s\+\_\+exponential\+\_\+retry\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static int \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a4333bb6198ca7c8014aaded22fceeaed}{s\+\_\+exponential\+\_\+retry\+\_\+acquire\+\_\+token}} (struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} $\ast$retry\+\_\+strategy, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$partition\+\_\+id, \mbox{\hyperlink{retry__strategy_8h_a840055993c2a9788207792f45db2e27f}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+token\+\_\+acquired\+\_\+fn}} $\ast$on\+\_\+acquired, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}}, uint64\+\_\+t timeout\+\_\+ms)
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_aef81167beb7ed1e23b6c8269c669004c}{s\+\_\+random\+\_\+in\+\_\+range}} (uint64\+\_\+t from, uint64\+\_\+t to, struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a4cf991c75dd435aeea32894eade919b1}{s\+\_\+compute\+\_\+no\+\_\+jitter}} (struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a1ac5846ed30547a8dc1262f48c505227}{s\+\_\+compute\+\_\+full\+\_\+jitter}} (struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a1096716eeeb13d18ff0805f114317ab1}{s\+\_\+compute\+\_\+deccorelated\+\_\+jitter}} (struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\item 
+static int \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_ada61859f8d3ae5c00f0b2671e6ff0d84}{s\+\_\+exponential\+\_\+retry\+\_\+schedule\+\_\+retry}} (struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, enum \mbox{\hyperlink{retry__strategy_8h_af89c6cafd32c7015ca7157a0c36ecb0c}{aws\+\_\+retry\+\_\+error\+\_\+type}} error\+\_\+type, \mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+ready\+\_\+fn}} $\ast$retry\+\_\+ready, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a5f0ef90cdc1d8af6094a949a9c656807}{s\+\_\+exponential\+\_\+backoff\+\_\+record\+\_\+success}} (struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\item 
+static void \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a5684df6d66c6645eeb92052f9df6eaa3}{s\+\_\+exponential\+\_\+backoff\+\_\+release\+\_\+token}} (struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a5619db9472825a0a88d065f083787987}{s\+\_\+default\+\_\+gen\+\_\+rand}} (void)
+\item 
+struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} $\ast$ \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_aac0307747f679b42e8257aa2e2af46e9}{aws\+\_\+retry\+\_\+strategy\+\_\+new\+\_\+exponential\+\_\+backoff}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__exponential__backoff__retry__options}{aws\+\_\+exponential\+\_\+backoff\+\_\+retry\+\_\+options}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a768ea578f12e0d3a18d6155ab86e45ce}{compute\+\_\+backoff\+\_\+fn}} $\ast$ \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a7e7d582501dc3757605bead88a79b2ba}{s\+\_\+backoff\+\_\+compute\+\_\+table}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__retry__strategy__vtable}{aws\+\_\+retry\+\_\+strategy\+\_\+vtable}} \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a660b1c5a0c3fd7281cf9e5583cdfd3b0}{s\+\_\+exponential\+\_\+retry\+\_\+vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a768ea578f12e0d3a18d6155ab86e45ce}\label{exponential__backoff__retry__strategy_8c_a768ea578f12e0d3a18d6155ab86e45ce}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!compute\_backoff\_fn@{compute\_backoff\_fn}}
+\index{compute\_backoff\_fn@{compute\_backoff\_fn}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{compute\_backoff\_fn}{compute\_backoff\_fn}}
+{\footnotesize\ttfamily typedef uint64\+\_\+t() compute\+\_\+backoff\+\_\+fn(struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_aac0307747f679b42e8257aa2e2af46e9}\label{exponential__backoff__retry__strategy_8c_aac0307747f679b42e8257aa2e2af46e9}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!aws\_retry\_strategy\_new\_exponential\_backoff@{aws\_retry\_strategy\_new\_exponential\_backoff}}
+\index{aws\_retry\_strategy\_new\_exponential\_backoff@{aws\_retry\_strategy\_new\_exponential\_backoff}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{aws\_retry\_strategy\_new\_exponential\_backoff()}{aws\_retry\_strategy\_new\_exponential\_backoff()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}}$\ast$ aws\+\_\+retry\+\_\+strategy\+\_\+new\+\_\+exponential\+\_\+backoff (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__exponential__backoff__retry__options}{aws\+\_\+exponential\+\_\+backoff\+\_\+retry\+\_\+options}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+Creates a retry strategy using exponential backoff. This strategy does not perform any bookkeeping on error types and success. There is no circuit breaker functionality in here. See the comments above for \mbox{\hyperlink{structaws__exponential__backoff__retry__options}{aws\+\_\+exponential\+\_\+backoff\+\_\+retry\+\_\+options}}. \mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a1096716eeeb13d18ff0805f114317ab1}\label{exponential__backoff__retry__strategy_8c_a1096716eeeb13d18ff0805f114317ab1}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_compute\_deccorelated\_jitter@{s\_compute\_deccorelated\_jitter}}
+\index{s\_compute\_deccorelated\_jitter@{s\_compute\_deccorelated\_jitter}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_compute\_deccorelated\_jitter()}{s\_compute\_deccorelated\_jitter()}}
+{\footnotesize\ttfamily static uint64\+\_\+t s\+\_\+compute\+\_\+deccorelated\+\_\+jitter (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a1ac5846ed30547a8dc1262f48c505227}\label{exponential__backoff__retry__strategy_8c_a1ac5846ed30547a8dc1262f48c505227}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_compute\_full\_jitter@{s\_compute\_full\_jitter}}
+\index{s\_compute\_full\_jitter@{s\_compute\_full\_jitter}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_compute\_full\_jitter()}{s\_compute\_full\_jitter()}}
+{\footnotesize\ttfamily static uint64\+\_\+t s\+\_\+compute\+\_\+full\+\_\+jitter (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a4cf991c75dd435aeea32894eade919b1}\label{exponential__backoff__retry__strategy_8c_a4cf991c75dd435aeea32894eade919b1}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_compute\_no\_jitter@{s\_compute\_no\_jitter}}
+\index{s\_compute\_no\_jitter@{s\_compute\_no\_jitter}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_compute\_no\_jitter()}{s\_compute\_no\_jitter()}}
+{\footnotesize\ttfamily static uint64\+\_\+t s\+\_\+compute\+\_\+no\+\_\+jitter (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a5619db9472825a0a88d065f083787987}\label{exponential__backoff__retry__strategy_8c_a5619db9472825a0a88d065f083787987}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_default\_gen\_rand@{s\_default\_gen\_rand}}
+\index{s\_default\_gen\_rand@{s\_default\_gen\_rand}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_default\_gen\_rand()}{s\_default\_gen\_rand()}}
+{\footnotesize\ttfamily static uint64\+\_\+t s\+\_\+default\+\_\+gen\+\_\+rand (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a5f0ef90cdc1d8af6094a949a9c656807}\label{exponential__backoff__retry__strategy_8c_a5f0ef90cdc1d8af6094a949a9c656807}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_exponential\_backoff\_record\_success@{s\_exponential\_backoff\_record\_success}}
+\index{s\_exponential\_backoff\_record\_success@{s\_exponential\_backoff\_record\_success}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_exponential\_backoff\_record\_success()}{s\_exponential\_backoff\_record\_success()}}
+{\footnotesize\ttfamily static int s\+\_\+exponential\+\_\+backoff\+\_\+record\+\_\+success (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a5684df6d66c6645eeb92052f9df6eaa3}\label{exponential__backoff__retry__strategy_8c_a5684df6d66c6645eeb92052f9df6eaa3}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_exponential\_backoff\_release\_token@{s\_exponential\_backoff\_release\_token}}
+\index{s\_exponential\_backoff\_release\_token@{s\_exponential\_backoff\_release\_token}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_exponential\_backoff\_release\_token()}{s\_exponential\_backoff\_release\_token()}}
+{\footnotesize\ttfamily static void s\+\_\+exponential\+\_\+backoff\+\_\+release\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a4333bb6198ca7c8014aaded22fceeaed}\label{exponential__backoff__retry__strategy_8c_a4333bb6198ca7c8014aaded22fceeaed}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_exponential\_retry\_acquire\_token@{s\_exponential\_retry\_acquire\_token}}
+\index{s\_exponential\_retry\_acquire\_token@{s\_exponential\_retry\_acquire\_token}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_exponential\_retry\_acquire\_token()}{s\_exponential\_retry\_acquire\_token()}}
+{\footnotesize\ttfamily static int s\+\_\+exponential\+\_\+retry\+\_\+acquire\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} $\ast$}]{retry\+\_\+strategy,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{partition\+\_\+id,  }\item[{\mbox{\hyperlink{retry__strategy_8h_a840055993c2a9788207792f45db2e27f}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+token\+\_\+acquired\+\_\+fn}} $\ast$}]{on\+\_\+acquired,  }\item[{void $\ast$}]{user\+\_\+data,  }\item[{uint64\+\_\+t}]{timeout\+\_\+ms }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a397e59331bc4a0b0bea4bcee1702427c}\label{exponential__backoff__retry__strategy_8c_a397e59331bc4a0b0bea4bcee1702427c}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_exponential\_retry\_destroy@{s\_exponential\_retry\_destroy}}
+\index{s\_exponential\_retry\_destroy@{s\_exponential\_retry\_destroy}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_exponential\_retry\_destroy()}{s\_exponential\_retry\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+exponential\+\_\+retry\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} $\ast$}]{retry\+\_\+strategy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_ada61859f8d3ae5c00f0b2671e6ff0d84}\label{exponential__backoff__retry__strategy_8c_ada61859f8d3ae5c00f0b2671e6ff0d84}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_exponential\_retry\_schedule\_retry@{s\_exponential\_retry\_schedule\_retry}}
+\index{s\_exponential\_retry\_schedule\_retry@{s\_exponential\_retry\_schedule\_retry}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_exponential\_retry\_schedule\_retry()}{s\_exponential\_retry\_schedule\_retry()}}
+{\footnotesize\ttfamily static int s\+\_\+exponential\+\_\+retry\+\_\+schedule\+\_\+retry (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$}]{token,  }\item[{enum \mbox{\hyperlink{retry__strategy_8h_af89c6cafd32c7015ca7157a0c36ecb0c}{aws\+\_\+retry\+\_\+error\+\_\+type}}}]{error\+\_\+type,  }\item[{\mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+ready\+\_\+fn}} $\ast$}]{retry\+\_\+ready,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a424ab3eb5ffc9ee1d5b1f94fd9e1acdc}\label{exponential__backoff__retry__strategy_8c_a424ab3eb5ffc9ee1d5b1f94fd9e1acdc}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_exponential\_retry\_task@{s\_exponential\_retry\_task}}
+\index{s\_exponential\_retry\_task@{s\_exponential\_retry\_task}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_exponential\_retry\_task()}{s\_exponential\_retry\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+exponential\+\_\+retry\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_aef81167beb7ed1e23b6c8269c669004c}\label{exponential__backoff__retry__strategy_8c_aef81167beb7ed1e23b6c8269c669004c}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_random\_in\_range@{s\_random\_in\_range}}
+\index{s\_random\_in\_range@{s\_random\_in\_range}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_random\_in\_range()}{s\_random\_in\_range()}}
+{\footnotesize\ttfamily static uint64\+\_\+t s\+\_\+random\+\_\+in\+\_\+range (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{from,  }\item[{uint64\+\_\+t}]{to,  }\item[{struct \mbox{\hyperlink{structexponential__backoff__retry__token}{exponential\+\_\+backoff\+\_\+retry\+\_\+token}} $\ast$}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a7e7d582501dc3757605bead88a79b2ba}\label{exponential__backoff__retry__strategy_8c_a7e7d582501dc3757605bead88a79b2ba}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_backoff\_compute\_table@{s\_backoff\_compute\_table}}
+\index{s\_backoff\_compute\_table@{s\_backoff\_compute\_table}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_backoff\_compute\_table}{s\_backoff\_compute\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a768ea578f12e0d3a18d6155ab86e45ce}{compute\+\_\+backoff\+\_\+fn}}$\ast$ s\+\_\+backoff\+\_\+compute\+\_\+table\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    [\mbox{\hyperlink{retry__strategy_8h_a314f9a25f2e99a18e52c65ffd320b6c4a1bf3d8c55077d0c42566172ea773e29d}{AWS\_EXPONENTIAL\_BACKOFF\_JITTER\_DEFAULT}}] = \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a1ac5846ed30547a8dc1262f48c505227}{s\_compute\_full\_jitter}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{retry__strategy_8h_a314f9a25f2e99a18e52c65ffd320b6c4ad35c426b5f1d38b9d73e269d5d3469a5}{AWS\_EXPONENTIAL\_BACKOFF\_JITTER\_NONE}}] = \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a4cf991c75dd435aeea32894eade919b1}{s\_compute\_no\_jitter}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{retry__strategy_8h_a314f9a25f2e99a18e52c65ffd320b6c4a25b62d772d46662fe44cc1e48219ad6f}{AWS\_EXPONENTIAL\_BACKOFF\_JITTER\_FULL}}] = \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a1ac5846ed30547a8dc1262f48c505227}{s\_compute\_full\_jitter}},}
+\DoxyCodeLine{    [\mbox{\hyperlink{retry__strategy_8h_a314f9a25f2e99a18e52c65ffd320b6c4afa14159a985f45394ef1837c1bf2d866}{AWS\_EXPONENTIAL\_BACKOFF\_JITTER\_DECORRELATED}}] = \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a1096716eeeb13d18ff0805f114317ab1}{s\_compute\_deccorelated\_jitter}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{exponential__backoff__retry__strategy_8c_a660b1c5a0c3fd7281cf9e5583cdfd3b0}\label{exponential__backoff__retry__strategy_8c_a660b1c5a0c3fd7281cf9e5583cdfd3b0}} 
+\index{exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}!s\_exponential\_retry\_vtable@{s\_exponential\_retry\_vtable}}
+\index{s\_exponential\_retry\_vtable@{s\_exponential\_retry\_vtable}!exponential\_backoff\_retry\_strategy.c@{exponential\_backoff\_retry\_strategy.c}}
+\doxysubsubsection{\texorpdfstring{s\_exponential\_retry\_vtable}{s\_exponential\_retry\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__strategy__vtable}{aws\+\_\+retry\+\_\+strategy\+\_\+vtable}} s\+\_\+exponential\+\_\+retry\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a397e59331bc4a0b0bea4bcee1702427c}{s\_exponential\_retry\_destroy}},}
+\DoxyCodeLine{    .acquire\_token = \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a4333bb6198ca7c8014aaded22fceeaed}{s\_exponential\_retry\_acquire\_token}},}
+\DoxyCodeLine{    .schedule\_retry = \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_ada61859f8d3ae5c00f0b2671e6ff0d84}{s\_exponential\_retry\_schedule\_retry}},}
+\DoxyCodeLine{    .record\_success = \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a5f0ef90cdc1d8af6094a949a9c656807}{s\_exponential\_backoff\_record\_success}},}
+\DoxyCodeLine{    .release\_token = \mbox{\hyperlink{exponential__backoff__retry__strategy_8c_a5684df6d66c6645eeb92052f9df6eaa3}{s\_exponential\_backoff\_release\_token}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

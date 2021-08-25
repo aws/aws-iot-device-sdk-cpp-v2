@@ -1,0 +1,150 @@
+\hypertarget{s2n__extension__list__parse__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+extension\+\_\+list\+\_\+parse\+\_\+test.c File Reference}
+\label{s2n__extension__list__parse__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_extension\_list\_parse\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_extension\_list\_parse\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+extension\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+extension\+\_\+type.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__extension__list__parse__test_8c_a09ca28f56bf96590e49a9763697da8cb}{S2\+N\+\_\+\+UNKNOWN\+\_\+\+EXTENSION\+\_\+\+IANA}}~65280 /$\ast$ Grease value\+: https\+://tools.\+ietf.\+org/html/rfc8701 $\ast$/
+\item 
+\#define \mbox{\hyperlink{s2n__extension__list__parse__test_8c_a879515c062d05092cb7bf2dbd1814762}{EXPECT\+\_\+\+PARSED\+\_\+\+EXTENSION\+\_\+\+EQUAL}}(list,  type,  d,  n)
+\item 
+\#define \mbox{\hyperlink{s2n__extension__list__parse__test_8c_afd4c7cec74cb593b3f37003add0dc34f}{EXPECT\+\_\+\+RAW\+\_\+\+EQUAL}}(list,  stuffer)
+\item 
+\#define \mbox{\hyperlink{s2n__extension__list__parse__test_8c_aadd7ed98d5dfe3bfe481e60e85d462eb}{CLEAR\+\_\+\+PARSED\+\_\+\+EXTENSION}}(list,  type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__extension__list__parse__test_8c_a2d953a6d3635a7294c8f488032fb999e}{s2n\+\_\+extension\+\_\+send\+\_\+test\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
+\item 
+static int \mbox{\hyperlink{s2n__extension__list__parse__test_8c_a81bea9d79ad12b0864ab46dff2b03c86}{s2n\+\_\+extension\+\_\+send\+\_\+other\+\_\+test\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
+\item 
+static int \mbox{\hyperlink{s2n__extension__list__parse__test_8c_aeea797948579fa07e54d9dd6f94dc3a2}{s2n\+\_\+extension\+\_\+send\+\_\+no\+\_\+data}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
+\item 
+int \mbox{\hyperlink{s2n__extension__list__parse__test_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__extension__list__parse__test_8c_a188537da86b6bc65b4d1600e19260469}{test\+\_\+data}} \mbox{[}$\,$\mbox{]} = \char`\"{}Test Data\char`\"{}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__extension__list__parse__test_8c_a7e725813d772895fb6543c7b71397671}{other\+\_\+test\+\_\+data}} \mbox{[}$\,$\mbox{]} = \char`\"{}Different Test Data\char`\"{}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__extension__list__parse__test_8c_aed24769589f161a0d43cb39921b65962}{test\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_aadd7ed98d5dfe3bfe481e60e85d462eb}\label{s2n__extension__list__parse__test_8c_aadd7ed98d5dfe3bfe481e60e85d462eb}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!CLEAR\_PARSED\_EXTENSION@{CLEAR\_PARSED\_EXTENSION}}
+\index{CLEAR\_PARSED\_EXTENSION@{CLEAR\_PARSED\_EXTENSION}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{CLEAR\_PARSED\_EXTENSION}{CLEAR\_PARSED\_EXTENSION}}
+{\footnotesize\ttfamily \#define CLEAR\+\_\+\+PARSED\+\_\+\+EXTENSION(\begin{DoxyParamCaption}\item[{}]{list,  }\item[{}]{type }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                                 \(\backslash\)}
+\DoxyCodeLine{    s2n\_extension\_type\_id id;                                                   \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_SUCCESS(\mbox{\hyperlink{s2n__extension__type_8c_af556a916764135d42cfda074e26d6b26}{s2n\_extension\_supported\_iana\_value\_to\_id}}(\mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \&\textcolor{keywordtype}{id}));        \(\backslash\)}
+\DoxyCodeLine{    list.parsed\_extensions[id] = \mbox{\hyperlink{s2n__testlib_8h_a6a664bdbbd0da59874fa63d9c51395ac}{EMPTY\_PARSED\_EXTENSIONS}}[0];                    \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_a879515c062d05092cb7bf2dbd1814762}\label{s2n__extension__list__parse__test_8c_a879515c062d05092cb7bf2dbd1814762}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!EXPECT\_PARSED\_EXTENSION\_EQUAL@{EXPECT\_PARSED\_EXTENSION\_EQUAL}}
+\index{EXPECT\_PARSED\_EXTENSION\_EQUAL@{EXPECT\_PARSED\_EXTENSION\_EQUAL}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{EXPECT\_PARSED\_EXTENSION\_EQUAL}{EXPECT\_PARSED\_EXTENSION\_EQUAL}}
+{\footnotesize\ttfamily \#define EXPECT\+\_\+\+PARSED\+\_\+\+EXTENSION\+\_\+\+EQUAL(\begin{DoxyParamCaption}\item[{}]{list,  }\item[{}]{type,  }\item[{}]{d,  }\item[{}]{n }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{do} \{                    \(\backslash\)}
+\DoxyCodeLine{    s2n\_extension\_type\_id id;                                                   \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_SUCCESS(\mbox{\hyperlink{s2n__extension__type_8c_af556a916764135d42cfda074e26d6b26}{s2n\_extension\_supported\_iana\_value\_to\_id}}(\mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \&\textcolor{keywordtype}{id}));        \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_NOT\_NULL(list.parsed\_extensions[\textcolor{keywordtype}{id}].extension.data);                 \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_EQUAL(list.parsed\_extensions[\textcolor{keywordtype}{id}].extension.size, \mbox{\hyperlink{namespace_aws_a56a46d10ee9f89f5ff63ceb62ec27991}{n}});                 \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_BYTEARRAY\_EQUAL(list.parsed\_extensions[\textcolor{keywordtype}{id}].extension.data, d, \mbox{\hyperlink{namespace_aws_a56a46d10ee9f89f5ff63ceb62ec27991}{n}});    \(\backslash\)}
+\DoxyCodeLine{\} \textcolor{keywordflow}{while}(0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_afd4c7cec74cb593b3f37003add0dc34f}\label{s2n__extension__list__parse__test_8c_afd4c7cec74cb593b3f37003add0dc34f}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!EXPECT\_RAW\_EQUAL@{EXPECT\_RAW\_EQUAL}}
+\index{EXPECT\_RAW\_EQUAL@{EXPECT\_RAW\_EQUAL}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{EXPECT\_RAW\_EQUAL}{EXPECT\_RAW\_EQUAL}}
+{\footnotesize\ttfamily \#define EXPECT\+\_\+\+RAW\+\_\+\+EQUAL(\begin{DoxyParamCaption}\item[{}]{list,  }\item[{}]{stuffer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__test_8h_a989e2cf5187d703e6c86e2be90a4f868}{EXPECT\_EQUAL}}(list.raw.data, stuffer.blob.data + \textcolor{keyword}{sizeof}(uint16\_t));          \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_EQUAL(list.raw.size, stuffer.high\_water\_mark -\/ \textcolor{keyword}{sizeof}(uint16\_t))}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_a09ca28f56bf96590e49a9763697da8cb}\label{s2n__extension__list__parse__test_8c_a09ca28f56bf96590e49a9763697da8cb}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!S2N\_UNKNOWN\_EXTENSION\_IANA@{S2N\_UNKNOWN\_EXTENSION\_IANA}}
+\index{S2N\_UNKNOWN\_EXTENSION\_IANA@{S2N\_UNKNOWN\_EXTENSION\_IANA}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_UNKNOWN\_EXTENSION\_IANA}{S2N\_UNKNOWN\_EXTENSION\_IANA}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+UNKNOWN\+\_\+\+EXTENSION\+\_\+\+IANA~65280 /$\ast$ Grease value\+: https\+://tools.\+ietf.\+org/html/rfc8701 $\ast$/}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{s2n__extension__list__parse__test_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!main@{main}}
+\index{main@{main}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_aeea797948579fa07e54d9dd6f94dc3a2}\label{s2n__extension__list__parse__test_8c_aeea797948579fa07e54d9dd6f94dc3a2}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!s2n\_extension\_send\_no\_data@{s2n\_extension\_send\_no\_data}}
+\index{s2n\_extension\_send\_no\_data@{s2n\_extension\_send\_no\_data}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_extension\_send\_no\_data()}{s2n\_extension\_send\_no\_data()}}
+{\footnotesize\ttfamily static int s2n\+\_\+extension\+\_\+send\+\_\+no\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_a81bea9d79ad12b0864ab46dff2b03c86}\label{s2n__extension__list__parse__test_8c_a81bea9d79ad12b0864ab46dff2b03c86}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!s2n\_extension\_send\_other\_test\_data@{s2n\_extension\_send\_other\_test\_data}}
+\index{s2n\_extension\_send\_other\_test\_data@{s2n\_extension\_send\_other\_test\_data}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_extension\_send\_other\_test\_data()}{s2n\_extension\_send\_other\_test\_data()}}
+{\footnotesize\ttfamily static int s2n\+\_\+extension\+\_\+send\+\_\+other\+\_\+test\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_a2d953a6d3635a7294c8f488032fb999e}\label{s2n__extension__list__parse__test_8c_a2d953a6d3635a7294c8f488032fb999e}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!s2n\_extension\_send\_test\_data@{s2n\_extension\_send\_test\_data}}
+\index{s2n\_extension\_send\_test\_data@{s2n\_extension\_send\_test\_data}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_extension\_send\_test\_data()}{s2n\_extension\_send\_test\_data()}}
+{\footnotesize\ttfamily static int s2n\+\_\+extension\+\_\+send\+\_\+test\+\_\+data (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_a7e725813d772895fb6543c7b71397671}\label{s2n__extension__list__parse__test_8c_a7e725813d772895fb6543c7b71397671}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!other\_test\_data@{other\_test\_data}}
+\index{other\_test\_data@{other\_test\_data}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{other\_test\_data}{other\_test\_data}}
+{\footnotesize\ttfamily const uint8\+\_\+t other\+\_\+test\+\_\+data\mbox{[}$\,$\mbox{]} = \char`\"{}Different Test Data\char`\"{}}
+
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_a188537da86b6bc65b4d1600e19260469}\label{s2n__extension__list__parse__test_8c_a188537da86b6bc65b4d1600e19260469}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!test\_data@{test\_data}}
+\index{test\_data@{test\_data}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_data}{test\_data}}
+{\footnotesize\ttfamily const uint8\+\_\+t \mbox{\hyperlink{structtest__data}{test\+\_\+data}}\mbox{[}$\,$\mbox{]} = \char`\"{}Test Data\char`\"{}}
+
+\mbox{\Hypertarget{s2n__extension__list__parse__test_8c_aed24769589f161a0d43cb39921b65962}\label{s2n__extension__list__parse__test_8c_aed24769589f161a0d43cb39921b65962}} 
+\index{s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}!test\_extension@{test\_extension}}
+\index{test\_extension@{test\_extension}!s2n\_extension\_list\_parse\_test.c@{s2n\_extension\_list\_parse\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_extension}{test\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} test\+\_\+extension}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .iana\_value = \mbox{\hyperlink{s2n__tls__parameters_8h_a9f4caf58afa362bc813c4b74e3acbaa3}{TLS\_EXTENSION\_SUPPORTED\_VERSIONS}},}
+\DoxyCodeLine{        .is\_response = \textcolor{keyword}{false},}
+\DoxyCodeLine{        .send = \mbox{\hyperlink{s2n__extension__list__parse__test_8c_a2d953a6d3635a7294c8f488032fb999e}{s2n\_extension\_send\_test\_data}},}
+\DoxyCodeLine{        .recv = \mbox{\hyperlink{s2n__extension__type_8c_a62209926dd424606c37d4839921767ce}{s2n\_extension\_recv\_unimplemented}},}
+\DoxyCodeLine{        .should\_send = \mbox{\hyperlink{s2n__extension__type_8c_a444191e72de6721da34d66ef5ce48ff4}{s2n\_extension\_always\_send}},}
+\DoxyCodeLine{        .if\_missing = \mbox{\hyperlink{s2n__extension__type_8c_a732ba945ae582c3a38a17901c599298a}{s2n\_extension\_noop\_if\_missing}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

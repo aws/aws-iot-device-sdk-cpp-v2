@@ -1,0 +1,40 @@
+\hypertarget{clock_8h_source}{}\doxysection{clock.\+h}
+\label{clock_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/clock.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/clock.h}}
+\mbox{\hyperlink{clock_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_CLOCK\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_CLOCK\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{math_8h}{aws/common/math.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{enum} \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9}{aws\_timestamp\_unit}} \{}
+\DoxyCodeLine{13     \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9a2e67976771a263976be889f3275460de}{AWS\_TIMESTAMP\_SECS}} = 1,}
+\DoxyCodeLine{14     \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9abc97ce7906ffc6a6278bf8afbb68f087}{AWS\_TIMESTAMP\_MILLIS}} = 1000,}
+\DoxyCodeLine{15     \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9a7d662d9a9b736259c494494041314d17}{AWS\_TIMESTAMP\_MICROS}} = 1000000,}
+\DoxyCodeLine{16     \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9a3d2ba5a6117da33117de22279b7973f2}{AWS\_TIMESTAMP\_NANOS}} = 1000000000,}
+\DoxyCodeLine{17 \};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{28 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint64\_t \mbox{\hyperlink{clock_8h_a3322f1b8a5d74f7f4263008b7523d4c6}{aws\_timestamp\_convert}}(}
+\DoxyCodeLine{29     uint64\_t timestamp,}
+\DoxyCodeLine{30     \textcolor{keyword}{enum} \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9}{aws\_timestamp\_unit}} convert\_from,}
+\DoxyCodeLine{31     \textcolor{keyword}{enum} \mbox{\hyperlink{clock_8h_a1c88a4b2ee9a32347fd7901c0fe948d9}{aws\_timestamp\_unit}} convert\_to,}
+\DoxyCodeLine{32     uint64\_t *remainder);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{38 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{39 \textcolor{keywordtype}{int} \mbox{\hyperlink{clock_8h_a054c8b4ddd0c84dc4c6fa19eb2755924}{aws\_high\_res\_clock\_get\_ticks}}(uint64\_t *timestamp);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{46 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{47 \textcolor{keywordtype}{int} \mbox{\hyperlink{clock_8h_aac0df2c6a1d225d98c693a1d2ab6c220}{aws\_sys\_clock\_get\_ticks}}(uint64\_t *timestamp);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#ifndef AWS\_NO\_STATIC\_IMPL}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#    include <\mbox{\hyperlink{clock_8inl}{aws/common/clock.inl}}>}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_NO\_STATIC\_IMPL */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_CLOCK\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

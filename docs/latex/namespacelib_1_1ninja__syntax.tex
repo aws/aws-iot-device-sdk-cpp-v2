@@ -1,0 +1,53 @@
+\hypertarget{namespacelib_1_1ninja__syntax}{}\doxysection{lib.\+ninja\+\_\+syntax Namespace Reference}
+\label{namespacelib_1_1ninja__syntax}\index{lib.ninja\_syntax@{lib.ninja\_syntax}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer}{Writer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacelib_1_1ninja__syntax_afcda9fb55516baa0be691b0493b011b6}{escape\+\_\+path}} (word)
+\item 
+def \mbox{\hyperlink{namespacelib_1_1ninja__syntax_ab02ad075652fee99bb5d326b404b251f}{as\+\_\+list}} (input)
+\item 
+def \mbox{\hyperlink{namespacelib_1_1ninja__syntax_a044d5d1fe05d8510c258c2583cb111fc}{escape}} (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}})
+\item 
+def \mbox{\hyperlink{namespacelib_1_1ninja__syntax_a93497f3d3140af5a4ff3e4e7ab4018a3}{expand}} (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}}, vars, local\+\_\+vars=\{\})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacelib_1_1ninja__syntax_ab02ad075652fee99bb5d326b404b251f}\label{namespacelib_1_1ninja__syntax_ab02ad075652fee99bb5d326b404b251f}} 
+\index{lib.ninja\_syntax@{lib.ninja\_syntax}!as\_list@{as\_list}}
+\index{as\_list@{as\_list}!lib.ninja\_syntax@{lib.ninja\_syntax}}
+\doxysubsubsection{\texorpdfstring{as\_list()}{as\_list()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+as\+\_\+list (\begin{DoxyParamCaption}\item[{}]{input }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacelib_1_1ninja__syntax_a044d5d1fe05d8510c258c2583cb111fc}\label{namespacelib_1_1ninja__syntax_a044d5d1fe05d8510c258c2583cb111fc}} 
+\index{lib.ninja\_syntax@{lib.ninja\_syntax}!escape@{escape}}
+\index{escape@{escape}!lib.ninja\_syntax@{lib.ninja\_syntax}}
+\doxysubsubsection{\texorpdfstring{escape()}{escape()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+escape (\begin{DoxyParamCaption}\item[{}]{string }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Escape a string such that it can be embedded into a Ninja file without
+further interpretation.\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacelib_1_1ninja__syntax_afcda9fb55516baa0be691b0493b011b6}\label{namespacelib_1_1ninja__syntax_afcda9fb55516baa0be691b0493b011b6}} 
+\index{lib.ninja\_syntax@{lib.ninja\_syntax}!escape\_path@{escape\_path}}
+\index{escape\_path@{escape\_path}!lib.ninja\_syntax@{lib.ninja\_syntax}}
+\doxysubsubsection{\texorpdfstring{escape\_path()}{escape\_path()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+escape\+\_\+path (\begin{DoxyParamCaption}\item[{}]{word }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacelib_1_1ninja__syntax_a93497f3d3140af5a4ff3e4e7ab4018a3}\label{namespacelib_1_1ninja__syntax_a93497f3d3140af5a4ff3e4e7ab4018a3}} 
+\index{lib.ninja\_syntax@{lib.ninja\_syntax}!expand@{expand}}
+\index{expand@{expand}!lib.ninja\_syntax@{lib.ninja\_syntax}}
+\doxysubsubsection{\texorpdfstring{expand()}{expand()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+expand (\begin{DoxyParamCaption}\item[{}]{string,  }\item[{}]{vars,  }\item[{}]{local\+\_\+vars = {\ttfamily \{\}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Expand a string containing $vars as Ninja would.
+
+Note: doesn't handle the full Ninja variable syntax, but it's enough
+to make configure.py's use of it work.
+\end{DoxyVerb}
+ 

@@ -1,0 +1,158 @@
+\hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{}\doxysection{Aws\+::Crt\+::Http\+::Http\+Client\+Connection\+Options Class Reference}
+\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+
+
+{\ttfamily \#include $<$Http\+Connection.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_add59a5797e4e5e5fa647cb2edcdb18f1}{Http\+Client\+Connection\+Options}} ()
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a85def7033733798127c195cd5292a546}{Http\+Client\+Connection\+Options}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&rhs)=default
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a354652aa2b41fb329b6c52828dc3b8a6}{Http\+Client\+Connection\+Options}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&\&rhs)=default
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ae1d19d3efdb44be89999b68b65070d0e}{$\sim$\+Http\+Client\+Connection\+Options}} ()=default
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad64609427090ec2cc3baf8dee07a8164}{operator=}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&rhs)=default
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a357b2793adbc8650bc073bc53694b572}{operator=}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&\&rhs)=default
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Io\+::\+Client\+Bootstrap}} $\ast$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad44ae9c505c27030582cf6dab0674de7}{Bootstrap}}
+\item 
+size\+\_\+t \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a784b0dbb73c9f7f4ed78ddd65d86a8f5}{Initial\+Window\+Size}}
+\item 
+\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_abf7cbfe9deb17e6abd259b1db3850c6d}{On\+Connection\+Setup}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_aa466296bd67bff85bcde1686f9d22ff0}{On\+Connection\+Setup\+Callback}}
+\item 
+\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a38b7bf171ad1910c2d8d95eef6f8ee13}{On\+Connection\+Shutdown}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad1a60bac19446072901ff643a6acde3f}{On\+Connection\+Shutdown\+Callback}}
+\item 
+\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad010ce92d39b0393991f6bbbd13fd365}{Host\+Name}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a51d9f33c1587508c8f2fe29e56fb6305}{Port}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ac89157ac1bf551b431b293bf41dc9c49}{Socket\+Options}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_connection_options}{Io\+::\+Tls\+Connection\+Options}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a6797a5bb449849b95955b0d83978ccb7}{Tls\+Options}}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options}{Http\+Client\+Connection\+Proxy\+Options}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a01eef53aed88044b415e181b789e9977}{Proxy\+Options}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ae9b4f3a6fb252371e4f432087051152b}{Manual\+Window\+Management}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration structure holding all options relating to http connection establishment 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_add59a5797e4e5e5fa647cb2edcdb18f1}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_add59a5797e4e5e5fa647cb2edcdb18f1}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!HttpClientConnectionOptions@{HttpClientConnectionOptions}}
+\index{HttpClientConnectionOptions@{HttpClientConnectionOptions}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{HttpClientConnectionOptions()}{HttpClientConnectionOptions()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Http\+Client\+Connection\+Options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a85def7033733798127c195cd5292a546}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a85def7033733798127c195cd5292a546}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!HttpClientConnectionOptions@{HttpClientConnectionOptions}}
+\index{HttpClientConnectionOptions@{HttpClientConnectionOptions}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{HttpClientConnectionOptions()}{HttpClientConnectionOptions()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Http\+Client\+Connection\+Options (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a354652aa2b41fb329b6c52828dc3b8a6}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a354652aa2b41fb329b6c52828dc3b8a6}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!HttpClientConnectionOptions@{HttpClientConnectionOptions}}
+\index{HttpClientConnectionOptions@{HttpClientConnectionOptions}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{HttpClientConnectionOptions()}{HttpClientConnectionOptions()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Http\+Client\+Connection\+Options (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ae1d19d3efdb44be89999b68b65070d0e}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ae1d19d3efdb44be89999b68b65070d0e}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!````~HttpClientConnectionOptions@{$\sim$HttpClientConnectionOptions}}
+\index{````~HttpClientConnectionOptions@{$\sim$HttpClientConnectionOptions}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{$\sim$HttpClientConnectionOptions()}{~HttpClientConnectionOptions()}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::$\sim$\+Http\+Client\+Connection\+Options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad64609427090ec2cc3baf8dee07a8164}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad64609427090ec2cc3baf8dee07a8164}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}}\& Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a357b2793adbc8650bc073bc53694b572}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a357b2793adbc8650bc073bc53694b572}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}}\& Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&\&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad44ae9c505c27030582cf6dab0674de7}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad44ae9c505c27030582cf6dab0674de7}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!Bootstrap@{Bootstrap}}
+\index{Bootstrap@{Bootstrap}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{Bootstrap}{Bootstrap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Io\+::\+Client\+Bootstrap}}$\ast$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Bootstrap}
+
+The client bootstrap to use for setting up and tearing down connections. Required. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad010ce92d39b0393991f6bbbd13fd365}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad010ce92d39b0393991f6bbbd13fd365}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!HostName@{HostName}}
+\index{HostName@{HostName}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{HostName}{HostName}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Host\+Name}
+
+The name of the http server to connect to. Required. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a784b0dbb73c9f7f4ed78ddd65d86a8f5}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a784b0dbb73c9f7f4ed78ddd65d86a8f5}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!InitialWindowSize@{InitialWindowSize}}
+\index{InitialWindowSize@{InitialWindowSize}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{InitialWindowSize}{InitialWindowSize}}
+{\footnotesize\ttfamily size\+\_\+t Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Initial\+Window\+Size}
+
+The TCP read window allowed for \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http}{Http}} 1.\+1 connections and Initial Windows for H2 connections. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ae9b4f3a6fb252371e4f432087051152b}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ae9b4f3a6fb252371e4f432087051152b}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!ManualWindowManagement@{ManualWindowManagement}}
+\index{ManualWindowManagement@{ManualWindowManagement}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{ManualWindowManagement}{ManualWindowManagement}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Manual\+Window\+Management}
+
+If set to true, then the TCP read back pressure mechanism will be enabled. You should only use this if you\textquotesingle{}re allowing http response body data to escape the callbacks. E.\+g. you\textquotesingle{}re putting the data into a queue for another thread to process and need to make sure the memory usage is bounded. If this is enabled, you must call \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_ad27cd3913c91ba66ebdd166ac9bc1f2e}{Http\+Stream\+::\+Update\+Window()}} for every byte read from the On\+Incoming\+Body callback. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_aa466296bd67bff85bcde1686f9d22ff0}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_aa466296bd67bff85bcde1686f9d22ff0}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!OnConnectionSetupCallback@{OnConnectionSetupCallback}}
+\index{OnConnectionSetupCallback@{OnConnectionSetupCallback}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{OnConnectionSetupCallback}{OnConnectionSetupCallback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_abf7cbfe9deb17e6abd259b1db3850c6d}{On\+Connection\+Setup}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+On\+Connection\+Setup\+Callback}
+
+The callback invoked on connection establishment, whether success or failure. See {\ttfamily On\+Connection\+Setup} for more info. Required. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad1a60bac19446072901ff643a6acde3f}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ad1a60bac19446072901ff643a6acde3f}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!OnConnectionShutdownCallback@{OnConnectionShutdownCallback}}
+\index{OnConnectionShutdownCallback@{OnConnectionShutdownCallback}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{OnConnectionShutdownCallback}{OnConnectionShutdownCallback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a38b7bf171ad1910c2d8d95eef6f8ee13}{On\+Connection\+Shutdown}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+On\+Connection\+Shutdown\+Callback}
+
+The callback invoked on connection shutdown. See {\ttfamily On\+Connection\+Shutdown} for more info. Required. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a51d9f33c1587508c8f2fe29e56fb6305}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a51d9f33c1587508c8f2fe29e56fb6305}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!Port@{Port}}
+\index{Port@{Port}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{Port}{Port}}
+{\footnotesize\ttfamily uint16\+\_\+t Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Port}
+
+The port of the http server to connect to. Required. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a01eef53aed88044b415e181b789e9977}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a01eef53aed88044b415e181b789e9977}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!ProxyOptions@{ProxyOptions}}
+\index{ProxyOptions@{ProxyOptions}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{ProxyOptions}{ProxyOptions}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options}{Http\+Client\+Connection\+Proxy\+Options}}$>$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Proxy\+Options}
+
+The proxy options for the http connection. \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ac89157ac1bf551b431b293bf41dc9c49}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ac89157ac1bf551b431b293bf41dc9c49}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!SocketOptions@{SocketOptions}}
+\index{SocketOptions@{SocketOptions}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{SocketOptions}{SocketOptions}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Socket\+Options}
+
+The socket options of the connection. Required. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a6797a5bb449849b95955b0d83978ccb7}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a6797a5bb449849b95955b0d83978ccb7}} 
+\index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!TlsOptions@{TlsOptions}}
+\index{TlsOptions@{TlsOptions}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
+\doxysubsubsection{\texorpdfstring{TlsOptions}{TlsOptions}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_connection_options}{Io\+::\+Tls\+Connection\+Options}}$>$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Tls\+Options}
+
+The TLS options for the http connection. \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/include/aws/crt/http/\mbox{\hyperlink{_http_connection_8h}{Http\+Connection.\+h}}\item 
+crt/aws-\/crt-\/cpp/source/http/\mbox{\hyperlink{_http_connection_8cpp}{Http\+Connection.\+cpp}}\end{DoxyCompactItemize}

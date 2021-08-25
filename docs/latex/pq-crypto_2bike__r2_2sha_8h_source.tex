@@ -1,0 +1,47 @@
+\hypertarget{pq-crypto_2bike__r2_2sha_8h_source}{}\doxysection{sha.\+h}
+\label{pq-crypto_2bike__r2_2sha_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/sha.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/sha.h}}
+\mbox{\hyperlink{pq-crypto_2bike__r2_2sha_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{2 \textcolor{comment}{ * SPDX-\/License-\/Identifier: Apache-\/2.0"{}}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Written by Nir Drucker and Shay Gueron}}
+\DoxyCodeLine{5 \textcolor{comment}{ * AWS Cryptographic Algorithms Group.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * (ndrucker@amazon.com, gueron@amazon.com)}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{bike__r2_2cleanup_8h}{cleanup.h}}"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{types.h}}"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{bike__r2_2utilities_8h}{utilities.h}}"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h}{openssl/sha.h}}>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define SHA384\_HASH\_SIZE   48ULL}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define SHA384\_HASH\_QWORDS (SHA384\_HASH\_SIZE / 8)}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structsha384__hash__s}{sha384\_hash\_s}}}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21   \textcolor{keyword}{union }\{}
+\DoxyCodeLine{22     uint8\_t  \mbox{\hyperlink{structsha384__hash__s_a8cd4526ceb1ca465b17ffc1f9af86820}{raw}}[\mbox{\hyperlink{pq-crypto_2bike__r2_2sha_8h_ab19f3e68f02543f8a1254eb005ad3196}{SHA384\_HASH\_SIZE}}];}
+\DoxyCodeLine{23     uint64\_t \mbox{\hyperlink{structsha384__hash__s_a92c22abda017346af564a3307d0c4c69}{qw}}[\mbox{\hyperlink{pq-crypto_2bike__r2_2sha_8h_a2e2b8d5760a5d7c829bb4e93c7a1e191}{SHA384\_HASH\_QWORDS}}];}
+\DoxyCodeLine{24   \} \mbox{\hyperlink{structsha384__hash__s_a8e786f2b0091c8fa80cc3ab0f4408ccc}{u}};}
+\DoxyCodeLine{25 \} \mbox{\hyperlink{pq-crypto_2bike__r1_2sha_8h_aa9f039444abcc4df906730fdb7c8e422}{sha384\_hash\_t}};}
+\DoxyCodeLine{26 \mbox{\hyperlink{pq-crypto_2bike__r1_2sha_8h_ada1a6f47414daa292526358c94de8819}{bike\_static\_assert}}(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structsha384__hash__s}{sha384\_hash\_t}}) == \mbox{\hyperlink{pq-crypto_2bike__r2_2sha_8h_ab19f3e68f02543f8a1254eb005ad3196}{SHA384\_HASH\_SIZE}}, sha384\_hash\_size);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{typedef} \mbox{\hyperlink{structsha384__hash__s}{sha384\_hash\_t}} \mbox{\hyperlink{pq-crypto_2bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}{sha\_hash\_t}};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} \textcolor{keywordtype}{void}}
+\DoxyCodeLine{31 \mbox{\hyperlink{pq-crypto_2bike__r1_2sha_8h_aa8f71234e9c11022e830cfdb05d8f4a7}{sha\_hash\_cleanup}}(\mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{structsha384__hash__s}{sha\_hash\_t}} *o)}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33   \mbox{\hyperlink{bike__r1_2cleanup_8h_a900c0ad7cbed6573e4767aa18709fa66}{secure\_clean}}(o-\/>u.raw, \textcolor{keyword}{sizeof}(*o));}
+\DoxyCodeLine{34 \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} \textcolor{keywordtype}{int}}
+\DoxyCodeLine{37 \mbox{\hyperlink{pq-crypto_2bike__r1_2sha_8h_ad5490abb31aff61c8987612eaabe4ea9}{sha}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{structsha384__hash__s}{sha\_hash\_t}} *hash\_out, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint32\_t byte\_len, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint8\_t *msg)}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39   SHA384(msg, byte\_len, hash\_out-\/>u.raw);}
+\DoxyCodeLine{40   \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{41 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,125 @@
+\hypertarget{cal_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/source/cal.c File Reference}
+\label{cal_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/source/cal.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/source/cal.c}}
+{\ttfamily \#include $<$aws/cal/cal.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/error.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+CAL}}(CODE,  STR)~\mbox{[}(CODE)-\/0x1\+C00\mbox{]} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(CODE, STR, \char`\"{}aws-\/c-\/cal\char`\"{})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{cal_8c_a407f69e844ac10381051b1d82e7de6c2}{aws\+\_\+cal\+\_\+platform\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{cal_8c_adb680a9a227a90f27c43f8a871248988}{aws\+\_\+cal\+\_\+platform\+\_\+clean\+\_\+up}} (void)
+\item 
+void \mbox{\hyperlink{cal_8c_aa63491f5049189b76f2271cd1d6370a5}{aws\+\_\+cal\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+void \mbox{\hyperlink{cal_8c_a1f4161db6a38398fc8ceccaed4e3886e}{aws\+\_\+cal\+\_\+library\+\_\+clean\+\_\+up}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} \mbox{\hyperlink{cal_8c_a255baa9b51b60f5b91a01313637fc353}{s\+\_\+errors}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} \mbox{\hyperlink{cal_8c_a5ea700514e70a0da767872486e1c257a}{s\+\_\+list}}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{cal_8c_a43a899c46112980667acd5ac9ac8cfca}{s\+\_\+cal\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}\label{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}} 
+\index{cal.c@{cal.c}!AWS\_DEFINE\_ERROR\_INFO\_CAL@{AWS\_DEFINE\_ERROR\_INFO\_CAL}}
+\index{AWS\_DEFINE\_ERROR\_INFO\_CAL@{AWS\_DEFINE\_ERROR\_INFO\_CAL}!cal.c@{cal.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_DEFINE\_ERROR\_INFO\_CAL}{AWS\_DEFINE\_ERROR\_INFO\_CAL}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO\+\_\+\+CAL(\begin{DoxyParamCaption}\item[{}]{CODE,  }\item[{}]{STR }\end{DoxyParamCaption})~\mbox{[}(CODE)-\/0x1\+C00\mbox{]} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a139465316660842ba60a37dfcb8eee2a}{AWS\+\_\+\+DEFINE\+\_\+\+ERROR\+\_\+\+INFO}}(CODE, STR, \char`\"{}aws-\/c-\/cal\char`\"{})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cal_8c_a1f4161db6a38398fc8ceccaed4e3886e}\label{cal_8c_a1f4161db6a38398fc8ceccaed4e3886e}} 
+\index{cal.c@{cal.c}!aws\_cal\_library\_clean\_up@{aws\_cal\_library\_clean\_up}}
+\index{aws\_cal\_library\_clean\_up@{aws\_cal\_library\_clean\_up}!cal.c@{cal.c}}
+\doxysubsubsection{\texorpdfstring{aws\_cal\_library\_clean\_up()}{aws\_cal\_library\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+cal\+\_\+library\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cal_8c_aa63491f5049189b76f2271cd1d6370a5}\label{cal_8c_aa63491f5049189b76f2271cd1d6370a5}} 
+\index{cal.c@{cal.c}!aws\_cal\_library\_init@{aws\_cal\_library\_init}}
+\index{aws\_cal\_library\_init@{aws\_cal\_library\_init}!cal.c@{cal.c}}
+\doxysubsubsection{\texorpdfstring{aws\_cal\_library\_init()}{aws\_cal\_library\_init()}}
+{\footnotesize\ttfamily void aws\+\_\+cal\+\_\+library\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cal_8c_adb680a9a227a90f27c43f8a871248988}\label{cal_8c_adb680a9a227a90f27c43f8a871248988}} 
+\index{cal.c@{cal.c}!aws\_cal\_platform\_clean\_up@{aws\_cal\_platform\_clean\_up}}
+\index{aws\_cal\_platform\_clean\_up@{aws\_cal\_platform\_clean\_up}!cal.c@{cal.c}}
+\doxysubsubsection{\texorpdfstring{aws\_cal\_platform\_clean\_up()}{aws\_cal\_platform\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+cal\+\_\+platform\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{cal_8c_a407f69e844ac10381051b1d82e7de6c2}\label{cal_8c_a407f69e844ac10381051b1d82e7de6c2}} 
+\index{cal.c@{cal.c}!aws\_cal\_platform\_init@{aws\_cal\_platform\_init}}
+\index{aws\_cal\_platform\_init@{aws\_cal\_platform\_init}!cal.c@{cal.c}}
+\doxysubsubsection{\texorpdfstring{aws\_cal\_platform\_init()}{aws\_cal\_platform\_init()}}
+{\footnotesize\ttfamily void aws\+\_\+cal\+\_\+platform\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{cal_8c_a43a899c46112980667acd5ac9ac8cfca}\label{cal_8c_a43a899c46112980667acd5ac9ac8cfca}} 
+\index{cal.c@{cal.c}!s\_cal\_library\_initialized@{s\_cal\_library\_initialized}}
+\index{s\_cal\_library\_initialized@{s\_cal\_library\_initialized}!cal.c@{cal.c}}
+\doxysubsubsection{\texorpdfstring{s\_cal\_library\_initialized}{s\_cal\_library\_initialized}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+cal\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{cal_8c_a255baa9b51b60f5b91a01313637fc353}\label{cal_8c_a255baa9b51b60f5b91a01313637fc353}} 
+\index{cal.c@{cal.c}!s\_errors@{s\_errors}}
+\index{s\_errors@{s\_errors}!cal.c@{cal.c}}
+\doxysubsubsection{\texorpdfstring{s\_errors}{s\_errors}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}} s\+\_\+errors\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \mbox{\hyperlink{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}{AWS\_DEFINE\_ERROR\_INFO\_CAL}}(\mbox{\hyperlink{cal_8h_aebc8a65e44f855f58c847cd4a607d1e1abfba68f4957ffbc9d714a1891ea05bc8}{AWS\_ERROR\_CAL\_SIGNATURE\_VALIDATION\_FAILED}}, \textcolor{stringliteral}{"{}Verify on a cryptographic signature failed."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}{AWS\_DEFINE\_ERROR\_INFO\_CAL}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{cal_8h_aebc8a65e44f855f58c847cd4a607d1e1a7c46ba3c9f12e6203597ddff88a547ac}{AWS\_ERROR\_CAL\_MISSING\_REQUIRED\_KEY\_COMPONENT}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}An attempt was made to perform an "{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}Asymmetric cryptographic operation with the"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}wrong key component. For example, attempt to"{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}verify a signature with a private key or "{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}sign a message with a public key."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}{AWS\_DEFINE\_ERROR\_INFO\_CAL}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{cal_8h_aebc8a65e44f855f58c847cd4a607d1e1a44affce7a0d97a713225b82ca913c3ff}{AWS\_ERROR\_CAL\_INVALID\_KEY\_LENGTH\_FOR\_ALGORITHM}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}A key length was used for an algorithm that needs a different key length"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}{AWS\_DEFINE\_ERROR\_INFO\_CAL}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{cal_8h_aebc8a65e44f855f58c847cd4a607d1e1ac64807f9e001d1243ee8cad03f135b05}{AWS\_ERROR\_CAL\_UNKNOWN\_OBJECT\_IDENTIFIER}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}An ASN.1 OID was encountered that wasn't expected or understood. Most likely, an unsupported algorithm was "{}}}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}encountered."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}{AWS\_DEFINE\_ERROR\_INFO\_CAL}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{cal_8h_aebc8a65e44f855f58c847cd4a607d1e1acc8560488864c1e9e5807cebde5923a3}{AWS\_ERROR\_CAL\_MALFORMED\_ASN1\_ENCOUNTERED}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}An ASN.1 DER decoding operation failed on malformed input."{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}{AWS\_DEFINE\_ERROR\_INFO\_CAL}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{cal_8h_aebc8a65e44f855f58c847cd4a607d1e1a85c01df9ee5c22ff5143702d56fecd29}{AWS\_ERROR\_CAL\_MISMATCHED\_DER\_TYPE}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}An invalid DER type was requested during encoding/decoding"{}}),}
+\DoxyCodeLine{    \mbox{\hyperlink{cal_8c_a790ae2aa115f2466164d576fc81aa3a9}{AWS\_DEFINE\_ERROR\_INFO\_CAL}}(}
+\DoxyCodeLine{        \mbox{\hyperlink{cal_8h_aebc8a65e44f855f58c847cd4a607d1e1a330d947c0e92d34396eaec23c7c63ee4}{AWS\_ERROR\_CAL\_UNSUPPORTED\_ALGORITHM}},}
+\DoxyCodeLine{        \textcolor{stringliteral}{"{}The specified algorithim is unsupported on this platform."{}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{cal_8c_a5ea700514e70a0da767872486e1c257a}\label{cal_8c_a5ea700514e70a0da767872486e1c257a}} 
+\index{cal.c@{cal.c}!s\_list@{s\_list}}
+\index{s\_list@{s\_list}!cal.c@{cal.c}}
+\doxysubsubsection{\texorpdfstring{s\_list}{s\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} s\+\_\+list\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .error\_list = \mbox{\hyperlink{cal_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}},}
+\DoxyCodeLine{    .count = \mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\_ARRAY\_SIZE}}(\mbox{\hyperlink{cal_8c_a255baa9b51b60f5b91a01313637fc353}{s\_errors}}),}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

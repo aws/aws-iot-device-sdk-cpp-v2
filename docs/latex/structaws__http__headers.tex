@@ -1,0 +1,42 @@
+\hypertarget{structaws__http__headers}{}\doxysection{aws\+\_\+http\+\_\+headers Struct Reference}
+\label{structaws__http__headers}\index{aws\_http\_headers@{aws\_http\_headers}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__http__headers_a3d0d0ae0c2cf73775b0e700f9c42117d}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structaws__http__headers_aed2ab52046bde271529830395334c68d}{array\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structaws__http__headers_ae7b76ea81bae4a8b2fbf5daa518544c3}{refcount}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+-- Datastructure Notes -- Headers are stored in a linear array, rather than a hash-\/table of arrays. The linear array was simpler to implement and may be faster due to having fewer allocations. The API has been designed so we can swap out the implementation later if desired.
+
+-- String Storage Notes -- We use a single allocation to hold the name and value of each \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}}. We could optimize storage by using something like a string pool. If we do this, be sure to maintain the address of existing strings when adding new strings (a dynamic \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} would not suffice). 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__headers_a3d0d0ae0c2cf73775b0e700f9c42117d}\label{structaws__http__headers_a3d0d0ae0c2cf73775b0e700f9c42117d}} 
+\index{aws\_http\_headers@{aws\_http\_headers}!alloc@{alloc}}
+\index{alloc@{alloc}!aws\_http\_headers@{aws\_http\_headers}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+http\+\_\+headers\+::alloc}
+
+\mbox{\Hypertarget{structaws__http__headers_aed2ab52046bde271529830395334c68d}\label{structaws__http__headers_aed2ab52046bde271529830395334c68d}} 
+\index{aws\_http\_headers@{aws\_http\_headers}!array\_list@{array\_list}}
+\index{array\_list@{array\_list}!aws\_http\_headers@{aws\_http\_headers}}
+\doxysubsubsection{\texorpdfstring{array\_list}{array\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} aws\+\_\+http\+\_\+headers\+::array\+\_\+list}
+
+\mbox{\Hypertarget{structaws__http__headers_ae7b76ea81bae4a8b2fbf5daa518544c3}\label{structaws__http__headers_ae7b76ea81bae4a8b2fbf5daa518544c3}} 
+\index{aws\_http\_headers@{aws\_http\_headers}!refcount@{refcount}}
+\index{refcount@{refcount}!aws\_http\_headers@{aws\_http\_headers}}
+\doxysubsubsection{\texorpdfstring{refcount}{refcount}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} aws\+\_\+http\+\_\+headers\+::refcount}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/source/\mbox{\hyperlink{request__response_8c}{request\+\_\+response.\+c}}\end{DoxyCompactItemize}

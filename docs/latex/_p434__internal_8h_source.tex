@@ -1,0 +1,231 @@
+\hypertarget{_p434__internal_8h_source}{}\doxysection{P434\+\_\+internal.\+h}
+\label{_p434__internal_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r2/P434\_internal.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/sike\_r2/P434\_internal.h}}
+\mbox{\hyperlink{_p434__internal_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/********************************************************************************************}}
+\DoxyCodeLine{2 \textcolor{comment}{* SIDH: an efficient supersingular isogeny cryptography library}}
+\DoxyCodeLine{3 \textcolor{comment}{*}}
+\DoxyCodeLine{4 \textcolor{comment}{* Abstract: internal header file for P434}}
+\DoxyCodeLine{5 \textcolor{comment}{*********************************************************************************************/}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef P434\_INTERNAL\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define P434\_INTERNAL\_H}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{include_2aws_2crt_2_config_8h}{config.h}}"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#if (TARGET == TARGET\_AMD64)}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define NWORDS\_FIELD 7    }\textcolor{comment}{// Number of words of a 434-\/bit field element}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define p434\_ZERO\_WORDS 3 }\textcolor{comment}{// Number of "{}0"{} digits in the least significant part of p434 + 1}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#elif (TARGET == TARGET\_x86)}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define NWORDS\_FIELD 14}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define p434\_ZERO\_WORDS 6}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#elif (TARGET == TARGET\_ARM)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define NWORDS\_FIELD 14}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define p434\_ZERO\_WORDS 6}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#elif (TARGET == TARGET\_ARM64)}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define NWORDS\_FIELD 7}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define p434\_ZERO\_WORDS 3}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{// Basic constants}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define NBITS\_FIELD 434}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define MAXBITS\_FIELD 448}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define MAXWORDS\_FIELD ((MAXBITS\_FIELD + RADIX -\/ 1) / RADIX) }\textcolor{comment}{// Max. number of words to represent field elements}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define NWORDS64\_FIELD ((NBITS\_FIELD + 63) / 64)             }\textcolor{comment}{// Number of 64-\/bit words of a 434-\/bit field element}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define NBITS\_ORDER 256}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define NWORDS\_ORDER ((NBITS\_ORDER + RADIX -\/ 1) / RADIX) }\textcolor{comment}{// Number of words of oA and oB, where oA and oB are the subgroup orders of Alice and Bob, resp.}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define NWORDS64\_ORDER ((NBITS\_ORDER + 63) / 64)         }\textcolor{comment}{// Number of 64-\/bit words of a 224-\/bit element}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define MAXBITS\_ORDER NBITS\_ORDER}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define ALICE 0}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define BOB 1}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define OALICE\_BITS 216}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define OBOB\_BITS 218}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define OBOB\_EXPON 137}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define MASK\_ALICE 0xFF}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define MASK\_BOB 0x01}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define PRIME p434}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define PARAM\_A 6}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define PARAM\_C 1}}
+\DoxyCodeLine{46 \textcolor{comment}{// Fixed parameters for isogeny tree computation}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define MAX\_INT\_POINTS\_ALICE 7}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define MAX\_INT\_POINTS\_BOB 8}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#define MAX\_Alice 108}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define MAX\_Bob 137}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#define MSG\_BYTES 16}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define SECRETKEY\_A\_BYTES ((OALICE\_BITS + 7) / 8)}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#define SECRETKEY\_B\_BYTES ((OBOB\_BITS -\/ 1 + 7) / 8)}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define FP2\_ENCODED\_BYTES 2 * ((NBITS\_FIELD + 7) / 8)}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{comment}{// SIDH's basic element definitions and point representations}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{keyword}{typedef} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} \mbox{\hyperlink{_p434__internal_8h_a458650e4389c82f54a11cb9f0b75afd2}{felm\_t}}[\mbox{\hyperlink{_p503__internal__r1_8h_a845fbff3d62178842cd6697c6bff0e88}{NWORDS\_FIELD}}];      \textcolor{comment}{// Datatype for representing 434-\/bit field elements (448-\/bit max.)}}
+\DoxyCodeLine{59 \textcolor{keyword}{typedef} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} \mbox{\hyperlink{_p434__internal_8h_a0a9b40e430ec0717b4266fbe825ef6f6}{dfelm\_t}}[2 * \mbox{\hyperlink{_p503__internal__r1_8h_a845fbff3d62178842cd6697c6bff0e88}{NWORDS\_FIELD}}]; \textcolor{comment}{// Datatype for representing double-\/precision 2x434-\/bit field elements (448-\/bit max.)}}
+\DoxyCodeLine{60 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structfelm__s}{felm\_s}} \{}
+\DoxyCodeLine{61     \mbox{\hyperlink{_p434__internal_8h_a458650e4389c82f54a11cb9f0b75afd2}{felm\_t}} \mbox{\hyperlink{structfelm__s_a7b82fb9a347bc360342b028eaecb028a}{e}}[2];}
+\DoxyCodeLine{62 \} \mbox{\hyperlink{_p434__internal_8h_a129bf71adc2a56efba66b0ffb21894a3}{f2elm\_t}}; \textcolor{comment}{// Datatype for representing quadratic extension field elements GF(p434\string^2)}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{65     \mbox{\hyperlink{structfelm__s}{f2elm\_t}} X;}
+\DoxyCodeLine{66     \mbox{\hyperlink{structfelm__s}{f2elm\_t}} Z;}
+\DoxyCodeLine{67 \} \mbox{\hyperlink{structpoint__proj}{point\_proj}}; \textcolor{comment}{// Point representation in projective XZ Montgomery coordinates.}}
+\DoxyCodeLine{68 \textcolor{keyword}{typedef} \mbox{\hyperlink{structpoint__proj}{point\_proj}} \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}}[1];}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{comment}{/**************** Function prototypes ****************/}}
+\DoxyCodeLine{71 \textcolor{comment}{/************* Multiprecision functions **************/}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{comment}{// Copy wordsize digits, c = a, where lng(a) = nwords}}
+\DoxyCodeLine{74 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_adc2332c660d241ff0a02f501d6ac3012}{copy\_words}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} nwords);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{comment}{// Multiprecision addition, c = a+b, where lng(a) = lng(b) = nwords. Returns the carry bit}}
+\DoxyCodeLine{77 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{_p434__internal_8h_a4401f7c09fd1e9219781e513fcb79359}{mp\_add}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} nwords);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{comment}{// 434-\/bit multiprecision addition, c = a+b}}
+\DoxyCodeLine{80 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a88e73475c824fae4638c40de2f40817a}{mp\_add434\_asm}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{comment}{// Multiprecision subtraction, c = a-\/b, where lng(a) = lng(b) = nwords. Returns the borrow bit}}
+\DoxyCodeLine{83 \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{_p434__internal_8h_a695a1bdbd239590a7f2e7640fae1131d}{mp\_sub}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} nwords);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{comment}{// 2x434-\/bit multiprecision subtraction followed by addition with p434*2\string^448, c = a-\/b+(p434*2\string^448) if a-\/b < 0, otherwise c=a-\/b}}
+\DoxyCodeLine{86 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a97e872b40d3eb65085be147ef359e374}{mp\_subaddx2\_asm}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{87 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a3ccc0194e75794a2a3a09d7b692c4b98}{mp\_subadd434x2\_asm}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{comment}{// Double 2x434-\/bit multiprecision subtraction, c = c-\/a-\/b, where c > a and c > b}}
+\DoxyCodeLine{90 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a5ebee9a202414b8b009dd13faeebb5e2}{mp\_dblsub434x2\_asm}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92 \textcolor{comment}{// Multiprecision right shift by one}}
+\DoxyCodeLine{93 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a95cc5c62f07490dd1dd1310723fb8b0c}{mp\_shiftr1}}(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *x, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} nwords);}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{comment}{// Digit multiplication, digit * digit -\/> 2-\/digit result}}
+\DoxyCodeLine{96 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a3da4a7c5fab5cdf5f87a96861bf227d4}{digit\_x\_digit}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{comment}{// Multiprecision comba multiply, c = a*b, where lng(a) = lng(b) = nwords.}}
+\DoxyCodeLine{99 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a975d9b2adad9084bcb435e636fc780bd}{mp\_mul}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} nwords);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{comment}{/************ Field arithmetic functions *************/}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{comment}{// Copy of a field element, c = a}}
+\DoxyCodeLine{104 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a9aa2ab3aa3f12509a88e093d0e5f77ca}{fpcopy434}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{comment}{// Zeroing a field element, a = 0}}
+\DoxyCodeLine{107 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a08ba2d3930336c07ad060154b572e9e7}{fpzero434}}(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \textcolor{comment}{// Modular addition, c = a+b mod p434}}
+\DoxyCodeLine{110 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a138926301287ead4a0fa56e3cfd1071b}{fpadd434}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{111 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_aa93df39a32a697804f8910c15b840625}{fpadd434\_asm}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{comment}{// Modular subtraction, c = a-\/b mod p434}}
+\DoxyCodeLine{114 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_ac77537af5a1490b51df8efccb1ac058a}{fpsub434}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{115 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a594bbe13d686898a20aeacaa3f7c08ba}{fpsub434\_asm}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \textcolor{comment}{// Modular negation, a = -\/a mod p434}}
+\DoxyCodeLine{118 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a8fbbe2e2fb1177609ae4c8c71d755c31}{fpneg434}}(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \textcolor{comment}{// Modular division by two, c = a/2 mod p434.}}
+\DoxyCodeLine{121 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a01c5815b73963b73ecb3350313617592}{fpdiv2\_434}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 \textcolor{comment}{// Modular correction to reduce field element a in [0, 2*p434-\/1] to [0, p434-\/1].}}
+\DoxyCodeLine{124 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_ada8e6d35cf5279e71d21db14ccdcdd6c}{fpcorrection434}}(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{comment}{// 434-\/bit Montgomery reduction, c = a mod p}}
+\DoxyCodeLine{127 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a5da290326f267b4beb7dd3324d628797}{rdc\_mont}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 \textcolor{comment}{// Field multiplication using Montgomery arithmetic, c = a*b*R\string^-\/1 mod p434, where R=2\string^768}}
+\DoxyCodeLine{130 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a3bc08df4dc35cd0fa34ee9d950307c56}{fpmul434\_mont}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{131 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_adf25260774ef99c5734bad61c9d79131}{mul434\_asm}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{132 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a87c02379bb3103e89fa17fb4889e8fa9}{rdc434\_asm}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *ma, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *mc);}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{comment}{// Field squaring using Montgomery arithmetic, c = a*b*R\string^-\/1 mod p434, where R=2\string^768}}
+\DoxyCodeLine{135 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a20d71da95dad9d8cccb8e0830c31f694}{fpsqr434\_mont}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *ma, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *mc);}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{comment}{// Conversion to Montgomery representation}}
+\DoxyCodeLine{138 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a2575d82765470ae6ce38416791a59ac4}{to\_mont}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *mc);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140 \textcolor{comment}{// Conversion from Montgomery representation to standard representation}}
+\DoxyCodeLine{141 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a82e0c7622470de31cb313e19550ba687}{from\_mont}}(\textcolor{keyword}{const} \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *ma, \mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *c);}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \textcolor{comment}{// Field inversion, a = a\string^-\/1 in GF(p434)}}
+\DoxyCodeLine{144 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_ac571d1897bda5fce772bbca841be4c20}{fpinv434\_mont}}(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{comment}{// Chain to compute (p434-\/3)/4 using Montgomery arithmetic}}
+\DoxyCodeLine{147 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_ad963fda378665dd3937070f1b9b19792}{fpinv434\_chain\_mont}}(\mbox{\hyperlink{config__r1_8h_a06a90bea40a7022c26f3893bac12c47f}{digit\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \textcolor{comment}{/************ GF(p\string^2) arithmetic functions *************/}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{comment}{// Copy of a GF(p434\string^2) element, c = a}}
+\DoxyCodeLine{152 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_abc9bd52c7913159fe3137ecbeca948cd}{fp2copy434}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *c);}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{comment}{// Zeroing a GF(p434\string^2) element, a = 0}}
+\DoxyCodeLine{155 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_ac43a306c3f8647322b62c4114d3102ee}{fp2zero434}}(\mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{comment}{// GF(p434\string^2) negation, a = -\/a in GF(p434\string^2)}}
+\DoxyCodeLine{158 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a0c770ae646b338b353d2780abd9dc42d}{fp2neg434}}(\mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 \textcolor{comment}{// GF(p434\string^2) addition, c = a+b in GF(p434\string^2)}}
+\DoxyCodeLine{161 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a91da8cbdb8b95bc5f6bf2eccb3ef9e1a}{fp2add434}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *c);}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{comment}{// GF(p434\string^2) subtraction, c = a-\/b in GF(p434\string^2)}}
+\DoxyCodeLine{164 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a8a0c9c46cb662f7899dee3b73e04f2c5}{fp2sub434}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *c);}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{comment}{// GF(p434\string^2) division by two, c = a/2  in GF(p434\string^2)}}
+\DoxyCodeLine{167 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a7a495455cfe701b826ad4bbb4c9bd5dc}{fp2div2\_434}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *c);}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{comment}{// Modular correction, a = a in GF(p434\string^2)}}
+\DoxyCodeLine{170 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a704c920202c0780b6c48c6af6c836547}{fp2correction434}}(\mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 \textcolor{comment}{// GF(p434\string^2) squaring using Montgomery arithmetic, c = a\string^2 in GF(p434\string^2)}}
+\DoxyCodeLine{173 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_ac20bf5728e01d8f6330dd898e7b4d2ad}{fp2sqr434\_mont}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *c);}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \textcolor{comment}{// GF(p434\string^2) multiplication using Montgomery arithmetic, c = a*b in GF(p434\string^2)}}
+\DoxyCodeLine{176 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a35247c0ada7de8ffb29f8b63e838dccb}{fp2mul434\_mont}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *c);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 \textcolor{comment}{// Conversion of a GF(p434\string^2) element to Montgomery representation}}
+\DoxyCodeLine{179 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_aec71937808787b7d4dfc8dbdaaf9c2ee}{to\_fp2mont}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *mc);}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{comment}{// Conversion of a GF(p434\string^2) element from Montgomery representation to standard representation}}
+\DoxyCodeLine{182 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_acff480537063a5f8d0860c385f058240}{from\_fp2mont}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *ma, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *c);}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{// GF(p434\string^2) inversion using Montgomery arithmetic, a = (a0-\/i*a1)/(a0\string^2+a1\string^2)}}
+\DoxyCodeLine{185 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_af72927e608d87e66cb37b7d6b668aeaa}{fp2inv434\_mont}}(\mbox{\hyperlink{structfelm__s}{f2elm\_t}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{comment}{/************ Elliptic curve and isogeny functions *************/}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189 \textcolor{comment}{// Computes the j-\/invariant of a Montgomery curve with projective constant.}}
+\DoxyCodeLine{190 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a99b8bedd0700ebd264b945c6f2742b89}{j\_inv}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *C, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *jinv);}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 \textcolor{comment}{// Simultaneous doubling and differential addition.}}
+\DoxyCodeLine{193 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a5d41ec76b1fd032e9e72c9457fb5fd93}{xDBLADD}}(\mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} P, \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} Q, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *xPQ, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24);}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 \textcolor{comment}{// Doubling of a Montgomery point in projective coordinates (X:Z).}}
+\DoxyCodeLine{196 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a2e8a14a276756f945b9430545c4ccdd5}{xDBL}}(\textcolor{keyword}{const} \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} P, \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} Q, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24plus, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *C24);}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198 \textcolor{comment}{// Computes [2\string^e](X:Z) on Montgomery curve with projective constant via e repeated doublings.}}
+\DoxyCodeLine{199 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a0af163b2f032552adab968c0a2e8d980}{xDBLe}}(\textcolor{keyword}{const} \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} P, \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} Q, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24plus, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *C24, \textcolor{keyword}{const} \textcolor{keywordtype}{int} e);}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201 \textcolor{comment}{// Computes the corresponding 4-\/isogeny of a projective Montgomery point (X4:Z4) of order 4.}}
+\DoxyCodeLine{202 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a6ea6c3008ce3a2b53964e1d35a2f998e}{get\_4\_isog}}(\textcolor{keyword}{const} \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} P, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24plus, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *C24, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *coeff);}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 \textcolor{comment}{// Evaluates the isogeny at the point (X:Z) in the domain of the isogeny.}}
+\DoxyCodeLine{205 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_ae522f86af71923008924225cbaf8045e}{eval\_4\_isog}}(\mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} P, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *coeff);}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207 \textcolor{comment}{// Tripling of a Montgomery point in projective coordinates (X:Z).}}
+\DoxyCodeLine{208 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_aaf5528f07c3ed0afb9397455a162f231}{xTPL}}(\textcolor{keyword}{const} \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} P, \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} Q, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24minus, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24plus);}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 \textcolor{comment}{// Computes [3\string^e](X:Z) on Montgomery curve with projective constant via e repeated triplings.}}
+\DoxyCodeLine{211 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a0a25bfa808c905790bf92edeff08a9e7}{xTPLe}}(\textcolor{keyword}{const} \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} P, \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} Q, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24minus, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24plus, \textcolor{keyword}{const} \textcolor{keywordtype}{int} e);}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{comment}{// Computes the corresponding 3-\/isogeny of a projective Montgomery point (X3:Z3) of order 3.}}
+\DoxyCodeLine{214 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_aa553a59f8cf6bf24efb9b5225b704444}{get\_3\_isog}}(\textcolor{keyword}{const} \mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} P, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24minus, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A24plus, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *coeff);}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 \textcolor{comment}{// Computes the 3-\/isogeny R=phi(X:Z), given projective point (X3:Z3) of order 3 on a Montgomery curve and a point P with coefficients given in coeff.}}
+\DoxyCodeLine{217 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a722978951f269ca7d8fac5e04caf18df}{eval\_3\_isog}}(\mbox{\hyperlink{_p434__internal_8h_a260151e10dd99dcc81d250fdd43b7a94}{point\_proj\_t}} Q, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *coeff);}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219 \textcolor{comment}{// 3-\/way simultaneous inversion}}
+\DoxyCodeLine{220 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_aae7e38501ea90f1b994f37c048ac5320}{inv\_3\_way}}(\mbox{\hyperlink{structfelm__s}{f2elm\_t}} *z1, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *z2, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *z3);}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222 \textcolor{comment}{// Given the x-\/coordinates of P, Q, and R, returns the value A corresponding to the Montgomery curve E\_A: y\string^2=x\string^3+A*x\string^2+x such that R=Q-\/P on E\_A.}}
+\DoxyCodeLine{223 \textcolor{keywordtype}{void} \mbox{\hyperlink{_p434__internal_8h_a651332713aab84fd057c0b6eb10cebc5}{get\_A}}(\textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *xP, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *xQ, \textcolor{keyword}{const} \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *xR, \mbox{\hyperlink{structfelm__s}{f2elm\_t}} *A);}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

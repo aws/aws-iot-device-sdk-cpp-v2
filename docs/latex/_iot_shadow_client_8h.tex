@@ -1,0 +1,57 @@
+\hypertarget{_iot_shadow_client_8h}{}\doxysection{shadow/include/aws/iotshadow/\+Iot\+Shadow\+Client.h File Reference}
+\label{_iot_shadow_client_8h}\index{shadow/include/aws/iotshadow/IotShadowClient.h@{shadow/include/aws/iotshadow/IotShadowClient.h}}
+{\ttfamily \#include $<$aws/iotshadow/\+Exports.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/\+Stl\+Allocator.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/\+Types.\+h$>$}\newline
+{\ttfamily \#include $<$aws/crt/mqtt/\+Mqtt\+Client.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_iot_shadow_client}{Aws\+::\+Iotshadow\+::\+Iot\+Shadow\+Client}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_aws}{Aws}}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_iotshadow}{Aws\+::\+Iotshadow}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+Complete}} = std\+::function$<$ void(int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6de052281b1162068086d9e849876cea}{Aws\+::\+Iotshadow\+::\+On\+Publish\+Complete}} = std\+::function$<$ void(int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a28f19d65c4e0380e871d8f9e87248c16}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Delete\+Named\+Shadow\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_error_response}{Aws\+::\+Iotshadow\+::\+Error\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a139b099f69a2c51dc8fcd18ad5247ecb}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Get\+Named\+Shadow\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_get_shadow_response}{Aws\+::\+Iotshadow\+::\+Get\+Shadow\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a32fd2ebf609e176633091bde7d232f95}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Shadow\+Delta\+Updated\+Events\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_delta_updated_event}{Aws\+::\+Iotshadow\+::\+Shadow\+Delta\+Updated\+Event}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a7c2cb8be1d72beb71e22fd166a108826}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Delete\+Shadow\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_delete_shadow_response}{Aws\+::\+Iotshadow\+::\+Delete\+Shadow\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_aa9a7ab23f90f77d0223094f0f41f85c7}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Update\+Named\+Shadow\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_update_shadow_response}{Aws\+::\+Iotshadow\+::\+Update\+Shadow\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a4e8c00d1d21e2ca061f426446692bacb}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Delete\+Named\+Shadow\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_delete_shadow_response}{Aws\+::\+Iotshadow\+::\+Delete\+Shadow\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_ab49bb875bde199437974e54f223b6544}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Update\+Shadow\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_update_shadow_response}{Aws\+::\+Iotshadow\+::\+Update\+Shadow\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a9e6686c3c64c9dca780520603565d8db}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Update\+Shadow\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_error_response}{Aws\+::\+Iotshadow\+::\+Error\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_aa71693063dddb3f8db651bd7a94d64aa}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Delete\+Shadow\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_error_response}{Aws\+::\+Iotshadow\+::\+Error\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a8f18ac029fc0beec5affff2d1a8770f7}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Update\+Named\+Shadow\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_error_response}{Aws\+::\+Iotshadow\+::\+Error\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a1ecb26554a893e56aa70183cb4188a45}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Named\+Shadow\+Updated\+Events\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_updated_event}{Aws\+::\+Iotshadow\+::\+Shadow\+Updated\+Event}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a7351bc44c298db5fdbbb9ad4b36d3213}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Get\+Shadow\+Accepted\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_get_shadow_response}{Aws\+::\+Iotshadow\+::\+Get\+Shadow\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_af782f0c4119ba963357943b75dc80633}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Shadow\+Updated\+Events\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_updated_event}{Aws\+::\+Iotshadow\+::\+Shadow\+Updated\+Event}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a477c7df07cf6d16244a60faeb49b48cb}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Named\+Shadow\+Delta\+Updated\+Events\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_delta_updated_event}{Aws\+::\+Iotshadow\+::\+Shadow\+Delta\+Updated\+Event}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_ae960873a7020c89de0b137cb2a513e68}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Get\+Named\+Shadow\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_error_response}{Aws\+::\+Iotshadow\+::\+Error\+Response}} $\ast$, int io\+Err)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a88cbf504a1c56209adbea7883d59bee2}{Aws\+::\+Iotshadow\+::\+On\+Subscribe\+To\+Get\+Shadow\+Rejected\+Response}} = std\+::function$<$ void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_error_response}{Aws\+::\+Iotshadow\+::\+Error\+Response}} $\ast$, int io\+Err)$>$
+\end{DoxyCompactItemize}

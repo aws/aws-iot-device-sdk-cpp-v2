@@ -1,0 +1,18 @@
+\hypertarget{socket__channel__handler_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/socket\+\_\+channel\+\_\+handler.h File Reference}
+\label{socket__channel__handler_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/socket\_channel\_handler.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/socket\_channel\_handler.h}}
+{\ttfamily \#include $<$aws/io/io.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{socket__channel__handler_8h_a5ac2af1b20dbab5ac8db15bf350c6724}{aws\+\_\+socket\+\_\+handler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t max\+\_\+read\+\_\+size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{socket__channel__handler_8h_a5ac2af1b20dbab5ac8db15bf350c6724}\label{socket__channel__handler_8h_a5ac2af1b20dbab5ac8db15bf350c6724}} 
+\index{socket\_channel\_handler.h@{socket\_channel\_handler.h}!aws\_socket\_handler\_new@{aws\_socket\_handler\_new}}
+\index{aws\_socket\_handler\_new@{aws\_socket\_handler\_new}!socket\_channel\_handler.h@{socket\_channel\_handler.h}}
+\doxysubsubsection{\texorpdfstring{aws\_socket\_handler\_new()}{aws\_socket\_handler\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}}$\ast$ aws\+\_\+socket\+\_\+handler\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{size\+\_\+t}]{max\+\_\+read\+\_\+size }\end{DoxyParamCaption})}
+
+Socket handlers should be the first slot/handler in a channel. It interacts directly with the channel\textquotesingle{}s event loop for read and write notifications. max\+\_\+read\+\_\+size is the maximum amount of data it will read from the socket before a context switch (a continuation task will be scheduled). 

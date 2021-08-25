@@ -1,0 +1,58 @@
+\hypertarget{structaws__signable}{}\doxysection{aws\+\_\+signable Struct Reference}
+\label{structaws__signable}\index{aws\_signable@{aws\_signable}}
+
+
+{\ttfamily \#include $<$signable.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__signable_a12abf74d566b63ca93c81ce8b53a3360}{allocator}}
+\item 
+void $\ast$ \mbox{\hyperlink{structaws__signable_a48af31c1399921e8e65c7ccf201f8daa}{impl}}
+\item 
+struct \mbox{\hyperlink{structaws__signable__vtable}{aws\+\_\+signable\+\_\+vtable}} $\ast$ \mbox{\hyperlink{structaws__signable_ab11ba74e9e59d3edf477180c4812d484}{vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Signable is a generic interface for any kind of object that can be cryptographically signed.
+
+Like signing\+\_\+result, the signable interface presents
+
+(1) Properties -\/ A set of key-\/value pairs (2) Property Lists -\/ A set of named key-\/value pair lists
+
+as well as
+
+(3) A message payload modeled as a stream
+
+When creating a signable \char`\"{}subclass\char`\"{} the query interface should map to retrieving the properties of the underlying object needed by signing algorithms that can operate on it.
+
+As an example, if a signable implementation wrapped an http request, you would query request elements like method and uri from the property interface, headers would be queried via the property list interface, and the request body would map to the payload stream.
+
+String constants that map to agreed on keys for particular signable types (\char`\"{}\+METHOD\char`\"{}, \char`\"{}\+URI\char`\"{}, \char`\"{}\+HEADERS\char`\"{}, etc...) are exposed in appropriate header files. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__signable_a12abf74d566b63ca93c81ce8b53a3360}\label{structaws__signable_a12abf74d566b63ca93c81ce8b53a3360}} 
+\index{aws\_signable@{aws\_signable}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_signable@{aws\_signable}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+signable\+::allocator}
+
+\mbox{\Hypertarget{structaws__signable_a48af31c1399921e8e65c7ccf201f8daa}\label{structaws__signable_a48af31c1399921e8e65c7ccf201f8daa}} 
+\index{aws\_signable@{aws\_signable}!impl@{impl}}
+\index{impl@{impl}!aws\_signable@{aws\_signable}}
+\doxysubsubsection{\texorpdfstring{impl}{impl}}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+signable\+::impl}
+
+\mbox{\Hypertarget{structaws__signable_ab11ba74e9e59d3edf477180c4812d484}\label{structaws__signable_ab11ba74e9e59d3edf477180c4812d484}} 
+\index{aws\_signable@{aws\_signable}!vtable@{vtable}}
+\index{vtable@{vtable}!aws\_signable@{aws\_signable}}
+\doxysubsubsection{\texorpdfstring{vtable}{vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__signable__vtable}{aws\+\_\+signable\+\_\+vtable}}$\ast$ aws\+\_\+signable\+::vtable}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/include/aws/auth/\mbox{\hyperlink{signable_8h}{signable.\+h}}\end{DoxyCompactItemize}

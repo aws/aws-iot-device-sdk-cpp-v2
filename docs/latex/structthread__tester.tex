@@ -1,0 +1,162 @@
+\hypertarget{structthread__tester}{}\doxysection{thread\+\_\+tester Struct Reference}
+\label{structthread__tester}\index{thread\_tester@{thread\_tester}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1a8f356f389b2bb7d060888216d023b54d}{TIMER\+\_\+\+NOT\+\_\+\+SET}}
+, \mbox{\hyperlink{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1a8425744c4454f718fa1d218df9171472}{TIMER\+\_\+\+WAITING}}
+, \mbox{\hyperlink{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1ac6e6d05433d3daf00bdf7431e19d2e55}{TIMER\+\_\+\+DONE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structthread__tester_a5c42a9a8bffb50b0d4b1d79da8044edc}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{structthread__tester_a684d2aa60e6649fe1c08ea7653b2629f}{event\+\_\+loop}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structthread__tester_aab00cd5a95267ac51a9d40712eefe849}{done}}
+\item 
+int \mbox{\hyperlink{structthread__tester_aee21f515844c32eadc722cb9527926cd}{error\+\_\+code}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structthread__tester_a64b5fc9009285f44a737f657d32abb25}{mutex}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structthread__tester_ad971de3fde69ff90424d612f0336208a}{condition\+\_\+variable}}
+\item 
+\mbox{\hyperlink{event__loop__test_8c_a19a9cac772a52cb6a383a85d0898b516}{thread\+\_\+tester\+\_\+state\+\_\+fn}} $\ast$$\ast$ \mbox{\hyperlink{structthread__tester_a7de1fe99eab87518219e3576e0b31353}{state\+\_\+functions}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structthread__tester_ac46b9809958acd02c9247b400eb00d73}{current\+\_\+state}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structthread__tester_a38939cb8c443ebd3130017088b0368b6}{last\+\_\+printed\+\_\+state}}
+\item 
+struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} \mbox{\hyperlink{structthread__tester_ab9abdaff64aa73a451296df9050b89ef}{read\+\_\+handle}}
+\item 
+struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} \mbox{\hyperlink{structthread__tester_aca50c894e2ea5072104e7855e33487fb}{write\+\_\+handle}}
+\item 
+int \mbox{\hyperlink{structthread__tester_ae4506144c8a582be694062207b80c2b6}{read\+\_\+handle\+\_\+event\+\_\+counts}} \mbox{[}\mbox{\hyperlink{preamble_8h_a11a96bcf7126a70e595868479d447758a65ff1919d17af1e4d731f6370ccd6906}{AWS\+\_\+\+IO\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+ERROR}}+1\mbox{]}
+\item 
+int \mbox{\hyperlink{structthread__tester_a5894b5f4a464972a80c129595c1c64c9}{write\+\_\+handle\+\_\+event\+\_\+counts}} \mbox{[}\mbox{\hyperlink{preamble_8h_a11a96bcf7126a70e595868479d447758a65ff1919d17af1e4d731f6370ccd6906}{AWS\+\_\+\+IO\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+ERROR}}+1\mbox{]}
+\item 
+enum thread\+\_\+tester\+:: \{ ... \}  \mbox{\hyperlink{structthread__tester_ae2186454fecdc050e4ebe198dad12a29}{timer\+\_\+state}}
+\item 
+struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} \mbox{\hyperlink{structthread__tester_a66a812e9c5c23362cd98ff5d04b9e96d}{timer\+\_\+task}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1}\label{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TIMER\_NOT\_SET@{TIMER\_NOT\_SET}!thread\_tester@{thread\_tester}}\index{thread\_tester@{thread\_tester}!TIMER\_NOT\_SET@{TIMER\_NOT\_SET}}}\mbox{\Hypertarget{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1a8f356f389b2bb7d060888216d023b54d}\label{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1a8f356f389b2bb7d060888216d023b54d}} 
+TIMER\+\_\+\+NOT\+\_\+\+SET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TIMER\_WAITING@{TIMER\_WAITING}!thread\_tester@{thread\_tester}}\index{thread\_tester@{thread\_tester}!TIMER\_WAITING@{TIMER\_WAITING}}}\mbox{\Hypertarget{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1a8425744c4454f718fa1d218df9171472}\label{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1a8425744c4454f718fa1d218df9171472}} 
+TIMER\+\_\+\+WAITING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TIMER\_DONE@{TIMER\_DONE}!thread\_tester@{thread\_tester}}\index{thread\_tester@{thread\_tester}!TIMER\_DONE@{TIMER\_DONE}}}\mbox{\Hypertarget{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1ac6e6d05433d3daf00bdf7431e19d2e55}\label{structthread__tester_a728c09bfcc5ad1c1ef3f360efd1f2cc1ac6e6d05433d3daf00bdf7431e19d2e55}} 
+TIMER\+\_\+\+DONE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structthread__tester_a5c42a9a8bffb50b0d4b1d79da8044edc}\label{structthread__tester_a5c42a9a8bffb50b0d4b1d79da8044edc}} 
+\index{thread\_tester@{thread\_tester}!alloc@{alloc}}
+\index{alloc@{alloc}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ thread\+\_\+tester\+::alloc}
+
+\mbox{\Hypertarget{structthread__tester_ad971de3fde69ff90424d612f0336208a}\label{structthread__tester_ad971de3fde69ff90424d612f0336208a}} 
+\index{thread\_tester@{thread\_tester}!condition\_variable@{condition\_variable}}
+\index{condition\_variable@{condition\_variable}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{condition\_variable}{condition\_variable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} thread\+\_\+tester\+::condition\+\_\+variable}
+
+\mbox{\Hypertarget{structthread__tester_ac46b9809958acd02c9247b400eb00d73}\label{structthread__tester_ac46b9809958acd02c9247b400eb00d73}} 
+\index{thread\_tester@{thread\_tester}!current\_state@{current\_state}}
+\index{current\_state@{current\_state}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{current\_state}{current\_state}}
+{\footnotesize\ttfamily size\+\_\+t thread\+\_\+tester\+::current\+\_\+state}
+
+\mbox{\Hypertarget{structthread__tester_aab00cd5a95267ac51a9d40712eefe849}\label{structthread__tester_aab00cd5a95267ac51a9d40712eefe849}} 
+\index{thread\_tester@{thread\_tester}!done@{done}}
+\index{done@{done}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{done}{done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} thread\+\_\+tester\+::done}
+
+\mbox{\Hypertarget{structthread__tester_aee21f515844c32eadc722cb9527926cd}\label{structthread__tester_aee21f515844c32eadc722cb9527926cd}} 
+\index{thread\_tester@{thread\_tester}!error\_code@{error\_code}}
+\index{error\_code@{error\_code}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{error\_code}{error\_code}}
+{\footnotesize\ttfamily int thread\+\_\+tester\+::error\+\_\+code}
+
+\mbox{\Hypertarget{structthread__tester_a684d2aa60e6649fe1c08ea7653b2629f}\label{structthread__tester_a684d2aa60e6649fe1c08ea7653b2629f}} 
+\index{thread\_tester@{thread\_tester}!event\_loop@{event\_loop}}
+\index{event\_loop@{event\_loop}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{event\_loop}{event\_loop}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ thread\+\_\+tester\+::event\+\_\+loop}
+
+\mbox{\Hypertarget{structthread__tester_a38939cb8c443ebd3130017088b0368b6}\label{structthread__tester_a38939cb8c443ebd3130017088b0368b6}} 
+\index{thread\_tester@{thread\_tester}!last\_printed\_state@{last\_printed\_state}}
+\index{last\_printed\_state@{last\_printed\_state}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{last\_printed\_state}{last\_printed\_state}}
+{\footnotesize\ttfamily size\+\_\+t thread\+\_\+tester\+::last\+\_\+printed\+\_\+state}
+
+\mbox{\Hypertarget{structthread__tester_a64b5fc9009285f44a737f657d32abb25}\label{structthread__tester_a64b5fc9009285f44a737f657d32abb25}} 
+\index{thread\_tester@{thread\_tester}!mutex@{mutex}}
+\index{mutex@{mutex}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} thread\+\_\+tester\+::mutex}
+
+\mbox{\Hypertarget{structthread__tester_ab9abdaff64aa73a451296df9050b89ef}\label{structthread__tester_ab9abdaff64aa73a451296df9050b89ef}} 
+\index{thread\_tester@{thread\_tester}!read\_handle@{read\_handle}}
+\index{read\_handle@{read\_handle}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{read\_handle}{read\_handle}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} thread\+\_\+tester\+::read\+\_\+handle}
+
+\mbox{\Hypertarget{structthread__tester_ae4506144c8a582be694062207b80c2b6}\label{structthread__tester_ae4506144c8a582be694062207b80c2b6}} 
+\index{thread\_tester@{thread\_tester}!read\_handle\_event\_counts@{read\_handle\_event\_counts}}
+\index{read\_handle\_event\_counts@{read\_handle\_event\_counts}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{read\_handle\_event\_counts}{read\_handle\_event\_counts}}
+{\footnotesize\ttfamily int thread\+\_\+tester\+::read\+\_\+handle\+\_\+event\+\_\+counts\mbox{[}\mbox{\hyperlink{preamble_8h_a11a96bcf7126a70e595868479d447758a65ff1919d17af1e4d731f6370ccd6906}{AWS\+\_\+\+IO\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+ERROR}}+1\mbox{]}}
+
+\mbox{\Hypertarget{structthread__tester_a7de1fe99eab87518219e3576e0b31353}\label{structthread__tester_a7de1fe99eab87518219e3576e0b31353}} 
+\index{thread\_tester@{thread\_tester}!state\_functions@{state\_functions}}
+\index{state\_functions@{state\_functions}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{state\_functions}{state\_functions}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__loop__test_8c_a19a9cac772a52cb6a383a85d0898b516}{thread\+\_\+tester\+\_\+state\+\_\+fn}}$\ast$$\ast$ thread\+\_\+tester\+::state\+\_\+functions}
+
+\mbox{\Hypertarget{structthread__tester_ae2186454fecdc050e4ebe198dad12a29}\label{structthread__tester_ae2186454fecdc050e4ebe198dad12a29}} 
+\index{thread\_tester@{thread\_tester}!timer\_state@{timer\_state}}
+\index{timer\_state@{timer\_state}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily enum  \{ ... \}  thread\+\_\+tester\+::timer\+\_\+state}
+
+\mbox{\Hypertarget{structthread__tester_a66a812e9c5c23362cd98ff5d04b9e96d}\label{structthread__tester_a66a812e9c5c23362cd98ff5d04b9e96d}} 
+\index{thread\_tester@{thread\_tester}!timer\_task@{timer\_task}}
+\index{timer\_task@{timer\_task}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{timer\_task}{timer\_task}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} thread\+\_\+tester\+::timer\+\_\+task}
+
+\mbox{\Hypertarget{structthread__tester_aca50c894e2ea5072104e7855e33487fb}\label{structthread__tester_aca50c894e2ea5072104e7855e33487fb}} 
+\index{thread\_tester@{thread\_tester}!write\_handle@{write\_handle}}
+\index{write\_handle@{write\_handle}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{write\_handle}{write\_handle}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} thread\+\_\+tester\+::write\+\_\+handle}
+
+\mbox{\Hypertarget{structthread__tester_a5894b5f4a464972a80c129595c1c64c9}\label{structthread__tester_a5894b5f4a464972a80c129595c1c64c9}} 
+\index{thread\_tester@{thread\_tester}!write\_handle\_event\_counts@{write\_handle\_event\_counts}}
+\index{write\_handle\_event\_counts@{write\_handle\_event\_counts}!thread\_tester@{thread\_tester}}
+\doxysubsubsection{\texorpdfstring{write\_handle\_event\_counts}{write\_handle\_event\_counts}}
+{\footnotesize\ttfamily int thread\+\_\+tester\+::write\+\_\+handle\+\_\+event\+\_\+counts\mbox{[}\mbox{\hyperlink{preamble_8h_a11a96bcf7126a70e595868479d447758a65ff1919d17af1e4d731f6370ccd6906}{AWS\+\_\+\+IO\+\_\+\+EVENT\+\_\+\+TYPE\+\_\+\+ERROR}}+1\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/\mbox{\hyperlink{event__loop__test_8c}{event\+\_\+loop\+\_\+test.\+c}}\end{DoxyCompactItemize}

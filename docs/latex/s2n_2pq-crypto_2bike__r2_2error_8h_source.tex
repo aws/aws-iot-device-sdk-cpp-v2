@@ -1,0 +1,42 @@
+\hypertarget{s2n_2pq-crypto_2bike__r2_2error_8h_source}{}\doxysection{error.\+h}
+\label{s2n_2pq-crypto_2bike__r2_2error_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/error.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/error.h}}
+\mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{2 \textcolor{comment}{ * SPDX-\/License-\/Identifier: Apache-\/2.0"{}}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Written by Nir Drucker and Shay Gueron}}
+\DoxyCodeLine{5 \textcolor{comment}{ * AWS Cryptographic Algorithms Group.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * (ndrucker@amazon.com, gueron@amazon.com)}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{bike__r2_2defs_8h}{defs.h}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define SUCCESS 0}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define FAIL    (-\/1)}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define ret\_t int}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{enum} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4d}{\_bike\_err}}}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20   \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4daad941c7099d3295946b56aa167aae84a}{E\_ERROR\_WEIGHT\_IS\_NOT\_T}}    = 1,}
+\DoxyCodeLine{21   \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4daccb02cea607f8fe93d0a983995e546ab}{E\_DECODING\_FAILURE}}         = 2,}
+\DoxyCodeLine{22   \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4da17db25cb72a691c30dbf807413c8d5d8}{E\_AES\_CTR\_PRF\_INIT\_FAIL}}    = 3,}
+\DoxyCodeLine{23   \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4da25654a8c664fd1c7c9149f3038ca41e4}{E\_AES\_OVER\_USED}}            = 4,}
+\DoxyCodeLine{24   \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4daea0e29ca080099a04169f1e9182357b0}{EXTERNAL\_LIB\_ERROR\_OPENSSL}} = 5,}
+\DoxyCodeLine{25   \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4da52b298adf78a0fc3f39e15649a88cafc}{E\_FAIL\_TO\_GET\_SEED}}         = 6}
+\DoxyCodeLine{26 \};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a16e0968bf2b44ba99b9a308421014f4d}{\_bike\_err}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a930cea7a9ea0748bcb57d8bfcc4044d2}{\_bike\_err\_t}};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{keyword}{extern} \_\_thread \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_a930cea7a9ea0748bcb57d8bfcc4044d2}{\_bike\_err\_t}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2error_8h_aefe901706e00a2405c73bcd92e47546c}{bike\_errno}};}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define BIKE\_ERROR(x) \(\backslash\)}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{  do                  \(\backslash\)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{  \{                   \(\backslash\)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{    bike\_errno = (x); \(\backslash\)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{    return FAIL;      \(\backslash\)}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{  \} while(0)}}
+
+\end{DoxyCode}

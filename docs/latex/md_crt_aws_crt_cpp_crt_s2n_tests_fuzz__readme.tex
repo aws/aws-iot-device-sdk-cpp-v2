@@ -1,0 +1,59 @@
+By default, every test in this directory will be run as a fuzz test for several minutes each during builds. To run all fuzz tests simply run {\ttfamily make fuzz} from the top {\ttfamily s2n} directory to compile s2n with the proper flags and run the fuzz tests. To run a specific subset of fuzz tests, simply set the FUZZ\+\_\+\+TESTS variable as follows\+:
+
+\begin{quote}
+FUZZ\+\_\+\+TESTS=\char`\"{}test1 test2 test3\char`\"{} \end{quote}
+\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md541}{}\doxysubsubsection{Each Fuzz Test should conform to the following rules\+:}\label{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md541}
+
+\begin{DoxyEnumerate}
+\item End in either {\ttfamily $\ast$\+\_\+test.c} or {\ttfamily $\ast$\+\_\+negative\+\_\+test.c}.
+\begin{DoxyEnumerate}
+\item If the test ends with {\ttfamily $\ast$\+\_\+test.c}, it is expected to pass fuzzing and return 0 (hereafter referred to as a \char`\"{}\+Positive test\char`\"{})
+\item If the test ends with {\ttfamily $\ast$\+\_\+negative\+\_\+test.c} the test is expected to fail in some way or return a non-\/zero integer (hereafter referred to as a \char`\"{}\+Negative test\char`\"{}).
+\end{DoxyEnumerate}
+\item Strive to be deterministic (Eg. shouldn\textquotesingle{}t depend on the time or on the output of a RNG). Each test should either always pass if a Positive Test, or always fail if a Negative Test.
+\item If a Positive Fuzz test, it should have a non-\/empty corpus directory with inputs that have a relatively high branch coverage.
+\item Have a function {\ttfamily int \mbox{\hyperlink{s2n__tls13__cert__verify__recv__test_8c_a5c744bf12003a56df6b3f724c357ba2e}{s2n\+\_\+fuzz\+\_\+init(int $\ast$argc, char $\ast$$\ast$argv\mbox{[}$\,$\mbox{]})}}} that will perform any initialization that will be run only once at startup.
+\item Have a function {\ttfamily int \mbox{\hyperlink{s2n__tls13__server__finished__recv__test_8c_a5480e6808a29ceb2b848a5eef329a1de}{s2n\+\_\+fuzz\+\_\+test(const uint8\+\_\+t $\ast$buf, size\+\_\+t len)}}} that will pass {\ttfamily buf} to one of s2n\textquotesingle{}s API\textquotesingle{}s
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Optionally add a function {\ttfamily void \mbox{\hyperlink{s2n__cert__req__recv__test_8c_aca6f8aa594d2cdc1ff15d51509eb0d9e}{s2n\+\_\+fuzz\+\_\+cleanup()}}} which cleans up any global state.
+\item Call {\ttfamily \mbox{\hyperlink{s2n__test_8h_a672d26e9fe029bc0edf1e96c85fa0ef0}{S2\+N\+\_\+\+FUZZ\+\_\+\+TARGET(s2n\+\_\+fuzz\+\_\+init, s2n\+\_\+fuzz\+\_\+test, s2n\+\_\+fuzz\+\_\+cleanup)}}} at the bottom of the test to initialize the fuzz target
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md542}{}\doxysection{Fuzz Test Coverage}\label{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md542}
+To generate coverage reports for fuzz tests, simply set the FUZZ\+\_\+\+COVERAGE environment variable to any non-\/null value and run {\ttfamily make fuzz}. This will report the target function coverage and overall S2N coverage when running the tests. In order to define target functions for a fuzz test, simply add the following line to your fuzz test below the copyright notice\+:
+
+\begin{quote}
+/$\ast$ Target Functions\+: function1 function2 function3 $\ast$/ \end{quote}
+As the tests run, more detailed coverage reports are placed in the following directory\+:
+
+\begin{quote}
+s2n/coverage/fuzz \end{quote}
+Each test outputs an HTML file which displays line by line coverage statistics and a .txt report which gives per-\/function coverage statistics in human-\/readable ASCII. After all fuzz tests have ran, a matching pair of coverage reports is generated for the total coverage of S2N by the entire set of tests performed.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md543}{}\doxysection{Fuzz Test Directory Structure}\label{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md543}
+For a test with name {\ttfamily \$\+TEST\+\_\+\+NAME}, its files should be laid out with the following structure\+:
+
+{\bfseries{Required\+:}} The actual Fuzz test to run\+: \begin{quote}
+{\ttfamily s2n/tests/fuzz/\$\{TEST\+\_\+\+NAME\}.c} \end{quote}
+{\bfseries{Required\+:}} The Corpus directory with inputs that provide good branch coverage\+: \begin{quote}
+{\ttfamily s2n/tests/fuzz/corpus/\$\{TEST\+\_\+\+NAME\}/$\ast$} \end{quote}
+{\bfseries{Optional\+:}} Any {\ttfamily LD\+\_\+\+PRELOAD} function overrides\+: \begin{quote}
+{\ttfamily s2n/tests/fuzz/\+LD\+\_\+\+PRELOAD/\$\{TEST\+\_\+\+NAME\}\+\_\+overrides.\+c} \end{quote}
+\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md544}{}\doxysection{Corpus}\label{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md544}
+A Corpus is a directory of \char`\"{}interesting\char`\"{} inputs that result in a good branch/code coverage. These inputs will be permuted in random ways and checked to see if this permutation results in greater branch coverage or in a failure (Segfault, Memory Leak, Buffer Overflow, Non-\/zero return code, etc). If the permutation results in greater branch coverage, then it will be added to the Corpus directory. If a Memory leak or a Crash is detected, that file will {\bfseries{not}} be added to the corpus for that test, and will instead be written to the current directory ({\ttfamily s2n/tests/fuzz/crash-\/$\ast$} or {\ttfamily s2n/tests/fuzz/leak-\/$\ast$}). These files will be automatically deleted for any Negative Fuzz tests that are expected to crash or leak memory so as to not clutter the directory.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md545}{}\doxysection{LD\+\_\+\+PRELOAD}\label{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md545}
+The {\ttfamily LD\+\_\+\+PRELOAD} directory contains function overrides for each Fuzz test that will be used {\bfseries{instead}} of the original functions defined elsewhere. These function overrides will only be used during fuzz tests, and will not effect the rest of the s2n codebase when not fuzzing. Using {\ttfamily LD\+\_\+\+PRELOAD} instead of C Preprocessor {\ttfamily \#ifdef}\textquotesingle{}s is preferable in the following ways\+:
+
+
+\begin{DoxyEnumerate}
+\item Using the C Preprocessor requires the use of fuzz only compiler flags and {\ttfamily \#ifdef}\textquotesingle{}s that end up cluttering the original s2n codebase and increases developer cognitive load when developing other features for s2n. Using {\ttfamily LD\+\_\+\+PRELOAD} helps keep s2n\textquotesingle{}s code clean, and reduces developer cognitive load when working with the core codebase.
+\item {\ttfamily LD\+\_\+\+PRELOAD} provides better flexibility than {\ttfamily \#ifdef}\textquotesingle{}s in that it allows different Fuzz tests to efficiently have different function overrides for the same functions.
+\item It is possible to override functions that are outside of s2n\textquotesingle{}s codebase.
+\end{DoxyEnumerate}
+
+Each Fuzz test will have up to two {\ttfamily LD\+\_\+\+PRELOAD} function override files used\+:
+
+
+\begin{DoxyEnumerate}
+\item A test specific {\ttfamily \$\{TEST\+\_\+\+NAME\}\+\_\+overrides.\+c} file that contains overrides specific to that test.
+\item {\ttfamily \mbox{\hyperlink{global__overrides_8c}{global\+\_\+overrides.\+c}}} file that contains overrides that will be used in every fuzz test.
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md546}{}\doxysection{American Fuzzy Lop (\+AFL)}\label{md_crt_aws_crt_cpp_crt_s2n_tests_fuzz__readme_autotoc_md546}
+To use AFL set the environment variable {\ttfamily AFL\+\_\+\+FUZZ} to true, in additon to {\ttfamily FUZZ\+\_\+\+TIMEOUT\+\_\+\+SEC}. The run\+Fuzz\+Test.\+sh script will terminate afl when it reaches {\ttfamily FUZZ\+\_\+\+TIMEOUT\+\_\+\+SEC}. AFL reports will be created under {\ttfamily tests/fuzz/results/\+TEST\+\_\+\+NAME/fuzzer\+\_\+stats}.
+
+Note that afl runs as a single process. \href{https://github.com/google/AFL/blob/master/docs/parallel_fuzzing.txt}{\texttt{ Parallelization}} has not been scripted yet for this project. 

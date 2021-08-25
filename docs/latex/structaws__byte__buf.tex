@@ -1,0 +1,56 @@
+\hypertarget{structaws__byte__buf}{}\doxysection{aws\+\_\+byte\+\_\+buf Struct Reference}
+\label{structaws__byte__buf}\index{aws\_byte\_buf@{aws\_byte\_buf}}
+
+
+{\ttfamily \#include $<$byte\+\_\+buf.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__byte__buf_a56a0e80b3f9374df753980bbb66f228d}{len}}
+\item 
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{structaws__byte__buf_ad3a14c329a969f4895f0023e40261dfe}{buffer}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__byte__buf_a5933d934fd925cdc1c8702538f29460b}{capacity}}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__byte__buf_a064bb430ce74297deb7fffac528645fe}{allocator}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Represents a length-\/delimited binary string or buffer. If byte buffer points to constant memory or memory that should otherwise not be freed by this struct, set allocator to NULL and free function will be a no-\/op.
+
+This structure used to define the output for all functions that write to a buffer.
+
+Note that this structure allocates memory at the buffer pointer only. The struct itself does not get dynamically allocated and must be either maintained or copied to avoid losing access to the memory. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__byte__buf_a064bb430ce74297deb7fffac528645fe}\label{structaws__byte__buf_a064bb430ce74297deb7fffac528645fe}} 
+\index{aws\_byte\_buf@{aws\_byte\_buf}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_byte\_buf@{aws\_byte\_buf}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+byte\+\_\+buf\+::allocator}
+
+\mbox{\Hypertarget{structaws__byte__buf_ad3a14c329a969f4895f0023e40261dfe}\label{structaws__byte__buf_ad3a14c329a969f4895f0023e40261dfe}} 
+\index{aws\_byte\_buf@{aws\_byte\_buf}!buffer@{buffer}}
+\index{buffer@{buffer}!aws\_byte\_buf@{aws\_byte\_buf}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily uint8\+\_\+t$\ast$ aws\+\_\+byte\+\_\+buf\+::buffer}
+
+\mbox{\Hypertarget{structaws__byte__buf_a5933d934fd925cdc1c8702538f29460b}\label{structaws__byte__buf_a5933d934fd925cdc1c8702538f29460b}} 
+\index{aws\_byte\_buf@{aws\_byte\_buf}!capacity@{capacity}}
+\index{capacity@{capacity}!aws\_byte\_buf@{aws\_byte\_buf}}
+\doxysubsubsection{\texorpdfstring{capacity}{capacity}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+byte\+\_\+buf\+::capacity}
+
+\mbox{\Hypertarget{structaws__byte__buf_a56a0e80b3f9374df753980bbb66f228d}\label{structaws__byte__buf_a56a0e80b3f9374df753980bbb66f228d}} 
+\index{aws\_byte\_buf@{aws\_byte\_buf}!len@{len}}
+\index{len@{len}!aws\_byte\_buf@{aws\_byte\_buf}}
+\doxysubsubsection{\texorpdfstring{len}{len}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+byte\+\_\+buf\+::len}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/\mbox{\hyperlink{byte__buf_8h}{byte\+\_\+buf.\+h}}\end{DoxyCompactItemize}

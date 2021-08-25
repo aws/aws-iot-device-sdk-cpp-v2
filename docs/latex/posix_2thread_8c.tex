@@ -1,0 +1,201 @@
+\hypertarget{posix_2thread_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/posix/thread.c File Reference}
+\label{posix_2thread_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/posix/thread.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/posix/thread.c}}
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/linked\+\_\+list.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/private/dlloads.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/private/thread\+\_\+shared.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$dlfcn.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$sched.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structthread__atexit__callback}{thread\+\_\+atexit\+\_\+callback}}
+\item 
+struct \mbox{\hyperlink{structthread__wrapper}{thread\+\_\+wrapper}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{posix_2thread_8c_a369266c24eacffb87046522897a570d5}{\+\_\+\+GNU\+\_\+\+SOURCE}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{posix_2thread_8c_a9eaf6f61700dd5d101bd9612cbe9e685}{aws\+\_\+thread\+\_\+join\+\_\+and\+\_\+free\+\_\+wrapper\+\_\+list}} (struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$wrapper\+\_\+list)
+\item 
+static void $\ast$ \mbox{\hyperlink{posix_2thread_8c_ab26c12c82c80cf889b7ef7981f704ca0}{thread\+\_\+fn}} (void $\ast$arg)
+\item 
+const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} $\ast$ \mbox{\hyperlink{posix_2thread_8c_aebff081511a016f9fab64d7f6d95da46}{aws\+\_\+default\+\_\+thread\+\_\+options}} (void)
+\item 
+void \mbox{\hyperlink{posix_2thread_8c_a5980a5cc0642efa031c719036634d6dd}{aws\+\_\+thread\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread)
+\item 
+static void \mbox{\hyperlink{posix_2thread_8c_aa16d242f21d72f6c49c69aa1b607f424}{s\+\_\+call\+\_\+once}} (void)
+\item 
+void \mbox{\hyperlink{posix_2thread_8c_a9731a40ee809685778a982ebdc4a19df}{aws\+\_\+thread\+\_\+call\+\_\+once}} (\mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} $\ast$flag, void($\ast$call\+\_\+once)(void $\ast$), void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int \mbox{\hyperlink{posix_2thread_8c_a71a7c4541086f5b6bee512f1304eff1d}{aws\+\_\+thread\+\_\+init}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+int \mbox{\hyperlink{posix_2thread_8c_af0631c7f59c8407e9fa499bb90220171}{aws\+\_\+thread\+\_\+launch}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread, void($\ast$func)(void $\ast$arg), void $\ast$arg, const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} $\ast$options)
+\item 
+\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} \mbox{\hyperlink{posix_2thread_8c_adf63a8d0e3cc3c9c8cbe04209057ac43}{aws\+\_\+thread\+\_\+get\+\_\+id}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread)
+\item 
+enum \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdc}{aws\+\_\+thread\+\_\+detach\+\_\+state}} \mbox{\hyperlink{posix_2thread_8c_aac4906c9afd74f4b095a13a616d575ea}{aws\+\_\+thread\+\_\+get\+\_\+detach\+\_\+state}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread)
+\item 
+int \mbox{\hyperlink{posix_2thread_8c_a70898bce98fe4c548060429a879b1430}{aws\+\_\+thread\+\_\+join}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread)
+\item 
+\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} \mbox{\hyperlink{posix_2thread_8c_a90137aae039692e4e95971f3e1111272}{aws\+\_\+thread\+\_\+current\+\_\+thread\+\_\+id}} (void)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{posix_2thread_8c_adeb71350e5f76a73ed34b1222e538f9b}{aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal}} (\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t1, \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t2)
+\item 
+void \mbox{\hyperlink{posix_2thread_8c_a961fb7b68e6dfdcb0b0e6dc3be829874}{aws\+\_\+thread\+\_\+current\+\_\+sleep}} (uint64\+\_\+t nanos)
+\item 
+int \mbox{\hyperlink{posix_2thread_8c_aa48dd55efd1af141765108232cfd8d66}{aws\+\_\+thread\+\_\+current\+\_\+at\+\_\+exit}} (\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\+\_\+thread\+\_\+atexit\+\_\+fn}} $\ast$callback, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} \mbox{\hyperlink{posix_2thread_8c_ab0a7e778f270120a3a23d8a6d23365a4}{s\+\_\+default\+\_\+options}}
+\item 
+static \mbox{\hyperlink{macros_8h_a8346f2b5dfb59d2482010705b9211bdf}{AWS\+\_\+\+THREAD\+\_\+\+LOCAL}} struct \mbox{\hyperlink{structthread__wrapper}{thread\+\_\+wrapper}} $\ast$ \mbox{\hyperlink{posix_2thread_8c_a42ea8006d87a4a848c7b770a70c32a37}{tl\+\_\+wrapper}} = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{posix_2thread_8c_a369266c24eacffb87046522897a570d5}\label{posix_2thread_8c_a369266c24eacffb87046522897a570d5}} 
+\index{thread.c@{thread.c}!\_GNU\_SOURCE@{\_GNU\_SOURCE}}
+\index{\_GNU\_SOURCE@{\_GNU\_SOURCE}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{\_GNU\_SOURCE}{\_GNU\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+GNU\+\_\+\+SOURCE}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{posix_2thread_8c_aebff081511a016f9fab64d7f6d95da46}\label{posix_2thread_8c_aebff081511a016f9fab64d7f6d95da46}} 
+\index{thread.c@{thread.c}!aws\_default\_thread\_options@{aws\_default\_thread\_options}}
+\index{aws\_default\_thread\_options@{aws\_default\_thread\_options}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_default\_thread\_options()}{aws\_default\_thread\_options()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}}$\ast$ aws\+\_\+default\+\_\+thread\+\_\+options (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Returns an instance of system default thread options. \mbox{\Hypertarget{posix_2thread_8c_a9731a40ee809685778a982ebdc4a19df}\label{posix_2thread_8c_a9731a40ee809685778a982ebdc4a19df}} 
+\index{thread.c@{thread.c}!aws\_thread\_call\_once@{aws\_thread\_call\_once}}
+\index{aws\_thread\_call\_once@{aws\_thread\_call\_once}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_call\_once()}{aws\_thread\_call\_once()}}
+{\footnotesize\ttfamily void aws\+\_\+thread\+\_\+call\+\_\+once (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} $\ast$}]{flag,  }\item[{void($\ast$)(void $\ast$)}]{call\+\_\+once,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{posix_2thread_8c_a5980a5cc0642efa031c719036634d6dd}\label{posix_2thread_8c_a5980a5cc0642efa031c719036634d6dd}} 
+\index{thread.c@{thread.c}!aws\_thread\_clean\_up@{aws\_thread\_clean\_up}}
+\index{aws\_thread\_clean\_up@{aws\_thread\_clean\_up}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_clean\_up()}{aws\_thread\_clean\_up()}}
+{\footnotesize\ttfamily void aws\+\_\+thread\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$}]{thread }\end{DoxyParamCaption})}
+
+Cleans up the thread handle. Either detach or join must be called before calling this function. \mbox{\Hypertarget{posix_2thread_8c_aa48dd55efd1af141765108232cfd8d66}\label{posix_2thread_8c_aa48dd55efd1af141765108232cfd8d66}} 
+\index{thread.c@{thread.c}!aws\_thread\_current\_at\_exit@{aws\_thread\_current\_at\_exit}}
+\index{aws\_thread\_current\_at\_exit@{aws\_thread\_current\_at\_exit}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_current\_at\_exit()}{aws\_thread\_current\_at\_exit()}}
+{\footnotesize\ttfamily int aws\+\_\+thread\+\_\+current\+\_\+at\+\_\+exit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\+\_\+thread\+\_\+atexit\+\_\+fn}} $\ast$}]{callback,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+Adds a callback to the chain to be called when the current thread joins. Callbacks are called from the current thread, in the reverse order they were added, after the thread function returns. If not called from within an \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}}, has no effect. \mbox{\Hypertarget{posix_2thread_8c_a961fb7b68e6dfdcb0b0e6dc3be829874}\label{posix_2thread_8c_a961fb7b68e6dfdcb0b0e6dc3be829874}} 
+\index{thread.c@{thread.c}!aws\_thread\_current\_sleep@{aws\_thread\_current\_sleep}}
+\index{aws\_thread\_current\_sleep@{aws\_thread\_current\_sleep}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_current\_sleep()}{aws\_thread\_current\_sleep()}}
+{\footnotesize\ttfamily void aws\+\_\+thread\+\_\+current\+\_\+sleep (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{nanos }\end{DoxyParamCaption})}
+
+Sleeps the current thread by nanos. \mbox{\Hypertarget{posix_2thread_8c_a90137aae039692e4e95971f3e1111272}\label{posix_2thread_8c_a90137aae039692e4e95971f3e1111272}} 
+\index{thread.c@{thread.c}!aws\_thread\_current\_thread\_id@{aws\_thread\_current\_thread\_id}}
+\index{aws\_thread\_current\_thread\_id@{aws\_thread\_current\_thread\_id}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_current\_thread\_id()}{aws\_thread\_current\_thread\_id()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} aws\+\_\+thread\+\_\+current\+\_\+thread\+\_\+id (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Returns the thread id of the calling thread. \mbox{\Hypertarget{posix_2thread_8c_aac4906c9afd74f4b095a13a616d575ea}\label{posix_2thread_8c_aac4906c9afd74f4b095a13a616d575ea}} 
+\index{thread.c@{thread.c}!aws\_thread\_get\_detach\_state@{aws\_thread\_get\_detach\_state}}
+\index{aws\_thread\_get\_detach\_state@{aws\_thread\_get\_detach\_state}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_get\_detach\_state()}{aws\_thread\_get\_detach\_state()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdc}{aws\+\_\+thread\+\_\+detach\+\_\+state}} aws\+\_\+thread\+\_\+get\+\_\+detach\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$}]{thread }\end{DoxyParamCaption})}
+
+Gets the detach state of the thread. For example, is it safe to call join on this thread? Has it been detached()? \mbox{\Hypertarget{posix_2thread_8c_adf63a8d0e3cc3c9c8cbe04209057ac43}\label{posix_2thread_8c_adf63a8d0e3cc3c9c8cbe04209057ac43}} 
+\index{thread.c@{thread.c}!aws\_thread\_get\_id@{aws\_thread\_get\_id}}
+\index{aws\_thread\_get\_id@{aws\_thread\_get\_id}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_get\_id()}{aws\_thread\_get\_id()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} aws\+\_\+thread\+\_\+get\+\_\+id (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$}]{thread }\end{DoxyParamCaption})}
+
+Gets the id of thread \mbox{\Hypertarget{posix_2thread_8c_a71a7c4541086f5b6bee512f1304eff1d}\label{posix_2thread_8c_a71a7c4541086f5b6bee512f1304eff1d}} 
+\index{thread.c@{thread.c}!aws\_thread\_init@{aws\_thread\_init}}
+\index{aws\_thread\_init@{aws\_thread\_init}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_init()}{aws\_thread\_init()}}
+{\footnotesize\ttfamily int aws\+\_\+thread\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$}]{thread,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Initializes a new platform specific thread object struct (not the os-\/level thread itself). \mbox{\Hypertarget{posix_2thread_8c_a70898bce98fe4c548060429a879b1430}\label{posix_2thread_8c_a70898bce98fe4c548060429a879b1430}} 
+\index{thread.c@{thread.c}!aws\_thread\_join@{aws\_thread\_join}}
+\index{aws\_thread\_join@{aws\_thread\_join}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_join()}{aws\_thread\_join()}}
+{\footnotesize\ttfamily int aws\+\_\+thread\+\_\+join (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$}]{thread }\end{DoxyParamCaption})}
+
+Joins the calling thread to a thread instance. Returns when thread is finished. \mbox{\Hypertarget{posix_2thread_8c_a9eaf6f61700dd5d101bd9612cbe9e685}\label{posix_2thread_8c_a9eaf6f61700dd5d101bd9612cbe9e685}} 
+\index{thread.c@{thread.c}!aws\_thread\_join\_and\_free\_wrapper\_list@{aws\_thread\_join\_and\_free\_wrapper\_list}}
+\index{aws\_thread\_join\_and\_free\_wrapper\_list@{aws\_thread\_join\_and\_free\_wrapper\_list}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_join\_and\_free\_wrapper\_list()}{aws\_thread\_join\_and\_free\_wrapper\_list()}}
+{\footnotesize\ttfamily void aws\+\_\+thread\+\_\+join\+\_\+and\+\_\+free\+\_\+wrapper\+\_\+list (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{wrapper\+\_\+list }\end{DoxyParamCaption})}
+
+Iterates a list of thread wrappers, joining against each corresponding thread, and freeing the wrapper once the join has completed. Do not hold the managed thread lock when invoking this function, instead swap the pending join list into a local and call this on the local.
+
+
+\begin{DoxyParams}{Parameters}
+{\em wrapper\+\_\+list} & list of thread wrappers to join and free \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{posix_2thread_8c_af0631c7f59c8407e9fa499bb90220171}\label{posix_2thread_8c_af0631c7f59c8407e9fa499bb90220171}} 
+\index{thread.c@{thread.c}!aws\_thread\_launch@{aws\_thread\_launch}}
+\index{aws\_thread\_launch@{aws\_thread\_launch}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_launch()}{aws\_thread\_launch()}}
+{\footnotesize\ttfamily int aws\+\_\+thread\+\_\+launch (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$}]{thread,  }\item[{void($\ast$)(void $\ast$arg)}]{func,  }\item[{void $\ast$}]{arg,  }\item[{const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+Creates an OS level thread and associates it with func. context will be passed to func when it is executed. options will be applied to the thread if they are applicable for the platform. You must either call join or detach after creating the thread and before calling clean\+\_\+up. \mbox{\Hypertarget{posix_2thread_8c_adeb71350e5f76a73ed34b1222e538f9b}\label{posix_2thread_8c_adeb71350e5f76a73ed34b1222e538f9b}} 
+\index{thread.c@{thread.c}!aws\_thread\_thread\_id\_equal@{aws\_thread\_thread\_id\_equal}}
+\index{aws\_thread\_thread\_id\_equal@{aws\_thread\_thread\_id\_equal}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{aws\_thread\_thread\_id\_equal()}{aws\_thread\_thread\_id\_equal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t1,  }\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t2 }\end{DoxyParamCaption})}
+
+Compare thread ids. \mbox{\Hypertarget{posix_2thread_8c_aa16d242f21d72f6c49c69aa1b607f424}\label{posix_2thread_8c_aa16d242f21d72f6c49c69aa1b607f424}} 
+\index{thread.c@{thread.c}!s\_call\_once@{s\_call\_once}}
+\index{s\_call\_once@{s\_call\_once}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{s\_call\_once()}{s\_call\_once()}}
+{\footnotesize\ttfamily static void s\+\_\+call\+\_\+once (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{posix_2thread_8c_ab26c12c82c80cf889b7ef7981f704ca0}\label{posix_2thread_8c_ab26c12c82c80cf889b7ef7981f704ca0}} 
+\index{thread.c@{thread.c}!thread\_fn@{thread\_fn}}
+\index{thread\_fn@{thread\_fn}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{thread\_fn()}{thread\_fn()}}
+{\footnotesize\ttfamily static void$\ast$ thread\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{posix_2thread_8c_ab0a7e778f270120a3a23d8a6d23365a4}\label{posix_2thread_8c_ab0a7e778f270120a3a23d8a6d23365a4}} 
+\index{thread.c@{thread.c}!s\_default\_options@{s\_default\_options}}
+\index{s\_default\_options@{s\_default\_options}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{s\_default\_options}{s\_default\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} s\+\_\+default\+\_\+options\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    .stack\_size = 0,}
+\DoxyCodeLine{    .cpu\_id = -\/1,}
+\DoxyCodeLine{    .join\_strategy = \mbox{\hyperlink{thread_8h_a16ac4f7b945616df65e6bafb95e8a6b5a6842ef9134acfa0a45bf15e168a00f33}{AWS\_TJS\_MANUAL}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{posix_2thread_8c_a42ea8006d87a4a848c7b770a70c32a37}\label{posix_2thread_8c_a42ea8006d87a4a848c7b770a70c32a37}} 
+\index{thread.c@{thread.c}!tl\_wrapper@{tl\_wrapper}}
+\index{tl\_wrapper@{tl\_wrapper}!thread.c@{thread.c}}
+\doxysubsubsection{\texorpdfstring{tl\_wrapper}{tl\_wrapper}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_a8346f2b5dfb59d2482010705b9211bdf}{AWS\+\_\+\+THREAD\+\_\+\+LOCAL}} struct \mbox{\hyperlink{structthread__wrapper}{thread\+\_\+wrapper}}$\ast$ tl\+\_\+wrapper = NULL\hspace{0.3cm}{\ttfamily [static]}}
+

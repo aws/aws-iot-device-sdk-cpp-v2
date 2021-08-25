@@ -1,0 +1,74 @@
+\hypertarget{structaws__priority__queue}{}\doxysection{aws\+\_\+priority\+\_\+queue Struct Reference}
+\label{structaws__priority__queue}\index{aws\_priority\_queue@{aws\_priority\_queue}}
+
+
+{\ttfamily \#include $<$priority\+\_\+queue.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structaws__priority__queue_a9e5ae7d09e025d5f9135649fa7559cc4}{\+\_\+}} (inline) struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structaws__priority__queue_a09073b153646f8f840a84e384adcf542}{container}}
+\item 
+\mbox{\hyperlink{structaws__priority__queue_aaab05bb5753e2cf4d98238a18757198b}{\+\_\+}} (inline) struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structaws__priority__queue_ada0c43c8db403d84bbe7366c0e49da34}{backpointers}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{priority__queue_8h_a7c3150e1d218c8b1bff6d425854cccee}{aws\+\_\+priority\+\_\+queue\+\_\+compare\+\_\+fn}} $\ast$ \mbox{\hyperlink{structaws__priority__queue_ab17d133e81e4d21192dd188ee17a59b2}{pred}}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structaws__priority__queue_a09073b153646f8f840a84e384adcf542}{container}}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structaws__priority__queue_ada0c43c8db403d84bbe7366c0e49da34}{backpointers}}
+\item 
+\mbox{\hyperlink{preamble_8h_a346c1334391a6b5ada054427c1b91098}{aws\+\_\+priority\+\_\+queue\+\_\+compare\+\_\+fn\+\_\+ptr}} \mbox{\hyperlink{structaws__priority__queue_a5f0f0e09e3fb1811d6f2c3df43efb2d4}{pred}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structaws__priority__queue_aaab05bb5753e2cf4d98238a18757198b}\label{structaws__priority__queue_aaab05bb5753e2cf4d98238a18757198b}} 
+\index{aws\_priority\_queue@{aws\_priority\_queue}!\_@{\_}}
+\index{\_@{\_}!aws\_priority\_queue@{aws\_priority\_queue}}
+\doxysubsubsection{\texorpdfstring{\_()}{\_()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily aws\+\_\+priority\+\_\+queue\+::\+\_\+ (\begin{DoxyParamCaption}\item[{inline}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{structaws__priority__queue_a9e5ae7d09e025d5f9135649fa7559cc4}\label{structaws__priority__queue_a9e5ae7d09e025d5f9135649fa7559cc4}} 
+\index{aws\_priority\_queue@{aws\_priority\_queue}!\_@{\_}}
+\index{\_@{\_}!aws\_priority\_queue@{aws\_priority\_queue}}
+\doxysubsubsection{\texorpdfstring{\_()}{\_()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily aws\+\_\+priority\+\_\+queue\+::\+\_\+ (\begin{DoxyParamCaption}\item[{inline}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__priority__queue_ada0c43c8db403d84bbe7366c0e49da34}\label{structaws__priority__queue_ada0c43c8db403d84bbe7366c0e49da34}} 
+\index{aws\_priority\_queue@{aws\_priority\_queue}!backpointers@{backpointers}}
+\index{backpointers@{backpointers}!aws\_priority\_queue@{aws\_priority\_queue}}
+\doxysubsubsection{\texorpdfstring{backpointers}{backpointers}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} aws\+\_\+priority\+\_\+queue\+::backpointers}
+
+An array of pointers to backpointer elements. This array is initialized when the first call to aws\+\_\+priority\+\_\+queue\+\_\+push\+\_\+bp is made, and is subsequently maintained through any heap node manipulations.
+
+Each element is a struct \mbox{\hyperlink{structaws__priority__queue__node}{aws\+\_\+priority\+\_\+queue\+\_\+node}} $\ast$, pointing to a backpointer field owned by the calling code, or a NULL. The backpointer field is continually updated with information needed to locate and remove a specific node later on. \mbox{\Hypertarget{structaws__priority__queue_a09073b153646f8f840a84e384adcf542}\label{structaws__priority__queue_a09073b153646f8f840a84e384adcf542}} 
+\index{aws\_priority\_queue@{aws\_priority\_queue}!container@{container}}
+\index{container@{container}!aws\_priority\_queue@{aws\_priority\_queue}}
+\doxysubsubsection{\texorpdfstring{container}{container}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} aws\+\_\+priority\+\_\+queue\+::container}
+
+The underlying container storing the queue elements. \mbox{\Hypertarget{structaws__priority__queue_ab17d133e81e4d21192dd188ee17a59b2}\label{structaws__priority__queue_ab17d133e81e4d21192dd188ee17a59b2}} 
+\index{aws\_priority\_queue@{aws\_priority\_queue}!pred@{pred}}
+\index{pred@{pred}!aws\_priority\_queue@{aws\_priority\_queue}}
+\doxysubsubsection{\texorpdfstring{pred}{pred}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{priority__queue_8h_a7c3150e1d218c8b1bff6d425854cccee}{aws\+\_\+priority\+\_\+queue\+\_\+compare\+\_\+fn}}$\ast$ aws\+\_\+priority\+\_\+queue\+::pred}
+
+predicate that determines the priority of the elements in the queue. \mbox{\Hypertarget{structaws__priority__queue_a5f0f0e09e3fb1811d6f2c3df43efb2d4}\label{structaws__priority__queue_a5f0f0e09e3fb1811d6f2c3df43efb2d4}} 
+\index{aws\_priority\_queue@{aws\_priority\_queue}!pred@{pred}}
+\index{pred@{pred}!aws\_priority\_queue@{aws\_priority\_queue}}
+\doxysubsubsection{\texorpdfstring{pred}{pred}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a346c1334391a6b5ada054427c1b91098}{aws\+\_\+priority\+\_\+queue\+\_\+compare\+\_\+fn\+\_\+ptr}} aws\+\_\+priority\+\_\+queue\+::pred}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/\mbox{\hyperlink{priority__queue_8h}{priority\+\_\+queue.\+h}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/\mbox{\hyperlink{preamble_8h}{preamble.\+h}}\end{DoxyCompactItemize}

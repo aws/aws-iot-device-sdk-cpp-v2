@@ -1,0 +1,110 @@
+\hypertarget{classcommon_1_1_signatures}{}\doxysection{common.\+Signatures Class Reference}
+\label{classcommon_1_1_signatures}\index{common.Signatures@{common.Signatures}}
+Inheritance diagram for common.\+Signatures\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcommon_1_1_signatures}
+\end{center}
+\end{figure}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcommon_1_1_signatures_adb7049abc5e3befc3512d8e02ffb048d}{RSA\+\_\+\+SHA1}} = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA1\textquotesingle{})
+\item 
+\mbox{\hyperlink{classcommon_1_1_signatures_a1cf2f808c3f9d0c0b35df6dc76776305}{RSA\+\_\+\+SHA224}} = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA224\textquotesingle{})
+\item 
+\mbox{\hyperlink{classcommon_1_1_signatures_a2e10503b295c52dacde53f6508fe8880}{RSA\+\_\+\+SHA256}} = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA256\textquotesingle{})
+\item 
+\mbox{\hyperlink{classcommon_1_1_signatures_a7fde71f32ba4baa7421de5b465a5b5d3}{RSA\+\_\+\+SHA384}} = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA384\textquotesingle{})
+\item 
+\mbox{\hyperlink{classcommon_1_1_signatures_ad631536860af7b9b0a106f86064a7820}{RSA\+\_\+\+SHA512}} = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA512\textquotesingle{})
+\item 
+\mbox{\hyperlink{classcommon_1_1_signatures_a17dbff727470c0a31e3a68d292bb7fb0}{RSA\+\_\+\+PSS\+\_\+\+SHA256}}
+\item 
+\mbox{\hyperlink{classcommon_1_1_signatures_a258fa495b430444ddedbd332d453795a}{ECDSA\+\_\+\+SECP256r1\+\_\+\+SHA256}}
+\item 
+\mbox{\hyperlink{classcommon_1_1_signatures_abd39e34d79aa58cc5d80229c3cedbcf9}{ED25519}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcommon_1_1_signatures_a258fa495b430444ddedbd332d453795a}\label{classcommon_1_1_signatures_a258fa495b430444ddedbd332d453795a}} 
+\index{common.Signatures@{common.Signatures}!ECDSA\_SECP256r1\_SHA256@{ECDSA\_SECP256r1\_SHA256}}
+\index{ECDSA\_SECP256r1\_SHA256@{ECDSA\_SECP256r1\_SHA256}!common.Signatures@{common.Signatures}}
+\doxysubsubsection{\texorpdfstring{ECDSA\_SECP256r1\_SHA256}{ECDSA\_SECP256r1\_SHA256}}
+{\footnotesize\ttfamily common.\+Signatures.\+ECDSA\+\_\+\+SECP256r1\+\_\+\+SHA256\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  Signature(}
+\DoxyCodeLine{        \textcolor{stringliteral}{'ecdsa\_secp256r1\_sha256'},}
+\DoxyCodeLine{        min\_protocol=Protocols.TLS13,}
+\DoxyCodeLine{        sig\_type=\textcolor{stringliteral}{'ECDSA'},}
+\DoxyCodeLine{        sig\_digest=\textcolor{stringliteral}{'SHA256'})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcommon_1_1_signatures_abd39e34d79aa58cc5d80229c3cedbcf9}\label{classcommon_1_1_signatures_abd39e34d79aa58cc5d80229c3cedbcf9}} 
+\index{common.Signatures@{common.Signatures}!ED25519@{ED25519}}
+\index{ED25519@{ED25519}!common.Signatures@{common.Signatures}}
+\doxysubsubsection{\texorpdfstring{ED25519}{ED25519}}
+{\footnotesize\ttfamily common.\+Signatures.\+ED25519\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  Signature(}
+\DoxyCodeLine{        \textcolor{stringliteral}{'ed25519'},}
+\DoxyCodeLine{        min\_protocol=Protocols.TLS13,}
+\DoxyCodeLine{        sig\_type=\textcolor{stringliteral}{'ECDSA'},}
+\DoxyCodeLine{        sig\_digest=\textcolor{stringliteral}{'SHA256'})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcommon_1_1_signatures_a17dbff727470c0a31e3a68d292bb7fb0}\label{classcommon_1_1_signatures_a17dbff727470c0a31e3a68d292bb7fb0}} 
+\index{common.Signatures@{common.Signatures}!RSA\_PSS\_SHA256@{RSA\_PSS\_SHA256}}
+\index{RSA\_PSS\_SHA256@{RSA\_PSS\_SHA256}!common.Signatures@{common.Signatures}}
+\doxysubsubsection{\texorpdfstring{RSA\_PSS\_SHA256}{RSA\_PSS\_SHA256}}
+{\footnotesize\ttfamily common.\+Signatures.\+RSA\+\_\+\+PSS\+\_\+\+SHA256\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  Signature(}
+\DoxyCodeLine{        \textcolor{stringliteral}{'RSA-\/PSS+SHA256'},}
+\DoxyCodeLine{        min\_protocol=Protocols.TLS13,}
+\DoxyCodeLine{        sig\_type=\textcolor{stringliteral}{'RSA-\/PSS'},}
+\DoxyCodeLine{        sig\_digest=\textcolor{stringliteral}{'SHA256'})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcommon_1_1_signatures_adb7049abc5e3befc3512d8e02ffb048d}\label{classcommon_1_1_signatures_adb7049abc5e3befc3512d8e02ffb048d}} 
+\index{common.Signatures@{common.Signatures}!RSA\_SHA1@{RSA\_SHA1}}
+\index{RSA\_SHA1@{RSA\_SHA1}!common.Signatures@{common.Signatures}}
+\doxysubsubsection{\texorpdfstring{RSA\_SHA1}{RSA\_SHA1}}
+{\footnotesize\ttfamily common.\+Signatures.\+RSA\+\_\+\+SHA1 = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA1\textquotesingle{})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcommon_1_1_signatures_a1cf2f808c3f9d0c0b35df6dc76776305}\label{classcommon_1_1_signatures_a1cf2f808c3f9d0c0b35df6dc76776305}} 
+\index{common.Signatures@{common.Signatures}!RSA\_SHA224@{RSA\_SHA224}}
+\index{RSA\_SHA224@{RSA\_SHA224}!common.Signatures@{common.Signatures}}
+\doxysubsubsection{\texorpdfstring{RSA\_SHA224}{RSA\_SHA224}}
+{\footnotesize\ttfamily common.\+Signatures.\+RSA\+\_\+\+SHA224 = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA224\textquotesingle{})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcommon_1_1_signatures_a2e10503b295c52dacde53f6508fe8880}\label{classcommon_1_1_signatures_a2e10503b295c52dacde53f6508fe8880}} 
+\index{common.Signatures@{common.Signatures}!RSA\_SHA256@{RSA\_SHA256}}
+\index{RSA\_SHA256@{RSA\_SHA256}!common.Signatures@{common.Signatures}}
+\doxysubsubsection{\texorpdfstring{RSA\_SHA256}{RSA\_SHA256}}
+{\footnotesize\ttfamily common.\+Signatures.\+RSA\+\_\+\+SHA256 = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA256\textquotesingle{})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcommon_1_1_signatures_a7fde71f32ba4baa7421de5b465a5b5d3}\label{classcommon_1_1_signatures_a7fde71f32ba4baa7421de5b465a5b5d3}} 
+\index{common.Signatures@{common.Signatures}!RSA\_SHA384@{RSA\_SHA384}}
+\index{RSA\_SHA384@{RSA\_SHA384}!common.Signatures@{common.Signatures}}
+\doxysubsubsection{\texorpdfstring{RSA\_SHA384}{RSA\_SHA384}}
+{\footnotesize\ttfamily common.\+Signatures.\+RSA\+\_\+\+SHA384 = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA384\textquotesingle{})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcommon_1_1_signatures_ad631536860af7b9b0a106f86064a7820}\label{classcommon_1_1_signatures_ad631536860af7b9b0a106f86064a7820}} 
+\index{common.Signatures@{common.Signatures}!RSA\_SHA512@{RSA\_SHA512}}
+\index{RSA\_SHA512@{RSA\_SHA512}!common.Signatures@{common.Signatures}}
+\doxysubsubsection{\texorpdfstring{RSA\_SHA512}{RSA\_SHA512}}
+{\footnotesize\ttfamily common.\+Signatures.\+RSA\+\_\+\+SHA512 = \mbox{\hyperlink{classcommon_1_1_signature}{Signature}}(\textquotesingle{}RSA+SHA512\textquotesingle{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/s2n/tests/integrationv2/\mbox{\hyperlink{common_8py}{common.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,149 @@
+\hypertarget{alpn__handler__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/alpn\+\_\+handler\+\_\+test.c File Reference}
+\label{alpn__handler__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/alpn\_handler\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/alpn\_handler\_test.c}}
+{\ttfamily \#include $<$aws/io/channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/tls\+\_\+channel\+\_\+handler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/condition\+\_\+variable.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structalpn__channel__setup__test__args}{alpn\+\_\+channel\+\_\+setup\+\_\+test\+\_\+args}}
+\item 
+struct \mbox{\hyperlink{structalpn__test__on__negotiation__args}{alpn\+\_\+test\+\_\+on\+\_\+negotiation\+\_\+args}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{alpn__handler__test_8c_a80df0a20b26f60b1a93eeb9d586f3cc5}{s\+\_\+alpn\+\_\+channel\+\_\+setup\+\_\+test\+\_\+on\+\_\+setup\+\_\+completed}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{alpn__handler__test_8c_af9f3dc6c4538e3c783c5b526fc2e4112}{s\+\_\+alpn\+\_\+test\+\_\+setup\+\_\+completed\+\_\+predicate}} (void $\ast$arg)
+\item 
+static int \mbox{\hyperlink{alpn__handler__test_8c_a34e892cce1aef6885ff1b6fcef42a011}{s\+\_\+alpn\+\_\+test\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} abort\+\_\+immediately)
+\item 
+static size\+\_\+t \mbox{\hyperlink{alpn__handler__test_8c_ac0d22580192c95d0300d2d957c71139c}{s\+\_\+alpn\+\_\+test\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+static size\+\_\+t \mbox{\hyperlink{alpn__handler__test_8c_a96d1c88ae5b65ebc8620899bbf268ed3}{s\+\_\+alpn\+\_\+test\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+static void \mbox{\hyperlink{alpn__handler__test_8c_af0e0c5ee2ee83e2275c3f9e25a1eae6c}{s\+\_\+alpn\+\_\+test\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+static struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{alpn__handler__test_8c_a0c7862d034d6abf7d64d35d527cae5a7}{s\+\_\+alpn\+\_\+tls\+\_\+successful\+\_\+negotiation}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$new\+\_\+slot, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$protocol, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{alpn__handler__test_8c_adb8162f7d4069a4f7b2d8b5dd188a631}{s\+\_\+alpn\+\_\+test\+\_\+shutdown\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{alpn__handler__test_8c_a89edbb831951eff165e77efdc3b7b647}{s\+\_\+on\+\_\+server\+\_\+channel\+\_\+on\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{alpn__handler__test_8c_a837a2b928bad5858bd318eb33e38deb5}{s\+\_\+test\+\_\+alpn\+\_\+successfully\+\_\+negotiates}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{alpn__handler__test_8c_ad0210bbe9daf90f0c1466b39a33efb1f}{s\+\_\+test\+\_\+alpn\+\_\+no\+\_\+protocol\+\_\+message}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{alpn__handler__test_8c_a1538e2a022d9f5abc0ae861af24fe9c6}{s\+\_\+alpn\+\_\+tls\+\_\+failed\+\_\+negotiation}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$new\+\_\+slot, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$protocol, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{alpn__handler__test_8c_a0c875842e474a0e892347f73669f2d6b}{s\+\_\+test\+\_\+alpn\+\_\+error\+\_\+creating\+\_\+handler}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+channel\+\_\+handler\+\_\+vtable}} \mbox{\hyperlink{alpn__handler__test_8c_ad7adfc1a89f0219bb8186f4f10e4e193}{s\+\_\+alpn\+\_\+test\+\_\+vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{alpn__handler__test_8c_a80df0a20b26f60b1a93eeb9d586f3cc5}\label{alpn__handler__test_8c_a80df0a20b26f60b1a93eeb9d586f3cc5}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_channel\_setup\_test\_on\_setup\_completed@{s\_alpn\_channel\_setup\_test\_on\_setup\_completed}}
+\index{s\_alpn\_channel\_setup\_test\_on\_setup\_completed@{s\_alpn\_channel\_setup\_test\_on\_setup\_completed}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_channel\_setup\_test\_on\_setup\_completed()}{s\_alpn\_channel\_setup\_test\_on\_setup\_completed()}}
+{\footnotesize\ttfamily static void s\+\_\+alpn\+\_\+channel\+\_\+setup\+\_\+test\+\_\+on\+\_\+setup\+\_\+completed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_af0e0c5ee2ee83e2275c3f9e25a1eae6c}\label{alpn__handler__test_8c_af0e0c5ee2ee83e2275c3f9e25a1eae6c}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_test\_destroy@{s\_alpn\_test\_destroy}}
+\index{s\_alpn\_test\_destroy@{s\_alpn\_test\_destroy}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_test\_destroy()}{s\_alpn\_test\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+alpn\+\_\+test\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_a96d1c88ae5b65ebc8620899bbf268ed3}\label{alpn__handler__test_8c_a96d1c88ae5b65ebc8620899bbf268ed3}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_test\_initial\_window\_size@{s\_alpn\_test\_initial\_window\_size}}
+\index{s\_alpn\_test\_initial\_window\_size@{s\_alpn\_test\_initial\_window\_size}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_test\_initial\_window\_size()}{s\_alpn\_test\_initial\_window\_size()}}
+{\footnotesize\ttfamily static size\+\_\+t s\+\_\+alpn\+\_\+test\+\_\+initial\+\_\+window\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_ac0d22580192c95d0300d2d957c71139c}\label{alpn__handler__test_8c_ac0d22580192c95d0300d2d957c71139c}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_test\_message\_overhead@{s\_alpn\_test\_message\_overhead}}
+\index{s\_alpn\_test\_message\_overhead@{s\_alpn\_test\_message\_overhead}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_test\_message\_overhead()}{s\_alpn\_test\_message\_overhead()}}
+{\footnotesize\ttfamily static size\+\_\+t s\+\_\+alpn\+\_\+test\+\_\+message\+\_\+overhead (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_af9f3dc6c4538e3c783c5b526fc2e4112}\label{alpn__handler__test_8c_af9f3dc6c4538e3c783c5b526fc2e4112}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_test\_setup\_completed\_predicate@{s\_alpn\_test\_setup\_completed\_predicate}}
+\index{s\_alpn\_test\_setup\_completed\_predicate@{s\_alpn\_test\_setup\_completed\_predicate}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_test\_setup\_completed\_predicate()}{s\_alpn\_test\_setup\_completed\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+alpn\+\_\+test\+\_\+setup\+\_\+completed\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_a34e892cce1aef6885ff1b6fcef42a011}\label{alpn__handler__test_8c_a34e892cce1aef6885ff1b6fcef42a011}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_test\_shutdown@{s\_alpn\_test\_shutdown}}
+\index{s\_alpn\_test\_shutdown@{s\_alpn\_test\_shutdown}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_test\_shutdown()}{s\_alpn\_test\_shutdown()}}
+{\footnotesize\ttfamily static int s\+\_\+alpn\+\_\+test\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{abort\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_adb8162f7d4069a4f7b2d8b5dd188a631}\label{alpn__handler__test_8c_adb8162f7d4069a4f7b2d8b5dd188a631}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_test\_shutdown\_predicate@{s\_alpn\_test\_shutdown\_predicate}}
+\index{s\_alpn\_test\_shutdown\_predicate@{s\_alpn\_test\_shutdown\_predicate}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_test\_shutdown\_predicate()}{s\_alpn\_test\_shutdown\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+alpn\+\_\+test\+\_\+shutdown\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_a1538e2a022d9f5abc0ae861af24fe9c6}\label{alpn__handler__test_8c_a1538e2a022d9f5abc0ae861af24fe9c6}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_tls\_failed\_negotiation@{s\_alpn\_tls\_failed\_negotiation}}
+\index{s\_alpn\_tls\_failed\_negotiation@{s\_alpn\_tls\_failed\_negotiation}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_tls\_failed\_negotiation()}{s\_alpn\_tls\_failed\_negotiation()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}}$\ast$ s\+\_\+alpn\+\_\+tls\+\_\+failed\+\_\+negotiation (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{new\+\_\+slot,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{protocol,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_a0c7862d034d6abf7d64d35d527cae5a7}\label{alpn__handler__test_8c_a0c7862d034d6abf7d64d35d527cae5a7}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_tls\_successful\_negotiation@{s\_alpn\_tls\_successful\_negotiation}}
+\index{s\_alpn\_tls\_successful\_negotiation@{s\_alpn\_tls\_successful\_negotiation}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_tls\_successful\_negotiation()}{s\_alpn\_tls\_successful\_negotiation()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}}$\ast$ s\+\_\+alpn\+\_\+tls\+\_\+successful\+\_\+negotiation (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{new\+\_\+slot,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{protocol,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_a89edbb831951eff165e77efdc3b7b647}\label{alpn__handler__test_8c_a89edbb831951eff165e77efdc3b7b647}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_on\_server\_channel\_on\_shutdown@{s\_on\_server\_channel\_on\_shutdown}}
+\index{s\_on\_server\_channel\_on\_shutdown@{s\_on\_server\_channel\_on\_shutdown}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_server\_channel\_on\_shutdown()}{s\_on\_server\_channel\_on\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+server\+\_\+channel\+\_\+on\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_a0c875842e474a0e892347f73669f2d6b}\label{alpn__handler__test_8c_a0c875842e474a0e892347f73669f2d6b}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_test\_alpn\_error\_creating\_handler@{s\_test\_alpn\_error\_creating\_handler}}
+\index{s\_test\_alpn\_error\_creating\_handler@{s\_test\_alpn\_error\_creating\_handler}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_alpn\_error\_creating\_handler()}{s\_test\_alpn\_error\_creating\_handler()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+alpn\+\_\+error\+\_\+creating\+\_\+handler (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_ad0210bbe9daf90f0c1466b39a33efb1f}\label{alpn__handler__test_8c_ad0210bbe9daf90f0c1466b39a33efb1f}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_test\_alpn\_no\_protocol\_message@{s\_test\_alpn\_no\_protocol\_message}}
+\index{s\_test\_alpn\_no\_protocol\_message@{s\_test\_alpn\_no\_protocol\_message}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_alpn\_no\_protocol\_message()}{s\_test\_alpn\_no\_protocol\_message()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+alpn\+\_\+no\+\_\+protocol\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{alpn__handler__test_8c_a837a2b928bad5858bd318eb33e38deb5}\label{alpn__handler__test_8c_a837a2b928bad5858bd318eb33e38deb5}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_test\_alpn\_successfully\_negotiates@{s\_test\_alpn\_successfully\_negotiates}}
+\index{s\_test\_alpn\_successfully\_negotiates@{s\_test\_alpn\_successfully\_negotiates}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_alpn\_successfully\_negotiates()}{s\_test\_alpn\_successfully\_negotiates()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+alpn\+\_\+successfully\+\_\+negotiates (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{alpn__handler__test_8c_ad7adfc1a89f0219bb8186f4f10e4e193}\label{alpn__handler__test_8c_ad7adfc1a89f0219bb8186f4f10e4e193}} 
+\index{alpn\_handler\_test.c@{alpn\_handler\_test.c}!s\_alpn\_test\_vtable@{s\_alpn\_test\_vtable}}
+\index{s\_alpn\_test\_vtable@{s\_alpn\_test\_vtable}!alpn\_handler\_test.c@{alpn\_handler\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alpn\_test\_vtable}{s\_alpn\_test\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+channel\+\_\+handler\+\_\+vtable}} s\+\_\+alpn\+\_\+test\+\_\+vtable}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .destroy = \mbox{\hyperlink{alpn__handler__test_8c_af0e0c5ee2ee83e2275c3f9e25a1eae6c}{s\_alpn\_test\_destroy}},}
+\DoxyCodeLine{    .shutdown = \mbox{\hyperlink{alpn__handler__test_8c_a34e892cce1aef6885ff1b6fcef42a011}{s\_alpn\_test\_shutdown}},}
+\DoxyCodeLine{    .initial\_window\_size = \mbox{\hyperlink{alpn__handler__test_8c_a96d1c88ae5b65ebc8620899bbf268ed3}{s\_alpn\_test\_initial\_window\_size}},}
+\DoxyCodeLine{    .message\_overhead = \mbox{\hyperlink{alpn__handler__test_8c_ac0d22580192c95d0300d2d957c71139c}{s\_alpn\_test\_message\_overhead}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

@@ -1,0 +1,642 @@
+\hypertarget{structtester}{}\doxysection{tester Struct Reference}
+\label{structtester}\index{tester@{tester}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structtester_a5b59c1d25cd2dc0794a938d9f611d5ac}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} \mbox{\hyperlink{structtester_a3b8d167c9efee14730cb51f4c534fc56}{logger}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}} $\ast$ \mbox{\hyperlink{structtester_a6da43e711f561b5b74c198d28c3f167f}{event\+\_\+loop\+\_\+group}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{structtester_a6a0cf5dedb4ac39cd15adaf10705fcce}{host\+\_\+resolver}}
+\item 
+struct \mbox{\hyperlink{structaws__server__bootstrap}{aws\+\_\+server\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structtester_a793344d23593bf2f10fda783637cfbfc}{server\+\_\+bootstrap}}
+\item 
+struct \mbox{\hyperlink{structaws__http__server}{aws\+\_\+http\+\_\+server}} $\ast$ \mbox{\hyperlink{structtester_a65b59199e6ae71136ef523784a5e6ffd}{server}}
+\item 
+struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structtester_a5a9d4d1feac6230ecb104cfd8f61707b}{client\+\_\+bootstrap}}
+\item 
+struct \mbox{\hyperlink{structaws__http__client__connection__options}{aws\+\_\+http\+\_\+client\+\_\+connection\+\_\+options}} \mbox{\hyperlink{structtester_a3e68fac6f309814532f1e799e145d3d1}{client\+\_\+options}}
+\item 
+int \mbox{\hyperlink{structtester_a0f82ba9cf43bcef4b0252067efc099f3}{server\+\_\+connection\+\_\+num}}
+\item 
+int \mbox{\hyperlink{structtester_ad5f00ffb0f901fa21931d54fb02bebb5}{client\+\_\+connection\+\_\+num}}
+\item 
+int \mbox{\hyperlink{structtester_a077584e3267573eb5e6c1c9db936be9f}{wait\+\_\+server\+\_\+connection\+\_\+num}}
+\item 
+int \mbox{\hyperlink{structtester_a46eec5b139d31b01003bc226aebe380e}{wait\+\_\+client\+\_\+connection\+\_\+num}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structtester_a8303648b68b31e7d9303dc04e2446d31}{server\+\_\+connections}} \mbox{[}10\mbox{]}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structtester_ac07865dccb44abba837cb013b7bf010f}{client\+\_\+connections}} \mbox{[}10\mbox{]}
+\item 
+struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} \mbox{\hyperlink{structtester_adcc89a83bbe4bd7a6b52cbd69ad1f90a}{endpoint}}
+\item 
+struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} \mbox{\hyperlink{structtester_ae60897c316bac13ba46c1cfb73a8f89a}{socket\+\_\+options}}
+\item 
+int \mbox{\hyperlink{structtester_a478f144bb1c9a2af740783a3e8dc054b}{client\+\_\+connection\+\_\+is\+\_\+shutdown}}
+\item 
+int \mbox{\hyperlink{structtester_a3c98681f10f0b485cbcece720fbbdba0}{server\+\_\+connection\+\_\+is\+\_\+shutdown}}
+\item 
+int \mbox{\hyperlink{structtester_ab4c0eb5e2eae2e0c873d5f362af2a237}{wait\+\_\+client\+\_\+connection\+\_\+is\+\_\+shutdown}}
+\item 
+int \mbox{\hyperlink{structtester_a1b8b0836ea05567d975674be35cf1c25}{wait\+\_\+server\+\_\+connection\+\_\+is\+\_\+shutdown}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_a66f29e9727947db85822f6a029426e3b}{server\+\_\+is\+\_\+shutdown}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structtester_a4d8c78dbe3ef852f142d74d7d910d505}{new\+\_\+client\+\_\+connection}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_ae29e857ea2b1b64e3d9959ccbba02a23}{new\+\_\+client\+\_\+shut\+\_\+down}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_aa8f1ea390d268a15f641ca5231628ccb}{new\+\_\+client\+\_\+setup\+\_\+finished}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structtester_ae6e9ba28fe3cf5fbeeabbcb4fed07ca8}{wait\+\_\+lock}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structtester_a2cf33391cd2f8d338549317a07f5edf0}{wait\+\_\+cvar}}
+\item 
+int \mbox{\hyperlink{structtester_a0498555aab1b1b4311d14e0415bc22ff}{server\+\_\+wait\+\_\+result}}
+\item 
+int \mbox{\hyperlink{structtester_a5fce85ebca8cfd74e7fc013e2d2d627f}{client\+\_\+wait\+\_\+result}}
+\item 
+struct \mbox{\hyperlink{structtesting__channel}{testing\+\_\+channel}} \mbox{\hyperlink{structtester_a15a9d3379dc002d0cb0970bbe28adf57}{testing\+\_\+channel}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structtester_a0c197399d27922f72f4e85a034ac9923}{connection}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_a89e9d6896fbf669eccb1013b7112266b}{manual\+\_\+window\+\_\+management}}
+\item 
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{structtester_ad4b38ed5fd84369c4e8cd9c1847873d5}{server\+\_\+connection}}
+\item 
+struct \mbox{\hyperlink{structtester__request}{tester\+\_\+request}} \mbox{\hyperlink{structtester_a3a7ed283192764dd2ba1b12299a569df}{requests}} \mbox{[}100\mbox{]}
+\item 
+int \mbox{\hyperlink{structtester_acb7a4861f8cf8200f1e9bc227cc34f95}{request\+\_\+num}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_a22cdabfa2995567f30b1d6f92663b32a}{server\+\_\+connection\+\_\+is\+\_\+shutdown}}
+\item 
+struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} \mbox{\hyperlink{structtester_a8f4b8539205d9c35ec446c415b0c349f}{peer}}
+\item 
+struct \mbox{\hyperlink{structconnection__user__data}{connection\+\_\+user\+\_\+data}} \mbox{\hyperlink{structtester_a0ff5977a09e6186063d6ea41ddb5983f}{user\+\_\+data}}
+\item 
+enum \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896}{boot\+\_\+step}} \mbox{\hyperlink{structtester_a07fa708bd67c4aea19ff50187ccca1c1}{fail\+\_\+at\+\_\+step}}
+\item 
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{structtester_af4377dfee7ab02a55674e1a52ba588b5}{handshake\+\_\+request}}
+\item 
+const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$ \mbox{\hyperlink{structtester_ad3fd3c8f1f2017218a74fc873720c5b0}{handshake\+\_\+response\+\_\+headers}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_a7e99151e20477a6b206400402df1fbc7}{num\+\_\+handshake\+\_\+response\+\_\+headers}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_ac24ff559c388ff621ea27dd4ad7eb659}{http\+\_\+connect\+\_\+called\+\_\+successfully}}
+\item 
+\mbox{\hyperlink{connection_8h_afc803717ca6708a11d74a510288f7ff4}{aws\+\_\+http\+\_\+on\+\_\+client\+\_\+connection\+\_\+setup\+\_\+fn}} $\ast$ \mbox{\hyperlink{structtester_af5e7848871f71a6e4881adbb18324816}{http\+\_\+connect\+\_\+setup\+\_\+callback}}
+\item 
+\mbox{\hyperlink{connection_8h_a4a810c4a3fb9abb4f364c1df0c79e169}{aws\+\_\+http\+\_\+on\+\_\+client\+\_\+connection\+\_\+shutdown\+\_\+fn}} $\ast$ \mbox{\hyperlink{structtester_a1f5ee04a05b7550e8272979abd56842a}{http\+\_\+connect\+\_\+shutdown\+\_\+callback}}
+\item 
+void $\ast$ \mbox{\hyperlink{structtester_a1241383c46368028dc241e314143b17c}{http\+\_\+connect\+\_\+user\+\_\+data}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_ac7166b1e0b9750f4d72e39d49c688363}{http\+\_\+connection\+\_\+release\+\_\+called}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_a349708cc8ec1b33ff99d03c876ece709}{http\+\_\+connection\+\_\+close\+\_\+called}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_abb2b2866688f7aeec695604b13b01f82}{http\+\_\+stream\+\_\+new\+\_\+called\+\_\+successfully}}
+\item 
+\mbox{\hyperlink{request__response_8h_a0c2d80ea8a29a2ad5c7fd6a624b26a3a}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+fn}} $\ast$ \mbox{\hyperlink{structtester_aeb467121d82fe0f56dd4adfec2411360}{http\+\_\+stream\+\_\+on\+\_\+response\+\_\+headers}}
+\item 
+\mbox{\hyperlink{request__response_8h_a335feeb23b523ff7272b71a023591c18}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+fn}} $\ast$ \mbox{\hyperlink{structtester_a1041d0a4805869e5e1bf4fabe7f91559}{http\+\_\+stream\+\_\+on\+\_\+response\+\_\+header\+\_\+block\+\_\+done}}
+\item 
+\mbox{\hyperlink{request__response_8h_a4afcb8e02af09a7e4a50d9ab278f3459}{aws\+\_\+http\+\_\+on\+\_\+stream\+\_\+complete\+\_\+fn}} $\ast$ \mbox{\hyperlink{structtester_aba2cf203be5333150246bc264464cd70}{http\+\_\+stream\+\_\+on\+\_\+complete}}
+\item 
+void $\ast$ \mbox{\hyperlink{structtester_ac6dd8c307e28e66a92ac9cc51a0a0b51}{http\+\_\+stream\+\_\+user\+\_\+data}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_aff10b3474ea47d83923af278fb587d38}{websocket\+\_\+new\+\_\+called\+\_\+successfully}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_ae1103c6fec436845aa11c83eab021127}{http\+\_\+stream\+\_\+release\+\_\+called}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_af3b8090bf225576d8886c8561f14224a}{http\+\_\+stream\+\_\+activate\+\_\+called}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_afe747512e9f8e621d428d181c01bd5ad}{websocket\+\_\+setup\+\_\+invoked}}
+\item 
+int \mbox{\hyperlink{structtester_abe2bb59d90bc2f82b1db44a2c79dbd67}{websocket\+\_\+setup\+\_\+error\+\_\+code}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_aad6b747bcbe844c1028e27dd0392025a}{websocket\+\_\+shutdown\+\_\+invoked}}
+\item 
+int \mbox{\hyperlink{structtester_abd26ecc2fdb3a05a5ea286b5da071227}{websocket\+\_\+shutdown\+\_\+error\+\_\+code}}
+\item 
+void $\ast$ \mbox{\hyperlink{structtester_a019231e6d2633d06c78768567bf24786}{specific\+\_\+test\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$ \mbox{\hyperlink{structtester_a56b17b82b0c136c65b763e1e99767cb2}{websocket}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtester_afd10e76a16338855c759b114f58d1a81}{is\+\_\+midchannel\+\_\+handler}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_aafefbb0f676046f96fb0cc62bd99069e}{on\+\_\+send\+\_\+complete\+\_\+count}}
+\item 
+struct \mbox{\hyperlink{structwritten__frame}{written\+\_\+frame}} \mbox{\hyperlink{structtester_ab8d8d8def8d1ca669bad9614a0af5a76}{written\+\_\+frames}} \mbox{[}100\mbox{]}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_ab5dd5c8c5ea2d52fab38315d03008902}{num\+\_\+written\+\_\+frames}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_a5e07e55db9cbe53319073acfe429ea55}{num\+\_\+written\+\_\+io\+\_\+messages}}
+\item 
+struct \mbox{\hyperlink{structaws__websocket__decoder}{aws\+\_\+websocket\+\_\+decoder}} \mbox{\hyperlink{structtester_ad3ecc508b7379a6dee5f26f21a1b3acb}{written\+\_\+frame\+\_\+decoder}}
+\item 
+struct \mbox{\hyperlink{structincoming__frame}{incoming\+\_\+frame}} \mbox{\hyperlink{structtester_a12a54f723f025713b30587dc1654c8e2}{incoming\+\_\+frames}} \mbox{[}100\mbox{]}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_a8742b1079d093f284684aade1bcb25e1}{num\+\_\+incoming\+\_\+frames}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_a79c5b1e8578f6bd207285db777a93d90}{fail\+\_\+on\+\_\+incoming\+\_\+frame\+\_\+begin\+\_\+n}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_ae0472d9d70e3fcc9d2f7bfacbe4e0181}{fail\+\_\+on\+\_\+incoming\+\_\+frame\+\_\+payload\+\_\+n}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_afc35e2f9313a651e53eeeafdc41d7ec6}{fail\+\_\+on\+\_\+incoming\+\_\+frame\+\_\+complete\+\_\+n}}
+\item 
+struct \mbox{\hyperlink{structreadpush__frame}{readpush\+\_\+frame}} $\ast$ \mbox{\hyperlink{structtester_a165902bca93673ad99355832e42e5156}{readpush\+\_\+frames}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_af64b1de2430a0c1de55c46e12526250f}{num\+\_\+readpush\+\_\+frames}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_a85fbd991fe9d51d3f47f1cdaba0f6b4d}{readpush\+\_\+frame\+\_\+index}}
+\item 
+struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} \mbox{\hyperlink{structtester_a6c391f7d6426827aea7c344af72cecba}{readpush\+\_\+encoder}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtester_a74b1a68b2f8c84e18e534738b688430d}{num\+\_\+writepush\+\_\+messages}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structtester_a9ac52cdea48fc1b2bff9458a1116f7c2}{all\+\_\+writepush\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structtester_a9ac52cdea48fc1b2bff9458a1116f7c2}\label{structtester_a9ac52cdea48fc1b2bff9458a1116f7c2}} 
+\index{tester@{tester}!all\_writepush\_data@{all\_writepush\_data}}
+\index{all\_writepush\_data@{all\_writepush\_data}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{all\_writepush\_data}{all\_writepush\_data}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} tester\+::all\+\_\+writepush\+\_\+data}
+
+\mbox{\Hypertarget{structtester_a5b59c1d25cd2dc0794a938d9f611d5ac}\label{structtester_a5b59c1d25cd2dc0794a938d9f611d5ac}} 
+\index{tester@{tester}!alloc@{alloc}}
+\index{alloc@{alloc}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ tester\+::alloc}
+
+\mbox{\Hypertarget{structtester_a5a9d4d1feac6230ecb104cfd8f61707b}\label{structtester_a5a9d4d1feac6230ecb104cfd8f61707b}} 
+\index{tester@{tester}!client\_bootstrap@{client\_bootstrap}}
+\index{client\_bootstrap@{client\_bootstrap}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{client\_bootstrap}{client\_bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}}$\ast$ tester\+::client\+\_\+bootstrap}
+
+\mbox{\Hypertarget{structtester_a478f144bb1c9a2af740783a3e8dc054b}\label{structtester_a478f144bb1c9a2af740783a3e8dc054b}} 
+\index{tester@{tester}!client\_connection\_is\_shutdown@{client\_connection\_is\_shutdown}}
+\index{client\_connection\_is\_shutdown@{client\_connection\_is\_shutdown}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{client\_connection\_is\_shutdown}{client\_connection\_is\_shutdown}}
+{\footnotesize\ttfamily int tester\+::client\+\_\+connection\+\_\+is\+\_\+shutdown}
+
+\mbox{\Hypertarget{structtester_ad5f00ffb0f901fa21931d54fb02bebb5}\label{structtester_ad5f00ffb0f901fa21931d54fb02bebb5}} 
+\index{tester@{tester}!client\_connection\_num@{client\_connection\_num}}
+\index{client\_connection\_num@{client\_connection\_num}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{client\_connection\_num}{client\_connection\_num}}
+{\footnotesize\ttfamily int tester\+::client\+\_\+connection\+\_\+num}
+
+\mbox{\Hypertarget{structtester_ac07865dccb44abba837cb013b7bf010f}\label{structtester_ac07865dccb44abba837cb013b7bf010f}} 
+\index{tester@{tester}!client\_connections@{client\_connections}}
+\index{client\_connections@{client\_connections}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{client\_connections}{client\_connections}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ tester\+::client\+\_\+connections\mbox{[}10\mbox{]}}
+
+\mbox{\Hypertarget{structtester_a3e68fac6f309814532f1e799e145d3d1}\label{structtester_a3e68fac6f309814532f1e799e145d3d1}} 
+\index{tester@{tester}!client\_options@{client\_options}}
+\index{client\_options@{client\_options}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{client\_options}{client\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__client__connection__options}{aws\+\_\+http\+\_\+client\+\_\+connection\+\_\+options}} tester\+::client\+\_\+options}
+
+\mbox{\Hypertarget{structtester_a5fce85ebca8cfd74e7fc013e2d2d627f}\label{structtester_a5fce85ebca8cfd74e7fc013e2d2d627f}} 
+\index{tester@{tester}!client\_wait\_result@{client\_wait\_result}}
+\index{client\_wait\_result@{client\_wait\_result}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{client\_wait\_result}{client\_wait\_result}}
+{\footnotesize\ttfamily int tester\+::client\+\_\+wait\+\_\+result}
+
+\mbox{\Hypertarget{structtester_a0c197399d27922f72f4e85a034ac9923}\label{structtester_a0c197399d27922f72f4e85a034ac9923}} 
+\index{tester@{tester}!connection@{connection}}
+\index{connection@{connection}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ tester\+::connection}
+
+\mbox{\Hypertarget{structtester_adcc89a83bbe4bd7a6b52cbd69ad1f90a}\label{structtester_adcc89a83bbe4bd7a6b52cbd69ad1f90a}} 
+\index{tester@{tester}!endpoint@{endpoint}}
+\index{endpoint@{endpoint}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{endpoint}{endpoint}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} tester\+::endpoint}
+
+\mbox{\Hypertarget{structtester_a6da43e711f561b5b74c198d28c3f167f}\label{structtester_a6da43e711f561b5b74c198d28c3f167f}} 
+\index{tester@{tester}!event\_loop\_group@{event\_loop\_group}}
+\index{event\_loop\_group@{event\_loop\_group}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{event\_loop\_group}{event\_loop\_group}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}}$\ast$ tester\+::event\+\_\+loop\+\_\+group}
+
+\mbox{\Hypertarget{structtester_a07fa708bd67c4aea19ff50187ccca1c1}\label{structtester_a07fa708bd67c4aea19ff50187ccca1c1}} 
+\index{tester@{tester}!fail\_at\_step@{fail\_at\_step}}
+\index{fail\_at\_step@{fail\_at\_step}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{fail\_at\_step}{fail\_at\_step}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896}{boot\+\_\+step}} tester\+::fail\+\_\+at\+\_\+step}
+
+\mbox{\Hypertarget{structtester_a79c5b1e8578f6bd207285db777a93d90}\label{structtester_a79c5b1e8578f6bd207285db777a93d90}} 
+\index{tester@{tester}!fail\_on\_incoming\_frame\_begin\_n@{fail\_on\_incoming\_frame\_begin\_n}}
+\index{fail\_on\_incoming\_frame\_begin\_n@{fail\_on\_incoming\_frame\_begin\_n}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{fail\_on\_incoming\_frame\_begin\_n}{fail\_on\_incoming\_frame\_begin\_n}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::fail\+\_\+on\+\_\+incoming\+\_\+frame\+\_\+begin\+\_\+n}
+
+\mbox{\Hypertarget{structtester_afc35e2f9313a651e53eeeafdc41d7ec6}\label{structtester_afc35e2f9313a651e53eeeafdc41d7ec6}} 
+\index{tester@{tester}!fail\_on\_incoming\_frame\_complete\_n@{fail\_on\_incoming\_frame\_complete\_n}}
+\index{fail\_on\_incoming\_frame\_complete\_n@{fail\_on\_incoming\_frame\_complete\_n}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{fail\_on\_incoming\_frame\_complete\_n}{fail\_on\_incoming\_frame\_complete\_n}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::fail\+\_\+on\+\_\+incoming\+\_\+frame\+\_\+complete\+\_\+n}
+
+\mbox{\Hypertarget{structtester_ae0472d9d70e3fcc9d2f7bfacbe4e0181}\label{structtester_ae0472d9d70e3fcc9d2f7bfacbe4e0181}} 
+\index{tester@{tester}!fail\_on\_incoming\_frame\_payload\_n@{fail\_on\_incoming\_frame\_payload\_n}}
+\index{fail\_on\_incoming\_frame\_payload\_n@{fail\_on\_incoming\_frame\_payload\_n}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{fail\_on\_incoming\_frame\_payload\_n}{fail\_on\_incoming\_frame\_payload\_n}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::fail\+\_\+on\+\_\+incoming\+\_\+frame\+\_\+payload\+\_\+n}
+
+\mbox{\Hypertarget{structtester_af4377dfee7ab02a55674e1a52ba588b5}\label{structtester_af4377dfee7ab02a55674e1a52ba588b5}} 
+\index{tester@{tester}!handshake\_request@{handshake\_request}}
+\index{handshake\_request@{handshake\_request}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{handshake\_request}{handshake\_request}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ tester\+::handshake\+\_\+request}
+
+\mbox{\Hypertarget{structtester_ad3fd3c8f1f2017218a74fc873720c5b0}\label{structtester_ad3fd3c8f1f2017218a74fc873720c5b0}} 
+\index{tester@{tester}!handshake\_response\_headers@{handshake\_response\_headers}}
+\index{handshake\_response\_headers@{handshake\_response\_headers}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{handshake\_response\_headers}{handshake\_response\_headers}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}}$\ast$ tester\+::handshake\+\_\+response\+\_\+headers}
+
+\mbox{\Hypertarget{structtester_a6a0cf5dedb4ac39cd15adaf10705fcce}\label{structtester_a6a0cf5dedb4ac39cd15adaf10705fcce}} 
+\index{tester@{tester}!host\_resolver@{host\_resolver}}
+\index{host\_resolver@{host\_resolver}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{host\_resolver}{host\_resolver}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}}$\ast$ tester\+::host\+\_\+resolver}
+
+\mbox{\Hypertarget{structtester_ac24ff559c388ff621ea27dd4ad7eb659}\label{structtester_ac24ff559c388ff621ea27dd4ad7eb659}} 
+\index{tester@{tester}!http\_connect\_called\_successfully@{http\_connect\_called\_successfully}}
+\index{http\_connect\_called\_successfully@{http\_connect\_called\_successfully}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_connect\_called\_successfully}{http\_connect\_called\_successfully}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::http\+\_\+connect\+\_\+called\+\_\+successfully}
+
+\mbox{\Hypertarget{structtester_af5e7848871f71a6e4881adbb18324816}\label{structtester_af5e7848871f71a6e4881adbb18324816}} 
+\index{tester@{tester}!http\_connect\_setup\_callback@{http\_connect\_setup\_callback}}
+\index{http\_connect\_setup\_callback@{http\_connect\_setup\_callback}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_connect\_setup\_callback}{http\_connect\_setup\_callback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{connection_8h_afc803717ca6708a11d74a510288f7ff4}{aws\+\_\+http\+\_\+on\+\_\+client\+\_\+connection\+\_\+setup\+\_\+fn}}$\ast$ tester\+::http\+\_\+connect\+\_\+setup\+\_\+callback}
+
+\mbox{\Hypertarget{structtester_a1f5ee04a05b7550e8272979abd56842a}\label{structtester_a1f5ee04a05b7550e8272979abd56842a}} 
+\index{tester@{tester}!http\_connect\_shutdown\_callback@{http\_connect\_shutdown\_callback}}
+\index{http\_connect\_shutdown\_callback@{http\_connect\_shutdown\_callback}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_connect\_shutdown\_callback}{http\_connect\_shutdown\_callback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{connection_8h_a4a810c4a3fb9abb4f364c1df0c79e169}{aws\+\_\+http\+\_\+on\+\_\+client\+\_\+connection\+\_\+shutdown\+\_\+fn}}$\ast$ tester\+::http\+\_\+connect\+\_\+shutdown\+\_\+callback}
+
+\mbox{\Hypertarget{structtester_a1241383c46368028dc241e314143b17c}\label{structtester_a1241383c46368028dc241e314143b17c}} 
+\index{tester@{tester}!http\_connect\_user\_data@{http\_connect\_user\_data}}
+\index{http\_connect\_user\_data@{http\_connect\_user\_data}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_connect\_user\_data}{http\_connect\_user\_data}}
+{\footnotesize\ttfamily void$\ast$ tester\+::http\+\_\+connect\+\_\+user\+\_\+data}
+
+\mbox{\Hypertarget{structtester_a349708cc8ec1b33ff99d03c876ece709}\label{structtester_a349708cc8ec1b33ff99d03c876ece709}} 
+\index{tester@{tester}!http\_connection\_close\_called@{http\_connection\_close\_called}}
+\index{http\_connection\_close\_called@{http\_connection\_close\_called}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_connection\_close\_called}{http\_connection\_close\_called}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::http\+\_\+connection\+\_\+close\+\_\+called}
+
+\mbox{\Hypertarget{structtester_ac7166b1e0b9750f4d72e39d49c688363}\label{structtester_ac7166b1e0b9750f4d72e39d49c688363}} 
+\index{tester@{tester}!http\_connection\_release\_called@{http\_connection\_release\_called}}
+\index{http\_connection\_release\_called@{http\_connection\_release\_called}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_connection\_release\_called}{http\_connection\_release\_called}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::http\+\_\+connection\+\_\+release\+\_\+called}
+
+\mbox{\Hypertarget{structtester_af3b8090bf225576d8886c8561f14224a}\label{structtester_af3b8090bf225576d8886c8561f14224a}} 
+\index{tester@{tester}!http\_stream\_activate\_called@{http\_stream\_activate\_called}}
+\index{http\_stream\_activate\_called@{http\_stream\_activate\_called}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_stream\_activate\_called}{http\_stream\_activate\_called}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::http\+\_\+stream\+\_\+activate\+\_\+called}
+
+\mbox{\Hypertarget{structtester_abb2b2866688f7aeec695604b13b01f82}\label{structtester_abb2b2866688f7aeec695604b13b01f82}} 
+\index{tester@{tester}!http\_stream\_new\_called\_successfully@{http\_stream\_new\_called\_successfully}}
+\index{http\_stream\_new\_called\_successfully@{http\_stream\_new\_called\_successfully}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_stream\_new\_called\_successfully}{http\_stream\_new\_called\_successfully}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::http\+\_\+stream\+\_\+new\+\_\+called\+\_\+successfully}
+
+\mbox{\Hypertarget{structtester_aba2cf203be5333150246bc264464cd70}\label{structtester_aba2cf203be5333150246bc264464cd70}} 
+\index{tester@{tester}!http\_stream\_on\_complete@{http\_stream\_on\_complete}}
+\index{http\_stream\_on\_complete@{http\_stream\_on\_complete}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_stream\_on\_complete}{http\_stream\_on\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a4afcb8e02af09a7e4a50d9ab278f3459}{aws\+\_\+http\+\_\+on\+\_\+stream\+\_\+complete\+\_\+fn}}$\ast$ tester\+::http\+\_\+stream\+\_\+on\+\_\+complete}
+
+\mbox{\Hypertarget{structtester_a1041d0a4805869e5e1bf4fabe7f91559}\label{structtester_a1041d0a4805869e5e1bf4fabe7f91559}} 
+\index{tester@{tester}!http\_stream\_on\_response\_header\_block\_done@{http\_stream\_on\_response\_header\_block\_done}}
+\index{http\_stream\_on\_response\_header\_block\_done@{http\_stream\_on\_response\_header\_block\_done}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_stream\_on\_response\_header\_block\_done}{http\_stream\_on\_response\_header\_block\_done}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a335feeb23b523ff7272b71a023591c18}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+fn}}$\ast$ tester\+::http\+\_\+stream\+\_\+on\+\_\+response\+\_\+header\+\_\+block\+\_\+done}
+
+\mbox{\Hypertarget{structtester_aeb467121d82fe0f56dd4adfec2411360}\label{structtester_aeb467121d82fe0f56dd4adfec2411360}} 
+\index{tester@{tester}!http\_stream\_on\_response\_headers@{http\_stream\_on\_response\_headers}}
+\index{http\_stream\_on\_response\_headers@{http\_stream\_on\_response\_headers}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_stream\_on\_response\_headers}{http\_stream\_on\_response\_headers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{request__response_8h_a0c2d80ea8a29a2ad5c7fd6a624b26a3a}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+fn}}$\ast$ tester\+::http\+\_\+stream\+\_\+on\+\_\+response\+\_\+headers}
+
+\mbox{\Hypertarget{structtester_ae1103c6fec436845aa11c83eab021127}\label{structtester_ae1103c6fec436845aa11c83eab021127}} 
+\index{tester@{tester}!http\_stream\_release\_called@{http\_stream\_release\_called}}
+\index{http\_stream\_release\_called@{http\_stream\_release\_called}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_stream\_release\_called}{http\_stream\_release\_called}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::http\+\_\+stream\+\_\+release\+\_\+called}
+
+\mbox{\Hypertarget{structtester_ac6dd8c307e28e66a92ac9cc51a0a0b51}\label{structtester_ac6dd8c307e28e66a92ac9cc51a0a0b51}} 
+\index{tester@{tester}!http\_stream\_user\_data@{http\_stream\_user\_data}}
+\index{http\_stream\_user\_data@{http\_stream\_user\_data}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{http\_stream\_user\_data}{http\_stream\_user\_data}}
+{\footnotesize\ttfamily void$\ast$ tester\+::http\+\_\+stream\+\_\+user\+\_\+data}
+
+\mbox{\Hypertarget{structtester_a12a54f723f025713b30587dc1654c8e2}\label{structtester_a12a54f723f025713b30587dc1654c8e2}} 
+\index{tester@{tester}!incoming\_frames@{incoming\_frames}}
+\index{incoming\_frames@{incoming\_frames}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{incoming\_frames}{incoming\_frames}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structincoming__frame}{incoming\+\_\+frame}} tester\+::incoming\+\_\+frames\mbox{[}100\mbox{]}}
+
+\mbox{\Hypertarget{structtester_afd10e76a16338855c759b114f58d1a81}\label{structtester_afd10e76a16338855c759b114f58d1a81}} 
+\index{tester@{tester}!is\_midchannel\_handler@{is\_midchannel\_handler}}
+\index{is\_midchannel\_handler@{is\_midchannel\_handler}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{is\_midchannel\_handler}{is\_midchannel\_handler}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::is\+\_\+midchannel\+\_\+handler}
+
+\mbox{\Hypertarget{structtester_a3b8d167c9efee14730cb51f4c534fc56}\label{structtester_a3b8d167c9efee14730cb51f4c534fc56}} 
+\index{tester@{tester}!logger@{logger}}
+\index{logger@{logger}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} tester\+::logger}
+
+\mbox{\Hypertarget{structtester_a89e9d6896fbf669eccb1013b7112266b}\label{structtester_a89e9d6896fbf669eccb1013b7112266b}} 
+\index{tester@{tester}!manual\_window\_management@{manual\_window\_management}}
+\index{manual\_window\_management@{manual\_window\_management}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{manual\_window\_management}{manual\_window\_management}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::manual\+\_\+window\+\_\+management}
+
+\mbox{\Hypertarget{structtester_a4d8c78dbe3ef852f142d74d7d910d505}\label{structtester_a4d8c78dbe3ef852f142d74d7d910d505}} 
+\index{tester@{tester}!new\_client\_connection@{new\_client\_connection}}
+\index{new\_client\_connection@{new\_client\_connection}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{new\_client\_connection}{new\_client\_connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ tester\+::new\+\_\+client\+\_\+connection}
+
+\mbox{\Hypertarget{structtester_aa8f1ea390d268a15f641ca5231628ccb}\label{structtester_aa8f1ea390d268a15f641ca5231628ccb}} 
+\index{tester@{tester}!new\_client\_setup\_finished@{new\_client\_setup\_finished}}
+\index{new\_client\_setup\_finished@{new\_client\_setup\_finished}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{new\_client\_setup\_finished}{new\_client\_setup\_finished}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::new\+\_\+client\+\_\+setup\+\_\+finished}
+
+\mbox{\Hypertarget{structtester_ae29e857ea2b1b64e3d9959ccbba02a23}\label{structtester_ae29e857ea2b1b64e3d9959ccbba02a23}} 
+\index{tester@{tester}!new\_client\_shut\_down@{new\_client\_shut\_down}}
+\index{new\_client\_shut\_down@{new\_client\_shut\_down}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{new\_client\_shut\_down}{new\_client\_shut\_down}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::new\+\_\+client\+\_\+shut\+\_\+down}
+
+\mbox{\Hypertarget{structtester_a7e99151e20477a6b206400402df1fbc7}\label{structtester_a7e99151e20477a6b206400402df1fbc7}} 
+\index{tester@{tester}!num\_handshake\_response\_headers@{num\_handshake\_response\_headers}}
+\index{num\_handshake\_response\_headers@{num\_handshake\_response\_headers}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{num\_handshake\_response\_headers}{num\_handshake\_response\_headers}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::num\+\_\+handshake\+\_\+response\+\_\+headers}
+
+\mbox{\Hypertarget{structtester_a8742b1079d093f284684aade1bcb25e1}\label{structtester_a8742b1079d093f284684aade1bcb25e1}} 
+\index{tester@{tester}!num\_incoming\_frames@{num\_incoming\_frames}}
+\index{num\_incoming\_frames@{num\_incoming\_frames}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{num\_incoming\_frames}{num\_incoming\_frames}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::num\+\_\+incoming\+\_\+frames}
+
+\mbox{\Hypertarget{structtester_af64b1de2430a0c1de55c46e12526250f}\label{structtester_af64b1de2430a0c1de55c46e12526250f}} 
+\index{tester@{tester}!num\_readpush\_frames@{num\_readpush\_frames}}
+\index{num\_readpush\_frames@{num\_readpush\_frames}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{num\_readpush\_frames}{num\_readpush\_frames}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::num\+\_\+readpush\+\_\+frames}
+
+\mbox{\Hypertarget{structtester_a74b1a68b2f8c84e18e534738b688430d}\label{structtester_a74b1a68b2f8c84e18e534738b688430d}} 
+\index{tester@{tester}!num\_writepush\_messages@{num\_writepush\_messages}}
+\index{num\_writepush\_messages@{num\_writepush\_messages}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{num\_writepush\_messages}{num\_writepush\_messages}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::num\+\_\+writepush\+\_\+messages}
+
+\mbox{\Hypertarget{structtester_ab5dd5c8c5ea2d52fab38315d03008902}\label{structtester_ab5dd5c8c5ea2d52fab38315d03008902}} 
+\index{tester@{tester}!num\_written\_frames@{num\_written\_frames}}
+\index{num\_written\_frames@{num\_written\_frames}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{num\_written\_frames}{num\_written\_frames}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::num\+\_\+written\+\_\+frames}
+
+\mbox{\Hypertarget{structtester_a5e07e55db9cbe53319073acfe429ea55}\label{structtester_a5e07e55db9cbe53319073acfe429ea55}} 
+\index{tester@{tester}!num\_written\_io\_messages@{num\_written\_io\_messages}}
+\index{num\_written\_io\_messages@{num\_written\_io\_messages}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{num\_written\_io\_messages}{num\_written\_io\_messages}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::num\+\_\+written\+\_\+io\+\_\+messages}
+
+\mbox{\Hypertarget{structtester_aafefbb0f676046f96fb0cc62bd99069e}\label{structtester_aafefbb0f676046f96fb0cc62bd99069e}} 
+\index{tester@{tester}!on\_send\_complete\_count@{on\_send\_complete\_count}}
+\index{on\_send\_complete\_count@{on\_send\_complete\_count}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{on\_send\_complete\_count}{on\_send\_complete\_count}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::on\+\_\+send\+\_\+complete\+\_\+count}
+
+\mbox{\Hypertarget{structtester_a8f4b8539205d9c35ec446c415b0c349f}\label{structtester_a8f4b8539205d9c35ec446c415b0c349f}} 
+\index{tester@{tester}!peer@{peer}}
+\index{peer@{peer}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{peer}{peer}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structh2__fake__peer}{h2\+\_\+fake\+\_\+peer}} tester\+::peer}
+
+\mbox{\Hypertarget{structtester_a6c391f7d6426827aea7c344af72cecba}\label{structtester_a6c391f7d6426827aea7c344af72cecba}} 
+\index{tester@{tester}!readpush\_encoder@{readpush\_encoder}}
+\index{readpush\_encoder@{readpush\_encoder}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{readpush\_encoder}{readpush\_encoder}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} tester\+::readpush\+\_\+encoder}
+
+\mbox{\Hypertarget{structtester_a85fbd991fe9d51d3f47f1cdaba0f6b4d}\label{structtester_a85fbd991fe9d51d3f47f1cdaba0f6b4d}} 
+\index{tester@{tester}!readpush\_frame\_index@{readpush\_frame\_index}}
+\index{readpush\_frame\_index@{readpush\_frame\_index}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{readpush\_frame\_index}{readpush\_frame\_index}}
+{\footnotesize\ttfamily size\+\_\+t tester\+::readpush\+\_\+frame\+\_\+index}
+
+\mbox{\Hypertarget{structtester_a165902bca93673ad99355832e42e5156}\label{structtester_a165902bca93673ad99355832e42e5156}} 
+\index{tester@{tester}!readpush\_frames@{readpush\_frames}}
+\index{readpush\_frames@{readpush\_frames}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{readpush\_frames}{readpush\_frames}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structreadpush__frame}{readpush\+\_\+frame}}$\ast$ tester\+::readpush\+\_\+frames}
+
+\mbox{\Hypertarget{structtester_acb7a4861f8cf8200f1e9bc227cc34f95}\label{structtester_acb7a4861f8cf8200f1e9bc227cc34f95}} 
+\index{tester@{tester}!request\_num@{request\_num}}
+\index{request\_num@{request\_num}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{request\_num}{request\_num}}
+{\footnotesize\ttfamily int tester\+::request\+\_\+num}
+
+\mbox{\Hypertarget{structtester_a3a7ed283192764dd2ba1b12299a569df}\label{structtester_a3a7ed283192764dd2ba1b12299a569df}} 
+\index{tester@{tester}!requests@{requests}}
+\index{requests@{requests}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{requests}{requests}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtester__request}{tester\+\_\+request}} tester\+::requests\mbox{[}100\mbox{]}}
+
+\mbox{\Hypertarget{structtester_a65b59199e6ae71136ef523784a5e6ffd}\label{structtester_a65b59199e6ae71136ef523784a5e6ffd}} 
+\index{tester@{tester}!server@{server}}
+\index{server@{server}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{server}{server}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__server}{aws\+\_\+http\+\_\+server}}$\ast$ tester\+::server}
+
+\mbox{\Hypertarget{structtester_a793344d23593bf2f10fda783637cfbfc}\label{structtester_a793344d23593bf2f10fda783637cfbfc}} 
+\index{tester@{tester}!server\_bootstrap@{server\_bootstrap}}
+\index{server\_bootstrap@{server\_bootstrap}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{server\_bootstrap}{server\_bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__server__bootstrap}{aws\+\_\+server\+\_\+bootstrap}}$\ast$ tester\+::server\+\_\+bootstrap}
+
+\mbox{\Hypertarget{structtester_ad4b38ed5fd84369c4e8cd9c1847873d5}\label{structtester_ad4b38ed5fd84369c4e8cd9c1847873d5}} 
+\index{tester@{tester}!server\_connection@{server\_connection}}
+\index{server\_connection@{server\_connection}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{server\_connection}{server\_connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ tester\+::server\+\_\+connection}
+
+\mbox{\Hypertarget{structtester_a3c98681f10f0b485cbcece720fbbdba0}\label{structtester_a3c98681f10f0b485cbcece720fbbdba0}} 
+\index{tester@{tester}!server\_connection\_is\_shutdown@{server\_connection\_is\_shutdown}}
+\index{server\_connection\_is\_shutdown@{server\_connection\_is\_shutdown}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{server\_connection\_is\_shutdown}{server\_connection\_is\_shutdown}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int tester\+::server\+\_\+connection\+\_\+is\+\_\+shutdown}
+
+\mbox{\Hypertarget{structtester_a22cdabfa2995567f30b1d6f92663b32a}\label{structtester_a22cdabfa2995567f30b1d6f92663b32a}} 
+\index{tester@{tester}!server\_connection\_is\_shutdown@{server\_connection\_is\_shutdown}}
+\index{server\_connection\_is\_shutdown@{server\_connection\_is\_shutdown}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{server\_connection\_is\_shutdown}{server\_connection\_is\_shutdown}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::server\+\_\+connection\+\_\+is\+\_\+shutdown}
+
+\mbox{\Hypertarget{structtester_a0f82ba9cf43bcef4b0252067efc099f3}\label{structtester_a0f82ba9cf43bcef4b0252067efc099f3}} 
+\index{tester@{tester}!server\_connection\_num@{server\_connection\_num}}
+\index{server\_connection\_num@{server\_connection\_num}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{server\_connection\_num}{server\_connection\_num}}
+{\footnotesize\ttfamily int tester\+::server\+\_\+connection\+\_\+num}
+
+\mbox{\Hypertarget{structtester_a8303648b68b31e7d9303dc04e2446d31}\label{structtester_a8303648b68b31e7d9303dc04e2446d31}} 
+\index{tester@{tester}!server\_connections@{server\_connections}}
+\index{server\_connections@{server\_connections}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{server\_connections}{server\_connections}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ tester\+::server\+\_\+connections\mbox{[}10\mbox{]}}
+
+\mbox{\Hypertarget{structtester_a66f29e9727947db85822f6a029426e3b}\label{structtester_a66f29e9727947db85822f6a029426e3b}} 
+\index{tester@{tester}!server\_is\_shutdown@{server\_is\_shutdown}}
+\index{server\_is\_shutdown@{server\_is\_shutdown}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{server\_is\_shutdown}{server\_is\_shutdown}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::server\+\_\+is\+\_\+shutdown}
+
+\mbox{\Hypertarget{structtester_a0498555aab1b1b4311d14e0415bc22ff}\label{structtester_a0498555aab1b1b4311d14e0415bc22ff}} 
+\index{tester@{tester}!server\_wait\_result@{server\_wait\_result}}
+\index{server\_wait\_result@{server\_wait\_result}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{server\_wait\_result}{server\_wait\_result}}
+{\footnotesize\ttfamily int tester\+::server\+\_\+wait\+\_\+result}
+
+\mbox{\Hypertarget{structtester_ae60897c316bac13ba46c1cfb73a8f89a}\label{structtester_ae60897c316bac13ba46c1cfb73a8f89a}} 
+\index{tester@{tester}!socket\_options@{socket\_options}}
+\index{socket\_options@{socket\_options}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{socket\_options}{socket\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} tester\+::socket\+\_\+options}
+
+\mbox{\Hypertarget{structtester_a019231e6d2633d06c78768567bf24786}\label{structtester_a019231e6d2633d06c78768567bf24786}} 
+\index{tester@{tester}!specific\_test\_data@{specific\_test\_data}}
+\index{specific\_test\_data@{specific\_test\_data}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{specific\_test\_data}{specific\_test\_data}}
+{\footnotesize\ttfamily void$\ast$ tester\+::specific\+\_\+test\+\_\+data}
+
+\mbox{\Hypertarget{structtester_a15a9d3379dc002d0cb0970bbe28adf57}\label{structtester_a15a9d3379dc002d0cb0970bbe28adf57}} 
+\index{tester@{tester}!testing\_channel@{testing\_channel}}
+\index{testing\_channel@{testing\_channel}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{testing\_channel}{testing\_channel}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtesting__channel}{testing\+\_\+channel}} tester\+::testing\+\_\+channel}
+
+\mbox{\Hypertarget{structtester_a0ff5977a09e6186063d6ea41ddb5983f}\label{structtester_a0ff5977a09e6186063d6ea41ddb5983f}} 
+\index{tester@{tester}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structconnection__user__data}{connection\+\_\+user\+\_\+data}} tester\+::user\+\_\+data}
+
+\mbox{\Hypertarget{structtester_ab4c0eb5e2eae2e0c873d5f362af2a237}\label{structtester_ab4c0eb5e2eae2e0c873d5f362af2a237}} 
+\index{tester@{tester}!wait\_client\_connection\_is\_shutdown@{wait\_client\_connection\_is\_shutdown}}
+\index{wait\_client\_connection\_is\_shutdown@{wait\_client\_connection\_is\_shutdown}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{wait\_client\_connection\_is\_shutdown}{wait\_client\_connection\_is\_shutdown}}
+{\footnotesize\ttfamily int tester\+::wait\+\_\+client\+\_\+connection\+\_\+is\+\_\+shutdown}
+
+\mbox{\Hypertarget{structtester_a46eec5b139d31b01003bc226aebe380e}\label{structtester_a46eec5b139d31b01003bc226aebe380e}} 
+\index{tester@{tester}!wait\_client\_connection\_num@{wait\_client\_connection\_num}}
+\index{wait\_client\_connection\_num@{wait\_client\_connection\_num}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{wait\_client\_connection\_num}{wait\_client\_connection\_num}}
+{\footnotesize\ttfamily int tester\+::wait\+\_\+client\+\_\+connection\+\_\+num}
+
+\mbox{\Hypertarget{structtester_a2cf33391cd2f8d338549317a07f5edf0}\label{structtester_a2cf33391cd2f8d338549317a07f5edf0}} 
+\index{tester@{tester}!wait\_cvar@{wait\_cvar}}
+\index{wait\_cvar@{wait\_cvar}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{wait\_cvar}{wait\_cvar}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} tester\+::wait\+\_\+cvar}
+
+\mbox{\Hypertarget{structtester_ae6e9ba28fe3cf5fbeeabbcb4fed07ca8}\label{structtester_ae6e9ba28fe3cf5fbeeabbcb4fed07ca8}} 
+\index{tester@{tester}!wait\_lock@{wait\_lock}}
+\index{wait\_lock@{wait\_lock}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{wait\_lock}{wait\_lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} tester\+::wait\+\_\+lock}
+
+\mbox{\Hypertarget{structtester_a1b8b0836ea05567d975674be35cf1c25}\label{structtester_a1b8b0836ea05567d975674be35cf1c25}} 
+\index{tester@{tester}!wait\_server\_connection\_is\_shutdown@{wait\_server\_connection\_is\_shutdown}}
+\index{wait\_server\_connection\_is\_shutdown@{wait\_server\_connection\_is\_shutdown}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{wait\_server\_connection\_is\_shutdown}{wait\_server\_connection\_is\_shutdown}}
+{\footnotesize\ttfamily int tester\+::wait\+\_\+server\+\_\+connection\+\_\+is\+\_\+shutdown}
+
+\mbox{\Hypertarget{structtester_a077584e3267573eb5e6c1c9db936be9f}\label{structtester_a077584e3267573eb5e6c1c9db936be9f}} 
+\index{tester@{tester}!wait\_server\_connection\_num@{wait\_server\_connection\_num}}
+\index{wait\_server\_connection\_num@{wait\_server\_connection\_num}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{wait\_server\_connection\_num}{wait\_server\_connection\_num}}
+{\footnotesize\ttfamily int tester\+::wait\+\_\+server\+\_\+connection\+\_\+num}
+
+\mbox{\Hypertarget{structtester_a56b17b82b0c136c65b763e1e99767cb2}\label{structtester_a56b17b82b0c136c65b763e1e99767cb2}} 
+\index{tester@{tester}!websocket@{websocket}}
+\index{websocket@{websocket}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{websocket}{websocket}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}}$\ast$ tester\+::websocket}
+
+\mbox{\Hypertarget{structtester_aff10b3474ea47d83923af278fb587d38}\label{structtester_aff10b3474ea47d83923af278fb587d38}} 
+\index{tester@{tester}!websocket\_new\_called\_successfully@{websocket\_new\_called\_successfully}}
+\index{websocket\_new\_called\_successfully@{websocket\_new\_called\_successfully}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{websocket\_new\_called\_successfully}{websocket\_new\_called\_successfully}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::websocket\+\_\+new\+\_\+called\+\_\+successfully}
+
+\mbox{\Hypertarget{structtester_abe2bb59d90bc2f82b1db44a2c79dbd67}\label{structtester_abe2bb59d90bc2f82b1db44a2c79dbd67}} 
+\index{tester@{tester}!websocket\_setup\_error\_code@{websocket\_setup\_error\_code}}
+\index{websocket\_setup\_error\_code@{websocket\_setup\_error\_code}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{websocket\_setup\_error\_code}{websocket\_setup\_error\_code}}
+{\footnotesize\ttfamily int tester\+::websocket\+\_\+setup\+\_\+error\+\_\+code}
+
+\mbox{\Hypertarget{structtester_afe747512e9f8e621d428d181c01bd5ad}\label{structtester_afe747512e9f8e621d428d181c01bd5ad}} 
+\index{tester@{tester}!websocket\_setup\_invoked@{websocket\_setup\_invoked}}
+\index{websocket\_setup\_invoked@{websocket\_setup\_invoked}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{websocket\_setup\_invoked}{websocket\_setup\_invoked}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::websocket\+\_\+setup\+\_\+invoked}
+
+\mbox{\Hypertarget{structtester_abd26ecc2fdb3a05a5ea286b5da071227}\label{structtester_abd26ecc2fdb3a05a5ea286b5da071227}} 
+\index{tester@{tester}!websocket\_shutdown\_error\_code@{websocket\_shutdown\_error\_code}}
+\index{websocket\_shutdown\_error\_code@{websocket\_shutdown\_error\_code}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{websocket\_shutdown\_error\_code}{websocket\_shutdown\_error\_code}}
+{\footnotesize\ttfamily int tester\+::websocket\+\_\+shutdown\+\_\+error\+\_\+code}
+
+\mbox{\Hypertarget{structtester_aad6b747bcbe844c1028e27dd0392025a}\label{structtester_aad6b747bcbe844c1028e27dd0392025a}} 
+\index{tester@{tester}!websocket\_shutdown\_invoked@{websocket\_shutdown\_invoked}}
+\index{websocket\_shutdown\_invoked@{websocket\_shutdown\_invoked}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{websocket\_shutdown\_invoked}{websocket\_shutdown\_invoked}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} tester\+::websocket\+\_\+shutdown\+\_\+invoked}
+
+\mbox{\Hypertarget{structtester_ad3ecc508b7379a6dee5f26f21a1b3acb}\label{structtester_ad3ecc508b7379a6dee5f26f21a1b3acb}} 
+\index{tester@{tester}!written\_frame\_decoder@{written\_frame\_decoder}}
+\index{written\_frame\_decoder@{written\_frame\_decoder}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{written\_frame\_decoder}{written\_frame\_decoder}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__websocket__decoder}{aws\+\_\+websocket\+\_\+decoder}} tester\+::written\+\_\+frame\+\_\+decoder}
+
+\mbox{\Hypertarget{structtester_ab8d8d8def8d1ca669bad9614a0af5a76}\label{structtester_ab8d8d8def8d1ca669bad9614a0af5a76}} 
+\index{tester@{tester}!written\_frames@{written\_frames}}
+\index{written\_frames@{written\_frames}!tester@{tester}}
+\doxysubsubsection{\texorpdfstring{written\_frames}{written\_frames}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structwritten__frame}{written\+\_\+frame}} tester\+::written\+\_\+frames\mbox{[}100\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/\mbox{\hyperlink{test__connection_8c}{test\+\_\+connection.\+c}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/\mbox{\hyperlink{test__h1__client_8c}{test\+\_\+h1\+\_\+client.\+c}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/\mbox{\hyperlink{test__h1__server_8c}{test\+\_\+h1\+\_\+server.\+c}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/\mbox{\hyperlink{test__h2__client_8c}{test\+\_\+h2\+\_\+client.\+c}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/\mbox{\hyperlink{test__websocket__bootstrap_8c}{test\+\_\+websocket\+\_\+bootstrap.\+c}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/\mbox{\hyperlink{test__websocket__handler_8c}{test\+\_\+websocket\+\_\+handler.\+c}}\end{DoxyCompactItemize}

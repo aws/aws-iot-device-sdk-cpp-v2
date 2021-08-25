@@ -1,0 +1,196 @@
+\hypertarget{aws-c-http_2bin_2elasticurl_2main_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/bin/elasticurl/main.c File Reference}
+\label{aws-c-http_2bin_2elasticurl_2main_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/bin/elasticurl/main.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/bin/elasticurl/main.c}}
+{\ttfamily \#include $<$aws/http/connection.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/request\+\_\+response.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/command\+\_\+line\+\_\+parser.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/condition\+\_\+variable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/hash\+\_\+table.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/log\+\_\+channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/log\+\_\+formatter.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/log\+\_\+writer.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/mutex.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel\+\_\+bootstrap.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/shared\+\_\+library.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/socket.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/stream.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/tls\+\_\+channel\+\_\+handler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/uri.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structelasticurl__ctx}{elasticurl\+\_\+ctx}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_a4254ace0ee945782e52c68e99d591ea1}{ELASTICURL\+\_\+\+VERSION}}~\char`\"{}0.\+2.\+0\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_a4d0cedea4738077d526ab5ab53986692}{s\+\_\+usage}} (int exit\+\_\+code)
+\item 
+static int \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_a0c4e791469572ab6be74db2b055fa225}{s\+\_\+parse\+\_\+signing\+\_\+context}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$signing\+\_\+context, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const char $\ast$context\+\_\+argument)
+\item 
+static void \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_af1b46904648190b9d621b7becdd15051}{s\+\_\+parse\+\_\+options}} (int argc, char $\ast$$\ast$argv, struct \mbox{\hyperlink{structelasticurl__ctx}{elasticurl\+\_\+ctx}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_aab5ed1d449f290e890f756ad76cbd83d}{s\+\_\+on\+\_\+incoming\+\_\+body\+\_\+fn}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$data, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_acb5c57bd9f43f9dcdca0682f5f9dd8a9}{s\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+fn}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} header\+\_\+block, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header\+\_\+array, size\+\_\+t num\+\_\+headers, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_a7920ae666a90621a1b74c97656e73ba8}{s\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+fn}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} header\+\_\+block, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_ac79448c2ee6facf5ac05cf761407fdc3}{s\+\_\+on\+\_\+stream\+\_\+complete\+\_\+fn}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_a04cae2b6d0a78faedd2b71256bd330b5}{s\+\_\+build\+\_\+http\+\_\+request}} (struct \mbox{\hyperlink{structelasticurl__ctx}{elasticurl\+\_\+ctx}} $\ast$app\+\_\+ctx)
+\item 
+static void \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_ae8753fac0c0042882d289e67b57d6108}{s\+\_\+on\+\_\+signing\+\_\+complete}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_adef94984e7637b5cfb6c72f3bd5cecee}{s\+\_\+on\+\_\+client\+\_\+connection\+\_\+setup}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_a032b9e513f2ffc8bdec681ba389130b1}{s\+\_\+on\+\_\+client\+\_\+connection\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_a1807603187fd3a71ccfa4e4bec1dcf9e}{s\+\_\+completion\+\_\+predicate}} (void $\ast$arg)
+\item 
+int \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} \mbox{\hyperlink{aws-c-http_2bin_2elasticurl_2main_8c_a40e7df3d6df111c7d3a0c58d03065652}{s\+\_\+long\+\_\+options}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_a4254ace0ee945782e52c68e99d591ea1}\label{aws-c-http_2bin_2elasticurl_2main_8c_a4254ace0ee945782e52c68e99d591ea1}} 
+\index{main.c@{main.c}!ELASTICURL\_VERSION@{ELASTICURL\_VERSION}}
+\index{ELASTICURL\_VERSION@{ELASTICURL\_VERSION}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{ELASTICURL\_VERSION}{ELASTICURL\_VERSION}}
+{\footnotesize\ttfamily \#define ELASTICURL\+\_\+\+VERSION~\char`\"{}0.\+2.\+0\char`\"{}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{aws-c-http_2bin_2elasticurl_2main_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_a04cae2b6d0a78faedd2b71256bd330b5}\label{aws-c-http_2bin_2elasticurl_2main_8c_a04cae2b6d0a78faedd2b71256bd330b5}} 
+\index{main.c@{main.c}!s\_build\_http\_request@{s\_build\_http\_request}}
+\index{s\_build\_http\_request@{s\_build\_http\_request}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_build\_http\_request()}{s\_build\_http\_request()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ s\+\_\+build\+\_\+http\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structelasticurl__ctx}{elasticurl\+\_\+ctx}} $\ast$}]{app\+\_\+ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_a1807603187fd3a71ccfa4e4bec1dcf9e}\label{aws-c-http_2bin_2elasticurl_2main_8c_a1807603187fd3a71ccfa4e4bec1dcf9e}} 
+\index{main.c@{main.c}!s\_completion\_predicate@{s\_completion\_predicate}}
+\index{s\_completion\_predicate@{s\_completion\_predicate}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_completion\_predicate()}{s\_completion\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+completion\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_adef94984e7637b5cfb6c72f3bd5cecee}\label{aws-c-http_2bin_2elasticurl_2main_8c_adef94984e7637b5cfb6c72f3bd5cecee}} 
+\index{main.c@{main.c}!s\_on\_client\_connection\_setup@{s\_on\_client\_connection\_setup}}
+\index{s\_on\_client\_connection\_setup@{s\_on\_client\_connection\_setup}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_client\_connection\_setup()}{s\_on\_client\_connection\_setup()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+client\+\_\+connection\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_a032b9e513f2ffc8bdec681ba389130b1}\label{aws-c-http_2bin_2elasticurl_2main_8c_a032b9e513f2ffc8bdec681ba389130b1}} 
+\index{main.c@{main.c}!s\_on\_client\_connection\_shutdown@{s\_on\_client\_connection\_shutdown}}
+\index{s\_on\_client\_connection\_shutdown@{s\_on\_client\_connection\_shutdown}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_client\_connection\_shutdown()}{s\_on\_client\_connection\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+client\+\_\+connection\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_aab5ed1d449f290e890f756ad76cbd83d}\label{aws-c-http_2bin_2elasticurl_2main_8c_aab5ed1d449f290e890f756ad76cbd83d}} 
+\index{main.c@{main.c}!s\_on\_incoming\_body\_fn@{s\_on\_incoming\_body\_fn}}
+\index{s\_on\_incoming\_body\_fn@{s\_on\_incoming\_body\_fn}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_incoming\_body\_fn()}{s\_on\_incoming\_body\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+on\+\_\+incoming\+\_\+body\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{data,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_a7920ae666a90621a1b74c97656e73ba8}\label{aws-c-http_2bin_2elasticurl_2main_8c_a7920ae666a90621a1b74c97656e73ba8}} 
+\index{main.c@{main.c}!s\_on\_incoming\_header\_block\_done\_fn@{s\_on\_incoming\_header\_block\_done\_fn}}
+\index{s\_on\_incoming\_header\_block\_done\_fn@{s\_on\_incoming\_header\_block\_done\_fn}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_incoming\_header\_block\_done\_fn()}{s\_on\_incoming\_header\_block\_done\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+on\+\_\+incoming\+\_\+header\+\_\+block\+\_\+done\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{header\+\_\+block,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_acb5c57bd9f43f9dcdca0682f5f9dd8a9}\label{aws-c-http_2bin_2elasticurl_2main_8c_acb5c57bd9f43f9dcdca0682f5f9dd8a9}} 
+\index{main.c@{main.c}!s\_on\_incoming\_headers\_fn@{s\_on\_incoming\_headers\_fn}}
+\index{s\_on\_incoming\_headers\_fn@{s\_on\_incoming\_headers\_fn}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_incoming\_headers\_fn()}{s\_on\_incoming\_headers\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+on\+\_\+incoming\+\_\+headers\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}}}]{header\+\_\+block,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header\+\_\+array,  }\item[{size\+\_\+t}]{num\+\_\+headers,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_ae8753fac0c0042882d289e67b57d6108}\label{aws-c-http_2bin_2elasticurl_2main_8c_ae8753fac0c0042882d289e67b57d6108}} 
+\index{main.c@{main.c}!s\_on\_signing\_complete@{s\_on\_signing\_complete}}
+\index{s\_on\_signing\_complete@{s\_on\_signing\_complete}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_signing\_complete()}{s\_on\_signing\_complete()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+signing\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{request,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_ac79448c2ee6facf5ac05cf761407fdc3}\label{aws-c-http_2bin_2elasticurl_2main_8c_ac79448c2ee6facf5ac05cf761407fdc3}} 
+\index{main.c@{main.c}!s\_on\_stream\_complete\_fn@{s\_on\_stream\_complete\_fn}}
+\index{s\_on\_stream\_complete\_fn@{s\_on\_stream\_complete\_fn}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_stream\_complete\_fn()}{s\_on\_stream\_complete\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+stream\+\_\+complete\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_af1b46904648190b9d621b7becdd15051}\label{aws-c-http_2bin_2elasticurl_2main_8c_af1b46904648190b9d621b7becdd15051}} 
+\index{main.c@{main.c}!s\_parse\_options@{s\_parse\_options}}
+\index{s\_parse\_options@{s\_parse\_options}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_options()}{s\_parse\_options()}}
+{\footnotesize\ttfamily static void s\+\_\+parse\+\_\+options (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{struct \mbox{\hyperlink{structelasticurl__ctx}{elasticurl\+\_\+ctx}} $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_a0c4e791469572ab6be74db2b055fa225}\label{aws-c-http_2bin_2elasticurl_2main_8c_a0c4e791469572ab6be74db2b055fa225}} 
+\index{main.c@{main.c}!s\_parse\_signing\_context@{s\_parse\_signing\_context}}
+\index{s\_parse\_signing\_context@{s\_parse\_signing\_context}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_signing\_context()}{s\_parse\_signing\_context()}}
+{\footnotesize\ttfamily static int s\+\_\+parse\+\_\+signing\+\_\+context (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{signing\+\_\+context,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const char $\ast$}]{context\+\_\+argument }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_a4d0cedea4738077d526ab5ab53986692}\label{aws-c-http_2bin_2elasticurl_2main_8c_a4d0cedea4738077d526ab5ab53986692}} 
+\index{main.c@{main.c}!s\_usage@{s\_usage}}
+\index{s\_usage@{s\_usage}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_usage()}{s\_usage()}}
+{\footnotesize\ttfamily static void s\+\_\+usage (\begin{DoxyParamCaption}\item[{int}]{exit\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{aws-c-http_2bin_2elasticurl_2main_8c_a40e7df3d6df111c7d3a0c58d03065652}\label{aws-c-http_2bin_2elasticurl_2main_8c_a40e7df3d6df111c7d3a0c58d03065652}} 
+\index{main.c@{main.c}!s\_long\_options@{s\_long\_options}}
+\index{s\_long\_options@{s\_long\_options}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{s\_long\_options}{s\_long\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} s\+\_\+long\+\_\+options\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}cacert"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'a'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}capath"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'b'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}cert"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'c'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}key"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'e'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}connect-\/timeout"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'f'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}header"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'H'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}data"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'d'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}data-\/file"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'g'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}method"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'M'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}get"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'G'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}post"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'P'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}head"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'I'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}signing-\/lib"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'j'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}include"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'i'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}insecure"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'k'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}signing-\/func"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'l'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}signing-\/context"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'m'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}output"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'o'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}trace"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'t'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}verbose"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ac4796e80b96aa92bb071bf722d9c238b}{AWS\_CLI\_OPTIONS\_REQUIRED\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'v'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}version"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'V'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}http2"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'w'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}http1\_1"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'W'}\},}
+\DoxyCodeLine{    \{\textcolor{stringliteral}{"{}help"{}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \textcolor{charliteral}{'h'}\},}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    \{\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \mbox{\hyperlink{command__line__parser_8h_a15c3725107ff49b3c892609e11a0c745ae3fe60d5f9d09d4c3afe24672babdaca}{AWS\_CLI\_OPTIONS\_NO\_ARGUMENT}}, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, 0\},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

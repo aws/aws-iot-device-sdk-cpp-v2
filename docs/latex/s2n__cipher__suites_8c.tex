@@ -1,0 +1,1747 @@
+\hypertarget{s2n__cipher__suites_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+cipher\+\_\+suites.c File Reference}
+\label{s2n__cipher__suites_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_cipher\_suites.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_cipher\_suites.c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/crypto.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+cipher.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+openssl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+auth\+\_\+selection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kex.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8c_afb5d46b9b4094a43acb9b4d55fdcb6ea}{s2n\+\_\+cipher\+\_\+suites\+\_\+init}} (void)
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8c_a6c50373c5d68e327710d20bd0278ce41}{s2n\+\_\+cipher\+\_\+suites\+\_\+cleanup}} (void)
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$ \mbox{\hyperlink{s2n__cipher__suites_8c_a1f209f1192c8a5693b4cf9187805f90a}{s2n\+\_\+cipher\+\_\+suite\+\_\+from\+\_\+wire}} (const uint8\+\_\+t cipher\+\_\+suite\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]})
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8c_a1fde427e44c9343e87af779ca1666b9e}{s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+client}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t wire\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]})
+\item 
+static int \mbox{\hyperlink{s2n__cipher__suites_8c_ace7a7fe758076ddc802484d5cf522ee6}{s2n\+\_\+wire\+\_\+ciphers\+\_\+contain}} (const uint8\+\_\+t $\ast$match, const uint8\+\_\+t $\ast$wire, uint32\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, uint32\+\_\+t cipher\+\_\+suite\+\_\+len)
+\item 
+static int \mbox{\hyperlink{s2n__cipher__suites_8c_a8a80f1b496e6dcca586ddd7f9c203d8b}{s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+server}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$wire, uint32\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}}, uint32\+\_\+t cipher\+\_\+suite\+\_\+len)
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8c_a93d49c8f6f3f8a5f4b7e703a61421b7b}{s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+sslv2\+\_\+server}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$wire, uint16\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8c_a786e7c2f58d929af6012129893c03e63}{s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+tls\+\_\+server}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$wire, uint16\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a5207c89d92951be3bb7d6125d4b96800}{s2n\+\_\+record\+\_\+alg\+\_\+null}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a3e1af441475886bfaecd9842f3d154a5}{s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+md5}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_aed092da3689bd81f6954ab51d6f26ef6}{s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+sslv3\+\_\+md5}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a96e008f2d43c169af35be8d107c48934}{s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_afd6b627151e593bc2488a99bf04e4c6b}{s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+sslv3\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a929db2d53c367e42fa8e675fb14172e6}{s2n\+\_\+record\+\_\+alg\+\_\+3des\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a2d4ec5c53f986850598b481658cd4546}{s2n\+\_\+record\+\_\+alg\+\_\+3des\+\_\+sslv3\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a452d94ade8960b5ab6fd9566dbbbe1e8}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_aab963019c01559334ba11b2c328bbb19}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sslv3\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a3e6b27a84708ca9e0fcf25a82d7c2dc5}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha\+\_\+composite}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a94034f09aeb9f3aa1ebe99b81daf34e2}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha256}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a3e903c153439ddbe9d901be83b84449e}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha256\+\_\+composite}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a15443886354166843b1db74ccc4573ce}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a030886269c11c64b364ad6faaea58f3f}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sslv3\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_ac385dff3872ca9ef19f7ae44751c9aaf}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha\+\_\+composite}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a217a25546da4acc6b21e9e26452030e7}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha256}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_aa58e3f3c544cabe170e73ffc58d0fd84}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha256\+\_\+composite}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_ad348dd46e0bb0d362648c5466df03c1a}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha384}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a95d7bd4ee3bbad1298952628bc39a3f5}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+gcm}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+gcm}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_ade6d0c9f7fd0d1b943321e953b20d8b1}{s2n\+\_\+record\+\_\+alg\+\_\+chacha20\+\_\+poly1305}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a53ffe8274f4ec78a798119a054638a0b}{s2n\+\_\+tls13\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+gcm}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a42b5dee40e6b375974bbec74d413bb39}{s2n\+\_\+tls13\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+gcm}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8c_a08e96e5693c470ef640061ecae8e1dc7}{s2n\+\_\+tls13\+\_\+record\+\_\+alg\+\_\+chacha20\+\_\+poly1305}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a961160365c54a2770d684943f033f4de}{s2n\+\_\+null\+\_\+cipher\+\_\+suite}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a0bf7a5fcd091e8b4bef87992b37522da}{s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+md5}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_aaf608074ffdc86e41713146d9ebb2370}{s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_aedbbcf28f7ae11f940e055cbad69f65d}{s2n\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a43fd6b4d1740fd0401e7a4e0695a9ab8}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_aa85dccb2e7e53f402d8f3e96ed48da66}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_abb2dc794d47cf6d2faa76924260ea1d2}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a46d9efb9bf17d8c57ef8a57d2b56df4f}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a9099bfcbb1445470e4113c81aa58c2f4}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a89060731d96940fd07e31b094c28d5a4}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a6a21d24267d675efe8387cb57b62e18f}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a41356e82307bc9b5ea6035964ceff636}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a55f229a7744b8e0bacbc1650ce0f1cda}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a28e6e1fd6af50e6fc500c94cc267fd86}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a1b0863aff304f3fe262b90e800854197}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a7ef219704ef9ef7aebbdbdfec74642e2}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a36c1996e2804dad902d3b178570182ba}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a7f2fe8fd0fdfece68a9ac1997da7db51}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_af99d92ad95c5580cf8848a675e321f93}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_aab45275ecd81541e68ef240bef05f995}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a1601b2ed82c660b98799f782b1355bc8}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a3b9234b1e271ab80bd9c50b7c32e4ced}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a1a8ebc22b2a910b157224839fea8b75b}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_af9331d4ceaa39de21a9dd24eaf811975}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_adc98b5912b789773adcb3ea2cdbe3c29}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_adc98cb26a16a8056a48cd72d3782c0ae}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_abb47c0718e5f0e0e52ad90e81d0272a5}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a41f01fab4d96de082b409107d2148e4b}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_af92572e0db23d53465461558e833a991}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a4b15b5a254ea34d9ef0811b90b0354d1}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a70e882e5e28f751fe5e23386081952bd}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_af1bf6d90bb73dd80533819cc1be8da6e}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_ac96edb340b078d09707b70d5e1b5500b}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a67490116fd3bb3e083a3a88ed792c193}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_ad94c4052c3d0ab1c09021c214fb3310c}{s2n\+\_\+ecdhe\+\_\+kyber\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_ab3fb3db3a8969d2b9c929d52921ec3cc}{s2n\+\_\+ecdhe\+\_\+bike\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_afcdf04ecf4ec99ef4544464ff68fdfa9}{s2n\+\_\+ecdhe\+\_\+sike\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_ac28aff94fd6a2c8995c7880912773a5e}{s2n\+\_\+tls13\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a275c6ae46727624a2080d3812e2560be}{s2n\+\_\+tls13\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8c_a464d84090a431794715e02fc4a5e50c4}{s2n\+\_\+tls13\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$ \mbox{\hyperlink{s2n__cipher__suites_8c_a7c6a93f9b831660a32d30123cf01a3ae}{s2n\+\_\+all\+\_\+cipher\+\_\+suites}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} \mbox{\hyperlink{s2n__cipher__suites_8c_a2683796ac1f44de849d8f0fa9617c67d}{cipher\+\_\+preferences\+\_\+test\+\_\+all}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$ \mbox{\hyperlink{s2n__cipher__suites_8c_a1926f23a6fc719a479479beefaf33d27}{s2n\+\_\+all\+\_\+tls12\+\_\+cipher\+\_\+suites}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} \mbox{\hyperlink{s2n__cipher__suites_8c_a59bdf36ae8fa72c21b3ee90cb085fa0e}{cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+tls12}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$ \mbox{\hyperlink{s2n__cipher__suites_8c_a34cc9e6aa628aeebbe5378d2efd788a6}{s2n\+\_\+all\+\_\+fips\+\_\+cipher\+\_\+suites}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} \mbox{\hyperlink{s2n__cipher__suites_8c_a1c9d480fae72c78a50bf799780b40f20}{cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+fips}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$ \mbox{\hyperlink{s2n__cipher__suites_8c_a238b93867153ba936828afbc3da5afa0}{s2n\+\_\+all\+\_\+ecdsa\+\_\+cipher\+\_\+suites}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} \mbox{\hyperlink{s2n__cipher__suites_8c_a6ccfbf81d5f04df7b8d4a5e4c07576bc}{cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+ecdsa}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$ \mbox{\hyperlink{s2n__cipher__suites_8c_a8942bcda20ed2b27a2f206f35f72ec7f}{s2n\+\_\+all\+\_\+rsa\+\_\+kex\+\_\+cipher\+\_\+suites}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} \mbox{\hyperlink{s2n__cipher__suites_8c_a61d6a953d80330348e5e3a4acd07fe32}{cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+rsa\+\_\+kex}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$ \mbox{\hyperlink{s2n__cipher__suites_8c_ae7953868befc30aa079b500db9abfb12}{s2n\+\_\+ecdsa\+\_\+priority\+\_\+cipher\+\_\+suites}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} \mbox{\hyperlink{s2n__cipher__suites_8c_a67653c1f3593bd7ad6ae80ed1d67ee7f}{cipher\+\_\+preferences\+\_\+test\+\_\+ecdsa\+\_\+priority}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$ \mbox{\hyperlink{s2n__cipher__suites_8c_ab4cc8f9bedbb22d833ea5a6dac0ce17b}{s2n\+\_\+all\+\_\+tls13\+\_\+cipher\+\_\+suites}} \mbox{[}$\,$\mbox{]}
+\item 
+const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} \mbox{\hyperlink{s2n__cipher__suites_8c_aa04833f1f87127f8a223aa8ed9498850}{cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+tls13}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a1f209f1192c8a5693b4cf9187805f90a}\label{s2n__cipher__suites_8c_a1f209f1192c8a5693b4cf9187805f90a}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_cipher\_suite\_from\_wire@{s2n\_cipher\_suite\_from\_wire}}
+\index{s2n\_cipher\_suite\_from\_wire@{s2n\_cipher\_suite\_from\_wire}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_cipher\_suite\_from\_wire()}{s2n\_cipher\_suite\_from\_wire()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$ s2n\+\_\+cipher\+\_\+suite\+\_\+from\+\_\+wire (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{cipher\+\_\+suite\mbox{[}\+S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a6c50373c5d68e327710d20bd0278ce41}\label{s2n__cipher__suites_8c_a6c50373c5d68e327710d20bd0278ce41}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_cipher\_suites\_cleanup@{s2n\_cipher\_suites\_cleanup}}
+\index{s2n\_cipher\_suites\_cleanup@{s2n\_cipher\_suites\_cleanup}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_cipher\_suites\_cleanup()}{s2n\_cipher\_suites\_cleanup()}}
+{\footnotesize\ttfamily int s2n\+\_\+cipher\+\_\+suites\+\_\+cleanup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_afb5d46b9b4094a43acb9b4d55fdcb6ea}\label{s2n__cipher__suites_8c_afb5d46b9b4094a43acb9b4d55fdcb6ea}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_cipher\_suites\_init@{s2n\_cipher\_suites\_init}}
+\index{s2n\_cipher\_suites\_init@{s2n\_cipher\_suites\_init}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_cipher\_suites\_init()}{s2n\_cipher\_suites\_init()}}
+{\footnotesize\ttfamily int s2n\+\_\+cipher\+\_\+suites\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a1fde427e44c9343e87af779ca1666b9e}\label{s2n__cipher__suites_8c_a1fde427e44c9343e87af779ca1666b9e}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_set\_cipher\_as\_client@{s2n\_set\_cipher\_as\_client}}
+\index{s2n\_set\_cipher\_as\_client@{s2n\_set\_cipher\_as\_client}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_cipher\_as\_client()}{s2n\_set\_cipher\_as\_client()}}
+{\footnotesize\ttfamily int s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t}]{wire\mbox{[}\+S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a8a80f1b496e6dcca586ddd7f9c203d8b}\label{s2n__cipher__suites_8c_a8a80f1b496e6dcca586ddd7f9c203d8b}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_set\_cipher\_as\_server@{s2n\_set\_cipher\_as\_server}}
+\index{s2n\_set\_cipher\_as\_server@{s2n\_set\_cipher\_as\_server}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_cipher\_as\_server()}{s2n\_set\_cipher\_as\_server()}}
+{\footnotesize\ttfamily static int s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+server (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t $\ast$}]{wire,  }\item[{uint32\+\_\+t}]{count,  }\item[{uint32\+\_\+t}]{cipher\+\_\+suite\+\_\+len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a93d49c8f6f3f8a5f4b7e703a61421b7b}\label{s2n__cipher__suites_8c_a93d49c8f6f3f8a5f4b7e703a61421b7b}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_set\_cipher\_as\_sslv2\_server@{s2n\_set\_cipher\_as\_sslv2\_server}}
+\index{s2n\_set\_cipher\_as\_sslv2\_server@{s2n\_set\_cipher\_as\_sslv2\_server}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_cipher\_as\_sslv2\_server()}{s2n\_set\_cipher\_as\_sslv2\_server()}}
+{\footnotesize\ttfamily int s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+sslv2\+\_\+server (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t $\ast$}]{wire,  }\item[{uint16\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a786e7c2f58d929af6012129893c03e63}\label{s2n__cipher__suites_8c_a786e7c2f58d929af6012129893c03e63}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_set\_cipher\_as\_tls\_server@{s2n\_set\_cipher\_as\_tls\_server}}
+\index{s2n\_set\_cipher\_as\_tls\_server@{s2n\_set\_cipher\_as\_tls\_server}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_cipher\_as\_tls\_server()}{s2n\_set\_cipher\_as\_tls\_server()}}
+{\footnotesize\ttfamily int s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+tls\+\_\+server (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t $\ast$}]{wire,  }\item[{uint16\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ace7a7fe758076ddc802484d5cf522ee6}\label{s2n__cipher__suites_8c_ace7a7fe758076ddc802484d5cf522ee6}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_wire\_ciphers\_contain@{s2n\_wire\_ciphers\_contain}}
+\index{s2n\_wire\_ciphers\_contain@{s2n\_wire\_ciphers\_contain}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_wire\_ciphers\_contain()}{s2n\_wire\_ciphers\_contain()}}
+{\footnotesize\ttfamily static int s2n\+\_\+wire\+\_\+ciphers\+\_\+contain (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{match,  }\item[{const uint8\+\_\+t $\ast$}]{wire,  }\item[{uint32\+\_\+t}]{count,  }\item[{uint32\+\_\+t}]{cipher\+\_\+suite\+\_\+len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a2683796ac1f44de849d8f0fa9617c67d}\label{s2n__cipher__suites_8c_a2683796ac1f44de849d8f0fa9617c67d}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!cipher\_preferences\_test\_all@{cipher\_preferences\_test\_all}}
+\index{cipher\_preferences\_test\_all@{cipher\_preferences\_test\_all}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{cipher\_preferences\_test\_all}{cipher\_preferences\_test\_all}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} cipher\+\_\+preferences\+\_\+test\+\_\+all}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .count = s2n\_array\_len(\mbox{\hyperlink{s2n__cipher__suites_8c_a7c6a93f9b831660a32d30123cf01a3ae}{s2n\_all\_cipher\_suites}}),}
+\DoxyCodeLine{    .suites = \mbox{\hyperlink{s2n__cipher__suites_8c_a7c6a93f9b831660a32d30123cf01a3ae}{s2n\_all\_cipher\_suites}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a6ccfbf81d5f04df7b8d4a5e4c07576bc}\label{s2n__cipher__suites_8c_a6ccfbf81d5f04df7b8d4a5e4c07576bc}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!cipher\_preferences\_test\_all\_ecdsa@{cipher\_preferences\_test\_all\_ecdsa}}
+\index{cipher\_preferences\_test\_all\_ecdsa@{cipher\_preferences\_test\_all\_ecdsa}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{cipher\_preferences\_test\_all\_ecdsa}{cipher\_preferences\_test\_all\_ecdsa}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+ecdsa}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .count = s2n\_array\_len(\mbox{\hyperlink{s2n__cipher__suites_8c_a238b93867153ba936828afbc3da5afa0}{s2n\_all\_ecdsa\_cipher\_suites}}),}
+\DoxyCodeLine{    .suites = \mbox{\hyperlink{s2n__cipher__suites_8c_a238b93867153ba936828afbc3da5afa0}{s2n\_all\_ecdsa\_cipher\_suites}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a1c9d480fae72c78a50bf799780b40f20}\label{s2n__cipher__suites_8c_a1c9d480fae72c78a50bf799780b40f20}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!cipher\_preferences\_test\_all\_fips@{cipher\_preferences\_test\_all\_fips}}
+\index{cipher\_preferences\_test\_all\_fips@{cipher\_preferences\_test\_all\_fips}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{cipher\_preferences\_test\_all\_fips}{cipher\_preferences\_test\_all\_fips}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+fips}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .count = s2n\_array\_len(\mbox{\hyperlink{s2n__cipher__suites_8c_a34cc9e6aa628aeebbe5378d2efd788a6}{s2n\_all\_fips\_cipher\_suites}}),}
+\DoxyCodeLine{    .suites = \mbox{\hyperlink{s2n__cipher__suites_8c_a34cc9e6aa628aeebbe5378d2efd788a6}{s2n\_all\_fips\_cipher\_suites}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a61d6a953d80330348e5e3a4acd07fe32}\label{s2n__cipher__suites_8c_a61d6a953d80330348e5e3a4acd07fe32}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!cipher\_preferences\_test\_all\_rsa\_kex@{cipher\_preferences\_test\_all\_rsa\_kex}}
+\index{cipher\_preferences\_test\_all\_rsa\_kex@{cipher\_preferences\_test\_all\_rsa\_kex}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{cipher\_preferences\_test\_all\_rsa\_kex}{cipher\_preferences\_test\_all\_rsa\_kex}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+rsa\+\_\+kex}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .count = s2n\_array\_len(\mbox{\hyperlink{s2n__cipher__suites_8c_a8942bcda20ed2b27a2f206f35f72ec7f}{s2n\_all\_rsa\_kex\_cipher\_suites}}),}
+\DoxyCodeLine{    .suites = \mbox{\hyperlink{s2n__cipher__suites_8c_a8942bcda20ed2b27a2f206f35f72ec7f}{s2n\_all\_rsa\_kex\_cipher\_suites}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a59bdf36ae8fa72c21b3ee90cb085fa0e}\label{s2n__cipher__suites_8c_a59bdf36ae8fa72c21b3ee90cb085fa0e}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!cipher\_preferences\_test\_all\_tls12@{cipher\_preferences\_test\_all\_tls12}}
+\index{cipher\_preferences\_test\_all\_tls12@{cipher\_preferences\_test\_all\_tls12}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{cipher\_preferences\_test\_all\_tls12}{cipher\_preferences\_test\_all\_tls12}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+tls12}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .count = s2n\_array\_len(\mbox{\hyperlink{s2n__cipher__suites_8c_a1926f23a6fc719a479479beefaf33d27}{s2n\_all\_tls12\_cipher\_suites}}),}
+\DoxyCodeLine{    .suites = \mbox{\hyperlink{s2n__cipher__suites_8c_a1926f23a6fc719a479479beefaf33d27}{s2n\_all\_tls12\_cipher\_suites}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_aa04833f1f87127f8a223aa8ed9498850}\label{s2n__cipher__suites_8c_aa04833f1f87127f8a223aa8ed9498850}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!cipher\_preferences\_test\_all\_tls13@{cipher\_preferences\_test\_all\_tls13}}
+\index{cipher\_preferences\_test\_all\_tls13@{cipher\_preferences\_test\_all\_tls13}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{cipher\_preferences\_test\_all\_tls13}{cipher\_preferences\_test\_all\_tls13}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} cipher\+\_\+preferences\+\_\+test\+\_\+all\+\_\+tls13}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .count = s2n\_array\_len(\mbox{\hyperlink{s2n__cipher__suites_8c_ab4cc8f9bedbb22d833ea5a6dac0ce17b}{s2n\_all\_tls13\_cipher\_suites}}),}
+\DoxyCodeLine{    .suites = \mbox{\hyperlink{s2n__cipher__suites_8c_ab4cc8f9bedbb22d833ea5a6dac0ce17b}{s2n\_all\_tls13\_cipher\_suites}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a67653c1f3593bd7ad6ae80ed1d67ee7f}\label{s2n__cipher__suites_8c_a67653c1f3593bd7ad6ae80ed1d67ee7f}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!cipher\_preferences\_test\_ecdsa\_priority@{cipher\_preferences\_test\_ecdsa\_priority}}
+\index{cipher\_preferences\_test\_ecdsa\_priority@{cipher\_preferences\_test\_ecdsa\_priority}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{cipher\_preferences\_test\_ecdsa\_priority}{cipher\_preferences\_test\_ecdsa\_priority}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__cipher__preferences}{s2n\+\_\+cipher\+\_\+preferences}} cipher\+\_\+preferences\+\_\+test\+\_\+ecdsa\+\_\+priority}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .count = s2n\_array\_len(\mbox{\hyperlink{s2n__cipher__suites_8c_ae7953868befc30aa079b500db9abfb12}{s2n\_ecdsa\_priority\_cipher\_suites}}),}
+\DoxyCodeLine{    .suites = \mbox{\hyperlink{s2n__cipher__suites_8c_ae7953868befc30aa079b500db9abfb12}{s2n\_ecdsa\_priority\_cipher\_suites}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a7c6a93f9b831660a32d30123cf01a3ae}\label{s2n__cipher__suites_8c_a7c6a93f9b831660a32d30123cf01a3ae}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_all\_cipher\_suites@{s2n\_all\_cipher\_suites}}
+\index{s2n\_all\_cipher\_suites@{s2n\_all\_cipher\_suites}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_all\_cipher\_suites}{s2n\_all\_cipher\_suites}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$ s2n\+\_\+all\+\_\+cipher\+\_\+suites\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a238b93867153ba936828afbc3da5afa0}\label{s2n__cipher__suites_8c_a238b93867153ba936828afbc3da5afa0}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_all\_ecdsa\_cipher\_suites@{s2n\_all\_ecdsa\_cipher\_suites}}
+\index{s2n\_all\_ecdsa\_cipher\_suites@{s2n\_all\_ecdsa\_cipher\_suites}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_all\_ecdsa\_cipher\_suites}{s2n\_all\_ecdsa\_cipher\_suites}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$ s2n\+\_\+all\+\_\+ecdsa\+\_\+cipher\+\_\+suites\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a7f2fe8fd0fdfece68a9ac1997da7db51}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha}},          }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_af99d92ad95c5580cf8848a675e321f93}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha}},          }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_af9331d4ceaa39de21a9dd24eaf811975}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}},       }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_adc98b5912b789773adcb3ea2cdbe3c29}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}},       }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a41f01fab4d96de082b409107d2148e4b}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}},       }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_af92572e0db23d53465461558e833a991}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}},       }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_ac96edb340b078d09707b70d5e1b5500b}{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256}}, }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a34cc9e6aa628aeebbe5378d2efd788a6}\label{s2n__cipher__suites_8c_a34cc9e6aa628aeebbe5378d2efd788a6}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_all\_fips\_cipher\_suites@{s2n\_all\_fips\_cipher\_suites}}
+\index{s2n\_all\_fips\_cipher\_suites@{s2n\_all\_fips\_cipher\_suites}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_all\_fips\_cipher\_suites}{s2n\_all\_fips\_cipher\_suites}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$ s2n\+\_\+all\+\_\+fips\+\_\+cipher\+\_\+suites\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_aedbbcf28f7ae11f940e055cbad69f65d}{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}},                }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_aa85dccb2e7e53f402d8f3e96ed48da66}{s2n\_rsa\_with\_aes\_128\_cbc\_sha}},                 }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a46d9efb9bf17d8c57ef8a57d2b56df4f}{s2n\_rsa\_with\_aes\_256\_cbc\_sha}},                 }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a89060731d96940fd07e31b094c28d5a4}{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}},              }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a6a21d24267d675efe8387cb57b62e18f}{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}},              }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a41356e82307bc9b5ea6035964ceff636}{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256}},          }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a55f229a7744b8e0bacbc1650ce0f1cda}{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256}},          }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a28e6e1fd6af50e6fc500c94cc267fd86}{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}},              }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a1b0863aff304f3fe262b90e800854197}{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}},              }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a7ef219704ef9ef7aebbdbdfec74642e2}{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256}},          }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a36c1996e2804dad902d3b178570182ba}{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384}},          }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_af9331d4ceaa39de21a9dd24eaf811975}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}},      }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_adc98b5912b789773adcb3ea2cdbe3c29}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}},      }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_adc98cb26a16a8056a48cd72d3782c0ae}{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256}},        }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_abb47c0718e5f0e0e52ad90e81d0272a5}{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384}},        }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a41f01fab4d96de082b409107d2148e4b}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}},      }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_af92572e0db23d53465461558e833a991}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}},      }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a4b15b5a254ea34d9ef0811b90b0354d1}{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256}},        }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a70e882e5e28f751fe5e23386081952bd}{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384}},        }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a8942bcda20ed2b27a2f206f35f72ec7f}\label{s2n__cipher__suites_8c_a8942bcda20ed2b27a2f206f35f72ec7f}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_all\_rsa\_kex\_cipher\_suites@{s2n\_all\_rsa\_kex\_cipher\_suites}}
+\index{s2n\_all\_rsa\_kex\_cipher\_suites@{s2n\_all\_rsa\_kex\_cipher\_suites}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_all\_rsa\_kex\_cipher\_suites}{s2n\_all\_rsa\_kex\_cipher\_suites}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$ s2n\+\_\+all\+\_\+rsa\+\_\+kex\+\_\+cipher\+\_\+suites\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_aa85dccb2e7e53f402d8f3e96ed48da66}{s2n\_rsa\_with\_aes\_128\_cbc\_sha}},                  }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a0bf7a5fcd091e8b4bef87992b37522da}{s2n\_rsa\_with\_rc4\_128\_md5}},                      }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_aaf608074ffdc86e41713146d9ebb2370}{s2n\_rsa\_with\_rc4\_128\_sha}},                      }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_aedbbcf28f7ae11f940e055cbad69f65d}{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}},                 }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_aa85dccb2e7e53f402d8f3e96ed48da66}{s2n\_rsa\_with\_aes\_128\_cbc\_sha}},                  }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a46d9efb9bf17d8c57ef8a57d2b56df4f}{s2n\_rsa\_with\_aes\_256\_cbc\_sha}},                  }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a89060731d96940fd07e31b094c28d5a4}{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}},               }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a6a21d24267d675efe8387cb57b62e18f}{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}},               }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a28e6e1fd6af50e6fc500c94cc267fd86}{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}},               }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a1b0863aff304f3fe262b90e800854197}{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}},               }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a1926f23a6fc719a479479beefaf33d27}\label{s2n__cipher__suites_8c_a1926f23a6fc719a479479beefaf33d27}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_all\_tls12\_cipher\_suites@{s2n\_all\_tls12\_cipher\_suites}}
+\index{s2n\_all\_tls12\_cipher\_suites@{s2n\_all\_tls12\_cipher\_suites}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_all\_tls12\_cipher\_suites}{s2n\_all\_tls12\_cipher\_suites}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$ s2n\+\_\+all\+\_\+tls12\+\_\+cipher\+\_\+suites\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ab4cc8f9bedbb22d833ea5a6dac0ce17b}\label{s2n__cipher__suites_8c_ab4cc8f9bedbb22d833ea5a6dac0ce17b}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_all\_tls13\_cipher\_suites@{s2n\_all\_tls13\_cipher\_suites}}
+\index{s2n\_all\_tls13\_cipher\_suites@{s2n\_all\_tls13\_cipher\_suites}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_all\_tls13\_cipher\_suites}{s2n\_all\_tls13\_cipher\_suites}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$ s2n\+\_\+all\+\_\+tls13\+\_\+cipher\+\_\+suites\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_ac28aff94fd6a2c8995c7880912773a5e}{s2n\_tls13\_aes\_128\_gcm\_sha256}},                  }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a275c6ae46727624a2080d3812e2560be}{s2n\_tls13\_aes\_256\_gcm\_sha384}},                  }
+\DoxyCodeLine{    \&\mbox{\hyperlink{s2n__cipher__suites_8c_a464d84090a431794715e02fc4a5e50c4}{s2n\_tls13\_chacha20\_poly1305\_sha256}},            }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a43fd6b4d1740fd0401e7a4e0695a9ab8}\label{s2n__cipher__suites_8c_a43fd6b4d1740fd0401e7a4e0695a9ab8}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha}}
+\index{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha}{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}EDH-\/RSA-\/DES-\/CBC3-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a067a9a52266f1e6505ec90a36f0c4fd6}{TLS\_DHE\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a9067d2980a0907a5d08aa93955944a2c}{s2n\_dhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a929db2d53c367e42fa8e675fb14172e6}{s2n\_record\_alg\_3des\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_a2d4ec5c53f986850598b481658cd4546}{s2n\_record\_alg\_3des\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_abb2dc794d47cf6d2faa76924260ea1d2}\label{s2n__cipher__suites_8c_abb2dc794d47cf6d2faa76924260ea1d2}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha}}
+\index{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha}{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}DHE-\/RSA-\/AES128-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_aab1a72487e5a66ec94a42eb8e88a09f7}{TLS\_DHE\_RSA\_WITH\_AES\_128\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a9067d2980a0907a5d08aa93955944a2c}{s2n\_dhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a3e6b27a84708ca9e0fcf25a82d7c2dc5}{s2n\_record\_alg\_aes128\_sha\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a452d94ade8960b5ab6fd9566dbbbe1e8}{s2n\_record\_alg\_aes128\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_aab963019c01559334ba11b2c328bbb19}{s2n\_record\_alg\_aes128\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a41356e82307bc9b5ea6035964ceff636}\label{s2n__cipher__suites_8c_a41356e82307bc9b5ea6035964ceff636}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256}}
+\index{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256}{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}DHE-\/RSA-\/AES128-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a7a57810f4fe1339ae63ca4771661ad04}{TLS\_DHE\_RSA\_WITH\_AES\_128\_CBC\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a9067d2980a0907a5d08aa93955944a2c}{s2n\_dhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a3e903c153439ddbe9d901be83b84449e}{s2n\_record\_alg\_aes128\_sha256\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a94034f09aeb9f3aa1ebe99b81daf34e2}{s2n\_record\_alg\_aes128\_sha256}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a7ef219704ef9ef7aebbdbdfec74642e2}\label{s2n__cipher__suites_8c_a7ef219704ef9ef7aebbdbdfec74642e2}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256}}
+\index{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256}{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}DHE-\/RSA-\/AES128-\/GCM-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a3dc8b4ef99deb86586540f85e9c65d01}{TLS\_DHE\_RSA\_WITH\_AES\_128\_GCM\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a9067d2980a0907a5d08aa93955944a2c}{s2n\_dhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a95d7bd4ee3bbad1298952628bc39a3f5}{s2n\_record\_alg\_aes128\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a9099bfcbb1445470e4113c81aa58c2f4}\label{s2n__cipher__suites_8c_a9099bfcbb1445470e4113c81aa58c2f4}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha}}
+\index{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha}{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}DHE-\/RSA-\/AES256-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a65276549afb8b9be55964d1b16d7299a}{TLS\_DHE\_RSA\_WITH\_AES\_256\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a9067d2980a0907a5d08aa93955944a2c}{s2n\_dhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_ac385dff3872ca9ef19f7ae44751c9aaf}{s2n\_record\_alg\_aes256\_sha\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a15443886354166843b1db74ccc4573ce}{s2n\_record\_alg\_aes256\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_a030886269c11c64b364ad6faaea58f3f}{s2n\_record\_alg\_aes256\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a55f229a7744b8e0bacbc1650ce0f1cda}\label{s2n__cipher__suites_8c_a55f229a7744b8e0bacbc1650ce0f1cda}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256@{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256}}
+\index{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256@{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256}{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}DHE-\/RSA-\/AES256-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a5c8a49fea187f9bc19c43520f22d960b}{TLS\_DHE\_RSA\_WITH\_AES\_256\_CBC\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a9067d2980a0907a5d08aa93955944a2c}{s2n\_dhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_aa58e3f3c544cabe170e73ffc58d0fd84}{s2n\_record\_alg\_aes256\_sha256\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a217a25546da4acc6b21e9e26452030e7}{s2n\_record\_alg\_aes256\_sha256}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a36c1996e2804dad902d3b178570182ba}\label{s2n__cipher__suites_8c_a36c1996e2804dad902d3b178570182ba}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}DHE-\/RSA-\/AES256-\/GCM-\/SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a35101dd242f84d4c2d1d9d7b0d866a7b}{TLS\_DHE\_RSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a9067d2980a0907a5d08aa93955944a2c}{s2n\_dhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}{s2n\_record\_alg\_aes256\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a67490116fd3bb3e083a3a88ed792c193}\label{s2n__cipher__suites_8c_a67490116fd3bb3e083a3a88ed792c193}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256@{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256}}
+\index{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256@{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256}{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}DHE-\/RSA-\/CHACHA20-\/POLY1305"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_af6b2416addb77fc354d3cf198f64aa6e}{TLS\_DHE\_RSA\_WITH\_CHACHA20\_POLY1305\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a9067d2980a0907a5d08aa93955944a2c}{s2n\_dhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_ade6d0c9f7fd0d1b943321e953b20d8b1}{s2n\_record\_alg\_chacha20\_poly1305}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ab3fb3db3a8969d2b9c929d52921ec3cc}\label{s2n__cipher__suites_8c_ab3fb3db3a8969d2b9c929d52921ec3cc}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+bike\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/BIKE-\/RSA-\/AES256-\/GCM-\/SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a345c01eb6e33e1ea97bbd02939958c2a}{TLS\_ECDHE\_BIKE\_RSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a96c557561657d2b0668dd93d7a718c1b}{s2n\_hybrid\_ecdhe\_kem}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}{s2n\_record\_alg\_aes256\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a7f2fe8fd0fdfece68a9ac1997da7db51}\label{s2n__cipher__suites_8c_a7f2fe8fd0fdfece68a9ac1997da7db51}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/ECDSA-\/AES128-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a5c065d6a1ed19fefcca6bf712188f2ea}{TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}{S2N\_AUTHENTICATION\_ECDSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a3e6b27a84708ca9e0fcf25a82d7c2dc5}{s2n\_record\_alg\_aes128\_sha\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a452d94ade8960b5ab6fd9566dbbbe1e8}{s2n\_record\_alg\_aes128\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_aab963019c01559334ba11b2c328bbb19}{s2n\_record\_alg\_aes128\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_af9331d4ceaa39de21a9dd24eaf811975}\label{s2n__cipher__suites_8c_af9331d4ceaa39de21a9dd24eaf811975}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/ECDSA-\/AES128-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a401c11fa2f370f504deb0aaecca8d9ad}{TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_CBC\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}{S2N\_AUTHENTICATION\_ECDSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a3e903c153439ddbe9d901be83b84449e}{s2n\_record\_alg\_aes128\_sha256\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a94034f09aeb9f3aa1ebe99b81daf34e2}{s2n\_record\_alg\_aes128\_sha256}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a41f01fab4d96de082b409107d2148e4b}\label{s2n__cipher__suites_8c_a41f01fab4d96de082b409107d2148e4b}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/ECDSA-\/AES128-\/GCM-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a3d7ef0a6518f1f638f2348d99eefb17a}{TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_GCM\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}{S2N\_AUTHENTICATION\_ECDSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a95d7bd4ee3bbad1298952628bc39a3f5}{s2n\_record\_alg\_aes128\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_af99d92ad95c5580cf8848a675e321f93}\label{s2n__cipher__suites_8c_af99d92ad95c5580cf8848a675e321f93}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/ECDSA-\/AES256-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_ac5bbbda5d30db5b78213e0a53c41e5f6}{TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}{S2N\_AUTHENTICATION\_ECDSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_ac385dff3872ca9ef19f7ae44751c9aaf}{s2n\_record\_alg\_aes256\_sha\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a15443886354166843b1db74ccc4573ce}{s2n\_record\_alg\_aes256\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_a030886269c11c64b364ad6faaea58f3f}{s2n\_record\_alg\_aes256\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_adc98b5912b789773adcb3ea2cdbe3c29}\label{s2n__cipher__suites_8c_adc98b5912b789773adcb3ea2cdbe3c29}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/ECDSA-\/AES256-\/SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_af16b4ac6bd9cc610c408b1be8f7b4d2e}{TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_CBC\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}{S2N\_AUTHENTICATION\_ECDSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_ad348dd46e0bb0d362648c5466df03c1a}{s2n\_record\_alg\_aes256\_sha384}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_af92572e0db23d53465461558e833a991}\label{s2n__cipher__suites_8c_af92572e0db23d53465461558e833a991}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/ECDSA-\/AES256-\/GCM-\/SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_af72ed33cfc1e9977b62253dae53923e2}{TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}{S2N\_AUTHENTICATION\_ECDSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}{s2n\_record\_alg\_aes256\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ac96edb340b078d09707b70d5e1b5500b}\label{s2n__cipher__suites_8c_ac96edb340b078d09707b70d5e1b5500b}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256@{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256}}
+\index{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256@{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256}{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/ECDSA-\/CHACHA20-\/POLY1305"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a853d3ab3506517d61f18d4ffa610d6fc}{TLS\_ECDHE\_ECDSA\_WITH\_CHACHA20\_POLY1305\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}{S2N\_AUTHENTICATION\_ECDSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_ade6d0c9f7fd0d1b943321e953b20d8b1}{s2n\_record\_alg\_chacha20\_poly1305}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ad94c4052c3d0ab1c09021c214fb3310c}\label{s2n__cipher__suites_8c_ad94c4052c3d0ab1c09021c214fb3310c}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+kyber\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/KYBER-\/RSA-\/AES256-\/GCM-\/SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a4bd71467a86331083c947fab47974216}{TLS\_ECDHE\_KYBER\_RSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a96c557561657d2b0668dd93d7a718c1b}{s2n\_hybrid\_ecdhe\_kem}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}{s2n\_record\_alg\_aes256\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a1601b2ed82c660b98799f782b1355bc8}\label{s2n__cipher__suites_8c_a1601b2ed82c660b98799f782b1355bc8}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha}}
+\index{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha}{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/RSA-\/DES-\/CBC3-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a7f0f5245bc820bbc208a4b30e3ea3302}{TLS\_ECDHE\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a929db2d53c367e42fa8e675fb14172e6}{s2n\_record\_alg\_3des\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_a2d4ec5c53f986850598b481658cd4546}{s2n\_record\_alg\_3des\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a3b9234b1e271ab80bd9c50b7c32e4ced}\label{s2n__cipher__suites_8c_a3b9234b1e271ab80bd9c50b7c32e4ced}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha}{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/RSA-\/AES128-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a61caecb35301de4dba9ea87288f58b91}{TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a3e6b27a84708ca9e0fcf25a82d7c2dc5}{s2n\_record\_alg\_aes128\_sha\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a452d94ade8960b5ab6fd9566dbbbe1e8}{s2n\_record\_alg\_aes128\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_aab963019c01559334ba11b2c328bbb19}{s2n\_record\_alg\_aes128\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_adc98cb26a16a8056a48cd72d3782c0ae}\label{s2n__cipher__suites_8c_adc98cb26a16a8056a48cd72d3782c0ae}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256}{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/RSA-\/AES128-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_acdd0b724733e8b6e408cc7ce53b6d0db}{TLS\_ECDHE\_RSA\_WITH\_AES\_128\_CBC\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a3e903c153439ddbe9d901be83b84449e}{s2n\_record\_alg\_aes128\_sha256\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a94034f09aeb9f3aa1ebe99b81daf34e2}{s2n\_record\_alg\_aes128\_sha256}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a4b15b5a254ea34d9ef0811b90b0354d1}\label{s2n__cipher__suites_8c_a4b15b5a254ea34d9ef0811b90b0354d1}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256}{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/RSA-\/AES128-\/GCM-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a3654359382307a986b1834a812c69f64}{TLS\_ECDHE\_RSA\_WITH\_AES\_128\_GCM\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a95d7bd4ee3bbad1298952628bc39a3f5}{s2n\_record\_alg\_aes128\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a1a8ebc22b2a910b157224839fea8b75b}\label{s2n__cipher__suites_8c_a1a8ebc22b2a910b157224839fea8b75b}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha}{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/RSA-\/AES256-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a9889f63e65374add6ecf1b0243c381f4}{TLS\_ECDHE\_RSA\_WITH\_AES\_256\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_ac385dff3872ca9ef19f7ae44751c9aaf}{s2n\_record\_alg\_aes256\_sha\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a15443886354166843b1db74ccc4573ce}{s2n\_record\_alg\_aes256\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_a030886269c11c64b364ad6faaea58f3f}{s2n\_record\_alg\_aes256\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_abb47c0718e5f0e0e52ad90e81d0272a5}\label{s2n__cipher__suites_8c_abb47c0718e5f0e0e52ad90e81d0272a5}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384@{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384@{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384}{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/RSA-\/AES256-\/SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_ab25ddd336d25df6621b1436be12450eb}{TLS\_ECDHE\_RSA\_WITH\_AES\_256\_CBC\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_ad348dd46e0bb0d362648c5466df03c1a}{s2n\_record\_alg\_aes256\_sha384}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a70e882e5e28f751fe5e23386081952bd}\label{s2n__cipher__suites_8c_a70e882e5e28f751fe5e23386081952bd}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/RSA-\/AES256-\/GCM-\/SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a5d287e13f2484dd37398fa342fdef7b4}{TLS\_ECDHE\_RSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}{s2n\_record\_alg\_aes256\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_af1bf6d90bb73dd80533819cc1be8da6e}\label{s2n__cipher__suites_8c_af1bf6d90bb73dd80533819cc1be8da6e}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256@{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256}}
+\index{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256@{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256}{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/RSA-\/CHACHA20-\/POLY1305"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a483320297992acc12c5cc5e801f144d3}{TLS\_ECDHE\_RSA\_WITH\_CHACHA20\_POLY1305\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_ade6d0c9f7fd0d1b943321e953b20d8b1}{s2n\_record\_alg\_chacha20\_poly1305}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_aab45275ecd81541e68ef240bef05f995}\label{s2n__cipher__suites_8c_aab45275ecd81541e68ef240bef05f995}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha@{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha}}
+\index{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha@{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha}{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/RSA-\/RC4-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_ad9243148f8f1b15e127b5f26937eb459}{TLS\_ECDHE\_RSA\_WITH\_RC4\_128\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a39e8e425555549bb718fd771747399a9}{s2n\_ecdhe}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a96e008f2d43c169af35be8d107c48934}{s2n\_record\_alg\_rc4\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_afd6b627151e593bc2488a99bf04e4c6b}{s2n\_record\_alg\_rc4\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_afcdf04ecf4ec99ef4544464ff68fdfa9}\label{s2n__cipher__suites_8c_afcdf04ecf4ec99ef4544464ff68fdfa9}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+sike\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}ECDHE-\/SIKE-\/RSA-\/AES256-\/GCM-\/SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a19b42d767234f51481db2d80db6bd863}{TLS\_ECDHE\_SIKE\_RSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a96c557561657d2b0668dd93d7a718c1b}{s2n\_hybrid\_ecdhe\_kem}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}{s2n\_record\_alg\_aes256\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ae7953868befc30aa079b500db9abfb12}\label{s2n__cipher__suites_8c_ae7953868befc30aa079b500db9abfb12}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_ecdsa\_priority\_cipher\_suites@{s2n\_ecdsa\_priority\_cipher\_suites}}
+\index{s2n\_ecdsa\_priority\_cipher\_suites@{s2n\_ecdsa\_priority\_cipher\_suites}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdsa\_priority\_cipher\_suites}{s2n\_ecdsa\_priority\_cipher\_suites}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$ s2n\+\_\+ecdsa\+\_\+priority\+\_\+cipher\+\_\+suites\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a961160365c54a2770d684943f033f4de}\label{s2n__cipher__suites_8c_a961160365c54a2770d684943f033f4de}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_null\_cipher\_suite@{s2n\_null\_cipher\_suite}}
+\index{s2n\_null\_cipher\_suite@{s2n\_null\_cipher\_suite}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_null\_cipher\_suite}{s2n\_null\_cipher\_suite}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+null\+\_\+cipher\+\_\+suite}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .available = 1,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}TLS\_NULL\_WITH\_NULL\_NULL"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a81917cfa1c323263d65099b668571497}{TLS\_NULL\_WITH\_NULL\_NULL}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_a5207c89d92951be3bb7d6125d4b96800}{s2n\_record\_alg\_null}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a929db2d53c367e42fa8e675fb14172e6}\label{s2n__cipher__suites_8c_a929db2d53c367e42fa8e675fb14172e6}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_3des\_sha@{s2n\_record\_alg\_3des\_sha}}
+\index{s2n\_record\_alg\_3des\_sha@{s2n\_record\_alg\_3des\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_3des\_sha}{s2n\_record\_alg\_3des\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+3des\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cbc__cipher__3des_8c_ab50dfff1c3888a44c1465d78b86b83ce}{s2n\_3des}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a4c54826ffafbb42002b6097db113a742}{S2N\_HMAC\_SHA1}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a2d4ec5c53f986850598b481658cd4546}\label{s2n__cipher__suites_8c_a2d4ec5c53f986850598b481658cd4546}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_3des\_sslv3\_sha@{s2n\_record\_alg\_3des\_sslv3\_sha}}
+\index{s2n\_record\_alg\_3des\_sslv3\_sha@{s2n\_record\_alg\_3des\_sslv3\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_3des\_sslv3\_sha}{s2n\_record\_alg\_3des\_sslv3\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+3des\+\_\+sslv3\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cbc__cipher__3des_8c_ab50dfff1c3888a44c1465d78b86b83ce}{s2n\_3des}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a57a856f76020577f38f8e99feb826991}{S2N\_HMAC\_SSLv3\_SHA1}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a95d7bd4ee3bbad1298952628bc39a3f5}\label{s2n__cipher__suites_8c_a95d7bd4ee3bbad1298952628bc39a3f5}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes128\_gcm@{s2n\_record\_alg\_aes128\_gcm}}
+\index{s2n\_record\_alg\_aes128\_gcm@{s2n\_record\_alg\_aes128\_gcm}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_gcm}{s2n\_record\_alg\_aes128\_gcm}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+gcm}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__aead__cipher__aes__gcm_8c_ad69d1a1adfcd40963920c7f1086e8f0d}{s2n\_aes128\_gcm}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    .flags = \mbox{\hyperlink{s2n__cipher__suites_8h_a2317812874a10b9c3499f8ca8007d7b5}{S2N\_TLS12\_AES\_GCM\_AEAD\_NONCE}},}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a452d94ade8960b5ab6fd9566dbbbe1e8}\label{s2n__cipher__suites_8c_a452d94ade8960b5ab6fd9566dbbbe1e8}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes128\_sha@{s2n\_record\_alg\_aes128\_sha}}
+\index{s2n\_record\_alg\_aes128\_sha@{s2n\_record\_alg\_aes128\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_sha}{s2n\_record\_alg\_aes128\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cbc__cipher__aes_8c_ad9157f5c26e895d54f5bcbf7b3d5fd12}{s2n\_aes128}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a4c54826ffafbb42002b6097db113a742}{S2N\_HMAC\_SHA1}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a94034f09aeb9f3aa1ebe99b81daf34e2}\label{s2n__cipher__suites_8c_a94034f09aeb9f3aa1ebe99b81daf34e2}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes128\_sha256@{s2n\_record\_alg\_aes128\_sha256}}
+\index{s2n\_record\_alg\_aes128\_sha256@{s2n\_record\_alg\_aes128\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_sha256}{s2n\_record\_alg\_aes128\_sha256}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cbc__cipher__aes_8c_ad9157f5c26e895d54f5bcbf7b3d5fd12}{s2n\_aes128}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a3e903c153439ddbe9d901be83b84449e}\label{s2n__cipher__suites_8c_a3e903c153439ddbe9d901be83b84449e}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes128\_sha256\_composite@{s2n\_record\_alg\_aes128\_sha256\_composite}}
+\index{s2n\_record\_alg\_aes128\_sha256\_composite@{s2n\_record\_alg\_aes128\_sha256\_composite}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_sha256\_composite}{s2n\_record\_alg\_aes128\_sha256\_composite}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha256\+\_\+composite}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cipher_8h_a9a11a44c3da598848dc1b7cceaa3ce72}{s2n\_aes128\_sha256}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a3e6b27a84708ca9e0fcf25a82d7c2dc5}\label{s2n__cipher__suites_8c_a3e6b27a84708ca9e0fcf25a82d7c2dc5}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes128\_sha\_composite@{s2n\_record\_alg\_aes128\_sha\_composite}}
+\index{s2n\_record\_alg\_aes128\_sha\_composite@{s2n\_record\_alg\_aes128\_sha\_composite}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_sha\_composite}{s2n\_record\_alg\_aes128\_sha\_composite}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha\+\_\+composite}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cipher_8h_a857215a16650959343a8f20aa6b11573}{s2n\_aes128\_sha}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_aab963019c01559334ba11b2c328bbb19}\label{s2n__cipher__suites_8c_aab963019c01559334ba11b2c328bbb19}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes128\_sslv3\_sha@{s2n\_record\_alg\_aes128\_sslv3\_sha}}
+\index{s2n\_record\_alg\_aes128\_sslv3\_sha@{s2n\_record\_alg\_aes128\_sslv3\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_sslv3\_sha}{s2n\_record\_alg\_aes128\_sslv3\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sslv3\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cbc__cipher__aes_8c_ad9157f5c26e895d54f5bcbf7b3d5fd12}{s2n\_aes128}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a57a856f76020577f38f8e99feb826991}{S2N\_HMAC\_SSLv3\_SHA1}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}\label{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes256\_gcm@{s2n\_record\_alg\_aes256\_gcm}}
+\index{s2n\_record\_alg\_aes256\_gcm@{s2n\_record\_alg\_aes256\_gcm}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_gcm}{s2n\_record\_alg\_aes256\_gcm}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+gcm}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__aead__cipher__aes__gcm_8c_a440075ab45e872764dc348731695a233}{s2n\_aes256\_gcm}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    .flags = \mbox{\hyperlink{s2n__cipher__suites_8h_a2317812874a10b9c3499f8ca8007d7b5}{S2N\_TLS12\_AES\_GCM\_AEAD\_NONCE}},}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a15443886354166843b1db74ccc4573ce}\label{s2n__cipher__suites_8c_a15443886354166843b1db74ccc4573ce}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes256\_sha@{s2n\_record\_alg\_aes256\_sha}}
+\index{s2n\_record\_alg\_aes256\_sha@{s2n\_record\_alg\_aes256\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha}{s2n\_record\_alg\_aes256\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cbc__cipher__aes_8c_a2cb8c88972784a1123f286a14d9bb5fc}{s2n\_aes256}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a4c54826ffafbb42002b6097db113a742}{S2N\_HMAC\_SHA1}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a217a25546da4acc6b21e9e26452030e7}\label{s2n__cipher__suites_8c_a217a25546da4acc6b21e9e26452030e7}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes256\_sha256@{s2n\_record\_alg\_aes256\_sha256}}
+\index{s2n\_record\_alg\_aes256\_sha256@{s2n\_record\_alg\_aes256\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha256}{s2n\_record\_alg\_aes256\_sha256}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cbc__cipher__aes_8c_a2cb8c88972784a1123f286a14d9bb5fc}{s2n\_aes256}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_aa58e3f3c544cabe170e73ffc58d0fd84}\label{s2n__cipher__suites_8c_aa58e3f3c544cabe170e73ffc58d0fd84}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes256\_sha256\_composite@{s2n\_record\_alg\_aes256\_sha256\_composite}}
+\index{s2n\_record\_alg\_aes256\_sha256\_composite@{s2n\_record\_alg\_aes256\_sha256\_composite}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha256\_composite}{s2n\_record\_alg\_aes256\_sha256\_composite}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha256\+\_\+composite}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cipher_8h_aea492947176b7a3a9b7103e1b3b18d8a}{s2n\_aes256\_sha256}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ad348dd46e0bb0d362648c5466df03c1a}\label{s2n__cipher__suites_8c_ad348dd46e0bb0d362648c5466df03c1a}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes256\_sha384@{s2n\_record\_alg\_aes256\_sha384}}
+\index{s2n\_record\_alg\_aes256\_sha384@{s2n\_record\_alg\_aes256\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha384}{s2n\_record\_alg\_aes256\_sha384}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cbc__cipher__aes_8c_a2cb8c88972784a1123f286a14d9bb5fc}{s2n\_aes256}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ac385dff3872ca9ef19f7ae44751c9aaf}\label{s2n__cipher__suites_8c_ac385dff3872ca9ef19f7ae44751c9aaf}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes256\_sha\_composite@{s2n\_record\_alg\_aes256\_sha\_composite}}
+\index{s2n\_record\_alg\_aes256\_sha\_composite@{s2n\_record\_alg\_aes256\_sha\_composite}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha\_composite}{s2n\_record\_alg\_aes256\_sha\_composite}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha\+\_\+composite}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cipher_8h_a1c8767b42c5438f5233093ef50750588}{s2n\_aes256\_sha}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a030886269c11c64b364ad6faaea58f3f}\label{s2n__cipher__suites_8c_a030886269c11c64b364ad6faaea58f3f}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_aes256\_sslv3\_sha@{s2n\_record\_alg\_aes256\_sslv3\_sha}}
+\index{s2n\_record\_alg\_aes256\_sslv3\_sha@{s2n\_record\_alg\_aes256\_sslv3\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sslv3\_sha}{s2n\_record\_alg\_aes256\_sslv3\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sslv3\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cbc__cipher__aes_8c_a2cb8c88972784a1123f286a14d9bb5fc}{s2n\_aes256}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a57a856f76020577f38f8e99feb826991}{S2N\_HMAC\_SSLv3\_SHA1}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ade6d0c9f7fd0d1b943321e953b20d8b1}\label{s2n__cipher__suites_8c_ade6d0c9f7fd0d1b943321e953b20d8b1}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_chacha20\_poly1305@{s2n\_record\_alg\_chacha20\_poly1305}}
+\index{s2n\_record\_alg\_chacha20\_poly1305@{s2n\_record\_alg\_chacha20\_poly1305}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_chacha20\_poly1305}{s2n\_record\_alg\_chacha20\_poly1305}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+chacha20\+\_\+poly1305}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_a0137fb3f62fdc43b18057b843a9e498d}{s2n\_chacha20\_poly1305}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    .flags = \mbox{\hyperlink{s2n__cipher__suites_8h_a395b253c212ecd5314c01257f6d3c9c5}{S2N\_TLS12\_CHACHA\_POLY\_AEAD\_NONCE}},}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a5207c89d92951be3bb7d6125d4b96800}\label{s2n__cipher__suites_8c_a5207c89d92951be3bb7d6125d4b96800}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_null@{s2n\_record\_alg\_null}}
+\index{s2n\_record\_alg\_null@{s2n\_record\_alg\_null}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_null}{s2n\_record\_alg\_null}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+null}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cipher_8h_a3b9ffb4a28099b78c0829ebbae74e504}{s2n\_null\_cipher}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a3e1af441475886bfaecd9842f3d154a5}\label{s2n__cipher__suites_8c_a3e1af441475886bfaecd9842f3d154a5}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_rc4\_md5@{s2n\_record\_alg\_rc4\_md5}}
+\index{s2n\_record\_alg\_rc4\_md5@{s2n\_record\_alg\_rc4\_md5}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_rc4\_md5}{s2n\_record\_alg\_rc4\_md5}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+md5}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cipher_8h_a0b687c26b503f09b9af96abe9cb4e350}{s2n\_rc4}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aa277571ddfcb5f6f85fc8d3b5351cc99}{S2N\_HMAC\_MD5}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a96e008f2d43c169af35be8d107c48934}\label{s2n__cipher__suites_8c_a96e008f2d43c169af35be8d107c48934}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_rc4\_sha@{s2n\_record\_alg\_rc4\_sha}}
+\index{s2n\_record\_alg\_rc4\_sha@{s2n\_record\_alg\_rc4\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_rc4\_sha}{s2n\_record\_alg\_rc4\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cipher_8h_a0b687c26b503f09b9af96abe9cb4e350}{s2n\_rc4}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a4c54826ffafbb42002b6097db113a742}{S2N\_HMAC\_SHA1}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_aed092da3689bd81f6954ab51d6f26ef6}\label{s2n__cipher__suites_8c_aed092da3689bd81f6954ab51d6f26ef6}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_rc4\_sslv3\_md5@{s2n\_record\_alg\_rc4\_sslv3\_md5}}
+\index{s2n\_record\_alg\_rc4\_sslv3\_md5@{s2n\_record\_alg\_rc4\_sslv3\_md5}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_rc4\_sslv3\_md5}{s2n\_record\_alg\_rc4\_sslv3\_md5}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+sslv3\+\_\+md5}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cipher_8h_a0b687c26b503f09b9af96abe9cb4e350}{s2n\_rc4}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a3252ba5a86126683ef0175684dc9e37a}{S2N\_HMAC\_SSLv3\_MD5}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_afd6b627151e593bc2488a99bf04e4c6b}\label{s2n__cipher__suites_8c_afd6b627151e593bc2488a99bf04e4c6b}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_record\_alg\_rc4\_sslv3\_sha@{s2n\_record\_alg\_rc4\_sslv3\_sha}}
+\index{s2n\_record\_alg\_rc4\_sslv3\_sha@{s2n\_record\_alg\_rc4\_sslv3\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_rc4\_sslv3\_sha}{s2n\_record\_alg\_rc4\_sslv3\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+sslv3\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__cipher_8h_a0b687c26b503f09b9af96abe9cb4e350}{s2n\_rc4}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a57a856f76020577f38f8e99feb826991}{S2N\_HMAC\_SSLv3\_SHA1}},}
+\DoxyCodeLine{    .flags = 0,}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_aedbbcf28f7ae11f940e055cbad69f65d}\label{s2n__cipher__suites_8c_aedbbcf28f7ae11f940e055cbad69f65d}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}}
+\index{s2n\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}DES-\/CBC3-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_ae93cd5c8ebf49d2d1586e7d5f180cd78}{TLS\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a929db2d53c367e42fa8e675fb14172e6}{s2n\_record\_alg\_3des\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_a2d4ec5c53f986850598b481658cd4546}{s2n\_record\_alg\_3des\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_aa85dccb2e7e53f402d8f3e96ed48da66}\label{s2n__cipher__suites_8c_aa85dccb2e7e53f402d8f3e96ed48da66}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_rsa\_with\_aes\_128\_cbc\_sha}}
+\index{s2n\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_rsa\_with\_aes\_128\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_128\_cbc\_sha}{s2n\_rsa\_with\_aes\_128\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}AES128-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a160e2286953c5ca7c436f2c9df205313}{TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a3e6b27a84708ca9e0fcf25a82d7c2dc5}{s2n\_record\_alg\_aes128\_sha\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a452d94ade8960b5ab6fd9566dbbbe1e8}{s2n\_record\_alg\_aes128\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_aab963019c01559334ba11b2c328bbb19}{s2n\_record\_alg\_aes128\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a89060731d96940fd07e31b094c28d5a4}\label{s2n__cipher__suites_8c_a89060731d96940fd07e31b094c28d5a4}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}}
+\index{s2n\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}AES128-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a54355abc9101b3aa02477e02f76b46bd}{TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a3e903c153439ddbe9d901be83b84449e}{s2n\_record\_alg\_aes128\_sha256\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a94034f09aeb9f3aa1ebe99b81daf34e2}{s2n\_record\_alg\_aes128\_sha256}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a28e6e1fd6af50e6fc500c94cc267fd86}\label{s2n__cipher__suites_8c_a28e6e1fd6af50e6fc500c94cc267fd86}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}}
+\index{s2n\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}AES128-\/GCM-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a47cae4f1051ae290a4706ed1107c6606}{TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a95d7bd4ee3bbad1298952628bc39a3f5}{s2n\_record\_alg\_aes128\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a46d9efb9bf17d8c57ef8a57d2b56df4f}\label{s2n__cipher__suites_8c_a46d9efb9bf17d8c57ef8a57d2b56df4f}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_rsa\_with\_aes\_256\_cbc\_sha}}
+\index{s2n\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_rsa\_with\_aes\_256\_cbc\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_256\_cbc\_sha}{s2n\_rsa\_with\_aes\_256\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}AES256-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a30ca15463d73a648cb95ea79e64606e3}{TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_ac385dff3872ca9ef19f7ae44751c9aaf}{s2n\_record\_alg\_aes256\_sha\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a15443886354166843b1db74ccc4573ce}{s2n\_record\_alg\_aes256\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_a030886269c11c64b364ad6faaea58f3f}{s2n\_record\_alg\_aes256\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a6a21d24267d675efe8387cb57b62e18f}\label{s2n__cipher__suites_8c_a6a21d24267d675efe8387cb57b62e18f}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_rsa\_with\_aes\_256\_cbc\_sha256@{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}}
+\index{s2n\_rsa\_with\_aes\_256\_cbc\_sha256@{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}AES256-\/SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a049cb14aa5985691cbcf3e9414141878}{TLS\_RSA\_WITH\_AES\_256\_CBC\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_aa58e3f3c544cabe170e73ffc58d0fd84}{s2n\_record\_alg\_aes256\_sha256\_composite}}, \&\mbox{\hyperlink{s2n__cipher__suites_8c_a217a25546da4acc6b21e9e26452030e7}{s2n\_record\_alg\_aes256\_sha256}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 2,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a1b0863aff304f3fe262b90e800854197}\label{s2n__cipher__suites_8c_a1b0863aff304f3fe262b90e800854197}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}AES256-\/GCM-\/SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a275538776fa5a59590823e1c671aed67}{TLS\_RSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a525e7698dc44ca25b953c9790de11c02}{s2n\_record\_alg\_aes256\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_ab17e84046986d49ffd31571b8d32d24e}{S2N\_TLS12}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a0bf7a5fcd091e8b4bef87992b37522da}\label{s2n__cipher__suites_8c_a0bf7a5fcd091e8b4bef87992b37522da}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_rsa\_with\_rc4\_128\_md5@{s2n\_rsa\_with\_rc4\_128\_md5}}
+\index{s2n\_rsa\_with\_rc4\_128\_md5@{s2n\_rsa\_with\_rc4\_128\_md5}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_rc4\_128\_md5}{s2n\_rsa\_with\_rc4\_128\_md5}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+md5}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}RC4-\/MD5"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a29697092bb88cacb9c5306be52beeefc}{TLS\_RSA\_WITH\_RC4\_128\_MD5}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a3e1af441475886bfaecd9842f3d154a5}{s2n\_record\_alg\_rc4\_md5}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_aed092da3689bd81f6954ab51d6f26ef6}{s2n\_record\_alg\_rc4\_sslv3\_md5}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_aaf608074ffdc86e41713146d9ebb2370}\label{s2n__cipher__suites_8c_aaf608074ffdc86e41713146d9ebb2370}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_rsa\_with\_rc4\_128\_sha@{s2n\_rsa\_with\_rc4\_128\_sha}}
+\index{s2n\_rsa\_with\_rc4\_128\_sha@{s2n\_rsa\_with\_rc4\_128\_sha}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_rc4\_128\_sha}{s2n\_rsa\_with\_rc4\_128\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+sha}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}RC4-\/SHA"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_aba17cf5182609e28dca3c493ac066734}{TLS\_RSA\_WITH\_RC4\_128\_SHA}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex_8c_a551ef04c3e467905fdbd6c573fedf81d}{s2n\_rsa}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2N\_AUTHENTICATION\_RSA}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a96e008f2d43c169af35be8d107c48934}{s2n\_record\_alg\_rc4\_sha}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \&\mbox{\hyperlink{s2n__cipher__suites_8c_afd6b627151e593bc2488a99bf04e4c6b}{s2n\_record\_alg\_rc4\_sslv3\_sha}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a457805749bd152786e9e344a5b22ab67}{S2N\_SSLv3}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_ac28aff94fd6a2c8995c7880912773a5e}\label{s2n__cipher__suites_8c_ac28aff94fd6a2c8995c7880912773a5e}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_tls13\_aes\_128\_gcm\_sha256@{s2n\_tls13\_aes\_128\_gcm\_sha256}}
+\index{s2n\_tls13\_aes\_128\_gcm\_sha256@{s2n\_tls13\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_aes\_128\_gcm\_sha256}{s2n\_tls13\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+tls13\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}TLS\_AES\_128\_GCM\_SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_ad99d010ce10246c2f28dd95d82aacae2}{TLS\_AES\_128\_GCM\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_aceb8d03a7be89b3cbcf65258686b00c1}{S2N\_AUTHENTICATION\_METHOD\_TLS13}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a53ffe8274f4ec78a798119a054638a0b}{s2n\_tls13\_record\_alg\_aes128\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a0529ae368bcd797cb65244b4ce05a6a6}{S2N\_TLS13}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a275c6ae46727624a2080d3812e2560be}\label{s2n__cipher__suites_8c_a275c6ae46727624a2080d3812e2560be}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_tls13\_aes\_256\_gcm\_sha384@{s2n\_tls13\_aes\_256\_gcm\_sha384}}
+\index{s2n\_tls13\_aes\_256\_gcm\_sha384@{s2n\_tls13\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_aes\_256\_gcm\_sha384}{s2n\_tls13\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+tls13\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}TLS\_AES\_256\_GCM\_SHA384"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a113044f98597022ad8f8bc35aa06f9c5}{TLS\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_aceb8d03a7be89b3cbcf65258686b00c1}{S2N\_AUTHENTICATION\_METHOD\_TLS13}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a42b5dee40e6b375974bbec74d413bb39}{s2n\_tls13\_record\_alg\_aes256\_gcm}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a9b3fb8d722dc6bbe141962bc6423d530}{S2N\_HMAC\_SHA384}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a0529ae368bcd797cb65244b4ce05a6a6}{S2N\_TLS13}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a464d84090a431794715e02fc4a5e50c4}\label{s2n__cipher__suites_8c_a464d84090a431794715e02fc4a5e50c4}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_tls13\_chacha20\_poly1305\_sha256@{s2n\_tls13\_chacha20\_poly1305\_sha256}}
+\index{s2n\_tls13\_chacha20\_poly1305\_sha256@{s2n\_tls13\_chacha20\_poly1305\_sha256}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_chacha20\_poly1305\_sha256}{s2n\_tls13\_chacha20\_poly1305\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+tls13\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .available = 0,}
+\DoxyCodeLine{    .name = \textcolor{stringliteral}{"{}TLS\_CHACHA20\_POLY1305\_SHA256"{}},}
+\DoxyCodeLine{    .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a1fd998a580e8d1967290fd852d061254}{TLS\_CHACHA20\_POLY1305\_SHA256}} \},}
+\DoxyCodeLine{    .key\_exchange\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .auth\_method = \mbox{\hyperlink{s2n__cipher__suites_8h_aceb8d03a7be89b3cbcf65258686b00c1}{S2N\_AUTHENTICATION\_METHOD\_TLS13}},}
+\DoxyCodeLine{    .record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .all\_record\_algs = \{ \&\mbox{\hyperlink{s2n__cipher__suites_8c_a08e96e5693c470ef640061ecae8e1dc7}{s2n\_tls13\_record\_alg\_chacha20\_poly1305}} \},}
+\DoxyCodeLine{    .num\_record\_algs = 1,}
+\DoxyCodeLine{    .sslv3\_record\_alg = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
+\DoxyCodeLine{    .prf\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8aed177ac5edd440b639f760c0603d1023}{S2N\_HMAC\_SHA256}},}
+\DoxyCodeLine{    .minimum\_required\_tls\_version = \mbox{\hyperlink{s2n_8h_a0529ae368bcd797cb65244b4ce05a6a6}{S2N\_TLS13}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a53ffe8274f4ec78a798119a054638a0b}\label{s2n__cipher__suites_8c_a53ffe8274f4ec78a798119a054638a0b}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_tls13\_record\_alg\_aes128\_gcm@{s2n\_tls13\_record\_alg\_aes128\_gcm}}
+\index{s2n\_tls13\_record\_alg\_aes128\_gcm@{s2n\_tls13\_record\_alg\_aes128\_gcm}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_record\_alg\_aes128\_gcm}{s2n\_tls13\_record\_alg\_aes128\_gcm}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+tls13\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+gcm}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__aead__cipher__aes__gcm_8c_a99a02afdd8a8a9ee29f2e2d7f85f8d34}{s2n\_tls13\_aes128\_gcm}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}}, }
+\DoxyCodeLine{    .flags = \mbox{\hyperlink{s2n__cipher__suites_8h_abb0bcf0f550b147244e1d2daefba4f2f}{S2N\_TLS13\_RECORD\_AEAD\_NONCE}},}
+\DoxyCodeLine{    .encryption\_limit = \mbox{\hyperlink{s2n__cipher__suites_8h_a584cb6df7585ee60371d6be949835daa}{S2N\_TLS13\_AES\_GCM\_MAXIMUM\_RECORD\_NUMBER}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a42b5dee40e6b375974bbec74d413bb39}\label{s2n__cipher__suites_8c_a42b5dee40e6b375974bbec74d413bb39}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_tls13\_record\_alg\_aes256\_gcm@{s2n\_tls13\_record\_alg\_aes256\_gcm}}
+\index{s2n\_tls13\_record\_alg\_aes256\_gcm@{s2n\_tls13\_record\_alg\_aes256\_gcm}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_record\_alg\_aes256\_gcm}{s2n\_tls13\_record\_alg\_aes256\_gcm}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+tls13\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+gcm}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__aead__cipher__aes__gcm_8c_adf356401c6ee1fdb4f5042ec4cb89ddd}{s2n\_tls13\_aes256\_gcm}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    .flags = \mbox{\hyperlink{s2n__cipher__suites_8h_abb0bcf0f550b147244e1d2daefba4f2f}{S2N\_TLS13\_RECORD\_AEAD\_NONCE}},}
+\DoxyCodeLine{    .encryption\_limit = \mbox{\hyperlink{s2n__cipher__suites_8h_a584cb6df7585ee60371d6be949835daa}{S2N\_TLS13\_AES\_GCM\_MAXIMUM\_RECORD\_NUMBER}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__cipher__suites_8c_a08e96e5693c470ef640061ecae8e1dc7}\label{s2n__cipher__suites_8c_a08e96e5693c470ef640061ecae8e1dc7}} 
+\index{s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}!s2n\_tls13\_record\_alg\_chacha20\_poly1305@{s2n\_tls13\_record\_alg\_chacha20\_poly1305}}
+\index{s2n\_tls13\_record\_alg\_chacha20\_poly1305@{s2n\_tls13\_record\_alg\_chacha20\_poly1305}!s2n\_cipher\_suites.c@{s2n\_cipher\_suites.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_record\_alg\_chacha20\_poly1305}{s2n\_tls13\_record\_alg\_chacha20\_poly1305}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+tls13\+\_\+record\+\_\+alg\+\_\+chacha20\+\_\+poly1305}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .cipher = \&\mbox{\hyperlink{s2n__aead__cipher__chacha20__poly1305_8c_a0137fb3f62fdc43b18057b843a9e498d}{s2n\_chacha20\_poly1305}},}
+\DoxyCodeLine{    .hmac\_alg = \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8a88ae1d7e02f618b9d81dee12d40882b4}{S2N\_HMAC\_NONE}},}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    .flags = \mbox{\hyperlink{s2n__cipher__suites_8h_abb0bcf0f550b147244e1d2daefba4f2f}{S2N\_TLS13\_RECORD\_AEAD\_NONCE}},}
+\DoxyCodeLine{    .encryption\_limit = UINT64\_MAX,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

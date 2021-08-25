@@ -1,0 +1,229 @@
+\hypertarget{windows_2system__info_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/windows/system\+\_\+info.c File Reference}
+\label{windows_2system__info_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/windows/system\_info.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/windows/system\_info.c}}
+{\ttfamily \#include $<$aws/common/system\+\_\+info.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$windows.\+h$>$}\newline
+{\ttfamily \#include $<$dbghelp.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structwin__symbol__data}{win\+\_\+symbol\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{windows_2system__info_8c_ab52ab0e51a5f13bd2fafcdd78ef60dfd}{Sym\+Get\+Line\+From\+Addr\+Name}}~\char`\"{}Sym\+Get\+Line\+From\+Addr\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef BOOL \+\_\+\+\_\+stdcall \mbox{\hyperlink{windows_2system__info_8c_ac0e5d72fdbfe2658762195b634c1a9dc}{Sym\+Initialize\+\_\+fn}}(\+\_\+\+In\+\_\+ HANDLE h\+Process, \+\_\+\+In\+\_\+opt\+\_\+ PCSTR User\+Search\+Path, \+\_\+\+In\+\_\+ BOOL f\+Invade\+Process)
+\item 
+typedef DWORD \+\_\+\+\_\+stdcall \mbox{\hyperlink{windows_2system__info_8c_a482b2a8d94f0df4307a4327a7cb5feeb}{Sym\+Set\+Options\+\_\+fn}}(DWORD Sym\+Options)
+\item 
+typedef BOOL \+\_\+\+\_\+stdcall \mbox{\hyperlink{windows_2system__info_8c_ae6602509922a7ee9c9b6622dc572808d}{Sym\+From\+Addr\+\_\+fn}}(\+\_\+\+In\+\_\+ HANDLE h\+Process, \+\_\+\+In\+\_\+ DWORD64 Address, \+\_\+\+Out\+\_\+opt\+\_\+ PDWORD64 Displacement, \+\_\+\+Inout\+\_\+ PSYMBOL\+\_\+\+INFO Symbol)
+\item 
+typedef BOOL \+\_\+\+\_\+stdcall \mbox{\hyperlink{windows_2system__info_8c_a94606c9d316e23757a6a46ec4013928c}{Sym\+Get\+Line\+From\+Addr\+\_\+fn}}(\+\_\+\+In\+\_\+ HANDLE h\+Process, \+\_\+\+In\+\_\+ DWORD dw\+Addr, \+\_\+\+Out\+\_\+ PDWORD pdw\+Displacement, \+\_\+\+Out\+\_\+ PIMAGEHLP\+\_\+\+LINE Line)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{system__info_8h_a6f96bd70fdf907d3981a476d0a4aadab}{aws\+\_\+platform\+\_\+os}} \mbox{\hyperlink{windows_2system__info_8c_afa0b1659b556629d75b8c2e99a701c93}{aws\+\_\+get\+\_\+platform\+\_\+build\+\_\+os}} (void)
+\item 
+size\+\_\+t \mbox{\hyperlink{windows_2system__info_8c_af0509a37aa269d82326131ed6b6c58db}{aws\+\_\+system\+\_\+info\+\_\+processor\+\_\+count}} (void)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{windows_2system__info_8c_a7eccfc6f5c66714c6a47eaa8894fcafe}{aws\+\_\+get\+\_\+cpu\+\_\+group\+\_\+count}} (void)
+\item 
+size\+\_\+t \mbox{\hyperlink{windows_2system__info_8c_aca88f516da9f93795842282af1b705c9}{aws\+\_\+get\+\_\+cpu\+\_\+count\+\_\+for\+\_\+group}} (uint16\+\_\+t group\+\_\+idx)
+\item 
+void \mbox{\hyperlink{windows_2system__info_8c_a223c151bb08c85c1fd57dc5119ba4a26}{aws\+\_\+get\+\_\+cpu\+\_\+ids\+\_\+for\+\_\+group}} (uint16\+\_\+t group\+\_\+idx, struct \mbox{\hyperlink{structaws__cpu__info}{aws\+\_\+cpu\+\_\+info}} $\ast$cpu\+\_\+ids\+\_\+array, size\+\_\+t cpu\+\_\+ids\+\_\+array\+\_\+length)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{windows_2system__info_8c_aa9b0ffb3291a4fcae2bebbf9494e05f8}{aws\+\_\+is\+\_\+debugger\+\_\+present}} (void)
+\item 
+void \mbox{\hyperlink{windows_2system__info_8c_acc43780f42fd5a18c766b9ae33ca2db7}{aws\+\_\+debug\+\_\+break}} (void)
+\item 
+static void \mbox{\hyperlink{windows_2system__info_8c_a322aeb5c66d9e54cdc3e1c7aa5fc5f6c}{s\+\_\+init\+\_\+dbghelp\+\_\+impl}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{windows_2system__info_8c_ab0d4c9f9492adbeebbcf99ec4fafc940}{s\+\_\+init\+\_\+dbghelp}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{windows_2system__info_8c_a757cfabeca613ebc3d9cc98d939f9a64}{aws\+\_\+backtrace}} (void $\ast$$\ast$stack\+\_\+frames, size\+\_\+t size)
+\item 
+char $\ast$$\ast$ \mbox{\hyperlink{windows_2system__info_8c_a8a56d01f83c849e9047bc8f53608005e}{aws\+\_\+backtrace\+\_\+symbols}} (void $\ast$const $\ast$stack\+\_\+frames, size\+\_\+t num\+\_\+frames)
+\item 
+char $\ast$$\ast$ \mbox{\hyperlink{windows_2system__info_8c_a10506b47ab5dcdcf71d35463d20bb353}{aws\+\_\+backtrace\+\_\+addr2line}} (void $\ast$const $\ast$stack\+\_\+frames, size\+\_\+t stack\+\_\+depth)
+\item 
+void \mbox{\hyperlink{windows_2system__info_8c_afb35af08b060c148feadc21a2b1d3796}{aws\+\_\+backtrace\+\_\+print}} (FILE $\ast$fp, void $\ast$call\+\_\+site\+\_\+data)
+\item 
+void \mbox{\hyperlink{windows_2system__info_8c_ab9df31d154cb33e52ff6e900bf4b3e98}{aws\+\_\+backtrace\+\_\+log}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{windows_2system__info_8c_ac0e5d72fdbfe2658762195b634c1a9dc}{Sym\+Initialize\+\_\+fn}} $\ast$ \mbox{\hyperlink{windows_2system__info_8c_a515f0c8d5add3f4c313819d17c32e6f6}{s\+\_\+\+Sym\+Initialize}} = NULL
+\item 
+static \mbox{\hyperlink{windows_2system__info_8c_a482b2a8d94f0df4307a4327a7cb5feeb}{Sym\+Set\+Options\+\_\+fn}} $\ast$ \mbox{\hyperlink{windows_2system__info_8c_a11229e6781e47036df418676ddc35f7e}{s\+\_\+\+Sym\+Set\+Options}} = NULL
+\item 
+static \mbox{\hyperlink{windows_2system__info_8c_ae6602509922a7ee9c9b6622dc572808d}{Sym\+From\+Addr\+\_\+fn}} $\ast$ \mbox{\hyperlink{windows_2system__info_8c_a2a1ea869d15f8eead3f3c9e48bbe2772}{s\+\_\+\+Sym\+From\+Addr}} = NULL
+\item 
+static \mbox{\hyperlink{windows_2system__info_8c_a94606c9d316e23757a6a46ec4013928c}{Sym\+Get\+Line\+From\+Addr\+\_\+fn}} $\ast$ \mbox{\hyperlink{windows_2system__info_8c_a34e35df0fd98bec8781a41b10ea450fb}{s\+\_\+\+Sym\+Get\+Line\+From\+Addr}} = NULL
+\item 
+static \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} \mbox{\hyperlink{windows_2system__info_8c_a732952fa81c2fd0792c8bdecd6c6b52f}{s\+\_\+init\+\_\+once}} = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{windows_2system__info_8c_ab52ab0e51a5f13bd2fafcdd78ef60dfd}\label{windows_2system__info_8c_ab52ab0e51a5f13bd2fafcdd78ef60dfd}} 
+\index{system\_info.c@{system\_info.c}!SymGetLineFromAddrName@{SymGetLineFromAddrName}}
+\index{SymGetLineFromAddrName@{SymGetLineFromAddrName}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{SymGetLineFromAddrName}{SymGetLineFromAddrName}}
+{\footnotesize\ttfamily \#define Sym\+Get\+Line\+From\+Addr\+Name~\char`\"{}Sym\+Get\+Line\+From\+Addr\char`\"{}}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{windows_2system__info_8c_ae6602509922a7ee9c9b6622dc572808d}\label{windows_2system__info_8c_ae6602509922a7ee9c9b6622dc572808d}} 
+\index{system\_info.c@{system\_info.c}!SymFromAddr\_fn@{SymFromAddr\_fn}}
+\index{SymFromAddr\_fn@{SymFromAddr\_fn}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{SymFromAddr\_fn}{SymFromAddr\_fn}}
+{\footnotesize\ttfamily typedef BOOL \+\_\+\+\_\+stdcall Sym\+From\+Addr\+\_\+fn(\+\_\+\+In\+\_\+ HANDLE h\+Process, \+\_\+\+In\+\_\+ DWORD64 Address, \+\_\+\+Out\+\_\+opt\+\_\+ PDWORD64 Displacement, \+\_\+\+Inout\+\_\+ PSYMBOL\+\_\+\+INFO Symbol)}
+
+\mbox{\Hypertarget{windows_2system__info_8c_a94606c9d316e23757a6a46ec4013928c}\label{windows_2system__info_8c_a94606c9d316e23757a6a46ec4013928c}} 
+\index{system\_info.c@{system\_info.c}!SymGetLineFromAddr\_fn@{SymGetLineFromAddr\_fn}}
+\index{SymGetLineFromAddr\_fn@{SymGetLineFromAddr\_fn}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{SymGetLineFromAddr\_fn}{SymGetLineFromAddr\_fn}}
+{\footnotesize\ttfamily typedef BOOL \+\_\+\+\_\+stdcall Sym\+Get\+Line\+From\+Addr\+\_\+fn(\+\_\+\+In\+\_\+ HANDLE h\+Process, \+\_\+\+In\+\_\+ DWORD dw\+Addr, \+\_\+\+Out\+\_\+ PDWORD pdw\+Displacement, \+\_\+\+Out\+\_\+ PIMAGEHLP\+\_\+\+LINE Line)}
+
+\mbox{\Hypertarget{windows_2system__info_8c_ac0e5d72fdbfe2658762195b634c1a9dc}\label{windows_2system__info_8c_ac0e5d72fdbfe2658762195b634c1a9dc}} 
+\index{system\_info.c@{system\_info.c}!SymInitialize\_fn@{SymInitialize\_fn}}
+\index{SymInitialize\_fn@{SymInitialize\_fn}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{SymInitialize\_fn}{SymInitialize\_fn}}
+{\footnotesize\ttfamily typedef BOOL \+\_\+\+\_\+stdcall Sym\+Initialize\+\_\+fn(\+\_\+\+In\+\_\+ HANDLE h\+Process, \+\_\+\+In\+\_\+opt\+\_\+ PCSTR User\+Search\+Path, \+\_\+\+In\+\_\+ BOOL f\+Invade\+Process)}
+
+\mbox{\Hypertarget{windows_2system__info_8c_a482b2a8d94f0df4307a4327a7cb5feeb}\label{windows_2system__info_8c_a482b2a8d94f0df4307a4327a7cb5feeb}} 
+\index{system\_info.c@{system\_info.c}!SymSetOptions\_fn@{SymSetOptions\_fn}}
+\index{SymSetOptions\_fn@{SymSetOptions\_fn}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{SymSetOptions\_fn}{SymSetOptions\_fn}}
+{\footnotesize\ttfamily typedef DWORD \+\_\+\+\_\+stdcall Sym\+Set\+Options\+\_\+fn(DWORD Sym\+Options)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{windows_2system__info_8c_a757cfabeca613ebc3d9cc98d939f9a64}\label{windows_2system__info_8c_a757cfabeca613ebc3d9cc98d939f9a64}} 
+\index{system\_info.c@{system\_info.c}!aws\_backtrace@{aws\_backtrace}}
+\index{aws\_backtrace@{aws\_backtrace}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_backtrace()}{aws\_backtrace()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+backtrace (\begin{DoxyParamCaption}\item[{void $\ast$$\ast$}]{stack\+\_\+frames,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2system__info_8c_a10506b47ab5dcdcf71d35463d20bb353}\label{windows_2system__info_8c_a10506b47ab5dcdcf71d35463d20bb353}} 
+\index{system\_info.c@{system\_info.c}!aws\_backtrace\_addr2line@{aws\_backtrace\_addr2line}}
+\index{aws\_backtrace\_addr2line@{aws\_backtrace\_addr2line}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_backtrace\_addr2line()}{aws\_backtrace\_addr2line()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ aws\+\_\+backtrace\+\_\+addr2line (\begin{DoxyParamCaption}\item[{void $\ast$const $\ast$}]{stack\+\_\+frames,  }\item[{size\+\_\+t}]{stack\+\_\+depth }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2system__info_8c_ab9df31d154cb33e52ff6e900bf4b3e98}\label{windows_2system__info_8c_ab9df31d154cb33e52ff6e900bf4b3e98}} 
+\index{system\_info.c@{system\_info.c}!aws\_backtrace\_log@{aws\_backtrace\_log}}
+\index{aws\_backtrace\_log@{aws\_backtrace\_log}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_backtrace\_log()}{aws\_backtrace\_log()}}
+{\footnotesize\ttfamily void aws\+\_\+backtrace\+\_\+log (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2system__info_8c_afb35af08b060c148feadc21a2b1d3796}\label{windows_2system__info_8c_afb35af08b060c148feadc21a2b1d3796}} 
+\index{system\_info.c@{system\_info.c}!aws\_backtrace\_print@{aws\_backtrace\_print}}
+\index{aws\_backtrace\_print@{aws\_backtrace\_print}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_backtrace\_print()}{aws\_backtrace\_print()}}
+{\footnotesize\ttfamily void aws\+\_\+backtrace\+\_\+print (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{void $\ast$}]{call\+\_\+site\+\_\+data }\end{DoxyParamCaption})}
+
+Print a backtrace from either the current stack, or (if provided) the current exception/signal call\+\_\+site\+\_\+data is siginfo\+\_\+t$\ast$ on POSIX, and LPEXCEPTION\+\_\+\+POINTERS on Windows, and can be null \mbox{\Hypertarget{windows_2system__info_8c_a8a56d01f83c849e9047bc8f53608005e}\label{windows_2system__info_8c_a8a56d01f83c849e9047bc8f53608005e}} 
+\index{system\_info.c@{system\_info.c}!aws\_backtrace\_symbols@{aws\_backtrace\_symbols}}
+\index{aws\_backtrace\_symbols@{aws\_backtrace\_symbols}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_backtrace\_symbols()}{aws\_backtrace\_symbols()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ aws\+\_\+backtrace\+\_\+symbols (\begin{DoxyParamCaption}\item[{void $\ast$const $\ast$}]{stack\+\_\+frames,  }\item[{size\+\_\+t}]{num\+\_\+frames }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2system__info_8c_acc43780f42fd5a18c766b9ae33ca2db7}\label{windows_2system__info_8c_acc43780f42fd5a18c766b9ae33ca2db7}} 
+\index{system\_info.c@{system\_info.c}!aws\_debug\_break@{aws\_debug\_break}}
+\index{aws\_debug\_break@{aws\_debug\_break}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_debug\_break()}{aws\_debug\_break()}}
+{\footnotesize\ttfamily void aws\+\_\+debug\+\_\+break (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2system__info_8c_aca88f516da9f93795842282af1b705c9}\label{windows_2system__info_8c_aca88f516da9f93795842282af1b705c9}} 
+\index{system\_info.c@{system\_info.c}!aws\_get\_cpu\_count\_for\_group@{aws\_get\_cpu\_count\_for\_group}}
+\index{aws\_get\_cpu\_count\_for\_group@{aws\_get\_cpu\_count\_for\_group}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_cpu\_count\_for\_group()}{aws\_get\_cpu\_count\_for\_group()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+get\+\_\+cpu\+\_\+count\+\_\+for\+\_\+group (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{group\+\_\+idx }\end{DoxyParamCaption})}
+
+For a group, returns the number of CPUs it contains. \mbox{\Hypertarget{windows_2system__info_8c_a7eccfc6f5c66714c6a47eaa8894fcafe}\label{windows_2system__info_8c_a7eccfc6f5c66714c6a47eaa8894fcafe}} 
+\index{system\_info.c@{system\_info.c}!aws\_get\_cpu\_group\_count@{aws\_get\_cpu\_group\_count}}
+\index{aws\_get\_cpu\_group\_count@{aws\_get\_cpu\_group\_count}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_cpu\_group\_count()}{aws\_get\_cpu\_group\_count()}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+get\+\_\+cpu\+\_\+group\+\_\+count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Returns the logical processor groupings on the system (such as multiple numa nodes). \mbox{\Hypertarget{windows_2system__info_8c_a223c151bb08c85c1fd57dc5119ba4a26}\label{windows_2system__info_8c_a223c151bb08c85c1fd57dc5119ba4a26}} 
+\index{system\_info.c@{system\_info.c}!aws\_get\_cpu\_ids\_for\_group@{aws\_get\_cpu\_ids\_for\_group}}
+\index{aws\_get\_cpu\_ids\_for\_group@{aws\_get\_cpu\_ids\_for\_group}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_cpu\_ids\_for\_group()}{aws\_get\_cpu\_ids\_for\_group()}}
+{\footnotesize\ttfamily void aws\+\_\+get\+\_\+cpu\+\_\+ids\+\_\+for\+\_\+group (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{group\+\_\+idx,  }\item[{struct \mbox{\hyperlink{structaws__cpu__info}{aws\+\_\+cpu\+\_\+info}} $\ast$}]{cpu\+\_\+ids\+\_\+array,  }\item[{size\+\_\+t}]{cpu\+\_\+ids\+\_\+array\+\_\+length }\end{DoxyParamCaption})}
+
+Fills in cpu\+\_\+ids\+\_\+array with the cpu\+\_\+id\textquotesingle{}s for the group. To obtain the size to allocate for cpu\+\_\+ids\+\_\+array and the value for argument for cpu\+\_\+ids\+\_\+array\+\_\+length, call \mbox{\hyperlink{system__info_8h_ae07516807d07ac073d8cd0cdc71f3792}{aws\+\_\+get\+\_\+cpu\+\_\+count\+\_\+for\+\_\+group()}}. \mbox{\Hypertarget{windows_2system__info_8c_afa0b1659b556629d75b8c2e99a701c93}\label{windows_2system__info_8c_afa0b1659b556629d75b8c2e99a701c93}} 
+\index{system\_info.c@{system\_info.c}!aws\_get\_platform\_build\_os@{aws\_get\_platform\_build\_os}}
+\index{aws\_get\_platform\_build\_os@{aws\_get\_platform\_build\_os}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_platform\_build\_os()}{aws\_get\_platform\_build\_os()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{system__info_8h_a6f96bd70fdf907d3981a476d0a4aadab}{aws\+\_\+platform\+\_\+os}} aws\+\_\+get\+\_\+platform\+\_\+build\+\_\+os (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{windows_2system__info_8c_aa9b0ffb3291a4fcae2bebbf9494e05f8}\label{windows_2system__info_8c_aa9b0ffb3291a4fcae2bebbf9494e05f8}} 
+\index{system\_info.c@{system\_info.c}!aws\_is\_debugger\_present@{aws\_is\_debugger\_present}}
+\index{aws\_is\_debugger\_present@{aws\_is\_debugger\_present}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_is\_debugger\_present()}{aws\_is\_debugger\_present()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+is\+\_\+debugger\+\_\+present (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{windows_2system__info_8c_af0509a37aa269d82326131ed6b6c58db}\label{windows_2system__info_8c_af0509a37aa269d82326131ed6b6c58db}} 
+\index{system\_info.c@{system\_info.c}!aws\_system\_info\_processor\_count@{aws\_system\_info\_processor\_count}}
+\index{aws\_system\_info\_processor\_count@{aws\_system\_info\_processor\_count}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{aws\_system\_info\_processor\_count()}{aws\_system\_info\_processor\_count()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+system\+\_\+info\+\_\+processor\+\_\+count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{windows_2system__info_8c_ab0d4c9f9492adbeebbcf99ec4fafc940}\label{windows_2system__info_8c_ab0d4c9f9492adbeebbcf99ec4fafc940}} 
+\index{system\_info.c@{system\_info.c}!s\_init\_dbghelp@{s\_init\_dbghelp}}
+\index{s\_init\_dbghelp@{s\_init\_dbghelp}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{s\_init\_dbghelp()}{s\_init\_dbghelp()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+init\+\_\+dbghelp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{windows_2system__info_8c_a322aeb5c66d9e54cdc3e1c7aa5fc5f6c}\label{windows_2system__info_8c_a322aeb5c66d9e54cdc3e1c7aa5fc5f6c}} 
+\index{system\_info.c@{system\_info.c}!s\_init\_dbghelp\_impl@{s\_init\_dbghelp\_impl}}
+\index{s\_init\_dbghelp\_impl@{s\_init\_dbghelp\_impl}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{s\_init\_dbghelp\_impl()}{s\_init\_dbghelp\_impl()}}
+{\footnotesize\ttfamily static void s\+\_\+init\+\_\+dbghelp\+\_\+impl (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{windows_2system__info_8c_a732952fa81c2fd0792c8bdecd6c6b52f}\label{windows_2system__info_8c_a732952fa81c2fd0792c8bdecd6c6b52f}} 
+\index{system\_info.c@{system\_info.c}!s\_init\_once@{s\_init\_once}}
+\index{s\_init\_once@{s\_init\_once}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{s\_init\_once}{s\_init\_once}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} s\+\_\+init\+\_\+once = \mbox{\hyperlink{thread_8h_af9af89ab58cf0603da16c1b4864ade79}{AWS\+\_\+\+THREAD\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{windows_2system__info_8c_a2a1ea869d15f8eead3f3c9e48bbe2772}\label{windows_2system__info_8c_a2a1ea869d15f8eead3f3c9e48bbe2772}} 
+\index{system\_info.c@{system\_info.c}!s\_SymFromAddr@{s\_SymFromAddr}}
+\index{s\_SymFromAddr@{s\_SymFromAddr}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{s\_SymFromAddr}{s\_SymFromAddr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{windows_2system__info_8c_ae6602509922a7ee9c9b6622dc572808d}{Sym\+From\+Addr\+\_\+fn}}$\ast$ s\+\_\+\+Sym\+From\+Addr = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{windows_2system__info_8c_a34e35df0fd98bec8781a41b10ea450fb}\label{windows_2system__info_8c_a34e35df0fd98bec8781a41b10ea450fb}} 
+\index{system\_info.c@{system\_info.c}!s\_SymGetLineFromAddr@{s\_SymGetLineFromAddr}}
+\index{s\_SymGetLineFromAddr@{s\_SymGetLineFromAddr}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{s\_SymGetLineFromAddr}{s\_SymGetLineFromAddr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{windows_2system__info_8c_a94606c9d316e23757a6a46ec4013928c}{Sym\+Get\+Line\+From\+Addr\+\_\+fn}}$\ast$ s\+\_\+\+Sym\+Get\+Line\+From\+Addr = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{windows_2system__info_8c_a515f0c8d5add3f4c313819d17c32e6f6}\label{windows_2system__info_8c_a515f0c8d5add3f4c313819d17c32e6f6}} 
+\index{system\_info.c@{system\_info.c}!s\_SymInitialize@{s\_SymInitialize}}
+\index{s\_SymInitialize@{s\_SymInitialize}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{s\_SymInitialize}{s\_SymInitialize}}
+{\footnotesize\ttfamily \mbox{\hyperlink{windows_2system__info_8c_ac0e5d72fdbfe2658762195b634c1a9dc}{Sym\+Initialize\+\_\+fn}}$\ast$ s\+\_\+\+Sym\+Initialize = NULL\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{windows_2system__info_8c_a11229e6781e47036df418676ddc35f7e}\label{windows_2system__info_8c_a11229e6781e47036df418676ddc35f7e}} 
+\index{system\_info.c@{system\_info.c}!s\_SymSetOptions@{s\_SymSetOptions}}
+\index{s\_SymSetOptions@{s\_SymSetOptions}!system\_info.c@{system\_info.c}}
+\doxysubsubsection{\texorpdfstring{s\_SymSetOptions}{s\_SymSetOptions}}
+{\footnotesize\ttfamily \mbox{\hyperlink{windows_2system__info_8c_a482b2a8d94f0df4307a4327a7cb5feeb}{Sym\+Set\+Options\+\_\+fn}}$\ast$ s\+\_\+\+Sym\+Set\+Options = NULL\hspace{0.3cm}{\ttfamily [static]}}
+

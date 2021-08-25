@@ -1,0 +1,138 @@
+\hypertarget{s2n__handshake__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+handshake\+\_\+test.c File Reference}
+\label{s2n__handshake__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_handshake\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_handshake\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+rsa\+\_\+pss.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326f}{test\+\_\+type}} \{ \mbox{\hyperlink{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326fa8d94cfae467c7049ee2e913f9e0bb776}{TEST\+\_\+\+TYPE\+\_\+\+START}}
+, \mbox{\hyperlink{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326fa4596ca9bb24be6b70dedd398cb25ef7d}{TEST\+\_\+\+TYPE\+\_\+\+SYNC}} = TEST\+\_\+\+TYPE\+\_\+\+START
+, \mbox{\hyperlink{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326faa42ffd5b48823afe8af67dddec1c9783}{TEST\+\_\+\+TYPE\+\_\+\+ASYNC}}
+, \mbox{\hyperlink{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326faf547cf6ae7a73bb342a673cf5b874946}{TEST\+\_\+\+TYPE\+\_\+\+END}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__handshake__test_8c_ad1ccb5051dd129a1ab267a7c28fd095a}{handle\+\_\+async}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$server\+\_\+conn)
+\item 
+static int \mbox{\hyperlink{s2n__handshake__test_8c_ae77882491985a075ac03fbf314475f7b}{try\+\_\+handshake}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$server\+\_\+conn, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$client\+\_\+conn)
+\item 
+int \mbox{\hyperlink{s2n__handshake__test_8c_a466666dff7ed43b6abf34d4ffe29a561}{test\+\_\+cipher\+\_\+preferences}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__server__fuzz__test_8c_a46168160eba6dd8b53ad22fe9df5fad6}{server\+\_\+config}}, struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__tls13__cert__req__recv__test_8c_a763ec976ec61fcf34516dddc6001bad3}{client\+\_\+config}}, struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$expected\+\_\+cert\+\_\+chain, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}} expected\+\_\+sig\+\_\+alg)
+\item 
+int \mbox{\hyperlink{s2n__handshake__test_8c_ab3284edeae97f4e86d5387f28736b6c3}{async\+\_\+pkey\+\_\+fn}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op)
+\item 
+int \mbox{\hyperlink{s2n__handshake__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326f}{test\+\_\+type}} \mbox{\hyperlink{s2n__handshake__test_8c_ae276287ba87b2707e6f2547fa7023f8d}{test\+\_\+type}}
+\item 
+struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$ \mbox{\hyperlink{s2n__handshake__test_8c_aca648abde9d5246b9a2af8ccaec8ed25}{pkey\+\_\+op}} = NULL
+\item 
+int \mbox{\hyperlink{s2n__handshake__test_8c_abfb680d60f5a70021b1fd2f9c8c2426d}{async\+\_\+pkey\+\_\+op\+\_\+called}} = 0
+\item 
+int \mbox{\hyperlink{s2n__handshake__test_8c_ae2f12a0856abd49bc799d9a6c848dd6f}{async\+\_\+pkey\+\_\+op\+\_\+performed}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326f}\label{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326f}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!test\_type@{test\_type}}
+\index{test\_type@{test\_type}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_type}{test\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326f}{test\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEST\_TYPE\_START@{TEST\_TYPE\_START}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!TEST\_TYPE\_START@{TEST\_TYPE\_START}}}\mbox{\Hypertarget{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326fa8d94cfae467c7049ee2e913f9e0bb776}\label{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326fa8d94cfae467c7049ee2e913f9e0bb776}} 
+TEST\+\_\+\+TYPE\+\_\+\+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEST\_TYPE\_SYNC@{TEST\_TYPE\_SYNC}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!TEST\_TYPE\_SYNC@{TEST\_TYPE\_SYNC}}}\mbox{\Hypertarget{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326fa4596ca9bb24be6b70dedd398cb25ef7d}\label{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326fa4596ca9bb24be6b70dedd398cb25ef7d}} 
+TEST\+\_\+\+TYPE\+\_\+\+SYNC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEST\_TYPE\_ASYNC@{TEST\_TYPE\_ASYNC}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!TEST\_TYPE\_ASYNC@{TEST\_TYPE\_ASYNC}}}\mbox{\Hypertarget{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326faa42ffd5b48823afe8af67dddec1c9783}\label{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326faa42ffd5b48823afe8af67dddec1c9783}} 
+TEST\+\_\+\+TYPE\+\_\+\+ASYNC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TEST\_TYPE\_END@{TEST\_TYPE\_END}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!TEST\_TYPE\_END@{TEST\_TYPE\_END}}}\mbox{\Hypertarget{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326faf547cf6ae7a73bb342a673cf5b874946}\label{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326faf547cf6ae7a73bb342a673cf5b874946}} 
+TEST\+\_\+\+TYPE\+\_\+\+END&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__handshake__test_8c_ab3284edeae97f4e86d5387f28736b6c3}\label{s2n__handshake__test_8c_ab3284edeae97f4e86d5387f28736b6c3}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!async\_pkey\_fn@{async\_pkey\_fn}}
+\index{async\_pkey\_fn@{async\_pkey\_fn}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_pkey\_fn()}{async\_pkey\_fn()}}
+{\footnotesize\ttfamily int async\+\_\+pkey\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__test_8c_ad1ccb5051dd129a1ab267a7c28fd095a}\label{s2n__handshake__test_8c_ad1ccb5051dd129a1ab267a7c28fd095a}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!handle\_async@{handle\_async}}
+\index{handle\_async@{handle\_async}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{handle\_async()}{handle\_async()}}
+{\footnotesize\ttfamily static int handle\+\_\+async (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{server\+\_\+conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__handshake__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__handshake__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!main@{main}}
+\index{main@{main}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__test_8c_a466666dff7ed43b6abf34d4ffe29a561}\label{s2n__handshake__test_8c_a466666dff7ed43b6abf34d4ffe29a561}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!test\_cipher\_preferences@{test\_cipher\_preferences}}
+\index{test\_cipher\_preferences@{test\_cipher\_preferences}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_cipher\_preferences()}{test\_cipher\_preferences()}}
+{\footnotesize\ttfamily int test\+\_\+cipher\+\_\+preferences (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{server\+\_\+config,  }\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{client\+\_\+config,  }\item[{struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$}]{expected\+\_\+cert\+\_\+chain,  }\item[{\mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+\_\+signature\+\_\+algorithm}}}]{expected\+\_\+sig\+\_\+alg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__handshake__test_8c_ae77882491985a075ac03fbf314475f7b}\label{s2n__handshake__test_8c_ae77882491985a075ac03fbf314475f7b}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!try\_handshake@{try\_handshake}}
+\index{try\_handshake@{try\_handshake}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{try\_handshake()}{try\_handshake()}}
+{\footnotesize\ttfamily static int try\+\_\+handshake (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{server\+\_\+conn,  }\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{client\+\_\+conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__handshake__test_8c_abfb680d60f5a70021b1fd2f9c8c2426d}\label{s2n__handshake__test_8c_abfb680d60f5a70021b1fd2f9c8c2426d}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!async\_pkey\_op\_called@{async\_pkey\_op\_called}}
+\index{async\_pkey\_op\_called@{async\_pkey\_op\_called}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_pkey\_op\_called}{async\_pkey\_op\_called}}
+{\footnotesize\ttfamily int async\+\_\+pkey\+\_\+op\+\_\+called = 0}
+
+\mbox{\Hypertarget{s2n__handshake__test_8c_ae2f12a0856abd49bc799d9a6c848dd6f}\label{s2n__handshake__test_8c_ae2f12a0856abd49bc799d9a6c848dd6f}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!async\_pkey\_op\_performed@{async\_pkey\_op\_performed}}
+\index{async\_pkey\_op\_performed@{async\_pkey\_op\_performed}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_pkey\_op\_performed}{async\_pkey\_op\_performed}}
+{\footnotesize\ttfamily int async\+\_\+pkey\+\_\+op\+\_\+performed = 0}
+
+\mbox{\Hypertarget{s2n__handshake__test_8c_aca648abde9d5246b9a2af8ccaec8ed25}\label{s2n__handshake__test_8c_aca648abde9d5246b9a2af8ccaec8ed25}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!pkey\_op@{pkey\_op}}
+\index{pkey\_op@{pkey\_op}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{pkey\_op}{pkey\_op}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}}$\ast$ pkey\+\_\+op = NULL}
+
+\mbox{\Hypertarget{s2n__handshake__test_8c_ae276287ba87b2707e6f2547fa7023f8d}\label{s2n__handshake__test_8c_ae276287ba87b2707e6f2547fa7023f8d}} 
+\index{s2n\_handshake\_test.c@{s2n\_handshake\_test.c}!test\_type@{test\_type}}
+\index{test\_type@{test\_type}!s2n\_handshake\_test.c@{s2n\_handshake\_test.c}}
+\doxysubsubsection{\texorpdfstring{test\_type}{test\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326f}{test\+\_\+type}} \mbox{\hyperlink{s2n__handshake__test_8c_aac4452a7487c189982bfeaca04a1326f}{test\+\_\+type}}}
+

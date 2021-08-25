@@ -1,0 +1,132 @@
+\hypertarget{classlib_1_1ninja__syntax_1_1_writer}{}\doxysection{lib.\+ninja\+\_\+syntax.\+Writer Class Reference}
+\label{classlib_1_1ninja__syntax_1_1_writer}\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+Inheritance diagram for lib.\+ninja\+\_\+syntax.\+Writer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classlib_1_1ninja__syntax_1_1_writer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_a720e245d62ba5a0b93f2499c9feae5a3}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_ade128ddc801c03e4a98d19d4f8873055}{output}}, \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_afa5452b571e59ab66a1a2d65394176d2}{width}}=78)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_a50815c9a39a1b23979094c71f123360e}{newline}} (self)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_a5fe07d586caf89a0290ce7fd38b60301}{comment}} (self, text)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_a8072bd246251cdd578282d8ce7606334}{variable}} (self, key, value, indent=0)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_adca204457c76b0a5b4e648139b99acd3}{pool}} (self, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, depth)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_a9cbe52323d65edea8a5817ed6d4c3d4b}{rule}} (self, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, command, description=None, depfile=None, generator=False, \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_adca204457c76b0a5b4e648139b99acd3}{pool}}=None, restat=False, rspfile=None, rspfile\+\_\+content=None, deps=None)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_aaa97bbe369476b0f0f872804f7964a8e}{build}} (self, outputs, \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_a9cbe52323d65edea8a5817ed6d4c3d4b}{rule}}, inputs=None, implicit=None, order\+\_\+only=None, variables=None, implicit\+\_\+outputs=None, \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_adca204457c76b0a5b4e648139b99acd3}{pool}}=None)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_aa7ce472452ecf675989a2887d3c14a8d}{include}} (self, path)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_a26f00160971ccb8e231bb89814d40f04}{subninja}} (self, path)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_a0d524b15c610f1277a1a1d0b2b598cb9}{default}} (self, paths)
+\item 
+def \mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_af85994065d637bb1f17123590c5dae3d}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_ade128ddc801c03e4a98d19d4f8873055}{output}}
+\item 
+\mbox{\hyperlink{classlib_1_1ninja__syntax_1_1_writer_afa5452b571e59ab66a1a2d65394176d2}{width}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_a720e245d62ba5a0b93f2499c9feae5a3}\label{classlib_1_1ninja__syntax_1_1_writer_a720e245d62ba5a0b93f2499c9feae5a3}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{output,  }\item[{}]{width = {\ttfamily 78} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_aaa97bbe369476b0f0f872804f7964a8e}\label{classlib_1_1ninja__syntax_1_1_writer_aaa97bbe369476b0f0f872804f7964a8e}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!build@{build}}
+\index{build@{build}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{build()}{build()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+build (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{outputs,  }\item[{}]{rule,  }\item[{}]{inputs = {\ttfamily None},  }\item[{}]{implicit = {\ttfamily None},  }\item[{}]{order\+\_\+only = {\ttfamily None},  }\item[{}]{variables = {\ttfamily None},  }\item[{}]{implicit\+\_\+outputs = {\ttfamily None},  }\item[{}]{pool = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_af85994065d637bb1f17123590c5dae3d}\label{classlib_1_1ninja__syntax_1_1_writer_af85994065d637bb1f17123590c5dae3d}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!close@{close}}
+\index{close@{close}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+close (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_a5fe07d586caf89a0290ce7fd38b60301}\label{classlib_1_1ninja__syntax_1_1_writer_a5fe07d586caf89a0290ce7fd38b60301}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!comment@{comment}}
+\index{comment@{comment}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{comment()}{comment()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+comment (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{text }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_a0d524b15c610f1277a1a1d0b2b598cb9}\label{classlib_1_1ninja__syntax_1_1_writer_a0d524b15c610f1277a1a1d0b2b598cb9}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!default@{default}}
+\index{default@{default}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{default()}{default()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+default (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{paths }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_aa7ce472452ecf675989a2887d3c14a8d}\label{classlib_1_1ninja__syntax_1_1_writer_aa7ce472452ecf675989a2887d3c14a8d}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!include@{include}}
+\index{include@{include}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{include()}{include()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+include (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_a50815c9a39a1b23979094c71f123360e}\label{classlib_1_1ninja__syntax_1_1_writer_a50815c9a39a1b23979094c71f123360e}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!newline@{newline}}
+\index{newline@{newline}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{newline()}{newline()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+newline (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_adca204457c76b0a5b4e648139b99acd3}\label{classlib_1_1ninja__syntax_1_1_writer_adca204457c76b0a5b4e648139b99acd3}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!pool@{pool}}
+\index{pool@{pool}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{pool()}{pool()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+pool (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{name,  }\item[{}]{depth }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_a9cbe52323d65edea8a5817ed6d4c3d4b}\label{classlib_1_1ninja__syntax_1_1_writer_a9cbe52323d65edea8a5817ed6d4c3d4b}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!rule@{rule}}
+\index{rule@{rule}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{rule()}{rule()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+rule (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{name,  }\item[{}]{command,  }\item[{}]{description = {\ttfamily None},  }\item[{}]{depfile = {\ttfamily None},  }\item[{}]{generator = {\ttfamily False},  }\item[{}]{pool = {\ttfamily None},  }\item[{}]{restat = {\ttfamily False},  }\item[{}]{rspfile = {\ttfamily None},  }\item[{}]{rspfile\+\_\+content = {\ttfamily None},  }\item[{}]{deps = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_a26f00160971ccb8e231bb89814d40f04}\label{classlib_1_1ninja__syntax_1_1_writer_a26f00160971ccb8e231bb89814d40f04}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!subninja@{subninja}}
+\index{subninja@{subninja}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{subninja()}{subninja()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+subninja (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_a8072bd246251cdd578282d8ce7606334}\label{classlib_1_1ninja__syntax_1_1_writer_a8072bd246251cdd578282d8ce7606334}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!variable@{variable}}
+\index{variable@{variable}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{variable()}{variable()}}
+{\footnotesize\ttfamily def lib.\+ninja\+\_\+syntax.\+Writer.\+variable (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{key,  }\item[{}]{value,  }\item[{}]{indent = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_ade128ddc801c03e4a98d19d4f8873055}\label{classlib_1_1ninja__syntax_1_1_writer_ade128ddc801c03e4a98d19d4f8873055}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!output@{output}}
+\index{output@{output}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{output}{output}}
+{\footnotesize\ttfamily lib.\+ninja\+\_\+syntax.\+Writer.\+output}
+
+\mbox{\Hypertarget{classlib_1_1ninja__syntax_1_1_writer_afa5452b571e59ab66a1a2d65394176d2}\label{classlib_1_1ninja__syntax_1_1_writer_afa5452b571e59ab66a1a2d65394176d2}} 
+\index{lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}!width@{width}}
+\index{width@{width}!lib.ninja\_syntax.Writer@{lib.ninja\_syntax.Writer}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily lib.\+ninja\+\_\+syntax.\+Writer.\+width}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/litani/lib/\mbox{\hyperlink{ninja__syntax_8py}{ninja\+\_\+syntax.\+py}}\end{DoxyCompactItemize}

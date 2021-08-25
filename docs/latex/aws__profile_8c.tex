@@ -1,0 +1,560 @@
+\hypertarget{aws__profile_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/aws\+\_\+profile.c File Reference}
+\label{aws__profile_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/aws\_profile.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/source/aws\_profile.c}}
+{\ttfamily \#include $<$aws/auth/private/aws\+\_\+profile.\+h$>$}\newline
+{\ttfamily \#include $<$aws/auth/credentials.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/environment.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/file\+\_\+utils.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{aws__profile_8c_a89e5594e6aaa5ed586630cd866e8aa93}{PROPERTIES\+\_\+\+TABLE\+\_\+\+DEFAULT\+\_\+\+SIZE}}~4
+\item 
+\#define \mbox{\hyperlink{aws__profile_8c_af487a2a63648937226110558105c4df6}{PROFILE\+\_\+\+TABLE\+\_\+\+DEFAULT\+\_\+\+SIZE}}~5
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_aa8cb8b9844c29baa82a3fdd95e5c54a3}{s\+\_\+is\+\_\+assignment\+\_\+operator}} (uint8\+\_\+t value)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_ab7d62b217e32c26c044b4578dd4d690a}{s\+\_\+is\+\_\+not\+\_\+assignment\+\_\+operator}} (uint8\+\_\+t value)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_ab153cb508cbf25467136a70796498aee}{s\+\_\+is\+\_\+identifier}} (uint8\+\_\+t value)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a0669a058af6dce92cf165f4e1635c6c8}{s\+\_\+is\+\_\+whitespace}} (uint8\+\_\+t value)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a0b5f2709a56c91ec74c154be04b0a8e3}{s\+\_\+is\+\_\+comment\+\_\+token}} (uint8\+\_\+t value)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_adf6dfa1a4c2443b87fc875acc96c3785}{s\+\_\+is\+\_\+not\+\_\+comment\+\_\+token}} (uint8\+\_\+t value)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a4832806a883c9c9001f7e10c7e60326e}{s\+\_\+is\+\_\+profile\+\_\+start}} (uint8\+\_\+t value)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a9320c245aef5c0a3be2632a7868c9933}{s\+\_\+is\+\_\+not\+\_\+profile\+\_\+end}} (uint8\+\_\+t value)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_ad1c4a779ececef799a9fa90279d84cc0}{s\+\_\+is\+\_\+carriage\+\_\+return}} (uint8\+\_\+t value)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a0eeaad6881c8df68c7556b2e377d2853}{s\+\_\+is\+\_\+comment\+\_\+line}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$line\+\_\+cursor)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a1128fedef7e05dd41df9cbb53decfd96}{s\+\_\+is\+\_\+whitespace\+\_\+line}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$line\+\_\+cursor)
+\item 
+\mbox{\hyperlink{aws__profile_8c_a04813d6be6fe075e43f36e6fa721fdcf}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+default\+\_\+profile\+\_\+name, \char`\"{}default\char`\"{})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a113b2a827efd8edfbf458c2a4036f031}{s\+\_\+is\+\_\+default\+\_\+profile\+\_\+name}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$profile\+\_\+name)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a42d684d524dcac1f437574643dfac355}{s\+\_\+parse\+\_\+by\+\_\+character\+\_\+predicate}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$start, \mbox{\hyperlink{byte__buf_8h_ace0fa67cb735decc07988bf215701e22}{aws\+\_\+byte\+\_\+predicate\+\_\+fn}} $\ast$predicate, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$parsed, size\+\_\+t maximum\+\_\+allowed)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_ad12f2003987d3a6f520c11063b54ace8}{s\+\_\+parse\+\_\+by\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$start, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$parsed)
+\item 
+\mbox{\hyperlink{aws__profile_8c_a54bab060ed7e177a68e6eb48414dc49b}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+none\+\_\+string, \char`\"{}$<$None$>$\char`\"{})
+\item 
+static void \mbox{\hyperlink{aws__profile_8c_a6191fe616e98a76f609d87bc84dc00ab}{s\+\_\+log\+\_\+parse\+\_\+context}} (enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}} log\+\_\+level, const struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$context)
+\item 
+static void \mbox{\hyperlink{aws__profile_8c_a47240facddaa7586bf92232bf7382c3b}{s\+\_\+profile\+\_\+property\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$property)
+\item 
+struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a883ff67c66e632f1c71d5e1753062f07}{aws\+\_\+profile\+\_\+property\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$value)
+\item 
+\mbox{\hyperlink{aws__profile_8c_a614ec265ebc8b13ddb7f1a859d219fa0}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+newline, \char`\"{}\textbackslash{}n\char`\"{})
+\item 
+static int \mbox{\hyperlink{aws__profile_8c_a1509401aa99c5ca250fe41671de11a67}{s\+\_\+profile\+\_\+property\+\_\+add\+\_\+continuation}} (struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$property, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$continuation\+\_\+value)
+\item 
+static int \mbox{\hyperlink{aws__profile_8c_a4aa361434397235beb41aa21f3188be7}{s\+\_\+profile\+\_\+property\+\_\+add\+\_\+sub\+\_\+property}} (struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$property, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$key, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$value, const struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$context)
+\item 
+static int \mbox{\hyperlink{aws__profile_8c_a388a2d9373c786f4e34a2bc97db6198e}{s\+\_\+profile\+\_\+property\+\_\+merge}} (struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$dest, const struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$source)
+\item 
+static void \mbox{\hyperlink{aws__profile_8c_a12ee3597287ba8c315705de74d63fa86}{s\+\_\+property\+\_\+hash\+\_\+table\+\_\+value\+\_\+destroy}} (void $\ast$value)
+\item 
+void \mbox{\hyperlink{aws__profile_8c_a9e27b6437735840da038e9bdf0340b00}{aws\+\_\+profile\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$profile)
+\item 
+struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a97da5b859e28fa2a554abf3854ffc834}{aws\+\_\+profile\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} has\+\_\+profile\+\_\+prefix)
+\item 
+static struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a0cd9bd5850f23132cc2156cecd7d3bec}{s\+\_\+profile\+\_\+add\+\_\+property}} (struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$profile, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$key\+\_\+cursor, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$value\+\_\+cursor)
+\item 
+struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a0e3f4207efd7b9e2dd9796ad33552033}{aws\+\_\+profile\+\_\+get\+\_\+property}} (const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$profile, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$property\+\_\+name)
+\item 
+static int \mbox{\hyperlink{aws__profile_8c_a7eb44a5a7154200c7bf4e800aea246a5}{s\+\_\+profile\+\_\+merge}} (struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$dest\+\_\+profile, const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$source\+\_\+profile)
+\item 
+static void \mbox{\hyperlink{aws__profile_8c_ae0e9e6f4a681185e27eec4a969ff6a2e}{s\+\_\+profile\+\_\+hash\+\_\+table\+\_\+value\+\_\+destroy}} (void $\ast$value)
+\item 
+void \mbox{\hyperlink{aws__profile_8c_a609f4b92bf3d5799b9e2a10878a82683}{aws\+\_\+profile\+\_\+collection\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$profile\+\_\+collection)
+\item 
+struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$ \mbox{\hyperlink{aws__profile_8c_ad1f39cfa6039e0150b964d0973b34de9}{aws\+\_\+profile\+\_\+collection\+\_\+get\+\_\+profile}} (const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$profile\+\_\+collection, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$profile\+\_\+name)
+\item 
+static int \mbox{\hyperlink{aws__profile_8c_ac517de7d8d40c8ca12ded42fb70ba425}{s\+\_\+profile\+\_\+collection\+\_\+add\+\_\+profile}} (struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$profile\+\_\+collection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$profile\+\_\+name, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} has\+\_\+prefix, const struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$$\ast$current\+\_\+profile\+\_\+out)
+\item 
+static int \mbox{\hyperlink{aws__profile_8c_a63ba35d0be400607ee0d59d577f6c487}{s\+\_\+profile\+\_\+collection\+\_\+merge}} (struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$dest\+\_\+collection, const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$source\+\_\+collection)
+\item 
+struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a4d690764479b2a0f6963275ead39b968}{aws\+\_\+profile\+\_\+collection\+\_\+new\+\_\+from\+\_\+merge}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$config\+\_\+profiles, const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$credentials\+\_\+profiles)
+\item 
+static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws__profile_8c_ad2e47288001fa267ca08f51f543a9e7d}{s\+\_\+trim\+\_\+trailing\+\_\+comment}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$line)
+\item 
+static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws__profile_8c_acf2c284fe4dcfd926b9402630babb52e}{s\+\_\+trim\+\_\+trailing\+\_\+whitespace\+\_\+comment}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$line)
+\item 
+\mbox{\hyperlink{aws__profile_8c_a3ffc8b6b0fcd027643b4ec4e26fa806b}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+profile\+\_\+token, \char`\"{}profile\char`\"{})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a264a32a44221b4e8866f65bb09527ab3}{s\+\_\+parse\+\_\+profile\+\_\+declaration}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$line\+\_\+cursor, struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$context)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a60d38fcab59803473df00826969d8854}{s\+\_\+parse\+\_\+property\+\_\+continuation}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$line\+\_\+cursor, struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$context)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__profile_8c_a306b35b579408c5bcff49bd85b89a258}{s\+\_\+parse\+\_\+property}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$line\+\_\+cursor, struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$context)
+\item 
+static void \mbox{\hyperlink{aws__profile_8c_a4cf0bedd1c99fb889a6f63d17fdceff5}{s\+\_\+parse\+\_\+and\+\_\+apply\+\_\+line\+\_\+to\+\_\+profile\+\_\+collection}} (struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$line\+\_\+cursor)
+\item 
+static struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$ \mbox{\hyperlink{aws__profile_8c_ad7f8b432682afe2ff3b679b818e59dc5}{s\+\_\+aws\+\_\+profile\+\_\+collection\+\_\+new\+\_\+internal}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, enum \mbox{\hyperlink{aws__profile_8h_ae2bde56b77740e2eb2c39dcc9c905e18}{aws\+\_\+profile\+\_\+source\+\_\+type}} source, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$path)
+\item 
+struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a00dfe639a7bc245345003853497ee4b7}{aws\+\_\+profile\+\_\+collection\+\_\+new\+\_\+from\+\_\+file}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$file\+\_\+path, enum \mbox{\hyperlink{aws__profile_8h_ae2bde56b77740e2eb2c39dcc9c905e18}{aws\+\_\+profile\+\_\+source\+\_\+type}} source)
+\item 
+struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a79bf7473eda3a08557117c41dc57306d}{aws\+\_\+profile\+\_\+collection\+\_\+new\+\_\+from\+\_\+buffer}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, enum \mbox{\hyperlink{aws__profile_8h_ae2bde56b77740e2eb2c39dcc9c905e18}{aws\+\_\+profile\+\_\+source\+\_\+type}} source)
+\item 
+static const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a1bdd8557bf5355db4595c5213bff2580}{s\+\_\+profile\+\_\+get\+\_\+property\+\_\+value}} (const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$profile, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$property\+\_\+name)
+\item 
+\mbox{\hyperlink{aws__profile_8c_a6c5f56f9a1fa23889012281492c37a1b}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+access\+\_\+key\+\_\+id\+\_\+profile\+\_\+var, \char`\"{}aws\+\_\+access\+\_\+key\+\_\+id\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile_8c_a147500fd845e9aca5a3b155423d86f73}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+secret\+\_\+access\+\_\+key\+\_\+profile\+\_\+var, \char`\"{}aws\+\_\+secret\+\_\+access\+\_\+key\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile_8c_aa47a4ef3a7649d27641e35caff651405}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+session\+\_\+token\+\_\+profile\+\_\+var, \char`\"{}aws\+\_\+session\+\_\+token\char`\"{})
+\item 
+struct \mbox{\hyperlink{structaws__credentials}{aws\+\_\+credentials}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a870c29066f53f80018b5368f2aae9fdc}{aws\+\_\+credentials\+\_\+new\+\_\+from\+\_\+profile}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$profile)
+\item 
+static struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__profile_8c_afbc2fa1d8d0a18e95d579c577f14a9df}{s\+\_\+process\+\_\+profile\+\_\+file\+\_\+path}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$path)
+\item 
+\mbox{\hyperlink{aws__profile_8c_ac96ef35d01d1c24ae26307c7dbd41981}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+default\+\_\+credentials\+\_\+path, \char`\"{}$\sim$/.aws/credentials\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile_8c_a131682f2da9592f318138af2466751dc}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+credentials\+\_\+file\+\_\+path\+\_\+env\+\_\+variable\+\_\+name, \char`\"{}AWS\+\_\+\+SHARED\+\_\+\+CREDENTIALS\+\_\+\+FILE\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile_8c_a1adacb8496fa2061082926c05829e942}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+default\+\_\+config\+\_\+path, \char`\"{}$\sim$/.aws/\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}\char`\"{})
+\item 
+\mbox{\hyperlink{aws__profile_8c_ab1a120ea0ae4a21fbb42e9b1096c8891}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+config\+\_\+file\+\_\+path\+\_\+env\+\_\+variable\+\_\+name, \char`\"{}AWS\+\_\+\+CONFIG\+\_\+\+FILE\char`\"{})
+\item 
+static struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__profile_8c_aae8a8767d39b8b643c10dfce7959f06a}{s\+\_\+get\+\_\+raw\+\_\+file\+\_\+path}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$override\+\_\+path, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$override\+\_\+env\+\_\+var\+\_\+name, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$default\+\_\+path)
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a3bdc619997a33c8894f0209c55f66c29}{aws\+\_\+get\+\_\+credentials\+\_\+file\+\_\+path}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$override\+\_\+path)
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a6104362ae5e0505cd9f0af3b3636aa59}{aws\+\_\+get\+\_\+config\+\_\+file\+\_\+path}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$override\+\_\+path)
+\item 
+\mbox{\hyperlink{aws__profile_8c_afccb2f8d844b547052b6de533c51e0ad}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+default\+\_\+profile\+\_\+env\+\_\+variable\+\_\+name, \char`\"{}AWS\+\_\+\+PROFILE\char`\"{})
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a60a4a0527919e0462a523a58a183a97a}{aws\+\_\+get\+\_\+profile\+\_\+name}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$override\+\_\+name)
+\item 
+size\+\_\+t \mbox{\hyperlink{aws__profile_8c_ac51f12f14ebc16962f36c061e4804e36}{aws\+\_\+profile\+\_\+get\+\_\+property\+\_\+count}} (const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$profile)
+\item 
+size\+\_\+t \mbox{\hyperlink{aws__profile_8c_a6716707884715da482a310079e87b038}{aws\+\_\+profile\+\_\+collection\+\_\+get\+\_\+profile\+\_\+count}} (const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$profile\+\_\+collection)
+\item 
+size\+\_\+t \mbox{\hyperlink{aws__profile_8c_a6bc6288ea3d5299fd90294ac4bff961d}{aws\+\_\+profile\+\_\+property\+\_\+get\+\_\+sub\+\_\+property\+\_\+count}} (const struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$property)
+\item 
+const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{aws__profile_8c_a96ac129a13061c877dc8aa5d240b4cbd}{aws\+\_\+profile\+\_\+property\+\_\+get\+\_\+sub\+\_\+property}} (const struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$property, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$sub\+\_\+property\+\_\+name)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{aws__profile_8c_af487a2a63648937226110558105c4df6}\label{aws__profile_8c_af487a2a63648937226110558105c4df6}} 
+\index{aws\_profile.c@{aws\_profile.c}!PROFILE\_TABLE\_DEFAULT\_SIZE@{PROFILE\_TABLE\_DEFAULT\_SIZE}}
+\index{PROFILE\_TABLE\_DEFAULT\_SIZE@{PROFILE\_TABLE\_DEFAULT\_SIZE}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{PROFILE\_TABLE\_DEFAULT\_SIZE}{PROFILE\_TABLE\_DEFAULT\_SIZE}}
+{\footnotesize\ttfamily \#define PROFILE\+\_\+\+TABLE\+\_\+\+DEFAULT\+\_\+\+SIZE~5}
+
+\mbox{\Hypertarget{aws__profile_8c_a89e5594e6aaa5ed586630cd866e8aa93}\label{aws__profile_8c_a89e5594e6aaa5ed586630cd866e8aa93}} 
+\index{aws\_profile.c@{aws\_profile.c}!PROPERTIES\_TABLE\_DEFAULT\_SIZE@{PROPERTIES\_TABLE\_DEFAULT\_SIZE}}
+\index{PROPERTIES\_TABLE\_DEFAULT\_SIZE@{PROPERTIES\_TABLE\_DEFAULT\_SIZE}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{PROPERTIES\_TABLE\_DEFAULT\_SIZE}{PROPERTIES\_TABLE\_DEFAULT\_SIZE}}
+{\footnotesize\ttfamily \#define PROPERTIES\+\_\+\+TABLE\+\_\+\+DEFAULT\+\_\+\+SIZE~4}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws__profile_8c_a870c29066f53f80018b5368f2aae9fdc}\label{aws__profile_8c_a870c29066f53f80018b5368f2aae9fdc}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_credentials\_new\_from\_profile@{aws\_credentials\_new\_from\_profile}}
+\index{aws\_credentials\_new\_from\_profile@{aws\_credentials\_new\_from\_profile}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_credentials\_new\_from\_profile()}{aws\_credentials\_new\_from\_profile()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__credentials}{aws\+\_\+credentials}}$\ast$ aws\+\_\+credentials\+\_\+new\+\_\+from\+\_\+profile (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$}]{profile }\end{DoxyParamCaption})}
+
+Returns a set of credentials associated with a profile, based on the properties within the profile \mbox{\Hypertarget{aws__profile_8c_a6104362ae5e0505cd9f0af3b3636aa59}\label{aws__profile_8c_a6104362ae5e0505cd9f0af3b3636aa59}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_get\_config\_file\_path@{aws\_get\_config\_file\_path}}
+\index{aws\_get\_config\_file\_path@{aws\_get\_config\_file\_path}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_config\_file\_path()}{aws\_get\_config\_file\_path()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+get\+\_\+config\+\_\+file\+\_\+path (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{override\+\_\+path }\end{DoxyParamCaption})}
+
+Computes the final platform-\/specific path for the profile config file. Does limited home directory expansion/resolution. \mbox{\Hypertarget{aws__profile_8c_a3bdc619997a33c8894f0209c55f66c29}\label{aws__profile_8c_a3bdc619997a33c8894f0209c55f66c29}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_get\_credentials\_file\_path@{aws\_get\_credentials\_file\_path}}
+\index{aws\_get\_credentials\_file\_path@{aws\_get\_credentials\_file\_path}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_credentials\_file\_path()}{aws\_get\_credentials\_file\_path()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+get\+\_\+credentials\+\_\+file\+\_\+path (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{override\+\_\+path }\end{DoxyParamCaption})}
+
+Computes the final platform-\/specific path for the profile credentials file. Does limited home directory expansion/resolution. \mbox{\Hypertarget{aws__profile_8c_a60a4a0527919e0462a523a58a183a97a}\label{aws__profile_8c_a60a4a0527919e0462a523a58a183a97a}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_get\_profile\_name@{aws\_get\_profile\_name}}
+\index{aws\_get\_profile\_name@{aws\_get\_profile\_name}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_get\_profile\_name()}{aws\_get\_profile\_name()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+get\+\_\+profile\+\_\+name (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{override\+\_\+name }\end{DoxyParamCaption})}
+
+Computes the profile to use for credentials lookups based on profile resolution rules \mbox{\Hypertarget{aws__profile_8c_a609f4b92bf3d5799b9e2a10878a82683}\label{aws__profile_8c_a609f4b92bf3d5799b9e2a10878a82683}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_collection\_destroy@{aws\_profile\_collection\_destroy}}
+\index{aws\_profile\_collection\_destroy@{aws\_profile\_collection\_destroy}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_collection\_destroy()}{aws\_profile\_collection\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+profile\+\_\+collection\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$}]{profile\+\_\+collection }\end{DoxyParamCaption})}
+
+Clean up everything associated with a profile collection \mbox{\Hypertarget{aws__profile_8c_ad1f39cfa6039e0150b964d0973b34de9}\label{aws__profile_8c_ad1f39cfa6039e0150b964d0973b34de9}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_collection\_get\_profile@{aws\_profile\_collection\_get\_profile}}
+\index{aws\_profile\_collection\_get\_profile@{aws\_profile\_collection\_get\_profile}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_collection\_get\_profile()}{aws\_profile\_collection\_get\_profile()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}}$\ast$ aws\+\_\+profile\+\_\+collection\+\_\+get\+\_\+profile (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$}]{profile\+\_\+collection,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{profile\+\_\+name }\end{DoxyParamCaption})}
+
+Retrieves a profile with the specified name, if it exists, from the profile collection \mbox{\Hypertarget{aws__profile_8c_a6716707884715da482a310079e87b038}\label{aws__profile_8c_a6716707884715da482a310079e87b038}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_collection\_get\_profile\_count@{aws\_profile\_collection\_get\_profile\_count}}
+\index{aws\_profile\_collection\_get\_profile\_count@{aws\_profile\_collection\_get\_profile\_count}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_collection\_get\_profile\_count()}{aws\_profile\_collection\_get\_profile\_count()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+profile\+\_\+collection\+\_\+get\+\_\+profile\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$}]{profile\+\_\+collection }\end{DoxyParamCaption})}
+
+Returns how many profiles a collection holds \mbox{\Hypertarget{aws__profile_8c_a79bf7473eda3a08557117c41dc57306d}\label{aws__profile_8c_a79bf7473eda3a08557117c41dc57306d}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_collection\_new\_from\_buffer@{aws\_profile\_collection\_new\_from\_buffer}}
+\index{aws\_profile\_collection\_new\_from\_buffer@{aws\_profile\_collection\_new\_from\_buffer}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_collection\_new\_from\_buffer()}{aws\_profile\_collection\_new\_from\_buffer()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}}$\ast$ aws\+\_\+profile\+\_\+collection\+\_\+new\+\_\+from\+\_\+buffer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{enum \mbox{\hyperlink{aws__profile_8h_ae2bde56b77740e2eb2c39dcc9c905e18}{aws\+\_\+profile\+\_\+source\+\_\+type}}}]{source }\end{DoxyParamCaption})}
+
+Create a new profile collection by parsing text in a buffer. Primarily for testing. \mbox{\Hypertarget{aws__profile_8c_a00dfe639a7bc245345003853497ee4b7}\label{aws__profile_8c_a00dfe639a7bc245345003853497ee4b7}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_collection\_new\_from\_file@{aws\_profile\_collection\_new\_from\_file}}
+\index{aws\_profile\_collection\_new\_from\_file@{aws\_profile\_collection\_new\_from\_file}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_collection\_new\_from\_file()}{aws\_profile\_collection\_new\_from\_file()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}}$\ast$ aws\+\_\+profile\+\_\+collection\+\_\+new\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{file\+\_\+path,  }\item[{enum \mbox{\hyperlink{aws__profile_8h_ae2bde56b77740e2eb2c39dcc9c905e18}{aws\+\_\+profile\+\_\+source\+\_\+type}}}]{source }\end{DoxyParamCaption})}
+
+Create a new profile collection by parsing a file with the specified path \mbox{\Hypertarget{aws__profile_8c_a4d690764479b2a0f6963275ead39b968}\label{aws__profile_8c_a4d690764479b2a0f6963275ead39b968}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_collection\_new\_from\_merge@{aws\_profile\_collection\_new\_from\_merge}}
+\index{aws\_profile\_collection\_new\_from\_merge@{aws\_profile\_collection\_new\_from\_merge}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_collection\_new\_from\_merge()}{aws\_profile\_collection\_new\_from\_merge()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}}$\ast$ aws\+\_\+profile\+\_\+collection\+\_\+new\+\_\+from\+\_\+merge (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$}]{config\+\_\+profiles,  }\item[{const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$}]{credentials\+\_\+profiles }\end{DoxyParamCaption})}
+
+Create a new profile collection by merging a config-\/file-\/based profile collection and a credentials-\/file-\/based profile collection \mbox{\Hypertarget{aws__profile_8c_a9e27b6437735840da038e9bdf0340b00}\label{aws__profile_8c_a9e27b6437735840da038e9bdf0340b00}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_destroy@{aws\_profile\_destroy}}
+\index{aws\_profile\_destroy@{aws\_profile\_destroy}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_destroy()}{aws\_profile\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+profile\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$}]{profile }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a0e3f4207efd7b9e2dd9796ad33552033}\label{aws__profile_8c_a0e3f4207efd7b9e2dd9796ad33552033}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_get\_property@{aws\_profile\_get\_property}}
+\index{aws\_profile\_get\_property@{aws\_profile\_get\_property}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_get\_property()}{aws\_profile\_get\_property()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}}$\ast$ aws\+\_\+profile\+\_\+get\+\_\+property (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$}]{profile,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{property\+\_\+name }\end{DoxyParamCaption})}
+
+Retrieves a property with the specified name, if it exists, from a profile \mbox{\Hypertarget{aws__profile_8c_ac51f12f14ebc16962f36c061e4804e36}\label{aws__profile_8c_ac51f12f14ebc16962f36c061e4804e36}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_get\_property\_count@{aws\_profile\_get\_property\_count}}
+\index{aws\_profile\_get\_property\_count@{aws\_profile\_get\_property\_count}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_get\_property\_count()}{aws\_profile\_get\_property\_count()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+profile\+\_\+get\+\_\+property\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$}]{profile }\end{DoxyParamCaption})}
+
+Returns how many properties a profile holds \mbox{\Hypertarget{aws__profile_8c_a97da5b859e28fa2a554abf3854ffc834}\label{aws__profile_8c_a97da5b859e28fa2a554abf3854ffc834}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_new@{aws\_profile\_new}}
+\index{aws\_profile\_new@{aws\_profile\_new}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_new()}{aws\_profile\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}}$\ast$ aws\+\_\+profile\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{name,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{has\+\_\+profile\+\_\+prefix }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a96ac129a13061c877dc8aa5d240b4cbd}\label{aws__profile_8c_a96ac129a13061c877dc8aa5d240b4cbd}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_property\_get\_sub\_property@{aws\_profile\_property\_get\_sub\_property}}
+\index{aws\_profile\_property\_get\_sub\_property@{aws\_profile\_property\_get\_sub\_property}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_property\_get\_sub\_property()}{aws\_profile\_property\_get\_sub\_property()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+profile\+\_\+property\+\_\+get\+\_\+sub\+\_\+property (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$}]{property,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{sub\+\_\+property\+\_\+name }\end{DoxyParamCaption})}
+
+Returns the value of a sub property with the given name, if it exists, in the property \mbox{\Hypertarget{aws__profile_8c_a6bc6288ea3d5299fd90294ac4bff961d}\label{aws__profile_8c_a6bc6288ea3d5299fd90294ac4bff961d}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_property\_get\_sub\_property\_count@{aws\_profile\_property\_get\_sub\_property\_count}}
+\index{aws\_profile\_property\_get\_sub\_property\_count@{aws\_profile\_property\_get\_sub\_property\_count}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_property\_get\_sub\_property\_count()}{aws\_profile\_property\_get\_sub\_property\_count()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+profile\+\_\+property\+\_\+get\+\_\+sub\+\_\+property\+\_\+count (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$}]{property }\end{DoxyParamCaption})}
+
+Returns how many sub properties the property holds \mbox{\Hypertarget{aws__profile_8c_a883ff67c66e632f1c71d5e1753062f07}\label{aws__profile_8c_a883ff67c66e632f1c71d5e1753062f07}} 
+\index{aws\_profile.c@{aws\_profile.c}!aws\_profile\_property\_new@{aws\_profile\_property\_new}}
+\index{aws\_profile\_property\_new@{aws\_profile\_property\_new}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{aws\_profile\_property\_new()}{aws\_profile\_property\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}}$\ast$ aws\+\_\+profile\+\_\+property\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{name,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a6c5f56f9a1fa23889012281492c37a1b}\label{aws__profile_8c_a6c5f56f9a1fa23889012281492c37a1b}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+access\+\_\+key\+\_\+id\+\_\+profile\+\_\+var}]{,  }\item[{\char`\"{}aws\+\_\+access\+\_\+key\+\_\+id\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_ab1a120ea0ae4a21fbb42e9b1096c8891}\label{aws__profile_8c_ab1a120ea0ae4a21fbb42e9b1096c8891}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+config\+\_\+file\+\_\+path\+\_\+env\+\_\+variable\+\_\+name}]{,  }\item[{\char`\"{}AWS\+\_\+\+CONFIG\+\_\+\+FILE\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a131682f2da9592f318138af2466751dc}\label{aws__profile_8c_a131682f2da9592f318138af2466751dc}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [3/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+credentials\+\_\+file\+\_\+path\+\_\+env\+\_\+variable\+\_\+name}]{,  }\item[{\char`\"{}AWS\+\_\+\+SHARED\+\_\+\+CREDENTIALS\+\_\+\+FILE\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a1adacb8496fa2061082926c05829e942}\label{aws__profile_8c_a1adacb8496fa2061082926c05829e942}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [4/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+default\+\_\+config\+\_\+path}]{,  }\item[{\char`\"{}$\sim$/.aws/\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_ac96ef35d01d1c24ae26307c7dbd41981}\label{aws__profile_8c_ac96ef35d01d1c24ae26307c7dbd41981}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [5/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+default\+\_\+credentials\+\_\+path}]{,  }\item[{\char`\"{}$\sim$/.aws/credentials\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_afccb2f8d844b547052b6de533c51e0ad}\label{aws__profile_8c_afccb2f8d844b547052b6de533c51e0ad}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [6/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+default\+\_\+profile\+\_\+env\+\_\+variable\+\_\+name}]{,  }\item[{\char`\"{}AWS\+\_\+\+PROFILE\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a04813d6be6fe075e43f36e6fa721fdcf}\label{aws__profile_8c_a04813d6be6fe075e43f36e6fa721fdcf}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [7/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+default\+\_\+profile\+\_\+name}]{,  }\item[{\char`\"{}default\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a614ec265ebc8b13ddb7f1a859d219fa0}\label{aws__profile_8c_a614ec265ebc8b13ddb7f1a859d219fa0}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [8/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+newline}]{,  }\item[{\char`\"{}\textbackslash{}n\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a54bab060ed7e177a68e6eb48414dc49b}\label{aws__profile_8c_a54bab060ed7e177a68e6eb48414dc49b}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [9/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+none\+\_\+string}]{,  }\item[{\char`\"{}$<$None$>$\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a3ffc8b6b0fcd027643b4ec4e26fa806b}\label{aws__profile_8c_a3ffc8b6b0fcd027643b4ec4e26fa806b}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [10/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+profile\+\_\+token}]{,  }\item[{\char`\"{}profile\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_a147500fd845e9aca5a3b155423d86f73}\label{aws__profile_8c_a147500fd845e9aca5a3b155423d86f73}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [11/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+secret\+\_\+access\+\_\+key\+\_\+profile\+\_\+var}]{,  }\item[{\char`\"{}aws\+\_\+secret\+\_\+access\+\_\+key\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_aa47a4ef3a7649d27641e35caff651405}\label{aws__profile_8c_aa47a4ef3a7649d27641e35caff651405}} 
+\index{aws\_profile.c@{aws\_profile.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
+\index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [12/12]}}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+session\+\_\+token\+\_\+profile\+\_\+var}]{,  }\item[{\char`\"{}aws\+\_\+session\+\_\+token\char`\"{}}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws__profile_8c_ad7f8b432682afe2ff3b679b818e59dc5}\label{aws__profile_8c_ad7f8b432682afe2ff3b679b818e59dc5}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_aws\_profile\_collection\_new\_internal@{s\_aws\_profile\_collection\_new\_internal}}
+\index{s\_aws\_profile\_collection\_new\_internal@{s\_aws\_profile\_collection\_new\_internal}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_aws\_profile\_collection\_new\_internal()}{s\_aws\_profile\_collection\_new\_internal()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}}$\ast$ s\+\_\+aws\+\_\+profile\+\_\+collection\+\_\+new\+\_\+internal (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{enum \mbox{\hyperlink{aws__profile_8h_ae2bde56b77740e2eb2c39dcc9c905e18}{aws\+\_\+profile\+\_\+source\+\_\+type}}}]{source,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_aae8a8767d39b8b643c10dfce7959f06a}\label{aws__profile_8c_aae8a8767d39b8b643c10dfce7959f06a}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_get\_raw\_file\_path@{s\_get\_raw\_file\_path}}
+\index{s\_get\_raw\_file\_path@{s\_get\_raw\_file\_path}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_get\_raw\_file\_path()}{s\_get\_raw\_file\_path()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ s\+\_\+get\+\_\+raw\+\_\+file\+\_\+path (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{override\+\_\+path,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{override\+\_\+env\+\_\+var\+\_\+name,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{default\+\_\+path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_aa8cb8b9844c29baa82a3fdd95e5c54a3}\label{aws__profile_8c_aa8cb8b9844c29baa82a3fdd95e5c54a3}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_assignment\_operator@{s\_is\_assignment\_operator}}
+\index{s\_is\_assignment\_operator@{s\_is\_assignment\_operator}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_assignment\_operator()}{s\_is\_assignment\_operator()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+assignment\+\_\+operator (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_ad1c4a779ececef799a9fa90279d84cc0}\label{aws__profile_8c_ad1c4a779ececef799a9fa90279d84cc0}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_carriage\_return@{s\_is\_carriage\_return}}
+\index{s\_is\_carriage\_return@{s\_is\_carriage\_return}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_carriage\_return()}{s\_is\_carriage\_return()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+carriage\+\_\+return (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a0eeaad6881c8df68c7556b2e377d2853}\label{aws__profile_8c_a0eeaad6881c8df68c7556b2e377d2853}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_comment\_line@{s\_is\_comment\_line}}
+\index{s\_is\_comment\_line@{s\_is\_comment\_line}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_comment\_line()}{s\_is\_comment\_line()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+comment\+\_\+line (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{line\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a0b5f2709a56c91ec74c154be04b0a8e3}\label{aws__profile_8c_a0b5f2709a56c91ec74c154be04b0a8e3}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_comment\_token@{s\_is\_comment\_token}}
+\index{s\_is\_comment\_token@{s\_is\_comment\_token}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_comment\_token()}{s\_is\_comment\_token()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+comment\+\_\+token (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a113b2a827efd8edfbf458c2a4036f031}\label{aws__profile_8c_a113b2a827efd8edfbf458c2a4036f031}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_default\_profile\_name@{s\_is\_default\_profile\_name}}
+\index{s\_is\_default\_profile\_name@{s\_is\_default\_profile\_name}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_default\_profile\_name()}{s\_is\_default\_profile\_name()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+default\+\_\+profile\+\_\+name (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{profile\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_ab153cb508cbf25467136a70796498aee}\label{aws__profile_8c_ab153cb508cbf25467136a70796498aee}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_identifier@{s\_is\_identifier}}
+\index{s\_is\_identifier@{s\_is\_identifier}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_identifier()}{s\_is\_identifier()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+identifier (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_ab7d62b217e32c26c044b4578dd4d690a}\label{aws__profile_8c_ab7d62b217e32c26c044b4578dd4d690a}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_not\_assignment\_operator@{s\_is\_not\_assignment\_operator}}
+\index{s\_is\_not\_assignment\_operator@{s\_is\_not\_assignment\_operator}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_not\_assignment\_operator()}{s\_is\_not\_assignment\_operator()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+not\+\_\+assignment\+\_\+operator (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_adf6dfa1a4c2443b87fc875acc96c3785}\label{aws__profile_8c_adf6dfa1a4c2443b87fc875acc96c3785}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_not\_comment\_token@{s\_is\_not\_comment\_token}}
+\index{s\_is\_not\_comment\_token@{s\_is\_not\_comment\_token}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_not\_comment\_token()}{s\_is\_not\_comment\_token()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+not\+\_\+comment\+\_\+token (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a9320c245aef5c0a3be2632a7868c9933}\label{aws__profile_8c_a9320c245aef5c0a3be2632a7868c9933}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_not\_profile\_end@{s\_is\_not\_profile\_end}}
+\index{s\_is\_not\_profile\_end@{s\_is\_not\_profile\_end}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_not\_profile\_end()}{s\_is\_not\_profile\_end()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+not\+\_\+profile\+\_\+end (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a4832806a883c9c9001f7e10c7e60326e}\label{aws__profile_8c_a4832806a883c9c9001f7e10c7e60326e}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_profile\_start@{s\_is\_profile\_start}}
+\index{s\_is\_profile\_start@{s\_is\_profile\_start}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_profile\_start()}{s\_is\_profile\_start()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+profile\+\_\+start (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a0669a058af6dce92cf165f4e1635c6c8}\label{aws__profile_8c_a0669a058af6dce92cf165f4e1635c6c8}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_whitespace@{s\_is\_whitespace}}
+\index{s\_is\_whitespace@{s\_is\_whitespace}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_whitespace()}{s\_is\_whitespace()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+whitespace (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a1128fedef7e05dd41df9cbb53decfd96}\label{aws__profile_8c_a1128fedef7e05dd41df9cbb53decfd96}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_is\_whitespace\_line@{s\_is\_whitespace\_line}}
+\index{s\_is\_whitespace\_line@{s\_is\_whitespace\_line}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_is\_whitespace\_line()}{s\_is\_whitespace\_line()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+whitespace\+\_\+line (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{line\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a6191fe616e98a76f609d87bc84dc00ab}\label{aws__profile_8c_a6191fe616e98a76f609d87bc84dc00ab}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_log\_parse\_context@{s\_log\_parse\_context}}
+\index{s\_log\_parse\_context@{s\_log\_parse\_context}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_log\_parse\_context()}{s\_log\_parse\_context()}}
+{\footnotesize\ttfamily static void s\+\_\+log\+\_\+parse\+\_\+context (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}}}]{log\+\_\+level,  }\item[{const struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a4cf0bedd1c99fb889a6f63d17fdceff5}\label{aws__profile_8c_a4cf0bedd1c99fb889a6f63d17fdceff5}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_parse\_and\_apply\_line\_to\_profile\_collection@{s\_parse\_and\_apply\_line\_to\_profile\_collection}}
+\index{s\_parse\_and\_apply\_line\_to\_profile\_collection@{s\_parse\_and\_apply\_line\_to\_profile\_collection}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_and\_apply\_line\_to\_profile\_collection()}{s\_parse\_and\_apply\_line\_to\_profile\_collection()}}
+{\footnotesize\ttfamily static void s\+\_\+parse\+\_\+and\+\_\+apply\+\_\+line\+\_\+to\+\_\+profile\+\_\+collection (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$}]{context,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{line\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a42d684d524dcac1f437574643dfac355}\label{aws__profile_8c_a42d684d524dcac1f437574643dfac355}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_parse\_by\_character\_predicate@{s\_parse\_by\_character\_predicate}}
+\index{s\_parse\_by\_character\_predicate@{s\_parse\_by\_character\_predicate}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_by\_character\_predicate()}{s\_parse\_by\_character\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+parse\+\_\+by\+\_\+character\+\_\+predicate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{start,  }\item[{\mbox{\hyperlink{byte__buf_8h_ace0fa67cb735decc07988bf215701e22}{aws\+\_\+byte\+\_\+predicate\+\_\+fn}} $\ast$}]{predicate,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{parsed,  }\item[{size\+\_\+t}]{maximum\+\_\+allowed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_ad12f2003987d3a6f520c11063b54ace8}\label{aws__profile_8c_ad12f2003987d3a6f520c11063b54ace8}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_parse\_by\_token@{s\_parse\_by\_token}}
+\index{s\_parse\_by\_token@{s\_parse\_by\_token}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_by\_token()}{s\_parse\_by\_token()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+parse\+\_\+by\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{start,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{token,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{parsed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a264a32a44221b4e8866f65bb09527ab3}\label{aws__profile_8c_a264a32a44221b4e8866f65bb09527ab3}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_parse\_profile\_declaration@{s\_parse\_profile\_declaration}}
+\index{s\_parse\_profile\_declaration@{s\_parse\_profile\_declaration}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_profile\_declaration()}{s\_parse\_profile\_declaration()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+parse\+\_\+profile\+\_\+declaration (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{line\+\_\+cursor,  }\item[{struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Attempts to parse profile declaration lines
+
+Return false if this is not a profile declaration, true otherwise (stop parsing the line) \mbox{\Hypertarget{aws__profile_8c_a306b35b579408c5bcff49bd85b89a258}\label{aws__profile_8c_a306b35b579408c5bcff49bd85b89a258}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_parse\_property@{s\_parse\_property}}
+\index{s\_parse\_property@{s\_parse\_property}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_property()}{s\_parse\_property()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+parse\+\_\+property (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{line\+\_\+cursor,  }\item[{struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Attempts to parse property lines
+
+Return false if this is not a property line, true otherwise (stop parsing the line) \mbox{\Hypertarget{aws__profile_8c_a60d38fcab59803473df00826969d8854}\label{aws__profile_8c_a60d38fcab59803473df00826969d8854}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_parse\_property\_continuation@{s\_parse\_property\_continuation}}
+\index{s\_parse\_property\_continuation@{s\_parse\_property\_continuation}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_parse\_property\_continuation()}{s\_parse\_property\_continuation()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+parse\+\_\+property\+\_\+continuation (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{line\+\_\+cursor,  }\item[{struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Attempts to parse property continuation lines
+
+Return false if this is not a property continuation line, true otherwise (stop parsing the line) \mbox{\Hypertarget{aws__profile_8c_afbc2fa1d8d0a18e95d579c577f14a9df}\label{aws__profile_8c_afbc2fa1d8d0a18e95d579c577f14a9df}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_process\_profile\_file\_path@{s\_process\_profile\_file\_path}}
+\index{s\_process\_profile\_file\_path@{s\_process\_profile\_file\_path}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_process\_profile\_file\_path()}{s\_process\_profile\_file\_path()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ s\+\_\+process\+\_\+profile\+\_\+file\+\_\+path (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a0cd9bd5850f23132cc2156cecd7d3bec}\label{aws__profile_8c_a0cd9bd5850f23132cc2156cecd7d3bec}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_add\_property@{s\_profile\_add\_property}}
+\index{s\_profile\_add\_property@{s\_profile\_add\_property}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_add\_property()}{s\_profile\_add\_property()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}}$\ast$ s\+\_\+profile\+\_\+add\+\_\+property (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$}]{profile,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{key\+\_\+cursor,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{value\+\_\+cursor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_ac517de7d8d40c8ca12ded42fb70ba425}\label{aws__profile_8c_ac517de7d8d40c8ca12ded42fb70ba425}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_collection\_add\_profile@{s\_profile\_collection\_add\_profile}}
+\index{s\_profile\_collection\_add\_profile@{s\_profile\_collection\_add\_profile}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_collection\_add\_profile()}{s\_profile\_collection\_add\_profile()}}
+{\footnotesize\ttfamily static int s\+\_\+profile\+\_\+collection\+\_\+add\+\_\+profile (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$}]{profile\+\_\+collection,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{profile\+\_\+name,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{has\+\_\+prefix,  }\item[{const struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$$\ast$}]{current\+\_\+profile\+\_\+out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a63ba35d0be400607ee0d59d577f6c487}\label{aws__profile_8c_a63ba35d0be400607ee0d59d577f6c487}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_collection\_merge@{s\_profile\_collection\_merge}}
+\index{s\_profile\_collection\_merge@{s\_profile\_collection\_merge}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_collection\_merge()}{s\_profile\_collection\_merge()}}
+{\footnotesize\ttfamily static int s\+\_\+profile\+\_\+collection\+\_\+merge (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$}]{dest\+\_\+collection,  }\item[{const struct \mbox{\hyperlink{structaws__profile__collection}{aws\+\_\+profile\+\_\+collection}} $\ast$}]{source\+\_\+collection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a1bdd8557bf5355db4595c5213bff2580}\label{aws__profile_8c_a1bdd8557bf5355db4595c5213bff2580}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_get\_property\_value@{s\_profile\_get\_property\_value}}
+\index{s\_profile\_get\_property\_value@{s\_profile\_get\_property\_value}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_get\_property\_value()}{s\_profile\_get\_property\_value()}}
+{\footnotesize\ttfamily static const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ s\+\_\+profile\+\_\+get\+\_\+property\+\_\+value (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$}]{profile,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{property\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_ae0e9e6f4a681185e27eec4a969ff6a2e}\label{aws__profile_8c_ae0e9e6f4a681185e27eec4a969ff6a2e}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_hash\_table\_value\_destroy@{s\_profile\_hash\_table\_value\_destroy}}
+\index{s\_profile\_hash\_table\_value\_destroy@{s\_profile\_hash\_table\_value\_destroy}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_hash\_table\_value\_destroy()}{s\_profile\_hash\_table\_value\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+profile\+\_\+hash\+\_\+table\+\_\+value\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a7eb44a5a7154200c7bf4e800aea246a5}\label{aws__profile_8c_a7eb44a5a7154200c7bf4e800aea246a5}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_merge@{s\_profile\_merge}}
+\index{s\_profile\_merge@{s\_profile\_merge}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_merge()}{s\_profile\_merge()}}
+{\footnotesize\ttfamily static int s\+\_\+profile\+\_\+merge (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$}]{dest\+\_\+profile,  }\item[{const struct \mbox{\hyperlink{structaws__profile}{aws\+\_\+profile}} $\ast$}]{source\+\_\+profile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a1509401aa99c5ca250fe41671de11a67}\label{aws__profile_8c_a1509401aa99c5ca250fe41671de11a67}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_property\_add\_continuation@{s\_profile\_property\_add\_continuation}}
+\index{s\_profile\_property\_add\_continuation@{s\_profile\_property\_add\_continuation}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_property\_add\_continuation()}{s\_profile\_property\_add\_continuation()}}
+{\footnotesize\ttfamily static int s\+\_\+profile\+\_\+property\+\_\+add\+\_\+continuation (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$}]{property,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{continuation\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a4aa361434397235beb41aa21f3188be7}\label{aws__profile_8c_a4aa361434397235beb41aa21f3188be7}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_property\_add\_sub\_property@{s\_profile\_property\_add\_sub\_property}}
+\index{s\_profile\_property\_add\_sub\_property@{s\_profile\_property\_add\_sub\_property}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_property\_add\_sub\_property()}{s\_profile\_property\_add\_sub\_property()}}
+{\footnotesize\ttfamily static int s\+\_\+profile\+\_\+property\+\_\+add\+\_\+sub\+\_\+property (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$}]{property,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{key,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{value,  }\item[{const struct \mbox{\hyperlink{structprofile__file__parse__context}{profile\+\_\+file\+\_\+parse\+\_\+context}} $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a47240facddaa7586bf92232bf7382c3b}\label{aws__profile_8c_a47240facddaa7586bf92232bf7382c3b}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_property\_destroy@{s\_profile\_property\_destroy}}
+\index{s\_profile\_property\_destroy@{s\_profile\_property\_destroy}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_property\_destroy()}{s\_profile\_property\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+profile\+\_\+property\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$}]{property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a388a2d9373c786f4e34a2bc97db6198e}\label{aws__profile_8c_a388a2d9373c786f4e34a2bc97db6198e}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_profile\_property\_merge@{s\_profile\_property\_merge}}
+\index{s\_profile\_property\_merge@{s\_profile\_property\_merge}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_profile\_property\_merge()}{s\_profile\_property\_merge()}}
+{\footnotesize\ttfamily static int s\+\_\+profile\+\_\+property\+\_\+merge (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$}]{dest,  }\item[{const struct \mbox{\hyperlink{structaws__profile__property}{aws\+\_\+profile\+\_\+property}} $\ast$}]{source }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_a12ee3597287ba8c315705de74d63fa86}\label{aws__profile_8c_a12ee3597287ba8c315705de74d63fa86}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_property\_hash\_table\_value\_destroy@{s\_property\_hash\_table\_value\_destroy}}
+\index{s\_property\_hash\_table\_value\_destroy@{s\_property\_hash\_table\_value\_destroy}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_property\_hash\_table\_value\_destroy()}{s\_property\_hash\_table\_value\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+property\+\_\+hash\+\_\+table\+\_\+value\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_ad2e47288001fa267ca08f51f543a9e7d}\label{aws__profile_8c_ad2e47288001fa267ca08f51f543a9e7d}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_trim\_trailing\_comment@{s\_trim\_trailing\_comment}}
+\index{s\_trim\_trailing\_comment@{s\_trim\_trailing\_comment}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_trim\_trailing\_comment()}{s\_trim\_trailing\_comment()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} s\+\_\+trim\+\_\+trailing\+\_\+comment (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{aws__profile_8c_acf2c284fe4dcfd926b9402630babb52e}\label{aws__profile_8c_acf2c284fe4dcfd926b9402630babb52e}} 
+\index{aws\_profile.c@{aws\_profile.c}!s\_trim\_trailing\_whitespace\_comment@{s\_trim\_trailing\_whitespace\_comment}}
+\index{s\_trim\_trailing\_whitespace\_comment@{s\_trim\_trailing\_whitespace\_comment}!aws\_profile.c@{aws\_profile.c}}
+\doxysubsubsection{\texorpdfstring{s\_trim\_trailing\_whitespace\_comment()}{s\_trim\_trailing\_whitespace\_comment()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} s\+\_\+trim\+\_\+trailing\+\_\+whitespace\+\_\+comment (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{line }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

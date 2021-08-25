@@ -1,0 +1,77 @@
+\hypertarget{bike__r1__kem_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\+\_\+r1/bike\+\_\+r1\+\_\+kem.c File Reference}
+\label{bike__r1__kem_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/bike\_r1\_kem.c@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/bike\_r1\_kem.c}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}decode.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2x.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}parallel\+\_\+hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sampling.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1__kem_8c_a93b2335e2594b8680138f3218acf2586}{split\+\_\+e}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$splitted\+\_\+e, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a4da6ffa08438debd56776c4abd780ac8}{e\+\_\+t}} $\ast$e)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1__kem_8c_a28b529879be5b7507bcf4d8bbec534ca}{merge\+\_\+e}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a4da6ffa08438debd56776c4abd780ac8}{e\+\_\+t}} $\ast$e, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$splitted\+\_\+e)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} \mbox{\hyperlink{bike__r1__kem_8c_af8c3afc0860c1c86d449ac1f35d9308a}{encrypt}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af73f2ecb4332d23d4f5e5bd026fc4a85}{ct\+\_\+t}} $\ast$ct, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af25e4b7d64540286b02eac309dc0b6ea}{pk\+\_\+t}} $\ast$pk, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a2dba9f2f604179848c92024ab4989e31}{seed\+\_\+t}} $\ast$seed, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$splitted\+\_\+e)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} \mbox{\hyperlink{bike__r1__kem_8c_a252c2a13d3b8c7b40720c6a2af176c02}{calc\+\_\+pk}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af25e4b7d64540286b02eac309dc0b6ea}{pk\+\_\+t}} $\ast$pk, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a2dba9f2f604179848c92024ab4989e31}{seed\+\_\+t}} $\ast$g\+\_\+seed, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a7382d6ddfc19ad5a3817c11fb238032a}{pad\+\_\+sk\+\_\+t}} p\+\_\+sk)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1__kem_8c_ab89ca2af5c30bc98d9dbdbacc5e616b9}{get\+\_\+ss}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a2c1d5d08c41461c412f52e09c268b8af}{ss\+\_\+t}} $\ast$out, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a4da6ffa08438debd56776c4abd780ac8}{e\+\_\+t}} $\ast$e)
+\item 
+int \mbox{\hyperlink{bike__r1__kem_8c_a2bf8c8a260e55dd3438a615dc6cf5cc7}{BIKE1\+\_\+\+L1\+\_\+\+R1\+\_\+crypto\+\_\+kem\+\_\+keypair}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$pk, \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$sk)
+\item 
+int \mbox{\hyperlink{bike__r1__kem_8c_a10525561d71faa0ec48b562cd37d81dc}{BIKE1\+\_\+\+L1\+\_\+\+R1\+\_\+crypto\+\_\+kem\+\_\+enc}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$ct, \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$ss, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$pk)
+\item 
+int \mbox{\hyperlink{bike__r1__kem_8c_a15eb04bb6a9d2453e5658d0a30eb8465}{BIKE1\+\_\+\+L1\+\_\+\+R1\+\_\+crypto\+\_\+kem\+\_\+dec}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$ss, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$ct, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$sk)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bike__r1__kem_8c_a15eb04bb6a9d2453e5658d0a30eb8465}\label{bike__r1__kem_8c_a15eb04bb6a9d2453e5658d0a30eb8465}} 
+\index{bike\_r1\_kem.c@{bike\_r1\_kem.c}!BIKE1\_L1\_R1\_crypto\_kem\_dec@{BIKE1\_L1\_R1\_crypto\_kem\_dec}}
+\index{BIKE1\_L1\_R1\_crypto\_kem\_dec@{BIKE1\_L1\_R1\_crypto\_kem\_dec}!bike\_r1\_kem.c@{bike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R1\_crypto\_kem\_dec()}{BIKE1\_L1\_R1\_crypto\_kem\_dec()}}
+{\footnotesize\ttfamily int BIKE1\+\_\+\+L1\+\_\+\+R1\+\_\+crypto\+\_\+kem\+\_\+dec (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{ss,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$}]{ct,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$}]{sk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1__kem_8c_a10525561d71faa0ec48b562cd37d81dc}\label{bike__r1__kem_8c_a10525561d71faa0ec48b562cd37d81dc}} 
+\index{bike\_r1\_kem.c@{bike\_r1\_kem.c}!BIKE1\_L1\_R1\_crypto\_kem\_enc@{BIKE1\_L1\_R1\_crypto\_kem\_enc}}
+\index{BIKE1\_L1\_R1\_crypto\_kem\_enc@{BIKE1\_L1\_R1\_crypto\_kem\_enc}!bike\_r1\_kem.c@{bike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R1\_crypto\_kem\_enc()}{BIKE1\_L1\_R1\_crypto\_kem\_enc()}}
+{\footnotesize\ttfamily int BIKE1\+\_\+\+L1\+\_\+\+R1\+\_\+crypto\+\_\+kem\+\_\+enc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{ct,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{ss,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const unsigned char $\ast$}]{pk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1__kem_8c_a2bf8c8a260e55dd3438a615dc6cf5cc7}\label{bike__r1__kem_8c_a2bf8c8a260e55dd3438a615dc6cf5cc7}} 
+\index{bike\_r1\_kem.c@{bike\_r1\_kem.c}!BIKE1\_L1\_R1\_crypto\_kem\_keypair@{BIKE1\_L1\_R1\_crypto\_kem\_keypair}}
+\index{BIKE1\_L1\_R1\_crypto\_kem\_keypair@{BIKE1\_L1\_R1\_crypto\_kem\_keypair}!bike\_r1\_kem.c@{bike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{BIKE1\_L1\_R1\_crypto\_kem\_keypair()}{BIKE1\_L1\_R1\_crypto\_kem\_keypair()}}
+{\footnotesize\ttfamily int BIKE1\+\_\+\+L1\+\_\+\+R1\+\_\+crypto\+\_\+kem\+\_\+keypair (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{pk,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} unsigned char $\ast$}]{sk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1__kem_8c_a252c2a13d3b8c7b40720c6a2af176c02}\label{bike__r1__kem_8c_a252c2a13d3b8c7b40720c6a2af176c02}} 
+\index{bike\_r1\_kem.c@{bike\_r1\_kem.c}!calc\_pk@{calc\_pk}}
+\index{calc\_pk@{calc\_pk}!bike\_r1\_kem.c@{bike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{calc\_pk()}{calc\_pk()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} calc\+\_\+pk (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af25e4b7d64540286b02eac309dc0b6ea}{pk\+\_\+t}} $\ast$}]{pk,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a2dba9f2f604179848c92024ab4989e31}{seed\+\_\+t}} $\ast$}]{g\+\_\+seed,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a7382d6ddfc19ad5a3817c11fb238032a}{pad\+\_\+sk\+\_\+t}}}]{p\+\_\+sk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1__kem_8c_af8c3afc0860c1c86d449ac1f35d9308a}\label{bike__r1__kem_8c_af8c3afc0860c1c86d449ac1f35d9308a}} 
+\index{bike\_r1\_kem.c@{bike\_r1\_kem.c}!encrypt@{encrypt}}
+\index{encrypt@{encrypt}!bike\_r1\_kem.c@{bike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{encrypt()}{encrypt()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} encrypt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af73f2ecb4332d23d4f5e5bd026fc4a85}{ct\+\_\+t}} $\ast$}]{ct,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af25e4b7d64540286b02eac309dc0b6ea}{pk\+\_\+t}} $\ast$}]{pk,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a2dba9f2f604179848c92024ab4989e31}{seed\+\_\+t}} $\ast$}]{seed,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{splitted\+\_\+e }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1__kem_8c_ab89ca2af5c30bc98d9dbdbacc5e616b9}\label{bike__r1__kem_8c_ab89ca2af5c30bc98d9dbdbacc5e616b9}} 
+\index{bike\_r1\_kem.c@{bike\_r1\_kem.c}!get\_ss@{get\_ss}}
+\index{get\_ss@{get\_ss}!bike\_r1\_kem.c@{bike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{get\_ss()}{get\_ss()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void get\+\_\+ss (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a2c1d5d08c41461c412f52e09c268b8af}{ss\+\_\+t}} $\ast$}]{out,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a4da6ffa08438debd56776c4abd780ac8}{e\+\_\+t}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1__kem_8c_a28b529879be5b7507bcf4d8bbec534ca}\label{bike__r1__kem_8c_a28b529879be5b7507bcf4d8bbec534ca}} 
+\index{bike\_r1\_kem.c@{bike\_r1\_kem.c}!merge\_e@{merge\_e}}
+\index{merge\_e@{merge\_e}!bike\_r1\_kem.c@{bike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{merge\_e()}{merge\_e()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void merge\+\_\+e (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a4da6ffa08438debd56776c4abd780ac8}{e\+\_\+t}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{splitted\+\_\+e }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1__kem_8c_a93b2335e2594b8680138f3218acf2586}\label{bike__r1__kem_8c_a93b2335e2594b8680138f3218acf2586}} 
+\index{bike\_r1\_kem.c@{bike\_r1\_kem.c}!split\_e@{split\_e}}
+\index{split\_e@{split\_e}!bike\_r1\_kem.c@{bike\_r1\_kem.c}}
+\doxysubsubsection{\texorpdfstring{split\_e()}{split\_e()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void split\+\_\+e (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{splitted\+\_\+e,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a4da6ffa08438debd56776c4abd780ac8}{e\+\_\+t}} $\ast$}]{e }\end{DoxyParamCaption})}
+

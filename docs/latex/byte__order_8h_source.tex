@@ -1,0 +1,39 @@
+\hypertarget{byte__order_8h_source}{}\doxysection{byte\+\_\+order.\+h}
+\label{byte__order_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/byte\_order.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/byte\_order.h}}
+\mbox{\hyperlink{byte__order_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_BYTE\_ORDER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_BYTE\_ORDER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{19 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{int} \mbox{\hyperlink{byte__order_8h_ae4bd7c44d20de75acbe2b0a8123f3043}{aws\_is\_big\_endian}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{23 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint64\_t \mbox{\hyperlink{byte__order_8h_ad57b6050cb1350a2e4c7ba39dd781831}{aws\_hton64}}(uint64\_t x);}
+\DoxyCodeLine{27 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint64\_t \mbox{\hyperlink{byte__order_8h_aa9153cc2588a97b0048236800006a142}{aws\_ntoh64}}(uint64\_t x);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint32\_t \mbox{\hyperlink{byte__order_8h_af977617730e57d3535b6418ce27b94be}{aws\_hton32}}(uint32\_t x);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{float} \mbox{\hyperlink{byte__order_8h_aadc76ee6a29d0c07fe834a61039a2eca}{aws\_htonf32}}(\textcolor{keywordtype}{float} x);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{42 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{double} \mbox{\hyperlink{byte__order_8h_a120b1ccb3e4970bf7a7bab6cf8cdc280}{aws\_htonf64}}(\textcolor{keywordtype}{double} x);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{47 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint32\_t \mbox{\hyperlink{byte__order_8h_ad73ce097b81ffaa4212fb549701a53eb}{aws\_ntoh32}}(uint32\_t x);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{52 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{float} \mbox{\hyperlink{byte__order_8h_a76d79c03d5bd171c34b1bdad690acda7}{aws\_ntohf32}}(\textcolor{keywordtype}{float} x);}
+\DoxyCodeLine{56 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} \textcolor{keywordtype}{double} \mbox{\hyperlink{byte__order_8h_a34796793d968d084effae68880b19d1c}{aws\_ntohf64}}(\textcolor{keywordtype}{double} x);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{61 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint16\_t \mbox{\hyperlink{byte__order_8h_af5f059a3103e461f81819d50f5a9aaeb}{aws\_hton16}}(uint16\_t x);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{66 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}} uint16\_t \mbox{\hyperlink{byte__order_8h_af3b50676eaa50665755070bb9c3cbaae}{aws\_ntoh16}}(uint16\_t x);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#ifndef AWS\_NO\_STATIC\_IMPL}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#    include <\mbox{\hyperlink{byte__order_8inl}{aws/common/byte\_order.inl}}>}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_NO\_STATIC\_IMPL */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_BYTE\_ORDER\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

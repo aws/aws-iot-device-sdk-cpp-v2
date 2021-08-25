@@ -1,0 +1,36 @@
+\hypertarget{structaws__http__connection__monitoring__options}{}\doxysection{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options Struct Reference}
+\label{structaws__http__connection__monitoring__options}\index{aws\_http\_connection\_monitoring\_options@{aws\_http\_connection\_monitoring\_options}}
+
+
+{\ttfamily \#include $<$connection.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structaws__http__connection__monitoring__options_a6d283260b104034c95d1d93964ed3295}{minimum\+\_\+throughput\+\_\+bytes\+\_\+per\+\_\+second}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structaws__http__connection__monitoring__options_a9c78f8d57ffb5b9acec5ac9952c89b7d}{allowable\+\_\+throughput\+\_\+failure\+\_\+interval\+\_\+seconds}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Configuration options for connection monitoring 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__connection__monitoring__options_a9c78f8d57ffb5b9acec5ac9952c89b7d}\label{structaws__http__connection__monitoring__options_a9c78f8d57ffb5b9acec5ac9952c89b7d}} 
+\index{aws\_http\_connection\_monitoring\_options@{aws\_http\_connection\_monitoring\_options}!allowable\_throughput\_failure\_interval\_seconds@{allowable\_throughput\_failure\_interval\_seconds}}
+\index{allowable\_throughput\_failure\_interval\_seconds@{allowable\_throughput\_failure\_interval\_seconds}!aws\_http\_connection\_monitoring\_options@{aws\_http\_connection\_monitoring\_options}}
+\doxysubsubsection{\texorpdfstring{allowable\_throughput\_failure\_interval\_seconds}{allowable\_throughput\_failure\_interval\_seconds}}
+{\footnotesize\ttfamily uint32\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options\+::allowable\+\_\+throughput\+\_\+failure\+\_\+interval\+\_\+seconds}
+
+\mbox{\Hypertarget{structaws__http__connection__monitoring__options_a6d283260b104034c95d1d93964ed3295}\label{structaws__http__connection__monitoring__options_a6d283260b104034c95d1d93964ed3295}} 
+\index{aws\_http\_connection\_monitoring\_options@{aws\_http\_connection\_monitoring\_options}!minimum\_throughput\_bytes\_per\_second@{minimum\_throughput\_bytes\_per\_second}}
+\index{minimum\_throughput\_bytes\_per\_second@{minimum\_throughput\_bytes\_per\_second}!aws\_http\_connection\_monitoring\_options@{aws\_http\_connection\_monitoring\_options}}
+\doxysubsubsection{\texorpdfstring{minimum\_throughput\_bytes\_per\_second}{minimum\_throughput\_bytes\_per\_second}}
+{\footnotesize\ttfamily uint64\+\_\+t aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options\+::minimum\+\_\+throughput\+\_\+bytes\+\_\+per\+\_\+second}
+
+minimum required throughput of the connection. Throughput is only measured against the interval of time where there is actual io to perform. Read and write throughput are measured and checked independently of one another. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/\mbox{\hyperlink{connection_8h}{connection.\+h}}\end{DoxyCompactItemize}

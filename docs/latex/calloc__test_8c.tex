@@ -1,0 +1,76 @@
+\hypertarget{calloc__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/calloc\+\_\+test.c File Reference}
+\label{calloc__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/calloc\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/calloc\_test.c}}
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/math.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void $\ast$ \mbox{\hyperlink{calloc__test_8c_a2b4df41141cbef70cf53de65c6b95eb4}{s\+\_\+calloc\+\_\+stub}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t num, size\+\_\+t size)
+\item 
+static void \mbox{\hyperlink{calloc__test_8c_a04a4f36c17bd4b3199883424a24b07dc}{s\+\_\+mem\+\_\+release\+\_\+stub}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr)
+\item 
+static int \mbox{\hyperlink{calloc__test_8c_a82a1730bef71bd0bffd3641c0684d628}{s\+\_\+test\+\_\+calloc\+\_\+on\+\_\+given\+\_\+allocator}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} using\+\_\+calloc\+\_\+stub\+\_\+impl)
+\item 
+static int \mbox{\hyperlink{calloc__test_8c_a98eaeed83c62476df28206ac4ec0078e}{s\+\_\+test\+\_\+calloc\+\_\+override\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{calloc__test_8c_a3615c5738326119935711c08164aab18}{s\+\_\+test\+\_\+calloc\+\_\+fallback\+\_\+from\+\_\+default\+\_\+allocator\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{calloc__test_8c_ac3f84cd02aac6a814bf4730ee2a4e0e6}{s\+\_\+test\+\_\+calloc\+\_\+fallback\+\_\+from\+\_\+given\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{calloc__test_8c_ae79ba33efaaa32ebab65200d5efa7a99}{s\+\_\+test\+\_\+calloc\+\_\+from\+\_\+default\+\_\+allocator\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{calloc__test_8c_a383952dd0d28e57a357a833e07f41f4d}{s\+\_\+test\+\_\+calloc\+\_\+from\+\_\+given\+\_\+allocator\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{calloc__test_8c_a2b4df41141cbef70cf53de65c6b95eb4}\label{calloc__test_8c_a2b4df41141cbef70cf53de65c6b95eb4}} 
+\index{calloc\_test.c@{calloc\_test.c}!s\_calloc\_stub@{s\_calloc\_stub}}
+\index{s\_calloc\_stub@{s\_calloc\_stub}!calloc\_test.c@{calloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_calloc\_stub()}{s\_calloc\_stub()}}
+{\footnotesize\ttfamily static void$\ast$ s\+\_\+calloc\+\_\+stub (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{num,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{calloc__test_8c_a04a4f36c17bd4b3199883424a24b07dc}\label{calloc__test_8c_a04a4f36c17bd4b3199883424a24b07dc}} 
+\index{calloc\_test.c@{calloc\_test.c}!s\_mem\_release\_stub@{s\_mem\_release\_stub}}
+\index{s\_mem\_release\_stub@{s\_mem\_release\_stub}!calloc\_test.c@{calloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mem\_release\_stub()}{s\_mem\_release\_stub()}}
+{\footnotesize\ttfamily static void s\+\_\+mem\+\_\+release\+\_\+stub (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{calloc__test_8c_a3615c5738326119935711c08164aab18}\label{calloc__test_8c_a3615c5738326119935711c08164aab18}} 
+\index{calloc\_test.c@{calloc\_test.c}!s\_test\_calloc\_fallback\_from\_default\_allocator\_fn@{s\_test\_calloc\_fallback\_from\_default\_allocator\_fn}}
+\index{s\_test\_calloc\_fallback\_from\_default\_allocator\_fn@{s\_test\_calloc\_fallback\_from\_default\_allocator\_fn}!calloc\_test.c@{calloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_calloc\_fallback\_from\_default\_allocator\_fn()}{s\_test\_calloc\_fallback\_from\_default\_allocator\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+calloc\+\_\+fallback\+\_\+from\+\_\+default\+\_\+allocator\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{calloc__test_8c_ac3f84cd02aac6a814bf4730ee2a4e0e6}\label{calloc__test_8c_ac3f84cd02aac6a814bf4730ee2a4e0e6}} 
+\index{calloc\_test.c@{calloc\_test.c}!s\_test\_calloc\_fallback\_from\_given\_fn@{s\_test\_calloc\_fallback\_from\_given\_fn}}
+\index{s\_test\_calloc\_fallback\_from\_given\_fn@{s\_test\_calloc\_fallback\_from\_given\_fn}!calloc\_test.c@{calloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_calloc\_fallback\_from\_given\_fn()}{s\_test\_calloc\_fallback\_from\_given\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+calloc\+\_\+fallback\+\_\+from\+\_\+given\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{calloc__test_8c_ae79ba33efaaa32ebab65200d5efa7a99}\label{calloc__test_8c_ae79ba33efaaa32ebab65200d5efa7a99}} 
+\index{calloc\_test.c@{calloc\_test.c}!s\_test\_calloc\_from\_default\_allocator\_fn@{s\_test\_calloc\_from\_default\_allocator\_fn}}
+\index{s\_test\_calloc\_from\_default\_allocator\_fn@{s\_test\_calloc\_from\_default\_allocator\_fn}!calloc\_test.c@{calloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_calloc\_from\_default\_allocator\_fn()}{s\_test\_calloc\_from\_default\_allocator\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+calloc\+\_\+from\+\_\+default\+\_\+allocator\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{calloc__test_8c_a383952dd0d28e57a357a833e07f41f4d}\label{calloc__test_8c_a383952dd0d28e57a357a833e07f41f4d}} 
+\index{calloc\_test.c@{calloc\_test.c}!s\_test\_calloc\_from\_given\_allocator\_fn@{s\_test\_calloc\_from\_given\_allocator\_fn}}
+\index{s\_test\_calloc\_from\_given\_allocator\_fn@{s\_test\_calloc\_from\_given\_allocator\_fn}!calloc\_test.c@{calloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_calloc\_from\_given\_allocator\_fn()}{s\_test\_calloc\_from\_given\_allocator\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+calloc\+\_\+from\+\_\+given\+\_\+allocator\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{calloc__test_8c_a82a1730bef71bd0bffd3641c0684d628}\label{calloc__test_8c_a82a1730bef71bd0bffd3641c0684d628}} 
+\index{calloc\_test.c@{calloc\_test.c}!s\_test\_calloc\_on\_given\_allocator@{s\_test\_calloc\_on\_given\_allocator}}
+\index{s\_test\_calloc\_on\_given\_allocator@{s\_test\_calloc\_on\_given\_allocator}!calloc\_test.c@{calloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_calloc\_on\_given\_allocator()}{s\_test\_calloc\_on\_given\_allocator()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+calloc\+\_\+on\+\_\+given\+\_\+allocator (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{using\+\_\+calloc\+\_\+stub\+\_\+impl }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{calloc__test_8c_a98eaeed83c62476df28206ac4ec0078e}\label{calloc__test_8c_a98eaeed83c62476df28206ac4ec0078e}} 
+\index{calloc\_test.c@{calloc\_test.c}!s\_test\_calloc\_override\_fn@{s\_test\_calloc\_override\_fn}}
+\index{s\_test\_calloc\_override\_fn@{s\_test\_calloc\_override\_fn}!calloc\_test.c@{calloc\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_calloc\_override\_fn()}{s\_test\_calloc\_override\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+calloc\+\_\+override\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

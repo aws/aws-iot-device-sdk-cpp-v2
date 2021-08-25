@@ -1,0 +1,366 @@
+\hypertarget{test__h2__headers_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\+\_\+h2\+\_\+headers.c File Reference}
+\label{test__h2__headers_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_h2\_headers.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_h2\_headers.c}}
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/h2\+\_\+frames.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/hpack.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}}
+\item 
+struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test__h2__headers_8c_a0a9277eac3a4e37b00217ec6e467129c}{HEADER\+\_\+\+TEST}}(t\+\_\+name,  i,  t)
+\item 
+\#define \mbox{\hyperlink{test__h2__headers_8c_a84cbcdd831c5b5aac84e59d1799c3366}{DEFINE\+\_\+\+STATIC\+\_\+\+HEADER}}(\+\_\+key,  \+\_\+value,  \+\_\+behavior)
+\item 
+\#define \mbox{\hyperlink{test__h2__headers_8c_a1a7732323485c8d4a7f3338873895a4a}{HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST}}(t\+\_\+name,  i,  t)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int() \mbox{\hyperlink{test__h2__headers_8c_ae4b784d64e5f3c221b8f1173fb44bad9}{header\+\_\+init\+\_\+fn}}(struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$)
+\item 
+typedef int() \mbox{\hyperlink{test__h2__headers_8c_af107184bdf8cf7eee02dde7b28a24a80}{header\+\_\+clean\+\_\+up\+\_\+fn}}(void $\ast$)
+\item 
+typedef int() \mbox{\hyperlink{test__h2__headers_8c_a43ee921186bce68430620d55727fd485}{header\+\_\+request\+\_\+response\+\_\+init\+\_\+fn}}(struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{test__h2__headers_8c_a157d5577a5b2f5986037d0d09c7dc77da18d8218d52d0a909f2a1e1343d3fd114}{S\+\_\+\+BUFFER\+\_\+\+SIZE}} = 128
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_ade7901b9e7f4d40f7e0a70e42f9757a8}{s\+\_\+header\+\_\+block\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$l\+\_\+header\+\_\+fields, const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$r\+\_\+header\+\_\+fields)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a123f36c025ca77c7c0cd66beabdcd336}{s\+\_\+header\+\_\+test\+\_\+before}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a72918dce06c3a9570246a8ad3a4ff1a4}{s\+\_\+header\+\_\+test\+\_\+run}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a825fe356045c602e8511d939b011acdd}{s\+\_\+header\+\_\+test\+\_\+after}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, int setup\+\_\+res, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_ac2dcff860972ab312260ff3ab8730b63}{s\+\_\+test\+\_\+empty\+\_\+payload}} (struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+\mbox{\hyperlink{test__h2__headers_8c_acc12c88efbc2cecb23bb88e08aaa37a5}{HEADER\+\_\+\+TEST}} (h2\+\_\+header\+\_\+empty\+\_\+payload, \mbox{\hyperlink{test__h2__headers_8c_ac2dcff860972ab312260ff3ab8730b63}{s\+\_\+test\+\_\+empty\+\_\+payload}}, NULL)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a01d4d9d832a09d662003161130dc53ad}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+1\+\_\+init}} (struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+\mbox{\hyperlink{test__h2__headers_8c_a30cd2fbe134b38b9a2c625dd7ad977b3}{HEADER\+\_\+\+TEST}} (h2\+\_\+header\+\_\+ex\+\_\+2\+\_\+1, \mbox{\hyperlink{test__h2__headers_8c_a01d4d9d832a09d662003161130dc53ad}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+1\+\_\+init}}, NULL)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_ab73ee35cb8b8b52762b1d8b14887813f}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+2\+\_\+init}} (struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+\mbox{\hyperlink{test__h2__headers_8c_aa906b7b8877ba84de2898de438bfc44c}{HEADER\+\_\+\+TEST}} (h2\+\_\+header\+\_\+ex\+\_\+2\+\_\+2, \mbox{\hyperlink{test__h2__headers_8c_ab73ee35cb8b8b52762b1d8b14887813f}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+2\+\_\+init}}, NULL)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a81d411b7a095920a602fdeb3498ad99d}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+3\+\_\+init}} (struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+\mbox{\hyperlink{test__h2__headers_8c_aa2f332d6afaee66ec48997a6e82d3631}{HEADER\+\_\+\+TEST}} (h2\+\_\+header\+\_\+ex\+\_\+2\+\_\+3, \mbox{\hyperlink{test__h2__headers_8c_a81d411b7a095920a602fdeb3498ad99d}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+3\+\_\+init}}, NULL)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a75be141685eb511c5eda122c2e9e444c}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+4\+\_\+init}} (struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+\mbox{\hyperlink{test__h2__headers_8c_af3a373140c0f1cf9c841797d02411bf3}{HEADER\+\_\+\+TEST}} (h2\+\_\+header\+\_\+ex\+\_\+2\+\_\+4, \mbox{\hyperlink{test__h2__headers_8c_a75be141685eb511c5eda122c2e9e444c}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+4\+\_\+init}}, NULL)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_aacd2613c02f77a1b5ccbce15021b797d}{s\+\_\+header\+\_\+request\+\_\+response\+\_\+test\+\_\+before}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a0b801870265c45833dd7f479f77f8771}{s\+\_\+encoder\+\_\+result\+\_\+check}} (struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}}, struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers\+\_\+to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} expected\+\_\+encoding\+\_\+buf, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output\+\_\+buffer)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a5058a5522015297fb335d6a9dfeac827}{s\+\_\+dynamic\+\_\+table\+\_\+last\+\_\+entry\+\_\+check}} (struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}}, struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$expected\+\_\+entry, size\+\_\+t dynamic\+\_\+table\+\_\+len)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a2299e3a6d321b14b3487c737036fdcd7}{s\+\_\+header\+\_\+request\+\_\+response\+\_\+test\+\_\+run}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a6729ca147731caf0b49ae9943b7c875d}{s\+\_\+header\+\_\+request\+\_\+response\+\_\+test\+\_\+after}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, int setup\+\_\+res, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a76864c329c10a09740822f66c27f792c}{s\+\_\+test\+\_\+ex\+\_\+3\+\_\+init}} (struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+\mbox{\hyperlink{test__h2__headers_8c_a7d7fb4aa08a203945dc93d4063c04e09}{HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST}} (h2\+\_\+header\+\_\+ex\+\_\+3, \mbox{\hyperlink{test__h2__headers_8c_a76864c329c10a09740822f66c27f792c}{s\+\_\+test\+\_\+ex\+\_\+3\+\_\+init}}, NULL)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a461d91b883af05a7eea028bd464ccc71}{s\+\_\+test\+\_\+ex\+\_\+4\+\_\+init}} (struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+\mbox{\hyperlink{test__h2__headers_8c_a8dbafd8239f91681c8c3084c16672637}{HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST}} (h2\+\_\+header\+\_\+ex\+\_\+4, \mbox{\hyperlink{test__h2__headers_8c_a461d91b883af05a7eea028bd464ccc71}{s\+\_\+test\+\_\+ex\+\_\+4\+\_\+init}}, NULL)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_a1ed01badd4847394fddbc274c9a38098}{s\+\_\+test\+\_\+ex\+\_\+5\+\_\+init}} (struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+\mbox{\hyperlink{test__h2__headers_8c_a7625f580fa9028d292935b83ab33d5e5}{HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST}} (h2\+\_\+header\+\_\+ex\+\_\+5, \mbox{\hyperlink{test__h2__headers_8c_a1ed01badd4847394fddbc274c9a38098}{s\+\_\+test\+\_\+ex\+\_\+5\+\_\+init}}, NULL)
+\item 
+static int \mbox{\hyperlink{test__h2__headers_8c_ac210a4f876509eccf84d7244b7d705d6}{s\+\_\+test\+\_\+ex\+\_\+6\+\_\+init}} (struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+\mbox{\hyperlink{test__h2__headers_8c_a43af0d78f226d4103fb9fd76aaf37b03}{HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST}} (h2\+\_\+header\+\_\+ex\+\_\+6, \mbox{\hyperlink{test__h2__headers_8c_ac210a4f876509eccf84d7244b7d705d6}{s\+\_\+test\+\_\+ex\+\_\+6\+\_\+init}}, NULL)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{test__h2__headers_8c_a84cbcdd831c5b5aac84e59d1799c3366}\label{test__h2__headers_8c_a84cbcdd831c5b5aac84e59d1799c3366}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!DEFINE\_STATIC\_HEADER@{DEFINE\_STATIC\_HEADER}}
+\index{DEFINE\_STATIC\_HEADER@{DEFINE\_STATIC\_HEADER}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{DEFINE\_STATIC\_HEADER}{DEFINE\_STATIC\_HEADER}}
+{\footnotesize\ttfamily \#define DEFINE\+\_\+\+STATIC\+\_\+\+HEADER(\begin{DoxyParamCaption}\item[{}]{\+\_\+key,  }\item[{}]{\+\_\+value,  }\item[{}]{\+\_\+behavior }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \{                                                                                                                  \(\backslash\)}
+\DoxyCodeLine{        .name = \mbox{\hyperlink{byte__buf_8h_a25bb15426b081484f79b35669fc81b90}{AWS\_BYTE\_CUR\_INIT\_FROM\_STRING\_LITERAL}}(\_key), .value = \mbox{\hyperlink{byte__buf_8h_a25bb15426b081484f79b35669fc81b90}{AWS\_BYTE\_CUR\_INIT\_FROM\_STRING\_LITERAL}}(\_value),   \(\backslash\)}
+\DoxyCodeLine{        .compression = AWS\_HTTP\_HEADER\_COMPRESSION\_\#\#\_behavior,                                                        \(\backslash\)}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{test__h2__headers_8c_a1a7732323485c8d4a7f3338873895a4a}\label{test__h2__headers_8c_a1a7732323485c8d4a7f3338873895a4a}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}}
+\index{HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_REQUEST\_RESPONSE\_TEST}{HEADER\_REQUEST\_RESPONSE\_TEST}}
+{\footnotesize\ttfamily \#define HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{t\+\_\+name,  }\item[{}]{i,  }\item[{}]{t }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keyword}{struct }\mbox{\hyperlink{structheader__request__response__test__fixture}{header\_request\_response\_test\_fixture}} s\_\#\#t\_name\#\#\_fixture = \{                                        \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structheader__request__response__test__fixture_acea842234f462a4d4bf7802f48de3ef3}{init}} = (i),                                                                                                   \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structheader__request__response__test__fixture_aa4ea1093e35e588cbb7e5928905d4bb3}{teardown}} = (t),                                                                                               \(\backslash\)}
+\DoxyCodeLine{    \};                                                                                                                 \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE\_FIXTURE(                                                                                             \(\backslash\)}
+\DoxyCodeLine{        t\_name,                                                                                                        \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__headers_8c_aacd2613c02f77a1b5ccbce15021b797d}{s\_header\_request\_response\_test\_before}},                                                                         \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__headers_8c_a2299e3a6d321b14b3487c737036fdcd7}{s\_header\_request\_response\_test\_run}},                                                                            \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__headers_8c_a6729ca147731caf0b49ae9943b7c875d}{s\_header\_request\_response\_test\_after}},                                                                          \(\backslash\)}
+\DoxyCodeLine{        \&s\_\#\#t\_name\#\#\_fixture)                                                                                         \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{struct }\mbox{\hyperlink{structheader__request__response__test__fixture}{header\_request\_response\_test\_fixture}} s\_\#\#t\_name\#\#\_one\_byte\_at\_a\_time\_fixture = \{                     \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structheader__request__response__test__fixture_acea842234f462a4d4bf7802f48de3ef3}{init}} = (i),                                                                                                   \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structheader__request__response__test__fixture_aa4ea1093e35e588cbb7e5928905d4bb3}{teardown}} = (t),                                                                                               \(\backslash\)}
+\DoxyCodeLine{        .one\_byte\_at\_a\_time = \textcolor{keyword}{true},                                                                                    \(\backslash\)}
+\DoxyCodeLine{    \};                                                                                                                 \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE\_FIXTURE(                                                                                             \(\backslash\)}
+\DoxyCodeLine{        t\_name\#\#\_one\_byte\_at\_a\_time,                                                                                   \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__headers_8c_aacd2613c02f77a1b5ccbce15021b797d}{s\_header\_request\_response\_test\_before}},                                                                         \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__headers_8c_a2299e3a6d321b14b3487c737036fdcd7}{s\_header\_request\_response\_test\_run}},                                                                            \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__headers_8c_a6729ca147731caf0b49ae9943b7c875d}{s\_header\_request\_response\_test\_after}},                                                                          \(\backslash\)}
+\DoxyCodeLine{        \&s\_\#\#t\_name\#\#\_one\_byte\_at\_a\_time\_fixture)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{test__h2__headers_8c_a0a9277eac3a4e37b00217ec6e467129c}\label{test__h2__headers_8c_a0a9277eac3a4e37b00217ec6e467129c}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_TEST@{HEADER\_TEST}}
+\index{HEADER\_TEST@{HEADER\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_TEST}{HEADER\_TEST}}
+{\footnotesize\ttfamily \#define HEADER\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{t\+\_\+name,  }\item[{}]{i,  }\item[{}]{t }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keyword}{struct }\mbox{\hyperlink{structheader__test__fixture}{header\_test\_fixture}} s\_\#\#t\_name\#\#\_fixture = \{                                                         \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structheader__test__fixture_a9930d536293b8984cc14a7766f85f47f}{init}} = (i),                                                                                                   \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structheader__test__fixture_a1e23b5b154a42a08311f85761a6aa17a}{teardown}} = (t),                                                                                               \(\backslash\)}
+\DoxyCodeLine{    \};                                                                                                                 \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE\_FIXTURE(t\_name, \mbox{\hyperlink{test__h2__headers_8c_a123f36c025ca77c7c0cd66beabdcd336}{s\_header\_test\_before}}, \mbox{\hyperlink{test__h2__headers_8c_a72918dce06c3a9570246a8ad3a4ff1a4}{s\_header\_test\_run}}, \mbox{\hyperlink{test__h2__headers_8c_a825fe356045c602e8511d939b011acdd}{s\_header\_test\_after}}, \&s\_\#\#t\_name\#\#\_fixture) \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{struct }\mbox{\hyperlink{structheader__test__fixture}{header\_test\_fixture}} s\_\#\#t\_name\#\#\_one\_byte\_at\_a\_time\_fixture = \{                                      \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structheader__test__fixture_a9930d536293b8984cc14a7766f85f47f}{init}} = (i),                                                                                                   \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structheader__test__fixture_a1e23b5b154a42a08311f85761a6aa17a}{teardown}} = (t),                                                                                               \(\backslash\)}
+\DoxyCodeLine{        .one\_byte\_at\_a\_time = \textcolor{keyword}{true},                                                                                    \(\backslash\)}
+\DoxyCodeLine{    \};                                                                                                                 \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE\_FIXTURE(                                                                                             \(\backslash\)}
+\DoxyCodeLine{        t\_name\#\#\_one\_byte\_at\_a\_time,                                                                                   \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__headers_8c_a123f36c025ca77c7c0cd66beabdcd336}{s\_header\_test\_before}},                                                                                          \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__headers_8c_a72918dce06c3a9570246a8ad3a4ff1a4}{s\_header\_test\_run}},                                                                                             \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__headers_8c_a825fe356045c602e8511d939b011acdd}{s\_header\_test\_after}},                                                                                           \(\backslash\)}
+\DoxyCodeLine{        \&s\_\#\#t\_name\#\#\_one\_byte\_at\_a\_time\_fixture)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{test__h2__headers_8c_af107184bdf8cf7eee02dde7b28a24a80}\label{test__h2__headers_8c_af107184bdf8cf7eee02dde7b28a24a80}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!header\_clean\_up\_fn@{header\_clean\_up\_fn}}
+\index{header\_clean\_up\_fn@{header\_clean\_up\_fn}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{header\_clean\_up\_fn}{header\_clean\_up\_fn}}
+{\footnotesize\ttfamily typedef int() header\+\_\+clean\+\_\+up\+\_\+fn(void $\ast$)}
+
+\mbox{\Hypertarget{test__h2__headers_8c_ae4b784d64e5f3c221b8f1173fb44bad9}\label{test__h2__headers_8c_ae4b784d64e5f3c221b8f1173fb44bad9}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!header\_init\_fn@{header\_init\_fn}}
+\index{header\_init\_fn@{header\_init\_fn}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{header\_init\_fn}{header\_init\_fn}}
+{\footnotesize\ttfamily typedef int() header\+\_\+init\+\_\+fn(struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$)}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a43ee921186bce68430620d55727fd485}\label{test__h2__headers_8c_a43ee921186bce68430620d55727fd485}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!header\_request\_response\_init\_fn@{header\_request\_response\_init\_fn}}
+\index{header\_request\_response\_init\_fn@{header\_request\_response\_init\_fn}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{header\_request\_response\_init\_fn}{header\_request\_response\_init\_fn}}
+{\footnotesize\ttfamily typedef int() header\+\_\+request\+\_\+response\+\_\+init\+\_\+fn(struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{test__h2__headers_8c_a157d5577a5b2f5986037d0d09c7dc77d}\label{test__h2__headers_8c_a157d5577a5b2f5986037d0d09c7dc77d}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\_BUFFER\_SIZE@{S\_BUFFER\_SIZE}!test\_h2\_headers.c@{test\_h2\_headers.c}}\index{test\_h2\_headers.c@{test\_h2\_headers.c}!S\_BUFFER\_SIZE@{S\_BUFFER\_SIZE}}}\mbox{\Hypertarget{test__h2__headers_8c_a157d5577a5b2f5986037d0d09c7dc77da18d8218d52d0a909f2a1e1343d3fd114}\label{test__h2__headers_8c_a157d5577a5b2f5986037d0d09c7dc77da18d8218d52d0a909f2a1e1343d3fd114}} 
+S\+\_\+\+BUFFER\+\_\+\+SIZE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__h2__headers_8c_a7d7fb4aa08a203945dc93d4063c04e09}\label{test__h2__headers_8c_a7d7fb4aa08a203945dc93d4063c04e09}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}}
+\index{HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_REQUEST\_RESPONSE\_TEST()}{HEADER\_REQUEST\_RESPONSE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+header\+\_\+ex\+\_\+3}]{,  }\item[{\mbox{\hyperlink{test__h2__headers_8c_a76864c329c10a09740822f66c27f792c}{s\+\_\+test\+\_\+ex\+\_\+3\+\_\+init}}}]{,  }\item[{NULL}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a8dbafd8239f91681c8c3084c16672637}\label{test__h2__headers_8c_a8dbafd8239f91681c8c3084c16672637}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}}
+\index{HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_REQUEST\_RESPONSE\_TEST()}{HEADER\_REQUEST\_RESPONSE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+header\+\_\+ex\+\_\+4}]{,  }\item[{\mbox{\hyperlink{test__h2__headers_8c_a461d91b883af05a7eea028bd464ccc71}{s\+\_\+test\+\_\+ex\+\_\+4\+\_\+init}}}]{,  }\item[{NULL}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a7625f580fa9028d292935b83ab33d5e5}\label{test__h2__headers_8c_a7625f580fa9028d292935b83ab33d5e5}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}}
+\index{HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_REQUEST\_RESPONSE\_TEST()}{HEADER\_REQUEST\_RESPONSE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+header\+\_\+ex\+\_\+5}]{,  }\item[{\mbox{\hyperlink{test__h2__headers_8c_a1ed01badd4847394fddbc274c9a38098}{s\+\_\+test\+\_\+ex\+\_\+5\+\_\+init}}}]{,  }\item[{NULL}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a43af0d78f226d4103fb9fd76aaf37b03}\label{test__h2__headers_8c_a43af0d78f226d4103fb9fd76aaf37b03}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}}
+\index{HEADER\_REQUEST\_RESPONSE\_TEST@{HEADER\_REQUEST\_RESPONSE\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_REQUEST\_RESPONSE\_TEST()}{HEADER\_REQUEST\_RESPONSE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily HEADER\+\_\+\+REQUEST\+\_\+\+RESPONSE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+header\+\_\+ex\+\_\+6}]{,  }\item[{\mbox{\hyperlink{test__h2__headers_8c_ac210a4f876509eccf84d7244b7d705d6}{s\+\_\+test\+\_\+ex\+\_\+6\+\_\+init}}}]{,  }\item[{NULL}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__headers_8c_acc12c88efbc2cecb23bb88e08aaa37a5}\label{test__h2__headers_8c_acc12c88efbc2cecb23bb88e08aaa37a5}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_TEST@{HEADER\_TEST}}
+\index{HEADER\_TEST@{HEADER\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_TEST()}{HEADER\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily HEADER\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+header\+\_\+empty\+\_\+payload}]{,  }\item[{\mbox{\hyperlink{test__h2__headers_8c_ac2dcff860972ab312260ff3ab8730b63}{s\+\_\+test\+\_\+empty\+\_\+payload}}}]{,  }\item[{NULL}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a30cd2fbe134b38b9a2c625dd7ad977b3}\label{test__h2__headers_8c_a30cd2fbe134b38b9a2c625dd7ad977b3}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_TEST@{HEADER\_TEST}}
+\index{HEADER\_TEST@{HEADER\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_TEST()}{HEADER\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily HEADER\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+header\+\_\+ex\+\_\+2\+\_\+1}]{,  }\item[{\mbox{\hyperlink{test__h2__headers_8c_a01d4d9d832a09d662003161130dc53ad}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+1\+\_\+init}}}]{,  }\item[{NULL}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__headers_8c_aa906b7b8877ba84de2898de438bfc44c}\label{test__h2__headers_8c_aa906b7b8877ba84de2898de438bfc44c}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_TEST@{HEADER\_TEST}}
+\index{HEADER\_TEST@{HEADER\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_TEST()}{HEADER\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily HEADER\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+header\+\_\+ex\+\_\+2\+\_\+2}]{,  }\item[{\mbox{\hyperlink{test__h2__headers_8c_ab73ee35cb8b8b52762b1d8b14887813f}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+2\+\_\+init}}}]{,  }\item[{NULL}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__headers_8c_aa2f332d6afaee66ec48997a6e82d3631}\label{test__h2__headers_8c_aa2f332d6afaee66ec48997a6e82d3631}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_TEST@{HEADER\_TEST}}
+\index{HEADER\_TEST@{HEADER\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_TEST()}{HEADER\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily HEADER\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+header\+\_\+ex\+\_\+2\+\_\+3}]{,  }\item[{\mbox{\hyperlink{test__h2__headers_8c_a81d411b7a095920a602fdeb3498ad99d}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+3\+\_\+init}}}]{,  }\item[{NULL}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__headers_8c_af3a373140c0f1cf9c841797d02411bf3}\label{test__h2__headers_8c_af3a373140c0f1cf9c841797d02411bf3}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!HEADER\_TEST@{HEADER\_TEST}}
+\index{HEADER\_TEST@{HEADER\_TEST}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{HEADER\_TEST()}{HEADER\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily HEADER\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+header\+\_\+ex\+\_\+2\+\_\+4}]{,  }\item[{\mbox{\hyperlink{test__h2__headers_8c_a75be141685eb511c5eda122c2e9e444c}{s\+\_\+test\+\_\+ex\+\_\+2\+\_\+4\+\_\+init}}}]{,  }\item[{NULL}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a5058a5522015297fb335d6a9dfeac827}\label{test__h2__headers_8c_a5058a5522015297fb335d6a9dfeac827}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_dynamic\_table\_last\_entry\_check@{s\_dynamic\_table\_last\_entry\_check}}
+\index{s\_dynamic\_table\_last\_entry\_check@{s\_dynamic\_table\_last\_entry\_check}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_dynamic\_table\_last\_entry\_check()}{s\_dynamic\_table\_last\_entry\_check()}}
+{\footnotesize\ttfamily static int s\+\_\+dynamic\+\_\+table\+\_\+last\+\_\+entry\+\_\+check (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$}]{fixture,  }\item[{struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{expected\+\_\+entry,  }\item[{size\+\_\+t}]{dynamic\+\_\+table\+\_\+len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a0b801870265c45833dd7f479f77f8771}\label{test__h2__headers_8c_a0b801870265c45833dd7f479f77f8771}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_encoder\_result\_check@{s\_encoder\_result\_check}}
+\index{s\_encoder\_result\_check@{s\_encoder\_result\_check}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoder\_result\_check()}{s\_encoder\_result\_check()}}
+{\footnotesize\ttfamily static int s\+\_\+encoder\+\_\+result\+\_\+check (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$}]{fixture,  }\item[{struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{headers\+\_\+to\+\_\+encode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}}}]{expected\+\_\+encoding\+\_\+buf,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_ade7901b9e7f4d40f7e0a70e42f9757a8}\label{test__h2__headers_8c_ade7901b9e7f4d40f7e0a70e42f9757a8}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_header\_block\_eq@{s\_header\_block\_eq}}
+\index{s\_header\_block\_eq@{s\_header\_block\_eq}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_header\_block\_eq()}{s\_header\_block\_eq()}}
+{\footnotesize\ttfamily static int s\+\_\+header\+\_\+block\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{l\+\_\+header\+\_\+fields,  }\item[{const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$}]{r\+\_\+header\+\_\+fields }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a6729ca147731caf0b49ae9943b7c875d}\label{test__h2__headers_8c_a6729ca147731caf0b49ae9943b7c875d}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_header\_request\_response\_test\_after@{s\_header\_request\_response\_test\_after}}
+\index{s\_header\_request\_response\_test\_after@{s\_header\_request\_response\_test\_after}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_header\_request\_response\_test\_after()}{s\_header\_request\_response\_test\_after()}}
+{\footnotesize\ttfamily static int s\+\_\+header\+\_\+request\+\_\+response\+\_\+test\+\_\+after (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{int}]{setup\+\_\+res,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_aacd2613c02f77a1b5ccbce15021b797d}\label{test__h2__headers_8c_aacd2613c02f77a1b5ccbce15021b797d}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_header\_request\_response\_test\_before@{s\_header\_request\_response\_test\_before}}
+\index{s\_header\_request\_response\_test\_before@{s\_header\_request\_response\_test\_before}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_header\_request\_response\_test\_before()}{s\_header\_request\_response\_test\_before()}}
+{\footnotesize\ttfamily static int s\+\_\+header\+\_\+request\+\_\+response\+\_\+test\+\_\+before (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a2299e3a6d321b14b3487c737036fdcd7}\label{test__h2__headers_8c_a2299e3a6d321b14b3487c737036fdcd7}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_header\_request\_response\_test\_run@{s\_header\_request\_response\_test\_run}}
+\index{s\_header\_request\_response\_test\_run@{s\_header\_request\_response\_test\_run}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_header\_request\_response\_test\_run()}{s\_header\_request\_response\_test\_run()}}
+{\footnotesize\ttfamily static int s\+\_\+header\+\_\+request\+\_\+response\+\_\+test\+\_\+run (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a825fe356045c602e8511d939b011acdd}\label{test__h2__headers_8c_a825fe356045c602e8511d939b011acdd}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_header\_test\_after@{s\_header\_test\_after}}
+\index{s\_header\_test\_after@{s\_header\_test\_after}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_header\_test\_after()}{s\_header\_test\_after()}}
+{\footnotesize\ttfamily static int s\+\_\+header\+\_\+test\+\_\+after (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{int}]{setup\+\_\+res,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a123f36c025ca77c7c0cd66beabdcd336}\label{test__h2__headers_8c_a123f36c025ca77c7c0cd66beabdcd336}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_header\_test\_before@{s\_header\_test\_before}}
+\index{s\_header\_test\_before@{s\_header\_test\_before}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_header\_test\_before()}{s\_header\_test\_before()}}
+{\footnotesize\ttfamily static int s\+\_\+header\+\_\+test\+\_\+before (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a72918dce06c3a9570246a8ad3a4ff1a4}\label{test__h2__headers_8c_a72918dce06c3a9570246a8ad3a4ff1a4}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_header\_test\_run@{s\_header\_test\_run}}
+\index{s\_header\_test\_run@{s\_header\_test\_run}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_header\_test\_run()}{s\_header\_test\_run()}}
+{\footnotesize\ttfamily static int s\+\_\+header\+\_\+test\+\_\+run (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_ac2dcff860972ab312260ff3ab8730b63}\label{test__h2__headers_8c_ac2dcff860972ab312260ff3ab8730b63}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_test\_empty\_payload@{s\_test\_empty\_payload}}
+\index{s\_test\_empty\_payload@{s\_test\_empty\_payload}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_empty\_payload()}{s\_test\_empty\_payload()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+empty\+\_\+payload (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a01d4d9d832a09d662003161130dc53ad}\label{test__h2__headers_8c_a01d4d9d832a09d662003161130dc53ad}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_test\_ex\_2\_1\_init@{s\_test\_ex\_2\_1\_init}}
+\index{s\_test\_ex\_2\_1\_init@{s\_test\_ex\_2\_1\_init}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_ex\_2\_1\_init()}{s\_test\_ex\_2\_1\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+ex\+\_\+2\+\_\+1\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_ab73ee35cb8b8b52762b1d8b14887813f}\label{test__h2__headers_8c_ab73ee35cb8b8b52762b1d8b14887813f}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_test\_ex\_2\_2\_init@{s\_test\_ex\_2\_2\_init}}
+\index{s\_test\_ex\_2\_2\_init@{s\_test\_ex\_2\_2\_init}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_ex\_2\_2\_init()}{s\_test\_ex\_2\_2\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+ex\+\_\+2\+\_\+2\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a81d411b7a095920a602fdeb3498ad99d}\label{test__h2__headers_8c_a81d411b7a095920a602fdeb3498ad99d}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_test\_ex\_2\_3\_init@{s\_test\_ex\_2\_3\_init}}
+\index{s\_test\_ex\_2\_3\_init@{s\_test\_ex\_2\_3\_init}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_ex\_2\_3\_init()}{s\_test\_ex\_2\_3\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+ex\+\_\+2\+\_\+3\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a75be141685eb511c5eda122c2e9e444c}\label{test__h2__headers_8c_a75be141685eb511c5eda122c2e9e444c}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_test\_ex\_2\_4\_init@{s\_test\_ex\_2\_4\_init}}
+\index{s\_test\_ex\_2\_4\_init@{s\_test\_ex\_2\_4\_init}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_ex\_2\_4\_init()}{s\_test\_ex\_2\_4\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+ex\+\_\+2\+\_\+4\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__test__fixture}{header\+\_\+test\+\_\+fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a76864c329c10a09740822f66c27f792c}\label{test__h2__headers_8c_a76864c329c10a09740822f66c27f792c}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_test\_ex\_3\_init@{s\_test\_ex\_3\_init}}
+\index{s\_test\_ex\_3\_init@{s\_test\_ex\_3\_init}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_ex\_3\_init()}{s\_test\_ex\_3\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+ex\+\_\+3\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a461d91b883af05a7eea028bd464ccc71}\label{test__h2__headers_8c_a461d91b883af05a7eea028bd464ccc71}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_test\_ex\_4\_init@{s\_test\_ex\_4\_init}}
+\index{s\_test\_ex\_4\_init@{s\_test\_ex\_4\_init}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_ex\_4\_init()}{s\_test\_ex\_4\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+ex\+\_\+4\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_a1ed01badd4847394fddbc274c9a38098}\label{test__h2__headers_8c_a1ed01badd4847394fddbc274c9a38098}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_test\_ex\_5\_init@{s\_test\_ex\_5\_init}}
+\index{s\_test\_ex\_5\_init@{s\_test\_ex\_5\_init}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_ex\_5\_init()}{s\_test\_ex\_5\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+ex\+\_\+5\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__headers_8c_ac210a4f876509eccf84d7244b7d705d6}\label{test__h2__headers_8c_ac210a4f876509eccf84d7244b7d705d6}} 
+\index{test\_h2\_headers.c@{test\_h2\_headers.c}!s\_test\_ex\_6\_init@{s\_test\_ex\_6\_init}}
+\index{s\_test\_ex\_6\_init@{s\_test\_ex\_6\_init}!test\_h2\_headers.c@{test\_h2\_headers.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_ex\_6\_init()}{s\_test\_ex\_6\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+ex\+\_\+6\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structheader__request__response__test__fixture}{header\+\_\+request\+\_\+response\+\_\+test\+\_\+fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

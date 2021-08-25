@@ -1,0 +1,47 @@
+\hypertarget{linked__hash__table__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/linked\+\_\+hash\+\_\+table\+\_\+test.c File Reference}
+\label{linked__hash__table__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/linked\_hash\_table\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/linked\_hash\_table\_test.c}}
+{\ttfamily \#include $<$aws/common/linked\+\_\+hash\+\_\+table.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlinked__hash__table__test__value__element}{linked\+\_\+hash\+\_\+table\+\_\+test\+\_\+value\+\_\+element}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{linked__hash__table__test_8c_a798dabb28d4356f51173ea0a2af638ab}{s\+\_\+test\+\_\+linked\+\_\+hash\+\_\+table\+\_\+preserves\+\_\+insertion\+\_\+order\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{linked__hash__table__test_8c_a566b589cd93be26135346c84fa125e3e}{s\+\_\+linked\+\_\+hash\+\_\+table\+\_\+element\+\_\+value\+\_\+destroy}} (void $\ast$value)
+\item 
+static int \mbox{\hyperlink{linked__hash__table__test_8c_ae0f6425f13ee7bf36b70508481df7e56}{s\+\_\+test\+\_\+linked\+\_\+hash\+\_\+table\+\_\+entries\+\_\+cleanup\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{linked__hash__table__test_8c_a2e21afd686234fb788d4aa1718245c88}{s\+\_\+test\+\_\+linked\+\_\+hash\+\_\+table\+\_\+entries\+\_\+overwrite\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{linked__hash__table__test_8c_a566b589cd93be26135346c84fa125e3e}\label{linked__hash__table__test_8c_a566b589cd93be26135346c84fa125e3e}} 
+\index{linked\_hash\_table\_test.c@{linked\_hash\_table\_test.c}!s\_linked\_hash\_table\_element\_value\_destroy@{s\_linked\_hash\_table\_element\_value\_destroy}}
+\index{s\_linked\_hash\_table\_element\_value\_destroy@{s\_linked\_hash\_table\_element\_value\_destroy}!linked\_hash\_table\_test.c@{linked\_hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_linked\_hash\_table\_element\_value\_destroy()}{s\_linked\_hash\_table\_element\_value\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+linked\+\_\+hash\+\_\+table\+\_\+element\+\_\+value\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{linked__hash__table__test_8c_ae0f6425f13ee7bf36b70508481df7e56}\label{linked__hash__table__test_8c_ae0f6425f13ee7bf36b70508481df7e56}} 
+\index{linked\_hash\_table\_test.c@{linked\_hash\_table\_test.c}!s\_test\_linked\_hash\_table\_entries\_cleanup\_fn@{s\_test\_linked\_hash\_table\_entries\_cleanup\_fn}}
+\index{s\_test\_linked\_hash\_table\_entries\_cleanup\_fn@{s\_test\_linked\_hash\_table\_entries\_cleanup\_fn}!linked\_hash\_table\_test.c@{linked\_hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_linked\_hash\_table\_entries\_cleanup\_fn()}{s\_test\_linked\_hash\_table\_entries\_cleanup\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+linked\+\_\+hash\+\_\+table\+\_\+entries\+\_\+cleanup\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{linked__hash__table__test_8c_a2e21afd686234fb788d4aa1718245c88}\label{linked__hash__table__test_8c_a2e21afd686234fb788d4aa1718245c88}} 
+\index{linked\_hash\_table\_test.c@{linked\_hash\_table\_test.c}!s\_test\_linked\_hash\_table\_entries\_overwrite\_fn@{s\_test\_linked\_hash\_table\_entries\_overwrite\_fn}}
+\index{s\_test\_linked\_hash\_table\_entries\_overwrite\_fn@{s\_test\_linked\_hash\_table\_entries\_overwrite\_fn}!linked\_hash\_table\_test.c@{linked\_hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_linked\_hash\_table\_entries\_overwrite\_fn()}{s\_test\_linked\_hash\_table\_entries\_overwrite\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+linked\+\_\+hash\+\_\+table\+\_\+entries\+\_\+overwrite\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{linked__hash__table__test_8c_a798dabb28d4356f51173ea0a2af638ab}\label{linked__hash__table__test_8c_a798dabb28d4356f51173ea0a2af638ab}} 
+\index{linked\_hash\_table\_test.c@{linked\_hash\_table\_test.c}!s\_test\_linked\_hash\_table\_preserves\_insertion\_order\_fn@{s\_test\_linked\_hash\_table\_preserves\_insertion\_order\_fn}}
+\index{s\_test\_linked\_hash\_table\_preserves\_insertion\_order\_fn@{s\_test\_linked\_hash\_table\_preserves\_insertion\_order\_fn}!linked\_hash\_table\_test.c@{linked\_hash\_table\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_linked\_hash\_table\_preserves\_insertion\_order\_fn()}{s\_test\_linked\_hash\_table\_preserves\_insertion\_order\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+linked\+\_\+hash\+\_\+table\+\_\+preserves\+\_\+insertion\+\_\+order\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

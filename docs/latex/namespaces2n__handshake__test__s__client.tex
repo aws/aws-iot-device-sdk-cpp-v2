@@ -1,0 +1,396 @@
+\hypertarget{namespaces2n__handshake__test__s__client}{}\doxysection{s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client Namespace Reference}
+\label{namespaces2n__handshake__test__s__client}\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classs2n__handshake__test__s__client_1_1_integration_test_failure}{Integration\+Test\+Failure}}
+\item 
+class \mbox{\hyperlink{classs2n__handshake__test__s__client_1_1_process_failed}{Process\+Failed}}
+\item 
+class \mbox{\hyperlink{classs2n__handshake__test__s__client_1_1_tls_extension_server_name}{Tls\+Extension\+Server\+Name}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a8f48e685292df5e17d150dc1f00a50c9}{cleanup\+\_\+processes}} ($\ast$processes)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_aa0749d15b14db2dcc6d294bf2912ef89}{validate\+\_\+version}} (expected\+\_\+version, \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_ad359ce3b56a586562a2cf6526c1170b0}{validate\+\_\+data\+\_\+transfer}} (expected\+\_\+data, s\+\_\+client\+\_\+out, s2nd\+\_\+out)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a04e92963b2e5227091a3dfcde12c080b}{validate\+\_\+resume}} (s2nd\+\_\+out)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_af32131672e1f9edc6a05482680320e58}{validate\+\_\+ocsp}} (s\+\_\+client\+\_\+out)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a8057004adbf82c2159a6ed6f25ac5959}{find\+\_\+expected\+\_\+cipher}} (expected\+\_\+cipher, s\+\_\+client\+\_\+out)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a7b62ad920940c44bad218f215927bc3c}{validate\+\_\+hostname}} (s\+\_\+client\+\_\+out)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_ae89f45332a35fd85e7061f79b454f91a}{validate\+\_\+selected\+\_\+certificate}} (s\+\_\+client\+\_\+out, expected\+\_\+cert\+\_\+path)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a19ada702418dfe09f025a6a405c84ffa}{read\+\_\+process\+\_\+output\+\_\+until}} (process, marker)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_aa17e0c6f98c0945d89da748c7c41150b}{try\+\_\+handshake}} (endpoint, port, cipher, ssl\+\_\+version, server\+\_\+name=None, strict\+\_\+hostname=False, \mbox{\hyperlink{s2n__fragmentation__coalescing__test_8c_a6f8e086c4374b9500a7200a82eb494df}{server\+\_\+cert}}=None, server\+\_\+key=None, server\+\_\+cert\+\_\+key\+\_\+list=None, expected\+\_\+server\+\_\+cert=None, server\+\_\+cipher\+\_\+pref=None, ocsp=None, sig\+\_\+algs=None, curves=None, resume=False, no\+\_\+ticket=False, prefer\+\_\+low\+\_\+latency=False, enter\+\_\+fips\+\_\+mode=False, client\+\_\+auth=None, client\+\_\+cert=DEFAULT\+\_\+\+CLIENT\+\_\+\+CERT\+\_\+\+PATH, client\+\_\+key=DEFAULT\+\_\+\+CLIENT\+\_\+\+KEY\+\_\+\+PATH, expected\+\_\+cipher=None, expected\+\_\+extensions=None, simulate\+\_\+tests=False, debug\+\_\+cmds=False, results=dict)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a4d68177c67feb3635e072cd5df595ec2}{cert\+\_\+path\+\_\+to\+\_\+str}} (cert\+\_\+path)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_afede215ebdf04879c9cc2a9fd3f44f0d}{print\+\_\+result}} (result\+\_\+prefix, return\+\_\+code)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a4a30e4404beb7c13c53b8f2cad9e451a}{create\+\_\+thread\+\_\+pool}} ()
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_aa18ebc43331e5c8a9549694188f6c8d3}{run\+\_\+handshake\+\_\+test}} (host, port, ssl\+\_\+version, cipher, fips\+\_\+mode, no\+\_\+ticket, use\+\_\+client\+\_\+auth, client\+\_\+cert\+\_\+path, client\+\_\+key\+\_\+path, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_ad5d3200eb17b070194d3365071ad198b}{handshake\+\_\+test}} (host, port, test\+\_\+ciphers, fips\+\_\+mode, no\+\_\+ticket=False, use\+\_\+client\+\_\+auth=None, use\+\_\+client\+\_\+cert=None, use\+\_\+client\+\_\+key=None, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a1208d545c88d707c968aed46478b93ed}{client\+\_\+auth\+\_\+test}} (host, port, test\+\_\+ciphers, fips\+\_\+mode, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a319e3c701c040e9860ce3422c7d564ad}{run\+\_\+resume\+\_\+test}} (host, port, cipher\+\_\+name, ssl\+\_\+version, resume, no\+\_\+ticket, fips\+\_\+mode, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_ad4cfb4261d9ee230a0c234800d6bf6f3}{resume\+\_\+test}} (host, port, test\+\_\+ciphers, fips\+\_\+mode, no\+\_\+ticket=False, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a437bfe47791f06dac84aca31dfb93226}{run\+\_\+sigalg\+\_\+test}} (host, port, cipher, ssl\+\_\+version, permutation, fips\+\_\+mode, use\+\_\+client\+\_\+auth, no\+\_\+ticket, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_aeb4cd8ef6a0bf4873bba4807e1c15a65}{sigalg\+\_\+test}} (host, port, fips\+\_\+mode, use\+\_\+client\+\_\+auth=None, no\+\_\+ticket=False, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a8c1ddc02287598f1f3f342564ea304da}{elliptic\+\_\+curve\+\_\+test}} (host, port, libcrypto\+\_\+version, fips\+\_\+mode, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a73cf8297e467dc284fa78b266c23d312}{elliptic\+\_\+curve\+\_\+fallback\+\_\+test}} (host, port, fips\+\_\+mode, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a05761fab2beb7a390500c9044fe46a9a}{handshake\+\_\+fragmentation\+\_\+test}} (host, port, fips\+\_\+mode, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a7e8f431db2ec0058efd96aaca18afb20}{ocsp\+\_\+stapling\+\_\+test}} (host, port, fips\+\_\+mode, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a556368fa305055ba886daba67482f083}{cert\+\_\+type\+\_\+cipher\+\_\+match\+\_\+test}} (host, port, libcrypto\+\_\+version, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_ae9627088e056a823464c42943cb7bef2}{multiple\+\_\+cert\+\_\+type\+\_\+test}} (host, port, libcrypto\+\_\+version, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_adc88d4ad9c01b9cb94d2592a44b6933b}{multiple\+\_\+cert\+\_\+domain\+\_\+name\+\_\+test}} (host, port, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a14c989e87042dd62f1c71ce2038c2854}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+dictionary \mbox{\hyperlink{namespaces2n__handshake__test__s__client_af81524cdc24ea0fe51443cc99b982035}{PROTO\+\_\+\+VERS\+\_\+\+TO\+\_\+\+S\+\_\+\+CLIENT\+\_\+\+ARG}}
+\item 
+\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} \mbox{\hyperlink{namespaces2n__handshake__test__s__client_aa0c47aa633d11876f3ffc19e35907e4e}{S\+\_\+\+CLIENT\+\_\+\+SUCCESSFUL\+\_\+\+OCSP}} = \char`\"{}OCSP Response Status\+: successful\char`\"{}
+\item 
+\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} \mbox{\hyperlink{namespaces2n__handshake__test__s__client_acee19c4eb77ccb9df60d21bd5b81b005}{S\+\_\+\+CLIENT\+\_\+\+NEGOTIATED\+\_\+\+CIPHER\+\_\+\+PREFIX}} = \char`\"{}Cipher \+: \char`\"{}
+\item 
+\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a36e5a84a47594b07e4ac7df6a49569c6}{S\+\_\+\+CLIENT\+\_\+\+HOSTNAME\+\_\+\+MISMATCH}} = \char`\"{}verify error\+:num=62\+:Hostname mismatch\char`\"{}
+\item 
+\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a8036ff1d1842eabe25d6af7d03edd11c}{S\+\_\+\+CLIENT\+\_\+\+START\+\_\+\+OF\+\_\+\+SERVER\+\_\+\+CERTIFICATE}} = \char`\"{}Server certificate\char`\"{}
+\item 
+\mbox{\hyperlink{namespaces2n__handshake__test__s__client_ac38bb9b7e0c16c3ffb7675f0c3e86983}{S\+\_\+\+CLIENT\+\_\+\+LAST\+\_\+\+CERTIFICATE\+\_\+\+LINE\+\_\+\+PATTERN}} = re.\+compile(\char`\"{}-\/-\/-\/-\/-\/END.$\ast$CERTIFICATE-\/-\/-\/-\/-\/\char`\"{})
+\item 
+\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a810002160530f13ac4e7cd157632ca04}{S\+\_\+\+CLIENT\+\_\+\+SERVER\+\_\+\+NAME\+\_\+\+EXTENSION}} = \textquotesingle{}TLS server extension \char`\"{}server \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}\char`\"{}\textquotesingle{}
+\item 
+list \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a66a89688d3efbb78c9dbf4d09687ab0d}{supported\+\_\+sigs}} = \mbox{[}\char`\"{}RSA+SHA1\char`\"{}, \char`\"{}RSA+SHA224\char`\"{}, \char`\"{}RSA+SHA256\char`\"{}, \char`\"{}RSA+SHA384\char`\"{}, \char`\"{}RSA+SHA512\char`\"{}\mbox{]}
+\item 
+list \mbox{\hyperlink{namespaces2n__handshake__test__s__client_a86317169501770be43432568bd6c15ee}{unsupported\+\_\+sigs}} = \mbox{[}\char`\"{}ECDSA+SHA256\char`\"{}, \char`\"{}ECDSA+SHA512\char`\"{}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a4d68177c67feb3635e072cd5df595ec2}\label{namespaces2n__handshake__test__s__client_a4d68177c67feb3635e072cd5df595ec2}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!cert\_path\_to\_str@{cert\_path\_to\_str}}
+\index{cert\_path\_to\_str@{cert\_path\_to\_str}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{cert\_path\_to\_str()}{cert\_path\_to\_str()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+cert\+\_\+path\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{}]{cert\+\_\+path }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a556368fa305055ba886daba67482f083}\label{namespaces2n__handshake__test__s__client_a556368fa305055ba886daba67482f083}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!cert\_type\_cipher\_match\_test@{cert\_type\_cipher\_match\_test}}
+\index{cert\_type\_cipher\_match\_test@{cert\_type\_cipher\_match\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{cert\_type\_cipher\_match\_test()}{cert\_type\_cipher\_match\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+cert\+\_\+type\+\_\+cipher\+\_\+match\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{libcrypto\+\_\+version,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test s2n server's ability to correctly choose ciphers. (Especially RSA vs ECDSA)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a8f48e685292df5e17d150dc1f00a50c9}\label{namespaces2n__handshake__test__s__client_a8f48e685292df5e17d150dc1f00a50c9}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!cleanup\_processes@{cleanup\_processes}}
+\index{cleanup\_processes@{cleanup\_processes}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{cleanup\_processes()}{cleanup\_processes()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+cleanup\+\_\+processes (\begin{DoxyParamCaption}\item[{$\ast$}]{processes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a1208d545c88d707c968aed46478b93ed}\label{namespaces2n__handshake__test__s__client_a1208d545c88d707c968aed46478b93ed}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!client\_auth\_test@{client\_auth\_test}}
+\index{client\_auth\_test@{client\_auth\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{client\_auth\_test()}{client\_auth\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+client\+\_\+auth\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{test\+\_\+ciphers,  }\item[{}]{fips\+\_\+mode,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a4a30e4404beb7c13c53b8f2cad9e451a}\label{namespaces2n__handshake__test__s__client_a4a30e4404beb7c13c53b8f2cad9e451a}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!create\_thread\_pool@{create\_thread\_pool}}
+\index{create\_thread\_pool@{create\_thread\_pool}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{create\_thread\_pool()}{create\_thread\_pool()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+create\+\_\+thread\+\_\+pool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a73cf8297e467dc284fa78b266c23d312}\label{namespaces2n__handshake__test__s__client_a73cf8297e467dc284fa78b266c23d312}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!elliptic\_curve\_fallback\_test@{elliptic\_curve\_fallback\_test}}
+\index{elliptic\_curve\_fallback\_test@{elliptic\_curve\_fallback\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{elliptic\_curve\_fallback\_test()}{elliptic\_curve\_fallback\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+elliptic\+\_\+curve\+\_\+fallback\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{fips\+\_\+mode,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tests graceful fallback when s2n doesn't support any curves offered by the client. A non-ecc suite should be
+negotiated.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a8c1ddc02287598f1f3f342564ea304da}\label{namespaces2n__handshake__test__s__client_a8c1ddc02287598f1f3f342564ea304da}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!elliptic\_curve\_test@{elliptic\_curve\_test}}
+\index{elliptic\_curve\_test@{elliptic\_curve\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{elliptic\_curve\_test()}{elliptic\_curve\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+elliptic\+\_\+curve\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{libcrypto\+\_\+version,  }\item[{}]{fips\+\_\+mode,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Acceptance test for supported elliptic curves. Tests all possible supported curves with unsupported curves mixed in
+for noise.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a8057004adbf82c2159a6ed6f25ac5959}\label{namespaces2n__handshake__test__s__client_a8057004adbf82c2159a6ed6f25ac5959}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!find\_expected\_cipher@{find\_expected\_cipher}}
+\index{find\_expected\_cipher@{find\_expected\_cipher}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{find\_expected\_cipher()}{find\_expected\_cipher()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+find\+\_\+expected\+\_\+cipher (\begin{DoxyParamCaption}\item[{}]{expected\+\_\+cipher,  }\item[{}]{s\+\_\+client\+\_\+out }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Make sure s_client and s2nd negotiate the cipher suite we expect
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a05761fab2beb7a390500c9044fe46a9a}\label{namespaces2n__handshake__test__s__client_a05761fab2beb7a390500c9044fe46a9a}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!handshake\_fragmentation\_test@{handshake\_fragmentation\_test}}
+\index{handshake\_fragmentation\_test@{handshake\_fragmentation\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{handshake\_fragmentation\_test()}{handshake\_fragmentation\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+handshake\+\_\+fragmentation\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{fips\+\_\+mode,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tests successful negotation with s_client despite message fragmentation. Max record size is clamped to force s2n
+to fragment the ServerCertifcate message.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_ad5d3200eb17b070194d3365071ad198b}\label{namespaces2n__handshake__test__s__client_ad5d3200eb17b070194d3365071ad198b}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!handshake\_test@{handshake\_test}}
+\index{handshake\_test@{handshake\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{handshake\_test()}{handshake\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+handshake\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{test\+\_\+ciphers,  }\item[{}]{fips\+\_\+mode,  }\item[{}]{no\+\_\+ticket = {\ttfamily False},  }\item[{}]{use\+\_\+client\+\_\+auth = {\ttfamily None},  }\item[{}]{use\+\_\+client\+\_\+cert = {\ttfamily None},  }\item[{}]{use\+\_\+client\+\_\+key = {\ttfamily None},  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Basic handshake tests using all valid combinations of supported cipher suites and TLS versions.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a14c989e87042dd62f1c71ce2038c2854}\label{namespaces2n__handshake__test__s__client_a14c989e87042dd62f1c71ce2038c2854}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!main@{main}}
+\index{main@{main}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_adc88d4ad9c01b9cb94d2592a44b6933b}\label{namespaces2n__handshake__test__s__client_adc88d4ad9c01b9cb94d2592a44b6933b}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!multiple\_cert\_domain\_name\_test@{multiple\_cert\_domain\_name\_test}}
+\index{multiple\_cert\_domain\_name\_test@{multiple\_cert\_domain\_name\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{multiple\_cert\_domain\_name\_test()}{multiple\_cert\_domain\_name\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+multiple\+\_\+cert\+\_\+domain\+\_\+name\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test s2n server's ability to select the correct certificate based on the client ServerName extension.
+Validates that the correct certificate is selected and s_client does not throw and hostname validation errors.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_ae9627088e056a823464c42943cb7bef2}\label{namespaces2n__handshake__test__s__client_ae9627088e056a823464c42943cb7bef2}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!multiple\_cert\_type\_test@{multiple\_cert\_type\_test}}
+\index{multiple\_cert\_type\_test@{multiple\_cert\_type\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{multiple\_cert\_type\_test()}{multiple\_cert\_type\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+multiple\+\_\+cert\+\_\+type\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{libcrypto\+\_\+version,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test s2n server's ability to correctly choose ciphers and serve the correct cert depending on the auth type for a
+given cipher.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a7e8f431db2ec0058efd96aaca18afb20}\label{namespaces2n__handshake__test__s__client_a7e8f431db2ec0058efd96aaca18afb20}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!ocsp\_stapling\_test@{ocsp\_stapling\_test}}
+\index{ocsp\_stapling\_test@{ocsp\_stapling\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{ocsp\_stapling\_test()}{ocsp\_stapling\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+ocsp\+\_\+stapling\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{fips\+\_\+mode,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Test s2n's server OCSP stapling capability
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_afede215ebdf04879c9cc2a9fd3f44f0d}\label{namespaces2n__handshake__test__s__client_afede215ebdf04879c9cc2a9fd3f44f0d}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!print\_result@{print\_result}}
+\index{print\_result@{print\_result}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{print\_result()}{print\_result()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+print\+\_\+result (\begin{DoxyParamCaption}\item[{}]{result\+\_\+prefix,  }\item[{}]{return\+\_\+code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a19ada702418dfe09f025a6a405c84ffa}\label{namespaces2n__handshake__test__s__client_a19ada702418dfe09f025a6a405c84ffa}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!read\_process\_output\_until@{read\_process\_output\_until}}
+\index{read\_process\_output\_until@{read\_process\_output\_until}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{read\_process\_output\_until()}{read\_process\_output\_until()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+read\+\_\+process\+\_\+output\+\_\+until (\begin{DoxyParamCaption}\item[{}]{process,  }\item[{}]{marker }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_ad4cfb4261d9ee230a0c234800d6bf6f3}\label{namespaces2n__handshake__test__s__client_ad4cfb4261d9ee230a0c234800d6bf6f3}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!resume\_test@{resume\_test}}
+\index{resume\_test@{resume\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{resume\_test()}{resume\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+resume\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{test\+\_\+ciphers,  }\item[{}]{fips\+\_\+mode,  }\item[{}]{no\+\_\+ticket = {\ttfamily False},  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tests s2n's session resumption capability using all valid combinations of cipher suite and TLS version.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_aa18ebc43331e5c8a9549694188f6c8d3}\label{namespaces2n__handshake__test__s__client_aa18ebc43331e5c8a9549694188f6c8d3}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!run\_handshake\_test@{run\_handshake\_test}}
+\index{run\_handshake\_test@{run\_handshake\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{run\_handshake\_test()}{run\_handshake\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+run\+\_\+handshake\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{ssl\+\_\+version,  }\item[{}]{cipher,  }\item[{}]{fips\+\_\+mode,  }\item[{}]{no\+\_\+ticket,  }\item[{}]{use\+\_\+client\+\_\+auth,  }\item[{}]{client\+\_\+cert\+\_\+path,  }\item[{}]{client\+\_\+key\+\_\+path,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a319e3c701c040e9860ce3422c7d564ad}\label{namespaces2n__handshake__test__s__client_a319e3c701c040e9860ce3422c7d564ad}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!run\_resume\_test@{run\_resume\_test}}
+\index{run\_resume\_test@{run\_resume\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{run\_resume\_test()}{run\_resume\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+run\+\_\+resume\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{cipher\+\_\+name,  }\item[{}]{ssl\+\_\+version,  }\item[{}]{resume,  }\item[{}]{no\+\_\+ticket,  }\item[{}]{fips\+\_\+mode,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a437bfe47791f06dac84aca31dfb93226}\label{namespaces2n__handshake__test__s__client_a437bfe47791f06dac84aca31dfb93226}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!run\_sigalg\_test@{run\_sigalg\_test}}
+\index{run\_sigalg\_test@{run\_sigalg\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{run\_sigalg\_test()}{run\_sigalg\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+run\+\_\+sigalg\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{cipher,  }\item[{}]{ssl\+\_\+version,  }\item[{}]{permutation,  }\item[{}]{fips\+\_\+mode,  }\item[{}]{use\+\_\+client\+\_\+auth,  }\item[{}]{no\+\_\+ticket,  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_aeb4cd8ef6a0bf4873bba4807e1c15a65}\label{namespaces2n__handshake__test__s__client_aeb4cd8ef6a0bf4873bba4807e1c15a65}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!sigalg\_test@{sigalg\_test}}
+\index{sigalg\_test@{sigalg\_test}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{sigalg\_test()}{sigalg\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+sigalg\+\_\+test (\begin{DoxyParamCaption}\item[{}]{host,  }\item[{}]{port,  }\item[{}]{fips\+\_\+mode,  }\item[{}]{use\+\_\+client\+\_\+auth = {\ttfamily None},  }\item[{}]{no\+\_\+ticket = {\ttfamily False},  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Acceptance test for supported signature algorithms. Tests all possible supported sigalgs with unsupported ones mixed in
+for noise.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_aa17e0c6f98c0945d89da748c7c41150b}\label{namespaces2n__handshake__test__s__client_aa17e0c6f98c0945d89da748c7c41150b}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!try\_handshake@{try\_handshake}}
+\index{try\_handshake@{try\_handshake}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{try\_handshake()}{try\_handshake()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+try\+\_\+handshake (\begin{DoxyParamCaption}\item[{}]{endpoint,  }\item[{}]{port,  }\item[{}]{cipher,  }\item[{}]{ssl\+\_\+version,  }\item[{}]{server\+\_\+name = {\ttfamily None},  }\item[{}]{strict\+\_\+hostname = {\ttfamily False},  }\item[{}]{server\+\_\+cert = {\ttfamily None},  }\item[{}]{server\+\_\+key = {\ttfamily None},  }\item[{}]{server\+\_\+cert\+\_\+key\+\_\+list = {\ttfamily None},  }\item[{}]{expected\+\_\+server\+\_\+cert = {\ttfamily None},  }\item[{}]{server\+\_\+cipher\+\_\+pref = {\ttfamily None},  }\item[{}]{ocsp = {\ttfamily None},  }\item[{}]{sig\+\_\+algs = {\ttfamily None},  }\item[{}]{curves = {\ttfamily None},  }\item[{}]{resume = {\ttfamily False},  }\item[{}]{no\+\_\+ticket = {\ttfamily False},  }\item[{}]{prefer\+\_\+low\+\_\+latency = {\ttfamily False},  }\item[{}]{enter\+\_\+fips\+\_\+mode = {\ttfamily False},  }\item[{}]{client\+\_\+auth = {\ttfamily None},  }\item[{}]{client\+\_\+cert = {\ttfamily DEFAULT\+\_\+CLIENT\+\_\+CERT\+\_\+PATH},  }\item[{}]{client\+\_\+key = {\ttfamily DEFAULT\+\_\+CLIENT\+\_\+KEY\+\_\+PATH},  }\item[{}]{expected\+\_\+cipher = {\ttfamily None},  }\item[{}]{expected\+\_\+extensions = {\ttfamily None},  }\item[{}]{simulate\+\_\+tests = {\ttfamily False},  }\item[{}]{debug\+\_\+cmds = {\ttfamily False},  }\item[{}]{results = {\ttfamily dict} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Attempt to handshake against s2nd listening on `endpoint` and `port` using Openssl s_client
+
+:param int endpoint: endpoint for s2nd to listen on
+:param int port: port for s2nd to listen on
+:param str cipher: ciphers for Openssl s_client to offer. See https://www.openssl.org/docs/man1.0.2/apps/ciphers.html
+:param int ssl_version: SSL version for s_client to use
+:param str server_name: server_name value for s_client to send
+:param bool strict_hostname: whether s_client should strictly check to see if server certificate matches the server_name
+:param str server_cert: path to certificate for s2nd to use
+:param str server_key: path to private key for s2nd to use
+:param list server_cert_key_list: a list of (cert_path, key_path) tuples for multicert tests.
+:param str expected_server_cert: Path to the expected server certificate should be sent to s_client.
+:param str ocsp: path to OCSP response file for stapling
+:param str sig_algs: Signature algorithms for s_client to offer
+:param str curves: Elliptic curves for s_client to offer
+:param bool resume: True if s_client should try to reconnect to s2nd and reuse the same TLS session. False for normal negotiation.
+:param bool no_ticket: True if s2n server should not use session ticket to resume the same TLS session.
+:param bool prefer_low_latency: True if s2nd should use 1500 for max outgoing record size. False for default max.
+:param bool enter_fips_mode: True if s2nd should enter libcrypto's FIPS mode. Libcrypto must be built with a FIPS module to enter FIPS mode.
+:param bool client_auth: True if the test should try and use client authentication
+:param str client_cert: Path to the client's cert file
+:param str client_key: Path to the client's private key file
+:param str expected_cipher: the cipher we expect to negotiate
+:param list expected_extensions: list of expected extensions that s_client should receive.
+:param bool simulate_tests: simulate tests passing but do not actually run them
+:param bool debug_cmds: print commands that are invoked for the handshake tests
+:param dict results: object that can be used to update tests results like run count back to caller
+:return: 0 on successfully negotiation(s), -1 on failure
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_ad359ce3b56a586562a2cf6526c1170b0}\label{namespaces2n__handshake__test__s__client_ad359ce3b56a586562a2cf6526c1170b0}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!validate\_data\_transfer@{validate\_data\_transfer}}
+\index{validate\_data\_transfer@{validate\_data\_transfer}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{validate\_data\_transfer()}{validate\_data\_transfer()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+validate\+\_\+data\+\_\+transfer (\begin{DoxyParamCaption}\item[{}]{expected\+\_\+data,  }\item[{}]{s\+\_\+client\+\_\+out,  }\item[{}]{s2nd\+\_\+out }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verify that the application data written between s_client and s2nd is encrypted and decrypted successfuly.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a7b62ad920940c44bad218f215927bc3c}\label{namespaces2n__handshake__test__s__client_a7b62ad920940c44bad218f215927bc3c}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!validate\_hostname@{validate\_hostname}}
+\index{validate\_hostname@{validate\_hostname}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{validate\_hostname()}{validate\_hostname()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+validate\+\_\+hostname (\begin{DoxyParamCaption}\item[{}]{s\+\_\+client\+\_\+out }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Make sure that s_client did not error on hostname mismatch.
+This function is only valid if s_client output was invoked with "-verify_hostname" argument
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_af32131672e1f9edc6a05482680320e58}\label{namespaces2n__handshake__test__s__client_af32131672e1f9edc6a05482680320e58}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!validate\_ocsp@{validate\_ocsp}}
+\index{validate\_ocsp@{validate\_ocsp}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{validate\_ocsp()}{validate\_ocsp()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+validate\+\_\+ocsp (\begin{DoxyParamCaption}\item[{}]{s\+\_\+client\+\_\+out }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verify that stapled OCSP response is accepted by s_client.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a04e92963b2e5227091a3dfcde12c080b}\label{namespaces2n__handshake__test__s__client_a04e92963b2e5227091a3dfcde12c080b}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!validate\_resume@{validate\_resume}}
+\index{validate\_resume@{validate\_resume}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{validate\_resume()}{validate\_resume()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+validate\+\_\+resume (\begin{DoxyParamCaption}\item[{}]{s2nd\+\_\+out }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verify that s2nd properly resumes sessions.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_ae89f45332a35fd85e7061f79b454f91a}\label{namespaces2n__handshake__test__s__client_ae89f45332a35fd85e7061f79b454f91a}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!validate\_selected\_certificate@{validate\_selected\_certificate}}
+\index{validate\_selected\_certificate@{validate\_selected\_certificate}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{validate\_selected\_certificate()}{validate\_selected\_certificate()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+validate\+\_\+selected\+\_\+certificate (\begin{DoxyParamCaption}\item[{}]{s\+\_\+client\+\_\+out,  }\item[{}]{expected\+\_\+cert\+\_\+path }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Make sure that the server certificate that s_client sees is the certificate we expect.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__handshake__test__s__client_aa0749d15b14db2dcc6d294bf2912ef89}\label{namespaces2n__handshake__test__s__client_aa0749d15b14db2dcc6d294bf2912ef89}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!validate\_version@{validate\_version}}
+\index{validate\_version@{validate\_version}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{validate\_version()}{validate\_version()}}
+{\footnotesize\ttfamily def s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+validate\+\_\+version (\begin{DoxyParamCaption}\item[{}]{expected\+\_\+version,  }\item[{}]{output }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_af81524cdc24ea0fe51443cc99b982035}\label{namespaces2n__handshake__test__s__client_af81524cdc24ea0fe51443cc99b982035}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!PROTO\_VERS\_TO\_S\_CLIENT\_ARG@{PROTO\_VERS\_TO\_S\_CLIENT\_ARG}}
+\index{PROTO\_VERS\_TO\_S\_CLIENT\_ARG@{PROTO\_VERS\_TO\_S\_CLIENT\_ARG}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{PROTO\_VERS\_TO\_S\_CLIENT\_ARG}{PROTO\_VERS\_TO\_S\_CLIENT\_ARG}}
+{\footnotesize\ttfamily dictionary s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+PROTO\+\_\+\+VERS\+\_\+\+TO\+\_\+\+S\+\_\+\+CLIENT\+\_\+\+ARG}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  \{}
+\DoxyCodeLine{2     S2N\_TLS10 : \textcolor{stringliteral}{"{}-\/tls1"{}},}
+\DoxyCodeLine{3     S2N\_TLS11 : \textcolor{stringliteral}{"{}-\/tls1\_1"{}},}
+\DoxyCodeLine{4     S2N\_TLS12 : \textcolor{stringliteral}{"{}-\/tls1\_2"{}},}
+\DoxyCodeLine{5 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a36e5a84a47594b07e4ac7df6a49569c6}\label{namespaces2n__handshake__test__s__client_a36e5a84a47594b07e4ac7df6a49569c6}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!S\_CLIENT\_HOSTNAME\_MISMATCH@{S\_CLIENT\_HOSTNAME\_MISMATCH}}
+\index{S\_CLIENT\_HOSTNAME\_MISMATCH@{S\_CLIENT\_HOSTNAME\_MISMATCH}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{S\_CLIENT\_HOSTNAME\_MISMATCH}{S\_CLIENT\_HOSTNAME\_MISMATCH}}
+{\footnotesize\ttfamily \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+S\+\_\+\+CLIENT\+\_\+\+HOSTNAME\+\_\+\+MISMATCH = \char`\"{}verify error\+:num=62\+:Hostname mismatch\char`\"{}}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_ac38bb9b7e0c16c3ffb7675f0c3e86983}\label{namespaces2n__handshake__test__s__client_ac38bb9b7e0c16c3ffb7675f0c3e86983}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!S\_CLIENT\_LAST\_CERTIFICATE\_LINE\_PATTERN@{S\_CLIENT\_LAST\_CERTIFICATE\_LINE\_PATTERN}}
+\index{S\_CLIENT\_LAST\_CERTIFICATE\_LINE\_PATTERN@{S\_CLIENT\_LAST\_CERTIFICATE\_LINE\_PATTERN}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{S\_CLIENT\_LAST\_CERTIFICATE\_LINE\_PATTERN}{S\_CLIENT\_LAST\_CERTIFICATE\_LINE\_PATTERN}}
+{\footnotesize\ttfamily s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+S\+\_\+\+CLIENT\+\_\+\+LAST\+\_\+\+CERTIFICATE\+\_\+\+LINE\+\_\+\+PATTERN = re.\+compile(\char`\"{}-\/-\/-\/-\/-\/END.$\ast$CERTIFICATE-\/-\/-\/-\/-\/\char`\"{})}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_acee19c4eb77ccb9df60d21bd5b81b005}\label{namespaces2n__handshake__test__s__client_acee19c4eb77ccb9df60d21bd5b81b005}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!S\_CLIENT\_NEGOTIATED\_CIPHER\_PREFIX@{S\_CLIENT\_NEGOTIATED\_CIPHER\_PREFIX}}
+\index{S\_CLIENT\_NEGOTIATED\_CIPHER\_PREFIX@{S\_CLIENT\_NEGOTIATED\_CIPHER\_PREFIX}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{S\_CLIENT\_NEGOTIATED\_CIPHER\_PREFIX}{S\_CLIENT\_NEGOTIATED\_CIPHER\_PREFIX}}
+{\footnotesize\ttfamily \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+S\+\_\+\+CLIENT\+\_\+\+NEGOTIATED\+\_\+\+CIPHER\+\_\+\+PREFIX = \char`\"{}Cipher \+: \char`\"{}}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a810002160530f13ac4e7cd157632ca04}\label{namespaces2n__handshake__test__s__client_a810002160530f13ac4e7cd157632ca04}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!S\_CLIENT\_SERVER\_NAME\_EXTENSION@{S\_CLIENT\_SERVER\_NAME\_EXTENSION}}
+\index{S\_CLIENT\_SERVER\_NAME\_EXTENSION@{S\_CLIENT\_SERVER\_NAME\_EXTENSION}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{S\_CLIENT\_SERVER\_NAME\_EXTENSION}{S\_CLIENT\_SERVER\_NAME\_EXTENSION}}
+{\footnotesize\ttfamily \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+S\+\_\+\+CLIENT\+\_\+\+SERVER\+\_\+\+NAME\+\_\+\+EXTENSION = \textquotesingle{}TLS server extension \char`\"{}server \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}\char`\"{}\textquotesingle{}}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a8036ff1d1842eabe25d6af7d03edd11c}\label{namespaces2n__handshake__test__s__client_a8036ff1d1842eabe25d6af7d03edd11c}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!S\_CLIENT\_START\_OF\_SERVER\_CERTIFICATE@{S\_CLIENT\_START\_OF\_SERVER\_CERTIFICATE}}
+\index{S\_CLIENT\_START\_OF\_SERVER\_CERTIFICATE@{S\_CLIENT\_START\_OF\_SERVER\_CERTIFICATE}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{S\_CLIENT\_START\_OF\_SERVER\_CERTIFICATE}{S\_CLIENT\_START\_OF\_SERVER\_CERTIFICATE}}
+{\footnotesize\ttfamily \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+S\+\_\+\+CLIENT\+\_\+\+START\+\_\+\+OF\+\_\+\+SERVER\+\_\+\+CERTIFICATE = \char`\"{}Server certificate\char`\"{}}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_aa0c47aa633d11876f3ffc19e35907e4e}\label{namespaces2n__handshake__test__s__client_aa0c47aa633d11876f3ffc19e35907e4e}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!S\_CLIENT\_SUCCESSFUL\_OCSP@{S\_CLIENT\_SUCCESSFUL\_OCSP}}
+\index{S\_CLIENT\_SUCCESSFUL\_OCSP@{S\_CLIENT\_SUCCESSFUL\_OCSP}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{S\_CLIENT\_SUCCESSFUL\_OCSP}{S\_CLIENT\_SUCCESSFUL\_OCSP}}
+{\footnotesize\ttfamily \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a885837e2b3d6bfbc536b23ea3e8cf054}{string}} s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+S\+\_\+\+CLIENT\+\_\+\+SUCCESSFUL\+\_\+\+OCSP = \char`\"{}OCSP Response Status\+: successful\char`\"{}}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a66a89688d3efbb78c9dbf4d09687ab0d}\label{namespaces2n__handshake__test__s__client_a66a89688d3efbb78c9dbf4d09687ab0d}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!supported\_sigs@{supported\_sigs}}
+\index{supported\_sigs@{supported\_sigs}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{supported\_sigs}{supported\_sigs}}
+{\footnotesize\ttfamily list s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+supported\+\_\+sigs = \mbox{[}\char`\"{}RSA+SHA1\char`\"{}, \char`\"{}RSA+SHA224\char`\"{}, \char`\"{}RSA+SHA256\char`\"{}, \char`\"{}RSA+SHA384\char`\"{}, \char`\"{}RSA+SHA512\char`\"{}\mbox{]}}
+
+\mbox{\Hypertarget{namespaces2n__handshake__test__s__client_a86317169501770be43432568bd6c15ee}\label{namespaces2n__handshake__test__s__client_a86317169501770be43432568bd6c15ee}} 
+\index{s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}!unsupported\_sigs@{unsupported\_sigs}}
+\index{unsupported\_sigs@{unsupported\_sigs}!s2n\_handshake\_test\_s\_client@{s2n\_handshake\_test\_s\_client}}
+\doxysubsubsection{\texorpdfstring{unsupported\_sigs}{unsupported\_sigs}}
+{\footnotesize\ttfamily list s2n\+\_\+handshake\+\_\+test\+\_\+s\+\_\+client.\+unsupported\+\_\+sigs = \mbox{[}\char`\"{}ECDSA+SHA256\char`\"{}, \char`\"{}ECDSA+SHA512\char`\"{}\mbox{]}}
+

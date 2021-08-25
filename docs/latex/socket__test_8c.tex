@@ -1,0 +1,534 @@
+\hypertarget{socket__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/socket\+\_\+test.c File Reference}
+\label{socket__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/socket\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/socket\_test.c}}
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/condition\+\_\+variable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/task\+\_\+scheduler.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/host\+\_\+resolver.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/socket.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlocal__listener__args}{local\+\_\+listener\+\_\+args}}
+\item 
+struct \mbox{\hyperlink{structlocal__outgoing__args}{local\+\_\+outgoing\+\_\+args}}
+\item 
+struct \mbox{\hyperlink{structsocket__io__args}{socket\+\_\+io\+\_\+args}}
+\item 
+struct \mbox{\hyperlink{structtest__host__callback__data}{test\+\_\+host\+\_\+callback\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structerror__test__args}{error\+\_\+test\+\_\+args}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{socket__test_8c_ab4aec4cbf7779d958c37a7cbe0f041f4}{LOCAL\+\_\+\+SOCK\+\_\+\+TEST\+\_\+\+PATTERN}}~\char`\"{}testsock\%llu.\+sock\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{socket__test_8c_ac9383a106e948d12c8e1842e0a723430}{async\+\_\+role}} \{ \newline
+\mbox{\hyperlink{socket__test_8c_ac9383a106e948d12c8e1842e0a723430ac549b50b15feb55c95d34a68aaadf834}{ASYNC\+\_\+\+ROLE\+\_\+\+A\+\_\+\+CALLBACK\+\_\+\+WRITES\+\_\+D}}
+, \mbox{\hyperlink{socket__test_8c_ac9383a106e948d12c8e1842e0a723430a40a626dcd51b93d3e98c6afba9e483de}{ASYNC\+\_\+\+ROLE\+\_\+\+B\+\_\+\+CALLBACK\+\_\+\+CLEANS\+\_\+\+UP\+\_\+\+SOCKET}}
+, \mbox{\hyperlink{socket__test_8c_ac9383a106e948d12c8e1842e0a723430aa22171c884a0706ef24d3736f30a9511}{ASYNC\+\_\+\+ROLE\+\_\+\+C\+\_\+\+IS\+\_\+\+LAST\+\_\+\+FROM\+\_\+\+INITIAL\+\_\+\+BATCH\+\_\+\+OF\+\_\+\+WRITES}}
+, \mbox{\hyperlink{socket__test_8c_ac9383a106e948d12c8e1842e0a723430a54c00ff53bc700247f4eebe056241bf6}{ASYNC\+\_\+\+ROLE\+\_\+\+D\+\_\+\+GOT\+\_\+\+WRITTEN\+\_\+\+VIA\+\_\+\+CALLBACK}}
+, \newline
+\mbox{\hyperlink{socket__test_8c_ac9383a106e948d12c8e1842e0a723430a9315121c0264b9deb2b3a4f222b838af}{ASYNC\+\_\+\+ROLE\+\_\+\+COUNT}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_a954893d772dff191bf7b1d44ced832ec}{s\+\_\+incoming\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a5267556a4b30eb68234bf2b2e74eac15}{s\+\_\+local\+\_\+listener\+\_\+incoming}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$new\+\_\+socket, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_a2032a28bb0f54d1989de6b25d877d3b2}{s\+\_\+connection\+\_\+completed\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_aadbc85926eef0291f186eeff0db1490c}{s\+\_\+local\+\_\+outgoing\+\_\+connection}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a2ac2e1b4685fec0f9048de9c4b599e3c}{s\+\_\+on\+\_\+written}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, size\+\_\+t amount\+\_\+written, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_a741628fa5d61de17ec321a98f896fa98}{s\+\_\+write\+\_\+completed\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a1b6452673fe0d05ecf40cd86bb34fcf0}{s\+\_\+write\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$args, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_aac3d6187616138748430b2b85c7dd29b}{s\+\_\+read\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$args, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_a003f718a48c80d15728797f7826a3aae}{s\+\_\+read\+\_\+task\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a546256db82ce7005824beb1b62ecf641}{s\+\_\+on\+\_\+readable}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_aba9567df76f1368c73918d0fedd8f1b3}{s\+\_\+close\+\_\+completed\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a4838b4ffe6eabe03b08d239e55646b72}{s\+\_\+socket\+\_\+close\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$args, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_ae06de94a3491cdbde02264694b84be87}{s\+\_\+test\+\_\+running\+\_\+as\+\_\+root}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a5f1c58c7651781300acc9040ac257c42}{s\+\_\+test\+\_\+socket\+\_\+ex}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} $\ast$options, struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} $\ast$local, struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} $\ast$endpoint)
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a68e7159ee8ca61522db48a370964c830}{s\+\_\+test\+\_\+socket}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} $\ast$options, struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} $\ast$endpoint)
+\item 
+static int \mbox{\hyperlink{socket__test_8c_aa2a0a48c5bdf38482d79cddcdca744ca}{s\+\_\+test\+\_\+local\+\_\+socket\+\_\+communication}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a660bb73e899038db3bd170e573741c56}{s\+\_\+test\+\_\+tcp\+\_\+socket\+\_\+communication}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a0d4e7b7286f676b955e05d01d9c0f31b}{s\+\_\+test\+\_\+udp\+\_\+socket\+\_\+communication}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_ab8d40e64f5eebe99693a899bc7506b7b}{s\+\_\+test\+\_\+udp\+\_\+bind\+\_\+connect\+\_\+communication}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_ac487d15ebfde87777c27c133e3c7cafe}{s\+\_\+test\+\_\+host\+\_\+resolved\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_aee704b335a642020d394fbd5ec21041b}{s\+\_\+test\+\_\+host\+\_\+resolved\+\_\+test\+\_\+callback}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, int err\+\_\+code, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$host\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a733e8500261231596ad750f3dba16641}{s\+\_\+test\+\_\+connect\+\_\+timeout}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a858bc504fc03cc2d817a50b83437f585}{s\+\_\+test\+\_\+connect\+\_\+timeout\+\_\+cancelation}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a1e280dc27abeac20f7fd01e2ff4bb96e}{s\+\_\+null\+\_\+sock\+\_\+connection}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_aa2d3358a66e9088a6ac0985323410301}{s\+\_\+test\+\_\+outgoing\+\_\+local\+\_\+sock\+\_\+errors}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_a37ce67e09b5710d810b706ceec98cf27}{s\+\_\+outgoing\+\_\+tcp\+\_\+error\+\_\+predicate}} (void $\ast$args)
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a2cec102d5bbfef2271c2548f7e381d5a}{s\+\_\+test\+\_\+outgoing\+\_\+tcp\+\_\+sock\+\_\+error}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_ad1f1f68ef4e657047c303b7669717ff6}{s\+\_\+test\+\_\+incoming\+\_\+tcp\+\_\+sock\+\_\+errors}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a75068718acae7ad0e98485615cbbe8a2}{s\+\_\+test\+\_\+incoming\+\_\+duplicate\+\_\+tcp\+\_\+bind\+\_\+errors}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_ae39a7719907b2132b2096b23dab44d9e}{s\+\_\+test\+\_\+incoming\+\_\+udp\+\_\+sock\+\_\+errors}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{socket__test_8c_ad6823959cba7dde3d802aa0587b5ea19}{s\+\_\+on\+\_\+null\+\_\+readable\+\_\+notification}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_acb0d440725d126fe60d7436d5fb5808d}{s\+\_\+test\+\_\+wrong\+\_\+thread\+\_\+read\+\_\+write\+\_\+fails}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{socket__test_8c_aaef7aadcdb9495e54fd27fdd70bd7878}{s\+\_\+test\+\_\+destroy\+\_\+socket\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a9e8a6c0026af954d439f59c050f15519}{s\+\_\+cleanup\+\_\+before\+\_\+connect\+\_\+or\+\_\+timeout\+\_\+doesnt\+\_\+explode}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a3ed82fd088e1bcb2eb686ba027ff61bb}{s\+\_\+local\+\_\+listener\+\_\+incoming\+\_\+destroy\+\_\+listener}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$new\+\_\+socket, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{socket__test_8c_ae98a2135f3a9d377b5a6b4b8c31661c9}{s\+\_\+cleanup\+\_\+in\+\_\+accept\+\_\+doesnt\+\_\+explode}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static void \mbox{\hyperlink{socket__test_8c_aa3f989595f2520f9643b10e1ce28d8a1}{s\+\_\+on\+\_\+written\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, size\+\_\+t amount\+\_\+written, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_a81a8abead9cef967d2b3f341be04d3a2}{s\+\_\+write\+\_\+completed\+\_\+predicate\+\_\+destroy}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a6b663eb5989044ba44d7f293cb87181f}{s\+\_\+write\+\_\+task\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$args, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a90bf9b22f02d94dce8c9038d837659bb}{s\+\_\+cleanup\+\_\+in\+\_\+write\+\_\+cb\+\_\+doesnt\+\_\+explode}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_af8aedfe9275f5641e4cfe29b083a4b7b}{s\+\_\+async\+\_\+tasks\+\_\+complete\+\_\+pred}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a30bd19a40aa2b604747b1df47767bd5f}{s\+\_\+async\+\_\+read\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$args, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a9f3b2adaa71c906bcafabcaec01f0f01}{s\+\_\+async\+\_\+write\+\_\+completion}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, size\+\_\+t bytes\+\_\+written, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{socket__test_8c_a6944b36c581ba459d90ccf85910a4600}{s\+\_\+async\+\_\+write\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$args, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+\item 
+static int \mbox{\hyperlink{socket__test_8c_a837c3cbdc3c006723ba8f87f9cf67097}{s\+\_\+sock\+\_\+write\+\_\+cb\+\_\+is\+\_\+async}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} $\ast$ \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}\\
+\>struct \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} $\ast$ \mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\_loop}}\\
+\>struct \mbox{\hyperlink{structaws__socket}{aws\_socket}} $\ast$ \mbox{\hyperlink{socket__test_8c_a73c3b5a10f277eaad64a1dd604787464}{write\_socket}}\\
+\>struct \mbox{\hyperlink{structaws__socket}{aws\_socket}} $\ast$ \mbox{\hyperlink{socket__test_8c_aaabb72292d50dfb95a1ae22e9ab67a66}{read\_socket}}\\
+\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_a3a3c78dafc9504c42a2d00a3cd8478b0}{currently\_writing}}\\
+\>enum \mbox{\hyperlink{socket__test_8c_ac9383a106e948d12c8e1842e0a723430}{async\_role}} \mbox{\hyperlink{socket__test_8c_a77371c4d99155a3f7a2469004b07a8db}{next\_expected\_callback}}\\
+\>struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} $\ast$ \mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}}\\
+\>struct \mbox{\hyperlink{structaws__condition__variable}{aws\_condition\_variable}} $\ast$ \mbox{\hyperlink{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}{condition\_variable}}\\
+\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_a3a2759c3caf44321343b230274510020}{write\_tasks\_complete}}\\
+\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket__test_8c_ad19f0f77ba7529201c4f671854dbcbd4}{read\_tasks\_complete}}\\
+\} \mbox{\hyperlink{socket__test_8c_ab1c71fd7a2d89bd72451ec4038c831e0}{g\_async\_tester}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{socket__test_8c_ab4aec4cbf7779d958c37a7cbe0f041f4}\label{socket__test_8c_ab4aec4cbf7779d958c37a7cbe0f041f4}} 
+\index{socket\_test.c@{socket\_test.c}!LOCAL\_SOCK\_TEST\_PATTERN@{LOCAL\_SOCK\_TEST\_PATTERN}}
+\index{LOCAL\_SOCK\_TEST\_PATTERN@{LOCAL\_SOCK\_TEST\_PATTERN}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{LOCAL\_SOCK\_TEST\_PATTERN}{LOCAL\_SOCK\_TEST\_PATTERN}}
+{\footnotesize\ttfamily \#define LOCAL\+\_\+\+SOCK\+\_\+\+TEST\+\_\+\+PATTERN~\char`\"{}testsock\%llu.\+sock\char`\"{}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{socket__test_8c_ac9383a106e948d12c8e1842e0a723430}\label{socket__test_8c_ac9383a106e948d12c8e1842e0a723430}} 
+\index{socket\_test.c@{socket\_test.c}!async\_role@{async\_role}}
+\index{async\_role@{async\_role}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_role}{async\_role}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{socket__test_8c_ac9383a106e948d12c8e1842e0a723430}{async\+\_\+role}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASYNC\_ROLE\_A\_CALLBACK\_WRITES\_D@{ASYNC\_ROLE\_A\_CALLBACK\_WRITES\_D}!socket\_test.c@{socket\_test.c}}\index{socket\_test.c@{socket\_test.c}!ASYNC\_ROLE\_A\_CALLBACK\_WRITES\_D@{ASYNC\_ROLE\_A\_CALLBACK\_WRITES\_D}}}\mbox{\Hypertarget{socket__test_8c_ac9383a106e948d12c8e1842e0a723430ac549b50b15feb55c95d34a68aaadf834}\label{socket__test_8c_ac9383a106e948d12c8e1842e0a723430ac549b50b15feb55c95d34a68aaadf834}} 
+ASYNC\+\_\+\+ROLE\+\_\+\+A\+\_\+\+CALLBACK\+\_\+\+WRITES\+\_\+D&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASYNC\_ROLE\_B\_CALLBACK\_CLEANS\_UP\_SOCKET@{ASYNC\_ROLE\_B\_CALLBACK\_CLEANS\_UP\_SOCKET}!socket\_test.c@{socket\_test.c}}\index{socket\_test.c@{socket\_test.c}!ASYNC\_ROLE\_B\_CALLBACK\_CLEANS\_UP\_SOCKET@{ASYNC\_ROLE\_B\_CALLBACK\_CLEANS\_UP\_SOCKET}}}\mbox{\Hypertarget{socket__test_8c_ac9383a106e948d12c8e1842e0a723430a40a626dcd51b93d3e98c6afba9e483de}\label{socket__test_8c_ac9383a106e948d12c8e1842e0a723430a40a626dcd51b93d3e98c6afba9e483de}} 
+ASYNC\+\_\+\+ROLE\+\_\+\+B\+\_\+\+CALLBACK\+\_\+\+CLEANS\+\_\+\+UP\+\_\+\+SOCKET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASYNC\_ROLE\_C\_IS\_LAST\_FROM\_INITIAL\_BATCH\_OF\_WRITES@{ASYNC\_ROLE\_C\_IS\_LAST\_FROM\_INITIAL\_BATCH\_OF\_WRITES}!socket\_test.c@{socket\_test.c}}\index{socket\_test.c@{socket\_test.c}!ASYNC\_ROLE\_C\_IS\_LAST\_FROM\_INITIAL\_BATCH\_OF\_WRITES@{ASYNC\_ROLE\_C\_IS\_LAST\_FROM\_INITIAL\_BATCH\_OF\_WRITES}}}\mbox{\Hypertarget{socket__test_8c_ac9383a106e948d12c8e1842e0a723430aa22171c884a0706ef24d3736f30a9511}\label{socket__test_8c_ac9383a106e948d12c8e1842e0a723430aa22171c884a0706ef24d3736f30a9511}} 
+ASYNC\+\_\+\+ROLE\+\_\+\+C\+\_\+\+IS\+\_\+\+LAST\+\_\+\+FROM\+\_\+\+INITIAL\+\_\+\+BATCH\+\_\+\+OF\+\_\+\+WRITES&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASYNC\_ROLE\_D\_GOT\_WRITTEN\_VIA\_CALLBACK@{ASYNC\_ROLE\_D\_GOT\_WRITTEN\_VIA\_CALLBACK}!socket\_test.c@{socket\_test.c}}\index{socket\_test.c@{socket\_test.c}!ASYNC\_ROLE\_D\_GOT\_WRITTEN\_VIA\_CALLBACK@{ASYNC\_ROLE\_D\_GOT\_WRITTEN\_VIA\_CALLBACK}}}\mbox{\Hypertarget{socket__test_8c_ac9383a106e948d12c8e1842e0a723430a54c00ff53bc700247f4eebe056241bf6}\label{socket__test_8c_ac9383a106e948d12c8e1842e0a723430a54c00ff53bc700247f4eebe056241bf6}} 
+ASYNC\+\_\+\+ROLE\+\_\+\+D\+\_\+\+GOT\+\_\+\+WRITTEN\+\_\+\+VIA\+\_\+\+CALLBACK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ASYNC\_ROLE\_COUNT@{ASYNC\_ROLE\_COUNT}!socket\_test.c@{socket\_test.c}}\index{socket\_test.c@{socket\_test.c}!ASYNC\_ROLE\_COUNT@{ASYNC\_ROLE\_COUNT}}}\mbox{\Hypertarget{socket__test_8c_ac9383a106e948d12c8e1842e0a723430a9315121c0264b9deb2b3a4f222b838af}\label{socket__test_8c_ac9383a106e948d12c8e1842e0a723430a9315121c0264b9deb2b3a4f222b838af}} 
+ASYNC\+\_\+\+ROLE\+\_\+\+COUNT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{socket__test_8c_a30bd19a40aa2b604747b1df47767bd5f}\label{socket__test_8c_a30bd19a40aa2b604747b1df47767bd5f}} 
+\index{socket\_test.c@{socket\_test.c}!s\_async\_read\_task@{s\_async\_read\_task}}
+\index{s\_async\_read\_task@{s\_async\_read\_task}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_async\_read\_task()}{s\_async\_read\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+async\+\_\+read\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{args,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_af8aedfe9275f5641e4cfe29b083a4b7b}\label{socket__test_8c_af8aedfe9275f5641e4cfe29b083a4b7b}} 
+\index{socket\_test.c@{socket\_test.c}!s\_async\_tasks\_complete\_pred@{s\_async\_tasks\_complete\_pred}}
+\index{s\_async\_tasks\_complete\_pred@{s\_async\_tasks\_complete\_pred}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_async\_tasks\_complete\_pred()}{s\_async\_tasks\_complete\_pred()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+async\+\_\+tasks\+\_\+complete\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a9f3b2adaa71c906bcafabcaec01f0f01}\label{socket__test_8c_a9f3b2adaa71c906bcafabcaec01f0f01}} 
+\index{socket\_test.c@{socket\_test.c}!s\_async\_write\_completion@{s\_async\_write\_completion}}
+\index{s\_async\_write\_completion@{s\_async\_write\_completion}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_async\_write\_completion()}{s\_async\_write\_completion()}}
+{\footnotesize\ttfamily static void s\+\_\+async\+\_\+write\+\_\+completion (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{int}]{error\+\_\+code,  }\item[{size\+\_\+t}]{bytes\+\_\+written,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a6944b36c581ba459d90ccf85910a4600}\label{socket__test_8c_a6944b36c581ba459d90ccf85910a4600}} 
+\index{socket\_test.c@{socket\_test.c}!s\_async\_write\_task@{s\_async\_write\_task}}
+\index{s\_async\_write\_task@{s\_async\_write\_task}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_async\_write\_task()}{s\_async\_write\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+async\+\_\+write\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{args,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a9e8a6c0026af954d439f59c050f15519}\label{socket__test_8c_a9e8a6c0026af954d439f59c050f15519}} 
+\index{socket\_test.c@{socket\_test.c}!s\_cleanup\_before\_connect\_or\_timeout\_doesnt\_explode@{s\_cleanup\_before\_connect\_or\_timeout\_doesnt\_explode}}
+\index{s\_cleanup\_before\_connect\_or\_timeout\_doesnt\_explode@{s\_cleanup\_before\_connect\_or\_timeout\_doesnt\_explode}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_cleanup\_before\_connect\_or\_timeout\_doesnt\_explode()}{s\_cleanup\_before\_connect\_or\_timeout\_doesnt\_explode()}}
+{\footnotesize\ttfamily static int s\+\_\+cleanup\+\_\+before\+\_\+connect\+\_\+or\+\_\+timeout\+\_\+doesnt\+\_\+explode (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_ae98a2135f3a9d377b5a6b4b8c31661c9}\label{socket__test_8c_ae98a2135f3a9d377b5a6b4b8c31661c9}} 
+\index{socket\_test.c@{socket\_test.c}!s\_cleanup\_in\_accept\_doesnt\_explode@{s\_cleanup\_in\_accept\_doesnt\_explode}}
+\index{s\_cleanup\_in\_accept\_doesnt\_explode@{s\_cleanup\_in\_accept\_doesnt\_explode}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_cleanup\_in\_accept\_doesnt\_explode()}{s\_cleanup\_in\_accept\_doesnt\_explode()}}
+{\footnotesize\ttfamily static int s\+\_\+cleanup\+\_\+in\+\_\+accept\+\_\+doesnt\+\_\+explode (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a90bf9b22f02d94dce8c9038d837659bb}\label{socket__test_8c_a90bf9b22f02d94dce8c9038d837659bb}} 
+\index{socket\_test.c@{socket\_test.c}!s\_cleanup\_in\_write\_cb\_doesnt\_explode@{s\_cleanup\_in\_write\_cb\_doesnt\_explode}}
+\index{s\_cleanup\_in\_write\_cb\_doesnt\_explode@{s\_cleanup\_in\_write\_cb\_doesnt\_explode}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_cleanup\_in\_write\_cb\_doesnt\_explode()}{s\_cleanup\_in\_write\_cb\_doesnt\_explode()}}
+{\footnotesize\ttfamily static int s\+\_\+cleanup\+\_\+in\+\_\+write\+\_\+cb\+\_\+doesnt\+\_\+explode (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_aba9567df76f1368c73918d0fedd8f1b3}\label{socket__test_8c_aba9567df76f1368c73918d0fedd8f1b3}} 
+\index{socket\_test.c@{socket\_test.c}!s\_close\_completed\_predicate@{s\_close\_completed\_predicate}}
+\index{s\_close\_completed\_predicate@{s\_close\_completed\_predicate}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_close\_completed\_predicate()}{s\_close\_completed\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+close\+\_\+completed\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a2032a28bb0f54d1989de6b25d877d3b2}\label{socket__test_8c_a2032a28bb0f54d1989de6b25d877d3b2}} 
+\index{socket\_test.c@{socket\_test.c}!s\_connection\_completed\_predicate@{s\_connection\_completed\_predicate}}
+\index{s\_connection\_completed\_predicate@{s\_connection\_completed\_predicate}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_connection\_completed\_predicate()}{s\_connection\_completed\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+connection\+\_\+completed\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a954893d772dff191bf7b1d44ced832ec}\label{socket__test_8c_a954893d772dff191bf7b1d44ced832ec}} 
+\index{socket\_test.c@{socket\_test.c}!s\_incoming\_predicate@{s\_incoming\_predicate}}
+\index{s\_incoming\_predicate@{s\_incoming\_predicate}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_incoming\_predicate()}{s\_incoming\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+incoming\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a5267556a4b30eb68234bf2b2e74eac15}\label{socket__test_8c_a5267556a4b30eb68234bf2b2e74eac15}} 
+\index{socket\_test.c@{socket\_test.c}!s\_local\_listener\_incoming@{s\_local\_listener\_incoming}}
+\index{s\_local\_listener\_incoming@{s\_local\_listener\_incoming}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_local\_listener\_incoming()}{s\_local\_listener\_incoming()}}
+{\footnotesize\ttfamily static void s\+\_\+local\+\_\+listener\+\_\+incoming (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{int}]{error\+\_\+code,  }\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{new\+\_\+socket,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a3ed82fd088e1bcb2eb686ba027ff61bb}\label{socket__test_8c_a3ed82fd088e1bcb2eb686ba027ff61bb}} 
+\index{socket\_test.c@{socket\_test.c}!s\_local\_listener\_incoming\_destroy\_listener@{s\_local\_listener\_incoming\_destroy\_listener}}
+\index{s\_local\_listener\_incoming\_destroy\_listener@{s\_local\_listener\_incoming\_destroy\_listener}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_local\_listener\_incoming\_destroy\_listener()}{s\_local\_listener\_incoming\_destroy\_listener()}}
+{\footnotesize\ttfamily static void s\+\_\+local\+\_\+listener\+\_\+incoming\+\_\+destroy\+\_\+listener (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{int}]{error\+\_\+code,  }\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{new\+\_\+socket,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_aadbc85926eef0291f186eeff0db1490c}\label{socket__test_8c_aadbc85926eef0291f186eeff0db1490c}} 
+\index{socket\_test.c@{socket\_test.c}!s\_local\_outgoing\_connection@{s\_local\_outgoing\_connection}}
+\index{s\_local\_outgoing\_connection@{s\_local\_outgoing\_connection}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_local\_outgoing\_connection()}{s\_local\_outgoing\_connection()}}
+{\footnotesize\ttfamily static void s\+\_\+local\+\_\+outgoing\+\_\+connection (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a1e280dc27abeac20f7fd01e2ff4bb96e}\label{socket__test_8c_a1e280dc27abeac20f7fd01e2ff4bb96e}} 
+\index{socket\_test.c@{socket\_test.c}!s\_null\_sock\_connection@{s\_null\_sock\_connection}}
+\index{s\_null\_sock\_connection@{s\_null\_sock\_connection}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_null\_sock\_connection()}{s\_null\_sock\_connection()}}
+{\footnotesize\ttfamily static void s\+\_\+null\+\_\+sock\+\_\+connection (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_ad6823959cba7dde3d802aa0587b5ea19}\label{socket__test_8c_ad6823959cba7dde3d802aa0587b5ea19}} 
+\index{socket\_test.c@{socket\_test.c}!s\_on\_null\_readable\_notification@{s\_on\_null\_readable\_notification}}
+\index{s\_on\_null\_readable\_notification@{s\_on\_null\_readable\_notification}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_null\_readable\_notification()}{s\_on\_null\_readable\_notification()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+null\+\_\+readable\+\_\+notification (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a546256db82ce7005824beb1b62ecf641}\label{socket__test_8c_a546256db82ce7005824beb1b62ecf641}} 
+\index{socket\_test.c@{socket\_test.c}!s\_on\_readable@{s\_on\_readable}}
+\index{s\_on\_readable@{s\_on\_readable}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_readable()}{s\_on\_readable()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+readable (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a2ac2e1b4685fec0f9048de9c4b599e3c}\label{socket__test_8c_a2ac2e1b4685fec0f9048de9c4b599e3c}} 
+\index{socket\_test.c@{socket\_test.c}!s\_on\_written@{s\_on\_written}}
+\index{s\_on\_written@{s\_on\_written}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_written()}{s\_on\_written()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+written (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{int}]{error\+\_\+code,  }\item[{size\+\_\+t}]{amount\+\_\+written,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_aa3f989595f2520f9643b10e1ce28d8a1}\label{socket__test_8c_aa3f989595f2520f9643b10e1ce28d8a1}} 
+\index{socket\_test.c@{socket\_test.c}!s\_on\_written\_destroy@{s\_on\_written\_destroy}}
+\index{s\_on\_written\_destroy@{s\_on\_written\_destroy}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_written\_destroy()}{s\_on\_written\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+written\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket,  }\item[{int}]{error\+\_\+code,  }\item[{size\+\_\+t}]{amount\+\_\+written,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a37ce67e09b5710d810b706ceec98cf27}\label{socket__test_8c_a37ce67e09b5710d810b706ceec98cf27}} 
+\index{socket\_test.c@{socket\_test.c}!s\_outgoing\_tcp\_error\_predicate@{s\_outgoing\_tcp\_error\_predicate}}
+\index{s\_outgoing\_tcp\_error\_predicate@{s\_outgoing\_tcp\_error\_predicate}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_outgoing\_tcp\_error\_predicate()}{s\_outgoing\_tcp\_error\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+outgoing\+\_\+tcp\+\_\+error\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_aac3d6187616138748430b2b85c7dd29b}\label{socket__test_8c_aac3d6187616138748430b2b85c7dd29b}} 
+\index{socket\_test.c@{socket\_test.c}!s\_read\_task@{s\_read\_task}}
+\index{s\_read\_task@{s\_read\_task}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_read\_task()}{s\_read\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+read\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{args,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a003f718a48c80d15728797f7826a3aae}\label{socket__test_8c_a003f718a48c80d15728797f7826a3aae}} 
+\index{socket\_test.c@{socket\_test.c}!s\_read\_task\_predicate@{s\_read\_task\_predicate}}
+\index{s\_read\_task\_predicate@{s\_read\_task\_predicate}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_read\_task\_predicate()}{s\_read\_task\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+read\+\_\+task\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a837c3cbdc3c006723ba8f87f9cf67097}\label{socket__test_8c_a837c3cbdc3c006723ba8f87f9cf67097}} 
+\index{socket\_test.c@{socket\_test.c}!s\_sock\_write\_cb\_is\_async@{s\_sock\_write\_cb\_is\_async}}
+\index{s\_sock\_write\_cb\_is\_async@{s\_sock\_write\_cb\_is\_async}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_sock\_write\_cb\_is\_async()}{s\_sock\_write\_cb\_is\_async()}}
+{\footnotesize\ttfamily static int s\+\_\+sock\+\_\+write\+\_\+cb\+\_\+is\+\_\+async (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\hyperlink{socket_8h_af6dc1df5c6676afc9339d3d3f1f61ecb}{aws\+\_\+socket\+\_\+write()}}\textquotesingle{}s completion callback MUST fire asynchronously. Otherwise, we can get multiple \mbox{\hyperlink{schedule_8c_a335d604526cc357e0f5c3ea78acd6266}{write()}} calls in the same callstack, which leads to esoteric bugs (\href{https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues/194}{\texttt{ https\+://github.\+com/aws/aws-\/iot-\/device-\/sdk-\/cpp-\/v2/issues/194}}). \mbox{\Hypertarget{socket__test_8c_a4838b4ffe6eabe03b08d239e55646b72}\label{socket__test_8c_a4838b4ffe6eabe03b08d239e55646b72}} 
+\index{socket\_test.c@{socket\_test.c}!s\_socket\_close\_task@{s\_socket\_close\_task}}
+\index{s\_socket\_close\_task@{s\_socket\_close\_task}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_socket\_close\_task()}{s\_socket\_close\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+socket\+\_\+close\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{args,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a733e8500261231596ad750f3dba16641}\label{socket__test_8c_a733e8500261231596ad750f3dba16641}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_connect\_timeout@{s\_test\_connect\_timeout}}
+\index{s\_test\_connect\_timeout@{s\_test\_connect\_timeout}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_connect\_timeout()}{s\_test\_connect\_timeout()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+connect\+\_\+timeout (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a858bc504fc03cc2d817a50b83437f585}\label{socket__test_8c_a858bc504fc03cc2d817a50b83437f585}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_connect\_timeout\_cancelation@{s\_test\_connect\_timeout\_cancelation}}
+\index{s\_test\_connect\_timeout\_cancelation@{s\_test\_connect\_timeout\_cancelation}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_connect\_timeout\_cancelation()}{s\_test\_connect\_timeout\_cancelation()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+connect\+\_\+timeout\+\_\+cancelation (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_aaef7aadcdb9495e54fd27fdd70bd7878}\label{socket__test_8c_aaef7aadcdb9495e54fd27fdd70bd7878}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_destroy\_socket\_task@{s\_test\_destroy\_socket\_task}}
+\index{s\_test\_destroy\_socket\_task@{s\_test\_destroy\_socket\_task}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_destroy\_socket\_task()}{s\_test\_destroy\_socket\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+test\+\_\+destroy\+\_\+socket\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_ac487d15ebfde87777c27c133e3c7cafe}\label{socket__test_8c_ac487d15ebfde87777c27c133e3c7cafe}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_host\_resolved\_predicate@{s\_test\_host\_resolved\_predicate}}
+\index{s\_test\_host\_resolved\_predicate@{s\_test\_host\_resolved\_predicate}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_host\_resolved\_predicate()}{s\_test\_host\_resolved\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+test\+\_\+host\+\_\+resolved\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_aee704b335a642020d394fbd5ec21041b}\label{socket__test_8c_aee704b335a642020d394fbd5ec21041b}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_host\_resolved\_test\_callback@{s\_test\_host\_resolved\_test\_callback}}
+\index{s\_test\_host\_resolved\_test\_callback@{s\_test\_host\_resolved\_test\_callback}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_host\_resolved\_test\_callback()}{s\_test\_host\_resolved\_test\_callback()}}
+{\footnotesize\ttfamily static void s\+\_\+test\+\_\+host\+\_\+resolved\+\_\+test\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{host\+\_\+name,  }\item[{int}]{err\+\_\+code,  }\item[{const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{host\+\_\+addresses,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a75068718acae7ad0e98485615cbbe8a2}\label{socket__test_8c_a75068718acae7ad0e98485615cbbe8a2}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_incoming\_duplicate\_tcp\_bind\_errors@{s\_test\_incoming\_duplicate\_tcp\_bind\_errors}}
+\index{s\_test\_incoming\_duplicate\_tcp\_bind\_errors@{s\_test\_incoming\_duplicate\_tcp\_bind\_errors}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_incoming\_duplicate\_tcp\_bind\_errors()}{s\_test\_incoming\_duplicate\_tcp\_bind\_errors()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+incoming\+\_\+duplicate\+\_\+tcp\+\_\+bind\+\_\+errors (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_ad1f1f68ef4e657047c303b7669717ff6}\label{socket__test_8c_ad1f1f68ef4e657047c303b7669717ff6}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_incoming\_tcp\_sock\_errors@{s\_test\_incoming\_tcp\_sock\_errors}}
+\index{s\_test\_incoming\_tcp\_sock\_errors@{s\_test\_incoming\_tcp\_sock\_errors}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_incoming\_tcp\_sock\_errors()}{s\_test\_incoming\_tcp\_sock\_errors()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+incoming\+\_\+tcp\+\_\+sock\+\_\+errors (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_ae39a7719907b2132b2096b23dab44d9e}\label{socket__test_8c_ae39a7719907b2132b2096b23dab44d9e}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_incoming\_udp\_sock\_errors@{s\_test\_incoming\_udp\_sock\_errors}}
+\index{s\_test\_incoming\_udp\_sock\_errors@{s\_test\_incoming\_udp\_sock\_errors}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_incoming\_udp\_sock\_errors()}{s\_test\_incoming\_udp\_sock\_errors()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+incoming\+\_\+udp\+\_\+sock\+\_\+errors (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_aa2a0a48c5bdf38482d79cddcdca744ca}\label{socket__test_8c_aa2a0a48c5bdf38482d79cddcdca744ca}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_local\_socket\_communication@{s\_test\_local\_socket\_communication}}
+\index{s\_test\_local\_socket\_communication@{s\_test\_local\_socket\_communication}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_local\_socket\_communication()}{s\_test\_local\_socket\_communication()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+local\+\_\+socket\+\_\+communication (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_aa2d3358a66e9088a6ac0985323410301}\label{socket__test_8c_aa2d3358a66e9088a6ac0985323410301}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_outgoing\_local\_sock\_errors@{s\_test\_outgoing\_local\_sock\_errors}}
+\index{s\_test\_outgoing\_local\_sock\_errors@{s\_test\_outgoing\_local\_sock\_errors}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_outgoing\_local\_sock\_errors()}{s\_test\_outgoing\_local\_sock\_errors()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+outgoing\+\_\+local\+\_\+sock\+\_\+errors (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a2cec102d5bbfef2271c2548f7e381d5a}\label{socket__test_8c_a2cec102d5bbfef2271c2548f7e381d5a}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_outgoing\_tcp\_sock\_error@{s\_test\_outgoing\_tcp\_sock\_error}}
+\index{s\_test\_outgoing\_tcp\_sock\_error@{s\_test\_outgoing\_tcp\_sock\_error}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_outgoing\_tcp\_sock\_error()}{s\_test\_outgoing\_tcp\_sock\_error()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+outgoing\+\_\+tcp\+\_\+sock\+\_\+error (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_ae06de94a3491cdbde02264694b84be87}\label{socket__test_8c_ae06de94a3491cdbde02264694b84be87}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_running\_as\_root@{s\_test\_running\_as\_root}}
+\index{s\_test\_running\_as\_root@{s\_test\_running\_as\_root}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_running\_as\_root()}{s\_test\_running\_as\_root()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+test\+\_\+running\+\_\+as\+\_\+root (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a68e7159ee8ca61522db48a370964c830}\label{socket__test_8c_a68e7159ee8ca61522db48a370964c830}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_socket@{s\_test\_socket}}
+\index{s\_test\_socket@{s\_test\_socket}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_socket()}{s\_test\_socket()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+socket (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} $\ast$}]{options,  }\item[{struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} $\ast$}]{endpoint }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a5f1c58c7651781300acc9040ac257c42}\label{socket__test_8c_a5f1c58c7651781300acc9040ac257c42}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_socket\_ex@{s\_test\_socket\_ex}}
+\index{s\_test\_socket\_ex@{s\_test\_socket\_ex}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_socket\_ex()}{s\_test\_socket\_ex()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+socket\+\_\+ex (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} $\ast$}]{options,  }\item[{struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} $\ast$}]{local,  }\item[{struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} $\ast$}]{endpoint }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a660bb73e899038db3bd170e573741c56}\label{socket__test_8c_a660bb73e899038db3bd170e573741c56}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_tcp\_socket\_communication@{s\_test\_tcp\_socket\_communication}}
+\index{s\_test\_tcp\_socket\_communication@{s\_test\_tcp\_socket\_communication}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_tcp\_socket\_communication()}{s\_test\_tcp\_socket\_communication()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+tcp\+\_\+socket\+\_\+communication (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_ab8d40e64f5eebe99693a899bc7506b7b}\label{socket__test_8c_ab8d40e64f5eebe99693a899bc7506b7b}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_udp\_bind\_connect\_communication@{s\_test\_udp\_bind\_connect\_communication}}
+\index{s\_test\_udp\_bind\_connect\_communication@{s\_test\_udp\_bind\_connect\_communication}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_udp\_bind\_connect\_communication()}{s\_test\_udp\_bind\_connect\_communication()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+udp\+\_\+bind\+\_\+connect\+\_\+communication (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a0d4e7b7286f676b955e05d01d9c0f31b}\label{socket__test_8c_a0d4e7b7286f676b955e05d01d9c0f31b}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_udp\_socket\_communication@{s\_test\_udp\_socket\_communication}}
+\index{s\_test\_udp\_socket\_communication@{s\_test\_udp\_socket\_communication}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_udp\_socket\_communication()}{s\_test\_udp\_socket\_communication()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+udp\+\_\+socket\+\_\+communication (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_acb0d440725d126fe60d7436d5fb5808d}\label{socket__test_8c_acb0d440725d126fe60d7436d5fb5808d}} 
+\index{socket\_test.c@{socket\_test.c}!s\_test\_wrong\_thread\_read\_write\_fails@{s\_test\_wrong\_thread\_read\_write\_fails}}
+\index{s\_test\_wrong\_thread\_read\_write\_fails@{s\_test\_wrong\_thread\_read\_write\_fails}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_wrong\_thread\_read\_write\_fails()}{s\_test\_wrong\_thread\_read\_write\_fails()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+wrong\+\_\+thread\+\_\+read\+\_\+write\+\_\+fails (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a741628fa5d61de17ec321a98f896fa98}\label{socket__test_8c_a741628fa5d61de17ec321a98f896fa98}} 
+\index{socket\_test.c@{socket\_test.c}!s\_write\_completed\_predicate@{s\_write\_completed\_predicate}}
+\index{s\_write\_completed\_predicate@{s\_write\_completed\_predicate}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_write\_completed\_predicate()}{s\_write\_completed\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+write\+\_\+completed\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a81a8abead9cef967d2b3f341be04d3a2}\label{socket__test_8c_a81a8abead9cef967d2b3f341be04d3a2}} 
+\index{socket\_test.c@{socket\_test.c}!s\_write\_completed\_predicate\_destroy@{s\_write\_completed\_predicate\_destroy}}
+\index{s\_write\_completed\_predicate\_destroy@{s\_write\_completed\_predicate\_destroy}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_write\_completed\_predicate\_destroy()}{s\_write\_completed\_predicate\_destroy()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+write\+\_\+completed\+\_\+predicate\+\_\+destroy (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a1b6452673fe0d05ecf40cd86bb34fcf0}\label{socket__test_8c_a1b6452673fe0d05ecf40cd86bb34fcf0}} 
+\index{socket\_test.c@{socket\_test.c}!s\_write\_task@{s\_write\_task}}
+\index{s\_write\_task@{s\_write\_task}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_write\_task()}{s\_write\_task()}}
+{\footnotesize\ttfamily static void s\+\_\+write\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{args,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_a6b663eb5989044ba44d7f293cb87181f}\label{socket__test_8c_a6b663eb5989044ba44d7f293cb87181f}} 
+\index{socket\_test.c@{socket\_test.c}!s\_write\_task\_destroy@{s\_write\_task\_destroy}}
+\index{s\_write\_task\_destroy@{s\_write\_task\_destroy}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_write\_task\_destroy()}{s\_write\_task\_destroy()}}
+{\footnotesize\ttfamily static void s\+\_\+write\+\_\+task\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{args,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{socket__test_8c_a130cc941753892421e3f70bdee1049d1}\label{socket__test_8c_a130cc941753892421e3f70bdee1049d1}} 
+\index{socket\_test.c@{socket\_test.c}!allocator@{allocator}}
+\index{allocator@{allocator}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ allocator}
+
+\mbox{\Hypertarget{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}\label{socket__test_8c_a19496a56dbfa8d696c66cc74c510f1e4}} 
+\index{socket\_test.c@{socket\_test.c}!condition\_variable@{condition\_variable}}
+\index{condition\_variable@{condition\_variable}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{condition\_variable}{condition\_variable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}}$\ast$ condition\+\_\+variable}
+
+\mbox{\Hypertarget{socket__test_8c_a3a3c78dafc9504c42a2d00a3cd8478b0}\label{socket__test_8c_a3a3c78dafc9504c42a2d00a3cd8478b0}} 
+\index{socket\_test.c@{socket\_test.c}!currently\_writing@{currently\_writing}}
+\index{currently\_writing@{currently\_writing}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{currently\_writing}{currently\_writing}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} currently\+\_\+writing}
+
+\mbox{\Hypertarget{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}\label{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}} 
+\index{socket\_test.c@{socket\_test.c}!event\_loop@{event\_loop}}
+\index{event\_loop@{event\_loop}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{event\_loop}{event\_loop}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ event\+\_\+loop}
+
+\mbox{\Hypertarget{socket__test_8c_ab1c71fd7a2d89bd72451ec4038c831e0}\label{socket__test_8c_ab1c71fd7a2d89bd72451ec4038c831e0}} 
+\index{socket\_test.c@{socket\_test.c}!g\_async\_tester@{g\_async\_tester}}
+\index{g\_async\_tester@{g\_async\_tester}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  g\+\_\+async\+\_\+tester\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}\label{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}} 
+\index{socket\_test.c@{socket\_test.c}!mutex@{mutex}}
+\index{mutex@{mutex}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}}$\ast$ mutex}
+
+\mbox{\Hypertarget{socket__test_8c_a77371c4d99155a3f7a2469004b07a8db}\label{socket__test_8c_a77371c4d99155a3f7a2469004b07a8db}} 
+\index{socket\_test.c@{socket\_test.c}!next\_expected\_callback@{next\_expected\_callback}}
+\index{next\_expected\_callback@{next\_expected\_callback}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{next\_expected\_callback}{next\_expected\_callback}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{socket__test_8c_ac9383a106e948d12c8e1842e0a723430}{async\+\_\+role}} next\+\_\+expected\+\_\+callback}
+
+\mbox{\Hypertarget{socket__test_8c_aaabb72292d50dfb95a1ae22e9ab67a66}\label{socket__test_8c_aaabb72292d50dfb95a1ae22e9ab67a66}} 
+\index{socket\_test.c@{socket\_test.c}!read\_socket@{read\_socket}}
+\index{read\_socket@{read\_socket}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{read\_socket}{read\_socket}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}}$\ast$ read\+\_\+socket}
+
+\mbox{\Hypertarget{socket__test_8c_ad19f0f77ba7529201c4f671854dbcbd4}\label{socket__test_8c_ad19f0f77ba7529201c4f671854dbcbd4}} 
+\index{socket\_test.c@{socket\_test.c}!read\_tasks\_complete@{read\_tasks\_complete}}
+\index{read\_tasks\_complete@{read\_tasks\_complete}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{read\_tasks\_complete}{read\_tasks\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} read\+\_\+tasks\+\_\+complete}
+
+\mbox{\Hypertarget{socket__test_8c_a73c3b5a10f277eaad64a1dd604787464}\label{socket__test_8c_a73c3b5a10f277eaad64a1dd604787464}} 
+\index{socket\_test.c@{socket\_test.c}!write\_socket@{write\_socket}}
+\index{write\_socket@{write\_socket}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{write\_socket}{write\_socket}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}}$\ast$ write\+\_\+socket}
+
+\mbox{\Hypertarget{socket__test_8c_a3a2759c3caf44321343b230274510020}\label{socket__test_8c_a3a2759c3caf44321343b230274510020}} 
+\index{socket\_test.c@{socket\_test.c}!write\_tasks\_complete@{write\_tasks\_complete}}
+\index{write\_tasks\_complete@{write\_tasks\_complete}!socket\_test.c@{socket\_test.c}}
+\doxysubsubsection{\texorpdfstring{write\_tasks\_complete}{write\_tasks\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} write\+\_\+tasks\+\_\+complete}
+

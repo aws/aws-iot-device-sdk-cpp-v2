@@ -1,0 +1,124 @@
+\hypertarget{websocket__encoder_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/websocket\+\_\+encoder.h File Reference}
+\label{websocket__encoder_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/websocket\_encoder.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/websocket\_encoder.h}}
+{\ttfamily \#include $<$aws/http/private/websocket\+\_\+impl.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int() \mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\+\_\+websocket\+\_\+encoder\+\_\+payload\+\_\+fn}}(struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ff}{aws\+\_\+websocket\+\_\+encoder\+\_\+state}} \{ \newline
+\mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa0625b912510d4b7ac75e619ce5bfca28}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+INIT}}
+, \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffacb4f7b26bb15c9aa9cc0ea29b14c10f2}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+OPCODE\+\_\+\+BYTE}}
+, \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffafc33b7846612fcf8d0ff51f2799ceda5}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+LENGTH\+\_\+\+BYTE}}
+, \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa5ca6c950f5b0b8009383bdd6046b717c}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+EXTENDED\+\_\+\+LENGTH}}
+, \newline
+\mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa68a3fafa4bccd7ebe6b963dcbd30cbda}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+MASKING\+\_\+\+KEY\+\_\+\+CHECK}}
+, \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffadaa2498e8987f3da7f00fe886b9d52e9}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+MASKING\+\_\+\+KEY}}
+, \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa7e20d63d824668de565609f3a5c73fdd}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+PAYLOAD\+\_\+\+CHECK}}
+, \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa61d464fd184783566192346d6b506768}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+PAYLOAD}}
+, \newline
+\mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa7f1ba33e5d39eda0e40ff2a0c304657d}{AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+DONE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{websocket__encoder_8h_a3e5d3d1ed4ee86ea3436f2e63680f91f}{aws\+\_\+websocket\+\_\+encoder\+\_\+init}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, \mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\+\_\+websocket\+\_\+encoder\+\_\+payload\+\_\+fn}} $\ast$stream\+\_\+outgoing\+\_\+payload, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{websocket__encoder_8h_ab83c4fb9f6a3245213755f94968ac8b6}{aws\+\_\+websocket\+\_\+encoder\+\_\+start\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{websocket__encoder_8h_a2990f8100c710c8dd3e59cadcd25bbc4}{aws\+\_\+websocket\+\_\+encoder\+\_\+is\+\_\+frame\+\_\+in\+\_\+progress}} (const struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{websocket__encoder_8h_abb67eed83dced53bb774588eb191baad}{aws\+\_\+websocket\+\_\+encoder\+\_\+process}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}\label{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}} 
+\index{websocket\_encoder.h@{websocket\_encoder.h}!aws\_websocket\_encoder\_payload\_fn@{aws\_websocket\_encoder\_payload\_fn}}
+\index{aws\_websocket\_encoder\_payload\_fn@{aws\_websocket\_encoder\_payload\_fn}!websocket\_encoder.h@{websocket\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_payload\_fn}{aws\_websocket\_encoder\_payload\_fn}}
+{\footnotesize\ttfamily typedef int() aws\+\_\+websocket\+\_\+encoder\+\_\+payload\+\_\+fn(struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ff}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ff}} 
+\index{websocket\_encoder.h@{websocket\_encoder.h}!aws\_websocket\_encoder\_state@{aws\_websocket\_encoder\_state}}
+\index{aws\_websocket\_encoder\_state@{aws\_websocket\_encoder\_state}!websocket\_encoder.h@{websocket\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_state}{aws\_websocket\_encoder\_state}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ff}{aws\+\_\+websocket\+\_\+encoder\+\_\+state}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_WEBSOCKET\_ENCODER\_STATE\_INIT@{AWS\_WEBSOCKET\_ENCODER\_STATE\_INIT}!websocket\_encoder.h@{websocket\_encoder.h}}\index{websocket\_encoder.h@{websocket\_encoder.h}!AWS\_WEBSOCKET\_ENCODER\_STATE\_INIT@{AWS\_WEBSOCKET\_ENCODER\_STATE\_INIT}}}\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa0625b912510d4b7ac75e619ce5bfca28}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa0625b912510d4b7ac75e619ce5bfca28}} 
+AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+INIT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_WEBSOCKET\_ENCODER\_STATE\_OPCODE\_BYTE@{AWS\_WEBSOCKET\_ENCODER\_STATE\_OPCODE\_BYTE}!websocket\_encoder.h@{websocket\_encoder.h}}\index{websocket\_encoder.h@{websocket\_encoder.h}!AWS\_WEBSOCKET\_ENCODER\_STATE\_OPCODE\_BYTE@{AWS\_WEBSOCKET\_ENCODER\_STATE\_OPCODE\_BYTE}}}\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffacb4f7b26bb15c9aa9cc0ea29b14c10f2}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffacb4f7b26bb15c9aa9cc0ea29b14c10f2}} 
+AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+OPCODE\+\_\+\+BYTE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_WEBSOCKET\_ENCODER\_STATE\_LENGTH\_BYTE@{AWS\_WEBSOCKET\_ENCODER\_STATE\_LENGTH\_BYTE}!websocket\_encoder.h@{websocket\_encoder.h}}\index{websocket\_encoder.h@{websocket\_encoder.h}!AWS\_WEBSOCKET\_ENCODER\_STATE\_LENGTH\_BYTE@{AWS\_WEBSOCKET\_ENCODER\_STATE\_LENGTH\_BYTE}}}\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffafc33b7846612fcf8d0ff51f2799ceda5}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffafc33b7846612fcf8d0ff51f2799ceda5}} 
+AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+LENGTH\+\_\+\+BYTE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_WEBSOCKET\_ENCODER\_STATE\_EXTENDED\_LENGTH@{AWS\_WEBSOCKET\_ENCODER\_STATE\_EXTENDED\_LENGTH}!websocket\_encoder.h@{websocket\_encoder.h}}\index{websocket\_encoder.h@{websocket\_encoder.h}!AWS\_WEBSOCKET\_ENCODER\_STATE\_EXTENDED\_LENGTH@{AWS\_WEBSOCKET\_ENCODER\_STATE\_EXTENDED\_LENGTH}}}\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa5ca6c950f5b0b8009383bdd6046b717c}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa5ca6c950f5b0b8009383bdd6046b717c}} 
+AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+EXTENDED\+\_\+\+LENGTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_WEBSOCKET\_ENCODER\_STATE\_MASKING\_KEY\_CHECK@{AWS\_WEBSOCKET\_ENCODER\_STATE\_MASKING\_KEY\_CHECK}!websocket\_encoder.h@{websocket\_encoder.h}}\index{websocket\_encoder.h@{websocket\_encoder.h}!AWS\_WEBSOCKET\_ENCODER\_STATE\_MASKING\_KEY\_CHECK@{AWS\_WEBSOCKET\_ENCODER\_STATE\_MASKING\_KEY\_CHECK}}}\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa68a3fafa4bccd7ebe6b963dcbd30cbda}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa68a3fafa4bccd7ebe6b963dcbd30cbda}} 
+AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+MASKING\+\_\+\+KEY\+\_\+\+CHECK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_WEBSOCKET\_ENCODER\_STATE\_MASKING\_KEY@{AWS\_WEBSOCKET\_ENCODER\_STATE\_MASKING\_KEY}!websocket\_encoder.h@{websocket\_encoder.h}}\index{websocket\_encoder.h@{websocket\_encoder.h}!AWS\_WEBSOCKET\_ENCODER\_STATE\_MASKING\_KEY@{AWS\_WEBSOCKET\_ENCODER\_STATE\_MASKING\_KEY}}}\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffadaa2498e8987f3da7f00fe886b9d52e9}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffadaa2498e8987f3da7f00fe886b9d52e9}} 
+AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+MASKING\+\_\+\+KEY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_WEBSOCKET\_ENCODER\_STATE\_PAYLOAD\_CHECK@{AWS\_WEBSOCKET\_ENCODER\_STATE\_PAYLOAD\_CHECK}!websocket\_encoder.h@{websocket\_encoder.h}}\index{websocket\_encoder.h@{websocket\_encoder.h}!AWS\_WEBSOCKET\_ENCODER\_STATE\_PAYLOAD\_CHECK@{AWS\_WEBSOCKET\_ENCODER\_STATE\_PAYLOAD\_CHECK}}}\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa7e20d63d824668de565609f3a5c73fdd}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa7e20d63d824668de565609f3a5c73fdd}} 
+AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+PAYLOAD\+\_\+\+CHECK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_WEBSOCKET\_ENCODER\_STATE\_PAYLOAD@{AWS\_WEBSOCKET\_ENCODER\_STATE\_PAYLOAD}!websocket\_encoder.h@{websocket\_encoder.h}}\index{websocket\_encoder.h@{websocket\_encoder.h}!AWS\_WEBSOCKET\_ENCODER\_STATE\_PAYLOAD@{AWS\_WEBSOCKET\_ENCODER\_STATE\_PAYLOAD}}}\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa61d464fd184783566192346d6b506768}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa61d464fd184783566192346d6b506768}} 
+AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+PAYLOAD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_WEBSOCKET\_ENCODER\_STATE\_DONE@{AWS\_WEBSOCKET\_ENCODER\_STATE\_DONE}!websocket\_encoder.h@{websocket\_encoder.h}}\index{websocket\_encoder.h@{websocket\_encoder.h}!AWS\_WEBSOCKET\_ENCODER\_STATE\_DONE@{AWS\_WEBSOCKET\_ENCODER\_STATE\_DONE}}}\mbox{\Hypertarget{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa7f1ba33e5d39eda0e40ff2a0c304657d}\label{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa7f1ba33e5d39eda0e40ff2a0c304657d}} 
+AWS\+\_\+\+WEBSOCKET\+\_\+\+ENCODER\+\_\+\+STATE\+\_\+\+DONE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{websocket__encoder_8h_a3e5d3d1ed4ee86ea3436f2e63680f91f}\label{websocket__encoder_8h_a3e5d3d1ed4ee86ea3436f2e63680f91f}} 
+\index{websocket\_encoder.h@{websocket\_encoder.h}!aws\_websocket\_encoder\_init@{aws\_websocket\_encoder\_init}}
+\index{aws\_websocket\_encoder\_init@{aws\_websocket\_encoder\_init}!websocket\_encoder.h@{websocket\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_init()}{aws\_websocket\_encoder\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void aws\+\_\+websocket\+\_\+encoder\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{\mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\+\_\+websocket\+\_\+encoder\+\_\+payload\+\_\+fn}} $\ast$}]{stream\+\_\+outgoing\+\_\+payload,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{websocket__encoder_8h_a2990f8100c710c8dd3e59cadcd25bbc4}\label{websocket__encoder_8h_a2990f8100c710c8dd3e59cadcd25bbc4}} 
+\index{websocket\_encoder.h@{websocket\_encoder.h}!aws\_websocket\_encoder\_is\_frame\_in\_progress@{aws\_websocket\_encoder\_is\_frame\_in\_progress}}
+\index{aws\_websocket\_encoder\_is\_frame\_in\_progress@{aws\_websocket\_encoder\_is\_frame\_in\_progress}!websocket\_encoder.h@{websocket\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_is\_frame\_in\_progress()}{aws\_websocket\_encoder\_is\_frame\_in\_progress()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+encoder\+\_\+is\+\_\+frame\+\_\+in\+\_\+progress (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{websocket__encoder_8h_abb67eed83dced53bb774588eb191baad}\label{websocket__encoder_8h_abb67eed83dced53bb774588eb191baad}} 
+\index{websocket\_encoder.h@{websocket\_encoder.h}!aws\_websocket\_encoder\_process@{aws\_websocket\_encoder\_process}}
+\index{aws\_websocket\_encoder\_process@{aws\_websocket\_encoder\_process}!websocket\_encoder.h@{websocket\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_process()}{aws\_websocket\_encoder\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+websocket\+\_\+encoder\+\_\+process (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{websocket__encoder_8h_ab83c4fb9f6a3245213755f94968ac8b6}\label{websocket__encoder_8h_ab83c4fb9f6a3245213755f94968ac8b6}} 
+\index{websocket\_encoder.h@{websocket\_encoder.h}!aws\_websocket\_encoder\_start\_frame@{aws\_websocket\_encoder\_start\_frame}}
+\index{aws\_websocket\_encoder\_start\_frame@{aws\_websocket\_encoder\_start\_frame}!websocket\_encoder.h@{websocket\_encoder.h}}
+\doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_start\_frame()}{aws\_websocket\_encoder\_start\_frame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+websocket\+\_\+encoder\+\_\+start\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder,  }\item[{const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$}]{frame }\end{DoxyParamCaption})}
+

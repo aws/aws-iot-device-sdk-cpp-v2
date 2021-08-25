@@ -1,0 +1,106 @@
+\hypertarget{s2n__config_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+config.h File Reference}
+\label{s2n__config_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_config.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_config.h}}
+{\ttfamily \#include \char`\"{}api/s2n.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+certificate.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+dhe.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+resume.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+x509\+\_\+validator.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+set.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__config_8h_a7fee8c161984d3810881ce2f6bb5788c}{S2\+N\+\_\+\+MAX\+\_\+\+TICKET\+\_\+\+KEYS}}~48
+\item 
+\#define \mbox{\hyperlink{s2n__config_8h_a9ccf9bf082ce298119fa2520f55ed00d}{S2\+N\+\_\+\+MAX\+\_\+\+TICKET\+\_\+\+KEY\+\_\+\+HASHES}}~500 /$\ast$ 10\+KB $\ast$/
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__config_8h_a3df94c4b3869b7a2e1f8cbc20560607e}{s2n\+\_\+config\+\_\+defaults\+\_\+init}} (void)
+\item 
+struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$ \mbox{\hyperlink{s2n__config_8h_ad0e81c66fdf25a05874c24a6114ac9fe}{s2n\+\_\+fetch\+\_\+default\+\_\+config}} (void)
+\item 
+int \mbox{\hyperlink{s2n__config_8h_a6a88956d4b54cfe3fd4545cffa06bc4d}{s2n\+\_\+config\+\_\+set\+\_\+unsafe\+\_\+for\+\_\+testing}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8h_accfb14c501464782f9de772b47a11d34}{s2n\+\_\+config\+\_\+init\+\_\+session\+\_\+ticket\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8h_ae9670a5dfe7e93c356ba873b1a525533}{s2n\+\_\+config\+\_\+free\+\_\+session\+\_\+ticket\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+void \mbox{\hyperlink{s2n__config_8h_aa48513d694c45d065ace716582142fe3}{s2n\+\_\+wipe\+\_\+static\+\_\+configs}} (void)
+\item 
+struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$ \mbox{\hyperlink{s2n__config_8h_a433047e92c1924ae4e9ff321432d8c62}{s2n\+\_\+config\+\_\+get\+\_\+single\+\_\+default\+\_\+cert}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\item 
+int \mbox{\hyperlink{s2n__config_8h_a4e8d97a085be70f8288d6eb5defcc153}{s2n\+\_\+config\+\_\+get\+\_\+num\+\_\+default\+\_\+certs}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__config_8h_a9ccf9bf082ce298119fa2520f55ed00d}\label{s2n__config_8h_a9ccf9bf082ce298119fa2520f55ed00d}} 
+\index{s2n\_config.h@{s2n\_config.h}!S2N\_MAX\_TICKET\_KEY\_HASHES@{S2N\_MAX\_TICKET\_KEY\_HASHES}}
+\index{S2N\_MAX\_TICKET\_KEY\_HASHES@{S2N\_MAX\_TICKET\_KEY\_HASHES}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_MAX\_TICKET\_KEY\_HASHES}{S2N\_MAX\_TICKET\_KEY\_HASHES}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+MAX\+\_\+\+TICKET\+\_\+\+KEY\+\_\+\+HASHES~500 /$\ast$ 10\+KB $\ast$/}
+
+\mbox{\Hypertarget{s2n__config_8h_a7fee8c161984d3810881ce2f6bb5788c}\label{s2n__config_8h_a7fee8c161984d3810881ce2f6bb5788c}} 
+\index{s2n\_config.h@{s2n\_config.h}!S2N\_MAX\_TICKET\_KEYS@{S2N\_MAX\_TICKET\_KEYS}}
+\index{S2N\_MAX\_TICKET\_KEYS@{S2N\_MAX\_TICKET\_KEYS}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_MAX\_TICKET\_KEYS}{S2N\_MAX\_TICKET\_KEYS}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+MAX\+\_\+\+TICKET\+\_\+\+KEYS~48}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__config_8h_a3df94c4b3869b7a2e1f8cbc20560607e}\label{s2n__config_8h_a3df94c4b3869b7a2e1f8cbc20560607e}} 
+\index{s2n\_config.h@{s2n\_config.h}!s2n\_config\_defaults\_init@{s2n\_config\_defaults\_init}}
+\index{s2n\_config\_defaults\_init@{s2n\_config\_defaults\_init}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_defaults\_init()}{s2n\_config\_defaults\_init()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+defaults\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8h_ae9670a5dfe7e93c356ba873b1a525533}\label{s2n__config_8h_ae9670a5dfe7e93c356ba873b1a525533}} 
+\index{s2n\_config.h@{s2n\_config.h}!s2n\_config\_free\_session\_ticket\_keys@{s2n\_config\_free\_session\_ticket\_keys}}
+\index{s2n\_config\_free\_session\_ticket\_keys@{s2n\_config\_free\_session\_ticket\_keys}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_free\_session\_ticket\_keys()}{s2n\_config\_free\_session\_ticket\_keys()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+free\+\_\+session\+\_\+ticket\+\_\+keys (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8h_a4e8d97a085be70f8288d6eb5defcc153}\label{s2n__config_8h_a4e8d97a085be70f8288d6eb5defcc153}} 
+\index{s2n\_config.h@{s2n\_config.h}!s2n\_config\_get\_num\_default\_certs@{s2n\_config\_get\_num\_default\_certs}}
+\index{s2n\_config\_get\_num\_default\_certs@{s2n\_config\_get\_num\_default\_certs}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_get\_num\_default\_certs()}{s2n\_config\_get\_num\_default\_certs()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+get\+\_\+num\+\_\+default\+\_\+certs (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8h_a433047e92c1924ae4e9ff321432d8c62}\label{s2n__config_8h_a433047e92c1924ae4e9ff321432d8c62}} 
+\index{s2n\_config.h@{s2n\_config.h}!s2n\_config\_get\_single\_default\_cert@{s2n\_config\_get\_single\_default\_cert}}
+\index{s2n\_config\_get\_single\_default\_cert@{s2n\_config\_get\_single\_default\_cert}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_get\_single\_default\_cert()}{s2n\_config\_get\_single\_default\_cert()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}}$\ast$ s2n\+\_\+config\+\_\+get\+\_\+single\+\_\+default\+\_\+cert (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8h_accfb14c501464782f9de772b47a11d34}\label{s2n__config_8h_accfb14c501464782f9de772b47a11d34}} 
+\index{s2n\_config.h@{s2n\_config.h}!s2n\_config\_init\_session\_ticket\_keys@{s2n\_config\_init\_session\_ticket\_keys}}
+\index{s2n\_config\_init\_session\_ticket\_keys@{s2n\_config\_init\_session\_ticket\_keys}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_init\_session\_ticket\_keys()}{s2n\_config\_init\_session\_ticket\_keys()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+init\+\_\+session\+\_\+ticket\+\_\+keys (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8h_a6a88956d4b54cfe3fd4545cffa06bc4d}\label{s2n__config_8h_a6a88956d4b54cfe3fd4545cffa06bc4d}} 
+\index{s2n\_config.h@{s2n\_config.h}!s2n\_config\_set\_unsafe\_for\_testing@{s2n\_config\_set\_unsafe\_for\_testing}}
+\index{s2n\_config\_set\_unsafe\_for\_testing@{s2n\_config\_set\_unsafe\_for\_testing}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_config\_set\_unsafe\_for\_testing()}{s2n\_config\_set\_unsafe\_for\_testing()}}
+{\footnotesize\ttfamily int s2n\+\_\+config\+\_\+set\+\_\+unsafe\+\_\+for\+\_\+testing (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8h_ad0e81c66fdf25a05874c24a6114ac9fe}\label{s2n__config_8h_ad0e81c66fdf25a05874c24a6114ac9fe}} 
+\index{s2n\_config.h@{s2n\_config.h}!s2n\_fetch\_default\_config@{s2n\_fetch\_default\_config}}
+\index{s2n\_fetch\_default\_config@{s2n\_fetch\_default\_config}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_fetch\_default\_config()}{s2n\_fetch\_default\_config()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}}$\ast$ s2n\+\_\+fetch\+\_\+default\+\_\+config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__config_8h_aa48513d694c45d065ace716582142fe3}\label{s2n__config_8h_aa48513d694c45d065ace716582142fe3}} 
+\index{s2n\_config.h@{s2n\_config.h}!s2n\_wipe\_static\_configs@{s2n\_wipe\_static\_configs}}
+\index{s2n\_wipe\_static\_configs@{s2n\_wipe\_static\_configs}!s2n\_config.h@{s2n\_config.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_wipe\_static\_configs()}{s2n\_wipe\_static\_configs()}}
+{\footnotesize\ttfamily void s2n\+\_\+wipe\+\_\+static\+\_\+configs (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+

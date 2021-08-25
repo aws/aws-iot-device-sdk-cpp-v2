@@ -1,0 +1,82 @@
+\hypertarget{split__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/split\+\_\+test.c File Reference}
+\label{split__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/split\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/split\_test.c}}
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{split__test_8c_ab51efc95aa55f0f3e0a982c2363351c9}{s\+\_\+test\+\_\+char\+\_\+split\+\_\+happy\+\_\+path\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{split__test_8c_ab12942ed4c04d508ff5bd9410d3262b0}{s\+\_\+test\+\_\+char\+\_\+split\+\_\+ends\+\_\+with\+\_\+token\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{split__test_8c_a3adb7eb986356d68fd8d353c912e1c5f}{s\+\_\+test\+\_\+char\+\_\+split\+\_\+begins\+\_\+with\+\_\+token\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{split__test_8c_aa5e152bae5de831d366c8a57b36f298a}{s\+\_\+test\+\_\+char\+\_\+split\+\_\+token\+\_\+not\+\_\+present\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{split__test_8c_a805a308d68acb3fe04cb964571887ca2}{s\+\_\+test\+\_\+char\+\_\+split\+\_\+empty\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{split__test_8c_a86a37d6afe5a65a930986659eb8b0b54}{s\+\_\+test\+\_\+char\+\_\+split\+\_\+zeroed\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{split__test_8c_a7791eddccab9522d26e5c74b79d4c33a}{s\+\_\+test\+\_\+char\+\_\+split\+\_\+adj\+\_\+tokens\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{split__test_8c_a7860cda869dfa98e8e03767900f9a5c2}{s\+\_\+test\+\_\+char\+\_\+split\+\_\+with\+\_\+max\+\_\+splits\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{split__test_8c_a33c5cfa77540a59bb425f6829a491445}{s\+\_\+test\+\_\+char\+\_\+split\+\_\+output\+\_\+too\+\_\+small\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{split__test_8c_a7791eddccab9522d26e5c74b79d4c33a}\label{split__test_8c_a7791eddccab9522d26e5c74b79d4c33a}} 
+\index{split\_test.c@{split\_test.c}!s\_test\_char\_split\_adj\_tokens\_fn@{s\_test\_char\_split\_adj\_tokens\_fn}}
+\index{s\_test\_char\_split\_adj\_tokens\_fn@{s\_test\_char\_split\_adj\_tokens\_fn}!split\_test.c@{split\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_char\_split\_adj\_tokens\_fn()}{s\_test\_char\_split\_adj\_tokens\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+char\+\_\+split\+\_\+adj\+\_\+tokens\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{split__test_8c_a3adb7eb986356d68fd8d353c912e1c5f}\label{split__test_8c_a3adb7eb986356d68fd8d353c912e1c5f}} 
+\index{split\_test.c@{split\_test.c}!s\_test\_char\_split\_begins\_with\_token\_fn@{s\_test\_char\_split\_begins\_with\_token\_fn}}
+\index{s\_test\_char\_split\_begins\_with\_token\_fn@{s\_test\_char\_split\_begins\_with\_token\_fn}!split\_test.c@{split\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_char\_split\_begins\_with\_token\_fn()}{s\_test\_char\_split\_begins\_with\_token\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+char\+\_\+split\+\_\+begins\+\_\+with\+\_\+token\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{split__test_8c_a805a308d68acb3fe04cb964571887ca2}\label{split__test_8c_a805a308d68acb3fe04cb964571887ca2}} 
+\index{split\_test.c@{split\_test.c}!s\_test\_char\_split\_empty\_fn@{s\_test\_char\_split\_empty\_fn}}
+\index{s\_test\_char\_split\_empty\_fn@{s\_test\_char\_split\_empty\_fn}!split\_test.c@{split\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_char\_split\_empty\_fn()}{s\_test\_char\_split\_empty\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+char\+\_\+split\+\_\+empty\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{split__test_8c_ab12942ed4c04d508ff5bd9410d3262b0}\label{split__test_8c_ab12942ed4c04d508ff5bd9410d3262b0}} 
+\index{split\_test.c@{split\_test.c}!s\_test\_char\_split\_ends\_with\_token\_fn@{s\_test\_char\_split\_ends\_with\_token\_fn}}
+\index{s\_test\_char\_split\_ends\_with\_token\_fn@{s\_test\_char\_split\_ends\_with\_token\_fn}!split\_test.c@{split\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_char\_split\_ends\_with\_token\_fn()}{s\_test\_char\_split\_ends\_with\_token\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+char\+\_\+split\+\_\+ends\+\_\+with\+\_\+token\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{split__test_8c_ab51efc95aa55f0f3e0a982c2363351c9}\label{split__test_8c_ab51efc95aa55f0f3e0a982c2363351c9}} 
+\index{split\_test.c@{split\_test.c}!s\_test\_char\_split\_happy\_path\_fn@{s\_test\_char\_split\_happy\_path\_fn}}
+\index{s\_test\_char\_split\_happy\_path\_fn@{s\_test\_char\_split\_happy\_path\_fn}!split\_test.c@{split\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_char\_split\_happy\_path\_fn()}{s\_test\_char\_split\_happy\_path\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+char\+\_\+split\+\_\+happy\+\_\+path\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{split__test_8c_a33c5cfa77540a59bb425f6829a491445}\label{split__test_8c_a33c5cfa77540a59bb425f6829a491445}} 
+\index{split\_test.c@{split\_test.c}!s\_test\_char\_split\_output\_too\_small\_fn@{s\_test\_char\_split\_output\_too\_small\_fn}}
+\index{s\_test\_char\_split\_output\_too\_small\_fn@{s\_test\_char\_split\_output\_too\_small\_fn}!split\_test.c@{split\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_char\_split\_output\_too\_small\_fn()}{s\_test\_char\_split\_output\_too\_small\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+char\+\_\+split\+\_\+output\+\_\+too\+\_\+small\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{split__test_8c_aa5e152bae5de831d366c8a57b36f298a}\label{split__test_8c_aa5e152bae5de831d366c8a57b36f298a}} 
+\index{split\_test.c@{split\_test.c}!s\_test\_char\_split\_token\_not\_present\_fn@{s\_test\_char\_split\_token\_not\_present\_fn}}
+\index{s\_test\_char\_split\_token\_not\_present\_fn@{s\_test\_char\_split\_token\_not\_present\_fn}!split\_test.c@{split\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_char\_split\_token\_not\_present\_fn()}{s\_test\_char\_split\_token\_not\_present\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+char\+\_\+split\+\_\+token\+\_\+not\+\_\+present\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{split__test_8c_a7860cda869dfa98e8e03767900f9a5c2}\label{split__test_8c_a7860cda869dfa98e8e03767900f9a5c2}} 
+\index{split\_test.c@{split\_test.c}!s\_test\_char\_split\_with\_max\_splits\_fn@{s\_test\_char\_split\_with\_max\_splits\_fn}}
+\index{s\_test\_char\_split\_with\_max\_splits\_fn@{s\_test\_char\_split\_with\_max\_splits\_fn}!split\_test.c@{split\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_char\_split\_with\_max\_splits\_fn()}{s\_test\_char\_split\_with\_max\_splits\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+char\+\_\+split\+\_\+with\+\_\+max\+\_\+splits\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{split__test_8c_a86a37d6afe5a65a930986659eb8b0b54}\label{split__test_8c_a86a37d6afe5a65a930986659eb8b0b54}} 
+\index{split\_test.c@{split\_test.c}!s\_test\_char\_split\_zeroed\_fn@{s\_test\_char\_split\_zeroed\_fn}}
+\index{s\_test\_char\_split\_zeroed\_fn@{s\_test\_char\_split\_zeroed\_fn}!split\_test.c@{split\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_char\_split\_zeroed\_fn()}{s\_test\_char\_split\_zeroed\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+char\+\_\+split\+\_\+zeroed\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

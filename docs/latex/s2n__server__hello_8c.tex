@@ -1,0 +1,139 @@
+\hypertarget{s2n__server__hello_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+server\+\_\+hello.c File Reference}
+\label{s2n__server__hello_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_server\_hello.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_server\_hello.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+preferences.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+alerts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+server\+\_\+extensions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+random.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__server__hello_8c_a2cb71a349ceab5a3a4a46d133306bf81}{S2\+N\+\_\+\+TLS\+\_\+\+COMPRESSION\+\_\+\+METHOD\+\_\+\+NULL}}~0
+\item 
+\#define \mbox{\hyperlink{s2n__server__hello_8c_a1fb2bd341e2523e46ccf2613ac669504}{S2\+N\+\_\+\+DOWNGRADE\+\_\+\+PROTECTION\+\_\+\+SIZE}}~8
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__server__hello_8c_a37d4eea99b9cfa5f220c2d1b30806d9f}{s2n\+\_\+hello\+\_\+retry\+\_\+validate}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__server__hello_8c_a533735df974402f3d1a87b27f2e5fb0d}{s2n\+\_\+client\+\_\+detect\+\_\+downgrade\+\_\+mechanism}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__server__hello_8c_a6531ae49dcb38eb764b2392a97e32942}{s2n\+\_\+server\+\_\+add\+\_\+downgrade\+\_\+mechanism}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__server__hello_8c_addc6b813f49a2f78f88d0189a0137321}{s2n\+\_\+server\+\_\+hello\+\_\+parse}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__hello_8c_a2139f810755eb8cf27ebea179e81ac81}{s2n\+\_\+server\+\_\+hello\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__hello_8c_a25a2bd87cc5d292e1c01fcaff9975c9e}{s2n\+\_\+server\+\_\+hello\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__hello_8c_a8e32b708f98ecbfa1148c5393f8b9dba}{s2n\+\_\+server\+\_\+hello\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__server__hello_8c_a7616052b0c36ac15894c612b6967f970}{tls12\+\_\+downgrade\+\_\+protection\+\_\+bytes}} \mbox{[}$\,$\mbox{]}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__server__hello_8c_a36eb4a95d9010abd236aa5dc88399146}{tls11\+\_\+downgrade\+\_\+protection\+\_\+bytes}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__server__hello_8c_a1fb2bd341e2523e46ccf2613ac669504}\label{s2n__server__hello_8c_a1fb2bd341e2523e46ccf2613ac669504}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!S2N\_DOWNGRADE\_PROTECTION\_SIZE@{S2N\_DOWNGRADE\_PROTECTION\_SIZE}}
+\index{S2N\_DOWNGRADE\_PROTECTION\_SIZE@{S2N\_DOWNGRADE\_PROTECTION\_SIZE}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_DOWNGRADE\_PROTECTION\_SIZE}{S2N\_DOWNGRADE\_PROTECTION\_SIZE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+DOWNGRADE\+\_\+\+PROTECTION\+\_\+\+SIZE~8}
+
+\mbox{\Hypertarget{s2n__server__hello_8c_a2cb71a349ceab5a3a4a46d133306bf81}\label{s2n__server__hello_8c_a2cb71a349ceab5a3a4a46d133306bf81}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!S2N\_TLS\_COMPRESSION\_METHOD\_NULL@{S2N\_TLS\_COMPRESSION\_METHOD\_NULL}}
+\index{S2N\_TLS\_COMPRESSION\_METHOD\_NULL@{S2N\_TLS\_COMPRESSION\_METHOD\_NULL}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_TLS\_COMPRESSION\_METHOD\_NULL}{S2N\_TLS\_COMPRESSION\_METHOD\_NULL}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+TLS\+\_\+\+COMPRESSION\+\_\+\+METHOD\+\_\+\+NULL~0}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__hello_8c_a533735df974402f3d1a87b27f2e5fb0d}\label{s2n__server__hello_8c_a533735df974402f3d1a87b27f2e5fb0d}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!s2n\_client\_detect\_downgrade\_mechanism@{s2n\_client\_detect\_downgrade\_mechanism}}
+\index{s2n\_client\_detect\_downgrade\_mechanism@{s2n\_client\_detect\_downgrade\_mechanism}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_detect\_downgrade\_mechanism()}{s2n\_client\_detect\_downgrade\_mechanism()}}
+{\footnotesize\ttfamily static int s2n\+\_\+client\+\_\+detect\+\_\+downgrade\+\_\+mechanism (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__server__hello_8c_a37d4eea99b9cfa5f220c2d1b30806d9f}\label{s2n__server__hello_8c_a37d4eea99b9cfa5f220c2d1b30806d9f}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!s2n\_hello\_retry\_validate@{s2n\_hello\_retry\_validate}}
+\index{s2n\_hello\_retry\_validate@{s2n\_hello\_retry\_validate}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hello\_retry\_validate()}{s2n\_hello\_retry\_validate()}}
+{\footnotesize\ttfamily static int s2n\+\_\+hello\+\_\+retry\+\_\+validate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__server__hello_8c_a6531ae49dcb38eb764b2392a97e32942}\label{s2n__server__hello_8c_a6531ae49dcb38eb764b2392a97e32942}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!s2n\_server\_add\_downgrade\_mechanism@{s2n\_server\_add\_downgrade\_mechanism}}
+\index{s2n\_server\_add\_downgrade\_mechanism@{s2n\_server\_add\_downgrade\_mechanism}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_add\_downgrade\_mechanism()}{s2n\_server\_add\_downgrade\_mechanism()}}
+{\footnotesize\ttfamily static int s2n\+\_\+server\+\_\+add\+\_\+downgrade\+\_\+mechanism (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__server__hello_8c_addc6b813f49a2f78f88d0189a0137321}\label{s2n__server__hello_8c_addc6b813f49a2f78f88d0189a0137321}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!s2n\_server\_hello\_parse@{s2n\_server\_hello\_parse}}
+\index{s2n\_server\_hello\_parse@{s2n\_server\_hello\_parse}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_hello\_parse()}{s2n\_server\_hello\_parse()}}
+{\footnotesize\ttfamily static int s2n\+\_\+server\+\_\+hello\+\_\+parse (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__server__hello_8c_a2139f810755eb8cf27ebea179e81ac81}\label{s2n__server__hello_8c_a2139f810755eb8cf27ebea179e81ac81}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!s2n\_server\_hello\_recv@{s2n\_server\_hello\_recv}}
+\index{s2n\_server\_hello\_recv@{s2n\_server\_hello\_recv}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_hello\_recv()}{s2n\_server\_hello\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+hello\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__hello_8c_a8e32b708f98ecbfa1148c5393f8b9dba}\label{s2n__server__hello_8c_a8e32b708f98ecbfa1148c5393f8b9dba}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!s2n\_server\_hello\_send@{s2n\_server\_hello\_send}}
+\index{s2n\_server\_hello\_send@{s2n\_server\_hello\_send}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_hello\_send()}{s2n\_server\_hello\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+hello\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__hello_8c_a25a2bd87cc5d292e1c01fcaff9975c9e}\label{s2n__server__hello_8c_a25a2bd87cc5d292e1c01fcaff9975c9e}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!s2n\_server\_hello\_write\_message@{s2n\_server\_hello\_write\_message}}
+\index{s2n\_server\_hello\_write\_message@{s2n\_server\_hello\_write\_message}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_hello\_write\_message()}{s2n\_server\_hello\_write\_message()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+hello\+\_\+write\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__server__hello_8c_a36eb4a95d9010abd236aa5dc88399146}\label{s2n__server__hello_8c_a36eb4a95d9010abd236aa5dc88399146}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!tls11\_downgrade\_protection\_bytes@{tls11\_downgrade\_protection\_bytes}}
+\index{tls11\_downgrade\_protection\_bytes@{tls11\_downgrade\_protection\_bytes}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{tls11\_downgrade\_protection\_bytes}{tls11\_downgrade\_protection\_bytes}}
+{\footnotesize\ttfamily const uint8\+\_\+t tls11\+\_\+downgrade\+\_\+protection\+\_\+bytes\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    0x44, 0x4F, 0x57, 0x4E, 0x47, 0x52, 0x44, 0x00}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__server__hello_8c_a7616052b0c36ac15894c612b6967f970}\label{s2n__server__hello_8c_a7616052b0c36ac15894c612b6967f970}} 
+\index{s2n\_server\_hello.c@{s2n\_server\_hello.c}!tls12\_downgrade\_protection\_bytes@{tls12\_downgrade\_protection\_bytes}}
+\index{tls12\_downgrade\_protection\_bytes@{tls12\_downgrade\_protection\_bytes}!s2n\_server\_hello.c@{s2n\_server\_hello.c}}
+\doxysubsubsection{\texorpdfstring{tls12\_downgrade\_protection\_bytes}{tls12\_downgrade\_protection\_bytes}}
+{\footnotesize\ttfamily const uint8\+\_\+t tls12\+\_\+downgrade\+\_\+protection\+\_\+bytes\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    0x44, 0x4F, 0x57, 0x4E, 0x47, 0x52, 0x44, 0x01}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

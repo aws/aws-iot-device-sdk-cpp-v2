@@ -1,0 +1,48 @@
+\hypertarget{s2n__ensure_8h_source}{}\doxysection{s2n\+\_\+ensure.\+h}
+\label{s2n__ensure_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/working/stubs/s2n\_ensure.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/working/stubs/s2n\_ensure.h}}
+\mbox{\hyperlink{s2n__ensure_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{sidetrail_2working_2stubs_2s2n__annotations_8h}{s2n\_annotations.h}}"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}sidetrail.h"{}}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keywordtype}{void} \mbox{\hyperlink{s2n__ensure_8h_a4331e80eab72d85d1ee1995d520b39d9}{\_\_VERIFIER\_assume}}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define MEMCOPY\_COST 2}}
+\DoxyCodeLine{24 \textcolor{keywordtype}{void} *\mbox{\hyperlink{s2n__ensure_8h_a169f515549b5dd42e0030407bf6b04c7}{memcpy}}(\textcolor{keywordtype}{void} *str1, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *str2, \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{namespace_aws_a56a46d10ee9f89f5ff63ceb62ec27991}{n}});}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keywordtype}{void} *\mbox{\hyperlink{s2n__ensure_8h_acd5883d1ba48867f75e558423f9fa205}{s2n\_sidetrail\_memset}}(\textcolor{keywordtype}{void} * ptr, \textcolor{keywordtype}{int} value, \textcolor{keywordtype}{size\_t} num);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define \_\_S2N\_ENSURE( cond, action )                       \_\_VERIFIER\_assume((cond))}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define \_\_S2N\_ENSURE\_CONDITION( cond, action )             (void) 0}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define \_\_S2N\_ENSURE\_SAFE\_MEMCPY( d , s , n , guard )      do \{ memcpy((d), (s), (n)); \} while(0)}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define \_\_S2N\_ENSURE\_SAFE\_MEMSET( d , c , n , guard )      \(\backslash\)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{  do \{                                                     \(\backslash\)}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{    \_\_typeof( n ) \_\_tmp\_n = ( n );                         \(\backslash\)}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{    if ( \_\_tmp\_n ) \{                                       \(\backslash\)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{      \_\_typeof( d ) \_\_tmp\_d = ( d );                       \(\backslash\)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{      guard( \_\_tmp\_d );                                    \(\backslash\)}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{      s2n\_sidetrail\_memset( \_\_tmp\_d, (c), \_\_tmp\_n);        \(\backslash\)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{    \}                                                      \(\backslash\)}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{  \} while(0)}}
+
+\end{DoxyCode}

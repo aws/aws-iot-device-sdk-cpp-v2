@@ -1,0 +1,263 @@
+\hypertarget{client__impl_8h_source}{}\doxysection{client\+\_\+impl.\+h}
+\label{client__impl_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/client\_impl.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/client\_impl.h}}
+\mbox{\hyperlink{client__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_MQTT\_PRIVATE\_CLIENT\_IMPL\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_MQTT\_PRIVATE\_CLIENT\_IMPL\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{client_8h}{aws/mqtt/client.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{fixed__header_8h}{aws/mqtt/private/fixed\_header.h}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{topic__tree_8h}{aws/mqtt/private/topic\_tree.h}}>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{hash__table_8h}{aws/common/hash\_table.h}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{mutex_8h}{aws/common/mutex.h}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{task__scheduler_8h}{aws/common/task\_scheduler.h}}>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{channel_8h}{aws/io/channel.h}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{channel__bootstrap_8h}{aws/io/channel\_bootstrap.h}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{message__pool_8h}{aws/io/message\_pool.h}}>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{socket_8h}{aws/io/socket.h}}>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tls__channel__handler_8h}{aws/io/tls\_channel\_handler.h}}>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define MQTT\_CLIENT\_CALL\_CALLBACK(client\_ptr, callback)                                                                \(\backslash\)}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{        if ((client\_ptr)-\/>callback) \{                                                                                  \(\backslash\)}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{            (client\_ptr)-\/>callback((client\_ptr), (client\_ptr)-\/>callback\#\#\_ud);                                         \(\backslash\)}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{        \}                                                                                                              \(\backslash\)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{    \} while (false)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define MQTT\_CLIENT\_CALL\_CALLBACK\_ARGS(client\_ptr, callback, ...)                                                      \(\backslash\)}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{        if ((client\_ptr)-\/>callback) \{                                                                                  \(\backslash\)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{            (client\_ptr)-\/>callback((client\_ptr), \_\_VA\_ARGS\_\_, (client\_ptr)-\/>callback\#\#\_ud);                            \(\backslash\)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{        \}                                                                                                              \(\backslash\)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{    \} while (false)}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define ASSERT\_SYNCED\_DATA\_LOCK\_HELD(object) AWS\_ASSERT(aws\_mutex\_try\_lock(\&(object)-\/>synced\_data.lock) == AWS\_OP\_ERR)}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{enum} \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7}{aws\_mqtt\_client\_connection\_state}} \{}
+\DoxyCodeLine{40     \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7a3a5d0fbd73798fbb3693b65af95fcca0}{AWS\_MQTT\_CLIENT\_STATE\_CONNECTING}},}
+\DoxyCodeLine{41     \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7a43ce1f6000c8e960be943e8fcf548910}{AWS\_MQTT\_CLIENT\_STATE\_CONNECTED}},}
+\DoxyCodeLine{42     \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7a1a8499a0632a7e8496e1eff2969f4047}{AWS\_MQTT\_CLIENT\_STATE\_RECONNECTING}},}
+\DoxyCodeLine{43     \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7a31d06f2acbaa78aa8fd4e314a31c8eb1}{AWS\_MQTT\_CLIENT\_STATE\_DISCONNECTING}},}
+\DoxyCodeLine{44     \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7aff906dec1a0c3b8a50e097ea0b4f3b26}{AWS\_MQTT\_CLIENT\_STATE\_DISCONNECTED}},}
+\DoxyCodeLine{45 \};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 \textcolor{keyword}{enum} \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\_mqtt\_client\_request\_state}} \{}
+\DoxyCodeLine{48     \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3a4c90093cc7b0b11185e4b4c26fa80d49}{AWS\_MQTT\_CLIENT\_REQUEST\_ONGOING}},}
+\DoxyCodeLine{49     \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3a0f95a0dc8d33c245a395aa478028cb99}{AWS\_MQTT\_CLIENT\_REQUEST\_COMPLETE}},}
+\DoxyCodeLine{50     \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3ab798a7ebac2385ea4d2276c221ee2314}{AWS\_MQTT\_CLIENT\_REQUEST\_ERROR}},}
+\DoxyCodeLine{51 \};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{60 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \mbox{\hyperlink{client__impl_8h_aed6752d7ea83c84874926b81fe65cce3}{aws\_mqtt\_client\_request\_state}}(}
+\DoxyCodeLine{61     \mbox{\hyperlink{client__impl_8h_a4ec959b94fcce2a80fe15e2fffd13c74}{aws\_mqtt\_send\_request\_fn}})(uint16\_t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\_id}}, \textcolor{keywordtype}{bool} is\_first\_attempt, \textcolor{keywordtype}{void} *userdata);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__request}{aws\_mqtt\_request}} \{}
+\DoxyCodeLine{64     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} \mbox{\hyperlink{structaws__mqtt__request_a4b9bb20034529af5793dcea9354e5b80}{list\_node}};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__mqtt__request_ae2b0b15605680752142a9f6551c54e79}{allocator}};}
+\DoxyCodeLine{67     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *\mbox{\hyperlink{structaws__mqtt__request_a67cd6ae76cb94fe6c5b947411bee640e}{connection}};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}} \mbox{\hyperlink{structaws__mqtt__request_a9380c29062e8e69d2c55bbdbac11e8c1}{outgoing\_task}};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     uint16\_t \mbox{\hyperlink{structaws__mqtt__request_a4c1aa495a981115b96911138b08aabfa}{packet\_id}};}
+\DoxyCodeLine{72     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__mqtt__request_a18c4658a5217812eff0f33ba43f0bed8}{retryable}};}
+\DoxyCodeLine{73     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__mqtt__request_a11cf9e483764a09bb5fbc692f65dcc87}{initiated}};}
+\DoxyCodeLine{74     \mbox{\hyperlink{client__impl_8h_a4ec959b94fcce2a80fe15e2fffd13c74}{aws\_mqtt\_send\_request\_fn}} *\mbox{\hyperlink{structaws__mqtt__request_aeea4be943fe382a44bb827fbbfa6758e}{send\_request}};}
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__mqtt__request_adcc13afe07029ae8f40db9dbfd54a9f4}{send\_request\_ud}};}
+\DoxyCodeLine{76     \mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\_mqtt\_op\_complete\_fn}} *\mbox{\hyperlink{structaws__mqtt__request_aae3c1291484e71d441d4b5926689b649}{on\_complete}};}
+\DoxyCodeLine{77     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__mqtt__request_a2740562facc9e559bfecde22c8f76605}{on\_complete\_ud}};}
+\DoxyCodeLine{78 \};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__reconnect__task}{aws\_mqtt\_reconnect\_task}} \{}
+\DoxyCodeLine{81     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task}{aws\_task}} \mbox{\hyperlink{structaws__mqtt__reconnect__task_aef4b39cd504ca06f3eb66a529c08e88f}{task}};}
+\DoxyCodeLine{82     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__atomic__var}{aws\_atomic\_var}} \mbox{\hyperlink{structaws__mqtt__reconnect__task_a2532b51e049ea835257b8289ff04b5ca}{connection\_ptr}};}
+\DoxyCodeLine{83     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__mqtt__reconnect__task_af39e2e4e418b3f4554d5f169a73768d1}{allocator}};}
+\DoxyCodeLine{84 \};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \textcolor{comment}{/* The lifetime of this struct is from subscribe -\/> suback */}}
+\DoxyCodeLine{87 \textcolor{keyword}{struct }\mbox{\hyperlink{structsubscribe__task__arg}{subscribe\_task\_arg}} \{}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *\mbox{\hyperlink{structsubscribe__task__arg_a3bc2bede0a4cd65ceb85141c1848c73f}{connection}};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \textcolor{comment}{/* list of pointer of subscribe\_task\_topics */}}
+\DoxyCodeLine{92     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} \mbox{\hyperlink{structsubscribe__task__arg_a1cac4726626090afe0c4a1ab5a2ab823}{topics}};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     \textcolor{comment}{/* Packet to populate */}}
+\DoxyCodeLine{95     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\_mqtt\_packet\_subscribe}} \mbox{\hyperlink{structsubscribe__task__arg_a6cbae898bea9fd7a2a91a0f857b53b5d}{subscribe}};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{comment}{/* true if transaction was committed to the topic tree, false requires a retry */}}
+\DoxyCodeLine{98     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structsubscribe__task__arg_a2c76825186195d95dbcaa5edacf1ea22}{tree\_updated}};}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{101         \mbox{\hyperlink{client_8h_a11a3408e5ffe9d1c61fe6c15617b8728}{aws\_mqtt\_suback\_multi\_fn}} *\mbox{\hyperlink{structsubscribe__task__arg_a94a7392c00fdc57455c1f42cf72e550c}{multi}};}
+\DoxyCodeLine{102         \mbox{\hyperlink{client_8h_a57a5b13d3ef0e02da483985f1a24eb10}{aws\_mqtt\_suback\_fn}} *\mbox{\hyperlink{structsubscribe__task__arg_af5f71d5fde09d57e017be79fff308be8}{single}};}
+\DoxyCodeLine{103     \} \mbox{\hyperlink{structsubscribe__task__arg_a06a8c57447fd1d9c6e8fc8e3f163bb1b}{on\_suback}};}
+\DoxyCodeLine{104     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structsubscribe__task__arg_ad69f35cddd691e7c829a318e20ba43b8}{on\_suback\_ud}};}
+\DoxyCodeLine{105 \};}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{comment}{/* The lifetime of this struct is the same as the lifetime of the subscription */}}
+\DoxyCodeLine{108 \textcolor{keyword}{struct }\mbox{\hyperlink{structsubscribe__task__topic}{subscribe\_task\_topic}} \{}
+\DoxyCodeLine{109     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *\mbox{\hyperlink{structsubscribe__task__topic_a7f8d4625a8c49f80a5bc9542e0558582}{connection}};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__topic__subscription}{aws\_mqtt\_topic\_subscription}} \mbox{\hyperlink{structsubscribe__task__topic_a30c03a09765e5aebe6fc2591474de509}{request}};}
+\DoxyCodeLine{112     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{structsubscribe__task__topic_a78d0f8bd5b422ea4ef7a534d305972d0}{filter}};}
+\DoxyCodeLine{113     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structsubscribe__task__topic_ae6d0f341bb9eba7127a6b3749590019e}{is\_local}};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__ref__count}{aws\_ref\_count}} \mbox{\hyperlink{structsubscribe__task__topic_ac1fbdb315ab7542e983edc89830800a9}{ref\_count}};}
+\DoxyCodeLine{116 \};}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} \{}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a0559623e981f75225512ce7a51c40ed3}{allocator}};}
+\DoxyCodeLine{121     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__ref__count}{aws\_ref\_count}} \mbox{\hyperlink{structaws__mqtt__client__connection_a3f379dc5767630b49003fc5499b786cf}{ref\_count}};}
+\DoxyCodeLine{122     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__client}{aws\_mqtt\_client}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a3f549d2ea074f1cc3eef29a54d8d83fa}{client}};}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124     \textcolor{comment}{/* Channel handler information */}}
+\DoxyCodeLine{125     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} \mbox{\hyperlink{structaws__mqtt__client__connection_a7afa2b20ea33a89cb7410637689196c3}{handler}};}
+\DoxyCodeLine{126     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *\mbox{\hyperlink{structaws__mqtt__client__connection_af80ebaf1cd9638c263e03de6fd2378ea}{slot}};}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128     \textcolor{comment}{/* The host information, changed by user when state is AWS\_MQTT\_CLIENT\_STATE\_DISCONNECTED */}}
+\DoxyCodeLine{129     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a6b8e1f35069a9faeea6c881488ab1027}{host\_name}};}
+\DoxyCodeLine{130     uint16\_t \mbox{\hyperlink{structaws__mqtt__client__connection_a097c9141cfe4aba7957dcadc0184d2ff}{port}};}
+\DoxyCodeLine{131     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} \mbox{\hyperlink{structaws__mqtt__client__connection_aa57d70413a56ea7af5013e2e5db62512}{tls\_options}};}
+\DoxyCodeLine{132     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__socket__options}{aws\_socket\_options}} \mbox{\hyperlink{structaws__mqtt__client__connection_a62b983e2f4541b7c17c8b067b49d916d}{socket\_options}};}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134     \textcolor{comment}{/* Connect parameters */}}
+\DoxyCodeLine{135     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structaws__mqtt__client__connection_acb667a754d1192e8b6dfe35e6c116298}{client\_id}};}
+\DoxyCodeLine{136     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__mqtt__client__connection_a4d1982c5998709ded2bb4c8c189985b3}{clean\_session}};}
+\DoxyCodeLine{137     uint16\_t \mbox{\hyperlink{structaws__mqtt__client__connection_a0884b2dea6fdcef79738b8b2b9b75860}{keep\_alive\_time\_secs}};}
+\DoxyCodeLine{138     uint64\_t \mbox{\hyperlink{structaws__mqtt__client__connection_a373742e18b0a556e18102922413d49ba}{request\_timeout\_ns}};}
+\DoxyCodeLine{139     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{structaws__mqtt__client__connection_aeaaf60b787337e2d69db65a5e9f51f1d}{username}};}
+\DoxyCodeLine{140     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a87b9ffc0a328a668199840189e1f8e6a}{password}};}
+\DoxyCodeLine{141     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{142         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structaws__mqtt__client__connection_a8beb4d40f151fdeb2f630cfebeac924e}{topic}};}
+\DoxyCodeLine{143         \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{structaws__mqtt__client__connection_a5d116e4c37220a9397199e27e90b8bba}{qos}};}
+\DoxyCodeLine{144         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__mqtt__client__connection_a0a9b0439fd195534e3f95f4c216e7711}{retain}};}
+\DoxyCodeLine{145         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structaws__mqtt__client__connection_ae79a30c3c428a546b220b93553ec3a75}{payload}};}
+\DoxyCodeLine{146     \} \mbox{\hyperlink{structaws__mqtt__client__connection_a5368c04d9c860b4cc1b5330002a9c910}{will}};}
+\DoxyCodeLine{147     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{148         uint64\_t \mbox{\hyperlink{structaws__mqtt__client__connection_a832581f5ecf5ecec5cd70ffa2a423348}{current}};      \textcolor{comment}{/* seconds */}}
+\DoxyCodeLine{149         uint64\_t \mbox{\hyperlink{structaws__mqtt__client__connection_ac5d5841cb587bf939f7fed028d2e9ce1}{min}};          \textcolor{comment}{/* seconds */}}
+\DoxyCodeLine{150         uint64\_t \mbox{\hyperlink{structaws__mqtt__client__connection_af991cdacffb95bd903aa587492088fa7}{max}};          \textcolor{comment}{/* seconds */}}
+\DoxyCodeLine{151         uint64\_t \mbox{\hyperlink{structaws__mqtt__client__connection_a32b63cf965e47a23687a6f0ba2cdc90d}{next\_attempt}}; \textcolor{comment}{/* milliseconds */}}
+\DoxyCodeLine{152     \} \mbox{\hyperlink{structaws__mqtt__client__connection_aab7687f322a9aab1bb06d52fbf7bc43b}{reconnect\_timeouts}};}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154     \textcolor{comment}{/* User connection callbacks */}}
+\DoxyCodeLine{155     \mbox{\hyperlink{client_8h_a4cdd60b71e0103c78979e02175c05d05}{aws\_mqtt\_client\_on\_connection\_complete\_fn}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a4db21bb818bdbd6c5ca0880262353815}{on\_connection\_complete}};}
+\DoxyCodeLine{156     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__mqtt__client__connection_a365186283841e7aefc2e05b1eee78eaf}{on\_connection\_complete\_ud}};}
+\DoxyCodeLine{157     \mbox{\hyperlink{client_8h_aaea81ec53050fb24e6e53db4f3c78f3a}{aws\_mqtt\_client\_on\_connection\_interrupted\_fn}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a9be14aa89d8e75e387bd94f92a985c9d}{on\_interrupted}};}
+\DoxyCodeLine{158     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__mqtt__client__connection_a9d91ff67a5a4cad68e5659f81adb71b6}{on\_interrupted\_ud}};}
+\DoxyCodeLine{159     \mbox{\hyperlink{client_8h_a453dfd16edcee3bf1c4a2f3766c8adbc}{aws\_mqtt\_client\_on\_connection\_resumed\_fn}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a8c50bd3b40a8d849e478a5c46228b4a3}{on\_resumed}};}
+\DoxyCodeLine{160     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__mqtt__client__connection_a90ebae0a6878a5cb09831eacbe8498a6}{on\_resumed\_ud}};}
+\DoxyCodeLine{161     \mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\_mqtt\_client\_publish\_received\_fn}} *\mbox{\hyperlink{structaws__mqtt__client__connection_aa2ba3f46f2c233b72512d0feacc56674}{on\_any\_publish}};}
+\DoxyCodeLine{162     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__mqtt__client__connection_aa07ffc09da16bfeb00b9367d73a59436}{on\_any\_publish\_ud}};}
+\DoxyCodeLine{163     \mbox{\hyperlink{client_8h_a2d0ff0373f9059b34af07aaf87147e04}{aws\_mqtt\_client\_on\_disconnect\_fn}} *\mbox{\hyperlink{structaws__mqtt__client__connection_af212f1c332e802f05ee16cc63e193c03}{on\_disconnect}};}
+\DoxyCodeLine{164     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__mqtt__client__connection_a0e02f8fa17fee0fbd14195167c29ba5e}{on\_disconnect\_ud}};}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     \textcolor{comment}{/* Connection tasks. */}}
+\DoxyCodeLine{167     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__reconnect__task}{aws\_mqtt\_reconnect\_task}} *\mbox{\hyperlink{structaws__mqtt__client__connection_ac5dcfc3f484d002a4657c839990bcc59}{reconnect\_task}};}
+\DoxyCodeLine{168     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__task}{aws\_channel\_task}} \mbox{\hyperlink{structaws__mqtt__client__connection_af1751277bd334064016beaffb44260f3}{ping\_task}};}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{175     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__mqtt__client__connection_a4794876538eb51655fe35bbd7418d956}{connection\_count}};}
+\DoxyCodeLine{176     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__mqtt__client__connection_a5cd2db1e228d2b2c516655d64db9eb36}{use\_tls}}; \textcolor{comment}{/* Only used by main thread */}}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178     \textcolor{comment}{/* Only the event-\/loop thread may touch this data */}}
+\DoxyCodeLine{179     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{180         \textcolor{comment}{/* If an incomplete packet arrives, store the data here. */}}
+\DoxyCodeLine{181         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structaws__mqtt__client__connection_a7baf5adfcd08d3d8b55ad9025184d736}{pending\_packet}};}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__mqtt__client__connection_ae9de3a7c84bfc6bc92223a6e518c68e7}{waiting\_on\_ping\_response}};}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185         \textcolor{comment}{/* Keeps track of all open subscriptions */}}
+\DoxyCodeLine{186         \textcolor{comment}{/* TODO: The subscriptions are liveing with the connection object. So if the connection disconnect from one}}
+\DoxyCodeLine{187 \textcolor{comment}{         * endpoint and connect with another endpoint, the subscription tree will still be the same as before. */}}
+\DoxyCodeLine{188         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__topic__tree}{aws\_mqtt\_topic\_tree}} \mbox{\hyperlink{structaws__mqtt__client__connection_a44a4d723c1742a9aeb4d4083f7480721}{subscriptions}};}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{193         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__mqtt__client__connection_a2f848748cf364808a8fb957880678dd8}{ongoing\_requests\_list}};}
+\DoxyCodeLine{194     \} \mbox{\hyperlink{structaws__mqtt__client__connection_a2668e9e1cdabba439bc9fd6a956c40d4}{thread\_data}};}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \textcolor{comment}{/* Any thread may touch this data, but the lock must be held (unless it's an atomic) */}}
+\DoxyCodeLine{197     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{198         \textcolor{comment}{/* Note: never fire user callback with lock hold. */}}
+\DoxyCodeLine{199         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structaws__mqtt__client__connection_abd5b7b05f5add691ee173ff488829cc3}{lock}};}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201         \textcolor{comment}{/* The state of the connection */}}
+\DoxyCodeLine{202         \textcolor{keyword}{enum} \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7}{aws\_mqtt\_client\_connection\_state}} \mbox{\hyperlink{structaws__mqtt__client__connection_a0631defc62087f3c6d294421a23f8c73}{state}};}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{207         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__memory__pool}{aws\_memory\_pool}} \mbox{\hyperlink{structaws__mqtt__client__connection_a9b6b2c70abe2e709ca70894b53cf7af3}{requests\_pool}};}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{214         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structaws__mqtt__client__connection_a52bf5249638e1220c724d613b645604c}{outstanding\_requests\_table}};}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{219         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__mqtt__client__connection_ae4d983c0a059dddac7996a9ff4bfa21f}{pending\_requests\_list}};}
+\DoxyCodeLine{220     \} \mbox{\hyperlink{structaws__mqtt__client__connection_a1533c01f7268b9f8fb10e212016d0b8a}{synced\_data}};}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{223         \mbox{\hyperlink{client_8h_a1c976c194b00ab431b1d688483cf985b}{aws\_mqtt\_transform\_websocket\_handshake\_fn}} *\mbox{\hyperlink{structaws__mqtt__client__connection_af092af5cf30559e27e09ff0f06daf3c6}{handshake\_transformer}};}
+\DoxyCodeLine{224         \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__mqtt__client__connection_ab294dd97577132ec63dd6474d0e1f02c}{handshake\_transformer\_ud}};}
+\DoxyCodeLine{225         \mbox{\hyperlink{client_8h_a7bcec246282fbf6ad17a94b6b376539a}{aws\_mqtt\_validate\_websocket\_handshake\_fn}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a8daa18b5a73027b401082c8a6198394c}{handshake\_validator}};}
+\DoxyCodeLine{226         \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__mqtt__client__connection_af26718b173f8ddddf42fd5861ee5a239}{handshake\_validator\_ud}};}
+\DoxyCodeLine{227         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__mqtt__client__connection_a893fc9e72eacdbb8571e1b89046d4091}{enabled}};}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229         \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{230             \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structaws__mqtt__client__connection_a4fd4e56bc5dc1262631df454ee3d5ecd}{host}};}
+\DoxyCodeLine{231             \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structaws__mqtt__client__connection_a4795f4b3bed49e55544f369d326be1b5}{auth\_username}};}
+\DoxyCodeLine{232             \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structaws__mqtt__client__connection_a5c57f4503325fb0e7d0c4e5dedc8e9a9}{auth\_password}};}
+\DoxyCodeLine{233             \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} \mbox{\hyperlink{structaws__mqtt__client__connection_aa57d70413a56ea7af5013e2e5db62512}{tls\_options}};}
+\DoxyCodeLine{234         \} * \mbox{\hyperlink{structaws__mqtt__client__connection_a3db1b509e516cdb9840c704490a063c2}{proxy}};}
+\DoxyCodeLine{235         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__proxy__options}{aws\_http\_proxy\_options}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a91dfdb265ddc33a7f8860dbcb6ea081a}{proxy\_options}};}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{237         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *\mbox{\hyperlink{structaws__mqtt__client__connection_afaf71bbe5cfb50f386d4529893b6890f}{handshake\_request}};}
+\DoxyCodeLine{238     \} \mbox{\hyperlink{structaws__mqtt__client__connection_af1bb8d8602d74ec77b5ab36a225df031}{websocket}};}
+\DoxyCodeLine{239 \};}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{241 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler__vtable}{aws\_channel\_handler\_vtable}} *\mbox{\hyperlink{client__impl_8h_af3a3805e66828f71c56b1ead9caabea5}{aws\_mqtt\_get\_client\_channel\_vtable}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 \textcolor{comment}{/* Helper for getting a message object for a packet */}}
+\DoxyCodeLine{244 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *\mbox{\hyperlink{client__impl_8h_a5514d8457005e30f1cc289136b24b03a}{mqtt\_get\_message\_for\_packet}}(}
+\DoxyCodeLine{245     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
+\DoxyCodeLine{246     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\_mqtt\_fixed\_header}} *header);}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248 \textcolor{keywordtype}{void} \mbox{\hyperlink{client__impl_8h_af57c3fba26d1b9b394ce34dc8d037542}{mqtt\_connection\_lock\_synced\_data}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection);}
+\DoxyCodeLine{249 \textcolor{keywordtype}{void} \mbox{\hyperlink{client__impl_8h_a652fe56f612008f1a403369d835327de}{mqtt\_connection\_unlock\_synced\_data}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection);}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 \textcolor{comment}{/* Note: needs to be called with lock held. */}}
+\DoxyCodeLine{252 \textcolor{keywordtype}{void} \mbox{\hyperlink{client__impl_8h_a6281aa3a8012dc5654d0a930c1149014}{mqtt\_connection\_set\_state}}(}
+\DoxyCodeLine{253     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
+\DoxyCodeLine{254     \textcolor{keyword}{enum} \mbox{\hyperlink{client__impl_8h_a5b3dcf5fc8697c535838cedfc1b171a7}{aws\_mqtt\_client\_connection\_state}} \mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{262 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}} uint16\_t \mbox{\hyperlink{client__impl_8h_a7e34efb79dee1fc74f13f3058cb5756e}{mqtt\_create\_request}}(}
+\DoxyCodeLine{263     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
+\DoxyCodeLine{264     \mbox{\hyperlink{client__impl_8h_a4ec959b94fcce2a80fe15e2fffd13c74}{aws\_mqtt\_send\_request\_fn}} *send\_request,}
+\DoxyCodeLine{265     \textcolor{keywordtype}{void} *send\_request\_ud,}
+\DoxyCodeLine{266     \mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\_mqtt\_op\_complete\_fn}} *on\_complete,}
+\DoxyCodeLine{267     \textcolor{keywordtype}{void} *on\_complete\_ud,}
+\DoxyCodeLine{268     \textcolor{keywordtype}{bool} noRetry);}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{270 \textcolor{comment}{/* Call when an ack packet comes back from the server. */}}
+\DoxyCodeLine{271 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{client__impl_8h_a1812a088e387ce3e5cd7cfeaf653df0c}{mqtt\_request\_complete}}(}
+\DoxyCodeLine{272     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
+\DoxyCodeLine{273     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{274     uint16\_t \mbox{\hyperlink{connection__state__test_8c_ad051e090f3817f4549df7dc178790f45}{packet\_id}});}
+\DoxyCodeLine{275 }
+\DoxyCodeLine{276 \textcolor{comment}{/* Call to close the connection with an error code */}}
+\DoxyCodeLine{277 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{client__impl_8h_a03bd81f522d440a259903efb9cc00668}{mqtt\_disconnect\_impl}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}});}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 \textcolor{comment}{/* Creates the task used to reestablish a broken connection */}}
+\DoxyCodeLine{280 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{client__impl_8h_a888fc6d199d3a346ae94f497cb745762}{aws\_create\_reconnect\_task}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection);}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282 \textcolor{comment}{/*}}
+\DoxyCodeLine{283 \textcolor{comment}{ * Sends a PINGREQ packet to the server to keep the connection alive. This is not exported and should not ever}}
+\DoxyCodeLine{284 \textcolor{comment}{ * be called directly. This function is driven by the timeout values passed to aws\_mqtt\_client\_connect().}}
+\DoxyCodeLine{285 \textcolor{comment}{ * If a PINGRESP is not received within a reasonable period of time, the connection will be closed.}}
+\DoxyCodeLine{286 \textcolor{comment}{ *}}
+\DoxyCodeLine{287 \textcolor{comment}{ * \(\backslash\)params[in] connection   The connection to ping on}}
+\DoxyCodeLine{288 \textcolor{comment}{ *}}
+\DoxyCodeLine{289 \textcolor{comment}{ * \(\backslash\)returns AWS\_OP\_SUCCESS if the connection is open and the PINGREQ is sent or queued to send,}}
+\DoxyCodeLine{290 \textcolor{comment}{ *              otherwise AWS\_OP\_ERR and aws\_last\_error() is set.}}
+\DoxyCodeLine{291 \textcolor{comment}{ */}}
+\DoxyCodeLine{292 \textcolor{keywordtype}{int} \mbox{\hyperlink{client__impl_8h_ad1357fcdd5a328766f43781a2a7ddc01}{aws\_mqtt\_client\_connection\_ping}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection);}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_MQTT\_PRIVATE\_CLIENT\_IMPL\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

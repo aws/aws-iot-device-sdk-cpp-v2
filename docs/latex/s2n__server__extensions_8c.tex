@@ -1,0 +1,44 @@
+\hypertarget{s2n__server__extensions_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+server\+\_\+extensions.c File Reference}
+\label{s2n__server__extensions_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_server\_extensions.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_server\_extensions.c}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+server\+\_\+extensions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+extension\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+server\+\_\+supported\+\_\+versions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__server__extensions_8c_a77a37caf6ba890248cc847c2cfb10958}{S2\+N\+\_\+\+EMPTY\+\_\+\+EXTENSION\+\_\+\+LIST\+\_\+\+SIZE}}~sizeof(uint16\+\_\+t)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__server__extensions_8c_a72b3e9fb3b4cb76a22e8d236609029ab}{s2n\+\_\+server\+\_\+extensions\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__server__extensions_8c_a36e533a9bf9c913fdd024988e8c03b57}{s2n\+\_\+server\+\_\+extensions\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__server__extensions_8c_a77a37caf6ba890248cc847c2cfb10958}\label{s2n__server__extensions_8c_a77a37caf6ba890248cc847c2cfb10958}} 
+\index{s2n\_server\_extensions.c@{s2n\_server\_extensions.c}!S2N\_EMPTY\_EXTENSION\_LIST\_SIZE@{S2N\_EMPTY\_EXTENSION\_LIST\_SIZE}}
+\index{S2N\_EMPTY\_EXTENSION\_LIST\_SIZE@{S2N\_EMPTY\_EXTENSION\_LIST\_SIZE}!s2n\_server\_extensions.c@{s2n\_server\_extensions.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_EMPTY\_EXTENSION\_LIST\_SIZE}{S2N\_EMPTY\_EXTENSION\_LIST\_SIZE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+EMPTY\+\_\+\+EXTENSION\+\_\+\+LIST\+\_\+\+SIZE~sizeof(uint16\+\_\+t)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__extensions_8c_a36e533a9bf9c913fdd024988e8c03b57}\label{s2n__server__extensions_8c_a36e533a9bf9c913fdd024988e8c03b57}} 
+\index{s2n\_server\_extensions.c@{s2n\_server\_extensions.c}!s2n\_server\_extensions\_recv@{s2n\_server\_extensions\_recv}}
+\index{s2n\_server\_extensions\_recv@{s2n\_server\_extensions\_recv}!s2n\_server\_extensions.c@{s2n\_server\_extensions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_extensions\_recv()}{s2n\_server\_extensions\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+extensions\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{in }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__extensions_8c_a72b3e9fb3b4cb76a22e8d236609029ab}\label{s2n__server__extensions_8c_a72b3e9fb3b4cb76a22e8d236609029ab}} 
+\index{s2n\_server\_extensions.c@{s2n\_server\_extensions.c}!s2n\_server\_extensions\_send@{s2n\_server\_extensions\_send}}
+\index{s2n\_server\_extensions\_send@{s2n\_server\_extensions\_send}!s2n\_server\_extensions.c@{s2n\_server\_extensions.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_extensions\_send()}{s2n\_server\_extensions\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+server\+\_\+extensions\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+

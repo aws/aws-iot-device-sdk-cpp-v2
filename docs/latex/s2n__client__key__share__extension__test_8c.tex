@@ -1,0 +1,91 @@
+\hypertarget{s2n__client__key__share__extension__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+client\+\_\+key\+\_\+share\+\_\+extension\+\_\+test.c File Reference}
+\label{s2n__client__key__share__extension__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_client\_key\_share\_extension\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_client\_key\_share\_extension\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+alerts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls13.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+client\+\_\+key\+\_\+share.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+key\+\_\+share.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_a0244f32e2b969475c593a62d2a48c0ef}{HELLO\+\_\+\+RETRY\+\_\+\+MSG\+\_\+\+NO}}~1
+\item 
+\#define \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_a051c2425e61f15ca30eb664410113778}{S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+CLIENT\+\_\+\+SHARE\+\_\+\+SIZE}}~2
+\item 
+\#define \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_a8756dbf4624af9827ce5fc8d52becf8b}{S2\+N\+\_\+\+PREPARE\+\_\+\+DATA\+\_\+\+LENGTH}}(stuffer)~    \mbox{\hyperlink{s2n__test_8h_ad26d98d36bb5f8a59a90fe3a16d0297e}{EXPECT\+\_\+\+SUCCESS}}(\mbox{\hyperlink{s2n__stuffer_8h_a7ef8f252a4b5b3d0bb793e1906d1b876}{s2n\+\_\+stuffer\+\_\+skip\+\_\+write}}(stuffer, \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_a051c2425e61f15ca30eb664410113778}{S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+CLIENT\+\_\+\+SHARE\+\_\+\+SIZE}}))
+\item 
+\#define \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_a6bea9a5418972595c305b17a98dd57cd}{S2\+N\+\_\+\+WRITE\+\_\+\+DATA\+\_\+\+LENGTH}}(stuffer)~    \mbox{\hyperlink{s2n__test_8h_ad26d98d36bb5f8a59a90fe3a16d0297e}{EXPECT\+\_\+\+SUCCESS}}(\mbox{\hyperlink{s2n__client__key__share__extension__test_8c_ab4e280f9dfa282e7b9672761d1169567}{s2n\+\_\+test\+\_\+rewrite\+\_\+length}}(stuffer))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_ab4e280f9dfa282e7b9672761d1169567}{s2n\+\_\+test\+\_\+rewrite\+\_\+length}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
+\item 
+static int \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_a06f8255ab9cc7a16a6c794e5b8202389}{s2n\+\_\+write\+\_\+named\+\_\+curve}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$existing\+\_\+curve)
+\item 
+static int \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_aa7853b9daeaa8693c7a242bedd0c1856}{s2n\+\_\+write\+\_\+key\+\_\+share}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, uint16\+\_\+t iana\+\_\+value, uint16\+\_\+t share\+\_\+size, const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$existing\+\_\+curve)
+\item 
+int \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__client__key__share__extension__test_8c_a0244f32e2b969475c593a62d2a48c0ef}\label{s2n__client__key__share__extension__test_8c_a0244f32e2b969475c593a62d2a48c0ef}} 
+\index{s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}!HELLO\_RETRY\_MSG\_NO@{HELLO\_RETRY\_MSG\_NO}}
+\index{HELLO\_RETRY\_MSG\_NO@{HELLO\_RETRY\_MSG\_NO}!s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}}
+\doxysubsubsection{\texorpdfstring{HELLO\_RETRY\_MSG\_NO}{HELLO\_RETRY\_MSG\_NO}}
+{\footnotesize\ttfamily \#define HELLO\+\_\+\+RETRY\+\_\+\+MSG\+\_\+\+NO~1}
+
+\mbox{\Hypertarget{s2n__client__key__share__extension__test_8c_a8756dbf4624af9827ce5fc8d52becf8b}\label{s2n__client__key__share__extension__test_8c_a8756dbf4624af9827ce5fc8d52becf8b}} 
+\index{s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}!S2N\_PREPARE\_DATA\_LENGTH@{S2N\_PREPARE\_DATA\_LENGTH}}
+\index{S2N\_PREPARE\_DATA\_LENGTH@{S2N\_PREPARE\_DATA\_LENGTH}!s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_PREPARE\_DATA\_LENGTH}{S2N\_PREPARE\_DATA\_LENGTH}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PREPARE\+\_\+\+DATA\+\_\+\+LENGTH(\begin{DoxyParamCaption}\item[{}]{stuffer }\end{DoxyParamCaption})~    \mbox{\hyperlink{s2n__test_8h_ad26d98d36bb5f8a59a90fe3a16d0297e}{EXPECT\+\_\+\+SUCCESS}}(\mbox{\hyperlink{s2n__stuffer_8h_a7ef8f252a4b5b3d0bb793e1906d1b876}{s2n\+\_\+stuffer\+\_\+skip\+\_\+write}}(stuffer, \mbox{\hyperlink{s2n__client__key__share__extension__test_8c_a051c2425e61f15ca30eb664410113778}{S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+CLIENT\+\_\+\+SHARE\+\_\+\+SIZE}}))}
+
+\mbox{\Hypertarget{s2n__client__key__share__extension__test_8c_a051c2425e61f15ca30eb664410113778}\label{s2n__client__key__share__extension__test_8c_a051c2425e61f15ca30eb664410113778}} 
+\index{s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}!S2N\_SIZE\_OF\_CLIENT\_SHARE\_SIZE@{S2N\_SIZE\_OF\_CLIENT\_SHARE\_SIZE}}
+\index{S2N\_SIZE\_OF\_CLIENT\_SHARE\_SIZE@{S2N\_SIZE\_OF\_CLIENT\_SHARE\_SIZE}!s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_SIZE\_OF\_CLIENT\_SHARE\_SIZE}{S2N\_SIZE\_OF\_CLIENT\_SHARE\_SIZE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+SIZE\+\_\+\+OF\+\_\+\+CLIENT\+\_\+\+SHARE\+\_\+\+SIZE~2}
+
+\mbox{\Hypertarget{s2n__client__key__share__extension__test_8c_a6bea9a5418972595c305b17a98dd57cd}\label{s2n__client__key__share__extension__test_8c_a6bea9a5418972595c305b17a98dd57cd}} 
+\index{s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}!S2N\_WRITE\_DATA\_LENGTH@{S2N\_WRITE\_DATA\_LENGTH}}
+\index{S2N\_WRITE\_DATA\_LENGTH@{S2N\_WRITE\_DATA\_LENGTH}!s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}}
+\doxysubsubsection{\texorpdfstring{S2N\_WRITE\_DATA\_LENGTH}{S2N\_WRITE\_DATA\_LENGTH}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+WRITE\+\_\+\+DATA\+\_\+\+LENGTH(\begin{DoxyParamCaption}\item[{}]{stuffer }\end{DoxyParamCaption})~    \mbox{\hyperlink{s2n__test_8h_ad26d98d36bb5f8a59a90fe3a16d0297e}{EXPECT\+\_\+\+SUCCESS}}(\mbox{\hyperlink{s2n__client__key__share__extension__test_8c_ab4e280f9dfa282e7b9672761d1169567}{s2n\+\_\+test\+\_\+rewrite\+\_\+length}}(stuffer))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__client__key__share__extension__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__client__key__share__extension__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}!main@{main}}
+\index{main@{main}!s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__client__key__share__extension__test_8c_ab4e280f9dfa282e7b9672761d1169567}\label{s2n__client__key__share__extension__test_8c_ab4e280f9dfa282e7b9672761d1169567}} 
+\index{s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}!s2n\_test\_rewrite\_length@{s2n\_test\_rewrite\_length}}
+\index{s2n\_test\_rewrite\_length@{s2n\_test\_rewrite\_length}!s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_rewrite\_length()}{s2n\_test\_rewrite\_length()}}
+{\footnotesize\ttfamily static int s2n\+\_\+test\+\_\+rewrite\+\_\+length (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__key__share__extension__test_8c_aa7853b9daeaa8693c7a242bedd0c1856}\label{s2n__client__key__share__extension__test_8c_aa7853b9daeaa8693c7a242bedd0c1856}} 
+\index{s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}!s2n\_write\_key\_share@{s2n\_write\_key\_share}}
+\index{s2n\_write\_key\_share@{s2n\_write\_key\_share}!s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_write\_key\_share()}{s2n\_write\_key\_share()}}
+{\footnotesize\ttfamily static int s2n\+\_\+write\+\_\+key\+\_\+share (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out,  }\item[{uint16\+\_\+t}]{iana\+\_\+value,  }\item[{uint16\+\_\+t}]{share\+\_\+size,  }\item[{const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$}]{existing\+\_\+curve }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__client__key__share__extension__test_8c_a06f8255ab9cc7a16a6c794e5b8202389}\label{s2n__client__key__share__extension__test_8c_a06f8255ab9cc7a16a6c794e5b8202389}} 
+\index{s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}!s2n\_write\_named\_curve@{s2n\_write\_named\_curve}}
+\index{s2n\_write\_named\_curve@{s2n\_write\_named\_curve}!s2n\_client\_key\_share\_extension\_test.c@{s2n\_client\_key\_share\_extension\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_write\_named\_curve()}{s2n\_write\_named\_curve()}}
+{\footnotesize\ttfamily static int s2n\+\_\+write\+\_\+named\+\_\+curve (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out,  }\item[{const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$}]{existing\+\_\+curve }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

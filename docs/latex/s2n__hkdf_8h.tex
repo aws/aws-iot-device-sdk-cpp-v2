@@ -1,0 +1,35 @@
+\hypertarget{s2n__hkdf_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\+\_\+hkdf.h File Reference}
+\label{s2n__hkdf_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_hkdf.h@{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_hkdf.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hmac.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__hkdf_8h_a1517646c7420be0a5a1b8647d480beb1}{s2n\+\_\+hkdf}} (struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$hmac, \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}} alg, const struct s2n\+\_\+blob $\ast$salt, const struct s2n\+\_\+blob $\ast$key, const struct s2n\+\_\+blob $\ast$info, struct s2n\+\_\+blob $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\item 
+int \mbox{\hyperlink{s2n__hkdf_8h_aca0b47810adfd3bd2e08c463dc625101}{s2n\+\_\+hkdf\+\_\+extract}} (struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$hmac, \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}} alg, const struct s2n\+\_\+blob $\ast$salt, const struct s2n\+\_\+blob $\ast$key, struct s2n\+\_\+blob $\ast$pseudo\+\_\+rand\+\_\+key)
+\item 
+int \mbox{\hyperlink{s2n__hkdf_8h_acb9dd2a3f4be9a0707e411fef1a05896}{s2n\+\_\+hkdf\+\_\+expand\+\_\+label}} (struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$hmac, \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}} alg, const struct s2n\+\_\+blob $\ast$secret, const struct s2n\+\_\+blob $\ast$label, const struct s2n\+\_\+blob $\ast$context, struct s2n\+\_\+blob $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__hkdf_8h_a1517646c7420be0a5a1b8647d480beb1}\label{s2n__hkdf_8h_a1517646c7420be0a5a1b8647d480beb1}} 
+\index{s2n\_hkdf.h@{s2n\_hkdf.h}!s2n\_hkdf@{s2n\_hkdf}}
+\index{s2n\_hkdf@{s2n\_hkdf}!s2n\_hkdf.h@{s2n\_hkdf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hkdf()}{s2n\_hkdf()}}
+{\footnotesize\ttfamily int s2n\+\_\+hkdf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$}]{hmac,  }\item[{\mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}}}]{alg,  }\item[{const struct s2n\+\_\+blob $\ast$}]{salt,  }\item[{const struct s2n\+\_\+blob $\ast$}]{key,  }\item[{const struct s2n\+\_\+blob $\ast$}]{info,  }\item[{struct s2n\+\_\+blob $\ast$}]{output }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__hkdf_8h_acb9dd2a3f4be9a0707e411fef1a05896}\label{s2n__hkdf_8h_acb9dd2a3f4be9a0707e411fef1a05896}} 
+\index{s2n\_hkdf.h@{s2n\_hkdf.h}!s2n\_hkdf\_expand\_label@{s2n\_hkdf\_expand\_label}}
+\index{s2n\_hkdf\_expand\_label@{s2n\_hkdf\_expand\_label}!s2n\_hkdf.h@{s2n\_hkdf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hkdf\_expand\_label()}{s2n\_hkdf\_expand\_label()}}
+{\footnotesize\ttfamily int s2n\+\_\+hkdf\+\_\+expand\+\_\+label (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$}]{hmac,  }\item[{\mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}}}]{alg,  }\item[{const struct s2n\+\_\+blob $\ast$}]{secret,  }\item[{const struct s2n\+\_\+blob $\ast$}]{label,  }\item[{const struct s2n\+\_\+blob $\ast$}]{context,  }\item[{struct s2n\+\_\+blob $\ast$}]{output }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__hkdf_8h_aca0b47810adfd3bd2e08c463dc625101}\label{s2n__hkdf_8h_aca0b47810adfd3bd2e08c463dc625101}} 
+\index{s2n\_hkdf.h@{s2n\_hkdf.h}!s2n\_hkdf\_extract@{s2n\_hkdf\_extract}}
+\index{s2n\_hkdf\_extract@{s2n\_hkdf\_extract}!s2n\_hkdf.h@{s2n\_hkdf.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hkdf\_extract()}{s2n\_hkdf\_extract()}}
+{\footnotesize\ttfamily int s2n\+\_\+hkdf\+\_\+extract (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$}]{hmac,  }\item[{\mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}}}]{alg,  }\item[{const struct s2n\+\_\+blob $\ast$}]{salt,  }\item[{const struct s2n\+\_\+blob $\ast$}]{key,  }\item[{struct s2n\+\_\+blob $\ast$}]{pseudo\+\_\+rand\+\_\+key }\end{DoxyParamCaption})}
+

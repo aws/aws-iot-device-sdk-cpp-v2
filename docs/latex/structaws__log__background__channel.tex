@@ -1,0 +1,53 @@
+\hypertarget{structaws__log__background__channel}{}\doxysection{aws\+\_\+log\+\_\+background\+\_\+channel Struct Reference}
+\label{structaws__log__background__channel}\index{aws\_log\_background\_channel@{aws\_log\_background\_channel}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structaws__log__background__channel_ac7bc40e2a032aa26ca6124fcc9aab346}{sync}}
+\item 
+struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} \mbox{\hyperlink{structaws__log__background__channel_a81a4f2e82d8a938231fa6b2f07ed2ddf}{background\+\_\+thread}}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox{\hyperlink{structaws__log__background__channel_a638f875da200a1e5057352d2b1ab5964}{pending\+\_\+log\+\_\+lines}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structaws__log__background__channel_a154c86516d9c944d321c3cd4a551a10a}{pending\+\_\+line\+\_\+signal}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__log__background__channel_aaac2454bbced8780a6970b8d4b333c94}{finished}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__log__background__channel_a81a4f2e82d8a938231fa6b2f07ed2ddf}\label{structaws__log__background__channel_a81a4f2e82d8a938231fa6b2f07ed2ddf}} 
+\index{aws\_log\_background\_channel@{aws\_log\_background\_channel}!background\_thread@{background\_thread}}
+\index{background\_thread@{background\_thread}!aws\_log\_background\_channel@{aws\_log\_background\_channel}}
+\doxysubsubsection{\texorpdfstring{background\_thread}{background\_thread}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} aws\+\_\+log\+\_\+background\+\_\+channel\+::background\+\_\+thread}
+
+\mbox{\Hypertarget{structaws__log__background__channel_aaac2454bbced8780a6970b8d4b333c94}\label{structaws__log__background__channel_aaac2454bbced8780a6970b8d4b333c94}} 
+\index{aws\_log\_background\_channel@{aws\_log\_background\_channel}!finished@{finished}}
+\index{finished@{finished}!aws\_log\_background\_channel@{aws\_log\_background\_channel}}
+\doxysubsubsection{\texorpdfstring{finished}{finished}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+log\+\_\+background\+\_\+channel\+::finished}
+
+\mbox{\Hypertarget{structaws__log__background__channel_a154c86516d9c944d321c3cd4a551a10a}\label{structaws__log__background__channel_a154c86516d9c944d321c3cd4a551a10a}} 
+\index{aws\_log\_background\_channel@{aws\_log\_background\_channel}!pending\_line\_signal@{pending\_line\_signal}}
+\index{pending\_line\_signal@{pending\_line\_signal}!aws\_log\_background\_channel@{aws\_log\_background\_channel}}
+\doxysubsubsection{\texorpdfstring{pending\_line\_signal}{pending\_line\_signal}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} aws\+\_\+log\+\_\+background\+\_\+channel\+::pending\+\_\+line\+\_\+signal}
+
+\mbox{\Hypertarget{structaws__log__background__channel_a638f875da200a1e5057352d2b1ab5964}\label{structaws__log__background__channel_a638f875da200a1e5057352d2b1ab5964}} 
+\index{aws\_log\_background\_channel@{aws\_log\_background\_channel}!pending\_log\_lines@{pending\_log\_lines}}
+\index{pending\_log\_lines@{pending\_log\_lines}!aws\_log\_background\_channel@{aws\_log\_background\_channel}}
+\doxysubsubsection{\texorpdfstring{pending\_log\_lines}{pending\_log\_lines}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} aws\+\_\+log\+\_\+background\+\_\+channel\+::pending\+\_\+log\+\_\+lines}
+
+\mbox{\Hypertarget{structaws__log__background__channel_ac7bc40e2a032aa26ca6124fcc9aab346}\label{structaws__log__background__channel_ac7bc40e2a032aa26ca6124fcc9aab346}} 
+\index{aws\_log\_background\_channel@{aws\_log\_background\_channel}!sync@{sync}}
+\index{sync@{sync}!aws\_log\_background\_channel@{aws\_log\_background\_channel}}
+\doxysubsubsection{\texorpdfstring{sync}{sync}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} aws\+\_\+log\+\_\+background\+\_\+channel\+::sync}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/\mbox{\hyperlink{log__channel_8c}{log\+\_\+channel.\+c}}\end{DoxyCompactItemize}

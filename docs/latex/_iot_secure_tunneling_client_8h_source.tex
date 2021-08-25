@@ -1,0 +1,64 @@
+\hypertarget{_iot_secure_tunneling_client_8h_source}{}\doxysection{Iot\+Secure\+Tunneling\+Client.\+h}
+\label{_iot_secure_tunneling_client_8h_source}\index{secure\_tunneling/include/aws/iotsecuretunneling/IotSecureTunnelingClient.h@{secure\_tunneling/include/aws/iotsecuretunneling/IotSecureTunnelingClient.h}}
+\mbox{\hyperlink{_iot_secure_tunneling_client_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{comment}{/* Copyright 2010-\/2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{*}}
+\DoxyCodeLine{4 \textcolor{comment}{* Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{* You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{* A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{*}}
+\DoxyCodeLine{8 \textcolor{comment}{*  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{*}}
+\DoxyCodeLine{10 \textcolor{comment}{* or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{* on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{* express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{* permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{}}
+\DoxyCodeLine{15 \textcolor{comment}{* This file is generated}}
+\DoxyCodeLine{16 \textcolor{comment}{*/}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{secure__tunneling_2include_2aws_2iotsecuretunneling_2_exports_8h}{aws/iotsecuretunneling/Exports.h}}>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_stl_allocator_8h}{aws/crt/StlAllocator.h}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{aws/crt/Types.h}}>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2mqtt_2_mqtt_client_8h}{aws/crt/mqtt/MqttClient.h}}>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{26     \textcolor{keyword}{namespace }Iotsecuretunneling}
+\DoxyCodeLine{27     \{}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29         \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunneling_notify_response}{SecureTunnelingNotifyResponse}};}
+\DoxyCodeLine{30         \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_subscribe_to_tunnels_notify_request}{SubscribeToTunnelsNotifyRequest}};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_ac688b4e8a594a42f501e0636fd2e4fe1}{OnSubscribeComplete}} = std::function<void(\textcolor{keywordtype}{int} ioErr)>;}
+\DoxyCodeLine{33         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_ac300aee33fd87272221429942a33dfdf}{OnPublishComplete}} = std::function<void(\textcolor{keywordtype}{int} ioErr)>;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a797633de52d6cd33b0501015b81dd018}{OnSubscribeToTunnelsNotifyResponse}} =}
+\DoxyCodeLine{36             std::function<void(\mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunneling_notify_response}{Aws::Iotsecuretunneling::SecureTunnelingNotifyResponse}} *, \textcolor{keywordtype}{int} ioErr)>;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38         \textcolor{keyword}{class }\mbox{\hyperlink{secure__tunneling_2include_2aws_2iotsecuretunneling_2_exports_8h_a66e3e73c52342d65d13175576f5d5da0}{AWS\_IOTSECURETUNNELING\_API}} \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_iot_secure_tunneling_client}{IotSecureTunnelingClient}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{39         \{}
+\DoxyCodeLine{40           \textcolor{keyword}{public}:}
+\DoxyCodeLine{41             \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_iot_secure_tunneling_client}{IotSecureTunnelingClient}}(\textcolor{keyword}{const} std::shared\_ptr<Aws::Crt::Mqtt::MqttConnection> \&connection);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43             \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{44             \textcolor{keywordtype}{int} GetLastError() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46             \textcolor{keywordtype}{bool} SubscribeToTunnelsNotify(}
+\DoxyCodeLine{47                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_subscribe_to_tunnels_notify_request}{Aws::Iotsecuretunneling::SubscribeToTunnelsNotifyRequest}} \&request,}
+\DoxyCodeLine{48                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{49                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a797633de52d6cd33b0501015b81dd018}{OnSubscribeToTunnelsNotifyResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{50                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_ac688b4e8a594a42f501e0636fd2e4fe1}{OnSubscribeComplete}} \&onSubAck);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52           \textcolor{keyword}{private}:}
+\DoxyCodeLine{53             std::shared\_ptr<Aws::Crt::Mqtt::MqttConnection> m\_connection;}
+\DoxyCodeLine{54         \};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \} \textcolor{comment}{// namespace Iotsecuretunneling}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \} \textcolor{comment}{// namespace Aws}}
+
+\end{DoxyCode}

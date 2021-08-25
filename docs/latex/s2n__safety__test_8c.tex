@@ -1,0 +1,265 @@
+\hypertarget{s2n__safety__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+safety\+\_\+test.c File Reference}
+\label{s2n__safety__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_safety\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_safety\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__safety__test_8c_a03c29cf73afb5dfdd832cc5831e6dc66}{CHECK\+\_\+\+OVF\+\_\+0}}(fn,  type,  a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+\#define \mbox{\hyperlink{s2n__safety__test_8c_a3a90b664a2947da44dcead4fa59b6fe5}{CHECK\+\_\+\+OVF}}(fn,  type,  a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\item 
+\#define \mbox{\hyperlink{s2n__safety__test_8c_aab0eddfb1e0eee026a753225633c8980}{CHECK\+\_\+\+NO\+\_\+\+OVF\+\_\+0}}(fn,  type,  a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  r)
+\item 
+\#define \mbox{\hyperlink{s2n__safety__test_8c_a00e8afb0e4aa9d82a831fa182d1cd087}{CHECK\+\_\+\+NO\+\_\+\+OVF}}(fn,  type,  a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  r)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a087ed07cc01e4df88a1aea45697c5c58}{failure\+\_\+gte}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_ad6b24caa84e2538950aa2ba8c642b71e}{success\+\_\+gte}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a1f7d7e7422ba671ce54031214722425d}{failure\+\_\+gt}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a82777ef25960f8dac0dad63b70f30f22}{success\+\_\+gt}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_ac05089752ab8c3e56ae1cbfa0fd49f8b}{failure\+\_\+lte}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a2153326be80e8a3e08ab1296720722c1}{success\+\_\+lte}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_ac16ef07cc3f1ad0f56e9c19c39e652d2}{failure\+\_\+lt}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a4a8c05e8574c8a72d82282cf931c191f}{success\+\_\+lt}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_ad53d57ee8bde8e7d9143718e95935f32}{success\+\_\+notnull}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a00f03b2b6fd1af101f928bca7f1725ad}{failure\+\_\+notnull}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a4ec9abad205730fd05450b54dd06316a}{success\+\_\+memcpy}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_aa311d71e73854a1e80b605b0c6db6c11}{failure\+\_\+memcpy}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a598e2fe81ed6aeeaa2081dda28010b84}{success\+\_\+inclusive\+\_\+range}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_aa251257c76de47e79ccd4f8d8a2449cc}{failure\+\_\+inclusive\+\_\+range\+\_\+too\+\_\+high}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a2cf3a0d2f01c4473b1e6685731044c99}{failure\+\_\+inclusive\+\_\+range\+\_\+too\+\_\+low}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a05b5ba92df6ad3658915c26f72307a0e}{success\+\_\+exclusive\+\_\+range}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_afe0ee0e292c961c95559cf1435becb3b}{failure\+\_\+exclusive\+\_\+range\+\_\+too\+\_\+high}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_aeb6e10eabafdfcfff38d43a3bc0a37aa}{failure\+\_\+exclusive\+\_\+range\+\_\+too\+\_\+low}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_afffcabe0c7ae5cf2e248013b82a92af8}{failure\+\_\+exclusive\+\_\+range\+\_\+eq\+\_\+high}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_afcb50771b99e43f9fda9c15a82636eb2}{failure\+\_\+exclusive\+\_\+range\+\_\+eq\+\_\+low}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_a670ede3a28ea3bb82e0fe60ef516cb1e}{success\+\_\+ct\+\_\+pkcs1}} ()
+\item 
+static int \mbox{\hyperlink{s2n__safety__test_8c_abcce769da4ea11bf254ca32f6124bd5a}{success\+\_\+ct\+\_\+pkcs1\+\_\+negative}} ()
+\item 
+int \mbox{\hyperlink{s2n__safety__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__safety__test_8c_a00e8afb0e4aa9d82a831fa182d1cd087}\label{s2n__safety__test_8c_a00e8afb0e4aa9d82a831fa182d1cd087}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!CHECK\_NO\_OVF@{CHECK\_NO\_OVF}}
+\index{CHECK\_NO\_OVF@{CHECK\_NO\_OVF}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_NO\_OVF}{CHECK\_NO\_OVF}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+NO\+\_\+\+OVF(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  }\item[{}]{r }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    CHECK\_NO\_OVF\_0(fn, \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, r);          \(\backslash\)}
+\DoxyCodeLine{    CHECK\_NO\_OVF\_0(fn, \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, r);          \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__safety__test_8c_aab0eddfb1e0eee026a753225633c8980}\label{s2n__safety__test_8c_aab0eddfb1e0eee026a753225633c8980}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!CHECK\_NO\_OVF\_0@{CHECK\_NO\_OVF\_0}}
+\index{CHECK\_NO\_OVF\_0@{CHECK\_NO\_OVF\_0}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_NO\_OVF\_0}{CHECK\_NO\_OVF\_0}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+NO\+\_\+\+OVF\+\_\+0(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},  }\item[{}]{r }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    type result\_val;                            \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_SUCCESS(fn((\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}), (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}), \&result\_val));  \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_EQUAL(result\_val,(r));               \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__safety__test_8c_a3a90b664a2947da44dcead4fa59b6fe5}\label{s2n__safety__test_8c_a3a90b664a2947da44dcead4fa59b6fe5}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!CHECK\_OVF@{CHECK\_OVF}}
+\index{CHECK\_OVF@{CHECK\_OVF}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_OVF}{CHECK\_OVF}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+OVF(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    CHECK\_OVF\_0(fn, \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}});                \(\backslash\)}
+\DoxyCodeLine{    CHECK\_OVF\_0(fn, \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}}, \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});                \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__safety__test_8c_a03c29cf73afb5dfdd832cc5831e6dc66}\label{s2n__safety__test_8c_a03c29cf73afb5dfdd832cc5831e6dc66}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!CHECK\_OVF\_0@{CHECK\_OVF\_0}}
+\index{CHECK\_OVF\_0@{CHECK\_OVF\_0}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{CHECK\_OVF\_0}{CHECK\_OVF\_0}}
+{\footnotesize\ttfamily \#define CHECK\+\_\+\+OVF\+\_\+0(\begin{DoxyParamCaption}\item[{}]{fn,  }\item[{}]{type,  }\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keywordflow}{do} \{                                          \(\backslash\)}
+\DoxyCodeLine{    type result\_val;                            \(\backslash\)}
+\DoxyCodeLine{    EXPECT\_FAILURE(fn((\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}), (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}), \&result\_val));  \(\backslash\)}
+\DoxyCodeLine{  \} \textcolor{keywordflow}{while} (0)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__safety__test_8c_afffcabe0c7ae5cf2e248013b82a92af8}\label{s2n__safety__test_8c_afffcabe0c7ae5cf2e248013b82a92af8}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_exclusive\_range\_eq\_high@{failure\_exclusive\_range\_eq\_high}}
+\index{failure\_exclusive\_range\_eq\_high@{failure\_exclusive\_range\_eq\_high}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_exclusive\_range\_eq\_high()}{failure\_exclusive\_range\_eq\_high()}}
+{\footnotesize\ttfamily static int failure\+\_\+exclusive\+\_\+range\+\_\+eq\+\_\+high (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_afcb50771b99e43f9fda9c15a82636eb2}\label{s2n__safety__test_8c_afcb50771b99e43f9fda9c15a82636eb2}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_exclusive\_range\_eq\_low@{failure\_exclusive\_range\_eq\_low}}
+\index{failure\_exclusive\_range\_eq\_low@{failure\_exclusive\_range\_eq\_low}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_exclusive\_range\_eq\_low()}{failure\_exclusive\_range\_eq\_low()}}
+{\footnotesize\ttfamily static int failure\+\_\+exclusive\+\_\+range\+\_\+eq\+\_\+low (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_afe0ee0e292c961c95559cf1435becb3b}\label{s2n__safety__test_8c_afe0ee0e292c961c95559cf1435becb3b}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_exclusive\_range\_too\_high@{failure\_exclusive\_range\_too\_high}}
+\index{failure\_exclusive\_range\_too\_high@{failure\_exclusive\_range\_too\_high}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_exclusive\_range\_too\_high()}{failure\_exclusive\_range\_too\_high()}}
+{\footnotesize\ttfamily static int failure\+\_\+exclusive\+\_\+range\+\_\+too\+\_\+high (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_aeb6e10eabafdfcfff38d43a3bc0a37aa}\label{s2n__safety__test_8c_aeb6e10eabafdfcfff38d43a3bc0a37aa}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_exclusive\_range\_too\_low@{failure\_exclusive\_range\_too\_low}}
+\index{failure\_exclusive\_range\_too\_low@{failure\_exclusive\_range\_too\_low}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_exclusive\_range\_too\_low()}{failure\_exclusive\_range\_too\_low()}}
+{\footnotesize\ttfamily static int failure\+\_\+exclusive\+\_\+range\+\_\+too\+\_\+low (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a1f7d7e7422ba671ce54031214722425d}\label{s2n__safety__test_8c_a1f7d7e7422ba671ce54031214722425d}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_gt@{failure\_gt}}
+\index{failure\_gt@{failure\_gt}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_gt()}{failure\_gt()}}
+{\footnotesize\ttfamily static int failure\+\_\+gt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a087ed07cc01e4df88a1aea45697c5c58}\label{s2n__safety__test_8c_a087ed07cc01e4df88a1aea45697c5c58}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_gte@{failure\_gte}}
+\index{failure\_gte@{failure\_gte}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_gte()}{failure\_gte()}}
+{\footnotesize\ttfamily static int failure\+\_\+gte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_aa251257c76de47e79ccd4f8d8a2449cc}\label{s2n__safety__test_8c_aa251257c76de47e79ccd4f8d8a2449cc}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_inclusive\_range\_too\_high@{failure\_inclusive\_range\_too\_high}}
+\index{failure\_inclusive\_range\_too\_high@{failure\_inclusive\_range\_too\_high}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_inclusive\_range\_too\_high()}{failure\_inclusive\_range\_too\_high()}}
+{\footnotesize\ttfamily static int failure\+\_\+inclusive\+\_\+range\+\_\+too\+\_\+high (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a2cf3a0d2f01c4473b1e6685731044c99}\label{s2n__safety__test_8c_a2cf3a0d2f01c4473b1e6685731044c99}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_inclusive\_range\_too\_low@{failure\_inclusive\_range\_too\_low}}
+\index{failure\_inclusive\_range\_too\_low@{failure\_inclusive\_range\_too\_low}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_inclusive\_range\_too\_low()}{failure\_inclusive\_range\_too\_low()}}
+{\footnotesize\ttfamily static int failure\+\_\+inclusive\+\_\+range\+\_\+too\+\_\+low (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_ac16ef07cc3f1ad0f56e9c19c39e652d2}\label{s2n__safety__test_8c_ac16ef07cc3f1ad0f56e9c19c39e652d2}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_lt@{failure\_lt}}
+\index{failure\_lt@{failure\_lt}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_lt()}{failure\_lt()}}
+{\footnotesize\ttfamily static int failure\+\_\+lt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_ac05089752ab8c3e56ae1cbfa0fd49f8b}\label{s2n__safety__test_8c_ac05089752ab8c3e56ae1cbfa0fd49f8b}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_lte@{failure\_lte}}
+\index{failure\_lte@{failure\_lte}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_lte()}{failure\_lte()}}
+{\footnotesize\ttfamily static int failure\+\_\+lte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_aa311d71e73854a1e80b605b0c6db6c11}\label{s2n__safety__test_8c_aa311d71e73854a1e80b605b0c6db6c11}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_memcpy@{failure\_memcpy}}
+\index{failure\_memcpy@{failure\_memcpy}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_memcpy()}{failure\_memcpy()}}
+{\footnotesize\ttfamily static int failure\+\_\+memcpy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a00f03b2b6fd1af101f928bca7f1725ad}\label{s2n__safety__test_8c_a00f03b2b6fd1af101f928bca7f1725ad}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!failure\_notnull@{failure\_notnull}}
+\index{failure\_notnull@{failure\_notnull}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{failure\_notnull()}{failure\_notnull()}}
+{\footnotesize\ttfamily static int failure\+\_\+notnull (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__safety__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!main@{main}}
+\index{main@{main}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a670ede3a28ea3bb82e0fe60ef516cb1e}\label{s2n__safety__test_8c_a670ede3a28ea3bb82e0fe60ef516cb1e}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_ct\_pkcs1@{success\_ct\_pkcs1}}
+\index{success\_ct\_pkcs1@{success\_ct\_pkcs1}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_ct\_pkcs1()}{success\_ct\_pkcs1()}}
+{\footnotesize\ttfamily static int success\+\_\+ct\+\_\+pkcs1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_abcce769da4ea11bf254ca32f6124bd5a}\label{s2n__safety__test_8c_abcce769da4ea11bf254ca32f6124bd5a}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_ct\_pkcs1\_negative@{success\_ct\_pkcs1\_negative}}
+\index{success\_ct\_pkcs1\_negative@{success\_ct\_pkcs1\_negative}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_ct\_pkcs1\_negative()}{success\_ct\_pkcs1\_negative()}}
+{\footnotesize\ttfamily static int success\+\_\+ct\+\_\+pkcs1\+\_\+negative (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a05b5ba92df6ad3658915c26f72307a0e}\label{s2n__safety__test_8c_a05b5ba92df6ad3658915c26f72307a0e}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_exclusive\_range@{success\_exclusive\_range}}
+\index{success\_exclusive\_range@{success\_exclusive\_range}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_exclusive\_range()}{success\_exclusive\_range()}}
+{\footnotesize\ttfamily static int success\+\_\+exclusive\+\_\+range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a82777ef25960f8dac0dad63b70f30f22}\label{s2n__safety__test_8c_a82777ef25960f8dac0dad63b70f30f22}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_gt@{success\_gt}}
+\index{success\_gt@{success\_gt}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_gt()}{success\_gt()}}
+{\footnotesize\ttfamily static int success\+\_\+gt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_ad6b24caa84e2538950aa2ba8c642b71e}\label{s2n__safety__test_8c_ad6b24caa84e2538950aa2ba8c642b71e}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_gte@{success\_gte}}
+\index{success\_gte@{success\_gte}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_gte()}{success\_gte()}}
+{\footnotesize\ttfamily static int success\+\_\+gte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a598e2fe81ed6aeeaa2081dda28010b84}\label{s2n__safety__test_8c_a598e2fe81ed6aeeaa2081dda28010b84}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_inclusive\_range@{success\_inclusive\_range}}
+\index{success\_inclusive\_range@{success\_inclusive\_range}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_inclusive\_range()}{success\_inclusive\_range()}}
+{\footnotesize\ttfamily static int success\+\_\+inclusive\+\_\+range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a4a8c05e8574c8a72d82282cf931c191f}\label{s2n__safety__test_8c_a4a8c05e8574c8a72d82282cf931c191f}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_lt@{success\_lt}}
+\index{success\_lt@{success\_lt}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_lt()}{success\_lt()}}
+{\footnotesize\ttfamily static int success\+\_\+lt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a2153326be80e8a3e08ab1296720722c1}\label{s2n__safety__test_8c_a2153326be80e8a3e08ab1296720722c1}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_lte@{success\_lte}}
+\index{success\_lte@{success\_lte}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_lte()}{success\_lte()}}
+{\footnotesize\ttfamily static int success\+\_\+lte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_a4ec9abad205730fd05450b54dd06316a}\label{s2n__safety__test_8c_a4ec9abad205730fd05450b54dd06316a}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_memcpy@{success\_memcpy}}
+\index{success\_memcpy@{success\_memcpy}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_memcpy()}{success\_memcpy()}}
+{\footnotesize\ttfamily static int success\+\_\+memcpy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__safety__test_8c_ad53d57ee8bde8e7d9143718e95935f32}\label{s2n__safety__test_8c_ad53d57ee8bde8e7d9143718e95935f32}} 
+\index{s2n\_safety\_test.c@{s2n\_safety\_test.c}!success\_notnull@{success\_notnull}}
+\index{success\_notnull@{success\_notnull}!s2n\_safety\_test.c@{s2n\_safety\_test.c}}
+\doxysubsubsection{\texorpdfstring{success\_notnull()}{success\_notnull()}}
+{\footnotesize\ttfamily static int success\+\_\+notnull (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

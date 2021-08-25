@@ -1,0 +1,122 @@
+\hypertarget{s2n__self__talk__session__id__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+self\+\_\+talk\+\_\+session\+\_\+id\+\_\+test.c File Reference}
+\label{s2n__self__talk__session__id__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_self\_talk\_session\_id\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_self\_talk\_session\_id\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/wait.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsession__cache__entry}{session\+\_\+cache\+\_\+entry}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_ad91bfaf106e42aa552f1605c5b8a9ef2}{MAX\+\_\+\+KEY\+\_\+\+LEN}}~32
+\item 
+\#define \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a282b0f9613da7596a04d4d8d4279d2a1}{MAX\+\_\+\+VAL\+\_\+\+LEN}}~255
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}{cache\+\_\+store\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, uint64\+\_\+t ttl, const void $\ast$key, uint64\+\_\+t key\+\_\+size, const void $\ast$value, uint64\+\_\+t value\+\_\+size)
+\item 
+int \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a76518c3daf7521be5dd26d13df982532}{cache\+\_\+retrieve\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const void $\ast$key, uint64\+\_\+t key\+\_\+size, void $\ast$value, uint64\+\_\+t $\ast$value\+\_\+size)
+\item 
+int \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a07c36a58a01ca824ad413a8bb1e7aafa}{cache\+\_\+delete\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const void $\ast$key, uint64\+\_\+t key\+\_\+size)
+\item 
+static void \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a63892b3d3e33fc4e6a67385bc9cf96ef}{initialize\+\_\+cache}} ()
+\item 
+void \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a5a225c83201bf39da62fc38a9e011644}{mock\+\_\+client}} (struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$io\+\_\+pair)
+\item 
+int \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a3e401ed694cbcd547a7208bb2c293a11}{SESSION\+\_\+\+ID}} \mbox{[}$\,$\mbox{]} = \char`\"{}0123456789abcdef0123456789abcdef\char`\"{}
+\item 
+static const char \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_ae7193f1a2645cab22d65da861ae58594}{MSG}} \mbox{[}$\,$\mbox{]} = \char`\"{}Test\char`\"{}
+\item 
+struct \mbox{\hyperlink{structsession__cache__entry}{session\+\_\+cache\+\_\+entry}} \mbox{\hyperlink{s2n__self__talk__session__id__test_8c_a64abc607d19fe2165bd1f364a25ee35e}{session\+\_\+cache}} \mbox{[}256\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_ad91bfaf106e42aa552f1605c5b8a9ef2}\label{s2n__self__talk__session__id__test_8c_ad91bfaf106e42aa552f1605c5b8a9ef2}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!MAX\_KEY\_LEN@{MAX\_KEY\_LEN}}
+\index{MAX\_KEY\_LEN@{MAX\_KEY\_LEN}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_KEY\_LEN}{MAX\_KEY\_LEN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+KEY\+\_\+\+LEN~32}
+
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_a282b0f9613da7596a04d4d8d4279d2a1}\label{s2n__self__talk__session__id__test_8c_a282b0f9613da7596a04d4d8d4279d2a1}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!MAX\_VAL\_LEN@{MAX\_VAL\_LEN}}
+\index{MAX\_VAL\_LEN@{MAX\_VAL\_LEN}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_VAL\_LEN}{MAX\_VAL\_LEN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+VAL\+\_\+\+LEN~255}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_a07c36a58a01ca824ad413a8bb1e7aafa}\label{s2n__self__talk__session__id__test_8c_a07c36a58a01ca824ad413a8bb1e7aafa}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!cache\_delete\_callback@{cache\_delete\_callback}}
+\index{cache\_delete\_callback@{cache\_delete\_callback}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{cache\_delete\_callback()}{cache\_delete\_callback()}}
+{\footnotesize\ttfamily int cache\+\_\+delete\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{void $\ast$}]{ctx,  }\item[{const void $\ast$}]{key,  }\item[{uint64\+\_\+t}]{key\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_a76518c3daf7521be5dd26d13df982532}\label{s2n__self__talk__session__id__test_8c_a76518c3daf7521be5dd26d13df982532}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!cache\_retrieve\_callback@{cache\_retrieve\_callback}}
+\index{cache\_retrieve\_callback@{cache\_retrieve\_callback}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{cache\_retrieve\_callback()}{cache\_retrieve\_callback()}}
+{\footnotesize\ttfamily int cache\+\_\+retrieve\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{void $\ast$}]{ctx,  }\item[{const void $\ast$}]{key,  }\item[{uint64\+\_\+t}]{key\+\_\+size,  }\item[{void $\ast$}]{value,  }\item[{uint64\+\_\+t $\ast$}]{value\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}\label{s2n__self__talk__session__id__test_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!cache\_store\_callback@{cache\_store\_callback}}
+\index{cache\_store\_callback@{cache\_store\_callback}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{cache\_store\_callback()}{cache\_store\_callback()}}
+{\footnotesize\ttfamily int cache\+\_\+store\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{void $\ast$}]{ctx,  }\item[{uint64\+\_\+t}]{ttl,  }\item[{const void $\ast$}]{key,  }\item[{uint64\+\_\+t}]{key\+\_\+size,  }\item[{const void $\ast$}]{value,  }\item[{uint64\+\_\+t}]{value\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_a63892b3d3e33fc4e6a67385bc9cf96ef}\label{s2n__self__talk__session__id__test_8c_a63892b3d3e33fc4e6a67385bc9cf96ef}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!initialize\_cache@{initialize\_cache}}
+\index{initialize\_cache@{initialize\_cache}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{initialize\_cache()}{initialize\_cache()}}
+{\footnotesize\ttfamily static void initialize\+\_\+cache (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__self__talk__session__id__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!main@{main}}
+\index{main@{main}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_a5a225c83201bf39da62fc38a9e011644}\label{s2n__self__talk__session__id__test_8c_a5a225c83201bf39da62fc38a9e011644}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!mock\_client@{mock\_client}}
+\index{mock\_client@{mock\_client}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{mock\_client()}{mock\_client()}}
+{\footnotesize\ttfamily void mock\+\_\+client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__test__io__pair}{s2n\+\_\+test\+\_\+io\+\_\+pair}} $\ast$}]{io\+\_\+pair }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_ae7193f1a2645cab22d65da861ae58594}\label{s2n__self__talk__session__id__test_8c_ae7193f1a2645cab22d65da861ae58594}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!MSG@{MSG}}
+\index{MSG@{MSG}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{MSG}{MSG}}
+{\footnotesize\ttfamily const char MSG\mbox{[}$\,$\mbox{]} = \char`\"{}Test\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_a64abc607d19fe2165bd1f364a25ee35e}\label{s2n__self__talk__session__id__test_8c_a64abc607d19fe2165bd1f364a25ee35e}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!session\_cache@{session\_cache}}
+\index{session\_cache@{session\_cache}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{session\_cache}{session\_cache}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structsession__cache__entry}{session\+\_\+cache\+\_\+entry}} session\+\_\+cache\mbox{[}256\mbox{]}}
+
+\mbox{\Hypertarget{s2n__self__talk__session__id__test_8c_a3e401ed694cbcd547a7208bb2c293a11}\label{s2n__self__talk__session__id__test_8c_a3e401ed694cbcd547a7208bb2c293a11}} 
+\index{s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}!SESSION\_ID@{SESSION\_ID}}
+\index{SESSION\_ID@{SESSION\_ID}!s2n\_self\_talk\_session\_id\_test.c@{s2n\_self\_talk\_session\_id\_test.c}}
+\doxysubsubsection{\texorpdfstring{SESSION\_ID}{SESSION\_ID}}
+{\footnotesize\ttfamily const char SESSION\+\_\+\+ID\mbox{[}$\,$\mbox{]} = \char`\"{}0123456789abcdef0123456789abcdef\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+

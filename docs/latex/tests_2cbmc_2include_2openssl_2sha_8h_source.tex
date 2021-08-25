@@ -1,0 +1,107 @@
+\hypertarget{tests_2cbmc_2include_2openssl_2sha_8h_source}{}\doxysection{sha.\+h}
+\label{tests_2cbmc_2include_2openssl_2sha_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/sha.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/sha.h}}
+\mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Changes to OpenSSL version 1.1.1.}}
+\DoxyCodeLine{3 \textcolor{comment}{ * Copyright Amazon.com, Inc. All Rights Reserved.}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright 1995-\/2017 The OpenSSL Project Authors. All Rights Reserved.}}
+\DoxyCodeLine{5 \textcolor{comment}{ *}}
+\DoxyCodeLine{6 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{7 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{8 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{11 \textcolor{comment}{ *}}
+\DoxyCodeLine{12 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{13 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{14 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{15 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{16 \textcolor{comment}{ */}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef HEADER\_SHA\_H}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define HEADER\_SHA\_H}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{comment}{/*}}
+\DoxyCodeLine{22 \textcolor{comment}{ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}}
+\DoxyCodeLine{23 \textcolor{comment}{ * ! SHA\_LONG has to be at least 32 bits wide. If it's wider, then !}}
+\DoxyCodeLine{24 \textcolor{comment}{ * ! SHA\_LONG\_LOG2 has to be defined along.                        !}}
+\DoxyCodeLine{25 \textcolor{comment}{ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}}
+\DoxyCodeLine{26 \textcolor{comment}{ */}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#if defined(\_\_LP32\_\_)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#    define SHA\_LONG unsigned long}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#elif defined(OPENSSL\_SYS\_CRAY) || defined(\_\_ILP64\_\_)}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#    define SHA\_LONG unsigned long}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#    define SHA\_LONG\_LOG2 3}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#    define SHA\_LONG unsigned int}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define SHA\_LBLOCK 16}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define SHA\_CBLOCK \(\backslash\)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{    (SHA\_LBLOCK * 4) }\textcolor{comment}{/* SHA treats input data as a}}
+\DoxyCodeLine{40 \textcolor{comment}{                     * contiguous array of 32 bit}}
+\DoxyCodeLine{41 \textcolor{comment}{                     * wide big-\/endian values. */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define SHA\_LAST\_BLOCK (SHA\_CBLOCK -\/ 8)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#define SHA\_DIGEST\_LENGTH 20}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_s_h_astate__st}{SHAstate\_st}} \{}
+\DoxyCodeLine{46     \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a1b2e699d6af9a09d35e23c231e415c6c}{SHA\_LONG}}     \mbox{\hyperlink{struct_s_h_astate__st_ab3041c8fb56553e66f5e96bea583181c}{h0}}, \mbox{\hyperlink{struct_s_h_astate__st_aae63de503961d0e23ec45fadbf762a28}{h1}}, \mbox{\hyperlink{struct_s_h_astate__st_a553b3daa14d04597c861e2482d984761}{h2}}, \mbox{\hyperlink{struct_s_h_astate__st_a5219d68f2bee6867f2775d467691ad24}{h3}}, \mbox{\hyperlink{struct_s_h_astate__st_abd5013d45dc77b9f31df5818e02c80d1}{h4}};}
+\DoxyCodeLine{47     \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a1b2e699d6af9a09d35e23c231e415c6c}{SHA\_LONG}}     \mbox{\hyperlink{struct_s_h_astate__st_abe78332975c3f20418c6a32381904bba}{Nl}}, \mbox{\hyperlink{struct_s_h_astate__st_aedd943b5d71b31cb22d3a7fecf05575e}{Nh}};}
+\DoxyCodeLine{48     \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a1b2e699d6af9a09d35e23c231e415c6c}{SHA\_LONG}}     \mbox{\hyperlink{struct_s_h_astate__st_ae8c8b0b2b3c60370a97459696f93e9da}{data}}[ \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a8902af97bc4411166213b43c6d2057d2}{SHA\_LBLOCK}} ];}
+\DoxyCodeLine{49     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_s_h_astate__st_a58f39bf4cf04c1f4796f6df5031bc746}{num}};}
+\DoxyCodeLine{50 \} \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a39b5afe5b941ddf37564ee51aed3ac39}{SHA\_CTX}};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define SHA256\_CBLOCK \(\backslash\)}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{    (SHA\_LBLOCK * 4) }\textcolor{comment}{/* SHA-\/256 treats input data as a}}
+\DoxyCodeLine{54 \textcolor{comment}{                     * contiguous array of 32 bit}}
+\DoxyCodeLine{55 \textcolor{comment}{                     * wide big-\/endian values. */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define SHA224\_DIGEST\_LENGTH 28}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#define SHA256\_DIGEST\_LENGTH 32}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_s_h_a256state__st}{SHA256state\_st}} \{}
+\DoxyCodeLine{60     \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a1b2e699d6af9a09d35e23c231e415c6c}{SHA\_LONG}}     \mbox{\hyperlink{struct_s_h_a256state__st_a8a5e81981080254a7aa9ad6e11a4f253}{h}}[ 8 ];}
+\DoxyCodeLine{61     \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a1b2e699d6af9a09d35e23c231e415c6c}{SHA\_LONG}}     \mbox{\hyperlink{struct_s_h_a256state__st_ac34962074aa1766470fae99d0e2aef9b}{Nl}}, \mbox{\hyperlink{struct_s_h_a256state__st_a02ad38687202dc1f21f78925599ec5ca}{Nh}};}
+\DoxyCodeLine{62     \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a1b2e699d6af9a09d35e23c231e415c6c}{SHA\_LONG}}     \mbox{\hyperlink{struct_s_h_a256state__st_a1db17688ebaf2204d126f9232d00d5da}{data}}[ \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a8902af97bc4411166213b43c6d2057d2}{SHA\_LBLOCK}} ];}
+\DoxyCodeLine{63     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_s_h_a256state__st_a64f6a539f36e85e82781026b68c968cf}{num}}, \mbox{\hyperlink{struct_s_h_a256state__st_a8156b1d2d8afc2bd0f0875a943b9f36a}{md\_len}};}
+\DoxyCodeLine{64 \} \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_ac78bbebdfe84597fd75ad0b1629393f6}{SHA256\_CTX}};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define SHA384\_DIGEST\_LENGTH 48}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define SHA512\_DIGEST\_LENGTH 64}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#ifndef OPENSSL\_NO\_SHA512}}
+\DoxyCodeLine{70 \textcolor{comment}{/*}}
+\DoxyCodeLine{71 \textcolor{comment}{     * Unlike 32-\/bit digest algorithms, SHA-\/512 *relies* on SHA\_LONG64}}
+\DoxyCodeLine{72 \textcolor{comment}{     * being exactly 64-\/bit wide. See Implementation Notes in sha512.c}}
+\DoxyCodeLine{73 \textcolor{comment}{     * for further details.}}
+\DoxyCodeLine{74 \textcolor{comment}{     */}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#    define SHA512\_CBLOCK \(\backslash\)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{        (SHA\_LBLOCK * 8) }\textcolor{comment}{/* SHA-\/512 treats input data as a}}
+\DoxyCodeLine{77 \textcolor{comment}{                         * contiguous array of 64 bit}}
+\DoxyCodeLine{78 \textcolor{comment}{                         * wide big-\/endian values. */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#    if (defined(\_WIN32) || defined(\_WIN64)) \&\& !defined(\_\_MINGW32\_\_)}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#        define SHA\_LONG64 unsigned \_\_int64}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#        define U64(C) C\#\#UI64}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#    elif defined(\_\_arch64\_\_)}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#        define SHA\_LONG64 unsigned long}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#        define U64(C) C\#\#UL}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#        define SHA\_LONG64 unsigned long long}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#        define U64(C) C\#\#ULL}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{struct_s_h_a512state__st}{SHA512state\_st}} \{}
+\DoxyCodeLine{91     \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a26681fbb750476e9b7532b8744916024}{SHA\_LONG64}} \mbox{\hyperlink{struct_s_h_a512state__st_a883844a48a6badf07ab8d5a3b42fa0f6}{h}}[ 8 ];}
+\DoxyCodeLine{92     \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a26681fbb750476e9b7532b8744916024}{SHA\_LONG64}} \mbox{\hyperlink{struct_s_h_a512state__st_a8adc6d1037d156b3adcb14773fa8fe90}{Nl}}, \mbox{\hyperlink{struct_s_h_a512state__st_acfe2405c1f495e7fe24c837ef4a7a9e1}{Nh}};}
+\DoxyCodeLine{93     \textcolor{keyword}{union }\{}
+\DoxyCodeLine{94         \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a26681fbb750476e9b7532b8744916024}{SHA\_LONG64}}    \mbox{\hyperlink{struct_s_h_a512state__st_ae6c768e7fafbc106b26f2dcd02ec9cf5}{d}}[ \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a8902af97bc4411166213b43c6d2057d2}{SHA\_LBLOCK}} ];}
+\DoxyCodeLine{95         \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{struct_s_h_a512state__st_ac374088935867ed28c9210a4ce44e754}{p}}[ \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a322ff23dfbf746e0864f4e81786141b6}{SHA512\_CBLOCK}} ];}
+\DoxyCodeLine{96     \} \mbox{\hyperlink{struct_s_h_a512state__st_a482e4f740aa1737425ac2efe6f45633d}{u}};}
+\DoxyCodeLine{97     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{struct_s_h_a512state__st_ae3ba23906ed2416ed3fae1765cf3c0f0}{num}}, \mbox{\hyperlink{struct_s_h_a512state__st_ac2699bd40af3279042712d23b79fb3db}{md\_len}};}
+\DoxyCodeLine{98 \} \mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a2a17e8403c9becde56b0d8c41d6074b8}{SHA512\_CTX}};}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

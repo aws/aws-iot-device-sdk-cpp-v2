@@ -1,0 +1,328 @@
+\hypertarget{s2n__prf_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+prf.c File Reference}
+\label{s2n__prf_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_prf.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_prf.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/md5.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/sha.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+prf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hmac.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+openssl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+mem.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a9159d4a6c2933b7c9b12a66a547a554b}{s2n\+\_\+sslv3\+\_\+prf}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws, struct s2n\+\_\+blob $\ast$secret, struct s2n\+\_\+blob $\ast$seed\+\_\+a, struct s2n\+\_\+blob $\ast$seed\+\_\+b, struct s2n\+\_\+blob $\ast$seed\+\_\+c, struct s2n\+\_\+blob $\ast$out)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a5b15c74c2343fd3f7fc6d82913dd97f4}{s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+new}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_ac077d50cafc136a5a3e1a62d8ce1d93b}{s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+digest\+\_\+init}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_ad268a8107e79ad06139600f95bd53388}{s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+init}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws, \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}} alg, struct s2n\+\_\+blob $\ast$secret)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a62050b089526fe9a3636a7e22bfbd836}{s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+update}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws, const void $\ast$data, uint32\+\_\+t size)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a1a4984bd5a3fe0da4ee7fa77baf7750d}{s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+digest}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws, void $\ast$digest, uint32\+\_\+t size)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a86f1cc6a2506a459aa8ae71a8a6afe9c}{s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+wipe}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_ab39c5b000e0bff16306bda27c24f4b49}{s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+reset}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a2c0e103a8944173962b2975bac36d061}{s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+cleanup}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a57f97aac84339fb2f2bfc615e7451bdb}{s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+free}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a3d8df92c023ab3e7edf0033943309995}{s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+new}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a8f8f7830832889acd0b944e643f123f8}{s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+init}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws, \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}} alg, struct s2n\+\_\+blob $\ast$secret)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_ab6800cc4c9751a586809b8eaf9269f6f}{s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+update}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws, const void $\ast$data, uint32\+\_\+t size)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_aff576d97d4cd759af7aaf5613e53fba9}{s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+digest}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws, void $\ast$digest, uint32\+\_\+t size)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_afe8f6422bb488c74ebb6eacf9a27d6c9}{s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+reset}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_af04e44ddaeac1687cff8d78b8518a83b}{s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+cleanup}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a24b0023203256d38087ff6999dfb379a}{s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+free}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_ae85ce6146ac1101673b4fa759100d77f}{s2n\+\_\+p\+\_\+hash}} (struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$ws, \mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}} alg, struct s2n\+\_\+blob $\ast$secret, struct s2n\+\_\+blob $\ast$label, struct s2n\+\_\+blob $\ast$seed\+\_\+a, struct s2n\+\_\+blob $\ast$seed\+\_\+b, struct s2n\+\_\+blob $\ast$seed\+\_\+c, struct s2n\+\_\+blob $\ast$out)
+\item 
+const struct \mbox{\hyperlink{structs2n__p__hash__hmac}{s2n\+\_\+p\+\_\+hash\+\_\+hmac}} $\ast$ \mbox{\hyperlink{s2n__prf_8c_a2269781874723604783fd1e20980d750}{s2n\+\_\+get\+\_\+hmac\+\_\+implementation}} ()
+\item 
+int \mbox{\hyperlink{s2n__prf_8c_a17bd54c706160d1c5fdd67b32b9a9344}{s2n\+\_\+prf\+\_\+new}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__prf_8c_af2288749810fb34819cb25fed45ea328}{s2n\+\_\+prf\+\_\+free}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a98b22b259a519e5b7b32b189920cca21}{s2n\+\_\+prf}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$secret, struct s2n\+\_\+blob $\ast$label, struct s2n\+\_\+blob $\ast$seed\+\_\+a, struct s2n\+\_\+blob $\ast$seed\+\_\+b, struct s2n\+\_\+blob $\ast$seed\+\_\+c, struct s2n\+\_\+blob $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__prf_8c_a4014572c10b4fd05b559b71d860595e3}{s2n\+\_\+tls\+\_\+prf\+\_\+master\+\_\+secret}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$premaster\+\_\+secret)
+\item 
+int \mbox{\hyperlink{s2n__prf_8c_af3fdd7f81f19fbe15d1fbc68673bbea6}{s2n\+\_\+hybrid\+\_\+prf\+\_\+master\+\_\+secret}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$premaster\+\_\+secret)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_af55b07a20f1189f80969d795f390a8a4}{s2n\+\_\+sslv3\+\_\+finished}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t prefix\mbox{[}4\mbox{]}, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$md5, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$sha1, uint8\+\_\+t $\ast$out)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a560316030dde702cfc458926aab1b8b7}{s2n\+\_\+sslv3\+\_\+client\+\_\+finished}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_af6639bf9e545805bb610c577bf91fd91}{s2n\+\_\+sslv3\+\_\+server\+\_\+finished}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__prf_8c_a809931120983e64ed6602dbac2b9b1fc}{s2n\+\_\+prf\+\_\+client\+\_\+finished}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__prf_8c_a4d977ca107f8b2ac76823eb6281ca69b}{s2n\+\_\+prf\+\_\+server\+\_\+finished}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a3b9f753ee13783972b034eb5939421d7}{s2n\+\_\+prf\+\_\+make\+\_\+client\+\_\+key}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$key\+\_\+material)
+\item 
+static int \mbox{\hyperlink{s2n__prf_8c_a9db682407d6acdb9b3704644e2dec986}{s2n\+\_\+prf\+\_\+make\+\_\+server\+\_\+key}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$key\+\_\+material)
+\item 
+int \mbox{\hyperlink{s2n__prf_8c_a1425bb608ed69a0cc582af0a57955e1f}{s2n\+\_\+prf\+\_\+key\+\_\+expansion}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const struct \mbox{\hyperlink{structs2n__p__hash__hmac}{s2n\+\_\+p\+\_\+hash\+\_\+hmac}} \mbox{\hyperlink{s2n__prf_8c_a55b1f89b00c87a2eb46423caeeaf46e1}{s2n\+\_\+evp\+\_\+hmac}}
+\item 
+static const struct \mbox{\hyperlink{structs2n__p__hash__hmac}{s2n\+\_\+p\+\_\+hash\+\_\+hmac}} \mbox{\hyperlink{s2n__prf_8c_a271dc3e3f9718b5c04597270a8db7aac}{s2n\+\_\+hmac}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__prf_8c_a2c0e103a8944173962b2975bac36d061}\label{s2n__prf_8c_a2c0e103a8944173962b2975bac36d061}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac\_p\_hash\_cleanup@{s2n\_evp\_hmac\_p\_hash\_cleanup}}
+\index{s2n\_evp\_hmac\_p\_hash\_cleanup@{s2n\_evp\_hmac\_p\_hash\_cleanup}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac\_p\_hash\_cleanup()}{s2n\_evp\_hmac\_p\_hash\_cleanup()}}
+{\footnotesize\ttfamily static int s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+cleanup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a1a4984bd5a3fe0da4ee7fa77baf7750d}\label{s2n__prf_8c_a1a4984bd5a3fe0da4ee7fa77baf7750d}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac\_p\_hash\_digest@{s2n\_evp\_hmac\_p\_hash\_digest}}
+\index{s2n\_evp\_hmac\_p\_hash\_digest@{s2n\_evp\_hmac\_p\_hash\_digest}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac\_p\_hash\_digest()}{s2n\_evp\_hmac\_p\_hash\_digest()}}
+{\footnotesize\ttfamily static int s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+digest (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws,  }\item[{void $\ast$}]{digest,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_ac077d50cafc136a5a3e1a62d8ce1d93b}\label{s2n__prf_8c_ac077d50cafc136a5a3e1a62d8ce1d93b}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac\_p\_hash\_digest\_init@{s2n\_evp\_hmac\_p\_hash\_digest\_init}}
+\index{s2n\_evp\_hmac\_p\_hash\_digest\_init@{s2n\_evp\_hmac\_p\_hash\_digest\_init}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac\_p\_hash\_digest\_init()}{s2n\_evp\_hmac\_p\_hash\_digest\_init()}}
+{\footnotesize\ttfamily static int s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+digest\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a57f97aac84339fb2f2bfc615e7451bdb}\label{s2n__prf_8c_a57f97aac84339fb2f2bfc615e7451bdb}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac\_p\_hash\_free@{s2n\_evp\_hmac\_p\_hash\_free}}
+\index{s2n\_evp\_hmac\_p\_hash\_free@{s2n\_evp\_hmac\_p\_hash\_free}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac\_p\_hash\_free()}{s2n\_evp\_hmac\_p\_hash\_free()}}
+{\footnotesize\ttfamily static int s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_ad268a8107e79ad06139600f95bd53388}\label{s2n__prf_8c_ad268a8107e79ad06139600f95bd53388}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac\_p\_hash\_init@{s2n\_evp\_hmac\_p\_hash\_init}}
+\index{s2n\_evp\_hmac\_p\_hash\_init@{s2n\_evp\_hmac\_p\_hash\_init}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac\_p\_hash\_init()}{s2n\_evp\_hmac\_p\_hash\_init()}}
+{\footnotesize\ttfamily static int s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws,  }\item[{\mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}}}]{alg,  }\item[{struct s2n\+\_\+blob $\ast$}]{secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a5b15c74c2343fd3f7fc6d82913dd97f4}\label{s2n__prf_8c_a5b15c74c2343fd3f7fc6d82913dd97f4}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac\_p\_hash\_new@{s2n\_evp\_hmac\_p\_hash\_new}}
+\index{s2n\_evp\_hmac\_p\_hash\_new@{s2n\_evp\_hmac\_p\_hash\_new}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac\_p\_hash\_new()}{s2n\_evp\_hmac\_p\_hash\_new()}}
+{\footnotesize\ttfamily static int s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_ab39c5b000e0bff16306bda27c24f4b49}\label{s2n__prf_8c_ab39c5b000e0bff16306bda27c24f4b49}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac\_p\_hash\_reset@{s2n\_evp\_hmac\_p\_hash\_reset}}
+\index{s2n\_evp\_hmac\_p\_hash\_reset@{s2n\_evp\_hmac\_p\_hash\_reset}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac\_p\_hash\_reset()}{s2n\_evp\_hmac\_p\_hash\_reset()}}
+{\footnotesize\ttfamily static int s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a62050b089526fe9a3636a7e22bfbd836}\label{s2n__prf_8c_a62050b089526fe9a3636a7e22bfbd836}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac\_p\_hash\_update@{s2n\_evp\_hmac\_p\_hash\_update}}
+\index{s2n\_evp\_hmac\_p\_hash\_update@{s2n\_evp\_hmac\_p\_hash\_update}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac\_p\_hash\_update()}{s2n\_evp\_hmac\_p\_hash\_update()}}
+{\footnotesize\ttfamily static int s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+update (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws,  }\item[{const void $\ast$}]{data,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a86f1cc6a2506a459aa8ae71a8a6afe9c}\label{s2n__prf_8c_a86f1cc6a2506a459aa8ae71a8a6afe9c}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac\_p\_hash\_wipe@{s2n\_evp\_hmac\_p\_hash\_wipe}}
+\index{s2n\_evp\_hmac\_p\_hash\_wipe@{s2n\_evp\_hmac\_p\_hash\_wipe}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac\_p\_hash\_wipe()}{s2n\_evp\_hmac\_p\_hash\_wipe()}}
+{\footnotesize\ttfamily static int s2n\+\_\+evp\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+wipe (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a2269781874723604783fd1e20980d750}\label{s2n__prf_8c_a2269781874723604783fd1e20980d750}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_get\_hmac\_implementation@{s2n\_get\_hmac\_implementation}}
+\index{s2n\_get\_hmac\_implementation@{s2n\_get\_hmac\_implementation}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_get\_hmac\_implementation()}{s2n\_get\_hmac\_implementation()}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__p__hash__hmac}{s2n\+\_\+p\+\_\+hash\+\_\+hmac}}$\ast$ s2n\+\_\+get\+\_\+hmac\+\_\+implementation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8c_af04e44ddaeac1687cff8d78b8518a83b}\label{s2n__prf_8c_af04e44ddaeac1687cff8d78b8518a83b}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_hmac\_p\_hash\_cleanup@{s2n\_hmac\_p\_hash\_cleanup}}
+\index{s2n\_hmac\_p\_hash\_cleanup@{s2n\_hmac\_p\_hash\_cleanup}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hmac\_p\_hash\_cleanup()}{s2n\_hmac\_p\_hash\_cleanup()}}
+{\footnotesize\ttfamily static int s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+cleanup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_aff576d97d4cd759af7aaf5613e53fba9}\label{s2n__prf_8c_aff576d97d4cd759af7aaf5613e53fba9}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_hmac\_p\_hash\_digest@{s2n\_hmac\_p\_hash\_digest}}
+\index{s2n\_hmac\_p\_hash\_digest@{s2n\_hmac\_p\_hash\_digest}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hmac\_p\_hash\_digest()}{s2n\_hmac\_p\_hash\_digest()}}
+{\footnotesize\ttfamily static int s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+digest (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws,  }\item[{void $\ast$}]{digest,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a24b0023203256d38087ff6999dfb379a}\label{s2n__prf_8c_a24b0023203256d38087ff6999dfb379a}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_hmac\_p\_hash\_free@{s2n\_hmac\_p\_hash\_free}}
+\index{s2n\_hmac\_p\_hash\_free@{s2n\_hmac\_p\_hash\_free}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hmac\_p\_hash\_free()}{s2n\_hmac\_p\_hash\_free()}}
+{\footnotesize\ttfamily static int s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a8f8f7830832889acd0b944e643f123f8}\label{s2n__prf_8c_a8f8f7830832889acd0b944e643f123f8}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_hmac\_p\_hash\_init@{s2n\_hmac\_p\_hash\_init}}
+\index{s2n\_hmac\_p\_hash\_init@{s2n\_hmac\_p\_hash\_init}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hmac\_p\_hash\_init()}{s2n\_hmac\_p\_hash\_init()}}
+{\footnotesize\ttfamily static int s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws,  }\item[{\mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}}}]{alg,  }\item[{struct s2n\+\_\+blob $\ast$}]{secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a3d8df92c023ab3e7edf0033943309995}\label{s2n__prf_8c_a3d8df92c023ab3e7edf0033943309995}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_hmac\_p\_hash\_new@{s2n\_hmac\_p\_hash\_new}}
+\index{s2n\_hmac\_p\_hash\_new@{s2n\_hmac\_p\_hash\_new}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hmac\_p\_hash\_new()}{s2n\_hmac\_p\_hash\_new()}}
+{\footnotesize\ttfamily static int s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_afe8f6422bb488c74ebb6eacf9a27d6c9}\label{s2n__prf_8c_afe8f6422bb488c74ebb6eacf9a27d6c9}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_hmac\_p\_hash\_reset@{s2n\_hmac\_p\_hash\_reset}}
+\index{s2n\_hmac\_p\_hash\_reset@{s2n\_hmac\_p\_hash\_reset}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hmac\_p\_hash\_reset()}{s2n\_hmac\_p\_hash\_reset()}}
+{\footnotesize\ttfamily static int s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_ab6800cc4c9751a586809b8eaf9269f6f}\label{s2n__prf_8c_ab6800cc4c9751a586809b8eaf9269f6f}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_hmac\_p\_hash\_update@{s2n\_hmac\_p\_hash\_update}}
+\index{s2n\_hmac\_p\_hash\_update@{s2n\_hmac\_p\_hash\_update}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hmac\_p\_hash\_update()}{s2n\_hmac\_p\_hash\_update()}}
+{\footnotesize\ttfamily static int s2n\+\_\+hmac\+\_\+p\+\_\+hash\+\_\+update (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws,  }\item[{const void $\ast$}]{data,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_af3fdd7f81f19fbe15d1fbc68673bbea6}\label{s2n__prf_8c_af3fdd7f81f19fbe15d1fbc68673bbea6}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_hybrid\_prf\_master\_secret@{s2n\_hybrid\_prf\_master\_secret}}
+\index{s2n\_hybrid\_prf\_master\_secret@{s2n\_hybrid\_prf\_master\_secret}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hybrid\_prf\_master\_secret()}{s2n\_hybrid\_prf\_master\_secret()}}
+{\footnotesize\ttfamily int s2n\+\_\+hybrid\+\_\+prf\+\_\+master\+\_\+secret (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{premaster\+\_\+secret }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8c_ae85ce6146ac1101673b4fa759100d77f}\label{s2n__prf_8c_ae85ce6146ac1101673b4fa759100d77f}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_p\_hash@{s2n\_p\_hash}}
+\index{s2n\_p\_hash@{s2n\_p\_hash}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_p\_hash()}{s2n\_p\_hash()}}
+{\footnotesize\ttfamily static int s2n\+\_\+p\+\_\+hash (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws,  }\item[{\mbox{\hyperlink{s2n__hmac_8h_a05e34c658a0066b52f746b931d53dbf8}{s2n\+\_\+hmac\+\_\+algorithm}}}]{alg,  }\item[{struct s2n\+\_\+blob $\ast$}]{secret,  }\item[{struct s2n\+\_\+blob $\ast$}]{label,  }\item[{struct s2n\+\_\+blob $\ast$}]{seed\+\_\+a,  }\item[{struct s2n\+\_\+blob $\ast$}]{seed\+\_\+b,  }\item[{struct s2n\+\_\+blob $\ast$}]{seed\+\_\+c,  }\item[{struct s2n\+\_\+blob $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a98b22b259a519e5b7b32b189920cca21}\label{s2n__prf_8c_a98b22b259a519e5b7b32b189920cca21}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_prf@{s2n\_prf}}
+\index{s2n\_prf@{s2n\_prf}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf()}{s2n\_prf()}}
+{\footnotesize\ttfamily static int s2n\+\_\+prf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{secret,  }\item[{struct s2n\+\_\+blob $\ast$}]{label,  }\item[{struct s2n\+\_\+blob $\ast$}]{seed\+\_\+a,  }\item[{struct s2n\+\_\+blob $\ast$}]{seed\+\_\+b,  }\item[{struct s2n\+\_\+blob $\ast$}]{seed\+\_\+c,  }\item[{struct s2n\+\_\+blob $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a809931120983e64ed6602dbac2b9b1fc}\label{s2n__prf_8c_a809931120983e64ed6602dbac2b9b1fc}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_prf\_client\_finished@{s2n\_prf\_client\_finished}}
+\index{s2n\_prf\_client\_finished@{s2n\_prf\_client\_finished}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_client\_finished()}{s2n\_prf\_client\_finished()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+client\+\_\+finished (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8c_af2288749810fb34819cb25fed45ea328}\label{s2n__prf_8c_af2288749810fb34819cb25fed45ea328}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_prf\_free@{s2n\_prf\_free}}
+\index{s2n\_prf\_free@{s2n\_prf\_free}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_free()}{s2n\_prf\_free()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8c_a1425bb608ed69a0cc582af0a57955e1f}\label{s2n__prf_8c_a1425bb608ed69a0cc582af0a57955e1f}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_prf\_key\_expansion@{s2n\_prf\_key\_expansion}}
+\index{s2n\_prf\_key\_expansion@{s2n\_prf\_key\_expansion}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_key\_expansion()}{s2n\_prf\_key\_expansion()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+key\+\_\+expansion (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8c_a3b9f753ee13783972b034eb5939421d7}\label{s2n__prf_8c_a3b9f753ee13783972b034eb5939421d7}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_prf\_make\_client\_key@{s2n\_prf\_make\_client\_key}}
+\index{s2n\_prf\_make\_client\_key@{s2n\_prf\_make\_client\_key}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_make\_client\_key()}{s2n\_prf\_make\_client\_key()}}
+{\footnotesize\ttfamily static int s2n\+\_\+prf\+\_\+make\+\_\+client\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{key\+\_\+material }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a9db682407d6acdb9b3704644e2dec986}\label{s2n__prf_8c_a9db682407d6acdb9b3704644e2dec986}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_prf\_make\_server\_key@{s2n\_prf\_make\_server\_key}}
+\index{s2n\_prf\_make\_server\_key@{s2n\_prf\_make\_server\_key}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_make\_server\_key()}{s2n\_prf\_make\_server\_key()}}
+{\footnotesize\ttfamily static int s2n\+\_\+prf\+\_\+make\+\_\+server\+\_\+key (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{key\+\_\+material }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a17bd54c706160d1c5fdd67b32b9a9344}\label{s2n__prf_8c_a17bd54c706160d1c5fdd67b32b9a9344}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_prf\_new@{s2n\_prf\_new}}
+\index{s2n\_prf\_new@{s2n\_prf\_new}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_new()}{s2n\_prf\_new()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8c_a4d977ca107f8b2ac76823eb6281ca69b}\label{s2n__prf_8c_a4d977ca107f8b2ac76823eb6281ca69b}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_prf\_server\_finished@{s2n\_prf\_server\_finished}}
+\index{s2n\_prf\_server\_finished@{s2n\_prf\_server\_finished}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_prf\_server\_finished()}{s2n\_prf\_server\_finished()}}
+{\footnotesize\ttfamily int s2n\+\_\+prf\+\_\+server\+\_\+finished (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__prf_8c_a560316030dde702cfc458926aab1b8b7}\label{s2n__prf_8c_a560316030dde702cfc458926aab1b8b7}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_sslv3\_client\_finished@{s2n\_sslv3\_client\_finished}}
+\index{s2n\_sslv3\_client\_finished@{s2n\_sslv3\_client\_finished}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_sslv3\_client\_finished()}{s2n\_sslv3\_client\_finished()}}
+{\footnotesize\ttfamily static int s2n\+\_\+sslv3\+\_\+client\+\_\+finished (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_af55b07a20f1189f80969d795f390a8a4}\label{s2n__prf_8c_af55b07a20f1189f80969d795f390a8a4}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_sslv3\_finished@{s2n\_sslv3\_finished}}
+\index{s2n\_sslv3\_finished@{s2n\_sslv3\_finished}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_sslv3\_finished()}{s2n\_sslv3\_finished()}}
+{\footnotesize\ttfamily static int s2n\+\_\+sslv3\+\_\+finished (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t}]{prefix\mbox{[}4\mbox{]},  }\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{md5,  }\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{sha1,  }\item[{uint8\+\_\+t $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a9159d4a6c2933b7c9b12a66a547a554b}\label{s2n__prf_8c_a9159d4a6c2933b7c9b12a66a547a554b}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_sslv3\_prf@{s2n\_sslv3\_prf}}
+\index{s2n\_sslv3\_prf@{s2n\_sslv3\_prf}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_sslv3\_prf()}{s2n\_sslv3\_prf()}}
+{\footnotesize\ttfamily static int s2n\+\_\+sslv3\+\_\+prf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__prf__working__space}{s2n\+\_\+prf\+\_\+working\+\_\+space}} $\ast$}]{ws,  }\item[{struct s2n\+\_\+blob $\ast$}]{secret,  }\item[{struct s2n\+\_\+blob $\ast$}]{seed\+\_\+a,  }\item[{struct s2n\+\_\+blob $\ast$}]{seed\+\_\+b,  }\item[{struct s2n\+\_\+blob $\ast$}]{seed\+\_\+c,  }\item[{struct s2n\+\_\+blob $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_af6639bf9e545805bb610c577bf91fd91}\label{s2n__prf_8c_af6639bf9e545805bb610c577bf91fd91}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_sslv3\_server\_finished@{s2n\_sslv3\_server\_finished}}
+\index{s2n\_sslv3\_server\_finished@{s2n\_sslv3\_server\_finished}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_sslv3\_server\_finished()}{s2n\_sslv3\_server\_finished()}}
+{\footnotesize\ttfamily static int s2n\+\_\+sslv3\+\_\+server\+\_\+finished (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__prf_8c_a4014572c10b4fd05b559b71d860595e3}\label{s2n__prf_8c_a4014572c10b4fd05b559b71d860595e3}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_tls\_prf\_master\_secret@{s2n\_tls\_prf\_master\_secret}}
+\index{s2n\_tls\_prf\_master\_secret@{s2n\_tls\_prf\_master\_secret}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls\_prf\_master\_secret()}{s2n\_tls\_prf\_master\_secret()}}
+{\footnotesize\ttfamily int s2n\+\_\+tls\+\_\+prf\+\_\+master\+\_\+secret (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct s2n\+\_\+blob $\ast$}]{premaster\+\_\+secret }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__prf_8c_a55b1f89b00c87a2eb46423caeeaf46e1}\label{s2n__prf_8c_a55b1f89b00c87a2eb46423caeeaf46e1}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_evp\_hmac@{s2n\_evp\_hmac}}
+\index{s2n\_evp\_hmac@{s2n\_evp\_hmac}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_evp\_hmac}{s2n\_evp\_hmac}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__p__hash__hmac}{s2n\+\_\+p\+\_\+hash\+\_\+hmac}} s2n\+\_\+evp\+\_\+hmac\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .alloc = \&\mbox{\hyperlink{s2n__prf_8c_a5b15c74c2343fd3f7fc6d82913dd97f4}{s2n\_evp\_hmac\_p\_hash\_new}},}
+\DoxyCodeLine{    .init = \&\mbox{\hyperlink{s2n__prf_8c_ad268a8107e79ad06139600f95bd53388}{s2n\_evp\_hmac\_p\_hash\_init}},}
+\DoxyCodeLine{    .update = \&\mbox{\hyperlink{s2n__prf_8c_a62050b089526fe9a3636a7e22bfbd836}{s2n\_evp\_hmac\_p\_hash\_update}},}
+\DoxyCodeLine{    .final = \&\mbox{\hyperlink{s2n__prf_8c_a1a4984bd5a3fe0da4ee7fa77baf7750d}{s2n\_evp\_hmac\_p\_hash\_digest}},}
+\DoxyCodeLine{    .reset = \&\mbox{\hyperlink{s2n__prf_8c_ab39c5b000e0bff16306bda27c24f4b49}{s2n\_evp\_hmac\_p\_hash\_reset}},}
+\DoxyCodeLine{    .cleanup = \&\mbox{\hyperlink{s2n__prf_8c_a2c0e103a8944173962b2975bac36d061}{s2n\_evp\_hmac\_p\_hash\_cleanup}},}
+\DoxyCodeLine{    .free = \&\mbox{\hyperlink{s2n__prf_8c_a57f97aac84339fb2f2bfc615e7451bdb}{s2n\_evp\_hmac\_p\_hash\_free}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__prf_8c_a271dc3e3f9718b5c04597270a8db7aac}\label{s2n__prf_8c_a271dc3e3f9718b5c04597270a8db7aac}} 
+\index{s2n\_prf.c@{s2n\_prf.c}!s2n\_hmac@{s2n\_hmac}}
+\index{s2n\_hmac@{s2n\_hmac}!s2n\_prf.c@{s2n\_prf.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_hmac}{s2n\_hmac}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__p__hash__hmac}{s2n\+\_\+p\+\_\+hash\+\_\+hmac}} s2n\+\_\+hmac\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .alloc = \&\mbox{\hyperlink{s2n__prf_8c_a3d8df92c023ab3e7edf0033943309995}{s2n\_hmac\_p\_hash\_new}},}
+\DoxyCodeLine{    .init = \&\mbox{\hyperlink{s2n__prf_8c_a8f8f7830832889acd0b944e643f123f8}{s2n\_hmac\_p\_hash\_init}},}
+\DoxyCodeLine{    .update = \&\mbox{\hyperlink{s2n__prf_8c_ab6800cc4c9751a586809b8eaf9269f6f}{s2n\_hmac\_p\_hash\_update}},}
+\DoxyCodeLine{    .final = \&\mbox{\hyperlink{s2n__prf_8c_aff576d97d4cd759af7aaf5613e53fba9}{s2n\_hmac\_p\_hash\_digest}},}
+\DoxyCodeLine{    .reset = \&\mbox{\hyperlink{s2n__prf_8c_afe8f6422bb488c74ebb6eacf9a27d6c9}{s2n\_hmac\_p\_hash\_reset}},}
+\DoxyCodeLine{    .cleanup = \&\mbox{\hyperlink{s2n__prf_8c_af04e44ddaeac1687cff8d78b8518a83b}{s2n\_hmac\_p\_hash\_cleanup}},}
+\DoxyCodeLine{    .free = \&\mbox{\hyperlink{s2n__prf_8c_a24b0023203256d38087ff6999dfb379a}{s2n\_hmac\_p\_hash\_free}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

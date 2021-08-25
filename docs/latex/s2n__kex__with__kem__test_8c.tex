@@ -1,0 +1,116 @@
+\hypertarget{s2n__kex__with__kem__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+kex\+\_\+with\+\_\+kem\+\_\+test.c File Reference}
+\label{s2n__kex__with__kem__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_kex\_with\_kem\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_kex\_with\_kem\_test.c}}
+{\ttfamily \#include \char`\"{}tests/s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+client\+\_\+key\+\_\+exchange.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+server\+\_\+key\+\_\+exchange.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kex.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kex\+\_\+data.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+kem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__kex__with__kem__test_8c_af7db949edd4fbdff9d9b274b831bf693}{do\+\_\+kex\+\_\+with\+\_\+kem}} (struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite, const char $\ast$security\+\_\+policy\+\_\+version, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$negotiated\+\_\+kem)
+\item 
+static int \mbox{\hyperlink{s2n__kex__with__kem__test_8c_a8ad44efba35c0285b10a8e9b67fb8aa1}{assert\+\_\+kex\+\_\+fips\+\_\+checks}} (struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite, const char $\ast$security\+\_\+policy\+\_\+version, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$negotiated\+\_\+kem)
+\item 
+int \mbox{\hyperlink{s2n__kex__with__kem__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} \mbox{\hyperlink{s2n__kex__with__kem__test_8c_abf36f19bed335c3134350498f26c664f}{s2n\+\_\+test\+\_\+kem\+\_\+kex}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__kex__with__kem__test_8c_acf99722f49ffcc0f05ddf7ad20ec002e}{sike\+\_\+test\+\_\+suite}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__kex__with__kem__test_8c_a59a030fd56054a4f9128e7237fe960e4}{bike\+\_\+test\+\_\+suite}}
+\item 
+static struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__kex__with__kem__test_8c_a21a5a19adccfb856075cfc941bac3e7c}{kyber\+\_\+test\+\_\+suite}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__kex__with__kem__test_8c_a8ad44efba35c0285b10a8e9b67fb8aa1}\label{s2n__kex__with__kem__test_8c_a8ad44efba35c0285b10a8e9b67fb8aa1}} 
+\index{s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}!assert\_kex\_fips\_checks@{assert\_kex\_fips\_checks}}
+\index{assert\_kex\_fips\_checks@{assert\_kex\_fips\_checks}!s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{assert\_kex\_fips\_checks()}{assert\_kex\_fips\_checks()}}
+{\footnotesize\ttfamily static int assert\+\_\+kex\+\_\+fips\+\_\+checks (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$}]{cipher\+\_\+suite,  }\item[{const char $\ast$}]{security\+\_\+policy\+\_\+version,  }\item[{const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$}]{negotiated\+\_\+kem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__kex__with__kem__test_8c_af7db949edd4fbdff9d9b274b831bf693}\label{s2n__kex__with__kem__test_8c_af7db949edd4fbdff9d9b274b831bf693}} 
+\index{s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}!do\_kex\_with\_kem@{do\_kex\_with\_kem}}
+\index{do\_kex\_with\_kem@{do\_kex\_with\_kem}!s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{do\_kex\_with\_kem()}{do\_kex\_with\_kem()}}
+{\footnotesize\ttfamily static int do\+\_\+kex\+\_\+with\+\_\+kem (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$}]{cipher\+\_\+suite,  }\item[{const char $\ast$}]{security\+\_\+policy\+\_\+version,  }\item[{const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$}]{negotiated\+\_\+kem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__kex__with__kem__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__kex__with__kem__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}!main@{main}}
+\index{main@{main}!s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__kex__with__kem__test_8c_a59a030fd56054a4f9128e7237fe960e4}\label{s2n__kex__with__kem__test_8c_a59a030fd56054a4f9128e7237fe960e4}} 
+\index{s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}!bike\_test\_suite@{bike\_test\_suite}}
+\index{bike\_test\_suite@{bike\_test\_suite}!s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{bike\_test\_suite}{bike\_test\_suite}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} bike\+\_\+test\+\_\+suite\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a345c01eb6e33e1ea97bbd02939958c2a}{TLS\_ECDHE\_BIKE\_RSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{        .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex__with__kem__test_8c_abf36f19bed335c3134350498f26c664f}{s2n\_test\_kem\_kex}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__kex__with__kem__test_8c_a21a5a19adccfb856075cfc941bac3e7c}\label{s2n__kex__with__kem__test_8c_a21a5a19adccfb856075cfc941bac3e7c}} 
+\index{s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}!kyber\_test\_suite@{kyber\_test\_suite}}
+\index{kyber\_test\_suite@{kyber\_test\_suite}!s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{kyber\_test\_suite}{kyber\_test\_suite}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} kyber\+\_\+test\+\_\+suite\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a4bd71467a86331083c947fab47974216}{TLS\_ECDHE\_KYBER\_RSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{        .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex__with__kem__test_8c_abf36f19bed335c3134350498f26c664f}{s2n\_test\_kem\_kex}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__kex__with__kem__test_8c_abf36f19bed335c3134350498f26c664f}\label{s2n__kex__with__kem__test_8c_abf36f19bed335c3134350498f26c664f}} 
+\index{s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}!s2n\_test\_kem\_kex@{s2n\_test\_kem\_kex}}
+\index{s2n\_test\_kem\_kex@{s2n\_test\_kem\_kex}!s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_kem\_kex}{s2n\_test\_kem\_kex}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} s2n\+\_\+test\+\_\+kem\+\_\+kex\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .server\_key\_recv\_read\_data = \&\mbox{\hyperlink{s2n__server__key__exchange_8c_a2fea935db6f44263fdce1b4a3259401d}{s2n\_kem\_server\_key\_recv\_read\_data}},}
+\DoxyCodeLine{        .server\_key\_recv\_parse\_data = \&\mbox{\hyperlink{s2n__server__key__exchange_8c_a2f339229e9a92a74cdc86a151a312ef1}{s2n\_kem\_server\_key\_recv\_parse\_data}},}
+\DoxyCodeLine{        .server\_key\_send = \&\mbox{\hyperlink{s2n__server__key__exchange_8c_afb5dde9f0ca3eb98fdcdacfed5106d07}{s2n\_kem\_server\_key\_send}},}
+\DoxyCodeLine{        .client\_key\_recv = \&\mbox{\hyperlink{s2n__client__key__exchange_8c_a96f0877e01830cb3b7eec31e7af9b5df}{s2n\_kem\_client\_key\_recv}},}
+\DoxyCodeLine{        .client\_key\_send = \&\mbox{\hyperlink{s2n__client__key__exchange_8c_a584c100855585dd572540d9ee7e2be11}{s2n\_kem\_client\_key\_send}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__kex__with__kem__test_8c_acf99722f49ffcc0f05ddf7ad20ec002e}\label{s2n__kex__with__kem__test_8c_acf99722f49ffcc0f05ddf7ad20ec002e}} 
+\index{s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}!sike\_test\_suite@{sike\_test\_suite}}
+\index{sike\_test\_suite@{sike\_test\_suite}!s2n\_kex\_with\_kem\_test.c@{s2n\_kex\_with\_kem\_test.c}}
+\doxysubsubsection{\texorpdfstring{sike\_test\_suite}{sike\_test\_suite}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} sike\+\_\+test\+\_\+suite\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        .iana\_value = \{ \mbox{\hyperlink{s2n__tls__parameters_8h_a19b42d767234f51481db2d80db6bd863}{TLS\_ECDHE\_SIKE\_RSA\_WITH\_AES\_256\_GCM\_SHA384}} \},}
+\DoxyCodeLine{        .key\_exchange\_alg = \&\mbox{\hyperlink{s2n__kex__with__kem__test_8c_abf36f19bed335c3134350498f26c664f}{s2n\_test\_kem\_kex}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

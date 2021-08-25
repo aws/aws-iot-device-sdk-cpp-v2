@@ -1,0 +1,57 @@
+\hypertarget{s2n__cookie_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+cookie.h File Reference}
+\label{s2n__cookie_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_cookie.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_cookie.h}}
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+extension\+\_\+type.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__cookie_8h_a40b62e264c14745c84222bf453796b1c}{s2n\+\_\+extensions\+\_\+cookie\+\_\+size}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__cookie_8h_a3fd13bb99ca95199ab23dce0e1ea6010}{s2n\+\_\+extensions\+\_\+cookie\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__cookie_8h_a5ef6301129e05c87a766830c7e251579}{s2n\+\_\+extensions\+\_\+cookie\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__cookie_8h_a7befbe7e75a290dc3c6ed7da73310eb6}{s2n\+\_\+client\+\_\+cookie\+\_\+extension}}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__cookie_8h_abe11e7ec1328863c105e87ec7a60c97b}{s2n\+\_\+server\+\_\+cookie\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__cookie_8h_a5ef6301129e05c87a766830c7e251579}\label{s2n__cookie_8h_a5ef6301129e05c87a766830c7e251579}} 
+\index{s2n\_cookie.h@{s2n\_cookie.h}!s2n\_extensions\_cookie\_recv@{s2n\_extensions\_cookie\_recv}}
+\index{s2n\_extensions\_cookie\_recv@{s2n\_extensions\_cookie\_recv}!s2n\_cookie.h@{s2n\_cookie.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_cookie\_recv()}{s2n\_extensions\_cookie\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+cookie\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cookie_8h_a3fd13bb99ca95199ab23dce0e1ea6010}\label{s2n__cookie_8h_a3fd13bb99ca95199ab23dce0e1ea6010}} 
+\index{s2n\_cookie.h@{s2n\_cookie.h}!s2n\_extensions\_cookie\_send@{s2n\_extensions\_cookie\_send}}
+\index{s2n\_extensions\_cookie\_send@{s2n\_extensions\_cookie\_send}!s2n\_cookie.h@{s2n\_cookie.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_cookie\_send()}{s2n\_extensions\_cookie\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+cookie\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cookie_8h_a40b62e264c14745c84222bf453796b1c}\label{s2n__cookie_8h_a40b62e264c14745c84222bf453796b1c}} 
+\index{s2n\_cookie.h@{s2n\_cookie.h}!s2n\_extensions\_cookie\_size@{s2n\_extensions\_cookie\_size}}
+\index{s2n\_extensions\_cookie\_size@{s2n\_extensions\_cookie\_size}!s2n\_cookie.h@{s2n\_cookie.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_cookie\_size()}{s2n\_extensions\_cookie\_size()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+cookie\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__cookie_8h_a7befbe7e75a290dc3c6ed7da73310eb6}\label{s2n__cookie_8h_a7befbe7e75a290dc3c6ed7da73310eb6}} 
+\index{s2n\_cookie.h@{s2n\_cookie.h}!s2n\_client\_cookie\_extension@{s2n\_client\_cookie\_extension}}
+\index{s2n\_client\_cookie\_extension@{s2n\_client\_cookie\_extension}!s2n\_cookie.h@{s2n\_cookie.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_client\_cookie\_extension}{s2n\_client\_cookie\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+client\+\_\+cookie\+\_\+extension\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cookie_8h_abe11e7ec1328863c105e87ec7a60c97b}\label{s2n__cookie_8h_abe11e7ec1328863c105e87ec7a60c97b}} 
+\index{s2n\_cookie.h@{s2n\_cookie.h}!s2n\_server\_cookie\_extension@{s2n\_server\_cookie\_extension}}
+\index{s2n\_server\_cookie\_extension@{s2n\_server\_cookie\_extension}!s2n\_cookie.h@{s2n\_cookie.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_cookie\_extension}{s2n\_server\_cookie\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+server\+\_\+cookie\+\_\+extension\hspace{0.3cm}{\ttfamily [extern]}}
+

@@ -1,0 +1,112 @@
+\hypertarget{memtrace__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/memtrace\+\_\+test.c File Reference}
+\label{memtrace__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/memtrace\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/memtrace\_test.c}}
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/allocator.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/device\+\_\+random.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}logging/test\+\_\+logger.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{memtrace__test_8c_acaec215bd4b248839f59d29b24ed39ef}{NUM\+\_\+\+ALLOCS}}~100
+\item 
+\#define \mbox{\hyperlink{memtrace__test_8c_a4d11931597491cf8928bf011151b31a4}{AWS\+\_\+\+PREVENT\+\_\+\+OPTIMIZATION}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{memtrace__test_8c_ac10402dbd0cd08f69480040806b72919}{s\+\_\+test\+\_\+memtrace\+\_\+count}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+AWS\+\_\+\+NO\+\_\+\+INLINE void $\ast$ \mbox{\hyperlink{memtrace__test_8c_a1fc0360033da2c6f6483b165497b585c}{s\+\_\+alloc\+\_\+1}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+\item 
+AWS\+\_\+\+NO\+\_\+\+INLINE void $\ast$ \mbox{\hyperlink{memtrace__test_8c_aa9a77df9eb5f410e5ad43c08b00eb1fe}{s\+\_\+alloc\+\_\+2}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+\item 
+AWS\+\_\+\+NO\+\_\+\+INLINE void $\ast$ \mbox{\hyperlink{memtrace__test_8c_aa856e6add2f10d073c064301ef7a6d98}{s\+\_\+alloc\+\_\+3}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+\item 
+AWS\+\_\+\+NO\+\_\+\+INLINE void $\ast$ \mbox{\hyperlink{memtrace__test_8c_af95044766fd72de0a232216e8020fda4}{s\+\_\+alloc\+\_\+4}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+\item 
+static int \mbox{\hyperlink{memtrace__test_8c_a6c8dd47f3507b6e9d1661f96159f2ec9}{s\+\_\+test\+\_\+memtrace\+\_\+stacks}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{memtrace__test_8c_a830a1bd1010a3b742438966a7b8b848d}{s\+\_\+test\+\_\+memtrace\+\_\+none}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{memtrace__test_8c_a93aed1d5687cf444e9a328e2c81e45bc}{s\+\_\+test\+\_\+memtrace\+\_\+midstream}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} \mbox{\hyperlink{memtrace__test_8c_a7470717f9bba1487cb08215d0bf00556}{s\+\_\+test\+\_\+logger}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{memtrace__test_8c_a4d11931597491cf8928bf011151b31a4}\label{memtrace__test_8c_a4d11931597491cf8928bf011151b31a4}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!AWS\_PREVENT\_OPTIMIZATION@{AWS\_PREVENT\_OPTIMIZATION}}
+\index{AWS\_PREVENT\_OPTIMIZATION@{AWS\_PREVENT\_OPTIMIZATION}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{AWS\_PREVENT\_OPTIMIZATION}{AWS\_PREVENT\_OPTIMIZATION}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+PREVENT\+\_\+\+OPTIMIZATION}
+
+\mbox{\Hypertarget{memtrace__test_8c_acaec215bd4b248839f59d29b24ed39ef}\label{memtrace__test_8c_acaec215bd4b248839f59d29b24ed39ef}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!NUM\_ALLOCS@{NUM\_ALLOCS}}
+\index{NUM\_ALLOCS@{NUM\_ALLOCS}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{NUM\_ALLOCS}{NUM\_ALLOCS}}
+{\footnotesize\ttfamily \#define NUM\+\_\+\+ALLOCS~100}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{memtrace__test_8c_a1fc0360033da2c6f6483b165497b585c}\label{memtrace__test_8c_a1fc0360033da2c6f6483b165497b585c}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!s\_alloc\_1@{s\_alloc\_1}}
+\index{s\_alloc\_1@{s\_alloc\_1}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alloc\_1()}{s\_alloc\_1()}}
+{\footnotesize\ttfamily AWS\+\_\+\+NO\+\_\+\+INLINE void$\ast$ s\+\_\+alloc\+\_\+1 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memtrace__test_8c_aa9a77df9eb5f410e5ad43c08b00eb1fe}\label{memtrace__test_8c_aa9a77df9eb5f410e5ad43c08b00eb1fe}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!s\_alloc\_2@{s\_alloc\_2}}
+\index{s\_alloc\_2@{s\_alloc\_2}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alloc\_2()}{s\_alloc\_2()}}
+{\footnotesize\ttfamily AWS\+\_\+\+NO\+\_\+\+INLINE void$\ast$ s\+\_\+alloc\+\_\+2 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memtrace__test_8c_aa856e6add2f10d073c064301ef7a6d98}\label{memtrace__test_8c_aa856e6add2f10d073c064301ef7a6d98}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!s\_alloc\_3@{s\_alloc\_3}}
+\index{s\_alloc\_3@{s\_alloc\_3}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alloc\_3()}{s\_alloc\_3()}}
+{\footnotesize\ttfamily AWS\+\_\+\+NO\+\_\+\+INLINE void$\ast$ s\+\_\+alloc\+\_\+3 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memtrace__test_8c_af95044766fd72de0a232216e8020fda4}\label{memtrace__test_8c_af95044766fd72de0a232216e8020fda4}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!s\_alloc\_4@{s\_alloc\_4}}
+\index{s\_alloc\_4@{s\_alloc\_4}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_alloc\_4()}{s\_alloc\_4()}}
+{\footnotesize\ttfamily AWS\+\_\+\+NO\+\_\+\+INLINE void$\ast$ s\+\_\+alloc\+\_\+4 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memtrace__test_8c_ac10402dbd0cd08f69480040806b72919}\label{memtrace__test_8c_ac10402dbd0cd08f69480040806b72919}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!s\_test\_memtrace\_count@{s\_test\_memtrace\_count}}
+\index{s\_test\_memtrace\_count@{s\_test\_memtrace\_count}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_memtrace\_count()}{s\_test\_memtrace\_count()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+memtrace\+\_\+count (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{memtrace__test_8c_a93aed1d5687cf444e9a328e2c81e45bc}\label{memtrace__test_8c_a93aed1d5687cf444e9a328e2c81e45bc}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!s\_test\_memtrace\_midstream@{s\_test\_memtrace\_midstream}}
+\index{s\_test\_memtrace\_midstream@{s\_test\_memtrace\_midstream}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_memtrace\_midstream()}{s\_test\_memtrace\_midstream()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+memtrace\+\_\+midstream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{memtrace__test_8c_a830a1bd1010a3b742438966a7b8b848d}\label{memtrace__test_8c_a830a1bd1010a3b742438966a7b8b848d}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!s\_test\_memtrace\_none@{s\_test\_memtrace\_none}}
+\index{s\_test\_memtrace\_none@{s\_test\_memtrace\_none}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_memtrace\_none()}{s\_test\_memtrace\_none()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+memtrace\+\_\+none (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{memtrace__test_8c_a6c8dd47f3507b6e9d1661f96159f2ec9}\label{memtrace__test_8c_a6c8dd47f3507b6e9d1661f96159f2ec9}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!s\_test\_memtrace\_stacks@{s\_test\_memtrace\_stacks}}
+\index{s\_test\_memtrace\_stacks@{s\_test\_memtrace\_stacks}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_memtrace\_stacks()}{s\_test\_memtrace\_stacks()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+memtrace\+\_\+stacks (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{memtrace__test_8c_a7470717f9bba1487cb08215d0bf00556}\label{memtrace__test_8c_a7470717f9bba1487cb08215d0bf00556}} 
+\index{memtrace\_test.c@{memtrace\_test.c}!s\_test\_logger@{s\_test\_logger}}
+\index{s\_test\_logger@{s\_test\_logger}!memtrace\_test.c@{memtrace\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_logger}{s\_test\_logger}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} s\+\_\+test\+\_\+logger\hspace{0.3cm}{\ttfamily [static]}}
+

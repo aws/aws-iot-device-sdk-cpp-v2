@@ -1,0 +1,121 @@
+\hypertarget{s2n__config_8h_source}{}\doxysection{s2n\+\_\+config.\+h}
+\label{s2n__config_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_config.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_config.h}}
+\mbox{\hyperlink{s2n__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n_8h}{api/s2n.h}}"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__certificate_8h}{crypto/s2n\_certificate.h}}"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__dhe_8h}{crypto/s2n\_dhe.h}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__resume_8h}{tls/s2n\_resume.h}}"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__x509__validator_8h}{tls/s2n\_x509\_validator.h}}"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}utils/s2n\_blob.h"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}utils/s2n\_set.h"{}}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define S2N\_MAX\_TICKET\_KEYS 48}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define S2N\_MAX\_TICKET\_KEY\_HASHES 500 }\textcolor{comment}{/* 10KB */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cipher__preferences}{s2n\_cipher\_preferences}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__config}{s2n\_config}} \{}
+\DoxyCodeLine{32     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_adb5d24647267f8acd450d2f55c9ab0e5}{cert\_allocated}}:1;}
+\DoxyCodeLine{33     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_a19f4a9e417b3f98100b717df2cc7271e}{default\_certs\_are\_explicit}}:1;}
+\DoxyCodeLine{34     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_aaf9751e18975cf827ceccf7abbd12fec}{use\_tickets}}:1;}
+\DoxyCodeLine{35     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_a608a556ce28981b0914c1aec8d1bb0a0}{use\_session\_cache}}:1;}
+\DoxyCodeLine{36     \textcolor{comment}{/* if this is FALSE, server will ignore client's Maximum Fragment Length request */}}
+\DoxyCodeLine{37     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_a840602f9e0f7a855bbc94fe10a35f0e3}{accept\_mfl}}:1;}
+\DoxyCodeLine{38     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_aecc2e187aad6b52df9ea51f7d2654622}{check\_ocsp}}:1;}
+\DoxyCodeLine{39     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_a88298939e60a7d321b03a5a79a8ffcf0}{disable\_x509\_validation}}:1;}
+\DoxyCodeLine{40     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_a906d0c4447afd8fe220a4b32882c0f3a}{max\_verify\_cert\_chain\_depth\_set}}:1;}
+\DoxyCodeLine{41     \textcolor{comment}{/* Whether a connection can be used by a QUIC implementation.}}
+\DoxyCodeLine{42 \textcolor{comment}{     * See s2n\_quic\_support.h */}}
+\DoxyCodeLine{43     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_aada3b5ff3285aff91ffa5fe6637eaf1f}{quic\_enabled}}:1;}
+\DoxyCodeLine{44     \textcolor{comment}{/* Whether to add dss cert type during a server certificate request.}}
+\DoxyCodeLine{45 \textcolor{comment}{     * See https://github.com/awslabs/s2n/blob/main/docs/USAGE-\/GUIDE.md */}}
+\DoxyCodeLine{46     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{structs2n__config_afb806743ea87eee10c28ce4c3c9b8e03}{cert\_req\_dss\_legacy\_compat\_enabled}}:1;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} *\mbox{\hyperlink{structs2n__config_a72fa0b66647ad4b0ed8f958ec005df3a}{dhparams}};}
+\DoxyCodeLine{49     \textcolor{comment}{/* Needed until we can deprecate s2n\_config\_add\_cert\_chain\_and\_key. This is}}
+\DoxyCodeLine{50 \textcolor{comment}{     * used to release memory allocated only in the deprecated API that the application }}
+\DoxyCodeLine{51 \textcolor{comment}{     * does not have a reference to. */}}
+\DoxyCodeLine{52     \textcolor{keyword}{struct }s2n\_map *\mbox{\hyperlink{structs2n__config_acfe663de1c5cc08343b282f3533f1b63}{domain\_name\_to\_cert\_map}};}
+\DoxyCodeLine{53     \textcolor{keyword}{struct }\mbox{\hyperlink{structcerts__by__type}{certs\_by\_type}} \mbox{\hyperlink{structs2n__config_ad7b2e3c6dfb13302829d244bbc165a47}{default\_certs\_by\_type}};}
+\DoxyCodeLine{54     \textcolor{keyword}{struct }s2n\_blob \mbox{\hyperlink{structs2n__config_ab762b3c56a9b5d06545d3a3dc38ff58f}{application\_protocols}};}
+\DoxyCodeLine{55     \mbox{\hyperlink{s2n_8h_a7d38e45340d223d0100a2d4bc0526635}{s2n\_status\_request\_type}} \mbox{\hyperlink{structs2n__config_a7391b807805b1bc4853b3e2b274be2d6}{status\_request\_type}};}
+\DoxyCodeLine{56     \mbox{\hyperlink{s2n_8h_a0cfed8d65c0e2c33cf666ee90eb06a7e}{s2n\_clock\_time\_nanoseconds}} \mbox{\hyperlink{structs2n__config_abaa1295f3bb3ac07fcb3f946bbff820d}{wall\_clock}};}
+\DoxyCodeLine{57     \mbox{\hyperlink{s2n_8h_a0cfed8d65c0e2c33cf666ee90eb06a7e}{s2n\_clock\_time\_nanoseconds}} \mbox{\hyperlink{structs2n__config_a494aedc4476312883cfc9bc3ebd75aef}{monotonic\_clock}};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__security__policy}{s2n\_security\_policy}} *\mbox{\hyperlink{structs2n__config_ae8a91192c8602f965d5932dc3e5f2d72}{security\_policy}};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structs2n__config_aa210a58d52be545826652d36b5cc9fa4}{sys\_clock\_ctx}};}
+\DoxyCodeLine{62     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structs2n__config_aea843e626d153eb5ec336022337d5e31}{monotonic\_clock\_ctx}};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64     \mbox{\hyperlink{s2n_8h_a0451dcbf88fdf09f36a82cab4d25d44e}{s2n\_client\_hello\_fn}} *\mbox{\hyperlink{structs2n__config_aeb702d3bfbfce21b47fbe07bd720207c}{client\_hello\_cb}};}
+\DoxyCodeLine{65     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structs2n__config_a8451c4274d9522fd27869ad1c36ffeed}{client\_hello\_cb\_ctx}};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     uint64\_t \mbox{\hyperlink{structs2n__config_ac471607362a0376ef185940ea4250644}{session\_state\_lifetime\_in\_nanos}};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69     \textcolor{keyword}{struct }s2n\_set *\mbox{\hyperlink{structs2n__config_a57507f0b3303a719794d4a74a19bda98}{ticket\_keys}};}
+\DoxyCodeLine{70     \textcolor{keyword}{struct }s2n\_set *\mbox{\hyperlink{structs2n__config_a283c6a4e6beafdd2f41ec9126c626c1e}{ticket\_key\_hashes}};}
+\DoxyCodeLine{71     uint64\_t \mbox{\hyperlink{structs2n__config_a4e6dad404093babe5b4923e5a085bac9}{encrypt\_decrypt\_key\_lifetime\_in\_nanos}};}
+\DoxyCodeLine{72     uint64\_t \mbox{\hyperlink{structs2n__config_ae897768719c6ae5be08b2e7ed48cc55e}{decrypt\_key\_lifetime\_in\_nanos}};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74     \textcolor{comment}{/* If session cache is being used, these must all be set */}}
+\DoxyCodeLine{75     \mbox{\hyperlink{s2n_8h_ad9764b7cab647999aad58c339a42e90e}{s2n\_cache\_store\_callback}} \mbox{\hyperlink{structs2n__config_a58e1cd9c6c173bcef5c8e4608e244905}{cache\_store}};}
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structs2n__config_a9cf40c8811524999a63db08febfe06ce}{cache\_store\_data}};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \mbox{\hyperlink{s2n_8h_a57b0785656f577b764e1c3c3844368d4}{s2n\_cache\_retrieve\_callback}} \mbox{\hyperlink{structs2n__config_a2e5c1b5f463d16e4ac2a2b2ce346afac}{cache\_retrieve}};}
+\DoxyCodeLine{79     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structs2n__config_a835e8dc918b7cc98948bd024b29df2c1}{cache\_retrieve\_data}};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81     \mbox{\hyperlink{s2n_8h_acbf7cc68d71dd8d960ff078b3a21792f}{s2n\_cache\_delete\_callback}} \mbox{\hyperlink{structs2n__config_ad3538a77a0fe3a1de8b7e15fadd851b2}{cache\_delete}};}
+\DoxyCodeLine{82     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structs2n__config_afb36bd618dda3695b0a890d4ecf2cda7}{cache\_delete\_data}};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     \mbox{\hyperlink{s2n_8h_ae8f37b612310a3594b019b88ebd8fa1a}{s2n\_ct\_support\_level}} \mbox{\hyperlink{structs2n__config_ae6e9991f10ac11cc3fc3fcbfd7703499}{ct\_type}};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \mbox{\hyperlink{s2n_8h_a8757c094681bb8151329c8dc067106b8}{s2n\_cert\_auth\_type}} \mbox{\hyperlink{structs2n__config_aacd23c76d608f961557ee3defa0d4015}{client\_cert\_auth\_type}};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \mbox{\hyperlink{s2n_8h_ab8d3f62254ec4211d47cc841dea76abd}{s2n\_alert\_behavior}} \mbox{\hyperlink{structs2n__config_a83df4a563d69d43b6db857ecdd6991bc}{alert\_behavior}};}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90     \textcolor{comment}{/* Return TRUE if the host should be trusted, If FALSE this will likely be called again for every host/alternative name}}
+\DoxyCodeLine{91 \textcolor{comment}{     * in the certificate. If any respond TRUE. If none return TRUE, the cert will be considered untrusted. */}}
+\DoxyCodeLine{92     uint8\_t (*\mbox{\hyperlink{structs2n__config_ad0f57d155ba37932e663376db7f08626}{verify\_host}})(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *host\_name, \textcolor{keywordtype}{size\_t} host\_name\_len, \textcolor{keywordtype}{void} *data);}
+\DoxyCodeLine{93     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structs2n__config_a1714732fa0d3761f162e1eccf59e6904}{data\_for\_verify\_host}};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{comment}{/* Application supplied callback to resolve domain name conflicts when loading certs. */}}
+\DoxyCodeLine{96     \mbox{\hyperlink{s2n_8h_ac613789e3ed4958426ae8fd987faae4e}{s2n\_cert\_tiebreak\_callback}} \mbox{\hyperlink{structs2n__config_ab2b4fe6227a0b72ec5c1b67d759e816e}{cert\_tiebreak\_cb}};}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98     uint8\_t \mbox{\hyperlink{structs2n__config_aa37f0729847d3be1494c69a533d5f4ba}{mfl\_code}};}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__x509__trust__store}{s2n\_x509\_trust\_store}} \mbox{\hyperlink{structs2n__config_ada14d7dfb4a012ea0d461d3210235c53}{trust\_store}};}
+\DoxyCodeLine{101     uint16\_t \mbox{\hyperlink{structs2n__config_a2e4c0a7e306b17b872890b469791d06f}{max\_verify\_cert\_chain\_depth}};}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103     \mbox{\hyperlink{s2n_8h_a2ecb6a187e25469c3fd108a873da1cce}{s2n\_async\_pkey\_fn}} \mbox{\hyperlink{structs2n__config_a8ef799db1c10cf117e76047b4fd087e5}{async\_pkey\_cb}};}
+\DoxyCodeLine{104 \};}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__config_8h_a3df94c4b3869b7a2e1f8cbc20560607e}{s2n\_config\_defaults\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{107 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__config_8h_ad0e81c66fdf25a05874c24a6114ac9fe}{s2n\_fetch\_default\_config}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{108 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__config_8h_a6a88956d4b54cfe3fd4545cffa06bc4d}{s2n\_config\_set\_unsafe\_for\_testing}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__config_8h_accfb14c501464782f9de772b47a11d34}{s2n\_config\_init\_session\_ticket\_keys}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{111 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__config_8h_ae9670a5dfe7e93c356ba873b1a525533}{s2n\_config\_free\_session\_ticket\_keys}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{keywordtype}{void} \mbox{\hyperlink{s2n__config_8h_aa48513d694c45d065ace716582142fe3}{s2n\_wipe\_static\_configs}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{114 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} *\mbox{\hyperlink{s2n__config_8h_a433047e92c1924ae4e9ff321432d8c62}{s2n\_config\_get\_single\_default\_cert}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{115 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__config_8h_a4e8d97a085be70f8288d6eb5defcc153}{s2n\_config\_get\_num\_default\_certs}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+
+\end{DoxyCode}

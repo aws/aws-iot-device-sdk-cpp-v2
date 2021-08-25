@@ -1,0 +1,230 @@
+\hypertarget{s2nd_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/bin/s2nd.c File Reference}
+\label{s2nd_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/bin/s2nd.c@{crt/aws-\/crt-\/cpp/crt/s2n/bin/s2nd.c}}
+{\ttfamily \#include $<$netinet/tcp.\+h$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$poll.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$signal.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$error/s2n\+\_\+errno.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/crypto.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/err.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsession__cache__entry}{session\+\_\+cache\+\_\+entry}}
+\item 
+struct \mbox{\hyperlink{structconn__settings}{conn\+\_\+settings}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2nd_8c_ad2a8a067cd46f0a2369e6441fd0b9850}{MAX\+\_\+\+CERTIFICATES}}~50
+\item 
+\#define \mbox{\hyperlink{s2nd_8c_ad91bfaf106e42aa552f1605c5b8a9ef2}{MAX\+\_\+\+KEY\+\_\+\+LEN}}~32
+\item 
+\#define \mbox{\hyperlink{s2nd_8c_a282b0f9613da7596a04d4d8d4279d2a1}{MAX\+\_\+\+VAL\+\_\+\+LEN}}~255
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2nd_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}{cache\+\_\+store\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, uint64\+\_\+t ttl, const void $\ast$key, uint64\+\_\+t key\+\_\+size, const void $\ast$value, uint64\+\_\+t value\+\_\+size)
+\item 
+int \mbox{\hyperlink{s2nd_8c_a76518c3daf7521be5dd26d13df982532}{cache\+\_\+retrieve\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const void $\ast$key, uint64\+\_\+t key\+\_\+size, void $\ast$value, uint64\+\_\+t $\ast$value\+\_\+size)
+\item 
+int \mbox{\hyperlink{s2nd_8c_a07c36a58a01ca824ad413a8bb1e7aafa}{cache\+\_\+delete\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const void $\ast$key, uint64\+\_\+t key\+\_\+size)
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{s2nd_8c_a7a74b6acdedcb42ff546fc7824f2e43c}{unsafe\+\_\+verify\+\_\+host\+\_\+fn}} (const char $\ast$host\+\_\+name, size\+\_\+t host\+\_\+name\+\_\+len, void $\ast$data)
+\item 
+void \mbox{\hyperlink{s2nd_8c_a2ef30c42cbc289d899a8be5d2d8f77d0}{usage}} ()
+\item 
+int \mbox{\hyperlink{s2nd_8c_ab5cbb30f3b497d9578336e2253a94622}{handle\+\_\+connection}} (int fd, struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, struct \mbox{\hyperlink{structconn__settings}{conn\+\_\+settings}} settings)
+\item 
+int \mbox{\hyperlink{s2nd_8c_ad1835a0a190dc5fe4f925bb69443c770}{main}} (int argc, char $\ast$const $\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static char \mbox{\hyperlink{s2nd_8c_aabae79d3b7e728abd426f3ed5df5db5c}{default\+\_\+certificate\+\_\+chain}} \mbox{[}$\,$\mbox{]}
+\item 
+static char \mbox{\hyperlink{s2nd_8c_ad483740ff3b5fbf00008ae4b8ba66d12}{default\+\_\+private\+\_\+key}} \mbox{[}$\,$\mbox{]}
+\item 
+static char \mbox{\hyperlink{s2nd_8c_accb41a3863c3d85c64e674552edb3474}{dhparams}} \mbox{[}$\,$\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{s2nd_8c_a88d8fc8f68955c1697741e4826aa5c2b}{ticket\+\_\+key\+\_\+name}} \mbox{[}16\mbox{]} = \char`\"{}2016.\+07.\+26.\+15\textbackslash{}0\char`\"{}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{s2nd_8c_abbb2b8bf7737d9c4eb3d18f636c3323b}{default\+\_\+ticket\+\_\+key}} \mbox{[}32\mbox{]}
+\item 
+struct \mbox{\hyperlink{structsession__cache__entry}{session\+\_\+cache\+\_\+entry}} \mbox{\hyperlink{s2nd_8c_a64abc607d19fe2165bd1f364a25ee35e}{session\+\_\+cache}} \mbox{[}256\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2nd_8c_ad2a8a067cd46f0a2369e6441fd0b9850}\label{s2nd_8c_ad2a8a067cd46f0a2369e6441fd0b9850}} 
+\index{s2nd.c@{s2nd.c}!MAX\_CERTIFICATES@{MAX\_CERTIFICATES}}
+\index{MAX\_CERTIFICATES@{MAX\_CERTIFICATES}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_CERTIFICATES}{MAX\_CERTIFICATES}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+CERTIFICATES~50}
+
+\mbox{\Hypertarget{s2nd_8c_ad91bfaf106e42aa552f1605c5b8a9ef2}\label{s2nd_8c_ad91bfaf106e42aa552f1605c5b8a9ef2}} 
+\index{s2nd.c@{s2nd.c}!MAX\_KEY\_LEN@{MAX\_KEY\_LEN}}
+\index{MAX\_KEY\_LEN@{MAX\_KEY\_LEN}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_KEY\_LEN}{MAX\_KEY\_LEN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+KEY\+\_\+\+LEN~32}
+
+\mbox{\Hypertarget{s2nd_8c_a282b0f9613da7596a04d4d8d4279d2a1}\label{s2nd_8c_a282b0f9613da7596a04d4d8d4279d2a1}} 
+\index{s2nd.c@{s2nd.c}!MAX\_VAL\_LEN@{MAX\_VAL\_LEN}}
+\index{MAX\_VAL\_LEN@{MAX\_VAL\_LEN}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_VAL\_LEN}{MAX\_VAL\_LEN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+VAL\+\_\+\+LEN~255}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2nd_8c_a07c36a58a01ca824ad413a8bb1e7aafa}\label{s2nd_8c_a07c36a58a01ca824ad413a8bb1e7aafa}} 
+\index{s2nd.c@{s2nd.c}!cache\_delete\_callback@{cache\_delete\_callback}}
+\index{cache\_delete\_callback@{cache\_delete\_callback}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{cache\_delete\_callback()}{cache\_delete\_callback()}}
+{\footnotesize\ttfamily int cache\+\_\+delete\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{void $\ast$}]{ctx,  }\item[{const void $\ast$}]{key,  }\item[{uint64\+\_\+t}]{key\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2nd_8c_a76518c3daf7521be5dd26d13df982532}\label{s2nd_8c_a76518c3daf7521be5dd26d13df982532}} 
+\index{s2nd.c@{s2nd.c}!cache\_retrieve\_callback@{cache\_retrieve\_callback}}
+\index{cache\_retrieve\_callback@{cache\_retrieve\_callback}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{cache\_retrieve\_callback()}{cache\_retrieve\_callback()}}
+{\footnotesize\ttfamily int cache\+\_\+retrieve\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{void $\ast$}]{ctx,  }\item[{const void $\ast$}]{key,  }\item[{uint64\+\_\+t}]{key\+\_\+size,  }\item[{void $\ast$}]{value,  }\item[{uint64\+\_\+t $\ast$}]{value\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2nd_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}\label{s2nd_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}} 
+\index{s2nd.c@{s2nd.c}!cache\_store\_callback@{cache\_store\_callback}}
+\index{cache\_store\_callback@{cache\_store\_callback}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{cache\_store\_callback()}{cache\_store\_callback()}}
+{\footnotesize\ttfamily int cache\+\_\+store\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{void $\ast$}]{ctx,  }\item[{uint64\+\_\+t}]{ttl,  }\item[{const void $\ast$}]{key,  }\item[{uint64\+\_\+t}]{key\+\_\+size,  }\item[{const void $\ast$}]{value,  }\item[{uint64\+\_\+t}]{value\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2nd_8c_ab5cbb30f3b497d9578336e2253a94622}\label{s2nd_8c_ab5cbb30f3b497d9578336e2253a94622}} 
+\index{s2nd.c@{s2nd.c}!handle\_connection@{handle\_connection}}
+\index{handle\_connection@{handle\_connection}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{handle\_connection()}{handle\_connection()}}
+{\footnotesize\ttfamily int handle\+\_\+connection (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$}]{config,  }\item[{struct \mbox{\hyperlink{structconn__settings}{conn\+\_\+settings}}}]{settings }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2nd_8c_ad1835a0a190dc5fe4f925bb69443c770}\label{s2nd_8c_ad1835a0a190dc5fe4f925bb69443c770}} 
+\index{s2nd.c@{s2nd.c}!main@{main}}
+\index{main@{main}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$const $\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2nd_8c_a7a74b6acdedcb42ff546fc7824f2e43c}\label{s2nd_8c_a7a74b6acdedcb42ff546fc7824f2e43c}} 
+\index{s2nd.c@{s2nd.c}!unsafe\_verify\_host\_fn@{unsafe\_verify\_host\_fn}}
+\index{unsafe\_verify\_host\_fn@{unsafe\_verify\_host\_fn}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{unsafe\_verify\_host\_fn()}{unsafe\_verify\_host\_fn()}}
+{\footnotesize\ttfamily static uint8\+\_\+t unsafe\+\_\+verify\+\_\+host\+\_\+fn (\begin{DoxyParamCaption}\item[{const char $\ast$}]{host\+\_\+name,  }\item[{size\+\_\+t}]{host\+\_\+name\+\_\+len,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2nd_8c_a2ef30c42cbc289d899a8be5d2d8f77d0}\label{s2nd_8c_a2ef30c42cbc289d899a8be5d2d8f77d0}} 
+\index{s2nd.c@{s2nd.c}!usage@{usage}}
+\index{usage@{usage}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{usage()}{usage()}}
+{\footnotesize\ttfamily void usage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2nd_8c_aabae79d3b7e728abd426f3ed5df5db5c}\label{s2nd_8c_aabae79d3b7e728abd426f3ed5df5db5c}} 
+\index{s2nd.c@{s2nd.c}!default\_certificate\_chain@{default\_certificate\_chain}}
+\index{default\_certificate\_chain@{default\_certificate\_chain}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{default\_certificate\_chain}{default\_certificate\_chain}}
+{\footnotesize\ttfamily char default\+\_\+certificate\+\_\+chain\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2nd_8c_ad483740ff3b5fbf00008ae4b8ba66d12}\label{s2nd_8c_ad483740ff3b5fbf00008ae4b8ba66d12}} 
+\index{s2nd.c@{s2nd.c}!default\_private\_key@{default\_private\_key}}
+\index{default\_private\_key@{default\_private\_key}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{default\_private\_key}{default\_private\_key}}
+{\footnotesize\ttfamily char default\+\_\+private\+\_\+key\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/BEGIN RSA PRIVATE KEY-\/-\/-\/-\/-\/"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}MIIEogIBAAKCAQEAlRsyl1E4zpyNvzGCvmSAoeclUN+FsuDinEHBbCVrJvr83rQk"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}sb0rNYBaFkGbP4/HqSv/V0vr5sveYu40EJClgFI957afsov0++wxhmadgXKf3htd"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}uMEJHEZH5r2VwYcuVngL6uss2L2lTDF/tUhGCVHPAdYAWDnFNfqUKbOI0zg4ySry"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}UeQuikcNSDnIjhVNzcQQaoMh/f7QGF4gdxQVshaQU6NEN0veUwYoSPT4sSvPNuEl"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}zMGVEypIyK5h5paA5EulE20x42ZtHygskVyGkXQD18g7b9iD6dyVwMOGxQGSR9wg"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}pHJIYO6You5gz6E4enm9Cjy1y/JDqzdTlhQtBQIDAQABAoIBAGTaSJXg8jON4LJ5"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}op11DSx1U+An0B71zVEziMjFZnyvN2rLHia6dQdzEXwMVB3h+oKKp+M8DwvEyV7R"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}D5ZEwCzTc9vOwqXZ1JKxZ64oqlBsX4WzrOjSaH8fanK/uRN1g/ooqKb0+xh+7ddj"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}g6XyhKy5EPOE9Ca4rJOeMakjLmDuleQecT/DixYV6azhfaJoD70XZJWv3YzSpu/X"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Ma+i3of0alsG/lROjNtEXE3nKzcTUgyAUoQeYRwCVpgssg/4VAUPJNDP4dVmxW8f"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}eNmjlTyXmR9S08SXkqmCHe2mBUsZY9nqcDE6ZWILZKFWIfZD9W+j2ce0FMvcc9kz"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}psxaUQECgYEAxqwsb5aQy6HBF54tdkHbUQEJMelSLNW0G1GUrcLB7eqL7qo3dUA8"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}8PDQ/dTwmmJ7aE0SK2xkQDVKXNbV4OvUNgP6tbzLWEbvmuFAEg5X1jFH2VSdwQhl"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}RDwTQw3wPZ5udy64L6gmsdDch+I7l1v4ex66RWFW+4WIs1altsLiJa0CgYEAwCGW"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}2cjtZ3kIzWgxf7DdnoUTwBM1ATBUYvx7uqVq+dbc/p8cSeMSPz3LUluaVJ2EOjEV"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}QWhx0Ih5qeitzReHRU0OHgxEgjbpJwhseD9O5POSd+fE3TtDQArOxyw4CIJKk4Z2"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}QmqzaO/LboN3Tp+/N9zfVoNZKHcCNra/uKNTH7kCgYA3QFazSdpG51s96D2Yb8RA"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}iNs3yD2UPnJyToPctxcbxWjZHPmDYDQShcZ5cSjgppbPcO+mp+RRfwCJRS4B+VPx"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}GbY1qKWcjU3BcvdQjjCbXuUuabvdnSocieCJe2zelhr+hj2u80KfnQhXufD8rRUz"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}mF4RQXrhREe6KFS5uQUPmQKBgE4rXFyvSyfWLqajxb/WDdT4/9gd+GrLZwn+/7go"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}pSWRLcjKo4/MOxhP4/FWI6xZifrDDYrXG7dkT1u5tzzCXd7sQtom05jHDoU7ACbM"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}WyT7lJQEUCxSeEIOI6MVcpbDq+PpySOsleIT7gjApEHw7LOlwZhJSHUWNmhcYhSV"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}HrTBAoGADAvBqV7JItjm2+qkXXEdPVzOunqjQdnXZjMAJ75PhHnLCCfnTRu53hT3"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}JxDETLLa/r42PlqGZ6bqSW+C+ObgYOvvySqvX8CE9o208ZwCLjHYxuYLH/86Lppr"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}ggF9KQ0xWz7Km3GXv5+bwM5bcgt1A/s6sZCimXuj3Fle3RqOTF0="{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/END RSA PRIVATE KEY-\/-\/-\/-\/-\/"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2nd_8c_abbb2b8bf7737d9c4eb3d18f636c3323b}\label{s2nd_8c_abbb2b8bf7737d9c4eb3d18f636c3323b}} 
+\index{s2nd.c@{s2nd.c}!default\_ticket\_key@{default\_ticket\_key}}
+\index{default\_ticket\_key@{default\_ticket\_key}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{default\_ticket\_key}{default\_ticket\_key}}
+{\footnotesize\ttfamily uint8\+\_\+t default\+\_\+ticket\+\_\+key\mbox{[}32\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{0x07, 0x77, 0x09, 0x36, 0x2c, 0x2e, 0x32, 0xdf, 0x0d, 0xdc,}
+\DoxyCodeLine{                                  0x3f, 0x0d, 0xc4, 0x7b, 0xba, 0x63, 0x90, 0xb6, 0xc7, 0x3b,}
+\DoxyCodeLine{                                  0xb5, 0x0f, 0x9c, 0x31, 0x22, 0xec, 0x84, 0x4a, 0xd7, 0xc2,}
+\DoxyCodeLine{                                  0xb3, 0xe5 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2nd_8c_accb41a3863c3d85c64e674552edb3474}\label{s2nd_8c_accb41a3863c3d85c64e674552edb3474}} 
+\index{s2nd.c@{s2nd.c}!dhparams@{dhparams}}
+\index{dhparams@{dhparams}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{dhparams}{dhparams}}
+{\footnotesize\ttfamily char dhparams\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/BEGIN DH PARAMETERS-\/-\/-\/-\/-\/\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}MIIBCAKCAQEAy1+hVWCfNQoPB+NA733IVOONl8fCumiz9zdRRu1hzVa2yvGseUSq\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}Bbn6k0FQ7yMED6w5XWQKDC0z2m0FI/BPE3AjUfuPzEYGqTDf9zQZ2Lz4oAN90Sud\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}luOoEhYR99cEbCn0T4eBvEf9IUtczXUZ/wj7gzGbGG07dLfT+CmCRJxCjhrosenJ\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}gzucyS7jt1bobgU66JKkgMNm7hJY4/nhR5LWTCzZyzYQh2HM2Vk4K5ZqILpj/n0S\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}5JYTQ2PVhxP+Uu8+hICs/8VvM72DznjPZzufADipjC7CsQ4S6x/ecZluFtbb+ZTv\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}HI5CnYmkAwJ6+FSWGaZQDi8bgerFk9RWwwIBAg==\(\backslash\)n"{}}}
+\DoxyCodeLine{    \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/END DH PARAMETERS-\/-\/-\/-\/-\/\(\backslash\)n"{}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2nd_8c_a64abc607d19fe2165bd1f364a25ee35e}\label{s2nd_8c_a64abc607d19fe2165bd1f364a25ee35e}} 
+\index{s2nd.c@{s2nd.c}!session\_cache@{session\_cache}}
+\index{session\_cache@{session\_cache}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{session\_cache}{session\_cache}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structsession__cache__entry}{session\+\_\+cache\+\_\+entry}} session\+\_\+cache\mbox{[}256\mbox{]}}
+
+\mbox{\Hypertarget{s2nd_8c_a88d8fc8f68955c1697741e4826aa5c2b}\label{s2nd_8c_a88d8fc8f68955c1697741e4826aa5c2b}} 
+\index{s2nd.c@{s2nd.c}!ticket\_key\_name@{ticket\_key\_name}}
+\index{ticket\_key\_name@{ticket\_key\_name}!s2nd.c@{s2nd.c}}
+\doxysubsubsection{\texorpdfstring{ticket\_key\_name}{ticket\_key\_name}}
+{\footnotesize\ttfamily uint8\+\_\+t ticket\+\_\+key\+\_\+name\mbox{[}16\mbox{]} = \char`\"{}2016.\+07.\+26.\+15\textbackslash{}0\char`\"{}}
+

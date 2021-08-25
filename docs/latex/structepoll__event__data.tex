@@ -1,0 +1,74 @@
+\hypertarget{structepoll__event__data}{}\doxysection{epoll\+\_\+event\+\_\+data Struct Reference}
+\label{structepoll__event__data}\index{epoll\_event\_data@{epoll\_event\_data}}
+
+
+{\ttfamily \#include $<$preamble.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structepoll__event__data_ac84f4c4a9e15f98a11e2099237d372de}{alloc}}
+\item 
+struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$ \mbox{\hyperlink{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}{handle}}
+\item 
+\mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}} $\ast$ \mbox{\hyperlink{structepoll__event__data_a4b866d728639b663e6ed4bd8b99225c1}{on\+\_\+event}}
+\item 
+void $\ast$ \mbox{\hyperlink{structepoll__event__data_a53e7fea42eaf411e2af2a88754874ea8}{user\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} \mbox{\hyperlink{structepoll__event__data_a1d5cea5a1e0cab7b0554772eca0f566a}{cleanup\+\_\+task}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structepoll__event__data_a41a6f285b2b89e4a41c0d4b489141012}{is\+\_\+subscribed}}
+\item 
+\mbox{\hyperlink{preamble_8h_a5f54d633bc82cf2fe5634f0c135537bc}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn\+\_\+ptr}} \mbox{\hyperlink{structepoll__event__data_a0f2b440072e4c4f234fa602b72044927}{on\+\_\+event}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structepoll__event__data_ac84f4c4a9e15f98a11e2099237d372de}\label{structepoll__event__data_ac84f4c4a9e15f98a11e2099237d372de}} 
+\index{epoll\_event\_data@{epoll\_event\_data}!alloc@{alloc}}
+\index{alloc@{alloc}!epoll\_event\_data@{epoll\_event\_data}}
+\doxysubsubsection{\texorpdfstring{alloc}{alloc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ epoll\+\_\+event\+\_\+data\+::alloc}
+
+\mbox{\Hypertarget{structepoll__event__data_a1d5cea5a1e0cab7b0554772eca0f566a}\label{structepoll__event__data_a1d5cea5a1e0cab7b0554772eca0f566a}} 
+\index{epoll\_event\_data@{epoll\_event\_data}!cleanup\_task@{cleanup\_task}}
+\index{cleanup\_task@{cleanup\_task}!epoll\_event\_data@{epoll\_event\_data}}
+\doxysubsubsection{\texorpdfstring{cleanup\_task}{cleanup\_task}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} epoll\+\_\+event\+\_\+data\+::cleanup\+\_\+task}
+
+\mbox{\Hypertarget{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}\label{structepoll__event__data_aa665cf4e1979e8ecfb98015b7af66f75}} 
+\index{epoll\_event\_data@{epoll\_event\_data}!handle@{handle}}
+\index{handle@{handle}!epoll\_event\_data@{epoll\_event\_data}}
+\doxysubsubsection{\texorpdfstring{handle}{handle}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$ epoll\+\_\+event\+\_\+data\+::handle}
+
+\mbox{\Hypertarget{structepoll__event__data_a41a6f285b2b89e4a41c0d4b489141012}\label{structepoll__event__data_a41a6f285b2b89e4a41c0d4b489141012}} 
+\index{epoll\_event\_data@{epoll\_event\_data}!is\_subscribed@{is\_subscribed}}
+\index{is\_subscribed@{is\_subscribed}!epoll\_event\_data@{epoll\_event\_data}}
+\doxysubsubsection{\texorpdfstring{is\_subscribed}{is\_subscribed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} epoll\+\_\+event\+\_\+data\+::is\+\_\+subscribed}
+
+\mbox{\Hypertarget{structepoll__event__data_a4b866d728639b663e6ed4bd8b99225c1}\label{structepoll__event__data_a4b866d728639b663e6ed4bd8b99225c1}} 
+\index{epoll\_event\_data@{epoll\_event\_data}!on\_event@{on\_event}}
+\index{on\_event@{on\_event}!epoll\_event\_data@{epoll\_event\_data}}
+\doxysubsubsection{\texorpdfstring{on\_event}{on\_event}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}}$\ast$ epoll\+\_\+event\+\_\+data\+::on\+\_\+event}
+
+\mbox{\Hypertarget{structepoll__event__data_a0f2b440072e4c4f234fa602b72044927}\label{structepoll__event__data_a0f2b440072e4c4f234fa602b72044927}} 
+\index{epoll\_event\_data@{epoll\_event\_data}!on\_event@{on\_event}}
+\index{on\_event@{on\_event}!epoll\_event\_data@{epoll\_event\_data}}
+\doxysubsubsection{\texorpdfstring{on\_event}{on\_event}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a5f54d633bc82cf2fe5634f0c135537bc}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn\+\_\+ptr}} epoll\+\_\+event\+\_\+data\+::on\+\_\+event}
+
+\mbox{\Hypertarget{structepoll__event__data_a53e7fea42eaf411e2af2a88754874ea8}\label{structepoll__event__data_a53e7fea42eaf411e2af2a88754874ea8}} 
+\index{epoll\_event\_data@{epoll\_event\_data}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!epoll\_event\_data@{epoll\_event\_data}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void $\ast$ epoll\+\_\+event\+\_\+data\+::user\+\_\+data}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/linux/\mbox{\hyperlink{epoll__event__loop_8c}{epoll\+\_\+event\+\_\+loop.\+c}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/\mbox{\hyperlink{preamble_8h}{preamble.\+h}}\end{DoxyCompactItemize}

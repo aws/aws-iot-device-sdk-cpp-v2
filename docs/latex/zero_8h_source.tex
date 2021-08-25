@@ -1,0 +1,48 @@
+\hypertarget{zero_8h_source}{}\doxysection{zero.\+h}
+\label{zero_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/zero.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/zero.h}}
+\mbox{\hyperlink{zero_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_ZERO\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_ZERO\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdbool_8h}{aws/common/stdbool.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{aws/common/stdint.h}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{string_8h}{string.h}}>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define AWS\_ZERO\_STRUCT(object)                                                                                        \(\backslash\)}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{        memset(\&(object), 0, sizeof(object));                                                                          \(\backslash\)}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define AWS\_ZERO\_ARRAY(array) memset((void *)(array), 0, sizeof(array))}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#ifdef CBMC}}
+\DoxyCodeLine{34 \textcolor{comment}{/* clang-\/format off */}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#    define AWS\_IS\_ZEROED(object)                                                                                      \(\backslash\)}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{        \_\_CPROVER\_forall \{                                                                                             \(\backslash\)}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{            int i;                                                                                                     \(\backslash\)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{            (i >= 0 \&\& i < sizeof(object)) ==> ((const uint8\_t *)\&object)[i] == 0                                      \(\backslash\)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{        \}}}
+\DoxyCodeLine{40 \textcolor{comment}{/* clang-\/format on */}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#    define AWS\_IS\_ZEROED(object) aws\_is\_mem\_zeroed(\&(object), sizeof(object))}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{48 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a81190a29adbf2dcd0430ed12b5aeadfa}{AWS\_STATIC\_IMPL}}}
+\DoxyCodeLine{49 \textcolor{keywordtype}{bool} \mbox{\hyperlink{zero_8h_a9d8297b7d9fe1f7cd71c5f9b4eac607c}{aws\_is\_mem\_zeroed}}(\textcolor{keyword}{const} \textcolor{keywordtype}{void} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \textcolor{keywordtype}{size\_t} bufsize);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{55 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
+\DoxyCodeLine{56 \textcolor{keywordtype}{void} \mbox{\hyperlink{zero_8h_a77d222e3e7643fefb026ca201b085ce4}{aws\_secure\_zero}}(\textcolor{keywordtype}{void} *pBuf, \textcolor{keywordtype}{size\_t} bufsize);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#ifndef AWS\_NO\_STATIC\_IMPL}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#    include <\mbox{\hyperlink{zero_8inl}{aws/common/zero.inl}}>}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_NO\_STATIC\_IMPL */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_ZERO\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

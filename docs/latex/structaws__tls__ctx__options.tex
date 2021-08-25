@@ -1,0 +1,101 @@
+\hypertarget{structaws__tls__ctx__options}{}\doxysection{aws\+\_\+tls\+\_\+ctx\+\_\+options Struct Reference}
+\label{structaws__tls__ctx__options}\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+
+
+{\ttfamily \#include $<$tls\+\_\+channel\+\_\+handler.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structaws__tls__ctx__options_aa4341968c99469ddcabc90cce2813abc}{allocator}}
+\item 
+enum \mbox{\hyperlink{tls__channel__handler_8h_abbbf7d37040b11f033b40ca7bac19e88}{aws\+\_\+tls\+\_\+versions}} \mbox{\hyperlink{structaws__tls__ctx__options_a5e6a8c3e0a01e893296908098c469a35}{minimum\+\_\+tls\+\_\+version}}
+\item 
+enum \mbox{\hyperlink{tls__channel__handler_8h_a076545636747167b7bdc27894137ef53}{aws\+\_\+tls\+\_\+cipher\+\_\+pref}} \mbox{\hyperlink{structaws__tls__ctx__options_a39557962a92ebba25e938b1f79c969e4}{cipher\+\_\+pref}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__tls__ctx__options_a1ad56d7ea5a4c3aaecdb5018347644a9}{ca\+\_\+file}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structaws__tls__ctx__options_aebc09cc57a761323e9628d90b168d582}{ca\+\_\+path}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structaws__tls__ctx__options_a94e2dfa081cf30d65c356d45f5ea95de}{alpn\+\_\+list}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__tls__ctx__options_ac01390e69777e413e2769414ca37d5b2}{certificate}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structaws__tls__ctx__options_a384643c2cd99f21b40a01676c097b7cb}{private\+\_\+key}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structaws__tls__ctx__options_a251d50a4e12e6f3304fc4c6fb961b784}{max\+\_\+fragment\+\_\+size}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__tls__ctx__options_a84b17cdd289240c09593771aefc6d19e}{verify\+\_\+peer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__tls__ctx__options_aa4341968c99469ddcabc90cce2813abc}\label{structaws__tls__ctx__options_aa4341968c99469ddcabc90cce2813abc}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!allocator@{allocator}}
+\index{allocator@{allocator}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+tls\+\_\+ctx\+\_\+options\+::allocator}
+
+\mbox{\Hypertarget{structaws__tls__ctx__options_a94e2dfa081cf30d65c356d45f5ea95de}\label{structaws__tls__ctx__options_a94e2dfa081cf30d65c356d45f5ea95de}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!alpn\_list@{alpn\_list}}
+\index{alpn\_list@{alpn\_list}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{alpn\_list}{alpn\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+tls\+\_\+ctx\+\_\+options\+::alpn\+\_\+list}
+
+Sets ctx wide alpn string. This is most useful for servers. This is a semi-\/colon delimited list. example\+: h2;http/1.\+1 \mbox{\Hypertarget{structaws__tls__ctx__options_a1ad56d7ea5a4c3aaecdb5018347644a9}\label{structaws__tls__ctx__options_a1ad56d7ea5a4c3aaecdb5018347644a9}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!ca\_file@{ca\_file}}
+\index{ca\_file@{ca\_file}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{ca\_file}{ca\_file}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+tls\+\_\+ctx\+\_\+options\+::ca\+\_\+file}
+
+A PEM armored PKCS\#7 collection of CAs you want to trust as a string. Only use this if it\textquotesingle{}s a CA not currently installed on your system. \mbox{\Hypertarget{structaws__tls__ctx__options_aebc09cc57a761323e9628d90b168d582}\label{structaws__tls__ctx__options_aebc09cc57a761323e9628d90b168d582}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!ca\_path@{ca\_path}}
+\index{ca\_path@{ca\_path}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{ca\_path}{ca\_path}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ aws\+\_\+tls\+\_\+ctx\+\_\+options\+::ca\+\_\+path}
+
+Only used on Unix systems using an openssl style trust API. this is typically something like /etc/pki/tls/certs/"{} \mbox{\Hypertarget{structaws__tls__ctx__options_ac01390e69777e413e2769414ca37d5b2}\label{structaws__tls__ctx__options_ac01390e69777e413e2769414ca37d5b2}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!certificate@{certificate}}
+\index{certificate@{certificate}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{certificate}{certificate}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+tls\+\_\+ctx\+\_\+options\+::certificate}
+
+A PEM armored PKCS\#7 certificate as a string. It is supported on every operating system. \mbox{\Hypertarget{structaws__tls__ctx__options_a39557962a92ebba25e938b1f79c969e4}\label{structaws__tls__ctx__options_a39557962a92ebba25e938b1f79c969e4}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!cipher\_pref@{cipher\_pref}}
+\index{cipher\_pref@{cipher\_pref}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{cipher\_pref}{cipher\_pref}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{tls__channel__handler_8h_a076545636747167b7bdc27894137ef53}{aws\+\_\+tls\+\_\+cipher\+\_\+pref}} aws\+\_\+tls\+\_\+ctx\+\_\+options\+::cipher\+\_\+pref}
+
+The Cipher Preference List to use \mbox{\Hypertarget{structaws__tls__ctx__options_a251d50a4e12e6f3304fc4c6fb961b784}\label{structaws__tls__ctx__options_a251d50a4e12e6f3304fc4c6fb961b784}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!max\_fragment\_size@{max\_fragment\_size}}
+\index{max\_fragment\_size@{max\_fragment\_size}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{max\_fragment\_size}{max\_fragment\_size}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+tls\+\_\+ctx\+\_\+options\+::max\+\_\+fragment\+\_\+size}
+
+max tls fragment size. Default is the value of g\+\_\+aws\+\_\+channel\+\_\+max\+\_\+fragment\+\_\+size. \mbox{\Hypertarget{structaws__tls__ctx__options_a5e6a8c3e0a01e893296908098c469a35}\label{structaws__tls__ctx__options_a5e6a8c3e0a01e893296908098c469a35}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!minimum\_tls\_version@{minimum\_tls\_version}}
+\index{minimum\_tls\_version@{minimum\_tls\_version}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{minimum\_tls\_version}{minimum\_tls\_version}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{tls__channel__handler_8h_abbbf7d37040b11f033b40ca7bac19e88}{aws\+\_\+tls\+\_\+versions}} aws\+\_\+tls\+\_\+ctx\+\_\+options\+::minimum\+\_\+tls\+\_\+version}
+
+minimum tls version to use. If you just want us to use the system defaults, you can set\+: AWS\+\_\+\+IO\+\_\+\+TLS\+\_\+\+VER\+\_\+\+SYS\+\_\+\+DEFAULTS. This has the added benefit of automatically picking up new TLS versions as your OS or distribution adds support. \mbox{\Hypertarget{structaws__tls__ctx__options_a384643c2cd99f21b40a01676c097b7cb}\label{structaws__tls__ctx__options_a384643c2cd99f21b40a01676c097b7cb}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!private\_key@{private\_key}}
+\index{private\_key@{private\_key}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{private\_key}{private\_key}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} aws\+\_\+tls\+\_\+ctx\+\_\+options\+::private\+\_\+key}
+
+A PEM armored PKCS\#7 private key as a string.
+
+On windows, this field should be NULL only if you are using a system installed certficate. \mbox{\Hypertarget{structaws__tls__ctx__options_a84b17cdd289240c09593771aefc6d19e}\label{structaws__tls__ctx__options_a84b17cdd289240c09593771aefc6d19e}} 
+\index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!verify\_peer@{verify\_peer}}
+\index{verify\_peer@{verify\_peer}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
+\doxysubsubsection{\texorpdfstring{verify\_peer}{verify\_peer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+tls\+\_\+ctx\+\_\+options\+::verify\+\_\+peer}
+
+default is true for clients and false for servers. You should not change this default for clients unless you\textquotesingle{}re testing and don\textquotesingle{}t want to fool around with CA trust stores. Before you release to production, you\textquotesingle{}ll want to turn this back on and add your custom CA to the \mbox{\hyperlink{structaws__tls__ctx__options}{aws\+\_\+tls\+\_\+ctx\+\_\+options}}.
+
+If you set this in server mode, it enforces client authentication. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/\mbox{\hyperlink{tls__channel__handler_8h}{tls\+\_\+channel\+\_\+handler.\+h}}\end{DoxyCompactItemize}

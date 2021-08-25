@@ -1,0 +1,145 @@
+\hypertarget{structaws__http__connection__vtable}{}\doxysection{aws\+\_\+http\+\_\+connection\+\_\+vtable Struct Reference}
+\label{structaws__http__connection__vtable}\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+
+
+{\ttfamily \#include $<$connection\+\_\+impl.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+channel\+\_\+handler\+\_\+vtable}} \mbox{\hyperlink{structaws__http__connection__vtable_accb6a59d0c2f9eaa7204ab8938090198}{channel\+\_\+handler\+\_\+vtable}}
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_a9d7552263485d0cde8032c09451832da}{on\+\_\+channel\+\_\+handler\+\_\+installed}} )(struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+\item 
+struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_a186247ab0f305a8884b0186596d30b3a}{make\+\_\+request}} )(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$client\+\_\+connection, const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$options)
+\item 
+struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_a3267356ba1bb7066638f2783dafe9a69}{new\+\_\+server\+\_\+request\+\_\+handler\+\_\+stream}} )(const struct \mbox{\hyperlink{structaws__http__request__handler__options}{aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options}} $\ast$options)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_ac3faf2b743c8c5022f91635c83e953c8}{stream\+\_\+send\+\_\+response}} )(struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$response)
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_a58cbe5d8b15a0d98ac98468e46cfae45}{close}} )(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_a5e8c6418e239b7dbf45d0986fb54fb80}{is\+\_\+open}} )(const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_a1dccf61a5ce963f813f33b112411c398}{new\+\_\+requests\+\_\+allowed}} )(const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_aa527047cfd348f445669be484d16887e}{update\+\_\+window}} )(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, size\+\_\+t increment\+\_\+size)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_ab56e9c832b9eca215aa0e990a031fe86}{change\+\_\+settings}} )(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, const struct \mbox{\hyperlink{structaws__http2__setting}{aws\+\_\+http2\+\_\+setting}} $\ast$settings\+\_\+array, size\+\_\+t num\+\_\+settings, \mbox{\hyperlink{connection_8h_a96fcc2412e49224b6c36d1356b609ee8}{aws\+\_\+http2\+\_\+on\+\_\+change\+\_\+settings\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+completed, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_adc984d083b5fc1bf331ef75aff635319}{send\+\_\+ping}} )(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$optional\+\_\+opaque\+\_\+data, \mbox{\hyperlink{connection_8h_aef09b06b4e26402e4cdd097c869dcb32}{aws\+\_\+http2\+\_\+on\+\_\+ping\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+completed, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_af7dc6967dff1d6ea5e5655296515708b}{send\+\_\+goaway}} )(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, uint32\+\_\+t http2\+\_\+error, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} allow\+\_\+more\+\_\+streams, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$optional\+\_\+debug\+\_\+data)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_a014d734f3963ffd7e211b680b95c6c3f}{get\+\_\+sent\+\_\+goaway}} )(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, uint32\+\_\+t $\ast$out\+\_\+http2\+\_\+error, uint32\+\_\+t $\ast$out\+\_\+last\+\_\+stream\+\_\+id)
+\item 
+int($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_a02cac4fbf509d1e8bea5d650a1549ae5}{get\+\_\+received\+\_\+goaway}} )(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, uint32\+\_\+t $\ast$out\+\_\+http2\+\_\+error, uint32\+\_\+t $\ast$out\+\_\+last\+\_\+stream\+\_\+id)
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_aed4ea02c8c36e472beb295489690a5cf}{get\+\_\+local\+\_\+settings}} )(const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, struct \mbox{\hyperlink{structaws__http2__setting}{aws\+\_\+http2\+\_\+setting}} out\+\_\+settings\mbox{[}\mbox{\hyperlink{connection_8h_ae0e6e03ec811065114756b35b9ae7a7f}{AWS\+\_\+\+HTTP2\+\_\+\+SETTINGS\+\_\+\+COUNT}}\mbox{]})
+\item 
+void($\ast$ \mbox{\hyperlink{structaws__http__connection__vtable_a3b58d562d422d40379fc376c719f08b9}{get\+\_\+remote\+\_\+settings}} )(const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, struct \mbox{\hyperlink{structaws__http2__setting}{aws\+\_\+http2\+\_\+setting}} out\+\_\+settings\mbox{[}\mbox{\hyperlink{connection_8h_ae0e6e03ec811065114756b35b9ae7a7f}{AWS\+\_\+\+HTTP2\+\_\+\+SETTINGS\+\_\+\+COUNT}}\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__http__connection__vtable_ab56e9c832b9eca215aa0e990a031fe86}\label{structaws__http__connection__vtable_ab56e9c832b9eca215aa0e990a031fe86}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!change\_settings@{change\_settings}}
+\index{change\_settings@{change\_settings}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{change\_settings}{change\_settings}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::change\+\_\+settings) (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, const struct \mbox{\hyperlink{structaws__http2__setting}{aws\+\_\+http2\+\_\+setting}} $\ast$settings\+\_\+array, size\+\_\+t num\+\_\+settings, \mbox{\hyperlink{connection_8h_a96fcc2412e49224b6c36d1356b609ee8}{aws\+\_\+http2\+\_\+on\+\_\+change\+\_\+settings\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+completed, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_accb6a59d0c2f9eaa7204ab8938090198}\label{structaws__http__connection__vtable_accb6a59d0c2f9eaa7204ab8938090198}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!channel\_handler\_vtable@{channel\_handler\_vtable}}
+\index{channel\_handler\_vtable@{channel\_handler\_vtable}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{channel\_handler\_vtable}{channel\_handler\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+channel\+\_\+handler\+\_\+vtable}} aws\+\_\+http\+\_\+connection\+\_\+vtable\+::channel\+\_\+handler\+\_\+vtable}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_a58cbe5d8b15a0d98ac98468e46cfae45}\label{structaws__http__connection__vtable_a58cbe5d8b15a0d98ac98468e46cfae45}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!close@{close}}
+\index{close@{close}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{close}{close}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::close) (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_aed4ea02c8c36e472beb295489690a5cf}\label{structaws__http__connection__vtable_aed4ea02c8c36e472beb295489690a5cf}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!get\_local\_settings@{get\_local\_settings}}
+\index{get\_local\_settings@{get\_local\_settings}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{get\_local\_settings}{get\_local\_settings}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::get\+\_\+local\+\_\+settings) (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, struct \mbox{\hyperlink{structaws__http2__setting}{aws\+\_\+http2\+\_\+setting}} out\+\_\+settings\mbox{[}\mbox{\hyperlink{connection_8h_ae0e6e03ec811065114756b35b9ae7a7f}{AWS\+\_\+\+HTTP2\+\_\+\+SETTINGS\+\_\+\+COUNT}}\mbox{]})}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_a02cac4fbf509d1e8bea5d650a1549ae5}\label{structaws__http__connection__vtable_a02cac4fbf509d1e8bea5d650a1549ae5}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!get\_received\_goaway@{get\_received\_goaway}}
+\index{get\_received\_goaway@{get\_received\_goaway}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{get\_received\_goaway}{get\_received\_goaway}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::get\+\_\+received\+\_\+goaway) (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, uint32\+\_\+t $\ast$out\+\_\+http2\+\_\+error, uint32\+\_\+t $\ast$out\+\_\+last\+\_\+stream\+\_\+id)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_a3b58d562d422d40379fc376c719f08b9}\label{structaws__http__connection__vtable_a3b58d562d422d40379fc376c719f08b9}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!get\_remote\_settings@{get\_remote\_settings}}
+\index{get\_remote\_settings@{get\_remote\_settings}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{get\_remote\_settings}{get\_remote\_settings}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::get\+\_\+remote\+\_\+settings) (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, struct \mbox{\hyperlink{structaws__http2__setting}{aws\+\_\+http2\+\_\+setting}} out\+\_\+settings\mbox{[}\mbox{\hyperlink{connection_8h_ae0e6e03ec811065114756b35b9ae7a7f}{AWS\+\_\+\+HTTP2\+\_\+\+SETTINGS\+\_\+\+COUNT}}\mbox{]})}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_a014d734f3963ffd7e211b680b95c6c3f}\label{structaws__http__connection__vtable_a014d734f3963ffd7e211b680b95c6c3f}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!get\_sent\_goaway@{get\_sent\_goaway}}
+\index{get\_sent\_goaway@{get\_sent\_goaway}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{get\_sent\_goaway}{get\_sent\_goaway}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::get\+\_\+sent\+\_\+goaway) (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, uint32\+\_\+t $\ast$out\+\_\+http2\+\_\+error, uint32\+\_\+t $\ast$out\+\_\+last\+\_\+stream\+\_\+id)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_a5e8c6418e239b7dbf45d0986fb54fb80}\label{structaws__http__connection__vtable_a5e8c6418e239b7dbf45d0986fb54fb80}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!is\_open@{is\_open}}
+\index{is\_open@{is\_open}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{is\_open}{is\_open}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::is\+\_\+open) (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_a186247ab0f305a8884b0186596d30b3a}\label{structaws__http__connection__vtable_a186247ab0f305a8884b0186596d30b3a}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!make\_request@{make\_request}}
+\index{make\_request@{make\_request}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{make\_request}{make\_request}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::make\+\_\+request) (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$client\+\_\+connection, const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$options)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_a1dccf61a5ce963f813f33b112411c398}\label{structaws__http__connection__vtable_a1dccf61a5ce963f813f33b112411c398}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!new\_requests\_allowed@{new\_requests\_allowed}}
+\index{new\_requests\_allowed@{new\_requests\_allowed}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{new\_requests\_allowed}{new\_requests\_allowed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::new\+\_\+requests\+\_\+allowed) (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_a3267356ba1bb7066638f2783dafe9a69}\label{structaws__http__connection__vtable_a3267356ba1bb7066638f2783dafe9a69}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!new\_server\_request\_handler\_stream@{new\_server\_request\_handler\_stream}}
+\index{new\_server\_request\_handler\_stream@{new\_server\_request\_handler\_stream}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{new\_server\_request\_handler\_stream}{new\_server\_request\_handler\_stream}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::new\+\_\+server\+\_\+request\+\_\+handler\+\_\+stream) (const struct \mbox{\hyperlink{structaws__http__request__handler__options}{aws\+\_\+http\+\_\+request\+\_\+handler\+\_\+options}} $\ast$options)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_a9d7552263485d0cde8032c09451832da}\label{structaws__http__connection__vtable_a9d7552263485d0cde8032c09451832da}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!on\_channel\_handler\_installed@{on\_channel\_handler\_installed}}
+\index{on\_channel\_handler\_installed@{on\_channel\_handler\_installed}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{on\_channel\_handler\_installed}{on\_channel\_handler\_installed}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::on\+\_\+channel\+\_\+handler\+\_\+installed) (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_af7dc6967dff1d6ea5e5655296515708b}\label{structaws__http__connection__vtable_af7dc6967dff1d6ea5e5655296515708b}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!send\_goaway@{send\_goaway}}
+\index{send\_goaway@{send\_goaway}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{send\_goaway}{send\_goaway}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::send\+\_\+goaway) (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, uint32\+\_\+t http2\+\_\+error, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} allow\+\_\+more\+\_\+streams, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$optional\+\_\+debug\+\_\+data)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_adc984d083b5fc1bf331ef75aff635319}\label{structaws__http__connection__vtable_adc984d083b5fc1bf331ef75aff635319}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!send\_ping@{send\_ping}}
+\index{send\_ping@{send\_ping}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{send\_ping}{send\_ping}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::send\+\_\+ping) (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$http2\+\_\+connection, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$optional\+\_\+opaque\+\_\+data, \mbox{\hyperlink{connection_8h_aef09b06b4e26402e4cdd097c869dcb32}{aws\+\_\+http2\+\_\+on\+\_\+ping\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+completed, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_ac3faf2b743c8c5022f91635c83e953c8}\label{structaws__http__connection__vtable_ac3faf2b743c8c5022f91635c83e953c8}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!stream\_send\_response@{stream\_send\_response}}
+\index{stream\_send\_response@{stream\_send\_response}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{stream\_send\_response}{stream\_send\_response}}
+{\footnotesize\ttfamily int($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::stream\+\_\+send\+\_\+response) (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$response)}
+
+\mbox{\Hypertarget{structaws__http__connection__vtable_aa527047cfd348f445669be484d16887e}\label{structaws__http__connection__vtable_aa527047cfd348f445669be484d16887e}} 
+\index{aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}!update\_window@{update\_window}}
+\index{update\_window@{update\_window}!aws\_http\_connection\_vtable@{aws\_http\_connection\_vtable}}
+\doxysubsubsection{\texorpdfstring{update\_window}{update\_window}}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+http\+\_\+connection\+\_\+vtable\+::update\+\_\+window) (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, size\+\_\+t increment\+\_\+size)}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/include/aws/http/private/\mbox{\hyperlink{connection__impl_8h}{connection\+\_\+impl.\+h}}\end{DoxyCompactItemize}

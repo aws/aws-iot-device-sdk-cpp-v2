@@ -1,0 +1,85 @@
+\hypertarget{_message_8pb_8h}{}\doxysection{crt/aws-\/c-\/iot/tests/tests\+\_\+protobuf/\+Message.pb.\+h File Reference}
+\label{_message_8pb_8h}\index{crt/aws-\/c-\/iot/tests/tests\_protobuf/Message.pb.h@{crt/aws-\/c-\/iot/tests/tests\_protobuf/Message.pb.h}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$google/protobuf/stubs/common.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/arena.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/arenastring.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/extension\+\_\+set.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/generated\+\_\+enum\+\_\+util.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/generated\+\_\+message\+\_\+table\+\_\+driven.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/generated\+\_\+message\+\_\+util.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/inlined\+\_\+string\+\_\+field.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/io/coded\+\_\+stream.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/message\+\_\+lite.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/metadata\+\_\+lite.\+h$>$}\newline
+{\ttfamily \#include $<$google/protobuf/repeated\+\_\+field.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structprotobuf___message__2eproto_1_1_table_struct}{protobuf\+\_\+\+Message\+\_\+2eproto\+::\+Table\+Struct}}
+\item 
+class \mbox{\hyperlink{classcom_1_1amazonaws_1_1iot_1_1securedtunneling_1_1_message}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message}}
+\item 
+struct \mbox{\hyperlink{structgoogle_1_1protobuf_1_1is__proto__enum_3_1_1com_1_1amazonaws_1_1iot_1_1securedtunneling_1_1_message___type_01_4}{google\+::protobuf\+::is\+\_\+proto\+\_\+enum$<$\+::com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type $>$}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespaceprotobuf___message__2eproto}{protobuf\+\_\+\+Message\+\_\+2eproto}}
+\item 
+namespace \mbox{\hyperlink{namespacecom}{com}}
+\item 
+namespace \mbox{\hyperlink{namespacecom_1_1amazonaws}{com\+::amazonaws}}
+\item 
+namespace \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot}{com\+::amazonaws\+::iot}}
+\item 
+namespace \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling}{com\+::amazonaws\+::iot\+::securedtunneling}}
+\item 
+namespace \mbox{\hyperlink{namespacegoogle}{google}}
+\item 
+namespace \mbox{\hyperlink{namespacegoogle_1_1protobuf}{google\+::protobuf}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_message_8pb_8h_a6643a6e58f049d4dff956740879f043d}{PROTOBUF\+\_\+\+INTERNAL\+\_\+\+EXPORT\+\_\+protobuf\+\_\+\+Message\+\_\+2eproto}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_a9527b11912f95c8668de39679f8d4399}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type}} \{ \newline
+\mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_a9527b11912f95c8668de39679f8d4399ada7bc46a2653b65955de988807d97e46}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+UNKNOWN}} = 0
+, \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_a9527b11912f95c8668de39679f8d4399a5ad73704226c933ca4c0e0fbedb1b47f}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+DATA}} = 1
+, \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_a9527b11912f95c8668de39679f8d4399aca214bdc37585e8ff8df61bf04d89605}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+STREAM\+\_\+\+START}} = 2
+, \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_a9527b11912f95c8668de39679f8d4399a7b7c6a6b49d2a70efbb4d7663159e475}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+STREAM\+\_\+\+RESET}} = 3
+, \newline
+\mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_a9527b11912f95c8668de39679f8d4399ac1dfcb4aad676f78a46221bcaa79fb59}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+SESSION\+\_\+\+RESET}} = 4
+, \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_a9527b11912f95c8668de39679f8d4399ae9a4ec200abff85025068735d7c2117b}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+Message\+\_\+\+Type\+\_\+\+INT\+\_\+\+MIN\+\_\+\+SENTINEL\+\_\+\+DO\+\_\+\+NOT\+\_\+\+USE\+\_\+}} = \+::google\+::protobuf\+::kint32min
+, \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_a9527b11912f95c8668de39679f8d4399afb7941c5c6c9b5559e02febed3b81954}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+Message\+\_\+\+Type\+\_\+\+INT\+\_\+\+MAX\+\_\+\+SENTINEL\+\_\+\+DO\+\_\+\+NOT\+\_\+\+USE\+\_\+}} = \+::google\+::protobuf\+::kint32max
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+template$<$$>$ GOOGLE\+\_\+\+PROTOBUF\+\_\+\+ATTRIBUTE\+\_\+\+NOINLINE\+::com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message $\ast$ \mbox{\hyperlink{namespacegoogle_1_1protobuf_a70faaa6887edf190b9d105b9c6164f47}{google\+::protobuf\+::\+Arena\+::\+Create\+Maybe\+Message$<$ \+::com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message $>$}} (Arena $\ast$arena)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_adf0796993877f3d07d1d3aa9c2b0134e}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+Is\+Valid}} (int value)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const Message\+\_\+\+Type \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_aa5a15365d5707aad746a6a0d0790d7b3}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+Type\+\_\+\+MIN}} = Message\+\_\+\+Type\+\_\+\+UNKNOWN
+\item 
+const Message\+\_\+\+Type \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_a2eca48146275629490c6dd92e7a0d765}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+Type\+\_\+\+MAX}} = Message\+\_\+\+Type\+\_\+\+SESSION\+\_\+\+RESET
+\item 
+const int \mbox{\hyperlink{namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling_af11e38001b2884376b01808bbe690506}{com\+::amazonaws\+::iot\+::securedtunneling\+::\+Message\+\_\+\+Type\+\_\+\+Type\+\_\+\+ARRAYSIZE}} = Message\+\_\+\+Type\+\_\+\+Type\+\_\+\+MAX + 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_message_8pb_8h_a6643a6e58f049d4dff956740879f043d}\label{_message_8pb_8h_a6643a6e58f049d4dff956740879f043d}} 
+\index{Message.pb.h@{Message.pb.h}!PROTOBUF\_INTERNAL\_EXPORT\_protobuf\_Message\_2eproto@{PROTOBUF\_INTERNAL\_EXPORT\_protobuf\_Message\_2eproto}}
+\index{PROTOBUF\_INTERNAL\_EXPORT\_protobuf\_Message\_2eproto@{PROTOBUF\_INTERNAL\_EXPORT\_protobuf\_Message\_2eproto}!Message.pb.h@{Message.pb.h}}
+\doxysubsubsection{\texorpdfstring{PROTOBUF\_INTERNAL\_EXPORT\_protobuf\_Message\_2eproto}{PROTOBUF\_INTERNAL\_EXPORT\_protobuf\_Message\_2eproto}}
+{\footnotesize\ttfamily \#define PROTOBUF\+\_\+\+INTERNAL\+\_\+\+EXPORT\+\_\+protobuf\+\_\+\+Message\+\_\+2eproto}
+

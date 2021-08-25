@@ -1,0 +1,705 @@
+\hypertarget{evp_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/evp.h File Reference}
+\label{evp_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/evp.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/include/openssl/evp.h}}
+{\ttfamily \#include $<$openssl/ec.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/ossl\+\_\+typ.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{evp_8h_a71bfc78a168f00f0c4ffd2535082b129}{EVP\+\_\+\+MAX\+\_\+\+MD\+\_\+\+SIZE}}~64  /$\ast$ longest known is SHA512 $\ast$/
+\item 
+\#define \mbox{\hyperlink{evp_8h_a9f97338f400f7b517514fa7fa17d9dc1}{EVP\+\_\+\+PKEY\+\_\+\+HKDF}}~1036
+\item 
+\#define \mbox{\hyperlink{evp_8h_a0d064f46fed71d3e7737712c0dfffcc6}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+create}}()~\mbox{\hyperlink{evp_8h_a5397f93f1cc4aa6291a6f9310765776e}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+new}}()
+\item 
+\#define \mbox{\hyperlink{evp_8h_a798a317aba35bca0a90b1cff9c22dd81}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+destroy}}(\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})~\mbox{\hyperlink{evp_8h_a4e2ad7849ae3f095de4b3ddc00b6c33f}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+free}}((\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}))
+\item 
+\#define \mbox{\hyperlink{evp_8h_a2c770020c17112eb48be1529d975c91f}{EVP\+\_\+\+CTRL\+\_\+\+INIT}}~0x0
+\item 
+\#define \mbox{\hyperlink{evp_8h_a6407848d97a5a263fc6f0ae2b1b278e4}{EVP\+\_\+\+CTRL\+\_\+\+SET\+\_\+\+KEY\+\_\+\+LENGTH}}~0x1
+\item 
+\#define \mbox{\hyperlink{evp_8h_acdea0da07b722761d01704d2b33ebc18}{EVP\+\_\+\+CTRL\+\_\+\+GET\+\_\+\+RC2\+\_\+\+KEY\+\_\+\+BITS}}~0x2
+\item 
+\#define \mbox{\hyperlink{evp_8h_ac7df37287beb70004d20eb312266f5de}{EVP\+\_\+\+CTRL\+\_\+\+SET\+\_\+\+RC2\+\_\+\+KEY\+\_\+\+BITS}}~0x3
+\item 
+\#define \mbox{\hyperlink{evp_8h_a38a75d58bdbeada965d1146186b6ca52}{EVP\+\_\+\+CTRL\+\_\+\+GET\+\_\+\+RC5\+\_\+\+ROUNDS}}~0x4
+\item 
+\#define \mbox{\hyperlink{evp_8h_a9c37eb49db98aeebf031321e48d325b1}{EVP\+\_\+\+CTRL\+\_\+\+SET\+\_\+\+RC5\+\_\+\+ROUNDS}}~0x5
+\item 
+\#define \mbox{\hyperlink{evp_8h_a169eac29a704cb4eec16676c554150ea}{EVP\+\_\+\+CTRL\+\_\+\+RAND\+\_\+\+KEY}}~0x6
+\item 
+\#define \mbox{\hyperlink{evp_8h_aa0ab2bacc1987e20fb75f467961d76e3}{EVP\+\_\+\+CTRL\+\_\+\+PBE\+\_\+\+PRF\+\_\+\+NID}}~0x7
+\item 
+\#define \mbox{\hyperlink{evp_8h_ae0ec5a8a1cd2f1839e67a228f960444d}{EVP\+\_\+\+CTRL\+\_\+\+COPY}}~0x8
+\item 
+\#define \mbox{\hyperlink{evp_8h_a29bbb947a5d82a8ac7916111995ac1c3}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IVLEN}}~0x9
+\item 
+\#define \mbox{\hyperlink{evp_8h_ac87fb66663060671171f1f614829a1f2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+GET\+\_\+\+TAG}}~0x10
+\item 
+\#define \mbox{\hyperlink{evp_8h_ad195a4d2d56fa78a3405ce21daca8e04}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+TAG}}~0x11
+\item 
+\#define \mbox{\hyperlink{evp_8h_aecfd5cfb265eb3a6d9e17ee42f3c8ac2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED}}~0x12
+\item 
+\#define \mbox{\hyperlink{evp_8h_a5c7ab2ca3afe171228e9b866ff344d50}{EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+SET\+\_\+\+IVLEN}}~\mbox{\hyperlink{evp_8h_a29bbb947a5d82a8ac7916111995ac1c3}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IVLEN}}
+\item 
+\#define \mbox{\hyperlink{evp_8h_a01518ce3f49c990fd91a47d5514ba3a4}{EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+GET\+\_\+\+TAG}}~\mbox{\hyperlink{evp_8h_ac87fb66663060671171f1f614829a1f2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+GET\+\_\+\+TAG}}
+\item 
+\#define \mbox{\hyperlink{evp_8h_a77689572d8d33a5ed4c947e60f8c5ad2}{EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+SET\+\_\+\+TAG}}~\mbox{\hyperlink{evp_8h_ad195a4d2d56fa78a3405ce21daca8e04}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+TAG}}
+\item 
+\#define \mbox{\hyperlink{evp_8h_a9e88e35758d5bf68202adae3f67b20b8}{EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED}}~\mbox{\hyperlink{evp_8h_aecfd5cfb265eb3a6d9e17ee42f3c8ac2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED}}
+\item 
+\#define \mbox{\hyperlink{evp_8h_a90ae2dd126e64b7de132c6131e910bdb}{EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+IV\+\_\+\+GEN}}~0x13
+\item 
+\#define \mbox{\hyperlink{evp_8h_a666c74f4d241e8d62b171c4d0b4a5a58}{EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+\+IVLEN}}~\mbox{\hyperlink{evp_8h_a29bbb947a5d82a8ac7916111995ac1c3}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IVLEN}}
+\item 
+\#define \mbox{\hyperlink{evp_8h_a36e45db168e0a8c2f4ed53c66b633c5b}{EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+GET\+\_\+\+TAG}}~\mbox{\hyperlink{evp_8h_ac87fb66663060671171f1f614829a1f2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+GET\+\_\+\+TAG}}
+\item 
+\#define \mbox{\hyperlink{evp_8h_a4d3ce6a7d3101f4b1adcc4cb4b48cccc}{EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+\+TAG}}~\mbox{\hyperlink{evp_8h_ad195a4d2d56fa78a3405ce21daca8e04}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+TAG}}
+\item 
+\#define \mbox{\hyperlink{evp_8h_a11e55eb8e9c6fff6f36838b745ec3d9c}{EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED}}~\mbox{\hyperlink{evp_8h_aecfd5cfb265eb3a6d9e17ee42f3c8ac2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED}}
+\item 
+\#define \mbox{\hyperlink{evp_8h_adf2dfa7bb675c5332133d0927990ab80}{EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+L}}~0x14
+\item 
+\#define \mbox{\hyperlink{evp_8h_ad74a7ea2842baac8ffdba2294f443fd3}{EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+\+MSGLEN}}~0x15
+\item 
+\#define \mbox{\hyperlink{evp_8h_adc03ff56743d3b16090d90e8e30a1dc7}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+UNDEFINED}}~0
+\item 
+\#define \mbox{\hyperlink{evp_8h_afef8e63b568f3d2a3c17be0ad69e95df}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+PARAMGEN}}~(1 $<$$<$ 1)
+\item 
+\#define \mbox{\hyperlink{evp_8h_a3b76151a516e8202603510d06664ef82}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+KEYGEN}}~(1 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{evp_8h_ad018f5b3f98b2eb5d6886e8b47dc5858}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+SIGN}}~(1 $<$$<$ 3)
+\item 
+\#define \mbox{\hyperlink{evp_8h_aa7f0a6dd244b702b064da3ed2d073667}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+VERIFY}}~(1 $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{evp_8h_ad0aba52ddd1f54d8bc76a886187d9b77}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+VERIFYRECOVER}}~(1 $<$$<$ 5)
+\item 
+\#define \mbox{\hyperlink{evp_8h_afad21fd4f96e6c937aa7a269de5431cf}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+SIGNCTX}}~(1 $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{evp_8h_a9953fc799ecc59e9c92f8535c47e9408}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+VERIFYCTX}}~(1 $<$$<$ 7)
+\item 
+\#define \mbox{\hyperlink{evp_8h_a1ada70baaa6f6d6c532b9761a513c53a}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+ENCRYPT}}~(1 $<$$<$ 8)
+\item 
+\#define \mbox{\hyperlink{evp_8h_a132399ce35090b2d7626910d6e5cba42}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+DECRYPT}}~(1 $<$$<$ 9)
+\item 
+\#define \mbox{\hyperlink{evp_8h_aeaebf1c81d24beb3b8ac8187e612cb3e}{EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+DERIVE}}~(1 $<$$<$ 10)
+\item 
+\#define \mbox{\hyperlink{evp_8h_ab7513c3358eaf58ae5b97e9c40562596}{EVP\+\_\+\+PKEY\+\_\+\+ALG\+\_\+\+CTRL}}~0x1000
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$ \mbox{\hyperlink{evp_8h_a78cee333b609a4259d8e4d4c42f5ddd7}{EVP\+\_\+\+PKEY\+\_\+new}} (void)
+\item 
+\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$ \mbox{\hyperlink{evp_8h_a773bc41e594f8286e17d6d4ba6a4f2f1}{EVP\+\_\+\+PKEY\+\_\+get0\+\_\+\+EC\+\_\+\+KEY}} (\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$pkey)
+\item 
+int \mbox{\hyperlink{evp_8h_a1dedf7ed16f6fbbcc674680afbfeda2b}{EVP\+\_\+\+PKEY\+\_\+set1\+\_\+\+EC\+\_\+\+KEY}} (\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$pkey, \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$key)
+\item 
+void \mbox{\hyperlink{evp_8h_a448d9f9209a54694aff045d403850db7}{EVP\+\_\+\+PKEY\+\_\+free}} (\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$pkey)
+\item 
+\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$ \mbox{\hyperlink{evp_8h_a23d1c787f99b2aaa6d8283c2db325eea}{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+new}} (\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$pkey, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$e)
+\item 
+\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$ \mbox{\hyperlink{evp_8h_a3260cb9b0fddd3d19e7877ccd07117da}{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+new\+\_\+id}} (int id, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$e)
+\item 
+int \mbox{\hyperlink{evp_8h_ae524c385eebb1b65ad9b719636245e18}{EVP\+\_\+\+PKEY\+\_\+derive\+\_\+init}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{evp_8h_a423a99ea5dbdd496bbf6fe31ca3b275e}{EVP\+\_\+\+PKEY\+\_\+sign\+\_\+init}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{evp_8h_a8b51695da9f9c38443e01a6971a6daf9}{EVP\+\_\+\+PKEY\+\_\+sign}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$sig, size\+\_\+t $\ast$siglen, const unsigned char $\ast$tbs, size\+\_\+t tbslen)
+\item 
+void \mbox{\hyperlink{evp_8h_a9a2d5ac99985dda36f15bd92d83c1621}{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+free}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{evp_8h_ac215192017d713cda37872ad4d9daf54}{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+ctrl}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, int keytype, int optype, int cmd, int p1, void $\ast$p2)
+\item 
+int \mbox{\hyperlink{evp_8h_acec7d2eb920d0ca76adeb35c2f0af10a}{EVP\+\_\+\+PKEY\+\_\+derive}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$key, size\+\_\+t $\ast$keylen)
+\item 
+int \mbox{\hyperlink{evp_8h_af2fbc31cc36229188e108c2b3a59891d}{EVP\+\_\+\+PKEY\+\_\+encrypt\+\_\+init}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{evp_8h_a7f62c2ab0ec56c6272e526a1644f669f}{EVP\+\_\+\+PKEY\+\_\+decrypt\+\_\+init}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{evp_8h_aa8b15912fd4c4238f7af868234621545}{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+set\+\_\+rsa\+\_\+padding}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, int pad)
+\item 
+int \mbox{\hyperlink{evp_8h_a0c5f6af8fc3fdc2e40146fff71eba1f0}{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+set\+\_\+rsa\+\_\+oaep\+\_\+md}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$md)
+\item 
+int \mbox{\hyperlink{evp_8h_a297268e7daec1dc968aeb0e70b7114f4}{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+set\+\_\+rsa\+\_\+mgf1\+\_\+md}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$md)
+\item 
+int \mbox{\hyperlink{evp_8h_a1d46c8be83d90b829b1b2f6fbba03a3b}{EVP\+\_\+\+PKEY\+\_\+encrypt}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$out, size\+\_\+t $\ast$outlen, const unsigned char $\ast$in, size\+\_\+t inlen)
+\item 
+int \mbox{\hyperlink{evp_8h_a2c28fd7a4e52a0c1e4a92e6d6183ee5d}{EVP\+\_\+\+PKEY\+\_\+decrypt}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$out, size\+\_\+t $\ast$outlen, const unsigned char $\ast$in, size\+\_\+t inlen)
+\item 
+\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$ \mbox{\hyperlink{evp_8h_a5397f93f1cc4aa6291a6f9310765776e}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+new}} (void)
+\item 
+int \mbox{\hyperlink{evp_8h_a04ae018532a60c893a5fd18c6704b9d4}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+size}} (const \mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+void \mbox{\hyperlink{evp_8h_a4e2ad7849ae3f095de4b3ddc00b6c33f}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+free}} (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{evp_8h_a039cce8e234ebef1284710b019075ddc}{EVP\+\_\+\+Digest\+Init\+\_\+ex}} (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$type, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$impl)
+\item 
+int \mbox{\hyperlink{evp_8h_ab5b2f1ef6d30db8471c673194949c245}{EVP\+\_\+\+Digest\+Update}} (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const void $\ast$d, size\+\_\+t cnt)
+\item 
+int \mbox{\hyperlink{evp_8h_a06e905e22b95690a5417e575c486373a}{EVP\+\_\+\+Digest\+Final\+\_\+ex}} (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$md, unsigned int $\ast$s)
+\item 
+int \mbox{\hyperlink{evp_8h_a2fe36f584ecc0477b25bd6eb52144dc1}{EVP\+\_\+\+Digest\+Final}} (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$md, unsigned int $\ast$s)
+\item 
+int \mbox{\hyperlink{evp_8h_ad21191a8a67b6c3517165e0c3b9146f0}{EVP\+\_\+\+Digest\+Verify\+Init}} (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, \mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$$\ast$pctx, const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$type, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$e, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$pkey)
+\item 
+int \mbox{\hyperlink{evp_8h_a231ef25adc44c209ad7df397e679e008}{EVP\+\_\+\+Digest\+Verify\+Final}} (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const unsigned char $\ast$sig, size\+\_\+t siglen)
+\item 
+\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$ \mbox{\hyperlink{evp_8h_a611fc0e27e9f23ebc3c1d8fdc52c2d4f}{EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+new}} (void)
+\item 
+int \mbox{\hyperlink{evp_8h_aab11ae066491958c229882a364c3feb8}{EVP\+\_\+\+Cipher\+Init\+\_\+ex}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}} $\ast$cipher, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$impl, const unsigned char $\ast$key, const unsigned char $\ast$iv, int enc)
+\item 
+int \mbox{\hyperlink{evp_8h_a2db36515f41f25199834cf9c3102e850}{EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+ctrl}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, int type, int arg, void $\ast$ptr)
+\item 
+void \mbox{\hyperlink{evp_8h_a639b710284143fc862d9d79a4b097afd}{EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+free}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{evp_8h_a947e637ce26011c54011db2bc69cd89b}{EVP\+\_\+\+Encrypt\+Init\+\_\+ex}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}} $\ast$type, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$impl, const unsigned char $\ast$key, const unsigned char $\ast$iv)
+\item 
+int \mbox{\hyperlink{evp_8h_aae138d13f582de73338cd860579706db}{EVP\+\_\+\+Decrypt\+Init\+\_\+ex}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}} $\ast$type, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$impl, const unsigned char $\ast$key, const unsigned char $\ast$iv)
+\item 
+int \mbox{\hyperlink{evp_8h_a21eccfd88ae10107b332894440bb9d91}{EVP\+\_\+\+Cipher\+Update}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$out, int $\ast$outl, const unsigned char $\ast$in, int inl)
+\item 
+int \mbox{\hyperlink{evp_8h_ab2b67d1cc256418ee42bdfcd5a329cdf}{EVP\+\_\+\+Encrypt\+Update}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$out, int $\ast$outl, const unsigned char $\ast$in, int inl)
+\item 
+int \mbox{\hyperlink{evp_8h_a6a6a756b17f35f9e128cc6d658842a69}{EVP\+\_\+\+Decrypt\+Update}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$out, int $\ast$outl, const unsigned char $\ast$in, int inl)
+\item 
+int \mbox{\hyperlink{evp_8h_ab20ff5709d2a4c4ca29a8065ffab5865}{EVP\+\_\+\+Encrypt\+Final\+\_\+ex}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$out, int $\ast$outl)
+\item 
+int \mbox{\hyperlink{evp_8h_a99321b3f466a397b194400318cdca48a}{EVP\+\_\+\+Decrypt\+Final\+\_\+ex}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, unsigned char $\ast$outm, int $\ast$outl)
+\item 
+const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}} $\ast$ \mbox{\hyperlink{evp_8h_a5020a805854bba592aa09a6633ac6ab7}{EVP\+\_\+aes\+\_\+128\+\_\+gcm}} (void)
+\item 
+const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}} $\ast$ \mbox{\hyperlink{evp_8h_ae63a2faa3c44c2c42166fbd97b503557}{EVP\+\_\+aes\+\_\+192\+\_\+gcm}} (void)
+\item 
+const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}} $\ast$ \mbox{\hyperlink{evp_8h_a4a0ff99bc42dadda3b3c796a4ea5e1b6}{EVP\+\_\+aes\+\_\+256\+\_\+gcm}} (void)
+\item 
+const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$ \mbox{\hyperlink{evp_8h_afe55e56742a9b9ecffdaef7e95a6707a}{EVP\+\_\+sha256}} (void)
+\item 
+const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$ \mbox{\hyperlink{evp_8h_a031405a10c84711b9a9699fadc8dbf2a}{EVP\+\_\+sha384}} (void)
+\item 
+const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$ \mbox{\hyperlink{evp_8h_aceda0d5da59b56159d2e3515039a46ce}{EVP\+\_\+sha512}} (void)
+\item 
+int \mbox{\hyperlink{evp_8h_a90cd9b536d07403d5d14fde98299a6a7}{EVP\+\_\+\+MD\+\_\+size}} (const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$md)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{evp_8h_ac87fb66663060671171f1f614829a1f2}\label{evp_8h_ac87fb66663060671171f1f614829a1f2}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_AEAD\_GET\_TAG@{EVP\_CTRL\_AEAD\_GET\_TAG}}
+\index{EVP\_CTRL\_AEAD\_GET\_TAG@{EVP\_CTRL\_AEAD\_GET\_TAG}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_AEAD\_GET\_TAG}{EVP\_CTRL\_AEAD\_GET\_TAG}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+GET\+\_\+\+TAG~0x10}
+
+\mbox{\Hypertarget{evp_8h_aecfd5cfb265eb3a6d9e17ee42f3c8ac2}\label{evp_8h_aecfd5cfb265eb3a6d9e17ee42f3c8ac2}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_AEAD\_SET\_IV\_FIXED@{EVP\_CTRL\_AEAD\_SET\_IV\_FIXED}}
+\index{EVP\_CTRL\_AEAD\_SET\_IV\_FIXED@{EVP\_CTRL\_AEAD\_SET\_IV\_FIXED}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_AEAD\_SET\_IV\_FIXED}{EVP\_CTRL\_AEAD\_SET\_IV\_FIXED}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED~0x12}
+
+\mbox{\Hypertarget{evp_8h_a29bbb947a5d82a8ac7916111995ac1c3}\label{evp_8h_a29bbb947a5d82a8ac7916111995ac1c3}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_AEAD\_SET\_IVLEN@{EVP\_CTRL\_AEAD\_SET\_IVLEN}}
+\index{EVP\_CTRL\_AEAD\_SET\_IVLEN@{EVP\_CTRL\_AEAD\_SET\_IVLEN}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_AEAD\_SET\_IVLEN}{EVP\_CTRL\_AEAD\_SET\_IVLEN}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IVLEN~0x9}
+
+\mbox{\Hypertarget{evp_8h_ad195a4d2d56fa78a3405ce21daca8e04}\label{evp_8h_ad195a4d2d56fa78a3405ce21daca8e04}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_AEAD\_SET\_TAG@{EVP\_CTRL\_AEAD\_SET\_TAG}}
+\index{EVP\_CTRL\_AEAD\_SET\_TAG@{EVP\_CTRL\_AEAD\_SET\_TAG}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_AEAD\_SET\_TAG}{EVP\_CTRL\_AEAD\_SET\_TAG}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+TAG~0x11}
+
+\mbox{\Hypertarget{evp_8h_a36e45db168e0a8c2f4ed53c66b633c5b}\label{evp_8h_a36e45db168e0a8c2f4ed53c66b633c5b}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_CCM\_GET\_TAG@{EVP\_CTRL\_CCM\_GET\_TAG}}
+\index{EVP\_CTRL\_CCM\_GET\_TAG@{EVP\_CTRL\_CCM\_GET\_TAG}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_CCM\_GET\_TAG}{EVP\_CTRL\_CCM\_GET\_TAG}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+GET\+\_\+\+TAG~\mbox{\hyperlink{evp_8h_ac87fb66663060671171f1f614829a1f2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+GET\+\_\+\+TAG}}}
+
+\mbox{\Hypertarget{evp_8h_a11e55eb8e9c6fff6f36838b745ec3d9c}\label{evp_8h_a11e55eb8e9c6fff6f36838b745ec3d9c}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_CCM\_SET\_IV\_FIXED@{EVP\_CTRL\_CCM\_SET\_IV\_FIXED}}
+\index{EVP\_CTRL\_CCM\_SET\_IV\_FIXED@{EVP\_CTRL\_CCM\_SET\_IV\_FIXED}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_CCM\_SET\_IV\_FIXED}{EVP\_CTRL\_CCM\_SET\_IV\_FIXED}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED~\mbox{\hyperlink{evp_8h_aecfd5cfb265eb3a6d9e17ee42f3c8ac2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED}}}
+
+\mbox{\Hypertarget{evp_8h_a666c74f4d241e8d62b171c4d0b4a5a58}\label{evp_8h_a666c74f4d241e8d62b171c4d0b4a5a58}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_CCM\_SET\_IVLEN@{EVP\_CTRL\_CCM\_SET\_IVLEN}}
+\index{EVP\_CTRL\_CCM\_SET\_IVLEN@{EVP\_CTRL\_CCM\_SET\_IVLEN}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_CCM\_SET\_IVLEN}{EVP\_CTRL\_CCM\_SET\_IVLEN}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+\+IVLEN~\mbox{\hyperlink{evp_8h_a29bbb947a5d82a8ac7916111995ac1c3}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IVLEN}}}
+
+\mbox{\Hypertarget{evp_8h_adf2dfa7bb675c5332133d0927990ab80}\label{evp_8h_adf2dfa7bb675c5332133d0927990ab80}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_CCM\_SET\_L@{EVP\_CTRL\_CCM\_SET\_L}}
+\index{EVP\_CTRL\_CCM\_SET\_L@{EVP\_CTRL\_CCM\_SET\_L}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_CCM\_SET\_L}{EVP\_CTRL\_CCM\_SET\_L}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+L~0x14}
+
+\mbox{\Hypertarget{evp_8h_ad74a7ea2842baac8ffdba2294f443fd3}\label{evp_8h_ad74a7ea2842baac8ffdba2294f443fd3}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_CCM\_SET\_MSGLEN@{EVP\_CTRL\_CCM\_SET\_MSGLEN}}
+\index{EVP\_CTRL\_CCM\_SET\_MSGLEN@{EVP\_CTRL\_CCM\_SET\_MSGLEN}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_CCM\_SET\_MSGLEN}{EVP\_CTRL\_CCM\_SET\_MSGLEN}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+\+MSGLEN~0x15}
+
+\mbox{\Hypertarget{evp_8h_a4d3ce6a7d3101f4b1adcc4cb4b48cccc}\label{evp_8h_a4d3ce6a7d3101f4b1adcc4cb4b48cccc}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_CCM\_SET\_TAG@{EVP\_CTRL\_CCM\_SET\_TAG}}
+\index{EVP\_CTRL\_CCM\_SET\_TAG@{EVP\_CTRL\_CCM\_SET\_TAG}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_CCM\_SET\_TAG}{EVP\_CTRL\_CCM\_SET\_TAG}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+CCM\+\_\+\+SET\+\_\+\+TAG~\mbox{\hyperlink{evp_8h_ad195a4d2d56fa78a3405ce21daca8e04}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+TAG}}}
+
+\mbox{\Hypertarget{evp_8h_ae0ec5a8a1cd2f1839e67a228f960444d}\label{evp_8h_ae0ec5a8a1cd2f1839e67a228f960444d}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_COPY@{EVP\_CTRL\_COPY}}
+\index{EVP\_CTRL\_COPY@{EVP\_CTRL\_COPY}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_COPY}{EVP\_CTRL\_COPY}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+COPY~0x8}
+
+\mbox{\Hypertarget{evp_8h_a01518ce3f49c990fd91a47d5514ba3a4}\label{evp_8h_a01518ce3f49c990fd91a47d5514ba3a4}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_GCM\_GET\_TAG@{EVP\_CTRL\_GCM\_GET\_TAG}}
+\index{EVP\_CTRL\_GCM\_GET\_TAG@{EVP\_CTRL\_GCM\_GET\_TAG}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_GCM\_GET\_TAG}{EVP\_CTRL\_GCM\_GET\_TAG}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+GET\+\_\+\+TAG~\mbox{\hyperlink{evp_8h_ac87fb66663060671171f1f614829a1f2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+GET\+\_\+\+TAG}}}
+
+\mbox{\Hypertarget{evp_8h_a90ae2dd126e64b7de132c6131e910bdb}\label{evp_8h_a90ae2dd126e64b7de132c6131e910bdb}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_GCM\_IV\_GEN@{EVP\_CTRL\_GCM\_IV\_GEN}}
+\index{EVP\_CTRL\_GCM\_IV\_GEN@{EVP\_CTRL\_GCM\_IV\_GEN}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_GCM\_IV\_GEN}{EVP\_CTRL\_GCM\_IV\_GEN}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+IV\+\_\+\+GEN~0x13}
+
+\mbox{\Hypertarget{evp_8h_a9e88e35758d5bf68202adae3f67b20b8}\label{evp_8h_a9e88e35758d5bf68202adae3f67b20b8}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_GCM\_SET\_IV\_FIXED@{EVP\_CTRL\_GCM\_SET\_IV\_FIXED}}
+\index{EVP\_CTRL\_GCM\_SET\_IV\_FIXED@{EVP\_CTRL\_GCM\_SET\_IV\_FIXED}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_GCM\_SET\_IV\_FIXED}{EVP\_CTRL\_GCM\_SET\_IV\_FIXED}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED~\mbox{\hyperlink{evp_8h_aecfd5cfb265eb3a6d9e17ee42f3c8ac2}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IV\+\_\+\+FIXED}}}
+
+\mbox{\Hypertarget{evp_8h_a5c7ab2ca3afe171228e9b866ff344d50}\label{evp_8h_a5c7ab2ca3afe171228e9b866ff344d50}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_GCM\_SET\_IVLEN@{EVP\_CTRL\_GCM\_SET\_IVLEN}}
+\index{EVP\_CTRL\_GCM\_SET\_IVLEN@{EVP\_CTRL\_GCM\_SET\_IVLEN}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_GCM\_SET\_IVLEN}{EVP\_CTRL\_GCM\_SET\_IVLEN}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+SET\+\_\+\+IVLEN~\mbox{\hyperlink{evp_8h_a29bbb947a5d82a8ac7916111995ac1c3}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+IVLEN}}}
+
+\mbox{\Hypertarget{evp_8h_a77689572d8d33a5ed4c947e60f8c5ad2}\label{evp_8h_a77689572d8d33a5ed4c947e60f8c5ad2}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_GCM\_SET\_TAG@{EVP\_CTRL\_GCM\_SET\_TAG}}
+\index{EVP\_CTRL\_GCM\_SET\_TAG@{EVP\_CTRL\_GCM\_SET\_TAG}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_GCM\_SET\_TAG}{EVP\_CTRL\_GCM\_SET\_TAG}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+GCM\+\_\+\+SET\+\_\+\+TAG~\mbox{\hyperlink{evp_8h_ad195a4d2d56fa78a3405ce21daca8e04}{EVP\+\_\+\+CTRL\+\_\+\+AEAD\+\_\+\+SET\+\_\+\+TAG}}}
+
+\mbox{\Hypertarget{evp_8h_acdea0da07b722761d01704d2b33ebc18}\label{evp_8h_acdea0da07b722761d01704d2b33ebc18}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_GET\_RC2\_KEY\_BITS@{EVP\_CTRL\_GET\_RC2\_KEY\_BITS}}
+\index{EVP\_CTRL\_GET\_RC2\_KEY\_BITS@{EVP\_CTRL\_GET\_RC2\_KEY\_BITS}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_GET\_RC2\_KEY\_BITS}{EVP\_CTRL\_GET\_RC2\_KEY\_BITS}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+GET\+\_\+\+RC2\+\_\+\+KEY\+\_\+\+BITS~0x2}
+
+\mbox{\Hypertarget{evp_8h_a38a75d58bdbeada965d1146186b6ca52}\label{evp_8h_a38a75d58bdbeada965d1146186b6ca52}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_GET\_RC5\_ROUNDS@{EVP\_CTRL\_GET\_RC5\_ROUNDS}}
+\index{EVP\_CTRL\_GET\_RC5\_ROUNDS@{EVP\_CTRL\_GET\_RC5\_ROUNDS}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_GET\_RC5\_ROUNDS}{EVP\_CTRL\_GET\_RC5\_ROUNDS}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+GET\+\_\+\+RC5\+\_\+\+ROUNDS~0x4}
+
+\mbox{\Hypertarget{evp_8h_a2c770020c17112eb48be1529d975c91f}\label{evp_8h_a2c770020c17112eb48be1529d975c91f}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_INIT@{EVP\_CTRL\_INIT}}
+\index{EVP\_CTRL\_INIT@{EVP\_CTRL\_INIT}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_INIT}{EVP\_CTRL\_INIT}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+INIT~0x0}
+
+\mbox{\Hypertarget{evp_8h_aa0ab2bacc1987e20fb75f467961d76e3}\label{evp_8h_aa0ab2bacc1987e20fb75f467961d76e3}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_PBE\_PRF\_NID@{EVP\_CTRL\_PBE\_PRF\_NID}}
+\index{EVP\_CTRL\_PBE\_PRF\_NID@{EVP\_CTRL\_PBE\_PRF\_NID}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_PBE\_PRF\_NID}{EVP\_CTRL\_PBE\_PRF\_NID}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+PBE\+\_\+\+PRF\+\_\+\+NID~0x7}
+
+\mbox{\Hypertarget{evp_8h_a169eac29a704cb4eec16676c554150ea}\label{evp_8h_a169eac29a704cb4eec16676c554150ea}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_RAND\_KEY@{EVP\_CTRL\_RAND\_KEY}}
+\index{EVP\_CTRL\_RAND\_KEY@{EVP\_CTRL\_RAND\_KEY}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_RAND\_KEY}{EVP\_CTRL\_RAND\_KEY}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+RAND\+\_\+\+KEY~0x6}
+
+\mbox{\Hypertarget{evp_8h_a6407848d97a5a263fc6f0ae2b1b278e4}\label{evp_8h_a6407848d97a5a263fc6f0ae2b1b278e4}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_SET\_KEY\_LENGTH@{EVP\_CTRL\_SET\_KEY\_LENGTH}}
+\index{EVP\_CTRL\_SET\_KEY\_LENGTH@{EVP\_CTRL\_SET\_KEY\_LENGTH}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_SET\_KEY\_LENGTH}{EVP\_CTRL\_SET\_KEY\_LENGTH}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+SET\+\_\+\+KEY\+\_\+\+LENGTH~0x1}
+
+\mbox{\Hypertarget{evp_8h_ac7df37287beb70004d20eb312266f5de}\label{evp_8h_ac7df37287beb70004d20eb312266f5de}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_SET\_RC2\_KEY\_BITS@{EVP\_CTRL\_SET\_RC2\_KEY\_BITS}}
+\index{EVP\_CTRL\_SET\_RC2\_KEY\_BITS@{EVP\_CTRL\_SET\_RC2\_KEY\_BITS}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_SET\_RC2\_KEY\_BITS}{EVP\_CTRL\_SET\_RC2\_KEY\_BITS}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+SET\+\_\+\+RC2\+\_\+\+KEY\+\_\+\+BITS~0x3}
+
+\mbox{\Hypertarget{evp_8h_a9c37eb49db98aeebf031321e48d325b1}\label{evp_8h_a9c37eb49db98aeebf031321e48d325b1}} 
+\index{evp.h@{evp.h}!EVP\_CTRL\_SET\_RC5\_ROUNDS@{EVP\_CTRL\_SET\_RC5\_ROUNDS}}
+\index{EVP\_CTRL\_SET\_RC5\_ROUNDS@{EVP\_CTRL\_SET\_RC5\_ROUNDS}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CTRL\_SET\_RC5\_ROUNDS}{EVP\_CTRL\_SET\_RC5\_ROUNDS}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+CTRL\+\_\+\+SET\+\_\+\+RC5\+\_\+\+ROUNDS~0x5}
+
+\mbox{\Hypertarget{evp_8h_a71bfc78a168f00f0c4ffd2535082b129}\label{evp_8h_a71bfc78a168f00f0c4ffd2535082b129}} 
+\index{evp.h@{evp.h}!EVP\_MAX\_MD\_SIZE@{EVP\_MAX\_MD\_SIZE}}
+\index{EVP\_MAX\_MD\_SIZE@{EVP\_MAX\_MD\_SIZE}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_MAX\_MD\_SIZE}{EVP\_MAX\_MD\_SIZE}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+MAX\+\_\+\+MD\+\_\+\+SIZE~64  /$\ast$ longest known is SHA512 $\ast$/}
+
+\mbox{\Hypertarget{evp_8h_a0d064f46fed71d3e7737712c0dfffcc6}\label{evp_8h_a0d064f46fed71d3e7737712c0dfffcc6}} 
+\index{evp.h@{evp.h}!EVP\_MD\_CTX\_create@{EVP\_MD\_CTX\_create}}
+\index{EVP\_MD\_CTX\_create@{EVP\_MD\_CTX\_create}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_MD\_CTX\_create}{EVP\_MD\_CTX\_create}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+create(\begin{DoxyParamCaption}\item[{}]{void }\end{DoxyParamCaption})~\mbox{\hyperlink{evp_8h_a5397f93f1cc4aa6291a6f9310765776e}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+new}}()}
+
+\mbox{\Hypertarget{evp_8h_a798a317aba35bca0a90b1cff9c22dd81}\label{evp_8h_a798a317aba35bca0a90b1cff9c22dd81}} 
+\index{evp.h@{evp.h}!EVP\_MD\_CTX\_destroy@{EVP\_MD\_CTX\_destroy}}
+\index{EVP\_MD\_CTX\_destroy@{EVP\_MD\_CTX\_destroy}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_MD\_CTX\_destroy}{EVP\_MD\_CTX\_destroy}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+destroy(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}} }\end{DoxyParamCaption})~\mbox{\hyperlink{evp_8h_a4e2ad7849ae3f095de4b3ddc00b6c33f}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+free}}((\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}))}
+
+\mbox{\Hypertarget{evp_8h_ab7513c3358eaf58ae5b97e9c40562596}\label{evp_8h_ab7513c3358eaf58ae5b97e9c40562596}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_ALG\_CTRL@{EVP\_PKEY\_ALG\_CTRL}}
+\index{EVP\_PKEY\_ALG\_CTRL@{EVP\_PKEY\_ALG\_CTRL}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_ALG\_CTRL}{EVP\_PKEY\_ALG\_CTRL}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+ALG\+\_\+\+CTRL~0x1000}
+
+\mbox{\Hypertarget{evp_8h_a9f97338f400f7b517514fa7fa17d9dc1}\label{evp_8h_a9f97338f400f7b517514fa7fa17d9dc1}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_HKDF@{EVP\_PKEY\_HKDF}}
+\index{EVP\_PKEY\_HKDF@{EVP\_PKEY\_HKDF}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_HKDF}{EVP\_PKEY\_HKDF}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+HKDF~1036}
+
+\mbox{\Hypertarget{evp_8h_a132399ce35090b2d7626910d6e5cba42}\label{evp_8h_a132399ce35090b2d7626910d6e5cba42}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_DECRYPT@{EVP\_PKEY\_OP\_DECRYPT}}
+\index{EVP\_PKEY\_OP\_DECRYPT@{EVP\_PKEY\_OP\_DECRYPT}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_DECRYPT}{EVP\_PKEY\_OP\_DECRYPT}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+DECRYPT~(1 $<$$<$ 9)}
+
+\mbox{\Hypertarget{evp_8h_aeaebf1c81d24beb3b8ac8187e612cb3e}\label{evp_8h_aeaebf1c81d24beb3b8ac8187e612cb3e}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_DERIVE@{EVP\_PKEY\_OP\_DERIVE}}
+\index{EVP\_PKEY\_OP\_DERIVE@{EVP\_PKEY\_OP\_DERIVE}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_DERIVE}{EVP\_PKEY\_OP\_DERIVE}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+DERIVE~(1 $<$$<$ 10)}
+
+\mbox{\Hypertarget{evp_8h_a1ada70baaa6f6d6c532b9761a513c53a}\label{evp_8h_a1ada70baaa6f6d6c532b9761a513c53a}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_ENCRYPT@{EVP\_PKEY\_OP\_ENCRYPT}}
+\index{EVP\_PKEY\_OP\_ENCRYPT@{EVP\_PKEY\_OP\_ENCRYPT}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_ENCRYPT}{EVP\_PKEY\_OP\_ENCRYPT}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+ENCRYPT~(1 $<$$<$ 8)}
+
+\mbox{\Hypertarget{evp_8h_a3b76151a516e8202603510d06664ef82}\label{evp_8h_a3b76151a516e8202603510d06664ef82}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_KEYGEN@{EVP\_PKEY\_OP\_KEYGEN}}
+\index{EVP\_PKEY\_OP\_KEYGEN@{EVP\_PKEY\_OP\_KEYGEN}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_KEYGEN}{EVP\_PKEY\_OP\_KEYGEN}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+KEYGEN~(1 $<$$<$ 2)}
+
+\mbox{\Hypertarget{evp_8h_afef8e63b568f3d2a3c17be0ad69e95df}\label{evp_8h_afef8e63b568f3d2a3c17be0ad69e95df}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_PARAMGEN@{EVP\_PKEY\_OP\_PARAMGEN}}
+\index{EVP\_PKEY\_OP\_PARAMGEN@{EVP\_PKEY\_OP\_PARAMGEN}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_PARAMGEN}{EVP\_PKEY\_OP\_PARAMGEN}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+PARAMGEN~(1 $<$$<$ 1)}
+
+\mbox{\Hypertarget{evp_8h_ad018f5b3f98b2eb5d6886e8b47dc5858}\label{evp_8h_ad018f5b3f98b2eb5d6886e8b47dc5858}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_SIGN@{EVP\_PKEY\_OP\_SIGN}}
+\index{EVP\_PKEY\_OP\_SIGN@{EVP\_PKEY\_OP\_SIGN}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_SIGN}{EVP\_PKEY\_OP\_SIGN}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+SIGN~(1 $<$$<$ 3)}
+
+\mbox{\Hypertarget{evp_8h_afad21fd4f96e6c937aa7a269de5431cf}\label{evp_8h_afad21fd4f96e6c937aa7a269de5431cf}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_SIGNCTX@{EVP\_PKEY\_OP\_SIGNCTX}}
+\index{EVP\_PKEY\_OP\_SIGNCTX@{EVP\_PKEY\_OP\_SIGNCTX}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_SIGNCTX}{EVP\_PKEY\_OP\_SIGNCTX}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+SIGNCTX~(1 $<$$<$ 6)}
+
+\mbox{\Hypertarget{evp_8h_adc03ff56743d3b16090d90e8e30a1dc7}\label{evp_8h_adc03ff56743d3b16090d90e8e30a1dc7}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_UNDEFINED@{EVP\_PKEY\_OP\_UNDEFINED}}
+\index{EVP\_PKEY\_OP\_UNDEFINED@{EVP\_PKEY\_OP\_UNDEFINED}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_UNDEFINED}{EVP\_PKEY\_OP\_UNDEFINED}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+UNDEFINED~0}
+
+\mbox{\Hypertarget{evp_8h_aa7f0a6dd244b702b064da3ed2d073667}\label{evp_8h_aa7f0a6dd244b702b064da3ed2d073667}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_VERIFY@{EVP\_PKEY\_OP\_VERIFY}}
+\index{EVP\_PKEY\_OP\_VERIFY@{EVP\_PKEY\_OP\_VERIFY}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_VERIFY}{EVP\_PKEY\_OP\_VERIFY}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+VERIFY~(1 $<$$<$ 4)}
+
+\mbox{\Hypertarget{evp_8h_a9953fc799ecc59e9c92f8535c47e9408}\label{evp_8h_a9953fc799ecc59e9c92f8535c47e9408}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_VERIFYCTX@{EVP\_PKEY\_OP\_VERIFYCTX}}
+\index{EVP\_PKEY\_OP\_VERIFYCTX@{EVP\_PKEY\_OP\_VERIFYCTX}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_VERIFYCTX}{EVP\_PKEY\_OP\_VERIFYCTX}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+VERIFYCTX~(1 $<$$<$ 7)}
+
+\mbox{\Hypertarget{evp_8h_ad0aba52ddd1f54d8bc76a886187d9b77}\label{evp_8h_ad0aba52ddd1f54d8bc76a886187d9b77}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_OP\_VERIFYRECOVER@{EVP\_PKEY\_OP\_VERIFYRECOVER}}
+\index{EVP\_PKEY\_OP\_VERIFYRECOVER@{EVP\_PKEY\_OP\_VERIFYRECOVER}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_OP\_VERIFYRECOVER}{EVP\_PKEY\_OP\_VERIFYRECOVER}}
+{\footnotesize\ttfamily \#define EVP\+\_\+\+PKEY\+\_\+\+OP\+\_\+\+VERIFYRECOVER~(1 $<$$<$ 5)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{evp_8h_a5020a805854bba592aa09a6633ac6ab7}\label{evp_8h_a5020a805854bba592aa09a6633ac6ab7}} 
+\index{evp.h@{evp.h}!EVP\_aes\_128\_gcm@{EVP\_aes\_128\_gcm}}
+\index{EVP\_aes\_128\_gcm@{EVP\_aes\_128\_gcm}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_aes\_128\_gcm()}{EVP\_aes\_128\_gcm()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}}$\ast$ EVP\+\_\+aes\+\_\+128\+\_\+gcm (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_ae63a2faa3c44c2c42166fbd97b503557}\label{evp_8h_ae63a2faa3c44c2c42166fbd97b503557}} 
+\index{evp.h@{evp.h}!EVP\_aes\_192\_gcm@{EVP\_aes\_192\_gcm}}
+\index{EVP\_aes\_192\_gcm@{EVP\_aes\_192\_gcm}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_aes\_192\_gcm()}{EVP\_aes\_192\_gcm()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}}$\ast$ EVP\+\_\+aes\+\_\+192\+\_\+gcm (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a4a0ff99bc42dadda3b3c796a4ea5e1b6}\label{evp_8h_a4a0ff99bc42dadda3b3c796a4ea5e1b6}} 
+\index{evp.h@{evp.h}!EVP\_aes\_256\_gcm@{EVP\_aes\_256\_gcm}}
+\index{EVP\_aes\_256\_gcm@{EVP\_aes\_256\_gcm}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_aes\_256\_gcm()}{EVP\_aes\_256\_gcm()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}}$\ast$ EVP\+\_\+aes\+\_\+256\+\_\+gcm (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a2db36515f41f25199834cf9c3102e850}\label{evp_8h_a2db36515f41f25199834cf9c3102e850}} 
+\index{evp.h@{evp.h}!EVP\_CIPHER\_CTX\_ctrl@{EVP\_CIPHER\_CTX\_ctrl}}
+\index{EVP\_CIPHER\_CTX\_ctrl@{EVP\_CIPHER\_CTX\_ctrl}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CIPHER\_CTX\_ctrl()}{EVP\_CIPHER\_CTX\_ctrl()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+ctrl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{int}]{type,  }\item[{int}]{arg,  }\item[{void $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a639b710284143fc862d9d79a4b097afd}\label{evp_8h_a639b710284143fc862d9d79a4b097afd}} 
+\index{evp.h@{evp.h}!EVP\_CIPHER\_CTX\_free@{EVP\_CIPHER\_CTX\_free}}
+\index{EVP\_CIPHER\_CTX\_free@{EVP\_CIPHER\_CTX\_free}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CIPHER\_CTX\_free()}{EVP\_CIPHER\_CTX\_free()}}
+{\footnotesize\ttfamily void EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a611fc0e27e9f23ebc3c1d8fdc52c2d4f}\label{evp_8h_a611fc0e27e9f23ebc3c1d8fdc52c2d4f}} 
+\index{evp.h@{evp.h}!EVP\_CIPHER\_CTX\_new@{EVP\_CIPHER\_CTX\_new}}
+\index{EVP\_CIPHER\_CTX\_new@{EVP\_CIPHER\_CTX\_new}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CIPHER\_CTX\_new()}{EVP\_CIPHER\_CTX\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}}$\ast$ EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_aab11ae066491958c229882a364c3feb8}\label{evp_8h_aab11ae066491958c229882a364c3feb8}} 
+\index{evp.h@{evp.h}!EVP\_CipherInit\_ex@{EVP\_CipherInit\_ex}}
+\index{EVP\_CipherInit\_ex@{EVP\_CipherInit\_ex}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CipherInit\_ex()}{EVP\_CipherInit\_ex()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Cipher\+Init\+\_\+ex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}} $\ast$}]{cipher,  }\item[{\mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$}]{impl,  }\item[{const unsigned char $\ast$}]{key,  }\item[{const unsigned char $\ast$}]{iv,  }\item[{int}]{enc }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a21eccfd88ae10107b332894440bb9d91}\label{evp_8h_a21eccfd88ae10107b332894440bb9d91}} 
+\index{evp.h@{evp.h}!EVP\_CipherUpdate@{EVP\_CipherUpdate}}
+\index{EVP\_CipherUpdate@{EVP\_CipherUpdate}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_CipherUpdate()}{EVP\_CipherUpdate()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Cipher\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{out,  }\item[{int $\ast$}]{outl,  }\item[{const unsigned char $\ast$}]{in,  }\item[{int}]{inl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a99321b3f466a397b194400318cdca48a}\label{evp_8h_a99321b3f466a397b194400318cdca48a}} 
+\index{evp.h@{evp.h}!EVP\_DecryptFinal\_ex@{EVP\_DecryptFinal\_ex}}
+\index{EVP\_DecryptFinal\_ex@{EVP\_DecryptFinal\_ex}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_DecryptFinal\_ex()}{EVP\_DecryptFinal\_ex()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Decrypt\+Final\+\_\+ex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{outm,  }\item[{int $\ast$}]{outl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_aae138d13f582de73338cd860579706db}\label{evp_8h_aae138d13f582de73338cd860579706db}} 
+\index{evp.h@{evp.h}!EVP\_DecryptInit\_ex@{EVP\_DecryptInit\_ex}}
+\index{EVP\_DecryptInit\_ex@{EVP\_DecryptInit\_ex}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_DecryptInit\_ex()}{EVP\_DecryptInit\_ex()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Decrypt\+Init\+\_\+ex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}} $\ast$}]{type,  }\item[{\mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$}]{impl,  }\item[{const unsigned char $\ast$}]{key,  }\item[{const unsigned char $\ast$}]{iv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a6a6a756b17f35f9e128cc6d658842a69}\label{evp_8h_a6a6a756b17f35f9e128cc6d658842a69}} 
+\index{evp.h@{evp.h}!EVP\_DecryptUpdate@{EVP\_DecryptUpdate}}
+\index{EVP\_DecryptUpdate@{EVP\_DecryptUpdate}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_DecryptUpdate()}{EVP\_DecryptUpdate()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Decrypt\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{out,  }\item[{int $\ast$}]{outl,  }\item[{const unsigned char $\ast$}]{in,  }\item[{int}]{inl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a2fe36f584ecc0477b25bd6eb52144dc1}\label{evp_8h_a2fe36f584ecc0477b25bd6eb52144dc1}} 
+\index{evp.h@{evp.h}!EVP\_DigestFinal@{EVP\_DigestFinal}}
+\index{EVP\_DigestFinal@{EVP\_DigestFinal}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_DigestFinal()}{EVP\_DigestFinal()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Digest\+Final (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{md,  }\item[{unsigned int $\ast$}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a06e905e22b95690a5417e575c486373a}\label{evp_8h_a06e905e22b95690a5417e575c486373a}} 
+\index{evp.h@{evp.h}!EVP\_DigestFinal\_ex@{EVP\_DigestFinal\_ex}}
+\index{EVP\_DigestFinal\_ex@{EVP\_DigestFinal\_ex}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_DigestFinal\_ex()}{EVP\_DigestFinal\_ex()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Digest\+Final\+\_\+ex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{md,  }\item[{unsigned int $\ast$}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a039cce8e234ebef1284710b019075ddc}\label{evp_8h_a039cce8e234ebef1284710b019075ddc}} 
+\index{evp.h@{evp.h}!EVP\_DigestInit\_ex@{EVP\_DigestInit\_ex}}
+\index{EVP\_DigestInit\_ex@{EVP\_DigestInit\_ex}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_DigestInit\_ex()}{EVP\_DigestInit\_ex()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Digest\+Init\+\_\+ex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$}]{type,  }\item[{\mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$}]{impl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_ab5b2f1ef6d30db8471c673194949c245}\label{evp_8h_ab5b2f1ef6d30db8471c673194949c245}} 
+\index{evp.h@{evp.h}!EVP\_DigestUpdate@{EVP\_DigestUpdate}}
+\index{EVP\_DigestUpdate@{EVP\_DigestUpdate}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_DigestUpdate()}{EVP\_DigestUpdate()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Digest\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const void $\ast$}]{d,  }\item[{size\+\_\+t}]{cnt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a231ef25adc44c209ad7df397e679e008}\label{evp_8h_a231ef25adc44c209ad7df397e679e008}} 
+\index{evp.h@{evp.h}!EVP\_DigestVerifyFinal@{EVP\_DigestVerifyFinal}}
+\index{EVP\_DigestVerifyFinal@{EVP\_DigestVerifyFinal}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_DigestVerifyFinal()}{EVP\_DigestVerifyFinal()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Digest\+Verify\+Final (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const unsigned char $\ast$}]{sig,  }\item[{size\+\_\+t}]{siglen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_ad21191a8a67b6c3517165e0c3b9146f0}\label{evp_8h_ad21191a8a67b6c3517165e0c3b9146f0}} 
+\index{evp.h@{evp.h}!EVP\_DigestVerifyInit@{EVP\_DigestVerifyInit}}
+\index{EVP\_DigestVerifyInit@{EVP\_DigestVerifyInit}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_DigestVerifyInit()}{EVP\_DigestVerifyInit()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Digest\+Verify\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$$\ast$}]{pctx,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$}]{type,  }\item[{\mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{pkey }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_ab20ff5709d2a4c4ca29a8065ffab5865}\label{evp_8h_ab20ff5709d2a4c4ca29a8065ffab5865}} 
+\index{evp.h@{evp.h}!EVP\_EncryptFinal\_ex@{EVP\_EncryptFinal\_ex}}
+\index{EVP\_EncryptFinal\_ex@{EVP\_EncryptFinal\_ex}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_EncryptFinal\_ex()}{EVP\_EncryptFinal\_ex()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Encrypt\+Final\+\_\+ex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{out,  }\item[{int $\ast$}]{outl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a947e637ce26011c54011db2bc69cd89b}\label{evp_8h_a947e637ce26011c54011db2bc69cd89b}} 
+\index{evp.h@{evp.h}!EVP\_EncryptInit\_ex@{EVP\_EncryptInit\_ex}}
+\index{EVP\_EncryptInit\_ex@{EVP\_EncryptInit\_ex}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_EncryptInit\_ex()}{EVP\_EncryptInit\_ex()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Encrypt\+Init\+\_\+ex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_a54a8663a8084d45c31f2786156b55405}{EVP\+\_\+\+CIPHER}} $\ast$}]{type,  }\item[{\mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$}]{impl,  }\item[{const unsigned char $\ast$}]{key,  }\item[{const unsigned char $\ast$}]{iv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_ab2b67d1cc256418ee42bdfcd5a329cdf}\label{evp_8h_ab2b67d1cc256418ee42bdfcd5a329cdf}} 
+\index{evp.h@{evp.h}!EVP\_EncryptUpdate@{EVP\_EncryptUpdate}}
+\index{EVP\_EncryptUpdate@{EVP\_EncryptUpdate}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_EncryptUpdate()}{EVP\_EncryptUpdate()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+Encrypt\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{out,  }\item[{int $\ast$}]{outl,  }\item[{const unsigned char $\ast$}]{in,  }\item[{int}]{inl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a4e2ad7849ae3f095de4b3ddc00b6c33f}\label{evp_8h_a4e2ad7849ae3f095de4b3ddc00b6c33f}} 
+\index{evp.h@{evp.h}!EVP\_MD\_CTX\_free@{EVP\_MD\_CTX\_free}}
+\index{EVP\_MD\_CTX\_free@{EVP\_MD\_CTX\_free}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_MD\_CTX\_free()}{EVP\_MD\_CTX\_free()}}
+{\footnotesize\ttfamily void EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a5397f93f1cc4aa6291a6f9310765776e}\label{evp_8h_a5397f93f1cc4aa6291a6f9310765776e}} 
+\index{evp.h@{evp.h}!EVP\_MD\_CTX\_new@{EVP\_MD\_CTX\_new}}
+\index{EVP\_MD\_CTX\_new@{EVP\_MD\_CTX\_new}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_MD\_CTX\_new()}{EVP\_MD\_CTX\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}}$\ast$ EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a04ae018532a60c893a5fd18c6704b9d4}\label{evp_8h_a04ae018532a60c893a5fd18c6704b9d4}} 
+\index{evp.h@{evp.h}!EVP\_MD\_CTX\_size@{EVP\_MD\_CTX\_size}}
+\index{EVP\_MD\_CTX\_size@{EVP\_MD\_CTX\_size}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_MD\_CTX\_size()}{EVP\_MD\_CTX\_size()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a90cd9b536d07403d5d14fde98299a6a7}\label{evp_8h_a90cd9b536d07403d5d14fde98299a6a7}} 
+\index{evp.h@{evp.h}!EVP\_MD\_size@{EVP\_MD\_size}}
+\index{EVP\_MD\_size@{EVP\_MD\_size}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_MD\_size()}{EVP\_MD\_size()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+MD\+\_\+size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_ac215192017d713cda37872ad4d9daf54}\label{evp_8h_ac215192017d713cda37872ad4d9daf54}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_CTX\_ctrl@{EVP\_PKEY\_CTX\_ctrl}}
+\index{EVP\_PKEY\_CTX\_ctrl@{EVP\_PKEY\_CTX\_ctrl}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_CTX\_ctrl()}{EVP\_PKEY\_CTX\_ctrl()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+ctrl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{int}]{keytype,  }\item[{int}]{optype,  }\item[{int}]{cmd,  }\item[{int}]{p1,  }\item[{void $\ast$}]{p2 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a9a2d5ac99985dda36f15bd92d83c1621}\label{evp_8h_a9a2d5ac99985dda36f15bd92d83c1621}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_CTX\_free@{EVP\_PKEY\_CTX\_free}}
+\index{EVP\_PKEY\_CTX\_free@{EVP\_PKEY\_CTX\_free}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_CTX\_free()}{EVP\_PKEY\_CTX\_free()}}
+{\footnotesize\ttfamily void EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a23d1c787f99b2aaa6d8283c2db325eea}\label{evp_8h_a23d1c787f99b2aaa6d8283c2db325eea}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_CTX\_new@{EVP\_PKEY\_CTX\_new}}
+\index{EVP\_PKEY\_CTX\_new@{EVP\_PKEY\_CTX\_new}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_CTX\_new()}{EVP\_PKEY\_CTX\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}}$\ast$ EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+new (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{pkey,  }\item[{\mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a3260cb9b0fddd3d19e7877ccd07117da}\label{evp_8h_a3260cb9b0fddd3d19e7877ccd07117da}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_CTX\_new\_id@{EVP\_PKEY\_CTX\_new\_id}}
+\index{EVP\_PKEY\_CTX\_new\_id@{EVP\_PKEY\_CTX\_new\_id}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_CTX\_new\_id()}{EVP\_PKEY\_CTX\_new\_id()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}}$\ast$ EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+new\+\_\+id (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{\mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a297268e7daec1dc968aeb0e70b7114f4}\label{evp_8h_a297268e7daec1dc968aeb0e70b7114f4}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_CTX\_set\_rsa\_mgf1\_md@{EVP\_PKEY\_CTX\_set\_rsa\_mgf1\_md}}
+\index{EVP\_PKEY\_CTX\_set\_rsa\_mgf1\_md@{EVP\_PKEY\_CTX\_set\_rsa\_mgf1\_md}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_CTX\_set\_rsa\_mgf1\_md()}{EVP\_PKEY\_CTX\_set\_rsa\_mgf1\_md()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+set\+\_\+rsa\+\_\+mgf1\+\_\+md (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a0c5f6af8fc3fdc2e40146fff71eba1f0}\label{evp_8h_a0c5f6af8fc3fdc2e40146fff71eba1f0}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_CTX\_set\_rsa\_oaep\_md@{EVP\_PKEY\_CTX\_set\_rsa\_oaep\_md}}
+\index{EVP\_PKEY\_CTX\_set\_rsa\_oaep\_md@{EVP\_PKEY\_CTX\_set\_rsa\_oaep\_md}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_CTX\_set\_rsa\_oaep\_md()}{EVP\_PKEY\_CTX\_set\_rsa\_oaep\_md()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+set\+\_\+rsa\+\_\+oaep\+\_\+md (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$}]{md }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_aa8b15912fd4c4238f7af868234621545}\label{evp_8h_aa8b15912fd4c4238f7af868234621545}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_CTX\_set\_rsa\_padding@{EVP\_PKEY\_CTX\_set\_rsa\_padding}}
+\index{EVP\_PKEY\_CTX\_set\_rsa\_padding@{EVP\_PKEY\_CTX\_set\_rsa\_padding}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_CTX\_set\_rsa\_padding()}{EVP\_PKEY\_CTX\_set\_rsa\_padding()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+set\+\_\+rsa\+\_\+padding (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{int}]{pad }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a2c28fd7a4e52a0c1e4a92e6d6183ee5d}\label{evp_8h_a2c28fd7a4e52a0c1e4a92e6d6183ee5d}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_decrypt@{EVP\_PKEY\_decrypt}}
+\index{EVP\_PKEY\_decrypt@{EVP\_PKEY\_decrypt}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_decrypt()}{EVP\_PKEY\_decrypt()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+decrypt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{out,  }\item[{size\+\_\+t $\ast$}]{outlen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{size\+\_\+t}]{inlen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a7f62c2ab0ec56c6272e526a1644f669f}\label{evp_8h_a7f62c2ab0ec56c6272e526a1644f669f}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_decrypt\_init@{EVP\_PKEY\_decrypt\_init}}
+\index{EVP\_PKEY\_decrypt\_init@{EVP\_PKEY\_decrypt\_init}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_decrypt\_init()}{EVP\_PKEY\_decrypt\_init()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+decrypt\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_acec7d2eb920d0ca76adeb35c2f0af10a}\label{evp_8h_acec7d2eb920d0ca76adeb35c2f0af10a}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_derive@{EVP\_PKEY\_derive}}
+\index{EVP\_PKEY\_derive@{EVP\_PKEY\_derive}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_derive()}{EVP\_PKEY\_derive()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+derive (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{key,  }\item[{size\+\_\+t $\ast$}]{keylen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_ae524c385eebb1b65ad9b719636245e18}\label{evp_8h_ae524c385eebb1b65ad9b719636245e18}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_derive\_init@{EVP\_PKEY\_derive\_init}}
+\index{EVP\_PKEY\_derive\_init@{EVP\_PKEY\_derive\_init}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_derive\_init()}{EVP\_PKEY\_derive\_init()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+derive\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a1d46c8be83d90b829b1b2f6fbba03a3b}\label{evp_8h_a1d46c8be83d90b829b1b2f6fbba03a3b}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_encrypt@{EVP\_PKEY\_encrypt}}
+\index{EVP\_PKEY\_encrypt@{EVP\_PKEY\_encrypt}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_encrypt()}{EVP\_PKEY\_encrypt()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+encrypt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{out,  }\item[{size\+\_\+t $\ast$}]{outlen,  }\item[{const unsigned char $\ast$}]{in,  }\item[{size\+\_\+t}]{inlen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_af2fbc31cc36229188e108c2b3a59891d}\label{evp_8h_af2fbc31cc36229188e108c2b3a59891d}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_encrypt\_init@{EVP\_PKEY\_encrypt\_init}}
+\index{EVP\_PKEY\_encrypt\_init@{EVP\_PKEY\_encrypt\_init}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_encrypt\_init()}{EVP\_PKEY\_encrypt\_init()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+encrypt\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a448d9f9209a54694aff045d403850db7}\label{evp_8h_a448d9f9209a54694aff045d403850db7}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_free@{EVP\_PKEY\_free}}
+\index{EVP\_PKEY\_free@{EVP\_PKEY\_free}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_free()}{EVP\_PKEY\_free()}}
+{\footnotesize\ttfamily void EVP\+\_\+\+PKEY\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{pkey }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a773bc41e594f8286e17d6d4ba6a4f2f1}\label{evp_8h_a773bc41e594f8286e17d6d4ba6a4f2f1}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_get0\_EC\_KEY@{EVP\_PKEY\_get0\_EC\_KEY}}
+\index{EVP\_PKEY\_get0\_EC\_KEY@{EVP\_PKEY\_get0\_EC\_KEY}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_get0\_EC\_KEY()}{EVP\_PKEY\_get0\_EC\_KEY()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}}$\ast$ EVP\+\_\+\+PKEY\+\_\+get0\+\_\+\+EC\+\_\+\+KEY (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{pkey }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a78cee333b609a4259d8e4d4c42f5ddd7}\label{evp_8h_a78cee333b609a4259d8e4d4c42f5ddd7}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_new@{EVP\_PKEY\_new}}
+\index{EVP\_PKEY\_new@{EVP\_PKEY\_new}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_new()}{EVP\_PKEY\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}}$\ast$ EVP\+\_\+\+PKEY\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a1dedf7ed16f6fbbcc674680afbfeda2b}\label{evp_8h_a1dedf7ed16f6fbbcc674680afbfeda2b}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_set1\_EC\_KEY@{EVP\_PKEY\_set1\_EC\_KEY}}
+\index{EVP\_PKEY\_set1\_EC\_KEY@{EVP\_PKEY\_set1\_EC\_KEY}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_set1\_EC\_KEY()}{EVP\_PKEY\_set1\_EC\_KEY()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+set1\+\_\+\+EC\+\_\+\+KEY (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{pkey,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a8b51695da9f9c38443e01a6971a6daf9}\label{evp_8h_a8b51695da9f9c38443e01a6971a6daf9}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_sign@{EVP\_PKEY\_sign}}
+\index{EVP\_PKEY\_sign@{EVP\_PKEY\_sign}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_sign()}{EVP\_PKEY\_sign()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+sign (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{unsigned char $\ast$}]{sig,  }\item[{size\+\_\+t $\ast$}]{siglen,  }\item[{const unsigned char $\ast$}]{tbs,  }\item[{size\+\_\+t}]{tbslen }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a423a99ea5dbdd496bbf6fe31ca3b275e}\label{evp_8h_a423a99ea5dbdd496bbf6fe31ca3b275e}} 
+\index{evp.h@{evp.h}!EVP\_PKEY\_sign\_init@{EVP\_PKEY\_sign\_init}}
+\index{EVP\_PKEY\_sign\_init@{EVP\_PKEY\_sign\_init}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_PKEY\_sign\_init()}{EVP\_PKEY\_sign\_init()}}
+{\footnotesize\ttfamily int EVP\+\_\+\+PKEY\+\_\+sign\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_afe55e56742a9b9ecffdaef7e95a6707a}\label{evp_8h_afe55e56742a9b9ecffdaef7e95a6707a}} 
+\index{evp.h@{evp.h}!EVP\_sha256@{EVP\_sha256}}
+\index{EVP\_sha256@{EVP\_sha256}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_sha256()}{EVP\_sha256()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}}$\ast$ EVP\+\_\+sha256 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_a031405a10c84711b9a9699fadc8dbf2a}\label{evp_8h_a031405a10c84711b9a9699fadc8dbf2a}} 
+\index{evp.h@{evp.h}!EVP\_sha384@{EVP\_sha384}}
+\index{EVP\_sha384@{EVP\_sha384}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_sha384()}{EVP\_sha384()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}}$\ast$ EVP\+\_\+sha384 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{evp_8h_aceda0d5da59b56159d2e3515039a46ce}\label{evp_8h_aceda0d5da59b56159d2e3515039a46ce}} 
+\index{evp.h@{evp.h}!EVP\_sha512@{EVP\_sha512}}
+\index{EVP\_sha512@{EVP\_sha512}!evp.h@{evp.h}}
+\doxysubsubsection{\texorpdfstring{EVP\_sha512()}{EVP\_sha512()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}}$\ast$ EVP\+\_\+sha512 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+

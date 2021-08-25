@@ -1,0 +1,101 @@
+This is a guide for what to do when Side\+Trail reports a potential timing violation / throws a red {\ttfamily x} in CI.
+
+
+\begin{DoxyItemize}
+\item \href{\#how-to-locally-rerun-the-tests}{\texttt{ How to locally rerun the tests}}
+\item \href{\#updating-the-patch-files}{\texttt{ Updating the patch files}}
+\item \href{\#undefined-functions}{\texttt{ Undefined functions}}
+\item \href{\#loop-related-errors}{\texttt{ Loop related errors}}
+\item \href{\#warning-no-entrypoints-found}{\texttt{ Warning\+: No entrypoints found.}}
+\item \href{\#sidetrail-fails-with-a-long-error-trace}{\texttt{ Side\+Trail fails with a long error trace}}
+\item \href{\#what-to-do-if-the-proof-gets-really-slow}{\texttt{ What to do if the proof gets really slow}}
+\item \href{\#expected-runtimes}{\texttt{ Expected runtimes\+:}}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md581}{}\doxysection{How to locally rerun the tests}\label{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md581}
+The first step to debugging is to locally rerun the failing proof(s). Follow \href{README.md\#how-to-execute-the-tests}{\texttt{ the instructions here}} to get Side\+Trail docker container and execute the tests.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md582}{}\doxysection{Updating the patch files}\label{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md582}
+The most common error you are likely to see is a failure to apply the necessary patches. Sidetrail depends on a set of patch files, stored in the {\ttfamily s2n/tests/sidetrail/working/patches}. These files patch away certain C constructs that Side\+Trail has trouble with. They are applied by the {\ttfamily copy\+\_\+as\+\_\+needed.\+sh} script in each proof. If the file they are patching is modified, {\ttfamily patch} may be unable to apply the needed patches, and fail with an error.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{patching file utils/s2n\_safety.c}
+\DoxyCodeLine{Hunk \#1 FAILED at 57.}
+\DoxyCodeLine{1 out of 2 hunks FAILED -\/-\/ saving rejects to file utils/s2n\_safety.c.rej}
+
+\end{DoxyCode}
+
+
+To fix this, regenerate the patch file.
+
+
+\begin{DoxyEnumerate}
+\item View the failing patch to see what it does. It may be useful to apply it to a previous version of the file, so you can see what the patched file looks like. Identify any failing chunks, and figure out why they are failing to apply.
+\item In a clean branch of s2n, modify the file in need of patching to have the required changes. Work directly on the file in the s2n src folders -\/ we will revert it back before committing our changes. You may find it useful to also (temporarily) modify the {\ttfamily copy\+\_\+as\+\_\+needed.\+sh} file \href{https://github.com/awslabs/s2n/blob/main/tests/sidetrail/working/s2n-cbc/copy_as_needed.sh}{\texttt{ (example)}} to just copy the file, and not patch it.
+\item Iterate on the file in need of patching until the tests pass.
+\item In the {\ttfamily s2n/tests/sidetrail/working/patches} folder, regenerate the patch using {\ttfamily git diff -\/u \texorpdfstring{$<$}{<}path-\/to-\/changed-\/file\texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>} \texorpdfstring{$<$}{<}patch\+\_\+filename\texorpdfstring{$>$}{>}.patch}
+\item Restore all other changed files using {\ttfamily git checkout}.
+\item Some of the current patch files were not generated following this standard procedure, and hence are invoked using {\ttfamily -\/p5}, instead of the {\ttfamily -\/p1} this procedure will generate. You may need to change the {\ttfamily ./copy\+\_\+as\+\_\+needed.sh} files to use the correct {\ttfamily -\/p} level.
+\item Rerun the proofs using the docker container to ensure they work.
+\item Commit the new patch file, and attach it to your PR.
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md583}{}\doxysection{Undefined functions}\label{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md583}
+Another common error comes if a new function is called, for which Side\+Trail does not have a definition. In this case, you will see a warning like\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{warning: module contains undefined functions: malloc, \_\_CONTRACT\_invariant, nondet, foo}
+
+\end{DoxyCode}
+
+
+The list above is the list of functions for which SMACK does not have a model. In some cases, this is expected and benign --- you can find a list of {\ttfamily allowed\+\_\+undefined} functions \href{https://github.com/awslabs/s2n/blob/main/tests/sidetrail/count_success.pl\#L33}{\texttt{ here}}. If there are any functions in the warning that are not in that list, then one of three things needs to happen.
+
+
+\begin{DoxyEnumerate}
+\item The new function does not need a timing stub, and should be added to the list of {\ttfamily allowed\+\_\+undefined}.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item The new function is in a file that Side\+Trail doesn\textquotesingle{}t currently compile. Update {\ttfamily Makefile} and {\ttfamily copy\+\_\+as\+\_\+needed.\+sh} for the proof, and rerun.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item The new function needs a timing stub. Take a look at existing timing stubs in the {\ttfamily working/stubs} folder to see what these look like, and how to write them.
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md584}{}\doxysection{Loop related errors}\label{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md584}
+When Sidetrail analyzes a program, it needs to know how many times a loop will execute. If Sidetrail encounters a loop, and can\textquotesingle{}t tell how many times it will execute, it may give a spurious counterexample. You can fix this using the {\ttfamily S2\+N\+\_\+\+INVARIENT} macro. A good example of this is in {\ttfamily s2n\+\_\+constant\+\_\+time\+\_\+equals}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{uint8\_t \mbox{\hyperlink{aes__c_8c_a1e1745fde8c90d73e5304314a30c0d23}{xor}} = 0;}
+\DoxyCodeLine{\textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}}; i++) \{}
+\DoxyCodeLine{    \textcolor{comment}{/* Invariants must hold for each execution of the loop}}
+\DoxyCodeLine{\textcolor{comment}{ * and at loop exit, hence the <= */}}
+\DoxyCodeLine{    \mbox{\hyperlink{sidetrail_2working_2s2n-cbc_2stubs_2s2n__annotations_8h_a535b22580ac6790a65c3ad3baa8ff119}{S2N\_INVARIENT}}(i <= \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}});}
+\DoxyCodeLine{    \mbox{\hyperlink{aes__c_8c_a1e1745fde8c90d73e5304314a30c0d23}{xor}} |= \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}[i] \string^ \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}[i];}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md585}{}\doxysection{Warning\+: No entrypoints found.}\label{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md585}
+For unknown reasons, this warning sometimes appears in CI, although the same docker container does not display it when run locally. This appears to be benign, although we are investigating and hope to close it out.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md586}{}\doxysection{Side\+Trail fails with a long error trace}\label{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md586}
+Your best bet here is to do delta-\/debugging to get a minimal reproducing test case. Take a look at the test-\/case. Did it introduce a timing violation? If so, fix it.
+
+If you can\textquotesingle{}t see an obvious timing issue in the minimal reproducing case, it may be worth taking a look at the trace. The trace is not easy to read, and is super long. I\textquotesingle{}ve found the best thing is to dump it to a file, and then to start annotating that file with the call-\/stack that led to the failure. In particular, the trace will consist of two sequential traces\+: the initial, and the \char`\"{}shadow\char`\"{} trace. Those should be equal -\/ if they are not, that\textquotesingle{}s where the timing violation comes in. Look for the place where the two traces diverged.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md587}{}\doxysection{What to do if the proof gets really slow}\label{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md587}
+
+\begin{DoxyEnumerate}
+\item Delta-\/debugging is your friend here. Find the last fast commit. Then, apply parts of the diff until it suddenly gets slow. That\textquotesingle{}s your culprit.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Slowdown is often because alias analysis has failed to distinguish cases that can\textquotesingle{}t actually alias. Sidetrail exports information about how many alias sets it had as part of its output. Did that change from the last fast version? In this case, sometimes simple syntatic changes are enough to fix it; if that doesn\textquotesingle{}t work, consult an AR expert.
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md588}{}\doxysection{Expected runtimes\+:}\label{md_crt_aws_crt_cpp_crt_s2n_tests_sidetrail__d_e_b_u_g_g_i_n_g_autotoc_md588}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Test name   }&\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Runtime    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Test name   }&\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Runtime    }\\\cline{1-2}
+\endhead
+s2n-\/record-\/read-\/cbc-\/negative-\/test   &\PBS\raggedleft 20s    \\\cline{1-2}
+s2n-\/cbc   &\PBS\raggedleft 5m 45s    \\\cline{1-2}
+s2n-\/record-\/read-\/composite   &\PBS\raggedleft 15s    \\\cline{1-2}
+s2n-\/record-\/read-\/aead   &\PBS\raggedleft 4m 10s    \\\cline{1-2}
+s2n-\/record-\/read-\/stream   &\PBS\raggedleft 25s    \\\cline{1-2}
+s2n-\/record-\/read-\/cbc   &\PBS\raggedleft 20s   \\\cline{1-2}
+\end{longtabu}

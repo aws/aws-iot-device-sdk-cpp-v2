@@ -1,0 +1,383 @@
+\hypertarget{der__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/tests/der\+\_\+test.c File Reference}
+\label{der__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/tests/der\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/cal/tests/der\_test.c}}
+{\ttfamily \#include $<$aws/cal/private/der.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{der__test_8c_a11f6a2632c7d27af0a7e450f3a0038d0}{s\+\_\+der\+\_\+encode\+\_\+integer}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_ae39830c2c3ad5380dbf87c7e4fc47b0a}{s\+\_\+der\+\_\+encode\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_a508d5e256481b6569d71c94f2e2c68c3}{s\+\_\+der\+\_\+encode\+\_\+null}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_a7ed35f400db9fd2209238cf062f18923}{s\+\_\+der\+\_\+encode\+\_\+bit\+\_\+string}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_a4ab71a076c0caa01f75c3b854b0a1649}{s\+\_\+der\+\_\+encode\+\_\+octet\+\_\+string}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_aca4c6768920e2d02e7d1fc866d2fcd41}{s\+\_\+der\+\_\+encode\+\_\+sequence}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_a05a0360144a9c09e8477c21c548d6206}{s\+\_\+der\+\_\+encode\+\_\+set}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_aa1107385a2a923e5e6fbed788a11631f}{s\+\_\+der\+\_\+decode\+\_\+integer}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_a94759e3b099b867fedb3a0534e9a08ca}{s\+\_\+der\+\_\+decode\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_a77fa6c067009de3cc1252486a96b8b21}{s\+\_\+der\+\_\+decode\+\_\+null}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_af1db48a35fd6122e3f929e22ad34f5eb}{s\+\_\+der\+\_\+decode\+\_\+bit\+\_\+string}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_a255f17f739a0c1d5133117f6c054a6fa}{s\+\_\+der\+\_\+decode\+\_\+octet\+\_\+string}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_a743c1848b22875a24cea94f04b8dc6f3}{s\+\_\+der\+\_\+decode\+\_\+sequence}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_a9a8bf02854ee06c677f27f759d707baf}{s\+\_\+der\+\_\+decode\+\_\+set}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{der__test_8c_ab6935f3fd0a7515bc3287933bdaff441}{s\+\_\+der\+\_\+decode\+\_\+key\+\_\+pair}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{der__test_8c_a378daca862aed35666540efe341c9b42}{s\+\_\+bigint}} \mbox{[}$\,$\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{der__test_8c_a2b2febfdaeaf939ab2c7617bca1663f8}{s\+\_\+encoded\+\_\+bigint}} \mbox{[}$\,$\mbox{]}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{der__test_8c_a004d5a439339ca2a4ccfe5129d3805b6}{s\+\_\+encoded\+\_\+true}} \mbox{[}$\,$\mbox{]} = \{0x01, 0x01, 0xff\}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{der__test_8c_a9f2359e5d441e5c132adf2bdc19e4f95}{s\+\_\+encoded\+\_\+false}} \mbox{[}$\,$\mbox{]} = \{0x01, 0x01, 0x00\}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{der__test_8c_a92c8402509210b38911405c73d4baecb}{s\+\_\+encoded\+\_\+null}} \mbox{[}$\,$\mbox{]} = \{0x05, 0x00\}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{der__test_8c_a4159ddbc718418627ffee5aab17243e4}{s\+\_\+bit\+\_\+string}} \mbox{[}$\,$\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{der__test_8c_aa0897e1570ac4a6852d50c93a7815acb}{s\+\_\+encoded\+\_\+bit\+\_\+string}} \mbox{[}$\,$\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{der__test_8c_a1577be0f9830a7ca63aca0aabfdca80d}{s\+\_\+octet\+\_\+string}} \mbox{[}$\,$\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{der__test_8c_a2824d2a891a3718b4226c1e36d7632a0}{s\+\_\+encoded\+\_\+octet\+\_\+string}} \mbox{[}$\,$\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{der__test_8c_abe18de788e385efd4b3b254664a9766a}{s\+\_\+encoded\+\_\+sequence}} \mbox{[}$\,$\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{der__test_8c_a9170fb38b7ad7555c3e16c8eed12e40b}{s\+\_\+encoded\+\_\+set}} \mbox{[}$\,$\mbox{]}
+\item 
+static uint8\+\_\+t \mbox{\hyperlink{der__test_8c_aa56233961c6a5f84e4b49e4402c52ede}{s\+\_\+encoded\+\_\+key\+\_\+pair}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{der__test_8c_af1db48a35fd6122e3f929e22ad34f5eb}\label{der__test_8c_af1db48a35fd6122e3f929e22ad34f5eb}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_decode\_bit\_string@{s\_der\_decode\_bit\_string}}
+\index{s\_der\_decode\_bit\_string@{s\_der\_decode\_bit\_string}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_decode\_bit\_string()}{s\_der\_decode\_bit\_string()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+decode\+\_\+bit\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a94759e3b099b867fedb3a0534e9a08ca}\label{der__test_8c_a94759e3b099b867fedb3a0534e9a08ca}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_decode\_boolean@{s\_der\_decode\_boolean}}
+\index{s\_der\_decode\_boolean@{s\_der\_decode\_boolean}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_decode\_boolean()}{s\_der\_decode\_boolean()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+decode\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_aa1107385a2a923e5e6fbed788a11631f}\label{der__test_8c_aa1107385a2a923e5e6fbed788a11631f}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_decode\_integer@{s\_der\_decode\_integer}}
+\index{s\_der\_decode\_integer@{s\_der\_decode\_integer}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_decode\_integer()}{s\_der\_decode\_integer()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+decode\+\_\+integer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_ab6935f3fd0a7515bc3287933bdaff441}\label{der__test_8c_ab6935f3fd0a7515bc3287933bdaff441}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_decode\_key\_pair@{s\_der\_decode\_key\_pair}}
+\index{s\_der\_decode\_key\_pair@{s\_der\_decode\_key\_pair}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_decode\_key\_pair()}{s\_der\_decode\_key\_pair()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+decode\+\_\+key\+\_\+pair (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a77fa6c067009de3cc1252486a96b8b21}\label{der__test_8c_a77fa6c067009de3cc1252486a96b8b21}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_decode\_null@{s\_der\_decode\_null}}
+\index{s\_der\_decode\_null@{s\_der\_decode\_null}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_decode\_null()}{s\_der\_decode\_null()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+decode\+\_\+null (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a255f17f739a0c1d5133117f6c054a6fa}\label{der__test_8c_a255f17f739a0c1d5133117f6c054a6fa}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_decode\_octet\_string@{s\_der\_decode\_octet\_string}}
+\index{s\_der\_decode\_octet\_string@{s\_der\_decode\_octet\_string}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_decode\_octet\_string()}{s\_der\_decode\_octet\_string()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+decode\+\_\+octet\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a743c1848b22875a24cea94f04b8dc6f3}\label{der__test_8c_a743c1848b22875a24cea94f04b8dc6f3}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_decode\_sequence@{s\_der\_decode\_sequence}}
+\index{s\_der\_decode\_sequence@{s\_der\_decode\_sequence}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_decode\_sequence()}{s\_der\_decode\_sequence()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+decode\+\_\+sequence (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a9a8bf02854ee06c677f27f759d707baf}\label{der__test_8c_a9a8bf02854ee06c677f27f759d707baf}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_decode\_set@{s\_der\_decode\_set}}
+\index{s\_der\_decode\_set@{s\_der\_decode\_set}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_decode\_set()}{s\_der\_decode\_set()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+decode\+\_\+set (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a7ed35f400db9fd2209238cf062f18923}\label{der__test_8c_a7ed35f400db9fd2209238cf062f18923}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_encode\_bit\_string@{s\_der\_encode\_bit\_string}}
+\index{s\_der\_encode\_bit\_string@{s\_der\_encode\_bit\_string}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_encode\_bit\_string()}{s\_der\_encode\_bit\_string()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+encode\+\_\+bit\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_ae39830c2c3ad5380dbf87c7e4fc47b0a}\label{der__test_8c_ae39830c2c3ad5380dbf87c7e4fc47b0a}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_encode\_boolean@{s\_der\_encode\_boolean}}
+\index{s\_der\_encode\_boolean@{s\_der\_encode\_boolean}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_encode\_boolean()}{s\_der\_encode\_boolean()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+encode\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a11f6a2632c7d27af0a7e450f3a0038d0}\label{der__test_8c_a11f6a2632c7d27af0a7e450f3a0038d0}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_encode\_integer@{s\_der\_encode\_integer}}
+\index{s\_der\_encode\_integer@{s\_der\_encode\_integer}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_encode\_integer()}{s\_der\_encode\_integer()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+encode\+\_\+integer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a508d5e256481b6569d71c94f2e2c68c3}\label{der__test_8c_a508d5e256481b6569d71c94f2e2c68c3}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_encode\_null@{s\_der\_encode\_null}}
+\index{s\_der\_encode\_null@{s\_der\_encode\_null}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_encode\_null()}{s\_der\_encode\_null()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+encode\+\_\+null (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a4ab71a076c0caa01f75c3b854b0a1649}\label{der__test_8c_a4ab71a076c0caa01f75c3b854b0a1649}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_encode\_octet\_string@{s\_der\_encode\_octet\_string}}
+\index{s\_der\_encode\_octet\_string@{s\_der\_encode\_octet\_string}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_encode\_octet\_string()}{s\_der\_encode\_octet\_string()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+encode\+\_\+octet\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_aca4c6768920e2d02e7d1fc866d2fcd41}\label{der__test_8c_aca4c6768920e2d02e7d1fc866d2fcd41}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_encode\_sequence@{s\_der\_encode\_sequence}}
+\index{s\_der\_encode\_sequence@{s\_der\_encode\_sequence}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_encode\_sequence()}{s\_der\_encode\_sequence()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+encode\+\_\+sequence (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{der__test_8c_a05a0360144a9c09e8477c21c548d6206}\label{der__test_8c_a05a0360144a9c09e8477c21c548d6206}} 
+\index{der\_test.c@{der\_test.c}!s\_der\_encode\_set@{s\_der\_encode\_set}}
+\index{s\_der\_encode\_set@{s\_der\_encode\_set}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_der\_encode\_set()}{s\_der\_encode\_set()}}
+{\footnotesize\ttfamily static int s\+\_\+der\+\_\+encode\+\_\+set (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{der__test_8c_a378daca862aed35666540efe341c9b42}\label{der__test_8c_a378daca862aed35666540efe341c9b42}} 
+\index{der\_test.c@{der\_test.c}!s\_bigint@{s\_bigint}}
+\index{s\_bigint@{s\_bigint}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_bigint}{s\_bigint}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+bigint\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x8f, 0xe2, 0x41, 0x2a, 0x08, 0xe8, 0x51, 0xa8, 0x8c, 0xb3, 0xe8, 0x53, 0xe7, 0xd5, 0x49, 0x50, 0xb3, 0x27, 0x8a,}
+\DoxyCodeLine{        0x2b, 0xcb, 0xea, 0xb5, 0x42, 0x73, 0xea, 0x02, 0x57, 0xcc, 0x65, 0x33, 0xee, 0x88, 0x20, 0x61, 0xa1, 0x17, 0x56,}
+\DoxyCodeLine{        0xc1, 0x24, 0x18, 0xe3, 0xa8, 0x08, 0xd3, 0xbe, 0xd9, 0x31, 0xf3, 0x37, 0x0b, 0x94, 0xb8, 0xcc, 0x43, 0x08, 0x0b,}
+\DoxyCodeLine{        0x70, 0x24, 0xf7, 0x9c, 0xb1, 0x8d, 0x5d, 0xd6, 0x6d, 0x82, 0xd0, 0x54, 0x09, 0x84, 0xf8, 0x9f, 0x97, 0x01, 0x75,}
+\DoxyCodeLine{        0x05, 0x9c, 0x89, 0xd4, 0xd5, 0xc9, 0x1e, 0xc9, 0x13, 0xd7, 0x2a, 0x6b, 0x30, 0x91, 0x19, 0xd6, 0xd4, 0x42, 0xe0,}
+\DoxyCodeLine{        0xc4, 0x9d, 0x7c, 0x92, 0x71, 0xe1, 0xb2, 0x2f, 0x5c, 0x8d, 0xee, 0xf0, 0xf1, 0x17, 0x1e, 0xd2, 0x5f, 0x31, 0x5b,}
+\DoxyCodeLine{        0xb1, 0x9c, 0xbc, 0x20, 0x55, 0xbf, 0x3a, 0x37, 0x42, 0x45, 0x75, 0xdc, 0x90, 0x65,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{der__test_8c_a4159ddbc718418627ffee5aab17243e4}\label{der__test_8c_a4159ddbc718418627ffee5aab17243e4}} 
+\index{der\_test.c@{der\_test.c}!s\_bit\_string@{s\_bit\_string}}
+\index{s\_bit\_string@{s\_bit\_string}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_bit\_string}{s\_bit\_string}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+bit\+\_\+string\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x47, 0xeb, 0x99, 0x5a, 0xdf, 0x9e, 0x70, 0x0d,  0xfb, 0xa7, 0x31, 0x32, 0xc1, 0x5f, 0x5c, 0x24,}
+\DoxyCodeLine{        0xc2, 0xe0, 0xbf, 0xc6, 0x24, 0xaf, 0x15, 0x66,  0x0e, 0xb8, 0x6a, 0x2e, 0xab, 0x2b, 0xc4, 0x97,}
+\DoxyCodeLine{        0x1f, 0xe3, 0xcb, 0xdc, 0x63, 0xa5, 0x25, 0xec,  0xc7, 0xb4, 0x28, 0x61, 0x66, 0x36, 0xa1, 0x31,}
+\DoxyCodeLine{        0x1b, 0xbf, 0xdd, 0xd0, 0xfc, 0xbf, 0x17, 0x94,  0x90, 0x1d, 0xe5, 0x5e, 0xc7, 0x11, 0x5e, 0xc9,}
+\DoxyCodeLine{        0x55, 0x9f, 0xeb, 0xa3, 0x3e, 0x14, 0xc7, 0x99,  0xa6, 0xcb, 0xba, 0xa1, 0x46, 0x0f, 0x39, 0xd4,}
+\DoxyCodeLine{        0x44, 0xc4, 0xc8, 0x4b, 0x76, 0x0e, 0x20, 0x5d,  0x6d, 0xa9, 0x34, 0x9e, 0xd4, 0xd5, 0x87, 0x42,}
+\DoxyCodeLine{        0xeb, 0x24, 0x26, 0x51, 0x14, 0x90, 0xb4, 0x0f,  0x06, 0x5e, 0x52, 0x88, 0x32, 0x7a, 0x95, 0x20,}
+\DoxyCodeLine{        0xa0, 0xfd, 0xf7, 0xe5, 0x7d, 0x60, 0xdd, 0x72,  0x68, 0x9b, 0xf5, 0x7b, 0x05, 0x8f, 0x6d, 0x1e,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{der__test_8c_a2b2febfdaeaf939ab2c7617bca1663f8}\label{der__test_8c_a2b2febfdaeaf939ab2c7617bca1663f8}} 
+\index{der\_test.c@{der\_test.c}!s\_encoded\_bigint@{s\_encoded\_bigint}}
+\index{s\_encoded\_bigint@{s\_encoded\_bigint}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_bigint}{s\_encoded\_bigint}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+encoded\+\_\+bigint\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x02 ,}
+\DoxyCodeLine{        0x81 ,}
+\DoxyCodeLine{        0x81 ,}
+\DoxyCodeLine{        0x00 ,}
+\DoxyCodeLine{        0x8f, 0xe2, 0x41, 0x2a, 0x08, 0xe8, 0x51, 0xa8, 0x8c, 0xb3, 0xe8, 0x53, 0xe7, 0xd5, 0x49, 0x50, 0xb3, 0x27, 0x8a,}
+\DoxyCodeLine{        0x2b, 0xcb, 0xea, 0xb5, 0x42, 0x73, 0xea, 0x02, 0x57, 0xcc, 0x65, 0x33, 0xee, 0x88, 0x20, 0x61, 0xa1, 0x17, 0x56,}
+\DoxyCodeLine{        0xc1, 0x24, 0x18, 0xe3, 0xa8, 0x08, 0xd3, 0xbe, 0xd9, 0x31, 0xf3, 0x37, 0x0b, 0x94, 0xb8, 0xcc, 0x43, 0x08, 0x0b,}
+\DoxyCodeLine{        0x70, 0x24, 0xf7, 0x9c, 0xb1, 0x8d, 0x5d, 0xd6, 0x6d, 0x82, 0xd0, 0x54, 0x09, 0x84, 0xf8, 0x9f, 0x97, 0x01, 0x75,}
+\DoxyCodeLine{        0x05, 0x9c, 0x89, 0xd4, 0xd5, 0xc9, 0x1e, 0xc9, 0x13, 0xd7, 0x2a, 0x6b, 0x30, 0x91, 0x19, 0xd6, 0xd4, 0x42, 0xe0,}
+\DoxyCodeLine{        0xc4, 0x9d, 0x7c, 0x92, 0x71, 0xe1, 0xb2, 0x2f, 0x5c, 0x8d, 0xee, 0xf0, 0xf1, 0x17, 0x1e, 0xd2, 0x5f, 0x31, 0x5b,}
+\DoxyCodeLine{        0xb1, 0x9c, 0xbc, 0x20, 0x55, 0xbf, 0x3a, 0x37, 0x42, 0x45, 0x75, 0xdc, 0x90, 0x65,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{der__test_8c_aa0897e1570ac4a6852d50c93a7815acb}\label{der__test_8c_aa0897e1570ac4a6852d50c93a7815acb}} 
+\index{der\_test.c@{der\_test.c}!s\_encoded\_bit\_string@{s\_encoded\_bit\_string}}
+\index{s\_encoded\_bit\_string@{s\_encoded\_bit\_string}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_bit\_string}{s\_encoded\_bit\_string}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+encoded\+\_\+bit\+\_\+string\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x03, }
+\DoxyCodeLine{        0x81, }
+\DoxyCodeLine{        0x81, }
+\DoxyCodeLine{        0x00, }
+\DoxyCodeLine{        0x47, 0xeb, 0x99, 0x5a, 0xdf, 0x9e, 0x70, 0x0d,  0xfb, 0xa7, 0x31, 0x32, 0xc1, 0x5f, 0x5c, 0x24,}
+\DoxyCodeLine{        0xc2, 0xe0, 0xbf, 0xc6, 0x24, 0xaf, 0x15, 0x66,  0x0e, 0xb8, 0x6a, 0x2e, 0xab, 0x2b, 0xc4, 0x97,}
+\DoxyCodeLine{        0x1f, 0xe3, 0xcb, 0xdc, 0x63, 0xa5, 0x25, 0xec,  0xc7, 0xb4, 0x28, 0x61, 0x66, 0x36, 0xa1, 0x31,}
+\DoxyCodeLine{        0x1b, 0xbf, 0xdd, 0xd0, 0xfc, 0xbf, 0x17, 0x94,  0x90, 0x1d, 0xe5, 0x5e, 0xc7, 0x11, 0x5e, 0xc9,}
+\DoxyCodeLine{        0x55, 0x9f, 0xeb, 0xa3, 0x3e, 0x14, 0xc7, 0x99,  0xa6, 0xcb, 0xba, 0xa1, 0x46, 0x0f, 0x39, 0xd4,}
+\DoxyCodeLine{        0x44, 0xc4, 0xc8, 0x4b, 0x76, 0x0e, 0x20, 0x5d,  0x6d, 0xa9, 0x34, 0x9e, 0xd4, 0xd5, 0x87, 0x42,}
+\DoxyCodeLine{        0xeb, 0x24, 0x26, 0x51, 0x14, 0x90, 0xb4, 0x0f,  0x06, 0x5e, 0x52, 0x88, 0x32, 0x7a, 0x95, 0x20,}
+\DoxyCodeLine{        0xa0, 0xfd, 0xf7, 0xe5, 0x7d, 0x60, 0xdd, 0x72,  0x68, 0x9b, 0xf5, 0x7b, 0x05, 0x8f, 0x6d, 0x1e,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{der__test_8c_a9f2359e5d441e5c132adf2bdc19e4f95}\label{der__test_8c_a9f2359e5d441e5c132adf2bdc19e4f95}} 
+\index{der\_test.c@{der\_test.c}!s\_encoded\_false@{s\_encoded\_false}}
+\index{s\_encoded\_false@{s\_encoded\_false}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_false}{s\_encoded\_false}}
+{\footnotesize\ttfamily const uint8\+\_\+t s\+\_\+encoded\+\_\+false\mbox{[}$\,$\mbox{]} = \{0x01, 0x01, 0x00\}}
+
+\mbox{\Hypertarget{der__test_8c_aa56233961c6a5f84e4b49e4402c52ede}\label{der__test_8c_aa56233961c6a5f84e4b49e4402c52ede}} 
+\index{der\_test.c@{der\_test.c}!s\_encoded\_key\_pair@{s\_encoded\_key\_pair}}
+\index{s\_encoded\_key\_pair@{s\_encoded\_key\_pair}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_key\_pair}{s\_encoded\_key\_pair}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+encoded\+\_\+key\+\_\+pair\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x30, 0x74, }
+\DoxyCodeLine{        0x02, 0x01, 0x01, }
+\DoxyCodeLine{        0x04, 0x20, }
+\DoxyCodeLine{        0x9d, 0x6d, 0x10, 0x36, 0xbe, 0x66, 0x10, 0xeb, 0x8c, 0x66, 0xe6, 0x39, 0xa3, 0x1e, 0x47, 0xbc,}
+\DoxyCodeLine{        0x46, 0x6f, 0x46, 0x70, 0x59, 0x36, 0x32, 0x84, 0x46, 0x0c, 0x97, 0xb8, 0xda, 0x00, 0x19, 0xe2,}
+\DoxyCodeLine{        0xa0, 0x07, }
+\DoxyCodeLine{        0x06, 0x05, 0x2b, 0x81, 0x04, 0x00, 0x0a, }
+\DoxyCodeLine{        0xa1, 0x44, }
+\DoxyCodeLine{        0x03, 0x42, }
+\DoxyCodeLine{        0x00, 0x04, 0xd1, 0xcf, 0x9c, 0x8a, 0xb4, 0x76, 0x58, 0x70, 0xd9, 0x35, 0x1c, 0xdc, 0x88, 0xbb,}
+\DoxyCodeLine{        0x43, 0x19, 0x77, 0xe4, 0xde, 0xba, 0xda, 0x81, 0x58, 0x54, 0x92, 0x93, 0x8d, 0x85, 0xce, 0xf9,}
+\DoxyCodeLine{        0x04, 0xf3, 0x8e, 0x86, 0x95, 0x46, 0xa3, 0x43, 0xdd, 0x67, 0x8c, 0x8e, 0xb5, 0xf4, 0x33, 0x8e,}
+\DoxyCodeLine{        0x95, 0x4a, 0x93, 0x96, 0xcf, 0xe4, 0x8f, 0x32, 0x78, 0x88, 0xe8, 0x5a, 0xde, 0x59, 0x3f, 0x63,}
+\DoxyCodeLine{        0xaf, 0xf2,}
+\DoxyCodeLine{        0x0a, }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{der__test_8c_a92c8402509210b38911405c73d4baecb}\label{der__test_8c_a92c8402509210b38911405c73d4baecb}} 
+\index{der\_test.c@{der\_test.c}!s\_encoded\_null@{s\_encoded\_null}}
+\index{s\_encoded\_null@{s\_encoded\_null}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_null}{s\_encoded\_null}}
+{\footnotesize\ttfamily const uint8\+\_\+t s\+\_\+encoded\+\_\+null\mbox{[}$\,$\mbox{]} = \{0x05, 0x00\}}
+
+\mbox{\Hypertarget{der__test_8c_a2824d2a891a3718b4226c1e36d7632a0}\label{der__test_8c_a2824d2a891a3718b4226c1e36d7632a0}} 
+\index{der\_test.c@{der\_test.c}!s\_encoded\_octet\_string@{s\_encoded\_octet\_string}}
+\index{s\_encoded\_octet\_string@{s\_encoded\_octet\_string}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_octet\_string}{s\_encoded\_octet\_string}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+encoded\+\_\+octet\+\_\+string\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x04, }
+\DoxyCodeLine{        0x81, }
+\DoxyCodeLine{        0x80, }
+\DoxyCodeLine{        0x38, 0x10, 0x60, 0xe2, 0x70, 0x69, 0x91, 0x4a,}
+\DoxyCodeLine{        0x8b, 0xb5, 0x22, 0x57, 0x2a, 0x62, 0xef, 0xde,}
+\DoxyCodeLine{        0x15, 0x7d, 0x59, 0xd6, 0x4e, 0x20, 0x9a, 0x45,}
+\DoxyCodeLine{        0x2b, 0xe3, 0xfd, 0xfc, 0x68, 0xba, 0xaf, 0xbf,}
+\DoxyCodeLine{        0x9c, 0x17, 0xb0, 0x8e, 0x6d, 0xc4, 0x29, 0x1e,}
+\DoxyCodeLine{        0xe3, 0x21, 0xac, 0xbb, 0x5a, 0x8a, 0xc9, 0x67,}
+\DoxyCodeLine{        0x0a, 0xd4, 0x45, 0x93, 0x10, 0xc0, 0x26, 0xeb,}
+\DoxyCodeLine{        0x0a, 0x83, 0xc2, 0xb1, 0x40, 0x87, 0x36, 0xf7,}
+\DoxyCodeLine{        0xa0, 0x26, 0xda, 0xb9, 0xbb, 0x46, 0x73, 0x88,}
+\DoxyCodeLine{        0x7a, 0x67, 0xb9, 0xe6, 0xb3, 0x6f, 0xea, 0x59,}
+\DoxyCodeLine{        0x28, 0x8a, 0xd3, 0x92, 0x72, 0xf6, 0x7b, 0x89,}
+\DoxyCodeLine{        0xa0, 0xd8, 0x2d, 0x9e, 0x40, 0xeb, 0x1e, 0xbb,}
+\DoxyCodeLine{        0x6e, 0xae, 0xf0, 0x5a, 0xed, 0x16, 0xc9, 0xe3,}
+\DoxyCodeLine{        0x27, 0x59, 0x37, 0x8f, 0xf3, 0x4a, 0x98, 0x60,}
+\DoxyCodeLine{        0xf8, 0xfb, 0xa7, 0x0a, 0xee, 0x1b, 0x6e, 0x91,}
+\DoxyCodeLine{        0x95, 0x96, 0xcf, 0x0d, 0x56, 0xac, 0xab, 0x35,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{der__test_8c_abe18de788e385efd4b3b254664a9766a}\label{der__test_8c_abe18de788e385efd4b3b254664a9766a}} 
+\index{der\_test.c@{der\_test.c}!s\_encoded\_sequence@{s\_encoded\_sequence}}
+\index{s\_encoded\_sequence@{s\_encoded\_sequence}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_sequence}{s\_encoded\_sequence}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+encoded\+\_\+sequence\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x30, }
+\DoxyCodeLine{        0x06, }
+\DoxyCodeLine{        0x01, 0x01, 0xff, }
+\DoxyCodeLine{        0x01, 0x01, 0x00, }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{der__test_8c_a9170fb38b7ad7555c3e16c8eed12e40b}\label{der__test_8c_a9170fb38b7ad7555c3e16c8eed12e40b}} 
+\index{der\_test.c@{der\_test.c}!s\_encoded\_set@{s\_encoded\_set}}
+\index{s\_encoded\_set@{s\_encoded\_set}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_set}{s\_encoded\_set}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+encoded\+\_\+set\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x31, }
+\DoxyCodeLine{        0x06, }
+\DoxyCodeLine{        0x01, 0x01, 0xff, }
+\DoxyCodeLine{        0x01, 0x01, 0x00, }
+\DoxyCodeLine{        0x0a, }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{der__test_8c_a004d5a439339ca2a4ccfe5129d3805b6}\label{der__test_8c_a004d5a439339ca2a4ccfe5129d3805b6}} 
+\index{der\_test.c@{der\_test.c}!s\_encoded\_true@{s\_encoded\_true}}
+\index{s\_encoded\_true@{s\_encoded\_true}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_encoded\_true}{s\_encoded\_true}}
+{\footnotesize\ttfamily const uint8\+\_\+t s\+\_\+encoded\+\_\+true\mbox{[}$\,$\mbox{]} = \{0x01, 0x01, 0xff\}}
+
+\mbox{\Hypertarget{der__test_8c_a1577be0f9830a7ca63aca0aabfdca80d}\label{der__test_8c_a1577be0f9830a7ca63aca0aabfdca80d}} 
+\index{der\_test.c@{der\_test.c}!s\_octet\_string@{s\_octet\_string}}
+\index{s\_octet\_string@{s\_octet\_string}!der\_test.c@{der\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_octet\_string}{s\_octet\_string}}
+{\footnotesize\ttfamily uint8\+\_\+t s\+\_\+octet\+\_\+string\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{        0x38, 0x10, 0x60, 0xe2, 0x70, 0x69, 0x91, 0x4a,}
+\DoxyCodeLine{        0x8b, 0xb5, 0x22, 0x57, 0x2a, 0x62, 0xef, 0xde,}
+\DoxyCodeLine{        0x15, 0x7d, 0x59, 0xd6, 0x4e, 0x20, 0x9a, 0x45,}
+\DoxyCodeLine{        0x2b, 0xe3, 0xfd, 0xfc, 0x68, 0xba, 0xaf, 0xbf,}
+\DoxyCodeLine{        0x9c, 0x17, 0xb0, 0x8e, 0x6d, 0xc4, 0x29, 0x1e,}
+\DoxyCodeLine{        0xe3, 0x21, 0xac, 0xbb, 0x5a, 0x8a, 0xc9, 0x67,}
+\DoxyCodeLine{        0x0a, 0xd4, 0x45, 0x93, 0x10, 0xc0, 0x26, 0xeb,}
+\DoxyCodeLine{        0x0a, 0x83, 0xc2, 0xb1, 0x40, 0x87, 0x36, 0xf7,}
+\DoxyCodeLine{        0xa0, 0x26, 0xda, 0xb9, 0xbb, 0x46, 0x73, 0x88,}
+\DoxyCodeLine{        0x7a, 0x67, 0xb9, 0xe6, 0xb3, 0x6f, 0xea, 0x59,}
+\DoxyCodeLine{        0x28, 0x8a, 0xd3, 0x92, 0x72, 0xf6, 0x7b, 0x89,}
+\DoxyCodeLine{        0xa0, 0xd8, 0x2d, 0x9e, 0x40, 0xeb, 0x1e, 0xbb,}
+\DoxyCodeLine{        0x6e, 0xae, 0xf0, 0x5a, 0xed, 0x16, 0xc9, 0xe3,}
+\DoxyCodeLine{        0x27, 0x59, 0x37, 0x8f, 0xf3, 0x4a, 0x98, 0x60,}
+\DoxyCodeLine{        0xf8, 0xfb, 0xa7, 0x0a, 0xee, 0x1b, 0x6e, 0x91,}
+\DoxyCodeLine{        0x95, 0x96, 0xcf, 0x0d, 0x56, 0xac, 0xab, 0x35,}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

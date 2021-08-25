@@ -1,0 +1,76 @@
+\hypertarget{s2n__connection__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+connection\+\_\+test.c File Reference}
+\label{s2n__connection__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_connection\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_connection\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+extension\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+client\+\_\+server\+\_\+name.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__connection__test_8c_a261c610c37653919b9442522c29cd6f7}{s2n\+\_\+set\+\_\+test\+\_\+protocol\+\_\+versions}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__connection__test_8c_a9e534d1a7b72156e0de2f174900646d8}{s2n\+\_\+server\+\_\+name\+\_\+test\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{s2n__connection__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__connection__test_8c_a772618f9cb49eddb3fb6b9c8c777ca6a}{actual\+\_\+version}} = 1
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__connection__test_8c_afe6febb820376a6f5f8509b8fa5b7a55}{client\+\_\+version}} = 2
+\item 
+const uint8\+\_\+t \mbox{\hyperlink{s2n__connection__test_8c_a7838388fa4311d71e02637365b83c241}{server\+\_\+version}} = 3
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__connection__test_8c_a7abf77affe0278c2fdd6edbcf87258d3}{s2n\+\_\+server\+\_\+name\+\_\+test\+\_\+callback\+\_\+flag}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__connection__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__connection__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_connection\_test.c@{s2n\_connection\_test.c}!main@{main}}
+\index{main@{main}!s2n\_connection\_test.c@{s2n\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__connection__test_8c_a9e534d1a7b72156e0de2f174900646d8}\label{s2n__connection__test_8c_a9e534d1a7b72156e0de2f174900646d8}} 
+\index{s2n\_connection\_test.c@{s2n\_connection\_test.c}!s2n\_server\_name\_test\_callback@{s2n\_server\_name\_test\_callback}}
+\index{s2n\_server\_name\_test\_callback@{s2n\_server\_name\_test\_callback}!s2n\_connection\_test.c@{s2n\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_name\_test\_callback()}{s2n\_server\_name\_test\_callback()}}
+{\footnotesize\ttfamily static int s2n\+\_\+server\+\_\+name\+\_\+test\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__connection__test_8c_a261c610c37653919b9442522c29cd6f7}\label{s2n__connection__test_8c_a261c610c37653919b9442522c29cd6f7}} 
+\index{s2n\_connection\_test.c@{s2n\_connection\_test.c}!s2n\_set\_test\_protocol\_versions@{s2n\_set\_test\_protocol\_versions}}
+\index{s2n\_set\_test\_protocol\_versions@{s2n\_set\_test\_protocol\_versions}!s2n\_connection\_test.c@{s2n\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_test\_protocol\_versions()}{s2n\_set\_test\_protocol\_versions()}}
+{\footnotesize\ttfamily static int s2n\+\_\+set\+\_\+test\+\_\+protocol\+\_\+versions (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__connection__test_8c_a772618f9cb49eddb3fb6b9c8c777ca6a}\label{s2n__connection__test_8c_a772618f9cb49eddb3fb6b9c8c777ca6a}} 
+\index{s2n\_connection\_test.c@{s2n\_connection\_test.c}!actual\_version@{actual\_version}}
+\index{actual\_version@{actual\_version}!s2n\_connection\_test.c@{s2n\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{actual\_version}{actual\_version}}
+{\footnotesize\ttfamily const uint8\+\_\+t actual\+\_\+version = 1}
+
+\mbox{\Hypertarget{s2n__connection__test_8c_afe6febb820376a6f5f8509b8fa5b7a55}\label{s2n__connection__test_8c_afe6febb820376a6f5f8509b8fa5b7a55}} 
+\index{s2n\_connection\_test.c@{s2n\_connection\_test.c}!client\_version@{client\_version}}
+\index{client\_version@{client\_version}!s2n\_connection\_test.c@{s2n\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{client\_version}{client\_version}}
+{\footnotesize\ttfamily const uint8\+\_\+t client\+\_\+version = 2}
+
+\mbox{\Hypertarget{s2n__connection__test_8c_a7abf77affe0278c2fdd6edbcf87258d3}\label{s2n__connection__test_8c_a7abf77affe0278c2fdd6edbcf87258d3}} 
+\index{s2n\_connection\_test.c@{s2n\_connection\_test.c}!s2n\_server\_name\_test\_callback\_flag@{s2n\_server\_name\_test\_callback\_flag}}
+\index{s2n\_server\_name\_test\_callback\_flag@{s2n\_server\_name\_test\_callback\_flag}!s2n\_connection\_test.c@{s2n\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_name\_test\_callback\_flag}{s2n\_server\_name\_test\_callback\_flag}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+server\+\_\+name\+\_\+test\+\_\+callback\+\_\+flag = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+
+\mbox{\Hypertarget{s2n__connection__test_8c_a7838388fa4311d71e02637365b83c241}\label{s2n__connection__test_8c_a7838388fa4311d71e02637365b83c241}} 
+\index{s2n\_connection\_test.c@{s2n\_connection\_test.c}!server\_version@{server\_version}}
+\index{server\_version@{server\_version}!s2n\_connection\_test.c@{s2n\_connection\_test.c}}
+\doxysubsubsection{\texorpdfstring{server\_version}{server\_version}}
+{\footnotesize\ttfamily const uint8\+\_\+t server\+\_\+version = 3}
+

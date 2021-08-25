@@ -1,0 +1,89 @@
+\hypertarget{class_aws_1_1_iot_1_1_mqtt_client_connection_config}{}\doxysection{Aws\+::Iot\+::Mqtt\+Client\+Connection\+Config Class Reference}
+\label{class_aws_1_1_iot_1_1_mqtt_client_connection_config}\index{Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}}
+
+
+{\ttfamily \#include $<$Mqtt\+Client.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a8d7b36212b7ae6b550ff66e89d1a0998}{Mqtt\+Client\+Connection\+Config}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&endpoint, uint16\+\_\+t port, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Crt\+::\+Io\+::\+Socket\+Options}} \&socket\+Options, \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{Crt\+::\+Io\+::\+Tls\+Context}} \&\&tls\+Context)
+\item 
+\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a875e278c766dc649fb633548bea269b5}{Mqtt\+Client\+Connection\+Config}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&endpoint, uint16\+\_\+t port, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Crt\+::\+Io\+::\+Socket\+Options}} \&socket\+Options, \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{Crt\+::\+Io\+::\+Tls\+Context}} \&\&tls\+Context, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a164f0b4ae6ab32eae4125e685349a8d1}{Crt\+::\+Mqtt\+::\+On\+Web\+Socket\+Handshake\+Intercept}} \&\&interceptor, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options}{Crt\+::\+Http\+::\+Http\+Client\+Connection\+Proxy\+Options}} $>$ \&proxy\+Options)
+\item 
+\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_ae48f40de769feebf3b78d316c0729719}{operator bool}} () const noexcept
+\item 
+int \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_aebdc5d38cb40d62222d072629b1430aa}{Last\+Error}} () const noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config}{Mqtt\+Client\+Connection\+Config}} \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a25947708a6c5bc7eaf8736a1022c49ea}{Create\+Invalid}} (int last\+Error) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a85a96c1d928c2dbdd7e09a1def5d4a8e}{Mqtt\+Client}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a unique configuration for connecting to a single endpoint. You can use a single instance of this class PER endpoint you want to connect to. This object must live through the lifetime of your connection. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a8d7b36212b7ae6b550ff66e89d1a0998}\label{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a8d7b36212b7ae6b550ff66e89d1a0998}} 
+\index{Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}!MqttClientConnectionConfig@{MqttClientConnectionConfig}}
+\index{MqttClientConnectionConfig@{MqttClientConnectionConfig}!Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}}
+\doxysubsubsection{\texorpdfstring{MqttClientConnectionConfig()}{MqttClientConnectionConfig()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Aws\+::\+Iot\+::\+Mqtt\+Client\+Connection\+Config\+::\+Mqtt\+Client\+Connection\+Config (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&}]{endpoint,  }\item[{uint16\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Crt\+::\+Io\+::\+Socket\+Options}} \&}]{socket\+Options,  }\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{Crt\+::\+Io\+::\+Tls\+Context}} \&\&}]{tls\+Context }\end{DoxyParamCaption})}
+
+Creates a client configuration for use with making new AWS \mbox{\hyperlink{namespace_aws_1_1_iot}{Iot}} specific MQTT Connections with MTLS. \mbox{\Hypertarget{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a875e278c766dc649fb633548bea269b5}\label{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a875e278c766dc649fb633548bea269b5}} 
+\index{Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}!MqttClientConnectionConfig@{MqttClientConnectionConfig}}
+\index{MqttClientConnectionConfig@{MqttClientConnectionConfig}!Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}}
+\doxysubsubsection{\texorpdfstring{MqttClientConnectionConfig()}{MqttClientConnectionConfig()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Aws\+::\+Iot\+::\+Mqtt\+Client\+Connection\+Config\+::\+Mqtt\+Client\+Connection\+Config (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&}]{endpoint,  }\item[{uint16\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Crt\+::\+Io\+::\+Socket\+Options}} \&}]{socket\+Options,  }\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{Crt\+::\+Io\+::\+Tls\+Context}} \&\&}]{tls\+Context,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a164f0b4ae6ab32eae4125e685349a8d1}{Crt\+::\+Mqtt\+::\+On\+Web\+Socket\+Handshake\+Intercept}} \&\&}]{interceptor,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options}{Crt\+::\+Http\+::\+Http\+Client\+Connection\+Proxy\+Options}} $>$ \&}]{proxy\+Options }\end{DoxyParamCaption})}
+
+Creates a client configuration for use with making new AWS \mbox{\hyperlink{namespace_aws_1_1_iot}{Iot}} specific MQTT Connections with web sockets. interceptor\+: a callback invoked during web socket handshake giving you the opportunity to mutate the request for authorization/signing purposes. If not specified, it\textquotesingle{}s assumed you don\textquotesingle{}t need to sign the request. proxy\+Options\+: optional, if you want to use a proxy with websockets, specify the configuration options here.
+
+If proxy options are used, the tls\+Context is applied to the connection to the remote endpoint, NOT the proxy. To make a tls connection to the proxy itself, you\textquotesingle{}ll want to specify tls options in proxy\+Options. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a25947708a6c5bc7eaf8736a1022c49ea}\label{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a25947708a6c5bc7eaf8736a1022c49ea}} 
+\index{Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}!CreateInvalid@{CreateInvalid}}
+\index{CreateInvalid@{CreateInvalid}!Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}}
+\doxysubsubsection{\texorpdfstring{CreateInvalid()}{CreateInvalid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config}{Mqtt\+Client\+Connection\+Config}} Aws\+::\+Iot\+::\+Mqtt\+Client\+Connection\+Config\+::\+Create\+Invalid (\begin{DoxyParamCaption}\item[{int}]{last\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_iot_1_1_mqtt_client_connection_config_aebdc5d38cb40d62222d072629b1430aa}\label{class_aws_1_1_iot_1_1_mqtt_client_connection_config_aebdc5d38cb40d62222d072629b1430aa}} 
+\index{Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}!LastError@{LastError}}
+\index{LastError@{LastError}!Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}}
+\doxysubsubsection{\texorpdfstring{LastError()}{LastError()}}
+{\footnotesize\ttfamily int Aws\+::\+Iot\+::\+Mqtt\+Client\+Connection\+Config\+::\+Last\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+the value of the last aws error encountered by operations on this instance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_aws_1_1_iot_1_1_mqtt_client_connection_config_ae48f40de769feebf3b78d316c0729719}\label{class_aws_1_1_iot_1_1_mqtt_client_connection_config_ae48f40de769feebf3b78d316c0729719}} 
+\index{Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}}
+\doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily Aws\+::\+Iot\+::\+Mqtt\+Client\+Connection\+Config\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
+
+\begin{DoxyReturn}{Returns}
+true if the instance is in a valid state, false otherwise. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a85a96c1d928c2dbdd7e09a1def5d4a8e}\label{class_aws_1_1_iot_1_1_mqtt_client_connection_config_a85a96c1d928c2dbdd7e09a1def5d4a8e}} 
+\index{Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}!MqttClient@{MqttClient}}
+\index{MqttClient@{MqttClient}!Aws::Iot::MqttClientConnectionConfig@{Aws::Iot::MqttClientConnectionConfig}}
+\doxysubsubsection{\texorpdfstring{MqttClient}{MqttClient}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client}{Mqtt\+Client}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/include/aws/iot/\mbox{\hyperlink{iot_2_mqtt_client_8h}{Mqtt\+Client.\+h}}\item 
+crt/aws-\/crt-\/cpp/source/iot/\mbox{\hyperlink{iot_2_mqtt_client_8cpp}{Mqtt\+Client.\+cpp}}\end{DoxyCompactItemize}

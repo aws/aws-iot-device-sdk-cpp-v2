@@ -1,0 +1,109 @@
+\hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/stream.h File Reference}
+\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/stream.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/stream.h}}
+{\ttfamily \#include $<$aws/io/io.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__stream__status}{aws\+\_\+stream\+\_\+status}}
+\item 
+struct \mbox{\hyperlink{structaws__input__stream__vtable}{aws\+\_\+input\+\_\+stream\+\_\+vtable}}
+\item 
+struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20d}{aws\+\_\+stream\+\_\+seek\+\_\+basis}} \{ \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20da4bb6f974cda6aeca806aca83789b08e3}{AWS\+\_\+\+SSB\+\_\+\+BEGIN}} = 0
+, \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20da8b5d2437615290619a8d8d8f62479cba}{AWS\+\_\+\+SSB\+\_\+\+END}} = 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_acae28b35493e757ad6edbc9e7b140e6c}{aws\+\_\+input\+\_\+stream\+\_\+seek}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, \mbox{\hyperlink{stdint_8h_a7c7388565c261c41172ec27cfbbcd9dc}{aws\+\_\+off\+\_\+t}} offset, enum \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20d}{aws\+\_\+stream\+\_\+seek\+\_\+basis}} basis)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_ac14e5ef5707c94ffea0244fb36063a2e}{aws\+\_\+input\+\_\+stream\+\_\+read}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_adb07147f0cea88765aa760dd9457250e}{aws\+\_\+input\+\_\+stream\+\_\+get\+\_\+status}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__stream__status}{aws\+\_\+stream\+\_\+status}} $\ast$status)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a127332e564d2d9868e8e9197d0833c23}{aws\+\_\+input\+\_\+stream\+\_\+get\+\_\+length}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, int64\+\_\+t $\ast$out\+\_\+length)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a4565361cbf2539004f4659906a7255f7}{aws\+\_\+input\+\_\+stream\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a393d18b3bf17c5b621dba239e8542d7e}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_acd681692955fa18e641bb4bafcfdb161}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+file}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const char $\ast$file\+\_\+name)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_affabb407b49d3002bb20d46d93f49a7e}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+open\+\_\+file}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, FILE $\ast$file)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20d}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20d}} 
+\index{stream.h@{stream.h}!aws\_stream\_seek\_basis@{aws\_stream\_seek\_basis}}
+\index{aws\_stream\_seek\_basis@{aws\_stream\_seek\_basis}!stream.h@{stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_stream\_seek\_basis}{aws\_stream\_seek\_basis}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20d}{aws\+\_\+stream\+\_\+seek\+\_\+basis}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_SSB\_BEGIN@{AWS\_SSB\_BEGIN}!stream.h@{stream.h}}\index{stream.h@{stream.h}!AWS\_SSB\_BEGIN@{AWS\_SSB\_BEGIN}}}\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20da4bb6f974cda6aeca806aca83789b08e3}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20da4bb6f974cda6aeca806aca83789b08e3}} 
+AWS\+\_\+\+SSB\+\_\+\+BEGIN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_SSB\_END@{AWS\_SSB\_END}!stream.h@{stream.h}}\index{stream.h@{stream.h}!AWS\_SSB\_END@{AWS\_SSB\_END}}}\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20da8b5d2437615290619a8d8d8f62479cba}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20da8b5d2437615290619a8d8d8f62479cba}} 
+AWS\+\_\+\+SSB\+\_\+\+END&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a4565361cbf2539004f4659906a7255f7}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a4565361cbf2539004f4659906a7255f7}} 
+\index{stream.h@{stream.h}!aws\_input\_stream\_destroy@{aws\_input\_stream\_destroy}}
+\index{aws\_input\_stream\_destroy@{aws\_input\_stream\_destroy}!stream.h@{stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_destroy()}{aws\_input\_stream\_destroy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void aws\+\_\+input\+\_\+stream\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a127332e564d2d9868e8e9197d0833c23}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a127332e564d2d9868e8e9197d0833c23}} 
+\index{stream.h@{stream.h}!aws\_input\_stream\_get\_length@{aws\_input\_stream\_get\_length}}
+\index{aws\_input\_stream\_get\_length@{aws\_input\_stream\_get\_length}!stream.h@{stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_get\_length()}{aws\_input\_stream\_get\_length()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+input\+\_\+stream\+\_\+get\+\_\+length (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{int64\+\_\+t $\ast$}]{out\+\_\+length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_adb07147f0cea88765aa760dd9457250e}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_adb07147f0cea88765aa760dd9457250e}} 
+\index{stream.h@{stream.h}!aws\_input\_stream\_get\_status@{aws\_input\_stream\_get\_status}}
+\index{aws\_input\_stream\_get\_status@{aws\_input\_stream\_get\_status}!stream.h@{stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_get\_status()}{aws\_input\_stream\_get\_status()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+input\+\_\+stream\+\_\+get\+\_\+status (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__stream__status}{aws\+\_\+stream\+\_\+status}} $\ast$}]{status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a393d18b3bf17c5b621dba239e8542d7e}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a393d18b3bf17c5b621dba239e8542d7e}} 
+\index{stream.h@{stream.h}!aws\_input\_stream\_new\_from\_cursor@{aws\_input\_stream\_new\_from\_cursor}}
+\index{aws\_input\_stream\_new\_from\_cursor@{aws\_input\_stream\_new\_from\_cursor}!stream.h@{stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_new\_from\_cursor()}{aws\_input\_stream\_new\_from\_cursor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}}$\ast$ aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+cursor (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cursor }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_acd681692955fa18e641bb4bafcfdb161}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_acd681692955fa18e641bb4bafcfdb161}} 
+\index{stream.h@{stream.h}!aws\_input\_stream\_new\_from\_file@{aws\_input\_stream\_new\_from\_file}}
+\index{aws\_input\_stream\_new\_from\_file@{aws\_input\_stream\_new\_from\_file}!stream.h@{stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_new\_from\_file()}{aws\_input\_stream\_new\_from\_file()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}}$\ast$ aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const char $\ast$}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_affabb407b49d3002bb20d46d93f49a7e}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_affabb407b49d3002bb20d46d93f49a7e}} 
+\index{stream.h@{stream.h}!aws\_input\_stream\_new\_from\_open\_file@{aws\_input\_stream\_new\_from\_open\_file}}
+\index{aws\_input\_stream\_new\_from\_open\_file@{aws\_input\_stream\_new\_from\_open\_file}!stream.h@{stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_new\_from\_open\_file()}{aws\_input\_stream\_new\_from\_open\_file()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}}$\ast$ aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+open\+\_\+file (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{FILE $\ast$}]{file }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_ac14e5ef5707c94ffea0244fb36063a2e}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_ac14e5ef5707c94ffea0244fb36063a2e}} 
+\index{stream.h@{stream.h}!aws\_input\_stream\_read@{aws\_input\_stream\_read}}
+\index{aws\_input\_stream\_read@{aws\_input\_stream\_read}!stream.h@{stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_read()}{aws\_input\_stream\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+input\+\_\+stream\+\_\+read (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_acae28b35493e757ad6edbc9e7b140e6c}\label{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_acae28b35493e757ad6edbc9e7b140e6c}} 
+\index{stream.h@{stream.h}!aws\_input\_stream\_seek@{aws\_input\_stream\_seek}}
+\index{aws\_input\_stream\_seek@{aws\_input\_stream\_seek}!stream.h@{stream.h}}
+\doxysubsubsection{\texorpdfstring{aws\_input\_stream\_seek()}{aws\_input\_stream\_seek()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+input\+\_\+stream\+\_\+seek (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{\mbox{\hyperlink{stdint_8h_a7c7388565c261c41172ec27cfbbcd9dc}{aws\+\_\+off\+\_\+t}}}]{offset,  }\item[{enum \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20d}{aws\+\_\+stream\+\_\+seek\+\_\+basis}}}]{basis }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

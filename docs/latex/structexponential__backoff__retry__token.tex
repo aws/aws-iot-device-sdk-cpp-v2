@@ -1,0 +1,125 @@
+\hypertarget{structexponential__backoff__retry__token}{}\doxysection{exponential\+\_\+backoff\+\_\+retry\+\_\+token Struct Reference}
+\label{structexponential__backoff__retry__token}\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} \mbox{\hyperlink{structexponential__backoff__retry__token_aea532ce77e9496e1a5ee59244a95c0f9}{base}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structexponential__backoff__retry__token_abd9039d9bc2592053b5294868ddb2e94}{current\+\_\+retry\+\_\+count}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structexponential__backoff__retry__token_a3fe9043a3937ce9df8a5a97e6c238b1e}{last\+\_\+backoff}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structexponential__backoff__retry__token_a18aee7eb5a420f1066ddf9f0d4dc1671}{max\+\_\+retries}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{structexponential__backoff__retry__token_a1ae6daf482757ba0e9f5ee180755d304}{backoff\+\_\+scale\+\_\+factor\+\_\+ns}}
+\item 
+enum \mbox{\hyperlink{retry__strategy_8h_a314f9a25f2e99a18e52c65ffd320b6c4}{aws\+\_\+exponential\+\_\+backoff\+\_\+jitter\+\_\+mode}} \mbox{\hyperlink{structexponential__backoff__retry__token_a3f3c731a71084a2d4ddc132921d3e481}{jitter\+\_\+mode}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{structexponential__backoff__retry__token_a6284a6b26f7269410ffc12d5534824fc}{bound\+\_\+loop}}
+\item 
+uint64\+\_\+t($\ast$ \mbox{\hyperlink{structexponential__backoff__retry__token_a52dc3d5b2fd8b57781e24eca08339696}{generate\+\_\+random}} )(void)
+\item 
+struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} \mbox{\hyperlink{structexponential__backoff__retry__token_ae6c89116c85857d1275b21837ab5143e}{retry\+\_\+task}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structexponential__backoff__retry__token_aaeb7fd373cd835dd464c31db12fd1067}{mutex}}\\
+\>\mbox{\hyperlink{retry__strategy_8h_a840055993c2a9788207792f45db2e27f}{aws\_retry\_strategy\_on\_retry\_token\_acquired\_fn}} $\ast$ \mbox{\hyperlink{structexponential__backoff__retry__token_a5309bcfbff81fe0e31b7830fa0f4caf0}{acquired\_fn}}\\
+\>\mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\_retry\_strategy\_on\_retry\_ready\_fn}} $\ast$ \mbox{\hyperlink{structexponential__backoff__retry__token_a49eba5b5dd43b599a02760cdca68a915}{retry\_ready\_fn}}\\
+\>void $\ast$ \mbox{\hyperlink{structexponential__backoff__retry__token_ae63422e207a9efb05cccf074e76430c4}{user\_data}}\\
+\} \mbox{\hyperlink{structexponential__backoff__retry__token_aa654315e894e394fc2b2d4a5303dcbec}{thread\_data}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structexponential__backoff__retry__token_a5309bcfbff81fe0e31b7830fa0f4caf0}\label{structexponential__backoff__retry__token_a5309bcfbff81fe0e31b7830fa0f4caf0}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!acquired\_fn@{acquired\_fn}}
+\index{acquired\_fn@{acquired\_fn}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{acquired\_fn}{acquired\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{retry__strategy_8h_a840055993c2a9788207792f45db2e27f}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+token\+\_\+acquired\+\_\+fn}}$\ast$ exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::acquired\+\_\+fn}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_a1ae6daf482757ba0e9f5ee180755d304}\label{structexponential__backoff__retry__token_a1ae6daf482757ba0e9f5ee180755d304}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!backoff\_scale\_factor\_ns@{backoff\_scale\_factor\_ns}}
+\index{backoff\_scale\_factor\_ns@{backoff\_scale\_factor\_ns}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{backoff\_scale\_factor\_ns}{backoff\_scale\_factor\_ns}}
+{\footnotesize\ttfamily uint64\+\_\+t exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::backoff\+\_\+scale\+\_\+factor\+\_\+ns}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_aea532ce77e9496e1a5ee59244a95c0f9}\label{structexponential__backoff__retry__token_aea532ce77e9496e1a5ee59244a95c0f9}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!base@{base}}
+\index{base@{base}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{base}{base}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::base}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_a6284a6b26f7269410ffc12d5534824fc}\label{structexponential__backoff__retry__token_a6284a6b26f7269410ffc12d5534824fc}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!bound\_loop@{bound\_loop}}
+\index{bound\_loop@{bound\_loop}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{bound\_loop}{bound\_loop}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::bound\+\_\+loop}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_abd9039d9bc2592053b5294868ddb2e94}\label{structexponential__backoff__retry__token_abd9039d9bc2592053b5294868ddb2e94}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!current\_retry\_count@{current\_retry\_count}}
+\index{current\_retry\_count@{current\_retry\_count}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{current\_retry\_count}{current\_retry\_count}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::current\+\_\+retry\+\_\+count}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_a52dc3d5b2fd8b57781e24eca08339696}\label{structexponential__backoff__retry__token_a52dc3d5b2fd8b57781e24eca08339696}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!generate\_random@{generate\_random}}
+\index{generate\_random@{generate\_random}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{generate\_random}{generate\_random}}
+{\footnotesize\ttfamily uint64\+\_\+t($\ast$ exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::generate\+\_\+random) (void)}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_a3f3c731a71084a2d4ddc132921d3e481}\label{structexponential__backoff__retry__token_a3f3c731a71084a2d4ddc132921d3e481}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!jitter\_mode@{jitter\_mode}}
+\index{jitter\_mode@{jitter\_mode}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{jitter\_mode}{jitter\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{retry__strategy_8h_a314f9a25f2e99a18e52c65ffd320b6c4}{aws\+\_\+exponential\+\_\+backoff\+\_\+jitter\+\_\+mode}} exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::jitter\+\_\+mode}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_a3fe9043a3937ce9df8a5a97e6c238b1e}\label{structexponential__backoff__retry__token_a3fe9043a3937ce9df8a5a97e6c238b1e}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!last\_backoff@{last\_backoff}}
+\index{last\_backoff@{last\_backoff}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{last\_backoff}{last\_backoff}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::last\+\_\+backoff}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_a18aee7eb5a420f1066ddf9f0d4dc1671}\label{structexponential__backoff__retry__token_a18aee7eb5a420f1066ddf9f0d4dc1671}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!max\_retries@{max\_retries}}
+\index{max\_retries@{max\_retries}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{max\_retries}{max\_retries}}
+{\footnotesize\ttfamily size\+\_\+t exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::max\+\_\+retries}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_aaeb7fd373cd835dd464c31db12fd1067}\label{structexponential__backoff__retry__token_aaeb7fd373cd835dd464c31db12fd1067}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!mutex@{mutex}}
+\index{mutex@{mutex}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::mutex}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_a49eba5b5dd43b599a02760cdca68a915}\label{structexponential__backoff__retry__token_a49eba5b5dd43b599a02760cdca68a915}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!retry\_ready\_fn@{retry\_ready\_fn}}
+\index{retry\_ready\_fn@{retry\_ready\_fn}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{retry\_ready\_fn}{retry\_ready\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\+\_\+retry\+\_\+strategy\+\_\+on\+\_\+retry\+\_\+ready\+\_\+fn}}$\ast$ exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::retry\+\_\+ready\+\_\+fn}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_ae6c89116c85857d1275b21837ab5143e}\label{structexponential__backoff__retry__token_ae6c89116c85857d1275b21837ab5143e}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!retry\_task@{retry\_task}}
+\index{retry\_task@{retry\_task}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{retry\_task}{retry\_task}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::retry\+\_\+task}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_aa654315e894e394fc2b2d4a5303dcbec}\label{structexponential__backoff__retry__token_aa654315e894e394fc2b2d4a5303dcbec}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!thread\_data@{thread\_data}}
+\index{thread\_data@{thread\_data}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily struct  \{ ... \}  exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::thread\+\_\+data}
+
+\mbox{\Hypertarget{structexponential__backoff__retry__token_ae63422e207a9efb05cccf074e76430c4}\label{structexponential__backoff__retry__token_ae63422e207a9efb05cccf074e76430c4}} 
+\index{exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!exponential\_backoff\_retry\_token@{exponential\_backoff\_retry\_token}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ exponential\+\_\+backoff\+\_\+retry\+\_\+token\+::user\+\_\+data}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/\mbox{\hyperlink{exponential__backoff__retry__strategy_8c}{exponential\+\_\+backoff\+\_\+retry\+\_\+strategy.\+c}}\end{DoxyCompactItemize}

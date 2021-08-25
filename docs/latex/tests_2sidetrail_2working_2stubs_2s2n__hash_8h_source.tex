@@ -1,0 +1,84 @@
+\hypertarget{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_source}{}\doxysection{s2n\+\_\+hash.\+h}
+\label{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/working/stubs/s2n\_hash.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/working/stubs/s2n\_hash.h}}
+\mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{stdint.h}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h}{openssl/sha.h}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{md5_8h}{openssl/md5.h}}>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__evp_8h}{crypto/s2n\_evp.h}}"{}}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define S2N\_MAX\_DIGEST\_LEN SHA512\_DIGEST\_LENGTH}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{27     \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}{S2N\_HASH\_NONE}},}
+\DoxyCodeLine{28     \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}{S2N\_HASH\_MD5}},}
+\DoxyCodeLine{29     \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}{S2N\_HASH\_SHA1}},}
+\DoxyCodeLine{30     \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}{S2N\_HASH\_SHA224}},}
+\DoxyCodeLine{31     \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}{S2N\_HASH\_SHA256}},}
+\DoxyCodeLine{32     \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}{S2N\_HASH\_SHA384}},}
+\DoxyCodeLine{33     \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}{S2N\_HASH\_SHA512}},}
+\DoxyCodeLine{34     \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}{S2N\_HASH\_MD5\_SHA1}},}
+\DoxyCodeLine{35     \textcolor{comment}{/* Don't add any hash algorithms below S2N\_HASH\_SENTINEL */}}
+\DoxyCodeLine{36     \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}{S2N\_HASH\_SENTINEL}}}
+\DoxyCodeLine{37 \} \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\_hash\_algorithm}};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} \{}
+\DoxyCodeLine{40   \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\_hash\_algorithm}} \mbox{\hyperlink{structs2n__hash__state_ae0b6c694b58615e3b449cea37998d3ec}{alg}};}
+\DoxyCodeLine{41   \textcolor{keywordtype}{int} \mbox{\hyperlink{structs2n__hash__state_a9036270da1d4c04df2344de98853e472}{currently\_in\_hash\_block}};}
+\DoxyCodeLine{42 \};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{comment}{/* SHA1}}
+\DoxyCodeLine{45 \textcolor{comment}{ * These fields were determined from the SHA specification, augmented by}}
+\DoxyCodeLine{46 \textcolor{comment}{ * analyzing SHA implementations. }}
+\DoxyCodeLine{47 \textcolor{comment}{ * PER\_BLOCK\_COST is the cost of a compression round.  Pessimistically assume }}
+\DoxyCodeLine{48 \textcolor{comment}{ * it is 1000 cycles/block, which is worse than real implementations (larger}}
+\DoxyCodeLine{49 \textcolor{comment}{ * numbers here make lucky13 leakages look worse), and hence large is safer.}}
+\DoxyCodeLine{50 \textcolor{comment}{ * PER\_BYTE\_COST is the cost of memcopy one byte that is already in cache,}}
+\DoxyCodeLine{51 \textcolor{comment}{ * to a location already in cache.}}
+\DoxyCodeLine{52 \textcolor{comment}{ */}}
+\DoxyCodeLine{53 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{54   \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_ac34c4c978f4130a92a5068f9e21ea9fca54bfdeb1cc7c8811a208f66b8bca5a49}{PER\_BLOCK\_COST}} = 1000,}
+\DoxyCodeLine{55   \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_ac34c4c978f4130a92a5068f9e21ea9fca7bd0fddda44f46a91298bc1aedcea74d}{PER\_BYTE\_COST}} = 1,}
+\DoxyCodeLine{56   \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_ac34c4c978f4130a92a5068f9e21ea9fca289ec7492eb0ef6bf5285fb142203e11}{BLOCK\_SIZE}} = 64,          }
+\DoxyCodeLine{57   \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_ac34c4c978f4130a92a5068f9e21ea9fcab22d65cad389d3b5bff91d3752bae785}{LENGTH\_FIELD\_SIZE}} = 8,}
+\DoxyCodeLine{58   \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_ac34c4c978f4130a92a5068f9e21ea9fca29c42ee4df3dc1edbd58a05fe5159e60}{DIGEST\_SIZE}} = 20}
+\DoxyCodeLine{59 \};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define MAX\_SIZE 1024}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{64   \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a10e74d65d7876276a8f6061c71dcf469ac7f69f7c9e5aea9b8f54cf02870e2bf8}{SUCCESS}} = 0,}
+\DoxyCodeLine{65   \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a10e74d65d7876276a8f6061c71dcf469aa5571864412c8275a2e18a931fddcaa6}{FAILURE}} = -\/1}
+\DoxyCodeLine{66 \};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{crypto_2s2n__hash_8h_a2d7609aba112f1336497f9b6a3ba19e2}{s2n\_hash\_digest\_size}}(\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\_hash\_algorithm}} alg, uint8\_t *out);}
+\DoxyCodeLine{69 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{crypto_2s2n__hash_8h_a6e1456ecefa61835c01b7180134e04b8}{s2n\_hash\_new}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{70 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{crypto_2s2n__hash_8h_a684a3779eebad8329d41443454dd6fa2}{s2n\_hash\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structstate}{state}}, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\_hash\_algorithm}} alg);}
+\DoxyCodeLine{71 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{crypto_2s2n__hash_8h_a0f3c4efbf552f607071e552dc0548ee6}{s2n\_hash\_update}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structstate}{state}}, \textcolor{keyword}{const} \textcolor{keywordtype}{void} *data, uint32\_t size);}
+\DoxyCodeLine{72 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{crypto_2s2n__hash_8h_ac0a5e6f9f981a0e473bfb9dba9c3d7c9}{s2n\_hash\_digest}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structstate}{state}}, \textcolor{keywordtype}{void} *out, uint32\_t size);}
+\DoxyCodeLine{73 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{crypto_2s2n__hash_8h_a8b39db9e0a5456a10a5d790474f09818}{s2n\_hash\_copy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *to, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *from);}
+\DoxyCodeLine{74 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{crypto_2s2n__hash_8h_a3ad42d683b1126e7d8eb329b68382bc8}{s2n\_hash\_reset}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{75 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{crypto_2s2n__hash_8h_a9d55a86256e1fd602ab3d00d5d7d506b}{s2n\_hash\_free}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{76 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{crypto_2s2n__hash_8h_a4b0b459365b97d081895a9ca757475a4}{s2n\_hash\_get\_currently\_in\_hash\_total}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structstate}{state}}, uint64\_t *out);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 }
+
+\end{DoxyCode}

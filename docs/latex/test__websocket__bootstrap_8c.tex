@@ -1,0 +1,450 @@
+\hypertarget{test__websocket__bootstrap_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\+\_\+websocket\+\_\+bootstrap.c File Reference}
+\label{test__websocket__bootstrap_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_websocket\_bootstrap.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_websocket\_bootstrap.c}}
+{\ttfamily \#include $<$aws/http/private/websocket\+\_\+impl.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/atomics.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/connection.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/request\+\_\+response.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/uri.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+allocators.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtester}{tester}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test__websocket__bootstrap_8c_ad034c5038d0bc9beb075787a01487c5f}{TEST\+\_\+\+CASE}}(NAME)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896}{boot\+\_\+step}} \{ \newline
+\mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a705a714939838929cb6ac403e4c43e5c}{BOOT\+\_\+\+STEP\+\_\+\+HTTP\+\_\+\+CONNECT}} = 0x4000000
+, \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a7ea7eadca898687bd3592f7e51a970c3}{BOOT\+\_\+\+STEP\+\_\+\+HTTP\+\_\+\+CONNECT\+\_\+\+COMPLETE}}
+, \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a0f91b308ad9ba25489c40aa12634cad4}{BOOT\+\_\+\+STEP\+\_\+\+REQUEST\+\_\+\+NEW}}
+, \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896aae8e82be064fef7daeae96d6e673a032}{BOOT\+\_\+\+STEP\+\_\+\+HEADERS}}
+, \newline
+\mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a3a7cad2e293615e9de620faf83aa0716}{BOOT\+\_\+\+STEP\+\_\+\+HEADERS\+\_\+\+DONE}}
+, \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896ac383fdbd17d8874c11ae0d03fb6e7849}{BOOT\+\_\+\+STEP\+\_\+\+VALIDATE\+\_\+\+RESPONSE\+\_\+\+STATUS}} = AWS\+\_\+\+ERROR\+\_\+\+HTTP\+\_\+\+WEBSOCKET\+\_\+\+UPGRADE\+\_\+\+FAILURE
+, \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a8dd98d6ceec4870bae7d0348b8d5c2b7}{BOOT\+\_\+\+STEP\+\_\+\+WEBSOCKET\+\_\+\+NEW}} = 0x50000000
+, \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a94cf249e82de703a3180e9cc306674dd}{BOOT\+\_\+\+STEP\+\_\+\+HTTP\+\_\+\+SHUTDOWN}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{test__websocket__bootstrap_8c_a7912299a63b6396a24ca3c66c9b4645b}{s\+\_\+mock\+\_\+http\+\_\+client\+\_\+connect}} (const struct \mbox{\hyperlink{structaws__http__client__connection__options}{aws\+\_\+http\+\_\+client\+\_\+connection\+\_\+options}} $\ast$options)
+\item 
+static void \mbox{\hyperlink{test__websocket__bootstrap_8c_ab047a9065be8606efa7b6c4e9483b95c}{s\+\_\+mock\+\_\+http\+\_\+connection\+\_\+release}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+static void \mbox{\hyperlink{test__websocket__bootstrap_8c_a48c1598b28e2d2ead6faff430ae21235}{s\+\_\+mock\+\_\+http\+\_\+connection\+\_\+close}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+static struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$ \mbox{\hyperlink{test__websocket__bootstrap_8c_a7e45f5170b0a13ad8b96397ebea38b60}{s\+\_\+mock\+\_\+http\+\_\+connection\+\_\+get\+\_\+channel}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\item 
+static struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ \mbox{\hyperlink{test__websocket__bootstrap_8c_a02a59facf9ec5280c89bf3c73b36600a}{s\+\_\+mock\+\_\+http\+\_\+connection\+\_\+make\+\_\+request}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$client\+\_\+connection, const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$options)
+\item 
+static int \mbox{\hyperlink{test__websocket__bootstrap_8c_aa9323f577bcfd3af6493721c185c1dfd}{s\+\_\+mock\+\_\+http\+\_\+stream\+\_\+activate}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+static void \mbox{\hyperlink{test__websocket__bootstrap_8c_af68aaa52d988b285050c8172eb57355b}{s\+\_\+mock\+\_\+http\+\_\+stream\+\_\+release}} (struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+static struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{test__websocket__bootstrap_8c_a772e48d698624925068f1d7b470b6fc3}{s\+\_\+mock\+\_\+http\+\_\+stream\+\_\+get\+\_\+connection}} (const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+\item 
+static int \mbox{\hyperlink{test__websocket__bootstrap_8c_a16090dc236f139477c2703aa7e65f415}{s\+\_\+mock\+\_\+http\+\_\+stream\+\_\+get\+\_\+incoming\+\_\+response\+\_\+status}} (const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream, int $\ast$out\+\_\+status)
+\item 
+static struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$ \mbox{\hyperlink{test__websocket__bootstrap_8c_a1732fb7a3bb4f2bcc8cea919f55cf107}{s\+\_\+mock\+\_\+websocket\+\_\+handler\+\_\+new}} (const struct \mbox{\hyperlink{structaws__websocket__handler__options}{aws\+\_\+websocket\+\_\+handler\+\_\+options}} $\ast$options)
+\item 
+static int \mbox{\hyperlink{test__websocket__bootstrap_8c_a3bf933074f36bee17f0deccfd8ad48ae}{s\+\_\+tester\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
+\item 
+static int \mbox{\hyperlink{test__websocket__bootstrap_8c_a61ebad8f84580de9ebcd7922325ba89e}{s\+\_\+tester\+\_\+clean\+\_\+up}} (void)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{test__websocket__bootstrap_8c_ae2e20948cdcdcb3e42316dd889825fa2}{s\+\_\+headers\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$headers\+\_\+a, size\+\_\+t num\+\_\+headers\+\_\+a, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$headers\+\_\+b, size\+\_\+t num\+\_\+headers\+\_\+b)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{test__websocket__bootstrap_8c_a5c7095ee9ff49a366853165580fa83e3}{s\+\_\+request\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request\+\_\+a, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request\+\_\+b)
+\item 
+static void \mbox{\hyperlink{test__websocket__bootstrap_8c_a9dca4e1e18982ec929f30967c346fd56}{s\+\_\+on\+\_\+websocket\+\_\+setup}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, int handshake\+\_\+response\+\_\+status, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$handshake\+\_\+response\+\_\+header\+\_\+array, size\+\_\+t num\+\_\+handshake\+\_\+response\+\_\+headers, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__websocket__bootstrap_8c_adfdca1409edbef8492dfb2b7e64c6660}{s\+\_\+on\+\_\+websocket\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{test__websocket__bootstrap_8c_a4599de0e6d339cab4957b68fb8466bef}{s\+\_\+complete\+\_\+http\+\_\+stream\+\_\+and\+\_\+connection}} (int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+\item 
+static int \mbox{\hyperlink{test__websocket__bootstrap_8c_a468f11bb39c66c7fd59719b908001efa}{s\+\_\+drive\+\_\+websocket\+\_\+connect}} (int $\ast$out\+\_\+error\+\_\+code)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_ada91da654f8955bf81663551d8d77827}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+sanity\+\_\+check)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_af1d936104bc6366d1f2f239efdfa77c2}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+golden\+\_\+path)
+\item 
+static int \mbox{\hyperlink{test__websocket__bootstrap_8c_ae2272cda090738901263c0de0de0924a}{s\+\_\+websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+step\+\_\+test}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, enum \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896}{boot\+\_\+step}} fail\+\_\+at\+\_\+step)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_a0f59c4783ed31b28b14054389817b26f}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+http\+\_\+connect)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_acaaf7919f5ef0d1b392331e5535be149}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+http\+\_\+connect\+\_\+error)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_af9d463cce70a8b747153a0a7c5a94c25}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+new\+\_\+request)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_ad8b88f02631b4170c8b74a464488b210}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+fail\+\_\+before\+\_\+response\+\_\+headers)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_acdd778b5313426b846e0f6cb7ec64b5d}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+fail\+\_\+before\+\_\+response\+\_\+headers\+\_\+done)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_a87d8fca0674aaccf07586cec083d75e4}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+response\+\_\+status)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_aede2c4aebc5fcb22acc5c0d9b0c1051f}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+new\+\_\+handler)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_a406d6dddd6930a52f1b544353abe1aba}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+report\+\_\+unexpected\+\_\+http\+\_\+shutdown)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_a57a679e6b8b1a6cc235cf2ef86b85be7}{TEST\+\_\+\+CASE}} (websocket\+\_\+boot\+\_\+fail\+\_\+because\+\_\+oom)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_a250e446f8067d5162fff77fec1c7e995}{TEST\+\_\+\+CASE}} (websocket\+\_\+handshake\+\_\+key\+\_\+max\+\_\+length)
+\item 
+\mbox{\hyperlink{test__websocket__bootstrap_8c_a473998447f3ee6126f30bc3c658120a3}{TEST\+\_\+\+CASE}} (websocket\+\_\+handshake\+\_\+key\+\_\+randomness)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const struct \mbox{\hyperlink{structaws__websocket__client__bootstrap__system__vtable}{aws\+\_\+websocket\+\_\+client\+\_\+bootstrap\+\_\+system\+\_\+vtable}} \mbox{\hyperlink{test__websocket__bootstrap_8c_a10b74eeccf72a18e55e25e54631917ab}{s\+\_\+mock\+\_\+system\+\_\+vtable}}
+\item 
+static const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} \mbox{\hyperlink{test__websocket__bootstrap_8c_ae9daa3f672a32bc4142cdb3edc433bea}{s\+\_\+handshake\+\_\+response\+\_\+headers}} \mbox{[}$\,$\mbox{]}
+\item 
+static struct \mbox{\hyperlink{structtester}{tester}} \mbox{\hyperlink{test__websocket__bootstrap_8c_a31261b77903c9a49f9c73f6115436a50}{s\+\_\+tester}}
+\item 
+static struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{test__websocket__bootstrap_8c_a75be864716ef710a608455c1a4e20346}{s\+\_\+mock\+\_\+http\+\_\+connection}} = (void $\ast$)\char`\"{}http connection\char`\"{}
+\item 
+static struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ \mbox{\hyperlink{test__websocket__bootstrap_8c_aa47245369433fc735565add568927807}{s\+\_\+mock\+\_\+stream}} = (void $\ast$)\char`\"{}stream\char`\"{}
+\item 
+static struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$ \mbox{\hyperlink{test__websocket__bootstrap_8c_a6eb52226c7fd3cd7b92ce10cd74542e9}{s\+\_\+mock\+\_\+channel}} = (void $\ast$)\char`\"{}channel\char`\"{}
+\item 
+static struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$ \mbox{\hyperlink{test__websocket__bootstrap_8c_a2350871b711e4fa2e27c510a3e6221ae}{s\+\_\+mock\+\_\+websocket}} = (void $\ast$)\char`\"{}websocket\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_ad034c5038d0bc9beb075787a01487c5f}\label{test__websocket__bootstrap_8c_ad034c5038d0bc9beb075787a01487c5f}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE}{TEST\_CASE}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+CASE(\begin{DoxyParamCaption}\item[{}]{NAME }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \mbox{\hyperlink{aws__test__harness_8h_a3698b6468787eb8b70903db17061da85}{AWS\_TEST\_CASE}}(NAME, s\_test\_\#\#NAME);                                                                                \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keywordtype}{int} s\_test\_\#\#NAME(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}})}
+
+\end{DoxyCode}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896}\label{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!boot\_step@{boot\_step}}
+\index{boot\_step@{boot\_step}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{boot\_step}{boot\_step}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896}{boot\+\_\+step}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOT\_STEP\_HTTP\_CONNECT@{BOOT\_STEP\_HTTP\_CONNECT}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!BOOT\_STEP\_HTTP\_CONNECT@{BOOT\_STEP\_HTTP\_CONNECT}}}\mbox{\Hypertarget{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a705a714939838929cb6ac403e4c43e5c}\label{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a705a714939838929cb6ac403e4c43e5c}} 
+BOOT\+\_\+\+STEP\+\_\+\+HTTP\+\_\+\+CONNECT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOT\_STEP\_HTTP\_CONNECT\_COMPLETE@{BOOT\_STEP\_HTTP\_CONNECT\_COMPLETE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!BOOT\_STEP\_HTTP\_CONNECT\_COMPLETE@{BOOT\_STEP\_HTTP\_CONNECT\_COMPLETE}}}\mbox{\Hypertarget{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a7ea7eadca898687bd3592f7e51a970c3}\label{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a7ea7eadca898687bd3592f7e51a970c3}} 
+BOOT\+\_\+\+STEP\+\_\+\+HTTP\+\_\+\+CONNECT\+\_\+\+COMPLETE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOT\_STEP\_REQUEST\_NEW@{BOOT\_STEP\_REQUEST\_NEW}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!BOOT\_STEP\_REQUEST\_NEW@{BOOT\_STEP\_REQUEST\_NEW}}}\mbox{\Hypertarget{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a0f91b308ad9ba25489c40aa12634cad4}\label{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a0f91b308ad9ba25489c40aa12634cad4}} 
+BOOT\+\_\+\+STEP\+\_\+\+REQUEST\+\_\+\+NEW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOT\_STEP\_HEADERS@{BOOT\_STEP\_HEADERS}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!BOOT\_STEP\_HEADERS@{BOOT\_STEP\_HEADERS}}}\mbox{\Hypertarget{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896aae8e82be064fef7daeae96d6e673a032}\label{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896aae8e82be064fef7daeae96d6e673a032}} 
+BOOT\+\_\+\+STEP\+\_\+\+HEADERS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOT\_STEP\_HEADERS\_DONE@{BOOT\_STEP\_HEADERS\_DONE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!BOOT\_STEP\_HEADERS\_DONE@{BOOT\_STEP\_HEADERS\_DONE}}}\mbox{\Hypertarget{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a3a7cad2e293615e9de620faf83aa0716}\label{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a3a7cad2e293615e9de620faf83aa0716}} 
+BOOT\+\_\+\+STEP\+\_\+\+HEADERS\+\_\+\+DONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOT\_STEP\_VALIDATE\_RESPONSE\_STATUS@{BOOT\_STEP\_VALIDATE\_RESPONSE\_STATUS}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!BOOT\_STEP\_VALIDATE\_RESPONSE\_STATUS@{BOOT\_STEP\_VALIDATE\_RESPONSE\_STATUS}}}\mbox{\Hypertarget{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896ac383fdbd17d8874c11ae0d03fb6e7849}\label{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896ac383fdbd17d8874c11ae0d03fb6e7849}} 
+BOOT\+\_\+\+STEP\+\_\+\+VALIDATE\+\_\+\+RESPONSE\+\_\+\+STATUS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOT\_STEP\_WEBSOCKET\_NEW@{BOOT\_STEP\_WEBSOCKET\_NEW}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!BOOT\_STEP\_WEBSOCKET\_NEW@{BOOT\_STEP\_WEBSOCKET\_NEW}}}\mbox{\Hypertarget{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a8dd98d6ceec4870bae7d0348b8d5c2b7}\label{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a8dd98d6ceec4870bae7d0348b8d5c2b7}} 
+BOOT\+\_\+\+STEP\+\_\+\+WEBSOCKET\+\_\+\+NEW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOOT\_STEP\_HTTP\_SHUTDOWN@{BOOT\_STEP\_HTTP\_SHUTDOWN}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!BOOT\_STEP\_HTTP\_SHUTDOWN@{BOOT\_STEP\_HTTP\_SHUTDOWN}}}\mbox{\Hypertarget{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a94cf249e82de703a3180e9cc306674dd}\label{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896a94cf249e82de703a3180e9cc306674dd}} 
+BOOT\+\_\+\+STEP\+\_\+\+HTTP\+\_\+\+SHUTDOWN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a4599de0e6d339cab4957b68fb8466bef}\label{test__websocket__bootstrap_8c_a4599de0e6d339cab4957b68fb8466bef}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_complete\_http\_stream\_and\_connection@{s\_complete\_http\_stream\_and\_connection}}
+\index{s\_complete\_http\_stream\_and\_connection@{s\_complete\_http\_stream\_and\_connection}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_complete\_http\_stream\_and\_connection()}{s\_complete\_http\_stream\_and\_connection()}}
+{\footnotesize\ttfamily static void s\+\_\+complete\+\_\+http\+\_\+stream\+\_\+and\+\_\+connection (\begin{DoxyParamCaption}\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a468f11bb39c66c7fd59719b908001efa}\label{test__websocket__bootstrap_8c_a468f11bb39c66c7fd59719b908001efa}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_drive\_websocket\_connect@{s\_drive\_websocket\_connect}}
+\index{s\_drive\_websocket\_connect@{s\_drive\_websocket\_connect}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_drive\_websocket\_connect()}{s\_drive\_websocket\_connect()}}
+{\footnotesize\ttfamily static int s\+\_\+drive\+\_\+websocket\+\_\+connect (\begin{DoxyParamCaption}\item[{int $\ast$}]{out\+\_\+error\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_ae2e20948cdcdcb3e42316dd889825fa2}\label{test__websocket__bootstrap_8c_ae2e20948cdcdcb3e42316dd889825fa2}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_headers\_eq@{s\_headers\_eq}}
+\index{s\_headers\_eq@{s\_headers\_eq}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_headers\_eq()}{s\_headers\_eq()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+headers\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{headers\+\_\+a,  }\item[{size\+\_\+t}]{num\+\_\+headers\+\_\+a,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{headers\+\_\+b,  }\item[{size\+\_\+t}]{num\+\_\+headers\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a7912299a63b6396a24ca3c66c9b4645b}\label{test__websocket__bootstrap_8c_a7912299a63b6396a24ca3c66c9b4645b}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_client\_connect@{s\_mock\_http\_client\_connect}}
+\index{s\_mock\_http\_client\_connect@{s\_mock\_http\_client\_connect}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_client\_connect()}{s\_mock\_http\_client\_connect()}}
+{\footnotesize\ttfamily static int s\+\_\+mock\+\_\+http\+\_\+client\+\_\+connect (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__client__connection__options}{aws\+\_\+http\+\_\+client\+\_\+connection\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a48c1598b28e2d2ead6faff430ae21235}\label{test__websocket__bootstrap_8c_a48c1598b28e2d2ead6faff430ae21235}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_connection\_close@{s\_mock\_http\_connection\_close}}
+\index{s\_mock\_http\_connection\_close@{s\_mock\_http\_connection\_close}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_connection\_close()}{s\_mock\_http\_connection\_close()}}
+{\footnotesize\ttfamily static void s\+\_\+mock\+\_\+http\+\_\+connection\+\_\+close (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a7e45f5170b0a13ad8b96397ebea38b60}\label{test__websocket__bootstrap_8c_a7e45f5170b0a13ad8b96397ebea38b60}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_connection\_get\_channel@{s\_mock\_http\_connection\_get\_channel}}
+\index{s\_mock\_http\_connection\_get\_channel@{s\_mock\_http\_connection\_get\_channel}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_connection\_get\_channel()}{s\_mock\_http\_connection\_get\_channel()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$ s\+\_\+mock\+\_\+http\+\_\+connection\+\_\+get\+\_\+channel (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a02a59facf9ec5280c89bf3c73b36600a}\label{test__websocket__bootstrap_8c_a02a59facf9ec5280c89bf3c73b36600a}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_connection\_make\_request@{s\_mock\_http\_connection\_make\_request}}
+\index{s\_mock\_http\_connection\_make\_request@{s\_mock\_http\_connection\_make\_request}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_connection\_make\_request()}{s\_mock\_http\_connection\_make\_request()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ s\+\_\+mock\+\_\+http\+\_\+connection\+\_\+make\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{client\+\_\+connection,  }\item[{const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_ab047a9065be8606efa7b6c4e9483b95c}\label{test__websocket__bootstrap_8c_ab047a9065be8606efa7b6c4e9483b95c}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_connection\_release@{s\_mock\_http\_connection\_release}}
+\index{s\_mock\_http\_connection\_release@{s\_mock\_http\_connection\_release}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_connection\_release()}{s\_mock\_http\_connection\_release()}}
+{\footnotesize\ttfamily static void s\+\_\+mock\+\_\+http\+\_\+connection\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_aa9323f577bcfd3af6493721c185c1dfd}\label{test__websocket__bootstrap_8c_aa9323f577bcfd3af6493721c185c1dfd}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_stream\_activate@{s\_mock\_http\_stream\_activate}}
+\index{s\_mock\_http\_stream\_activate@{s\_mock\_http\_stream\_activate}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_stream\_activate()}{s\_mock\_http\_stream\_activate()}}
+{\footnotesize\ttfamily static int s\+\_\+mock\+\_\+http\+\_\+stream\+\_\+activate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a772e48d698624925068f1d7b470b6fc3}\label{test__websocket__bootstrap_8c_a772e48d698624925068f1d7b470b6fc3}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_stream\_get\_connection@{s\_mock\_http\_stream\_get\_connection}}
+\index{s\_mock\_http\_stream\_get\_connection@{s\_mock\_http\_stream\_get\_connection}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_stream\_get\_connection()}{s\_mock\_http\_stream\_get\_connection()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ s\+\_\+mock\+\_\+http\+\_\+stream\+\_\+get\+\_\+connection (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a16090dc236f139477c2703aa7e65f415}\label{test__websocket__bootstrap_8c_a16090dc236f139477c2703aa7e65f415}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_stream\_get\_incoming\_response\_status@{s\_mock\_http\_stream\_get\_incoming\_response\_status}}
+\index{s\_mock\_http\_stream\_get\_incoming\_response\_status@{s\_mock\_http\_stream\_get\_incoming\_response\_status}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_stream\_get\_incoming\_response\_status()}{s\_mock\_http\_stream\_get\_incoming\_response\_status()}}
+{\footnotesize\ttfamily static int s\+\_\+mock\+\_\+http\+\_\+stream\+\_\+get\+\_\+incoming\+\_\+response\+\_\+status (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream,  }\item[{int $\ast$}]{out\+\_\+status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_af68aaa52d988b285050c8172eb57355b}\label{test__websocket__bootstrap_8c_af68aaa52d988b285050c8172eb57355b}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_stream\_release@{s\_mock\_http\_stream\_release}}
+\index{s\_mock\_http\_stream\_release@{s\_mock\_http\_stream\_release}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_stream\_release()}{s\_mock\_http\_stream\_release()}}
+{\footnotesize\ttfamily static void s\+\_\+mock\+\_\+http\+\_\+stream\+\_\+release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a1732fb7a3bb4f2bcc8cea919f55cf107}\label{test__websocket__bootstrap_8c_a1732fb7a3bb4f2bcc8cea919f55cf107}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_websocket\_handler\_new@{s\_mock\_websocket\_handler\_new}}
+\index{s\_mock\_websocket\_handler\_new@{s\_mock\_websocket\_handler\_new}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_websocket\_handler\_new()}{s\_mock\_websocket\_handler\_new()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$ s\+\_\+mock\+\_\+websocket\+\_\+handler\+\_\+new (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__websocket__handler__options}{aws\+\_\+websocket\+\_\+handler\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a9dca4e1e18982ec929f30967c346fd56}\label{test__websocket__bootstrap_8c_a9dca4e1e18982ec929f30967c346fd56}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_on\_websocket\_setup@{s\_on\_websocket\_setup}}
+\index{s\_on\_websocket\_setup@{s\_on\_websocket\_setup}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_websocket\_setup()}{s\_on\_websocket\_setup()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+websocket\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{int}]{error\+\_\+code,  }\item[{int}]{handshake\+\_\+response\+\_\+status,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{handshake\+\_\+response\+\_\+header\+\_\+array,  }\item[{size\+\_\+t}]{num\+\_\+handshake\+\_\+response\+\_\+headers,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_adfdca1409edbef8492dfb2b7e64c6660}\label{test__websocket__bootstrap_8c_adfdca1409edbef8492dfb2b7e64c6660}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_on\_websocket\_shutdown@{s\_on\_websocket\_shutdown}}
+\index{s\_on\_websocket\_shutdown@{s\_on\_websocket\_shutdown}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_on\_websocket\_shutdown()}{s\_on\_websocket\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+on\+\_\+websocket\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{int}]{error\+\_\+code,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a5c7095ee9ff49a366853165580fa83e3}\label{test__websocket__bootstrap_8c_a5c7095ee9ff49a366853165580fa83e3}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_request\_eq@{s\_request\_eq}}
+\index{s\_request\_eq@{s\_request\_eq}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_request\_eq()}{s\_request\_eq()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+request\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{request\+\_\+a,  }\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{request\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a61ebad8f84580de9ebcd7922325ba89e}\label{test__websocket__bootstrap_8c_a61ebad8f84580de9ebcd7922325ba89e}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_tester\_clean\_up@{s\_tester\_clean\_up}}
+\index{s\_tester\_clean\_up@{s\_tester\_clean\_up}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_clean\_up()}{s\_tester\_clean\_up()}}
+{\footnotesize\ttfamily static int s\+\_\+tester\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a3bf933074f36bee17f0deccfd8ad48ae}\label{test__websocket__bootstrap_8c_a3bf933074f36bee17f0deccfd8ad48ae}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_tester\_init@{s\_tester\_init}}
+\index{s\_tester\_init@{s\_tester\_init}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester\_init()}{s\_tester\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+tester\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_ae2272cda090738901263c0de0de0924a}\label{test__websocket__bootstrap_8c_ae2272cda090738901263c0de0de0924a}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_websocket\_boot\_fail\_at\_step\_test@{s\_websocket\_boot\_fail\_at\_step\_test}}
+\index{s\_websocket\_boot\_fail\_at\_step\_test@{s\_websocket\_boot\_fail\_at\_step\_test}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_websocket\_boot\_fail\_at\_step\_test()}{s\_websocket\_boot\_fail\_at\_step\_test()}}
+{\footnotesize\ttfamily static int s\+\_\+websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+step\+\_\+test (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{void $\ast$}]{ctx,  }\item[{enum \mbox{\hyperlink{test__websocket__bootstrap_8c_a47580b9ae0dc89eb305d14965a9d2896}{boot\+\_\+step}}}]{fail\+\_\+at\+\_\+step }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a0f59c4783ed31b28b14054389817b26f}\label{test__websocket__bootstrap_8c_a0f59c4783ed31b28b14054389817b26f}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [1/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+http\+\_\+connect}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_acaaf7919f5ef0d1b392331e5535be149}\label{test__websocket__bootstrap_8c_acaaf7919f5ef0d1b392331e5535be149}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [2/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+http\+\_\+connect\+\_\+error}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_aede2c4aebc5fcb22acc5c0d9b0c1051f}\label{test__websocket__bootstrap_8c_aede2c4aebc5fcb22acc5c0d9b0c1051f}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [3/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+new\+\_\+handler}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_af9d463cce70a8b747153a0a7c5a94c25}\label{test__websocket__bootstrap_8c_af9d463cce70a8b747153a0a7c5a94c25}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [4/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+new\+\_\+request}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a87d8fca0674aaccf07586cec083d75e4}\label{test__websocket__bootstrap_8c_a87d8fca0674aaccf07586cec083d75e4}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [5/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+fail\+\_\+at\+\_\+response\+\_\+status}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a57a679e6b8b1a6cc235cf2ef86b85be7}\label{test__websocket__bootstrap_8c_a57a679e6b8b1a6cc235cf2ef86b85be7}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [6/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+fail\+\_\+because\+\_\+oom}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_ad8b88f02631b4170c8b74a464488b210}\label{test__websocket__bootstrap_8c_ad8b88f02631b4170c8b74a464488b210}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [7/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+fail\+\_\+before\+\_\+response\+\_\+headers}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_acdd778b5313426b846e0f6cb7ec64b5d}\label{test__websocket__bootstrap_8c_acdd778b5313426b846e0f6cb7ec64b5d}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [8/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+fail\+\_\+before\+\_\+response\+\_\+headers\+\_\+done}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_af1d936104bc6366d1f2f239efdfa77c2}\label{test__websocket__bootstrap_8c_af1d936104bc6366d1f2f239efdfa77c2}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [9/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+golden\+\_\+path}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a406d6dddd6930a52f1b544353abe1aba}\label{test__websocket__bootstrap_8c_a406d6dddd6930a52f1b544353abe1aba}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [10/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+report\+\_\+unexpected\+\_\+http\+\_\+shutdown}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_ada91da654f8955bf81663551d8d77827}\label{test__websocket__bootstrap_8c_ada91da654f8955bf81663551d8d77827}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [11/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+boot\+\_\+sanity\+\_\+check}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a250e446f8067d5162fff77fec1c7e995}\label{test__websocket__bootstrap_8c_a250e446f8067d5162fff77fec1c7e995}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [12/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+handshake\+\_\+key\+\_\+max\+\_\+length}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a473998447f3ee6126f30bc3c658120a3}\label{test__websocket__bootstrap_8c_a473998447f3ee6126f30bc3c658120a3}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}\hspace{0.1cm}{\footnotesize\ttfamily [13/13]}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{websocket\+\_\+handshake\+\_\+key\+\_\+randomness}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_ae9daa3f672a32bc4142cdb3edc433bea}\label{test__websocket__bootstrap_8c_ae9daa3f672a32bc4142cdb3edc433bea}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_handshake\_response\_headers@{s\_handshake\_response\_headers}}
+\index{s\_handshake\_response\_headers@{s\_handshake\_response\_headers}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_handshake\_response\_headers}{s\_handshake\_response\_headers}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} s\+\_\+handshake\+\_\+response\+\_\+headers\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        .name = \mbox{\hyperlink{byte__buf_8h_a25bb15426b081484f79b35669fc81b90}{AWS\_BYTE\_CUR\_INIT\_FROM\_STRING\_LITERAL}}(\textcolor{stringliteral}{"{}Upgrade"{}}),}
+\DoxyCodeLine{        .value = \mbox{\hyperlink{byte__buf_8h_a25bb15426b081484f79b35669fc81b90}{AWS\_BYTE\_CUR\_INIT\_FROM\_STRING\_LITERAL}}(\textcolor{stringliteral}{"{}websocket"{}}),}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        .name = \mbox{\hyperlink{byte__buf_8h_a25bb15426b081484f79b35669fc81b90}{AWS\_BYTE\_CUR\_INIT\_FROM\_STRING\_LITERAL}}(\textcolor{stringliteral}{"{}Connection"{}}),}
+\DoxyCodeLine{        .value = \mbox{\hyperlink{byte__buf_8h_a25bb15426b081484f79b35669fc81b90}{AWS\_BYTE\_CUR\_INIT\_FROM\_STRING\_LITERAL}}(\textcolor{stringliteral}{"{}Upgrade"{}}),}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        .name = \mbox{\hyperlink{byte__buf_8h_a25bb15426b081484f79b35669fc81b90}{AWS\_BYTE\_CUR\_INIT\_FROM\_STRING\_LITERAL}}(\textcolor{stringliteral}{"{}Sec-\/WebSocket-\/Accept"{}}),}
+\DoxyCodeLine{        .value = \mbox{\hyperlink{byte__buf_8h_a25bb15426b081484f79b35669fc81b90}{AWS\_BYTE\_CUR\_INIT\_FROM\_STRING\_LITERAL}}(\textcolor{stringliteral}{"{}s3pPLMBiTxaQ9kYGzzhZRbK+xOo="{}}),}
+\DoxyCodeLine{    \},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a6eb52226c7fd3cd7b92ce10cd74542e9}\label{test__websocket__bootstrap_8c_a6eb52226c7fd3cd7b92ce10cd74542e9}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_channel@{s\_mock\_channel}}
+\index{s\_mock\_channel@{s\_mock\_channel}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_channel}{s\_mock\_channel}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}}$\ast$ s\+\_\+mock\+\_\+channel = (void $\ast$)\char`\"{}channel\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a75be864716ef710a608455c1a4e20346}\label{test__websocket__bootstrap_8c_a75be864716ef710a608455c1a4e20346}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_http\_connection@{s\_mock\_http\_connection}}
+\index{s\_mock\_http\_connection@{s\_mock\_http\_connection}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_http\_connection}{s\_mock\_http\_connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ s\+\_\+mock\+\_\+http\+\_\+connection = (void $\ast$)\char`\"{}http connection\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_aa47245369433fc735565add568927807}\label{test__websocket__bootstrap_8c_aa47245369433fc735565add568927807}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_stream@{s\_mock\_stream}}
+\index{s\_mock\_stream@{s\_mock\_stream}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_stream}{s\_mock\_stream}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$ s\+\_\+mock\+\_\+stream = (void $\ast$)\char`\"{}stream\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a10b74eeccf72a18e55e25e54631917ab}\label{test__websocket__bootstrap_8c_a10b74eeccf72a18e55e25e54631917ab}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_system\_vtable@{s\_mock\_system\_vtable}}
+\index{s\_mock\_system\_vtable@{s\_mock\_system\_vtable}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_system\_vtable}{s\_mock\_system\_vtable}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structaws__websocket__client__bootstrap__system__vtable}{aws\+\_\+websocket\+\_\+client\+\_\+bootstrap\+\_\+system\+\_\+vtable}} s\+\_\+mock\+\_\+system\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{}
+\DoxyCodeLine{    .aws\_http\_client\_connect = \mbox{\hyperlink{test__websocket__bootstrap_8c_a7912299a63b6396a24ca3c66c9b4645b}{s\_mock\_http\_client\_connect}},}
+\DoxyCodeLine{    .aws\_http\_connection\_release = \mbox{\hyperlink{test__websocket__bootstrap_8c_ab047a9065be8606efa7b6c4e9483b95c}{s\_mock\_http\_connection\_release}},}
+\DoxyCodeLine{    .aws\_http\_connection\_close = \mbox{\hyperlink{test__websocket__bootstrap_8c_a48c1598b28e2d2ead6faff430ae21235}{s\_mock\_http\_connection\_close}},}
+\DoxyCodeLine{    .aws\_http\_connection\_get\_channel = \mbox{\hyperlink{test__websocket__bootstrap_8c_a7e45f5170b0a13ad8b96397ebea38b60}{s\_mock\_http\_connection\_get\_channel}},}
+\DoxyCodeLine{    .aws\_http\_connection\_make\_request = \mbox{\hyperlink{test__websocket__bootstrap_8c_a02a59facf9ec5280c89bf3c73b36600a}{s\_mock\_http\_connection\_make\_request}},}
+\DoxyCodeLine{    .aws\_http\_stream\_activate = \mbox{\hyperlink{test__websocket__bootstrap_8c_aa9323f577bcfd3af6493721c185c1dfd}{s\_mock\_http\_stream\_activate}},}
+\DoxyCodeLine{    .aws\_http\_stream\_release = \mbox{\hyperlink{test__websocket__bootstrap_8c_af68aaa52d988b285050c8172eb57355b}{s\_mock\_http\_stream\_release}},}
+\DoxyCodeLine{    .aws\_http\_stream\_get\_connection = \mbox{\hyperlink{test__websocket__bootstrap_8c_a772e48d698624925068f1d7b470b6fc3}{s\_mock\_http\_stream\_get\_connection}},}
+\DoxyCodeLine{    .aws\_http\_stream\_get\_incoming\_response\_status = \mbox{\hyperlink{test__websocket__bootstrap_8c_a16090dc236f139477c2703aa7e65f415}{s\_mock\_http\_stream\_get\_incoming\_response\_status}},}
+\DoxyCodeLine{    .aws\_websocket\_handler\_new = \mbox{\hyperlink{test__websocket__bootstrap_8c_a1732fb7a3bb4f2bcc8cea919f55cf107}{s\_mock\_websocket\_handler\_new}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a2350871b711e4fa2e27c510a3e6221ae}\label{test__websocket__bootstrap_8c_a2350871b711e4fa2e27c510a3e6221ae}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_mock\_websocket@{s\_mock\_websocket}}
+\index{s\_mock\_websocket@{s\_mock\_websocket}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_mock\_websocket}{s\_mock\_websocket}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}}$\ast$ s\+\_\+mock\+\_\+websocket = (void $\ast$)\char`\"{}websocket\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__websocket__bootstrap_8c_a31261b77903c9a49f9c73f6115436a50}\label{test__websocket__bootstrap_8c_a31261b77903c9a49f9c73f6115436a50}} 
+\index{test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}!s\_tester@{s\_tester}}
+\index{s\_tester@{s\_tester}!test\_websocket\_bootstrap.c@{test\_websocket\_bootstrap.c}}
+\doxysubsubsection{\texorpdfstring{s\_tester}{s\_tester}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtester}{tester}} s\+\_\+tester\hspace{0.3cm}{\ttfamily [static]}}
+

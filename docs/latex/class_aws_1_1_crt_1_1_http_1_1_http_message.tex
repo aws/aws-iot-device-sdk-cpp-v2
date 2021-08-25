@@ -1,0 +1,183 @@
+\hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message}{}\doxysection{Aws\+::Crt\+::Http\+::Http\+Message Class Reference}
+\label{class_aws_1_1_crt_1_1_http_1_1_http_message}\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+
+
+{\ttfamily \#include $<$Http\+Request\+Response.\+h$>$}
+
+Inheritance diagram for Aws\+::Crt\+::Http\+::Http\+Message\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_aws_1_1_crt_1_1_http_1_1_http_message}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a120f0204580a5e03776b6489f0498016}{$\sim$\+Http\+Message}} ()
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_afa6b9734bc57422fa525f2987a6b138f}{Http\+Message}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a1eeebdf7b88ab5e83cd01832059deddb}{Http\+Message}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \&\&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a963c82d07488d7394e8b98f5767b8f4c}{operator=}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \&)=delete
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \& \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a0ee54ed5de003c424ad2680a83f51835}{operator=}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \&\&)=delete
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a9607a35a4ad3a0de2e62bed4eec02317}{Get\+Body}} () const noexcept
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a51f39db1a0d83910f66cca53d5b1bc5b}{Set\+Body}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a7e18a94cc1dada574dfe654349a94ec2}{Aws\+::\+Crt\+::\+Io\+::\+IStream}} $>$ \&body) noexcept
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a58e90600b6dd7783e9b4d49384d38bca}{Set\+Body}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream}} $>$ \&body) noexcept
+\item 
+size\+\_\+t \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a080624f372557c966c0952f7f8f88b94}{Get\+Header\+Count}} () const noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a06495cd28f64029ef3dbd3b831d7b932}{Http\+Header}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a3b627d87c5723ac8a2d897ffb3b3c9c4}{Get\+Header}} (size\+\_\+t \mbox{\hyperlink{namespace_aws_ac452980f2f77477ec3f0bd9e57f9123d}{index}}) const noexcept
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a8241a91d3dcfd1b94cd8f431269cf795}{Add\+Header}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a06495cd28f64029ef3dbd3b831d7b932}{Http\+Header}} \&header) noexcept
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a6283f07bc66cc433c7cbb391438d08b5}{Erase\+Header}} (size\+\_\+t \mbox{\hyperlink{namespace_aws_ac452980f2f77477ec3f0bd9e57f9123d}{index}}) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a3d241c4d4931aa06bf1bf90fb11795e0}{operator bool}} () const noexcept
+\item 
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_ab9c575ff04252836dc9d2b25fddfe804}{Get\+Underlying\+Message}} () const noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a75cee96cacf100b5b8ed2f5c927dea74}{Http\+Message}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_ad8b14bbca8abb0f1535903e7e6cba5f2}{m\+\_\+allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a963abd6f507b23919f8dcca317eb13ef}{m\+\_\+message}}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a1069f453ac53715d84fdef590fd4e959}{m\+\_\+body\+Stream}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class representing a mutable http request or response. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a120f0204580a5e03776b6489f0498016}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a120f0204580a5e03776b6489f0498016}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!````~HttpMessage@{$\sim$HttpMessage}}
+\index{````~HttpMessage@{$\sim$HttpMessage}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{$\sim$HttpMessage()}{~HttpMessage()}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::$\sim$\+Http\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_afa6b9734bc57422fa525f2987a6b138f}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_afa6b9734bc57422fa525f2987a6b138f}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!HttpMessage@{HttpMessage}}
+\index{HttpMessage@{HttpMessage}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{HttpMessage()}{HttpMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Http\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a1eeebdf7b88ab5e83cd01832059deddb}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a1eeebdf7b88ab5e83cd01832059deddb}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!HttpMessage@{HttpMessage}}
+\index{HttpMessage@{HttpMessage}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{HttpMessage()}{HttpMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Http\+Message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a75cee96cacf100b5b8ed2f5c927dea74}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a75cee96cacf100b5b8ed2f5c927dea74}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!HttpMessage@{HttpMessage}}
+\index{HttpMessage@{HttpMessage}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{HttpMessage()}{HttpMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Http\+Message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a8241a91d3dcfd1b94cd8f431269cf795}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a8241a91d3dcfd1b94cd8f431269cf795}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!AddHeader@{AddHeader}}
+\index{AddHeader@{AddHeader}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{AddHeader()}{AddHeader()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Add\+Header (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a06495cd28f64029ef3dbd3b831d7b932}{Http\+Header}} \&}]{header }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a6283f07bc66cc433c7cbb391438d08b5}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a6283f07bc66cc433c7cbb391438d08b5}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!EraseHeader@{EraseHeader}}
+\index{EraseHeader@{EraseHeader}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{EraseHeader()}{EraseHeader()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Erase\+Header (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a9607a35a4ad3a0de2e62bed4eec02317}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a9607a35a4ad3a0de2e62bed4eec02317}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!GetBody@{GetBody}}
+\index{GetBody@{GetBody}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{GetBody()}{GetBody()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream}} $>$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Get\+Body (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Gets the input stream representing the message body \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a3b627d87c5723ac8a2d897ffb3b3c9c4}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a3b627d87c5723ac8a2d897ffb3b3c9c4}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!GetHeader@{GetHeader}}
+\index{GetHeader@{GetHeader}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{GetHeader()}{GetHeader()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http_a06495cd28f64029ef3dbd3b831d7b932}{Http\+Header}} $>$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Get\+Header (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a080624f372557c966c0952f7f8f88b94}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a080624f372557c966c0952f7f8f88b94}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!GetHeaderCount@{GetHeaderCount}}
+\index{GetHeaderCount@{GetHeaderCount}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{GetHeaderCount()}{GetHeaderCount()}}
+{\footnotesize\ttfamily size\+\_\+t Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Get\+Header\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_ab9c575ff04252836dc9d2b25fddfe804}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_ab9c575ff04252836dc9d2b25fddfe804}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!GetUnderlyingMessage@{GetUnderlyingMessage}}
+\index{GetUnderlyingMessage@{GetUnderlyingMessage}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{GetUnderlyingMessage()}{GetUnderlyingMessage()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Get\+Underlying\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a3d241c4d4931aa06bf1bf90fb11795e0}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a3d241c4d4931aa06bf1bf90fb11795e0}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a963c82d07488d7394e8b98f5767b8f4c}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a963c82d07488d7394e8b98f5767b8f4c}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}}\& Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a0ee54ed5de003c424ad2680a83f51835}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a0ee54ed5de003c424ad2680a83f51835}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!operator=@{operator=}}
+\index{operator=@{operator=}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}}\& Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{Http\+Message}} \&\&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a58e90600b6dd7783e9b4d49384d38bca}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a58e90600b6dd7783e9b4d49384d38bca}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!SetBody@{SetBody}}
+\index{SetBody@{SetBody}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{SetBody()}{SetBody()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Set\+Body (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream}} $>$ \&}]{body }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a51f39db1a0d83910f66cca53d5b1bc5b}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a51f39db1a0d83910f66cca53d5b1bc5b}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!SetBody@{SetBody}}
+\index{SetBody@{SetBody}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{SetBody()}{SetBody()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::\+Set\+Body (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a7e18a94cc1dada574dfe654349a94ec2}{Aws\+::\+Crt\+::\+Io\+::\+IStream}} $>$ \&}]{body }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+Sets the input stream representing the message body 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_ad8b14bbca8abb0f1535903e7e6cba5f2}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_ad8b14bbca8abb0f1535903e7e6cba5f2}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!m\_allocator@{m\_allocator}}
+\index{m\_allocator@{m\_allocator}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{m\_allocator}{m\_allocator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}}$\ast$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::m\+\_\+allocator\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a1069f453ac53715d84fdef590fd4e959}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a1069f453ac53715d84fdef590fd4e959}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!m\_bodyStream@{m\_bodyStream}}
+\index{m\_bodyStream@{m\_bodyStream}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{m\_bodyStream}{m\_bodyStream}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream}}$>$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::m\+\_\+body\+Stream\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_message_a963abd6f507b23919f8dcca317eb13ef}\label{class_aws_1_1_crt_1_1_http_1_1_http_message_a963abd6f507b23919f8dcca317eb13ef}} 
+\index{Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}!m\_message@{m\_message}}
+\index{m\_message@{m\_message}!Aws::Crt::Http::HttpMessage@{Aws::Crt::Http::HttpMessage}}
+\doxysubsubsection{\texorpdfstring{m\_message}{m\_message}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}}$\ast$ Aws\+::\+Crt\+::\+Http\+::\+Http\+Message\+::m\+\_\+message\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/include/aws/crt/http/\mbox{\hyperlink{_http_request_response_8h}{Http\+Request\+Response.\+h}}\item 
+crt/aws-\/crt-\/cpp/source/http/\mbox{\hyperlink{_http_request_response_8cpp}{Http\+Request\+Response.\+cpp}}\end{DoxyCompactItemize}

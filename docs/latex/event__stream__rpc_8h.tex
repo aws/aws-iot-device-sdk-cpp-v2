@@ -1,0 +1,133 @@
+\hypertarget{event__stream__rpc_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/event-\/stream/include/aws/event-\/stream/event\+\_\+stream\+\_\+rpc.h File Reference}
+\label{event__stream__rpc_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/event-\/stream/include/aws/event-\/stream/event\_stream\_rpc.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/event-\/stream/include/aws/event-\/stream/event\_stream\_rpc.h}}
+{\ttfamily \#include $<$aws/event-\/stream/event\+\_\+stream.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__event__stream__rpc__message__args}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+args}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type}} \{ \newline
+\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aaad79bc58918a7b1603d9a198c1abaa9}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+APPLICATION\+\_\+\+MESSAGE}}
+, \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aee695d30181e26c3e2f517f63d4b752e}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+APPLICATION\+\_\+\+ERROR}}
+, \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aa49d18066473e6460c5fad53d59a803a}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+PING}}
+, \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a311e709b795237621b0bc063a7ac6d02}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+PING\+\_\+\+RESPONSE}}
+, \newline
+\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a7cb87fd7b84717ae6f65b7abb37d18cc}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+CONNECT}}
+, \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7ab41d10ca8043d00a5b694655f8a24eea}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+CONNECT\+\_\+\+ACK}}
+, \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a9c3ca2f481b6f89c295c91c95b9f65da}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+PROTOCOL\+\_\+\+ERROR}}
+, \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a8b1cab2eb10c50ee2a9d95fcb38463fe}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+INTERNAL\+\_\+\+ERROR}}
+, \newline
+\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7af98b8774ebf88be44354104e42384904}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+COUNT}}
+ \}
+\item 
+enum \mbox{\hyperlink{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+flag}} \{ \mbox{\hyperlink{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236a71ac50ea3c0aad0126d38bc767661c56}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+FLAG\+\_\+\+CONNECTION\+\_\+\+ACCEPTED}} = 1
+, \mbox{\hyperlink{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236a3ef6d47860f98bd01ab2780bad57cc4b}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+FLAG\+\_\+\+TERMINATE\+\_\+\+STREAM}} = 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc_8h_a9b9f8b67e96ea89a591e7de2b10b54a2}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name}}
+\item 
+\mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc_8h_ab325dbb4b2931e851f50865a4c3ea9c9}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+flags\+\_\+name}}
+\item 
+\mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc_8h_a87df29f14f03758a9e23f34af82bfa3e}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name}}
+\item 
+\mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc_8h_adc814f49c66b548a3a742b313469c710}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+operation\+\_\+name}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236}\label{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236}} 
+\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!aws\_event\_stream\_rpc\_message\_flag@{aws\_event\_stream\_rpc\_message\_flag}}
+\index{aws\_event\_stream\_rpc\_message\_flag@{aws\_event\_stream\_rpc\_message\_flag}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_message\_flag}{aws\_event\_stream\_rpc\_message\_flag}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+flag}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_FLAG\_CONNECTION\_ACCEPTED@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_FLAG\_CONNECTION\_ACCEPTED}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_FLAG\_CONNECTION\_ACCEPTED@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_FLAG\_CONNECTION\_ACCEPTED}}}\mbox{\Hypertarget{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236a71ac50ea3c0aad0126d38bc767661c56}\label{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236a71ac50ea3c0aad0126d38bc767661c56}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+FLAG\+\_\+\+CONNECTION\+\_\+\+ACCEPTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_FLAG\_TERMINATE\_STREAM@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_FLAG\_TERMINATE\_STREAM}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_FLAG\_TERMINATE\_STREAM@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_FLAG\_TERMINATE\_STREAM}}}\mbox{\Hypertarget{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236a3ef6d47860f98bd01ab2780bad57cc4b}\label{event__stream__rpc_8h_a04092c56b242cb1e39b5beac78678236a3ef6d47860f98bd01ab2780bad57cc4b}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+FLAG\+\_\+\+TERMINATE\+\_\+\+STREAM&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}} 
+\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!aws\_event\_stream\_rpc\_message\_type@{aws\_event\_stream\_rpc\_message\_type}}
+\index{aws\_event\_stream\_rpc\_message\_type@{aws\_event\_stream\_rpc\_message\_type}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_message\_type}{aws\_event\_stream\_rpc\_message\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_APPLICATION\_MESSAGE@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_APPLICATION\_MESSAGE}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_APPLICATION\_MESSAGE@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_APPLICATION\_MESSAGE}}}\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aaad79bc58918a7b1603d9a198c1abaa9}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aaad79bc58918a7b1603d9a198c1abaa9}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+APPLICATION\+\_\+\+MESSAGE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_APPLICATION\_ERROR@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_APPLICATION\_ERROR}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_APPLICATION\_ERROR@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_APPLICATION\_ERROR}}}\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aee695d30181e26c3e2f517f63d4b752e}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aee695d30181e26c3e2f517f63d4b752e}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+APPLICATION\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PING@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PING}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PING@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PING}}}\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aa49d18066473e6460c5fad53d59a803a}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7aa49d18066473e6460c5fad53d59a803a}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+PING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PING\_RESPONSE@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PING\_RESPONSE}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PING\_RESPONSE@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PING\_RESPONSE}}}\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a311e709b795237621b0bc063a7ac6d02}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a311e709b795237621b0bc063a7ac6d02}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+PING\+\_\+\+RESPONSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_CONNECT@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_CONNECT}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_CONNECT@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_CONNECT}}}\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a7cb87fd7b84717ae6f65b7abb37d18cc}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a7cb87fd7b84717ae6f65b7abb37d18cc}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+CONNECT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_CONNECT\_ACK@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_CONNECT\_ACK}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_CONNECT\_ACK@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_CONNECT\_ACK}}}\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7ab41d10ca8043d00a5b694655f8a24eea}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7ab41d10ca8043d00a5b694655f8a24eea}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+CONNECT\+\_\+\+ACK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PROTOCOL\_ERROR@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PROTOCOL\_ERROR}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PROTOCOL\_ERROR@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_PROTOCOL\_ERROR}}}\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a9c3ca2f481b6f89c295c91c95b9f65da}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a9c3ca2f481b6f89c295c91c95b9f65da}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+PROTOCOL\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_INTERNAL\_ERROR@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_INTERNAL\_ERROR}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_INTERNAL\_ERROR@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_INTERNAL\_ERROR}}}\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a8b1cab2eb10c50ee2a9d95fcb38463fe}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7a8b1cab2eb10c50ee2a9d95fcb38463fe}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+INTERNAL\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_COUNT@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_COUNT}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_COUNT@{AWS\_EVENT\_STREAM\_RPC\_MESSAGE\_TYPE\_COUNT}}}\mbox{\Hypertarget{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7af98b8774ebf88be44354104e42384904}\label{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7af98b8774ebf88be44354104e42384904}} 
+AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+RPC\+\_\+\+MESSAGE\+\_\+\+TYPE\+\_\+\+COUNT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{event__stream__rpc_8h_ab325dbb4b2931e851f50865a4c3ea9c9}\label{event__stream__rpc_8h_ab325dbb4b2931e851f50865a4c3ea9c9}} 
+\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!aws\_event\_stream\_rpc\_message\_flags\_name@{aws\_event\_stream\_rpc\_message\_flags\_name}}
+\index{aws\_event\_stream\_rpc\_message\_flags\_name@{aws\_event\_stream\_rpc\_message\_flags\_name}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_message\_flags\_name}{aws\_event\_stream\_rpc\_message\_flags\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+flags\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+
+\+:message-\/flags header name \mbox{\Hypertarget{event__stream__rpc_8h_a9b9f8b67e96ea89a591e7de2b10b54a2}\label{event__stream__rpc_8h_a9b9f8b67e96ea89a591e7de2b10b54a2}} 
+\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!aws\_event\_stream\_rpc\_message\_type\_name@{aws\_event\_stream\_rpc\_message\_type\_name}}
+\index{aws\_event\_stream\_rpc\_message\_type\_name@{aws\_event\_stream\_rpc\_message\_type\_name}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_message\_type\_name}{aws\_event\_stream\_rpc\_message\_type\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \+:message-\/type header name
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{event__stream__rpc_8h_adc814f49c66b548a3a742b313469c710}\label{event__stream__rpc_8h_adc814f49c66b548a3a742b313469c710}} 
+\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!aws\_event\_stream\_rpc\_operation\_name@{aws\_event\_stream\_rpc\_operation\_name}}
+\index{aws\_event\_stream\_rpc\_operation\_name@{aws\_event\_stream\_rpc\_operation\_name}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_operation\_name}{aws\_event\_stream\_rpc\_operation\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+operation\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+
+operation header name. \mbox{\Hypertarget{event__stream__rpc_8h_a87df29f14f03758a9e23f34af82bfa3e}\label{event__stream__rpc_8h_a87df29f14f03758a9e23f34af82bfa3e}} 
+\index{event\_stream\_rpc.h@{event\_stream\_rpc.h}!aws\_event\_stream\_rpc\_stream\_id\_name@{aws\_event\_stream\_rpc\_stream\_id\_name}}
+\index{aws\_event\_stream\_rpc\_stream\_id\_name@{aws\_event\_stream\_rpc\_stream\_id\_name}!event\_stream\_rpc.h@{event\_stream\_rpc.h}}
+\doxysubsubsection{\texorpdfstring{aws\_event\_stream\_rpc\_stream\_id\_name}{aws\_event\_stream\_rpc\_stream\_id\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\+\_\+\+EVENT\+\_\+\+STREAM\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+stream\+\_\+id\+\_\+name\hspace{0.3cm}{\ttfamily [extern]}}
+
+\+:stream-\/id header name 

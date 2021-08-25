@@ -1,0 +1,905 @@
+\hypertarget{test__h2__decoder_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\+\_\+h2\+\_\+decoder.c File Reference}
+\label{test__h2__decoder_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_h2\_decoder.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/test\_h2\_decoder.c}}
+{\ttfamily \#include \char`\"{}h2\+\_\+test\+\_\+helper.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$aws/http/private/h2\+\_\+decoder.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structfixture}{fixture}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test__h2__decoder_8c_ad034c5038d0bc9beb075787a01487c5f}{TEST\+\_\+\+CASE}}(NAME)
+\item 
+\#define \mbox{\hyperlink{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}{H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL}}(NAME,  IS\+\_\+\+SERVER,  SKIP\+\_\+\+PREFACE)
+\item 
+\#define \mbox{\hyperlink{test__h2__decoder_8c_a2a62231a9cfe574330244737089d47b7}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}}(NAME)~\mbox{\hyperlink{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}{H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL}}(NAME, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}} /$\ast$server$\ast$/, \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}} /$\ast$skip\+\_\+preface$\ast$/)
+\item 
+\#define \mbox{\hyperlink{test__h2__decoder_8c_ac1eb1a1693e30fd513ce248a05edb705}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+TEST}}(NAME)~\mbox{\hyperlink{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}{H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL}}(NAME, \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}} /$\ast$server$\ast$/, \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}} /$\ast$skip\+\_\+preface$\ast$/)
+\item 
+\#define \mbox{\hyperlink{test__h2__decoder_8c_a64b92c5a0eff838889f71f2ff7446ecb}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST}}(NAME)~\mbox{\hyperlink{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}{H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL}}(NAME, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})
+\item 
+\#define \mbox{\hyperlink{test__h2__decoder_8c_a955978bae0e49d2a64ff5058c1d55310}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST}}(NAME)~\mbox{\hyperlink{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}{H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL}}(NAME, \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{test__h2__decoder_8c_abbd980b00585ce3e53f1321a8cd6fb48}{s\+\_\+fixture\+\_\+init}} (struct \mbox{\hyperlink{structfixture}{fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+static void \mbox{\hyperlink{test__h2__decoder_8c_afdffddd4bba4e97e71e1ef1364d2819a}{s\+\_\+fixture\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structfixture}{fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}})
+\item 
+static int \mbox{\hyperlink{test__h2__decoder_8c_a3c73beb18fd7e27990c38bcdf3ace27d}{s\+\_\+fixture\+\_\+test\+\_\+setup}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{test__h2__decoder_8c_a979ef1713328ffb203093fbced6da0f5}{s\+\_\+fixture\+\_\+test\+\_\+teardown}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, int setup\+\_\+result, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ad2c3ddc4712a500c07c384472cffac7a}{TEST\+\_\+\+CASE}} (h2\+\_\+decoder\+\_\+sanity\+\_\+check)
+\item 
+static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} \mbox{\hyperlink{test__h2__decoder_8c_afbeb88d5044e0da3467061960a5dca41}{s\+\_\+decode\+\_\+all}} (struct \mbox{\hyperlink{structfixture}{fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_afeade01503e80feff780b1c9e5b606c5}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+data)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a7c72352591c5d3d7900984acf91e08f8}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+data\+\_\+padded)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a7ab0fcda46e5ac8542343777746e04e5}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+data\+\_\+pad\+\_\+length\+\_\+zero)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a736fbd19b632e884d1c7b7608b82d5d3}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+data\+\_\+empty)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a483adf1998bb2db57d2730c71bfb9dca}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+data\+\_\+empty\+\_\+padded)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ab179e188ea9f5090a386438095c5804a}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+data\+\_\+ignores\+\_\+unknown\+\_\+flags)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a55604a1687d65832f6938d6d01c69842}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+data\+\_\+payload\+\_\+max\+\_\+size\+\_\+update)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a6973976c5ad9be3608719485009590d8}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+data\+\_\+payload\+\_\+exceed\+\_\+max\+\_\+size)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_af7deed002a8d5466218cd7bcb98f61ae}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+data\+\_\+requires\+\_\+stream\+\_\+id)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a269d7a692b88081da71797831e7dc7ae}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+payload\+\_\+too\+\_\+small\+\_\+for\+\_\+pad\+\_\+length)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a4446679fd1930c96e646fe0d0846fe6f}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+stream\+\_\+id\+\_\+ignores\+\_\+reserved\+\_\+bit)
+\item 
+static int \mbox{\hyperlink{test__h2__decoder_8c_a58648730c292dcf78140cfc67ba17ba7}{s\+\_\+check\+\_\+header}} (struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$frame, size\+\_\+t header\+\_\+idx, const char $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, const char $\ast$value, enum \mbox{\hyperlink{request__response_8h_af01e6cd12390f752f0a69f36b670b21c}{aws\+\_\+http\+\_\+header\+\_\+compression}} compression)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a20ca86224431598e7a613460938bdd5a}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+headers)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a97e46b6b6f44b664a491d3f9dfbe2101}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+headers\+\_\+padded)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_aa619f046cd7975f1c4f496a3d90cdc9b}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+headers\+\_\+priority)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_acb348ab42dea93362fd73a3fdc972de7}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+headers\+\_\+ignores\+\_\+unknown\+\_\+flags)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_aa71329e9510a49ed4ae2dd3061236ac3}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+headers\+\_\+response\+\_\+informational)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ac0bc9461943dbb81cd1606d775091e99}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+headers\+\_\+request)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_aca9d508d19aa1fcbfde79a077c79e554}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+headers\+\_\+cookies)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a0750c83300a76e6178f83ca21d26bd99}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+headers\+\_\+trailer)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a974c2e010d64afb21fe256efe2f593fd}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+headers\+\_\+empty\+\_\+trailer)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a09861636c06409ba3198dbc73d717e34}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+headers\+\_\+requires\+\_\+stream\+\_\+id)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a485d33e27d61ed5f79114e607f2583bb}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+headers\+\_\+payload\+\_\+too\+\_\+small\+\_\+for\+\_\+padding)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a55db31b97e24d33ba0aeb98064a05bf9}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+headers\+\_\+payload\+\_\+too\+\_\+small\+\_\+for\+\_\+priority)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ac19bd2e844054b976ef20f78373756d4}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+blank\+\_\+name)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_acd9bdb0d627468832dbcdd42059fb331}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+illegal\+\_\+name)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ae96d700e2ae5be0b82f6d63d08a24230}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+response\+\_\+to\+\_\+server)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_aaef691787b2ea816fed1e947b94cd19e}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+request\+\_\+to\+\_\+client)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a0d55d52b3b4e7d740271da8aace61aaf}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+mixed\+\_\+pseudoheaders)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_acb5cbf30bb1bd78225e5e06ccf7ec79f}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+late\+\_\+pseudoheaders)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a6ea5ba6fced4afab11bac877e39c31a2}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+trailer\+\_\+must\+\_\+end\+\_\+stream)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a9a87b1c971326dd52c1a5ed317e57131}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+header\+\_\+continues\+\_\+hpack\+\_\+parsing)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a40114e459b57489a3e7dc7c2d00f5a40}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+continuation)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ad3eb1a42a43ccba0784c8cafdfac1980}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+continuation\+\_\+ignores\+\_\+unknown\+\_\+flags)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_acf24c7cf3e8423dc854388d14f11b2be}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+continuation\+\_\+header\+\_\+field\+\_\+spans\+\_\+frames)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ab7d0c64b68ff308af456443bc3ec7d6f}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+continuation\+\_\+many\+\_\+frames)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_abbd33605b7cb9fe3b8b412bbf732bc9a}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+continuation\+\_\+empty\+\_\+payloads)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a04d210ef452d4b6fbe79171c4be86a35}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+continuation\+\_\+frame\+\_\+expected)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a3e849d6b3fb5c737c60a4d4190f6d97e}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+continuation\+\_\+frame\+\_\+same\+\_\+stream\+\_\+expected)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a1af8e1ed345a3125654a57b59b967791}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+partial\+\_\+header)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a0382399e2b4f15013589e49816d3ac3c}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+hpack\+\_\+data)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a52594e4392d44467ecdd9ccf42e7304d}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+priority)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a1743d1dbcaed169e5ffd8fb60b81eeed}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+priority\+\_\+ignores\+\_\+unknown\+\_\+flags)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a5bde5c3c2608be9b14c275c8206bb55c}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+priority\+\_\+requires\+\_\+stream\+\_\+id)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a2e19104045d865798e547d9a0924aa2f}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+priority\+\_\+payload\+\_\+too\+\_\+small)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a88c658e87376cc6128faf9f3cb4c249f}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+priority\+\_\+payload\+\_\+too\+\_\+large)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a71491d58779e92b271be298406a2dac6}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+rst\+\_\+stream)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ad809b46101c844a2cf32ce8b4d7d64d0}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+rst\+\_\+stream\+\_\+ignores\+\_\+unknown\+\_\+flags)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a7693773291889399621e39bb2026e438}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+rst\+\_\+stream\+\_\+requires\+\_\+stream\+\_\+id)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a5351785bac836ce2d759b797595ffe46}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+rst\+\_\+stream\+\_\+payload\+\_\+too\+\_\+small)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_afa4362bab2a4917828359a0cc584817c}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+rst\+\_\+stream\+\_\+payload\+\_\+too\+\_\+large)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_afecd18ab47dc530abfc9713d71e394ac}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+settings)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a45813e02d847c60fed92ef6ab60f74f9}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+settings\+\_\+empty)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a4c568c48b02a709b5457c06149dec938}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+settings\+\_\+ack)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a6121e2055d70c82d5f24aaf0297cd08d}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+settings\+\_\+ignores\+\_\+unknown\+\_\+ids)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_aec167e05656cb810cb0c11ead2e4514a}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+settings\+\_\+ignores\+\_\+unknown\+\_\+flags)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a40490d553ebc7e5fe32fed9df1e4118d}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+ack\+\_\+with\+\_\+data)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a82dcbebe1b2e027bf32b3b82dd0d626f}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+forbids\+\_\+stream\+\_\+id)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a771ccb3f572e66ce64c0abcb6c3ceaa5}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+payload\+\_\+size)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a3735d72d445542a7c0050d9e5cdebf3d}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+invalid\+\_\+values\+\_\+enable\+\_\+push)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ae17e29f3ffb9c79ffe4ecac99e6e2b9f}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+invalid\+\_\+values\+\_\+initial\+\_\+window\+\_\+size)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_af2e941cf83d5026bb41107bbe4c4f127}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+invalid\+\_\+values\+\_\+max\+\_\+frame\+\_\+size)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a49ef31cdcb1ae2d13b8a58aa9928fbf7}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+push\+\_\+promise)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a3e4bb0cc92d5dc0ff91f18e010998308}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+push\+\_\+promise\+\_\+ignores\+\_\+unknown\+\_\+flags)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a954fb322119058b27ce5b6089e0809fe}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+push\+\_\+promise\+\_\+continuation)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a1d92fa3a259aae74298d48739da29871}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+push\+\_\+promise\+\_\+continuation\+\_\+expected)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a6fb8cbd1288132e752bda6947882e95d}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+push\+\_\+promise\+\_\+requires\+\_\+stream\+\_\+id)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_acb044de8443850b2ffc0b17fcad4853a}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+push\+\_\+promise\+\_\+must\+\_\+be\+\_\+request\+\_\+1)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a6f782a4e4e088f66f3d14d4410d3d6bf}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+malformed\+\_\+push\+\_\+promise\+\_\+must\+\_\+be\+\_\+request\+\_\+2)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ab0b249c3302bfb59cb3cb5f0b2446a35}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+push\+\_\+promise\+\_\+requires\+\_\+promised\+\_\+stream\+\_\+id)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a84eb914facdac99565a61f882463050a}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+push\+\_\+promise\+\_\+with\+\_\+enable\+\_\+push\+\_\+0)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a88bc4e912360e5184b805a0f208269c4}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+ping)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a8f58c82e65bd92ded6178ddc0baeafc0}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+ping\+\_\+ack)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a802cfe1b2dd92f449a8cda3b263d25a3}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+ping\+\_\+forbids\+\_\+stream\+\_\+id)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a49ccb543cef32fca14a24dc234edb6d0}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+ping\+\_\+payload\+\_\+too\+\_\+small)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a8fb2514d2812e43fe603b1ece8b12e24}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+ping\+\_\+payload\+\_\+too\+\_\+large)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a922c09e99072a383a1aad79b1bfdfef0}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+goaway)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a496b91b7cc111d25cceb0356ffe408db}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+goaway\+\_\+empty)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a03aec05d7e2af37c87cf35a1ef982b36}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+goaway\+\_\+forbids\+\_\+stream\+\_\+id)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a54d4ecfc0b3579ba212a9914798bbb2f}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+goaway\+\_\+payload\+\_\+too\+\_\+small)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a2c1cd5721179a01e5897d6286298400f}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+window\+\_\+update\+\_\+connection)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ab609545177f8df0646bbfdf7412419fe}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+window\+\_\+update\+\_\+stream)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a94c03635e072f464420c0a1ccbc10ea6}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+window\+\_\+update\+\_\+payload\+\_\+too\+\_\+small)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_ad36d176e71e1e0248e997d960f274ef1}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+window\+\_\+update\+\_\+payload\+\_\+too\+\_\+large)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a6c3f6c82e751b776bd066e802d6eebda}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+unknown\+\_\+frame\+\_\+type\+\_\+ignored)
+\item 
+static int \mbox{\hyperlink{test__h2__decoder_8c_aa4ed85e2ede1d58bbed2d83c7d2f224d}{s\+\_\+get\+\_\+finished\+\_\+frame\+\_\+i}} (struct \mbox{\hyperlink{structfixture}{fixture}} $\ast$\mbox{\hyperlink{structfixture}{fixture}}, size\+\_\+t i, enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}} type, uint32\+\_\+t stream\+\_\+id, struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$$\ast$out\+\_\+frame)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a20786f4186b485c97a50da5ad60eda0a}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+many\+\_\+frames\+\_\+in\+\_\+a\+\_\+row)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a11ccbd470260a07bae467a169b03b6ec}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+preface\+\_\+from\+\_\+server)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a48295accd726b1b1ac7e9675fa2c37cc}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+server\+\_\+1)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_aaeddaaa799643fe522c04eb7b72dae38}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+server\+\_\+2)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a31c510d65dae5070115843792fc23651}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+server\+\_\+3)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_afa49c21dbc0bd47190a943e13a483e8a}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+preface\+\_\+from\+\_\+client)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_aef22726ae864d56c83845894df0c5e84}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+client\+\_\+1)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_a9045b1b2d9ec14d62877ee0f7c30f932}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+client\+\_\+2)
+\item 
+\mbox{\hyperlink{test__h2__decoder_8c_af4e2f5a63b876cc5cea403aeb082db4d}{H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST}} (h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+client\+\_\+3)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{test__h2__decoder_8c_a64b92c5a0eff838889f71f2ff7446ecb}\label{test__h2__decoder_8c_a64b92c5a0eff838889f71f2ff7446ecb}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}}
+{\footnotesize\ttfamily \#define H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{NAME }\end{DoxyParamCaption})~\mbox{\hyperlink{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}{H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL}}(NAME, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a2a62231a9cfe574330244737089d47b7}\label{test__h2__decoder_8c_a2a62231a9cfe574330244737089d47b7}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST}{H2\_DECODER\_ON\_CLIENT\_TEST}}
+{\footnotesize\ttfamily \#define H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{NAME }\end{DoxyParamCaption})~\mbox{\hyperlink{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}{H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL}}(NAME, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}} /$\ast$server$\ast$/, \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}} /$\ast$skip\+\_\+preface$\ast$/)}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a955978bae0e49d2a64ff5058c1d55310}\label{test__h2__decoder_8c_a955978bae0e49d2a64ff5058c1d55310}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}}
+{\footnotesize\ttfamily \#define H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{NAME }\end{DoxyParamCaption})~\mbox{\hyperlink{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}{H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL}}(NAME, \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}}, \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ac1eb1a1693e30fd513ce248a05edb705}\label{test__h2__decoder_8c_ac1eb1a1693e30fd513ce248a05edb705}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_SERVER\_TEST@{H2\_DECODER\_ON\_SERVER\_TEST}}
+\index{H2\_DECODER\_ON\_SERVER\_TEST@{H2\_DECODER\_ON\_SERVER\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_SERVER\_TEST}{H2\_DECODER\_ON\_SERVER\_TEST}}
+{\footnotesize\ttfamily \#define H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+TEST(\begin{DoxyParamCaption}\item[{}]{NAME }\end{DoxyParamCaption})~\mbox{\hyperlink{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}{H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL}}(NAME, \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}} /$\ast$server$\ast$/, \mbox{\hyperlink{preamble_8h_a3ad98e54fafae1497bd42b491d9742cc}{true}} /$\ast$skip\+\_\+preface$\ast$/)}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}\label{test__h2__decoder_8c_af6465f3f4010924b0ace7e5f267a6eed}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_TEST\_CASE\_IMPL@{H2\_DECODER\_TEST\_CASE\_IMPL}}
+\index{H2\_DECODER\_TEST\_CASE\_IMPL@{H2\_DECODER\_TEST\_CASE\_IMPL}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_TEST\_CASE\_IMPL}{H2\_DECODER\_TEST\_CASE\_IMPL}}
+{\footnotesize\ttfamily \#define H2\+\_\+\+DECODER\+\_\+\+TEST\+\_\+\+CASE\+\_\+\+IMPL(\begin{DoxyParamCaption}\item[{}]{NAME,  }\item[{}]{IS\+\_\+\+SERVER,  }\item[{}]{SKIP\+\_\+\+PREFACE }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keyword}{struct }\mbox{\hyperlink{structfixture}{fixture}} s\_fixture\_\#\#NAME = \{                                                                         \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structfixture_ad811f123101713314db72677cba114cd}{is\_server}} = (IS\_SERVER),                                                                                      \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structfixture_a05481488088bdd2eaa36dab237d4c21e}{skip\_connection\_preface}} = (SKIP\_PREFACE),                                                                     \(\backslash\)}
+\DoxyCodeLine{    \};                                                                                                                 \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE\_FIXTURE(NAME, \mbox{\hyperlink{test__h2__decoder_8c_a3c73beb18fd7e27990c38bcdf3ace27d}{s\_fixture\_test\_setup}}, s\_test\_\#\#NAME, \mbox{\hyperlink{test__h2__decoder_8c_a979ef1713328ffb203093fbced6da0f5}{s\_fixture\_test\_teardown}}, \&s\_fixture\_\#\#NAME);      \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keyword}{struct }\mbox{\hyperlink{structfixture}{fixture}} s\_fixture\_\#\#NAME\#\#\_one\_byte\_at\_a\_time = \{                                                    \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structfixture_afe51748e7f64e5902052ffb122efb839}{one\_byte\_at\_a\_time}} = \textcolor{keyword}{true},                                                                                    \(\backslash\)}
+\DoxyCodeLine{        .is\_server = (IS\_SERVER),                                                                                      \(\backslash\)}
+\DoxyCodeLine{        .\mbox{\hyperlink{structfixture_a05481488088bdd2eaa36dab237d4c21e}{skip\_connection\_preface}} = (SKIP\_PREFACE),                                                                     \(\backslash\)}
+\DoxyCodeLine{    \};                                                                                                                 \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE\_FIXTURE(                                                                                             \(\backslash\)}
+\DoxyCodeLine{        NAME\#\#\_one\_byte\_at\_a\_time,                                                                                     \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__decoder_8c_a3c73beb18fd7e27990c38bcdf3ace27d}{s\_fixture\_test\_setup}},                                                                                          \(\backslash\)}
+\DoxyCodeLine{        s\_test\_\#\#NAME,                                                                                                 \(\backslash\)}
+\DoxyCodeLine{        \mbox{\hyperlink{test__h2__decoder_8c_a979ef1713328ffb203093fbced6da0f5}{s\_fixture\_test\_teardown}},                                                                                       \(\backslash\)}
+\DoxyCodeLine{        \&s\_fixture\_\#\#NAME\#\#\_one\_byte\_at\_a\_time)                                                                        \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keywordtype}{int} s\_test\_\#\#NAME(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}})}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{test__h2__decoder_8c_ad034c5038d0bc9beb075787a01487c5f}\label{test__h2__decoder_8c_ad034c5038d0bc9beb075787a01487c5f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE}{TEST\_CASE}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+CASE(\begin{DoxyParamCaption}\item[{}]{NAME }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keyword}{static} \textcolor{keyword}{struct }\mbox{\hyperlink{structfixture}{fixture}} s\_fixture\_\#\#NAME;                                                                            \(\backslash\)}
+\DoxyCodeLine{    AWS\_TEST\_CASE\_FIXTURE(NAME, \mbox{\hyperlink{test__h2__decoder_8c_a3c73beb18fd7e27990c38bcdf3ace27d}{s\_fixture\_test\_setup}}, s\_test\_\#\#NAME, \mbox{\hyperlink{test__h2__decoder_8c_a979ef1713328ffb203093fbced6da0f5}{s\_fixture\_test\_teardown}}, \&s\_fixture\_\#\#NAME);      \(\backslash\)}
+\DoxyCodeLine{    static \textcolor{keywordtype}{int} s\_test\_\#\#NAME(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}})}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__h2__decoder_8c_a48295accd726b1b1ac7e9675fa2c37cc}\label{test__h2__decoder_8c_a48295accd726b1b1ac7e9675fa2c37cc}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST()}{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+server\+\_\+1}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_aaeddaaa799643fe522c04eb7b72dae38}\label{test__h2__decoder_8c_aaeddaaa799643fe522c04eb7b72dae38}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST()}{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+server\+\_\+2}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a31c510d65dae5070115843792fc23651}\label{test__h2__decoder_8c_a31c510d65dae5070115843792fc23651}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST()}{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+server\+\_\+3}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a11ccbd470260a07bae467a169b03b6ec}\label{test__h2__decoder_8c_a11ccbd470260a07bae467a169b03b6ec}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST@{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST()}{H2\_DECODER\_ON\_CLIENT\_PREFACE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+PREFACE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+preface\+\_\+from\+\_\+server}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a40114e459b57489a3e7dc7c2d00f5a40}\label{test__h2__decoder_8c_a40114e459b57489a3e7dc7c2d00f5a40}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+continuation}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_abbd33605b7cb9fe3b8b412bbf732bc9a}\label{test__h2__decoder_8c_abbd33605b7cb9fe3b8b412bbf732bc9a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+continuation\+\_\+empty\+\_\+payloads}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_acf24c7cf3e8423dc854388d14f11b2be}\label{test__h2__decoder_8c_acf24c7cf3e8423dc854388d14f11b2be}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+continuation\+\_\+header\+\_\+field\+\_\+spans\+\_\+frames}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ad3eb1a42a43ccba0784c8cafdfac1980}\label{test__h2__decoder_8c_ad3eb1a42a43ccba0784c8cafdfac1980}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+continuation\+\_\+ignores\+\_\+unknown\+\_\+flags}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ab7d0c64b68ff308af456443bc3ec7d6f}\label{test__h2__decoder_8c_ab7d0c64b68ff308af456443bc3ec7d6f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [5/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+continuation\+\_\+many\+\_\+frames}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_afeade01503e80feff780b1c9e5b606c5}\label{test__h2__decoder_8c_afeade01503e80feff780b1c9e5b606c5}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [6/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+data}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a736fbd19b632e884d1c7b7608b82d5d3}\label{test__h2__decoder_8c_a736fbd19b632e884d1c7b7608b82d5d3}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [7/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+data\+\_\+empty}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a483adf1998bb2db57d2730c71bfb9dca}\label{test__h2__decoder_8c_a483adf1998bb2db57d2730c71bfb9dca}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [8/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+data\+\_\+empty\+\_\+padded}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ab179e188ea9f5090a386438095c5804a}\label{test__h2__decoder_8c_ab179e188ea9f5090a386438095c5804a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [9/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+data\+\_\+ignores\+\_\+unknown\+\_\+flags}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a7ab0fcda46e5ac8542343777746e04e5}\label{test__h2__decoder_8c_a7ab0fcda46e5ac8542343777746e04e5}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [10/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+data\+\_\+pad\+\_\+length\+\_\+zero}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a7c72352591c5d3d7900984acf91e08f8}\label{test__h2__decoder_8c_a7c72352591c5d3d7900984acf91e08f8}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [11/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+data\+\_\+padded}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a55604a1687d65832f6938d6d01c69842}\label{test__h2__decoder_8c_a55604a1687d65832f6938d6d01c69842}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [12/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+data\+\_\+payload\+\_\+max\+\_\+size\+\_\+update}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a0382399e2b4f15013589e49816d3ac3c}\label{test__h2__decoder_8c_a0382399e2b4f15013589e49816d3ac3c}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [13/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+hpack\+\_\+data}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a04d210ef452d4b6fbe79171c4be86a35}\label{test__h2__decoder_8c_a04d210ef452d4b6fbe79171c4be86a35}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [14/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+continuation\+\_\+frame\+\_\+expected}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a3e849d6b3fb5c737c60a4d4190f6d97e}\label{test__h2__decoder_8c_a3e849d6b3fb5c737c60a4d4190f6d97e}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [15/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+continuation\+\_\+frame\+\_\+same\+\_\+stream\+\_\+expected}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a6973976c5ad9be3608719485009590d8}\label{test__h2__decoder_8c_a6973976c5ad9be3608719485009590d8}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [16/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+data\+\_\+payload\+\_\+exceed\+\_\+max\+\_\+size}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_af7deed002a8d5466218cd7bcb98f61ae}\label{test__h2__decoder_8c_af7deed002a8d5466218cd7bcb98f61ae}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [17/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+data\+\_\+requires\+\_\+stream\+\_\+id}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a03aec05d7e2af37c87cf35a1ef982b36}\label{test__h2__decoder_8c_a03aec05d7e2af37c87cf35a1ef982b36}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [18/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+goaway\+\_\+forbids\+\_\+stream\+\_\+id}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a54d4ecfc0b3579ba212a9914798bbb2f}\label{test__h2__decoder_8c_a54d4ecfc0b3579ba212a9914798bbb2f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [19/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+goaway\+\_\+payload\+\_\+too\+\_\+small}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a485d33e27d61ed5f79114e607f2583bb}\label{test__h2__decoder_8c_a485d33e27d61ed5f79114e607f2583bb}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [20/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+headers\+\_\+payload\+\_\+too\+\_\+small\+\_\+for\+\_\+padding}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a55db31b97e24d33ba0aeb98064a05bf9}\label{test__h2__decoder_8c_a55db31b97e24d33ba0aeb98064a05bf9}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [21/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+headers\+\_\+payload\+\_\+too\+\_\+small\+\_\+for\+\_\+priority}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a09861636c06409ba3198dbc73d717e34}\label{test__h2__decoder_8c_a09861636c06409ba3198dbc73d717e34}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [22/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+headers\+\_\+requires\+\_\+stream\+\_\+id}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a1af8e1ed345a3125654a57b59b967791}\label{test__h2__decoder_8c_a1af8e1ed345a3125654a57b59b967791}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [23/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+partial\+\_\+header}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a269d7a692b88081da71797831e7dc7ae}\label{test__h2__decoder_8c_a269d7a692b88081da71797831e7dc7ae}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [24/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+payload\+\_\+too\+\_\+small\+\_\+for\+\_\+pad\+\_\+length}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a802cfe1b2dd92f449a8cda3b263d25a3}\label{test__h2__decoder_8c_a802cfe1b2dd92f449a8cda3b263d25a3}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [25/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+ping\+\_\+forbids\+\_\+stream\+\_\+id}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a8fb2514d2812e43fe603b1ece8b12e24}\label{test__h2__decoder_8c_a8fb2514d2812e43fe603b1ece8b12e24}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [26/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+ping\+\_\+payload\+\_\+too\+\_\+large}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a49ccb543cef32fca14a24dc234edb6d0}\label{test__h2__decoder_8c_a49ccb543cef32fca14a24dc234edb6d0}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [27/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+ping\+\_\+payload\+\_\+too\+\_\+small}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a88c658e87376cc6128faf9f3cb4c249f}\label{test__h2__decoder_8c_a88c658e87376cc6128faf9f3cb4c249f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [28/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+priority\+\_\+payload\+\_\+too\+\_\+large}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a2e19104045d865798e547d9a0924aa2f}\label{test__h2__decoder_8c_a2e19104045d865798e547d9a0924aa2f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [29/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+priority\+\_\+payload\+\_\+too\+\_\+small}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a5bde5c3c2608be9b14c275c8206bb55c}\label{test__h2__decoder_8c_a5bde5c3c2608be9b14c275c8206bb55c}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [30/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+priority\+\_\+requires\+\_\+stream\+\_\+id}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a1d92fa3a259aae74298d48739da29871}\label{test__h2__decoder_8c_a1d92fa3a259aae74298d48739da29871}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [31/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+push\+\_\+promise\+\_\+continuation\+\_\+expected}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ab0b249c3302bfb59cb3cb5f0b2446a35}\label{test__h2__decoder_8c_ab0b249c3302bfb59cb3cb5f0b2446a35}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [32/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+push\+\_\+promise\+\_\+requires\+\_\+promised\+\_\+stream\+\_\+id}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a6fb8cbd1288132e752bda6947882e95d}\label{test__h2__decoder_8c_a6fb8cbd1288132e752bda6947882e95d}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [33/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+push\+\_\+promise\+\_\+requires\+\_\+stream\+\_\+id}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a84eb914facdac99565a61f882463050a}\label{test__h2__decoder_8c_a84eb914facdac99565a61f882463050a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [34/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+push\+\_\+promise\+\_\+with\+\_\+enable\+\_\+push\+\_\+0}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_afa4362bab2a4917828359a0cc584817c}\label{test__h2__decoder_8c_afa4362bab2a4917828359a0cc584817c}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [35/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+rst\+\_\+stream\+\_\+payload\+\_\+too\+\_\+large}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a5351785bac836ce2d759b797595ffe46}\label{test__h2__decoder_8c_a5351785bac836ce2d759b797595ffe46}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [36/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+rst\+\_\+stream\+\_\+payload\+\_\+too\+\_\+small}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a7693773291889399621e39bb2026e438}\label{test__h2__decoder_8c_a7693773291889399621e39bb2026e438}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [37/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+rst\+\_\+stream\+\_\+requires\+\_\+stream\+\_\+id}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a40490d553ebc7e5fe32fed9df1e4118d}\label{test__h2__decoder_8c_a40490d553ebc7e5fe32fed9df1e4118d}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [38/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+ack\+\_\+with\+\_\+data}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a82dcbebe1b2e027bf32b3b82dd0d626f}\label{test__h2__decoder_8c_a82dcbebe1b2e027bf32b3b82dd0d626f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [39/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+forbids\+\_\+stream\+\_\+id}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a3735d72d445542a7c0050d9e5cdebf3d}\label{test__h2__decoder_8c_a3735d72d445542a7c0050d9e5cdebf3d}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [40/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+invalid\+\_\+values\+\_\+enable\+\_\+push}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ae17e29f3ffb9c79ffe4ecac99e6e2b9f}\label{test__h2__decoder_8c_ae17e29f3ffb9c79ffe4ecac99e6e2b9f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [41/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+invalid\+\_\+values\+\_\+initial\+\_\+window\+\_\+size}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_af2e941cf83d5026bb41107bbe4c4f127}\label{test__h2__decoder_8c_af2e941cf83d5026bb41107bbe4c4f127}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [42/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+invalid\+\_\+values\+\_\+max\+\_\+frame\+\_\+size}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a771ccb3f572e66ce64c0abcb6c3ceaa5}\label{test__h2__decoder_8c_a771ccb3f572e66ce64c0abcb6c3ceaa5}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [43/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+settings\+\_\+payload\+\_\+size}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ad36d176e71e1e0248e997d960f274ef1}\label{test__h2__decoder_8c_ad36d176e71e1e0248e997d960f274ef1}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [44/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+window\+\_\+update\+\_\+payload\+\_\+too\+\_\+large}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a94c03635e072f464420c0a1ccbc10ea6}\label{test__h2__decoder_8c_a94c03635e072f464420c0a1ccbc10ea6}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [45/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+window\+\_\+update\+\_\+payload\+\_\+too\+\_\+small}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a922c09e99072a383a1aad79b1bfdfef0}\label{test__h2__decoder_8c_a922c09e99072a383a1aad79b1bfdfef0}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [46/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+goaway}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a496b91b7cc111d25cceb0356ffe408db}\label{test__h2__decoder_8c_a496b91b7cc111d25cceb0356ffe408db}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [47/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+goaway\+\_\+empty}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a20ca86224431598e7a613460938bdd5a}\label{test__h2__decoder_8c_a20ca86224431598e7a613460938bdd5a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [48/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+headers}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a974c2e010d64afb21fe256efe2f593fd}\label{test__h2__decoder_8c_a974c2e010d64afb21fe256efe2f593fd}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [49/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+headers\+\_\+empty\+\_\+trailer}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_acb348ab42dea93362fd73a3fdc972de7}\label{test__h2__decoder_8c_acb348ab42dea93362fd73a3fdc972de7}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [50/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+headers\+\_\+ignores\+\_\+unknown\+\_\+flags}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a97e46b6b6f44b664a491d3f9dfbe2101}\label{test__h2__decoder_8c_a97e46b6b6f44b664a491d3f9dfbe2101}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [51/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+headers\+\_\+padded}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_aa619f046cd7975f1c4f496a3d90cdc9b}\label{test__h2__decoder_8c_aa619f046cd7975f1c4f496a3d90cdc9b}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [52/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+headers\+\_\+priority}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_aa71329e9510a49ed4ae2dd3061236ac3}\label{test__h2__decoder_8c_aa71329e9510a49ed4ae2dd3061236ac3}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [53/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+headers\+\_\+response\+\_\+informational}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a0750c83300a76e6178f83ca21d26bd99}\label{test__h2__decoder_8c_a0750c83300a76e6178f83ca21d26bd99}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [54/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+headers\+\_\+trailer}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a9a87b1c971326dd52c1a5ed317e57131}\label{test__h2__decoder_8c_a9a87b1c971326dd52c1a5ed317e57131}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [55/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+header\+\_\+continues\+\_\+hpack\+\_\+parsing}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ac19bd2e844054b976ef20f78373756d4}\label{test__h2__decoder_8c_ac19bd2e844054b976ef20f78373756d4}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [56/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+blank\+\_\+name}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_acd9bdb0d627468832dbcdd42059fb331}\label{test__h2__decoder_8c_acd9bdb0d627468832dbcdd42059fb331}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [57/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+illegal\+\_\+name}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_acb5cbf30bb1bd78225e5e06ccf7ec79f}\label{test__h2__decoder_8c_acb5cbf30bb1bd78225e5e06ccf7ec79f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [58/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+late\+\_\+pseudoheaders}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a0d55d52b3b4e7d740271da8aace61aaf}\label{test__h2__decoder_8c_a0d55d52b3b4e7d740271da8aace61aaf}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [59/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+mixed\+\_\+pseudoheaders}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_aaef691787b2ea816fed1e947b94cd19e}\label{test__h2__decoder_8c_aaef691787b2ea816fed1e947b94cd19e}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [60/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+request\+\_\+to\+\_\+client}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a6ea5ba6fced4afab11bac877e39c31a2}\label{test__h2__decoder_8c_a6ea5ba6fced4afab11bac877e39c31a2}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [61/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+trailer\+\_\+must\+\_\+end\+\_\+stream}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_acb044de8443850b2ffc0b17fcad4853a}\label{test__h2__decoder_8c_acb044de8443850b2ffc0b17fcad4853a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [62/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+push\+\_\+promise\+\_\+must\+\_\+be\+\_\+request\+\_\+1}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a6f782a4e4e088f66f3d14d4410d3d6bf}\label{test__h2__decoder_8c_a6f782a4e4e088f66f3d14d4410d3d6bf}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [63/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+push\+\_\+promise\+\_\+must\+\_\+be\+\_\+request\+\_\+2}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a20786f4186b485c97a50da5ad60eda0a}\label{test__h2__decoder_8c_a20786f4186b485c97a50da5ad60eda0a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [64/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+many\+\_\+frames\+\_\+in\+\_\+a\+\_\+row}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a88bc4e912360e5184b805a0f208269c4}\label{test__h2__decoder_8c_a88bc4e912360e5184b805a0f208269c4}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [65/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+ping}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a8f58c82e65bd92ded6178ddc0baeafc0}\label{test__h2__decoder_8c_a8f58c82e65bd92ded6178ddc0baeafc0}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [66/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+ping\+\_\+ack}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a52594e4392d44467ecdd9ccf42e7304d}\label{test__h2__decoder_8c_a52594e4392d44467ecdd9ccf42e7304d}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [67/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+priority}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a1743d1dbcaed169e5ffd8fb60b81eeed}\label{test__h2__decoder_8c_a1743d1dbcaed169e5ffd8fb60b81eeed}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [68/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+priority\+\_\+ignores\+\_\+unknown\+\_\+flags}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a49ef31cdcb1ae2d13b8a58aa9928fbf7}\label{test__h2__decoder_8c_a49ef31cdcb1ae2d13b8a58aa9928fbf7}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [69/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+push\+\_\+promise}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a954fb322119058b27ce5b6089e0809fe}\label{test__h2__decoder_8c_a954fb322119058b27ce5b6089e0809fe}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [70/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+push\+\_\+promise\+\_\+continuation}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a3e4bb0cc92d5dc0ff91f18e010998308}\label{test__h2__decoder_8c_a3e4bb0cc92d5dc0ff91f18e010998308}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [71/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+push\+\_\+promise\+\_\+ignores\+\_\+unknown\+\_\+flags}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a71491d58779e92b271be298406a2dac6}\label{test__h2__decoder_8c_a71491d58779e92b271be298406a2dac6}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [72/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+rst\+\_\+stream}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ad809b46101c844a2cf32ce8b4d7d64d0}\label{test__h2__decoder_8c_ad809b46101c844a2cf32ce8b4d7d64d0}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [73/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+rst\+\_\+stream\+\_\+ignores\+\_\+unknown\+\_\+flags}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_afecd18ab47dc530abfc9713d71e394ac}\label{test__h2__decoder_8c_afecd18ab47dc530abfc9713d71e394ac}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [74/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+settings}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a4c568c48b02a709b5457c06149dec938}\label{test__h2__decoder_8c_a4c568c48b02a709b5457c06149dec938}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [75/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+settings\+\_\+ack}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a45813e02d847c60fed92ef6ab60f74f9}\label{test__h2__decoder_8c_a45813e02d847c60fed92ef6ab60f74f9}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [76/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+settings\+\_\+empty}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_aec167e05656cb810cb0c11ead2e4514a}\label{test__h2__decoder_8c_aec167e05656cb810cb0c11ead2e4514a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [77/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+settings\+\_\+ignores\+\_\+unknown\+\_\+flags}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a6121e2055d70c82d5f24aaf0297cd08d}\label{test__h2__decoder_8c_a6121e2055d70c82d5f24aaf0297cd08d}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [78/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+settings\+\_\+ignores\+\_\+unknown\+\_\+ids}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a4446679fd1930c96e646fe0d0846fe6f}\label{test__h2__decoder_8c_a4446679fd1930c96e646fe0d0846fe6f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [79/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+stream\+\_\+id\+\_\+ignores\+\_\+reserved\+\_\+bit}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a6c3f6c82e751b776bd066e802d6eebda}\label{test__h2__decoder_8c_a6c3f6c82e751b776bd066e802d6eebda}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [80/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+unknown\+\_\+frame\+\_\+type\+\_\+ignored}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a2c1cd5721179a01e5897d6286298400f}\label{test__h2__decoder_8c_a2c1cd5721179a01e5897d6286298400f}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [81/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+window\+\_\+update\+\_\+connection}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ab609545177f8df0646bbfdf7412419fe}\label{test__h2__decoder_8c_ab609545177f8df0646bbfdf7412419fe}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}}
+\index{H2\_DECODER\_ON\_CLIENT\_TEST@{H2\_DECODER\_ON\_CLIENT\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_CLIENT\_TEST()}{H2\_DECODER\_ON\_CLIENT\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [82/82]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+CLIENT\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+window\+\_\+update\+\_\+stream}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_aef22726ae864d56c83845894df0c5e84}\label{test__h2__decoder_8c_aef22726ae864d56c83845894df0c5e84}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST()}{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+client\+\_\+1}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a9045b1b2d9ec14d62877ee0f7c30f932}\label{test__h2__decoder_8c_a9045b1b2d9ec14d62877ee0f7c30f932}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST()}{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+client\+\_\+2}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_af4e2f5a63b876cc5cea403aeb082db4d}\label{test__h2__decoder_8c_af4e2f5a63b876cc5cea403aeb082db4d}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST()}{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+err\+\_\+bad\+\_\+preface\+\_\+from\+\_\+client\+\_\+3}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_afa49c21dbc0bd47190a943e13a483e8a}\label{test__h2__decoder_8c_afa49c21dbc0bd47190a943e13a483e8a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}}
+\index{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST@{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST()}{H2\_DECODER\_ON\_SERVER\_PREFACE\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+PREFACE\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+preface\+\_\+from\+\_\+client}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_aca9d508d19aa1fcbfde79a077c79e554}\label{test__h2__decoder_8c_aca9d508d19aa1fcbfde79a077c79e554}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_SERVER\_TEST@{H2\_DECODER\_ON\_SERVER\_TEST}}
+\index{H2\_DECODER\_ON\_SERVER\_TEST@{H2\_DECODER\_ON\_SERVER\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_SERVER\_TEST()}{H2\_DECODER\_ON\_SERVER\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+headers\+\_\+cookies}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ac0bc9461943dbb81cd1606d775091e99}\label{test__h2__decoder_8c_ac0bc9461943dbb81cd1606d775091e99}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_SERVER\_TEST@{H2\_DECODER\_ON\_SERVER\_TEST}}
+\index{H2\_DECODER\_ON\_SERVER\_TEST@{H2\_DECODER\_ON\_SERVER\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_SERVER\_TEST()}{H2\_DECODER\_ON\_SERVER\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+headers\+\_\+request}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ae96d700e2ae5be0b82f6d63d08a24230}\label{test__h2__decoder_8c_ae96d700e2ae5be0b82f6d63d08a24230}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!H2\_DECODER\_ON\_SERVER\_TEST@{H2\_DECODER\_ON\_SERVER\_TEST}}
+\index{H2\_DECODER\_ON\_SERVER\_TEST@{H2\_DECODER\_ON\_SERVER\_TEST}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{H2\_DECODER\_ON\_SERVER\_TEST()}{H2\_DECODER\_ON\_SERVER\_TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily H2\+\_\+\+DECODER\+\_\+\+ON\+\_\+\+SERVER\+\_\+\+TEST (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+malformed\+\_\+headers\+\_\+response\+\_\+to\+\_\+server}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a58648730c292dcf78140cfc67ba17ba7}\label{test__h2__decoder_8c_a58648730c292dcf78140cfc67ba17ba7}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!s\_check\_header@{s\_check\_header}}
+\index{s\_check\_header@{s\_check\_header}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_check\_header()}{s\_check\_header()}}
+{\footnotesize\ttfamily static int s\+\_\+check\+\_\+header (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$}]{frame,  }\item[{size\+\_\+t}]{header\+\_\+idx,  }\item[{const char $\ast$}]{name,  }\item[{const char $\ast$}]{value,  }\item[{enum \mbox{\hyperlink{request__response_8h_af01e6cd12390f752f0a69f36b670b21c}{aws\+\_\+http\+\_\+header\+\_\+compression}}}]{compression }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_afbeb88d5044e0da3467061960a5dca41}\label{test__h2__decoder_8c_afbeb88d5044e0da3467061960a5dca41}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!s\_decode\_all@{s\_decode\_all}}
+\index{s\_decode\_all@{s\_decode\_all}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_decode\_all()}{s\_decode\_all()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}} s\+\_\+decode\+\_\+all (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfixture}{fixture}} $\ast$}]{fixture,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_afdffddd4bba4e97e71e1ef1364d2819a}\label{test__h2__decoder_8c_afdffddd4bba4e97e71e1ef1364d2819a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!s\_fixture\_clean\_up@{s\_fixture\_clean\_up}}
+\index{s\_fixture\_clean\_up@{s\_fixture\_clean\_up}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_fixture\_clean\_up()}{s\_fixture\_clean\_up()}}
+{\footnotesize\ttfamily static void s\+\_\+fixture\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfixture}{fixture}} $\ast$}]{fixture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_abbd980b00585ce3e53f1321a8cd6fb48}\label{test__h2__decoder_8c_abbd980b00585ce3e53f1321a8cd6fb48}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!s\_fixture\_init@{s\_fixture\_init}}
+\index{s\_fixture\_init@{s\_fixture\_init}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_fixture\_init()}{s\_fixture\_init()}}
+{\footnotesize\ttfamily static int s\+\_\+fixture\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfixture}{fixture}} $\ast$}]{fixture,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a3c73beb18fd7e27990c38bcdf3ace27d}\label{test__h2__decoder_8c_a3c73beb18fd7e27990c38bcdf3ace27d}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!s\_fixture\_test\_setup@{s\_fixture\_test\_setup}}
+\index{s\_fixture\_test\_setup@{s\_fixture\_test\_setup}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_fixture\_test\_setup()}{s\_fixture\_test\_setup()}}
+{\footnotesize\ttfamily static int s\+\_\+fixture\+\_\+test\+\_\+setup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_a979ef1713328ffb203093fbced6da0f5}\label{test__h2__decoder_8c_a979ef1713328ffb203093fbced6da0f5}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!s\_fixture\_test\_teardown@{s\_fixture\_test\_teardown}}
+\index{s\_fixture\_test\_teardown@{s\_fixture\_test\_teardown}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_fixture\_test\_teardown()}{s\_fixture\_test\_teardown()}}
+{\footnotesize\ttfamily static int s\+\_\+fixture\+\_\+test\+\_\+teardown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{int}]{setup\+\_\+result,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_aa4ed85e2ede1d58bbed2d83c7d2f224d}\label{test__h2__decoder_8c_aa4ed85e2ede1d58bbed2d83c7d2f224d}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!s\_get\_finished\_frame\_i@{s\_get\_finished\_frame\_i}}
+\index{s\_get\_finished\_frame\_i@{s\_get\_finished\_frame\_i}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{s\_get\_finished\_frame\_i()}{s\_get\_finished\_frame\_i()}}
+{\footnotesize\ttfamily static int s\+\_\+get\+\_\+finished\+\_\+frame\+\_\+i (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfixture}{fixture}} $\ast$}]{fixture,  }\item[{size\+\_\+t}]{i,  }\item[{enum \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\+\_\+h2\+\_\+frame\+\_\+type}}}]{type,  }\item[{uint32\+\_\+t}]{stream\+\_\+id,  }\item[{struct \mbox{\hyperlink{structh2__decoded__frame}{h2\+\_\+decoded\+\_\+frame}} $\ast$$\ast$}]{out\+\_\+frame }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{test__h2__decoder_8c_ad2c3ddc4712a500c07c384472cffac7a}\label{test__h2__decoder_8c_ad2c3ddc4712a500c07c384472cffac7a}} 
+\index{test\_h2\_decoder.c@{test\_h2\_decoder.c}!TEST\_CASE@{TEST\_CASE}}
+\index{TEST\_CASE@{TEST\_CASE}!test\_h2\_decoder.c@{test\_h2\_decoder.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_CASE()}{TEST\_CASE()}}
+{\footnotesize\ttfamily TEST\+\_\+\+CASE (\begin{DoxyParamCaption}\item[{h2\+\_\+decoder\+\_\+sanity\+\_\+check}]{ }\end{DoxyParamCaption})}
+

@@ -1,0 +1,69 @@
+\hypertarget{include_2aws_2crt_2auth_2_signing_8h_source}{}\doxysection{Signing.\+h}
+\label{include_2aws_2crt_2auth_2_signing_8h_source}\index{crt/aws-\/crt-\/cpp/include/aws/crt/auth/Signing.h@{crt/aws-\/crt-\/cpp/include/aws/crt/auth/Signing.h}}
+\mbox{\hyperlink{include_2aws_2crt_2auth_2_signing_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h}{aws/crt/Exports.h}}>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{signing__config_8h}{aws/auth/signing\_config.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16     \textcolor{keyword}{namespace }Crt}
+\DoxyCodeLine{17     \{}
+\DoxyCodeLine{18         \textcolor{keyword}{namespace }Http}
+\DoxyCodeLine{19         \{}
+\DoxyCodeLine{20             \textcolor{keyword}{class }HttpRequest;}
+\DoxyCodeLine{21         \}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23         \textcolor{keyword}{namespace }Auth}
+\DoxyCodeLine{24         \{}
+\DoxyCodeLine{25             \textcolor{keyword}{enum class} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1}{SigningConfigType}}}
+\DoxyCodeLine{26             \{}
+\DoxyCodeLine{27                 \mbox{\hyperlink{namespace_aws}{Aws}} = \mbox{\hyperlink{signing__config_8h_a1bc731b956131276da5ce9e5dba45fe6a9a560c277cfd7ed2e07d9511dfd5228a}{AWS\_SIGNING\_CONFIG\_AWS}}}
+\DoxyCodeLine{28             \};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{34             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{OnHttpRequestSigningComplete}} =}
+\DoxyCodeLine{35                 std::function<void(\textcolor{keyword}{const} std::shared\_ptr<Aws::Crt::Http::HttpRequest> \&, \textcolor{keywordtype}{int})>;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{41             \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}}}
+\DoxyCodeLine{42             \{}
+\DoxyCodeLine{43               \textcolor{keyword}{public}:}
+\DoxyCodeLine{44                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config_a10b62e13a357229949171d34897dacc3}{ISigningConfig}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{45                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config_a26065d5f67648f598dd393ea7dccef34}{ISigningConfig}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}} \&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{46                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config_af1e1823dbc271863ee605d046e57a7c1}{ISigningConfig}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}} \&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{47                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config_a08cff8a4ac2247453282d18700b96350}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}} \&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{48                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config_a393efe1d03d5bd1c73432eda90d23a5f}{operator=}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}} \&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50                 \textcolor{keyword}{virtual} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config_acfdf4a3ea3303412a096e2e42dc083a3}{\string~ISigningConfig}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{55                 \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1}{SigningConfigType}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config_ac24d854b632db03dd1680eeaeb37cb82}{GetType}}(\textcolor{keywordtype}{void}) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{56             \};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{62             \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer}{IHttpRequestSigner}}}
+\DoxyCodeLine{63             \{}
+\DoxyCodeLine{64               \textcolor{keyword}{public}:}
+\DoxyCodeLine{65                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_a0fb853087376e1b96c9aa1879d8e8dfe}{IHttpRequestSigner}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{66                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_a340f391600ba7282cdd08b4a578997b5}{IHttpRequestSigner}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer}{IHttpRequestSigner}} \&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{67                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_ae944718c24b5129de6e3425657c34434}{IHttpRequestSigner}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer}{IHttpRequestSigner}} \&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{68                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer}{IHttpRequestSigner}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_a3468fdbd10e6775ed48f1633e67922ba}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer}{IHttpRequestSigner}} \&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{69                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer}{IHttpRequestSigner}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_acd2958f3d93ae5c7634256eb68b02cd9}{operator=}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer}{IHttpRequestSigner}} \&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71                 \textcolor{keyword}{virtual} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_a0cd78d8cd9c75991a12cee92e6bd93bf}{\string~IHttpRequestSigner}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73                 \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_a72a0db10e8a8528ead4d4a4a5afe3fb0}{SignRequest}}(}
+\DoxyCodeLine{74                     \textcolor{keyword}{const} std::shared\_ptr<Aws::Crt::Http::HttpRequest> \&request,}
+\DoxyCodeLine{75                     \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}},}
+\DoxyCodeLine{76                     \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{OnHttpRequestSigningComplete}} \&completionCallback) = 0;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{81                 \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_ac97a65937fbc26e702fe1176743dd81a}{IsValid}}() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{82             \};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84         \} \textcolor{comment}{// namespace Auth}}
+\DoxyCodeLine{85     \}     \textcolor{comment}{// namespace Crt}}
+\DoxyCodeLine{86 \} \textcolor{comment}{// namespace Aws}}
+
+\end{DoxyCode}

@@ -1,0 +1,31 @@
+\hypertarget{namespacetest__dynamic__record__sizes}{}\doxysection{test\+\_\+dynamic\+\_\+record\+\_\+sizes Namespace Reference}
+\label{namespacetest__dynamic__record__sizes}\index{test\_dynamic\_record\_sizes@{test\_dynamic\_record\_sizes}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacetest__dynamic__record__sizes_a23739fe9f1f7c3b91dbb6b2d513abef9}{find\+\_\+fragmented\+\_\+packet}} (results)
+\item 
+def \mbox{\hyperlink{namespacetest__dynamic__record__sizes_a6f64bebdfd59b50bf0b326e8e4bc9141}{test\+\_\+s2n\+\_\+client\+\_\+dynamic\+\_\+record}} (custom\+\_\+mtu, managed\+\_\+process, cipher, curve, provider, protocol, certificate)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacetest__dynamic__record__sizes_a23739fe9f1f7c3b91dbb6b2d513abef9}\label{namespacetest__dynamic__record__sizes_a23739fe9f1f7c3b91dbb6b2d513abef9}} 
+\index{test\_dynamic\_record\_sizes@{test\_dynamic\_record\_sizes}!find\_fragmented\_packet@{find\_fragmented\_packet}}
+\index{find\_fragmented\_packet@{find\_fragmented\_packet}!test\_dynamic\_record\_sizes@{test\_dynamic\_record\_sizes}}
+\doxysubsubsection{\texorpdfstring{find\_fragmented\_packet()}{find\_fragmented\_packet()}}
+{\footnotesize\ttfamily def test\+\_\+dynamic\+\_\+record\+\_\+sizes.\+find\+\_\+fragmented\+\_\+packet (\begin{DoxyParamCaption}\item[{}]{results }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function searches Tcpdump's standard output and looks for packets
+that have a length larger than the MTU(hardcoded to 1500) of the device.
+
+When traffic goes over a known port, such as 8080, the protocol is appended
+to the output line. This happens even when using `-nn` on the command line.
+That is why we need two ways to detect the length of the packet.
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespacetest__dynamic__record__sizes_a6f64bebdfd59b50bf0b326e8e4bc9141}\label{namespacetest__dynamic__record__sizes_a6f64bebdfd59b50bf0b326e8e4bc9141}} 
+\index{test\_dynamic\_record\_sizes@{test\_dynamic\_record\_sizes}!test\_s2n\_client\_dynamic\_record@{test\_s2n\_client\_dynamic\_record}}
+\index{test\_s2n\_client\_dynamic\_record@{test\_s2n\_client\_dynamic\_record}!test\_dynamic\_record\_sizes@{test\_dynamic\_record\_sizes}}
+\doxysubsubsection{\texorpdfstring{test\_s2n\_client\_dynamic\_record()}{test\_s2n\_client\_dynamic\_record()}}
+{\footnotesize\ttfamily def test\+\_\+dynamic\+\_\+record\+\_\+sizes.\+test\+\_\+s2n\+\_\+client\+\_\+dynamic\+\_\+record (\begin{DoxyParamCaption}\item[{}]{custom\+\_\+mtu,  }\item[{}]{managed\+\_\+process,  }\item[{}]{cipher,  }\item[{}]{curve,  }\item[{}]{provider,  }\item[{}]{protocol,  }\item[{}]{certificate }\end{DoxyParamCaption})}
+

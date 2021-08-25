@@ -1,0 +1,33 @@
+\hypertarget{s2n__auth__selection_8h_source}{}\doxysection{s2n\+\_\+auth\+\_\+selection.\+h}
+\label{s2n__auth__selection_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_auth\_selection.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_auth\_selection.h}}
+\mbox{\hyperlink{s2n__auth__selection_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__cipher__suites_8h}{tls/s2n\_cipher\_suites.h}}"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__certificate_8h}{crypto/s2n\_certificate.h}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__signature_8h}{crypto/s2n\_signature.h}}"{}}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__auth__selection_8h_a47e1a6386472275cf182a706858482cd}{s2n\_is\_cipher\_suite\_valid\_for\_auth}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cipher__suite}{s2n\_cipher\_suite}} *cipher\_suite);}
+\DoxyCodeLine{24 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__auth__selection_8h_abfc2e32d9a9ed98338ec5354777fe9a4}{s2n\_is\_sig\_scheme\_valid\_for\_auth}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__signature__scheme}{s2n\_signature\_scheme}} *sig\_scheme);}
+\DoxyCodeLine{25 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__auth__selection_8h_a0e4b1262c986f79856af5d4ebfa1453a}{s2n\_is\_cert\_type\_valid\_for\_auth}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \mbox{\hyperlink{s2n__pkey_8h_a9f8ffb59dc71a9fab8e636972279d441}{s2n\_pkey\_type}} cert\_type);}
+\DoxyCodeLine{26 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__auth__selection_8h_a6a42ae456bfc44b1d842fb235261e667}{s2n\_select\_certs\_for\_server\_auth}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\_cert\_chain\_and\_key}} **chosen\_certs);}
+\DoxyCodeLine{27 }
+
+\end{DoxyCode}

@@ -1,0 +1,48 @@
+\hypertarget{fixed__header_8h_source}{}\doxysection{fixed\+\_\+header.\+h}
+\label{fixed__header_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/fixed\_header.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/include/aws/mqtt/private/fixed\_header.h}}
+\mbox{\hyperlink{fixed__header_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_MQTT\_PRIVATE\_FIXED\_HEADER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_MQTT\_PRIVATE\_FIXED\_HEADER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{byte__buf_8h}{aws/common/byte\_buf.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{mqtt_8h}{aws/mqtt/mqtt.h}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{comment}{/* Represents the types of the MQTT control packets [MQTT-\/2.2.1]. */}}
+\DoxyCodeLine{14 \textcolor{keyword}{enum} \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76b}{aws\_mqtt\_packet\_type}} \{}
+\DoxyCodeLine{15     \textcolor{comment}{/* reserved = 0, */}}
+\DoxyCodeLine{16     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba99734393e34e1e61b4b2e5c602f53c91}{AWS\_MQTT\_PACKET\_CONNECT}} = 1,}
+\DoxyCodeLine{17     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba2108dbd2a3f439451ee4e32d53898956}{AWS\_MQTT\_PACKET\_CONNACK}},}
+\DoxyCodeLine{18     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76bacd45afc7af08360344a0fea3eed8ad4b}{AWS\_MQTT\_PACKET\_PUBLISH}},}
+\DoxyCodeLine{19     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba060f050de2ef371f7ad98d9ee641e0dd}{AWS\_MQTT\_PACKET\_PUBACK}},}
+\DoxyCodeLine{20     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba65d573f6c1f8181a772efb4dd8a1effe}{AWS\_MQTT\_PACKET\_PUBREC}},}
+\DoxyCodeLine{21     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba29a0995ce4a53f581863edfeeb9fc04b}{AWS\_MQTT\_PACKET\_PUBREL}},}
+\DoxyCodeLine{22     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba6cb375c50cf561003401b7d3ba887a4c}{AWS\_MQTT\_PACKET\_PUBCOMP}},}
+\DoxyCodeLine{23     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba15a8338ec273cf47ce9095f7bc93035f}{AWS\_MQTT\_PACKET\_SUBSCRIBE}},}
+\DoxyCodeLine{24     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76bacad98f3f71143c5bda6ff01aeefa5774}{AWS\_MQTT\_PACKET\_SUBACK}},}
+\DoxyCodeLine{25     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba62a145f94054b9a6c576a477ef2a4493}{AWS\_MQTT\_PACKET\_UNSUBSCRIBE}},}
+\DoxyCodeLine{26     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76bac1ad94afed5ad3899297bde8d308b21f}{AWS\_MQTT\_PACKET\_UNSUBACK}},}
+\DoxyCodeLine{27     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76bae304d95e5c3dc7bc8c176c4ceaefcd9d}{AWS\_MQTT\_PACKET\_PINGREQ}},}
+\DoxyCodeLine{28     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba60506be43a604e73b85f946abecb8977}{AWS\_MQTT\_PACKET\_PINGRESP}},}
+\DoxyCodeLine{29     \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76ba1474d7fc80d41f6f4917ed1495815e8c}{AWS\_MQTT\_PACKET\_DISCONNECT}},}
+\DoxyCodeLine{30     \textcolor{comment}{/* reserved = 15, */}}
+\DoxyCodeLine{31 \};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{36 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\_mqtt\_fixed\_header}} \{}
+\DoxyCodeLine{37     \textcolor{keyword}{enum} \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76b}{aws\_mqtt\_packet\_type}} \mbox{\hyperlink{structaws__mqtt__fixed__header_a724b4d3a8b7880ff4b97edc862ed7817}{packet\_type}};}
+\DoxyCodeLine{38     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__mqtt__fixed__header_abdf28898269e6c6d469bced5d305bc5f}{remaining\_length}};}
+\DoxyCodeLine{39     uint8\_t \mbox{\hyperlink{structaws__mqtt__fixed__header_ac3f704704e412ab659b86e6a0b1cc52c}{flags}};}
+\DoxyCodeLine{40 \};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{45 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}} \textcolor{keyword}{enum} \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76b}{aws\_mqtt\_packet\_type}} \mbox{\hyperlink{fixed__header_8h_aa939da00e598d66eb84f34e3158f7a57}{aws\_mqtt\_get\_packet\_type}}(\textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}});}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{50 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{fixed__header_8h_a6d354ca6b4241f1a141feea8dcc98e00}{aws\_mqtt\_packet\_has\_flags}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\_mqtt\_fixed\_header}} *header);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{55 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{fixed__header_8h_aa5f35b376f25f953c5817eb5dac6ca99}{aws\_mqtt\_fixed\_header\_encode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\_mqtt\_fixed\_header}} *header);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{60 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{fixed__header_8h_a8a64e315b3f42d32a5e0a262bced13e0}{aws\_mqtt\_fixed\_header\_decode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *cur, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\_mqtt\_fixed\_header}} *header);}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_MQTT\_PRIVATE\_FIXED\_HEADER\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

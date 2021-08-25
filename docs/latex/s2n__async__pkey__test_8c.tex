@@ -1,0 +1,100 @@
+\hypertarget{s2n__async__pkey__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+async\+\_\+pkey\+\_\+test.c File Reference}
+\label{s2n__async__pkey__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_async\_pkey\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_async\_pkey\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+security\+\_\+policies.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int() \mbox{\hyperlink{s2n__async__pkey__test_8c_aae7fcd6a9ab59b92c36f27bb933aab32}{async\+\_\+handler}}(struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__async__pkey__test_8c_a4277d714aac280b2358ed245a1560726}{async\+\_\+handler\+\_\+fail}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__async__pkey__test_8c_aca7936cc2d994cc09226d1c69e54a730}{async\+\_\+handler\+\_\+wipe\+\_\+connection\+\_\+and\+\_\+apply}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__async__pkey__test_8c_a3ec3f0ccd46e84967daa7953ef89bca5}{async\+\_\+handler\+\_\+free\+\_\+pkey\+\_\+op}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__async__pkey__test_8c_afa1b694057b29625425464f41fccc316}{try\+\_\+handshake}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$server\+\_\+conn, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$client\+\_\+conn, \mbox{\hyperlink{s2n__async__pkey__test_8c_aae7fcd6a9ab59b92c36f27bb933aab32}{async\+\_\+handler}} \mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+\item 
+int \mbox{\hyperlink{s2n__async__pkey__test_8c_a28bb560233e5024245fbde8097ef63bc}{async\+\_\+pkey\+\_\+apply\+\_\+in\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op)
+\item 
+int \mbox{\hyperlink{s2n__async__pkey__test_8c_abc1a419fcccaa6984699f0afe0c29c6f}{async\+\_\+pkey\+\_\+store\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$op)
+\item 
+int \mbox{\hyperlink{s2n__async__pkey__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$ \mbox{\hyperlink{s2n__async__pkey__test_8c_aca648abde9d5246b9a2af8ccaec8ed25}{pkey\+\_\+op}} = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{s2n__async__pkey__test_8c_aae7fcd6a9ab59b92c36f27bb933aab32}\label{s2n__async__pkey__test_8c_aae7fcd6a9ab59b92c36f27bb933aab32}} 
+\index{s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}!async\_handler@{async\_handler}}
+\index{async\_handler@{async\_handler}!s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_handler}{async\_handler}}
+{\footnotesize\ttfamily typedef int() async\+\_\+handler(struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__async__pkey__test_8c_a4277d714aac280b2358ed245a1560726}\label{s2n__async__pkey__test_8c_a4277d714aac280b2358ed245a1560726}} 
+\index{s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}!async\_handler\_fail@{async\_handler\_fail}}
+\index{async\_handler\_fail@{async\_handler\_fail}!s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_handler\_fail()}{async\_handler\_fail()}}
+{\footnotesize\ttfamily static int async\+\_\+handler\+\_\+fail (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey__test_8c_a3ec3f0ccd46e84967daa7953ef89bca5}\label{s2n__async__pkey__test_8c_a3ec3f0ccd46e84967daa7953ef89bca5}} 
+\index{s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}!async\_handler\_free\_pkey\_op@{async\_handler\_free\_pkey\_op}}
+\index{async\_handler\_free\_pkey\_op@{async\_handler\_free\_pkey\_op}!s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_handler\_free\_pkey\_op()}{async\_handler\_free\_pkey\_op()}}
+{\footnotesize\ttfamily static int async\+\_\+handler\+\_\+free\+\_\+pkey\+\_\+op (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey__test_8c_aca7936cc2d994cc09226d1c69e54a730}\label{s2n__async__pkey__test_8c_aca7936cc2d994cc09226d1c69e54a730}} 
+\index{s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}!async\_handler\_wipe\_connection\_and\_apply@{async\_handler\_wipe\_connection\_and\_apply}}
+\index{async\_handler\_wipe\_connection\_and\_apply@{async\_handler\_wipe\_connection\_and\_apply}!s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_handler\_wipe\_connection\_and\_apply()}{async\_handler\_wipe\_connection\_and\_apply()}}
+{\footnotesize\ttfamily static int async\+\_\+handler\+\_\+wipe\+\_\+connection\+\_\+and\+\_\+apply (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__async__pkey__test_8c_a28bb560233e5024245fbde8097ef63bc}\label{s2n__async__pkey__test_8c_a28bb560233e5024245fbde8097ef63bc}} 
+\index{s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}!async\_pkey\_apply\_in\_callback@{async\_pkey\_apply\_in\_callback}}
+\index{async\_pkey\_apply\_in\_callback@{async\_pkey\_apply\_in\_callback}!s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_pkey\_apply\_in\_callback()}{async\_pkey\_apply\_in\_callback()}}
+{\footnotesize\ttfamily int async\+\_\+pkey\+\_\+apply\+\_\+in\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__async__pkey__test_8c_abc1a419fcccaa6984699f0afe0c29c6f}\label{s2n__async__pkey__test_8c_abc1a419fcccaa6984699f0afe0c29c6f}} 
+\index{s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}!async\_pkey\_store\_callback@{async\_pkey\_store\_callback}}
+\index{async\_pkey\_store\_callback@{async\_pkey\_store\_callback}!s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}}
+\doxysubsubsection{\texorpdfstring{async\_pkey\_store\_callback()}{async\_pkey\_store\_callback()}}
+{\footnotesize\ttfamily int async\+\_\+pkey\+\_\+store\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}} $\ast$}]{op }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__async__pkey__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__async__pkey__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}!main@{main}}
+\index{main@{main}!s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__async__pkey__test_8c_afa1b694057b29625425464f41fccc316}\label{s2n__async__pkey__test_8c_afa1b694057b29625425464f41fccc316}} 
+\index{s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}!try\_handshake@{try\_handshake}}
+\index{try\_handshake@{try\_handshake}!s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}}
+\doxysubsubsection{\texorpdfstring{try\_handshake()}{try\_handshake()}}
+{\footnotesize\ttfamily static int try\+\_\+handshake (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{server\+\_\+conn,  }\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{client\+\_\+conn,  }\item[{\mbox{\hyperlink{s2n__async__pkey__test_8c_aae7fcd6a9ab59b92c36f27bb933aab32}{async\+\_\+handler}}}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__async__pkey__test_8c_aca648abde9d5246b9a2af8ccaec8ed25}\label{s2n__async__pkey__test_8c_aca648abde9d5246b9a2af8ccaec8ed25}} 
+\index{s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}!pkey\_op@{pkey\_op}}
+\index{pkey\_op@{pkey\_op}!s2n\_async\_pkey\_test.c@{s2n\_async\_pkey\_test.c}}
+\doxysubsubsection{\texorpdfstring{pkey\_op}{pkey\_op}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__async__pkey__op}{s2n\+\_\+async\+\_\+pkey\+\_\+op}}$\ast$ pkey\+\_\+op = NULL}
+

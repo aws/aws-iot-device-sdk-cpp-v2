@@ -1,0 +1,70 @@
+\hypertarget{echo_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/bin/echo.c File Reference}
+\label{echo_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/bin/echo.c@{crt/aws-\/crt-\/cpp/crt/s2n/bin/echo.c}}
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$sys/ioctl.\+h$>$}\newline
+{\ttfamily \#include $<$poll.\+h$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include $<$error/s2n\+\_\+errno.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/rsa.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/x509.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+rsa.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+pkey.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{echo_8c_a760187b3306953ffc9d81e6cdac20afc}{STDIO\+\_\+\+BUFSIZE}}~10240
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{echo_8c_ac84a28b38226f2a7876a9373c8063faa}{print\+\_\+s2n\+\_\+error}} (const char $\ast$app\+\_\+error)
+\item 
+static int \mbox{\hyperlink{echo_8c_a11ca10bc7c0656b7d9c41831adf3ecd5}{wait\+\_\+for\+\_\+event}} (int fd, \mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}} \mbox{\hyperlink{https_8c_ad4675d5d36c6aef3c5f7eaca1d538053}{blocked}})
+\item 
+int \mbox{\hyperlink{echo_8c_a30cb1484807947414d8457a99f37f781}{negotiate}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, int fd)
+\item 
+int \mbox{\hyperlink{echo_8c_adc37832656c6aa5548ab17e981176dab}{echo}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, int sockfd)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{echo_8c_a760187b3306953ffc9d81e6cdac20afc}\label{echo_8c_a760187b3306953ffc9d81e6cdac20afc}} 
+\index{echo.c@{echo.c}!STDIO\_BUFSIZE@{STDIO\_BUFSIZE}}
+\index{STDIO\_BUFSIZE@{STDIO\_BUFSIZE}!echo.c@{echo.c}}
+\doxysubsubsection{\texorpdfstring{STDIO\_BUFSIZE}{STDIO\_BUFSIZE}}
+{\footnotesize\ttfamily \#define STDIO\+\_\+\+BUFSIZE~10240}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{echo_8c_adc37832656c6aa5548ab17e981176dab}\label{echo_8c_adc37832656c6aa5548ab17e981176dab}} 
+\index{echo.c@{echo.c}!echo@{echo}}
+\index{echo@{echo}!echo.c@{echo.c}}
+\doxysubsubsection{\texorpdfstring{echo()}{echo()}}
+{\footnotesize\ttfamily int echo (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{int}]{sockfd }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{echo_8c_a30cb1484807947414d8457a99f37f781}\label{echo_8c_a30cb1484807947414d8457a99f37f781}} 
+\index{echo.c@{echo.c}!negotiate@{negotiate}}
+\index{negotiate@{negotiate}!echo.c@{echo.c}}
+\doxysubsubsection{\texorpdfstring{negotiate()}{negotiate()}}
+{\footnotesize\ttfamily int negotiate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{int}]{fd }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{echo_8c_ac84a28b38226f2a7876a9373c8063faa}\label{echo_8c_ac84a28b38226f2a7876a9373c8063faa}} 
+\index{echo.c@{echo.c}!print\_s2n\_error@{print\_s2n\_error}}
+\index{print\_s2n\_error@{print\_s2n\_error}!echo.c@{echo.c}}
+\doxysubsubsection{\texorpdfstring{print\_s2n\_error()}{print\_s2n\_error()}}
+{\footnotesize\ttfamily void print\+\_\+s2n\+\_\+error (\begin{DoxyParamCaption}\item[{const char $\ast$}]{app\+\_\+error }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{echo_8c_a11ca10bc7c0656b7d9c41831adf3ecd5}\label{echo_8c_a11ca10bc7c0656b7d9c41831adf3ecd5}} 
+\index{echo.c@{echo.c}!wait\_for\_event@{wait\_for\_event}}
+\index{wait\_for\_event@{wait\_for\_event}!echo.c@{echo.c}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_event()}{wait\_for\_event()}}
+{\footnotesize\ttfamily static int wait\+\_\+for\+\_\+event (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{\mbox{\hyperlink{s2n_8h_af70ca0b089daa98cd79a424d3f6af15d}{s2n\+\_\+blocked\+\_\+status}}}]{blocked }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

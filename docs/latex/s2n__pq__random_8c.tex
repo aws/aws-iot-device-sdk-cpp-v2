@@ -1,0 +1,50 @@
+\hypertarget{s2n__pq__random_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/s2n\+\_\+pq\+\_\+random.c File Reference}
+\label{s2n__pq__random_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/s2n\_pq\_random.c@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/s2n\_pq\_random.c}}
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+random.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+result.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}s2n\+\_\+pq\+\_\+random.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__pq__random_8c_a774210b79411f90a1190f64c5ed26ad1}{s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+default}} (uint8\+\_\+t $\ast$buffer, uint32\+\_\+t num\+\_\+bytes)
+\item 
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__pq__random_8c_aca9ff0949b1e6fdd222e453816da5ecd}{s2n\+\_\+get\+\_\+random\+\_\+bytes}} (uint8\+\_\+t $\ast$buffer, uint32\+\_\+t num\+\_\+bytes)
+\item 
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__pq__random_8c_a1d03fa33435dcdaf1cd8a2b2cae1c986}{s2n\+\_\+set\+\_\+rand\+\_\+bytes\+\_\+callback\+\_\+for\+\_\+testing}} (\mbox{\hyperlink{s2n__pq__random_8h_a5a6112093e9a89256efd0b4997d38d51}{s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+callback}} rand\+\_\+bytes\+\_\+callback)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{s2n__pq__random_8h_a5a6112093e9a89256efd0b4997d38d51}{s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+callback}} \mbox{\hyperlink{s2n__pq__random_8c_a62060fbd5532707091dbb7f01b6ca768}{s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+cb}} = \mbox{\hyperlink{s2n__pq__random_8c_a774210b79411f90a1190f64c5ed26ad1}{s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+default}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__pq__random_8c_aca9ff0949b1e6fdd222e453816da5ecd}\label{s2n__pq__random_8c_aca9ff0949b1e6fdd222e453816da5ecd}} 
+\index{s2n\_pq\_random.c@{s2n\_pq\_random.c}!s2n\_get\_random\_bytes@{s2n\_get\_random\_bytes}}
+\index{s2n\_get\_random\_bytes@{s2n\_get\_random\_bytes}!s2n\_pq\_random.c@{s2n\_pq\_random.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_get\_random\_bytes()}{s2n\_get\_random\_bytes()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+get\+\_\+random\+\_\+bytes (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buffer,  }\item[{uint32\+\_\+t}]{num\+\_\+bytes }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__pq__random_8c_a774210b79411f90a1190f64c5ed26ad1}\label{s2n__pq__random_8c_a774210b79411f90a1190f64c5ed26ad1}} 
+\index{s2n\_pq\_random.c@{s2n\_pq\_random.c}!s2n\_get\_random\_bytes\_default@{s2n\_get\_random\_bytes\_default}}
+\index{s2n\_get\_random\_bytes\_default@{s2n\_get\_random\_bytes\_default}!s2n\_pq\_random.c@{s2n\_pq\_random.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_get\_random\_bytes\_default()}{s2n\_get\_random\_bytes\_default()}}
+{\footnotesize\ttfamily static S2\+N\+\_\+\+RESULT s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+default (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{buffer,  }\item[{uint32\+\_\+t}]{num\+\_\+bytes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__pq__random_8c_a1d03fa33435dcdaf1cd8a2b2cae1c986}\label{s2n__pq__random_8c_a1d03fa33435dcdaf1cd8a2b2cae1c986}} 
+\index{s2n\_pq\_random.c@{s2n\_pq\_random.c}!s2n\_set\_rand\_bytes\_callback\_for\_testing@{s2n\_set\_rand\_bytes\_callback\_for\_testing}}
+\index{s2n\_set\_rand\_bytes\_callback\_for\_testing@{s2n\_set\_rand\_bytes\_callback\_for\_testing}!s2n\_pq\_random.c@{s2n\_pq\_random.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_rand\_bytes\_callback\_for\_testing()}{s2n\_set\_rand\_bytes\_callback\_for\_testing()}}
+{\footnotesize\ttfamily S2\+N\+\_\+\+RESULT s2n\+\_\+set\+\_\+rand\+\_\+bytes\+\_\+callback\+\_\+for\+\_\+testing (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__pq__random_8h_a5a6112093e9a89256efd0b4997d38d51}{s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+callback}}}]{rand\+\_\+bytes\+\_\+callback }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__pq__random_8c_a62060fbd5532707091dbb7f01b6ca768}\label{s2n__pq__random_8c_a62060fbd5532707091dbb7f01b6ca768}} 
+\index{s2n\_pq\_random.c@{s2n\_pq\_random.c}!s2n\_get\_random\_bytes\_cb@{s2n\_get\_random\_bytes\_cb}}
+\index{s2n\_get\_random\_bytes\_cb@{s2n\_get\_random\_bytes\_cb}!s2n\_pq\_random.c@{s2n\_pq\_random.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_get\_random\_bytes\_cb}{s2n\_get\_random\_bytes\_cb}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__pq__random_8h_a5a6112093e9a89256efd0b4997d38d51}{s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+callback}} s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+cb = \mbox{\hyperlink{s2n__pq__random_8c_a774210b79411f90a1190f64c5ed26ad1}{s2n\+\_\+get\+\_\+random\+\_\+bytes\+\_\+default}}\hspace{0.3cm}{\ttfamily [static]}}
+

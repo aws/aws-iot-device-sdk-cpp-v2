@@ -1,0 +1,50 @@
+\hypertarget{namespaces2n__tls13__handshake__tests}{}\doxysection{s2n\+\_\+tls13\+\_\+handshake\+\_\+tests Namespace Reference}
+\label{namespaces2n__tls13__handshake__tests}\index{s2n\_tls13\_handshake\_tests@{s2n\_tls13\_handshake\_tests}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespaces2n__tls13__handshake__tests_a038cc80c5341e9f78458b50cbe347d8c}{verify\+\_\+hrr\+\_\+random\+\_\+data}} (server, client)
+\item 
+def \mbox{\hyperlink{namespaces2n__tls13__handshake__tests_ae2dfcd85e4e2f57062f88ac2a98f3af7}{key\+\_\+update\+\_\+send\+\_\+and\+\_\+receive}} (client, server, key\+\_\+update\+\_\+request)
+\item 
+def \mbox{\hyperlink{namespaces2n__tls13__handshake__tests_ad2aa640e4c8853db3c2e439f02613eb4}{key\+\_\+update\+\_\+test}} (server, client)
+\item 
+def \mbox{\hyperlink{namespaces2n__tls13__handshake__tests_a0884b3a702791ae6ebec682f081ec43b}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaces2n__tls13__handshake__tests_ae2dfcd85e4e2f57062f88ac2a98f3af7}\label{namespaces2n__tls13__handshake__tests_ae2dfcd85e4e2f57062f88ac2a98f3af7}} 
+\index{s2n\_tls13\_handshake\_tests@{s2n\_tls13\_handshake\_tests}!key\_update\_send\_and\_receive@{key\_update\_send\_and\_receive}}
+\index{key\_update\_send\_and\_receive@{key\_update\_send\_and\_receive}!s2n\_tls13\_handshake\_tests@{s2n\_tls13\_handshake\_tests}}
+\doxysubsubsection{\texorpdfstring{key\_update\_send\_and\_receive()}{key\_update\_send\_and\_receive()}}
+{\footnotesize\ttfamily def s2n\+\_\+tls13\+\_\+handshake\+\_\+tests.\+key\+\_\+update\+\_\+send\+\_\+and\+\_\+receive (\begin{DoxyParamCaption}\item[{}]{client,  }\item[{}]{server,  }\item[{}]{key\+\_\+update\+\_\+request }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__tls13__handshake__tests_ad2aa640e4c8853db3c2e439f02613eb4}\label{namespaces2n__tls13__handshake__tests_ad2aa640e4c8853db3c2e439f02613eb4}} 
+\index{s2n\_tls13\_handshake\_tests@{s2n\_tls13\_handshake\_tests}!key\_update\_test@{key\_update\_test}}
+\index{key\_update\_test@{key\_update\_test}!s2n\_tls13\_handshake\_tests@{s2n\_tls13\_handshake\_tests}}
+\doxysubsubsection{\texorpdfstring{key\_update\_test()}{key\_update\_test()}}
+{\footnotesize\ttfamily def s2n\+\_\+tls13\+\_\+handshake\+\_\+tests.\+key\+\_\+update\+\_\+test (\begin{DoxyParamCaption}\item[{}]{server,  }\item[{}]{client }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This test proves that both a s2n server and an Openssl client can continue to encrypt and decrypt 
+messages after a key update. It tests both update_not_requested
+and update_requested functionality described in RFC:
+https://tools.ietf.org/html/rfc8446#section-4.6.3 
+\end{DoxyVerb}
+ \mbox{\Hypertarget{namespaces2n__tls13__handshake__tests_a0884b3a702791ae6ebec682f081ec43b}\label{namespaces2n__tls13__handshake__tests_a0884b3a702791ae6ebec682f081ec43b}} 
+\index{s2n\_tls13\_handshake\_tests@{s2n\_tls13\_handshake\_tests}!main@{main}}
+\index{main@{main}!s2n\_tls13\_handshake\_tests@{s2n\_tls13\_handshake\_tests}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily def s2n\+\_\+tls13\+\_\+handshake\+\_\+tests.\+main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaces2n__tls13__handshake__tests_a038cc80c5341e9f78458b50cbe347d8c}\label{namespaces2n__tls13__handshake__tests_a038cc80c5341e9f78458b50cbe347d8c}} 
+\index{s2n\_tls13\_handshake\_tests@{s2n\_tls13\_handshake\_tests}!verify\_hrr\_random\_data@{verify\_hrr\_random\_data}}
+\index{verify\_hrr\_random\_data@{verify\_hrr\_random\_data}!s2n\_tls13\_handshake\_tests@{s2n\_tls13\_handshake\_tests}}
+\doxysubsubsection{\texorpdfstring{verify\_hrr\_random\_data()}{verify\_hrr\_random\_data()}}
+{\footnotesize\ttfamily def s2n\+\_\+tls13\+\_\+handshake\+\_\+tests.\+verify\+\_\+hrr\+\_\+random\+\_\+data (\begin{DoxyParamCaption}\item[{}]{server,  }\item[{}]{client }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This callback verifies a HelloRetryRequest was sent from the S2N
+server. If the rest of the integration test passes as well, then
+the handshake completed after the HelloRetryRequest was sent.
+\end{DoxyVerb}
+ 

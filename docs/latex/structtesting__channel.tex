@@ -1,0 +1,113 @@
+\hypertarget{structtesting__channel}{}\doxysection{testing\+\_\+channel Struct Reference}
+\label{structtesting__channel}\index{testing\_channel@{testing\_channel}}
+
+
+{\ttfamily \#include $<$io\+\_\+testing\+\_\+channel.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{structtesting__channel_a517631ea2c920150581b62d9d23eeced}{loop}}
+\item 
+struct \mbox{\hyperlink{structtesting__loop}{testing\+\_\+loop}} $\ast$ \mbox{\hyperlink{structtesting__channel_aceb18b4fdb056794b5e681c1d2589e72}{loop\+\_\+impl}}
+\item 
+struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$ \mbox{\hyperlink{structtesting__channel_a3c47300ab9ec67858454fc2f1c655aa8}{channel}}
+\item 
+struct \mbox{\hyperlink{structtesting__channel__handler}{testing\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{structtesting__channel_a576375f210c0238ace467a36e73e51c2}{left\+\_\+handler\+\_\+impl}}
+\item 
+struct \mbox{\hyperlink{structtesting__channel__handler}{testing\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{structtesting__channel_a69d97f0f11887e8f5cb088b3327b8a4b}{right\+\_\+handler\+\_\+impl}}
+\item 
+struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$ \mbox{\hyperlink{structtesting__channel_ac7e58c1126cda4b17c8124bef562aa80}{left\+\_\+handler\+\_\+slot}}
+\item 
+struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$ \mbox{\hyperlink{structtesting__channel_ad71703683e1de7c1864696c42f5e5aa3}{right\+\_\+handler\+\_\+slot}}
+\item 
+void($\ast$ \mbox{\hyperlink{structtesting__channel_ae2af8569632923522ec16d45bfecc5f1}{channel\+\_\+shutdown}} )(int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+void $\ast$ \mbox{\hyperlink{structtesting__channel_a197cbdb7806dcd48863851b99b45f97a}{channel\+\_\+shutdown\+\_\+user\+\_\+data}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtesting__channel_a0a4c5f7391dbb20439daaf9753459367}{channel\+\_\+setup\+\_\+completed}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtesting__channel_a53adfd841d6df0a7a99764c14a7b905c}{channel\+\_\+shutdown\+\_\+completed}}
+\item 
+int \mbox{\hyperlink{structtesting__channel_a3547c39d3b8c05dd80fcefbf1a3cc82e}{channel\+\_\+shutdown\+\_\+error\+\_\+code}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structtesting__channel_a3c47300ab9ec67858454fc2f1c655aa8}\label{structtesting__channel_a3c47300ab9ec67858454fc2f1c655aa8}} 
+\index{testing\_channel@{testing\_channel}!channel@{channel}}
+\index{channel@{channel}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{channel}{channel}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}}$\ast$ testing\+\_\+channel\+::channel}
+
+\mbox{\Hypertarget{structtesting__channel_a0a4c5f7391dbb20439daaf9753459367}\label{structtesting__channel_a0a4c5f7391dbb20439daaf9753459367}} 
+\index{testing\_channel@{testing\_channel}!channel\_setup\_completed@{channel\_setup\_completed}}
+\index{channel\_setup\_completed@{channel\_setup\_completed}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{channel\_setup\_completed}{channel\_setup\_completed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} testing\+\_\+channel\+::channel\+\_\+setup\+\_\+completed}
+
+\mbox{\Hypertarget{structtesting__channel_ae2af8569632923522ec16d45bfecc5f1}\label{structtesting__channel_ae2af8569632923522ec16d45bfecc5f1}} 
+\index{testing\_channel@{testing\_channel}!channel\_shutdown@{channel\_shutdown}}
+\index{channel\_shutdown@{channel\_shutdown}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{channel\_shutdown}{channel\_shutdown}}
+{\footnotesize\ttfamily void($\ast$ testing\+\_\+channel\+::channel\+\_\+shutdown) (int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+
+\mbox{\Hypertarget{structtesting__channel_a53adfd841d6df0a7a99764c14a7b905c}\label{structtesting__channel_a53adfd841d6df0a7a99764c14a7b905c}} 
+\index{testing\_channel@{testing\_channel}!channel\_shutdown\_completed@{channel\_shutdown\_completed}}
+\index{channel\_shutdown\_completed@{channel\_shutdown\_completed}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{channel\_shutdown\_completed}{channel\_shutdown\_completed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} testing\+\_\+channel\+::channel\+\_\+shutdown\+\_\+completed}
+
+\mbox{\Hypertarget{structtesting__channel_a3547c39d3b8c05dd80fcefbf1a3cc82e}\label{structtesting__channel_a3547c39d3b8c05dd80fcefbf1a3cc82e}} 
+\index{testing\_channel@{testing\_channel}!channel\_shutdown\_error\_code@{channel\_shutdown\_error\_code}}
+\index{channel\_shutdown\_error\_code@{channel\_shutdown\_error\_code}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{channel\_shutdown\_error\_code}{channel\_shutdown\_error\_code}}
+{\footnotesize\ttfamily int testing\+\_\+channel\+::channel\+\_\+shutdown\+\_\+error\+\_\+code}
+
+\mbox{\Hypertarget{structtesting__channel_a197cbdb7806dcd48863851b99b45f97a}\label{structtesting__channel_a197cbdb7806dcd48863851b99b45f97a}} 
+\index{testing\_channel@{testing\_channel}!channel\_shutdown\_user\_data@{channel\_shutdown\_user\_data}}
+\index{channel\_shutdown\_user\_data@{channel\_shutdown\_user\_data}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{channel\_shutdown\_user\_data}{channel\_shutdown\_user\_data}}
+{\footnotesize\ttfamily void$\ast$ testing\+\_\+channel\+::channel\+\_\+shutdown\+\_\+user\+\_\+data}
+
+\mbox{\Hypertarget{structtesting__channel_a576375f210c0238ace467a36e73e51c2}\label{structtesting__channel_a576375f210c0238ace467a36e73e51c2}} 
+\index{testing\_channel@{testing\_channel}!left\_handler\_impl@{left\_handler\_impl}}
+\index{left\_handler\_impl@{left\_handler\_impl}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{left\_handler\_impl}{left\_handler\_impl}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtesting__channel__handler}{testing\+\_\+channel\+\_\+handler}}$\ast$ testing\+\_\+channel\+::left\+\_\+handler\+\_\+impl}
+
+\mbox{\Hypertarget{structtesting__channel_ac7e58c1126cda4b17c8124bef562aa80}\label{structtesting__channel_ac7e58c1126cda4b17c8124bef562aa80}} 
+\index{testing\_channel@{testing\_channel}!left\_handler\_slot@{left\_handler\_slot}}
+\index{left\_handler\_slot@{left\_handler\_slot}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{left\_handler\_slot}{left\_handler\_slot}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}}$\ast$ testing\+\_\+channel\+::left\+\_\+handler\+\_\+slot}
+
+\mbox{\Hypertarget{structtesting__channel_a517631ea2c920150581b62d9d23eeced}\label{structtesting__channel_a517631ea2c920150581b62d9d23eeced}} 
+\index{testing\_channel@{testing\_channel}!loop@{loop}}
+\index{loop@{loop}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{loop}{loop}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ testing\+\_\+channel\+::loop}
+
+\mbox{\Hypertarget{structtesting__channel_aceb18b4fdb056794b5e681c1d2589e72}\label{structtesting__channel_aceb18b4fdb056794b5e681c1d2589e72}} 
+\index{testing\_channel@{testing\_channel}!loop\_impl@{loop\_impl}}
+\index{loop\_impl@{loop\_impl}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{loop\_impl}{loop\_impl}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtesting__loop}{testing\+\_\+loop}}$\ast$ testing\+\_\+channel\+::loop\+\_\+impl}
+
+\mbox{\Hypertarget{structtesting__channel_a69d97f0f11887e8f5cb088b3327b8a4b}\label{structtesting__channel_a69d97f0f11887e8f5cb088b3327b8a4b}} 
+\index{testing\_channel@{testing\_channel}!right\_handler\_impl@{right\_handler\_impl}}
+\index{right\_handler\_impl@{right\_handler\_impl}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{right\_handler\_impl}{right\_handler\_impl}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structtesting__channel__handler}{testing\+\_\+channel\+\_\+handler}}$\ast$ testing\+\_\+channel\+::right\+\_\+handler\+\_\+impl}
+
+\mbox{\Hypertarget{structtesting__channel_ad71703683e1de7c1864696c42f5e5aa3}\label{structtesting__channel_ad71703683e1de7c1864696c42f5e5aa3}} 
+\index{testing\_channel@{testing\_channel}!right\_handler\_slot@{right\_handler\_slot}}
+\index{right\_handler\_slot@{right\_handler\_slot}!testing\_channel@{testing\_channel}}
+\doxysubsubsection{\texorpdfstring{right\_handler\_slot}{right\_handler\_slot}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}}$\ast$ testing\+\_\+channel\+::right\+\_\+handler\+\_\+slot}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/testing/\mbox{\hyperlink{io__testing__channel_8h}{io\+\_\+testing\+\_\+channel.\+h}}\end{DoxyCompactItemize}

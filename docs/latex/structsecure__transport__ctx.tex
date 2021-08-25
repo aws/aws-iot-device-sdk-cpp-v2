@@ -1,0 +1,69 @@
+\hypertarget{structsecure__transport__ctx}{}\doxysection{secure\+\_\+transport\+\_\+ctx Struct Reference}
+\label{structsecure__transport__ctx}\index{secure\_transport\_ctx@{secure\_transport\_ctx}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}} \mbox{\hyperlink{structsecure__transport__ctx_a04180efd6fa3c41562bce9cd0f231ce9}{ctx}}
+\item 
+CFAllocator\+Ref \mbox{\hyperlink{structsecure__transport__ctx_addf9b14c699cd9a80adf1e3eb783f366}{wrapped\+\_\+allocator}}
+\item 
+CFArray\+Ref \mbox{\hyperlink{structsecure__transport__ctx_ac00e6e807344f27a9e20c407c5923f58}{certs}}
+\item 
+CFArray\+Ref \mbox{\hyperlink{structsecure__transport__ctx_a9bd7aeaae5a44561fcf5b2dc3efc5756}{ca\+\_\+cert}}
+\item 
+enum \mbox{\hyperlink{tls__channel__handler_8h_abbbf7d37040b11f033b40ca7bac19e88}{aws\+\_\+tls\+\_\+versions}} \mbox{\hyperlink{structsecure__transport__ctx_ad7df40b3934b463817e82c285e8745d0}{minimum\+\_\+version}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structsecure__transport__ctx_a3496b236995c46acf901d12e724a777f}{alpn\+\_\+list}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structsecure__transport__ctx_a04e57e603a450cf45ed2abd8a3969229}{veriify\+\_\+peer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structsecure__transport__ctx_a3496b236995c46acf901d12e724a777f}\label{structsecure__transport__ctx_a3496b236995c46acf901d12e724a777f}} 
+\index{secure\_transport\_ctx@{secure\_transport\_ctx}!alpn\_list@{alpn\_list}}
+\index{alpn\_list@{alpn\_list}!secure\_transport\_ctx@{secure\_transport\_ctx}}
+\doxysubsubsection{\texorpdfstring{alpn\_list}{alpn\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ secure\+\_\+transport\+\_\+ctx\+::alpn\+\_\+list}
+
+\mbox{\Hypertarget{structsecure__transport__ctx_a9bd7aeaae5a44561fcf5b2dc3efc5756}\label{structsecure__transport__ctx_a9bd7aeaae5a44561fcf5b2dc3efc5756}} 
+\index{secure\_transport\_ctx@{secure\_transport\_ctx}!ca\_cert@{ca\_cert}}
+\index{ca\_cert@{ca\_cert}!secure\_transport\_ctx@{secure\_transport\_ctx}}
+\doxysubsubsection{\texorpdfstring{ca\_cert}{ca\_cert}}
+{\footnotesize\ttfamily CFArray\+Ref secure\+\_\+transport\+\_\+ctx\+::ca\+\_\+cert}
+
+\mbox{\Hypertarget{structsecure__transport__ctx_ac00e6e807344f27a9e20c407c5923f58}\label{structsecure__transport__ctx_ac00e6e807344f27a9e20c407c5923f58}} 
+\index{secure\_transport\_ctx@{secure\_transport\_ctx}!certs@{certs}}
+\index{certs@{certs}!secure\_transport\_ctx@{secure\_transport\_ctx}}
+\doxysubsubsection{\texorpdfstring{certs}{certs}}
+{\footnotesize\ttfamily CFArray\+Ref secure\+\_\+transport\+\_\+ctx\+::certs}
+
+\mbox{\Hypertarget{structsecure__transport__ctx_a04180efd6fa3c41562bce9cd0f231ce9}\label{structsecure__transport__ctx_a04180efd6fa3c41562bce9cd0f231ce9}} 
+\index{secure\_transport\_ctx@{secure\_transport\_ctx}!ctx@{ctx}}
+\index{ctx@{ctx}!secure\_transport\_ctx@{secure\_transport\_ctx}}
+\doxysubsubsection{\texorpdfstring{ctx}{ctx}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}} secure\+\_\+transport\+\_\+ctx\+::ctx}
+
+\mbox{\Hypertarget{structsecure__transport__ctx_ad7df40b3934b463817e82c285e8745d0}\label{structsecure__transport__ctx_ad7df40b3934b463817e82c285e8745d0}} 
+\index{secure\_transport\_ctx@{secure\_transport\_ctx}!minimum\_version@{minimum\_version}}
+\index{minimum\_version@{minimum\_version}!secure\_transport\_ctx@{secure\_transport\_ctx}}
+\doxysubsubsection{\texorpdfstring{minimum\_version}{minimum\_version}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{tls__channel__handler_8h_abbbf7d37040b11f033b40ca7bac19e88}{aws\+\_\+tls\+\_\+versions}} secure\+\_\+transport\+\_\+ctx\+::minimum\+\_\+version}
+
+\mbox{\Hypertarget{structsecure__transport__ctx_a04e57e603a450cf45ed2abd8a3969229}\label{structsecure__transport__ctx_a04e57e603a450cf45ed2abd8a3969229}} 
+\index{secure\_transport\_ctx@{secure\_transport\_ctx}!veriify\_peer@{veriify\_peer}}
+\index{veriify\_peer@{veriify\_peer}!secure\_transport\_ctx@{secure\_transport\_ctx}}
+\doxysubsubsection{\texorpdfstring{veriify\_peer}{veriify\_peer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} secure\+\_\+transport\+\_\+ctx\+::veriify\+\_\+peer}
+
+\mbox{\Hypertarget{structsecure__transport__ctx_addf9b14c699cd9a80adf1e3eb783f366}\label{structsecure__transport__ctx_addf9b14c699cd9a80adf1e3eb783f366}} 
+\index{secure\_transport\_ctx@{secure\_transport\_ctx}!wrapped\_allocator@{wrapped\_allocator}}
+\index{wrapped\_allocator@{wrapped\_allocator}!secure\_transport\_ctx@{secure\_transport\_ctx}}
+\doxysubsubsection{\texorpdfstring{wrapped\_allocator}{wrapped\_allocator}}
+{\footnotesize\ttfamily CFAllocator\+Ref secure\+\_\+transport\+\_\+ctx\+::wrapped\+\_\+allocator}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/darwin/\mbox{\hyperlink{secure__transport__tls__channel__handler_8c}{secure\+\_\+transport\+\_\+tls\+\_\+channel\+\_\+handler.\+c}}\end{DoxyCompactItemize}

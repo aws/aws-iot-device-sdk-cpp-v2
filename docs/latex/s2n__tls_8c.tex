@@ -1,0 +1,47 @@
+\hypertarget{s2n__tls_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+tls.c File Reference}
+\label{s2n__tls_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_tls.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_tls.c}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+parameters.\+h\char`\"{}}\newline
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{s2n__tls_8c_a0cb08e556504a133390d419bf05db470}{s2n\+\_\+highest\+\_\+protocol\+\_\+version}} = \mbox{\hyperlink{s2n_8h_a0529ae368bcd797cb65244b4ce05a6a6}{S2\+N\+\_\+\+TLS13}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{s2n__tls_8c_ad5a7e348cbdec0362cfe222d43cfdb93}{s2n\+\_\+unknown\+\_\+protocol\+\_\+version}} = \mbox{\hyperlink{s2n_8h_afda361f68c34e244d0b0c97297fa096f}{S2\+N\+\_\+\+UNKNOWN\+\_\+\+PROTOCOL\+\_\+\+VERSION}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{s2n__tls_8c_a0b0ac16a66e80193cb3ef1731485ed96}{mfl\+\_\+code\+\_\+to\+\_\+length}} \mbox{[}5\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__tls_8c_a0b0ac16a66e80193cb3ef1731485ed96}\label{s2n__tls_8c_a0b0ac16a66e80193cb3ef1731485ed96}} 
+\index{s2n\_tls.c@{s2n\_tls.c}!mfl\_code\_to\_length@{mfl\_code\_to\_length}}
+\index{mfl\_code\_to\_length@{mfl\_code\_to\_length}!s2n\_tls.c@{s2n\_tls.c}}
+\doxysubsubsection{\texorpdfstring{mfl\_code\_to\_length}{mfl\_code\_to\_length}}
+{\footnotesize\ttfamily uint16\+\_\+t mfl\+\_\+code\+\_\+to\+\_\+length\mbox{[}5\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \mbox{\hyperlink{s2n__tls__parameters_8h_ada4e604168bdf4db921dd181cdbc12fb}{S2N\_DEFAULT\_FRAGMENT\_LENGTH}},     }
+\DoxyCodeLine{    512,                             }
+\DoxyCodeLine{    1024,                            }
+\DoxyCodeLine{    2048,                            }
+\DoxyCodeLine{    4096,                            }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__tls_8c_a0cb08e556504a133390d419bf05db470}\label{s2n__tls_8c_a0cb08e556504a133390d419bf05db470}} 
+\index{s2n\_tls.c@{s2n\_tls.c}!s2n\_highest\_protocol\_version@{s2n\_highest\_protocol\_version}}
+\index{s2n\_highest\_protocol\_version@{s2n\_highest\_protocol\_version}!s2n\_tls.c@{s2n\_tls.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_highest\_protocol\_version}{s2n\_highest\_protocol\_version}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+highest\+\_\+protocol\+\_\+version = \mbox{\hyperlink{s2n_8h_a0529ae368bcd797cb65244b4ce05a6a6}{S2\+N\+\_\+\+TLS13}}}
+
+\mbox{\Hypertarget{s2n__tls_8c_ad5a7e348cbdec0362cfe222d43cfdb93}\label{s2n__tls_8c_ad5a7e348cbdec0362cfe222d43cfdb93}} 
+\index{s2n\_tls.c@{s2n\_tls.c}!s2n\_unknown\_protocol\_version@{s2n\_unknown\_protocol\_version}}
+\index{s2n\_unknown\_protocol\_version@{s2n\_unknown\_protocol\_version}!s2n\_tls.c@{s2n\_tls.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_unknown\_protocol\_version}{s2n\_unknown\_protocol\_version}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+unknown\+\_\+protocol\+\_\+version = \mbox{\hyperlink{s2n_8h_afda361f68c34e244d0b0c97297fa096f}{S2\+N\+\_\+\+UNKNOWN\+\_\+\+PROTOCOL\+\_\+\+VERSION}}}
+

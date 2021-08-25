@@ -1,0 +1,238 @@
+\hypertarget{s2n__test_8h_source}{}\doxysection{s2n\+\_\+test.\+h}
+\label{s2n__test_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/s2n\_test.h@{crt/aws-\/crt-\/cpp/crt/s2n/tests/s2n\_test.h}}
+\mbox{\hyperlink{s2n__test_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <errno.h>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{string_8h}{string.h}}>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <unistd.h>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crypto_8h}{openssl/crypto.h}}>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__errno_8h}{error/s2n\_errno.h}}"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}utils/s2n\_safety.h"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include "{}utils/s2n\_result.h"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__tls13_8h}{tls/s2n\_tls13.h}}"{}}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__test_8h_a125a07facfdab18ee2d8495d4f8c9d5b}{test\_count}};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{comment}{/* Macro definitions for calls that occur within BEGIN\_TEST() and END\_TEST() to preserve the SKIPPED test behavior}}
+\DoxyCodeLine{33 \textcolor{comment}{ * by ignoring the test\_count, keeping it as 0 to indicate that a test was skipped. */}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define EXPECT\_TRUE\_WITHOUT\_COUNT( condition )    do \{ if ( !(condition) ) \{ FAIL\_MSG( \#condition "{} is not true "{}}); \} \} while(0)}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define EXPECT\_FALSE\_WITHOUT\_COUNT( condition )   EXPECT\_TRUE\_WITHOUT\_COUNT( !(condition) )}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define EXPECT\_NOT\_EQUAL\_WITHOUT\_COUNT( p1, p2 )  EXPECT\_FALSE\_WITHOUT\_COUNT( (p1) == (p2) )}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#define EXPECT\_SUCCESS\_WITHOUT\_COUNT( function\_call )  EXPECT\_NOT\_EQUAL\_WITHOUT\_COUNT( (function\_call) ,  -\/1 )}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{45 \textcolor{preprocessor}{\#define BEGIN\_TEST()                                           \(\backslash\)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{  do \{                                                         \(\backslash\)}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{    test\_count = 0;                                            \(\backslash\)}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{    EXPECT\_SUCCESS\_WITHOUT\_COUNT(s2n\_in\_unit\_test\_set(true));  \(\backslash\)}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{    S2N\_TEST\_OPTIONALLY\_ENABLE\_FIPS\_MODE();                    \(\backslash\)}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{    EXPECT\_SUCCESS\_WITHOUT\_COUNT(s2n\_init());                  \(\backslash\)}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{    fprintf(stdout, "{}Running \%-\/50s ... "{}}, \_\_FILE\_\_);           \(\backslash\)}
+\DoxyCodeLine{52   \} while(0)}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define END\_TEST()   do \{ \(\backslash\)}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{                        EXPECT\_SUCCESS\_WITHOUT\_COUNT(s2n\_in\_unit\_test\_set(false));      \(\backslash\)}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{                        EXPECT\_SUCCESS\_WITHOUT\_COUNT(s2n\_cleanup());       \(\backslash\)}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{                        if (isatty(fileno(stdout))) \{ \(\backslash\)}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{                            if (test\_count) \{ \(\backslash\)}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{                                fprintf(stdout, "{}\(\backslash\)033[32;1mPASSED\(\backslash\)033[0m \%10d tests\(\backslash\)n"{}}, test\_count ); \(\backslash\)}
+\DoxyCodeLine{60                             \}\(\backslash\)}
+\DoxyCodeLine{61                             else \{\(\backslash\)}
+\DoxyCodeLine{62                                 fprintf(stdout, "{}\(\backslash\)033[33;1mSKIPPED\(\backslash\)033[0m       ALL tests\(\backslash\)n"{} ); \(\backslash\)}
+\DoxyCodeLine{63                             \}\(\backslash\)}
+\DoxyCodeLine{64                        \} \(\backslash\)}
+\DoxyCodeLine{65                        else \{ \(\backslash\)}
+\DoxyCodeLine{66                             if (test\_count) \{ \(\backslash\)}
+\DoxyCodeLine{67                                 fprintf(stdout, "{}PASSED \%10d tests\(\backslash\)n"{}, test\_count ); \(\backslash\)}
+\DoxyCodeLine{68                             \}\(\backslash\)}
+\DoxyCodeLine{69                             else \{\(\backslash\)}
+\DoxyCodeLine{70                                 fprintf(stdout, "{}SKIPPED       ALL tests\(\backslash\)n"{} ); \(\backslash\)}
+\DoxyCodeLine{71                             \}\(\backslash\)}
+\DoxyCodeLine{72                        \} \(\backslash\)}
+\DoxyCodeLine{73                        return 0;\(\backslash\)}
+\DoxyCodeLine{74                     \} while(0)}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define FAIL()      FAIL\_MSG("{}"{}})}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define FAIL\_MSG( msg ) do \{ \(\backslash\)}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{                          FAIL\_MSG\_PRINT(msg); \(\backslash\)}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{                          exit(1);  \(\backslash\)}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{                        \} while(0)}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#define FAIL\_MSG\_PRINT( msg ) do \{ \(\backslash\)}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{                          s2n\_print\_stacktrace(stderr); \(\backslash\)}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{                          }\textcolor{comment}{/* isatty will overwrite errno on failure */}\textcolor{preprocessor}{ \(\backslash\)}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{                          int real\_errno = errno; \(\backslash\)}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{                          if (isatty(fileno(stderr))) \{ \(\backslash\)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{                            errno = real\_errno; \(\backslash\)}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{                            fprintf(stderr, "{}\(\backslash\)033[31;1mFAILED test \%d\(\backslash\)033[0m\(\backslash\)n\%s (\%s line \%d)\(\backslash\)nError Message: '\%s'\(\backslash\)n Debug String: '\%s'\(\backslash\)n System Error: \%s (\%d)\(\backslash\)n"{}}, test\_count, (msg), \_\_FILE\_\_, \_\_LINE\_\_, s2n\_strerror(s2n\_errno, "{}EN"{}), s2n\_debug\_str, strerror(errno), errno); \(\backslash\)}
+\DoxyCodeLine{90                           \} \(\backslash\)}
+\DoxyCodeLine{91                           else \{ \(\backslash\)}
+\DoxyCodeLine{92                             errno = real\_errno; \(\backslash\)}
+\DoxyCodeLine{93                             fprintf(stderr, "{}FAILED test \%d\(\backslash\)n\%s (\%s line \%d)\(\backslash\)nError Message: '\%s'\(\backslash\)n Debug String: '\%s'\(\backslash\)n System Error: \%s (\%d)\(\backslash\)n"{}, test\_count, (msg), \_\_FILE\_\_, \_\_LINE\_\_, s2n\_strerror(s2n\_errno, "{}EN"{}), s2n\_debug\_str, strerror(errno), errno); \(\backslash\)}
+\DoxyCodeLine{94                           \} \(\backslash\)}
+\DoxyCodeLine{95                         \} while(0)}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define RESET\_ERRNO() \(\backslash\)}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{    do \{ \(\backslash\)}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{        s2n\_errno = 0; \(\backslash\)}}
+\DoxyCodeLine{100 \textcolor{preprocessor}{        s2n\_debug\_str = NULL; \(\backslash\)}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{        errno = 0; \(\backslash\)}}
+\DoxyCodeLine{102 \textcolor{preprocessor}{    \} while(0);}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#define EXPECT\_TRUE( condition )    do \{ test\_count++; if ( !(condition) ) \{ FAIL\_MSG( \#condition "{} is not true "{}}); \} \} while(0)}
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#define EXPECT\_FALSE( condition )   EXPECT\_TRUE( !(condition) )}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define EXPECT\_EQUAL( p1, p2 )      EXPECT\_TRUE( (p1) == (p2) )}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define EXPECT\_NOT\_EQUAL( p1, p2 )  EXPECT\_FALSE( (p1) == (p2) )}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define EXPECT\_NULL( ptr )      EXPECT\_EQUAL( ptr, NULL )}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define EXPECT\_NOT\_NULL( ptr )  EXPECT\_NOT\_EQUAL( ptr, NULL )}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define EXPECT\_FAILURE( function\_call ) \(\backslash\)}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{    do \{ \(\backslash\)}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{        EXPECT\_EQUAL( (function\_call) ,  -\/1 ); \(\backslash\)}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{        EXPECT\_NOT\_EQUAL(s2n\_errno, 0); \(\backslash\)}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{        EXPECT\_NOT\_NULL(s2n\_debug\_str); \(\backslash\)}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{        RESET\_ERRNO(); \(\backslash\)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{    \} while(0)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{\#define EXPECT\_ERROR( function\_call ) \(\backslash\)}}
+\DoxyCodeLine{121 \textcolor{preprocessor}{    do \{ \(\backslash\)}}
+\DoxyCodeLine{122 \textcolor{preprocessor}{        EXPECT\_TRUE( s2n\_result\_is\_error(function\_call) ); \(\backslash\)}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{        EXPECT\_NOT\_EQUAL(s2n\_errno, 0); \(\backslash\)}}
+\DoxyCodeLine{124 \textcolor{preprocessor}{        EXPECT\_NOT\_NULL(s2n\_debug\_str); \(\backslash\)}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{        RESET\_ERRNO(); \(\backslash\)}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{    \} while(0)}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define EXPECT\_FAILURE\_WITH\_ERRNO\_NO\_RESET( function\_call, err ) \(\backslash\)}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{    do \{ \(\backslash\)}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{        EXPECT\_EQUAL( (function\_call), -\/1 ); \(\backslash\)}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{        EXPECT\_EQUAL(s2n\_errno, err); \(\backslash\)}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{        EXPECT\_NOT\_NULL(s2n\_debug\_str); \(\backslash\)}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{    \} while(0)}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define EXPECT\_FAILURE\_WITH\_ERRNO( function\_call, err ) \(\backslash\)}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{    do \{ \(\backslash\)}}
+\DoxyCodeLine{137 \textcolor{preprocessor}{        EXPECT\_FAILURE\_WITH\_ERRNO\_NO\_RESET( function\_call, err ); \(\backslash\)}}
+\DoxyCodeLine{138 \textcolor{preprocessor}{        RESET\_ERRNO(); \(\backslash\)}}
+\DoxyCodeLine{139 \textcolor{preprocessor}{    \} while(0)}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{comment}{/* for use with S2N\_RESULT */}}
+\DoxyCodeLine{142 \textcolor{preprocessor}{\#define EXPECT\_ERROR\_WITH\_ERRNO\_NO\_RESET( function\_call, err ) \(\backslash\)}}
+\DoxyCodeLine{143 \textcolor{preprocessor}{    do \{ \(\backslash\)}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{        EXPECT\_TRUE( s2n\_result\_is\_error(function\_call) ); \(\backslash\)}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{        EXPECT\_EQUAL(s2n\_errno, err); \(\backslash\)}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{        EXPECT\_NOT\_NULL(s2n\_debug\_str); \(\backslash\)}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{    \} while(0)}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \textcolor{comment}{/* for use with S2N\_RESULT */}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{\#define EXPECT\_ERROR\_WITH\_ERRNO( function\_call, err ) \(\backslash\)}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{    do \{ \(\backslash\)}}
+\DoxyCodeLine{152 \textcolor{preprocessor}{        EXPECT\_ERROR\_WITH\_ERRNO\_NO\_RESET( function\_call, err ); \(\backslash\)}}
+\DoxyCodeLine{153 \textcolor{preprocessor}{        RESET\_ERRNO(); \(\backslash\)}}
+\DoxyCodeLine{154 \textcolor{preprocessor}{    \} while(0)}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define EXPECT\_SUCCESS( function\_call )  EXPECT\_NOT\_EQUAL( (function\_call) ,  -\/1 )}}
+\DoxyCodeLine{157 \textcolor{comment}{/* for use with S2N\_RESULT */}}
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#define EXPECT\_OK( function\_call )  EXPECT\_TRUE( s2n\_result\_is\_ok(function\_call) )}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160 \textcolor{preprocessor}{\#define EXPECT\_BYTEARRAY\_EQUAL( p1, p2, l ) EXPECT\_EQUAL( memcmp( (p1), (p2), (l) ), 0 )}}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define EXPECT\_BYTEARRAY\_NOT\_EQUAL( p1, p2, l ) EXPECT\_NOT\_EQUAL( memcmp( (p1), (p2), (l) ), 0 )}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{preprocessor}{\#define EXPECT\_STRING\_EQUAL( p1, p2 ) EXPECT\_EQUAL( strcmp( (p1), (p2) ), 0 )}}
+\DoxyCodeLine{164 \textcolor{preprocessor}{\#define EXPECT\_STRING\_NOT\_EQUAL( p1, p2 ) EXPECT\_NOT\_EQUAL( strcmp( (p1), (p2) ), 0 )}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#ifdef S2N\_TEST\_IN\_FIPS\_MODE}}
+\DoxyCodeLine{167 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{err_8h}{openssl/err.h}}>}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#define S2N\_TEST\_OPTIONALLY\_ENABLE\_FIPS\_MODE() \(\backslash\)}}
+\DoxyCodeLine{170 \textcolor{preprocessor}{    do \{ \(\backslash\)}}
+\DoxyCodeLine{171 \textcolor{preprocessor}{        if (FIPS\_mode\_set(1) == 0) \{ \(\backslash\)}}
+\DoxyCodeLine{172 \textcolor{preprocessor}{            unsigned long fips\_rc = ERR\_get\_error(); \(\backslash\)}}
+\DoxyCodeLine{173 \textcolor{preprocessor}{            char ssl\_error\_buf[256]; \(\backslash\)}}
+\DoxyCodeLine{174 \textcolor{preprocessor}{            fprintf(stderr, "{}s2nd failed to enter FIPS mode with RC: \%lu; String: \%s\(\backslash\)n"{}}, fips\_rc, ERR\_error\_string(fips\_rc, ssl\_error\_buf)); \(\backslash\)}
+\DoxyCodeLine{175             return 1; \(\backslash\)}
+\DoxyCodeLine{176         \} \(\backslash\)}
+\DoxyCodeLine{177         printf("{}s2nd entered FIPS mode\(\backslash\)n"{}); \(\backslash\)}
+\DoxyCodeLine{178     \} while (0)}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define S2N\_TEST\_OPTIONALLY\_ENABLE\_FIPS\_MODE()}}
+\DoxyCodeLine{182 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184 \textcolor{comment}{/* Ensures fuzz test input length is greater than or equal to the minimum needed for the test */}}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define S2N\_FUZZ\_ENSURE\_MIN\_LEN( len , min ) do \{if ( (len) < (min) ) return S2N\_SUCCESS;\} while (0)}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define EXPECT\_MEMCPY\_SUCCESS(d, s, n)                                         \(\backslash\)}}
+\DoxyCodeLine{188 \textcolor{preprocessor}{    do \{                                                                       \(\backslash\)}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{        \_\_typeof(n) \_\_tmp\_n = (n);                                             \(\backslash\)}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{        if (\_\_tmp\_n) \{                                                         \(\backslash\)}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{            if (memcpy((d), (s), (\_\_tmp\_n)) == NULL) \{                         \(\backslash\)}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{                FAIL\_MSG(\#d "{}is NULL, memcpy() failed"{}});                       \(\backslash\)}
+\DoxyCodeLine{193             \}                                                                  \(\backslash\)}
+\DoxyCodeLine{194         \}                                                                      \(\backslash\)}
+\DoxyCodeLine{195     \} while (0)}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#if defined(S2N\_TEST\_DEBUG)}}
+\DoxyCodeLine{198 \textcolor{preprocessor}{\#define TEST\_DEBUG\_PRINT(...)                \(\backslash\)}}
+\DoxyCodeLine{199 \textcolor{preprocessor}{    do \{                                     \(\backslash\)}}
+\DoxyCodeLine{200 \textcolor{preprocessor}{        (void) fprintf(stderr, \_\_VA\_ARGS\_\_); \(\backslash\)}}
+\DoxyCodeLine{201 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#define TEST\_DEBUG\_PRINT(...)}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \textcolor{comment}{/* Creates a fuzz target */}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#define S2N\_FUZZ\_TARGET(fuzz\_init, fuzz\_entry, fuzz\_cleanup) \(\backslash\)}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{void s2n\_test\_\_fuzz\_cleanup() \(\backslash\)}}
+\DoxyCodeLine{209 \textcolor{preprocessor}{\{ \(\backslash\)}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{    if (fuzz\_cleanup) \{ \(\backslash\)}}
+\DoxyCodeLine{211 \textcolor{preprocessor}{        ((void (*)()) fuzz\_cleanup)(); \(\backslash\)}}
+\DoxyCodeLine{212 \textcolor{preprocessor}{    \} \(\backslash\)}}
+\DoxyCodeLine{213 \textcolor{preprocessor}{    s2n\_cleanup(); \(\backslash\)}}
+\DoxyCodeLine{214 \textcolor{preprocessor}{\} \(\backslash\)}}
+\DoxyCodeLine{215 \textcolor{preprocessor}{int LLVMFuzzerInitialize(int *argc, char **argv[]) \(\backslash\)}}
+\DoxyCodeLine{216 \textcolor{preprocessor}{\{ \(\backslash\)}}
+\DoxyCodeLine{217 \textcolor{preprocessor}{    S2N\_TEST\_OPTIONALLY\_ENABLE\_FIPS\_MODE(); \(\backslash\)}}
+\DoxyCodeLine{218 \textcolor{preprocessor}{    EXPECT\_SUCCESS\_WITHOUT\_COUNT(s2n\_init()); \(\backslash\)}}
+\DoxyCodeLine{219 \textcolor{preprocessor}{    EXPECT\_SUCCESS\_WITHOUT\_COUNT(atexit(s2n\_test\_\_fuzz\_cleanup)); \(\backslash\)}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{    if (!fuzz\_init) \{ \(\backslash\)}}
+\DoxyCodeLine{221 \textcolor{preprocessor}{        return S2N\_SUCCESS; \(\backslash\)}}
+\DoxyCodeLine{222 \textcolor{preprocessor}{    \} \(\backslash\)}}
+\DoxyCodeLine{223 \textcolor{preprocessor}{    int result = ((int (*)(int *argc, char **argv[])) fuzz\_init)(argc, argv); \(\backslash\)}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{    if (result != S2N\_SUCCESS) \{ \(\backslash\)}}
+\DoxyCodeLine{225 \textcolor{preprocessor}{        FAIL\_MSG\_PRINT(\#fuzz\_init "{} did not return S2N\_SUCCESS"{}}); \(\backslash\)}
+\DoxyCodeLine{226     \} \(\backslash\)}
+\DoxyCodeLine{227     return result; \(\backslash\)}
+\DoxyCodeLine{228 \} \(\backslash\)}
+\DoxyCodeLine{229 int LLVMFuzzerTestOneInput(const uint8\_t *buf, size\_t len) \(\backslash\)}
+\DoxyCodeLine{230 \{ \(\backslash\)}
+\DoxyCodeLine{231     int result = fuzz\_entry(buf, len); \(\backslash\)}
+\DoxyCodeLine{232     if (result != S2N\_SUCCESS) \{ \(\backslash\)}
+\DoxyCodeLine{233         FAIL\_MSG\_PRINT(\#fuzz\_entry "{} did not return S2N\_SUCCESS"{}); \(\backslash\)}
+\DoxyCodeLine{234     \} \(\backslash\)}
+\DoxyCodeLine{235     return result; \(\backslash\)}
+\DoxyCodeLine{236 \}}
+
+\end{DoxyCode}

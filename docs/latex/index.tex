@@ -1,78 +1,69 @@
-\label{index_md_README}%
-\Hypertarget{index_md_README}%
- This document provides information about the AWS IoT device SDK for C++ V2.
+\label{index_md_crt_aws_c_iot_README}%
+\Hypertarget{index_md_crt_aws_c_iot_README}%
+ C99 implementation of AWS IoT cloud services integration with devices\hypertarget{index_autotoc_md17}{}\doxysection{License}\label{index_autotoc_md17}
+This library is licensed under the Apache 2.\+0 License.\hypertarget{index_autotoc_md18}{}\doxysection{Usage}\label{index_autotoc_md18}
+\hypertarget{index_autotoc_md19}{}\doxysubsection{Building}\label{index_autotoc_md19}
+\hypertarget{index_autotoc_md20}{}\doxysubsubsection{Building s2n (\+Linux Only)}\label{index_autotoc_md20}
+If you are building on Linux, you will need to build s2n before being able to build aws-\/c-\/io, which is a dependency of aws-\/c-\/auth. For our CRT\textquotesingle{}s, we build s2n at a specific commit, and recommend doing the same when using it with this library. That commit hash can be found \href{https://github.com/awslabs/aws-crt-cpp/tree/main/crt}{\texttt{ here}}. The commands below will build s2n using Open\+SSL 1.\+1.\+1. For using other versions of Open\+SSL, there is additional information in the \href{https://github.com/awslabs/s2n/blob/main/docs/USAGE-GUIDE.md}{\texttt{ s2n Usage Guide}}.
 
-If you have any issues or feature requests, please file an issue or pull request.
-
-This SDK is built on the AWS Common Runtime, a collection of libraries (\href{https://github.com/awslabs/aws-c-common}{\texttt{ aws-\/c-\/common}}, \href{https://github.com/awslabs/aws-c-io}{\texttt{ aws-\/c-\/io}}, \href{https://github.com/awslabs/aws-c-mqtt}{\texttt{ aws-\/c-\/mqtt}}, \href{https://github.com/awslabs/aws-c-http}{\texttt{ aws-\/c-\/http}}, \href{https://github.com/awslabs/aws-c-cal}{\texttt{ aws-\/c-\/cal}}, \href{https://github.com/awslabs/aws-c-auth}{\texttt{ aws-\/c-\/auth}}, \href{https://github.com/awslabs/s2n}{\texttt{ s2n}}...) written in C to be cross-\/platform, high-\/performance, secure, and reliable. The libraries are bound to C++ by the \href{https://github.com/awslabs/aws-crt-cpp}{\texttt{ aws-\/crt-\/cpp}} package.
-
-$\ast$\+\_\+\+\_\+\+Jump To\+:\+\_\+\+\_\+$\ast$
-
-
-\begin{DoxyItemize}
-\item \href{\#Installation}{\texttt{ Installation}}
-\item \mbox{[}Samples\mbox{]}(samples)
-\item \href{\#Getting-Help}{\texttt{ Getting Help}}
-\item \mbox{\hyperlink{md__f_a_q}{FAQ}}
-\item \href{\#Giving-Feedback-and-Contributions}{\texttt{ Giving Feedback and Contributions}}
-\end{DoxyItemize}\hypertarget{index_autotoc_md17}{}\doxysection{Installation}\label{index_autotoc_md17}
-\hypertarget{index_autotoc_md18}{}\doxysubsection{Minimum Requirements}\label{index_autotoc_md18}
-
-\begin{DoxyItemize}
-\item C++ 11 or higher
-\item CMake 3.\+1+
-\item Clang 3.\+9+ or GCC 4.\+4+ or MSVC 2015+
-\end{DoxyItemize}\hypertarget{index_autotoc_md19}{}\doxysubsection{Build from source}\label{index_autotoc_md19}
-\hypertarget{index_autotoc_md20}{}\doxysubsubsection{Automatically Build and Install AWS Dependencies}\label{index_autotoc_md20}
-Note\+: {\ttfamily -\/DCMAKE\+\_\+\+INSTALL\+\_\+\+PREFIX} can be any path where the project needs to be installed. Taking sdk-\/cpp-\/workspace as an example here.\hypertarget{index_autotoc_md21}{}\doxysubsubsection{Max\+OS and Linux}\label{index_autotoc_md21}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{mkdir sdk-\/cpp-\/workspace}
-\DoxyCodeLine{cd sdk-\/cpp-\/workspace}
-\DoxyCodeLine{git clone -\/-\/recursive https://github.com/aws/aws-\/iot-\/device-\/sdk-\/cpp-\/v2.git}
-\DoxyCodeLine{mkdir aws-\/iot-\/device-\/sdk-\/cpp-\/v2-\/build}
-\DoxyCodeLine{cd aws-\/iot-\/device-\/sdk-\/cpp-\/v2-\/build}
-\DoxyCodeLine{cmake -\/DCMAKE\_INSTALL\_PREFIX="{}<absolute path sdk-\/cpp-\/workspace dir>"{} -\/DBUILD\_DEPS=ON -\/DCMAKE\_BUILD\_TYPE="{}<Release|RelWithDebInfo|Debug>"{} ../aws-\/iot-\/device-\/sdk-\/cpp-\/v2}
-\DoxyCodeLine{cmake -\/-\/build . -\/-\/target install}
+\DoxyCodeLine{git clone git@github.com:awslabs/s2n.git}
+\DoxyCodeLine{cd s2n}
+\DoxyCodeLine{git checkout <s2n-\/commit-\/hash-\/used-\/by-\/aws-\/crt-\/cpp>}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# We keep the build artifacts in the -\/build directory}
+\DoxyCodeLine{cd libcrypto-\/build}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Download the latest version of OpenSSL}
+\DoxyCodeLine{curl -\/LO https://www.openssl.org/source/openssl-\/1.1.1-\/latest.tar.gz}
+\DoxyCodeLine{tar -\/xzvf openssl-\/1.1.1-\/latest.tar.gz}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Build openssl libcrypto.  Note that the install path specified here must be absolute.}
+\DoxyCodeLine{cd `tar ztf openssl-\/1.1.1-\/latest.tar.gz | head -\/n1 | cut -\/f1 -\/d/`}
+\DoxyCodeLine{./config -\/fPIC no-\/shared              \(\backslash\)}
+\DoxyCodeLine{         no-\/md2 no-\/rc5 no-\/rfc3779 no-\/sctp no-\/ssl-\/trace no-\/zlib     \(\backslash\)}
+\DoxyCodeLine{         no-\/hw no-\/mdc2 no-\/seed no-\/idea enable-\/ec\_nistp\_64\_gcc\_128 no-\/camellia\(\backslash\)}
+\DoxyCodeLine{         no-\/bf no-\/ripemd no-\/dsa no-\/ssl2 no-\/ssl3 no-\/capieng                  \(\backslash\)}
+\DoxyCodeLine{         -\/DSSL\_FORBID\_ENULL -\/DOPENSSL\_NO\_DTLS1 -\/DOPENSSL\_NO\_HEARTBEATS      \(\backslash\)}
+\DoxyCodeLine{         -\/-\/prefix=<absolute-\/install-\/path>}
+\DoxyCodeLine{make}
+\DoxyCodeLine{make install}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# Build s2n}
+\DoxyCodeLine{cd ../../../}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S s2n -\/B s2n/build}
+\DoxyCodeLine{cmake -\/-\/build s2n/build -\/-\/target install}
 
 \end{DoxyCode}
-\hypertarget{index_autotoc_md22}{}\doxysubsubsection{Windows}\label{index_autotoc_md22}
+\hypertarget{index_autotoc_md21}{}\doxysubsubsection{Building aws-\/c-\/iot and Remaining Dependencies}\label{index_autotoc_md21}
+Note that aws-\/c-\/iot has several dependencies that need to be built.
+
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{mkdir sdk-\/cpp-\/workspace}
-\DoxyCodeLine{cd sdk-\/cpp-\/workspace}
-\DoxyCodeLine{git clone -\/-\/recursive https://github.com/aws/aws-\/iot-\/device-\/sdk-\/cpp-\/v2.git}
-\DoxyCodeLine{mkdir aws-\/iot-\/device-\/sdk-\/cpp-\/v2-\/build}
-\DoxyCodeLine{cd aws-\/iot-\/device-\/sdk-\/cpp-\/v2-\/build}
-\DoxyCodeLine{cmake -\/DCMAKE\_INSTALL\_PREFIX="{}<absolute path sdk-\/cpp-\/workspace dir>"{} -\/DCMAKE\_PREFIX\_PATH="{}<absolute path sdk-\/cpp-\/workspace dir>"{} -\/DBUILD\_DEPS=ON ../aws-\/iot-\/device-\/sdk-\/cpp-\/v2}
-\DoxyCodeLine{cmake -\/-\/build . -\/-\/target install -\/-\/config "{}<Release|RelWithDebInfo|Debug>"{}}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/common.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/common -\/B aws-\/c-\/common/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/common/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/io.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/io -\/B aws-\/c-\/io/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/io/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/compression.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/compression -\/B aws-\/c-\/compression/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/compression/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/http.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/http -\/B aws-\/c-\/http/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/http/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/mqtt.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/mqtt -\/B aws-\/c-\/mqtt/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/mqtt/build -\/-\/target install}
+\DoxyCodeLine{}
+\DoxyCodeLine{git clone git@github.com:awslabs/aws-\/c-\/iot.git}
+\DoxyCodeLine{cmake -\/DCMAKE\_PREFIX\_PATH=<install-\/path> -\/DCMAKE\_INSTALL\_PREFIX=<install-\/path> -\/S aws-\/c-\/iot -\/B aws-\/c-\/iot/build}
+\DoxyCodeLine{cmake -\/-\/build aws-\/c-\/iot/build -\/-\/target install}
 
 \end{DoxyCode}
-
-
-Due to maximum path length limitations in the Windows API, we recommend \href{https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation\#enable-long-paths-in-windows-10-version-1607-and-later}{\texttt{ enabling long paths}} on your development machines, or cloning to a short path like\+: {\ttfamily C\+:\textbackslash{}dev\textbackslash{}iotsdk}
-
-{\ttfamily -\/-\/config} is only REQUIRED for multi-\/configuration build tools (Visual\+Studio/\+Ms\+Build being the most common).\hypertarget{index_autotoc_md23}{}\doxysection{Samples}\label{index_autotoc_md23}
-\mbox{[}Samples README\mbox{]}(samples)\hypertarget{index_autotoc_md24}{}\doxysection{Getting Help}\label{index_autotoc_md24}
-The best way to interact with our team is through Git\+Hub. You can \href{https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues}{\texttt{ open an issue}} and choose from one of our templates for guidance, bug reports, or feature requests. You may also find help on community resources such as \href{https://stackoverflow.com/questions/tagged/aws-iot}{\texttt{ Stack\+Over\+Flow}} with the tag \#aws-\/iot or If you have a support plan with \href{https://aws.amazon.com/premiumsupport/}{\texttt{ AWS Support}}, you can also create a new support case.
-
-Please make sure to check out our resources too before opening an issue\+:
-
-
-\begin{DoxyItemize}
-\item Our \mbox{\hyperlink{md__f_a_q}{FAQ}}
-\item Our \href{https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html}{\texttt{ Developer Guide}} (\href{https://github.com/awsdocs/aws-iot-docs}{\texttt{ source}})
-\item Check for similar \href{https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues}{\texttt{ Issues}}
-\item \href{https://docs.aws.amazon.com/iot/}{\texttt{ AWS IoT Core Documentation}}
-\item \href{https://aws.amazon.com/blogs/?awsf.blog-master-iot=category-internet-of-things\%23amazon-freertos\%7Ccategory-internet-of-things\%23aws-greengrass\%7Ccategory-internet-of-things\%23aws-iot-analytics\%7Ccategory-internet-of-things\%23aws-iot-button\%7Ccategory-internet-of-things\%23aws-iot-device-defender\%7Ccategory-internet-of-things\%23aws-iot-device-management\%7Ccategory-internet-of-things\%23aws-iot-platform}{\texttt{ Dev Blog}}
-\item Integration with AWS IoT Services such as \href{https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html}{\texttt{ Device Shadow}} and \href{https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html}{\texttt{ Jobs}} is provided by code that been generated from a model of the service.
-\end{DoxyItemize}\hypertarget{index_autotoc_md25}{}\doxysection{Giving Feedback and Contributions}\label{index_autotoc_md25}
-We need your help in making this SDK great. Please participate in the community and contribute to this effort by submitting issues, participating in discussion forums and submitting pull requests through the following channels.
-
-
-\begin{DoxyItemize}
-\item \mbox{\hyperlink{md__c_o_n_t_r_i_b_u_t_i_n_g}{Contributions Guidelines}}
-\item Articulate your feature request or upvote existing ones on our \href{https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues?q=is\%3Aissue+is\%3Aopen+label\%3Afeature-request}{\texttt{ Issues}} page.
-\item Submit \href{https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues}{\texttt{ Issues}}
-\end{DoxyItemize}\hypertarget{index_autotoc_md26}{}\doxysection{License}\label{index_autotoc_md26}
-This library is licensed under the \mbox{[}Apache 2.\+0 License\mbox{]}(LICENSE). 
+ 

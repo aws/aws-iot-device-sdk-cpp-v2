@@ -1,0 +1,180 @@
+\hypertarget{namespace_aws_1_1_crt_1_1_auth}{}\doxysection{Aws\+::Crt\+::Auth Namespace Reference}
+\label{namespace_aws_1_1_crt_1_1_auth}\index{Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_1_1_signed_body_value}{Signed\+Body\+Value}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config}{Aws\+Signing\+Config}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_credentials}{Credentials}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_credentials_provider}{Credentials\+Provider}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_cached_config}{Credentials\+Provider\+Cached\+Config}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_callback_args}{Credentials\+Provider\+Callback\+Args}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_chain_config}{Credentials\+Provider\+Chain\+Config}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_chain_default_config}{Credentials\+Provider\+Chain\+Default\+Config}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_imds_config}{Credentials\+Provider\+Imds\+Config}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_profile_config}{Credentials\+Provider\+Profile\+Config}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_static_config}{Credentials\+Provider\+Static\+Config}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_auth_1_1_credentials_provider_x509_config}{Credentials\+Provider\+X509\+Config}}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_auth_1_1_http_signer_callback_data}{Http\+Signer\+Callback\+Data}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider}{ICredentials\+Provider}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer}{IHttp\+Request\+Signer}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigning\+Config}}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_sigv4_http_request_signer}{Sigv4\+Http\+Request\+Signer}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a5c7cfc1fb715fdb4c2d8945678d68199}{On\+Credentials\+Resolved}} = std\+::function$<$ void(std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_credentials}{Credentials}} $>$, int error\+Code)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{On\+Http\+Request\+Signing\+Complete}} = std\+::function$<$ void(const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Request}} $>$ \&, int)$>$
+\item 
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}{Should\+Sign\+Header\+Cb}} = \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$)(const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} $\ast$, void $\ast$)
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1}{Signing\+Config\+Type}} \{ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1acc92a89d16aa4fe64e36cbbd7c0cfaac}{Aws}} = AWS\+\_\+\+SIGNING\+\_\+\+CONFIG\+\_\+\+AWS
+ \}
+\item 
+enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a0bb6cb21cf640b39af9e036cfeecdca5}{Signing\+Algorithm}} \{ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a0bb6cb21cf640b39af9e036cfeecdca5a49dac73a0f86fb857db177b4324a8e71}{Sig\+V4}} = AWS\+\_\+\+SIGNING\+\_\+\+ALGORITHM\+\_\+\+V4
+ \}
+\item 
+enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66}{Signature\+Type}} \{ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66a005f325e8aacc46033d82eab96a23abc}{Http\+Request\+Via\+Headers}} = AWS\+\_\+\+ST\+\_\+\+HTTP\+\_\+\+REQUEST\+\_\+\+HEADERS
+, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66a49cd1621053c174a1e837870a0145b68}{Http\+Request\+Via\+Query\+Params}} = AWS\+\_\+\+ST\+\_\+\+HTTP\+\_\+\+REQUEST\+\_\+\+QUERY\+\_\+\+PARAMS
+, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66ac6cce716eaa16c90a4693f80a2c1be98}{Http\+Request\+Chunk}} = AWS\+\_\+\+ST\+\_\+\+HTTP\+\_\+\+REQUEST\+\_\+\+CHUNK
+, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66ae684026d77ab12fff8d64337f2311223}{Http\+Request\+Event}} = AWS\+\_\+\+ST\+\_\+\+HTTP\+\_\+\+REQUEST\+\_\+\+EVENT
+ \}
+\item 
+enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2f}{Signed\+Body\+Header\+Type}} \{ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2fa6adf97f83acf6453d4a6a4b1070f3754}{None}} = AWS\+\_\+\+SBHT\+\_\+\+NONE
+, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2fad504cfaecd4e3f954736e2711d89b0d2}{XAmz\+Content\+Sha256}} = AWS\+\_\+\+SBHT\+\_\+\+X\+\_\+\+AMZ\+\_\+\+CONTENT\+\_\+\+SHA256
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider}{ICredentials\+Provider}} $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a9eeae13f9e18779ae17865afc0e1c277}{s\+\_\+\+Create\+Wrapped\+Provider}} (struct \mbox{\hyperlink{structaws__credentials__provider}{aws\+\_\+credentials\+\_\+provider}} $\ast$raw\+\_\+provider, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+static void \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a53d9086fb22c2cab6d4679b6ef219696}{s\+\_\+http\+\_\+signing\+\_\+complete\+\_\+fn}} (struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$result, int error\+Code, void $\ast$userdata)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a5c7cfc1fb715fdb4c2d8945678d68199}\label{namespace_aws_1_1_crt_1_1_auth_a5c7cfc1fb715fdb4c2d8945678d68199}} 
+\index{Aws::Crt::Auth@{Aws::Crt::Auth}!OnCredentialsResolved@{OnCredentialsResolved}}
+\index{OnCredentialsResolved@{OnCredentialsResolved}!Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsubsection{\texorpdfstring{OnCredentialsResolved}{OnCredentialsResolved}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a5c7cfc1fb715fdb4c2d8945678d68199}{Aws\+::\+Crt\+::\+Auth\+::\+On\+Credentials\+Resolved}} = typedef std\+::function$<$void(std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_credentials}{Credentials}}$>$, int error\+Code)$>$}
+
+Callback invoked by credentials providers when resolution succeeds (credentials will be non-\/null) or fails (credentials will be null) \mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}\label{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}} 
+\index{Aws::Crt::Auth@{Aws::Crt::Auth}!OnHttpRequestSigningComplete@{OnHttpRequestSigningComplete}}
+\index{OnHttpRequestSigningComplete@{OnHttpRequestSigningComplete}!Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsubsection{\texorpdfstring{OnHttpRequestSigningComplete}{OnHttpRequestSigningComplete}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{Aws\+::\+Crt\+::\+Auth\+::\+On\+Http\+Request\+Signing\+Complete}} = typedef std\+::function$<$void(const std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Request}}$>$ \&, int)$>$}
+
+HTTP signing callback. The second parameter is an aws error code, The signing was successful iff the error code is AWS\+\_\+\+ERROR\+\_\+\+SUCCESS. \mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}\label{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}} 
+\index{Aws::Crt::Auth@{Aws::Crt::Auth}!ShouldSignHeaderCb@{ShouldSignHeaderCb}}
+\index{ShouldSignHeaderCb@{ShouldSignHeaderCb}!Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsubsection{\texorpdfstring{ShouldSignHeaderCb}{ShouldSignHeaderCb}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}{Aws\+::\+Crt\+::\+Auth\+::\+Should\+Sign\+Header\+Cb}} = typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} ($\ast$)(const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} $\ast$, void $\ast$)}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66}\label{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66}} 
+\index{Aws::Crt::Auth@{Aws::Crt::Auth}!SignatureType@{SignatureType}}
+\index{SignatureType@{SignatureType}!Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsubsection{\texorpdfstring{SignatureType}{SignatureType}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66}{Aws\+::\+Crt\+::\+Auth\+::\+Signature\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HttpRequestViaHeaders@{HttpRequestViaHeaders}!Aws::Crt::Auth@{Aws::Crt::Auth}}\index{Aws::Crt::Auth@{Aws::Crt::Auth}!HttpRequestViaHeaders@{HttpRequestViaHeaders}}}\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66a005f325e8aacc46033d82eab96a23abc}\label{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66a005f325e8aacc46033d82eab96a23abc}} 
+Http\+Request\+Via\+Headers&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HttpRequestViaQueryParams@{HttpRequestViaQueryParams}!Aws::Crt::Auth@{Aws::Crt::Auth}}\index{Aws::Crt::Auth@{Aws::Crt::Auth}!HttpRequestViaQueryParams@{HttpRequestViaQueryParams}}}\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66a49cd1621053c174a1e837870a0145b68}\label{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66a49cd1621053c174a1e837870a0145b68}} 
+Http\+Request\+Via\+Query\+Params&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HttpRequestChunk@{HttpRequestChunk}!Aws::Crt::Auth@{Aws::Crt::Auth}}\index{Aws::Crt::Auth@{Aws::Crt::Auth}!HttpRequestChunk@{HttpRequestChunk}}}\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66ac6cce716eaa16c90a4693f80a2c1be98}\label{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66ac6cce716eaa16c90a4693f80a2c1be98}} 
+Http\+Request\+Chunk&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HttpRequestEvent@{HttpRequestEvent}!Aws::Crt::Auth@{Aws::Crt::Auth}}\index{Aws::Crt::Auth@{Aws::Crt::Auth}!HttpRequestEvent@{HttpRequestEvent}}}\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66ae684026d77ab12fff8d64337f2311223}\label{namespace_aws_1_1_crt_1_1_auth_ae5eec67d027b78e622d984a5df341a66ae684026d77ab12fff8d64337f2311223}} 
+Http\+Request\+Event&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2f}\label{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2f}} 
+\index{Aws::Crt::Auth@{Aws::Crt::Auth}!SignedBodyHeaderType@{SignedBodyHeaderType}}
+\index{SignedBodyHeaderType@{SignedBodyHeaderType}!Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsubsection{\texorpdfstring{SignedBodyHeaderType}{SignedBodyHeaderType}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2f}{Aws\+::\+Crt\+::\+Auth\+::\+Signed\+Body\+Header\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!Aws::Crt::Auth@{Aws::Crt::Auth}}\index{Aws::Crt::Auth@{Aws::Crt::Auth}!None@{None}}}\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2fa6adf97f83acf6453d4a6a4b1070f3754}\label{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2fa6adf97f83acf6453d4a6a4b1070f3754}} 
+None&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{XAmzContentSha256@{XAmzContentSha256}!Aws::Crt::Auth@{Aws::Crt::Auth}}\index{Aws::Crt::Auth@{Aws::Crt::Auth}!XAmzContentSha256@{XAmzContentSha256}}}\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2fad504cfaecd4e3f954736e2711d89b0d2}\label{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2fad504cfaecd4e3f954736e2711d89b0d2}} 
+XAmz\+Content\+Sha256&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a0bb6cb21cf640b39af9e036cfeecdca5}\label{namespace_aws_1_1_crt_1_1_auth_a0bb6cb21cf640b39af9e036cfeecdca5}} 
+\index{Aws::Crt::Auth@{Aws::Crt::Auth}!SigningAlgorithm@{SigningAlgorithm}}
+\index{SigningAlgorithm@{SigningAlgorithm}!Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsubsection{\texorpdfstring{SigningAlgorithm}{SigningAlgorithm}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a0bb6cb21cf640b39af9e036cfeecdca5}{Aws\+::\+Crt\+::\+Auth\+::\+Signing\+Algorithm}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SigV4@{SigV4}!Aws::Crt::Auth@{Aws::Crt::Auth}}\index{Aws::Crt::Auth@{Aws::Crt::Auth}!SigV4@{SigV4}}}\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a0bb6cb21cf640b39af9e036cfeecdca5a49dac73a0f86fb857db177b4324a8e71}\label{namespace_aws_1_1_crt_1_1_auth_a0bb6cb21cf640b39af9e036cfeecdca5a49dac73a0f86fb857db177b4324a8e71}} 
+Sig\+V4&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1}\label{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1}} 
+\index{Aws::Crt::Auth@{Aws::Crt::Auth}!SigningConfigType@{SigningConfigType}}
+\index{SigningConfigType@{SigningConfigType}!Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsubsection{\texorpdfstring{SigningConfigType}{SigningConfigType}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1}{Aws\+::\+Crt\+::\+Auth\+::\+Signing\+Config\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Aws@{Aws}!Aws::Crt::Auth@{Aws::Crt::Auth}}\index{Aws::Crt::Auth@{Aws::Crt::Auth}!Aws@{Aws}}}\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1acc92a89d16aa4fe64e36cbbd7c0cfaac}\label{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1acc92a89d16aa4fe64e36cbbd7c0cfaac}} 
+Aws&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a9eeae13f9e18779ae17865afc0e1c277}\label{namespace_aws_1_1_crt_1_1_auth_a9eeae13f9e18779ae17865afc0e1c277}} 
+\index{Aws::Crt::Auth@{Aws::Crt::Auth}!s\_CreateWrappedProvider@{s\_CreateWrappedProvider}}
+\index{s\_CreateWrappedProvider@{s\_CreateWrappedProvider}!Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsubsection{\texorpdfstring{s\_CreateWrappedProvider()}{s\_CreateWrappedProvider()}}
+{\footnotesize\ttfamily static std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider}{ICredentials\+Provider}}$>$ Aws\+::\+Crt\+::\+Auth\+::s\+\_\+\+Create\+Wrapped\+Provider (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__credentials__provider}{aws\+\_\+credentials\+\_\+provider}} $\ast$}]{raw\+\_\+provider,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{namespace_aws_1_1_crt_1_1_auth_a53d9086fb22c2cab6d4679b6ef219696}\label{namespace_aws_1_1_crt_1_1_auth_a53d9086fb22c2cab6d4679b6ef219696}} 
+\index{Aws::Crt::Auth@{Aws::Crt::Auth}!s\_http\_signing\_complete\_fn@{s\_http\_signing\_complete\_fn}}
+\index{s\_http\_signing\_complete\_fn@{s\_http\_signing\_complete\_fn}!Aws::Crt::Auth@{Aws::Crt::Auth}}
+\doxysubsubsection{\texorpdfstring{s\_http\_signing\_complete\_fn()}{s\_http\_signing\_complete\_fn()}}
+{\footnotesize\ttfamily static void Aws\+::\+Crt\+::\+Auth\+::s\+\_\+http\+\_\+signing\+\_\+complete\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$}]{result,  }\item[{int}]{error\+Code,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

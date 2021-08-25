@@ -1,0 +1,253 @@
+\hypertarget{structsecure__channel__handler}{}\doxysection{secure\+\_\+channel\+\_\+handler Struct Reference}
+\label{structsecure__channel__handler}\index{secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} \mbox{\hyperlink{structsecure__channel__handler_aa2868f0fbbc8e3c955980534e4fd069e}{handler}}
+\item 
+struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} \mbox{\hyperlink{structsecure__channel__handler_aba55b6a31cbc4ff35871fe1985906514}{shared\+\_\+state}}
+\item 
+Ctxt\+Handle \mbox{\hyperlink{structsecure__channel__handler_aad8e6a54eb0d46e84e19cd99fd0e7fd1}{sec\+\_\+handle}}
+\item 
+Cred\+Handle \mbox{\hyperlink{structsecure__channel__handler_a93dc2cda13bbaf018b6fa0b63bf4caa3}{creds}}
+\item 
+PCCERT\+\_\+\+CONTEXT \mbox{\hyperlink{structsecure__channel__handler_a713256f75fd8e07b7c63dc48b5a73919}{cert\+\_\+context}} \mbox{[}1\mbox{]}
+\item 
+HCERTSTORE \mbox{\hyperlink{structsecure__channel__handler_af04082df1c0e992aaf7444758ee62c6e}{cert\+\_\+store}}
+\item 
+HCERTSTORE \mbox{\hyperlink{structsecure__channel__handler_a93fda08f892dbf2f5219ca1c8bda1842}{custom\+\_\+ca\+\_\+store}}
+\item 
+Sec\+Pkg\+Context\+\_\+\+Stream\+Sizes \mbox{\hyperlink{structsecure__channel__handler_a3415ad0643409ee88b77f1044c6f4465}{stream\+\_\+sizes}}
+\item 
+unsigned long \mbox{\hyperlink{structsecure__channel__handler_abca579eb805f0b37e48a0c91aa8054a7}{ctx\+\_\+req}}
+\item 
+unsigned long \mbox{\hyperlink{structsecure__channel__handler_ad3ce8e8c9d696ba851ab349eb226d014}{ctx\+\_\+ret\+\_\+flags}}
+\item 
+struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$ \mbox{\hyperlink{structsecure__channel__handler_a0d6416b78b5774fcdba3ad75a9bc9951}{slot}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structsecure__channel__handler_a3dee218a0c14644187d41cf550a30f48}{protocol}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structsecure__channel__handler_a40e21891199df4153b0b580770cd2892}{server\+\_\+name}}
+\item 
+Time\+Stamp \mbox{\hyperlink{structsecure__channel__handler_aa35802e7cd7f499ba7269beb51068e52}{sspi\+\_\+timestamp}}
+\item 
+int($\ast$ \mbox{\hyperlink{structsecure__channel__handler_a56a9546a047232421b68ae34455686fc}{s\+\_\+connection\+\_\+state\+\_\+fn}} )(struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{structsecure__channel__handler_aa2868f0fbbc8e3c955980534e4fd069e}{handler}})
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structsecure__channel__handler_af63cd44b5e050c595fb9572f34a1c53a}{buffered\+\_\+read\+\_\+in\+\_\+data}} \mbox{[}\mbox{\hyperlink{secure__channel__tls__handler_8c_a4a4bf6fe3df23ec6bc8de442f09db115}{READ\+\_\+\+IN\+\_\+\+SIZE}}+\mbox{\hyperlink{secure__channel__tls__handler_8c_a558d09f807c24253449e83211b1eab9e}{KB\+\_\+1}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structsecure__channel__handler_abae73841c88e8d07ca7bbecf62ea07aa}{buffered\+\_\+read\+\_\+in\+\_\+data\+\_\+buf}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structsecure__channel__handler_a2d6c2f8b44f2f45958c07f76c511e345}{estimated\+\_\+incomplete\+\_\+size}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structsecure__channel__handler_ad058597c3bea5fee2ac9815ad1e0c6c0}{read\+\_\+extra}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structsecure__channel__handler_ac3201f21d3c998847aac2e0686fc82ac}{buffered\+\_\+read\+\_\+out\+\_\+data}} \mbox{[}\mbox{\hyperlink{secure__channel__tls__handler_8c_a0c7f8d1ba8808b766e2578a91a235278}{READ\+\_\+\+OUT\+\_\+\+SIZE}}+\mbox{\hyperlink{secure__channel__tls__handler_8c_a558d09f807c24253449e83211b1eab9e}{KB\+\_\+1}}\mbox{]}
+\item 
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{structsecure__channel__handler_a1d966fd606a95e9136f7c395d371cff8}{buffered\+\_\+read\+\_\+out\+\_\+data\+\_\+buf}}
+\item 
+struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \mbox{\hyperlink{structsecure__channel__handler_a5d25f9d2c9a75e9e60ff0899055ba0af}{sequential\+\_\+task\+\_\+storage}}
+\item 
+\mbox{\hyperlink{tls__channel__handler_8h_a240e06727f51737d1155842078b3f4d6}{aws\+\_\+tls\+\_\+on\+\_\+negotiation\+\_\+result\+\_\+fn}} $\ast$ \mbox{\hyperlink{structsecure__channel__handler_a04e3d02f7e1d8868ebcf26b5d8cee8d9}{on\+\_\+negotiation\+\_\+result}}
+\item 
+\mbox{\hyperlink{tls__channel__handler_8h_ac830427f63136275ea488ef72feee6c0}{aws\+\_\+tls\+\_\+on\+\_\+data\+\_\+read\+\_\+fn}} $\ast$ \mbox{\hyperlink{structsecure__channel__handler_a3af89206c4ffbf911fecb2c6ede1877b}{on\+\_\+data\+\_\+read}}
+\item 
+\mbox{\hyperlink{tls__channel__handler_8h_a3b389b01f78075673ba3a91f949bf880}{aws\+\_\+tls\+\_\+on\+\_\+error\+\_\+fn}} $\ast$ \mbox{\hyperlink{structsecure__channel__handler_a3ed69c7ad17f1fb3e9115f50ba615c92}{on\+\_\+error}}
+\item 
+struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$ \mbox{\hyperlink{structsecure__channel__handler_a5a90a3c709be37fef1aab340c2ebc68e}{alpn\+\_\+list}}
+\item 
+void $\ast$ \mbox{\hyperlink{structsecure__channel__handler_ab18b311879bd6423d4b3ffd9baecccea}{user\+\_\+data}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structsecure__channel__handler_ac4c182da16ee1720a7ccc06eb1ecc5f7}{advertise\+\_\+alpn\+\_\+message}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structsecure__channel__handler_ae8fe1246a5cfe96db978aaf896999444}{negotiation\+\_\+finished}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structsecure__channel__handler_a4baea525e4d9d5b04e152f8fee1c1fe9}{verify\+\_\+peer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structsecure__channel__handler_ac4c182da16ee1720a7ccc06eb1ecc5f7}\label{structsecure__channel__handler_ac4c182da16ee1720a7ccc06eb1ecc5f7}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!advertise\_alpn\_message@{advertise\_alpn\_message}}
+\index{advertise\_alpn\_message@{advertise\_alpn\_message}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{advertise\_alpn\_message}{advertise\_alpn\_message}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} secure\+\_\+channel\+\_\+handler\+::advertise\+\_\+alpn\+\_\+message}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a5a90a3c709be37fef1aab340c2ebc68e}\label{structsecure__channel__handler_a5a90a3c709be37fef1aab340c2ebc68e}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!alpn\_list@{alpn\_list}}
+\index{alpn\_list@{alpn\_list}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{alpn\_list}{alpn\_list}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}}$\ast$ secure\+\_\+channel\+\_\+handler\+::alpn\+\_\+list}
+
+\mbox{\Hypertarget{structsecure__channel__handler_af63cd44b5e050c595fb9572f34a1c53a}\label{structsecure__channel__handler_af63cd44b5e050c595fb9572f34a1c53a}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!buffered\_read\_in\_data@{buffered\_read\_in\_data}}
+\index{buffered\_read\_in\_data@{buffered\_read\_in\_data}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{buffered\_read\_in\_data}{buffered\_read\_in\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t secure\+\_\+channel\+\_\+handler\+::buffered\+\_\+read\+\_\+in\+\_\+data\mbox{[}\mbox{\hyperlink{secure__channel__tls__handler_8c_a4a4bf6fe3df23ec6bc8de442f09db115}{READ\+\_\+\+IN\+\_\+\+SIZE}}+\mbox{\hyperlink{secure__channel__tls__handler_8c_a558d09f807c24253449e83211b1eab9e}{KB\+\_\+1}}\mbox{]}}
+
+\mbox{\Hypertarget{structsecure__channel__handler_abae73841c88e8d07ca7bbecf62ea07aa}\label{structsecure__channel__handler_abae73841c88e8d07ca7bbecf62ea07aa}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!buffered\_read\_in\_data\_buf@{buffered\_read\_in\_data\_buf}}
+\index{buffered\_read\_in\_data\_buf@{buffered\_read\_in\_data\_buf}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{buffered\_read\_in\_data\_buf}{buffered\_read\_in\_data\_buf}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} secure\+\_\+channel\+\_\+handler\+::buffered\+\_\+read\+\_\+in\+\_\+data\+\_\+buf}
+
+\mbox{\Hypertarget{structsecure__channel__handler_ac3201f21d3c998847aac2e0686fc82ac}\label{structsecure__channel__handler_ac3201f21d3c998847aac2e0686fc82ac}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!buffered\_read\_out\_data@{buffered\_read\_out\_data}}
+\index{buffered\_read\_out\_data@{buffered\_read\_out\_data}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{buffered\_read\_out\_data}{buffered\_read\_out\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t secure\+\_\+channel\+\_\+handler\+::buffered\+\_\+read\+\_\+out\+\_\+data\mbox{[}\mbox{\hyperlink{secure__channel__tls__handler_8c_a0c7f8d1ba8808b766e2578a91a235278}{READ\+\_\+\+OUT\+\_\+\+SIZE}}+\mbox{\hyperlink{secure__channel__tls__handler_8c_a558d09f807c24253449e83211b1eab9e}{KB\+\_\+1}}\mbox{]}}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a1d966fd606a95e9136f7c395d371cff8}\label{structsecure__channel__handler_a1d966fd606a95e9136f7c395d371cff8}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!buffered\_read\_out\_data\_buf@{buffered\_read\_out\_data\_buf}}
+\index{buffered\_read\_out\_data\_buf@{buffered\_read\_out\_data\_buf}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{buffered\_read\_out\_data\_buf}{buffered\_read\_out\_data\_buf}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} secure\+\_\+channel\+\_\+handler\+::buffered\+\_\+read\+\_\+out\+\_\+data\+\_\+buf}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a713256f75fd8e07b7c63dc48b5a73919}\label{structsecure__channel__handler_a713256f75fd8e07b7c63dc48b5a73919}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!cert\_context@{cert\_context}}
+\index{cert\_context@{cert\_context}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{cert\_context}{cert\_context}}
+{\footnotesize\ttfamily PCCERT\+\_\+\+CONTEXT secure\+\_\+channel\+\_\+handler\+::cert\+\_\+context\mbox{[}1\mbox{]}}
+
+\mbox{\Hypertarget{structsecure__channel__handler_af04082df1c0e992aaf7444758ee62c6e}\label{structsecure__channel__handler_af04082df1c0e992aaf7444758ee62c6e}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!cert\_store@{cert\_store}}
+\index{cert\_store@{cert\_store}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{cert\_store}{cert\_store}}
+{\footnotesize\ttfamily HCERTSTORE secure\+\_\+channel\+\_\+handler\+::cert\+\_\+store}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a93dc2cda13bbaf018b6fa0b63bf4caa3}\label{structsecure__channel__handler_a93dc2cda13bbaf018b6fa0b63bf4caa3}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!creds@{creds}}
+\index{creds@{creds}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{creds}{creds}}
+{\footnotesize\ttfamily Cred\+Handle secure\+\_\+channel\+\_\+handler\+::creds}
+
+\mbox{\Hypertarget{structsecure__channel__handler_abca579eb805f0b37e48a0c91aa8054a7}\label{structsecure__channel__handler_abca579eb805f0b37e48a0c91aa8054a7}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!ctx\_req@{ctx\_req}}
+\index{ctx\_req@{ctx\_req}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{ctx\_req}{ctx\_req}}
+{\footnotesize\ttfamily unsigned long secure\+\_\+channel\+\_\+handler\+::ctx\+\_\+req}
+
+\mbox{\Hypertarget{structsecure__channel__handler_ad3ce8e8c9d696ba851ab349eb226d014}\label{structsecure__channel__handler_ad3ce8e8c9d696ba851ab349eb226d014}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!ctx\_ret\_flags@{ctx\_ret\_flags}}
+\index{ctx\_ret\_flags@{ctx\_ret\_flags}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{ctx\_ret\_flags}{ctx\_ret\_flags}}
+{\footnotesize\ttfamily unsigned long secure\+\_\+channel\+\_\+handler\+::ctx\+\_\+ret\+\_\+flags}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a93fda08f892dbf2f5219ca1c8bda1842}\label{structsecure__channel__handler_a93fda08f892dbf2f5219ca1c8bda1842}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!custom\_ca\_store@{custom\_ca\_store}}
+\index{custom\_ca\_store@{custom\_ca\_store}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{custom\_ca\_store}{custom\_ca\_store}}
+{\footnotesize\ttfamily HCERTSTORE secure\+\_\+channel\+\_\+handler\+::custom\+\_\+ca\+\_\+store}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a2d6c2f8b44f2f45958c07f76c511e345}\label{structsecure__channel__handler_a2d6c2f8b44f2f45958c07f76c511e345}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!estimated\_incomplete\_size@{estimated\_incomplete\_size}}
+\index{estimated\_incomplete\_size@{estimated\_incomplete\_size}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{estimated\_incomplete\_size}{estimated\_incomplete\_size}}
+{\footnotesize\ttfamily size\+\_\+t secure\+\_\+channel\+\_\+handler\+::estimated\+\_\+incomplete\+\_\+size}
+
+\mbox{\Hypertarget{structsecure__channel__handler_aa2868f0fbbc8e3c955980534e4fd069e}\label{structsecure__channel__handler_aa2868f0fbbc8e3c955980534e4fd069e}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!handler@{handler}}
+\index{handler@{handler}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{handler}{handler}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} secure\+\_\+channel\+\_\+handler\+::handler}
+
+\mbox{\Hypertarget{structsecure__channel__handler_ae8fe1246a5cfe96db978aaf896999444}\label{structsecure__channel__handler_ae8fe1246a5cfe96db978aaf896999444}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!negotiation\_finished@{negotiation\_finished}}
+\index{negotiation\_finished@{negotiation\_finished}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{negotiation\_finished}{negotiation\_finished}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} secure\+\_\+channel\+\_\+handler\+::negotiation\+\_\+finished}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a3af89206c4ffbf911fecb2c6ede1877b}\label{structsecure__channel__handler_a3af89206c4ffbf911fecb2c6ede1877b}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!on\_data\_read@{on\_data\_read}}
+\index{on\_data\_read@{on\_data\_read}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{on\_data\_read}{on\_data\_read}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tls__channel__handler_8h_ac830427f63136275ea488ef72feee6c0}{aws\+\_\+tls\+\_\+on\+\_\+data\+\_\+read\+\_\+fn}}$\ast$ secure\+\_\+channel\+\_\+handler\+::on\+\_\+data\+\_\+read}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a3ed69c7ad17f1fb3e9115f50ba615c92}\label{structsecure__channel__handler_a3ed69c7ad17f1fb3e9115f50ba615c92}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!on\_error@{on\_error}}
+\index{on\_error@{on\_error}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{on\_error}{on\_error}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tls__channel__handler_8h_a3b389b01f78075673ba3a91f949bf880}{aws\+\_\+tls\+\_\+on\+\_\+error\+\_\+fn}}$\ast$ secure\+\_\+channel\+\_\+handler\+::on\+\_\+error}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a04e3d02f7e1d8868ebcf26b5d8cee8d9}\label{structsecure__channel__handler_a04e3d02f7e1d8868ebcf26b5d8cee8d9}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!on\_negotiation\_result@{on\_negotiation\_result}}
+\index{on\_negotiation\_result@{on\_negotiation\_result}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{on\_negotiation\_result}{on\_negotiation\_result}}
+{\footnotesize\ttfamily \mbox{\hyperlink{tls__channel__handler_8h_a240e06727f51737d1155842078b3f4d6}{aws\+\_\+tls\+\_\+on\+\_\+negotiation\+\_\+result\+\_\+fn}}$\ast$ secure\+\_\+channel\+\_\+handler\+::on\+\_\+negotiation\+\_\+result}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a3dee218a0c14644187d41cf550a30f48}\label{structsecure__channel__handler_a3dee218a0c14644187d41cf550a30f48}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!protocol@{protocol}}
+\index{protocol@{protocol}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{protocol}{protocol}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} secure\+\_\+channel\+\_\+handler\+::protocol}
+
+\mbox{\Hypertarget{structsecure__channel__handler_ad058597c3bea5fee2ac9815ad1e0c6c0}\label{structsecure__channel__handler_ad058597c3bea5fee2ac9815ad1e0c6c0}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!read\_extra@{read\_extra}}
+\index{read\_extra@{read\_extra}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{read\_extra}{read\_extra}}
+{\footnotesize\ttfamily size\+\_\+t secure\+\_\+channel\+\_\+handler\+::read\+\_\+extra}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a56a9546a047232421b68ae34455686fc}\label{structsecure__channel__handler_a56a9546a047232421b68ae34455686fc}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!s\_connection\_state\_fn@{s\_connection\_state\_fn}}
+\index{s\_connection\_state\_fn@{s\_connection\_state\_fn}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{s\_connection\_state\_fn}{s\_connection\_state\_fn}}
+{\footnotesize\ttfamily int($\ast$ secure\+\_\+channel\+\_\+handler\+::s\+\_\+connection\+\_\+state\+\_\+fn) (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{structsecure__channel__handler_aa2868f0fbbc8e3c955980534e4fd069e}{handler}})}
+
+\mbox{\Hypertarget{structsecure__channel__handler_aad8e6a54eb0d46e84e19cd99fd0e7fd1}\label{structsecure__channel__handler_aad8e6a54eb0d46e84e19cd99fd0e7fd1}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!sec\_handle@{sec\_handle}}
+\index{sec\_handle@{sec\_handle}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{sec\_handle}{sec\_handle}}
+{\footnotesize\ttfamily Ctxt\+Handle secure\+\_\+channel\+\_\+handler\+::sec\+\_\+handle}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a5d25f9d2c9a75e9e60ff0899055ba0af}\label{structsecure__channel__handler_a5d25f9d2c9a75e9e60ff0899055ba0af}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!sequential\_task\_storage@{sequential\_task\_storage}}
+\index{sequential\_task\_storage@{sequential\_task\_storage}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{sequential\_task\_storage}{sequential\_task\_storage}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} secure\+\_\+channel\+\_\+handler\+::sequential\+\_\+task\+\_\+storage}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a40e21891199df4153b0b580770cd2892}\label{structsecure__channel__handler_a40e21891199df4153b0b580770cd2892}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!server\_name@{server\_name}}
+\index{server\_name@{server\_name}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{server\_name}{server\_name}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} secure\+\_\+channel\+\_\+handler\+::server\+\_\+name}
+
+\mbox{\Hypertarget{structsecure__channel__handler_aba55b6a31cbc4ff35871fe1985906514}\label{structsecure__channel__handler_aba55b6a31cbc4ff35871fe1985906514}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!shared\_state@{shared\_state}}
+\index{shared\_state@{shared\_state}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{shared\_state}{shared\_state}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} secure\+\_\+channel\+\_\+handler\+::shared\+\_\+state}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a0d6416b78b5774fcdba3ad75a9bc9951}\label{structsecure__channel__handler_a0d6416b78b5774fcdba3ad75a9bc9951}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!slot@{slot}}
+\index{slot@{slot}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{slot}{slot}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}}$\ast$ secure\+\_\+channel\+\_\+handler\+::slot}
+
+\mbox{\Hypertarget{structsecure__channel__handler_aa35802e7cd7f499ba7269beb51068e52}\label{structsecure__channel__handler_aa35802e7cd7f499ba7269beb51068e52}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!sspi\_timestamp@{sspi\_timestamp}}
+\index{sspi\_timestamp@{sspi\_timestamp}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{sspi\_timestamp}{sspi\_timestamp}}
+{\footnotesize\ttfamily Time\+Stamp secure\+\_\+channel\+\_\+handler\+::sspi\+\_\+timestamp}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a3415ad0643409ee88b77f1044c6f4465}\label{structsecure__channel__handler_a3415ad0643409ee88b77f1044c6f4465}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!stream\_sizes@{stream\_sizes}}
+\index{stream\_sizes@{stream\_sizes}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{stream\_sizes}{stream\_sizes}}
+{\footnotesize\ttfamily Sec\+Pkg\+Context\+\_\+\+Stream\+Sizes secure\+\_\+channel\+\_\+handler\+::stream\+\_\+sizes}
+
+\mbox{\Hypertarget{structsecure__channel__handler_ab18b311879bd6423d4b3ffd9baecccea}\label{structsecure__channel__handler_ab18b311879bd6423d4b3ffd9baecccea}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ secure\+\_\+channel\+\_\+handler\+::user\+\_\+data}
+
+\mbox{\Hypertarget{structsecure__channel__handler_a4baea525e4d9d5b04e152f8fee1c1fe9}\label{structsecure__channel__handler_a4baea525e4d9d5b04e152f8fee1c1fe9}} 
+\index{secure\_channel\_handler@{secure\_channel\_handler}!verify\_peer@{verify\_peer}}
+\index{verify\_peer@{verify\_peer}!secure\_channel\_handler@{secure\_channel\_handler}}
+\doxysubsubsection{\texorpdfstring{verify\_peer}{verify\_peer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} secure\+\_\+channel\+\_\+handler\+::verify\+\_\+peer}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/windows/\mbox{\hyperlink{secure__channel__tls__handler_8c}{secure\+\_\+channel\+\_\+tls\+\_\+handler.\+c}}\end{DoxyCompactItemize}

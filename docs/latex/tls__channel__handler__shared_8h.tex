@@ -1,0 +1,48 @@
+\hypertarget{tls__channel__handler__shared_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/private/tls\+\_\+channel\+\_\+handler\+\_\+shared.h File Reference}
+\label{tls__channel__handler__shared_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/private/tls\_channel\_handler\_shared.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/private/tls\_channel\_handler\_shared.h}}
+{\ttfamily \#include $<$aws/io/io.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/channel.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/statistics.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{tls__channel__handler__shared_8h_a25e0039914c1cd01e332acf26c0a0130}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared\+\_\+init}} (struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} $\ast$tls\+\_\+handler\+\_\+shared, struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$options)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{tls__channel__handler__shared_8h_a91dd20ebedbaee3090ecad1a3033f1e1}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} $\ast$tls\+\_\+handler\+\_\+shared)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{tls__channel__handler__shared_8h_a393a8f31c6dfd2adacc847e60eb97157}{aws\+\_\+on\+\_\+drive\+\_\+tls\+\_\+negotiation}} (struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} $\ast$tls\+\_\+handler\+\_\+shared)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{tls__channel__handler__shared_8h_a85b4ef2d6a1e9605345994453f51c800}{aws\+\_\+on\+\_\+tls\+\_\+negotiation\+\_\+completed}} (struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} $\ast$tls\+\_\+handler\+\_\+shared, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tls__channel__handler__shared_8h_a393a8f31c6dfd2adacc847e60eb97157}\label{tls__channel__handler__shared_8h_a393a8f31c6dfd2adacc847e60eb97157}} 
+\index{tls\_channel\_handler\_shared.h@{tls\_channel\_handler\_shared.h}!aws\_on\_drive\_tls\_negotiation@{aws\_on\_drive\_tls\_negotiation}}
+\index{aws\_on\_drive\_tls\_negotiation@{aws\_on\_drive\_tls\_negotiation}!tls\_channel\_handler\_shared.h@{tls\_channel\_handler\_shared.h}}
+\doxysubsubsection{\texorpdfstring{aws\_on\_drive\_tls\_negotiation()}{aws\_on\_drive\_tls\_negotiation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void aws\+\_\+on\+\_\+drive\+\_\+tls\+\_\+negotiation (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} $\ast$}]{tls\+\_\+handler\+\_\+shared }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tls__channel__handler__shared_8h_a85b4ef2d6a1e9605345994453f51c800}\label{tls__channel__handler__shared_8h_a85b4ef2d6a1e9605345994453f51c800}} 
+\index{tls\_channel\_handler\_shared.h@{tls\_channel\_handler\_shared.h}!aws\_on\_tls\_negotiation\_completed@{aws\_on\_tls\_negotiation\_completed}}
+\index{aws\_on\_tls\_negotiation\_completed@{aws\_on\_tls\_negotiation\_completed}!tls\_channel\_handler\_shared.h@{tls\_channel\_handler\_shared.h}}
+\doxysubsubsection{\texorpdfstring{aws\_on\_tls\_negotiation\_completed()}{aws\_on\_tls\_negotiation\_completed()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void aws\+\_\+on\+\_\+tls\+\_\+negotiation\+\_\+completed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} $\ast$}]{tls\+\_\+handler\+\_\+shared,  }\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tls__channel__handler__shared_8h_a91dd20ebedbaee3090ecad1a3033f1e1}\label{tls__channel__handler__shared_8h_a91dd20ebedbaee3090ecad1a3033f1e1}} 
+\index{tls\_channel\_handler\_shared.h@{tls\_channel\_handler\_shared.h}!aws\_tls\_channel\_handler\_shared\_clean\_up@{aws\_tls\_channel\_handler\_shared\_clean\_up}}
+\index{aws\_tls\_channel\_handler\_shared\_clean\_up@{aws\_tls\_channel\_handler\_shared\_clean\_up}!tls\_channel\_handler\_shared.h@{tls\_channel\_handler\_shared.h}}
+\doxysubsubsection{\texorpdfstring{aws\_tls\_channel\_handler\_shared\_clean\_up()}{aws\_tls\_channel\_handler\_shared\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} $\ast$}]{tls\+\_\+handler\+\_\+shared }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{tls__channel__handler__shared_8h_a25e0039914c1cd01e332acf26c0a0130}\label{tls__channel__handler__shared_8h_a25e0039914c1cd01e332acf26c0a0130}} 
+\index{tls\_channel\_handler\_shared.h@{tls\_channel\_handler\_shared.h}!aws\_tls\_channel\_handler\_shared\_init@{aws\_tls\_channel\_handler\_shared\_init}}
+\index{aws\_tls\_channel\_handler\_shared\_init@{aws\_tls\_channel\_handler\_shared\_init}!tls\_channel\_handler\_shared.h@{tls\_channel\_handler\_shared.h}}
+\doxysubsubsection{\texorpdfstring{aws\_tls\_channel\_handler\_shared\_init()}{aws\_tls\_channel\_handler\_shared\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__tls__channel__handler__shared}{aws\+\_\+tls\+\_\+channel\+\_\+handler\+\_\+shared}} $\ast$}]{tls\+\_\+handler\+\_\+shared,  }\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+

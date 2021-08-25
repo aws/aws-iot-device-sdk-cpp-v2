@@ -1,0 +1,124 @@
+\hypertarget{s2n__drbg_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\+\_\+drbg.c File Reference}
+\label{s2n__drbg_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_drbg.c@{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_drbg.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/evp.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+drbg.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+random.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+blob.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__drbg_8c_a8fe3896f33f4b6dfdce0d8485e18c5b8}{s2n\+\_\+drbg\+\_\+key\+\_\+size}}(drgb)~EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+key\+\_\+length((drbg)-\/$>$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+\#define \mbox{\hyperlink{s2n__drbg_8c_af194024af76c4dcf64beef3cee68162e}{s2n\+\_\+drbg\+\_\+seed\+\_\+size}}(drgb)~(\mbox{\hyperlink{s2n__drbg_8h_a74d3844503fa6b8393fe438719d4d621}{S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE}} + \mbox{\hyperlink{s2n__drbg_8c_a8fe3896f33f4b6dfdce0d8485e18c5b8}{s2n\+\_\+drbg\+\_\+key\+\_\+size}}(drgb))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__drbg_8c_a2cf61669f5ff0c0182d412227aaaeff8}{s2n\+\_\+increment\+\_\+drbg\+\_\+counter}} (struct s2n\+\_\+blob $\ast$counter)
+\item 
+static int \mbox{\hyperlink{s2n__drbg_8c_a15e2f784a3eaa0f35b0297588b10e8f9}{s2n\+\_\+drbg\+\_\+block\+\_\+encrypt}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, uint8\+\_\+t in\mbox{[}\mbox{\hyperlink{s2n__drbg_8h_a74d3844503fa6b8393fe438719d4d621}{S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE}}\mbox{]}, uint8\+\_\+t out\mbox{[}\mbox{\hyperlink{s2n__drbg_8h_a74d3844503fa6b8393fe438719d4d621}{S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE}}\mbox{]})
+\item 
+static int \mbox{\hyperlink{s2n__drbg_8c_a92bd6c5621da466261282374f0ecd318}{s2n\+\_\+drbg\+\_\+bits}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg, struct s2n\+\_\+blob $\ast$out)
+\item 
+static int \mbox{\hyperlink{s2n__drbg_8c_a6ff9f5f61f533713213d091d29313971}{s2n\+\_\+drbg\+\_\+update}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg, struct s2n\+\_\+blob $\ast$provided\+\_\+data)
+\item 
+static int \mbox{\hyperlink{s2n__drbg_8c_a228887aa3291efd8b29b8a81f51f2bc4}{s2n\+\_\+drbg\+\_\+mix\+\_\+in\+\_\+entropy}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg, struct s2n\+\_\+blob $\ast$entropy, struct s2n\+\_\+blob $\ast$ps)
+\item 
+static int \mbox{\hyperlink{s2n__drbg_8c_acfbbace5f4f5bf7bdbd246b1b9bde4ae}{s2n\+\_\+drbg\+\_\+seed}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg, struct s2n\+\_\+blob $\ast$ps)
+\item 
+static int \mbox{\hyperlink{s2n__drbg_8c_a0464a77000a298ad3716d4bc24156284}{s2n\+\_\+drbg\+\_\+mix}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg, struct s2n\+\_\+blob $\ast$ps)
+\item 
+int \mbox{\hyperlink{s2n__drbg_8c_aaddf30a3efa9f5a82906baa37cc89957}{s2n\+\_\+drbg\+\_\+instantiate}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg, struct s2n\+\_\+blob $\ast$personalization\+\_\+string, const \mbox{\hyperlink{s2n__drbg_8h_a73f6f4cdb4824dea73b369d606010f37}{s2n\+\_\+drbg\+\_\+mode}} mode)
+\item 
+int \mbox{\hyperlink{s2n__drbg_8c_a9fad975e364d5a398330eb937745f0e6}{s2n\+\_\+drbg\+\_\+generate}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg, struct s2n\+\_\+blob $\ast$blob)
+\item 
+int \mbox{\hyperlink{s2n__drbg_8c_a4ce9d0f91b5ddb06f136bd1029e88f15}{s2n\+\_\+drbg\+\_\+wipe}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg)
+\item 
+int \mbox{\hyperlink{s2n__drbg_8c_a0260b5f9c83b348b295782ef6ad61ec3}{s2n\+\_\+drbg\+\_\+bytes\+\_\+used}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg, uint64\+\_\+t $\ast$bytes\+\_\+used)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__drbg_8c_a8fe3896f33f4b6dfdce0d8485e18c5b8}\label{s2n__drbg_8c_a8fe3896f33f4b6dfdce0d8485e18c5b8}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_key\_size@{s2n\_drbg\_key\_size}}
+\index{s2n\_drbg\_key\_size@{s2n\_drbg\_key\_size}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_key\_size}{s2n\_drbg\_key\_size}}
+{\footnotesize\ttfamily \#define s2n\+\_\+drbg\+\_\+key\+\_\+size(\begin{DoxyParamCaption}\item[{}]{drgb }\end{DoxyParamCaption})~EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+key\+\_\+length((drbg)-\/$>$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})}
+
+\mbox{\Hypertarget{s2n__drbg_8c_af194024af76c4dcf64beef3cee68162e}\label{s2n__drbg_8c_af194024af76c4dcf64beef3cee68162e}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_seed\_size@{s2n\_drbg\_seed\_size}}
+\index{s2n\_drbg\_seed\_size@{s2n\_drbg\_seed\_size}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_seed\_size}{s2n\_drbg\_seed\_size}}
+{\footnotesize\ttfamily \#define s2n\+\_\+drbg\+\_\+seed\+\_\+size(\begin{DoxyParamCaption}\item[{}]{drgb }\end{DoxyParamCaption})~(\mbox{\hyperlink{s2n__drbg_8h_a74d3844503fa6b8393fe438719d4d621}{S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE}} + \mbox{\hyperlink{s2n__drbg_8c_a8fe3896f33f4b6dfdce0d8485e18c5b8}{s2n\+\_\+drbg\+\_\+key\+\_\+size}}(drgb))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__drbg_8c_a92bd6c5621da466261282374f0ecd318}\label{s2n__drbg_8c_a92bd6c5621da466261282374f0ecd318}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_bits@{s2n\_drbg\_bits}}
+\index{s2n\_drbg\_bits@{s2n\_drbg\_bits}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_bits()}{s2n\_drbg\_bits()}}
+{\footnotesize\ttfamily static int s2n\+\_\+drbg\+\_\+bits (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$}]{drbg,  }\item[{struct s2n\+\_\+blob $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__drbg_8c_a15e2f784a3eaa0f35b0297588b10e8f9}\label{s2n__drbg_8c_a15e2f784a3eaa0f35b0297588b10e8f9}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_block\_encrypt@{s2n\_drbg\_block\_encrypt}}
+\index{s2n\_drbg\_block\_encrypt@{s2n\_drbg\_block\_encrypt}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_block\_encrypt()}{s2n\_drbg\_block\_encrypt()}}
+{\footnotesize\ttfamily static int s2n\+\_\+drbg\+\_\+block\+\_\+encrypt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{uint8\+\_\+t}]{in\mbox{[}\+S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE\mbox{]},  }\item[{uint8\+\_\+t}]{out\mbox{[}\+S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__drbg_8c_a0260b5f9c83b348b295782ef6ad61ec3}\label{s2n__drbg_8c_a0260b5f9c83b348b295782ef6ad61ec3}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_bytes\_used@{s2n\_drbg\_bytes\_used}}
+\index{s2n\_drbg\_bytes\_used@{s2n\_drbg\_bytes\_used}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_bytes\_used()}{s2n\_drbg\_bytes\_used()}}
+{\footnotesize\ttfamily int s2n\+\_\+drbg\+\_\+bytes\+\_\+used (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$}]{drbg,  }\item[{uint64\+\_\+t $\ast$}]{bytes\+\_\+used }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__drbg_8c_a9fad975e364d5a398330eb937745f0e6}\label{s2n__drbg_8c_a9fad975e364d5a398330eb937745f0e6}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_generate@{s2n\_drbg\_generate}}
+\index{s2n\_drbg\_generate@{s2n\_drbg\_generate}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_generate()}{s2n\_drbg\_generate()}}
+{\footnotesize\ttfamily int s2n\+\_\+drbg\+\_\+generate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$}]{drbg,  }\item[{struct s2n\+\_\+blob $\ast$}]{blob }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__drbg_8c_aaddf30a3efa9f5a82906baa37cc89957}\label{s2n__drbg_8c_aaddf30a3efa9f5a82906baa37cc89957}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_instantiate@{s2n\_drbg\_instantiate}}
+\index{s2n\_drbg\_instantiate@{s2n\_drbg\_instantiate}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_instantiate()}{s2n\_drbg\_instantiate()}}
+{\footnotesize\ttfamily int s2n\+\_\+drbg\+\_\+instantiate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$}]{drbg,  }\item[{struct s2n\+\_\+blob $\ast$}]{personalization\+\_\+string,  }\item[{const \mbox{\hyperlink{s2n__drbg_8h_a73f6f4cdb4824dea73b369d606010f37}{s2n\+\_\+drbg\+\_\+mode}}}]{mode }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__drbg_8c_a0464a77000a298ad3716d4bc24156284}\label{s2n__drbg_8c_a0464a77000a298ad3716d4bc24156284}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_mix@{s2n\_drbg\_mix}}
+\index{s2n\_drbg\_mix@{s2n\_drbg\_mix}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_mix()}{s2n\_drbg\_mix()}}
+{\footnotesize\ttfamily static int s2n\+\_\+drbg\+\_\+mix (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$}]{drbg,  }\item[{struct s2n\+\_\+blob $\ast$}]{ps }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__drbg_8c_a228887aa3291efd8b29b8a81f51f2bc4}\label{s2n__drbg_8c_a228887aa3291efd8b29b8a81f51f2bc4}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_mix\_in\_entropy@{s2n\_drbg\_mix\_in\_entropy}}
+\index{s2n\_drbg\_mix\_in\_entropy@{s2n\_drbg\_mix\_in\_entropy}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_mix\_in\_entropy()}{s2n\_drbg\_mix\_in\_entropy()}}
+{\footnotesize\ttfamily static int s2n\+\_\+drbg\+\_\+mix\+\_\+in\+\_\+entropy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$}]{drbg,  }\item[{struct s2n\+\_\+blob $\ast$}]{entropy,  }\item[{struct s2n\+\_\+blob $\ast$}]{ps }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__drbg_8c_acfbbace5f4f5bf7bdbd246b1b9bde4ae}\label{s2n__drbg_8c_acfbbace5f4f5bf7bdbd246b1b9bde4ae}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_seed@{s2n\_drbg\_seed}}
+\index{s2n\_drbg\_seed@{s2n\_drbg\_seed}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_seed()}{s2n\_drbg\_seed()}}
+{\footnotesize\ttfamily static int s2n\+\_\+drbg\+\_\+seed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$}]{drbg,  }\item[{struct s2n\+\_\+blob $\ast$}]{ps }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__drbg_8c_a6ff9f5f61f533713213d091d29313971}\label{s2n__drbg_8c_a6ff9f5f61f533713213d091d29313971}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_update@{s2n\_drbg\_update}}
+\index{s2n\_drbg\_update@{s2n\_drbg\_update}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_update()}{s2n\_drbg\_update()}}
+{\footnotesize\ttfamily static int s2n\+\_\+drbg\+\_\+update (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$}]{drbg,  }\item[{struct s2n\+\_\+blob $\ast$}]{provided\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__drbg_8c_a4ce9d0f91b5ddb06f136bd1029e88f15}\label{s2n__drbg_8c_a4ce9d0f91b5ddb06f136bd1029e88f15}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_wipe@{s2n\_drbg\_wipe}}
+\index{s2n\_drbg\_wipe@{s2n\_drbg\_wipe}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_drbg\_wipe()}{s2n\_drbg\_wipe()}}
+{\footnotesize\ttfamily int s2n\+\_\+drbg\+\_\+wipe (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$}]{drbg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__drbg_8c_a2cf61669f5ff0c0182d412227aaaeff8}\label{s2n__drbg_8c_a2cf61669f5ff0c0182d412227aaaeff8}} 
+\index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_increment\_drbg\_counter@{s2n\_increment\_drbg\_counter}}
+\index{s2n\_increment\_drbg\_counter@{s2n\_increment\_drbg\_counter}!s2n\_drbg.c@{s2n\_drbg.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_increment\_drbg\_counter()}{s2n\_increment\_drbg\_counter()}}
+{\footnotesize\ttfamily int s2n\+\_\+increment\+\_\+drbg\+\_\+counter (\begin{DoxyParamCaption}\item[{struct s2n\+\_\+blob $\ast$}]{counter }\end{DoxyParamCaption})}
+

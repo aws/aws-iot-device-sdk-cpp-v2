@@ -1,0 +1,69 @@
+\hypertarget{structretry__data}{}\doxysection{retry\+\_\+data Struct Reference}
+\label{structretry__data}\index{retry\_data@{retry\_data}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$ \mbox{\hyperlink{structretry__data_af3fa6d7ba7e0599618119b009d062daa}{retry\+\_\+token}}
+\item 
+struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}} $\ast$ \mbox{\hyperlink{structretry__data_aa208e1180f1f4137d406a84809894882}{retry\+\_\+strategy}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structretry__data_a95d2b3a5966a179017af61f5f71a4226}{mutex}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structretry__data_a6184bf0154619086d89bb7acbe964212}{cvar}}
+\item 
+int \mbox{\hyperlink{structretry__data_a9af239a42e346115498cabf07888bf16}{token\+\_\+acquisition\+\_\+error\+\_\+code}}
+\item 
+int \mbox{\hyperlink{structretry__data_a9d909ba8d76dc0233f7b42fb487f0854}{schedule\+\_\+retry\+\_\+error\+\_\+code}}
+\item 
+struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}} $\ast$ \mbox{\hyperlink{structretry__data_af35a8aedb8b5eb8b4b6c570d2e63e0dc}{schedule\+\_\+token\+\_\+value}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structretry__data_a6184bf0154619086d89bb7acbe964212}\label{structretry__data_a6184bf0154619086d89bb7acbe964212}} 
+\index{retry\_data@{retry\_data}!cvar@{cvar}}
+\index{cvar@{cvar}!retry\_data@{retry\_data}}
+\doxysubsubsection{\texorpdfstring{cvar}{cvar}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} retry\+\_\+data\+::cvar}
+
+\mbox{\Hypertarget{structretry__data_a95d2b3a5966a179017af61f5f71a4226}\label{structretry__data_a95d2b3a5966a179017af61f5f71a4226}} 
+\index{retry\_data@{retry\_data}!mutex@{mutex}}
+\index{mutex@{mutex}!retry\_data@{retry\_data}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} retry\+\_\+data\+::mutex}
+
+\mbox{\Hypertarget{structretry__data_aa208e1180f1f4137d406a84809894882}\label{structretry__data_aa208e1180f1f4137d406a84809894882}} 
+\index{retry\_data@{retry\_data}!retry\_strategy@{retry\_strategy}}
+\index{retry\_strategy@{retry\_strategy}!retry\_data@{retry\_data}}
+\doxysubsubsection{\texorpdfstring{retry\_strategy}{retry\_strategy}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__strategy}{aws\+\_\+retry\+\_\+strategy}}$\ast$ retry\+\_\+data\+::retry\+\_\+strategy}
+
+\mbox{\Hypertarget{structretry__data_af3fa6d7ba7e0599618119b009d062daa}\label{structretry__data_af3fa6d7ba7e0599618119b009d062daa}} 
+\index{retry\_data@{retry\_data}!retry\_token@{retry\_token}}
+\index{retry\_token@{retry\_token}!retry\_data@{retry\_data}}
+\doxysubsubsection{\texorpdfstring{retry\_token}{retry\_token}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}}$\ast$ retry\+\_\+data\+::retry\+\_\+token}
+
+\mbox{\Hypertarget{structretry__data_a9d909ba8d76dc0233f7b42fb487f0854}\label{structretry__data_a9d909ba8d76dc0233f7b42fb487f0854}} 
+\index{retry\_data@{retry\_data}!schedule\_retry\_error\_code@{schedule\_retry\_error\_code}}
+\index{schedule\_retry\_error\_code@{schedule\_retry\_error\_code}!retry\_data@{retry\_data}}
+\doxysubsubsection{\texorpdfstring{schedule\_retry\_error\_code}{schedule\_retry\_error\_code}}
+{\footnotesize\ttfamily int retry\+\_\+data\+::schedule\+\_\+retry\+\_\+error\+\_\+code}
+
+\mbox{\Hypertarget{structretry__data_af35a8aedb8b5eb8b4b6c570d2e63e0dc}\label{structretry__data_af35a8aedb8b5eb8b4b6c570d2e63e0dc}} 
+\index{retry\_data@{retry\_data}!schedule\_token\_value@{schedule\_token\_value}}
+\index{schedule\_token\_value@{schedule\_token\_value}!retry\_data@{retry\_data}}
+\doxysubsubsection{\texorpdfstring{schedule\_token\_value}{schedule\_token\_value}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__retry__token}{aws\+\_\+retry\+\_\+token}}$\ast$ retry\+\_\+data\+::schedule\+\_\+token\+\_\+value}
+
+\mbox{\Hypertarget{structretry__data_a9af239a42e346115498cabf07888bf16}\label{structretry__data_a9af239a42e346115498cabf07888bf16}} 
+\index{retry\_data@{retry\_data}!token\_acquisition\_error\_code@{token\_acquisition\_error\_code}}
+\index{token\_acquisition\_error\_code@{token\_acquisition\_error\_code}!retry\_data@{retry\_data}}
+\doxysubsubsection{\texorpdfstring{token\_acquisition\_error\_code}{token\_acquisition\_error\_code}}
+{\footnotesize\ttfamily int retry\+\_\+data\+::token\+\_\+acquisition\+\_\+error\+\_\+code}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/\mbox{\hyperlink{standard__retry__test_8c}{standard\+\_\+retry\+\_\+test.\+c}}\end{DoxyCompactItemize}

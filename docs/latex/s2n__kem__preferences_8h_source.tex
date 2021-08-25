@@ -1,0 +1,57 @@
+\hypertarget{s2n__kem__preferences_8h_source}{}\doxysection{s2n\+\_\+kem\+\_\+preferences.\+h}
+\label{s2n__kem__preferences_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_kem\_preferences.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_kem\_preferences.h}}
+\mbox{\hyperlink{s2n__kem__preferences_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdbool_8h}{stdbool.h}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__kem_8h}{tls/s2n\_kem.h}}"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__kex_8h}{tls/s2n\_kex.h}}"{}}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__preferences}{s2n\_kem\_preferences}} \{}
+\DoxyCodeLine{23     \textcolor{comment}{/* kems used for hybrid TLS 1.2 */}}
+\DoxyCodeLine{24     uint8\_t \mbox{\hyperlink{structs2n__kem__preferences_af6434260f4c0163a4aee162fc71bedbc}{kem\_count}};}
+\DoxyCodeLine{25     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem}{s2n\_kem}} **\mbox{\hyperlink{structs2n__kem__preferences_a56c27933b7e8fa7e3cc42570a7f1bcc2}{kems}};}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     \textcolor{comment}{/* tls13\_kem\_groups used for hybrid TLS 1.3 */}}
+\DoxyCodeLine{28     uint8\_t \mbox{\hyperlink{structs2n__kem__preferences_a8262180cde40aa5b8c98d6c382862314}{tls13\_kem\_group\_count}};}
+\DoxyCodeLine{29     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__group}{s2n\_kem\_group}} **\mbox{\hyperlink{structs2n__kem__preferences_ad054172dd04cb09d6c9bf526be803c1e}{tls13\_kem\_groups}};}
+\DoxyCodeLine{30 \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#if !defined(S2N\_NO\_PQ)}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem}{s2n\_kem}} *\mbox{\hyperlink{s2n__kem__preferences_8h_a2db29caecbe11b5999085e48ba5f7e99}{pq\_kems\_r1}}[2];}
+\DoxyCodeLine{35 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem}{s2n\_kem}} *\mbox{\hyperlink{s2n__kem__preferences_8h_a6f0dd96d577c9dc63a6ee77e90d01347}{pq\_kems\_r2r1}}[4];}
+\DoxyCodeLine{36 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem}{s2n\_kem}} *\mbox{\hyperlink{s2n__kem__preferences_8h_a66bc8b8b4832d9ddfef1fd39873e3cac}{pq\_kems\_r2r1\_2020\_07}}[5];}
+\DoxyCodeLine{37 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem}{s2n\_kem}} *\mbox{\hyperlink{s2n__kem__preferences_8h_aaac7fa565327ac9311c344dc0fcafc59}{pq\_kems\_sike\_r1}}[1];}
+\DoxyCodeLine{38 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem}{s2n\_kem}} *\mbox{\hyperlink{s2n__kem__preferences_8h_a5fc2c135ea26d6feae63bfe3429bca4c}{pq\_kems\_sike\_r2r1}}[2];}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__preferences}{s2n\_kem\_preferences}} \mbox{\hyperlink{s2n__kem__preferences_8h_a7ffcffb633dc5ece887057259074dbe4}{kem\_preferences\_kms\_pq\_tls\_1\_0\_2019\_06}};}
+\DoxyCodeLine{41 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__preferences}{s2n\_kem\_preferences}} \mbox{\hyperlink{s2n__kem__preferences_8h_a495756b22c5583be82b565f2b693180e}{kem\_preferences\_kms\_pq\_tls\_1\_0\_2020\_02}};}
+\DoxyCodeLine{42 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__preferences}{s2n\_kem\_preferences}} \mbox{\hyperlink{s2n__kem__preferences_8h_a7fcfab55069053a192fc692c4305332c}{kem\_preferences\_kms\_pq\_tls\_1\_0\_2020\_07}};}
+\DoxyCodeLine{43 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__preferences}{s2n\_kem\_preferences}} \mbox{\hyperlink{s2n__kem__preferences_8h_a65af15c8945816977e1198f234725f93}{kem\_preferences\_pq\_sike\_test\_tls\_1\_0\_2019\_11}};}
+\DoxyCodeLine{44 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__preferences}{s2n\_kem\_preferences}} \mbox{\hyperlink{s2n__kem__preferences_8h_a568a331e5c98f79cf576523cfa65465c}{kem\_preferences\_pq\_sike\_test\_tls\_1\_0\_2020\_02}};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__kem__preferences}{s2n\_kem\_preferences}} \mbox{\hyperlink{s2n__kem__preferences_8h_a55897ad232b4a35f7d56723f640fe750}{kem\_preferences\_null}};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keywordtype}{bool} \mbox{\hyperlink{s2n__kem__preferences_8h_a025eab3b84af81ffa7a47ba3b91e6eba}{s2n\_kem\_preferences\_includes\_tls13\_kem\_group}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__kem__preferences}{s2n\_kem\_preferences}} *kem\_preferences,}
+\DoxyCodeLine{51         uint16\_t query\_iana\_id);}
+
+\end{DoxyCode}

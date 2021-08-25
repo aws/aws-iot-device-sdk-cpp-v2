@@ -1,0 +1,30 @@
+\hypertarget{platform_8h_source}{}\doxysection{platform.\+h}
+\label{platform_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/platform.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/platform.h}}
+\mbox{\hyperlink{platform_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_PLATFORM\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_PLATFORM\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2aws-c-common_2verification_2cbmc_2include_2aws_2common_2_config_8h}{aws/common/config.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifdef \_WIN32}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#    define AWS\_OS\_WINDOWS}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#elif \_\_APPLE\_\_}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#    define AWS\_OS\_APPLE}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#    include "{}TargetConditionals.h"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#    if defined(TARGET\_OS\_IPHONE) \&\& TARGET\_OS\_IPHONE}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#        define AWS\_OS\_IOS}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#        define AWS\_OS\_MACOS}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#elif \_\_linux\_\_}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#    define AWS\_OS\_LINUX}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#if defined(\_POSIX\_VERSION)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#    define AWS\_OS\_POSIX}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_PLATFORM\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,42 @@
+\hypertarget{s2n__alerts_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+alerts.h File Reference}
+\label{s2n__alerts_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_alerts.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_alerts.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__alerts_8h_a45bdea2fd7faa208c0272f56bfb8c656}{s2n\+\_\+process\+\_\+alert\+\_\+fragment}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__alerts_8h_aa64cc9d8af1c1afc16c6720c02fef789}{s2n\+\_\+queue\+\_\+writer\+\_\+close\+\_\+alert\+\_\+warning}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__alerts_8h_aaab45cd713be8d161a114cf078b52635}{s2n\+\_\+queue\+\_\+reader\+\_\+unsupported\+\_\+protocol\+\_\+version\+\_\+alert}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__alerts_8h_a85c39069581e54153f38ee260878714d}{s2n\+\_\+queue\+\_\+reader\+\_\+handshake\+\_\+failure\+\_\+alert}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__alerts_8h_a45bdea2fd7faa208c0272f56bfb8c656}\label{s2n__alerts_8h_a45bdea2fd7faa208c0272f56bfb8c656}} 
+\index{s2n\_alerts.h@{s2n\_alerts.h}!s2n\_process\_alert\_fragment@{s2n\_process\_alert\_fragment}}
+\index{s2n\_process\_alert\_fragment@{s2n\_process\_alert\_fragment}!s2n\_alerts.h@{s2n\_alerts.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_process\_alert\_fragment()}{s2n\_process\_alert\_fragment()}}
+{\footnotesize\ttfamily int s2n\+\_\+process\+\_\+alert\+\_\+fragment (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__alerts_8h_a85c39069581e54153f38ee260878714d}\label{s2n__alerts_8h_a85c39069581e54153f38ee260878714d}} 
+\index{s2n\_alerts.h@{s2n\_alerts.h}!s2n\_queue\_reader\_handshake\_failure\_alert@{s2n\_queue\_reader\_handshake\_failure\_alert}}
+\index{s2n\_queue\_reader\_handshake\_failure\_alert@{s2n\_queue\_reader\_handshake\_failure\_alert}!s2n\_alerts.h@{s2n\_alerts.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_queue\_reader\_handshake\_failure\_alert()}{s2n\_queue\_reader\_handshake\_failure\_alert()}}
+{\footnotesize\ttfamily int s2n\+\_\+queue\+\_\+reader\+\_\+handshake\+\_\+failure\+\_\+alert (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__alerts_8h_aaab45cd713be8d161a114cf078b52635}\label{s2n__alerts_8h_aaab45cd713be8d161a114cf078b52635}} 
+\index{s2n\_alerts.h@{s2n\_alerts.h}!s2n\_queue\_reader\_unsupported\_protocol\_version\_alert@{s2n\_queue\_reader\_unsupported\_protocol\_version\_alert}}
+\index{s2n\_queue\_reader\_unsupported\_protocol\_version\_alert@{s2n\_queue\_reader\_unsupported\_protocol\_version\_alert}!s2n\_alerts.h@{s2n\_alerts.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_queue\_reader\_unsupported\_protocol\_version\_alert()}{s2n\_queue\_reader\_unsupported\_protocol\_version\_alert()}}
+{\footnotesize\ttfamily int s2n\+\_\+queue\+\_\+reader\+\_\+unsupported\+\_\+protocol\+\_\+version\+\_\+alert (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__alerts_8h_aa64cc9d8af1c1afc16c6720c02fef789}\label{s2n__alerts_8h_aa64cc9d8af1c1afc16c6720c02fef789}} 
+\index{s2n\_alerts.h@{s2n\_alerts.h}!s2n\_queue\_writer\_close\_alert\_warning@{s2n\_queue\_writer\_close\_alert\_warning}}
+\index{s2n\_queue\_writer\_close\_alert\_warning@{s2n\_queue\_writer\_close\_alert\_warning}!s2n\_alerts.h@{s2n\_alerts.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_queue\_writer\_close\_alert\_warning()}{s2n\_queue\_writer\_close\_alert\_warning()}}
+{\footnotesize\ttfamily int s2n\+\_\+queue\+\_\+writer\+\_\+close\+\_\+alert\+\_\+warning (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+

@@ -1,0 +1,67 @@
+\hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}{}\doxysection{Aws\+::Eventstreamrpc\+::Client\+Continuation\+Handler Class Reference}
+\label{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}\index{Aws::Eventstreamrpc::ClientContinuationHandler@{Aws::Eventstreamrpc::ClientContinuationHandler}}
+
+
+{\ttfamily \#include $<$Event\+Stream\+Client.\+h$>$}
+
+Inheritance diagram for Aws\+::Eventstreamrpc\+::Client\+Continuation\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a46f55663912d0093218bbe72ba28ea70}{On\+Continuation\+Message}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt\+::\+List}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&headers, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Crt\+::\+Byte\+Buf}} $>$ \&\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{Message\+Type}} message\+Type, uint32\+\_\+t message\+Flags)=0
+\item 
+virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a718d00c81d12faac0fab623688614146}{On\+Continuation\+Closed}} ()=0
+\item 
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_ab40407a7f1aece9cad41e736f05323a1}{$\sim$\+Client\+Continuation\+Handler}} () noexcept
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a262d214378ef767fbe67711ef6b302bc}{Client\+Continuation}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_ab40407a7f1aece9cad41e736f05323a1}\label{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_ab40407a7f1aece9cad41e736f05323a1}} 
+\index{Aws::Eventstreamrpc::ClientContinuationHandler@{Aws::Eventstreamrpc::ClientContinuationHandler}!````~ClientContinuationHandler@{$\sim$ClientContinuationHandler}}
+\index{````~ClientContinuationHandler@{$\sim$ClientContinuationHandler}!Aws::Eventstreamrpc::ClientContinuationHandler@{Aws::Eventstreamrpc::ClientContinuationHandler}}
+\doxysubsubsection{\texorpdfstring{$\sim$ClientContinuationHandler()}{~ClientContinuationHandler()}}
+{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Client\+Continuation\+Handler\+::$\sim$\+Client\+Continuation\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a718d00c81d12faac0fab623688614146}\label{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a718d00c81d12faac0fab623688614146}} 
+\index{Aws::Eventstreamrpc::ClientContinuationHandler@{Aws::Eventstreamrpc::ClientContinuationHandler}!OnContinuationClosed@{OnContinuationClosed}}
+\index{OnContinuationClosed@{OnContinuationClosed}!Aws::Eventstreamrpc::ClientContinuationHandler@{Aws::Eventstreamrpc::ClientContinuationHandler}}
+\doxysubsubsection{\texorpdfstring{OnContinuationClosed()}{OnContinuationClosed()}}
+{\footnotesize\ttfamily virtual void Aws\+::\+Eventstreamrpc\+::\+Client\+Continuation\+Handler\+::\+On\+Continuation\+Closed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Invoked when the continuation is closed.
+
+Once the continuation is closed, no more messages may be sent or received. The continuation is closed when a message is sent or received with the TERMINATE\+\_\+\+STREAM flag, or when the connection shuts down. \mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a46f55663912d0093218bbe72ba28ea70}\label{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a46f55663912d0093218bbe72ba28ea70}} 
+\index{Aws::Eventstreamrpc::ClientContinuationHandler@{Aws::Eventstreamrpc::ClientContinuationHandler}!OnContinuationMessage@{OnContinuationMessage}}
+\index{OnContinuationMessage@{OnContinuationMessage}!Aws::Eventstreamrpc::ClientContinuationHandler@{Aws::Eventstreamrpc::ClientContinuationHandler}}
+\doxysubsubsection{\texorpdfstring{OnContinuationMessage()}{OnContinuationMessage()}}
+{\footnotesize\ttfamily virtual void Aws\+::\+Eventstreamrpc\+::\+Client\+Continuation\+Handler\+::\+On\+Continuation\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt\+::\+List}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&}]{headers,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Crt\+::\+Byte\+Buf}} $>$ \&}]{payload,  }\item[{\mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{Message\+Type}}}]{message\+Type,  }\item[{uint32\+\_\+t}]{message\+Flags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Invoked when a message is received on this continuation. 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a262d214378ef767fbe67711ef6b302bc}\label{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler_a262d214378ef767fbe67711ef6b302bc}} 
+\index{Aws::Eventstreamrpc::ClientContinuationHandler@{Aws::Eventstreamrpc::ClientContinuationHandler}!ClientContinuation@{ClientContinuation}}
+\index{ClientContinuation@{ClientContinuation}!Aws::Eventstreamrpc::ClientContinuationHandler@{Aws::Eventstreamrpc::ClientContinuationHandler}}
+\doxysubsubsection{\texorpdfstring{ClientContinuation}{ClientContinuation}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{Client\+Continuation}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+eventstream\+\_\+rpc/include/aws/eventstreamrpc/\mbox{\hyperlink{_event_stream_client_8h}{Event\+Stream\+Client.\+h}}\item 
+eventstream\+\_\+rpc/source/\mbox{\hyperlink{_event_stream_client_8cpp}{Event\+Stream\+Client.\+cpp}}\end{DoxyCompactItemize}

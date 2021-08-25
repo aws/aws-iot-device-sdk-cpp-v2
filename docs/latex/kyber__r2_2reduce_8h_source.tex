@@ -1,0 +1,21 @@
+\hypertarget{kyber__r2_2reduce_8h_source}{}\doxysection{reduce.\+h}
+\label{kyber__r2_2reduce_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\_r2/reduce.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/kyber\_r2/reduce.h}}
+\mbox{\hyperlink{kyber__r2_2reduce_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef REDUCE\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define REDUCE\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{stdint.h}}>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define MONT 2285 }\textcolor{comment}{// 2\string^16 \% Q}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define QINV 62209 }\textcolor{comment}{// q\string^(-\/1) mod 2\string^16}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 int16\_t \mbox{\hyperlink{kyber__r2_2reduce_8h_affc2f4eebb1affcf46bf6f097d30f5dd}{PQCLEAN\_KYBER512\_CLEAN\_montgomery\_reduce}}(int32\_t \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 int16\_t \mbox{\hyperlink{kyber__r2_2reduce_8h_a113871cd2df4991d2e38535da56c7c4d}{PQCLEAN\_KYBER512\_CLEAN\_barrett\_reduce}}(int16\_t \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 int16\_t \mbox{\hyperlink{kyber__r2_2reduce_8h_a5349c71a8be2fc425ee8b3a8f7e2c2b4}{PQCLEAN\_KYBER512\_CLEAN\_csubq}}(int16\_t \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}});}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

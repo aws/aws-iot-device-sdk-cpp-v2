@@ -1,0 +1,88 @@
+\hypertarget{structtask__args}{}\doxysection{task\+\_\+args Struct Reference}
+\label{structtask__args}\index{task\_args@{task\_args}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtask__args_a3ae954b678fcd7753a4608f2ab829292}{invoked}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtask__args_a962e55777e7cac2c8f9f2e8ad598da26}{was\+\_\+in\+\_\+thread}}
+\item 
+\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} \mbox{\hyperlink{structtask__args_a57449509f4b7fa43e781cf7b6a6f75b6}{thread\+\_\+id}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{structtask__args_a97e9a78defaf462e541fd8e71543c9ab}{loop}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}} $\ast$ \mbox{\hyperlink{structtask__args_a27e83f999020f0cf343a6e5baec835dc}{el\+\_\+group}}
+\item 
+enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} \mbox{\hyperlink{structtask__args_a57d895cb104f9cddd0e888d8facc0613}{status}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structtask__args_a9a2f5b08ddc5fe96f8257e91b276b26e}{mutex}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structtask__args_aab27ca059614081fecd907b14e1629e4}{condition\+\_\+variable}}
+\item 
+struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structtask__args_ab1f832bf787324687b4c934b4065ed40}{thread\+\_\+complete}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structtask__args_aab27ca059614081fecd907b14e1629e4}\label{structtask__args_aab27ca059614081fecd907b14e1629e4}} 
+\index{task\_args@{task\_args}!condition\_variable@{condition\_variable}}
+\index{condition\_variable@{condition\_variable}!task\_args@{task\_args}}
+\doxysubsubsection{\texorpdfstring{condition\_variable}{condition\_variable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} task\+\_\+args\+::condition\+\_\+variable}
+
+\mbox{\Hypertarget{structtask__args_a27e83f999020f0cf343a6e5baec835dc}\label{structtask__args_a27e83f999020f0cf343a6e5baec835dc}} 
+\index{task\_args@{task\_args}!el\_group@{el\_group}}
+\index{el\_group@{el\_group}!task\_args@{task\_args}}
+\doxysubsubsection{\texorpdfstring{el\_group}{el\_group}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}}$\ast$ task\+\_\+args\+::el\+\_\+group}
+
+\mbox{\Hypertarget{structtask__args_a3ae954b678fcd7753a4608f2ab829292}\label{structtask__args_a3ae954b678fcd7753a4608f2ab829292}} 
+\index{task\_args@{task\_args}!invoked@{invoked}}
+\index{invoked@{invoked}!task\_args@{task\_args}}
+\doxysubsubsection{\texorpdfstring{invoked}{invoked}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} task\+\_\+args\+::invoked}
+
+\mbox{\Hypertarget{structtask__args_a97e9a78defaf462e541fd8e71543c9ab}\label{structtask__args_a97e9a78defaf462e541fd8e71543c9ab}} 
+\index{task\_args@{task\_args}!loop@{loop}}
+\index{loop@{loop}!task\_args@{task\_args}}
+\doxysubsubsection{\texorpdfstring{loop}{loop}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}}$\ast$ task\+\_\+args\+::loop}
+
+\mbox{\Hypertarget{structtask__args_a9a2f5b08ddc5fe96f8257e91b276b26e}\label{structtask__args_a9a2f5b08ddc5fe96f8257e91b276b26e}} 
+\index{task\_args@{task\_args}!mutex@{mutex}}
+\index{mutex@{mutex}!task\_args@{task\_args}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} task\+\_\+args\+::mutex}
+
+\mbox{\Hypertarget{structtask__args_a57d895cb104f9cddd0e888d8facc0613}\label{structtask__args_a57d895cb104f9cddd0e888d8facc0613}} 
+\index{task\_args@{task\_args}!status@{status}}
+\index{status@{status}!task\_args@{task\_args}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} task\+\_\+args\+::status}
+
+\mbox{\Hypertarget{structtask__args_ab1f832bf787324687b4c934b4065ed40}\label{structtask__args_ab1f832bf787324687b4c934b4065ed40}} 
+\index{task\_args@{task\_args}!thread\_complete@{thread\_complete}}
+\index{thread\_complete@{thread\_complete}!task\_args@{task\_args}}
+\doxysubsubsection{\texorpdfstring{thread\_complete}{thread\_complete}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} task\+\_\+args\+::thread\+\_\+complete}
+
+\mbox{\Hypertarget{structtask__args_a57449509f4b7fa43e781cf7b6a6f75b6}\label{structtask__args_a57449509f4b7fa43e781cf7b6a6f75b6}} 
+\index{task\_args@{task\_args}!thread\_id@{thread\_id}}
+\index{thread\_id@{thread\_id}!task\_args@{task\_args}}
+\doxysubsubsection{\texorpdfstring{thread\_id}{thread\_id}}
+{\footnotesize\ttfamily \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} task\+\_\+args\+::thread\+\_\+id}
+
+\mbox{\Hypertarget{structtask__args_a962e55777e7cac2c8f9f2e8ad598da26}\label{structtask__args_a962e55777e7cac2c8f9f2e8ad598da26}} 
+\index{task\_args@{task\_args}!was\_in\_thread@{was\_in\_thread}}
+\index{was\_in\_thread@{was\_in\_thread}!task\_args@{task\_args}}
+\doxysubsubsection{\texorpdfstring{was\_in\_thread}{was\_in\_thread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} task\+\_\+args\+::was\+\_\+in\+\_\+thread}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/\mbox{\hyperlink{event__loop__test_8c}{event\+\_\+loop\+\_\+test.\+c}}\end{DoxyCompactItemize}

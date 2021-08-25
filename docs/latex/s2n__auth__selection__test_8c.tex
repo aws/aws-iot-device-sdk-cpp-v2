@@ -1,0 +1,122 @@
+\hypertarget{s2n__auth__selection__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+auth\+\_\+selection\+\_\+test.c File Reference}
+\label{s2n__auth__selection__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_auth\_selection\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_auth\_selection\_test.c}}
+{\ttfamily \#include $<$s2n.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+fips.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+rsa\+\_\+pss.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+auth\+\_\+selection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+preferences.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+signature\+\_\+scheme.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__auth__selection__test_8c_ac5b28f668b87ba4b0f438e5e054d5c91}{RSA\+\_\+\+AUTH\+\_\+\+CIPHER\+\_\+\+SUITE}}~\&\mbox{\hyperlink{s2n__cipher__suites_8h_a43fd6b4d1740fd0401e7a4e0695a9ab8}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}}
+\item 
+\#define \mbox{\hyperlink{s2n__auth__selection__test_8c_aa96d4fb8620bc5a08e38e13cfb24ad2f}{ECDSA\+\_\+\+AUTH\+\_\+\+CIPHER\+\_\+\+SUITE}}~\&\mbox{\hyperlink{s2n__cipher__suites_8h_a7f2fe8fd0fdfece68a9ac1997da7db51}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+\#define \mbox{\hyperlink{s2n__auth__selection__test_8c_ad70edb8c881e0c9768feb5ebf789ca72}{NO\+\_\+\+AUTH\+\_\+\+CIPHER\+\_\+\+SUITE}}~\&\mbox{\hyperlink{s2n__cipher__suites_8h_ac28aff94fd6a2c8995c7880912773a5e}{s2n\+\_\+tls13\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+\#define \mbox{\hyperlink{s2n__auth__selection__test_8c_a9ab28a506096cd8a8990761373afe93b}{RSA\+\_\+\+PKCS1\+\_\+\+SIG\+\_\+\+SCHEME}}~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a2c6872d08931b28e7d18790175843eb4}{s2n\+\_\+rsa\+\_\+pkcs1\+\_\+md5\+\_\+sha1}}
+\item 
+\#define \mbox{\hyperlink{s2n__auth__selection__test_8c_a4f3b0a8dd739abbfc14f7faf15d861d6}{RSA\+\_\+\+PSS\+\_\+\+PSS\+\_\+\+SIG\+\_\+\+SCHEME}}~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a12ab734899cb9dcef849c1cae35db465}{s2n\+\_\+rsa\+\_\+pss\+\_\+pss\+\_\+sha256}}
+\item 
+\#define \mbox{\hyperlink{s2n__auth__selection__test_8c_afd5b4693b596e918264e0ab4a76ba6a0}{RSA\+\_\+\+PSS\+\_\+\+RSAE\+\_\+\+SIG\+\_\+\+SCHEME}}~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a883f54722f322492139025076dcb0f67}{s2n\+\_\+rsa\+\_\+pss\+\_\+rsae\+\_\+sha256}}
+\item 
+\#define \mbox{\hyperlink{s2n__auth__selection__test_8c_a0053d9db3c2420b83dfa11b3030ea6c4}{ECDSA\+\_\+\+SIG\+\_\+\+SCHEME}}~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a1c1e07eb567a17a3f4190e385e6dd016}{s2n\+\_\+ecdsa\+\_\+secp384r1\+\_\+sha384}}
+\item 
+\#define \mbox{\hyperlink{s2n__auth__selection__test_8c_a6ad3946deb8aa44f3c384385ab6d0c7e}{ECDSA\+\_\+\+SIG\+\_\+\+SCHEME\+\_\+\+OTHER\+\_\+\+CURVE}}~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a4fa032e53639ada4e410df0f9b83063a}{s2n\+\_\+ecdsa\+\_\+secp256r1\+\_\+sha256}}
+\item 
+\#define \mbox{\hyperlink{s2n__auth__selection__test_8c_a2501ac6ec5025bea68cbb370d8fe1fd1}{EXPECT\+\_\+\+SUCCESS\+\_\+\+IF\+\_\+\+RSA\+\_\+\+PSS\+\_\+\+CERTS\+\_\+\+SUPPORTED}}(x)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{s2n__auth__selection__test_8c_a3d608f2a03dc514c5e08d28196298692}{s2n\+\_\+test\+\_\+auth\+\_\+combo}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite, const struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}} $\ast$sig\+\_\+scheme, struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$expected\+\_\+cert\+\_\+chain)
+\item 
+int \mbox{\hyperlink{s2n__auth__selection__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_aa96d4fb8620bc5a08e38e13cfb24ad2f}\label{s2n__auth__selection__test_8c_aa96d4fb8620bc5a08e38e13cfb24ad2f}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!ECDSA\_AUTH\_CIPHER\_SUITE@{ECDSA\_AUTH\_CIPHER\_SUITE}}
+\index{ECDSA\_AUTH\_CIPHER\_SUITE@{ECDSA\_AUTH\_CIPHER\_SUITE}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ECDSA\_AUTH\_CIPHER\_SUITE}{ECDSA\_AUTH\_CIPHER\_SUITE}}
+{\footnotesize\ttfamily \#define ECDSA\+\_\+\+AUTH\+\_\+\+CIPHER\+\_\+\+SUITE~\&\mbox{\hyperlink{s2n__cipher__suites_8h_a7f2fe8fd0fdfece68a9ac1997da7db51}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}}
+
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_a0053d9db3c2420b83dfa11b3030ea6c4}\label{s2n__auth__selection__test_8c_a0053d9db3c2420b83dfa11b3030ea6c4}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!ECDSA\_SIG\_SCHEME@{ECDSA\_SIG\_SCHEME}}
+\index{ECDSA\_SIG\_SCHEME@{ECDSA\_SIG\_SCHEME}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ECDSA\_SIG\_SCHEME}{ECDSA\_SIG\_SCHEME}}
+{\footnotesize\ttfamily \#define ECDSA\+\_\+\+SIG\+\_\+\+SCHEME~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a1c1e07eb567a17a3f4190e385e6dd016}{s2n\+\_\+ecdsa\+\_\+secp384r1\+\_\+sha384}}}
+
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_a6ad3946deb8aa44f3c384385ab6d0c7e}\label{s2n__auth__selection__test_8c_a6ad3946deb8aa44f3c384385ab6d0c7e}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!ECDSA\_SIG\_SCHEME\_OTHER\_CURVE@{ECDSA\_SIG\_SCHEME\_OTHER\_CURVE}}
+\index{ECDSA\_SIG\_SCHEME\_OTHER\_CURVE@{ECDSA\_SIG\_SCHEME\_OTHER\_CURVE}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{ECDSA\_SIG\_SCHEME\_OTHER\_CURVE}{ECDSA\_SIG\_SCHEME\_OTHER\_CURVE}}
+{\footnotesize\ttfamily \#define ECDSA\+\_\+\+SIG\+\_\+\+SCHEME\+\_\+\+OTHER\+\_\+\+CURVE~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a4fa032e53639ada4e410df0f9b83063a}{s2n\+\_\+ecdsa\+\_\+secp256r1\+\_\+sha256}}}
+
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_a2501ac6ec5025bea68cbb370d8fe1fd1}\label{s2n__auth__selection__test_8c_a2501ac6ec5025bea68cbb370d8fe1fd1}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!EXPECT\_SUCCESS\_IF\_RSA\_PSS\_CERTS\_SUPPORTED@{EXPECT\_SUCCESS\_IF\_RSA\_PSS\_CERTS\_SUPPORTED}}
+\index{EXPECT\_SUCCESS\_IF\_RSA\_PSS\_CERTS\_SUPPORTED@{EXPECT\_SUCCESS\_IF\_RSA\_PSS\_CERTS\_SUPPORTED}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{EXPECT\_SUCCESS\_IF\_RSA\_PSS\_CERTS\_SUPPORTED}{EXPECT\_SUCCESS\_IF\_RSA\_PSS\_CERTS\_SUPPORTED}}
+{\footnotesize\ttfamily \#define EXPECT\+\_\+\+SUCCESS\+\_\+\+IF\+\_\+\+RSA\+\_\+\+PSS\+\_\+\+CERTS\+\_\+\+SUPPORTED(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keywordflow}{if} ( \mbox{\hyperlink{s2n__rsa__pss_8c_ac065341058f2f1a55f24649093682a19}{s2n\_is\_rsa\_pss\_certs\_supported}}() ) \{ \(\backslash\)}
+\DoxyCodeLine{        EXPECT\_SUCCESS(x); \(\backslash\)}
+\DoxyCodeLine{    \} \textcolor{keywordflow}{else} \{ \(\backslash\)}
+\DoxyCodeLine{        EXPECT\_FAILURE(x); \(\backslash\)}
+\DoxyCodeLine{    \} \(\backslash\)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_ad70edb8c881e0c9768feb5ebf789ca72}\label{s2n__auth__selection__test_8c_ad70edb8c881e0c9768feb5ebf789ca72}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!NO\_AUTH\_CIPHER\_SUITE@{NO\_AUTH\_CIPHER\_SUITE}}
+\index{NO\_AUTH\_CIPHER\_SUITE@{NO\_AUTH\_CIPHER\_SUITE}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{NO\_AUTH\_CIPHER\_SUITE}{NO\_AUTH\_CIPHER\_SUITE}}
+{\footnotesize\ttfamily \#define NO\+\_\+\+AUTH\+\_\+\+CIPHER\+\_\+\+SUITE~\&\mbox{\hyperlink{s2n__cipher__suites_8h_ac28aff94fd6a2c8995c7880912773a5e}{s2n\+\_\+tls13\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}}
+
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_ac5b28f668b87ba4b0f438e5e054d5c91}\label{s2n__auth__selection__test_8c_ac5b28f668b87ba4b0f438e5e054d5c91}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!RSA\_AUTH\_CIPHER\_SUITE@{RSA\_AUTH\_CIPHER\_SUITE}}
+\index{RSA\_AUTH\_CIPHER\_SUITE@{RSA\_AUTH\_CIPHER\_SUITE}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{RSA\_AUTH\_CIPHER\_SUITE}{RSA\_AUTH\_CIPHER\_SUITE}}
+{\footnotesize\ttfamily \#define RSA\+\_\+\+AUTH\+\_\+\+CIPHER\+\_\+\+SUITE~\&\mbox{\hyperlink{s2n__cipher__suites_8h_a43fd6b4d1740fd0401e7a4e0695a9ab8}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}}}
+
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_a9ab28a506096cd8a8990761373afe93b}\label{s2n__auth__selection__test_8c_a9ab28a506096cd8a8990761373afe93b}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!RSA\_PKCS1\_SIG\_SCHEME@{RSA\_PKCS1\_SIG\_SCHEME}}
+\index{RSA\_PKCS1\_SIG\_SCHEME@{RSA\_PKCS1\_SIG\_SCHEME}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{RSA\_PKCS1\_SIG\_SCHEME}{RSA\_PKCS1\_SIG\_SCHEME}}
+{\footnotesize\ttfamily \#define RSA\+\_\+\+PKCS1\+\_\+\+SIG\+\_\+\+SCHEME~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a2c6872d08931b28e7d18790175843eb4}{s2n\+\_\+rsa\+\_\+pkcs1\+\_\+md5\+\_\+sha1}}}
+
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_a4f3b0a8dd739abbfc14f7faf15d861d6}\label{s2n__auth__selection__test_8c_a4f3b0a8dd739abbfc14f7faf15d861d6}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!RSA\_PSS\_PSS\_SIG\_SCHEME@{RSA\_PSS\_PSS\_SIG\_SCHEME}}
+\index{RSA\_PSS\_PSS\_SIG\_SCHEME@{RSA\_PSS\_PSS\_SIG\_SCHEME}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{RSA\_PSS\_PSS\_SIG\_SCHEME}{RSA\_PSS\_PSS\_SIG\_SCHEME}}
+{\footnotesize\ttfamily \#define RSA\+\_\+\+PSS\+\_\+\+PSS\+\_\+\+SIG\+\_\+\+SCHEME~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a12ab734899cb9dcef849c1cae35db465}{s2n\+\_\+rsa\+\_\+pss\+\_\+pss\+\_\+sha256}}}
+
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_afd5b4693b596e918264e0ab4a76ba6a0}\label{s2n__auth__selection__test_8c_afd5b4693b596e918264e0ab4a76ba6a0}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!RSA\_PSS\_RSAE\_SIG\_SCHEME@{RSA\_PSS\_RSAE\_SIG\_SCHEME}}
+\index{RSA\_PSS\_RSAE\_SIG\_SCHEME@{RSA\_PSS\_RSAE\_SIG\_SCHEME}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{RSA\_PSS\_RSAE\_SIG\_SCHEME}{RSA\_PSS\_RSAE\_SIG\_SCHEME}}
+{\footnotesize\ttfamily \#define RSA\+\_\+\+PSS\+\_\+\+RSAE\+\_\+\+SIG\+\_\+\+SCHEME~\&\mbox{\hyperlink{s2n__signature__scheme_8h_a883f54722f322492139025076dcb0f67}{s2n\+\_\+rsa\+\_\+pss\+\_\+rsae\+\_\+sha256}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__auth__selection__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!main@{main}}
+\index{main@{main}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__auth__selection__test_8c_a3d608f2a03dc514c5e08d28196298692}\label{s2n__auth__selection__test_8c_a3d608f2a03dc514c5e08d28196298692}} 
+\index{s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}!s2n\_test\_auth\_combo@{s2n\_test\_auth\_combo}}
+\index{s2n\_test\_auth\_combo@{s2n\_test\_auth\_combo}!s2n\_auth\_selection\_test.c@{s2n\_auth\_selection\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_auth\_combo()}{s2n\_test\_auth\_combo()}}
+{\footnotesize\ttfamily static int s2n\+\_\+test\+\_\+auth\+\_\+combo (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$}]{cipher\+\_\+suite,  }\item[{const struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}} $\ast$}]{sig\+\_\+scheme,  }\item[{struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$}]{expected\+\_\+cert\+\_\+chain }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

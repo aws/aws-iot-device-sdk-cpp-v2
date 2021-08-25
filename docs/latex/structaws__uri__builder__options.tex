@@ -1,0 +1,70 @@
+\hypertarget{structaws__uri__builder__options}{}\doxysection{aws\+\_\+uri\+\_\+builder\+\_\+options Struct Reference}
+\label{structaws__uri__builder__options}\index{aws\_uri\_builder\_options@{aws\_uri\_builder\_options}}
+
+
+{\ttfamily \#include $<$uri.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structaws__uri__builder__options_ac4496da59ef9684f8fa9d9eba238c7f4}{scheme}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structaws__uri__builder__options_a9c8a6ab51e5dd0c8f41635444598cfd5}{path}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structaws__uri__builder__options_a88a3b969f3f67afb8cf0c0acbe5a55ee}{host\+\_\+name}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structaws__uri__builder__options_a72e7b338f7b3a08f157a8590a67ca179}{port}}
+\item 
+struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$ \mbox{\hyperlink{structaws__uri__builder__options_ad807b034b096e955cdcbcfe325f09c49}{query\+\_\+params}}
+\item 
+struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{structaws__uri__builder__options_a9e9d4eee7e491a6bb57c99666823d883}{query\+\_\+string}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Arguments for building a URI instance. All members must be initialized before passing them to aws\+\_\+uri\+\_\+init().
+
+query\+\_\+string and query\+\_\+params are exclusive to each other. If you set query\+\_\+string, do not prepend it with \textquotesingle{}?\textquotesingle{} 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structaws__uri__builder__options_a88a3b969f3f67afb8cf0c0acbe5a55ee}\label{structaws__uri__builder__options_a88a3b969f3f67afb8cf0c0acbe5a55ee}} 
+\index{aws\_uri\_builder\_options@{aws\_uri\_builder\_options}!host\_name@{host\_name}}
+\index{host\_name@{host\_name}!aws\_uri\_builder\_options@{aws\_uri\_builder\_options}}
+\doxysubsubsection{\texorpdfstring{host\_name}{host\_name}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+uri\+\_\+builder\+\_\+options\+::host\+\_\+name}
+
+\mbox{\Hypertarget{structaws__uri__builder__options_a9c8a6ab51e5dd0c8f41635444598cfd5}\label{structaws__uri__builder__options_a9c8a6ab51e5dd0c8f41635444598cfd5}} 
+\index{aws\_uri\_builder\_options@{aws\_uri\_builder\_options}!path@{path}}
+\index{path@{path}!aws\_uri\_builder\_options@{aws\_uri\_builder\_options}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+uri\+\_\+builder\+\_\+options\+::path}
+
+\mbox{\Hypertarget{structaws__uri__builder__options_a72e7b338f7b3a08f157a8590a67ca179}\label{structaws__uri__builder__options_a72e7b338f7b3a08f157a8590a67ca179}} 
+\index{aws\_uri\_builder\_options@{aws\_uri\_builder\_options}!port@{port}}
+\index{port@{port}!aws\_uri\_builder\_options@{aws\_uri\_builder\_options}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+uri\+\_\+builder\+\_\+options\+::port}
+
+\mbox{\Hypertarget{structaws__uri__builder__options_ad807b034b096e955cdcbcfe325f09c49}\label{structaws__uri__builder__options_ad807b034b096e955cdcbcfe325f09c49}} 
+\index{aws\_uri\_builder\_options@{aws\_uri\_builder\_options}!query\_params@{query\_params}}
+\index{query\_params@{query\_params}!aws\_uri\_builder\_options@{aws\_uri\_builder\_options}}
+\doxysubsubsection{\texorpdfstring{query\_params}{query\_params}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}}$\ast$ aws\+\_\+uri\+\_\+builder\+\_\+options\+::query\+\_\+params}
+
+\mbox{\Hypertarget{structaws__uri__builder__options_a9e9d4eee7e491a6bb57c99666823d883}\label{structaws__uri__builder__options_a9e9d4eee7e491a6bb57c99666823d883}} 
+\index{aws\_uri\_builder\_options@{aws\_uri\_builder\_options}!query\_string@{query\_string}}
+\index{query\_string@{query\_string}!aws\_uri\_builder\_options@{aws\_uri\_builder\_options}}
+\doxysubsubsection{\texorpdfstring{query\_string}{query\_string}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+uri\+\_\+builder\+\_\+options\+::query\+\_\+string}
+
+\mbox{\Hypertarget{structaws__uri__builder__options_ac4496da59ef9684f8fa9d9eba238c7f4}\label{structaws__uri__builder__options_ac4496da59ef9684f8fa9d9eba238c7f4}} 
+\index{aws\_uri\_builder\_options@{aws\_uri\_builder\_options}!scheme@{scheme}}
+\index{scheme@{scheme}!aws\_uri\_builder\_options@{aws\_uri\_builder\_options}}
+\doxysubsubsection{\texorpdfstring{scheme}{scheme}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} aws\+\_\+uri\+\_\+builder\+\_\+options\+::scheme}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/include/aws/io/\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_uri_8h}{uri.\+h}}\end{DoxyCompactItemize}

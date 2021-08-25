@@ -1,0 +1,87 @@
+\hypertarget{test__logger_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/logging/test\+\_\+logger.c File Reference}
+\label{test__logger_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/logging/test\_logger.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/logging/test\_logger.c}}
+{\ttfamily \#include \char`\"{}test\+\_\+logger.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{test__logger_8c_afc8f33d0efdc84c2cbd07c84c4f567a3}{TEST\+\_\+\+LOGGER\+\_\+\+MAX\+\_\+\+LOG\+\_\+\+LINE\+\_\+\+SIZE}}~2048
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{test__logger_8c_a6f90c11ef941761682fe0e08dbe89aeb}{s\+\_\+test\+\_\+logger\+\_\+log}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}} log\+\_\+level, \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_aeef1d2e32e5ef74f68cfdb04d4785852}{aws\+\_\+log\+\_\+subject\+\_\+t}} subject, const char $\ast$format,...)
+\item 
+enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}} \mbox{\hyperlink{test__logger_8c_a185cd6ecf6003e7a8bba854f1a7cae76}{s\+\_\+test\+\_\+logger\+\_\+get\+\_\+log\+\_\+level}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_aeef1d2e32e5ef74f68cfdb04d4785852}{aws\+\_\+log\+\_\+subject\+\_\+t}} subject)
+\item 
+void \mbox{\hyperlink{test__logger_8c_a2b0c970b3107933a3a5a8a0ece929113}{s\+\_\+test\+\_\+logger\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger)
+\item 
+int \mbox{\hyperlink{test__logger_8c_aeec9f250402b751dfd951da563532972}{test\+\_\+logger\+\_\+init}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}} level, size\+\_\+t max\+\_\+size)
+\item 
+int \mbox{\hyperlink{test__logger_8c_acb7f6c089c8d9159e63353905dee729c}{test\+\_\+logger\+\_\+get\+\_\+contents}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, char $\ast$buffer, size\+\_\+t max\+\_\+length)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__logger__vtable}{aws\+\_\+logger\+\_\+vtable}} \mbox{\hyperlink{test__logger_8c_a56e0283a63ea9a731dfd31323ad786bc}{s\+\_\+test\+\_\+logger\+\_\+vtable}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{test__logger_8c_afc8f33d0efdc84c2cbd07c84c4f567a3}\label{test__logger_8c_afc8f33d0efdc84c2cbd07c84c4f567a3}} 
+\index{test\_logger.c@{test\_logger.c}!TEST\_LOGGER\_MAX\_LOG\_LINE\_SIZE@{TEST\_LOGGER\_MAX\_LOG\_LINE\_SIZE}}
+\index{TEST\_LOGGER\_MAX\_LOG\_LINE\_SIZE@{TEST\_LOGGER\_MAX\_LOG\_LINE\_SIZE}!test\_logger.c@{test\_logger.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_LOGGER\_MAX\_LOG\_LINE\_SIZE}{TEST\_LOGGER\_MAX\_LOG\_LINE\_SIZE}}
+{\footnotesize\ttfamily \#define TEST\+\_\+\+LOGGER\+\_\+\+MAX\+\_\+\+LOG\+\_\+\+LINE\+\_\+\+SIZE~2048}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. A real logger wouldn\textquotesingle{}t have such size restrictions, but these are good enough for our tests 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__logger_8c_a2b0c970b3107933a3a5a8a0ece929113}\label{test__logger_8c_a2b0c970b3107933a3a5a8a0ece929113}} 
+\index{test\_logger.c@{test\_logger.c}!s\_test\_logger\_clean\_up@{s\_test\_logger\_clean\_up}}
+\index{s\_test\_logger\_clean\_up@{s\_test\_logger\_clean\_up}!test\_logger.c@{test\_logger.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_logger\_clean\_up()}{s\_test\_logger\_clean\_up()}}
+{\footnotesize\ttfamily void s\+\_\+test\+\_\+logger\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$}]{logger }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__logger_8c_a185cd6ecf6003e7a8bba854f1a7cae76}\label{test__logger_8c_a185cd6ecf6003e7a8bba854f1a7cae76}} 
+\index{test\_logger.c@{test\_logger.c}!s\_test\_logger\_get\_log\_level@{s\_test\_logger\_get\_log\_level}}
+\index{s\_test\_logger\_get\_log\_level@{s\_test\_logger\_get\_log\_level}!test\_logger.c@{test\_logger.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_logger\_get\_log\_level()}{s\_test\_logger\_get\_log\_level()}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}} s\+\_\+test\+\_\+logger\+\_\+get\+\_\+log\+\_\+level (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$}]{logger,  }\item[{\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_aeef1d2e32e5ef74f68cfdb04d4785852}{aws\+\_\+log\+\_\+subject\+\_\+t}}}]{subject }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__logger_8c_a6f90c11ef941761682fe0e08dbe89aeb}\label{test__logger_8c_a6f90c11ef941761682fe0e08dbe89aeb}} 
+\index{test\_logger.c@{test\_logger.c}!s\_test\_logger\_log@{s\_test\_logger\_log}}
+\index{s\_test\_logger\_log@{s\_test\_logger\_log}!test\_logger.c@{test\_logger.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_logger\_log()}{s\_test\_logger\_log()}}
+{\footnotesize\ttfamily int s\+\_\+test\+\_\+logger\+\_\+log (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$}]{logger,  }\item[{enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}}}]{log\+\_\+level,  }\item[{\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_aeef1d2e32e5ef74f68cfdb04d4785852}{aws\+\_\+log\+\_\+subject\+\_\+t}}}]{subject,  }\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{test__logger_8c_acb7f6c089c8d9159e63353905dee729c}\label{test__logger_8c_acb7f6c089c8d9159e63353905dee729c}} 
+\index{test\_logger.c@{test\_logger.c}!test\_logger\_get\_contents@{test\_logger\_get\_contents}}
+\index{test\_logger\_get\_contents@{test\_logger\_get\_contents}!test\_logger.c@{test\_logger.c}}
+\doxysubsubsection{\texorpdfstring{test\_logger\_get\_contents()}{test\_logger\_get\_contents()}}
+{\footnotesize\ttfamily int test\+\_\+logger\+\_\+get\+\_\+contents (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$}]{logger,  }\item[{char $\ast$}]{buffer,  }\item[{size\+\_\+t}]{max\+\_\+length }\end{DoxyParamCaption})}
+
+Extracts logged content from a test logger. \mbox{\Hypertarget{test__logger_8c_aeec9f250402b751dfd951da563532972}\label{test__logger_8c_aeec9f250402b751dfd951da563532972}} 
+\index{test\_logger.c@{test\_logger.c}!test\_logger\_init@{test\_logger\_init}}
+\index{test\_logger\_init@{test\_logger\_init}!test\_logger.c@{test\_logger.c}}
+\doxysubsubsection{\texorpdfstring{test\_logger\_init()}{test\_logger\_init()}}
+{\footnotesize\ttfamily int test\+\_\+logger\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$}]{logger,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}}}]{level,  }\item[{size\+\_\+t}]{max\+\_\+size }\end{DoxyParamCaption})}
+
+Given a pointer to a logger, initializes it as a test logger using the supplied log level. max\+\_\+size of 0 is unlimited 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{test__logger_8c_a56e0283a63ea9a731dfd31323ad786bc}\label{test__logger_8c_a56e0283a63ea9a731dfd31323ad786bc}} 
+\index{test\_logger.c@{test\_logger.c}!s\_test\_logger\_vtable@{s\_test\_logger\_vtable}}
+\index{s\_test\_logger\_vtable@{s\_test\_logger\_vtable}!test\_logger.c@{test\_logger.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_logger\_vtable}{s\_test\_logger\_vtable}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__logger__vtable}{aws\+\_\+logger\+\_\+vtable}} s\+\_\+test\+\_\+logger\+\_\+vtable\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \{.get\_log\_level = \mbox{\hyperlink{test__logger_8c_a185cd6ecf6003e7a8bba854f1a7cae76}{s\_test\_logger\_get\_log\_level}},}
+\DoxyCodeLine{                                                        .log = \mbox{\hyperlink{test__logger_8c_a6f90c11ef941761682fe0e08dbe89aeb}{s\_test\_logger\_log}},}
+\DoxyCodeLine{                                                        .clean\_up = \mbox{\hyperlink{test__logger_8c_a2b0c970b3107933a3a5a8a0ece929113}{s\_test\_logger\_clean\_up}}\}}
+
+\end{DoxyCode}

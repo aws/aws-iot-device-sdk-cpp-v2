@@ -1,0 +1,190 @@
+\hypertarget{structtest__context}{}\doxysection{test\+\_\+context Struct Reference}
+\label{structtest__context}\index{test\_context@{test\_context}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{structtest__context_a15ddb77cb32fd3328b92208632ee5f20}{allocator}}
+\item 
+struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{structtest__context_a7a4dd10e99beefe7d7ae9fae7976f2c1}{lock}}
+\item 
+struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{structtest__context_ae5f9fee828e867127953651fa2db6fc5}{signal}}
+\item 
+struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} \mbox{\hyperlink{structtest__context_ac06515de386f9b657423d424abb8f059}{logger}}
+\item 
+struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}} $\ast$ \mbox{\hyperlink{structtest__context_a4e62092c3d575ddf0429f063c032d365}{tls\+\_\+ctx}}
+\item 
+struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}} $\ast$ \mbox{\hyperlink{structtest__context_aa6bc0314a18da63b65c9ad4580918604}{el\+\_\+group}}
+\item 
+struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{structtest__context_a800859d71889caf33decdea883d2090e}{resolver}}
+\item 
+struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structtest__context_a5e8860b7a6620e4f23306adf8594ab47}{bootstrap}}
+\item 
+struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$ \mbox{\hyperlink{structtest__context_a42f0397bc82377178648fd6035d0a0c2}{client}}
+\item 
+struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$ \mbox{\hyperlink{structtest__context_a43bdbfc3da10e451beb8358a995b459d}{connection}}
+\item 
+struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} \mbox{\hyperlink{structtest__context_ae38a5e96fd2a35643d73ef77f5748054}{tls\+\_\+connection\+\_\+options}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtest__context_a105069ea0b70f77e0d243bff9fcdfef4}{pubacks\+\_\+gotten}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structtest__context_a1a450eeb19242b58ccb1721b4997f100}{packets\+\_\+gotten}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__context_a9796e21a481684aebb0d7f81d137494f}{received\+\_\+on\+\_\+connection\+\_\+complete}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__context_a8a89f68ad6cab88580513f3b08e602a0}{received\+\_\+on\+\_\+suback}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__context_a5baa055e67ccde29eaba25b28ce47084}{received\+\_\+on\+\_\+disconnect}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__context_af1c7eb8d540089b0486e79aa09a487b8}{retained\+\_\+packet\+\_\+received}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__context_a21f4b4ae3e45f001818b7cde4de9a946}{on\+\_\+any\+\_\+publish\+\_\+fired}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__context_a3c6845bd1d2a02e9030a85728caa47f4}{connection\+\_\+complete}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__context_a3d138e751609a0e89eb04a3608879353}{received\+\_\+pub\+\_\+ack}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__context_a5463ba15e409ba0c19ee13c8650247a1}{received\+\_\+unsub\+\_\+ack}}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structtest__context_abf5f67195ca535e7f5d14dc3199b297c}{on\+\_\+disconnect\+\_\+received}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structtest__context_a15ddb77cb32fd3328b92208632ee5f20}\label{structtest__context_a15ddb77cb32fd3328b92208632ee5f20}} 
+\index{test\_context@{test\_context}!allocator@{allocator}}
+\index{allocator@{allocator}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{allocator}{allocator}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ test\+\_\+context\+::allocator}
+
+\mbox{\Hypertarget{structtest__context_a5e8860b7a6620e4f23306adf8594ab47}\label{structtest__context_a5e8860b7a6620e4f23306adf8594ab47}} 
+\index{test\_context@{test\_context}!bootstrap@{bootstrap}}
+\index{bootstrap@{bootstrap}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{bootstrap}{bootstrap}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__client__bootstrap}{aws\+\_\+client\+\_\+bootstrap}} $\ast$ test\+\_\+context\+::bootstrap}
+
+\mbox{\Hypertarget{structtest__context_a42f0397bc82377178648fd6035d0a0c2}\label{structtest__context_a42f0397bc82377178648fd6035d0a0c2}} 
+\index{test\_context@{test\_context}!client@{client}}
+\index{client@{client}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}} $\ast$ test\+\_\+context\+::client}
+
+\mbox{\Hypertarget{structtest__context_a43bdbfc3da10e451beb8358a995b459d}\label{structtest__context_a43bdbfc3da10e451beb8358a995b459d}} 
+\index{test\_context@{test\_context}!connection@{connection}}
+\index{connection@{connection}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{connection}{connection}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\+\_\+mqtt\+\_\+client\+\_\+connection}} $\ast$ test\+\_\+context\+::connection}
+
+\mbox{\Hypertarget{structtest__context_a3c6845bd1d2a02e9030a85728caa47f4}\label{structtest__context_a3c6845bd1d2a02e9030a85728caa47f4}} 
+\index{test\_context@{test\_context}!connection\_complete@{connection\_complete}}
+\index{connection\_complete@{connection\_complete}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{connection\_complete}{connection\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+context\+::connection\+\_\+complete}
+
+\mbox{\Hypertarget{structtest__context_aa6bc0314a18da63b65c9ad4580918604}\label{structtest__context_aa6bc0314a18da63b65c9ad4580918604}} 
+\index{test\_context@{test\_context}!el\_group@{el\_group}}
+\index{el\_group@{el\_group}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{el\_group}{el\_group}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__event__loop__group}{aws\+\_\+event\+\_\+loop\+\_\+group}} $\ast$ test\+\_\+context\+::el\+\_\+group}
+
+\mbox{\Hypertarget{structtest__context_a7a4dd10e99beefe7d7ae9fae7976f2c1}\label{structtest__context_a7a4dd10e99beefe7d7ae9fae7976f2c1}} 
+\index{test\_context@{test\_context}!lock@{lock}}
+\index{lock@{lock}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} test\+\_\+context\+::lock}
+
+\mbox{\Hypertarget{structtest__context_ac06515de386f9b657423d424abb8f059}\label{structtest__context_ac06515de386f9b657423d424abb8f059}} 
+\index{test\_context@{test\_context}!logger@{logger}}
+\index{logger@{logger}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} test\+\_\+context\+::logger}
+
+\mbox{\Hypertarget{structtest__context_a21f4b4ae3e45f001818b7cde4de9a946}\label{structtest__context_a21f4b4ae3e45f001818b7cde4de9a946}} 
+\index{test\_context@{test\_context}!on\_any\_publish\_fired@{on\_any\_publish\_fired}}
+\index{on\_any\_publish\_fired@{on\_any\_publish\_fired}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{on\_any\_publish\_fired}{on\_any\_publish\_fired}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+context\+::on\+\_\+any\+\_\+publish\+\_\+fired}
+
+\mbox{\Hypertarget{structtest__context_abf5f67195ca535e7f5d14dc3199b297c}\label{structtest__context_abf5f67195ca535e7f5d14dc3199b297c}} 
+\index{test\_context@{test\_context}!on\_disconnect\_received@{on\_disconnect\_received}}
+\index{on\_disconnect\_received@{on\_disconnect\_received}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{on\_disconnect\_received}{on\_disconnect\_received}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+context\+::on\+\_\+disconnect\+\_\+received}
+
+\mbox{\Hypertarget{structtest__context_a1a450eeb19242b58ccb1721b4997f100}\label{structtest__context_a1a450eeb19242b58ccb1721b4997f100}} 
+\index{test\_context@{test\_context}!packets\_gotten@{packets\_gotten}}
+\index{packets\_gotten@{packets\_gotten}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{packets\_gotten}{packets\_gotten}}
+{\footnotesize\ttfamily size\+\_\+t test\+\_\+context\+::packets\+\_\+gotten}
+
+\mbox{\Hypertarget{structtest__context_a105069ea0b70f77e0d243bff9fcdfef4}\label{structtest__context_a105069ea0b70f77e0d243bff9fcdfef4}} 
+\index{test\_context@{test\_context}!pubacks\_gotten@{pubacks\_gotten}}
+\index{pubacks\_gotten@{pubacks\_gotten}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{pubacks\_gotten}{pubacks\_gotten}}
+{\footnotesize\ttfamily size\+\_\+t test\+\_\+context\+::pubacks\+\_\+gotten}
+
+\mbox{\Hypertarget{structtest__context_a9796e21a481684aebb0d7f81d137494f}\label{structtest__context_a9796e21a481684aebb0d7f81d137494f}} 
+\index{test\_context@{test\_context}!received\_on\_connection\_complete@{received\_on\_connection\_complete}}
+\index{received\_on\_connection\_complete@{received\_on\_connection\_complete}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{received\_on\_connection\_complete}{received\_on\_connection\_complete}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+context\+::received\+\_\+on\+\_\+connection\+\_\+complete}
+
+\mbox{\Hypertarget{structtest__context_a5baa055e67ccde29eaba25b28ce47084}\label{structtest__context_a5baa055e67ccde29eaba25b28ce47084}} 
+\index{test\_context@{test\_context}!received\_on\_disconnect@{received\_on\_disconnect}}
+\index{received\_on\_disconnect@{received\_on\_disconnect}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{received\_on\_disconnect}{received\_on\_disconnect}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+context\+::received\+\_\+on\+\_\+disconnect}
+
+\mbox{\Hypertarget{structtest__context_a8a89f68ad6cab88580513f3b08e602a0}\label{structtest__context_a8a89f68ad6cab88580513f3b08e602a0}} 
+\index{test\_context@{test\_context}!received\_on\_suback@{received\_on\_suback}}
+\index{received\_on\_suback@{received\_on\_suback}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{received\_on\_suback}{received\_on\_suback}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+context\+::received\+\_\+on\+\_\+suback}
+
+\mbox{\Hypertarget{structtest__context_a3d138e751609a0e89eb04a3608879353}\label{structtest__context_a3d138e751609a0e89eb04a3608879353}} 
+\index{test\_context@{test\_context}!received\_pub\_ack@{received\_pub\_ack}}
+\index{received\_pub\_ack@{received\_pub\_ack}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{received\_pub\_ack}{received\_pub\_ack}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+context\+::received\+\_\+pub\+\_\+ack}
+
+\mbox{\Hypertarget{structtest__context_a5463ba15e409ba0c19ee13c8650247a1}\label{structtest__context_a5463ba15e409ba0c19ee13c8650247a1}} 
+\index{test\_context@{test\_context}!received\_unsub\_ack@{received\_unsub\_ack}}
+\index{received\_unsub\_ack@{received\_unsub\_ack}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{received\_unsub\_ack}{received\_unsub\_ack}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+context\+::received\+\_\+unsub\+\_\+ack}
+
+\mbox{\Hypertarget{structtest__context_a800859d71889caf33decdea883d2090e}\label{structtest__context_a800859d71889caf33decdea883d2090e}} 
+\index{test\_context@{test\_context}!resolver@{resolver}}
+\index{resolver@{resolver}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{resolver}{resolver}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ test\+\_\+context\+::resolver}
+
+\mbox{\Hypertarget{structtest__context_af1c7eb8d540089b0486e79aa09a487b8}\label{structtest__context_af1c7eb8d540089b0486e79aa09a487b8}} 
+\index{test\_context@{test\_context}!retained\_packet\_received@{retained\_packet\_received}}
+\index{retained\_packet\_received@{retained\_packet\_received}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{retained\_packet\_received}{retained\_packet\_received}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} test\+\_\+context\+::retained\+\_\+packet\+\_\+received}
+
+\mbox{\Hypertarget{structtest__context_ae5f9fee828e867127953651fa2db6fc5}\label{structtest__context_ae5f9fee828e867127953651fa2db6fc5}} 
+\index{test\_context@{test\_context}!signal@{signal}}
+\index{signal@{signal}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{signal}{signal}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} test\+\_\+context\+::signal}
+
+\mbox{\Hypertarget{structtest__context_ae38a5e96fd2a35643d73ef77f5748054}\label{structtest__context_ae38a5e96fd2a35643d73ef77f5748054}} 
+\index{test\_context@{test\_context}!tls\_connection\_options@{tls\_connection\_options}}
+\index{tls\_connection\_options@{tls\_connection\_options}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{tls\_connection\_options}{tls\_connection\_options}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} test\+\_\+context\+::tls\+\_\+connection\+\_\+options}
+
+\mbox{\Hypertarget{structtest__context_a4e62092c3d575ddf0429f063c032d365}\label{structtest__context_a4e62092c3d575ddf0429f063c032d365}} 
+\index{test\_context@{test\_context}!tls\_ctx@{tls\_ctx}}
+\index{tls\_ctx@{tls\_ctx}!test\_context@{test\_context}}
+\doxysubsubsection{\texorpdfstring{tls\_ctx}{tls\_ctx}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}}$\ast$ test\+\_\+context\+::tls\+\_\+ctx}
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/tests/\mbox{\hyperlink{aws__iot__client__test_8c}{aws\+\_\+iot\+\_\+client\+\_\+test.\+c}}\item 
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/mqtt/tests/\mbox{\hyperlink{paho__client__test_8c}{paho\+\_\+client\+\_\+test.\+c}}\end{DoxyCompactItemize}

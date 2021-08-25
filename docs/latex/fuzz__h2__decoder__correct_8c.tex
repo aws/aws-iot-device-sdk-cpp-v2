@@ -1,0 +1,111 @@
+\hypertarget{fuzz__h2__decoder__correct_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/fuzz/fuzz\+\_\+h2\+\_\+decoder\+\_\+correct.c File Reference}
+\label{fuzz__h2__decoder__correct_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/fuzz/fuzz\_h2\_decoder\_correct.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/fuzz/fuzz\_h2\_decoder\_correct.c}}
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/allocator.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/h2\+\_\+decoder.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/h2\+\_\+frames.\+h$>$}\newline
+{\ttfamily \#include $<$aws/http/private/hpack.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/stream.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8}{header\+\_\+style}} \{ \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8ab508a2f74470659036148808f89ce0a9}{HEADER\+\_\+\+STYLE\+\_\+\+REQUEST}}
+, \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8a2bd8ae2a1ebf95235052b5a85c38c620}{HEADER\+\_\+\+STYLE\+\_\+\+RESPONSE}}
+, \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8a9726be246f9358f0406eb05ba1a4a0b1}{HEADER\+\_\+\+STYLE\+\_\+\+TRAILER}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$ \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_afcc4069f23b3f2269119689af29af650}{s\+\_\+generate\+\_\+headers}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input, enum \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8}{header\+\_\+style}} \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8}{header\+\_\+style}})
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_a3638259471fa3ef09a64c1e23bcc9f31}{s\+\_\+generate\+\_\+stream\+\_\+id}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_a8eb1638a3b7be563305b5484af34c965}{s\+\_\+generate\+\_\+even\+\_\+stream\+\_\+id}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_ace0db817645423a733993c4bd7190219}{s\+\_\+generate\+\_\+odd\+\_\+stream\+\_\+id}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input)
+\item 
+static struct \mbox{\hyperlink{structaws__h2__frame__priority__settings}{aws\+\_\+h2\+\_\+frame\+\_\+priority\+\_\+settings}} \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_accf872f37a6a692535a2f3f6af54b1d2}{s\+\_\+generate\+\_\+priority}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input)
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} int \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_acfccff5257af2e5deb4153c778e81c44}{LLVMFuzzer\+Test\+One\+Input}} (const uint8\+\_\+t $\ast$data, size\+\_\+t size)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const uint32\+\_\+t \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_a030698a834b2cf4e60fd08578788f109}{MAX\+\_\+\+PAYLOAD\+\_\+\+SIZE}} = 16384
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8}\label{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8}} 
+\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!header\_style@{header\_style}}
+\index{header\_style@{header\_style}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}
+\doxysubsubsection{\texorpdfstring{header\_style}{header\_style}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8}{header\+\_\+style}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEADER\_STYLE\_REQUEST@{HEADER\_STYLE\_REQUEST}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!HEADER\_STYLE\_REQUEST@{HEADER\_STYLE\_REQUEST}}}\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8ab508a2f74470659036148808f89ce0a9}\label{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8ab508a2f74470659036148808f89ce0a9}} 
+HEADER\+\_\+\+STYLE\+\_\+\+REQUEST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEADER\_STYLE\_RESPONSE@{HEADER\_STYLE\_RESPONSE}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!HEADER\_STYLE\_RESPONSE@{HEADER\_STYLE\_RESPONSE}}}\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8a2bd8ae2a1ebf95235052b5a85c38c620}\label{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8a2bd8ae2a1ebf95235052b5a85c38c620}} 
+HEADER\+\_\+\+STYLE\+\_\+\+RESPONSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEADER\_STYLE\_TRAILER@{HEADER\_STYLE\_TRAILER}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!HEADER\_STYLE\_TRAILER@{HEADER\_STYLE\_TRAILER}}}\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8a9726be246f9358f0406eb05ba1a4a0b1}\label{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8a9726be246f9358f0406eb05ba1a4a0b1}} 
+HEADER\+\_\+\+STYLE\+\_\+\+TRAILER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_acfccff5257af2e5deb4153c778e81c44}\label{fuzz__h2__decoder__correct_8c_acfccff5257af2e5deb4153c778e81c44}} 
+\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!LLVMFuzzerTestOneInput@{LLVMFuzzerTestOneInput}}
+\index{LLVMFuzzerTestOneInput@{LLVMFuzzerTestOneInput}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}
+\doxysubsubsection{\texorpdfstring{LLVMFuzzerTestOneInput()}{LLVMFuzzerTestOneInput()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} int LLVMFuzzer\+Test\+One\+Input (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{data,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+This test generates valid frames from the random input. It feeds these frames through the encoder and ensures that they\textquotesingle{}re output without error. Then it feeds the encoder\textquotesingle{}s output to the decoder and ensures that it does not report an error. It does not currently investigate the outputs to see if they line up with they inputs, it just checks for errors from the encoder \& decoder. \mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_a8eb1638a3b7be563305b5484af34c965}\label{fuzz__h2__decoder__correct_8c_a8eb1638a3b7be563305b5484af34c965}} 
+\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!s\_generate\_even\_stream\_id@{s\_generate\_even\_stream\_id}}
+\index{s\_generate\_even\_stream\_id@{s\_generate\_even\_stream\_id}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}
+\doxysubsubsection{\texorpdfstring{s\_generate\_even\_stream\_id()}{s\_generate\_even\_stream\_id()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+generate\+\_\+even\+\_\+stream\+\_\+id (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_afcc4069f23b3f2269119689af29af650}\label{fuzz__h2__decoder__correct_8c_afcc4069f23b3f2269119689af29af650}} 
+\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!s\_generate\_headers@{s\_generate\_headers}}
+\index{s\_generate\_headers@{s\_generate\_headers}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}
+\doxysubsubsection{\texorpdfstring{s\_generate\_headers()}{s\_generate\_headers()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}}$\ast$ s\+\_\+generate\+\_\+headers (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{input,  }\item[{enum \mbox{\hyperlink{fuzz__h2__decoder__correct_8c_aed795d914d0287954e5ff495fa1828f8}{header\+\_\+style}}}]{header\+\_\+style }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_ace0db817645423a733993c4bd7190219}\label{fuzz__h2__decoder__correct_8c_ace0db817645423a733993c4bd7190219}} 
+\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!s\_generate\_odd\_stream\_id@{s\_generate\_odd\_stream\_id}}
+\index{s\_generate\_odd\_stream\_id@{s\_generate\_odd\_stream\_id}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}
+\doxysubsubsection{\texorpdfstring{s\_generate\_odd\_stream\_id()}{s\_generate\_odd\_stream\_id()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+generate\+\_\+odd\+\_\+stream\+\_\+id (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_accf872f37a6a692535a2f3f6af54b1d2}\label{fuzz__h2__decoder__correct_8c_accf872f37a6a692535a2f3f6af54b1d2}} 
+\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!s\_generate\_priority@{s\_generate\_priority}}
+\index{s\_generate\_priority@{s\_generate\_priority}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}
+\doxysubsubsection{\texorpdfstring{s\_generate\_priority()}{s\_generate\_priority()}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h2__frame__priority__settings}{aws\+\_\+h2\+\_\+frame\+\_\+priority\+\_\+settings}} s\+\_\+generate\+\_\+priority (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_a3638259471fa3ef09a64c1e23bcc9f31}\label{fuzz__h2__decoder__correct_8c_a3638259471fa3ef09a64c1e23bcc9f31}} 
+\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!s\_generate\_stream\_id@{s\_generate\_stream\_id}}
+\index{s\_generate\_stream\_id@{s\_generate\_stream\_id}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}
+\doxysubsubsection{\texorpdfstring{s\_generate\_stream\_id()}{s\_generate\_stream\_id()}}
+{\footnotesize\ttfamily static uint32\+\_\+t s\+\_\+generate\+\_\+stream\+\_\+id (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{fuzz__h2__decoder__correct_8c_a030698a834b2cf4e60fd08578788f109}\label{fuzz__h2__decoder__correct_8c_a030698a834b2cf4e60fd08578788f109}} 
+\index{fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}!MAX\_PAYLOAD\_SIZE@{MAX\_PAYLOAD\_SIZE}}
+\index{MAX\_PAYLOAD\_SIZE@{MAX\_PAYLOAD\_SIZE}!fuzz\_h2\_decoder\_correct.c@{fuzz\_h2\_decoder\_correct.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_PAYLOAD\_SIZE}{MAX\_PAYLOAD\_SIZE}}
+{\footnotesize\ttfamily const uint32\+\_\+t MAX\+\_\+\+PAYLOAD\+\_\+\+SIZE = 16384\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

@@ -1,0 +1,18 @@
+\hypertarget{aws__string__destroy__override_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\+\_\+string\+\_\+destroy\+\_\+override.c File Reference}
+\label{aws__string__destroy__override_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\_string\_destroy\_override.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\_string\_destroy\_override.c}}
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{aws__string__destroy__override_8c_ac1fc72f37526d0c191ee75b1dd68191d}{aws\+\_\+string\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$str)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws__string__destroy__override_8c_ac1fc72f37526d0c191ee75b1dd68191d}\label{aws__string__destroy__override_8c_ac1fc72f37526d0c191ee75b1dd68191d}} 
+\index{aws\_string\_destroy\_override.c@{aws\_string\_destroy\_override.c}!aws\_string\_destroy@{aws\_string\_destroy}}
+\index{aws\_string\_destroy@{aws\_string\_destroy}!aws\_string\_destroy\_override.c@{aws\_string\_destroy\_override.c}}
+\doxysubsubsection{\texorpdfstring{aws\_string\_destroy()}{aws\_string\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+string\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{str }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Allocation/\+Deallocation using the standard aws-\/c-\/common allocators requires calls through function pointers. Until we get better function pointer support in CBMC, this is expensive. Instead, since we know we\textquotesingle{}re using \char`\"{}malloc\char`\"{} to do allocation in CBMC proofs, we can just directly use \char`\"{}free\char`\"{} here, saving the function pointer derefences. Otherwise the same as the real function. 

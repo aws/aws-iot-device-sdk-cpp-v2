@@ -1,0 +1,23 @@
+\hypertarget{dlloads_8h_source}{}\doxysection{dlloads.\+h}
+\label{dlloads_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/dlloads.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/dlloads.h}}
+\mbox{\hyperlink{dlloads_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_PRIVATE\_DLLOADS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_PRIVATE\_DLLOADS\_H}}
+\DoxyCodeLine{8 \textcolor{comment}{/*}}
+\DoxyCodeLine{9 \textcolor{comment}{ * definition is here: https://linux.die.net/man/2/set\_mempolicy}}
+\DoxyCodeLine{10 \textcolor{comment}{ */}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define AWS\_MPOL\_PREFERRED\_ALIAS 1}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{struct }bitmask;}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{extern} long (*\mbox{\hyperlink{dlloads_8h_a3fb3bfb14fdc57ceaff3f5ffd31cc55c}{g\_set\_mempolicy\_ptr}})(int, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} *, \textcolor{keywordtype}{unsigned} long);}
+\DoxyCodeLine{16 \textcolor{keyword}{extern} int (*\mbox{\hyperlink{dlloads_8h_a5a43ca25384f3c081b4094333a49ba0e}{g\_numa\_available\_ptr}})(void);}
+\DoxyCodeLine{17 \textcolor{keyword}{extern} int (*\mbox{\hyperlink{dlloads_8h_a118c77c91a432fc34abe7c73b963b1bb}{g\_numa\_num\_configured\_nodes\_ptr}})(void);}
+\DoxyCodeLine{18 \textcolor{keyword}{extern} int (*\mbox{\hyperlink{dlloads_8h_a0adec8544e24565003086b8b34a82d32}{g\_numa\_num\_possible\_cpus\_ptr}})(void);}
+\DoxyCodeLine{19 \textcolor{keyword}{extern} int (*\mbox{\hyperlink{dlloads_8h_a50de1f4f7baf8fdc59c2cb829d395178}{g\_numa\_node\_of\_cpu\_ptr}})(\textcolor{keywordtype}{int} cpu);}
+\DoxyCodeLine{20 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} *\mbox{\hyperlink{dlloads_8h_af5f8a12f00ae8850d93bdea0299f13d4}{g\_libnuma\_handle}};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_PRIVATE\_DLLOADS\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

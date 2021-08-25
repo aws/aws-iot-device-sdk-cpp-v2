@@ -1,0 +1,90 @@
+\hypertarget{signing__result_8h_source}{}\doxysection{signing\+\_\+result.\+h}
+\label{signing__result_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/include/aws/auth/signing\_result.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/auth/include/aws/auth/signing\_result.h}}
+\mbox{\hyperlink{signing__result_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_AUTH\_SIGNING\_RESULT\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_AUTH\_SIGNING\_RESULT\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{auth_8h}{aws/auth/auth.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{hash__table_8h}{aws/common/hash\_table.h}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}};}
+\DoxyCodeLine{14 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}};}
+\DoxyCodeLine{15 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__message}{aws\_http\_message}};}
+\DoxyCodeLine{16 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__signing__result__property}{aws\_signing\_result\_property}} \{}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{structaws__signing__result__property_ac9db3d20b4cec15ddcfb6881959721d1}{name}};}
+\DoxyCodeLine{20     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{structaws__signing__result__property_a00cb4b9a284c333e3fd3ebbe26e431ac}{value}};}
+\DoxyCodeLine{21 \};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{40 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} \{}
+\DoxyCodeLine{41     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__signing__result_a9f74a3634a1e92a0171b3b4a3cdc85b4}{allocator}};}
+\DoxyCodeLine{42     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structaws__signing__result_a5674be50a08eea7a86b6609629004699}{properties}};}
+\DoxyCodeLine{43     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structaws__signing__result_a25cdaeffe7d653a186da4768c8eec64a}{property\_lists}};}
+\DoxyCodeLine{44 \};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{56 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
+\DoxyCodeLine{57 \textcolor{keywordtype}{int} \mbox{\hyperlink{signing__result_8h_adcfd22bfdf5972de42569d8f07028422}{aws\_signing\_result\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{64 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
+\DoxyCodeLine{65 \textcolor{keywordtype}{void} \mbox{\hyperlink{signing__result_8h_a014537e0579bf998c8c6f05d65ed4b49}{aws\_signing\_result\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{76 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
+\DoxyCodeLine{77 \textcolor{keywordtype}{int} \mbox{\hyperlink{signing__result_8h_a6ccb31337ceb3f011708f9386a05e74f}{aws\_signing\_result\_set\_property}}(}
+\DoxyCodeLine{78     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result,}
+\DoxyCodeLine{79     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *property\_name,}
+\DoxyCodeLine{80     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *property\_value);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{91 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
+\DoxyCodeLine{92 \textcolor{keywordtype}{int} \mbox{\hyperlink{signing__result_8h_a3401ce0910d56fc0308df3b0383e7f23}{aws\_signing\_result\_get\_property}}(}
+\DoxyCodeLine{93     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result,}
+\DoxyCodeLine{94     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *property\_name,}
+\DoxyCodeLine{95     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} **out\_property\_value);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{108 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
+\DoxyCodeLine{109 \textcolor{keywordtype}{int} \mbox{\hyperlink{signing__result_8h_ae91fae4aa14c74ad85645759ee195b96}{aws\_signing\_result\_append\_property\_list}}(}
+\DoxyCodeLine{110     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result,}
+\DoxyCodeLine{111     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *list\_name,}
+\DoxyCodeLine{112     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *property\_name,}
+\DoxyCodeLine{113     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *property\_value);}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{123 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
+\DoxyCodeLine{124 \textcolor{keywordtype}{void} \mbox{\hyperlink{signing__result_8h_a0ce310a7117cd73950bdda469b3af9f0}{aws\_signing\_result\_get\_property\_list}}(}
+\DoxyCodeLine{125     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result,}
+\DoxyCodeLine{126     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *list\_name,}
+\DoxyCodeLine{127     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} **out\_list);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{139 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
+\DoxyCodeLine{140 \textcolor{keywordtype}{void} \mbox{\hyperlink{signing__result_8h_a4c94f1420ebcce1e47d6a976a89e66eb}{aws\_signing\_result\_get\_property\_value\_in\_property\_list}}(}
+\DoxyCodeLine{141     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result,}
+\DoxyCodeLine{142     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *list\_name,}
+\DoxyCodeLine{143     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *property\_name,}
+\DoxyCodeLine{144     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} **out\_value);}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{comment}{/*}}
+\DoxyCodeLine{147 \textcolor{comment}{ * Specific implementation that applies a signing result to a mutable http request}}
+\DoxyCodeLine{148 \textcolor{comment}{ *}}
+\DoxyCodeLine{149 \textcolor{comment}{ * @param request http request to apply the signing result to}}
+\DoxyCodeLine{150 \textcolor{comment}{ * @param allocator memory allocator to use for all memory allocation}}
+\DoxyCodeLine{151 \textcolor{comment}{ * @param result signing result to apply to the request}}
+\DoxyCodeLine{152 \textcolor{comment}{ *}}
+\DoxyCodeLine{153 \textcolor{comment}{ * @return AWS\_OP\_SUCCESS if the application operation was successful, AWS\_OP\_ERR otherwise}}
+\DoxyCodeLine{154 \textcolor{comment}{ */}}
+\DoxyCodeLine{155 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
+\DoxyCodeLine{156 \textcolor{keywordtype}{int} \mbox{\hyperlink{signing__result_8h_a24daf3436f9bdc65d104f1ef6de865c4}{aws\_apply\_signing\_result\_to\_http\_request}}(}
+\DoxyCodeLine{157     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *request,}
+\DoxyCodeLine{158     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{159     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result);}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{signing__result_8h_a689762435aadd9426d2806fb31c34ad7}{g\_aws\_signing\_authorization\_header\_name}};}
+\DoxyCodeLine{162 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{signing__result_8h_a3ed61fab672141fbc51ebd94f8ac6aab}{g\_aws\_signing\_authorization\_query\_param\_name}};}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_AUTH\_SIGNING\_RESULT\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

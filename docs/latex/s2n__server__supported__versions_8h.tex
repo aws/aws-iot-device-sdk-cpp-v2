@@ -1,0 +1,48 @@
+\hypertarget{s2n__server__supported__versions_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+server\+\_\+supported\+\_\+versions.h File Reference}
+\label{s2n__server__supported__versions_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_supported\_versions.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_supported\_versions.h}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__server__supported__versions_8h_a27ab048dbd4bbe2bbf42487b81ad28af}{s2n\+\_\+extensions\+\_\+server\+\_\+supported\+\_\+versions\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\item 
+int \mbox{\hyperlink{s2n__server__supported__versions_8h_a3988a5ec66f8d99343f1e07e3d9785a4}{s2n\+\_\+extensions\+\_\+server\+\_\+supported\+\_\+versions\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__server__supported__versions_8h_ae21d61b2492cf217995e9b78827677c3}{s2n\+\_\+extensions\+\_\+server\+\_\+supported\+\_\+versions\+\_\+size}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__server__supported__versions_8h_aee91b5c249788bc509b611a34025941a}{s2n\+\_\+server\+\_\+supported\+\_\+versions\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__supported__versions_8h_a27ab048dbd4bbe2bbf42487b81ad28af}\label{s2n__server__supported__versions_8h_a27ab048dbd4bbe2bbf42487b81ad28af}} 
+\index{s2n\_server\_supported\_versions.h@{s2n\_server\_supported\_versions.h}!s2n\_extensions\_server\_supported\_versions\_recv@{s2n\_extensions\_server\_supported\_versions\_recv}}
+\index{s2n\_extensions\_server\_supported\_versions\_recv@{s2n\_extensions\_server\_supported\_versions\_recv}!s2n\_server\_supported\_versions.h@{s2n\_server\_supported\_versions.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_server\_supported\_versions\_recv()}{s2n\_extensions\_server\_supported\_versions\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+server\+\_\+supported\+\_\+versions\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__supported__versions_8h_a3988a5ec66f8d99343f1e07e3d9785a4}\label{s2n__server__supported__versions_8h_a3988a5ec66f8d99343f1e07e3d9785a4}} 
+\index{s2n\_server\_supported\_versions.h@{s2n\_server\_supported\_versions.h}!s2n\_extensions\_server\_supported\_versions\_send@{s2n\_extensions\_server\_supported\_versions\_send}}
+\index{s2n\_extensions\_server\_supported\_versions\_send@{s2n\_extensions\_server\_supported\_versions\_send}!s2n\_server\_supported\_versions.h@{s2n\_server\_supported\_versions.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_server\_supported\_versions\_send()}{s2n\_extensions\_server\_supported\_versions\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+server\+\_\+supported\+\_\+versions\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__supported__versions_8h_ae21d61b2492cf217995e9b78827677c3}\label{s2n__server__supported__versions_8h_ae21d61b2492cf217995e9b78827677c3}} 
+\index{s2n\_server\_supported\_versions.h@{s2n\_server\_supported\_versions.h}!s2n\_extensions\_server\_supported\_versions\_size@{s2n\_extensions\_server\_supported\_versions\_size}}
+\index{s2n\_extensions\_server\_supported\_versions\_size@{s2n\_extensions\_server\_supported\_versions\_size}!s2n\_server\_supported\_versions.h@{s2n\_server\_supported\_versions.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_server\_supported\_versions\_size()}{s2n\_extensions\_server\_supported\_versions\_size()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+server\+\_\+supported\+\_\+versions\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__server__supported__versions_8h_aee91b5c249788bc509b611a34025941a}\label{s2n__server__supported__versions_8h_aee91b5c249788bc509b611a34025941a}} 
+\index{s2n\_server\_supported\_versions.h@{s2n\_server\_supported\_versions.h}!s2n\_server\_supported\_versions\_extension@{s2n\_server\_supported\_versions\_extension}}
+\index{s2n\_server\_supported\_versions\_extension@{s2n\_server\_supported\_versions\_extension}!s2n\_server\_supported\_versions.h@{s2n\_server\_supported\_versions.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_supported\_versions\_extension}{s2n\_server\_supported\_versions\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+server\+\_\+supported\+\_\+versions\+\_\+extension\hspace{0.3cm}{\ttfamily [extern]}}
+

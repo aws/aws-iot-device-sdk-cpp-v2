@@ -1,0 +1,100 @@
+\hypertarget{macros_8h_source}{}\doxysection{macros.\+h}
+\label{macros_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/macros.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/macros.h}}
+\mbox{\hyperlink{macros_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_MACROS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_MACROS\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#    define AWS\_EXTERN\_C\_BEGIN extern "{}C"{}} \{}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#    define AWS\_EXTERN\_C\_END \}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#    define AWS\_EXTERN\_C\_BEGIN}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#    define AWS\_EXTERN\_C\_END}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/*  \_\_cplusplus */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define AWS\_CONCAT(A, B) A\#\#B}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define AWS\_STATIC\_ASSERT0(cond, msg) typedef char AWS\_CONCAT(static\_assertion\_, msg)[(!!(cond)) * 2 -\/ 1]}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define AWS\_STATIC\_ASSERT1(cond, line) AWS\_STATIC\_ASSERT0(cond, AWS\_CONCAT(at\_line\_, line))}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define AWS\_STATIC\_ASSERT(cond) AWS\_STATIC\_ASSERT1(cond, \_\_LINE\_\_)}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{comment}{/* https://stackoverflow.com/questions/9183993/msvc-\/variadic-\/macro-\/expansion */}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define GLUE(x, y) x y}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define RETURN\_ARG\_COUNT(\_1\_, \_2\_, \_3\_, \_4\_, \_5\_, count, ...) count}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define EXPAND\_ARGS(args) RETURN\_ARG\_COUNT args}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define COUNT\_ARGS\_MAX5(...) EXPAND\_ARGS((\_\_VA\_ARGS\_\_, 5, 4, 3, 2, 1, 0))}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define OVERLOAD\_MACRO2(name, count) name\#\#count}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define OVERLOAD\_MACRO1(name, count) OVERLOAD\_MACRO2(name, count)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define OVERLOAD\_MACRO(name, count) OVERLOAD\_MACRO1(name, count)}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define CALL\_OVERLOAD(name, ...) GLUE(OVERLOAD\_MACRO(name, COUNT\_ARGS\_MAX5(\_\_VA\_ARGS\_\_)), (\_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define CALL\_OVERLOAD\_TEST1(x) x}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define CALL\_OVERLOAD\_TEST2(x, y) y}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define CALL\_OVERLOAD\_TEST3(x, y, z) z}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define CALL\_OVERLOAD\_TEST(...) CALL\_OVERLOAD(CALL\_OVERLOAD\_TEST, \_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{38 \mbox{\hyperlink{macros_8h_ab7b5e13ee422151527fc17f65ffdc827}{AWS\_STATIC\_ASSERT}}(\mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\_OVERLOAD\_TEST}}(1) == 1);}
+\DoxyCodeLine{39 \mbox{\hyperlink{macros_8h_ab7b5e13ee422151527fc17f65ffdc827}{AWS\_STATIC\_ASSERT}}(\mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\_OVERLOAD\_TEST}}(1, 2) == 2);}
+\DoxyCodeLine{40 \mbox{\hyperlink{macros_8h_ab7b5e13ee422151527fc17f65ffdc827}{AWS\_STATIC\_ASSERT}}(\mbox{\hyperlink{macros_8h_a7efb64b7cb1d2bf0dc4453a220606ebc}{CALL\_OVERLOAD\_TEST}}(1, 2, 3) == 3);}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define AWS\_CACHE\_LINE 64}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#define PRInSTR "{}\%.*s"{}}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#if defined(\_MSC\_VER)}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{\#    include <malloc.h>}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#    define AWS\_ALIGNED\_TYPEDEF(from, to, alignment) typedef \_\_declspec(align(alignment)) from to}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#    define AWS\_LIKELY(x) x}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#    define AWS\_UNLIKELY(x) x}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#    define AWS\_FORCE\_INLINE \_\_forceinline}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#    define AWS\_NO\_INLINE \_\_declspec(noinline)}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#    define AWS\_VARIABLE\_LENGTH\_ARRAY(type, name, length) type *name = \_alloca(sizeof(type) * (length))}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#    define AWS\_DECLSPEC\_NORETURN \_\_declspec(noreturn)}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#    define AWS\_ATTRIBUTE\_NORETURN}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#    if defined(\_\_GNUC\_\_) || defined(\_\_clang\_\_)}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#        define AWS\_ALIGNED\_TYPEDEF(from, to, alignment) typedef from to \_\_attribute\_\_((aligned(alignment)))}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#        define AWS\_TYPE\_OF(a) \_\_typeof\_\_(a)}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#        define AWS\_LIKELY(x) \_\_builtin\_expect(!!(x), 1)}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#        define AWS\_UNLIKELY(x) \_\_builtin\_expect(!!(x), 0)}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#        define AWS\_FORCE\_INLINE \_\_attribute\_\_((always\_inline))}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#        define AWS\_NO\_INLINE \_\_attribute\_\_((noinline))}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#        define AWS\_DECLSPEC\_NORETURN}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#        define AWS\_ATTRIBUTE\_NORETURN \_\_attribute\_\_((noreturn))}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#        if defined(\_\_cplusplus)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#            define AWS\_VARIABLE\_LENGTH\_ARRAY(type, name, length) type *name = alloca(sizeof(type) * (length))}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#        else}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#            define AWS\_VARIABLE\_LENGTH\_ARRAY(type, name, length) type name[length];}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#        endif }\textcolor{comment}{/* defined(\_\_cplusplus) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#    endif     }\textcolor{comment}{/*  defined(\_\_GNUC\_\_) || defined(\_\_clang\_\_) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#endif         }\textcolor{comment}{/*  defined(\_MSC\_VER) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{comment}{/* If this is C++, restrict isn't supported. If this is not at least C99 on gcc and clang, it isn't supported.}}
+\DoxyCodeLine{79 \textcolor{comment}{ * If visual C++ building in C mode, the restrict definition is \_\_restrict.}}
+\DoxyCodeLine{80 \textcolor{comment}{ * This just figures all of that out based on who's including this header file. */}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#if defined(\_\_cplusplus)}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#    define AWS\_RESTRICT}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#    if defined(\_MSC\_VER)}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#        define AWS\_RESTRICT \_\_restrict}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#        if defined(\_\_STDC\_VERSION\_\_) \&\& \_\_STDC\_VERSION\_\_ >= 199901L}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#            define AWS\_RESTRICT restrict}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#        else}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#            define AWS\_RESTRICT}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#        endif }\textcolor{comment}{/* defined(\_\_STDC\_VERSION\_\_) \&\& \_\_STDC\_VERSION\_\_ >= 199901L */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#    endif     }\textcolor{comment}{/* defined(\_MSC\_VER) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#endif         }\textcolor{comment}{/* defined(\_\_cplusplus) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#if defined(\_MSC\_VER)}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#    define AWS\_THREAD\_LOCAL \_\_declspec(thread)}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#    define AWS\_THREAD\_LOCAL \_\_thread}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define AWS\_ARRAY\_SIZE(array) (sizeof(array) / sizeof((array)[0]))}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define AWS\_CONTAINER\_OF(ptr, type, member) ((type *)((uint8\_t *)(ptr)-\/offsetof(type, member)))}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_MACROS\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

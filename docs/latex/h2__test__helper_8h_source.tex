@@ -1,0 +1,195 @@
+\hypertarget{h2__test__helper_8h_source}{}\doxysection{h2\+\_\+test\+\_\+helper.\+h}
+\label{h2__test__helper_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/h2\_test\_helper.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/http/tests/h2\_test\_helper.h}}
+\mbox{\hyperlink{h2__test__helper_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_HTTP\_H2\_TEST\_HELPER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_HTTP\_H2\_TEST\_HELPER\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{array__list_8h}{aws/common/array\_list.h}}>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{h2__frames_8h}{aws/http/private/h2\_frames.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{request__response_8h}{aws/http/request\_response.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws__test__harness_8h}{aws/testing/aws\_test\_harness.h}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}};}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#define ASSERT\_H2ERR\_SUCCESS(condition, ...)                                                                           \(\backslash\)}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{        struct aws\_h2err assert\_rv = (condition);                                                                      \(\backslash\)}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{        if (!aws\_h2err\_success(assert\_rv)) \{                                                                           \(\backslash\)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{            if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{                PRINT\_FAIL\_INTERNAL0(                                                                                  \(\backslash\)}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{                    "{}Expected success at \%s; got aws\_h2err\{\%s, \%s\}\(\backslash\)n"{}},                                                 \(\backslash\)}
+\DoxyCodeLine{22                     \#condition,                                                                                        \(\backslash\)}
+\DoxyCodeLine{23                     aws\_http2\_error\_code\_to\_str(assert\_rv.h2\_code),                                                    \(\backslash\)}
+\DoxyCodeLine{24                     aws\_error\_name(assert\_rv.aws\_code));                                                               \(\backslash\)}
+\DoxyCodeLine{25             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{26             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{27         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{28     \} while (0)}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define ASSERT\_H2ERR\_FAILS(condition, ...)                                                                             \(\backslash\)}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{        struct aws\_h2err assert\_rv = (condition);                                                                      \(\backslash\)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{        if (!aws\_h2err\_failed(assert\_rv)) \{                                                                            \(\backslash\)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{            if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{                PRINT\_FAIL\_INTERNAL0("{}Expected failure at \%s; got AWS\_H2ERR\_SUCCESS\(\backslash\)n"{}}, \#condition);                   \(\backslash\)}
+\DoxyCodeLine{36             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{37             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{38         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{39     \} while (0)}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define ASSERT\_H2ERR\_ERROR(h2\_error, condition, ...)                                                                   \(\backslash\)}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{        struct aws\_h2err assert\_rv = (condition);                                                                      \(\backslash\)}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{        if (!aws\_h2err\_failed(assert\_rv)) \{                                                                            \(\backslash\)}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{            if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{                PRINT\_FAIL\_INTERNAL0(                                                                                  \(\backslash\)}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{                    "{}Expected \%s failure at \%s; got AWS\_H2ERR\_SUCCESS\(\backslash\)n"{}},                                              \(\backslash\)}
+\DoxyCodeLine{48                     aws\_http2\_error\_code\_to\_str(h2\_error),                                                             \(\backslash\)}
+\DoxyCodeLine{49                     \#condition);                                                                                       \(\backslash\)}
+\DoxyCodeLine{50             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{51             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{52         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{53         if (assert\_rv.h2\_code != h2\_error) \{                                                                           \(\backslash\)}
+\DoxyCodeLine{54             PRINT\_FAIL\_INTERNAL0(                                                                                      \(\backslash\)}
+\DoxyCodeLine{55                 "{}Expected \%s failure at \%s; got aws\_h2err\{\%s, \%s\}\(\backslash\)n"{},                                                  \(\backslash\)}
+\DoxyCodeLine{56                 aws\_http2\_error\_code\_to\_str(h2\_error),                                                                 \(\backslash\)}
+\DoxyCodeLine{57                 \#condition,                                                                                            \(\backslash\)}
+\DoxyCodeLine{58                 aws\_http2\_error\_code\_to\_str(assert\_rv.h2\_code),                                                        \(\backslash\)}
+\DoxyCodeLine{59                 aws\_error\_name(assert\_rv.aws\_code));                                                                   \(\backslash\)}
+\DoxyCodeLine{60         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{61     \} while (0)}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{74 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__decoded__frame}{h2\_decoded\_frame}} \{}
+\DoxyCodeLine{75     \textcolor{comment}{/* If true, we expect no further callbacks regarding this frame */}}
+\DoxyCodeLine{76     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structh2__decoded__frame_a5b59df02d761eb24b4b883db9c88acce}{finished}};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{keyword}{enum} \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\_h2\_frame\_type}} \mbox{\hyperlink{structh2__decoded__frame_a712399bda4f9f9f9e87068f088e35f28}{type}}; \textcolor{comment}{/* All frame types have this */}}
+\DoxyCodeLine{79     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_ab277650bf38e5ed57726469c4a01f599}{stream\_id}};          \textcolor{comment}{/* All frame types have this */}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81     \textcolor{comment}{/*}}
+\DoxyCodeLine{82 \textcolor{comment}{     * Everything else is only found in certain frame types}}
+\DoxyCodeLine{83 \textcolor{comment}{     */}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structh2__decoded__frame_acabc26210f0419370cef9761331cec3d}{end\_stream}}; \textcolor{comment}{/* HEADERS and DATA might have this */}}
+\DoxyCodeLine{86     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structh2__decoded__frame_a7431a2fe42018f069cc4d2de831194ac}{ack}};        \textcolor{comment}{/* PING and SETTINGS might have this */}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_ae1d97314547803d9e4bbda13e0d61d55}{error\_code}};                                \textcolor{comment}{/* RST\_STREAM and GOAWAY have this */}}
+\DoxyCodeLine{89     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_a82dd2b10003b7e382fad25fd0a483f2a}{promised\_stream\_id}};                        \textcolor{comment}{/* PUSH\_PROMISE has this */}}
+\DoxyCodeLine{90     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_a04f342e722a866ffc79960c333fb2d3b}{goaway\_last\_stream\_id}};                     \textcolor{comment}{/* GOAWAY has this */}}
+\DoxyCodeLine{91     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_a86ff93c31d1d39f577da9334c75b272d}{goaway\_debug\_data\_remaining}};               \textcolor{comment}{/* GOAWAY has this*/}}
+\DoxyCodeLine{92     uint8\_t \mbox{\hyperlink{structh2__decoded__frame_a35324caeeb69ef9d26e191f1b2d88fbb}{ping\_opaque\_data}}[\mbox{\hyperlink{connection_8h_a99cebd5298f16fec37625e4a1a01c64a}{AWS\_HTTP2\_PING\_DATA\_SIZE}}]; \textcolor{comment}{/* PING has this */}}
+\DoxyCodeLine{93     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_a2d890cf5b5d2e956ec8578b575b23ded}{window\_size\_increment}};                     \textcolor{comment}{/* WINDOW\_UPDATE has this */}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__headers}{aws\_http\_headers}} *\mbox{\hyperlink{structh2__decoded__frame_aee614495d24d87c9c927577290b9f307}{headers}};             \textcolor{comment}{/* HEADERS and PUSH\_PROMISE have this */}}
+\DoxyCodeLine{96     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structh2__decoded__frame_a5afe64f50d0bda1b1ca1503fb430f0af}{headers\_malformed}};                       \textcolor{comment}{/* HEADERS and PUSH\_PROMISE have this */}}
+\DoxyCodeLine{97     \textcolor{keyword}{enum} \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\_http\_header\_block}} \mbox{\hyperlink{structh2__decoded__frame_a2d978cf873fef55ab1a2b492635c1a27}{header\_block\_type}}; \textcolor{comment}{/* HEADERS have this */}}
+\DoxyCodeLine{98     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} \mbox{\hyperlink{structh2__decoded__frame_a1ddcbd2e7d2755030fa449970be4cf3e}{settings}};               \textcolor{comment}{/* contains aws\_http2\_setting, SETTINGS has this */}}
+\DoxyCodeLine{99     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{structh2__decoded__frame_af641d3818d41d30e863e59ceedddb12b}{data}};                     \textcolor{comment}{/* DATA has this */}}
+\DoxyCodeLine{100     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_aafd6d96f2200c940fe6184e7ab8fafa1}{data\_payload\_len}};                    \textcolor{comment}{/* DATA has this */}}
+\DoxyCodeLine{101     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structh2__decoded__frame_a98947d361c162c9444a3ec9ceac30b2d}{data\_end\_stream}};                         \textcolor{comment}{/* DATA has this */}}
+\DoxyCodeLine{102 \};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{109 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_a61d13be47bb19d1aecdbcc7946ef3642}{h2\_decoded\_frame\_check\_finished}}(}
+\DoxyCodeLine{110     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decoded__frame}{h2\_decoded\_frame}} *frame,}
+\DoxyCodeLine{111     \textcolor{keyword}{enum} \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\_h2\_frame\_type}} expected\_type,}
+\DoxyCodeLine{112     uint32\_t expected\_stream\_id);}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{comment}{/******************************************************************************/}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{119 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} \{}
+\DoxyCodeLine{120     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structh2__decode__tester_a33ba9436699dc0602aa4352660d4e858}{alloc}};}
+\DoxyCodeLine{121     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__decoder}{aws\_h2\_decoder}} *\mbox{\hyperlink{structh2__decode__tester_a92739ec2db9533826c81b98284bcafe1}{decoder}};}
+\DoxyCodeLine{122     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} \mbox{\hyperlink{structh2__decode__tester_a546c6cc0ffa1f7b068f5f2d72321d5db}{frames}}; \textcolor{comment}{/* contains h2\_decoded\_frame */}}
+\DoxyCodeLine{123 \};}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__decode__tester__options}{h2\_decode\_tester\_options}} \{}
+\DoxyCodeLine{126     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structh2__decode__tester__options_aff48436557fd61186f4d0c7eb73a6fa7}{alloc}};}
+\DoxyCodeLine{127     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structh2__decode__tester__options_a73efe092ad477a708e49d1f66d18d63c}{is\_server}};}
+\DoxyCodeLine{128     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structh2__decode__tester__options_af0414cd66861b63aa414b6672c63ba09}{skip\_connection\_preface}};}
+\DoxyCodeLine{129 \};}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_ad887bf4a27893f764a2c7680a87b9f05}{h2\_decode\_tester\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester__options}{h2\_decode\_tester\_options}} *options);}
+\DoxyCodeLine{132 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__test__helper_8h_aac51e8ae2b96a3672dd333ac5e099550}{h2\_decode\_tester\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester);}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{h2__test__helper_8h_a6e33fefbffc7259e225660310b773cf3}{h2\_decode\_tester\_frame\_count}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester);}
+\DoxyCodeLine{135 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__decoded__frame}{h2\_decoded\_frame}} *\mbox{\hyperlink{h2__test__helper_8h_ae308aa471a26280eae9ce9e8227058ae}{h2\_decode\_tester\_get\_frame}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester, \textcolor{keywordtype}{size\_t} i);}
+\DoxyCodeLine{136 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__decoded__frame}{h2\_decoded\_frame}} *\mbox{\hyperlink{h2__test__helper_8h_a844ced0f75da87b0d03a7b3e0a43238d}{h2\_decode\_tester\_latest\_frame}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester);}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{142 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__decoded__frame}{h2\_decoded\_frame}} *\mbox{\hyperlink{h2__test__helper_8h_af12819b3a4259da503cba36b6be8cdb4}{h2\_decode\_tester\_find\_frame}}(}
+\DoxyCodeLine{143     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester,}
+\DoxyCodeLine{144     \textcolor{keyword}{enum} \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\_h2\_frame\_type}} \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}},}
+\DoxyCodeLine{145     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{connection__state__test_8c_ac26bf81bcc6cb9a83aaf17a31998c9d4}{search\_start\_idx}},}
+\DoxyCodeLine{146     \textcolor{keywordtype}{size\_t} *out\_idx);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{152 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__decoded__frame}{h2\_decoded\_frame}} *\mbox{\hyperlink{h2__test__helper_8h_aa3560acccf30df63f7b28817926bd67d}{h2\_decode\_tester\_find\_stream\_frame\_any\_type}}(}
+\DoxyCodeLine{153     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester,}
+\DoxyCodeLine{154     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_ab277650bf38e5ed57726469c4a01f599}{stream\_id}},}
+\DoxyCodeLine{155     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{connection__state__test_8c_ac26bf81bcc6cb9a83aaf17a31998c9d4}{search\_start\_idx}},}
+\DoxyCodeLine{156     \textcolor{keywordtype}{size\_t} *out\_idx);}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{162 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__decoded__frame}{h2\_decoded\_frame}} *\mbox{\hyperlink{h2__test__helper_8h_a406d10eddd5060b18a0bc516ca17c0d2}{h2\_decode\_tester\_find\_stream\_frame}}(}
+\DoxyCodeLine{163     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester,}
+\DoxyCodeLine{164     \textcolor{keyword}{enum} \mbox{\hyperlink{h2__frames_8h_a4a89507d5388407e919c5082064401db}{aws\_h2\_frame\_type}} \mbox{\hyperlink{namespacecreate-projects_a8e98101a40c3e8a674b8023e90df2b7c}{type}},}
+\DoxyCodeLine{165     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_ab277650bf38e5ed57726469c4a01f599}{stream\_id}},}
+\DoxyCodeLine{166     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{connection__state__test_8c_ac26bf81bcc6cb9a83aaf17a31998c9d4}{search\_start\_idx}},}
+\DoxyCodeLine{167     \textcolor{keywordtype}{size\_t} *out\_idx);}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{172 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_ab7a2db592f88bfda8caa8293f4e3294d}{h2\_decode\_tester\_check\_data\_across\_frames}}(}
+\DoxyCodeLine{173     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester,}
+\DoxyCodeLine{174     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_ab277650bf38e5ed57726469c4a01f599}{stream\_id}},}
+\DoxyCodeLine{175     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} expected,}
+\DoxyCodeLine{176     \textcolor{keywordtype}{bool} expect\_end\_stream);}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{181 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_ae02f94772bee7ea979389e9a79e0b505}{h2\_decode\_tester\_check\_data\_str\_across\_frames}}(}
+\DoxyCodeLine{182     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} *decode\_tester,}
+\DoxyCodeLine{183     uint32\_t \mbox{\hyperlink{structh2__decoded__frame_ab277650bf38e5ed57726469c4a01f599}{stream\_id}},}
+\DoxyCodeLine{184     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *expected,}
+\DoxyCodeLine{185     \textcolor{keywordtype}{bool} expect\_end\_stream);}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{comment}{/******************************************************************************/}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{194 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__fake__peer}{h2\_fake\_peer}} \{}
+\DoxyCodeLine{195     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structh2__fake__peer_a66dcc07c780976f93e9cbaf4800b8897}{alloc}};}
+\DoxyCodeLine{196     \textcolor{keyword}{struct }\mbox{\hyperlink{structtesting__channel}{testing\_channel}} *\mbox{\hyperlink{structh2__fake__peer_a0c28132a8ea7370651cbbee73e7bf894}{testing\_channel}};}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame__encoder}{aws\_h2\_frame\_encoder}} \mbox{\hyperlink{structh2__fake__peer_a6eda003acbbfc1735213f5fd62061aff}{encoder}};}
+\DoxyCodeLine{199     \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__decode__tester}{h2\_decode\_tester}} \mbox{\hyperlink{structh2__fake__peer_a7bcc201739cdea93c9bc911b7b5e4a56}{decode}};}
+\DoxyCodeLine{200     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structh2__fake__peer_a78ac8009a89d529168a2123a3febf618}{is\_server}};}
+\DoxyCodeLine{201 \};}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{keyword}{struct }\mbox{\hyperlink{structh2__fake__peer__options}{h2\_fake\_peer\_options}} \{}
+\DoxyCodeLine{204     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structh2__fake__peer__options_a41b2192fac1e2783f6dc3599c08131ce}{alloc}};}
+\DoxyCodeLine{205     \textcolor{keyword}{struct }\mbox{\hyperlink{structtesting__channel}{testing\_channel}} *\mbox{\hyperlink{structh2__fake__peer__options_afa49a825576424e958e42db70c64ad78}{testing\_channel}};}
+\DoxyCodeLine{206     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structh2__fake__peer__options_a9a29008719731612203fd7e226e80f5b}{is\_server}};}
+\DoxyCodeLine{207 \};}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_a6f9683be4ea03dcbb3e372b210840675}{h2\_fake\_peer\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structh2__fake__peer}{h2\_fake\_peer}} *peer, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__fake__peer__options}{h2\_fake\_peer\_options}} *options);}
+\DoxyCodeLine{210 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__test__helper_8h_a172dcdbf4c9555d2a121f1c29f98300b}{h2\_fake\_peer\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structh2__fake__peer}{h2\_fake\_peer}} *peer);}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{215 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_ab10468fc7b9dde04f736f4629245dd8a}{h2\_fake\_peer\_decode\_messages\_from\_testing\_channel}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structh2__fake__peer}{h2\_fake\_peer}} *peer);}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{221 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_aa529e58e14f3214ab3909ceb6666e027}{h2\_fake\_peer\_send\_frame}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structh2__fake__peer}{h2\_fake\_peer}} *peer, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *frame);}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{227 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_a5dcf9774b4913c9006eb3dd56910d9f2}{h2\_fake\_peer\_send\_data\_frame}}(}
+\DoxyCodeLine{228     \textcolor{keyword}{struct} \mbox{\hyperlink{structh2__fake__peer}{h2\_fake\_peer}} *peer,}
+\DoxyCodeLine{229     uint32\_t stream\_id,}
+\DoxyCodeLine{230     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} data,}
+\DoxyCodeLine{231     \textcolor{keywordtype}{bool} end\_stream);}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{237 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_aafa87c468c1053ffa6d02ec36bf11626}{h2\_fake\_peer\_send\_data\_frame\_str}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structh2__fake__peer}{h2\_fake\_peer}} *peer, uint32\_t stream\_id, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *data, \textcolor{keywordtype}{bool} end\_stream);}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{243 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_a394873d1d35c1eb44ad85f1be7d9cc1b}{h2\_fake\_peer\_send\_connection\_preface}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structh2__fake__peer}{h2\_fake\_peer}} *peer, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *settings);}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{248 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__test__helper_8h_a2ed0faf44e70ddd5b433e220efdfc805}{h2\_fake\_peer\_send\_connection\_preface\_default\_settings}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structh2__fake__peer}{h2\_fake\_peer}} *peer);}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250 \textcolor{comment}{/******************************************************************************/}}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{255 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}} *\mbox{\hyperlink{h2__test__helper_8h_ae80e6951750c60d233bacf380f64ccb4}{aws\_input\_stream\_new\_tester}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *alloc, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} cursor);}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__test__helper_8h_a714bfa2f310a241a041208ce9f9fef14}{aws\_input\_stream\_tester\_set\_max\_bytes\_per\_read}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}} *input\_stream, \textcolor{keywordtype}{size\_t} max\_bytes);}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__test__helper_8h_a586d529599720546c47cf60b4ea4b041}{aws\_input\_stream\_tester\_set\_reading\_broken}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}} *input\_stream, \textcolor{keywordtype}{bool} is\_broken);}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_HTTP\_H2\_TEST\_HELPER\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

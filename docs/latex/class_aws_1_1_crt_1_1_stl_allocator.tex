@@ -1,0 +1,143 @@
+\hypertarget{class_aws_1_1_crt_1_1_stl_allocator}{}\doxysection{Aws\+::Crt\+::Stl\+Allocator\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\label{class_aws_1_1_crt_1_1_stl_allocator}\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Stl\+Allocator.\+h$>$}
+
+Inheritance diagram for Aws\+::Crt\+::Stl\+Allocator\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_aws_1_1_crt_1_1_stl_allocator}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_stl_allocator_1_1rebind}{rebind}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}} = \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{std\+::allocator}}$<$ T $>$
+\item 
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}{size\+\_\+type}} = std\+::size\+\_\+t
+\item 
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}} = typename std\+::allocator\+\_\+traits$<$ \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{std\+::allocator}}$<$ T $>$ $>$\+::pointer
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a7a33fce7a208df119287657f3555f261}{Stl\+Allocator}} () noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a4744bfdb69fa6c0514fd8425a9cea7f3}{Stl\+Allocator}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ae1d130f0891abd502d3c43c8b326366c}{Stl\+Allocator}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}}$<$ T $>$ \&\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}) noexcept
+\item 
+{\footnotesize template$<$class U $>$ }\\\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ab13b3c5a2a89fdc649346876c1570153}{Stl\+Allocator}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}}$<$ U $>$ \&\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}) noexcept
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_acb81e21dc53ebebe6a5a8d6cb447fdcd}{$\sim$\+Stl\+Allocator}} ()
+\item 
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a240c6a2eeee33f591f93eaed9ebc312b}{allocate}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}{size\+\_\+type}} \mbox{\hyperlink{namespace_aws_a56a46d10ee9f89f5ff63ceb62ec27991}{n}}, const void $\ast$hint=nullptr)
+\item 
+void \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a060ac0a43eb52efd4e32889fa298561e}{deallocate}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}} \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}}, \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}{size\+\_\+type}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}{m\+\_\+allocator}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}\label{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!Base@{Base}}
+\index{Base@{Base}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}} =  \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{std\+::allocator}}$<$T$>$}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}\label{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!RawPointer@{RawPointer}}
+\index{RawPointer@{RawPointer}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{RawPointer}{RawPointer}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}} =  typename std\+::allocator\+\_\+traits$<$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{std\+::allocator}}$<$T$>$ $>$\+::pointer}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}\label{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!size\_type@{size\_type}}
+\index{size\_type@{size\_type}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{size\_type}{size\_type}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}{size\+\_\+type}} =  std\+::size\+\_\+t}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_a7a33fce7a208df119287657f3555f261}\label{class_aws_1_1_crt_1_1_stl_allocator_a7a33fce7a208df119287657f3555f261}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!StlAllocator@{StlAllocator}}
+\index{StlAllocator@{StlAllocator}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{StlAllocator()}{StlAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_a4744bfdb69fa6c0514fd8425a9cea7f3}\label{class_aws_1_1_crt_1_1_stl_allocator_a4744bfdb69fa6c0514fd8425a9cea7f3}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!StlAllocator@{StlAllocator}}
+\index{StlAllocator@{StlAllocator}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{StlAllocator()}{StlAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_ae1d130f0891abd502d3c43c8b326366c}\label{class_aws_1_1_crt_1_1_stl_allocator_ae1d130f0891abd502d3c43c8b326366c}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!StlAllocator@{StlAllocator}}
+\index{StlAllocator@{StlAllocator}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{StlAllocator()}{StlAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}}$<$ T $>$ \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_ab13b3c5a2a89fdc649346876c1570153}\label{class_aws_1_1_crt_1_1_stl_allocator_ab13b3c5a2a89fdc649346876c1570153}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!StlAllocator@{StlAllocator}}
+\index{StlAllocator@{StlAllocator}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{StlAllocator()}{StlAllocator()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+template$<$class U $>$ \\
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}}$<$ U $>$ \&}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_acb81e21dc53ebebe6a5a8d6cb447fdcd}\label{class_aws_1_1_crt_1_1_stl_allocator_acb81e21dc53ebebe6a5a8d6cb447fdcd}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!````~StlAllocator@{$\sim$StlAllocator}}
+\index{````~StlAllocator@{$\sim$StlAllocator}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$StlAllocator()}{~StlAllocator()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::$\sim$\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_a240c6a2eeee33f591f93eaed9ebc312b}\label{class_aws_1_1_crt_1_1_stl_allocator_a240c6a2eeee33f591f93eaed9ebc312b}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!allocate@{allocate}}
+\index{allocate@{allocate}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{allocate()}{allocate()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}{size\+\_\+type}}}]{n,  }\item[{const void $\ast$}]{hint = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_a060ac0a43eb52efd4e32889fa298561e}\label{class_aws_1_1_crt_1_1_stl_allocator_a060ac0a43eb52efd4e32889fa298561e}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!deallocate@{deallocate}}
+\index{deallocate@{deallocate}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{deallocate()}{deallocate()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::deallocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}}}]{p,  }\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}{size\+\_\+type}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}\label{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}} 
+\index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!m\_allocator@{m\_allocator}}
+\index{m\_allocator@{m\_allocator}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{m\_allocator}{m\_allocator}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}}$\ast$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::m\+\_\+allocator}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/include/aws/crt/\mbox{\hyperlink{_stl_allocator_8h}{Stl\+Allocator.\+h}}\end{DoxyCompactItemize}

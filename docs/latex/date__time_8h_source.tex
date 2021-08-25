@@ -1,0 +1,113 @@
+\hypertarget{date__time_8h_source}{}\doxysection{date\+\_\+time.\+h}
+\label{date__time_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/date\_time.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/date\_time.h}}
+\mbox{\hyperlink{date__time_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_DATE\_TIME\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_DATE\_TIME\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{time_8h}{time.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define AWS\_DATE\_TIME\_STR\_MAX\_LEN 100}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define AWS\_DATE\_TIME\_STR\_MAX\_BASIC\_LEN 20}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}};}
+\DoxyCodeLine{15 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\_date\_format}} \{}
+\DoxyCodeLine{18     \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a19d19aaad168850d1679e716a64fb2de}{AWS\_DATE\_FORMAT\_RFC822}},}
+\DoxyCodeLine{19     \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a25e6a049ea9f278fad83425eadb35f26}{AWS\_DATE\_FORMAT\_ISO\_8601}},}
+\DoxyCodeLine{20     \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5af73fe8ceb1f85c91e1854fbc9c555076}{AWS\_DATE\_FORMAT\_ISO\_8601\_BASIC}},}
+\DoxyCodeLine{21     \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5a06a7fd11b0fd7744f94acfb986b6a3db}{AWS\_DATE\_FORMAT\_AUTO\_DETECT}},}
+\DoxyCodeLine{22 \};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\_date\_month}} \{}
+\DoxyCodeLine{25     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90ae256e8ddeaac3619c30f04e6b7179ea0}{AWS\_DATE\_MONTH\_JANUARY}} = 0,}
+\DoxyCodeLine{26     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a18010ce4c4895e39c89a2dc16982506c}{AWS\_DATE\_MONTH\_FEBRUARY}},}
+\DoxyCodeLine{27     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90acdece4cb9eccef6553ccf643dc426a90}{AWS\_DATE\_MONTH\_MARCH}},}
+\DoxyCodeLine{28     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a30d890c4f9dc3473e26efdf108a46be2}{AWS\_DATE\_MONTH\_APRIL}},}
+\DoxyCodeLine{29     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a7482877d2c31e3ccb2d52d9a5eb6756b}{AWS\_DATE\_MONTH\_MAY}},}
+\DoxyCodeLine{30     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a7e386ef037587099a963f140db40d99f}{AWS\_DATE\_MONTH\_JUNE}},}
+\DoxyCodeLine{31     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aa2e6aacca6f6560b01a9a3cc0f7cda9f}{AWS\_DATE\_MONTH\_JULY}},}
+\DoxyCodeLine{32     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aa84be95bb92530794649d968f2bd0dc9}{AWS\_DATE\_MONTH\_AUGUST}},}
+\DoxyCodeLine{33     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90ae4a77d2861ed5754190014691d9dee4d}{AWS\_DATE\_MONTH\_SEPTEMBER}},}
+\DoxyCodeLine{34     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90a8dc07a4c30fc4e2e9b4a0376f62ecdf2}{AWS\_DATE\_MONTH\_OCTOBER}},}
+\DoxyCodeLine{35     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90aab5551a029da34ebd2b39be336ee1b44}{AWS\_DATE\_MONTH\_NOVEMBER}},}
+\DoxyCodeLine{36     \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90add1fabdb6972e44eff9a76dbbb8a9913}{AWS\_DATE\_MONTH\_DECEMBER}},}
+\DoxyCodeLine{37 \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\_date\_day\_of\_week}} \{}
+\DoxyCodeLine{40     \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a4860ce87202b5fc06761de3c3f2720a0}{AWS\_DATE\_DAY\_OF\_WEEK\_SUNDAY}} = 0,}
+\DoxyCodeLine{41     \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a13d04ba8246079ed0cd7275135e329ee}{AWS\_DATE\_DAY\_OF\_WEEK\_MONDAY}},}
+\DoxyCodeLine{42     \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317ad4237669b05ce5a532791d4f8ba80913}{AWS\_DATE\_DAY\_OF\_WEEK\_TUESDAY}},}
+\DoxyCodeLine{43     \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317aef6933e3f5a949477b86dd6f03bf3103}{AWS\_DATE\_DAY\_OF\_WEEK\_WEDNESDAY}},}
+\DoxyCodeLine{44     \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a790010fe9799ab27d569ec027deab0ba}{AWS\_DATE\_DAY\_OF\_WEEK\_THURSDAY}},}
+\DoxyCodeLine{45     \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317ac0a739d833147a0d751195f74f1253a8}{AWS\_DATE\_DAY\_OF\_WEEK\_FRIDAY}},}
+\DoxyCodeLine{46     \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317a0c54226d1fe2009aa7f68ca93e9bf990}{AWS\_DATE\_DAY\_OF\_WEEK\_SATURDAY}},}
+\DoxyCodeLine{47 \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} \{}
+\DoxyCodeLine{50     time\_t \mbox{\hyperlink{structaws__date__time_aedf788f1e77889bf50fe658b456fa347}{timestamp}};}
+\DoxyCodeLine{51     \textcolor{keywordtype}{char} \mbox{\hyperlink{structaws__date__time_aa4f2a6446270c165e393053d6f36f163}{tz}}[6];}
+\DoxyCodeLine{52     \textcolor{keyword}{struct }tm \mbox{\hyperlink{structaws__date__time_a4254900997fe216bebfd34c70a31cb9c}{gmt\_time}};}
+\DoxyCodeLine{53     \textcolor{keyword}{struct }tm \mbox{\hyperlink{structaws__date__time_a2c7b84fa16a9575fdfec04a099b362d1}{local\_time}};}
+\DoxyCodeLine{54     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__date__time_a66c3f287fa9ae108bb0c4edfcec19759}{utc\_assumed}};}
+\DoxyCodeLine{55 \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{62 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{date__time_8h_a9e2aca5e013b0d59e8a9aa3d622198bd}{aws\_date\_time\_init\_now}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{67 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{date__time_8h_afa7bd7a71dc6cb1cad1330541ca4f179}{aws\_date\_time\_init\_epoch\_millis}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, uint64\_t ms\_since\_epoch);}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{72 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{date__time_8h_ae7f30d068fd2728240fc094b13b88eaa}{aws\_date\_time\_init\_epoch\_secs}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, \textcolor{keywordtype}{double} sec\_ms);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{86 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{date__time_8h_a117ddec004755a8a62a553bf41ea22e9}{aws\_date\_time\_init\_from\_str}}(}
+\DoxyCodeLine{87     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt,}
+\DoxyCodeLine{88     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *date\_str,}
+\DoxyCodeLine{89     \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\_date\_format}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}});}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{94 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{date__time_8h_a18819b62410c3dc33d2d7606ceb7c2a7}{aws\_date\_time\_init\_from\_str\_cursor}}(}
+\DoxyCodeLine{95     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt,}
+\DoxyCodeLine{96     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *date\_str\_cursor,}
+\DoxyCodeLine{97     \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\_date\_format}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}});}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{104 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{date__time_8h_aba1878753501bdd9f70ccdd8a0f7f893}{aws\_date\_time\_to\_local\_time\_str}}(}
+\DoxyCodeLine{105     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt,}
+\DoxyCodeLine{106     \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\_date\_format}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}},}
+\DoxyCodeLine{107     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *output\_buf);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{114 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{date__time_8h_a392be6ce680e918540a5e5876ee4fb43}{aws\_date\_time\_to\_utc\_time\_str}}(}
+\DoxyCodeLine{115     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt,}
+\DoxyCodeLine{116     \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\_date\_format}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}},}
+\DoxyCodeLine{117     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *output\_buf);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{124 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{date__time_8h_a3e28bf0976823c91fc4f283837409c69}{aws\_date\_time\_to\_local\_time\_short\_str}}(}
+\DoxyCodeLine{125     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt,}
+\DoxyCodeLine{126     \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\_date\_format}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}},}
+\DoxyCodeLine{127     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *output\_buf);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{134 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{date__time_8h_aebf8999fedd7481a748ecc458af3c7e7}{aws\_date\_time\_to\_utc\_time\_short\_str}}(}
+\DoxyCodeLine{135     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt,}
+\DoxyCodeLine{136     \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_acd2cf89789b89f9fc93cef423047ada5}{aws\_date\_format}} \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a200e75e0a034fc770659d7b6a4d6dbbc}{fmt}},}
+\DoxyCodeLine{137     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *output\_buf);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{double} \mbox{\hyperlink{date__time_8h_addccbb2bb9588b7bd62e4d63053dba9c}{aws\_date\_time\_as\_epoch\_secs}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt);}
+\DoxyCodeLine{140 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} uint64\_t \mbox{\hyperlink{date__time_8h_a19e93ee2084375ae845a80c517c1ed57}{aws\_date\_time\_as\_nanos}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt);}
+\DoxyCodeLine{141 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} uint64\_t \mbox{\hyperlink{date__time_8h_afee5917139d94817b882e321f67ed2f1}{aws\_date\_time\_as\_millis}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt);}
+\DoxyCodeLine{142 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} uint16\_t \mbox{\hyperlink{date__time_8h_a459725efbb8fdf3770d7a1d606513ce6}{aws\_date\_time\_year}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, \textcolor{keywordtype}{bool} local\_time);}
+\DoxyCodeLine{143 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\_date\_month}} \mbox{\hyperlink{date__time_8h_ad030a4f5d9f808ee308bb2b277790739}{aws\_date\_time\_month}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, \textcolor{keywordtype}{bool} local\_time);}
+\DoxyCodeLine{144 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} uint8\_t \mbox{\hyperlink{date__time_8h_a91c131fdae88e12a4028ff1336d1d11d}{aws\_date\_time\_month\_day}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, \textcolor{keywordtype}{bool} local\_time);}
+\DoxyCodeLine{145 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keyword}{enum} \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\_date\_day\_of\_week}} \mbox{\hyperlink{date__time_8h_a2b76d2f2520def61b31f5560a79c6f00}{aws\_date\_time\_day\_of\_week}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, \textcolor{keywordtype}{bool} local\_time);}
+\DoxyCodeLine{146 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} uint8\_t \mbox{\hyperlink{date__time_8h_a6ae4e26a2049f60779c8a4a9ae780d96}{aws\_date\_time\_hour}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, \textcolor{keywordtype}{bool} local\_time);}
+\DoxyCodeLine{147 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} uint8\_t \mbox{\hyperlink{date__time_8h_a98a674b94ea6ecbb65e2e75ff6bfa4d2}{aws\_date\_time\_minute}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, \textcolor{keywordtype}{bool} local\_time);}
+\DoxyCodeLine{148 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} uint8\_t \mbox{\hyperlink{date__time_8h_a1516cfe415812c81accc4f0bded02f3b}{aws\_date\_time\_second}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, \textcolor{keywordtype}{bool} local\_time);}
+\DoxyCodeLine{149 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{date__time_8h_afd4b04876599f9f498e714aff2896fb4}{aws\_date\_time\_dst}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *dt, \textcolor{keywordtype}{bool} local\_time);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{154 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} time\_t \mbox{\hyperlink{date__time_8h_a8abaeb273de9bfc745c6e2ab29146c91}{aws\_date\_time\_diff}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}});}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_DATE\_TIME\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

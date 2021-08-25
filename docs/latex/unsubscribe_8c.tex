@@ -1,0 +1,39 @@
+\hypertarget{unsubscribe_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/unsubscribe.c File Reference}
+\label{unsubscribe_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/unsubscribe.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/unsubscribe.c}}
+{\ttfamily \#include \char`\"{}preamble.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{unsubscribe_8c_a6e9a57fb75c52e7a6a8fc35888819883}{UNSUB\+\_\+\+TASK\+\_\+\+FN\+\_\+\+PTR}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{unsubscribe_8c_ad9c23be6d08c11b30c786e5d144dc0d0}{s\+\_\+unsubscribe\+\_\+cleanup\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(\textbackslash{}malloc\+\_\+root((struct \mbox{\hyperlink{structepoll__event__data}{epoll\+\_\+event\+\_\+data}} $\ast$) arg)) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(writes \textbackslash{}extent((struct \mbox{\hyperlink{structepoll__event__data}{epoll\+\_\+event\+\_\+data}} $\ast$) arg))
+\item 
+static int \mbox{\hyperlink{unsubscribe_8c_afd99df0eb76d0ba7628a143d55acb980}{s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \mbox{\hyperlink{schedule_8c_a06ba0d5cd05bfcf6408439a41d5aa960}{\+\_\+}}(ghost \textbackslash{}claim(c\+\_\+mutex)))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{unsubscribe_8c_a6e9a57fb75c52e7a6a8fc35888819883}\label{unsubscribe_8c_a6e9a57fb75c52e7a6a8fc35888819883}} 
+\index{unsubscribe.c@{unsubscribe.c}!UNSUB\_TASK\_FN\_PTR@{UNSUB\_TASK\_FN\_PTR}}
+\index{UNSUB\_TASK\_FN\_PTR@{UNSUB\_TASK\_FN\_PTR}!unsubscribe.c@{unsubscribe.c}}
+\doxysubsubsection{\texorpdfstring{UNSUB\_TASK\_FN\_PTR}{UNSUB\_TASK\_FN\_PTR}}
+{\footnotesize\ttfamily \#define UNSUB\+\_\+\+TASK\+\_\+\+FN\+\_\+\+PTR}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{unsubscribe_8c_ad9c23be6d08c11b30c786e5d144dc0d0}\label{unsubscribe_8c_ad9c23be6d08c11b30c786e5d144dc0d0}} 
+\index{unsubscribe.c@{unsubscribe.c}!s\_unsubscribe\_cleanup\_task@{s\_unsubscribe\_cleanup\_task}}
+\index{s\_unsubscribe\_cleanup\_task@{s\_unsubscribe\_cleanup\_task}!unsubscribe.c@{unsubscribe.c}}
+\doxysubsubsection{\texorpdfstring{s\_unsubscribe\_cleanup\_task()}{s\_unsubscribe\_cleanup\_task()}}
+{\footnotesize\ttfamily void s\+\_\+unsubscribe\+\_\+cleanup\+\_\+task (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$}]{task,  }\item[{void $\ast$}]{arg,  }\item[{enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}}}]{status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{unsubscribe_8c_afd99df0eb76d0ba7628a143d55acb980}\label{unsubscribe_8c_afd99df0eb76d0ba7628a143d55acb980}} 
+\index{unsubscribe.c@{unsubscribe.c}!s\_unsubscribe\_from\_io\_events@{s\_unsubscribe\_from\_io\_events}}
+\index{s\_unsubscribe\_from\_io\_events@{s\_unsubscribe\_from\_io\_events}!unsubscribe.c@{unsubscribe.c}}
+\doxysubsubsection{\texorpdfstring{s\_unsubscribe\_from\_io\_events()}{s\_unsubscribe\_from\_io\_events()}}
+{\footnotesize\ttfamily static int s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop,  }\item[{struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle }]{\+\_\+ghost \textbackslash{}claim(c\+\_\+event\+\_\+loop)) \+\_\+(ghost \textbackslash{}claim(c\+\_\+mutex) }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

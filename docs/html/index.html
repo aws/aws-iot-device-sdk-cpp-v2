@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AWS IoT Device SDK C++ v2: AWS IoT Device SDK for C++ v2</title>
+<title>AWS IoT Device SDK C++ v2: AWS C IoT</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,81 +63,73 @@ $(function() {
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">AWS IoT Device SDK for C++ v2 </div></div>
+  <div class="headertitle"><div class="title">AWS C IoT </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_README"></a> This document provides information about the AWS IoT device SDK for C++ V2.</p>
-<p >If you have any issues or feature requests, please file an issue or pull request.</p>
-<p >This SDK is built on the AWS Common Runtime, a collection of libraries (<a href="https://github.com/awslabs/aws-c-common">aws-c-common</a>, <a href="https://github.com/awslabs/aws-c-io">aws-c-io</a>, <a href="https://github.com/awslabs/aws-c-mqtt">aws-c-mqtt</a>, <a href="https://github.com/awslabs/aws-c-http">aws-c-http</a>, <a href="https://github.com/awslabs/aws-c-cal">aws-c-cal</a>, <a href="https://github.com/awslabs/aws-c-auth">aws-c-auth</a>, <a href="https://github.com/awslabs/s2n">s2n</a>...) written in C to be cross-platform, high-performance, secure, and reliable. The libraries are bound to C++ by the <a href="https://github.com/awslabs/aws-crt-cpp">aws-crt-cpp</a> package.</p>
-<p >*__Jump To:__*</p>
-<ul>
-<li><a href="#Installation">Installation</a></li>
-<li>[Samples](samples)</li>
-<li><a href="#Getting-Help">Getting Help</a></li>
-<li><a class="el" href="md__f_a_q.html">FAQ</a></li>
-<li><a href="#Giving-Feedback-and-Contributions">Giving Feedback and Contributions</a></li>
-</ul>
+<div class="textblock"><p ><a class="anchor" id="md_crt_aws_c_iot_README"></a> C99 implementation of AWS IoT cloud services integration with devices</p>
 <h1><a class="anchor" id="autotoc_md17"></a>
-Installation</h1>
-<h2><a class="anchor" id="autotoc_md18"></a>
-Minimum Requirements</h2>
-<ul>
-<li>C++ 11 or higher</li>
-<li>CMake 3.1+</li>
-<li>Clang 3.9+ or GCC 4.4+ or MSVC 2015+</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md19"></a>
-Build from source</h2>
-<h3><a class="anchor" id="autotoc_md20"></a>
-Automatically Build and Install AWS Dependencies</h3>
-<p >Note: <code>-DCMAKE_INSTALL_PREFIX</code> can be any path where the project needs to be installed. Taking sdk-cpp-workspace as an example here.</p>
-<h3><a class="anchor" id="autotoc_md21"></a>
-MaxOS and Linux</h3>
-<div class="fragment"><div class="line">mkdir sdk-cpp-workspace</div>
-<div class="line">cd sdk-cpp-workspace</div>
-<div class="line">git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git</div>
-<div class="line">mkdir aws-iot-device-sdk-cpp-v2-build</div>
-<div class="line">cd aws-iot-device-sdk-cpp-v2-build</div>
-<div class="line">cmake -DCMAKE_INSTALL_PREFIX=&quot;&lt;absolute path sdk-cpp-workspace dir&gt;&quot; -DBUILD_DEPS=ON -DCMAKE_BUILD_TYPE=&quot;&lt;Release|RelWithDebInfo|Debug&gt;&quot; ../aws-iot-device-sdk-cpp-v2</div>
-<div class="line">cmake --build . --target install</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md22"></a>
-Windows</h3>
-<div class="fragment"><div class="line">mkdir sdk-cpp-workspace</div>
-<div class="line">cd sdk-cpp-workspace</div>
-<div class="line">git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git</div>
-<div class="line">mkdir aws-iot-device-sdk-cpp-v2-build</div>
-<div class="line">cd aws-iot-device-sdk-cpp-v2-build</div>
-<div class="line">cmake -DCMAKE_INSTALL_PREFIX=&quot;&lt;absolute path sdk-cpp-workspace dir&gt;&quot; -DCMAKE_PREFIX_PATH=&quot;&lt;absolute path sdk-cpp-workspace dir&gt;&quot; -DBUILD_DEPS=ON ../aws-iot-device-sdk-cpp-v2</div>
-<div class="line">cmake --build . --target install --config &quot;&lt;Release|RelWithDebInfo|Debug&gt;&quot;</div>
-</div><!-- fragment --><p >Due to maximum path length limitations in the Windows API, we recommend <a href="https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later">enabling long paths</a> on your development machines, or cloning to a short path like: <code>C:\dev\iotsdk</code></p>
-<p ><code>--config</code> is only REQUIRED for multi-configuration build tools (VisualStudio/MsBuild being the most common).</p>
-<h1><a class="anchor" id="autotoc_md23"></a>
-Samples</h1>
-<p >[Samples README](samples)</p>
-<h1><a class="anchor" id="autotoc_md24"></a>
-Getting Help</h1>
-<p >The best way to interact with our team is through GitHub. You can <a href="https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues">open an issue</a> and choose from one of our templates for guidance, bug reports, or feature requests. You may also find help on community resources such as <a href="https://stackoverflow.com/questions/tagged/aws-iot">StackOverFlow</a> with the tag #aws-iot or If you have a support plan with <a href="https://aws.amazon.com/premiumsupport/">AWS Support</a>, you can also create a new support case.</p>
-<p >Please make sure to check out our resources too before opening an issue:</p>
-<ul>
-<li>Our <a class="el" href="md__f_a_q.html">FAQ</a></li>
-<li>Our <a href="https://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html">Developer Guide</a> (<a href="https://github.com/awsdocs/aws-iot-docs">source</a>)</li>
-<li>Check for similar <a href="https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues">Issues</a></li>
-<li><a href="https://docs.aws.amazon.com/iot/">AWS IoT Core Documentation</a></li>
-<li><a href="https://aws.amazon.com/blogs/?awsf.blog-master-iot=category-internet-of-things%23amazon-freertos%7Ccategory-internet-of-things%23aws-greengrass%7Ccategory-internet-of-things%23aws-iot-analytics%7Ccategory-internet-of-things%23aws-iot-button%7Ccategory-internet-of-things%23aws-iot-device-defender%7Ccategory-internet-of-things%23aws-iot-device-management%7Ccategory-internet-of-things%23aws-iot-platform">Dev Blog</a></li>
-<li>Integration with AWS IoT Services such as <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html">Device Shadow</a> and <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-jobs.html">Jobs</a> is provided by code that been generated from a model of the service.</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md25"></a>
-Giving Feedback and Contributions</h1>
-<p >We need your help in making this SDK great. Please participate in the community and contribute to this effort by submitting issues, participating in discussion forums and submitting pull requests through the following channels.</p>
-<ul>
-<li><a class="el" href="md__c_o_n_t_r_i_b_u_t_i_n_g.html">Contributions Guidelines</a></li>
-<li>Articulate your feature request or upvote existing ones on our <a href="https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues?q=is%3Aissue+is%3Aopen+label%3Afeature-request">Issues</a> page.</li>
-<li>Submit <a href="https://github.com/aws/aws-iot-device-sdk-cpp-v2/issues">Issues</a></li>
-</ul>
-<h1><a class="anchor" id="autotoc_md26"></a>
 License</h1>
-<p >This library is licensed under the [Apache 2.0 License](LICENSE). </p>
-</div></div><!-- PageDoc -->
+<p >This library is licensed under the Apache 2.0 License.</p>
+<h1><a class="anchor" id="autotoc_md18"></a>
+Usage</h1>
+<h2><a class="anchor" id="autotoc_md19"></a>
+Building</h2>
+<h3><a class="anchor" id="autotoc_md20"></a>
+Building s2n (Linux Only)</h3>
+<p >If you are building on Linux, you will need to build s2n before being able to build aws-c-io, which is a dependency of aws-c-auth. For our CRT's, we build s2n at a specific commit, and recommend doing the same when using it with this library. That commit hash can be found <a href="https://github.com/awslabs/aws-crt-cpp/tree/main/crt">here</a>. The commands below will build s2n using OpenSSL 1.1.1. For using other versions of OpenSSL, there is additional information in the <a href="https://github.com/awslabs/s2n/blob/main/docs/USAGE-GUIDE.md">s2n Usage Guide</a>.</p>
+<div class="fragment"><div class="line">git clone git@github.com:awslabs/s2n.git</div>
+<div class="line">cd s2n</div>
+<div class="line">git checkout &lt;s2n-commit-hash-used-by-aws-crt-cpp&gt;</div>
+<div class="line"> </div>
+<div class="line"># We keep the build artifacts in the -build directory</div>
+<div class="line">cd libcrypto-build</div>
+<div class="line"> </div>
+<div class="line"># Download the latest version of OpenSSL</div>
+<div class="line">curl -LO https://www.openssl.org/source/openssl-1.1.1-latest.tar.gz</div>
+<div class="line">tar -xzvf openssl-1.1.1-latest.tar.gz</div>
+<div class="line"> </div>
+<div class="line"># Build openssl libcrypto.  Note that the install path specified here must be absolute.</div>
+<div class="line">cd `tar ztf openssl-1.1.1-latest.tar.gz | head -n1 | cut -f1 -d/`</div>
+<div class="line">./config -fPIC no-shared              \</div>
+<div class="line">         no-md2 no-rc5 no-rfc3779 no-sctp no-ssl-trace no-zlib     \</div>
+<div class="line">         no-hw no-mdc2 no-seed no-idea enable-ec_nistp_64_gcc_128 no-camellia\</div>
+<div class="line">         no-bf no-ripemd no-dsa no-ssl2 no-ssl3 no-capieng                  \</div>
+<div class="line">         -DSSL_FORBID_ENULL -DOPENSSL_NO_DTLS1 -DOPENSSL_NO_HEARTBEATS      \</div>
+<div class="line">         --prefix=&lt;absolute-install-path&gt;</div>
+<div class="line">make</div>
+<div class="line">make install</div>
+<div class="line"> </div>
+<div class="line"># Build s2n</div>
+<div class="line">cd ../../../</div>
+<div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S s2n -B s2n/build</div>
+<div class="line">cmake --build s2n/build --target install</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md21"></a>
+Building aws-c-iot and Remaining Dependencies</h3>
+<p >Note that aws-c-iot has several dependencies that need to be built.</p>
+<div class="fragment"><div class="line">git clone git@github.com:awslabs/aws-c-common.git</div>
+<div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S aws-c-common -B aws-c-common/build</div>
+<div class="line">cmake --build aws-c-common/build --target install</div>
+<div class="line"> </div>
+<div class="line">git clone git@github.com:awslabs/aws-c-io.git</div>
+<div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S aws-c-io -B aws-c-io/build</div>
+<div class="line">cmake --build aws-c-io/build --target install</div>
+<div class="line"> </div>
+<div class="line">git clone git@github.com:awslabs/aws-c-compression.git</div>
+<div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S aws-c-compression -B aws-c-compression/build</div>
+<div class="line">cmake --build aws-c-compression/build --target install</div>
+<div class="line"> </div>
+<div class="line">git clone git@github.com:awslabs/aws-c-http.git</div>
+<div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S aws-c-http -B aws-c-http/build</div>
+<div class="line">cmake --build aws-c-http/build --target install</div>
+<div class="line"> </div>
+<div class="line">git clone git@github.com:awslabs/aws-c-mqtt.git</div>
+<div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S aws-c-mqtt -B aws-c-mqtt/build</div>
+<div class="line">cmake --build aws-c-mqtt/build --target install</div>
+<div class="line"> </div>
+<div class="line">git clone git@github.com:awslabs/aws-c-iot.git</div>
+<div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S aws-c-iot -B aws-c-iot/build</div>
+<div class="line">cmake --build aws-c-iot/build --target install</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,0 +1,120 @@
+\hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h}{}\doxysection{crt/aws-\/c-\/iot/include/aws/iotdevice/iotdevice.h File Reference}
+\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h}\index{crt/aws-\/c-\/iot/include/aws/iotdevice/iotdevice.h@{crt/aws-\/c-\/iot/include/aws/iotdevice/iotdevice.h}}
+{\ttfamily \#include $<$aws/common/error.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/iotdevice/exports.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_ab6b99f0b9192727b0ac4ba1449542a11}{AWS\+\_\+\+C\+\_\+\+IOTDEVICE\+\_\+\+PACKAGE\+\_\+\+ID}}~13
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1b}{aws\+\_\+iotdevice\+\_\+error}} \{ \newline
+\mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba8382ed76279135eccc49f4cfe8df5ea0}{AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+INVALID\+\_\+\+RESERVED\+\_\+\+BITS}} = AWS\+\_\+\+ERROR\+\_\+\+ENUM\+\_\+\+BEGIN\+\_\+\+RANGE(AWS\+\_\+\+C\+\_\+\+IOTDEVICE\+\_\+\+PACKAGE\+\_\+\+ID)
+, \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba6b4e59725be71fa0d37f7270462a9125}{AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+DEFENDER\+\_\+\+INVALID\+\_\+\+REPORT\+\_\+\+INTERVAL}}
+, \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba2729d0517c35e829eff55f8ca8f80b2f}{AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+DEFENDER\+\_\+\+UNSUPPORTED\+\_\+\+REPORT\+\_\+\+FORMAT}}
+, \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1bad123e2c908bad1672b1f4588eb391c29}{AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+DEFENDER\+\_\+\+REPORT\+\_\+\+SERIALIZATION\+\_\+\+FAILURE}}
+, \newline
+\mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1bafe5e81e13885d390441c39c66cf2c53a}{AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+SECUTRE\+\_\+\+TUNNELING\+\_\+\+INVALID\+\_\+\+STREAM}}
+, \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba8dbffeeccdc7dc25ebd599930b378508}{AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+SECUTRE\+\_\+\+TUNNELING\+\_\+\+INCORRECT\+\_\+\+MODE}}
+, \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1baf87e39fa50043f5da38f01c03357a68e}{AWS\+\_\+\+ERROR\+\_\+\+END\+\_\+\+IOTDEVICE\+\_\+\+RANGE}} = AWS\+\_\+\+ERROR\+\_\+\+ENUM\+\_\+\+END\+\_\+\+RANGE(AWS\+\_\+\+C\+\_\+\+IOTDEVICE\+\_\+\+PACKAGE\+\_\+\+ID)
+ \}
+\item 
+enum \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777}{aws\+\_\+iotdevice\+\_\+log\+\_\+subject}} \{ \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777aefc4f9ab88d67036f03526e57add5ed9}{AWS\+\_\+\+LS\+\_\+\+IOTDEVICE\+\_\+\+DEFENDER\+\_\+\+TASK}} = AWS\+\_\+\+LOG\+\_\+\+SUBJECT\+\_\+\+BEGIN\+\_\+\+RANGE(AWS\+\_\+\+C\+\_\+\+IOTDEVICE\+\_\+\+PACKAGE\+\_\+\+ID)
+, \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777acd409841f1c61373c2f89ff9df049451}{AWS\+\_\+\+LS\+\_\+\+IOTDEVICE\+\_\+\+NETWORK\+\_\+\+CONFIG}}
+, \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777a85b5b7c82e97c6c18e391dd31509d514}{AWS\+\_\+\+LS\+\_\+\+IOTDEVICE\+\_\+\+SECURE\+\_\+\+TUNNELING}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} void \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a6b01d4adfd7c9dd92a5ba441cbf6070a}{aws\+\_\+iotdevice\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} void \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a01607494a9ac312020464ab9da6a9462}{aws\+\_\+iotdevice\+\_\+library\+\_\+clean\+\_\+up}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_ab6b99f0b9192727b0ac4ba1449542a11}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_ab6b99f0b9192727b0ac4ba1449542a11}} 
+\index{iotdevice.h@{iotdevice.h}!AWS\_C\_IOTDEVICE\_PACKAGE\_ID@{AWS\_C\_IOTDEVICE\_PACKAGE\_ID}}
+\index{AWS\_C\_IOTDEVICE\_PACKAGE\_ID@{AWS\_C\_IOTDEVICE\_PACKAGE\_ID}!iotdevice.h@{iotdevice.h}}
+\doxysubsubsection{\texorpdfstring{AWS\_C\_IOTDEVICE\_PACKAGE\_ID}{AWS\_C\_IOTDEVICE\_PACKAGE\_ID}}
+{\footnotesize\ttfamily \#define AWS\+\_\+\+C\+\_\+\+IOTDEVICE\+\_\+\+PACKAGE\+\_\+\+ID~13}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1b}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1b}} 
+\index{iotdevice.h@{iotdevice.h}!aws\_iotdevice\_error@{aws\_iotdevice\_error}}
+\index{aws\_iotdevice\_error@{aws\_iotdevice\_error}!iotdevice.h@{iotdevice.h}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_error}{aws\_iotdevice\_error}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1b}{aws\+\_\+iotdevice\+\_\+error}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_ERROR\_IOTDEVICE\_INVALID\_RESERVED\_BITS@{AWS\_ERROR\_IOTDEVICE\_INVALID\_RESERVED\_BITS}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_ERROR\_IOTDEVICE\_INVALID\_RESERVED\_BITS@{AWS\_ERROR\_IOTDEVICE\_INVALID\_RESERVED\_BITS}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba8382ed76279135eccc49f4cfe8df5ea0}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba8382ed76279135eccc49f4cfe8df5ea0}} 
+AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+INVALID\+\_\+\+RESERVED\+\_\+\+BITS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_INVALID\_REPORT\_INTERVAL@{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_INVALID\_REPORT\_INTERVAL}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_ERROR\_IOTDEVICE\_DEFENDER\_INVALID\_REPORT\_INTERVAL@{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_INVALID\_REPORT\_INTERVAL}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba6b4e59725be71fa0d37f7270462a9125}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba6b4e59725be71fa0d37f7270462a9125}} 
+AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+DEFENDER\+\_\+\+INVALID\+\_\+\+REPORT\+\_\+\+INTERVAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_UNSUPPORTED\_REPORT\_FORMAT@{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_UNSUPPORTED\_REPORT\_FORMAT}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_ERROR\_IOTDEVICE\_DEFENDER\_UNSUPPORTED\_REPORT\_FORMAT@{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_UNSUPPORTED\_REPORT\_FORMAT}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba2729d0517c35e829eff55f8ca8f80b2f}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba2729d0517c35e829eff55f8ca8f80b2f}} 
+AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+DEFENDER\+\_\+\+UNSUPPORTED\+\_\+\+REPORT\+\_\+\+FORMAT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_REPORT\_SERIALIZATION\_FAILURE@{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_REPORT\_SERIALIZATION\_FAILURE}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_ERROR\_IOTDEVICE\_DEFENDER\_REPORT\_SERIALIZATION\_FAILURE@{AWS\_ERROR\_IOTDEVICE\_DEFENDER\_REPORT\_SERIALIZATION\_FAILURE}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1bad123e2c908bad1672b1f4588eb391c29}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1bad123e2c908bad1672b1f4588eb391c29}} 
+AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+DEFENDER\+\_\+\+REPORT\+\_\+\+SERIALIZATION\+\_\+\+FAILURE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_ERROR\_IOTDEVICE\_SECUTRE\_TUNNELING\_INVALID\_STREAM@{AWS\_ERROR\_IOTDEVICE\_SECUTRE\_TUNNELING\_INVALID\_STREAM}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_ERROR\_IOTDEVICE\_SECUTRE\_TUNNELING\_INVALID\_STREAM@{AWS\_ERROR\_IOTDEVICE\_SECUTRE\_TUNNELING\_INVALID\_STREAM}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1bafe5e81e13885d390441c39c66cf2c53a}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1bafe5e81e13885d390441c39c66cf2c53a}} 
+AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+SECUTRE\+\_\+\+TUNNELING\+\_\+\+INVALID\+\_\+\+STREAM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_ERROR\_IOTDEVICE\_SECUTRE\_TUNNELING\_INCORRECT\_MODE@{AWS\_ERROR\_IOTDEVICE\_SECUTRE\_TUNNELING\_INCORRECT\_MODE}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_ERROR\_IOTDEVICE\_SECUTRE\_TUNNELING\_INCORRECT\_MODE@{AWS\_ERROR\_IOTDEVICE\_SECUTRE\_TUNNELING\_INCORRECT\_MODE}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba8dbffeeccdc7dc25ebd599930b378508}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1ba8dbffeeccdc7dc25ebd599930b378508}} 
+AWS\+\_\+\+ERROR\+\_\+\+IOTDEVICE\+\_\+\+SECUTRE\+\_\+\+TUNNELING\+\_\+\+INCORRECT\+\_\+\+MODE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_ERROR\_END\_IOTDEVICE\_RANGE@{AWS\_ERROR\_END\_IOTDEVICE\_RANGE}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_ERROR\_END\_IOTDEVICE\_RANGE@{AWS\_ERROR\_END\_IOTDEVICE\_RANGE}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1baf87e39fa50043f5da38f01c03357a68e}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a8e1a2f1c48c180541fef4ce1f66d4f1baf87e39fa50043f5da38f01c03357a68e}} 
+AWS\+\_\+\+ERROR\+\_\+\+END\+\_\+\+IOTDEVICE\+\_\+\+RANGE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777}} 
+\index{iotdevice.h@{iotdevice.h}!aws\_iotdevice\_log\_subject@{aws\_iotdevice\_log\_subject}}
+\index{aws\_iotdevice\_log\_subject@{aws\_iotdevice\_log\_subject}!iotdevice.h@{iotdevice.h}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_log\_subject}{aws\_iotdevice\_log\_subject}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777}{aws\+\_\+iotdevice\+\_\+log\+\_\+subject}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_LS\_IOTDEVICE\_DEFENDER\_TASK@{AWS\_LS\_IOTDEVICE\_DEFENDER\_TASK}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_LS\_IOTDEVICE\_DEFENDER\_TASK@{AWS\_LS\_IOTDEVICE\_DEFENDER\_TASK}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777aefc4f9ab88d67036f03526e57add5ed9}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777aefc4f9ab88d67036f03526e57add5ed9}} 
+AWS\+\_\+\+LS\+\_\+\+IOTDEVICE\+\_\+\+DEFENDER\+\_\+\+TASK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_LS\_IOTDEVICE\_NETWORK\_CONFIG@{AWS\_LS\_IOTDEVICE\_NETWORK\_CONFIG}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_LS\_IOTDEVICE\_NETWORK\_CONFIG@{AWS\_LS\_IOTDEVICE\_NETWORK\_CONFIG}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777acd409841f1c61373c2f89ff9df049451}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777acd409841f1c61373c2f89ff9df049451}} 
+AWS\+\_\+\+LS\+\_\+\+IOTDEVICE\+\_\+\+NETWORK\+\_\+\+CONFIG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_LS\_IOTDEVICE\_SECURE\_TUNNELING@{AWS\_LS\_IOTDEVICE\_SECURE\_TUNNELING}!iotdevice.h@{iotdevice.h}}\index{iotdevice.h@{iotdevice.h}!AWS\_LS\_IOTDEVICE\_SECURE\_TUNNELING@{AWS\_LS\_IOTDEVICE\_SECURE\_TUNNELING}}}\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777a85b5b7c82e97c6c18e391dd31509d514}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a80b2da1f68b348edbfa46190924b5777a85b5b7c82e97c6c18e391dd31509d514}} 
+AWS\+\_\+\+LS\+\_\+\+IOTDEVICE\+\_\+\+SECURE\+\_\+\+TUNNELING&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a01607494a9ac312020464ab9da6a9462}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a01607494a9ac312020464ab9da6a9462}} 
+\index{iotdevice.h@{iotdevice.h}!aws\_iotdevice\_library\_clean\_up@{aws\_iotdevice\_library\_clean\_up}}
+\index{aws\_iotdevice\_library\_clean\_up@{aws\_iotdevice\_library\_clean\_up}!iotdevice.h@{iotdevice.h}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_library\_clean\_up()}{aws\_iotdevice\_library\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} void aws\+\_\+iotdevice\+\_\+library\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Shuts down the internal datastructures used by aws-\/c-\/iot \mbox{\Hypertarget{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a6b01d4adfd7c9dd92a5ba441cbf6070a}\label{crt_2aws-c-iot_2include_2aws_2iotdevice_2_iot_device_8h_a6b01d4adfd7c9dd92a5ba441cbf6070a}} 
+\index{iotdevice.h@{iotdevice.h}!aws\_iotdevice\_library\_init@{aws\_iotdevice\_library\_init}}
+\index{aws\_iotdevice\_library\_init@{aws\_iotdevice\_library\_init}!iotdevice.h@{iotdevice.h}}
+\doxysubsubsection{\texorpdfstring{aws\_iotdevice\_library\_init()}{aws\_iotdevice\_library\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-c-iot_2include_2aws_2iotdevice_2_exports_8h_a833cb5b01f03d86b6e07aea1710983c9}{AWS\+\_\+\+IOTDEVICE\+\_\+\+API}} void aws\+\_\+iotdevice\+\_\+library\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Initializes internal datastructures used by aws-\/c-\/iot. Must be called before using any functionality in aws-\/c-\/iot. 

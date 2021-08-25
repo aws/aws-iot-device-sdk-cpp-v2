@@ -1,0 +1,400 @@
+\hypertarget{default__host__resolver__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/default\+\_\+host\+\_\+resolver\+\_\+test.c File Reference}
+\label{default__host__resolver__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/default\_host\_resolver\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/default\_host\_resolver\_test.c}}
+{\ttfamily \#include $<$aws/common/condition\+\_\+variable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/string.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/event\+\_\+loop.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/host\+\_\+resolver.\+h$>$}\newline
+{\ttfamily \#include $<$aws/io/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}mock\+\_\+dns\+\_\+resolver.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdefault__host__callback__data}{default\+\_\+host\+\_\+callback\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structlistener__test__callback__type__data}{listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data}}
+\item 
+struct \mbox{\hyperlink{structlistener__test__callback__data}{listener\+\_\+test\+\_\+callback\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{default__host__resolver__test_8c_a063d9a3987c9690d432deb12a94015b8}{s\+\_\+default\+\_\+host\+\_\+resolved\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_acbc9b4bfd6e46743a698ce4393d8a797}{s\+\_\+default\+\_\+host\+\_\+resolved\+\_\+test\+\_\+callback}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, int err\+\_\+code, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$host\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a670a72c24bfaadf22ee1024a5ddd1f8a}{s\+\_\+test\+\_\+default\+\_\+with\+\_\+ipv6\+\_\+lookup\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_acb62a11483242376febf09f4cd78901f}{s\+\_\+test\+\_\+default\+\_\+with\+\_\+ipv4\+\_\+only\+\_\+lookup\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_af266fd4828b0bc5eb854a3c2bee2b6ea}{s\+\_\+test\+\_\+default\+\_\+with\+\_\+multiple\+\_\+lookups\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a728772cc2516ffbbc8f762980a07ec99}{s\+\_\+test\+\_\+resolver\+\_\+ttls\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a8e14d0618f04bd286f5dbc86bfe135e0}{s\+\_\+test\+\_\+resolver\+\_\+connect\+\_\+failure\+\_\+recording\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a26ecdde918f6d38916341e1c23714d96}{s\+\_\+test\+\_\+resolver\+\_\+ttl\+\_\+refreshes\+\_\+on\+\_\+resolve\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_ab140beba2e322ba89f8c75d9c5e2e191}{s\+\_\+test\+\_\+resolver\+\_\+ipv4\+\_\+address\+\_\+lookup\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a98cda3356ddbeab68a46a39de9ce44fc}{s\+\_\+test\+\_\+resolver\+\_\+ipv6\+\_\+address\+\_\+lookup\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{default__host__resolver__test_8c_ac63b3894c8d36a9891d32dd27c531941}{s\+\_\+listener\+\_\+new\+\_\+address\+\_\+invoked\+\_\+predicate}} (void $\ast$data)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{default__host__resolver__test_8c_ae85b5ec1196cbf2bc217b21ed1d30d6d}{s\+\_\+listener\+\_\+expired\+\_\+address\+\_\+invoked\+\_\+predicate}} (void $\ast$data)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{default__host__resolver__test_8c_a7cf32739b2c124249813b9617cd56334}{s\+\_\+listener\+\_\+new\+\_\+address\+\_\+complete\+\_\+set\+\_\+predicate}} (void $\ast$data)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{default__host__resolver__test_8c_a278ecbeafe0a76848cc329eed59e51a5}{s\+\_\+listener\+\_\+expired\+\_\+address\+\_\+complete\+\_\+set\+\_\+predicate}} (void $\ast$data)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{default__host__resolver__test_8c_a1a211a16ea7804ea7440e526c6d5694a}{s\+\_\+listener\+\_\+shutdown\+\_\+invoked\+\_\+predicate}} (void $\ast$data)
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_ae26a069a0c2246413b80d9d52df05f40}{s\+\_\+listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data\+\_\+init}} (struct \mbox{\hyperlink{structlistener__test__callback__type__data}{listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data}} $\ast$callback\+\_\+data, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, uint32\+\_\+t expected\+\_\+num\+\_\+addresses)
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_a8b908d0034b31b8ed743425af4c03927}{s\+\_\+listener\+\_\+test\+\_\+callback\+\_\+data\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}}, uint32\+\_\+t expected\+\_\+new\+\_\+addresses, uint32\+\_\+t expected\+\_\+expired\+\_\+addresses, struct \mbox{\hyperlink{structlistener__test__callback__data}{listener\+\_\+test\+\_\+callback\+\_\+data}} $\ast$callback\+\_\+data)
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_a6861750b28bce30813dd7948da04d0e6}{s\+\_\+clear\+\_\+host\+\_\+address\+\_\+array\+\_\+list}} (struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$host\+\_\+address\+\_\+array\+\_\+list)
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_a5f145e20195c01b2866a70d4bfb4bc8c}{s\+\_\+listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structlistener__test__callback__type__data}{listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data}} $\ast$callback\+\_\+data)
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_a5031d6a7580386ac1be7c180dab1b4d2}{s\+\_\+listener\+\_\+test\+\_\+callback\+\_\+data\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structlistener__test__callback__data}{listener\+\_\+test\+\_\+callback\+\_\+data}} $\ast$callback\+\_\+data)
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_aa02fe4902715507c88eba04097a20077}{s\+\_\+listener\+\_\+address\+\_\+callback}} (struct \mbox{\hyperlink{structlistener__test__callback__data}{listener\+\_\+test\+\_\+callback\+\_\+data}} $\ast$callback\+\_\+data, struct \mbox{\hyperlink{structlistener__test__callback__type__data}{listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data}} $\ast$callback\+\_\+type\+\_\+data, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$address\+\_\+list)
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_acaf77304a6f82cc460b1688408577046}{s\+\_\+listener\+\_\+new\+\_\+address\+\_\+callback}} (struct aws\+\_\+host\+\_\+listener $\ast$listener, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$new\+\_\+address\+\_\+list, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_a1c7ed3a3268c6630168a2352db0fddac}{s\+\_\+listener\+\_\+expired\+\_\+address\+\_\+callback}} (struct aws\+\_\+host\+\_\+listener $\ast$listener, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$expired\+\_\+address\+\_\+list, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+void \mbox{\hyperlink{default__host__resolver__test_8c_a976a05a844d667aa43cf98d2971b2be1}{s\+\_\+listener\+\_\+test\+\_\+initial\+\_\+resolved\+\_\+callback\+\_\+empty}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, int err\+\_\+code, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$host\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a6a3c7d61ec12018c2a4aeb6a643f387e}{s\+\_\+setup\+\_\+mock\+\_\+host}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, struct \mbox{\hyperlink{structmock__dns__resolver}{mock\+\_\+dns\+\_\+resolver}} $\ast$mock\+\_\+resolver, struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, uint32\+\_\+t num\+\_\+ipv4, uint32\+\_\+t num\+\_\+ipv6, uint32\+\_\+t max\+\_\+num\+\_\+resolves)
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a33b0bbd29ccd2ca2779760039f18a0ba}{s\+\_\+verify\+\_\+mock\+\_\+address\+\_\+list}} (struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$address\+\_\+list, uint32\+\_\+t expected\+\_\+num\+\_\+ipv4, uint32\+\_\+t expected\+\_\+num\+\_\+ipv6)
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_ae64cab931b84c21b8bf8a54dd451425a}{s\+\_\+verify\+\_\+address\+\_\+in\+\_\+list}} (struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$address\+\_\+list, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} address, enum \mbox{\hyperlink{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8}{aws\+\_\+address\+\_\+record\+\_\+type}} address\+\_\+type)
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_a28958fa6044cf5bd129f0ec4a559e29f}{s\+\_\+listener\+\_\+shutdown\+\_\+callback}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static void \mbox{\hyperlink{default__host__resolver__test_8c_ac1b4f1fcf63769d2b675dad60c3499fd}{s\+\_\+wait\+\_\+on\+\_\+listener\+\_\+shutdown}} (struct \mbox{\hyperlink{structlistener__test__callback__data}{listener\+\_\+test\+\_\+callback\+\_\+data}} $\ast$callback\+\_\+data)
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a359c82e934c17cfc390aa04ce38b9baa}{s\+\_\+test\+\_\+resolver\+\_\+listener\+\_\+create\+\_\+destroy\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a766c6487cca69ac198a1d8f187a89dad}{s\+\_\+test\+\_\+resolver\+\_\+add\+\_\+listener\+\_\+before\+\_\+host\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+void \mbox{\hyperlink{default__host__resolver__test_8c_a1af79b3e3c6bd3ac93fdce530dfb51ec}{s\+\_\+listener\+\_\+test\+\_\+initial\+\_\+resolved\+\_\+callback\+\_\+wait}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, int err\+\_\+code, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$host\+\_\+addresses, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a55e09fd6ca1aea2585e968fa38b43f8a}{s\+\_\+test\+\_\+resolver\+\_\+add\+\_\+listener\+\_\+after\+\_\+host\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_aa1ea07093d2a0a7cce8288c0ca1af279}{s\+\_\+test\+\_\+resolver\+\_\+add\+\_\+multiple\+\_\+listeners\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a2425bb147e847e3dbf60aa352eb9b483}{s\+\_\+test\+\_\+resolver\+\_\+listener\+\_\+host\+\_\+re\+\_\+add\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a11cdedcb9e78ce5423b34c29ecf70a50}{s\+\_\+test\+\_\+resolver\+\_\+listener\+\_\+multiple\+\_\+results\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+int \mbox{\hyperlink{default__host__resolver__test_8c_a1c1f1ea785367e058d213824535404d4}{s\+\_\+get\+\_\+mock\+\_\+system\+\_\+clock}} (uint64\+\_\+t $\ast$timestamp)
+\item 
+void \mbox{\hyperlink{default__host__resolver__test_8c_aad3dd272269117b3420b16e626b78b49}{s\+\_\+set\+\_\+mock\+\_\+system\+\_\+clock}} (uint64\+\_\+t timestamp)
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a581f1a56196995f73ecd1149c349d873}{s\+\_\+test\+\_\+resolver\+\_\+listener\+\_\+address\+\_\+expired\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_a20c607ae3c69dff79fb6384a166af151}{s\+\_\+test\+\_\+host\+\_\+entry\+\_\+pinning}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} pin\+\_\+host\+\_\+entry)
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_aa6eb86448c4485e69312cf076632b050}{s\+\_\+test\+\_\+resolver\+\_\+pinned\+\_\+host\+\_\+entry}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_ac532c9d9f25a2958acf249cc358929ee}{s\+\_\+test\+\_\+resolver\+\_\+unpinned\+\_\+host\+\_\+entry}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{default__host__resolver__test_8c_aae457d750c61b9f8051c4cb966914ffc}{s\+\_\+test\+\_\+resolver\+\_\+address\+\_\+promote\+\_\+demote\+\_\+listener\+\_\+callbacks\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{default__host__resolver__test_8c_a1cc5edb59ccd9f54efc60b1e64e6a79a}{FORCE\+\_\+\+RESOLVE\+\_\+\+SLEEP\+\_\+\+TIME}} = 1500000000
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{default__host__resolver__test_8c_a88f0cb47ba30494249c6651c5ad3c6c8}{s\+\_\+mocked\+\_\+time}} = 0
+\item 
+static struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{default__host__resolver__test_8c_add725d1677cf47ce1acd96c702216c48}{s\+\_\+mocked\+\_\+time\+\_\+lock}} = \mbox{\hyperlink{preamble_8h_a82cd305754a1424bf8139695ab9dd6e1}{AWS\+\_\+\+MUTEX\+\_\+\+INIT}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{default__host__resolver__test_8c_a6861750b28bce30813dd7948da04d0e6}\label{default__host__resolver__test_8c_a6861750b28bce30813dd7948da04d0e6}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_clear\_host\_address\_array\_list@{s\_clear\_host\_address\_array\_list}}
+\index{s\_clear\_host\_address\_array\_list@{s\_clear\_host\_address\_array\_list}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_clear\_host\_address\_array\_list()}{s\_clear\_host\_address\_array\_list()}}
+{\footnotesize\ttfamily static void s\+\_\+clear\+\_\+host\+\_\+address\+\_\+array\+\_\+list (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{host\+\_\+address\+\_\+array\+\_\+list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a063d9a3987c9690d432deb12a94015b8}\label{default__host__resolver__test_8c_a063d9a3987c9690d432deb12a94015b8}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_default\_host\_resolved\_predicate@{s\_default\_host\_resolved\_predicate}}
+\index{s\_default\_host\_resolved\_predicate@{s\_default\_host\_resolved\_predicate}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_default\_host\_resolved\_predicate()}{s\_default\_host\_resolved\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+default\+\_\+host\+\_\+resolved\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_acbc9b4bfd6e46743a698ce4393d8a797}\label{default__host__resolver__test_8c_acbc9b4bfd6e46743a698ce4393d8a797}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_default\_host\_resolved\_test\_callback@{s\_default\_host\_resolved\_test\_callback}}
+\index{s\_default\_host\_resolved\_test\_callback@{s\_default\_host\_resolved\_test\_callback}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_default\_host\_resolved\_test\_callback()}{s\_default\_host\_resolved\_test\_callback()}}
+{\footnotesize\ttfamily static void s\+\_\+default\+\_\+host\+\_\+resolved\+\_\+test\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{host\+\_\+name,  }\item[{int}]{err\+\_\+code,  }\item[{const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{host\+\_\+addresses,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a1c1f1ea785367e058d213824535404d4}\label{default__host__resolver__test_8c_a1c1f1ea785367e058d213824535404d4}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_get\_mock\_system\_clock@{s\_get\_mock\_system\_clock}}
+\index{s\_get\_mock\_system\_clock@{s\_get\_mock\_system\_clock}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_get\_mock\_system\_clock()}{s\_get\_mock\_system\_clock()}}
+{\footnotesize\ttfamily int s\+\_\+get\+\_\+mock\+\_\+system\+\_\+clock (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$}]{timestamp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_aa02fe4902715507c88eba04097a20077}\label{default__host__resolver__test_8c_aa02fe4902715507c88eba04097a20077}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_address\_callback@{s\_listener\_address\_callback}}
+\index{s\_listener\_address\_callback@{s\_listener\_address\_callback}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_address\_callback()}{s\_listener\_address\_callback()}}
+{\footnotesize\ttfamily static void s\+\_\+listener\+\_\+address\+\_\+callback (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlistener__test__callback__data}{listener\+\_\+test\+\_\+callback\+\_\+data}} $\ast$}]{callback\+\_\+data,  }\item[{struct \mbox{\hyperlink{structlistener__test__callback__type__data}{listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data}} $\ast$}]{callback\+\_\+type\+\_\+data,  }\item[{const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{address\+\_\+list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a1c7ed3a3268c6630168a2352db0fddac}\label{default__host__resolver__test_8c_a1c7ed3a3268c6630168a2352db0fddac}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_expired\_address\_callback@{s\_listener\_expired\_address\_callback}}
+\index{s\_listener\_expired\_address\_callback@{s\_listener\_expired\_address\_callback}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_expired\_address\_callback()}{s\_listener\_expired\_address\_callback()}}
+{\footnotesize\ttfamily static void s\+\_\+listener\+\_\+expired\+\_\+address\+\_\+callback (\begin{DoxyParamCaption}\item[{struct aws\+\_\+host\+\_\+listener $\ast$}]{listener,  }\item[{const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{expired\+\_\+address\+\_\+list,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a278ecbeafe0a76848cc329eed59e51a5}\label{default__host__resolver__test_8c_a278ecbeafe0a76848cc329eed59e51a5}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_expired\_address\_complete\_set\_predicate@{s\_listener\_expired\_address\_complete\_set\_predicate}}
+\index{s\_listener\_expired\_address\_complete\_set\_predicate@{s\_listener\_expired\_address\_complete\_set\_predicate}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_expired\_address\_complete\_set\_predicate()}{s\_listener\_expired\_address\_complete\_set\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+listener\+\_\+expired\+\_\+address\+\_\+complete\+\_\+set\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_ae85b5ec1196cbf2bc217b21ed1d30d6d}\label{default__host__resolver__test_8c_ae85b5ec1196cbf2bc217b21ed1d30d6d}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_expired\_address\_invoked\_predicate@{s\_listener\_expired\_address\_invoked\_predicate}}
+\index{s\_listener\_expired\_address\_invoked\_predicate@{s\_listener\_expired\_address\_invoked\_predicate}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_expired\_address\_invoked\_predicate()}{s\_listener\_expired\_address\_invoked\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+listener\+\_\+expired\+\_\+address\+\_\+invoked\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_acaf77304a6f82cc460b1688408577046}\label{default__host__resolver__test_8c_acaf77304a6f82cc460b1688408577046}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_new\_address\_callback@{s\_listener\_new\_address\_callback}}
+\index{s\_listener\_new\_address\_callback@{s\_listener\_new\_address\_callback}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_new\_address\_callback()}{s\_listener\_new\_address\_callback()}}
+{\footnotesize\ttfamily static void s\+\_\+listener\+\_\+new\+\_\+address\+\_\+callback (\begin{DoxyParamCaption}\item[{struct aws\+\_\+host\+\_\+listener $\ast$}]{listener,  }\item[{const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{new\+\_\+address\+\_\+list,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a7cf32739b2c124249813b9617cd56334}\label{default__host__resolver__test_8c_a7cf32739b2c124249813b9617cd56334}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_new\_address\_complete\_set\_predicate@{s\_listener\_new\_address\_complete\_set\_predicate}}
+\index{s\_listener\_new\_address\_complete\_set\_predicate@{s\_listener\_new\_address\_complete\_set\_predicate}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_new\_address\_complete\_set\_predicate()}{s\_listener\_new\_address\_complete\_set\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+listener\+\_\+new\+\_\+address\+\_\+complete\+\_\+set\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_ac63b3894c8d36a9891d32dd27c531941}\label{default__host__resolver__test_8c_ac63b3894c8d36a9891d32dd27c531941}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_new\_address\_invoked\_predicate@{s\_listener\_new\_address\_invoked\_predicate}}
+\index{s\_listener\_new\_address\_invoked\_predicate@{s\_listener\_new\_address\_invoked\_predicate}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_new\_address\_invoked\_predicate()}{s\_listener\_new\_address\_invoked\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+listener\+\_\+new\+\_\+address\+\_\+invoked\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a28958fa6044cf5bd129f0ec4a559e29f}\label{default__host__resolver__test_8c_a28958fa6044cf5bd129f0ec4a559e29f}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_shutdown\_callback@{s\_listener\_shutdown\_callback}}
+\index{s\_listener\_shutdown\_callback@{s\_listener\_shutdown\_callback}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_shutdown\_callback()}{s\_listener\_shutdown\_callback()}}
+{\footnotesize\ttfamily static void s\+\_\+listener\+\_\+shutdown\+\_\+callback (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a1a211a16ea7804ea7440e526c6d5694a}\label{default__host__resolver__test_8c_a1a211a16ea7804ea7440e526c6d5694a}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_shutdown\_invoked\_predicate@{s\_listener\_shutdown\_invoked\_predicate}}
+\index{s\_listener\_shutdown\_invoked\_predicate@{s\_listener\_shutdown\_invoked\_predicate}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_shutdown\_invoked\_predicate()}{s\_listener\_shutdown\_invoked\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+listener\+\_\+shutdown\+\_\+invoked\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a5031d6a7580386ac1be7c180dab1b4d2}\label{default__host__resolver__test_8c_a5031d6a7580386ac1be7c180dab1b4d2}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_test\_callback\_data\_clean\_up@{s\_listener\_test\_callback\_data\_clean\_up}}
+\index{s\_listener\_test\_callback\_data\_clean\_up@{s\_listener\_test\_callback\_data\_clean\_up}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_test\_callback\_data\_clean\_up()}{s\_listener\_test\_callback\_data\_clean\_up()}}
+{\footnotesize\ttfamily static void s\+\_\+listener\+\_\+test\+\_\+callback\+\_\+data\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlistener__test__callback__data}{listener\+\_\+test\+\_\+callback\+\_\+data}} $\ast$}]{callback\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a8b908d0034b31b8ed743425af4c03927}\label{default__host__resolver__test_8c_a8b908d0034b31b8ed743425af4c03927}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_test\_callback\_data\_init@{s\_listener\_test\_callback\_data\_init}}
+\index{s\_listener\_test\_callback\_data\_init@{s\_listener\_test\_callback\_data\_init}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_test\_callback\_data\_init()}{s\_listener\_test\_callback\_data\_init()}}
+{\footnotesize\ttfamily static void s\+\_\+listener\+\_\+test\+\_\+callback\+\_\+data\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$}]{mutex,  }\item[{uint32\+\_\+t}]{expected\+\_\+new\+\_\+addresses,  }\item[{uint32\+\_\+t}]{expected\+\_\+expired\+\_\+addresses,  }\item[{struct \mbox{\hyperlink{structlistener__test__callback__data}{listener\+\_\+test\+\_\+callback\+\_\+data}} $\ast$}]{callback\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a5f145e20195c01b2866a70d4bfb4bc8c}\label{default__host__resolver__test_8c_a5f145e20195c01b2866a70d4bfb4bc8c}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_test\_callback\_type\_data\_clean\_up@{s\_listener\_test\_callback\_type\_data\_clean\_up}}
+\index{s\_listener\_test\_callback\_type\_data\_clean\_up@{s\_listener\_test\_callback\_type\_data\_clean\_up}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_test\_callback\_type\_data\_clean\_up()}{s\_listener\_test\_callback\_type\_data\_clean\_up()}}
+{\footnotesize\ttfamily static void s\+\_\+listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlistener__test__callback__type__data}{listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data}} $\ast$}]{callback\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_ae26a069a0c2246413b80d9d52df05f40}\label{default__host__resolver__test_8c_ae26a069a0c2246413b80d9d52df05f40}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_test\_callback\_type\_data\_init@{s\_listener\_test\_callback\_type\_data\_init}}
+\index{s\_listener\_test\_callback\_type\_data\_init@{s\_listener\_test\_callback\_type\_data\_init}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_test\_callback\_type\_data\_init()}{s\_listener\_test\_callback\_type\_data\_init()}}
+{\footnotesize\ttfamily static void s\+\_\+listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlistener__test__callback__type__data}{listener\+\_\+test\+\_\+callback\+\_\+type\+\_\+data}} $\ast$}]{callback\+\_\+data,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{uint32\+\_\+t}]{expected\+\_\+num\+\_\+addresses }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a976a05a844d667aa43cf98d2971b2be1}\label{default__host__resolver__test_8c_a976a05a844d667aa43cf98d2971b2be1}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_test\_initial\_resolved\_callback\_empty@{s\_listener\_test\_initial\_resolved\_callback\_empty}}
+\index{s\_listener\_test\_initial\_resolved\_callback\_empty@{s\_listener\_test\_initial\_resolved\_callback\_empty}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_test\_initial\_resolved\_callback\_empty()}{s\_listener\_test\_initial\_resolved\_callback\_empty()}}
+{\footnotesize\ttfamily void s\+\_\+listener\+\_\+test\+\_\+initial\+\_\+resolved\+\_\+callback\+\_\+empty (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{host\+\_\+name,  }\item[{int}]{err\+\_\+code,  }\item[{const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{host\+\_\+addresses,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a1af79b3e3c6bd3ac93fdce530dfb51ec}\label{default__host__resolver__test_8c_a1af79b3e3c6bd3ac93fdce530dfb51ec}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_listener\_test\_initial\_resolved\_callback\_wait@{s\_listener\_test\_initial\_resolved\_callback\_wait}}
+\index{s\_listener\_test\_initial\_resolved\_callback\_wait@{s\_listener\_test\_initial\_resolved\_callback\_wait}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_listener\_test\_initial\_resolved\_callback\_wait()}{s\_listener\_test\_initial\_resolved\_callback\_wait()}}
+{\footnotesize\ttfamily void s\+\_\+listener\+\_\+test\+\_\+initial\+\_\+resolved\+\_\+callback\+\_\+wait (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{host\+\_\+name,  }\item[{int}]{err\+\_\+code,  }\item[{const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{host\+\_\+addresses,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_aad3dd272269117b3420b16e626b78b49}\label{default__host__resolver__test_8c_aad3dd272269117b3420b16e626b78b49}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_set\_mock\_system\_clock@{s\_set\_mock\_system\_clock}}
+\index{s\_set\_mock\_system\_clock@{s\_set\_mock\_system\_clock}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_set\_mock\_system\_clock()}{s\_set\_mock\_system\_clock()}}
+{\footnotesize\ttfamily void s\+\_\+set\+\_\+mock\+\_\+system\+\_\+clock (\begin{DoxyParamCaption}\item[{uint64\+\_\+t}]{timestamp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a6a3c7d61ec12018c2a4aeb6a643f387e}\label{default__host__resolver__test_8c_a6a3c7d61ec12018c2a4aeb6a643f387e}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_setup\_mock\_host@{s\_setup\_mock\_host}}
+\index{s\_setup\_mock\_host@{s\_setup\_mock\_host}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_setup\_mock\_host()}{s\_setup\_mock\_host()}}
+{\footnotesize\ttfamily static int s\+\_\+setup\+\_\+mock\+\_\+host (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$}]{resolver,  }\item[{struct \mbox{\hyperlink{structmock__dns__resolver}{mock\+\_\+dns\+\_\+resolver}} $\ast$}]{mock\+\_\+resolver,  }\item[{struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$}]{host\+\_\+name,  }\item[{uint32\+\_\+t}]{num\+\_\+ipv4,  }\item[{uint32\+\_\+t}]{num\+\_\+ipv6,  }\item[{uint32\+\_\+t}]{max\+\_\+num\+\_\+resolves }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_acb62a11483242376febf09f4cd78901f}\label{default__host__resolver__test_8c_acb62a11483242376febf09f4cd78901f}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_default\_with\_ipv4\_only\_lookup\_fn@{s\_test\_default\_with\_ipv4\_only\_lookup\_fn}}
+\index{s\_test\_default\_with\_ipv4\_only\_lookup\_fn@{s\_test\_default\_with\_ipv4\_only\_lookup\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_default\_with\_ipv4\_only\_lookup\_fn()}{s\_test\_default\_with\_ipv4\_only\_lookup\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+default\+\_\+with\+\_\+ipv4\+\_\+only\+\_\+lookup\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a670a72c24bfaadf22ee1024a5ddd1f8a}\label{default__host__resolver__test_8c_a670a72c24bfaadf22ee1024a5ddd1f8a}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_default\_with\_ipv6\_lookup\_fn@{s\_test\_default\_with\_ipv6\_lookup\_fn}}
+\index{s\_test\_default\_with\_ipv6\_lookup\_fn@{s\_test\_default\_with\_ipv6\_lookup\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_default\_with\_ipv6\_lookup\_fn()}{s\_test\_default\_with\_ipv6\_lookup\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+default\+\_\+with\+\_\+ipv6\+\_\+lookup\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_af266fd4828b0bc5eb854a3c2bee2b6ea}\label{default__host__resolver__test_8c_af266fd4828b0bc5eb854a3c2bee2b6ea}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_default\_with\_multiple\_lookups\_fn@{s\_test\_default\_with\_multiple\_lookups\_fn}}
+\index{s\_test\_default\_with\_multiple\_lookups\_fn@{s\_test\_default\_with\_multiple\_lookups\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_default\_with\_multiple\_lookups\_fn()}{s\_test\_default\_with\_multiple\_lookups\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+default\+\_\+with\+\_\+multiple\+\_\+lookups\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a20c607ae3c69dff79fb6384a166af151}\label{default__host__resolver__test_8c_a20c607ae3c69dff79fb6384a166af151}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_host\_entry\_pinning@{s\_test\_host\_entry\_pinning}}
+\index{s\_test\_host\_entry\_pinning@{s\_test\_host\_entry\_pinning}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_host\_entry\_pinning()}{s\_test\_host\_entry\_pinning()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+host\+\_\+entry\+\_\+pinning (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{pin\+\_\+host\+\_\+entry }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a55e09fd6ca1aea2585e968fa38b43f8a}\label{default__host__resolver__test_8c_a55e09fd6ca1aea2585e968fa38b43f8a}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_add\_listener\_after\_host\_fn@{s\_test\_resolver\_add\_listener\_after\_host\_fn}}
+\index{s\_test\_resolver\_add\_listener\_after\_host\_fn@{s\_test\_resolver\_add\_listener\_after\_host\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_add\_listener\_after\_host\_fn()}{s\_test\_resolver\_add\_listener\_after\_host\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+add\+\_\+listener\+\_\+after\+\_\+host\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a766c6487cca69ac198a1d8f187a89dad}\label{default__host__resolver__test_8c_a766c6487cca69ac198a1d8f187a89dad}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_add\_listener\_before\_host\_fn@{s\_test\_resolver\_add\_listener\_before\_host\_fn}}
+\index{s\_test\_resolver\_add\_listener\_before\_host\_fn@{s\_test\_resolver\_add\_listener\_before\_host\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_add\_listener\_before\_host\_fn()}{s\_test\_resolver\_add\_listener\_before\_host\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+add\+\_\+listener\+\_\+before\+\_\+host\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_aa1ea07093d2a0a7cce8288c0ca1af279}\label{default__host__resolver__test_8c_aa1ea07093d2a0a7cce8288c0ca1af279}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_add\_multiple\_listeners\_fn@{s\_test\_resolver\_add\_multiple\_listeners\_fn}}
+\index{s\_test\_resolver\_add\_multiple\_listeners\_fn@{s\_test\_resolver\_add\_multiple\_listeners\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_add\_multiple\_listeners\_fn()}{s\_test\_resolver\_add\_multiple\_listeners\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+add\+\_\+multiple\+\_\+listeners\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_aae457d750c61b9f8051c4cb966914ffc}\label{default__host__resolver__test_8c_aae457d750c61b9f8051c4cb966914ffc}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_address\_promote\_demote\_listener\_callbacks\_fn@{s\_test\_resolver\_address\_promote\_demote\_listener\_callbacks\_fn}}
+\index{s\_test\_resolver\_address\_promote\_demote\_listener\_callbacks\_fn@{s\_test\_resolver\_address\_promote\_demote\_listener\_callbacks\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_address\_promote\_demote\_listener\_callbacks\_fn()}{s\_test\_resolver\_address\_promote\_demote\_listener\_callbacks\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+address\+\_\+promote\+\_\+demote\+\_\+listener\+\_\+callbacks\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a8e14d0618f04bd286f5dbc86bfe135e0}\label{default__host__resolver__test_8c_a8e14d0618f04bd286f5dbc86bfe135e0}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_connect\_failure\_recording\_fn@{s\_test\_resolver\_connect\_failure\_recording\_fn}}
+\index{s\_test\_resolver\_connect\_failure\_recording\_fn@{s\_test\_resolver\_connect\_failure\_recording\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_connect\_failure\_recording\_fn()}{s\_test\_resolver\_connect\_failure\_recording\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+connect\+\_\+failure\+\_\+recording\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_ab140beba2e322ba89f8c75d9c5e2e191}\label{default__host__resolver__test_8c_ab140beba2e322ba89f8c75d9c5e2e191}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_ipv4\_address\_lookup\_fn@{s\_test\_resolver\_ipv4\_address\_lookup\_fn}}
+\index{s\_test\_resolver\_ipv4\_address\_lookup\_fn@{s\_test\_resolver\_ipv4\_address\_lookup\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_ipv4\_address\_lookup\_fn()}{s\_test\_resolver\_ipv4\_address\_lookup\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+ipv4\+\_\+address\+\_\+lookup\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a98cda3356ddbeab68a46a39de9ce44fc}\label{default__host__resolver__test_8c_a98cda3356ddbeab68a46a39de9ce44fc}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_ipv6\_address\_lookup\_fn@{s\_test\_resolver\_ipv6\_address\_lookup\_fn}}
+\index{s\_test\_resolver\_ipv6\_address\_lookup\_fn@{s\_test\_resolver\_ipv6\_address\_lookup\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_ipv6\_address\_lookup\_fn()}{s\_test\_resolver\_ipv6\_address\_lookup\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+ipv6\+\_\+address\+\_\+lookup\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a581f1a56196995f73ecd1149c349d873}\label{default__host__resolver__test_8c_a581f1a56196995f73ecd1149c349d873}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_listener\_address\_expired\_fn@{s\_test\_resolver\_listener\_address\_expired\_fn}}
+\index{s\_test\_resolver\_listener\_address\_expired\_fn@{s\_test\_resolver\_listener\_address\_expired\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_listener\_address\_expired\_fn()}{s\_test\_resolver\_listener\_address\_expired\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+listener\+\_\+address\+\_\+expired\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a359c82e934c17cfc390aa04ce38b9baa}\label{default__host__resolver__test_8c_a359c82e934c17cfc390aa04ce38b9baa}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_listener\_create\_destroy\_fn@{s\_test\_resolver\_listener\_create\_destroy\_fn}}
+\index{s\_test\_resolver\_listener\_create\_destroy\_fn@{s\_test\_resolver\_listener\_create\_destroy\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_listener\_create\_destroy\_fn()}{s\_test\_resolver\_listener\_create\_destroy\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+listener\+\_\+create\+\_\+destroy\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a2425bb147e847e3dbf60aa352eb9b483}\label{default__host__resolver__test_8c_a2425bb147e847e3dbf60aa352eb9b483}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_listener\_host\_re\_add\_fn@{s\_test\_resolver\_listener\_host\_re\_add\_fn}}
+\index{s\_test\_resolver\_listener\_host\_re\_add\_fn@{s\_test\_resolver\_listener\_host\_re\_add\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_listener\_host\_re\_add\_fn()}{s\_test\_resolver\_listener\_host\_re\_add\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+listener\+\_\+host\+\_\+re\+\_\+add\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a11cdedcb9e78ce5423b34c29ecf70a50}\label{default__host__resolver__test_8c_a11cdedcb9e78ce5423b34c29ecf70a50}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_listener\_multiple\_results\_fn@{s\_test\_resolver\_listener\_multiple\_results\_fn}}
+\index{s\_test\_resolver\_listener\_multiple\_results\_fn@{s\_test\_resolver\_listener\_multiple\_results\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_listener\_multiple\_results\_fn()}{s\_test\_resolver\_listener\_multiple\_results\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+listener\+\_\+multiple\+\_\+results\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_aa6eb86448c4485e69312cf076632b050}\label{default__host__resolver__test_8c_aa6eb86448c4485e69312cf076632b050}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_pinned\_host\_entry@{s\_test\_resolver\_pinned\_host\_entry}}
+\index{s\_test\_resolver\_pinned\_host\_entry@{s\_test\_resolver\_pinned\_host\_entry}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_pinned\_host\_entry()}{s\_test\_resolver\_pinned\_host\_entry()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+pinned\+\_\+host\+\_\+entry (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a26ecdde918f6d38916341e1c23714d96}\label{default__host__resolver__test_8c_a26ecdde918f6d38916341e1c23714d96}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_ttl\_refreshes\_on\_resolve\_fn@{s\_test\_resolver\_ttl\_refreshes\_on\_resolve\_fn}}
+\index{s\_test\_resolver\_ttl\_refreshes\_on\_resolve\_fn@{s\_test\_resolver\_ttl\_refreshes\_on\_resolve\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_ttl\_refreshes\_on\_resolve\_fn()}{s\_test\_resolver\_ttl\_refreshes\_on\_resolve\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+ttl\+\_\+refreshes\+\_\+on\+\_\+resolve\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a728772cc2516ffbbc8f762980a07ec99}\label{default__host__resolver__test_8c_a728772cc2516ffbbc8f762980a07ec99}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_ttls\_fn@{s\_test\_resolver\_ttls\_fn}}
+\index{s\_test\_resolver\_ttls\_fn@{s\_test\_resolver\_ttls\_fn}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_ttls\_fn()}{s\_test\_resolver\_ttls\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+ttls\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_ac532c9d9f25a2958acf249cc358929ee}\label{default__host__resolver__test_8c_ac532c9d9f25a2958acf249cc358929ee}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_test\_resolver\_unpinned\_host\_entry@{s\_test\_resolver\_unpinned\_host\_entry}}
+\index{s\_test\_resolver\_unpinned\_host\_entry@{s\_test\_resolver\_unpinned\_host\_entry}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_resolver\_unpinned\_host\_entry()}{s\_test\_resolver\_unpinned\_host\_entry()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+resolver\+\_\+unpinned\+\_\+host\+\_\+entry (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_ae64cab931b84c21b8bf8a54dd451425a}\label{default__host__resolver__test_8c_ae64cab931b84c21b8bf8a54dd451425a}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_verify\_address\_in\_list@{s\_verify\_address\_in\_list}}
+\index{s\_verify\_address\_in\_list@{s\_verify\_address\_in\_list}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_verify\_address\_in\_list()}{s\_verify\_address\_in\_list()}}
+{\footnotesize\ttfamily static int s\+\_\+verify\+\_\+address\+\_\+in\+\_\+list (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{address\+\_\+list,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{address,  }\item[{enum \mbox{\hyperlink{host__resolver_8h_a2480f89cc9d2509f529e6398d9bf85c8}{aws\+\_\+address\+\_\+record\+\_\+type}}}]{address\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_a33b0bbd29ccd2ca2779760039f18a0ba}\label{default__host__resolver__test_8c_a33b0bbd29ccd2ca2779760039f18a0ba}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_verify\_mock\_address\_list@{s\_verify\_mock\_address\_list}}
+\index{s\_verify\_mock\_address\_list@{s\_verify\_mock\_address\_list}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_verify\_mock\_address\_list()}{s\_verify\_mock\_address\_list()}}
+{\footnotesize\ttfamily static int s\+\_\+verify\+\_\+mock\+\_\+address\+\_\+list (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$}]{address\+\_\+list,  }\item[{uint32\+\_\+t}]{expected\+\_\+num\+\_\+ipv4,  }\item[{uint32\+\_\+t}]{expected\+\_\+num\+\_\+ipv6 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_ac1b4f1fcf63769d2b675dad60c3499fd}\label{default__host__resolver__test_8c_ac1b4f1fcf63769d2b675dad60c3499fd}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_wait\_on\_listener\_shutdown@{s\_wait\_on\_listener\_shutdown}}
+\index{s\_wait\_on\_listener\_shutdown@{s\_wait\_on\_listener\_shutdown}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_wait\_on\_listener\_shutdown()}{s\_wait\_on\_listener\_shutdown()}}
+{\footnotesize\ttfamily static void s\+\_\+wait\+\_\+on\+\_\+listener\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structlistener__test__callback__data}{listener\+\_\+test\+\_\+callback\+\_\+data}} $\ast$}]{callback\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{default__host__resolver__test_8c_a1cc5edb59ccd9f54efc60b1e64e6a79a}\label{default__host__resolver__test_8c_a1cc5edb59ccd9f54efc60b1e64e6a79a}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!FORCE\_RESOLVE\_SLEEP\_TIME@{FORCE\_RESOLVE\_SLEEP\_TIME}}
+\index{FORCE\_RESOLVE\_SLEEP\_TIME@{FORCE\_RESOLVE\_SLEEP\_TIME}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{FORCE\_RESOLVE\_SLEEP\_TIME}{FORCE\_RESOLVE\_SLEEP\_TIME}}
+{\footnotesize\ttfamily const uint64\+\_\+t FORCE\+\_\+\+RESOLVE\+\_\+\+SLEEP\+\_\+\+TIME = 1500000000\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{default__host__resolver__test_8c_a88f0cb47ba30494249c6651c5ad3c6c8}\label{default__host__resolver__test_8c_a88f0cb47ba30494249c6651c5ad3c6c8}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_mocked\_time@{s\_mocked\_time}}
+\index{s\_mocked\_time@{s\_mocked\_time}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mocked\_time}{s\_mocked\_time}}
+{\footnotesize\ttfamily uint64\+\_\+t s\+\_\+mocked\+\_\+time = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{default__host__resolver__test_8c_add725d1677cf47ce1acd96c702216c48}\label{default__host__resolver__test_8c_add725d1677cf47ce1acd96c702216c48}} 
+\index{default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}!s\_mocked\_time\_lock@{s\_mocked\_time\_lock}}
+\index{s\_mocked\_time\_lock@{s\_mocked\_time\_lock}!default\_host\_resolver\_test.c@{default\_host\_resolver\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_mocked\_time\_lock}{s\_mocked\_time\_lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} s\+\_\+mocked\+\_\+time\+\_\+lock = \mbox{\hyperlink{preamble_8h_a82cd305754a1424bf8139695ab9dd6e1}{AWS\+\_\+\+MUTEX\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
+

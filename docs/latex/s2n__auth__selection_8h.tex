@@ -1,0 +1,43 @@
+\hypertarget{s2n__auth__selection_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+auth\+\_\+selection.h File Reference}
+\label{s2n__auth__selection_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_auth\_selection.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_auth\_selection.h}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+cipher\+\_\+suites.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+certificate.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+signature.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__auth__selection_8h_a47e1a6386472275cf182a706858482cd}{s2n\+\_\+is\+\_\+cipher\+\_\+suite\+\_\+valid\+\_\+for\+\_\+auth}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$cipher\+\_\+suite)
+\item 
+int \mbox{\hyperlink{s2n__auth__selection_8h_abfc2e32d9a9ed98338ec5354777fe9a4}{s2n\+\_\+is\+\_\+sig\+\_\+scheme\+\_\+valid\+\_\+for\+\_\+auth}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}} $\ast$sig\+\_\+scheme)
+\item 
+int \mbox{\hyperlink{s2n__auth__selection_8h_a0e4b1262c986f79856af5d4ebfa1453a}{s2n\+\_\+is\+\_\+cert\+\_\+type\+\_\+valid\+\_\+for\+\_\+auth}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n__pkey_8h_a9f8ffb59dc71a9fab8e636972279d441}{s2n\+\_\+pkey\+\_\+type}} cert\+\_\+type)
+\item 
+int \mbox{\hyperlink{s2n__auth__selection_8h_a6a42ae456bfc44b1d842fb235261e667}{s2n\+\_\+select\+\_\+certs\+\_\+for\+\_\+server\+\_\+auth}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$$\ast$chosen\+\_\+certs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__auth__selection_8h_a0e4b1262c986f79856af5d4ebfa1453a}\label{s2n__auth__selection_8h_a0e4b1262c986f79856af5d4ebfa1453a}} 
+\index{s2n\_auth\_selection.h@{s2n\_auth\_selection.h}!s2n\_is\_cert\_type\_valid\_for\_auth@{s2n\_is\_cert\_type\_valid\_for\_auth}}
+\index{s2n\_is\_cert\_type\_valid\_for\_auth@{s2n\_is\_cert\_type\_valid\_for\_auth}!s2n\_auth\_selection.h@{s2n\_auth\_selection.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_is\_cert\_type\_valid\_for\_auth()}{s2n\_is\_cert\_type\_valid\_for\_auth()}}
+{\footnotesize\ttfamily int s2n\+\_\+is\+\_\+cert\+\_\+type\+\_\+valid\+\_\+for\+\_\+auth (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{s2n__pkey_8h_a9f8ffb59dc71a9fab8e636972279d441}{s2n\+\_\+pkey\+\_\+type}}}]{cert\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__auth__selection_8h_a47e1a6386472275cf182a706858482cd}\label{s2n__auth__selection_8h_a47e1a6386472275cf182a706858482cd}} 
+\index{s2n\_auth\_selection.h@{s2n\_auth\_selection.h}!s2n\_is\_cipher\_suite\_valid\_for\_auth@{s2n\_is\_cipher\_suite\_valid\_for\_auth}}
+\index{s2n\_is\_cipher\_suite\_valid\_for\_auth@{s2n\_is\_cipher\_suite\_valid\_for\_auth}!s2n\_auth\_selection.h@{s2n\_auth\_selection.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_is\_cipher\_suite\_valid\_for\_auth()}{s2n\_is\_cipher\_suite\_valid\_for\_auth()}}
+{\footnotesize\ttfamily int s2n\+\_\+is\+\_\+cipher\+\_\+suite\+\_\+valid\+\_\+for\+\_\+auth (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$}]{cipher\+\_\+suite }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__auth__selection_8h_abfc2e32d9a9ed98338ec5354777fe9a4}\label{s2n__auth__selection_8h_abfc2e32d9a9ed98338ec5354777fe9a4}} 
+\index{s2n\_auth\_selection.h@{s2n\_auth\_selection.h}!s2n\_is\_sig\_scheme\_valid\_for\_auth@{s2n\_is\_sig\_scheme\_valid\_for\_auth}}
+\index{s2n\_is\_sig\_scheme\_valid\_for\_auth@{s2n\_is\_sig\_scheme\_valid\_for\_auth}!s2n\_auth\_selection.h@{s2n\_auth\_selection.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_is\_sig\_scheme\_valid\_for\_auth()}{s2n\_is\_sig\_scheme\_valid\_for\_auth()}}
+{\footnotesize\ttfamily int s2n\+\_\+is\+\_\+sig\+\_\+scheme\+\_\+valid\+\_\+for\+\_\+auth (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{const struct \mbox{\hyperlink{structs2n__signature__scheme}{s2n\+\_\+signature\+\_\+scheme}} $\ast$}]{sig\+\_\+scheme }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__auth__selection_8h_a6a42ae456bfc44b1d842fb235261e667}\label{s2n__auth__selection_8h_a6a42ae456bfc44b1d842fb235261e667}} 
+\index{s2n\_auth\_selection.h@{s2n\_auth\_selection.h}!s2n\_select\_certs\_for\_server\_auth@{s2n\_select\_certs\_for\_server\_auth}}
+\index{s2n\_select\_certs\_for\_server\_auth@{s2n\_select\_certs\_for\_server\_auth}!s2n\_auth\_selection.h@{s2n\_auth\_selection.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_select\_certs\_for\_server\_auth()}{s2n\_select\_certs\_for\_server\_auth()}}
+{\footnotesize\ttfamily int s2n\+\_\+select\+\_\+certs\+\_\+for\+\_\+server\+\_\+auth (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$$\ast$}]{chosen\+\_\+certs }\end{DoxyParamCaption})}
+

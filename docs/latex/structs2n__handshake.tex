@@ -1,0 +1,193 @@
+\hypertarget{structs2n__handshake}{}\doxysection{s2n\+\_\+handshake Struct Reference}
+\label{structs2n__handshake}\index{s2n\_handshake@{s2n\_handshake}}
+
+
+{\ttfamily \#include $<$s2n\+\_\+handshake.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} \mbox{\hyperlink{structs2n__handshake_ad645624f20fa8968335504114b8ed1c2}{io}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_ab74077920b2a86a5a2c9cc106cbde382}{md5}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_a6e44c5e4cdf354f109feeb16fb3901f8}{sha1}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_a92fe661e399ec5088dbb775a7584f940}{sha224}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_a667caf4b74b8a416be6bdfe757af2e6d}{sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_ae18ed7e67d9d214761d8b33300c8faec}{sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_a8bc54318a8f1e897c9f0cab0c5278f6f}{sha512}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_ab4cb7d112acb40a9afeed4b793cabd9e}{md5\+\_\+sha1}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_a919673adaf8017cf378dc55095d6cb67}{ccv\+\_\+hash\+\_\+copy}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_a28959475bac1cd547b11268ef5cb9a1b}{prf\+\_\+md5\+\_\+hash\+\_\+copy}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_aec3f26b7d0cd6340eec2e383cd893d3b}{prf\+\_\+sha1\+\_\+hash\+\_\+copy}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_a82ed801d6ddaea8a5bc1eb3758e30003}{prf\+\_\+tls12\+\_\+hash\+\_\+copy}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_a058dbe34b4eb908ee89acd5df295353a}{server\+\_\+finished\+\_\+copy}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__handshake_aa04dec7b675208458f1b80b22ff05513}{required\+\_\+hash\+\_\+algs}} \mbox{[}\mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}{S2\+N\+\_\+\+HASH\+\_\+\+SENTINEL}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__handshake_a7b84ca36575cbadc1ad9f8e1f4a3cdb8}{server\+\_\+finished}} \mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_a3e2918bb353cd7e9f8bb6aab17214d98}{S2\+N\+\_\+\+TLS\+\_\+\+SECRET\+\_\+\+LEN}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structs2n__handshake_a1b7e865e0bf4da43e60511b25eba313c}{client\+\_\+finished}} \mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_a3e2918bb353cd7e9f8bb6aab17214d98}{S2\+N\+\_\+\+TLS\+\_\+\+SECRET\+\_\+\+LEN}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structs2n__handshake_a66d5609b305eb97bf409d3cb9ef9fac5}{handshake\+\_\+type}}
+\item 
+int \mbox{\hyperlink{structs2n__handshake_a5a584a7e9bc20e57f4e5c17e16fe5b11}{message\+\_\+number}}
+\item 
+\mbox{\hyperlink{s2n__handshake_8h_a2558e05cc7c0ed1ca0078f77b2cd800b}{s2n\+\_\+async\+\_\+state}} \mbox{\hyperlink{structs2n__handshake_aecffb3d574b36ea7ce784f8520f021b3}{async\+\_\+state}}
+\item 
+unsigned \mbox{\hyperlink{structs2n__handshake_a882ac1c4a3e84e92fd102f7a8bd59d4c}{client\+\_\+hello\+\_\+received}}\+:1
+\item 
+unsigned \mbox{\hyperlink{structs2n__handshake_a9e63b32945fb92b96741edb17eae835f}{paused}}\+:1
+\item 
+unsigned \mbox{\hyperlink{structs2n__handshake_ac350c0934975e1de2d856287e303a53d}{rsa\+\_\+failed}}\+:1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structs2n__handshake_aecffb3d574b36ea7ce784f8520f021b3}\label{structs2n__handshake_aecffb3d574b36ea7ce784f8520f021b3}} 
+\index{s2n\_handshake@{s2n\_handshake}!async\_state@{async\_state}}
+\index{async\_state@{async\_state}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{async\_state}{async\_state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__handshake_8h_a2558e05cc7c0ed1ca0078f77b2cd800b}{s2n\+\_\+async\+\_\+state}} s2n\+\_\+handshake\+::async\+\_\+state}
+
+\mbox{\Hypertarget{structs2n__handshake_a919673adaf8017cf378dc55095d6cb67}\label{structs2n__handshake_a919673adaf8017cf378dc55095d6cb67}} 
+\index{s2n\_handshake@{s2n\_handshake}!ccv\_hash\_copy@{ccv\_hash\_copy}}
+\index{ccv\_hash\_copy@{ccv\_hash\_copy}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{ccv\_hash\_copy}{ccv\_hash\_copy}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::ccv\+\_\+hash\+\_\+copy}
+
+\mbox{\Hypertarget{structs2n__handshake_a1b7e865e0bf4da43e60511b25eba313c}\label{structs2n__handshake_a1b7e865e0bf4da43e60511b25eba313c}} 
+\index{s2n\_handshake@{s2n\_handshake}!client\_finished@{client\_finished}}
+\index{client\_finished@{client\_finished}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{client\_finished}{client\_finished}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+handshake\+::client\+\_\+finished\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_a3e2918bb353cd7e9f8bb6aab17214d98}{S2\+N\+\_\+\+TLS\+\_\+\+SECRET\+\_\+\+LEN}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__handshake_a882ac1c4a3e84e92fd102f7a8bd59d4c}\label{structs2n__handshake_a882ac1c4a3e84e92fd102f7a8bd59d4c}} 
+\index{s2n\_handshake@{s2n\_handshake}!client\_hello\_received@{client\_hello\_received}}
+\index{client\_hello\_received@{client\_hello\_received}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{client\_hello\_received}{client\_hello\_received}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+handshake\+::client\+\_\+hello\+\_\+received}
+
+\mbox{\Hypertarget{structs2n__handshake_a66d5609b305eb97bf409d3cb9ef9fac5}\label{structs2n__handshake_a66d5609b305eb97bf409d3cb9ef9fac5}} 
+\index{s2n\_handshake@{s2n\_handshake}!handshake\_type@{handshake\_type}}
+\index{handshake\_type@{handshake\_type}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{handshake\_type}{handshake\_type}}
+{\footnotesize\ttfamily uint32\+\_\+t s2n\+\_\+handshake\+::handshake\+\_\+type}
+
+\mbox{\Hypertarget{structs2n__handshake_ad645624f20fa8968335504114b8ed1c2}\label{structs2n__handshake_ad645624f20fa8968335504114b8ed1c2}} 
+\index{s2n\_handshake@{s2n\_handshake}!io@{io}}
+\index{io@{io}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{io}{io}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} s2n\+\_\+handshake\+::io}
+
+\mbox{\Hypertarget{structs2n__handshake_ab74077920b2a86a5a2c9cc106cbde382}\label{structs2n__handshake_ab74077920b2a86a5a2c9cc106cbde382}} 
+\index{s2n\_handshake@{s2n\_handshake}!md5@{md5}}
+\index{md5@{md5}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{md5}{md5}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::md5}
+
+\mbox{\Hypertarget{structs2n__handshake_ab4cb7d112acb40a9afeed4b793cabd9e}\label{structs2n__handshake_ab4cb7d112acb40a9afeed4b793cabd9e}} 
+\index{s2n\_handshake@{s2n\_handshake}!md5\_sha1@{md5\_sha1}}
+\index{md5\_sha1@{md5\_sha1}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{md5\_sha1}{md5\_sha1}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::md5\+\_\+sha1}
+
+\mbox{\Hypertarget{structs2n__handshake_a5a584a7e9bc20e57f4e5c17e16fe5b11}\label{structs2n__handshake_a5a584a7e9bc20e57f4e5c17e16fe5b11}} 
+\index{s2n\_handshake@{s2n\_handshake}!message\_number@{message\_number}}
+\index{message\_number@{message\_number}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{message\_number}{message\_number}}
+{\footnotesize\ttfamily int s2n\+\_\+handshake\+::message\+\_\+number}
+
+\mbox{\Hypertarget{structs2n__handshake_a9e63b32945fb92b96741edb17eae835f}\label{structs2n__handshake_a9e63b32945fb92b96741edb17eae835f}} 
+\index{s2n\_handshake@{s2n\_handshake}!paused@{paused}}
+\index{paused@{paused}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{paused}{paused}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+handshake\+::paused}
+
+\mbox{\Hypertarget{structs2n__handshake_a28959475bac1cd547b11268ef5cb9a1b}\label{structs2n__handshake_a28959475bac1cd547b11268ef5cb9a1b}} 
+\index{s2n\_handshake@{s2n\_handshake}!prf\_md5\_hash\_copy@{prf\_md5\_hash\_copy}}
+\index{prf\_md5\_hash\_copy@{prf\_md5\_hash\_copy}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{prf\_md5\_hash\_copy}{prf\_md5\_hash\_copy}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::prf\+\_\+md5\+\_\+hash\+\_\+copy}
+
+\mbox{\Hypertarget{structs2n__handshake_aec3f26b7d0cd6340eec2e383cd893d3b}\label{structs2n__handshake_aec3f26b7d0cd6340eec2e383cd893d3b}} 
+\index{s2n\_handshake@{s2n\_handshake}!prf\_sha1\_hash\_copy@{prf\_sha1\_hash\_copy}}
+\index{prf\_sha1\_hash\_copy@{prf\_sha1\_hash\_copy}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{prf\_sha1\_hash\_copy}{prf\_sha1\_hash\_copy}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::prf\+\_\+sha1\+\_\+hash\+\_\+copy}
+
+\mbox{\Hypertarget{structs2n__handshake_a82ed801d6ddaea8a5bc1eb3758e30003}\label{structs2n__handshake_a82ed801d6ddaea8a5bc1eb3758e30003}} 
+\index{s2n\_handshake@{s2n\_handshake}!prf\_tls12\_hash\_copy@{prf\_tls12\_hash\_copy}}
+\index{prf\_tls12\_hash\_copy@{prf\_tls12\_hash\_copy}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{prf\_tls12\_hash\_copy}{prf\_tls12\_hash\_copy}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::prf\+\_\+tls12\+\_\+hash\+\_\+copy}
+
+\mbox{\Hypertarget{structs2n__handshake_aa04dec7b675208458f1b80b22ff05513}\label{structs2n__handshake_aa04dec7b675208458f1b80b22ff05513}} 
+\index{s2n\_handshake@{s2n\_handshake}!required\_hash\_algs@{required\_hash\_algs}}
+\index{required\_hash\_algs@{required\_hash\_algs}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{required\_hash\_algs}{required\_hash\_algs}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+handshake\+::required\+\_\+hash\+\_\+algs\mbox{[}\mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}{S2\+N\+\_\+\+HASH\+\_\+\+SENTINEL}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__handshake_ac350c0934975e1de2d856287e303a53d}\label{structs2n__handshake_ac350c0934975e1de2d856287e303a53d}} 
+\index{s2n\_handshake@{s2n\_handshake}!rsa\_failed@{rsa\_failed}}
+\index{rsa\_failed@{rsa\_failed}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{rsa\_failed}{rsa\_failed}}
+{\footnotesize\ttfamily unsigned s2n\+\_\+handshake\+::rsa\+\_\+failed}
+
+\mbox{\Hypertarget{structs2n__handshake_a7b84ca36575cbadc1ad9f8e1f4a3cdb8}\label{structs2n__handshake_a7b84ca36575cbadc1ad9f8e1f4a3cdb8}} 
+\index{s2n\_handshake@{s2n\_handshake}!server\_finished@{server\_finished}}
+\index{server\_finished@{server\_finished}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{server\_finished}{server\_finished}}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+handshake\+::server\+\_\+finished\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_a3e2918bb353cd7e9f8bb6aab17214d98}{S2\+N\+\_\+\+TLS\+\_\+\+SECRET\+\_\+\+LEN}}\mbox{]}}
+
+\mbox{\Hypertarget{structs2n__handshake_a058dbe34b4eb908ee89acd5df295353a}\label{structs2n__handshake_a058dbe34b4eb908ee89acd5df295353a}} 
+\index{s2n\_handshake@{s2n\_handshake}!server\_finished\_copy@{server\_finished\_copy}}
+\index{server\_finished\_copy@{server\_finished\_copy}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{server\_finished\_copy}{server\_finished\_copy}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::server\+\_\+finished\+\_\+copy}
+
+\mbox{\Hypertarget{structs2n__handshake_a6e44c5e4cdf354f109feeb16fb3901f8}\label{structs2n__handshake_a6e44c5e4cdf354f109feeb16fb3901f8}} 
+\index{s2n\_handshake@{s2n\_handshake}!sha1@{sha1}}
+\index{sha1@{sha1}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{sha1}{sha1}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::sha1}
+
+\mbox{\Hypertarget{structs2n__handshake_a92fe661e399ec5088dbb775a7584f940}\label{structs2n__handshake_a92fe661e399ec5088dbb775a7584f940}} 
+\index{s2n\_handshake@{s2n\_handshake}!sha224@{sha224}}
+\index{sha224@{sha224}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{sha224}{sha224}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::sha224}
+
+\mbox{\Hypertarget{structs2n__handshake_a667caf4b74b8a416be6bdfe757af2e6d}\label{structs2n__handshake_a667caf4b74b8a416be6bdfe757af2e6d}} 
+\index{s2n\_handshake@{s2n\_handshake}!sha256@{sha256}}
+\index{sha256@{sha256}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{sha256}{sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::sha256}
+
+\mbox{\Hypertarget{structs2n__handshake_ae18ed7e67d9d214761d8b33300c8faec}\label{structs2n__handshake_ae18ed7e67d9d214761d8b33300c8faec}} 
+\index{s2n\_handshake@{s2n\_handshake}!sha384@{sha384}}
+\index{sha384@{sha384}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{sha384}{sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::sha384}
+
+\mbox{\Hypertarget{structs2n__handshake_a8bc54318a8f1e897c9f0cab0c5278f6f}\label{structs2n__handshake_a8bc54318a8f1e897c9f0cab0c5278f6f}} 
+\index{s2n\_handshake@{s2n\_handshake}!sha512@{sha512}}
+\index{sha512@{sha512}!s2n\_handshake@{s2n\_handshake}}
+\doxysubsubsection{\texorpdfstring{sha512}{sha512}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} s2n\+\_\+handshake\+::sha512}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+crt/aws-\/crt-\/cpp/crt/s2n/tls/\mbox{\hyperlink{s2n__handshake_8h}{s2n\+\_\+handshake.\+h}}\end{DoxyCompactItemize}

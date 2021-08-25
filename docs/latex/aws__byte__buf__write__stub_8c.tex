@@ -1,0 +1,23 @@
+\hypertarget{aws__byte__buf__write__stub_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+stub.c File Reference}
+\label{aws__byte__buf__write__stub_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\_byte\_buf\_write\_stub.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/verification/cbmc/stubs/aws\_byte\_buf\_write\_stub.c}}
+{\ttfamily \#include $<$aws/common/byte\+\_\+buf.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/byte\+\_\+order.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/common.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__byte__buf__write__stub_8c_ad5eb15960520d84856f48e4cfe44e41c}{aws\+\_\+byte\+\_\+buf\+\_\+write}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} src, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws__byte__buf__write__stub_8c_ad5eb15960520d84856f48e4cfe44e41c}\label{aws__byte__buf__write__stub_8c_ad5eb15960520d84856f48e4cfe44e41c}} 
+\index{aws\_byte\_buf\_write\_stub.c@{aws\_byte\_buf\_write\_stub.c}!aws\_byte\_buf\_write@{aws\_byte\_buf\_write}}
+\index{aws\_byte\_buf\_write@{aws\_byte\_buf\_write}!aws\_byte\_buf\_write\_stub.c@{aws\_byte\_buf\_write\_stub.c}}
+\doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write()}{aws\_byte\_buf\_write()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buf,  }\item[{const uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{src,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Stub for aws\+\_\+byte\+\_\+buf\+\_\+write. Has the same behaviour as the actual function except it doesn\textquotesingle{}t actually write the bytes. In order to use this function safely, the user must check that the byte\+\_\+buf bytes are not actually used by the function under test. TODO\+: Once CBMC supports proper havocing, should havoc the bytes to get full soundness.
+
+On success, returns true and updates the buffer length accordingly. If there is insufficient space in the buffer, returns false, leaving the buffer unchanged. 

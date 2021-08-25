@@ -1,0 +1,124 @@
+\hypertarget{source_2windows_2clock_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/windows/clock.c File Reference}
+\label{source_2windows_2clock_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/windows/clock.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/windows/clock.c}}
+{\ttfamily \#include $<$Windows.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{source_2windows_2clock_8c_ad6b19d1af67cff04899fbdeab3250b14}{WIDEN2}}(s)~L\#\# \#s
+\item 
+\#define \mbox{\hyperlink{source_2windows_2clock_8c_a21adb140fb2f2d3ec01cdd9b22222b1c}{WIDEN}}(s)~\mbox{\hyperlink{source_2windows_2clock_8c_ad6b19d1af67cff04899fbdeab3250b14}{WIDEN2}}(s)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef VOID WINAPI \mbox{\hyperlink{source_2windows_2clock_8c_a514a44b6ec5199756120d1407d931e57}{timefunc\+\_\+t}}(LPFILETIME)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static VOID WINAPI \mbox{\hyperlink{source_2windows_2clock_8c_ac1a53e1967f27ff2f7f65e8fb5267de7}{s\+\_\+get\+\_\+system\+\_\+time\+\_\+func\+\_\+lazy\+\_\+init}} (LPFILETIME filetime\+\_\+p)
+\item 
+static BOOL CALLBACK \mbox{\hyperlink{source_2windows_2clock_8c_abd3fe7ca911ab63ac7d94daca8c07223}{s\+\_\+get\+\_\+system\+\_\+time\+\_\+init\+\_\+once}} (PINIT\+\_\+\+ONCE init\+\_\+once, PVOID param, PVOID $\ast$context)
+\item 
+int \mbox{\hyperlink{source_2windows_2clock_8c_af95f9d35a3d9f11daf010bf71426e148}{aws\+\_\+high\+\_\+res\+\_\+clock\+\_\+get\+\_\+ticks}} (uint64\+\_\+t $\ast$timestamp)
+\item 
+int \mbox{\hyperlink{source_2windows_2clock_8c_a6fc213863487a8dd80daceee32c3bfda}{aws\+\_\+sys\+\_\+clock\+\_\+get\+\_\+ticks}} (uint64\+\_\+t $\ast$timestamp)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{source_2windows_2clock_8c_a6c7c74ebf3461729dfe6d47508bd2aea}{FILE\+\_\+\+TIME\+\_\+\+TO\+\_\+\+NS}} = 100
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{source_2windows_2clock_8c_af7925cff0f11f6c3a8c30b0183edfa76}{EC\+\_\+\+TO\+\_\+\+UNIX\+\_\+\+EPOCH}} = 11644473600\+LL
+\item 
+static const uint64\+\_\+t \mbox{\hyperlink{source_2windows_2clock_8c_a2ea5602f6e24664b15135b03a00768a4}{WINDOWS\+\_\+\+TICK}} = 10000000
+\item 
+static INIT\+\_\+\+ONCE \mbox{\hyperlink{source_2windows_2clock_8c_ade28d4e0c0cad76ebf74153926e87107}{s\+\_\+timefunc\+\_\+init\+\_\+once}} = INIT\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT
+\item 
+static \mbox{\hyperlink{source_2windows_2clock_8c_a514a44b6ec5199756120d1407d931e57}{timefunc\+\_\+t}} $\ast$volatile \mbox{\hyperlink{source_2windows_2clock_8c_acbf67c4480ced357b439b30717a8eed1}{s\+\_\+p\+\_\+time\+\_\+func}} = \mbox{\hyperlink{source_2windows_2clock_8c_ac1a53e1967f27ff2f7f65e8fb5267de7}{s\+\_\+get\+\_\+system\+\_\+time\+\_\+func\+\_\+lazy\+\_\+init}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{source_2windows_2clock_8c_a21adb140fb2f2d3ec01cdd9b22222b1c}\label{source_2windows_2clock_8c_a21adb140fb2f2d3ec01cdd9b22222b1c}} 
+\index{clock.c@{clock.c}!WIDEN@{WIDEN}}
+\index{WIDEN@{WIDEN}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{WIDEN}{WIDEN}}
+{\footnotesize\ttfamily \#define WIDEN(\begin{DoxyParamCaption}\item[{}]{s }\end{DoxyParamCaption})~\mbox{\hyperlink{source_2windows_2clock_8c_ad6b19d1af67cff04899fbdeab3250b14}{WIDEN2}}(s)}
+
+\mbox{\Hypertarget{source_2windows_2clock_8c_ad6b19d1af67cff04899fbdeab3250b14}\label{source_2windows_2clock_8c_ad6b19d1af67cff04899fbdeab3250b14}} 
+\index{clock.c@{clock.c}!WIDEN2@{WIDEN2}}
+\index{WIDEN2@{WIDEN2}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{WIDEN2}{WIDEN2}}
+{\footnotesize\ttfamily \#define WIDEN2(\begin{DoxyParamCaption}\item[{}]{s }\end{DoxyParamCaption})~L\#\# \#s}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{source_2windows_2clock_8c_a514a44b6ec5199756120d1407d931e57}\label{source_2windows_2clock_8c_a514a44b6ec5199756120d1407d931e57}} 
+\index{clock.c@{clock.c}!timefunc\_t@{timefunc\_t}}
+\index{timefunc\_t@{timefunc\_t}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{timefunc\_t}{timefunc\_t}}
+{\footnotesize\ttfamily typedef VOID WINAPI timefunc\+\_\+t(LPFILETIME)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{source_2windows_2clock_8c_af95f9d35a3d9f11daf010bf71426e148}\label{source_2windows_2clock_8c_af95f9d35a3d9f11daf010bf71426e148}} 
+\index{clock.c@{clock.c}!aws\_high\_res\_clock\_get\_ticks@{aws\_high\_res\_clock\_get\_ticks}}
+\index{aws\_high\_res\_clock\_get\_ticks@{aws\_high\_res\_clock\_get\_ticks}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{aws\_high\_res\_clock\_get\_ticks()}{aws\_high\_res\_clock\_get\_ticks()}}
+{\footnotesize\ttfamily int aws\+\_\+high\+\_\+res\+\_\+clock\+\_\+get\+\_\+ticks (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$}]{timestamp }\end{DoxyParamCaption})}
+
+Get ticks in nanoseconds (usually 100 nanosecond precision) on the high resolution clock (most-\/likely TSC). This clock has no bearing on the actual system time. On success, timestamp will be set. \mbox{\Hypertarget{source_2windows_2clock_8c_a6fc213863487a8dd80daceee32c3bfda}\label{source_2windows_2clock_8c_a6fc213863487a8dd80daceee32c3bfda}} 
+\index{clock.c@{clock.c}!aws\_sys\_clock\_get\_ticks@{aws\_sys\_clock\_get\_ticks}}
+\index{aws\_sys\_clock\_get\_ticks@{aws\_sys\_clock\_get\_ticks}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{aws\_sys\_clock\_get\_ticks()}{aws\_sys\_clock\_get\_ticks()}}
+{\footnotesize\ttfamily int aws\+\_\+sys\+\_\+clock\+\_\+get\+\_\+ticks (\begin{DoxyParamCaption}\item[{uint64\+\_\+t $\ast$}]{timestamp }\end{DoxyParamCaption})}
+
+Get ticks in nanoseconds (usually 100 nanosecond precision) on the system clock. Reflects actual system time via nanoseconds since unix epoch. Use with care since an inaccurately set clock will probably cause bugs. On success, timestamp will be set. \mbox{\Hypertarget{source_2windows_2clock_8c_ac1a53e1967f27ff2f7f65e8fb5267de7}\label{source_2windows_2clock_8c_ac1a53e1967f27ff2f7f65e8fb5267de7}} 
+\index{clock.c@{clock.c}!s\_get\_system\_time\_func\_lazy\_init@{s\_get\_system\_time\_func\_lazy\_init}}
+\index{s\_get\_system\_time\_func\_lazy\_init@{s\_get\_system\_time\_func\_lazy\_init}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{s\_get\_system\_time\_func\_lazy\_init()}{s\_get\_system\_time\_func\_lazy\_init()}}
+{\footnotesize\ttfamily static VOID WINAPI s\+\_\+get\+\_\+system\+\_\+time\+\_\+func\+\_\+lazy\+\_\+init (\begin{DoxyParamCaption}\item[{LPFILETIME}]{filetime\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{source_2windows_2clock_8c_abd3fe7ca911ab63ac7d94daca8c07223}\label{source_2windows_2clock_8c_abd3fe7ca911ab63ac7d94daca8c07223}} 
+\index{clock.c@{clock.c}!s\_get\_system\_time\_init\_once@{s\_get\_system\_time\_init\_once}}
+\index{s\_get\_system\_time\_init\_once@{s\_get\_system\_time\_init\_once}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{s\_get\_system\_time\_init\_once()}{s\_get\_system\_time\_init\_once()}}
+{\footnotesize\ttfamily static BOOL CALLBACK s\+\_\+get\+\_\+system\+\_\+time\+\_\+init\+\_\+once (\begin{DoxyParamCaption}\item[{PINIT\+\_\+\+ONCE}]{init\+\_\+once,  }\item[{PVOID}]{param,  }\item[{PVOID $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{source_2windows_2clock_8c_af7925cff0f11f6c3a8c30b0183edfa76}\label{source_2windows_2clock_8c_af7925cff0f11f6c3a8c30b0183edfa76}} 
+\index{clock.c@{clock.c}!EC\_TO\_UNIX\_EPOCH@{EC\_TO\_UNIX\_EPOCH}}
+\index{EC\_TO\_UNIX\_EPOCH@{EC\_TO\_UNIX\_EPOCH}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{EC\_TO\_UNIX\_EPOCH}{EC\_TO\_UNIX\_EPOCH}}
+{\footnotesize\ttfamily const uint64\+\_\+t EC\+\_\+\+TO\+\_\+\+UNIX\+\_\+\+EPOCH = 11644473600\+LL\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{source_2windows_2clock_8c_a6c7c74ebf3461729dfe6d47508bd2aea}\label{source_2windows_2clock_8c_a6c7c74ebf3461729dfe6d47508bd2aea}} 
+\index{clock.c@{clock.c}!FILE\_TIME\_TO\_NS@{FILE\_TIME\_TO\_NS}}
+\index{FILE\_TIME\_TO\_NS@{FILE\_TIME\_TO\_NS}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{FILE\_TIME\_TO\_NS}{FILE\_TIME\_TO\_NS}}
+{\footnotesize\ttfamily const uint64\+\_\+t FILE\+\_\+\+TIME\+\_\+\+TO\+\_\+\+NS = 100\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{source_2windows_2clock_8c_acbf67c4480ced357b439b30717a8eed1}\label{source_2windows_2clock_8c_acbf67c4480ced357b439b30717a8eed1}} 
+\index{clock.c@{clock.c}!s\_p\_time\_func@{s\_p\_time\_func}}
+\index{s\_p\_time\_func@{s\_p\_time\_func}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{s\_p\_time\_func}{s\_p\_time\_func}}
+{\footnotesize\ttfamily \mbox{\hyperlink{source_2windows_2clock_8c_a514a44b6ec5199756120d1407d931e57}{timefunc\+\_\+t}}$\ast$ volatile s\+\_\+p\+\_\+time\+\_\+func = \mbox{\hyperlink{source_2windows_2clock_8c_ac1a53e1967f27ff2f7f65e8fb5267de7}{s\+\_\+get\+\_\+system\+\_\+time\+\_\+func\+\_\+lazy\+\_\+init}}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{source_2windows_2clock_8c_ade28d4e0c0cad76ebf74153926e87107}\label{source_2windows_2clock_8c_ade28d4e0c0cad76ebf74153926e87107}} 
+\index{clock.c@{clock.c}!s\_timefunc\_init\_once@{s\_timefunc\_init\_once}}
+\index{s\_timefunc\_init\_once@{s\_timefunc\_init\_once}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{s\_timefunc\_init\_once}{s\_timefunc\_init\_once}}
+{\footnotesize\ttfamily INIT\+\_\+\+ONCE s\+\_\+timefunc\+\_\+init\+\_\+once = INIT\+\_\+\+ONCE\+\_\+\+STATIC\+\_\+\+INIT\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{source_2windows_2clock_8c_a2ea5602f6e24664b15135b03a00768a4}\label{source_2windows_2clock_8c_a2ea5602f6e24664b15135b03a00768a4}} 
+\index{clock.c@{clock.c}!WINDOWS\_TICK@{WINDOWS\_TICK}}
+\index{WINDOWS\_TICK@{WINDOWS\_TICK}!clock.c@{clock.c}}
+\doxysubsubsection{\texorpdfstring{WINDOWS\_TICK}{WINDOWS\_TICK}}
+{\footnotesize\ttfamily const uint64\+\_\+t WINDOWS\+\_\+\+TICK = 10000000\hspace{0.3cm}{\ttfamily [static]}}
+

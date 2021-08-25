@@ -1,0 +1,38 @@
+\hypertarget{bike__r2_2gf2x__internal_8h_source}{}\doxysection{gf2x\+\_\+internal.\+h}
+\label{bike__r2_2gf2x__internal_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/gf2x\_internal.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r2/gf2x\_internal.h}}
+\mbox{\hyperlink{bike__r2_2gf2x__internal_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{2 \textcolor{comment}{ * SPDX-\/License-\/Identifier: Apache-\/2.0"{}}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Written by Nir Drucker and Shay Gueron,}}
+\DoxyCodeLine{5 \textcolor{comment}{ * AWS Cryptographic Algorithms Group.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * (ndrucker@amazon.com, gueron@amazon.com)}}
+\DoxyCodeLine{7 \textcolor{comment}{ */}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{types.h}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \mbox{\hyperlink{bike__r1_2defs_8h_a95e1d92b2619a326b2e86600f3d23100}{EXTERNC}} \textcolor{keywordtype}{void}}
+\DoxyCodeLine{14 \mbox{\hyperlink{bike__r1_2gf2x__internal_8h_a426084536d2b6a38e5d15ce4960a9d5e}{karatzuba\_add1}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\_t *res,}
+\DoxyCodeLine{15                \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t *\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}},}
+\DoxyCodeLine{16                \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}},}
+\DoxyCodeLine{17                \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} uint64\_t        n\_half,}
+\DoxyCodeLine{18                \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} uint64\_t *alah);}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \mbox{\hyperlink{bike__r1_2defs_8h_a95e1d92b2619a326b2e86600f3d23100}{EXTERNC}} \textcolor{keywordtype}{void}}
+\DoxyCodeLine{21 \mbox{\hyperlink{bike__r1_2gf2x__internal_8h_a604b785957b9b877d6da81a2bf6ad043}{karatzuba\_add2}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\_t *res1,}
+\DoxyCodeLine{22                \mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\_t *res2,}
+\DoxyCodeLine{23                \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t *res,}
+\DoxyCodeLine{24                \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \textcolor{keyword}{const} uint64\_t *tmp,}
+\DoxyCodeLine{25                \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} uint64\_t        n\_half);}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \mbox{\hyperlink{bike__r1_2defs_8h_a95e1d92b2619a326b2e86600f3d23100}{EXTERNC}} \textcolor{keywordtype}{void}}
+\DoxyCodeLine{28 \mbox{\hyperlink{bike__r1_2gf2x__internal_8h_a7b6fb1719d6a9285f8f0a4ecf0dd9c6a}{red}}(uint64\_t *res);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{keywordtype}{void}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \mbox{\hyperlink{bike__r1_2gf2x__internal_8h_a2dc01069ad694c5d21f996db196c5654}{gf2x\_mul\_1x1}}(\mbox{\hyperlink{bike__r1__kem_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\_t *res, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} uint64\_t \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}, \mbox{\hyperlink{bike__r1__kem_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} uint64\_t \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}});}
+
+\end{DoxyCode}

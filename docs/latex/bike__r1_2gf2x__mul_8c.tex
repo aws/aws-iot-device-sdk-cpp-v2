@@ -1,0 +1,51 @@
+\hypertarget{bike__r1_2gf2x__mul_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\+\_\+r1/gf2x\+\_\+mul.c File Reference}
+\label{bike__r1_2gf2x__mul_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/gf2x\_mul.c@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/gf2x\_mul.c}}
+{\ttfamily \#include \char`\"{}cleanup.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2x.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2x\+\_\+internal.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bike__r1_2gf2x__mul_8c_a69dde11bb6147dbd72c53ed37b3680de}{SECURE\+\_\+\+BUFFER\+\_\+\+SIZE}}~(3 $\ast$ \mbox{\hyperlink{bike__r2_2bike__defs_8h_afc7e05b51256a92411ccdd88142819d3}{R\+\_\+\+PADDED\+\_\+\+SIZE}})
+\item 
+\#define \mbox{\hyperlink{bike__r1_2gf2x__mul_8c_a8cf119982b7665ca19d850a8f724eca7}{SECURE\+\_\+\+BUFFER\+\_\+\+SIZE\+\_\+64\+\_\+\+BIT}}~((\mbox{\hyperlink{bike__r2_2gf2x__mul_8c_a69dde11bb6147dbd72c53ed37b3680de}{SECURE\+\_\+\+BUFFER\+\_\+\+SIZE}} / sizeof(uint64\+\_\+t)) + ((\mbox{\hyperlink{bike__r2_2gf2x__mul_8c_a69dde11bb6147dbd72c53ed37b3680de}{SECURE\+\_\+\+BUFFER\+\_\+\+SIZE}} \% sizeof(uint64\+\_\+t)) != 0))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2gf2x__mul_8c_a9821065d2bf939c8c0f3ff846b9abba1}{karatzuba}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\+\_\+t $\ast$res, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$a, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t n, uint64\+\_\+t $\ast$secure\+\_\+buf)
+\item 
+\mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} \mbox{\hyperlink{bike__r1_2gf2x__mul_8c_ab3694dbfc259301f41ec914fced4e758}{gf2x\+\_\+mod\+\_\+mul}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\+\_\+t $\ast$res, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$a, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bike__r1_2gf2x__mul_8c_a69dde11bb6147dbd72c53ed37b3680de}\label{bike__r1_2gf2x__mul_8c_a69dde11bb6147dbd72c53ed37b3680de}} 
+\index{gf2x\_mul.c@{gf2x\_mul.c}!SECURE\_BUFFER\_SIZE@{SECURE\_BUFFER\_SIZE}}
+\index{SECURE\_BUFFER\_SIZE@{SECURE\_BUFFER\_SIZE}!gf2x\_mul.c@{gf2x\_mul.c}}
+\doxysubsubsection{\texorpdfstring{SECURE\_BUFFER\_SIZE}{SECURE\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define SECURE\+\_\+\+BUFFER\+\_\+\+SIZE~(3 $\ast$ \mbox{\hyperlink{bike__r2_2bike__defs_8h_afc7e05b51256a92411ccdd88142819d3}{R\+\_\+\+PADDED\+\_\+\+SIZE}})}
+
+\mbox{\Hypertarget{bike__r1_2gf2x__mul_8c_a8cf119982b7665ca19d850a8f724eca7}\label{bike__r1_2gf2x__mul_8c_a8cf119982b7665ca19d850a8f724eca7}} 
+\index{gf2x\_mul.c@{gf2x\_mul.c}!SECURE\_BUFFER\_SIZE\_64\_BIT@{SECURE\_BUFFER\_SIZE\_64\_BIT}}
+\index{SECURE\_BUFFER\_SIZE\_64\_BIT@{SECURE\_BUFFER\_SIZE\_64\_BIT}!gf2x\_mul.c@{gf2x\_mul.c}}
+\doxysubsubsection{\texorpdfstring{SECURE\_BUFFER\_SIZE\_64\_BIT}{SECURE\_BUFFER\_SIZE\_64\_BIT}}
+{\footnotesize\ttfamily \#define SECURE\+\_\+\+BUFFER\+\_\+\+SIZE\+\_\+64\+\_\+\+BIT~((\mbox{\hyperlink{bike__r2_2gf2x__mul_8c_a69dde11bb6147dbd72c53ed37b3680de}{SECURE\+\_\+\+BUFFER\+\_\+\+SIZE}} / sizeof(uint64\+\_\+t)) + ((\mbox{\hyperlink{bike__r2_2gf2x__mul_8c_a69dde11bb6147dbd72c53ed37b3680de}{SECURE\+\_\+\+BUFFER\+\_\+\+SIZE}} \% sizeof(uint64\+\_\+t)) != 0))}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bike__r1_2gf2x__mul_8c_ab3694dbfc259301f41ec914fced4e758}\label{bike__r1_2gf2x__mul_8c_ab3694dbfc259301f41ec914fced4e758}} 
+\index{gf2x\_mul.c@{gf2x\_mul.c}!gf2x\_mod\_mul@{gf2x\_mod\_mul}}
+\index{gf2x\_mod\_mul@{gf2x\_mod\_mul}!gf2x\_mul.c@{gf2x\_mul.c}}
+\doxysubsubsection{\texorpdfstring{gf2x\_mod\_mul()}{gf2x\_mod\_mul()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} gf2x\+\_\+mod\+\_\+mul (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\+\_\+t $\ast$}]{res,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$}]{a,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$}]{b }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2gf2x__mul_8c_a9821065d2bf939c8c0f3ff846b9abba1}\label{bike__r1_2gf2x__mul_8c_a9821065d2bf939c8c0f3ff846b9abba1}} 
+\index{gf2x\_mul.c@{gf2x\_mul.c}!karatzuba@{karatzuba}}
+\index{karatzuba@{karatzuba}!gf2x\_mul.c@{gf2x\_mul.c}}
+\doxysubsubsection{\texorpdfstring{karatzuba()}{karatzuba()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void karatzuba (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} uint64\+\_\+t $\ast$}]{res,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$}]{a,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t $\ast$}]{b,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint64\+\_\+t}]{n,  }\item[{uint64\+\_\+t $\ast$}]{secure\+\_\+buf }\end{DoxyParamCaption})}
+

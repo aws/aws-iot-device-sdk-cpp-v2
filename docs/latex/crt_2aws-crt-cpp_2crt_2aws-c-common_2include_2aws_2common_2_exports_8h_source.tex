@@ -1,0 +1,42 @@
+\hypertarget{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_source}{}\doxysection{exports.\+h}
+\label{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/exports.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/exports.h}}
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_EXPORTS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_EXPORTS\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#if defined(AWS\_C\_RT\_USE\_WINDOWS\_DLL\_SEMANTICS) || defined(\_WIN32)}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#    ifdef AWS\_COMMON\_USE\_IMPORT\_EXPORT}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#        ifdef AWS\_COMMON\_EXPORTS}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#            define AWS\_COMMON\_API \_\_declspec(dllexport)}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#        else}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#            define AWS\_COMMON\_API \_\_declspec(dllimport)}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#        endif }\textcolor{comment}{/* AWS\_COMMON\_EXPORTS */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#        define AWS\_COMMON\_API}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{/* AWS\_COMMON\_USE\_IMPORT\_EXPORT */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#else }\textcolor{comment}{/* defined (AWS\_C\_RT\_USE\_WINDOWS\_DLL\_SEMANTICS) || defined (\_WIN32) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#    if ((\_\_GNUC\_\_ >= 4) || defined(\_\_clang\_\_)) \&\& defined(AWS\_COMMON\_USE\_IMPORT\_EXPORT) \&\& defined(AWS\_COMMON\_EXPORTS)}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#        define AWS\_COMMON\_API \_\_attribute\_\_((visibility("{}default"{}})))}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#    else}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#        define AWS\_COMMON\_API}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#    endif }\textcolor{comment}{/* \_\_GNUC\_\_ >= 4 || defined(\_\_clang\_\_) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* defined (AWS\_C\_RT\_USE\_WINDOWS\_DLL\_SEMANTICS) || defined (\_WIN32) */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#ifdef AWS\_NO\_STATIC\_IMPL}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#    define AWS\_STATIC\_IMPL AWS\_COMMON\_API}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#ifndef AWS\_STATIC\_IMPL}}
+\DoxyCodeLine{33 \textcolor{comment}{/*}}
+\DoxyCodeLine{34 \textcolor{comment}{ * In order to allow us to export our inlinable methods in a DLL/.so, we have a designated .c}}
+\DoxyCodeLine{35 \textcolor{comment}{ * file where this AWS\_STATIC\_IMPL macro will be redefined to be non-\/static.}}
+\DoxyCodeLine{36 \textcolor{comment}{ */}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#    define AWS\_STATIC\_IMPL static inline}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_EXPORTS\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

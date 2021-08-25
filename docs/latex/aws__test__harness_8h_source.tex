@@ -1,0 +1,528 @@
+\hypertarget{aws__test__harness_8h_source}{}\doxysection{aws\+\_\+test\+\_\+harness.\+h}
+\label{aws__test__harness_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/testing/aws\_test\_harness.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/testing/aws\_test\_harness.h}}
+\mbox{\hyperlink{aws__test__harness_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_TESTING\_AWS\_TEST\_HARNESS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_TESTING\_AWS\_TEST\_HARNESS\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h}{aws/common/common.h}}>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h}{aws/common/error.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h}{aws/common/logging.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{mutex_8h}{aws/common/mutex.h}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{system__info_8h}{aws/common/system\_info.h}}>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <stdarg.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{string_8h}{string.h}}>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#ifndef AWS\_UNSTABLE\_TESTING\_API}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#    error The AWS Test Fixture is designed only for use by AWS owned libraries for the AWS C99 SDK. You are welcome to use it,   \(\backslash\)}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{but you should be aware we make no promises on the stability of this API.  To enable use of the aws test fixtures, set \(\backslash\)}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{the AWS\_UNSTABLE\_TESTING\_API compiler flag}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#ifndef AWS\_TESTING\_REPORT\_FD}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#    define AWS\_TESTING\_REPORT\_FD stderr}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#if \_MSC\_VER}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#    pragma warning(disable : 4221) }\textcolor{comment}{/* aggregate initializer using local variable addresses */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#    pragma warning(disable : 4204) }\textcolor{comment}{/* non-\/constant aggregate initializer */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37 \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__test__harness_8h_ac477d06d92842a35477e2936e10b43f6}{s\_cunit\_failure\_message0}}(}
+\DoxyCodeLine{38     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *prefix,}
+\DoxyCodeLine{39     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\textcolor{keyword}{function},}
+\DoxyCodeLine{40     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{namespacefixup__makefiles_a48861649c723a22094b936f074258210}{file}},}
+\DoxyCodeLine{41     \textcolor{keywordtype}{int} \mbox{\hyperlink{namespacefixup__makefiles_a5e26abe70faebb0ef1e8af214967f145}{line}},}
+\DoxyCodeLine{42     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}{format}},}
+\DoxyCodeLine{43     ...) \{}
+\DoxyCodeLine{44     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}{format}}) \{}
+\DoxyCodeLine{45         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{46     \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     fprintf(\mbox{\hyperlink{aws__test__harness_8h_add87ebf8d6474b534bcc38386e56a082}{AWS\_TESTING\_REPORT\_FD}}, \textcolor{stringliteral}{"{}\%s"{}}, prefix);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     va\_list ap;}
+\DoxyCodeLine{51     va\_start(ap, \mbox{\hyperlink{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}{format}});}
+\DoxyCodeLine{52     vfprintf(\mbox{\hyperlink{aws__test__harness_8h_add87ebf8d6474b534bcc38386e56a082}{AWS\_TESTING\_REPORT\_FD}}, \mbox{\hyperlink{namespace_aws_a5b080fcf4aed7e14fb25c2638948af06}{format}}, ap);}
+\DoxyCodeLine{53     va\_end(ap);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     fprintf(\mbox{\hyperlink{aws__test__harness_8h_add87ebf8d6474b534bcc38386e56a082}{AWS\_TESTING\_REPORT\_FD}}, \textcolor{stringliteral}{"{} [\%s():\%s@\#\%d]\(\backslash\)n"{}}, \textcolor{keyword}{function}, \mbox{\hyperlink{namespacefixup__makefiles_a48861649c723a22094b936f074258210}{file}}, \mbox{\hyperlink{namespacefixup__makefiles_a5e26abe70faebb0ef1e8af214967f145}{line}});}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{58 \}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define FAIL\_PREFIX "{}***FAILURE*** "{}}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{\#define CUNIT\_FAILURE\_MESSAGE(func, file, line, format, ...)                                                           \(\backslash\)}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{    s\_cunit\_failure\_message0(FAIL\_PREFIX, func, file, line, format, \#\_\_VA\_ARGS\_\_)}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__test__harness_8h_a2c5367b39a8efb9519722945ef9bd94c}{total\_failures}};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 \textcolor{preprocessor}{\#define SUCCESS (0)}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define FAILURE (-\/1)}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define RETURN\_SUCCESS(format, ...)                                                                                    \(\backslash\)}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{        printf(format, \#\#\_\_VA\_ARGS\_\_);                                                                                 \(\backslash\)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{        printf("{}\(\backslash\)n"{}});                                                                                                  \(\backslash\)}
+\DoxyCodeLine{73         return SUCCESS;                                                                                                \(\backslash\)}
+\DoxyCodeLine{74     \} while (0)}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#define PRINT\_FAIL\_INTERNAL(...)                                                                                       \(\backslash\)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{    CUNIT\_FAILURE\_MESSAGE(\_\_FUNCTION\_\_, \_\_FILE\_\_, \_\_LINE\_\_, \#\#\_\_VA\_ARGS\_\_, (const char *)NULL)}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define PRINT\_FAIL\_INTERNAL0(...)                                                                                      \(\backslash\)}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{    s\_cunit\_failure\_message0(FAIL\_PREFIX, \_\_FUNCTION\_\_, \_\_FILE\_\_, \_\_LINE\_\_, \#\#\_\_VA\_ARGS\_\_, (const char *)NULL)}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define POSTFAIL\_INTERNAL()                                                                                            \(\backslash\)}}
+\DoxyCodeLine{82 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{        total\_failures++;                                                                                              \(\backslash\)}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{        return FAILURE;                                                                                                \(\backslash\)}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#define FAIL(format, ...)                                                                                              \(\backslash\)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{        PRINT\_FAIL\_INTERNAL0(format, \#\#\_\_VA\_ARGS\_\_);                                                                   \(\backslash\)}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{        POSTFAIL\_INTERNAL();                                                                                           \(\backslash\)}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{    \} while (0)}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#define ASSERT\_TRUE(condition, ...)                                                                                    \(\backslash\)}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{        if (!(condition)) \{                                                                                            \(\backslash\)}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{            if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{                PRINT\_FAIL\_INTERNAL0("{}Expected condition to be true: "{}} \#condition);                                    \(\backslash\)}
+\DoxyCodeLine{98             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{99             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{100         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{101     \} while (0)}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#define ASSERT\_FALSE(condition, ...)                                                                                   \(\backslash\)}}
+\DoxyCodeLine{104 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{        if ((condition)) \{                                                                                             \(\backslash\)}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{            if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{                PRINT\_FAIL\_INTERNAL0("{}Expected condition to be false: "{}} \#condition);                                   \(\backslash\)}
+\DoxyCodeLine{108             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{109             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{110         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{111     \} while (0)}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#define ASSERT\_SUCCESS(condition, ...)                                                                                 \(\backslash\)}}
+\DoxyCodeLine{114 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{115 \textcolor{preprocessor}{        int assert\_rv = (condition);                                                                                   \(\backslash\)}}
+\DoxyCodeLine{116 \textcolor{preprocessor}{        if (assert\_rv != AWS\_OP\_SUCCESS) \{                                                                             \(\backslash\)}}
+\DoxyCodeLine{117 \textcolor{preprocessor}{            if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}}
+\DoxyCodeLine{118 \textcolor{preprocessor}{                PRINT\_FAIL\_INTERNAL0(                                                                                  \(\backslash\)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{                    "{}Expected success at \%s; got return value \%d with last error 0x\%04x\(\backslash\)n"{}},                            \(\backslash\)}
+\DoxyCodeLine{120                     \#condition,                                                                                        \(\backslash\)}
+\DoxyCodeLine{121                     assert\_rv,                                                                                         \(\backslash\)}
+\DoxyCodeLine{122                     aws\_last\_error());                                                                                 \(\backslash\)}
+\DoxyCodeLine{123             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{124             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{125         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{126     \} while (0)}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define ASSERT\_FAILS(condition, ...)                                                                                   \(\backslash\)}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{        int assert\_rv = (condition);                                                                                   \(\backslash\)}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{        if (assert\_rv != AWS\_OP\_ERR) \{                                                                                 \(\backslash\)}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{            if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{                PRINT\_FAIL\_INTERNAL0(                                                                                  \(\backslash\)}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{                    "{}Expected failure at \%s; got return value \%d with last error 0x\%04x\(\backslash\)n"{}},                            \(\backslash\)}
+\DoxyCodeLine{135                     \#condition,                                                                                        \(\backslash\)}
+\DoxyCodeLine{136                     assert\_rv,                                                                                         \(\backslash\)}
+\DoxyCodeLine{137                     aws\_last\_error());                                                                                 \(\backslash\)}
+\DoxyCodeLine{138             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{139             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{140         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{141     \} while (0)}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#define ASSERT\_ERROR(error, condition, ...)                                                                            \(\backslash\)}}
+\DoxyCodeLine{144 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{        int assert\_rv = (condition);                                                                                   \(\backslash\)}}
+\DoxyCodeLine{146 \textcolor{preprocessor}{        int assert\_err = aws\_last\_error();                                                                             \(\backslash\)}}
+\DoxyCodeLine{147 \textcolor{preprocessor}{        int assert\_err\_expect = (error);                                                                               \(\backslash\)}}
+\DoxyCodeLine{148 \textcolor{preprocessor}{        if (assert\_rv != AWS\_OP\_ERR) \{                                                                                 \(\backslash\)}}
+\DoxyCodeLine{149 \textcolor{preprocessor}{            fprintf(                                                                                                   \(\backslash\)}}
+\DoxyCodeLine{150 \textcolor{preprocessor}{                AWS\_TESTING\_REPORT\_FD,                                                                                 \(\backslash\)}}
+\DoxyCodeLine{151 \textcolor{preprocessor}{                "{}\%sExpected error but no error occurred; rv=\%d, aws\_last\_error=\%04x (expected \%04x): "{}},                \(\backslash\)}
+\DoxyCodeLine{152                 FAIL\_PREFIX,                                                                                           \(\backslash\)}
+\DoxyCodeLine{153                 assert\_rv,                                                                                             \(\backslash\)}
+\DoxyCodeLine{154                 assert\_err,                                                                                            \(\backslash\)}
+\DoxyCodeLine{155                 assert\_err\_expect);                                                                                    \(\backslash\)}
+\DoxyCodeLine{156             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{157                 PRINT\_FAIL\_INTERNAL0("{}\%s"{}, \#condition);                                                                \(\backslash\)}
+\DoxyCodeLine{158             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{159             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{160         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{161         if (assert\_err != assert\_err\_expect) \{                                                                         \(\backslash\)}
+\DoxyCodeLine{162             fprintf(                                                                                                   \(\backslash\)}
+\DoxyCodeLine{163                 AWS\_TESTING\_REPORT\_FD,                                                                                 \(\backslash\)}
+\DoxyCodeLine{164                 "{}\%sIncorrect error code; aws\_last\_error=\%04x (expected \%04x): "{},                                       \(\backslash\)}
+\DoxyCodeLine{165                 FAIL\_PREFIX,                                                                                           \(\backslash\)}
+\DoxyCodeLine{166                 assert\_err,                                                                                            \(\backslash\)}
+\DoxyCodeLine{167                 assert\_err\_expect);                                                                                    \(\backslash\)}
+\DoxyCodeLine{168             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{169                 PRINT\_FAIL\_INTERNAL0("{}\%s"{}, \#condition);                                                                \(\backslash\)}
+\DoxyCodeLine{170             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{171             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{172         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{173     \} while (0)}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define ASSERT\_NULL(ptr, ...)                                                                                          \(\backslash\)}}
+\DoxyCodeLine{176 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{177 \textcolor{preprocessor}{        }\textcolor{comment}{/* XXX: Some tests use ASSERT\_NULL on ints... */}\textcolor{preprocessor}{                                                               \(\backslash\)}}
+\DoxyCodeLine{178 \textcolor{preprocessor}{        void *assert\_p = (void *)(uintptr\_t)(ptr);                                                                     \(\backslash\)}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{        if (assert\_p) \{                                                                                                \(\backslash\)}}
+\DoxyCodeLine{180 \textcolor{preprocessor}{            fprintf(AWS\_TESTING\_REPORT\_FD, "{}\%sExpected null but got \%p: "{}}, FAIL\_PREFIX, assert\_p);                     \(\backslash\)}
+\DoxyCodeLine{181             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{182                 PRINT\_FAIL\_INTERNAL0("{}\%s"{}, \#ptr);                                                                      \(\backslash\)}
+\DoxyCodeLine{183             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{184             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{185         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{186     \} while (0)}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#define ASSERT\_NOT\_NULL(ptr, ...)                                                                                      \(\backslash\)}}
+\DoxyCodeLine{189 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{190 \textcolor{preprocessor}{        }\textcolor{comment}{/* XXX: Some tests use ASSERT\_NULL on ints... */}\textcolor{preprocessor}{                                                               \(\backslash\)}}
+\DoxyCodeLine{191 \textcolor{preprocessor}{        void *assert\_p = (void *)(uintptr\_t)(ptr);                                                                     \(\backslash\)}}
+\DoxyCodeLine{192 \textcolor{preprocessor}{        if (!assert\_p) \{                                                                                               \(\backslash\)}}
+\DoxyCodeLine{193 \textcolor{preprocessor}{            fprintf(AWS\_TESTING\_REPORT\_FD, "{}\%sExpected non-\/null but got null: "{}}, FAIL\_PREFIX);                         \(\backslash\)}
+\DoxyCodeLine{194             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{195                 PRINT\_FAIL\_INTERNAL0("{}\%s"{}, \#ptr);                                                                      \(\backslash\)}
+\DoxyCodeLine{196             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{197             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{198         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{199     \} while (0)}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#define ASSERT\_TYP\_EQUALS(type, formatarg, expected, got, ...)                                                         \(\backslash\)}}
+\DoxyCodeLine{202 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{203 \textcolor{preprocessor}{        type assert\_expected = (expected);                                                                             \(\backslash\)}}
+\DoxyCodeLine{204 \textcolor{preprocessor}{        type assert\_actual = (got);                                                                                    \(\backslash\)}}
+\DoxyCodeLine{205 \textcolor{preprocessor}{        if (assert\_expected != assert\_actual) \{                                                                        \(\backslash\)}}
+\DoxyCodeLine{206 \textcolor{preprocessor}{            fprintf(                                                                                                   \(\backslash\)}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{                AWS\_TESTING\_REPORT\_FD,                                                                                 \(\backslash\)}}
+\DoxyCodeLine{208 \textcolor{preprocessor}{                "{}\%s"{}} formatarg "{} != "{} formatarg "{}: "{},                                                                  \(\backslash\)}
+\DoxyCodeLine{209                 FAIL\_PREFIX,                                                                                           \(\backslash\)}
+\DoxyCodeLine{210                 assert\_expected,                                                                                       \(\backslash\)}
+\DoxyCodeLine{211                 assert\_actual);                                                                                        \(\backslash\)}
+\DoxyCodeLine{212             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{213                 PRINT\_FAIL\_INTERNAL0("{}\%s != \%s"{}, \#expected, \#got);                                                     \(\backslash\)}
+\DoxyCodeLine{214             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{215             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{216         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{217     \} while (0)}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219 \textcolor{preprocessor}{\#ifdef \_MSC\_VER}}
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#    define ASSERT\_INT\_EQUALS(expected, got, ...) ASSERT\_TYP\_EQUALS(intmax\_t, "{}\%lld"{}}, expected, got, \_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{221 \textcolor{preprocessor}{\#    define ASSERT\_UINT\_EQUALS(expected, got, ...) ASSERT\_TYP\_EQUALS(uintmax\_t, "{}\%llu"{}}, expected, got, \_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{222 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{223 \textcolor{comment}{/* For comparing any signed integer types */}}
+\DoxyCodeLine{224 \textcolor{preprocessor}{\#    define ASSERT\_INT\_EQUALS(expected, got, ...) ASSERT\_TYP\_EQUALS(intmax\_t, "{}\%jd"{}}, expected, got, \_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{225 \textcolor{comment}{/* For comparing any unsigned integer types */}}
+\DoxyCodeLine{226 \textcolor{preprocessor}{\#    define ASSERT\_UINT\_EQUALS(expected, got, ...) ASSERT\_TYP\_EQUALS(uintmax\_t, "{}\%ju"{}}, expected, got, \_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{227 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 \textcolor{preprocessor}{\#define ASSERT\_PTR\_EQUALS(expected, got, ...)                                                                          \(\backslash\)}}
+\DoxyCodeLine{230 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{231 \textcolor{preprocessor}{        void *assert\_expected = (void *)(uintptr\_t)(expected);                                                         \(\backslash\)}}
+\DoxyCodeLine{232 \textcolor{preprocessor}{        void *assert\_actual = (void *)(uintptr\_t)(got);                                                                \(\backslash\)}}
+\DoxyCodeLine{233 \textcolor{preprocessor}{        if (assert\_expected != assert\_actual) \{                                                                        \(\backslash\)}}
+\DoxyCodeLine{234 \textcolor{preprocessor}{            fprintf(AWS\_TESTING\_REPORT\_FD, "{}\%s\%p != \%p: "{}}, FAIL\_PREFIX, assert\_expected, assert\_actual);               \(\backslash\)}
+\DoxyCodeLine{235             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{236                 PRINT\_FAIL\_INTERNAL0("{}\%s != \%s"{}, \#expected, \#got);                                                     \(\backslash\)}
+\DoxyCodeLine{237             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{238             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{239         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{240     \} while (0)}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242 \textcolor{comment}{/* note that uint8\_t is promoted to unsigned int in varargs, so \%02x is an acceptable format string */}}
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#define ASSERT\_BYTE\_HEX\_EQUALS(expected, got, ...) ASSERT\_TYP\_EQUALS(uint8\_t, "{}\%02X"{}}, expected, got, \_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{244 \textcolor{preprocessor}{\#define ASSERT\_HEX\_EQUALS(expected, got, ...) ASSERT\_TYP\_EQUALS(unsigned long long, "{}\%llX"{}}, expected, got, \_\_VA\_ARGS\_\_)}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246 \textcolor{preprocessor}{\#define ASSERT\_STR\_EQUALS(expected, got, ...)                                                                          \(\backslash\)}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{248 \textcolor{preprocessor}{        const char *assert\_expected = (expected);                                                                      \(\backslash\)}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{        const char *assert\_got = (got);                                                                                \(\backslash\)}}
+\DoxyCodeLine{250 \textcolor{preprocessor}{        ASSERT\_NOT\_NULL(assert\_expected);                                                                              \(\backslash\)}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{        ASSERT\_NOT\_NULL(assert\_got);                                                                                   \(\backslash\)}}
+\DoxyCodeLine{252 \textcolor{preprocessor}{        if (strcmp(assert\_expected, assert\_got) != 0) \{                                                                \(\backslash\)}}
+\DoxyCodeLine{253 \textcolor{preprocessor}{            fprintf(                                                                                                   \(\backslash\)}}
+\DoxyCodeLine{254 \textcolor{preprocessor}{                AWS\_TESTING\_REPORT\_FD, "{}\%sExpected: \(\backslash\)"{}\%s\(\backslash\)"{}; got: \(\backslash\)"{}\%s\(\backslash\)"{}: "{}}, FAIL\_PREFIX, assert\_expected, assert\_got); \(\backslash\)}
+\DoxyCodeLine{255             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{256                 PRINT\_FAIL\_INTERNAL0("{}ASSERT\_STR\_EQUALS(\%s, \%s)"{}, \#expected, \#got);                                    \(\backslash\)}
+\DoxyCodeLine{257             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{258             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{259         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{260     \} while (0)}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#define ASSERT\_BIN\_ARRAYS\_EQUALS(expected, expected\_size, got, got\_size, ...)                                          \(\backslash\)}}
+\DoxyCodeLine{263 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{264 \textcolor{preprocessor}{        const uint8\_t *assert\_ex\_p = (const uint8\_t *)(expected);                                                      \(\backslash\)}}
+\DoxyCodeLine{265 \textcolor{preprocessor}{        size\_t assert\_ex\_s = (expected\_size);                                                                          \(\backslash\)}}
+\DoxyCodeLine{266 \textcolor{preprocessor}{        const uint8\_t *assert\_got\_p = (const uint8\_t *)(got);                                                          \(\backslash\)}}
+\DoxyCodeLine{267 \textcolor{preprocessor}{        size\_t assert\_got\_s = (got\_size);                                                                              \(\backslash\)}}
+\DoxyCodeLine{268 \textcolor{preprocessor}{        if (assert\_ex\_s == 0 \&\& assert\_got\_s == 0) \{                                                                   \(\backslash\)}}
+\DoxyCodeLine{269 \textcolor{preprocessor}{            break;                                                                                                     \(\backslash\)}}
+\DoxyCodeLine{270 \textcolor{preprocessor}{        \}                                                                                                              \(\backslash\)}}
+\DoxyCodeLine{271 \textcolor{preprocessor}{        if (assert\_ex\_s != assert\_got\_s) \{                                                                             \(\backslash\)}}
+\DoxyCodeLine{272 \textcolor{preprocessor}{            fprintf(AWS\_TESTING\_REPORT\_FD, "{}\%sSize mismatch: \%zu != \%zu: "{}}, FAIL\_PREFIX, assert\_ex\_s, assert\_got\_s);   \(\backslash\)}
+\DoxyCodeLine{273             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{274                 PRINT\_FAIL\_INTERNAL0(                                                                                  \(\backslash\)}
+\DoxyCodeLine{275                     "{}ASSERT\_BIN\_ARRAYS\_EQUALS(\%s, \%s, \%s, \%s)"{}, \#expected, \#expected\_size, \#got, \#got\_size);           \(\backslash\)}
+\DoxyCodeLine{276             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{277             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{278         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{279         if (memcmp(assert\_ex\_p, assert\_got\_p, assert\_got\_s) != 0) \{                                                    \(\backslash\)}
+\DoxyCodeLine{280             if (assert\_got\_s <= 1024) \{                                                                                \(\backslash\)}
+\DoxyCodeLine{281                 for (size\_t assert\_i = 0; assert\_i < assert\_ex\_s; ++assert\_i) \{                                        \(\backslash\)}
+\DoxyCodeLine{282                     if (assert\_ex\_p[assert\_i] != assert\_got\_p[assert\_i]) \{                                             \(\backslash\)}
+\DoxyCodeLine{283                         fprintf(                                                                                       \(\backslash\)}
+\DoxyCodeLine{284                             AWS\_TESTING\_REPORT\_FD,                                                                     \(\backslash\)}
+\DoxyCodeLine{285                             "{}\%sMismatch at byte[\%zu]: 0x\%02X != 0x\%02X: "{},                                             \(\backslash\)}
+\DoxyCodeLine{286                             FAIL\_PREFIX,                                                                               \(\backslash\)}
+\DoxyCodeLine{287                             assert\_i,                                                                                  \(\backslash\)}
+\DoxyCodeLine{288                             assert\_ex\_p[assert\_i],                                                                     \(\backslash\)}
+\DoxyCodeLine{289                             assert\_got\_p[assert\_i]);                                                                   \(\backslash\)}
+\DoxyCodeLine{290                         break;                                                                                         \(\backslash\)}
+\DoxyCodeLine{291                     \}                                                                                                  \(\backslash\)}
+\DoxyCodeLine{292                 \}                                                                                                      \(\backslash\)}
+\DoxyCodeLine{293             \} else \{                                                                                                   \(\backslash\)}
+\DoxyCodeLine{294                 fprintf(AWS\_TESTING\_REPORT\_FD, "{}\%sData mismatch: "{}, FAIL\_PREFIX);                                      \(\backslash\)}
+\DoxyCodeLine{295             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{296             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{297                 PRINT\_FAIL\_INTERNAL0(                                                                                  \(\backslash\)}
+\DoxyCodeLine{298                     "{}ASSERT\_BIN\_ARRAYS\_EQUALS(\%s, \%s, \%s, \%s)"{}, \#expected, \#expected\_size, \#got, \#got\_size);           \(\backslash\)}
+\DoxyCodeLine{299             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{300             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{301         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{302     \} while (0)}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#define ASSERT\_CURSOR\_VALUE\_STRING\_EQUALS(cursor, string, ...)                                                         \(\backslash\)}}
+\DoxyCodeLine{305 \textcolor{preprocessor}{    do \{                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{306 \textcolor{preprocessor}{        const uint8\_t *assert\_ex\_p = (const uint8\_t *)((cursor).ptr);                                                  \(\backslash\)}}
+\DoxyCodeLine{307 \textcolor{preprocessor}{        size\_t assert\_ex\_s = (cursor).len;                                                                             \(\backslash\)}}
+\DoxyCodeLine{308 \textcolor{preprocessor}{        const uint8\_t *assert\_got\_p = (const uint8\_t *)aws\_string\_c\_str(string);                                       \(\backslash\)}}
+\DoxyCodeLine{309 \textcolor{preprocessor}{        size\_t assert\_got\_s = (string)-\/>len;                                                                           \(\backslash\)}}
+\DoxyCodeLine{310 \textcolor{preprocessor}{        if (assert\_ex\_s == 0 \&\& assert\_got\_s == 0) \{                                                                   \(\backslash\)}}
+\DoxyCodeLine{311 \textcolor{preprocessor}{            break;                                                                                                     \(\backslash\)}}
+\DoxyCodeLine{312 \textcolor{preprocessor}{        \}                                                                                                              \(\backslash\)}}
+\DoxyCodeLine{313 \textcolor{preprocessor}{        if (assert\_ex\_s != assert\_got\_s) \{                                                                             \(\backslash\)}}
+\DoxyCodeLine{314 \textcolor{preprocessor}{            fprintf(AWS\_TESTING\_REPORT\_FD, "{}\%sSize mismatch: \%zu != \%zu: "{}}, FAIL\_PREFIX, assert\_ex\_s, assert\_got\_s);   \(\backslash\)}
+\DoxyCodeLine{315             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{316                 PRINT\_FAIL\_INTERNAL0("{}ASSERT\_CURSOR\_VALUE\_STRING\_EQUALS(\%s, \%s)"{}, \#cursor, \#string);                   \(\backslash\)}
+\DoxyCodeLine{317             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{318             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{319         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{320         if (memcmp(assert\_ex\_p, assert\_got\_p, assert\_got\_s) != 0) \{                                                    \(\backslash\)}
+\DoxyCodeLine{321             if (assert\_got\_s <= 1024) \{                                                                                \(\backslash\)}
+\DoxyCodeLine{322                 for (size\_t assert\_i = 0; assert\_i < assert\_ex\_s; ++assert\_i) \{                                        \(\backslash\)}
+\DoxyCodeLine{323                     if (assert\_ex\_p[assert\_i] != assert\_got\_p[assert\_i]) \{                                             \(\backslash\)}
+\DoxyCodeLine{324                         fprintf(                                                                                       \(\backslash\)}
+\DoxyCodeLine{325                             AWS\_TESTING\_REPORT\_FD,                                                                     \(\backslash\)}
+\DoxyCodeLine{326                             "{}\%sMismatch at byte[\%zu]: 0x\%02X != 0x\%02X: "{},                                             \(\backslash\)}
+\DoxyCodeLine{327                             FAIL\_PREFIX,                                                                               \(\backslash\)}
+\DoxyCodeLine{328                             assert\_i,                                                                                  \(\backslash\)}
+\DoxyCodeLine{329                             assert\_ex\_p[assert\_i],                                                                     \(\backslash\)}
+\DoxyCodeLine{330                             assert\_got\_p[assert\_i]);                                                                   \(\backslash\)}
+\DoxyCodeLine{331                         break;                                                                                         \(\backslash\)}
+\DoxyCodeLine{332                     \}                                                                                                  \(\backslash\)}
+\DoxyCodeLine{333                 \}                                                                                                      \(\backslash\)}
+\DoxyCodeLine{334             \} else \{                                                                                                   \(\backslash\)}
+\DoxyCodeLine{335                 fprintf(AWS\_TESTING\_REPORT\_FD, "{}\%sData mismatch: "{}, FAIL\_PREFIX);                                      \(\backslash\)}
+\DoxyCodeLine{336             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{337             if (!PRINT\_FAIL\_INTERNAL0(\_\_VA\_ARGS\_\_)) \{                                                                  \(\backslash\)}
+\DoxyCodeLine{338                 PRINT\_FAIL\_INTERNAL0("{}ASSERT\_CURSOR\_VALUE\_STRING\_EQUALS(\%s, \%s)"{}, \#cursor, \#string);                   \(\backslash\)}
+\DoxyCodeLine{339             \}                                                                                                          \(\backslash\)}
+\DoxyCodeLine{340             POSTFAIL\_INTERNAL();                                                                                       \(\backslash\)}
+\DoxyCodeLine{341         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{342     \} while (0)}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{aws__test__harness_8h_a75aa575405b9c39d49192e344e6aa4ff}{aws\_test\_before\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{345 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{aws__test__harness_8h_a9ec7a3cb5997cc80c18a6e41e5fe0320}{aws\_test\_run\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{346 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{aws__test__harness_8h_a6be02d2affbff6ffefc966c20d768c02}{aws\_test\_after\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keywordtype}{int} setup\_result, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__test__harness}{aws\_test\_harness}} \{}
+\DoxyCodeLine{349     \mbox{\hyperlink{aws__test__harness_8h_a75aa575405b9c39d49192e344e6aa4ff}{aws\_test\_before\_fn}} *\mbox{\hyperlink{structaws__test__harness_adc0198c6d029c82693718e803f81c4bc}{on\_before}};}
+\DoxyCodeLine{350     \mbox{\hyperlink{aws__test__harness_8h_a9ec7a3cb5997cc80c18a6e41e5fe0320}{aws\_test\_run\_fn}} *\mbox{\hyperlink{structaws__test__harness_a8f4cbf56f5b67a586c315a26e55f5517}{run}};}
+\DoxyCodeLine{351     \mbox{\hyperlink{aws__test__harness_8h_a6be02d2affbff6ffefc966c20d768c02}{aws\_test\_after\_fn}} *\mbox{\hyperlink{structaws__test__harness_a01827c66555547ca2ccd7e24f1598eb9}{on\_after}};}
+\DoxyCodeLine{352     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__test__harness_aa18ea810112e6367faa860a62efa001c}{ctx}};}
+\DoxyCodeLine{353     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structaws__test__harness_a614b51079188d52f8bef3fd9b1b29cbe}{test\_name}};}
+\DoxyCodeLine{354     \textcolor{keywordtype}{int} \mbox{\hyperlink{structaws__test__harness_a65964ecf84a8fb01f9d386e22bcb47e5}{suppress\_memcheck}};}
+\DoxyCodeLine{355 \};}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#if defined(\_WIN32)}}
+\DoxyCodeLine{358 \textcolor{preprocessor}{\#    include <windows.h>}}
+\DoxyCodeLine{359 \textcolor{keyword}{static} LONG WINAPI s\_test\_print\_stack\_trace(\textcolor{keyword}{struct} \_EXCEPTION\_POINTERS *exception\_pointers) \{}
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#    if !defined(AWS\_HEADER\_CHECKER)}}
+\DoxyCodeLine{361     \mbox{\hyperlink{system__info_8h_a9a79519c66431c641bbcdeae9b6c67e2}{aws\_backtrace\_print}}(stderr, exception\_pointers);}
+\DoxyCodeLine{362 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{363     \textcolor{keywordflow}{return} EXCEPTION\_EXECUTE\_HANDLER;}
+\DoxyCodeLine{364 \}}
+\DoxyCodeLine{365 \textcolor{preprocessor}{\#elif defined(AWS\_HAVE\_EXECINFO)}}
+\DoxyCodeLine{366 \textcolor{preprocessor}{\#    include <signal.h>}}
+\DoxyCodeLine{367 \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_print\_stack\_trace(\textcolor{keywordtype}{int} sig, siginfo\_t *sig\_info, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}}) \{}
+\DoxyCodeLine{368     (void)sig;}
+\DoxyCodeLine{369     (void)sig\_info;}
+\DoxyCodeLine{370     (void)\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}};}
+\DoxyCodeLine{371 \textcolor{preprocessor}{\#    if !defined(AWS\_HEADER\_CHECKER)}}
+\DoxyCodeLine{372     \mbox{\hyperlink{system__info_8h_a9a79519c66431c641bbcdeae9b6c67e2}{aws\_backtrace\_print}}(stderr, sig\_info);}
+\DoxyCodeLine{373 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{374     exit(-\/1);}
+\DoxyCodeLine{375 \}}
+\DoxyCodeLine{376 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{377 }
+\DoxyCodeLine{378 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__test__harness_8h_a87bae5b0672a27c3f1da5a5a7da97a9d}{s\_aws\_run\_test\_case}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__test__harness}{aws\_test\_harness}} *\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}) \{}
+\DoxyCodeLine{379     \mbox{\hyperlink{assert_8h_a2c17f0f768532f761b99a8fee0c656f1}{AWS\_ASSERT}}(\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>run);}
+\DoxyCodeLine{380 }
+\DoxyCodeLine{381 \textcolor{preprocessor}{\#if defined(\_WIN32)}}
+\DoxyCodeLine{382     SetUnhandledExceptionFilter(s\_test\_print\_stack\_trace);}
+\DoxyCodeLine{383     \textcolor{comment}{/* Set working directory to path to this exe */}}
+\DoxyCodeLine{384     \textcolor{keywordtype}{char} cwd[512];}
+\DoxyCodeLine{385     DWORD \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}} = GetModuleFileNameA(\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, cwd, \textcolor{keyword}{sizeof}(cwd));}
+\DoxyCodeLine{386     DWORD idx = \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}} -\/ 1;}
+\DoxyCodeLine{387     \textcolor{keywordflow}{while} (idx \&\& cwd[idx] != \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}) \{}
+\DoxyCodeLine{388         idx-\/-\/;}
+\DoxyCodeLine{389     \}}
+\DoxyCodeLine{390     cwd[idx] = 0;}
+\DoxyCodeLine{391     SetCurrentDirectory(cwd);}
+\DoxyCodeLine{392 \textcolor{preprocessor}{\#elif defined(AWS\_HAVE\_EXECINFO)}}
+\DoxyCodeLine{393     \textcolor{keyword}{struct }sigaction sa;}
+\DoxyCodeLine{394     \mbox{\hyperlink{memset__override_8c_ace6ee45c30e71865e6eb635200379db9}{memset}}(\&sa, 0, \textcolor{keyword}{sizeof}(\textcolor{keyword}{struct} sigaction));}
+\DoxyCodeLine{395     sigemptyset(\&sa.sa\_mask);}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397     sa.sa\_flags = SA\_NODEFER;}
+\DoxyCodeLine{398     sa.sa\_sigaction = s\_print\_stack\_trace;}
+\DoxyCodeLine{399 }
+\DoxyCodeLine{400     sigaction(SIGSEGV, \&sa, \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}});}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403     \textcolor{comment}{/* track allocations and report leaks in tests, unless suppressed */}}
+\DoxyCodeLine{404     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}};}
+\DoxyCodeLine{405     \textcolor{keywordflow}{if} (\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>suppress\_memcheck) \{}
+\DoxyCodeLine{406         \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{allocator_8h_a5036749a78d3724821ac41e4e0df9b9e}{aws\_default\_allocator}}();}
+\DoxyCodeLine{407     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{408         \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{allocator_8h_aa7aa4b037d3ade0d2d546e3c0db23940}{aws\_mem\_tracer\_new}}(\mbox{\hyperlink{allocator_8h_a5036749a78d3724821ac41e4e0df9b9e}{aws\_default\_allocator}}(), \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}}, \mbox{\hyperlink{allocator_8h_a40c7e3dfd595c844b8edea06012be4e9a8bd3c2337d8730d7527a798f355e8a2a}{AWS\_MEMTRACE\_STACKS}}, 8);}
+\DoxyCodeLine{409     \}}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{411     \textcolor{comment}{/* wire up a logger to stderr by default, may be replaced by some tests */}}
+\DoxyCodeLine{412     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__logger}{aws\_logger}} err\_logger;}
+\DoxyCodeLine{413     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__logger__standard__options}{aws\_logger\_standard\_options}} options;}
+\DoxyCodeLine{414     options.\mbox{\hyperlink{structaws__logger__standard__options_a1274a3fba3992ee5f09ac6f4fa58ab0e}{file}} = \mbox{\hyperlink{aws__test__harness_8h_add87ebf8d6474b534bcc38386e56a082}{AWS\_TESTING\_REPORT\_FD}};}
+\DoxyCodeLine{415     options.\mbox{\hyperlink{structaws__logger__standard__options_ae671f32e357d3cca45870c697ba394eb}{level}} = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5a547326c130a4e2ad011a00aa49579356}{AWS\_LL\_TRACE}};}
+\DoxyCodeLine{416     options.\mbox{\hyperlink{structaws__logger__standard__options_ac9488be59bd6e7711ea19ce0ddc541ad}{filename}} = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}};}
+\DoxyCodeLine{417     \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_ab45f489bc099316ef983da9f66a40eb9}{aws\_logger\_init\_standard}}(\&err\_logger, \mbox{\hyperlink{allocator_8h_a5036749a78d3724821ac41e4e0df9b9e}{aws\_default\_allocator}}(), \&options);}
+\DoxyCodeLine{418     \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_acd22d6fce30b750f5301a6f33854975f}{aws\_logger\_set}}(\&err\_logger);}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{420     \textcolor{keywordtype}{int} test\_res = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a24f294735cddb51d28b7f04883e690f6}{AWS\_OP\_ERR}};}
+\DoxyCodeLine{421     \textcolor{keywordtype}{int} setup\_res = \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a5c0c86c38647f98229becf17743f7cb5}{AWS\_OP\_SUCCESS}};}
+\DoxyCodeLine{422     \textcolor{keywordflow}{if} (\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>on\_before) \{}
+\DoxyCodeLine{423         setup\_res = \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>on\_before(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>ctx);}
+\DoxyCodeLine{424     \}}
+\DoxyCodeLine{425 }
+\DoxyCodeLine{426     \textcolor{keywordflow}{if} (!setup\_res) \{}
+\DoxyCodeLine{427         test\_res = \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>run(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>ctx);}
+\DoxyCodeLine{428     \}}
+\DoxyCodeLine{429 }
+\DoxyCodeLine{430     \textcolor{keywordflow}{if} (\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>on\_after) \{}
+\DoxyCodeLine{431         test\_res |= \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>on\_after(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, setup\_res, \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>ctx);}
+\DoxyCodeLine{432     \}}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{434     \textcolor{keywordflow}{if} (!test\_res) \{}
+\DoxyCodeLine{435         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>suppress\_memcheck) \{}
+\DoxyCodeLine{436             \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} leaked\_bytes = \mbox{\hyperlink{allocator_8h_a70bede0313f558d6f80c31082f087ed6}{aws\_mem\_tracer\_count}}(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{437             \textcolor{keywordflow}{if} (leaked\_bytes) \{}
+\DoxyCodeLine{438                 \mbox{\hyperlink{allocator_8h_a7e4dd8ce32216de0c00b6e413c9ac4ad}{aws\_mem\_tracer\_dump}}(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{439             \}}
+\DoxyCodeLine{440             \mbox{\hyperlink{aws__test__harness_8h_a9e880d3a5965d7181d676be29746fdb2}{ASSERT\_UINT\_EQUALS}}(0, \mbox{\hyperlink{allocator_8h_a70bede0313f558d6f80c31082f087ed6}{aws\_mem\_tracer\_count}}(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}));}
+\DoxyCodeLine{441         \}}
+\DoxyCodeLine{442     \}}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444     \textcolor{comment}{/* clean up */}}
+\DoxyCodeLine{445     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>suppress\_memcheck) \{}
+\DoxyCodeLine{446         \mbox{\hyperlink{allocator_8h_a3aa34e3d02b87498cb572d2ee161daf4}{aws\_mem\_tracer\_destroy}}(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{447     \}}
+\DoxyCodeLine{448     \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_acd22d6fce30b750f5301a6f33854975f}{aws\_logger\_set}}(\mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}});}
+\DoxyCodeLine{449     \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a9135965930e7b14fb09065dd3213e859}{aws\_logger\_clean\_up}}(\&err\_logger);}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{451     \textcolor{keywordflow}{if} (!test\_res) \{}
+\DoxyCodeLine{452         \mbox{\hyperlink{aws__test__harness_8h_a8058aa0f786d8fe22f77048192accb05}{RETURN\_SUCCESS}}(\textcolor{stringliteral}{"{}\%s [ \(\backslash\)033[32mOK\(\backslash\)033[0m ]"{}}, \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>test\_name);}
+\DoxyCodeLine{453     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{454         \mbox{\hyperlink{aws__test__harness_8h_a1f254de04a41f49e81e779411831309a}{FAIL}}(\textcolor{stringliteral}{"{}\%s [ \(\backslash\)033[31mFAILED\(\backslash\)033[0m ]"{}}, \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2templates_2template-for-proof_2_f_u_n_c_t_i_o_n__harness_8c_a5a73db05e84c5b2581cb723fc56deb5d}{harness}}-\/>test\_name);}
+\DoxyCodeLine{455     \}}
+\DoxyCodeLine{456 \}}
+\DoxyCodeLine{457 }
+\DoxyCodeLine{458 \textcolor{comment}{/* Enables terminal escape sequences for text coloring on Windows. */}}
+\DoxyCodeLine{459 \textcolor{comment}{/* https://docs.microsoft.com/en-\/us/windows/console/console-\/virtual-\/terminal-\/sequences */}}
+\DoxyCodeLine{460 \textcolor{preprocessor}{\#ifdef \_WIN32}}
+\DoxyCodeLine{461 }
+\DoxyCodeLine{462 \textcolor{preprocessor}{\#    include <Windows.h>}}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464 \textcolor{preprocessor}{\#    ifndef ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING}}
+\DoxyCodeLine{465 \textcolor{preprocessor}{\#        define ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING 0x0004}}
+\DoxyCodeLine{466 \textcolor{preprocessor}{\#    endif}}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{468 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__test__harness_8h_a172e43be7e90df8c5cd3dd7d16ffe45a}{enable\_vt\_mode}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{469     HANDLE hOut = GetStdHandle(STD\_OUTPUT\_HANDLE);}
+\DoxyCodeLine{470     \textcolor{keywordflow}{if} (hOut == INVALID\_HANDLE\_VALUE) \{}
+\DoxyCodeLine{471         \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a24f294735cddb51d28b7f04883e690f6}{AWS\_OP\_ERR}};}
+\DoxyCodeLine{472     \}}
+\DoxyCodeLine{473 }
+\DoxyCodeLine{474     DWORD dwMode = 0;}
+\DoxyCodeLine{475     \textcolor{keywordflow}{if} (!GetConsoleMode(hOut, \&dwMode)) \{}
+\DoxyCodeLine{476         \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a24f294735cddb51d28b7f04883e690f6}{AWS\_OP\_ERR}};}
+\DoxyCodeLine{477     \}}
+\DoxyCodeLine{478 }
+\DoxyCodeLine{479     dwMode |= ENABLE\_VIRTUAL\_TERMINAL\_PROCESSING;}
+\DoxyCodeLine{480     \textcolor{keywordflow}{if} (!SetConsoleMode(hOut, dwMode)) \{}
+\DoxyCodeLine{481         \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a24f294735cddb51d28b7f04883e690f6}{AWS\_OP\_ERR}};}
+\DoxyCodeLine{482     \}}
+\DoxyCodeLine{483     \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a5c0c86c38647f98229becf17743f7cb5}{AWS\_OP\_SUCCESS}};}
+\DoxyCodeLine{484 \}}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{487 }
+\DoxyCodeLine{488 \textcolor{keyword}{static} \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__test__harness_8h_a172e43be7e90df8c5cd3dd7d16ffe45a}{enable\_vt\_mode}}(\textcolor{keywordtype}{void}) \{}
+\DoxyCodeLine{489     \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a24f294735cddb51d28b7f04883e690f6}{AWS\_OP\_ERR}};}
+\DoxyCodeLine{490 \}}
+\DoxyCodeLine{491 }
+\DoxyCodeLine{492 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{493 }
+\DoxyCodeLine{494 \textcolor{preprocessor}{\#define AWS\_TEST\_CASE\_SUPRESSION(name, fn, s)                                                                          \(\backslash\)}}
+\DoxyCodeLine{495 \textcolor{preprocessor}{    static int fn(struct aws\_allocator *allocator, void *ctx);                                                         \(\backslash\)}}
+\DoxyCodeLine{496 \textcolor{preprocessor}{    static struct aws\_test\_harness name\#\#\_test = \{                                                                     \(\backslash\)}}
+\DoxyCodeLine{497 \textcolor{preprocessor}{        NULL,                                                                                                          \(\backslash\)}}
+\DoxyCodeLine{498 \textcolor{preprocessor}{        fn,                                                                                                            \(\backslash\)}}
+\DoxyCodeLine{499 \textcolor{preprocessor}{        NULL,                                                                                                          \(\backslash\)}}
+\DoxyCodeLine{500 \textcolor{preprocessor}{        NULL,                                                                                                          \(\backslash\)}}
+\DoxyCodeLine{501 \textcolor{preprocessor}{        \#name,                                                                                                         \(\backslash\)}}
+\DoxyCodeLine{502 \textcolor{preprocessor}{        s,                                                                                                             \(\backslash\)}}
+\DoxyCodeLine{503 \textcolor{preprocessor}{    \};                                                                                                                 \(\backslash\)}}
+\DoxyCodeLine{504 \textcolor{preprocessor}{    int name(int argc, char *argv[]) \{                                                                                 \(\backslash\)}}
+\DoxyCodeLine{505 \textcolor{preprocessor}{        (void)argc, (void)argv;                                                                                        \(\backslash\)}}
+\DoxyCodeLine{506 \textcolor{preprocessor}{        return s\_aws\_run\_test\_case(\&name\#\#\_test);                                                                      \(\backslash\)}}
+\DoxyCodeLine{507 \textcolor{preprocessor}{    \}}}
+\DoxyCodeLine{508 }
+\DoxyCodeLine{509 \textcolor{preprocessor}{\#define AWS\_TEST\_CASE\_FIXTURE\_SUPPRESSION(name, b, fn, af, c, s)                                                       \(\backslash\)}}
+\DoxyCodeLine{510 \textcolor{preprocessor}{    static int b(struct aws\_allocator *allocator, void *ctx);                                                          \(\backslash\)}}
+\DoxyCodeLine{511 \textcolor{preprocessor}{    static int fn(struct aws\_allocator *allocator, void *ctx);                                                         \(\backslash\)}}
+\DoxyCodeLine{512 \textcolor{preprocessor}{    static int af(struct aws\_allocator *allocator, int setup\_result, void *ctx);                                       \(\backslash\)}}
+\DoxyCodeLine{513 \textcolor{preprocessor}{    static struct aws\_test\_harness name\#\#\_test = \{                                                                     \(\backslash\)}}
+\DoxyCodeLine{514 \textcolor{preprocessor}{        b,                                                                                                             \(\backslash\)}}
+\DoxyCodeLine{515 \textcolor{preprocessor}{        fn,                                                                                                            \(\backslash\)}}
+\DoxyCodeLine{516 \textcolor{preprocessor}{        af,                                                                                                            \(\backslash\)}}
+\DoxyCodeLine{517 \textcolor{preprocessor}{        c,                                                                                                             \(\backslash\)}}
+\DoxyCodeLine{518 \textcolor{preprocessor}{        \#name,                                                                                                         \(\backslash\)}}
+\DoxyCodeLine{519 \textcolor{preprocessor}{        s,                                                                                                             \(\backslash\)}}
+\DoxyCodeLine{520 \textcolor{preprocessor}{    \};                                                                                                                 \(\backslash\)}}
+\DoxyCodeLine{521 \textcolor{preprocessor}{    int name(int argc, char *argv[]) \{                                                                                 \(\backslash\)}}
+\DoxyCodeLine{522 \textcolor{preprocessor}{        (void)argc;                                                                                                    \(\backslash\)}}
+\DoxyCodeLine{523 \textcolor{preprocessor}{        (void)argv;                                                                                                    \(\backslash\)}}
+\DoxyCodeLine{524 \textcolor{preprocessor}{        return s\_aws\_run\_test\_case(\&name\#\#\_test);                                                                      \(\backslash\)}}
+\DoxyCodeLine{525 \textcolor{preprocessor}{    \}}}
+\DoxyCodeLine{526 }
+\DoxyCodeLine{527 \textcolor{preprocessor}{\#define AWS\_TEST\_CASE(name, fn) AWS\_TEST\_CASE\_SUPRESSION(name, fn, 0)}}
+\DoxyCodeLine{528 \textcolor{preprocessor}{\#define AWS\_TEST\_CASE\_FIXTURE(name, b, fn, af, c) AWS\_TEST\_CASE\_FIXTURE\_SUPPRESSION(name, b, fn, af, c, 0)}}
+\DoxyCodeLine{529 }
+\DoxyCodeLine{530 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_TESTING\_AWS\_TEST\_HARNESS\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

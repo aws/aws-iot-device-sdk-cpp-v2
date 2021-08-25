@@ -1,0 +1,57 @@
+\hypertarget{s2n__server__key__share_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\+\_\+server\+\_\+key\+\_\+share.h File Reference}
+\label{s2n__server__key__share_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_key\_share.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/extensions/s2n\_server\_key\_share.h}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stuffer/s2n\+\_\+stuffer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/extensions/s2n\+\_\+key\+\_\+share.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__server__key__share_8h_a8c0cffeccbef62d3015cc00653cd9919}{s2n\+\_\+extensions\+\_\+server\+\_\+key\+\_\+share\+\_\+select}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__key__share_8h_af7826433ae69edba32069b498c8c68dd}{s2n\+\_\+extensions\+\_\+server\+\_\+key\+\_\+share\+\_\+send\+\_\+size}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__server__key__share_8h_a41d43179393e205d7d9f113ea2809db9}{s2n\+\_\+extensions\+\_\+server\+\_\+key\+\_\+share\+\_\+send}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
+\item 
+int \mbox{\hyperlink{s2n__server__key__share_8h_a04612ea186846b4272645d27b6e9d4f3}{s2n\+\_\+extensions\+\_\+server\+\_\+key\+\_\+share\+\_\+recv}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$extension)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} \mbox{\hyperlink{s2n__server__key__share_8h_aaa3fb47cbdf4a0bb1889dde2e9d81276}{s2n\+\_\+server\+\_\+key\+\_\+share\+\_\+extension}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__server__key__share_8h_a04612ea186846b4272645d27b6e9d4f3}\label{s2n__server__key__share_8h_a04612ea186846b4272645d27b6e9d4f3}} 
+\index{s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}!s2n\_extensions\_server\_key\_share\_recv@{s2n\_extensions\_server\_key\_share\_recv}}
+\index{s2n\_extensions\_server\_key\_share\_recv@{s2n\_extensions\_server\_key\_share\_recv}!s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_server\_key\_share\_recv()}{s2n\_extensions\_server\_key\_share\_recv()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+server\+\_\+key\+\_\+share\+\_\+recv (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{extension }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__share_8h_a8c0cffeccbef62d3015cc00653cd9919}\label{s2n__server__key__share_8h_a8c0cffeccbef62d3015cc00653cd9919}} 
+\index{s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}!s2n\_extensions\_server\_key\_share\_select@{s2n\_extensions\_server\_key\_share\_select}}
+\index{s2n\_extensions\_server\_key\_share\_select@{s2n\_extensions\_server\_key\_share\_select}!s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_server\_key\_share\_select()}{s2n\_extensions\_server\_key\_share\_select()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+server\+\_\+key\+\_\+share\+\_\+select (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__share_8h_a41d43179393e205d7d9f113ea2809db9}\label{s2n__server__key__share_8h_a41d43179393e205d7d9f113ea2809db9}} 
+\index{s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}!s2n\_extensions\_server\_key\_share\_send@{s2n\_extensions\_server\_key\_share\_send}}
+\index{s2n\_extensions\_server\_key\_share\_send@{s2n\_extensions\_server\_key\_share\_send}!s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_server\_key\_share\_send()}{s2n\_extensions\_server\_key\_share\_send()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+server\+\_\+key\+\_\+share\+\_\+send (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__server__key__share_8h_af7826433ae69edba32069b498c8c68dd}\label{s2n__server__key__share_8h_af7826433ae69edba32069b498c8c68dd}} 
+\index{s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}!s2n\_extensions\_server\_key\_share\_send\_size@{s2n\_extensions\_server\_key\_share\_send\_size}}
+\index{s2n\_extensions\_server\_key\_share\_send\_size@{s2n\_extensions\_server\_key\_share\_send\_size}!s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_extensions\_server\_key\_share\_send\_size()}{s2n\_extensions\_server\_key\_share\_send\_size()}}
+{\footnotesize\ttfamily int s2n\+\_\+extensions\+\_\+server\+\_\+key\+\_\+share\+\_\+send\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__server__key__share_8h_aaa3fb47cbdf4a0bb1889dde2e9d81276}\label{s2n__server__key__share_8h_aaa3fb47cbdf4a0bb1889dde2e9d81276}} 
+\index{s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}!s2n\_server\_key\_share\_extension@{s2n\_server\_key\_share\_extension}}
+\index{s2n\_server\_key\_share\_extension@{s2n\_server\_key\_share\_extension}!s2n\_server\_key\_share.h@{s2n\_server\_key\_share.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_server\_key\_share\_extension}{s2n\_server\_key\_share\_extension}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structs2n__extension__type}{s2n\+\_\+extension\+\_\+type}} s2n\+\_\+server\+\_\+key\+\_\+share\+\_\+extension\hspace{0.3cm}{\ttfamily [extern]}}
+

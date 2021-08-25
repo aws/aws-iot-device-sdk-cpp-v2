@@ -1,0 +1,77 @@
+\hypertarget{command__line__parser_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/command\+\_\+line\+\_\+parser.c File Reference}
+\label{command__line__parser_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/command\_line\_parser.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/command\_line\_parser.c}}
+{\ttfamily \#include $<$aws/common/command\+\_\+line\+\_\+parser.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$ \mbox{\hyperlink{command__line__parser_8c_a6ccf0d8287948ea251f17fa12ac8d91a}{s\+\_\+find\+\_\+option\+\_\+from\+\_\+char}} (const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$longopts, char search\+\_\+for, int $\ast$longindex)
+\item 
+static const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$ \mbox{\hyperlink{command__line__parser_8c_a256a539254f9f4a6416f015020fe1dca}{s\+\_\+find\+\_\+option\+\_\+from\+\_\+c\+\_\+str}} (const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$longopts, const char $\ast$search\+\_\+for, int $\ast$longindex)
+\item 
+int \mbox{\hyperlink{command__line__parser_8c_a07f7199b42427693b988eb823c8e45dc}{aws\+\_\+cli\+\_\+getopt\+\_\+long}} (int argc, char $\ast$const argv\mbox{[}$\,$\mbox{]}, const char $\ast$optstring, const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$longopts, int $\ast$longindex)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{command__line__parser_8c_a0460016f0677106b8a3918e50bd536d6}{aws\+\_\+cli\+\_\+optind}} = 1
+\item 
+int \mbox{\hyperlink{command__line__parser_8c_a6f58e89ac130d599d29283056f57a9a9}{aws\+\_\+cli\+\_\+opterr}} = -\/1
+\item 
+int \mbox{\hyperlink{command__line__parser_8c_a8199cbe3e4b21ec3eee9caaabe2a2916}{aws\+\_\+cli\+\_\+optopt}} = 0
+\item 
+const char $\ast$ \mbox{\hyperlink{command__line__parser_8c_ada0d8b4b672441192b97af791a999e6f}{aws\+\_\+cli\+\_\+optarg}} = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{command__line__parser_8c_a07f7199b42427693b988eb823c8e45dc}\label{command__line__parser_8c_a07f7199b42427693b988eb823c8e45dc}} 
+\index{command\_line\_parser.c@{command\_line\_parser.c}!aws\_cli\_getopt\_long@{aws\_cli\_getopt\_long}}
+\index{aws\_cli\_getopt\_long@{aws\_cli\_getopt\_long}!command\_line\_parser.c@{command\_line\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_cli\_getopt\_long()}{aws\_cli\_getopt\_long()}}
+{\footnotesize\ttfamily int aws\+\_\+cli\+\_\+getopt\+\_\+long (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$const}]{argv\mbox{[}$\,$\mbox{]},  }\item[{const char $\ast$}]{optstring,  }\item[{const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$}]{longopts,  }\item[{int $\ast$}]{longindex }\end{DoxyParamCaption})}
+
+A mostly compliant implementation of posix getopt\+\_\+long(). Parses command-\/line arguments. argc is the number of command line arguments passed in argv. optstring contains the legitimate option characters. The option characters coorespond to \mbox{\hyperlink{structaws__cli__option_a1580617637a8ab9499f714841f29ffff}{aws\+\_\+cli\+\_\+option\+::val}}. If the character is followed by a \+:, the option requires an argument. If it is followed by \textquotesingle{}\+::\textquotesingle{}, the argument is optional (not implemented yet).
+
+longopts, is an array of struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}}. These are the allowed options for the program. The last member of the array must be zero initialized.
+
+If longindex is non-\/null, it will be set to the index in longopts, for the found option.
+
+Returns option val if it was found, \textquotesingle{}?\textquotesingle{} if an option was encountered that was not specified in the option string, returns -\/1 when all arguments that can be parsed have been parsed. \mbox{\Hypertarget{command__line__parser_8c_a256a539254f9f4a6416f015020fe1dca}\label{command__line__parser_8c_a256a539254f9f4a6416f015020fe1dca}} 
+\index{command\_line\_parser.c@{command\_line\_parser.c}!s\_find\_option\_from\_c\_str@{s\_find\_option\_from\_c\_str}}
+\index{s\_find\_option\_from\_c\_str@{s\_find\_option\_from\_c\_str}!command\_line\_parser.c@{command\_line\_parser.c}}
+\doxysubsubsection{\texorpdfstring{s\_find\_option\_from\_c\_str()}{s\_find\_option\_from\_c\_str()}}
+{\footnotesize\ttfamily static const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}}$\ast$ s\+\_\+find\+\_\+option\+\_\+from\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$}]{longopts,  }\item[{const char $\ast$}]{search\+\_\+for,  }\item[{int $\ast$}]{longindex }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{command__line__parser_8c_a6ccf0d8287948ea251f17fa12ac8d91a}\label{command__line__parser_8c_a6ccf0d8287948ea251f17fa12ac8d91a}} 
+\index{command\_line\_parser.c@{command\_line\_parser.c}!s\_find\_option\_from\_char@{s\_find\_option\_from\_char}}
+\index{s\_find\_option\_from\_char@{s\_find\_option\_from\_char}!command\_line\_parser.c@{command\_line\_parser.c}}
+\doxysubsubsection{\texorpdfstring{s\_find\_option\_from\_char()}{s\_find\_option\_from\_char()}}
+{\footnotesize\ttfamily static const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}}$\ast$ s\+\_\+find\+\_\+option\+\_\+from\+\_\+char (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__cli__option}{aws\+\_\+cli\+\_\+option}} $\ast$}]{longopts,  }\item[{char}]{search\+\_\+for,  }\item[{int $\ast$}]{longindex }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{command__line__parser_8c_ada0d8b4b672441192b97af791a999e6f}\label{command__line__parser_8c_ada0d8b4b672441192b97af791a999e6f}} 
+\index{command\_line\_parser.c@{command\_line\_parser.c}!aws\_cli\_optarg@{aws\_cli\_optarg}}
+\index{aws\_cli\_optarg@{aws\_cli\_optarg}!command\_line\_parser.c@{command\_line\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_cli\_optarg}{aws\_cli\_optarg}}
+{\footnotesize\ttfamily const char$\ast$ aws\+\_\+cli\+\_\+optarg = NULL}
+
+If an option has an argument, when the option is encountered, this will be set to the argument portion. \mbox{\Hypertarget{command__line__parser_8c_a6f58e89ac130d599d29283056f57a9a9}\label{command__line__parser_8c_a6f58e89ac130d599d29283056f57a9a9}} 
+\index{command\_line\_parser.c@{command\_line\_parser.c}!aws\_cli\_opterr@{aws\_cli\_opterr}}
+\index{aws\_cli\_opterr@{aws\_cli\_opterr}!command\_line\_parser.c@{command\_line\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_cli\_opterr}{aws\_cli\_opterr}}
+{\footnotesize\ttfamily int aws\+\_\+cli\+\_\+opterr = -\/1}
+
+\mbox{\Hypertarget{command__line__parser_8c_a0460016f0677106b8a3918e50bd536d6}\label{command__line__parser_8c_a0460016f0677106b8a3918e50bd536d6}} 
+\index{command\_line\_parser.c@{command\_line\_parser.c}!aws\_cli\_optind@{aws\_cli\_optind}}
+\index{aws\_cli\_optind@{aws\_cli\_optind}!command\_line\_parser.c@{command\_line\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_cli\_optind}{aws\_cli\_optind}}
+{\footnotesize\ttfamily int aws\+\_\+cli\+\_\+optind = 1}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{command__line__parser_8c_a8199cbe3e4b21ec3eee9caaabe2a2916}\label{command__line__parser_8c_a8199cbe3e4b21ec3eee9caaabe2a2916}} 
+\index{command\_line\_parser.c@{command\_line\_parser.c}!aws\_cli\_optopt@{aws\_cli\_optopt}}
+\index{aws\_cli\_optopt@{aws\_cli\_optopt}!command\_line\_parser.c@{command\_line\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_cli\_optopt}{aws\_cli\_optopt}}
+{\footnotesize\ttfamily int aws\+\_\+cli\+\_\+optopt = 0}
+

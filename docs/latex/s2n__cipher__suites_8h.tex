@@ -1,0 +1,649 @@
+\hypertarget{s2n__cipher__suites_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+cipher\+\_\+suites.h File Reference}
+\label{s2n__cipher__suites_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_cipher\_suites.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_cipher\_suites.h}}
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls\+\_\+parameters.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+crypto.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+certificate.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+cipher.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hmac.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_af4ba4603e445c3767469486093d99598}{S2\+N\+\_\+\+KEY\+\_\+\+EXCHANGE\+\_\+\+DH}}~0x01  /$\ast$ Diffie-\/Hellman key exchange, including ephemeral $\ast$/
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_ac118df8a11153c01e071e6c95d15ba15}{S2\+N\+\_\+\+KEY\+\_\+\+EXCHANGE\+\_\+\+EPH}}~0x02  /$\ast$ Ephemeral key exchange $\ast$/
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_a12019f7e03ca6cbe2075ef675d5e5dec}{S2\+N\+\_\+\+KEY\+\_\+\+EXCHANGE\+\_\+\+ECC}}~0x04  /$\ast$ Elliptic curve cryptography $\ast$/
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_a4bd34ea3a6193b80f1d90fd7ac55e07c}{S2\+N\+\_\+\+MAX\+\_\+\+POSSIBLE\+\_\+\+RECORD\+\_\+\+ALGS}}~2
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_a18d6aca508cc0928eb1a9532cf25ff44}{S2\+N\+\_\+\+PQ\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+COUNT}}~3
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_a968fb3f49b30f581abe32ea2783de91f}{S2\+N\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+COUNT}}~(36 + \mbox{\hyperlink{s2n__cipher__suites_8h_a18d6aca508cc0928eb1a9532cf25ff44}{S2\+N\+\_\+\+PQ\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+COUNT}})
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_a2317812874a10b9c3499f8ca8007d7b5}{S2\+N\+\_\+\+TLS12\+\_\+\+AES\+\_\+\+GCM\+\_\+\+AEAD\+\_\+\+NONCE}}~0x01
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_a395b253c212ecd5314c01257f6d3c9c5}{S2\+N\+\_\+\+TLS12\+\_\+\+CHACHA\+\_\+\+POLY\+\_\+\+AEAD\+\_\+\+NONCE}}~0x02
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_abb0bcf0f550b147244e1d2daefba4f2f}{S2\+N\+\_\+\+TLS13\+\_\+\+RECORD\+\_\+\+AEAD\+\_\+\+NONCE}}~0x04
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_a584cb6df7585ee60371d6be949835daa}{S2\+N\+\_\+\+TLS13\+\_\+\+AES\+\_\+\+GCM\+\_\+\+MAXIMUM\+\_\+\+RECORD\+\_\+\+NUMBER}}~((uint64\+\_\+t) 23726565)
+\item 
+\#define \mbox{\hyperlink{s2n__cipher__suites_8h_aceb8d03a7be89b3cbcf65258686b00c1}{S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+METHOD\+\_\+\+TLS13}}~\mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95ca58c880eb750fed4e417dbcae85ccd66a}{S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+METHOD\+\_\+\+SENTINEL}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95c}{s2n\+\_\+authentication\+\_\+method}} \{ \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}{S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+RSA}} = 0
+, \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}{S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+ECDSA}}
+, \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95ca58c880eb750fed4e417dbcae85ccd66a}{S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+METHOD\+\_\+\+SENTINEL}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8h_afb5d46b9b4094a43acb9b4d55fdcb6ea}{s2n\+\_\+cipher\+\_\+suites\+\_\+init}} (void)
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8h_a6c50373c5d68e327710d20bd0278ce41}{s2n\+\_\+cipher\+\_\+suites\+\_\+cleanup}} (void)
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} $\ast$ \mbox{\hyperlink{s2n__cipher__suites_8h_a1f209f1192c8a5693b4cf9187805f90a}{s2n\+\_\+cipher\+\_\+suite\+\_\+from\+\_\+wire}} (const uint8\+\_\+t cipher\+\_\+suite\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]})
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8h_a1fde427e44c9343e87af779ca1666b9e}{s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+client}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t wire\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]})
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8h_a93d49c8f6f3f8a5f4b7e703a61421b7b}{s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+sslv2\+\_\+server}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$wire, uint16\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+\item 
+int \mbox{\hyperlink{s2n__cipher__suites_8h_a786e7c2f58d929af6012129893c03e63}{s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+tls\+\_\+server}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$wire, uint16\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a5207c89d92951be3bb7d6125d4b96800}{s2n\+\_\+record\+\_\+alg\+\_\+null}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a3e1af441475886bfaecd9842f3d154a5}{s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+md5}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a96e008f2d43c169af35be8d107c48934}{s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a929db2d53c367e42fa8e675fb14172e6}{s2n\+\_\+record\+\_\+alg\+\_\+3des\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a452d94ade8960b5ab6fd9566dbbbe1e8}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a3e6b27a84708ca9e0fcf25a82d7c2dc5}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha\+\_\+composite}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a94034f09aeb9f3aa1ebe99b81daf34e2}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha256}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a3e903c153439ddbe9d901be83b84449e}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha256\+\_\+composite}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a15443886354166843b1db74ccc4573ce}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_ac385dff3872ca9ef19f7ae44751c9aaf}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha\+\_\+composite}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a217a25546da4acc6b21e9e26452030e7}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha256}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_aa58e3f3c544cabe170e73ffc58d0fd84}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha256\+\_\+composite}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_ad348dd46e0bb0d362648c5466df03c1a}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha384}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a95d7bd4ee3bbad1298952628bc39a3f5}{s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+gcm}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_a525e7698dc44ca25b953c9790de11c02}{s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+gcm}}
+\item 
+const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} \mbox{\hyperlink{s2n__cipher__suites_8h_ade6d0c9f7fd0d1b943321e953b20d8b1}{s2n\+\_\+record\+\_\+alg\+\_\+chacha20\+\_\+poly1305}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a961160365c54a2770d684943f033f4de}{s2n\+\_\+null\+\_\+cipher\+\_\+suite}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a0bf7a5fcd091e8b4bef87992b37522da}{s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+md5}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_aaf608074ffdc86e41713146d9ebb2370}{s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_aedbbcf28f7ae11f940e055cbad69f65d}{s2n\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a43fd6b4d1740fd0401e7a4e0695a9ab8}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_aa85dccb2e7e53f402d8f3e96ed48da66}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_abb2dc794d47cf6d2faa76924260ea1d2}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a46d9efb9bf17d8c57ef8a57d2b56df4f}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a9099bfcbb1445470e4113c81aa58c2f4}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a89060731d96940fd07e31b094c28d5a4}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a6a21d24267d675efe8387cb57b62e18f}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a41356e82307bc9b5ea6035964ceff636}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a55f229a7744b8e0bacbc1650ce0f1cda}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a28e6e1fd6af50e6fc500c94cc267fd86}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a1b0863aff304f3fe262b90e800854197}{s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a7ef219704ef9ef7aebbdbdfec74642e2}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a36c1996e2804dad902d3b178570182ba}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a7f2fe8fd0fdfece68a9ac1997da7db51}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_af99d92ad95c5580cf8848a675e321f93}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a1601b2ed82c660b98799f782b1355bc8}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a3b9234b1e271ab80bd9c50b7c32e4ced}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a1a8ebc22b2a910b157224839fea8b75b}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_af9331d4ceaa39de21a9dd24eaf811975}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_adc98b5912b789773adcb3ea2cdbe3c29}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_adc98cb26a16a8056a48cd72d3782c0ae}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_abb47c0718e5f0e0e52ad90e81d0272a5}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a41f01fab4d96de082b409107d2148e4b}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_af92572e0db23d53465461558e833a991}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a4b15b5a254ea34d9ef0811b90b0354d1}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a70e882e5e28f751fe5e23386081952bd}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_af1bf6d90bb73dd80533819cc1be8da6e}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a67490116fd3bb3e083a3a88ed792c193}{s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_ac96edb340b078d09707b70d5e1b5500b}{s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_aab45275ecd81541e68ef240bef05f995}{s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+sha}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_ad94c4052c3d0ab1c09021c214fb3310c}{s2n\+\_\+ecdhe\+\_\+kyber\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_ab3fb3db3a8969d2b9c929d52921ec3cc}{s2n\+\_\+ecdhe\+\_\+bike\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_afcdf04ecf4ec99ef4544464ff68fdfa9}{s2n\+\_\+ecdhe\+\_\+sike\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a275c6ae46727624a2080d3812e2560be}{s2n\+\_\+tls13\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_ac28aff94fd6a2c8995c7880912773a5e}{s2n\+\_\+tls13\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256}}
+\item 
+struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} \mbox{\hyperlink{s2n__cipher__suites_8h_a464d84090a431794715e02fc4a5e50c4}{s2n\+\_\+tls13\+\_\+chacha20\+\_\+poly1305\+\_\+sha256}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{s2n__cipher__suites_8h_aceb8d03a7be89b3cbcf65258686b00c1}\label{s2n__cipher__suites_8h_aceb8d03a7be89b3cbcf65258686b00c1}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_AUTHENTICATION\_METHOD\_TLS13@{S2N\_AUTHENTICATION\_METHOD\_TLS13}}
+\index{S2N\_AUTHENTICATION\_METHOD\_TLS13@{S2N\_AUTHENTICATION\_METHOD\_TLS13}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_AUTHENTICATION\_METHOD\_TLS13}{S2N\_AUTHENTICATION\_METHOD\_TLS13}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+METHOD\+\_\+\+TLS13~\mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95ca58c880eb750fed4e417dbcae85ccd66a}{S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+METHOD\+\_\+\+SENTINEL}}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a968fb3f49b30f581abe32ea2783de91f}\label{s2n__cipher__suites_8h_a968fb3f49b30f581abe32ea2783de91f}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_CIPHER\_SUITE\_COUNT@{S2N\_CIPHER\_SUITE\_COUNT}}
+\index{S2N\_CIPHER\_SUITE\_COUNT@{S2N\_CIPHER\_SUITE\_COUNT}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_CIPHER\_SUITE\_COUNT}{S2N\_CIPHER\_SUITE\_COUNT}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+COUNT~(36 + \mbox{\hyperlink{s2n__cipher__suites_8h_a18d6aca508cc0928eb1a9532cf25ff44}{S2\+N\+\_\+\+PQ\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+COUNT}})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_af4ba4603e445c3767469486093d99598}\label{s2n__cipher__suites_8h_af4ba4603e445c3767469486093d99598}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_KEY\_EXCHANGE\_DH@{S2N\_KEY\_EXCHANGE\_DH}}
+\index{S2N\_KEY\_EXCHANGE\_DH@{S2N\_KEY\_EXCHANGE\_DH}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_KEY\_EXCHANGE\_DH}{S2N\_KEY\_EXCHANGE\_DH}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+KEY\+\_\+\+EXCHANGE\+\_\+\+DH~0x01  /$\ast$ Diffie-\/Hellman key exchange, including ephemeral $\ast$/}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a12019f7e03ca6cbe2075ef675d5e5dec}\label{s2n__cipher__suites_8h_a12019f7e03ca6cbe2075ef675d5e5dec}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_KEY\_EXCHANGE\_ECC@{S2N\_KEY\_EXCHANGE\_ECC}}
+\index{S2N\_KEY\_EXCHANGE\_ECC@{S2N\_KEY\_EXCHANGE\_ECC}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_KEY\_EXCHANGE\_ECC}{S2N\_KEY\_EXCHANGE\_ECC}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+KEY\+\_\+\+EXCHANGE\+\_\+\+ECC~0x04  /$\ast$ Elliptic curve cryptography $\ast$/}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_ac118df8a11153c01e071e6c95d15ba15}\label{s2n__cipher__suites_8h_ac118df8a11153c01e071e6c95d15ba15}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_KEY\_EXCHANGE\_EPH@{S2N\_KEY\_EXCHANGE\_EPH}}
+\index{S2N\_KEY\_EXCHANGE\_EPH@{S2N\_KEY\_EXCHANGE\_EPH}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_KEY\_EXCHANGE\_EPH}{S2N\_KEY\_EXCHANGE\_EPH}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+KEY\+\_\+\+EXCHANGE\+\_\+\+EPH~0x02  /$\ast$ Ephemeral key exchange $\ast$/}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a4bd34ea3a6193b80f1d90fd7ac55e07c}\label{s2n__cipher__suites_8h_a4bd34ea3a6193b80f1d90fd7ac55e07c}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_MAX\_POSSIBLE\_RECORD\_ALGS@{S2N\_MAX\_POSSIBLE\_RECORD\_ALGS}}
+\index{S2N\_MAX\_POSSIBLE\_RECORD\_ALGS@{S2N\_MAX\_POSSIBLE\_RECORD\_ALGS}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_MAX\_POSSIBLE\_RECORD\_ALGS}{S2N\_MAX\_POSSIBLE\_RECORD\_ALGS}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+MAX\+\_\+\+POSSIBLE\+\_\+\+RECORD\+\_\+\+ALGS~2}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a18d6aca508cc0928eb1a9532cf25ff44}\label{s2n__cipher__suites_8h_a18d6aca508cc0928eb1a9532cf25ff44}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_PQ\_CIPHER\_SUITE\_COUNT@{S2N\_PQ\_CIPHER\_SUITE\_COUNT}}
+\index{S2N\_PQ\_CIPHER\_SUITE\_COUNT@{S2N\_PQ\_CIPHER\_SUITE\_COUNT}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_PQ\_CIPHER\_SUITE\_COUNT}{S2N\_PQ\_CIPHER\_SUITE\_COUNT}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+PQ\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+COUNT~3}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a2317812874a10b9c3499f8ca8007d7b5}\label{s2n__cipher__suites_8h_a2317812874a10b9c3499f8ca8007d7b5}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_TLS12\_AES\_GCM\_AEAD\_NONCE@{S2N\_TLS12\_AES\_GCM\_AEAD\_NONCE}}
+\index{S2N\_TLS12\_AES\_GCM\_AEAD\_NONCE@{S2N\_TLS12\_AES\_GCM\_AEAD\_NONCE}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_TLS12\_AES\_GCM\_AEAD\_NONCE}{S2N\_TLS12\_AES\_GCM\_AEAD\_NONCE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+TLS12\+\_\+\+AES\+\_\+\+GCM\+\_\+\+AEAD\+\_\+\+NONCE~0x01}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a395b253c212ecd5314c01257f6d3c9c5}\label{s2n__cipher__suites_8h_a395b253c212ecd5314c01257f6d3c9c5}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_TLS12\_CHACHA\_POLY\_AEAD\_NONCE@{S2N\_TLS12\_CHACHA\_POLY\_AEAD\_NONCE}}
+\index{S2N\_TLS12\_CHACHA\_POLY\_AEAD\_NONCE@{S2N\_TLS12\_CHACHA\_POLY\_AEAD\_NONCE}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_TLS12\_CHACHA\_POLY\_AEAD\_NONCE}{S2N\_TLS12\_CHACHA\_POLY\_AEAD\_NONCE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+TLS12\+\_\+\+CHACHA\+\_\+\+POLY\+\_\+\+AEAD\+\_\+\+NONCE~0x02}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a584cb6df7585ee60371d6be949835daa}\label{s2n__cipher__suites_8h_a584cb6df7585ee60371d6be949835daa}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_TLS13\_AES\_GCM\_MAXIMUM\_RECORD\_NUMBER@{S2N\_TLS13\_AES\_GCM\_MAXIMUM\_RECORD\_NUMBER}}
+\index{S2N\_TLS13\_AES\_GCM\_MAXIMUM\_RECORD\_NUMBER@{S2N\_TLS13\_AES\_GCM\_MAXIMUM\_RECORD\_NUMBER}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_TLS13\_AES\_GCM\_MAXIMUM\_RECORD\_NUMBER}{S2N\_TLS13\_AES\_GCM\_MAXIMUM\_RECORD\_NUMBER}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+TLS13\+\_\+\+AES\+\_\+\+GCM\+\_\+\+MAXIMUM\+\_\+\+RECORD\+\_\+\+NUMBER~((uint64\+\_\+t) 23726565)}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_abb0bcf0f550b147244e1d2daefba4f2f}\label{s2n__cipher__suites_8h_abb0bcf0f550b147244e1d2daefba4f2f}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_TLS13\_RECORD\_AEAD\_NONCE@{S2N\_TLS13\_RECORD\_AEAD\_NONCE}}
+\index{S2N\_TLS13\_RECORD\_AEAD\_NONCE@{S2N\_TLS13\_RECORD\_AEAD\_NONCE}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_TLS13\_RECORD\_AEAD\_NONCE}{S2N\_TLS13\_RECORD\_AEAD\_NONCE}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+TLS13\+\_\+\+RECORD\+\_\+\+AEAD\+\_\+\+NONCE~0x04}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95c}\label{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95c}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_authentication\_method@{s2n\_authentication\_method}}
+\index{s2n\_authentication\_method@{s2n\_authentication\_method}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_authentication\_method}{s2n\_authentication\_method}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95c}{s2n\+\_\+authentication\+\_\+method}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_AUTHENTICATION\_RSA@{S2N\_AUTHENTICATION\_RSA}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_AUTHENTICATION\_RSA@{S2N\_AUTHENTICATION\_RSA}}}\mbox{\Hypertarget{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}\label{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95cadd8126ecdf7d49bb5ee1fc43fc950827}} 
+S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+RSA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_AUTHENTICATION\_ECDSA@{S2N\_AUTHENTICATION\_ECDSA}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_AUTHENTICATION\_ECDSA@{S2N\_AUTHENTICATION\_ECDSA}}}\mbox{\Hypertarget{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}\label{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95caa64e1c197fa07cf1e6de65cfbc5c931b}} 
+S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+ECDSA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_AUTHENTICATION\_METHOD\_SENTINEL@{S2N\_AUTHENTICATION\_METHOD\_SENTINEL}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!S2N\_AUTHENTICATION\_METHOD\_SENTINEL@{S2N\_AUTHENTICATION\_METHOD\_SENTINEL}}}\mbox{\Hypertarget{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95ca58c880eb750fed4e417dbcae85ccd66a}\label{s2n__cipher__suites_8h_ad7981b2f749f51ab3860442a36bdf95ca58c880eb750fed4e417dbcae85ccd66a}} 
+S2\+N\+\_\+\+AUTHENTICATION\+\_\+\+METHOD\+\_\+\+SENTINEL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a1f209f1192c8a5693b4cf9187805f90a}\label{s2n__cipher__suites_8h_a1f209f1192c8a5693b4cf9187805f90a}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_cipher\_suite\_from\_wire@{s2n\_cipher\_suite\_from\_wire}}
+\index{s2n\_cipher\_suite\_from\_wire@{s2n\_cipher\_suite\_from\_wire}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_cipher\_suite\_from\_wire()}{s2n\_cipher\_suite\_from\_wire()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}}$\ast$ s2n\+\_\+cipher\+\_\+suite\+\_\+from\+\_\+wire (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{cipher\+\_\+suite\mbox{[}\+S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a6c50373c5d68e327710d20bd0278ce41}\label{s2n__cipher__suites_8h_a6c50373c5d68e327710d20bd0278ce41}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_cipher\_suites\_cleanup@{s2n\_cipher\_suites\_cleanup}}
+\index{s2n\_cipher\_suites\_cleanup@{s2n\_cipher\_suites\_cleanup}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_cipher\_suites\_cleanup()}{s2n\_cipher\_suites\_cleanup()}}
+{\footnotesize\ttfamily int s2n\+\_\+cipher\+\_\+suites\+\_\+cleanup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_afb5d46b9b4094a43acb9b4d55fdcb6ea}\label{s2n__cipher__suites_8h_afb5d46b9b4094a43acb9b4d55fdcb6ea}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_cipher\_suites\_init@{s2n\_cipher\_suites\_init}}
+\index{s2n\_cipher\_suites\_init@{s2n\_cipher\_suites\_init}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_cipher\_suites\_init()}{s2n\_cipher\_suites\_init()}}
+{\footnotesize\ttfamily int s2n\+\_\+cipher\+\_\+suites\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a1fde427e44c9343e87af779ca1666b9e}\label{s2n__cipher__suites_8h_a1fde427e44c9343e87af779ca1666b9e}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_set\_cipher\_as\_client@{s2n\_set\_cipher\_as\_client}}
+\index{s2n\_set\_cipher\_as\_client@{s2n\_set\_cipher\_as\_client}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_cipher\_as\_client()}{s2n\_set\_cipher\_as\_client()}}
+{\footnotesize\ttfamily int s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t}]{wire\mbox{[}\+S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a93d49c8f6f3f8a5f4b7e703a61421b7b}\label{s2n__cipher__suites_8h_a93d49c8f6f3f8a5f4b7e703a61421b7b}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_set\_cipher\_as\_sslv2\_server@{s2n\_set\_cipher\_as\_sslv2\_server}}
+\index{s2n\_set\_cipher\_as\_sslv2\_server@{s2n\_set\_cipher\_as\_sslv2\_server}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_cipher\_as\_sslv2\_server()}{s2n\_set\_cipher\_as\_sslv2\_server()}}
+{\footnotesize\ttfamily int s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+sslv2\+\_\+server (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t $\ast$}]{wire,  }\item[{uint16\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a786e7c2f58d929af6012129893c03e63}\label{s2n__cipher__suites_8h_a786e7c2f58d929af6012129893c03e63}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_set\_cipher\_as\_tls\_server@{s2n\_set\_cipher\_as\_tls\_server}}
+\index{s2n\_set\_cipher\_as\_tls\_server@{s2n\_set\_cipher\_as\_tls\_server}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_set\_cipher\_as\_tls\_server()}{s2n\_set\_cipher\_as\_tls\_server()}}
+{\footnotesize\ttfamily int s2n\+\_\+set\+\_\+cipher\+\_\+as\+\_\+tls\+\_\+server (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t $\ast$}]{wire,  }\item[{uint16\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a43fd6b4d1740fd0401e7a4e0695a9ab8}\label{s2n__cipher__suites_8h_a43fd6b4d1740fd0401e7a4e0695a9ab8}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha}}
+\index{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha}{s2n\_dhe\_rsa\_with\_3des\_ede\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_abb2dc794d47cf6d2faa76924260ea1d2}\label{s2n__cipher__suites_8h_abb2dc794d47cf6d2faa76924260ea1d2}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha}}
+\index{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha}{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a41356e82307bc9b5ea6035964ceff636}\label{s2n__cipher__suites_8h_a41356e82307bc9b5ea6035964ceff636}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256}}
+\index{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256}{s2n\_dhe\_rsa\_with\_aes\_128\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a7ef219704ef9ef7aebbdbdfec74642e2}\label{s2n__cipher__suites_8h_a7ef219704ef9ef7aebbdbdfec74642e2}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256}}
+\index{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256}{s2n\_dhe\_rsa\_with\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a9099bfcbb1445470e4113c81aa58c2f4}\label{s2n__cipher__suites_8h_a9099bfcbb1445470e4113c81aa58c2f4}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha}}
+\index{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha}{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a55f229a7744b8e0bacbc1650ce0f1cda}\label{s2n__cipher__suites_8h_a55f229a7744b8e0bacbc1650ce0f1cda}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256@{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256}}
+\index{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256@{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256}{s2n\_dhe\_rsa\_with\_aes\_256\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a36c1996e2804dad902d3b178570182ba}\label{s2n__cipher__suites_8h_a36c1996e2804dad902d3b178570182ba}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_dhe\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a67490116fd3bb3e083a3a88ed792c193}\label{s2n__cipher__suites_8h_a67490116fd3bb3e083a3a88ed792c193}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256@{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256}}
+\index{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256@{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256}{s2n\_dhe\_rsa\_with\_chacha20\_poly1305\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+dhe\+\_\+rsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_ab3fb3db3a8969d2b9c929d52921ec3cc}\label{s2n__cipher__suites_8h_ab3fb3db3a8969d2b9c929d52921ec3cc}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_bike\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+bike\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a7f2fe8fd0fdfece68a9ac1997da7db51}\label{s2n__cipher__suites_8h_a7f2fe8fd0fdfece68a9ac1997da7db51}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_af9331d4ceaa39de21a9dd24eaf811975}\label{s2n__cipher__suites_8h_af9331d4ceaa39de21a9dd24eaf811975}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a41f01fab4d96de082b409107d2148e4b}\label{s2n__cipher__suites_8h_a41f01fab4d96de082b409107d2148e4b}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256@{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}{s2n\_ecdhe\_ecdsa\_with\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_af99d92ad95c5580cf8848a675e321f93}\label{s2n__cipher__suites_8h_af99d92ad95c5580cf8848a675e321f93}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_adc98b5912b789773adcb3ea2cdbe3c29}\label{s2n__cipher__suites_8h_adc98b5912b789773adcb3ea2cdbe3c29}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_cbc\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_af92572e0db23d53465461558e833a991}\label{s2n__cipher__suites_8h_af92572e0db23d53465461558e833a991}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_ecdsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_ac96edb340b078d09707b70d5e1b5500b}\label{s2n__cipher__suites_8h_ac96edb340b078d09707b70d5e1b5500b}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256@{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256}}
+\index{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256@{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256}{s2n\_ecdhe\_ecdsa\_with\_chacha20\_poly1305\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+ecdsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_ad94c4052c3d0ab1c09021c214fb3310c}\label{s2n__cipher__suites_8h_ad94c4052c3d0ab1c09021c214fb3310c}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_kyber\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+kyber\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a1601b2ed82c660b98799f782b1355bc8}\label{s2n__cipher__suites_8h_a1601b2ed82c660b98799f782b1355bc8}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha}}
+\index{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha}{s2n\_ecdhe\_rsa\_with\_3des\_ede\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a3b9234b1e271ab80bd9c50b7c32e4ced}\label{s2n__cipher__suites_8h_a3b9234b1e271ab80bd9c50b7c32e4ced}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha}{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_adc98cb26a16a8056a48cd72d3782c0ae}\label{s2n__cipher__suites_8h_adc98cb26a16a8056a48cd72d3782c0ae}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256}{s2n\_ecdhe\_rsa\_with\_aes\_128\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a4b15b5a254ea34d9ef0811b90b0354d1}\label{s2n__cipher__suites_8h_a4b15b5a254ea34d9ef0811b90b0354d1}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256}{s2n\_ecdhe\_rsa\_with\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a1a8ebc22b2a910b157224839fea8b75b}\label{s2n__cipher__suites_8h_a1a8ebc22b2a910b157224839fea8b75b}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha}{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_abb47c0718e5f0e0e52ad90e81d0272a5}\label{s2n__cipher__suites_8h_abb47c0718e5f0e0e52ad90e81d0272a5}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384@{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384@{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384}{s2n\_ecdhe\_rsa\_with\_aes\_256\_cbc\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a70e882e5e28f751fe5e23386081952bd}\label{s2n__cipher__suites_8h_a70e882e5e28f751fe5e23386081952bd}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_af1bf6d90bb73dd80533819cc1be8da6e}\label{s2n__cipher__suites_8h_af1bf6d90bb73dd80533819cc1be8da6e}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256@{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256}}
+\index{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256@{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256}{s2n\_ecdhe\_rsa\_with\_chacha20\_poly1305\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+chacha20\+\_\+poly1305\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_aab45275ecd81541e68ef240bef05f995}\label{s2n__cipher__suites_8h_aab45275ecd81541e68ef240bef05f995}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha@{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha}}
+\index{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha@{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha}{s2n\_ecdhe\_rsa\_with\_rc4\_128\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_afcdf04ecf4ec99ef4544464ff68fdfa9}\label{s2n__cipher__suites_8h_afcdf04ecf4ec99ef4544464ff68fdfa9}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_ecdhe\_sike\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+ecdhe\+\_\+sike\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a961160365c54a2770d684943f033f4de}\label{s2n__cipher__suites_8h_a961160365c54a2770d684943f033f4de}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_null\_cipher\_suite@{s2n\_null\_cipher\_suite}}
+\index{s2n\_null\_cipher\_suite@{s2n\_null\_cipher\_suite}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_null\_cipher\_suite}{s2n\_null\_cipher\_suite}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+null\+\_\+cipher\+\_\+suite\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a929db2d53c367e42fa8e675fb14172e6}\label{s2n__cipher__suites_8h_a929db2d53c367e42fa8e675fb14172e6}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_3des\_sha@{s2n\_record\_alg\_3des\_sha}}
+\index{s2n\_record\_alg\_3des\_sha@{s2n\_record\_alg\_3des\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_3des\_sha}{s2n\_record\_alg\_3des\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+3des\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a95d7bd4ee3bbad1298952628bc39a3f5}\label{s2n__cipher__suites_8h_a95d7bd4ee3bbad1298952628bc39a3f5}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes128\_gcm@{s2n\_record\_alg\_aes128\_gcm}}
+\index{s2n\_record\_alg\_aes128\_gcm@{s2n\_record\_alg\_aes128\_gcm}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_gcm}{s2n\_record\_alg\_aes128\_gcm}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+gcm\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a452d94ade8960b5ab6fd9566dbbbe1e8}\label{s2n__cipher__suites_8h_a452d94ade8960b5ab6fd9566dbbbe1e8}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes128\_sha@{s2n\_record\_alg\_aes128\_sha}}
+\index{s2n\_record\_alg\_aes128\_sha@{s2n\_record\_alg\_aes128\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_sha}{s2n\_record\_alg\_aes128\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a94034f09aeb9f3aa1ebe99b81daf34e2}\label{s2n__cipher__suites_8h_a94034f09aeb9f3aa1ebe99b81daf34e2}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes128\_sha256@{s2n\_record\_alg\_aes128\_sha256}}
+\index{s2n\_record\_alg\_aes128\_sha256@{s2n\_record\_alg\_aes128\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_sha256}{s2n\_record\_alg\_aes128\_sha256}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a3e903c153439ddbe9d901be83b84449e}\label{s2n__cipher__suites_8h_a3e903c153439ddbe9d901be83b84449e}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes128\_sha256\_composite@{s2n\_record\_alg\_aes128\_sha256\_composite}}
+\index{s2n\_record\_alg\_aes128\_sha256\_composite@{s2n\_record\_alg\_aes128\_sha256\_composite}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_sha256\_composite}{s2n\_record\_alg\_aes128\_sha256\_composite}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha256\+\_\+composite\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a3e6b27a84708ca9e0fcf25a82d7c2dc5}\label{s2n__cipher__suites_8h_a3e6b27a84708ca9e0fcf25a82d7c2dc5}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes128\_sha\_composite@{s2n\_record\_alg\_aes128\_sha\_composite}}
+\index{s2n\_record\_alg\_aes128\_sha\_composite@{s2n\_record\_alg\_aes128\_sha\_composite}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes128\_sha\_composite}{s2n\_record\_alg\_aes128\_sha\_composite}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes128\+\_\+sha\+\_\+composite\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a525e7698dc44ca25b953c9790de11c02}\label{s2n__cipher__suites_8h_a525e7698dc44ca25b953c9790de11c02}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes256\_gcm@{s2n\_record\_alg\_aes256\_gcm}}
+\index{s2n\_record\_alg\_aes256\_gcm@{s2n\_record\_alg\_aes256\_gcm}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_gcm}{s2n\_record\_alg\_aes256\_gcm}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+gcm\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a15443886354166843b1db74ccc4573ce}\label{s2n__cipher__suites_8h_a15443886354166843b1db74ccc4573ce}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes256\_sha@{s2n\_record\_alg\_aes256\_sha}}
+\index{s2n\_record\_alg\_aes256\_sha@{s2n\_record\_alg\_aes256\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha}{s2n\_record\_alg\_aes256\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a217a25546da4acc6b21e9e26452030e7}\label{s2n__cipher__suites_8h_a217a25546da4acc6b21e9e26452030e7}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes256\_sha256@{s2n\_record\_alg\_aes256\_sha256}}
+\index{s2n\_record\_alg\_aes256\_sha256@{s2n\_record\_alg\_aes256\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha256}{s2n\_record\_alg\_aes256\_sha256}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_aa58e3f3c544cabe170e73ffc58d0fd84}\label{s2n__cipher__suites_8h_aa58e3f3c544cabe170e73ffc58d0fd84}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes256\_sha256\_composite@{s2n\_record\_alg\_aes256\_sha256\_composite}}
+\index{s2n\_record\_alg\_aes256\_sha256\_composite@{s2n\_record\_alg\_aes256\_sha256\_composite}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha256\_composite}{s2n\_record\_alg\_aes256\_sha256\_composite}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha256\+\_\+composite\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_ad348dd46e0bb0d362648c5466df03c1a}\label{s2n__cipher__suites_8h_ad348dd46e0bb0d362648c5466df03c1a}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes256\_sha384@{s2n\_record\_alg\_aes256\_sha384}}
+\index{s2n\_record\_alg\_aes256\_sha384@{s2n\_record\_alg\_aes256\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha384}{s2n\_record\_alg\_aes256\_sha384}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_ac385dff3872ca9ef19f7ae44751c9aaf}\label{s2n__cipher__suites_8h_ac385dff3872ca9ef19f7ae44751c9aaf}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_aes256\_sha\_composite@{s2n\_record\_alg\_aes256\_sha\_composite}}
+\index{s2n\_record\_alg\_aes256\_sha\_composite@{s2n\_record\_alg\_aes256\_sha\_composite}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_aes256\_sha\_composite}{s2n\_record\_alg\_aes256\_sha\_composite}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+aes256\+\_\+sha\+\_\+composite\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_ade6d0c9f7fd0d1b943321e953b20d8b1}\label{s2n__cipher__suites_8h_ade6d0c9f7fd0d1b943321e953b20d8b1}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_chacha20\_poly1305@{s2n\_record\_alg\_chacha20\_poly1305}}
+\index{s2n\_record\_alg\_chacha20\_poly1305@{s2n\_record\_alg\_chacha20\_poly1305}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_chacha20\_poly1305}{s2n\_record\_alg\_chacha20\_poly1305}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+chacha20\+\_\+poly1305\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a5207c89d92951be3bb7d6125d4b96800}\label{s2n__cipher__suites_8h_a5207c89d92951be3bb7d6125d4b96800}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_null@{s2n\_record\_alg\_null}}
+\index{s2n\_record\_alg\_null@{s2n\_record\_alg\_null}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_null}{s2n\_record\_alg\_null}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+null\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a3e1af441475886bfaecd9842f3d154a5}\label{s2n__cipher__suites_8h_a3e1af441475886bfaecd9842f3d154a5}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_rc4\_md5@{s2n\_record\_alg\_rc4\_md5}}
+\index{s2n\_record\_alg\_rc4\_md5@{s2n\_record\_alg\_rc4\_md5}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_rc4\_md5}{s2n\_record\_alg\_rc4\_md5}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+md5\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a96e008f2d43c169af35be8d107c48934}\label{s2n__cipher__suites_8h_a96e008f2d43c169af35be8d107c48934}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_record\_alg\_rc4\_sha@{s2n\_record\_alg\_rc4\_sha}}
+\index{s2n\_record\_alg\_rc4\_sha@{s2n\_record\_alg\_rc4\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_record\_alg\_rc4\_sha}{s2n\_record\_alg\_rc4\_sha}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structs2n__record__algorithm}{s2n\+\_\+record\+\_\+algorithm}} s2n\+\_\+record\+\_\+alg\+\_\+rc4\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_aedbbcf28f7ae11f940e055cbad69f65d}\label{s2n__cipher__suites_8h_aedbbcf28f7ae11f940e055cbad69f65d}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}}
+\index{s2n\_rsa\_with\_3des\_ede\_cbc\_sha@{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}{s2n\_rsa\_with\_3des\_ede\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+3des\+\_\+ede\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_aa85dccb2e7e53f402d8f3e96ed48da66}\label{s2n__cipher__suites_8h_aa85dccb2e7e53f402d8f3e96ed48da66}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_rsa\_with\_aes\_128\_cbc\_sha}}
+\index{s2n\_rsa\_with\_aes\_128\_cbc\_sha@{s2n\_rsa\_with\_aes\_128\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_128\_cbc\_sha}{s2n\_rsa\_with\_aes\_128\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a89060731d96940fd07e31b094c28d5a4}\label{s2n__cipher__suites_8h_a89060731d96940fd07e31b094c28d5a4}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}}
+\index{s2n\_rsa\_with\_aes\_128\_cbc\_sha256@{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}{s2n\_rsa\_with\_aes\_128\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+cbc\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a28e6e1fd6af50e6fc500c94cc267fd86}\label{s2n__cipher__suites_8h_a28e6e1fd6af50e6fc500c94cc267fd86}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}}
+\index{s2n\_rsa\_with\_aes\_128\_gcm\_sha256@{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}{s2n\_rsa\_with\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a46d9efb9bf17d8c57ef8a57d2b56df4f}\label{s2n__cipher__suites_8h_a46d9efb9bf17d8c57ef8a57d2b56df4f}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_rsa\_with\_aes\_256\_cbc\_sha}}
+\index{s2n\_rsa\_with\_aes\_256\_cbc\_sha@{s2n\_rsa\_with\_aes\_256\_cbc\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_256\_cbc\_sha}{s2n\_rsa\_with\_aes\_256\_cbc\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a6a21d24267d675efe8387cb57b62e18f}\label{s2n__cipher__suites_8h_a6a21d24267d675efe8387cb57b62e18f}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_rsa\_with\_aes\_256\_cbc\_sha256@{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}}
+\index{s2n\_rsa\_with\_aes\_256\_cbc\_sha256@{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}{s2n\_rsa\_with\_aes\_256\_cbc\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+cbc\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a1b0863aff304f3fe262b90e800854197}\label{s2n__cipher__suites_8h_a1b0863aff304f3fe262b90e800854197}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}}
+\index{s2n\_rsa\_with\_aes\_256\_gcm\_sha384@{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}{s2n\_rsa\_with\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a0bf7a5fcd091e8b4bef87992b37522da}\label{s2n__cipher__suites_8h_a0bf7a5fcd091e8b4bef87992b37522da}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_rsa\_with\_rc4\_128\_md5@{s2n\_rsa\_with\_rc4\_128\_md5}}
+\index{s2n\_rsa\_with\_rc4\_128\_md5@{s2n\_rsa\_with\_rc4\_128\_md5}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_rc4\_128\_md5}{s2n\_rsa\_with\_rc4\_128\_md5}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+md5\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_aaf608074ffdc86e41713146d9ebb2370}\label{s2n__cipher__suites_8h_aaf608074ffdc86e41713146d9ebb2370}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_rsa\_with\_rc4\_128\_sha@{s2n\_rsa\_with\_rc4\_128\_sha}}
+\index{s2n\_rsa\_with\_rc4\_128\_sha@{s2n\_rsa\_with\_rc4\_128\_sha}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_rsa\_with\_rc4\_128\_sha}{s2n\_rsa\_with\_rc4\_128\_sha}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+rsa\+\_\+with\+\_\+rc4\+\_\+128\+\_\+sha\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_ac28aff94fd6a2c8995c7880912773a5e}\label{s2n__cipher__suites_8h_ac28aff94fd6a2c8995c7880912773a5e}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_tls13\_aes\_128\_gcm\_sha256@{s2n\_tls13\_aes\_128\_gcm\_sha256}}
+\index{s2n\_tls13\_aes\_128\_gcm\_sha256@{s2n\_tls13\_aes\_128\_gcm\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_aes\_128\_gcm\_sha256}{s2n\_tls13\_aes\_128\_gcm\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+tls13\+\_\+aes\+\_\+128\+\_\+gcm\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a275c6ae46727624a2080d3812e2560be}\label{s2n__cipher__suites_8h_a275c6ae46727624a2080d3812e2560be}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_tls13\_aes\_256\_gcm\_sha384@{s2n\_tls13\_aes\_256\_gcm\_sha384}}
+\index{s2n\_tls13\_aes\_256\_gcm\_sha384@{s2n\_tls13\_aes\_256\_gcm\_sha384}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_aes\_256\_gcm\_sha384}{s2n\_tls13\_aes\_256\_gcm\_sha384}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+tls13\+\_\+aes\+\_\+256\+\_\+gcm\+\_\+sha384\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{s2n__cipher__suites_8h_a464d84090a431794715e02fc4a5e50c4}\label{s2n__cipher__suites_8h_a464d84090a431794715e02fc4a5e50c4}} 
+\index{s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}!s2n\_tls13\_chacha20\_poly1305\_sha256@{s2n\_tls13\_chacha20\_poly1305\_sha256}}
+\index{s2n\_tls13\_chacha20\_poly1305\_sha256@{s2n\_tls13\_chacha20\_poly1305\_sha256}!s2n\_cipher\_suites.h@{s2n\_cipher\_suites.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_tls13\_chacha20\_poly1305\_sha256}{s2n\_tls13\_chacha20\_poly1305\_sha256}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__cipher__suite}{s2n\+\_\+cipher\+\_\+suite}} s2n\+\_\+tls13\+\_\+chacha20\+\_\+poly1305\+\_\+sha256\hspace{0.3cm}{\ttfamily [extern]}}
+

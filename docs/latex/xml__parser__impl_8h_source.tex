@@ -1,0 +1,32 @@
+\hypertarget{xml__parser__impl_8h_source}{}\doxysection{xml\+\_\+parser\+\_\+impl.\+h}
+\label{xml__parser__impl_8h_source}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/xml\_parser\_impl.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/private/xml\_parser\_impl.h}}
+\mbox{\hyperlink{xml__parser__impl_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef AWS\_COMMON\_PRIVATE\_XML\_PARSER\_IMPL\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define AWS\_COMMON\_PRIVATE\_XML\_PARSER\_IMPL\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{xml__parser_8h}{aws/common/xml\_parser.h}}>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__xml__node}{aws\_xml\_node}} \{}
+\DoxyCodeLine{12     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__xml__node_a47a9aa4b4a647298d7e68fbccd0eb815}{name}};}
+\DoxyCodeLine{13     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} \mbox{\hyperlink{structaws__xml__node_abeedf38c881b7443903858679d909fca}{attributes}};}
+\DoxyCodeLine{14     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__xml__node_a593a531edad844bb7299b5733e3e54bc}{doc\_at\_body}};}
+\DoxyCodeLine{15     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__xml__node_afe392d98bbbdac53da498d389b0a2546}{processed}};}
+\DoxyCodeLine{16 \};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__xml__parser}{aws\_xml\_parser}} \{}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__xml__parser_a2ed3c6705b8d5b908e5fdbdb60e74d7c}{allocator}};}
+\DoxyCodeLine{20     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__xml__parser_a58f68a7152880e42f1046e5b56b05429}{doc}};}
+\DoxyCodeLine{21     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} \mbox{\hyperlink{structaws__xml__parser_ab5544181a0dfa91497db4178cd3420b3}{callback\_stack}};}
+\DoxyCodeLine{22     \textcolor{comment}{/* maximum of 10 attributes */}}
+\DoxyCodeLine{23     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__xml__attribute}{aws\_xml\_attribute}} \mbox{\hyperlink{structaws__xml__parser_aea1faa556697bf045e41ff2a8e5e7619}{attributes}}[10];}
+\DoxyCodeLine{24     \textcolor{comment}{/* splits on attributes and node name, so (10 attributes + 1 name) */}}
+\DoxyCodeLine{25     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__xml__parser_a41a232af9ef9cbfbc8fa962be1192b32}{split\_scratch}}[11];}
+\DoxyCodeLine{26     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__xml__parser_a9a34bbe0c1561973b5ad664c8a92ea25}{max\_depth}};}
+\DoxyCodeLine{27     \textcolor{keywordtype}{int} \mbox{\hyperlink{structaws__xml__parser_aa2bbdcc610dda86188c1900db63eae14}{error}};}
+\DoxyCodeLine{28     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__xml__parser_aed4cfa968920f9195b3beb10190e8852}{stop\_parsing}};}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_COMMON\_PRIVATE\_XML\_PARSER\_IMPL\_H */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

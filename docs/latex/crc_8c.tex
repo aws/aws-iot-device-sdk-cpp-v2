@@ -1,0 +1,50 @@
+\hypertarget{crc_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/checksums/source/crc.c File Reference}
+\label{crc_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/checksums/source/crc.c@{crt/aws-\/crt-\/cpp/crt/aws-\/checksums/source/crc.c}}
+{\ttfamily \#include $<$aws/checksums/crc.\+h$>$}\newline
+{\ttfamily \#include $<$aws/checksums/private/crc\+\_\+priv.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/cpuid.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{crc_8c_af5d0549c55396c97ffdc0f7bf03f04d4}{aws\+\_\+checksums\+\_\+crc32}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{crc_8c_a50b52c6d7a90221dd7b5ac2d091496bd}{aws\+\_\+checksums\+\_\+crc32c}} (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static uint32\+\_\+t($\ast$ \mbox{\hyperlink{crc_8c_aa194a31cbc945f821d7e9e5a1ec04411}{s\+\_\+crc32c\+\_\+fn\+\_\+ptr}} )(const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)=0
+\item 
+static uint32\+\_\+t($\ast$ \mbox{\hyperlink{crc_8c_aa14fe5056d750e748125077810a8c73a}{s\+\_\+crc32\+\_\+fn\+\_\+ptr}} )(const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{crc_8c_af5d0549c55396c97ffdc0f7bf03f04d4}\label{crc_8c_af5d0549c55396c97ffdc0f7bf03f04d4}} 
+\index{crc.c@{crc.c}!aws\_checksums\_crc32@{aws\_checksums\_crc32}}
+\index{aws\_checksums\_crc32@{aws\_checksums\_crc32}!crc.c@{crc.c}}
+\doxysubsubsection{\texorpdfstring{aws\_checksums\_crc32()}{aws\_checksums\_crc32()}}
+{\footnotesize\ttfamily uint32\+\_\+t aws\+\_\+checksums\+\_\+crc32 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. The entry point function to perform a CRC32 (Ethernet, gzip) computation. Selects a suitable implementation based on hardware capabilities. Pass 0 in the previous\+Crc32 parameter as an initial value unless continuing to update a running crc in a subsequent call. \mbox{\Hypertarget{crc_8c_a50b52c6d7a90221dd7b5ac2d091496bd}\label{crc_8c_a50b52c6d7a90221dd7b5ac2d091496bd}} 
+\index{crc.c@{crc.c}!aws\_checksums\_crc32c@{aws\_checksums\_crc32c}}
+\index{aws\_checksums\_crc32c@{aws\_checksums\_crc32c}!crc.c@{crc.c}}
+\doxysubsubsection{\texorpdfstring{aws\_checksums\_crc32c()}{aws\_checksums\_crc32c()}}
+{\footnotesize\ttfamily uint32\+\_\+t aws\+\_\+checksums\+\_\+crc32c (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})}
+
+The entry point function to perform a Castagnoli CRC32c (i\+SCSI) computation. Selects a suitable implementation based on hardware capabilities. Pass 0 in the previous\+Crc32 parameter as an initial value unless continuing to update a running crc in a subsequent call. 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{crc_8c_aa14fe5056d750e748125077810a8c73a}\label{crc_8c_aa14fe5056d750e748125077810a8c73a}} 
+\index{crc.c@{crc.c}!s\_crc32\_fn\_ptr@{s\_crc32\_fn\_ptr}}
+\index{s\_crc32\_fn\_ptr@{s\_crc32\_fn\_ptr}!crc.c@{crc.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32\_fn\_ptr}{s\_crc32\_fn\_ptr}}
+{\footnotesize\ttfamily uint32\+\_\+t($\ast$ s\+\_\+crc32\+\_\+fn\+\_\+ptr) (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)=0 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{crc_8c_aa194a31cbc945f821d7e9e5a1ec04411}\label{crc_8c_aa194a31cbc945f821d7e9e5a1ec04411}} 
+\index{crc.c@{crc.c}!s\_crc32c\_fn\_ptr@{s\_crc32c\_fn\_ptr}}
+\index{s\_crc32c\_fn\_ptr@{s\_crc32c\_fn\_ptr}!crc.c@{crc.c}}
+\doxysubsubsection{\texorpdfstring{s\_crc32c\_fn\_ptr}{s\_crc32c\_fn\_ptr}}
+{\footnotesize\ttfamily uint32\+\_\+t($\ast$ s\+\_\+crc32c\+\_\+fn\+\_\+ptr) (const uint8\+\_\+t $\ast$input, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint32\+\_\+t previous\+Crc32)=0 (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{input,  }\item[{int}]{length,  }\item[{uint32\+\_\+t}]{previous\+Crc32 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 

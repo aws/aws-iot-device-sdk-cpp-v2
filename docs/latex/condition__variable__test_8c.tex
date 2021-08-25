@@ -1,0 +1,59 @@
+\hypertarget{condition__variable__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/condition\+\_\+variable\+\_\+test.c File Reference}
+\label{condition__variable__test_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/condition\_variable\_test.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/tests/condition\_variable\_test.c}}
+{\ttfamily \#include $<$aws/testing/aws\+\_\+test\+\_\+harness.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/condition\+\_\+variable.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/clock.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/thread.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcondition__predicate__args}{condition\+\_\+predicate\+\_\+args}}
+\item 
+struct \mbox{\hyperlink{structconditional__test__data}{conditional\+\_\+test\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{condition__variable__test_8c_aa73748cdf64b5d6cb0bf7d01ed56b76a}{s\+\_\+conditional\+\_\+predicate}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{condition__variable__test_8c_a9c6249589feaf6681f060749e223e7bd}{s\+\_\+conditional\+\_\+thread\+\_\+2\+\_\+fn}} (void $\ast$arg)
+\item 
+static void \mbox{\hyperlink{condition__variable__test_8c_a4a72850563c561738d73c2f827f4703f}{s\+\_\+conditional\+\_\+thread\+\_\+3\+\_\+fn}} (void $\ast$arg)
+\item 
+static int \mbox{\hyperlink{condition__variable__test_8c_a71b761e0100552f9bf258c18e4ea2482}{s\+\_\+test\+\_\+conditional\+\_\+notify\+\_\+one\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\item 
+static int \mbox{\hyperlink{condition__variable__test_8c_a9d79b11132dd06661182d2b6a79c683b}{s\+\_\+test\+\_\+conditional\+\_\+notify\+\_\+all\+\_\+fn}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{condition__variable__test_8c_aa73748cdf64b5d6cb0bf7d01ed56b76a}\label{condition__variable__test_8c_aa73748cdf64b5d6cb0bf7d01ed56b76a}} 
+\index{condition\_variable\_test.c@{condition\_variable\_test.c}!s\_conditional\_predicate@{s\_conditional\_predicate}}
+\index{s\_conditional\_predicate@{s\_conditional\_predicate}!condition\_variable\_test.c@{condition\_variable\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_conditional\_predicate()}{s\_conditional\_predicate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+conditional\+\_\+predicate (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{condition__variable__test_8c_a9c6249589feaf6681f060749e223e7bd}\label{condition__variable__test_8c_a9c6249589feaf6681f060749e223e7bd}} 
+\index{condition\_variable\_test.c@{condition\_variable\_test.c}!s\_conditional\_thread\_2\_fn@{s\_conditional\_thread\_2\_fn}}
+\index{s\_conditional\_thread\_2\_fn@{s\_conditional\_thread\_2\_fn}!condition\_variable\_test.c@{condition\_variable\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_conditional\_thread\_2\_fn()}{s\_conditional\_thread\_2\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+conditional\+\_\+thread\+\_\+2\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{condition__variable__test_8c_a4a72850563c561738d73c2f827f4703f}\label{condition__variable__test_8c_a4a72850563c561738d73c2f827f4703f}} 
+\index{condition\_variable\_test.c@{condition\_variable\_test.c}!s\_conditional\_thread\_3\_fn@{s\_conditional\_thread\_3\_fn}}
+\index{s\_conditional\_thread\_3\_fn@{s\_conditional\_thread\_3\_fn}!condition\_variable\_test.c@{condition\_variable\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_conditional\_thread\_3\_fn()}{s\_conditional\_thread\_3\_fn()}}
+{\footnotesize\ttfamily static void s\+\_\+conditional\+\_\+thread\+\_\+3\+\_\+fn (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{condition__variable__test_8c_a9d79b11132dd06661182d2b6a79c683b}\label{condition__variable__test_8c_a9d79b11132dd06661182d2b6a79c683b}} 
+\index{condition\_variable\_test.c@{condition\_variable\_test.c}!s\_test\_conditional\_notify\_all\_fn@{s\_test\_conditional\_notify\_all\_fn}}
+\index{s\_test\_conditional\_notify\_all\_fn@{s\_test\_conditional\_notify\_all\_fn}!condition\_variable\_test.c@{condition\_variable\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_conditional\_notify\_all\_fn()}{s\_test\_conditional\_notify\_all\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+conditional\+\_\+notify\+\_\+all\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{condition__variable__test_8c_a71b761e0100552f9bf258c18e4ea2482}\label{condition__variable__test_8c_a71b761e0100552f9bf258c18e4ea2482}} 
+\index{condition\_variable\_test.c@{condition\_variable\_test.c}!s\_test\_conditional\_notify\_one\_fn@{s\_test\_conditional\_notify\_one\_fn}}
+\index{s\_test\_conditional\_notify\_one\_fn@{s\_test\_conditional\_notify\_one\_fn}!condition\_variable\_test.c@{condition\_variable\_test.c}}
+\doxysubsubsection{\texorpdfstring{s\_test\_conditional\_notify\_one\_fn()}{s\_test\_conditional\_notify\_one\_fn()}}
+{\footnotesize\ttfamily static int s\+\_\+test\+\_\+conditional\+\_\+notify\+\_\+one\+\_\+fn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+

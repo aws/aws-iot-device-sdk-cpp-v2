@@ -1,0 +1,308 @@
+\hypertarget{crypto_2s2n__hash_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\+\_\+hash.h File Reference}
+\label{crypto_2s2n__hash_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_hash.h@{crt/aws-\/crt-\/cpp/crt/s2n/crypto/s2n\_hash.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/md5.\+h$>$}\newline
+{\ttfamily \#include $<$openssl/sha.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+evp.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unions2n__hash__low__level__digest}{s2n\+\_\+hash\+\_\+low\+\_\+level\+\_\+digest}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__evp__digest}{s2n\+\_\+hash\+\_\+evp\+\_\+digest}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}}
+\item 
+struct \mbox{\hyperlink{structs2n__hash}{s2n\+\_\+hash}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crypto_2s2n__hash_8h_a6e72344ee5c9fe106257b029521e675e}{S2\+N\+\_\+\+MAX\+\_\+\+DIGEST\+\_\+\+LEN}}~\mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a5a8416d0f8e1af6d7525114ef09be118}{SHA512\+\_\+\+DIGEST\+\_\+\+LENGTH}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} \{ \newline
+\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}{S2\+N\+\_\+\+HASH\+\_\+\+NONE}} =0
+, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}{S2\+N\+\_\+\+HASH\+\_\+\+MD5}}
+, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}{S2\+N\+\_\+\+HASH\+\_\+\+SHA1}}
+, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}{S2\+N\+\_\+\+HASH\+\_\+\+SHA224}}
+, \newline
+\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}{S2\+N\+\_\+\+HASH\+\_\+\+SHA256}}
+, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}{S2\+N\+\_\+\+HASH\+\_\+\+SHA384}}
+, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}{S2\+N\+\_\+\+HASH\+\_\+\+SHA512}}
+, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}{S2\+N\+\_\+\+HASH\+\_\+\+MD5\+\_\+\+SHA1}}
+, \newline
+\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}{S2\+N\+\_\+\+HASH\+\_\+\+SENTINEL}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}{S2\+N\+\_\+\+HASH\+\_\+\+NONE}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}{S2\+N\+\_\+\+HASH\+\_\+\+MD5}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}{S2\+N\+\_\+\+HASH\+\_\+\+SHA1}}
+, \newline
+\mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}{S2\+N\+\_\+\+HASH\+\_\+\+SHA224}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}{S2\+N\+\_\+\+HASH\+\_\+\+SHA256}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}{S2\+N\+\_\+\+HASH\+\_\+\+SHA384}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}{S2\+N\+\_\+\+HASH\+\_\+\+SHA512}}
+, \newline
+\mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}{S2\+N\+\_\+\+HASH\+\_\+\+MD5\+\_\+\+SHA1}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}{S2\+N\+\_\+\+HASH\+\_\+\+SENTINEL}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}{S2\+N\+\_\+\+HASH\+\_\+\+NONE}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}{S2\+N\+\_\+\+HASH\+\_\+\+MD5}}
+, \newline
+\mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}{S2\+N\+\_\+\+HASH\+\_\+\+SHA1}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}{S2\+N\+\_\+\+HASH\+\_\+\+SHA224}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}{S2\+N\+\_\+\+HASH\+\_\+\+SHA256}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}{S2\+N\+\_\+\+HASH\+\_\+\+SHA384}}
+, \newline
+\mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}{S2\+N\+\_\+\+HASH\+\_\+\+SHA512}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}{S2\+N\+\_\+\+HASH\+\_\+\+MD5\+\_\+\+SHA1}}
+, \mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}{S2\+N\+\_\+\+HASH\+\_\+\+SENTINEL}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a2d7609aba112f1336497f9b6a3ba19e2}{s2n\+\_\+hash\+\_\+digest\+\_\+size}} (\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg, uint8\+\_\+t $\ast$out)
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_ae18512b5dc100cfcc9b444d27ae177df}{s2n\+\_\+hash\+\_\+block\+\_\+size}} (\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg, uint64\+\_\+t $\ast$block\+\_\+size)
+\item 
+\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{crypto_2s2n__hash_8h_a20b65f576c515821589f8aef16a7fa2f}{s2n\+\_\+hash\+\_\+is\+\_\+available}} (\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg)
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a0aa5401d87d0b5d6855f4852d39be2ba}{s2n\+\_\+hash\+\_\+is\+\_\+ready\+\_\+for\+\_\+input}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a6e1456ecefa61835c01b7180134e04b8}{s2n\+\_\+hash\+\_\+new}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a45f9f0874d8278c80594f7ab31bc2fb9}{s2n\+\_\+hash\+\_\+allow\+\_\+md5\+\_\+for\+\_\+fips}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a684a3779eebad8329d41443454dd6fa2}{s2n\+\_\+hash\+\_\+init}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg)
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a0f3c4efbf552f607071e552dc0548ee6}{s2n\+\_\+hash\+\_\+update}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, const void $\ast$data, uint32\+\_\+t size)
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_ac0a5e6f9f981a0e473bfb9dba9c3d7c9}{s2n\+\_\+hash\+\_\+digest}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, void $\ast$out, uint32\+\_\+t size)
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a8b39db9e0a5456a10a5d790474f09818}{s2n\+\_\+hash\+\_\+copy}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$to, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$from)
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a3ad42d683b1126e7d8eb329b68382bc8}{s2n\+\_\+hash\+\_\+reset}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a9d55a86256e1fd602ab3d00d5d7d506b}{s2n\+\_\+hash\+\_\+free}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_a4b0b459365b97d081895a9ca757475a4}{s2n\+\_\+hash\+\_\+get\+\_\+currently\+\_\+in\+\_\+hash\+\_\+total}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, uint64\+\_\+t $\ast$out)
+\item 
+int \mbox{\hyperlink{crypto_2s2n__hash_8h_af8c9404b5c122e58b223b372d09ca48f}{s2n\+\_\+hash\+\_\+const\+\_\+time\+\_\+get\+\_\+currently\+\_\+in\+\_\+hash\+\_\+block}} (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, uint64\+\_\+t $\ast$out)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a6e72344ee5c9fe106257b029521e675e}\label{crypto_2s2n__hash_8h_a6e72344ee5c9fe106257b029521e675e}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_MAX\_DIGEST\_LEN@{S2N\_MAX\_DIGEST\_LEN}}
+\index{S2N\_MAX\_DIGEST\_LEN@{S2N\_MAX\_DIGEST\_LEN}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{S2N\_MAX\_DIGEST\_LEN}{S2N\_MAX\_DIGEST\_LEN}}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+MAX\+\_\+\+DIGEST\+\_\+\+LEN~\mbox{\hyperlink{tests_2cbmc_2include_2openssl_2sha_8h_a5a8416d0f8e1af6d7525114ef09be118}{SHA512\+\_\+\+DIGEST\+\_\+\+LENGTH}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_algorithm@{s2n\_hash\_algorithm}}
+\index{s2n\_hash\_algorithm@{s2n\_hash\_algorithm}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_algorithm}{s2n\_hash\_algorithm}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_NONE@{S2N\_HASH\_NONE}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_NONE@{S2N\_HASH\_NONE}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}} 
+S2\+N\+\_\+\+HASH\+\_\+\+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_MD5@{S2N\_HASH\_MD5}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_MD5@{S2N\_HASH\_MD5}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}} 
+S2\+N\+\_\+\+HASH\+\_\+\+MD5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA1@{S2N\_HASH\_SHA1}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA1@{S2N\_HASH\_SHA1}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA224@{S2N\_HASH\_SHA224}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA224@{S2N\_HASH\_SHA224}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA224&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA256@{S2N\_HASH\_SHA256}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA256@{S2N\_HASH\_SHA256}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA256&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA384@{S2N\_HASH\_SHA384}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA384@{S2N\_HASH\_SHA384}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA384&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA512@{S2N\_HASH\_SHA512}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA512@{S2N\_HASH\_SHA512}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA512&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_MD5\_SHA1@{S2N\_HASH\_MD5\_SHA1}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_MD5\_SHA1@{S2N\_HASH\_MD5\_SHA1}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}} 
+S2\+N\+\_\+\+HASH\+\_\+\+MD5\+\_\+\+SHA1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SENTINEL@{S2N\_HASH\_SENTINEL}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SENTINEL@{S2N\_HASH\_SENTINEL}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SENTINEL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_NONE@{S2N\_HASH\_NONE}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_NONE@{S2N\_HASH\_NONE}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}} 
+S2\+N\+\_\+\+HASH\+\_\+\+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_MD5@{S2N\_HASH\_MD5}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_MD5@{S2N\_HASH\_MD5}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}} 
+S2\+N\+\_\+\+HASH\+\_\+\+MD5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA1@{S2N\_HASH\_SHA1}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA1@{S2N\_HASH\_SHA1}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA224@{S2N\_HASH\_SHA224}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA224@{S2N\_HASH\_SHA224}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA224&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA256@{S2N\_HASH\_SHA256}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA256@{S2N\_HASH\_SHA256}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA256&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA384@{S2N\_HASH\_SHA384}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA384@{S2N\_HASH\_SHA384}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA384&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA512@{S2N\_HASH\_SHA512}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA512@{S2N\_HASH\_SHA512}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA512&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_MD5\_SHA1@{S2N\_HASH\_MD5\_SHA1}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_MD5\_SHA1@{S2N\_HASH\_MD5\_SHA1}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}} 
+S2\+N\+\_\+\+HASH\+\_\+\+MD5\+\_\+\+SHA1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SENTINEL@{S2N\_HASH\_SENTINEL}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SENTINEL@{S2N\_HASH\_SENTINEL}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SENTINEL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_NONE@{S2N\_HASH\_NONE}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_NONE@{S2N\_HASH\_NONE}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ae1681634687001760426e23ebad89e4e}} 
+S2\+N\+\_\+\+HASH\+\_\+\+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_MD5@{S2N\_HASH\_MD5}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_MD5@{S2N\_HASH\_MD5}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ade536a917150a394c402086ce5ceb853}} 
+S2\+N\+\_\+\+HASH\+\_\+\+MD5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA1@{S2N\_HASH\_SHA1}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA1@{S2N\_HASH\_SHA1}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA224@{S2N\_HASH\_SHA224}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA224@{S2N\_HASH\_SHA224}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA224&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA256@{S2N\_HASH\_SHA256}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA256@{S2N\_HASH\_SHA256}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA256&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA384@{S2N\_HASH\_SHA384}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA384@{S2N\_HASH\_SHA384}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA384&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SHA512@{S2N\_HASH\_SHA512}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SHA512@{S2N\_HASH\_SHA512}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SHA512&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_MD5\_SHA1@{S2N\_HASH\_MD5\_SHA1}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_MD5\_SHA1@{S2N\_HASH\_MD5\_SHA1}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}} 
+S2\+N\+\_\+\+HASH\+\_\+\+MD5\+\_\+\+SHA1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S2N\_HASH\_SENTINEL@{S2N\_HASH\_SENTINEL}!s2n\_hash.h@{s2n\_hash.h}}\index{s2n\_hash.h@{s2n\_hash.h}!S2N\_HASH\_SENTINEL@{S2N\_HASH\_SENTINEL}}}\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}\label{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a53e508de713c3175e3a46fd5af0bfc2a}} 
+S2\+N\+\_\+\+HASH\+\_\+\+SENTINEL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a45f9f0874d8278c80594f7ab31bc2fb9}\label{crypto_2s2n__hash_8h_a45f9f0874d8278c80594f7ab31bc2fb9}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_allow\_md5\_for\_fips@{s2n\_hash\_allow\_md5\_for\_fips}}
+\index{s2n\_hash\_allow\_md5\_for\_fips@{s2n\_hash\_allow\_md5\_for\_fips}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_allow\_md5\_for\_fips()}{s2n\_hash\_allow\_md5\_for\_fips()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+allow\+\_\+md5\+\_\+for\+\_\+fips (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_ae18512b5dc100cfcc9b444d27ae177df}\label{crypto_2s2n__hash_8h_ae18512b5dc100cfcc9b444d27ae177df}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_block\_size@{s2n\_hash\_block\_size}}
+\index{s2n\_hash\_block\_size@{s2n\_hash\_block\_size}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_block\_size()}{s2n\_hash\_block\_size()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+block\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{alg,  }\item[{uint64\+\_\+t $\ast$}]{block\+\_\+size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_af8c9404b5c122e58b223b372d09ca48f}\label{crypto_2s2n__hash_8h_af8c9404b5c122e58b223b372d09ca48f}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_const\_time\_get\_currently\_in\_hash\_block@{s2n\_hash\_const\_time\_get\_currently\_in\_hash\_block}}
+\index{s2n\_hash\_const\_time\_get\_currently\_in\_hash\_block@{s2n\_hash\_const\_time\_get\_currently\_in\_hash\_block}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_const\_time\_get\_currently\_in\_hash\_block()}{s2n\_hash\_const\_time\_get\_currently\_in\_hash\_block()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+const\+\_\+time\+\_\+get\+\_\+currently\+\_\+in\+\_\+hash\+\_\+block (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state,  }\item[{uint64\+\_\+t $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a8b39db9e0a5456a10a5d790474f09818}\label{crypto_2s2n__hash_8h_a8b39db9e0a5456a10a5d790474f09818}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_copy@{s2n\_hash\_copy}}
+\index{s2n\_hash\_copy@{s2n\_hash\_copy}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_copy()}{s2n\_hash\_copy()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+copy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{to,  }\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{from }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_ac0a5e6f9f981a0e473bfb9dba9c3d7c9}\label{crypto_2s2n__hash_8h_ac0a5e6f9f981a0e473bfb9dba9c3d7c9}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_digest@{s2n\_hash\_digest}}
+\index{s2n\_hash\_digest@{s2n\_hash\_digest}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_digest()}{s2n\_hash\_digest()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+digest (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state,  }\item[{void $\ast$}]{out,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a2d7609aba112f1336497f9b6a3ba19e2}\label{crypto_2s2n__hash_8h_a2d7609aba112f1336497f9b6a3ba19e2}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_digest\_size@{s2n\_hash\_digest\_size}}
+\index{s2n\_hash\_digest\_size@{s2n\_hash\_digest\_size}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_digest\_size()}{s2n\_hash\_digest\_size()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+digest\+\_\+size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{alg,  }\item[{uint8\+\_\+t $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a9d55a86256e1fd602ab3d00d5d7d506b}\label{crypto_2s2n__hash_8h_a9d55a86256e1fd602ab3d00d5d7d506b}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_free@{s2n\_hash\_free}}
+\index{s2n\_hash\_free@{s2n\_hash\_free}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_free()}{s2n\_hash\_free()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+free (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a4b0b459365b97d081895a9ca757475a4}\label{crypto_2s2n__hash_8h_a4b0b459365b97d081895a9ca757475a4}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_get\_currently\_in\_hash\_total@{s2n\_hash\_get\_currently\_in\_hash\_total}}
+\index{s2n\_hash\_get\_currently\_in\_hash\_total@{s2n\_hash\_get\_currently\_in\_hash\_total}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_get\_currently\_in\_hash\_total()}{s2n\_hash\_get\_currently\_in\_hash\_total()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+get\+\_\+currently\+\_\+in\+\_\+hash\+\_\+total (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state,  }\item[{uint64\+\_\+t $\ast$}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a684a3779eebad8329d41443454dd6fa2}\label{crypto_2s2n__hash_8h_a684a3779eebad8329d41443454dd6fa2}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_init@{s2n\_hash\_init}}
+\index{s2n\_hash\_init@{s2n\_hash\_init}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_init()}{s2n\_hash\_init()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state,  }\item[{\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{alg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a20b65f576c515821589f8aef16a7fa2f}\label{crypto_2s2n__hash_8h_a20b65f576c515821589f8aef16a7fa2f}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_is\_available@{s2n\_hash\_is\_available}}
+\index{s2n\_hash\_is\_available@{s2n\_hash\_is\_available}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_is\_available()}{s2n\_hash\_is\_available()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+hash\+\_\+is\+\_\+available (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{alg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a0aa5401d87d0b5d6855f4852d39be2ba}\label{crypto_2s2n__hash_8h_a0aa5401d87d0b5d6855f4852d39be2ba}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_is\_ready\_for\_input@{s2n\_hash\_is\_ready\_for\_input}}
+\index{s2n\_hash\_is\_ready\_for\_input@{s2n\_hash\_is\_ready\_for\_input}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_is\_ready\_for\_input()}{s2n\_hash\_is\_ready\_for\_input()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+is\+\_\+ready\+\_\+for\+\_\+input (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a6e1456ecefa61835c01b7180134e04b8}\label{crypto_2s2n__hash_8h_a6e1456ecefa61835c01b7180134e04b8}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_new@{s2n\_hash\_new}}
+\index{s2n\_hash\_new@{s2n\_hash\_new}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_new()}{s2n\_hash\_new()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a3ad42d683b1126e7d8eb329b68382bc8}\label{crypto_2s2n__hash_8h_a3ad42d683b1126e7d8eb329b68382bc8}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_reset@{s2n\_hash\_reset}}
+\index{s2n\_hash\_reset@{s2n\_hash\_reset}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_reset()}{s2n\_hash\_reset()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{crypto_2s2n__hash_8h_a0f3c4efbf552f607071e552dc0548ee6}\label{crypto_2s2n__hash_8h_a0f3c4efbf552f607071e552dc0548ee6}} 
+\index{s2n\_hash.h@{s2n\_hash.h}!s2n\_hash\_update@{s2n\_hash\_update}}
+\index{s2n\_hash\_update@{s2n\_hash\_update}!s2n\_hash.h@{s2n\_hash.h}}
+\doxysubsubsection{\texorpdfstring{s2n\_hash\_update()}{s2n\_hash\_update()}}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+update (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{state,  }\item[{const void $\ast$}]{data,  }\item[{uint32\+\_\+t}]{size }\end{DoxyParamCaption})}
+

@@ -1,0 +1,48 @@
+\hypertarget{aws-c-common_2include_2aws_2common_2common_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/common.h File Reference}
+\label{aws-c-common_2include_2aws_2common_2common_8h}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/common.h@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/common.h}}
+{\ttfamily \#include $<$aws/common/config.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/exports.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/allocator.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/assert.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/error.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/macros.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/platform.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/predicates.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/stdint.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/zero.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h_a4af845e8df413e0b9e56915bbf81283d}{aws\+\_\+common\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h_aa3117758e5698f1726cd6ea6bcf0c7f8}{aws\+\_\+common\+\_\+library\+\_\+clean\+\_\+up}} (void)
+\item 
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2common_8h_ac31537284c7acd529dfe5092f61d14d1}{aws\+\_\+common\+\_\+fatal\+\_\+assert\+\_\+library\+\_\+initialized}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{aws-c-common_2include_2aws_2common_2common_8h_ac31537284c7acd529dfe5092f61d14d1}\label{aws-c-common_2include_2aws_2common_2common_8h_ac31537284c7acd529dfe5092f61d14d1}} 
+\index{common.h@{common.h}!aws\_common\_fatal\_assert\_library\_initialized@{aws\_common\_fatal\_assert\_library\_initialized}}
+\index{aws\_common\_fatal\_assert\_library\_initialized@{aws\_common\_fatal\_assert\_library\_initialized}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{aws\_common\_fatal\_assert\_library\_initialized()}{aws\_common\_fatal\_assert\_library\_initialized()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+common\+\_\+fatal\+\_\+assert\+\_\+library\+\_\+initialized (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{aws-c-common_2include_2aws_2common_2common_8h_aa3117758e5698f1726cd6ea6bcf0c7f8}\label{aws-c-common_2include_2aws_2common_2common_8h_aa3117758e5698f1726cd6ea6bcf0c7f8}} 
+\index{common.h@{common.h}!aws\_common\_library\_clean\_up@{aws\_common\_library\_clean\_up}}
+\index{aws\_common\_library\_clean\_up@{aws\_common\_library\_clean\_up}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{aws\_common\_library\_clean\_up()}{aws\_common\_library\_clean\_up()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+common\+\_\+library\+\_\+clean\+\_\+up (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Shuts down the internal datastructures used by aws-\/c-\/common. \mbox{\Hypertarget{aws-c-common_2include_2aws_2common_2common_8h_a4af845e8df413e0b9e56915bbf81283d}\label{aws-c-common_2include_2aws_2common_2common_8h_a4af845e8df413e0b9e56915bbf81283d}} 
+\index{common.h@{common.h}!aws\_common\_library\_init@{aws\_common\_library\_init}}
+\index{aws\_common\_library\_init@{aws\_common\_library\_init}!common.h@{common.h}}
+\doxysubsubsection{\texorpdfstring{aws\_common\_library\_init()}{aws\_common\_library\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void aws\+\_\+common\+\_\+library\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. Initializes internal datastructures used by aws-\/c-\/common. Must be called before using any functionality in aws-\/c-\/common. 

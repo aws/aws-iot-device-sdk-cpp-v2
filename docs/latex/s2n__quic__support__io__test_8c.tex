@@ -1,0 +1,102 @@
+\hypertarget{s2n__quic__support__io__test_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\+\_\+quic\+\_\+support\+\_\+io\+\_\+test.c File Reference}
+\label{s2n__quic__support__io__test_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_quic\_support\_io\_test.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/unit/s2n\_quic\_support\_io\_test.c}}
+{\ttfamily \#include \char`\"{}s2n\+\_\+test.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}testlib/s2n\+\_\+testlib.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+quic\+\_\+support.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+connection.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+tls.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+mem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+handshake\+\_\+io.\+c\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__quic__support__io__test_8c_a5d524d4d9e4da7e704040c2083c27035}{s2n\+\_\+setup\+\_\+conn}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__quic__support__io__test_8c_a5ff1289f6c436ecdf663f5a69da293e1}{s2n\+\_\+setup\+\_\+conn\+\_\+for\+\_\+client\+\_\+hello}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__quic__support__io__test_8c_ad4fb81b7d693fa6af703e22f837541b6}{s2n\+\_\+setup\+\_\+conn\+\_\+for\+\_\+server\+\_\+hello}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__quic__support__io__test_8c_aeb1129ea0311c9fb6137b7b0c373094f}{s2n\+\_\+write\+\_\+test\+\_\+message}} (struct s2n\+\_\+blob $\ast$out, \mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557c}{message\+\_\+type\+\_\+t}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}})
+\item 
+static int \mbox{\hyperlink{s2n__quic__support__io__test_8c_a2c126f429820203048570573e1d61872}{s2n\+\_\+test\+\_\+write\+\_\+handler}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+static int \mbox{\hyperlink{s2n__quic__support__io__test_8c_a746680df6a75e7ec3a377f2d2b187787}{s2n\+\_\+test\+\_\+read\+\_\+handler}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+\item 
+int \mbox{\hyperlink{s2n__quic__support__io__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{s2n__quic__support__io__test_8c_aacea7854acd5983d652976cad62ea0ce}{TEST\+\_\+\+DATA}} \mbox{[}$\,$\mbox{]} = \char`\"{}test\char`\"{}
+\item 
+static const size\+\_\+t \mbox{\hyperlink{s2n__quic__support__io__test_8c_a55cbad9d7e04dde59995e7339b7ee865}{TEST\+\_\+\+DATA\+\_\+\+SIZE}} = sizeof(\mbox{\hyperlink{s2n__quic__transport__params__extension__test_8c_aacea7854acd5983d652976cad62ea0ce}{TEST\+\_\+\+DATA}})
+\item 
+struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} input\+\_\+stuffer \mbox{\hyperlink{s2n__quic__support__io__test_8c_a54973016a704e0e8393f1b91d8abb5ac}{output\+\_\+stuffer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{s2n__quic__support__io__test_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!main@{main}}
+\index{main@{main}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_a5d524d4d9e4da7e704040c2083c27035}\label{s2n__quic__support__io__test_8c_a5d524d4d9e4da7e704040c2083c27035}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!s2n\_setup\_conn@{s2n\_setup\_conn}}
+\index{s2n\_setup\_conn@{s2n\_setup\_conn}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_setup\_conn()}{s2n\_setup\_conn()}}
+{\footnotesize\ttfamily static S2\+N\+\_\+\+RESULT s2n\+\_\+setup\+\_\+conn (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_a5ff1289f6c436ecdf663f5a69da293e1}\label{s2n__quic__support__io__test_8c_a5ff1289f6c436ecdf663f5a69da293e1}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!s2n\_setup\_conn\_for\_client\_hello@{s2n\_setup\_conn\_for\_client\_hello}}
+\index{s2n\_setup\_conn\_for\_client\_hello@{s2n\_setup\_conn\_for\_client\_hello}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_setup\_conn\_for\_client\_hello()}{s2n\_setup\_conn\_for\_client\_hello()}}
+{\footnotesize\ttfamily static S2\+N\+\_\+\+RESULT s2n\+\_\+setup\+\_\+conn\+\_\+for\+\_\+client\+\_\+hello (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_ad4fb81b7d693fa6af703e22f837541b6}\label{s2n__quic__support__io__test_8c_ad4fb81b7d693fa6af703e22f837541b6}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!s2n\_setup\_conn\_for\_server\_hello@{s2n\_setup\_conn\_for\_server\_hello}}
+\index{s2n\_setup\_conn\_for\_server\_hello@{s2n\_setup\_conn\_for\_server\_hello}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_setup\_conn\_for\_server\_hello()}{s2n\_setup\_conn\_for\_server\_hello()}}
+{\footnotesize\ttfamily static S2\+N\+\_\+\+RESULT s2n\+\_\+setup\+\_\+conn\+\_\+for\+\_\+server\+\_\+hello (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_a746680df6a75e7ec3a377f2d2b187787}\label{s2n__quic__support__io__test_8c_a746680df6a75e7ec3a377f2d2b187787}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!s2n\_test\_read\_handler@{s2n\_test\_read\_handler}}
+\index{s2n\_test\_read\_handler@{s2n\_test\_read\_handler}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_read\_handler()}{s2n\_test\_read\_handler()}}
+{\footnotesize\ttfamily static int s2n\+\_\+test\+\_\+read\+\_\+handler (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_a2c126f429820203048570573e1d61872}\label{s2n__quic__support__io__test_8c_a2c126f429820203048570573e1d61872}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!s2n\_test\_write\_handler@{s2n\_test\_write\_handler}}
+\index{s2n\_test\_write\_handler@{s2n\_test\_write\_handler}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_test\_write\_handler()}{s2n\_test\_write\_handler()}}
+{\footnotesize\ttfamily static int s2n\+\_\+test\+\_\+write\+\_\+handler (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_aeb1129ea0311c9fb6137b7b0c373094f}\label{s2n__quic__support__io__test_8c_aeb1129ea0311c9fb6137b7b0c373094f}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!s2n\_write\_test\_message@{s2n\_write\_test\_message}}
+\index{s2n\_write\_test\_message@{s2n\_write\_test\_message}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_write\_test\_message()}{s2n\_write\_test\_message()}}
+{\footnotesize\ttfamily static S2\+N\+\_\+\+RESULT s2n\+\_\+write\+\_\+test\+\_\+message (\begin{DoxyParamCaption}\item[{struct s2n\+\_\+blob $\ast$}]{out,  }\item[{\mbox{\hyperlink{s2n__handshake_8h_a78b97fef55da786a15a849fd9d7e557c}{message\+\_\+type\+\_\+t}}}]{message\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_a54973016a704e0e8393f1b91d8abb5ac}\label{s2n__quic__support__io__test_8c_a54973016a704e0e8393f1b91d8abb5ac}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!output\_stuffer@{output\_stuffer}}
+\index{output\_stuffer@{output\_stuffer}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{output\_stuffer}{output\_stuffer}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} input\+\_\+stuffer output\+\_\+stuffer}
+
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_aacea7854acd5983d652976cad62ea0ce}\label{s2n__quic__support__io__test_8c_aacea7854acd5983d652976cad62ea0ce}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!TEST\_DATA@{TEST\_DATA}}
+\index{TEST\_DATA@{TEST\_DATA}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_DATA}{TEST\_DATA}}
+{\footnotesize\ttfamily const uint8\+\_\+t TEST\+\_\+\+DATA\mbox{[}$\,$\mbox{]} = \char`\"{}test\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{s2n__quic__support__io__test_8c_a55cbad9d7e04dde59995e7339b7ee865}\label{s2n__quic__support__io__test_8c_a55cbad9d7e04dde59995e7339b7ee865}} 
+\index{s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}!TEST\_DATA\_SIZE@{TEST\_DATA\_SIZE}}
+\index{TEST\_DATA\_SIZE@{TEST\_DATA\_SIZE}!s2n\_quic\_support\_io\_test.c@{s2n\_quic\_support\_io\_test.c}}
+\doxysubsubsection{\texorpdfstring{TEST\_DATA\_SIZE}{TEST\_DATA\_SIZE}}
+{\footnotesize\ttfamily const size\+\_\+t TEST\+\_\+\+DATA\+\_\+\+SIZE = sizeof(\mbox{\hyperlink{s2n__quic__transport__params__extension__test_8c_aacea7854acd5983d652976cad62ea0ce}{TEST\+\_\+\+DATA}})\hspace{0.3cm}{\ttfamily [static]}}
+

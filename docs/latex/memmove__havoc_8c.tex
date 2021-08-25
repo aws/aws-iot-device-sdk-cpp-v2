@@ -1,0 +1,35 @@
+\hypertarget{memmove__havoc_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/stubs/memmove\+\_\+havoc.c File Reference}
+\label{memmove__havoc_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/stubs/memmove\_havoc.c@{crt/aws-\/crt-\/cpp/crt/s2n/tests/cbmc/stubs/memmove\_havoc.c}}
+{\ttfamily \#include $<$cbmc\+\_\+proof/nondet.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{memmove__havoc_8c_af4b653050cd1e7e8ef54a92fe145562e}{memmove\+\_\+impl}} (void $\ast$dest, const void $\ast$src, size\+\_\+t n)
+\item 
+void $\ast$ \mbox{\hyperlink{memmove__havoc_8c_a802c986820d3866639922b6bc9484f90}{memmove}} (void $\ast$dest, const void $\ast$src, size\+\_\+t n)
+\item 
+void $\ast$ \mbox{\hyperlink{memmove__havoc_8c_ac7bcbfee1d8836d9d23ae03eec0e19ad}{\+\_\+\+\_\+builtin\+\_\+\+\_\+\+\_\+memmove\+\_\+chk}} (void $\ast$dest, const void $\ast$src, size\+\_\+t n, size\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{memmove__havoc_8c_ac7bcbfee1d8836d9d23ae03eec0e19ad}\label{memmove__havoc_8c_ac7bcbfee1d8836d9d23ae03eec0e19ad}} 
+\index{memmove\_havoc.c@{memmove\_havoc.c}!\_\_builtin\_\_\_memmove\_chk@{\_\_builtin\_\_\_memmove\_chk}}
+\index{\_\_builtin\_\_\_memmove\_chk@{\_\_builtin\_\_\_memmove\_chk}!memmove\_havoc.c@{memmove\_havoc.c}}
+\doxysubsubsection{\texorpdfstring{\_\_builtin\_\_\_memmove\_chk()}{\_\_builtin\_\_\_memmove\_chk()}}
+{\footnotesize\ttfamily void$\ast$ \+\_\+\+\_\+builtin\+\_\+\+\_\+\+\_\+memmove\+\_\+chk (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{n,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memmove__havoc_8c_a802c986820d3866639922b6bc9484f90}\label{memmove__havoc_8c_a802c986820d3866639922b6bc9484f90}} 
+\index{memmove\_havoc.c@{memmove\_havoc.c}!memmove@{memmove}}
+\index{memmove@{memmove}!memmove\_havoc.c@{memmove\_havoc.c}}
+\doxysubsubsection{\texorpdfstring{memmove()}{memmove()}}
+{\footnotesize\ttfamily void$\ast$ memmove (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{memmove__havoc_8c_af4b653050cd1e7e8ef54a92fe145562e}\label{memmove__havoc_8c_af4b653050cd1e7e8ef54a92fe145562e}} 
+\index{memmove\_havoc.c@{memmove\_havoc.c}!memmove\_impl@{memmove\_impl}}
+\index{memmove\_impl@{memmove\_impl}!memmove\_havoc.c@{memmove\_havoc.c}}
+\doxysubsubsection{\texorpdfstring{memmove\_impl()}{memmove\_impl()}}
+{\footnotesize\ttfamily void$\ast$ memmove\+\_\+impl (\begin{DoxyParamCaption}\item[{void $\ast$}]{dest,  }\item[{const void $\ast$}]{src,  }\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+Override the version of memmove used by CBMC. Users may not want to pay for the cost of performing the computation of memmove in proofs. In that case, this stub at least checks for the preconditions and make sure to havoc all elements pointed by $\ast$dest up to n. 

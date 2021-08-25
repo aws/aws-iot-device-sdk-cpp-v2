@@ -1,0 +1,78 @@
+\hypertarget{s2n__resume_8h_source}{}\doxysection{s2n\+\_\+resume.\+h}
+\label{s2n__resume_8h_source}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_resume.h@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_resume.h}}
+\mbox{\hyperlink{s2n__resume_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Licensed under the Apache License, Version 2.0 (the "{}License"{}).}}
+\DoxyCodeLine{5 \textcolor{comment}{ * You may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{ * A copy of the License is located at}}
+\DoxyCodeLine{7 \textcolor{comment}{ *}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  http://aws.amazon.com/apache2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * or in the "{}license"{} file accompanying this file. This file is distributed}}
+\DoxyCodeLine{11 \textcolor{comment}{ * on an "{}AS IS"{} BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either}}
+\DoxyCodeLine{12 \textcolor{comment}{ * express or implied. See the License for the specific language governing}}
+\DoxyCodeLine{13 \textcolor{comment}{ * permissions and limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{ */}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}utils/s2n\_blob.h"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__stuffer_8h}{stuffer/s2n\_stuffer.h}}"{}}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define S2N\_SERIALIZED\_FORMAT\_VERSION   1}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define S2N\_STATE\_LIFETIME\_IN\_NANOS     54000000000000      }\textcolor{comment}{/* 15 hours */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define S2N\_STATE\_SIZE\_IN\_BYTES         (1 + 8 + 1 + S2N\_TLS\_CIPHER\_SUITE\_LEN + S2N\_TLS\_SECRET\_LEN)}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define S2N\_TLS\_SESSION\_CACHE\_TTL       (6 * 60 * 60)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#define S2N\_TICKET\_KEY\_NAME\_LEN         16}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define S2N\_TICKET\_AAD\_IMPLICIT\_LEN     12}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define S2N\_TICKET\_AAD\_LEN              (S2N\_TICKET\_AAD\_IMPLICIT\_LEN + S2N\_TICKET\_KEY\_NAME\_LEN)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define S2N\_AES256\_KEY\_LEN              32}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define ONE\_SEC\_IN\_NANOS                1000000000}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define S2N\_TICKET\_SIZE\_IN\_BYTES        (S2N\_TICKET\_KEY\_NAME\_LEN + S2N\_TLS\_GCM\_IV\_LEN + S2N\_STATE\_SIZE\_IN\_BYTES + S2N\_TLS\_GCM\_TAG\_LEN)}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define S2N\_TICKET\_ENCRYPT\_DECRYPT\_KEY\_LIFETIME\_IN\_NANOS        7200000000000     }\textcolor{comment}{/* 2 hours */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define S2N\_TICKET\_DECRYPT\_KEY\_LIFETIME\_IN\_NANOS                46800000000000    }\textcolor{comment}{/* 13 hours */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define S2N\_STATE\_FORMAT\_LEN            1}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define S2N\_TICKET\_LIFETIME\_HINT\_LEN    4}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#define S2N\_SESSION\_TICKET\_SIZE\_LEN     2}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#define S2N\_GREATER\_OR\_EQUAL            1}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define S2N\_LESS\_THAN                  -\/1}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}};}
+\DoxyCodeLine{41 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__config}{s2n\_config}};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ticket__key}{s2n\_ticket\_key}} \{}
+\DoxyCodeLine{44     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} \mbox{\hyperlink{structs2n__ticket__key_ab05a4ed1e4fdd619862c4afebce5c3fb}{key\_name}}[\mbox{\hyperlink{s2n__resume_8h_a50618d4cd74e5cf3267cad0f9077af3a}{S2N\_TICKET\_KEY\_NAME\_LEN}}];}
+\DoxyCodeLine{45     uint8\_t \mbox{\hyperlink{structs2n__ticket__key_af792bcb9a2c0654c3d9e13278c82b2e1}{aes\_key}}[\mbox{\hyperlink{s2n__resume_8h_aa388efdb5f36b30216888c8f99b000d2}{S2N\_AES256\_KEY\_LEN}}];}
+\DoxyCodeLine{46     uint8\_t \mbox{\hyperlink{structs2n__ticket__key_a27e95e951b7ec53cbf381c7b76949fc4}{implicit\_aad}}[\mbox{\hyperlink{s2n__resume_8h_ad52640e6f2b1f2fe4d07d866df7cb686}{S2N\_TICKET\_AAD\_IMPLICIT\_LEN}}];}
+\DoxyCodeLine{47     uint64\_t \mbox{\hyperlink{structs2n__ticket__key_a51e3a5faeeca870b943540c0598f1006}{intro\_timestamp}};}
+\DoxyCodeLine{48 \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ticket__key__weight}{s2n\_ticket\_key\_weight}} \{}
+\DoxyCodeLine{51     \textcolor{keywordtype}{double} \mbox{\hyperlink{structs2n__ticket__key__weight_ad30ea40c2b6d14145e322779357f44f8}{key\_weight}};}
+\DoxyCodeLine{52     uint8\_t \mbox{\hyperlink{structs2n__ticket__key__weight_ac2317871f3eda1fcc8c72c03d08a5eb4}{key\_index}};}
+\DoxyCodeLine{53 \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{keyword}{extern} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ticket__key}{s2n\_ticket\_key}} *\mbox{\hyperlink{s2n__resume_8h_a0a36aec54bd8a88ea460a3168531624c}{s2n\_find\_ticket\_key}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}});}
+\DoxyCodeLine{56 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_af47d0d9b81212f68a39f86252f718268}{s2n\_encrypt\_session\_ticket}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *to);}
+\DoxyCodeLine{57 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_a9c7281eb3c27d7fe115d02638460b704}{s2n\_decrypt\_session\_ticket}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{58 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_ab048e80d689dd14eec32b62ca20a0a20}{s2n\_encrypt\_session\_cache}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *to); }
+\DoxyCodeLine{59 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_ab3f4d569baafbb5c99aea966a59cc220}{s2n\_decrypt\_session\_cache}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *from); }
+\DoxyCodeLine{60 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_aa22f1e61039bc0532e8779ba66c11ed7}{s2n\_config\_is\_encrypt\_decrypt\_key\_available}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{61 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_a405456e8d83a522fdf9c117b4e78ae23}{s2n\_verify\_unique\_ticket\_key}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint8\_t *hash, uint16\_t *insert\_index);}
+\DoxyCodeLine{62 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_a2b2d20ed8363aa84eaa570e8151bbcdc}{s2n\_config\_wipe\_expired\_ticket\_crypto\_keys}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, int8\_t expired\_key\_index);}
+\DoxyCodeLine{63 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_a919cfa25f29ca5d1437661531d6ac264}{s2n\_config\_store\_ticket\_key}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__config}{s2n\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__ticket__key}{s2n\_ticket\_key}} *key);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{66     \mbox{\hyperlink{s2n__resume_8h_a50f77540cc3917a150c9af1a387ce482acd576ed059e56c429178e5bbdec08afa}{S2N\_STATE\_WITH\_SESSION\_ID}} = 0,}
+\DoxyCodeLine{67     \mbox{\hyperlink{s2n__resume_8h_a50f77540cc3917a150c9af1a387ce482a898c9ea488395aaa5bc5293a8022d440}{S2N\_STATE\_WITH\_SESSION\_TICKET}}}
+\DoxyCodeLine{68 \} \mbox{\hyperlink{s2n__resume_8h_a50f77540cc3917a150c9af1a387ce482}{s2n\_client\_tls\_session\_state\_format}};}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_abacbe6a3a5bc2989dac5522579b2e135}{s2n\_allowed\_to\_cache\_connection}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{71 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_aef2e99be4e9b1782b9d208ce80f02842}{s2n\_resume\_from\_cache}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{72 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__resume_8h_ad19683b9eb6d7635dc7d808d52744deb}{s2n\_store\_to\_cache}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+
+\end{DoxyCode}

@@ -1,0 +1,149 @@
+\hypertarget{xml__parser_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/xml\+\_\+parser.c File Reference}
+\label{xml__parser_8c}\index{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/xml\_parser.c@{crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/source/xml\_parser.c}}
+{\ttfamily \#include $<$aws/common/array\+\_\+list.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/logging.\+h$>$}\newline
+{\ttfamily \#include $<$aws/common/private/xml\+\_\+parser\+\_\+impl.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcb__stack__data}{cb\+\_\+stack\+\_\+data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{xml__parser_8c_afd709f201d7643c3909621f620ea648a}{MAX\+\_\+\+NAME\+\_\+\+LEN}}~((size\+\_\+t)256)
+\item 
+\#define \mbox{\hyperlink{xml__parser_8c_a7b4c9134d3095320e0b6ca7885de1268}{NODE\+\_\+\+CLOSE\+\_\+\+OVERHEAD}}~((size\+\_\+t)3)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$ \mbox{\hyperlink{xml__parser_8c_a55445476846fd824ccd0158955eec5b6}{aws\+\_\+xml\+\_\+parser\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__xml__parser__options}{aws\+\_\+xml\+\_\+parser\+\_\+options}} $\ast$options)
+\item 
+void \mbox{\hyperlink{xml__parser_8c_a71bee1430f34646e35cdc08eacc81e14}{aws\+\_\+xml\+\_\+parser\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser)
+\item 
+int \mbox{\hyperlink{xml__parser_8c_ab719651cd8e7c48868a5b5ad7f65b245}{s\+\_\+node\+\_\+next\+\_\+sibling}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser)
+\item 
+static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{xml__parser_8c_a34a50f4465c26420ca250a5156b2ae89}{s\+\_\+double\+\_\+quote\+\_\+fn}} (uint8\+\_\+t value)
+\item 
+static int \mbox{\hyperlink{xml__parser_8c_ac4b5e965c916da4b256527429b04ab6b}{s\+\_\+load\+\_\+node\+\_\+decl}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$decl\+\_\+body, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node)
+\item 
+int \mbox{\hyperlink{xml__parser_8c_adad0c085ebe9f8ff526d4054781eb615}{aws\+\_\+xml\+\_\+parser\+\_\+parse}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, \mbox{\hyperlink{xml__parser_8h_afedd313edac72129d785e92911065544}{aws\+\_\+xml\+\_\+parser\+\_\+on\+\_\+node\+\_\+encountered\+\_\+fn}} $\ast$on\+\_\+node\+\_\+encountered, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int \mbox{\hyperlink{xml__parser_8c_adba2707ecae0eed9a3f9560c098c8256}{s\+\_\+advance\+\_\+to\+\_\+closing\+\_\+tag}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+body)
+\item 
+int \mbox{\hyperlink{xml__parser_8c_a6b65f5d21e472ed283f875395acb565e}{aws\+\_\+xml\+\_\+node\+\_\+as\+\_\+body}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+body)
+\item 
+int \mbox{\hyperlink{xml__parser_8c_aa93a702d070a2f5f030f1b4d872d4381}{aws\+\_\+xml\+\_\+node\+\_\+traverse}} (struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$parser, struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, \mbox{\hyperlink{xml__parser_8h_afedd313edac72129d785e92911065544}{aws\+\_\+xml\+\_\+parser\+\_\+on\+\_\+node\+\_\+encountered\+\_\+fn}} $\ast$on\+\_\+node\+\_\+encountered, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\item 
+int \mbox{\hyperlink{xml__parser_8c_a969617979d8315b5c516112d5204547c}{aws\+\_\+xml\+\_\+node\+\_\+get\+\_\+name}} (const struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+name)
+\item 
+size\+\_\+t \mbox{\hyperlink{xml__parser_8c_a1aa5347f0f6e2211a5ea9fb37392494a}{aws\+\_\+xml\+\_\+node\+\_\+get\+\_\+num\+\_\+attributes}} (const struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node)
+\item 
+int \mbox{\hyperlink{xml__parser_8c_a56debccfa8ac3f2ae468a497a87d9dde}{aws\+\_\+xml\+\_\+node\+\_\+get\+\_\+attribute}} (const struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$node, size\+\_\+t attribute\+\_\+index, struct \mbox{\hyperlink{structaws__xml__attribute}{aws\+\_\+xml\+\_\+attribute}} $\ast$out\+\_\+attribute)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const size\+\_\+t \mbox{\hyperlink{xml__parser_8c_adc08efd30be4fd2cda6dd6751eac5b23}{s\+\_\+max\+\_\+document\+\_\+depth}} = 20
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{xml__parser_8c_afd709f201d7643c3909621f620ea648a}\label{xml__parser_8c_afd709f201d7643c3909621f620ea648a}} 
+\index{xml\_parser.c@{xml\_parser.c}!MAX\_NAME\_LEN@{MAX\_NAME\_LEN}}
+\index{MAX\_NAME\_LEN@{MAX\_NAME\_LEN}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_NAME\_LEN}{MAX\_NAME\_LEN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+NAME\+\_\+\+LEN~((size\+\_\+t)256)}
+
+\mbox{\Hypertarget{xml__parser_8c_a7b4c9134d3095320e0b6ca7885de1268}\label{xml__parser_8c_a7b4c9134d3095320e0b6ca7885de1268}} 
+\index{xml\_parser.c@{xml\_parser.c}!NODE\_CLOSE\_OVERHEAD@{NODE\_CLOSE\_OVERHEAD}}
+\index{NODE\_CLOSE\_OVERHEAD@{NODE\_CLOSE\_OVERHEAD}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{NODE\_CLOSE\_OVERHEAD}{NODE\_CLOSE\_OVERHEAD}}
+{\footnotesize\ttfamily \#define NODE\+\_\+\+CLOSE\+\_\+\+OVERHEAD~((size\+\_\+t)3)}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{xml__parser_8c_a6b65f5d21e472ed283f875395acb565e}\label{xml__parser_8c_a6b65f5d21e472ed283f875395acb565e}} 
+\index{xml\_parser.c@{xml\_parser.c}!aws\_xml\_node\_as\_body@{aws\_xml\_node\_as\_body}}
+\index{aws\_xml\_node\_as\_body@{aws\_xml\_node\_as\_body}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_xml\_node\_as\_body()}{aws\_xml\_node\_as\_body()}}
+{\footnotesize\ttfamily int aws\+\_\+xml\+\_\+node\+\_\+as\+\_\+body (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{out\+\_\+body }\end{DoxyParamCaption})}
+
+Writes the contents of the body of node into out\+\_\+body. out\+\_\+body is an output parameter in this case. Upon success, out\+\_\+body will contain the body of the node. \mbox{\Hypertarget{xml__parser_8c_a56debccfa8ac3f2ae468a497a87d9dde}\label{xml__parser_8c_a56debccfa8ac3f2ae468a497a87d9dde}} 
+\index{xml\_parser.c@{xml\_parser.c}!aws\_xml\_node\_get\_attribute@{aws\_xml\_node\_get\_attribute}}
+\index{aws\_xml\_node\_get\_attribute@{aws\_xml\_node\_get\_attribute}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_xml\_node\_get\_attribute()}{aws\_xml\_node\_get\_attribute()}}
+{\footnotesize\ttfamily int aws\+\_\+xml\+\_\+node\+\_\+get\+\_\+attribute (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{size\+\_\+t}]{attribute\+\_\+index,  }\item[{struct \mbox{\hyperlink{structaws__xml__attribute}{aws\+\_\+xml\+\_\+attribute}} $\ast$}]{out\+\_\+attribute }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser_8c_a969617979d8315b5c516112d5204547c}\label{xml__parser_8c_a969617979d8315b5c516112d5204547c}} 
+\index{xml\_parser.c@{xml\_parser.c}!aws\_xml\_node\_get\_name@{aws\_xml\_node\_get\_name}}
+\index{aws\_xml\_node\_get\_name@{aws\_xml\_node\_get\_name}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_xml\_node\_get\_name()}{aws\_xml\_node\_get\_name()}}
+{\footnotesize\ttfamily int aws\+\_\+xml\+\_\+node\+\_\+get\+\_\+name (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{out\+\_\+name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser_8c_a1aa5347f0f6e2211a5ea9fb37392494a}\label{xml__parser_8c_a1aa5347f0f6e2211a5ea9fb37392494a}} 
+\index{xml\_parser.c@{xml\_parser.c}!aws\_xml\_node\_get\_num\_attributes@{aws\_xml\_node\_get\_num\_attributes}}
+\index{aws\_xml\_node\_get\_num\_attributes@{aws\_xml\_node\_get\_num\_attributes}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_xml\_node\_get\_num\_attributes()}{aws\_xml\_node\_get\_num\_attributes()}}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+xml\+\_\+node\+\_\+get\+\_\+num\+\_\+attributes (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser_8c_aa93a702d070a2f5f030f1b4d872d4381}\label{xml__parser_8c_aa93a702d070a2f5f030f1b4d872d4381}} 
+\index{xml\_parser.c@{xml\_parser.c}!aws\_xml\_node\_traverse@{aws\_xml\_node\_traverse}}
+\index{aws\_xml\_node\_traverse@{aws\_xml\_node\_traverse}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_xml\_node\_traverse()}{aws\_xml\_node\_traverse()}}
+{\footnotesize\ttfamily int aws\+\_\+xml\+\_\+node\+\_\+traverse (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{xml__parser_8h_afedd313edac72129d785e92911065544}{aws\+\_\+xml\+\_\+parser\+\_\+on\+\_\+node\+\_\+encountered\+\_\+fn}} $\ast$}]{on\+\_\+node\+\_\+encountered,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+Traverse node and invoke on\+\_\+node\+\_\+encountered when a nested node is encountered. \mbox{\Hypertarget{xml__parser_8c_a71bee1430f34646e35cdc08eacc81e14}\label{xml__parser_8c_a71bee1430f34646e35cdc08eacc81e14}} 
+\index{xml\_parser.c@{xml\_parser.c}!aws\_xml\_parser\_destroy@{aws\_xml\_parser\_destroy}}
+\index{aws\_xml\_parser\_destroy@{aws\_xml\_parser\_destroy}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_xml\_parser\_destroy()}{aws\_xml\_parser\_destroy()}}
+{\footnotesize\ttfamily void aws\+\_\+xml\+\_\+parser\+\_\+destroy (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser_8c_a55445476846fd824ccd0158955eec5b6}\label{xml__parser_8c_a55445476846fd824ccd0158955eec5b6}} 
+\index{xml\_parser.c@{xml\_parser.c}!aws\_xml\_parser\_new@{aws\_xml\_parser\_new}}
+\index{aws\_xml\_parser\_new@{aws\_xml\_parser\_new}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_xml\_parser\_new()}{aws\_xml\_parser\_new()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}}$\ast$ aws\+\_\+xml\+\_\+parser\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__xml__parser__options}{aws\+\_\+xml\+\_\+parser\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+
+Allocates an xml parser. \mbox{\Hypertarget{xml__parser_8c_adad0c085ebe9f8ff526d4054781eb615}\label{xml__parser_8c_adad0c085ebe9f8ff526d4054781eb615}} 
+\index{xml\_parser.c@{xml\_parser.c}!aws\_xml\_parser\_parse@{aws\_xml\_parser\_parse}}
+\index{aws\_xml\_parser\_parse@{aws\_xml\_parser\_parse}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{aws\_xml\_parser\_parse()}{aws\_xml\_parser\_parse()}}
+{\footnotesize\ttfamily int aws\+\_\+xml\+\_\+parser\+\_\+parse (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{\mbox{\hyperlink{xml__parser_8h_afedd313edac72129d785e92911065544}{aws\+\_\+xml\+\_\+parser\+\_\+on\+\_\+node\+\_\+encountered\+\_\+fn}} $\ast$}]{on\+\_\+node\+\_\+encountered,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+Parse the doc until the end or until a callback rejects the document. on\+\_\+node\+\_\+encountered will be invoked when the root node is encountered. \mbox{\Hypertarget{xml__parser_8c_adba2707ecae0eed9a3f9560c098c8256}\label{xml__parser_8c_adba2707ecae0eed9a3f9560c098c8256}} 
+\index{xml\_parser.c@{xml\_parser.c}!s\_advance\_to\_closing\_tag@{s\_advance\_to\_closing\_tag}}
+\index{s\_advance\_to\_closing\_tag@{s\_advance\_to\_closing\_tag}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{s\_advance\_to\_closing\_tag()}{s\_advance\_to\_closing\_tag()}}
+{\footnotesize\ttfamily int s\+\_\+advance\+\_\+to\+\_\+closing\+\_\+tag (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{out\+\_\+body }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{xml__parser_8c_a34a50f4465c26420ca250a5156b2ae89}\label{xml__parser_8c_a34a50f4465c26420ca250a5156b2ae89}} 
+\index{xml\_parser.c@{xml\_parser.c}!s\_double\_quote\_fn@{s\_double\_quote\_fn}}
+\index{s\_double\_quote\_fn@{s\_double\_quote\_fn}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{s\_double\_quote\_fn()}{s\_double\_quote\_fn()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+double\+\_\+quote\+\_\+fn (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{xml__parser_8c_ac4b5e965c916da4b256527429b04ab6b}\label{xml__parser_8c_ac4b5e965c916da4b256527429b04ab6b}} 
+\index{xml\_parser.c@{xml\_parser.c}!s\_load\_node\_decl@{s\_load\_node\_decl}}
+\index{s\_load\_node\_decl@{s\_load\_node\_decl}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{s\_load\_node\_decl()}{s\_load\_node\_decl()}}
+{\footnotesize\ttfamily static int s\+\_\+load\+\_\+node\+\_\+decl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{decl\+\_\+body,  }\item[{struct \mbox{\hyperlink{structaws__xml__node}{aws\+\_\+xml\+\_\+node}} $\ast$}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{xml__parser_8c_ab719651cd8e7c48868a5b5ad7f65b245}\label{xml__parser_8c_ab719651cd8e7c48868a5b5ad7f65b245}} 
+\index{xml\_parser.c@{xml\_parser.c}!s\_node\_next\_sibling@{s\_node\_next\_sibling}}
+\index{s\_node\_next\_sibling@{s\_node\_next\_sibling}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{s\_node\_next\_sibling()}{s\_node\_next\_sibling()}}
+{\footnotesize\ttfamily int s\+\_\+node\+\_\+next\+\_\+sibling (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__xml__parser}{aws\+\_\+xml\+\_\+parser}} $\ast$}]{parser }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{xml__parser_8c_adc08efd30be4fd2cda6dd6751eac5b23}\label{xml__parser_8c_adc08efd30be4fd2cda6dd6751eac5b23}} 
+\index{xml\_parser.c@{xml\_parser.c}!s\_max\_document\_depth@{s\_max\_document\_depth}}
+\index{s\_max\_document\_depth@{s\_max\_document\_depth}!xml\_parser.c@{xml\_parser.c}}
+\doxysubsubsection{\texorpdfstring{s\_max\_document\_depth}{s\_max\_document\_depth}}
+{\footnotesize\ttfamily const size\+\_\+t s\+\_\+max\+\_\+document\+\_\+depth = 20\hspace{0.3cm}{\ttfamily [static]}}
+
+Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
