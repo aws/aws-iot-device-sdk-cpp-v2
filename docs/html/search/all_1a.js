@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['x_0',['X',['../structpoint__proj.html#aa86b0425fac42d908f34f2bc6c4ec277',1,'point_proj']]],
-  ['x_1',['x',['../structyx__s.html#a41398c033fd514868e1bec3d6371f115',1,'yx_s::x()'],['../structfoo.html#a43659b60372d15be8959507f50d0e675',1,'foo::x()']]],
+  ['x_0',['x',['../structyx__s.html#a41398c033fd514868e1bec3d6371f115',1,'yx_s::x()'],['../structfoo.html#a43659b60372d15be8959507f50d0e675',1,'foo::x()']]],
+  ['x_1',['X',['../structpoint__proj.html#aa86b0425fac42d908f34f2bc6c4ec277',1,'point_proj']]],
   ['x25519_2',['X25519',['../classcommon_1_1_curves.html#a9566eb0d93802b0cf67c5de0573ae539',1,'common::Curves']]],
   ['x25519_5fbike1l1r2_5fhybrid_5fsecret_3',['X25519_BIKE1L1R2_HYBRID_SECRET',['../s2n__tls13__hybrid__shared__secret__test_8c.html#a188ad6a07d0228a0817d1cdc536a4f19',1,'s2n_tls13_hybrid_shared_secret_test.c']]],
   ['x25519_5fkyber512r2_5fhybrid_5fsecret_4',['X25519_KYBER512R2_HYBRID_SECRET',['../s2n__tls13__hybrid__shared__secret__test_8c.html#acdf7bdacc42d8a8b0c2d16bb08d2df68',1,'s2n_tls13_hybrid_shared_secret_test.c']]],
