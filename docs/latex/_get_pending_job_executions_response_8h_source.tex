@@ -3,36 +3,36 @@
 \mbox{\hyperlink{_get_pending_job_executions_response_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_date_time_8h}{aws/crt/DateTime.h}}>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <aws/crt/DateTime.h>}}
 \DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_job_execution_summary_8h}{aws/iotjobs/JobExecutionSummary.h}}>}}
 \DoxyCodeLine{8 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{jobs_2include_2aws_2iotjobs_2_exports_8h}{aws/iotjobs/Exports.h}}>}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_json_object_8h}{aws/crt/JsonObject.h}}>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_stl_allocator_8h}{aws/crt/StlAllocator.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <aws/crt/JsonObject.h>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <aws/crt/StlAllocator.h>}}
 \DoxyCodeLine{13 }
 \DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
 \DoxyCodeLine{15 \{}
 \DoxyCodeLine{16     \textcolor{keyword}{namespace }Iotjobs}
 \DoxyCodeLine{17     \{}
 \DoxyCodeLine{18 }
-\DoxyCodeLine{19         \textcolor{keyword}{class }\mbox{\hyperlink{jobs_2include_2aws_2iotjobs_2_exports_8h_ade8baf38a194e843be5cac2029f44036}{AWS\_IOTJOBS\_API}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response}{GetPendingJobExecutionsResponse}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{19         \textcolor{keyword}{class }\mbox{\hyperlink{jobs_2include_2aws_2iotjobs_2_exports_8h_ade8baf38a194e843be5cac2029f44036}{AWS\_IOTJOBS\_API}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response}{GetPendingJobExecutionsResponse}} final}
 \DoxyCodeLine{20         \{}
 \DoxyCodeLine{21           \textcolor{keyword}{public}:}
 \DoxyCodeLine{22             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response_a0cd2837bf03cd796fc45499533dccdc1}{GetPendingJobExecutionsResponse}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{23 }
-\DoxyCodeLine{24             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response}{GetPendingJobExecutionsResponse}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
-\DoxyCodeLine{25             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response}{GetPendingJobExecutionsResponse}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
+\DoxyCodeLine{24             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response}{GetPendingJobExecutionsResponse}}(\textcolor{keyword}{const} Crt::JsonView \&doc);}
+\DoxyCodeLine{25             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response}{GetPendingJobExecutionsResponse}} \&operator=(\textcolor{keyword}{const} Crt::JsonView \&doc);}
 \DoxyCodeLine{26 }
-\DoxyCodeLine{27             \textcolor{keywordtype}{void} SerializeToObject(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt::JsonObject}} \&doc) \textcolor{keyword}{const};}
+\DoxyCodeLine{27             \textcolor{keywordtype}{void} SerializeToObject(Crt::JsonObject \&doc) \textcolor{keyword}{const};}
 \DoxyCodeLine{28 }
-\DoxyCodeLine{29             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>}}> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response_ab5c646434d7263e39ece1df7231f569d}{QueuedJobs}};}
-\DoxyCodeLine{30             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::DateTime>}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response_a87c62af2a8db66e0282f34debff807d1}{Timestamp}};}
-\DoxyCodeLine{31             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response_a05326e66ae32f1a6c45753cb86ded125}{ClientToken}};}
-\DoxyCodeLine{32             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>}}> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response_ad18a9ff426fe7f00e754d5d12457b5ef}{InProgressJobs}};}
+\DoxyCodeLine{29             Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response_ab5c646434d7263e39ece1df7231f569d}{QueuedJobs}};}
+\DoxyCodeLine{30             Aws::Crt::Optional<Aws::Crt::DateTime> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response_a87c62af2a8db66e0282f34debff807d1}{Timestamp}};}
+\DoxyCodeLine{31             Aws::Crt::Optional<Aws::Crt::String> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response_a05326e66ae32f1a6c45753cb86ded125}{ClientToken}};}
+\DoxyCodeLine{32             Aws::Crt::Optional<Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response_ad18a9ff426fe7f00e754d5d12457b5ef}{InProgressJobs}};}
 \DoxyCodeLine{33 }
 \DoxyCodeLine{34           \textcolor{keyword}{private}:}
-\DoxyCodeLine{35             \textcolor{keyword}{static} \textcolor{keywordtype}{void} LoadFromObject(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response}{GetPendingJobExecutionsResponse}} \&obj, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
+\DoxyCodeLine{35             \textcolor{keyword}{static} \textcolor{keywordtype}{void} LoadFromObject(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_response}{GetPendingJobExecutionsResponse}} \&obj, \textcolor{keyword}{const} Crt::JsonView \&doc);}
 \DoxyCodeLine{36         \};}
 \DoxyCodeLine{37     \} \textcolor{comment}{// namespace Iotjobs}}
 \DoxyCodeLine{38 \} \textcolor{comment}{// namespace Aws}}

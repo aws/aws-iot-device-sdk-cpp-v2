@@ -13,7 +13,7 @@ Inheritance diagram for Awstest\+::Echo\+Stream\+Messages\+Operation\+:\begin{fi
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_a6df50d6f44d651f088cce6cb81f16626}{Echo\+Stream\+Messages\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&connection, \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_stream_handler}{Echo\+Stream\+Messages\+Stream\+Handler}} $\ast$stream\+Handler, const \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_context}{Echo\+Stream\+Messages\+Operation\+Context}} \&operation\+Context, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws\+::\+Crt\+::g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_a6df50d6f44d651f088cce6cb81f16626}{Echo\+Stream\+Messages\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&connection, \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_stream_handler}{Echo\+Stream\+Messages\+Stream\+Handler}} $\ast$stream\+Handler, const \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_context}{Echo\+Stream\+Messages\+Operation\+Context}} \&operation\+Context, Aws\+::\+Crt\+::\+Allocator $\ast$allocator=Aws\+::\+Crt\+::g\+\_\+allocator) noexcept
 \item 
 std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_a901d1950c31d1bbb5d75f20b976560ed}{Activate}} (const \mbox{\hyperlink{class_awstest_1_1_echo_streaming_request}{Echo\+Streaming\+Request}} \&request, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback=nullptr) noexcept
 \item 
@@ -22,7 +22,7 @@ std\+::future$<$ \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_result}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_a084a1352ae52b417c94e4cc843a922fb}{Get\+Model\+Name}} () const noexcept override
+Aws\+::\+Crt\+::\+String \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_a084a1352ae52b417c94e4cc843a922fb}{Get\+Model\+Name}} () const noexcept override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -32,7 +32,7 @@ std\+::future$<$ \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_result}
 \index{Awstest::EchoStreamMessagesOperation@{Awstest::EchoStreamMessagesOperation}!EchoStreamMessagesOperation@{EchoStreamMessagesOperation}}
 \index{EchoStreamMessagesOperation@{EchoStreamMessagesOperation}!Awstest::EchoStreamMessagesOperation@{Awstest::EchoStreamMessagesOperation}}
 \doxysubsubsection{\texorpdfstring{EchoStreamMessagesOperation()}{EchoStreamMessagesOperation()}}
-{\footnotesize\ttfamily Awstest\+::\+Echo\+Stream\+Messages\+Operation\+::\+Echo\+Stream\+Messages\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&}]{connection,  }\item[{\mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_stream_handler}{Echo\+Stream\+Messages\+Stream\+Handler}} $\ast$}]{stream\+Handler,  }\item[{const \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_context}{Echo\+Stream\+Messages\+Operation\+Context}} \&}]{operation\+Context,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws\+::\+Crt\+::g\+\_\+allocator}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Awstest\+::\+Echo\+Stream\+Messages\+Operation\+::\+Echo\+Stream\+Messages\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&}]{connection,  }\item[{\mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_stream_handler}{Echo\+Stream\+Messages\+Stream\+Handler}} $\ast$}]{stream\+Handler,  }\item[{const \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_context}{Echo\+Stream\+Messages\+Operation\+Context}} \&}]{operation\+Context,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator = {\ttfamily Aws\+:\+:Crt\+:\+:g\+\_\+allocator} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 
 
@@ -57,7 +57,7 @@ An {\ttfamily Rpc\+Error} that can be used to check whether the stream was activ
 \index{Awstest::EchoStreamMessagesOperation@{Awstest::EchoStreamMessagesOperation}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Awstest::EchoStreamMessagesOperation@{Awstest::EchoStreamMessagesOperation}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Awstest\+::\+Echo\+Stream\+Messages\+Operation\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+String Awstest\+::\+Echo\+Stream\+Messages\+Operation\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 

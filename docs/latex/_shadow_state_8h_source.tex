@@ -3,33 +3,33 @@
 \mbox{\hyperlink{_shadow_state_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_json_object_8h}{aws/crt/JsonObject.h}}>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <aws/crt/JsonObject.h>}}
 \DoxyCodeLine{7 }
 \DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{shadow_2include_2aws_2iotshadow_2_exports_8h}{aws/iotshadow/Exports.h}}>}}
 \DoxyCodeLine{9 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_json_object_8h}{aws/crt/JsonObject.h}}>}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_stl_allocator_8h}{aws/crt/StlAllocator.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <aws/crt/JsonObject.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <aws/crt/StlAllocator.h>}}
 \DoxyCodeLine{12 }
 \DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
 \DoxyCodeLine{14 \{}
 \DoxyCodeLine{15     \textcolor{keyword}{namespace }Iotshadow}
 \DoxyCodeLine{16     \{}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18         \textcolor{keyword}{class }\mbox{\hyperlink{shadow_2include_2aws_2iotshadow_2_exports_8h_a0ff5d9187662f08ef15bc492c2dd0145}{AWS\_IOTSHADOW\_API}} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state}{ShadowState}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{18         \textcolor{keyword}{class }\mbox{\hyperlink{shadow_2include_2aws_2iotshadow_2_exports_8h_a0ff5d9187662f08ef15bc492c2dd0145}{AWS\_IOTSHADOW\_API}} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state}{ShadowState}} final}
 \DoxyCodeLine{19         \{}
 \DoxyCodeLine{20           \textcolor{keyword}{public}:}
 \DoxyCodeLine{21             \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state_a2ec63a3022a48b2e6046c7921eceae40}{ShadowState}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{22 }
-\DoxyCodeLine{23             \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state}{ShadowState}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
-\DoxyCodeLine{24             \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state}{ShadowState}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
+\DoxyCodeLine{23             \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state}{ShadowState}}(\textcolor{keyword}{const} Crt::JsonView \&doc);}
+\DoxyCodeLine{24             \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state}{ShadowState}} \&operator=(\textcolor{keyword}{const} Crt::JsonView \&doc);}
 \DoxyCodeLine{25 }
-\DoxyCodeLine{26             \textcolor{keywordtype}{void} SerializeToObject(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt::JsonObject}} \&doc) \textcolor{keyword}{const};}
+\DoxyCodeLine{26             \textcolor{keywordtype}{void} SerializeToObject(Crt::JsonObject \&doc) \textcolor{keyword}{const};}
 \DoxyCodeLine{27 }
-\DoxyCodeLine{28             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::JsonObject>}} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state_ad4556f4b2c6120cfa428c9e5ec67ccdb}{Desired}};}
-\DoxyCodeLine{29             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::JsonObject>}} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state_a3d012f2bddf2c13f0951bae398741dbe}{Reported}};}
+\DoxyCodeLine{28             Aws::Crt::Optional<Aws::Crt::JsonObject> \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state_ad4556f4b2c6120cfa428c9e5ec67ccdb}{Desired}};}
+\DoxyCodeLine{29             Aws::Crt::Optional<Aws::Crt::JsonObject> \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state_a3d012f2bddf2c13f0951bae398741dbe}{Reported}};}
 \DoxyCodeLine{30 }
 \DoxyCodeLine{31           \textcolor{keyword}{private}:}
-\DoxyCodeLine{32             \textcolor{keyword}{static} \textcolor{keywordtype}{void} LoadFromObject(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state}{ShadowState}} \&obj, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
+\DoxyCodeLine{32             \textcolor{keyword}{static} \textcolor{keywordtype}{void} LoadFromObject(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_state}{ShadowState}} \&obj, \textcolor{keyword}{const} Crt::JsonView \&doc);}
 \DoxyCodeLine{33         \};}
 \DoxyCodeLine{34     \} \textcolor{comment}{// namespace Iotshadow}}
 \DoxyCodeLine{35 \} \textcolor{comment}{// namespace Aws}}

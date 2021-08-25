@@ -86,19 +86,19 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a50c082b8d70df1c20e37bafdc1707460"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a842e3d848f98221676e46d2ab0cfa71b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_test_lifecycle_handler.html#a842e3d848f98221676e46d2ab0cfa71b">OnConnectCallback</a> () override</td></tr>
 <tr class="separator:a842e3d848f98221676e46d2ab0cfa71b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fe18bc4894b7ff93c738ab63ba5f0c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_test_lifecycle_handler.html#a3fe18bc4894b7ff93c738ab63ba5f0c6">OnDisconnectCallback</a> (<a class="el" href="struct_aws_1_1_eventstreamrpc_1_1_rpc_error.html">RpcError</a> <a class="el" href="structerror.html">error</a>) override</td></tr>
+<tr class="memitem:a3fe18bc4894b7ff93c738ab63ba5f0c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_test_lifecycle_handler.html#a3fe18bc4894b7ff93c738ab63ba5f0c6">OnDisconnectCallback</a> (<a class="el" href="struct_aws_1_1_eventstreamrpc_1_1_rpc_error.html">RpcError</a> error) override</td></tr>
 <tr class="separator:a3fe18bc4894b7ff93c738ab63ba5f0c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a244b6d3072e00e74070d962b2b5a12d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_test_lifecycle_handler.html#a244b6d3072e00e74070d962b2b5a12d0">WaitOnCondition</a> (std::function&lt; <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>(void)&gt; condition)</td></tr>
+<tr class="memitem:a244b6d3072e00e74070d962b2b5a12d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_test_lifecycle_handler.html#a244b6d3072e00e74070d962b2b5a12d0">WaitOnCondition</a> (std::function&lt; bool(void)&gt; condition)</td></tr>
 <tr class="separator:a244b6d3072e00e74070d962b2b5a12d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler.html">Aws::Eventstreamrpc::ConnectionLifecycleHandler</a></td></tr>
-<tr class="memitem:a98840296787a3c35dc53c775eecb4c9a inherit pub_methods_class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler.html#a98840296787a3c35dc53c775eecb4c9a">OnErrorCallback</a> (<a class="el" href="struct_aws_1_1_eventstreamrpc_1_1_rpc_error.html">RpcError</a> status)</td></tr>
+<tr class="memitem:a98840296787a3c35dc53c775eecb4c9a inherit pub_methods_class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler.html#a98840296787a3c35dc53c775eecb4c9a">OnErrorCallback</a> (<a class="el" href="struct_aws_1_1_eventstreamrpc_1_1_rpc_error.html">RpcError</a> status)</td></tr>
 <tr class="separator:a98840296787a3c35dc53c775eecb4c9a inherit pub_methods_class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4231d540af1273d2b3b33001dbfd9162 inherit pub_methods_class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler.html#a4231d540af1273d2b3b33001dbfd9162">OnPingCallback</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a700a767e9c8e9c2564c37e379beb91a8">Crt::List</a>&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_event_stream_header.html">EventStreamHeader</a> &gt; &amp;headers, const <a class="el" href="class_aws_1_1_crt_1_1_optional.html">Crt::Optional</a>&lt; <a class="el" href="namespace_aws_1_1_crt.html#aa760a7d9714d6c28091c2b1cf7029876">Crt::ByteBuf</a> &gt; &amp;<a class="el" href="connection__state__test_8c.html#ad1560a388c937f36f038c683175d82bf">payload</a>)</td></tr>
+<tr class="memitem:a4231d540af1273d2b3b33001dbfd9162 inherit pub_methods_class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler.html#a4231d540af1273d2b3b33001dbfd9162">OnPingCallback</a> (const Crt::List&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_event_stream_header.html">EventStreamHeader</a> &gt; &amp;headers, const Crt::Optional&lt; Crt::ByteBuf &gt; &amp;payload)</td></tr>
 <tr class="separator:a4231d540af1273d2b3b33001dbfd9162 inherit pub_methods_class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a1afb3ca19e8a0ee04a5f8802f51ed4a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_test_lifecycle_handler.html#a1afb3ca19e8a0ee04a5f8802f51ed4a7">s_TestEventStreamConnect</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, void *<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)</td></tr>
+<tr class="memitem:a1afb3ca19e8a0ee04a5f8802f51ed4a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_test_lifecycle_handler.html#a1afb3ca19e8a0ee04a5f8802f51ed4a7">s_TestEventStreamConnect</a> (struct aws_allocator *allocator, void *ctx)</td></tr>
 <tr class="separator:a1afb3ca19e8a0ee04a5f8802f51ed4a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -202,7 +202,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="memname">void TestLifecycleHandler::WaitOnCondition </td>
           <td>(</td>
-          <td class="paramtype">std::function&lt; <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>(void)&gt;&#160;</td>
+          <td class="paramtype">std::function&lt; bool(void)&gt;&#160;</td>
           <td class="paramname"><em>condition</em></td><td>)</td>
           <td></td>
         </tr>
@@ -229,7 +229,7 @@ Friends</h2></td></tr>
         <tr>
           <td class="memname">int s_TestEventStreamConnect </td>
           <td>(</td>
-          <td class="paramtype">struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *&#160;</td>
+          <td class="paramtype">struct aws_allocator *&#160;</td>
           <td class="paramname"><em>allocator</em>, </td>
         </tr>
         <tr>

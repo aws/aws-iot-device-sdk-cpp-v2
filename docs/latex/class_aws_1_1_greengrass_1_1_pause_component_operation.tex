@@ -13,7 +13,7 @@ Inheritance diagram for Aws\+::Greengrass\+::Pause\+Component\+Operation\+:\begi
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_abb98ff8d855692d425c1714afafd0ef6}{Pause\+Component\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&connection, const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_context}{Pause\+Component\+Operation\+Context}} \&operation\+Context, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws\+::\+Crt\+::g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_abb98ff8d855692d425c1714afafd0ef6}{Pause\+Component\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&connection, const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_context}{Pause\+Component\+Operation\+Context}} \&operation\+Context, Aws\+::\+Crt\+::\+Allocator $\ast$allocator=Aws\+::\+Crt\+::g\+\_\+allocator) noexcept
 \item 
 std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_a0cd85ea1856eacc8e6cc8e486ec5e298}{Activate}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_request}{Pause\+Component\+Request}} \&request, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback=nullptr) noexcept
 \item 
@@ -22,7 +22,7 @@ std\+::future$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_r
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_a0f92ef651040a244314acb2c5b530fc2}{Get\+Model\+Name}} () const noexcept override
+Aws\+::\+Crt\+::\+String \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_a0f92ef651040a244314acb2c5b530fc2}{Get\+Model\+Name}} () const noexcept override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -32,7 +32,7 @@ std\+::future$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_r
 \index{Aws::Greengrass::PauseComponentOperation@{Aws::Greengrass::PauseComponentOperation}!PauseComponentOperation@{PauseComponentOperation}}
 \index{PauseComponentOperation@{PauseComponentOperation}!Aws::Greengrass::PauseComponentOperation@{Aws::Greengrass::PauseComponentOperation}}
 \doxysubsubsection{\texorpdfstring{PauseComponentOperation()}{PauseComponentOperation()}}
-{\footnotesize\ttfamily Aws\+::\+Greengrass\+::\+Pause\+Component\+Operation\+::\+Pause\+Component\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&}]{connection,  }\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_context}{Pause\+Component\+Operation\+Context}} \&}]{operation\+Context,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws\+::\+Crt\+::g\+\_\+allocator}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Greengrass\+::\+Pause\+Component\+Operation\+::\+Pause\+Component\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&}]{connection,  }\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pause_component_operation_context}{Pause\+Component\+Operation\+Context}} \&}]{operation\+Context,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator = {\ttfamily Aws\+:\+:Crt\+:\+:g\+\_\+allocator} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 
 
@@ -57,7 +57,7 @@ An {\ttfamily Rpc\+Error} that can be used to check whether the stream was activ
 \index{Aws::Greengrass::PauseComponentOperation@{Aws::Greengrass::PauseComponentOperation}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Aws::Greengrass::PauseComponentOperation@{Aws::Greengrass::PauseComponentOperation}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Aws\+::\+Greengrass\+::\+Pause\+Component\+Operation\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+String Aws\+::\+Greengrass\+::\+Pause\+Component\+Operation\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 

@@ -17,16 +17,16 @@ Inheritance diagram for Awstest\+::Echo\+Streaming\+Response\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a5c9cc9e8858e28c6eb71a49b0e94f32a}{Echo\+Streaming\+Response}} (const \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} \&)=default
 \item 
-void \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a356dffd26b9a07c046a419a198981130}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&payload\+Object) const noexcept override
+void \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a356dffd26b9a07c046a419a198981130}{Serialize\+To\+Json\+Object}} (Aws\+::\+Crt\+::\+Json\+Object \&payload\+Object) const noexcept override
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a4afda737c81e80c974bfda7664c25e85}{operator$<$}} (const \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} \&) const noexcept
+bool \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a4afda737c81e80c974bfda7664c25e85}{operator$<$}} (const \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} \&) const noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a0e4f1d389c30071866494e2b89a20d79}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} \&, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&) noexcept
+static void \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a0e4f1d389c30071866494e2b89a20d79}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} \&, const Aws\+::\+Crt\+::\+Json\+View \&) noexcept
 \item 
-static \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_ad637b92c4fd39f934d6b8eb187e9fbe4}{s\+\_\+allocate\+From\+Payload}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$) noexcept
+static Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_ad637b92c4fd39f934d6b8eb187e9fbe4}{s\+\_\+allocate\+From\+Payload}} (Aws\+::\+Crt\+::\+String\+View, Aws\+::\+Crt\+::\+Allocator $\ast$) noexcept
 \item 
 static void \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_adb1f35cf8dd4bd1eda55211c586872f1}{s\+\_\+custom\+Deleter}} (\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} $\ast$) noexcept
 \end{DoxyCompactItemize}
@@ -38,7 +38,7 @@ static const char $\ast$ \mbox{\hyperlink{class_awstest_1_1_echo_streaming_respo
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a1593dfb02036cf2e8737f0e9153a8bb5}{Get\+Model\+Name}} () const noexcept override
+Aws\+::\+Crt\+::\+String \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a1593dfb02036cf2e8737f0e9153a8bb5}{Get\+Model\+Name}} () const noexcept override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -63,7 +63,7 @@ static const char $\ast$ \mbox{\hyperlink{class_awstest_1_1_echo_streaming_respo
 \index{Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Awstest\+::\+Echo\+Streaming\+Response\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+String Awstest\+::\+Echo\+Streaming\+Response\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -73,13 +73,13 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}}
 \doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Awstest\+::\+Echo\+Streaming\+Response\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Awstest\+::\+Echo\+Streaming\+Response\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_streaming_response_ad637b92c4fd39f934d6b8eb187e9fbe4}\label{class_awstest_1_1_echo_streaming_response_ad637b92c4fd39f934d6b8eb187e9fbe4}} 
 \index{Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}!s\_allocateFromPayload@{s\_allocateFromPayload}}
 \index{s\_allocateFromPayload@{s\_allocateFromPayload}!Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}}
 \doxysubsubsection{\texorpdfstring{s\_allocateFromPayload()}{s\_allocateFromPayload()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Awstest\+::\+Echo\+Streaming\+Response\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}}]{string\+View,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Awstest\+::\+Echo\+Streaming\+Response\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+String\+View}]{string\+View,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_streaming_response_adb1f35cf8dd4bd1eda55211c586872f1}\label{class_awstest_1_1_echo_streaming_response_adb1f35cf8dd4bd1eda55211c586872f1}} 
 \index{Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}!s\_customDeleter@{s\_customDeleter}}
@@ -91,17 +91,13 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}!s\_loadFromJsonView@{s\_loadFromJsonView}}
 \index{s\_loadFromJsonView@{s\_loadFromJsonView}!Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}}
 \doxysubsubsection{\texorpdfstring{s\_loadFromJsonView()}{s\_loadFromJsonView()}}
-{\footnotesize\ttfamily void Awstest\+::\+Echo\+Streaming\+Response\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} \&}]{echo\+Streaming\+Response,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Awstest\+::\+Echo\+Streaming\+Response\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{Echo\+Streaming\+Response}} \&}]{echo\+Streaming\+Response,  }\item[{const Aws\+::\+Crt\+::\+Json\+View \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_streaming_response_a356dffd26b9a07c046a419a198981130}\label{class_awstest_1_1_echo_streaming_response_a356dffd26b9a07c046a419a198981130}} 
 \index{Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}!SerializeToJsonObject@{SerializeToJsonObject}}
 \index{SerializeToJsonObject@{SerializeToJsonObject}!Awstest::EchoStreamingResponse@{Awstest::EchoStreamingResponse}}
 \doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
-{\footnotesize\ttfamily void Awstest\+::\+Echo\+Streaming\+Response\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
-
-
-
-Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_a20ac68efd9842d7234b52e440d0df17b}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
+{\footnotesize\ttfamily void Awstest\+::\+Echo\+Streaming\+Response\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+Json\+Object \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [noexcept]}}
 
 
 

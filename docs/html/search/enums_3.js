@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['configurationvaliditystatus_0',['ConfigurationValidityStatus',['../namespace_aws_1_1_greengrass.html#addaf93707c7da00bac009d999a03e712',1,'Aws::Greengrass']]]
+  ['fruitenum_0',['FruitEnum',['../namespace_awstest.html#ab05e4de2e521d1d14ee19af2d28d1ff0',1,'Awstest']]]
 ];

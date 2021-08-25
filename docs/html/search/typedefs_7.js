@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['generic_5fparam_5fn_5ft_0',['generic_param_n_t',['../crt_2s2n_2pq-crypto_2bike__r1_2_types_8h.html#aff5909c209417fc953ec5cc028d1f601',1,'generic_param_n_t():&#160;types.h'],['../crt_2s2n_2pq-crypto_2bike__r2_2_types_8h.html#aff5909c209417fc953ec5cc028d1f601',1,'generic_param_n_t():&#160;types.h']]]
+  ['streamingresponseretriever_0',['StreamingResponseRetriever',['../namespace_aws_1_1_eventstreamrpc.html#ab5cad65cb0b604e904a9a5994391edec',1,'Aws::Eventstreamrpc']]]
 ];

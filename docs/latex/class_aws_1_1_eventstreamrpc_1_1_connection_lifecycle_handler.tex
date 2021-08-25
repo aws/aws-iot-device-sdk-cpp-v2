@@ -17,9 +17,9 @@ virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecy
 \item 
 virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler_a6d2146b6751947b6f4bfe25f502270ae}{On\+Disconnect\+Callback}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} status)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler_a98840296787a3c35dc53c775eecb4c9a}{On\+Error\+Callback}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} status)
+virtual bool \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler_a98840296787a3c35dc53c775eecb4c9a}{On\+Error\+Callback}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} status)
 \item 
-virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler_a4231d540af1273d2b3b33001dbfd9162}{On\+Ping\+Callback}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt\+::\+List}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&headers, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Crt\+::\+Byte\+Buf}} $>$ \&\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}})
+virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler_a4231d540af1273d2b3b33001dbfd9162}{On\+Ping\+Callback}} (const Crt\+::\+List$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&headers, const Crt\+::\+Optional$<$ Crt\+::\+Byte\+Buf $>$ \&payload)
 \end{DoxyCompactItemize}
 
 
@@ -53,7 +53,7 @@ Reimplemented in \mbox{\hyperlink{class_test_lifecycle_handler_a3fe18bc4894b7ff9
 \index{Aws::Eventstreamrpc::ConnectionLifecycleHandler@{Aws::Eventstreamrpc::ConnectionLifecycleHandler}!OnErrorCallback@{OnErrorCallback}}
 \index{OnErrorCallback@{OnErrorCallback}!Aws::Eventstreamrpc::ConnectionLifecycleHandler@{Aws::Eventstreamrpc::ConnectionLifecycleHandler}}
 \doxysubsubsection{\texorpdfstring{OnErrorCallback()}{OnErrorCallback()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Eventstreamrpc\+::\+Connection\+Lifecycle\+Handler\+::\+On\+Error\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool Aws\+::\+Eventstreamrpc\+::\+Connection\+Lifecycle\+Handler\+::\+On\+Error\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Invoked upon receiving an error. Use the return value to determine whether or not to force the connection to close. Keep in mind that once closed, the {\ttfamily \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}}} can no longer send messages. 
 \begin{DoxyParams}{Parameters}
@@ -64,7 +64,7 @@ Invoked upon receiving an error. Use the return value to determine whether or no
 \index{Aws::Eventstreamrpc::ConnectionLifecycleHandler@{Aws::Eventstreamrpc::ConnectionLifecycleHandler}!OnPingCallback@{OnPingCallback}}
 \index{OnPingCallback@{OnPingCallback}!Aws::Eventstreamrpc::ConnectionLifecycleHandler@{Aws::Eventstreamrpc::ConnectionLifecycleHandler}}
 \doxysubsubsection{\texorpdfstring{OnPingCallback()}{OnPingCallback()}}
-{\footnotesize\ttfamily void Aws\+::\+Eventstreamrpc\+::\+Connection\+Lifecycle\+Handler\+::\+On\+Ping\+Callback (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt\+::\+List}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&}]{headers,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Crt\+::\+Byte\+Buf}} $>$ \&}]{payload }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Aws\+::\+Eventstreamrpc\+::\+Connection\+Lifecycle\+Handler\+::\+On\+Ping\+Callback (\begin{DoxyParamCaption}\item[{const Crt\+::\+List$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&}]{headers,  }\item[{const Crt\+::\+Optional$<$ Crt\+::\+Byte\+Buf $>$ \&}]{payload }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 Invoked upon receiving a ping from the server. The {\ttfamily headers} and {\ttfamily payload} refer to what is contained in the ping message. 
 

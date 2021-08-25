@@ -17,20 +17,20 @@ Inheritance diagram for Aws\+::Greengrass\+::Conflict\+Error\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a8af91b1bbe4d2df39b3031654a278b4f}{Conflict\+Error}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} \&)=default
 \item 
-void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a1e7a3270a2599b15218abb7c142a396e}{Set\+Message}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) noexcept
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a1e7a3270a2599b15218abb7c142a396e}{Set\+Message}} (const Aws\+::\+Crt\+::\+String \&message) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a320651e822d3c17728124fe7b927e495}{Get\+Message}} () noexcept override
+Aws\+::\+Crt\+::\+Optional$<$ Aws\+::\+Crt\+::\+String $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a320651e822d3c17728124fe7b927e495}{Get\+Message}} () noexcept override
 \item 
-void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_aa5c2cef1e2e224d640f98c3556afdf0d}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&payload\+Object) const noexcept override
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_aa5c2cef1e2e224d640f98c3556afdf0d}{Serialize\+To\+Json\+Object}} (Aws\+::\+Crt\+::\+Json\+Object \&payload\+Object) const noexcept override
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_af9ae271cb51ce026012c14ee0156bba3}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} \&) const noexcept
+bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_af9ae271cb51ce026012c14ee0156bba3}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} \&) const noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_ad98e2061137f9be8ba6f6afe825a4004}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} \&, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&) noexcept
+static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_ad98e2061137f9be8ba6f6afe825a4004}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} \&, const Aws\+::\+Crt\+::\+Json\+View \&) noexcept
 \item 
-static \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a6f5cc9fa8dc8ba8194f4122361425e8d}{s\+\_\+allocate\+From\+Payload}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$) noexcept
+static Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a6f5cc9fa8dc8ba8194f4122361425e8d}{s\+\_\+allocate\+From\+Payload}} (Aws\+::\+Crt\+::\+String\+View, Aws\+::\+Crt\+::\+Allocator $\ast$) noexcept
 \item 
 static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a935f69beeed043abe262496f40ae92ba}{s\+\_\+custom\+Deleter}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} $\ast$) noexcept
 \end{DoxyCompactItemize}
@@ -42,7 +42,7 @@ static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a5ae272c8636e5fa9204d28b470481e4e}{Get\+Model\+Name}} () const noexcept override
+Aws\+::\+Crt\+::\+String \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_a5ae272c8636e5fa9204d28b470481e4e}{Get\+Model\+Name}} () const noexcept override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -67,7 +67,7 @@ static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_
 \index{Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}!GetMessage@{GetMessage}}
 \index{GetMessage@{GetMessage}!Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}}
 \doxysubsubsection{\texorpdfstring{GetMessage()}{GetMessage()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}$>$ Aws\+::\+Greengrass\+::\+Conflict\+Error\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Optional$<$Aws\+::\+Crt\+::\+String$>$ Aws\+::\+Greengrass\+::\+Conflict\+Error\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -77,7 +77,7 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_a21
 \index{Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Aws\+::\+Greengrass\+::\+Conflict\+Error\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+String Aws\+::\+Greengrass\+::\+Conflict\+Error\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -87,13 +87,13 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}}
 \doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Conflict\+Error\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Greengrass\+::\+Conflict\+Error\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_conflict_error_a6f5cc9fa8dc8ba8194f4122361425e8d}\label{class_aws_1_1_greengrass_1_1_conflict_error_a6f5cc9fa8dc8ba8194f4122361425e8d}} 
 \index{Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}!s\_allocateFromPayload@{s\_allocateFromPayload}}
 \index{s\_allocateFromPayload@{s\_allocateFromPayload}!Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}}
 \doxysubsubsection{\texorpdfstring{s\_allocateFromPayload()}{s\_allocateFromPayload()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ Aws\+::\+Greengrass\+::\+Conflict\+Error\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}}]{string\+View,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ Aws\+::\+Greengrass\+::\+Conflict\+Error\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+String\+View}]{string\+View,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_conflict_error_a935f69beeed043abe262496f40ae92ba}\label{class_aws_1_1_greengrass_1_1_conflict_error_a935f69beeed043abe262496f40ae92ba}} 
 \index{Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}!s\_customDeleter@{s\_customDeleter}}
@@ -105,23 +105,19 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}!s\_loadFromJsonView@{s\_loadFromJsonView}}
 \index{s\_loadFromJsonView@{s\_loadFromJsonView}!Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}}
 \doxysubsubsection{\texorpdfstring{s\_loadFromJsonView()}{s\_loadFromJsonView()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Conflict\+Error\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} \&}]{conflict\+Error,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Conflict\+Error\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error}{Conflict\+Error}} \&}]{conflict\+Error,  }\item[{const Aws\+::\+Crt\+::\+Json\+View \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_conflict_error_aa5c2cef1e2e224d640f98c3556afdf0d}\label{class_aws_1_1_greengrass_1_1_conflict_error_aa5c2cef1e2e224d640f98c3556afdf0d}} 
 \index{Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}!SerializeToJsonObject@{SerializeToJsonObject}}
 \index{SerializeToJsonObject@{SerializeToJsonObject}!Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}}
 \doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Conflict\+Error\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
-
-
-
-Reimplemented from \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_aa51a004a6e20921224bef0c665830d59}{Aws\+::\+Eventstreamrpc\+::\+Operation\+Error}}.
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Conflict\+Error\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+Json\+Object \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_conflict_error_a1e7a3270a2599b15218abb7c142a396e}\label{class_aws_1_1_greengrass_1_1_conflict_error_a1e7a3270a2599b15218abb7c142a396e}} 
 \index{Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}!SetMessage@{SetMessage}}
 \index{SetMessage@{SetMessage}!Aws::Greengrass::ConflictError@{Aws::Greengrass::ConflictError}}
 \doxysubsubsection{\texorpdfstring{SetMessage()}{SetMessage()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Conflict\+Error\+::\+Set\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Conflict\+Error\+::\+Set\+Message (\begin{DoxyParamCaption}\item[{const Aws\+::\+Crt\+::\+String \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 
 

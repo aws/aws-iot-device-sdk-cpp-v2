@@ -7,7 +7,7 @@
 \DoxyCodeLine{8 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_event_stream_client_8h}{aws/eventstreamrpc/EventStreamClient.h}}>}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_date_time_8h}{aws/crt/DateTime.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <aws/crt/DateTime.h>}}
 \DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{eventstream__rpc_2tests_2include_2awstest_2_exports_8h}{awstest/Exports.h}}>}}
 \DoxyCodeLine{13 }
 \DoxyCodeLine{14 \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc}{Aws::Eventstreamrpc}};}
@@ -21,25 +21,25 @@
 \DoxyCodeLine{22       \textcolor{keyword}{public}:}
 \DoxyCodeLine{23         \mbox{\hyperlink{class_awstest_1_1_product_a82de304602df7cc2c168be83ed8b8e35}{Product}}() noexcept \{\}}
 \DoxyCodeLine{24         \mbox{\hyperlink{class_awstest_1_1_product_a8d35fb6e1d8a18a3d9b994882b955733}{Product}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_product}{Product}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{25         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a03c13543355aa4dad32e14896a67432e}{SetName}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \&\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}) \textcolor{keyword}{noexcept} \{ m\_name = \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a25d22ecc7e656d2c59332072684e8766}{name}}; \}}
-\DoxyCodeLine{26         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} \mbox{\hyperlink{class_awstest_1_1_product_a185f765daef7469bd3ffd317df8aac8f}{GetName}}() noexcept \{ \textcolor{keywordflow}{return} m\_name; \}}
+\DoxyCodeLine{25         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a03c13543355aa4dad32e14896a67432e}{SetName}}(\textcolor{keyword}{const} Aws::Crt::String \&name) \textcolor{keyword}{noexcept} \{ m\_name = name; \}}
+\DoxyCodeLine{26         Aws::Crt::Optional<Aws::Crt::String> \mbox{\hyperlink{class_awstest_1_1_product_a185f765daef7469bd3ffd317df8aac8f}{GetName}}() noexcept \{ \textcolor{keywordflow}{return} m\_name; \}}
 \DoxyCodeLine{27         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a1dce46896c29a9860daaa78ac32ad2e0}{SetPrice}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} \&price) \textcolor{keyword}{noexcept} \{ m\_price = price; \}}
-\DoxyCodeLine{28         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<float>}} \mbox{\hyperlink{class_awstest_1_1_product_a160e0ddc25246d3e22d81a584f369e0d}{GetPrice}}() noexcept \{ \textcolor{keywordflow}{return} m\_price; \}}
-\DoxyCodeLine{29         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{30         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_product}{Product}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{31         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{32             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{33             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{28         Aws::Crt::Optional<float> \mbox{\hyperlink{class_awstest_1_1_product_a160e0ddc25246d3e22d81a584f369e0d}{GetPrice}}() noexcept \{ \textcolor{keywordflow}{return} m\_price; \}}
+\DoxyCodeLine{29         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{30         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_product}{Product}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{31         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{32             Aws::Crt::StringView,}
+\DoxyCodeLine{33             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{34         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_product}{Product}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{35         \textcolor{comment}{/* This needs to be defined so that `Product` can be used as a key in maps. */}}
 \DoxyCodeLine{36         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_awstest_1_1_product_a79bbe0a6220fff8e0e4f3c3300249022}{operator<}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_product}{Product}} \&) \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{37         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_product_ae6cdf9d12253d41297b26c7a12ef5dd3}{MODEL\_NAME}};}
 \DoxyCodeLine{38 }
 \DoxyCodeLine{39       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{40         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{40         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{41 }
 \DoxyCodeLine{42       private:}
-\DoxyCodeLine{43         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> m\_name;}
+\DoxyCodeLine{43         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String> m\_name;}
 \DoxyCodeLine{44         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\textcolor{keywordtype}{float}> m\_price;}
 \DoxyCodeLine{45     \};}
 \DoxyCodeLine{46 }
@@ -49,16 +49,16 @@
 \DoxyCodeLine{50         \mbox{\hyperlink{class_awstest_1_1_customer_ae1d059b0af8ae375c9a3bdba052e2810}{Customer}}() noexcept \{\}}
 \DoxyCodeLine{51         \mbox{\hyperlink{class_awstest_1_1_customer_a4995d5da45268a28a62619a44e6e6ab9}{Customer}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_customer}{Customer}} \&) = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{52         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_customer_abcb40b5cecb1e4b109a9dd47a5eb635e}{SetId}}(\textcolor{keyword}{const} int64\_t \&\textcolor{keywordtype}{id}) \textcolor{keyword}{noexcept} \{ m\_id = id; \}}
-\DoxyCodeLine{53         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<int64\_t>}} \mbox{\hyperlink{class_awstest_1_1_customer_a3e406a4c389553108dffa8249685b8d2}{GetId}}() noexcept \{ \textcolor{keywordflow}{return} m\_id; \}}
-\DoxyCodeLine{54         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_customer_a10b6c759995634648ce0b3981c7227ca}{SetFirstName}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \&firstName) \textcolor{keyword}{noexcept} \{ m\_firstName = firstName; \}}
-\DoxyCodeLine{55         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} \mbox{\hyperlink{class_awstest_1_1_customer_aee46b1f1952ab2f2fd640a38dc8096db}{GetFirstName}}() noexcept \{ \textcolor{keywordflow}{return} m\_firstName; \}}
-\DoxyCodeLine{56         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_customer_a3dfc9a920618fab54e7472583f79ee71}{SetLastName}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \&lastName) \textcolor{keyword}{noexcept} \{ m\_lastName = lastName; \}}
-\DoxyCodeLine{57         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} \mbox{\hyperlink{class_awstest_1_1_customer_a2041e96e32e16c9e0c77fbc01427cc72}{GetLastName}}() noexcept \{ \textcolor{keywordflow}{return} m\_lastName; \}}
-\DoxyCodeLine{58         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{59         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_customer}{Customer}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{60         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{61             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{62             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{53         Aws::Crt::Optional<int64\_t> \mbox{\hyperlink{class_awstest_1_1_customer_a3e406a4c389553108dffa8249685b8d2}{GetId}}() noexcept \{ \textcolor{keywordflow}{return} m\_id; \}}
+\DoxyCodeLine{54         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_customer_a10b6c759995634648ce0b3981c7227ca}{SetFirstName}}(\textcolor{keyword}{const} Aws::Crt::String \&firstName) \textcolor{keyword}{noexcept} \{ m\_firstName = firstName; \}}
+\DoxyCodeLine{55         Aws::Crt::Optional<Aws::Crt::String> \mbox{\hyperlink{class_awstest_1_1_customer_aee46b1f1952ab2f2fd640a38dc8096db}{GetFirstName}}() noexcept \{ \textcolor{keywordflow}{return} m\_firstName; \}}
+\DoxyCodeLine{56         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_customer_a3dfc9a920618fab54e7472583f79ee71}{SetLastName}}(\textcolor{keyword}{const} Aws::Crt::String \&lastName) \textcolor{keyword}{noexcept} \{ m\_lastName = lastName; \}}
+\DoxyCodeLine{57         Aws::Crt::Optional<Aws::Crt::String> \mbox{\hyperlink{class_awstest_1_1_customer_a2041e96e32e16c9e0c77fbc01427cc72}{GetLastName}}() noexcept \{ \textcolor{keywordflow}{return} m\_lastName; \}}
+\DoxyCodeLine{58         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{59         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_customer}{Customer}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{60         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{61             Aws::Crt::StringView,}
+\DoxyCodeLine{62             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{63         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_customer}{Customer}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{64         \textcolor{comment}{/* This needs to be defined so that `Customer` can be used as a key in maps.}}
 \DoxyCodeLine{65 \textcolor{comment}{         */}}
@@ -66,12 +66,12 @@
 \DoxyCodeLine{67         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_customer_a6a12869e61c84f0064d763fe38c04453}{MODEL\_NAME}};}
 \DoxyCodeLine{68 }
 \DoxyCodeLine{69       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{70         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{70         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{71 }
 \DoxyCodeLine{72       private:}
 \DoxyCodeLine{73         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<int64\_t> m\_id;}
-\DoxyCodeLine{74         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> m\_firstName;}
-\DoxyCodeLine{75         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> m\_lastName;}
+\DoxyCodeLine{74         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String> m\_firstName;}
+\DoxyCodeLine{75         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String> m\_lastName;}
 \DoxyCodeLine{76     \};}
 \DoxyCodeLine{77 }
 \DoxyCodeLine{78     enum \mbox{\hyperlink{namespace_awstest_ab05e4de2e521d1d14ee19af2d28d1ff0}{FruitEnum}}}
@@ -87,26 +87,26 @@
 \DoxyCodeLine{88       \textcolor{keyword}{public}:}
 \DoxyCodeLine{89         \mbox{\hyperlink{class_awstest_1_1_pair_a3c27ed1935e76f73747d792968e6d885}{Pair}}() noexcept \{\}}
 \DoxyCodeLine{90         \mbox{\hyperlink{class_awstest_1_1_pair_a1b06be754516ca1313af725a402d8bdc}{Pair}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_pair}{Pair}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{91         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_pair_ab44b1970838c5cba5add09598e231646}{SetKey}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \&key) \textcolor{keyword}{noexcept} \{ m\_key = key; \}}
-\DoxyCodeLine{92         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} \mbox{\hyperlink{class_awstest_1_1_pair_ac9b8c8da9538335650eb054ad229f772}{GetKey}}() noexcept \{ \textcolor{keywordflow}{return} m\_key; \}}
-\DoxyCodeLine{93         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_pair_ad41361f9f7a93d0496d9c9c3c601acee}{SetValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \&value) \textcolor{keyword}{noexcept} \{ m\_value = value; \}}
-\DoxyCodeLine{94         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} \mbox{\hyperlink{class_awstest_1_1_pair_a0b47c75194eae3619006bf94d527b1c1}{GetValue}}() noexcept \{ \textcolor{keywordflow}{return} m\_value; \}}
-\DoxyCodeLine{95         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{96         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_pair}{Pair}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{97         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{98             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{99             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{91         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_pair_ab44b1970838c5cba5add09598e231646}{SetKey}}(\textcolor{keyword}{const} Aws::Crt::String \&key) \textcolor{keyword}{noexcept} \{ m\_key = key; \}}
+\DoxyCodeLine{92         Aws::Crt::Optional<Aws::Crt::String> \mbox{\hyperlink{class_awstest_1_1_pair_ac9b8c8da9538335650eb054ad229f772}{GetKey}}() noexcept \{ \textcolor{keywordflow}{return} m\_key; \}}
+\DoxyCodeLine{93         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_pair_ad41361f9f7a93d0496d9c9c3c601acee}{SetValue}}(\textcolor{keyword}{const} Aws::Crt::String \&value) \textcolor{keyword}{noexcept} \{ m\_value = value; \}}
+\DoxyCodeLine{94         Aws::Crt::Optional<Aws::Crt::String> \mbox{\hyperlink{class_awstest_1_1_pair_a0b47c75194eae3619006bf94d527b1c1}{GetValue}}() noexcept \{ \textcolor{keywordflow}{return} m\_value; \}}
+\DoxyCodeLine{95         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{96         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_pair}{Pair}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{97         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{98             Aws::Crt::StringView,}
+\DoxyCodeLine{99             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{100         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_pair}{Pair}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{101         \textcolor{comment}{/* This needs to be defined so that `Pair` can be used as a key in maps. */}}
 \DoxyCodeLine{102         \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_awstest_1_1_pair_a424128443a971d09d661df91360568a9}{operator<}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_pair}{Pair}} \&) \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{103         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_pair_aaec8bff8bd0adf692f73b361adcb2666}{MODEL\_NAME}};}
 \DoxyCodeLine{104 }
 \DoxyCodeLine{105       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{106         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{106         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{107 }
 \DoxyCodeLine{108       private:}
-\DoxyCodeLine{109         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> m\_key;}
-\DoxyCodeLine{110         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> m\_value;}
+\DoxyCodeLine{109         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String> m\_key;}
+\DoxyCodeLine{110         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String> m\_value;}
 \DoxyCodeLine{111     \};}
 \DoxyCodeLine{112 }
 \DoxyCodeLine{113     class \mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}} : public \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}}}
@@ -114,47 +114,47 @@
 \DoxyCodeLine{115       \textcolor{keyword}{public}:}
 \DoxyCodeLine{116         \mbox{\hyperlink{class_awstest_1_1_message_data_a3f2239aeaa81004daf6fc965c749977b}{MessageData}}() noexcept \{\}}
 \DoxyCodeLine{117         \mbox{\hyperlink{class_awstest_1_1_message_data_a5e60081a7c0489d44eeda95a81ba5cfb}{MessageData}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{118         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_acbec1f1a8275cd90b7cdd165a874650e}{SetStringMessage}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \&stringMessage) \textcolor{keyword}{noexcept} \{ m\_stringMessage = stringMessage; \}}
-\DoxyCodeLine{119         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} \mbox{\hyperlink{class_awstest_1_1_message_data_a3e50234bf530b2d8fdea87b21e9b9fb2}{GetStringMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_stringMessage; \}}
+\DoxyCodeLine{118         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_acbec1f1a8275cd90b7cdd165a874650e}{SetStringMessage}}(\textcolor{keyword}{const} Aws::Crt::String \&stringMessage) \textcolor{keyword}{noexcept} \{ m\_stringMessage = stringMessage; \}}
+\DoxyCodeLine{119         Aws::Crt::Optional<Aws::Crt::String> \mbox{\hyperlink{class_awstest_1_1_message_data_a3e50234bf530b2d8fdea87b21e9b9fb2}{GetStringMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_stringMessage; \}}
 \DoxyCodeLine{120         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a3060741c7b98f3dce7295d93c67f753e}{SetBooleanMessage}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool} \&booleanMessage) \textcolor{keyword}{noexcept} \{ m\_booleanMessage = booleanMessage; \}}
-\DoxyCodeLine{121         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<bool>}} \mbox{\hyperlink{class_awstest_1_1_message_data_a03ba83f7fa0aae4a86b3b014b1be6c78}{GetBooleanMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_booleanMessage; \}}
-\DoxyCodeLine{122         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a34cc93a029a2e767d6efe1277a50e4e4}{SetTimeMessage}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_date_time}{Aws::Crt::DateTime}} \&timeMessage) \textcolor{keyword}{noexcept} \{ m\_timeMessage = timeMessage; \}}
-\DoxyCodeLine{123         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::DateTime>}} \mbox{\hyperlink{class_awstest_1_1_message_data_a49afe955d3c5e0fd8060b893292df69c}{GetTimeMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_timeMessage; \}}
-\DoxyCodeLine{124         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a9e92d167b3b3b0b81ac3dac38d12744d}{SetDocumentMessage}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&documentMessage) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{121         Aws::Crt::Optional<bool> \mbox{\hyperlink{class_awstest_1_1_message_data_a03ba83f7fa0aae4a86b3b014b1be6c78}{GetBooleanMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_booleanMessage; \}}
+\DoxyCodeLine{122         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a34cc93a029a2e767d6efe1277a50e4e4}{SetTimeMessage}}(\textcolor{keyword}{const} Aws::Crt::DateTime \&timeMessage) \textcolor{keyword}{noexcept} \{ m\_timeMessage = timeMessage; \}}
+\DoxyCodeLine{123         Aws::Crt::Optional<Aws::Crt::DateTime> \mbox{\hyperlink{class_awstest_1_1_message_data_a49afe955d3c5e0fd8060b893292df69c}{GetTimeMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_timeMessage; \}}
+\DoxyCodeLine{124         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a9e92d167b3b3b0b81ac3dac38d12744d}{SetDocumentMessage}}(\textcolor{keyword}{const} Aws::Crt::JsonObject \&documentMessage) \textcolor{keyword}{noexcept}}
 \DoxyCodeLine{125         \{}
 \DoxyCodeLine{126             m\_documentMessage = documentMessage;}
 \DoxyCodeLine{127         \}}
-\DoxyCodeLine{128         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::JsonObject>}} \mbox{\hyperlink{class_awstest_1_1_message_data_ad0c7c466d8fd28ad748322aa91fff5af}{GetDocumentMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_documentMessage; \}}
+\DoxyCodeLine{128         Aws::Crt::Optional<Aws::Crt::JsonObject> \mbox{\hyperlink{class_awstest_1_1_message_data_ad0c7c466d8fd28ad748322aa91fff5af}{GetDocumentMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_documentMessage; \}}
 \DoxyCodeLine{129         \textcolor{keywordtype}{void} SetEnumMessage(\mbox{\hyperlink{namespace_awstest_ab05e4de2e521d1d14ee19af2d28d1ff0}{FruitEnum}} enumMessage) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{130         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<FruitEnum>}} GetEnumMessage() noexcept;}
-\DoxyCodeLine{131         \textcolor{keywordtype}{void} SetBlobMessage(const \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Vector}}<uint8\_t> \&blobMessage) noexcept \{ m\_blobMessage = blobMessage; \}}
-\DoxyCodeLine{132         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::Vector<uint8\_t>}}> \mbox{\hyperlink{class_awstest_1_1_message_data_a0a6f4a5b667e995bf678c46adfb7bb7b}{GetBlobMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_blobMessage; \}}
-\DoxyCodeLine{133         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a7fd16f6c9c2cee0bb97428ad6d896c74}{SetStringListMessage}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Aws::Crt::Vector<Aws::Crt::String>}} \&stringListMessage) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{130         Aws::Crt::Optional<FruitEnum> GetEnumMessage() noexcept;}
+\DoxyCodeLine{131         \textcolor{keywordtype}{void} SetBlobMessage(const \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Vector<uint8\_t> \&blobMessage) noexcept \{ m\_blobMessage = blobMessage; \}}
+\DoxyCodeLine{132         Aws::Crt::Optional<Aws::Crt::Vector<uint8\_t>> \mbox{\hyperlink{class_awstest_1_1_message_data_a0a6f4a5b667e995bf678c46adfb7bb7b}{GetBlobMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_blobMessage; \}}
+\DoxyCodeLine{133         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a7fd16f6c9c2cee0bb97428ad6d896c74}{SetStringListMessage}}(\textcolor{keyword}{const} Aws::Crt::Vector<Aws::Crt::String> \&stringListMessage) \textcolor{keyword}{noexcept}}
 \DoxyCodeLine{134         \{}
 \DoxyCodeLine{135             m\_stringListMessage = stringListMessage;}
 \DoxyCodeLine{136         \}}
-\DoxyCodeLine{137         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>}}> \mbox{\hyperlink{class_awstest_1_1_message_data_a7030d996c825f574ba6effe815a8a491}{GetStringListMessage}}() noexcept}
+\DoxyCodeLine{137         Aws::Crt::Optional<Aws::Crt::Vector<Aws::Crt::String>> \mbox{\hyperlink{class_awstest_1_1_message_data_a7030d996c825f574ba6effe815a8a491}{GetStringListMessage}}() noexcept}
 \DoxyCodeLine{138         \{}
 \DoxyCodeLine{139             \textcolor{keywordflow}{return} m\_stringListMessage;}
 \DoxyCodeLine{140         \}}
-\DoxyCodeLine{141         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a5315cfbdacfc896639e0e70e56673060}{SetKeyValuePairList}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Aws::Crt::Vector<Pair>}} \&keyValuePairList) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{141         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a5315cfbdacfc896639e0e70e56673060}{SetKeyValuePairList}}(\textcolor{keyword}{const} Aws::Crt::Vector<Pair> \&keyValuePairList) \textcolor{keyword}{noexcept}}
 \DoxyCodeLine{142         \{}
 \DoxyCodeLine{143             m\_keyValuePairList = keyValuePairList;}
 \DoxyCodeLine{144         \}}
-\DoxyCodeLine{145         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::Vector<Pair>}}> \mbox{\hyperlink{class_awstest_1_1_message_data_a38b91bb3a52851771159b407b8850b78}{GetKeyValuePairList}}() noexcept \{ \textcolor{keywordflow}{return} m\_keyValuePairList; \}}
-\DoxyCodeLine{146         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a82e5e3f4eddef60913eb5eb6eeccf176}{SetStringToValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a1cf42e328e4553fa884d30468915df73}{Aws::Crt::Map<Aws::Crt::String, Product>}} \&stringToValue) \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{145         Aws::Crt::Optional<Aws::Crt::Vector<Pair>> \mbox{\hyperlink{class_awstest_1_1_message_data_a38b91bb3a52851771159b407b8850b78}{GetKeyValuePairList}}() noexcept \{ \textcolor{keywordflow}{return} m\_keyValuePairList; \}}
+\DoxyCodeLine{146         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_message_data_a82e5e3f4eddef60913eb5eb6eeccf176}{SetStringToValue}}(\textcolor{keyword}{const} Aws::Crt::Map<Aws::Crt::String, Product> \&stringToValue) \textcolor{keyword}{noexcept}}
 \DoxyCodeLine{147         \{}
 \DoxyCodeLine{148             m\_stringToValue = stringToValue;}
 \DoxyCodeLine{149         \}}
-\DoxyCodeLine{150         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>}}> \mbox{\hyperlink{class_awstest_1_1_message_data_aa2b12d8dba876c32ec79276710c50fe6}{GetStringToValue}}() noexcept}
+\DoxyCodeLine{150         Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> \mbox{\hyperlink{class_awstest_1_1_message_data_aa2b12d8dba876c32ec79276710c50fe6}{GetStringToValue}}() noexcept}
 \DoxyCodeLine{151         \{}
 \DoxyCodeLine{152             \textcolor{keywordflow}{return} m\_stringToValue;}
 \DoxyCodeLine{153         \}}
-\DoxyCodeLine{154         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{155         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{156         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{157             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{158             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{154         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{155         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{156         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{157             Aws::Crt::StringView,}
+\DoxyCodeLine{158             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{159         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{160         \textcolor{comment}{/* This needs to be defined so that `MessageData` can be used as a key in}}
 \DoxyCodeLine{161 \textcolor{comment}{         * maps. */}}
@@ -162,18 +162,18 @@
 \DoxyCodeLine{163         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_message_data_aad4b773b5d04469081233f004faa399a}{MODEL\_NAME}};}
 \DoxyCodeLine{164 }
 \DoxyCodeLine{165       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{166         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{166         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{167 }
 \DoxyCodeLine{168       private:}
-\DoxyCodeLine{169         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> m\_stringMessage;}
+\DoxyCodeLine{169         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String> m\_stringMessage;}
 \DoxyCodeLine{170         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\textcolor{keywordtype}{bool}> m\_booleanMessage;}
 \DoxyCodeLine{171         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::DateTime> m\_timeMessage;}
 \DoxyCodeLine{172         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::JsonObject> m\_documentMessage;}
-\DoxyCodeLine{173         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> m\_enumMessage;}
-\DoxyCodeLine{174         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Vector}}<uint8\_t>> m\_blobMessage;}
-\DoxyCodeLine{175         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Vector}}<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}>> m\_stringListMessage;}
-\DoxyCodeLine{176         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Vector}}<\mbox{\hyperlink{class_awstest_1_1_pair}{Pair}}>> m\_keyValuePairList;}
-\DoxyCodeLine{177         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a1cf42e328e4553fa884d30468915df73}{Map}}<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}, \mbox{\hyperlink{class_awstest_1_1_product}{Product}}>> m\_stringToValue;}
+\DoxyCodeLine{173         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String> m\_enumMessage;}
+\DoxyCodeLine{174         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Vector<uint8\_t>> m\_blobMessage;}
+\DoxyCodeLine{175         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Vector<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String>> m\_stringListMessage;}
+\DoxyCodeLine{176         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Vector<\mbox{\hyperlink{class_awstest_1_1_pair}{Pair}}>> m\_keyValuePairList;}
+\DoxyCodeLine{177         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Map<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String, \mbox{\hyperlink{class_awstest_1_1_product}{Product}}>> m\_stringToValue;}
 \DoxyCodeLine{178     \};}
 \DoxyCodeLine{179 }
 \DoxyCodeLine{180     class \mbox{\hyperlink{class_awstest_1_1_echo_streaming_message}{EchoStreamingMessage}} : public \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}}}
@@ -187,7 +187,7 @@
 \DoxyCodeLine{188             m\_streamMessage = streamMessage;}
 \DoxyCodeLine{189             m\_chosenMember = TAG\_STREAM\_MESSAGE;}
 \DoxyCodeLine{190         \}}
-\DoxyCodeLine{191         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<MessageData>}} \mbox{\hyperlink{class_awstest_1_1_echo_streaming_message_a1700498613d7a7dfa53c24b32bd0a007}{GetStreamMessage}}() noexcept}
+\DoxyCodeLine{191         Aws::Crt::Optional<MessageData> \mbox{\hyperlink{class_awstest_1_1_echo_streaming_message_a1700498613d7a7dfa53c24b32bd0a007}{GetStreamMessage}}() noexcept}
 \DoxyCodeLine{192         \{}
 \DoxyCodeLine{193             \textcolor{keywordflow}{if} (m\_chosenMember == TAG\_STREAM\_MESSAGE)}
 \DoxyCodeLine{194             \{}
@@ -195,7 +195,7 @@
 \DoxyCodeLine{196             \}}
 \DoxyCodeLine{197             \textcolor{keywordflow}{else}}
 \DoxyCodeLine{198             \{}
-\DoxyCodeLine{199                 \textcolor{keywordflow}{return} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<MessageData>}}();}
+\DoxyCodeLine{199                 \textcolor{keywordflow}{return} Aws::Crt::Optional<MessageData>();}
 \DoxyCodeLine{200             \}}
 \DoxyCodeLine{201         \}}
 \DoxyCodeLine{202         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_echo_streaming_message_a2effa1995a1ca9da1a13744a83fe3326}{SetKeyValuePair}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_pair}{Pair}} \&keyValuePair) \textcolor{keyword}{noexcept}}
@@ -203,7 +203,7 @@
 \DoxyCodeLine{204             m\_keyValuePair = keyValuePair;}
 \DoxyCodeLine{205             m\_chosenMember = TAG\_KEY\_VALUE\_PAIR;}
 \DoxyCodeLine{206         \}}
-\DoxyCodeLine{207         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Pair>}} \mbox{\hyperlink{class_awstest_1_1_echo_streaming_message_a1cf6a8989210aab98de7a7fd34ab8ffb}{GetKeyValuePair}}() noexcept}
+\DoxyCodeLine{207         Aws::Crt::Optional<Pair> \mbox{\hyperlink{class_awstest_1_1_echo_streaming_message_a1cf6a8989210aab98de7a7fd34ab8ffb}{GetKeyValuePair}}() noexcept}
 \DoxyCodeLine{208         \{}
 \DoxyCodeLine{209             \textcolor{keywordflow}{if} (m\_chosenMember == TAG\_KEY\_VALUE\_PAIR)}
 \DoxyCodeLine{210             \{}
@@ -211,14 +211,14 @@
 \DoxyCodeLine{212             \}}
 \DoxyCodeLine{213             \textcolor{keywordflow}{else}}
 \DoxyCodeLine{214             \{}
-\DoxyCodeLine{215                 \textcolor{keywordflow}{return} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Pair>}}();}
+\DoxyCodeLine{215                 \textcolor{keywordflow}{return} Aws::Crt::Optional<Pair>();}
 \DoxyCodeLine{216             \}}
 \DoxyCodeLine{217         \}}
-\DoxyCodeLine{218         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{219         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_streaming_message}{EchoStreamingMessage}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{220         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{221             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{222             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{218         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{219         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_streaming_message}{EchoStreamingMessage}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{220         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{221             Aws::Crt::StringView,}
+\DoxyCodeLine{222             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{223         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_echo_streaming_message}{EchoStreamingMessage}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{224         \textcolor{comment}{/* This needs to be defined so that `EchoStreamingMessage` can be used as a}}
 \DoxyCodeLine{225 \textcolor{comment}{         * key in maps. */}}
@@ -226,7 +226,7 @@
 \DoxyCodeLine{227         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_echo_streaming_message_afca2d283076bd5d9e9879e492a234b9f}{MODEL\_NAME}};}
 \DoxyCodeLine{228 }
 \DoxyCodeLine{229       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{230         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{230         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{231 }
 \DoxyCodeLine{232       private:}
 \DoxyCodeLine{233         enum ChosenMember}
@@ -234,8 +234,8 @@
 \DoxyCodeLine{235             TAG\_STREAM\_MESSAGE,}
 \DoxyCodeLine{236             TAG\_KEY\_VALUE\_PAIR}
 \DoxyCodeLine{237         \} m\_chosenMember;}
-\DoxyCodeLine{238         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<MessageData>}} m\_streamMessage;}
-\DoxyCodeLine{239         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Pair>}} m\_keyValuePair;}
+\DoxyCodeLine{238         Aws::Crt::Optional<MessageData> m\_streamMessage;}
+\DoxyCodeLine{239         Aws::Crt::Optional<Pair> m\_keyValuePair;}
 \DoxyCodeLine{240     \};}
 \DoxyCodeLine{241 }
 \DoxyCodeLine{242     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_get_all_products_response}{GetAllProductsResponse}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}}}
@@ -243,13 +243,13 @@
 \DoxyCodeLine{244       \textcolor{keyword}{public}:}
 \DoxyCodeLine{245         \mbox{\hyperlink{class_awstest_1_1_get_all_products_response_a7542b362686fbdeb1aaa975e4ea75385}{GetAllProductsResponse}}() noexcept \{\}}
 \DoxyCodeLine{246         \mbox{\hyperlink{class_awstest_1_1_get_all_products_response_addb165d194fbe83080a421470367853f}{GetAllProductsResponse}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_get_all_products_response}{GetAllProductsResponse}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{247         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_get_all_products_response_a9cd38659864be48c3ac00b23312969c8}{SetProducts}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a1cf42e328e4553fa884d30468915df73}{Aws::Crt::Map<Aws::Crt::String, Product>}} \&products) \textcolor{keyword}{noexcept} \{ m\_products = products; \}}
-\DoxyCodeLine{248         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>}}> \mbox{\hyperlink{class_awstest_1_1_get_all_products_response_ab0f5adab6c72e4d2b70c316fd72fc8d3}{GetProducts}}() noexcept \{ \textcolor{keywordflow}{return} m\_products; \}}
-\DoxyCodeLine{249         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{250         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_get_all_products_response}{GetAllProductsResponse}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{251         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{252             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{253             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{247         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_get_all_products_response_a9cd38659864be48c3ac00b23312969c8}{SetProducts}}(\textcolor{keyword}{const} Aws::Crt::Map<Aws::Crt::String, Product> \&products) \textcolor{keyword}{noexcept} \{ m\_products = products; \}}
+\DoxyCodeLine{248         Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Product>> \mbox{\hyperlink{class_awstest_1_1_get_all_products_response_ab0f5adab6c72e4d2b70c316fd72fc8d3}{GetProducts}}() noexcept \{ \textcolor{keywordflow}{return} m\_products; \}}
+\DoxyCodeLine{249         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{250         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_get_all_products_response}{GetAllProductsResponse}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{251         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{252             Aws::Crt::StringView,}
+\DoxyCodeLine{253             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{254         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_get_all_products_response}{GetAllProductsResponse}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{255         \textcolor{comment}{/* This needs to be defined so that `GetAllProductsResponse` can be used as a}}
 \DoxyCodeLine{256 \textcolor{comment}{         * key in maps. */}}
@@ -257,10 +257,10 @@
 \DoxyCodeLine{258         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_get_all_products_response_a882fce74021b57f99ccc7cf47e7b1786}{MODEL\_NAME}};}
 \DoxyCodeLine{259 }
 \DoxyCodeLine{260       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{261         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{261         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{262 }
 \DoxyCodeLine{263       private:}
-\DoxyCodeLine{264         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a1cf42e328e4553fa884d30468915df73}{Map}}<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}, \mbox{\hyperlink{class_awstest_1_1_product}{Product}}>> m\_products;}
+\DoxyCodeLine{264         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Map<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String, \mbox{\hyperlink{class_awstest_1_1_product}{Product}}>> m\_products;}
 \DoxyCodeLine{265     \};}
 \DoxyCodeLine{266 }
 \DoxyCodeLine{267     class \mbox{\hyperlink{class_awstest_1_1_get_all_products_request}{GetAllProductsRequest}} : public \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}}}
@@ -268,11 +268,11 @@
 \DoxyCodeLine{269       \textcolor{keyword}{public}:}
 \DoxyCodeLine{270         \mbox{\hyperlink{class_awstest_1_1_get_all_products_request_ad519e4d6b625e52357f3637fbce2ccaa}{GetAllProductsRequest}}() noexcept \{\}}
 \DoxyCodeLine{271         \mbox{\hyperlink{class_awstest_1_1_get_all_products_request_a8eaf93910515799685d009faf741d285}{GetAllProductsRequest}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_get_all_products_request}{GetAllProductsRequest}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{272         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{273         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_get_all_products_request}{GetAllProductsRequest}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{274         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{275             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{276             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{272         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{273         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_get_all_products_request}{GetAllProductsRequest}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{274         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{275             Aws::Crt::StringView,}
+\DoxyCodeLine{276             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{277         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_get_all_products_request}{GetAllProductsRequest}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{278         \textcolor{comment}{/* This needs to be defined so that `GetAllProductsRequest` can be used as a}}
 \DoxyCodeLine{279 \textcolor{comment}{         * key in maps. */}}
@@ -280,7 +280,7 @@
 \DoxyCodeLine{281         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_get_all_products_request_a42436a1033c44e8818f6cc80ab8fd577}{MODEL\_NAME}};}
 \DoxyCodeLine{282 }
 \DoxyCodeLine{283       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{284         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{284         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{285 }
 \DoxyCodeLine{286       private:}
 \DoxyCodeLine{287     \};}
@@ -290,13 +290,13 @@
 \DoxyCodeLine{291       \textcolor{keyword}{public}:}
 \DoxyCodeLine{292         \mbox{\hyperlink{class_awstest_1_1_get_all_customers_response_a0ae8b952d3aa234bbcbc86a83e02f283}{GetAllCustomersResponse}}() noexcept \{\}}
 \DoxyCodeLine{293         \mbox{\hyperlink{class_awstest_1_1_get_all_customers_response_ab5ee18e7c8ef72693b85f8a739a5d0ef}{GetAllCustomersResponse}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_get_all_customers_response}{GetAllCustomersResponse}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{294         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_get_all_customers_response_aef8bf0be5941ab7294560611ab9ca90a}{SetCustomers}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Aws::Crt::Vector<Customer>}} \&customers) \textcolor{keyword}{noexcept} \{ m\_customers = customers; \}}
-\DoxyCodeLine{295         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::Vector<Customer>}}> \mbox{\hyperlink{class_awstest_1_1_get_all_customers_response_acfe57cc6b89f4f68755de9ea86f8345d}{GetCustomers}}() noexcept \{ \textcolor{keywordflow}{return} m\_customers; \}}
-\DoxyCodeLine{296         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{297         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_get_all_customers_response}{GetAllCustomersResponse}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{298         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{299             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{300             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{294         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_get_all_customers_response_aef8bf0be5941ab7294560611ab9ca90a}{SetCustomers}}(\textcolor{keyword}{const} Aws::Crt::Vector<Customer> \&customers) \textcolor{keyword}{noexcept} \{ m\_customers = customers; \}}
+\DoxyCodeLine{295         Aws::Crt::Optional<Aws::Crt::Vector<Customer>> \mbox{\hyperlink{class_awstest_1_1_get_all_customers_response_acfe57cc6b89f4f68755de9ea86f8345d}{GetCustomers}}() noexcept \{ \textcolor{keywordflow}{return} m\_customers; \}}
+\DoxyCodeLine{296         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{297         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_get_all_customers_response}{GetAllCustomersResponse}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{298         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{299             Aws::Crt::StringView,}
+\DoxyCodeLine{300             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{301         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_get_all_customers_response}{GetAllCustomersResponse}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{302         \textcolor{comment}{/* This needs to be defined so that `GetAllCustomersResponse` can be used as a}}
 \DoxyCodeLine{303 \textcolor{comment}{         * key in maps. */}}
@@ -304,10 +304,10 @@
 \DoxyCodeLine{305         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_get_all_customers_response_aa746b83a16a9de7469341d0ec5d43fd8}{MODEL\_NAME}};}
 \DoxyCodeLine{306 }
 \DoxyCodeLine{307       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{308         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{308         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{309 }
 \DoxyCodeLine{310       private:}
-\DoxyCodeLine{311         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Vector}}<\mbox{\hyperlink{class_awstest_1_1_customer}{Customer}}>> m\_customers;}
+\DoxyCodeLine{311         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Vector<\mbox{\hyperlink{class_awstest_1_1_customer}{Customer}}>> m\_customers;}
 \DoxyCodeLine{312     \};}
 \DoxyCodeLine{313 }
 \DoxyCodeLine{314     class \mbox{\hyperlink{class_awstest_1_1_get_all_customers_request}{GetAllCustomersRequest}} : public \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}}}
@@ -315,11 +315,11 @@
 \DoxyCodeLine{316       \textcolor{keyword}{public}:}
 \DoxyCodeLine{317         \mbox{\hyperlink{class_awstest_1_1_get_all_customers_request_aa8fafe8c3b1e877fec1a9ff3cacf88e3}{GetAllCustomersRequest}}() noexcept \{\}}
 \DoxyCodeLine{318         \mbox{\hyperlink{class_awstest_1_1_get_all_customers_request_a2045eb8944fe7a0b274902ab2d3cb82d}{GetAllCustomersRequest}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_get_all_customers_request}{GetAllCustomersRequest}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{319         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{320         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_get_all_customers_request}{GetAllCustomersRequest}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{321         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{322             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{323             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{319         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{320         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_get_all_customers_request}{GetAllCustomersRequest}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{321         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{322             Aws::Crt::StringView,}
+\DoxyCodeLine{323             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{324         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_get_all_customers_request}{GetAllCustomersRequest}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{325         \textcolor{comment}{/* This needs to be defined so that `GetAllCustomersRequest` can be used as a}}
 \DoxyCodeLine{326 \textcolor{comment}{         * key in maps. */}}
@@ -327,7 +327,7 @@
 \DoxyCodeLine{328         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_get_all_customers_request_ac5cc8825f1f5124b5f05ba3429f33e07}{MODEL\_NAME}};}
 \DoxyCodeLine{329 }
 \DoxyCodeLine{330       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{331         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{331         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{332 }
 \DoxyCodeLine{333       private:}
 \DoxyCodeLine{334     \};}
@@ -337,13 +337,13 @@
 \DoxyCodeLine{338       \textcolor{keyword}{public}:}
 \DoxyCodeLine{339         \mbox{\hyperlink{class_awstest_1_1_echo_message_response_a9ee91b94f9b64224b93ecdbd59accbba}{EchoMessageResponse}}() noexcept \{\}}
 \DoxyCodeLine{340         \mbox{\hyperlink{class_awstest_1_1_echo_message_response_a89487cdab33ad5ef9b96648dcd9c1993}{EchoMessageResponse}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_message_response}{EchoMessageResponse}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{341         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_echo_message_response_a39bdb87274f0ba3564d4e92a9d249ddd}{SetMessage}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) \textcolor{keyword}{noexcept} \{ m\_message = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}; \}}
-\DoxyCodeLine{342         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<MessageData>}} \mbox{\hyperlink{class_awstest_1_1_echo_message_response_a4bd7c0057fde551b16883bdc6adaeedf}{GetMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_message; \}}
-\DoxyCodeLine{343         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{344         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_message_response}{EchoMessageResponse}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{345         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{346             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{347             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{341         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_echo_message_response_a39bdb87274f0ba3564d4e92a9d249ddd}{SetMessage}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}} \&message) \textcolor{keyword}{noexcept} \{ m\_message = message; \}}
+\DoxyCodeLine{342         Aws::Crt::Optional<MessageData> \mbox{\hyperlink{class_awstest_1_1_echo_message_response_a4bd7c0057fde551b16883bdc6adaeedf}{GetMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_message; \}}
+\DoxyCodeLine{343         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{344         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_message_response}{EchoMessageResponse}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{345         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{346             Aws::Crt::StringView,}
+\DoxyCodeLine{347             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{348         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_echo_message_response}{EchoMessageResponse}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{349         \textcolor{comment}{/* This needs to be defined so that `EchoMessageResponse` can be used as a key}}
 \DoxyCodeLine{350 \textcolor{comment}{         * in maps. */}}
@@ -351,7 +351,7 @@
 \DoxyCodeLine{352         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_echo_message_response_ac29010b33aac28434c70ca2f3142f2e5}{MODEL\_NAME}};}
 \DoxyCodeLine{353 }
 \DoxyCodeLine{354       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{355         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{355         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{356 }
 \DoxyCodeLine{357       private:}
 \DoxyCodeLine{358         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}}> m\_message;}
@@ -362,13 +362,13 @@
 \DoxyCodeLine{363       \textcolor{keyword}{public}:}
 \DoxyCodeLine{364         \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a3f1b4142dfd7958f238e2ec856eafef4}{EchoMessageRequest}}() noexcept \{\}}
 \DoxyCodeLine{365         \mbox{\hyperlink{class_awstest_1_1_echo_message_request_ad553c8f68f5890af2ac929b403a07cee}{EchoMessageRequest}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_message_request}{EchoMessageRequest}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{366         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a28fcc04bf9d5a4799286482483e22dfa}{SetMessage}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) \textcolor{keyword}{noexcept} \{ m\_message = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}; \}}
-\DoxyCodeLine{367         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<MessageData>}} \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a22f279b3bc1e093e990b098d8ef9b64c}{GetMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_message; \}}
-\DoxyCodeLine{368         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{369         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_message_request}{EchoMessageRequest}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{370         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{371             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{372             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{366         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a28fcc04bf9d5a4799286482483e22dfa}{SetMessage}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}} \&message) \textcolor{keyword}{noexcept} \{ m\_message = message; \}}
+\DoxyCodeLine{367         Aws::Crt::Optional<MessageData> \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a22f279b3bc1e093e990b098d8ef9b64c}{GetMessage}}() noexcept \{ \textcolor{keywordflow}{return} m\_message; \}}
+\DoxyCodeLine{368         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{369         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_message_request}{EchoMessageRequest}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{370         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{371             Aws::Crt::StringView,}
+\DoxyCodeLine{372             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{373         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_echo_message_request}{EchoMessageRequest}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{374         \textcolor{comment}{/* This needs to be defined so that `EchoMessageRequest` can be used as a key}}
 \DoxyCodeLine{375 \textcolor{comment}{         * in maps. */}}
@@ -376,7 +376,7 @@
 \DoxyCodeLine{377         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_echo_message_request_a20ce989714512c65a6fa634223bd7ac3}{MODEL\_NAME}};}
 \DoxyCodeLine{378 }
 \DoxyCodeLine{379       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{380         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{380         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{381 }
 \DoxyCodeLine{382       private:}
 \DoxyCodeLine{383         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{class_awstest_1_1_message_data}{MessageData}}> m\_message;}
@@ -387,11 +387,11 @@
 \DoxyCodeLine{388       \textcolor{keyword}{public}:}
 \DoxyCodeLine{389         \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a3c2522adffe1e31235d7da8bbb6d53e1}{EchoStreamingResponse}}() noexcept \{\}}
 \DoxyCodeLine{390         \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a5c9cc9e8858e28c6eb71a49b0e94f32a}{EchoStreamingResponse}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{EchoStreamingResponse}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{391         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{392         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{EchoStreamingResponse}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{393         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{394             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{395             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{391         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{392         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{EchoStreamingResponse}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{393         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{394             Aws::Crt::StringView,}
+\DoxyCodeLine{395             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{396         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{EchoStreamingResponse}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{397         \textcolor{comment}{/* This needs to be defined so that `EchoStreamingResponse` can be used as a}}
 \DoxyCodeLine{398 \textcolor{comment}{         * key in maps. */}}
@@ -399,7 +399,7 @@
 \DoxyCodeLine{400         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response_a8e88e6f188b2743509a12c45737ac6bb}{MODEL\_NAME}};}
 \DoxyCodeLine{401 }
 \DoxyCodeLine{402       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{403         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{403         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{404 }
 \DoxyCodeLine{405       private:}
 \DoxyCodeLine{406     \};}
@@ -409,11 +409,11 @@
 \DoxyCodeLine{410       \textcolor{keyword}{public}:}
 \DoxyCodeLine{411         \mbox{\hyperlink{class_awstest_1_1_echo_streaming_request_a811ef486078256e7241686901587e379}{EchoStreamingRequest}}() noexcept \{\}}
 \DoxyCodeLine{412         \mbox{\hyperlink{class_awstest_1_1_echo_streaming_request_a3d38c707eb4f7061d9a31dc67a066247}{EchoStreamingRequest}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_streaming_request}{EchoStreamingRequest}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{413         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{414         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_streaming_request}{EchoStreamingRequest}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{415         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{416             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{417             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{413         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{414         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_echo_streaming_request}{EchoStreamingRequest}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{415         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{416             Aws::Crt::StringView,}
+\DoxyCodeLine{417             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{418         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_echo_streaming_request}{EchoStreamingRequest}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{419         \textcolor{comment}{/* This needs to be defined so that `EchoStreamingRequest` can be used as a}}
 \DoxyCodeLine{420 \textcolor{comment}{         * key in maps. */}}
@@ -421,7 +421,7 @@
 \DoxyCodeLine{422         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_echo_streaming_request_a8c422fcd75922d8f89dcff6d0bf0a93c}{MODEL\_NAME}};}
 \DoxyCodeLine{423 }
 \DoxyCodeLine{424       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{425         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{425         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{426 }
 \DoxyCodeLine{427       private:}
 \DoxyCodeLine{428     \};}
@@ -431,15 +431,15 @@
 \DoxyCodeLine{432       \textcolor{keyword}{public}:}
 \DoxyCodeLine{433         \mbox{\hyperlink{class_awstest_1_1_service_error_a208273cd03efc69fd24b95d975be794c}{ServiceError}}() noexcept \{\}}
 \DoxyCodeLine{434         \mbox{\hyperlink{class_awstest_1_1_service_error_a773ec5bc227cf842bdf9533ae845f92d}{ServiceError}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_service_error}{ServiceError}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{435         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_service_error_a69b4b5ef6c9540645ab13adc81e57ed9}{SetMessage}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) \textcolor{keyword}{noexcept} \{ m\_message = \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}; \}}
-\DoxyCodeLine{436         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} \mbox{\hyperlink{class_awstest_1_1_service_error_ac4b0e279f0c88647f7513a97eefbc199}{GetMessage}}() noexcept\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} m\_message; \}}
-\DoxyCodeLine{437         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_service_error_a4d3be2c51b4852e030b6dcc7db09deac}{SetValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \&value) \textcolor{keyword}{noexcept} \{ m\_value = value; \}}
-\DoxyCodeLine{438         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} \mbox{\hyperlink{class_awstest_1_1_service_error_a9d62f6945686a809dcacd76f9c14af96}{GetValue}}() noexcept \{ \textcolor{keywordflow}{return} m\_value; \}}
-\DoxyCodeLine{439         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{440         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_service_error}{ServiceError}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{441         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<OperationError>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{442             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{443             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{435         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_service_error_a69b4b5ef6c9540645ab13adc81e57ed9}{SetMessage}}(\textcolor{keyword}{const} Aws::Crt::String \&message) \textcolor{keyword}{noexcept} \{ m\_message = message; \}}
+\DoxyCodeLine{436         Aws::Crt::Optional<Aws::Crt::String> \mbox{\hyperlink{class_awstest_1_1_service_error_ac4b0e279f0c88647f7513a97eefbc199}{GetMessage}}() noexcept\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} m\_message; \}}
+\DoxyCodeLine{437         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_service_error_a4d3be2c51b4852e030b6dcc7db09deac}{SetValue}}(\textcolor{keyword}{const} Aws::Crt::String \&value) \textcolor{keyword}{noexcept} \{ m\_value = value; \}}
+\DoxyCodeLine{438         Aws::Crt::Optional<Aws::Crt::String> \mbox{\hyperlink{class_awstest_1_1_service_error_a9d62f6945686a809dcacd76f9c14af96}{GetValue}}() noexcept \{ \textcolor{keywordflow}{return} m\_value; \}}
+\DoxyCodeLine{439         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{440         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_service_error}{ServiceError}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{441         \textcolor{keyword}{static} Aws::Crt::ScopedResource<OperationError> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{442             Aws::Crt::StringView,}
+\DoxyCodeLine{443             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{444         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_service_error}{ServiceError}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{445         \textcolor{comment}{/* This needs to be defined so that `ServiceError` can be used as a key in}}
 \DoxyCodeLine{446 \textcolor{comment}{         * maps. */}}
@@ -447,11 +447,11 @@
 \DoxyCodeLine{448         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_service_error_aeab899d93cacc22125c14fefe4014418}{MODEL\_NAME}};}
 \DoxyCodeLine{449 }
 \DoxyCodeLine{450       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{451         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{451         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{452 }
 \DoxyCodeLine{453       private:}
-\DoxyCodeLine{454         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> m\_message;}
-\DoxyCodeLine{455         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}}> m\_value;}
+\DoxyCodeLine{454         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String> m\_message;}
+\DoxyCodeLine{455         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Optional<\mbox{\hyperlink{namespace_aws}{Aws}}::Crt::String> m\_value;}
 \DoxyCodeLine{456     \};}
 \DoxyCodeLine{457 }
 \DoxyCodeLine{458     class \mbox{\hyperlink{class_awstest_1_1_cause_service_error_response}{CauseServiceErrorResponse}} : public \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{AbstractShapeBase}}}
@@ -459,11 +459,11 @@
 \DoxyCodeLine{460       \textcolor{keyword}{public}:}
 \DoxyCodeLine{461         \mbox{\hyperlink{class_awstest_1_1_cause_service_error_response_a755d74cc22681e27e441e94f4cbba4e3}{CauseServiceErrorResponse}}() noexcept \{\}}
 \DoxyCodeLine{462         \mbox{\hyperlink{class_awstest_1_1_cause_service_error_response_a93dda42646af6b7cbcc0c2718db22e7d}{CauseServiceErrorResponse}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_cause_service_error_response}{CauseServiceErrorResponse}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{463         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{464         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_cause_service_error_response}{CauseServiceErrorResponse}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{465         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{466             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{467             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{463         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{464         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_cause_service_error_response}{CauseServiceErrorResponse}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{465         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{466             Aws::Crt::StringView,}
+\DoxyCodeLine{467             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{468         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_cause_service_error_response}{CauseServiceErrorResponse}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{469         \textcolor{comment}{/* This needs to be defined so that `CauseServiceErrorResponse` can be used as}}
 \DoxyCodeLine{470 \textcolor{comment}{         * a key in maps. */}}
@@ -471,7 +471,7 @@
 \DoxyCodeLine{472         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_cause_service_error_response_a3e17948d87c4bb557555164686646d87}{MODEL\_NAME}};}
 \DoxyCodeLine{473 }
 \DoxyCodeLine{474       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{475         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{475         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{476 }
 \DoxyCodeLine{477       private:}
 \DoxyCodeLine{478     \};}
@@ -481,11 +481,11 @@
 \DoxyCodeLine{482       \textcolor{keyword}{public}:}
 \DoxyCodeLine{483         \mbox{\hyperlink{class_awstest_1_1_cause_service_error_request_a580975089ab0601319172ebcc0a3d0a4}{CauseServiceErrorRequest}}() noexcept \{\}}
 \DoxyCodeLine{484         \mbox{\hyperlink{class_awstest_1_1_cause_service_error_request_aae32dc0137a264a3b732437b0f12b080}{CauseServiceErrorRequest}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_cause_service_error_request}{CauseServiceErrorRequest}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{485         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws::Crt::JsonObject}} \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{486         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_cause_service_error_request}{CauseServiceErrorRequest}} \&, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws::Crt::JsonView}} \&) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{487         \textcolor{keyword}{static} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
-\DoxyCodeLine{488             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}},}
-\DoxyCodeLine{489             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{485         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a5813d179d29d3761b7e41248b8bb7030}{SerializeToJsonObject}}(Aws::Crt::JsonObject \&payloadObject) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{486         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a28790022dff5a3a4eeddc60d438d301f}{s\_loadFromJsonView}}(\mbox{\hyperlink{class_awstest_1_1_cause_service_error_request}{CauseServiceErrorRequest}} \&, \textcolor{keyword}{const} Aws::Crt::JsonView \&) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{487         \textcolor{keyword}{static} Aws::Crt::ScopedResource<AbstractShapeBase> \mbox{\hyperlink{class_awstest_1_1_product_a77e58569fecc95d9eb17f246526e8056}{s\_allocateFromPayload}}(}
+\DoxyCodeLine{488             Aws::Crt::StringView,}
+\DoxyCodeLine{489             Aws::Crt::Allocator *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{490         \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_awstest_1_1_product_a65ab59c2141dd6bbb89918aff13eeceb}{s\_customDeleter}}(\mbox{\hyperlink{class_awstest_1_1_cause_service_error_request}{CauseServiceErrorRequest}} *) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{491         \textcolor{comment}{/* This needs to be defined so that `CauseServiceErrorRequest` can be used as}}
 \DoxyCodeLine{492 \textcolor{comment}{         * a key in maps. */}}
@@ -493,7 +493,7 @@
 \DoxyCodeLine{494         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_awstest_1_1_cause_service_error_request_a6cacc1dbed72b473cc929af27226e547}{MODEL\_NAME}};}
 \DoxyCodeLine{495 }
 \DoxyCodeLine{496       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{497         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
+\DoxyCodeLine{497         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() const noexcept override;}
 \DoxyCodeLine{498 }
 \DoxyCodeLine{499       private:}
 \DoxyCodeLine{500     \};}
@@ -502,16 +502,16 @@
 \DoxyCodeLine{503     \{}
 \DoxyCodeLine{504       \textcolor{keyword}{public}:}
 \DoxyCodeLine{505         \mbox{\hyperlink{class_awstest_1_1_get_all_products_operation_context}{GetAllProductsOperationContext}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_service_model}{EchoTestRpcServiceModel}} \&serviceModel) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{506         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateInitialResponseFromPayload(}
-\DoxyCodeLine{507             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{508             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{509         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateStreamingResponseFromPayload(}
-\DoxyCodeLine{510             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{511             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{512         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{513         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{514         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{515         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{506         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(}
+\DoxyCodeLine{507             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{508             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{509         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(}
+\DoxyCodeLine{510             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{511             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{512         Aws::Crt::String GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{513         Aws::Crt::String GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{514         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{515         Aws::Crt::String GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{516     \};}
 \DoxyCodeLine{517 }
 \DoxyCodeLine{518     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_get_all_products_result}{GetAllProductsResult}}}
@@ -523,7 +523,7 @@
 \DoxyCodeLine{524         \{}
 \DoxyCodeLine{525             \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_awstest_1_1_get_all_products_response}{GetAllProductsResponse}} *\textcolor{keyword}{>}(m\_taggedResult.GetOperationResponse());}
 \DoxyCodeLine{526         \}}
-\DoxyCodeLine{531         \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{531         \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
 \DoxyCodeLine{532         \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}} *\mbox{\hyperlink{class_awstest_1_1_get_all_products_result_a3670b0cec221c190f84360e937b047ad}{GetOperationError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetOperationError(); \}}
 \DoxyCodeLine{533         \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} \mbox{\hyperlink{class_awstest_1_1_get_all_products_result_a095c11906ddd3d23c3c4b98475ea54cf}{GetRpcError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetRpcError(); \}}
 \DoxyCodeLine{534         ResultType \mbox{\hyperlink{class_awstest_1_1_get_all_products_result_adfaed8a7c559dc71559b1207bda303bf}{GetResultType}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetResultType(); \}}
@@ -538,30 +538,30 @@
 \DoxyCodeLine{543         \mbox{\hyperlink{class_awstest_1_1_get_all_products_operation}{GetAllProductsOperation}}(}
 \DoxyCodeLine{544             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&connection,}
 \DoxyCodeLine{545             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_get_all_products_operation_context}{GetAllProductsOperationContext}} \&operationContext,}
-\DoxyCodeLine{546             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{546             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{555         std::future<RpcError> Activate(}
 \DoxyCodeLine{556             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_get_all_products_request}{GetAllProductsRequest}} \&request,}
 \DoxyCodeLine{557             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback = \textcolor{keyword}{nullptr}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{561         std::future<GetAllProductsResult> GetResult() \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{562 }
 \DoxyCodeLine{563       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{564         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{564         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{565     \};}
 \DoxyCodeLine{566 }
 \DoxyCodeLine{567     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_cause_service_error_operation_context}{CauseServiceErrorOperationContext}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{OperationModelContext}}}
 \DoxyCodeLine{568     \{}
 \DoxyCodeLine{569       \textcolor{keyword}{public}:}
 \DoxyCodeLine{570         \mbox{\hyperlink{class_awstest_1_1_cause_service_error_operation_context}{CauseServiceErrorOperationContext}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_service_model}{EchoTestRpcServiceModel}} \&serviceModel) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{571         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateInitialResponseFromPayload(}
-\DoxyCodeLine{572             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{573             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{574         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateStreamingResponseFromPayload(}
-\DoxyCodeLine{575             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{576             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{577         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{578         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{579         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{580         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{571         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(}
+\DoxyCodeLine{572             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{573             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{574         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(}
+\DoxyCodeLine{575             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{576             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{577         Aws::Crt::String GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{578         Aws::Crt::String GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{579         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{580         Aws::Crt::String GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{581     \};}
 \DoxyCodeLine{582 }
 \DoxyCodeLine{583     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_cause_service_error_result}{CauseServiceErrorResult}}}
@@ -573,7 +573,7 @@
 \DoxyCodeLine{589         \{}
 \DoxyCodeLine{590             \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_awstest_1_1_cause_service_error_response}{CauseServiceErrorResponse}} *\textcolor{keyword}{>}(m\_taggedResult.GetOperationResponse());}
 \DoxyCodeLine{591         \}}
-\DoxyCodeLine{596         \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{596         \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
 \DoxyCodeLine{597         \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}} *\mbox{\hyperlink{class_awstest_1_1_cause_service_error_result_a7b606c285ab44084432ef058a5e1a31e}{GetOperationError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetOperationError(); \}}
 \DoxyCodeLine{598         \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} \mbox{\hyperlink{class_awstest_1_1_cause_service_error_result_a8b7472c8c991cf911066a25ae87a6fc9}{GetRpcError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetRpcError(); \}}
 \DoxyCodeLine{599         ResultType \mbox{\hyperlink{class_awstest_1_1_cause_service_error_result_a4e53e54fdb639f5d2f0f04fe599a8dba}{GetResultType}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetResultType(); \}}
@@ -588,14 +588,14 @@
 \DoxyCodeLine{608         \mbox{\hyperlink{class_awstest_1_1_cause_service_error_operation}{CauseServiceErrorOperation}}(}
 \DoxyCodeLine{609             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&connection,}
 \DoxyCodeLine{610             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_cause_service_error_operation_context}{CauseServiceErrorOperationContext}} \&operationContext,}
-\DoxyCodeLine{611             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{611             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{620         std::future<RpcError> Activate(}
 \DoxyCodeLine{621             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_cause_service_error_request}{CauseServiceErrorRequest}} \&request,}
 \DoxyCodeLine{622             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback = \textcolor{keyword}{nullptr}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{626         std::future<CauseServiceErrorResult> GetResult() \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{627 }
 \DoxyCodeLine{628       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{629         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{629         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{630     \};}
 \DoxyCodeLine{631 }
 \DoxyCodeLine{632     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_cause_stream_service_to_error_stream_handler}{CauseStreamServiceToErrorStreamHandler}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{StreamResponseHandler}}}
@@ -622,23 +622,23 @@
 \DoxyCodeLine{668         \}}
 \DoxyCodeLine{669 }
 \DoxyCodeLine{670       \textcolor{keyword}{private}:}
-\DoxyCodeLine{674         \textcolor{keywordtype}{void} OnStreamEvent(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} response) \textcolor{keyword}{override};}
-\DoxyCodeLine{681         \textcolor{keywordtype}{bool} OnStreamError(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<OperationError>}} \mbox{\hyperlink{structerror}{error}}, \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} rpcError) \textcolor{keyword}{override};}
+\DoxyCodeLine{674         \textcolor{keywordtype}{void} OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) \textcolor{keyword}{override};}
+\DoxyCodeLine{681         \textcolor{keywordtype}{bool} OnStreamError(Aws::Crt::ScopedResource<OperationError> error, \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} rpcError) \textcolor{keyword}{override};}
 \DoxyCodeLine{682     \};}
 \DoxyCodeLine{683     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_cause_stream_service_to_error_operation_context}{CauseStreamServiceToErrorOperationContext}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{OperationModelContext}}}
 \DoxyCodeLine{684     \{}
 \DoxyCodeLine{685       \textcolor{keyword}{public}:}
 \DoxyCodeLine{686         \mbox{\hyperlink{class_awstest_1_1_cause_stream_service_to_error_operation_context}{CauseStreamServiceToErrorOperationContext}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_service_model}{EchoTestRpcServiceModel}} \&serviceModel) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{687         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateInitialResponseFromPayload(}
-\DoxyCodeLine{688             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{689             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{690         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateStreamingResponseFromPayload(}
-\DoxyCodeLine{691             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{692             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{693         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{694         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{695         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{696         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{687         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(}
+\DoxyCodeLine{688             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{689             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{690         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(}
+\DoxyCodeLine{691             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{692             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{693         Aws::Crt::String GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{694         Aws::Crt::String GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{695         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{696         Aws::Crt::String GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{697     \};}
 \DoxyCodeLine{698 }
 \DoxyCodeLine{699     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_cause_stream_service_to_error_result}{CauseStreamServiceToErrorResult}}}
@@ -652,7 +652,7 @@
 \DoxyCodeLine{707         \{}
 \DoxyCodeLine{708             \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{EchoStreamingResponse}} *\textcolor{keyword}{>}(m\_taggedResult.GetOperationResponse());}
 \DoxyCodeLine{709         \}}
-\DoxyCodeLine{714         \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{714         \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
 \DoxyCodeLine{715         \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}} *\mbox{\hyperlink{class_awstest_1_1_cause_stream_service_to_error_result_ab9dd96dd8aa23d9f47ab44f1f6ce2299}{GetOperationError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetOperationError(); \}}
 \DoxyCodeLine{716         \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} \mbox{\hyperlink{class_awstest_1_1_cause_stream_service_to_error_result_a3ccfd033003b1746fa80ff821fc7a1c2}{GetRpcError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetRpcError(); \}}
 \DoxyCodeLine{717         ResultType \mbox{\hyperlink{class_awstest_1_1_cause_stream_service_to_error_result_a809626e8422b99ba7bb2ac684ccb71a5}{GetResultType}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetResultType(); \}}
@@ -668,14 +668,14 @@
 \DoxyCodeLine{727             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&connection,}
 \DoxyCodeLine{728             \mbox{\hyperlink{class_awstest_1_1_cause_stream_service_to_error_stream_handler}{CauseStreamServiceToErrorStreamHandler}} *streamHandler,}
 \DoxyCodeLine{729             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_cause_stream_service_to_error_operation_context}{CauseStreamServiceToErrorOperationContext}} \&operationContext,}
-\DoxyCodeLine{730             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{730             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{740         std::future<RpcError> Activate(}
 \DoxyCodeLine{741             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_streaming_request}{EchoStreamingRequest}} \&request,}
 \DoxyCodeLine{742             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback = \textcolor{keyword}{nullptr}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{746         std::future<CauseStreamServiceToErrorResult> GetResult() \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{747 }
 \DoxyCodeLine{748       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{749         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{749         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{750     \};}
 \DoxyCodeLine{751 }
 \DoxyCodeLine{752     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_stream_handler}{EchoStreamMessagesStreamHandler}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{StreamResponseHandler}}}
@@ -696,23 +696,23 @@
 \DoxyCodeLine{778         \}}
 \DoxyCodeLine{779 }
 \DoxyCodeLine{780       \textcolor{keyword}{private}:}
-\DoxyCodeLine{784         \textcolor{keywordtype}{void} OnStreamEvent(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} response) \textcolor{keyword}{override};}
-\DoxyCodeLine{791         \textcolor{keywordtype}{bool} OnStreamError(\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<OperationError>}} \mbox{\hyperlink{structerror}{error}}, \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} rpcError) \textcolor{keyword}{override};}
+\DoxyCodeLine{784         \textcolor{keywordtype}{void} OnStreamEvent(Aws::Crt::ScopedResource<AbstractShapeBase> response) \textcolor{keyword}{override};}
+\DoxyCodeLine{791         \textcolor{keywordtype}{bool} OnStreamError(Aws::Crt::ScopedResource<OperationError> error, \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} rpcError) \textcolor{keyword}{override};}
 \DoxyCodeLine{792     \};}
 \DoxyCodeLine{793     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_context}{EchoStreamMessagesOperationContext}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{OperationModelContext}}}
 \DoxyCodeLine{794     \{}
 \DoxyCodeLine{795       \textcolor{keyword}{public}:}
 \DoxyCodeLine{796         \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_context}{EchoStreamMessagesOperationContext}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_service_model}{EchoTestRpcServiceModel}} \&serviceModel) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{797         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateInitialResponseFromPayload(}
-\DoxyCodeLine{798             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{799             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{800         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateStreamingResponseFromPayload(}
-\DoxyCodeLine{801             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{802             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{803         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{804         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{805         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{806         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{797         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(}
+\DoxyCodeLine{798             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{799             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{800         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(}
+\DoxyCodeLine{801             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{802             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{803         Aws::Crt::String GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{804         Aws::Crt::String GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{805         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{806         Aws::Crt::String GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{807     \};}
 \DoxyCodeLine{808 }
 \DoxyCodeLine{809     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_result}{EchoStreamMessagesResult}}}
@@ -724,7 +724,7 @@
 \DoxyCodeLine{815         \{}
 \DoxyCodeLine{816             \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_awstest_1_1_echo_streaming_response}{EchoStreamingResponse}} *\textcolor{keyword}{>}(m\_taggedResult.GetOperationResponse());}
 \DoxyCodeLine{817         \}}
-\DoxyCodeLine{822         \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{822         \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
 \DoxyCodeLine{823         \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}} *\mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_result_a6823794a95113a0940055bef73f86cda}{GetOperationError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetOperationError(); \}}
 \DoxyCodeLine{824         \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_result_a1b8ec750c566f138f5e579c42cdea74f}{GetRpcError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetRpcError(); \}}
 \DoxyCodeLine{825         ResultType \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_result_a2a26797d1b657dd8b85f6a288c7f521c}{GetResultType}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetResultType(); \}}
@@ -740,30 +740,30 @@
 \DoxyCodeLine{835             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&connection,}
 \DoxyCodeLine{836             \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_stream_handler}{EchoStreamMessagesStreamHandler}} *streamHandler,}
 \DoxyCodeLine{837             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_context}{EchoStreamMessagesOperationContext}} \&operationContext,}
-\DoxyCodeLine{838             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{838             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{847         std::future<RpcError> Activate(}
 \DoxyCodeLine{848             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_streaming_request}{EchoStreamingRequest}} \&request,}
 \DoxyCodeLine{849             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback = \textcolor{keyword}{nullptr}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{853         std::future<EchoStreamMessagesResult> GetResult() \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{854 }
 \DoxyCodeLine{855       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{856         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{856         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{857     \};}
 \DoxyCodeLine{858 }
 \DoxyCodeLine{859     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_echo_message_operation_context}{EchoMessageOperationContext}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{OperationModelContext}}}
 \DoxyCodeLine{860     \{}
 \DoxyCodeLine{861       \textcolor{keyword}{public}:}
 \DoxyCodeLine{862         \mbox{\hyperlink{class_awstest_1_1_echo_message_operation_context}{EchoMessageOperationContext}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_service_model}{EchoTestRpcServiceModel}} \&serviceModel) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{863         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateInitialResponseFromPayload(}
-\DoxyCodeLine{864             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{865             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{866         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateStreamingResponseFromPayload(}
-\DoxyCodeLine{867             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{868             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{869         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{870         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{871         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{872         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{863         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(}
+\DoxyCodeLine{864             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{865             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{866         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(}
+\DoxyCodeLine{867             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{868             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{869         Aws::Crt::String GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{870         Aws::Crt::String GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{871         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{872         Aws::Crt::String GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{873     \};}
 \DoxyCodeLine{874 }
 \DoxyCodeLine{875     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_echo_message_result}{EchoMessageResult}}}
@@ -775,7 +775,7 @@
 \DoxyCodeLine{881         \{}
 \DoxyCodeLine{882             \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_awstest_1_1_echo_message_response}{EchoMessageResponse}} *\textcolor{keyword}{>}(m\_taggedResult.GetOperationResponse());}
 \DoxyCodeLine{883         \}}
-\DoxyCodeLine{888         \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{888         \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
 \DoxyCodeLine{889         \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}} *\mbox{\hyperlink{class_awstest_1_1_echo_message_result_a16ca96ad6ba73d1934b9763ff15476f3}{GetOperationError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetOperationError(); \}}
 \DoxyCodeLine{890         \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} \mbox{\hyperlink{class_awstest_1_1_echo_message_result_afacd369339c1f1dcda5a6aa3eaad4c17}{GetRpcError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetRpcError(); \}}
 \DoxyCodeLine{891         ResultType \mbox{\hyperlink{class_awstest_1_1_echo_message_result_a420f18ed6acc76571eb64e905e94e11a}{GetResultType}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetResultType(); \}}
@@ -790,30 +790,30 @@
 \DoxyCodeLine{900         \mbox{\hyperlink{class_awstest_1_1_echo_message_operation}{EchoMessageOperation}}(}
 \DoxyCodeLine{901             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&connection,}
 \DoxyCodeLine{902             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_message_operation_context}{EchoMessageOperationContext}} \&operationContext,}
-\DoxyCodeLine{903             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{903             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{912         std::future<RpcError> Activate(}
 \DoxyCodeLine{913             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_message_request}{EchoMessageRequest}} \&request,}
 \DoxyCodeLine{914             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback = \textcolor{keyword}{nullptr}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{918         std::future<EchoMessageResult> GetResult() \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{919 }
 \DoxyCodeLine{920       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{921         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{921         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{922     \};}
 \DoxyCodeLine{923 }
 \DoxyCodeLine{924     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_get_all_customers_operation_context}{GetAllCustomersOperationContext}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{OperationModelContext}}}
 \DoxyCodeLine{925     \{}
 \DoxyCodeLine{926       \textcolor{keyword}{public}:}
 \DoxyCodeLine{927         \mbox{\hyperlink{class_awstest_1_1_get_all_customers_operation_context}{GetAllCustomersOperationContext}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_service_model}{EchoTestRpcServiceModel}} \&serviceModel) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{928         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateInitialResponseFromPayload(}
-\DoxyCodeLine{929             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{930             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{931         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<AbstractShapeBase>}} AllocateStreamingResponseFromPayload(}
-\DoxyCodeLine{932             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{933             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{934         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{935         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{936         \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::String>}} GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{937         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{928         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateInitialResponseFromPayload(}
+\DoxyCodeLine{929             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{930             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{931         Aws::Crt::ScopedResource<AbstractShapeBase> AllocateStreamingResponseFromPayload(}
+\DoxyCodeLine{932             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{933             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{934         Aws::Crt::String GetRequestModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{935         Aws::Crt::String GetInitialResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{936         Aws::Crt::Optional<Aws::Crt::String> GetStreamingResponseModelName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{937         Aws::Crt::String GetOperationName() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{938     \};}
 \DoxyCodeLine{939 }
 \DoxyCodeLine{940     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_get_all_customers_result}{GetAllCustomersResult}}}
@@ -825,7 +825,7 @@
 \DoxyCodeLine{946         \{}
 \DoxyCodeLine{947             \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_awstest_1_1_get_all_customers_response}{GetAllCustomersResponse}} *\textcolor{keyword}{>}(m\_taggedResult.GetOperationResponse());}
 \DoxyCodeLine{948         \}}
-\DoxyCodeLine{953         \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{953         \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult == \textcolor{keyword}{true}; \}}
 \DoxyCodeLine{954         \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{OperationError}} *\mbox{\hyperlink{class_awstest_1_1_get_all_customers_result_ad1aee10300e46f6beeb9144331653584}{GetOperationError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetOperationError(); \}}
 \DoxyCodeLine{955         \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{RpcError}} \mbox{\hyperlink{class_awstest_1_1_get_all_customers_result_af5ad6dd9b6fd05c3cd197ad62b149ce9}{GetRpcError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetRpcError(); \}}
 \DoxyCodeLine{956         ResultType \mbox{\hyperlink{class_awstest_1_1_get_all_customers_result_a5b07c70e2e2685a939eb7d6a4cb73f54}{GetResultType}}() const noexcept \{ \textcolor{keywordflow}{return} m\_taggedResult.GetResultType(); \}}
@@ -840,25 +840,25 @@
 \DoxyCodeLine{965         \mbox{\hyperlink{class_awstest_1_1_get_all_customers_operation}{GetAllCustomersOperation}}(}
 \DoxyCodeLine{966             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} \&connection,}
 \DoxyCodeLine{967             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_get_all_customers_operation_context}{GetAllCustomersOperationContext}} \&operationContext,}
-\DoxyCodeLine{968             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{968             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{977         std::future<RpcError> Activate(}
 \DoxyCodeLine{978             \textcolor{keyword}{const} \mbox{\hyperlink{class_awstest_1_1_get_all_customers_request}{GetAllCustomersRequest}} \&request,}
 \DoxyCodeLine{979             \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{OnMessageFlushCallback}} onMessageFlushCallback = \textcolor{keyword}{nullptr}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{983         std::future<GetAllCustomersResult> GetResult() \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{984 }
 \DoxyCodeLine{985       \textcolor{keyword}{protected}:}
-\DoxyCodeLine{986         \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{986         Aws::Crt::String \mbox{\hyperlink{class_awstest_1_1_product_a46229b397845ed4976304edbf5b3ec4a}{GetModelName}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{987     \};}
 \DoxyCodeLine{988 }
 \DoxyCodeLine{989     \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_service_model}{EchoTestRpcServiceModel}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_service_model}{ServiceModel}}}
 \DoxyCodeLine{990     \{}
 \DoxyCodeLine{991       \textcolor{keyword}{public}:}
 \DoxyCodeLine{992         \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_service_model}{EchoTestRpcServiceModel}}() \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{993         \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws::Crt::ScopedResource<OperationError>}} AllocateOperationErrorFromPayload(}
-\DoxyCodeLine{994             \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}} \&errorModelName,}
-\DoxyCodeLine{995             \mbox{\hyperlink{class_aws_1_1_crt_1_1basic__string__view}{Aws::Crt::StringView}} stringView,}
-\DoxyCodeLine{996             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
-\DoxyCodeLine{997         \textcolor{keywordtype}{void} AssignModelNameToErrorResponse(\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws::Crt::String}}, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{ErrorResponseFactory}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{993         Aws::Crt::ScopedResource<OperationError> AllocateOperationErrorFromPayload(}
+\DoxyCodeLine{994             \textcolor{keyword}{const} Aws::Crt::String \&errorModelName,}
+\DoxyCodeLine{995             Aws::Crt::StringView stringView,}
+\DoxyCodeLine{996             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
+\DoxyCodeLine{997         \textcolor{keywordtype}{void} AssignModelNameToErrorResponse(Aws::Crt::String, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{ErrorResponseFactory}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{998 }
 \DoxyCodeLine{999       \textcolor{keyword}{private}:}
 \DoxyCodeLine{1000         \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client}{EchoTestRpcClient}};}
@@ -868,7 +868,7 @@
 \DoxyCodeLine{1004         \mbox{\hyperlink{class_awstest_1_1_echo_stream_messages_operation_context}{EchoStreamMessagesOperationContext}} m\_echoStreamMessagesOperationContext;}
 \DoxyCodeLine{1005         \mbox{\hyperlink{class_awstest_1_1_echo_message_operation_context}{EchoMessageOperationContext}} m\_echoMessageOperationContext;}
 \DoxyCodeLine{1006         \mbox{\hyperlink{class_awstest_1_1_get_all_customers_operation_context}{GetAllCustomersOperationContext}} m\_getAllCustomersOperationContext;}
-\DoxyCodeLine{1007         \mbox{\hyperlink{namespace_aws_1_1_crt_a1cf42e328e4553fa884d30468915df73}{Aws::Crt::Map<Aws::Crt::String, ErrorResponseFactory>}} m\_modelNameToErrorResponse;}
+\DoxyCodeLine{1007         Aws::Crt::Map<Aws::Crt::String, ErrorResponseFactory> m\_modelNameToErrorResponse;}
 \DoxyCodeLine{1008     \};}
 \DoxyCodeLine{1009 \} \textcolor{comment}{// namespace Awstest}}
 

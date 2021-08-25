@@ -13,14 +13,14 @@ Inheritance diagram for Test\+Lifecycle\+Handler\+:\begin{figure}[H]
 \item 
 void \mbox{\hyperlink{class_test_lifecycle_handler_a842e3d848f98221676e46d2ab0cfa71b}{On\+Connect\+Callback}} () override
 \item 
-void \mbox{\hyperlink{class_test_lifecycle_handler_a3fe18bc4894b7ff93c738ab63ba5f0c6}{On\+Disconnect\+Callback}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} \mbox{\hyperlink{structerror}{error}}) override
+void \mbox{\hyperlink{class_test_lifecycle_handler_a3fe18bc4894b7ff93c738ab63ba5f0c6}{On\+Disconnect\+Callback}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} error) override
 \item 
-void \mbox{\hyperlink{class_test_lifecycle_handler_a244b6d3072e00e74070d962b2b5a12d0}{Wait\+On\+Condition}} (std\+::function$<$ \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}(void)$>$ condition)
+void \mbox{\hyperlink{class_test_lifecycle_handler_a244b6d3072e00e74070d962b2b5a12d0}{Wait\+On\+Condition}} (std\+::function$<$ bool(void)$>$ condition)
 \end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{class_test_lifecycle_handler_a1afb3ca19e8a0ee04a5f8802f51ed4a7}{s\+\_\+\+Test\+Event\+Stream\+Connect}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+int \mbox{\hyperlink{class_test_lifecycle_handler_a1afb3ca19e8a0ee04a5f8802f51ed4a7}{s\+\_\+\+Test\+Event\+Stream\+Connect}} (struct aws\+\_\+allocator $\ast$allocator, void $\ast$ctx)
 \end{DoxyCompactItemize}
 
 
@@ -63,7 +63,7 @@ Reimplemented from \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_
 \index{TestLifecycleHandler@{TestLifecycleHandler}!WaitOnCondition@{WaitOnCondition}}
 \index{WaitOnCondition@{WaitOnCondition}!TestLifecycleHandler@{TestLifecycleHandler}}
 \doxysubsubsection{\texorpdfstring{WaitOnCondition()}{WaitOnCondition()}}
-{\footnotesize\ttfamily void Test\+Lifecycle\+Handler\+::\+Wait\+On\+Condition (\begin{DoxyParamCaption}\item[{std\+::function$<$ \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}(void)$>$}]{condition }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Test\+Lifecycle\+Handler\+::\+Wait\+On\+Condition (\begin{DoxyParamCaption}\item[{std\+::function$<$ bool(void)$>$}]{condition }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -72,7 +72,7 @@ Reimplemented from \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_
 \index{TestLifecycleHandler@{TestLifecycleHandler}!s\_TestEventStreamConnect@{s\_TestEventStreamConnect}}
 \index{s\_TestEventStreamConnect@{s\_TestEventStreamConnect}!TestLifecycleHandler@{TestLifecycleHandler}}
 \doxysubsubsection{\texorpdfstring{s\_TestEventStreamConnect}{s\_TestEventStreamConnect}}
-{\footnotesize\ttfamily int s\+\_\+\+Test\+Event\+Stream\+Connect (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+{\footnotesize\ttfamily int s\+\_\+\+Test\+Event\+Stream\+Connect (\begin{DoxyParamCaption}\item[{struct aws\+\_\+allocator $\ast$}]{allocator,  }\item[{void $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
 
 

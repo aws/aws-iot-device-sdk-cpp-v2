@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['boot_5fstep_0',['boot_step',['../test__websocket__bootstrap_8c.html#a47580b9ae0dc89eb305d14965a9d2896',1,'test_websocket_bootstrap.c']]]
+  ['eventstreamrpcstatuscode_0',['EventStreamRpcStatusCode',['../namespace_aws_1_1_eventstreamrpc.html#a9e9bdfe1d204567865734a594f7b1920',1,'Aws::Eventstreamrpc']]]
 ];

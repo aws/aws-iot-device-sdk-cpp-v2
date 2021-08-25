@@ -21,22 +21,22 @@ Inheritance diagram for Aws\+::Greengrass\+::Component\+Update\+Policy\+Events\+
 \item 
 void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a8a6f4eddcceeedfa0c77b0da3ef25e69}{Set\+Pre\+Update\+Event}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pre_component_update_event}{Pre\+Component\+Update\+Event}} \&pre\+Update\+Event) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pre_component_update_event}{Pre\+Component\+Update\+Event}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a84d43176a0e210ca94e97833c4ca4457}{Get\+Pre\+Update\+Event}} () noexcept
+Aws\+::\+Crt\+::\+Optional$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pre_component_update_event}{Pre\+Component\+Update\+Event}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a84d43176a0e210ca94e97833c4ca4457}{Get\+Pre\+Update\+Event}} () noexcept
 \item 
 void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a92b2b0962a18c6c2a3e15a026ba7b806}{Set\+Post\+Update\+Event}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_post_component_update_event}{Post\+Component\+Update\+Event}} \&post\+Update\+Event) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_post_component_update_event}{Post\+Component\+Update\+Event}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a1af21aa76733051ae35c3190dcf86889}{Get\+Post\+Update\+Event}} () noexcept
+Aws\+::\+Crt\+::\+Optional$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_post_component_update_event}{Post\+Component\+Update\+Event}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a1af21aa76733051ae35c3190dcf86889}{Get\+Post\+Update\+Event}} () noexcept
 \item 
-void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a40c1a2ac5e5d62a668c9dd4bf5642419}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&payload\+Object) const noexcept override
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a40c1a2ac5e5d62a668c9dd4bf5642419}{Serialize\+To\+Json\+Object}} (Aws\+::\+Crt\+::\+Json\+Object \&payload\+Object) const noexcept override
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_aed9917e0923e57e790285a26289a68c8}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} \&) const noexcept
+bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_aed9917e0923e57e790285a26289a68c8}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} \&) const noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a2563341381e07886b5a6db121bc68a41}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} \&, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&) noexcept
+static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a2563341381e07886b5a6db121bc68a41}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} \&, const Aws\+::\+Crt\+::\+Json\+View \&) noexcept
 \item 
-static \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a7062170ad4cf71e7538413ba7b384d4c}{s\+\_\+allocate\+From\+Payload}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$) noexcept
+static Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a7062170ad4cf71e7538413ba7b384d4c}{s\+\_\+allocate\+From\+Payload}} (Aws\+::\+Crt\+::\+String\+View, Aws\+::\+Crt\+::\+Allocator $\ast$) noexcept
 \item 
 static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a82661c57544aaa98aea6ca4a0f877be1}{s\+\_\+custom\+Deleter}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} $\ast$) noexcept
 \end{DoxyCompactItemize}
@@ -48,7 +48,7 @@ static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a6b5d7ab7b2372e924db7ea920e0bd28b}{Get\+Model\+Name}} () const noexcept override
+Aws\+::\+Crt\+::\+String \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events_a6b5d7ab7b2372e924db7ea920e0bd28b}{Get\+Model\+Name}} () const noexcept override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -73,7 +73,7 @@ static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+String Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -83,19 +83,19 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!GetPostUpdateEvent@{GetPostUpdateEvent}}
 \index{GetPostUpdateEvent@{GetPostUpdateEvent}!Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}}
 \doxysubsubsection{\texorpdfstring{GetPostUpdateEvent()}{GetPostUpdateEvent()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_post_component_update_event}{Post\+Component\+Update\+Event}}$>$ Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::\+Get\+Post\+Update\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Optional$<$\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_post_component_update_event}{Post\+Component\+Update\+Event}}$>$ Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::\+Get\+Post\+Update\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_component_update_policy_events_a84d43176a0e210ca94e97833c4ca4457}\label{class_aws_1_1_greengrass_1_1_component_update_policy_events_a84d43176a0e210ca94e97833c4ca4457}} 
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!GetPreUpdateEvent@{GetPreUpdateEvent}}
 \index{GetPreUpdateEvent@{GetPreUpdateEvent}!Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}}
 \doxysubsubsection{\texorpdfstring{GetPreUpdateEvent()}{GetPreUpdateEvent()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pre_component_update_event}{Pre\+Component\+Update\+Event}}$>$ Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::\+Get\+Pre\+Update\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Optional$<$\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_pre_component_update_event}{Pre\+Component\+Update\+Event}}$>$ Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::\+Get\+Pre\+Update\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_component_update_policy_events_aed9917e0923e57e790285a26289a68c8}\label{class_aws_1_1_greengrass_1_1_component_update_policy_events_aed9917e0923e57e790285a26289a68c8}} 
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}}
 \doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_component_update_policy_events_afc064cd69cad9f7114051923aa06a404}\label{class_aws_1_1_greengrass_1_1_component_update_policy_events_afc064cd69cad9f7114051923aa06a404}} 
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!operator=@{operator=}}
@@ -107,7 +107,7 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!s\_allocateFromPayload@{s\_allocateFromPayload}}
 \index{s\_allocateFromPayload@{s\_allocateFromPayload}!Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}}
 \doxysubsubsection{\texorpdfstring{s\_allocateFromPayload()}{s\_allocateFromPayload()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}}]{string\+View,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+String\+View}]{string\+View,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_component_update_policy_events_a82661c57544aaa98aea6ca4a0f877be1}\label{class_aws_1_1_greengrass_1_1_component_update_policy_events_a82661c57544aaa98aea6ca4a0f877be1}} 
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!s\_customDeleter@{s\_customDeleter}}
@@ -119,17 +119,13 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!s\_loadFromJsonView@{s\_loadFromJsonView}}
 \index{s\_loadFromJsonView@{s\_loadFromJsonView}!Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}}
 \doxysubsubsection{\texorpdfstring{s\_loadFromJsonView()}{s\_loadFromJsonView()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} \&}]{component\+Update\+Policy\+Events,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} \&}]{component\+Update\+Policy\+Events,  }\item[{const Aws\+::\+Crt\+::\+Json\+View \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_component_update_policy_events_a40c1a2ac5e5d62a668c9dd4bf5642419}\label{class_aws_1_1_greengrass_1_1_component_update_policy_events_a40c1a2ac5e5d62a668c9dd4bf5642419}} 
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!SerializeToJsonObject@{SerializeToJsonObject}}
 \index{SerializeToJsonObject@{SerializeToJsonObject}!Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}}
 \doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
-
-
-
-Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_a20ac68efd9842d7234b52e440d0df17b}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Component\+Update\+Policy\+Events\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+Json\+Object \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_component_update_policy_events_a92b2b0962a18c6c2a3e15a026ba7b806}\label{class_aws_1_1_greengrass_1_1_component_update_policy_events_a92b2b0962a18c6c2a3e15a026ba7b806}} 
 \index{Aws::Greengrass::ComponentUpdatePolicyEvents@{Aws::Greengrass::ComponentUpdatePolicyEvents}!SetPostUpdateEvent@{SetPostUpdateEvent}}

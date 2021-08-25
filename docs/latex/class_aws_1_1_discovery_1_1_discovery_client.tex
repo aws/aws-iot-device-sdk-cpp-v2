@@ -7,12 +7,12 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_ade0818d805892ffc7c9e49c1d7ba87b0}{Discover}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&thing\+Name, const \mbox{\hyperlink{namespace_aws_1_1_discovery_aa4671b96af3b6408de9fb3366f6763b6}{On\+Discover\+Response}} \&on\+Discover\+Response) noexcept
+bool \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_ade0818d805892ffc7c9e49c1d7ba87b0}{Discover}} (const Crt\+::\+String \&thing\+Name, const \mbox{\hyperlink{namespace_aws_1_1_discovery_aa4671b96af3b6408de9fb3366f6763b6}{On\+Discover\+Response}} \&on\+Discover\+Response) noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client}{Discovery\+Client}} $>$ \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_a7ed2c8d5be7da617639f4940004e8c1e}{Create\+Client}} (const \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config}{Discovery\+Client\+Config}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a70bd46137cf25dda46f2138ddbee9681}{Crt\+::\+Default\+Allocator}}())
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client}{Discovery\+Client}} $>$ \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_a7ed2c8d5be7da617639f4940004e8c1e}{Create\+Client}} (const \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config}{Discovery\+Client\+Config}} \&config, Crt\+::\+Allocator $\ast$allocator=Crt\+::\+Default\+Allocator())
 \end{DoxyCompactItemize}
 
 
@@ -21,13 +21,13 @@ static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_discovery_1_1_di
 \index{Aws::Discovery::DiscoveryClient@{Aws::Discovery::DiscoveryClient}!CreateClient@{CreateClient}}
 \index{CreateClient@{CreateClient}!Aws::Discovery::DiscoveryClient@{Aws::Discovery::DiscoveryClient}}
 \doxysubsubsection{\texorpdfstring{CreateClient()}{CreateClient()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client}{Discovery\+Client}} $>$ Aws\+::\+Discovery\+::\+Discovery\+Client\+::\+Create\+Client (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config}{Discovery\+Client\+Config}} \&}]{config,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a70bd46137cf25dda46f2138ddbee9681}{Crt\+::\+Default\+Allocator}}()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client}{Discovery\+Client}} $>$ Aws\+::\+Discovery\+::\+Discovery\+Client\+::\+Create\+Client (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config}{Discovery\+Client\+Config}} \&}]{config,  }\item[{Crt\+::\+Allocator $\ast$}]{allocator = {\ttfamily Crt\+:\+:DefaultAllocator()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{class_aws_1_1_discovery_1_1_discovery_client_ade0818d805892ffc7c9e49c1d7ba87b0}\label{class_aws_1_1_discovery_1_1_discovery_client_ade0818d805892ffc7c9e49c1d7ba87b0}} 
 \index{Aws::Discovery::DiscoveryClient@{Aws::Discovery::DiscoveryClient}!Discover@{Discover}}
 \index{Discover@{Discover}!Aws::Discovery::DiscoveryClient@{Aws::Discovery::DiscoveryClient}}
 \doxysubsubsection{\texorpdfstring{Discover()}{Discover()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Discovery\+::\+Discovery\+Client\+::\+Discover (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&}]{thing\+Name,  }\item[{const \mbox{\hyperlink{namespace_aws_1_1_discovery_aa4671b96af3b6408de9fb3366f6763b6}{On\+Discover\+Response}} \&}]{on\+Discover\+Response }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Discovery\+::\+Discovery\+Client\+::\+Discover (\begin{DoxyParamCaption}\item[{const Crt\+::\+String \&}]{thing\+Name,  }\item[{const \mbox{\hyperlink{namespace_aws_1_1_discovery_aa4671b96af3b6408de9fb3366f6763b6}{On\+Discover\+Response}} \&}]{on\+Discover\+Response }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 
 

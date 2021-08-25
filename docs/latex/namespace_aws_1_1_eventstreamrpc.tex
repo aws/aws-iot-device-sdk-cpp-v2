@@ -44,23 +44,23 @@ class \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_tagged_result}{Tagged\+R
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a6a6036d8e92a0a233c2db987e2445d93}{Header\+Value\+Type}} = \mbox{\hyperlink{event__stream_8h_a729457a0cd08dd8b9a0623d3f77ef074}{aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+type}}
+using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a6a6036d8e92a0a233c2db987e2445d93}{Header\+Value\+Type}} = aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+type
 \item 
-using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a17196886a4195a25c1e092353b6dd591}{Message\+Type}} = \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type}}
+using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a17196886a4195a25c1e092353b6dd591}{Message\+Type}} = aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type
 \item 
 using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} = std\+::function$<$ void(int error\+Code)$>$
 \item 
 using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ab93b30af2e59415f7453527b9b8a06c4}{Connect\+Message\+Amender}} = std\+::function$<$ const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{Message\+Amendment}} \&(void)$>$
 \item 
-using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}} = std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$(const \mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Crt\+::\+String\+View}} \&\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})$>$
+using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}} = std\+::function$<$ Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$(const Crt\+::\+String\+View \&payload, Crt\+::\+Allocator $\ast$allocator)$>$
 \item 
-using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{Error\+Response\+Factory}} = std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$(const \mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Crt\+::\+String\+View}} \&\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})$>$
+using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{Error\+Response\+Factory}} = std\+::function$<$ Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$(const Crt\+::\+String\+View \&payload, Crt\+::\+Allocator $\ast$allocator)$>$
 \item 
-using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ad66093380b4524ffc3b816d9780aaef7}{Lone\+Response\+Retriever}} = std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}}(const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&model\+Name)$>$
+using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ad66093380b4524ffc3b816d9780aaef7}{Lone\+Response\+Retriever}} = std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}}(const Crt\+::\+String \&model\+Name)$>$
 \item 
-using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ab5cad65cb0b604e904a9a5994391edec}{Streaming\+Response\+Retriever}} = std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}}(const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&model\+Name)$>$
+using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ab5cad65cb0b604e904a9a5994391edec}{Streaming\+Response\+Retriever}} = std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}}(const Crt\+::\+String \&model\+Name)$>$
 \item 
-using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a1fe58e21d3f586a66b841e145fca0993}{Error\+Response\+Retriever}} = std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{Error\+Response\+Factory}}(const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&model\+Name)$>$
+using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a1fe58e21d3f586a66b841e145fca0993}{Error\+Response\+Retriever}} = std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{Error\+Response\+Factory}}(const Crt\+::\+String \&model\+Name)$>$
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -100,37 +100,37 @@ The {\ttfamily \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendme
 \index{Aws::Eventstreamrpc@{Aws::Eventstreamrpc}!ErrorResponseFactory@{ErrorResponseFactory}}
 \index{ErrorResponseFactory@{ErrorResponseFactory}!Aws::Eventstreamrpc@{Aws::Eventstreamrpc}}
 \doxysubsubsection{\texorpdfstring{ErrorResponseFactory}{ErrorResponseFactory}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{Aws\+::\+Eventstreamrpc\+::\+Error\+Response\+Factory}} = typedef std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt\+::\+Scoped\+Resource}}$<$\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}}$>$(const \mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Crt\+::\+String\+View}} \&\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})$>$}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{Aws\+::\+Eventstreamrpc\+::\+Error\+Response\+Factory}} = typedef std\+::function$<$ Crt\+::\+Scoped\+Resource$<$\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}}$>$(const Crt\+::\+String\+View \&payload, Crt\+::\+Allocator $\ast$allocator)$>$}
 
 \mbox{\Hypertarget{namespace_aws_1_1_eventstreamrpc_a1fe58e21d3f586a66b841e145fca0993}\label{namespace_aws_1_1_eventstreamrpc_a1fe58e21d3f586a66b841e145fca0993}} 
 \index{Aws::Eventstreamrpc@{Aws::Eventstreamrpc}!ErrorResponseRetriever@{ErrorResponseRetriever}}
 \index{ErrorResponseRetriever@{ErrorResponseRetriever}!Aws::Eventstreamrpc@{Aws::Eventstreamrpc}}
 \doxysubsubsection{\texorpdfstring{ErrorResponseRetriever}{ErrorResponseRetriever}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a1fe58e21d3f586a66b841e145fca0993}{Aws\+::\+Eventstreamrpc\+::\+Error\+Response\+Retriever}} = typedef std\+::function$<$\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{Error\+Response\+Factory}}(const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&model\+Name)$>$}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a1fe58e21d3f586a66b841e145fca0993}{Aws\+::\+Eventstreamrpc\+::\+Error\+Response\+Retriever}} = typedef std\+::function$<$\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ade23ef18a9bc9a7f1017b1a1e270222b}{Error\+Response\+Factory}}(const Crt\+::\+String \&model\+Name)$>$}
 
 \mbox{\Hypertarget{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}\label{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}} 
 \index{Aws::Eventstreamrpc@{Aws::Eventstreamrpc}!ExpectedResponseFactory@{ExpectedResponseFactory}}
 \index{ExpectedResponseFactory@{ExpectedResponseFactory}!Aws::Eventstreamrpc@{Aws::Eventstreamrpc}}
 \doxysubsubsection{\texorpdfstring{ExpectedResponseFactory}{ExpectedResponseFactory}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Aws\+::\+Eventstreamrpc\+::\+Expected\+Response\+Factory}} = typedef std\+::function$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt\+::\+Scoped\+Resource}}$<$\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}}$>$(const \mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Crt\+::\+String\+View}} \&\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})$>$}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Aws\+::\+Eventstreamrpc\+::\+Expected\+Response\+Factory}} = typedef std\+::function$<$ Crt\+::\+Scoped\+Resource$<$\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}}$>$(const Crt\+::\+String\+View \&payload, Crt\+::\+Allocator $\ast$allocator)$>$}
 
 \mbox{\Hypertarget{namespace_aws_1_1_eventstreamrpc_a6a6036d8e92a0a233c2db987e2445d93}\label{namespace_aws_1_1_eventstreamrpc_a6a6036d8e92a0a233c2db987e2445d93}} 
 \index{Aws::Eventstreamrpc@{Aws::Eventstreamrpc}!HeaderValueType@{HeaderValueType}}
 \index{HeaderValueType@{HeaderValueType}!Aws::Eventstreamrpc@{Aws::Eventstreamrpc}}
 \doxysubsubsection{\texorpdfstring{HeaderValueType}{HeaderValueType}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{event__stream_8h_a729457a0cd08dd8b9a0623d3f77ef074}{Aws\+::\+Eventstreamrpc\+::\+Header\+Value\+Type}} = typedef \mbox{\hyperlink{event__stream_8h_a729457a0cd08dd8b9a0623d3f77ef074}{aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+type}}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a6a6036d8e92a0a233c2db987e2445d93}{Aws\+::\+Eventstreamrpc\+::\+Header\+Value\+Type}} = typedef aws\+\_\+event\+\_\+stream\+\_\+header\+\_\+value\+\_\+type}
 
 \mbox{\Hypertarget{namespace_aws_1_1_eventstreamrpc_ad66093380b4524ffc3b816d9780aaef7}\label{namespace_aws_1_1_eventstreamrpc_ad66093380b4524ffc3b816d9780aaef7}} 
 \index{Aws::Eventstreamrpc@{Aws::Eventstreamrpc}!LoneResponseRetriever@{LoneResponseRetriever}}
 \index{LoneResponseRetriever@{LoneResponseRetriever}!Aws::Eventstreamrpc@{Aws::Eventstreamrpc}}
 \doxysubsubsection{\texorpdfstring{LoneResponseRetriever}{LoneResponseRetriever}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ad66093380b4524ffc3b816d9780aaef7}{Aws\+::\+Eventstreamrpc\+::\+Lone\+Response\+Retriever}} = typedef std\+::function$<$\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}}(const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&model\+Name)$>$}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ad66093380b4524ffc3b816d9780aaef7}{Aws\+::\+Eventstreamrpc\+::\+Lone\+Response\+Retriever}} = typedef std\+::function$<$\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}}(const Crt\+::\+String \&model\+Name)$>$}
 
 \mbox{\Hypertarget{namespace_aws_1_1_eventstreamrpc_a17196886a4195a25c1e092353b6dd591}\label{namespace_aws_1_1_eventstreamrpc_a17196886a4195a25c1e092353b6dd591}} 
 \index{Aws::Eventstreamrpc@{Aws::Eventstreamrpc}!MessageType@{MessageType}}
 \index{MessageType@{MessageType}!Aws::Eventstreamrpc@{Aws::Eventstreamrpc}}
 \doxysubsubsection{\texorpdfstring{MessageType}{MessageType}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{Aws\+::\+Eventstreamrpc\+::\+Message\+Type}} = typedef \mbox{\hyperlink{event__stream__rpc_8h_a12e71232ed4239e90b003efdc3ee65e7}{aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type}}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a17196886a4195a25c1e092353b6dd591}{Aws\+::\+Eventstreamrpc\+::\+Message\+Type}} = typedef aws\+\_\+event\+\_\+stream\+\_\+rpc\+\_\+message\+\_\+type}
 
 \mbox{\Hypertarget{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}\label{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}} 
 \index{Aws::Eventstreamrpc@{Aws::Eventstreamrpc}!OnMessageFlushCallback@{OnMessageFlushCallback}}
@@ -147,7 +147,7 @@ A callback prototype that is called upon flushing a message over the wire.
 \index{Aws::Eventstreamrpc@{Aws::Eventstreamrpc}!StreamingResponseRetriever@{StreamingResponseRetriever}}
 \index{StreamingResponseRetriever@{StreamingResponseRetriever}!Aws::Eventstreamrpc@{Aws::Eventstreamrpc}}
 \doxysubsubsection{\texorpdfstring{StreamingResponseRetriever}{StreamingResponseRetriever}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ab5cad65cb0b604e904a9a5994391edec}{Aws\+::\+Eventstreamrpc\+::\+Streaming\+Response\+Retriever}} = typedef std\+::function$<$\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}}(const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&model\+Name)$>$}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_ab5cad65cb0b604e904a9a5994391edec}{Aws\+::\+Eventstreamrpc\+::\+Streaming\+Response\+Retriever}} = typedef std\+::function$<$\mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a7e66573a35814b594c484f3a25b7b406}{Expected\+Response\+Factory}}(const Crt\+::\+String \&model\+Name)$>$}
 
 
 

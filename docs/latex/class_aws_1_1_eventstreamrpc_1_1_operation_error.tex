@@ -15,9 +15,9 @@ Inheritance diagram for Aws\+::Eventstreamrpc\+::Operation\+Error\+:\begin{figur
 \item 
 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_a6fcb3695ddb01d364fd0d6bc633d1d3c}{Operation\+Error}} () noexcept
 \item 
-virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_aa51a004a6e20921224bef0c665830d59}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt\+::\+Json\+Object}} \&payload\+Object) const override
+virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_aa51a004a6e20921224bef0c665830d59}{Serialize\+To\+Json\+Object}} (Crt\+::\+Json\+Object \&payload\+Object) const override
 \item 
-virtual \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_a213d0a0bda1842d332acdc839dd8af4c}{Get\+Message}} () noexcept=0
+virtual Crt\+::\+Optional$<$ Crt\+::\+String $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_a213d0a0bda1842d332acdc839dd8af4c}{Get\+Message}} () noexcept=0
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -41,7 +41,7 @@ static void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_a7
 \index{Aws::Eventstreamrpc::OperationError@{Aws::Eventstreamrpc::OperationError}!GetMessage@{GetMessage}}
 \index{GetMessage@{GetMessage}!Aws::Eventstreamrpc::OperationError@{Aws::Eventstreamrpc::OperationError}}
 \doxysubsubsection{\texorpdfstring{GetMessage()}{GetMessage()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}}$>$ Aws\+::\+Eventstreamrpc\+::\+Operation\+Error\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily virtual Crt\+::\+Optional$<$Crt\+::\+String$>$ Aws\+::\+Eventstreamrpc\+::\+Operation\+Error\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -57,15 +57,11 @@ Implemented in \mbox{\hyperlink{class_awstest_1_1_service_error_ac4b0e279f0c8864
 \index{Aws::Eventstreamrpc::OperationError@{Aws::Eventstreamrpc::OperationError}!SerializeToJsonObject@{SerializeToJsonObject}}
 \index{SerializeToJsonObject@{SerializeToJsonObject}!Aws::Eventstreamrpc::OperationError@{Aws::Eventstreamrpc::OperationError}}
 \doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
-{\footnotesize\ttfamily void Aws\+::\+Eventstreamrpc\+::\+Operation\+Error\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void Aws\+::\+Eventstreamrpc\+::\+Operation\+Error\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{Crt\+::\+Json\+Object \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 
 Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_a20ac68efd9842d7234b52e440d0df17b}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
-
-
-
-Reimplemented in \mbox{\hyperlink{class_awstest_1_1_service_error_a68c9bd0fc715d315ceb1d90a8c0e5828}{Awstest\+::\+Service\+Error}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_token_error_a4f48ef75ee7e1d5d74473a8590910169}{Aws\+::\+Greengrass\+::\+Invalid\+Token\+Error}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_failed_update_condition_check_error_ae5e787533361f4f94229266b9865aab5}{Aws\+::\+Greengrass\+::\+Failed\+Update\+Condition\+Check\+Error}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_conflict_error_aa5c2cef1e2e224d640f98c3556afdf0d}{Aws\+::\+Greengrass\+::\+Conflict\+Error}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_not_found_error_a6f43f0ac24c9c1efdcd3fc761ce8c82e}{Aws\+::\+Greengrass\+::\+Component\+Not\+Found\+Error}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_resource_not_found_error_a629b56f717fd4cfa1b602f84b4f77e90}{Aws\+::\+Greengrass\+::\+Resource\+Not\+Found\+Error}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_ac0582b084c155e11a1752f9e06615c0c}{Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_artifacts_directory_path_error_a9cbe72a4a8242baf6fcf3f65910d34a4}{Aws\+::\+Greengrass\+::\+Invalid\+Artifacts\+Directory\+Path\+Error}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_recipe_directory_path_error_a3e9298e1b0c8d02ed8efa6908943b948}{Aws\+::\+Greengrass\+::\+Invalid\+Recipe\+Directory\+Path\+Error}}, \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error_a8de8ca921e0ed0dd73f63564bf7dcf74}{Aws\+::\+Greengrass\+::\+Service\+Error}}, and \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_unauthorized_error_a609202fd23dbb1ea9f0cab32386e7591}{Aws\+::\+Greengrass\+::\+Unauthorized\+Error}}.
 
 
 

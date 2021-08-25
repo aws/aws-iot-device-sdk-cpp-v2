@@ -21,8 +21,8 @@
 \DoxyCodeLine{22     \{}
 \DoxyCodeLine{23       \textcolor{keyword}{public}:}
 \DoxyCodeLine{24         \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client_a33a80df02b6d32d699afd9560c095b79}{EchoTestRpcClient}}(}
-\DoxyCodeLine{25             \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Aws::Crt::Io::ClientBootstrap}} \&clientBootstrap,}
-\DoxyCodeLine{26             \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws::Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{25             Aws::Crt::Io::ClientBootstrap \&clientBootstrap,}
+\DoxyCodeLine{26             Aws::Crt::Allocator *allocator = Aws::Crt::g\_allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{36         std::future<RpcError> \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client_a52eb97a0414fa559a62aee67583167f7}{Connect}}(}
 \DoxyCodeLine{37             \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler}{ConnectionLifecycleHandler}} \&lifecycleHandler,}
 \DoxyCodeLine{38             \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config}{ConnectionConfig}} \&connectionConfig = \mbox{\hyperlink{class_awstest_1_1_default_connection_config}{DefaultConnectionConfig}}()) \textcolor{keyword}{noexcept};}
@@ -41,7 +41,7 @@
 \DoxyCodeLine{51         \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_service_model}{EchoTestRpcServiceModel}} m\_echoTestRpcServiceModel;}
 \DoxyCodeLine{52         \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{ClientConnection}} m\_connection;}
 \DoxyCodeLine{53         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Io::ClientBootstrap \&m\_clientBootstrap;}
-\DoxyCodeLine{54         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} *m\_allocator;}
+\DoxyCodeLine{54         \mbox{\hyperlink{namespace_aws}{Aws}}::Crt::Allocator *m\_allocator;}
 \DoxyCodeLine{55         \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_message_amendment}{MessageAmendment}} m\_connectAmendment;}
 \DoxyCodeLine{56     \};}
 \DoxyCodeLine{57 \} \textcolor{comment}{// namespace Awstest}}

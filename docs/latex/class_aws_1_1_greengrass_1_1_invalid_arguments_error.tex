@@ -17,20 +17,20 @@ Inheritance diagram for Aws\+::Greengrass\+::Invalid\+Arguments\+Error\+:\begin{
 \item 
 \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a69eac34407da3465ab9fd2216c20fdd1}{Invalid\+Arguments\+Error}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} \&)=default
 \item 
-void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_abd1fd7fefd24b5e06ddc3bfc42a55f03}{Set\+Message}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) noexcept
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_abd1fd7fefd24b5e06ddc3bfc42a55f03}{Set\+Message}} (const Aws\+::\+Crt\+::\+String \&message) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a9a173c846abc88bb0467db798bcaa03f}{Get\+Message}} () noexcept override
+Aws\+::\+Crt\+::\+Optional$<$ Aws\+::\+Crt\+::\+String $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a9a173c846abc88bb0467db798bcaa03f}{Get\+Message}} () noexcept override
 \item 
-void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_ac0582b084c155e11a1752f9e06615c0c}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&payload\+Object) const noexcept override
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_ac0582b084c155e11a1752f9e06615c0c}{Serialize\+To\+Json\+Object}} (Aws\+::\+Crt\+::\+Json\+Object \&payload\+Object) const noexcept override
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_adf05513e30728dfba5f4012037542636}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} \&) const noexcept
+bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_adf05513e30728dfba5f4012037542636}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} \&) const noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a0e70a7eb8e426ced54bf940b4bae0c90}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} \&, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&) noexcept
+static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a0e70a7eb8e426ced54bf940b4bae0c90}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} \&, const Aws\+::\+Crt\+::\+Json\+View \&) noexcept
 \item 
-static \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a0d353c276dfafcb7a75d9e4aa135868b}{s\+\_\+allocate\+From\+Payload}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$) noexcept
+static Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a0d353c276dfafcb7a75d9e4aa135868b}{s\+\_\+allocate\+From\+Payload}} (Aws\+::\+Crt\+::\+String\+View, Aws\+::\+Crt\+::\+Allocator $\ast$) noexcept
 \item 
 static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a6ec8e5506111f736af492bf4eb33a0d4}{s\+\_\+custom\+Deleter}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} $\ast$) noexcept
 \end{DoxyCompactItemize}
@@ -42,7 +42,7 @@ static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_a
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a9aff313d2be47eea4f8f6748a214fbc9}{Get\+Model\+Name}} () const noexcept override
+Aws\+::\+Crt\+::\+String \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a9aff313d2be47eea4f8f6748a214fbc9}{Get\+Model\+Name}} () const noexcept override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -67,7 +67,7 @@ static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_a
 \index{Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}!GetMessage@{GetMessage}}
 \index{GetMessage@{GetMessage}!Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}}
 \doxysubsubsection{\texorpdfstring{GetMessage()}{GetMessage()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}}$>$ Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Optional$<$Aws\+::\+Crt\+::\+String$>$ Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -77,7 +77,7 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_a21
 \index{Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+String Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -87,13 +87,13 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}}
 \doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a0d353c276dfafcb7a75d9e4aa135868b}\label{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a0d353c276dfafcb7a75d9e4aa135868b}} 
 \index{Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}!s\_allocateFromPayload@{s\_allocateFromPayload}}
 \index{s\_allocateFromPayload@{s\_allocateFromPayload}!Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}}
 \doxysubsubsection{\texorpdfstring{s\_allocateFromPayload()}{s\_allocateFromPayload()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}}]{string\+View,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+String\+View}]{string\+View,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a6ec8e5506111f736af492bf4eb33a0d4}\label{class_aws_1_1_greengrass_1_1_invalid_arguments_error_a6ec8e5506111f736af492bf4eb33a0d4}} 
 \index{Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}!s\_customDeleter@{s\_customDeleter}}
@@ -105,23 +105,19 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}!s\_loadFromJsonView@{s\_loadFromJsonView}}
 \index{s\_loadFromJsonView@{s\_loadFromJsonView}!Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}}
 \doxysubsubsection{\texorpdfstring{s\_loadFromJsonView()}{s\_loadFromJsonView()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} \&}]{invalid\+Arguments\+Error,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_invalid_arguments_error}{Invalid\+Arguments\+Error}} \&}]{invalid\+Arguments\+Error,  }\item[{const Aws\+::\+Crt\+::\+Json\+View \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_invalid_arguments_error_ac0582b084c155e11a1752f9e06615c0c}\label{class_aws_1_1_greengrass_1_1_invalid_arguments_error_ac0582b084c155e11a1752f9e06615c0c}} 
 \index{Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}!SerializeToJsonObject@{SerializeToJsonObject}}
 \index{SerializeToJsonObject@{SerializeToJsonObject}!Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}}
 \doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
-
-
-
-Reimplemented from \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error_aa51a004a6e20921224bef0c665830d59}{Aws\+::\+Eventstreamrpc\+::\+Operation\+Error}}.
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+Json\+Object \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_invalid_arguments_error_abd1fd7fefd24b5e06ddc3bfc42a55f03}\label{class_aws_1_1_greengrass_1_1_invalid_arguments_error_abd1fd7fefd24b5e06ddc3bfc42a55f03}} 
 \index{Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}!SetMessage@{SetMessage}}
 \index{SetMessage@{SetMessage}!Aws::Greengrass::InvalidArgumentsError@{Aws::Greengrass::InvalidArgumentsError}}
 \doxysubsubsection{\texorpdfstring{SetMessage()}{SetMessage()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::\+Set\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Invalid\+Arguments\+Error\+::\+Set\+Message (\begin{DoxyParamCaption}\item[{const Aws\+::\+Crt\+::\+String \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 
 

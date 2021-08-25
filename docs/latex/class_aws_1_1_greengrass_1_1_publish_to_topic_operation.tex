@@ -13,7 +13,7 @@ Inheritance diagram for Aws\+::Greengrass\+::Publish\+To\+Topic\+Operation\+:\be
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_aab2a9731a9d1363671e39eac63f3db61}{Publish\+To\+Topic\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&connection, const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_context}{Publish\+To\+Topic\+Operation\+Context}} \&operation\+Context, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws\+::\+Crt\+::g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_aab2a9731a9d1363671e39eac63f3db61}{Publish\+To\+Topic\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&connection, const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_context}{Publish\+To\+Topic\+Operation\+Context}} \&operation\+Context, Aws\+::\+Crt\+::\+Allocator $\ast$allocator=Aws\+::\+Crt\+::g\+\_\+allocator) noexcept
 \item 
 std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_a814c63d5c5e6da130e4134345ae3eecb}{Activate}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_request}{Publish\+To\+Topic\+Request}} \&request, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback=nullptr) noexcept
 \item 
@@ -22,7 +22,7 @@ std\+::future$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_a27041b4b5de778a8b9780b113ff8b3fe}{Get\+Model\+Name}} () const noexcept override
+Aws\+::\+Crt\+::\+String \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_a27041b4b5de778a8b9780b113ff8b3fe}{Get\+Model\+Name}} () const noexcept override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -32,7 +32,7 @@ std\+::future$<$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_
 \index{Aws::Greengrass::PublishToTopicOperation@{Aws::Greengrass::PublishToTopicOperation}!PublishToTopicOperation@{PublishToTopicOperation}}
 \index{PublishToTopicOperation@{PublishToTopicOperation}!Aws::Greengrass::PublishToTopicOperation@{Aws::Greengrass::PublishToTopicOperation}}
 \doxysubsubsection{\texorpdfstring{PublishToTopicOperation()}{PublishToTopicOperation()}}
-{\footnotesize\ttfamily Aws\+::\+Greengrass\+::\+Publish\+To\+Topic\+Operation\+::\+Publish\+To\+Topic\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&}]{connection,  }\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_context}{Publish\+To\+Topic\+Operation\+Context}} \&}]{operation\+Context,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws\+::\+Crt\+::g\+\_\+allocator}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Greengrass\+::\+Publish\+To\+Topic\+Operation\+::\+Publish\+To\+Topic\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&}]{connection,  }\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_publish_to_topic_operation_context}{Publish\+To\+Topic\+Operation\+Context}} \&}]{operation\+Context,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator = {\ttfamily Aws\+:\+:Crt\+:\+:g\+\_\+allocator} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 
 
@@ -57,7 +57,7 @@ An {\ttfamily Rpc\+Error} that can be used to check whether the stream was activ
 \index{Aws::Greengrass::PublishToTopicOperation@{Aws::Greengrass::PublishToTopicOperation}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Aws::Greengrass::PublishToTopicOperation@{Aws::Greengrass::PublishToTopicOperation}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Aws\+::\+Greengrass\+::\+Publish\+To\+Topic\+Operation\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+String Aws\+::\+Greengrass\+::\+Publish\+To\+Topic\+Operation\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 

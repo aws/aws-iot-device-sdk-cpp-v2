@@ -7,30 +7,30 @@
 \DoxyCodeLine{7 }
 \DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{jobs_2include_2aws_2iotjobs_2_exports_8h}{aws/iotjobs/Exports.h}}>}}
 \DoxyCodeLine{9 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_json_object_8h}{aws/crt/JsonObject.h}}>}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_stl_allocator_8h}{aws/crt/StlAllocator.h}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <aws/crt/JsonObject.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <aws/crt/StlAllocator.h>}}
 \DoxyCodeLine{12 }
 \DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
 \DoxyCodeLine{14 \{}
 \DoxyCodeLine{15     \textcolor{keyword}{namespace }Iotjobs}
 \DoxyCodeLine{16     \{}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18         \textcolor{keyword}{class }\mbox{\hyperlink{jobs_2include_2aws_2iotjobs_2_exports_8h_ade8baf38a194e843be5cac2029f44036}{AWS\_IOTJOBS\_API}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state}{JobExecutionState}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{18         \textcolor{keyword}{class }\mbox{\hyperlink{jobs_2include_2aws_2iotjobs_2_exports_8h_ade8baf38a194e843be5cac2029f44036}{AWS\_IOTJOBS\_API}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state}{JobExecutionState}} final}
 \DoxyCodeLine{19         \{}
 \DoxyCodeLine{20           \textcolor{keyword}{public}:}
 \DoxyCodeLine{21             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state_a288983ce18d97e6dbcf79a0f2fca136f}{JobExecutionState}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{22 }
-\DoxyCodeLine{23             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state}{JobExecutionState}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
-\DoxyCodeLine{24             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state}{JobExecutionState}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
+\DoxyCodeLine{23             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state}{JobExecutionState}}(\textcolor{keyword}{const} Crt::JsonView \&doc);}
+\DoxyCodeLine{24             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state}{JobExecutionState}} \&operator=(\textcolor{keyword}{const} Crt::JsonView \&doc);}
 \DoxyCodeLine{25 }
-\DoxyCodeLine{26             \textcolor{keywordtype}{void} SerializeToObject(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt::JsonObject}} \&doc) \textcolor{keyword}{const};}
+\DoxyCodeLine{26             \textcolor{keywordtype}{void} SerializeToObject(Crt::JsonObject \&doc) \textcolor{keyword}{const};}
 \DoxyCodeLine{27 }
-\DoxyCodeLine{28             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>}}> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state_ad4b66ef1d5a9b92730d69ec05e215446}{StatusDetails}};}
-\DoxyCodeLine{29             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<int32\_t>}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state_a241bcf535ca5bdd3f985e9ed191e80b1}{VersionNumber}};}
-\DoxyCodeLine{30             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Iotjobs::JobStatus>}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state_a8092b7b92b0a9247ec330a2c3b3de91f}{Status}};}
+\DoxyCodeLine{28             Aws::Crt::Optional<Aws::Crt::Map<Aws::Crt::String, Aws::Crt::String>> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state_ad4b66ef1d5a9b92730d69ec05e215446}{StatusDetails}};}
+\DoxyCodeLine{29             Aws::Crt::Optional<int32\_t> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state_a241bcf535ca5bdd3f985e9ed191e80b1}{VersionNumber}};}
+\DoxyCodeLine{30             Aws::Crt::Optional<Aws::Iotjobs::JobStatus> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state_a8092b7b92b0a9247ec330a2c3b3de91f}{Status}};}
 \DoxyCodeLine{31 }
 \DoxyCodeLine{32           \textcolor{keyword}{private}:}
-\DoxyCodeLine{33             \textcolor{keyword}{static} \textcolor{keywordtype}{void} LoadFromObject(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state}{JobExecutionState}} \&obj, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
+\DoxyCodeLine{33             \textcolor{keyword}{static} \textcolor{keywordtype}{void} LoadFromObject(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_execution_state}{JobExecutionState}} \&obj, \textcolor{keyword}{const} Crt::JsonView \&doc);}
 \DoxyCodeLine{34         \};}
 \DoxyCodeLine{35     \} \textcolor{comment}{// namespace Iotjobs}}
 \DoxyCodeLine{36 \} \textcolor{comment}{// namespace Aws}}

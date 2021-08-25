@@ -118,23 +118,23 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a6a6036d8e92a0a233c2db987e2445d93"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a6a6036d8e92a0a233c2db987e2445d93">HeaderValueType</a> = <a class="el" href="event__stream_8h.html#a729457a0cd08dd8b9a0623d3f77ef074">aws_event_stream_header_value_type</a></td></tr>
+<tr class="memitem:a6a6036d8e92a0a233c2db987e2445d93"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a6a6036d8e92a0a233c2db987e2445d93">HeaderValueType</a> = aws_event_stream_header_value_type</td></tr>
 <tr class="separator:a6a6036d8e92a0a233c2db987e2445d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17196886a4195a25c1e092353b6dd591"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a17196886a4195a25c1e092353b6dd591">MessageType</a> = <a class="el" href="event__stream__rpc_8h.html#a12e71232ed4239e90b003efdc3ee65e7">aws_event_stream_rpc_message_type</a></td></tr>
+<tr class="memitem:a17196886a4195a25c1e092353b6dd591"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a17196886a4195a25c1e092353b6dd591">MessageType</a> = aws_event_stream_rpc_message_type</td></tr>
 <tr class="separator:a17196886a4195a25c1e092353b6dd591"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59543fd12aad2501f3b41795186a18e6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a59543fd12aad2501f3b41795186a18e6">OnMessageFlushCallback</a> = std::function&lt; void(int errorCode)&gt;</td></tr>
 <tr class="separator:a59543fd12aad2501f3b41795186a18e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab93b30af2e59415f7453527b9b8a06c4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ab93b30af2e59415f7453527b9b8a06c4">ConnectMessageAmender</a> = std::function&lt; const <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_message_amendment.html">MessageAmendment</a> &amp;(void)&gt;</td></tr>
 <tr class="separator:ab93b30af2e59415f7453527b9b8a06c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e66573a35814b594c484f3a25b7b406"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a> = std::function&lt; <a class="el" href="namespace_aws_1_1_crt.html#aa8f82604df3f410e862691561154627e">Crt::ScopedResource</a>&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base.html">AbstractShapeBase</a> &gt;(const <a class="el" href="namespace_aws_1_1_crt.html#a97616772752d5faecef66dc230cdb7ab">Crt::StringView</a> &amp;<a class="el" href="connection__state__test_8c.html#ad1560a388c937f36f038c683175d82bf">payload</a>, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)&gt;</td></tr>
+<tr class="memitem:a7e66573a35814b594c484f3a25b7b406"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a> = std::function&lt; Crt::ScopedResource&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base.html">AbstractShapeBase</a> &gt;(const Crt::StringView &amp;payload, Crt::Allocator *allocator)&gt;</td></tr>
 <tr class="separator:a7e66573a35814b594c484f3a25b7b406"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade23ef18a9bc9a7f1017b1a1e270222b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">ErrorResponseFactory</a> = std::function&lt; <a class="el" href="namespace_aws_1_1_crt.html#aa8f82604df3f410e862691561154627e">Crt::ScopedResource</a>&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_operation_error.html">OperationError</a> &gt;(const <a class="el" href="namespace_aws_1_1_crt.html#a97616772752d5faecef66dc230cdb7ab">Crt::StringView</a> &amp;<a class="el" href="connection__state__test_8c.html#ad1560a388c937f36f038c683175d82bf">payload</a>, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)&gt;</td></tr>
+<tr class="memitem:ade23ef18a9bc9a7f1017b1a1e270222b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">ErrorResponseFactory</a> = std::function&lt; Crt::ScopedResource&lt; <a class="el" href="class_aws_1_1_eventstreamrpc_1_1_operation_error.html">OperationError</a> &gt;(const Crt::StringView &amp;payload, Crt::Allocator *allocator)&gt;</td></tr>
 <tr class="separator:ade23ef18a9bc9a7f1017b1a1e270222b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad66093380b4524ffc3b816d9780aaef7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ad66093380b4524ffc3b816d9780aaef7">LoneResponseRetriever</a> = std::function&lt; <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>(const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;modelName)&gt;</td></tr>
+<tr class="memitem:ad66093380b4524ffc3b816d9780aaef7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ad66093380b4524ffc3b816d9780aaef7">LoneResponseRetriever</a> = std::function&lt; <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>(const Crt::String &amp;modelName)&gt;</td></tr>
 <tr class="separator:ad66093380b4524ffc3b816d9780aaef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5cad65cb0b604e904a9a5994391edec"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ab5cad65cb0b604e904a9a5994391edec">StreamingResponseRetriever</a> = std::function&lt; <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>(const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;modelName)&gt;</td></tr>
+<tr class="memitem:ab5cad65cb0b604e904a9a5994391edec"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ab5cad65cb0b604e904a9a5994391edec">StreamingResponseRetriever</a> = std::function&lt; <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>(const Crt::String &amp;modelName)&gt;</td></tr>
 <tr class="separator:ab5cad65cb0b604e904a9a5994391edec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fe58e21d3f586a66b841e145fca0993"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a1fe58e21d3f586a66b841e145fca0993">ErrorResponseRetriever</a> = std::function&lt; <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">ErrorResponseFactory</a>(const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;modelName)&gt;</td></tr>
+<tr class="memitem:a1fe58e21d3f586a66b841e145fca0993"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a1fe58e21d3f586a66b841e145fca0993">ErrorResponseRetriever</a> = std::function&lt; <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">ErrorResponseFactory</a>(const Crt::String &amp;modelName)&gt;</td></tr>
 <tr class="separator:a1fe58e21d3f586a66b841e145fca0993"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -183,7 +183,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">Aws::Eventstreamrpc::ErrorResponseFactory</a> = typedef std::function&lt; <a class="el" href="namespace_aws_1_1_crt.html#aa8f82604df3f410e862691561154627e">Crt::ScopedResource</a>&lt;<a class="el" href="class_aws_1_1_eventstreamrpc_1_1_operation_error.html">OperationError</a>&gt;(const <a class="el" href="namespace_aws_1_1_crt.html#a97616772752d5faecef66dc230cdb7ab">Crt::StringView</a> &amp;<a class="el" href="connection__state__test_8c.html#ad1560a388c937f36f038c683175d82bf">payload</a>, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)&gt;</td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">Aws::Eventstreamrpc::ErrorResponseFactory</a> = typedef std::function&lt; Crt::ScopedResource&lt;<a class="el" href="class_aws_1_1_eventstreamrpc_1_1_operation_error.html">OperationError</a>&gt;(const Crt::StringView &amp;payload, Crt::Allocator *allocator)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -197,7 +197,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a1fe58e21d3f586a66b841e145fca0993">Aws::Eventstreamrpc::ErrorResponseRetriever</a> = typedef std::function&lt;<a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">ErrorResponseFactory</a>(const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;modelName)&gt;</td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a1fe58e21d3f586a66b841e145fca0993">Aws::Eventstreamrpc::ErrorResponseRetriever</a> = typedef std::function&lt;<a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ade23ef18a9bc9a7f1017b1a1e270222b">ErrorResponseFactory</a>(const Crt::String &amp;modelName)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -211,7 +211,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">Aws::Eventstreamrpc::ExpectedResponseFactory</a> = typedef std::function&lt; <a class="el" href="namespace_aws_1_1_crt.html#aa8f82604df3f410e862691561154627e">Crt::ScopedResource</a>&lt;<a class="el" href="class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base.html">AbstractShapeBase</a>&gt;(const <a class="el" href="namespace_aws_1_1_crt.html#a97616772752d5faecef66dc230cdb7ab">Crt::StringView</a> &amp;<a class="el" href="connection__state__test_8c.html#ad1560a388c937f36f038c683175d82bf">payload</a>, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Crt::Allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)&gt;</td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">Aws::Eventstreamrpc::ExpectedResponseFactory</a> = typedef std::function&lt; Crt::ScopedResource&lt;<a class="el" href="class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base.html">AbstractShapeBase</a>&gt;(const Crt::StringView &amp;payload, Crt::Allocator *allocator)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -225,7 +225,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="event__stream_8h.html#a729457a0cd08dd8b9a0623d3f77ef074">Aws::Eventstreamrpc::HeaderValueType</a> = typedef <a class="el" href="event__stream_8h.html#a729457a0cd08dd8b9a0623d3f77ef074">aws_event_stream_header_value_type</a></td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a6a6036d8e92a0a233c2db987e2445d93">Aws::Eventstreamrpc::HeaderValueType</a> = typedef aws_event_stream_header_value_type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -239,7 +239,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ad66093380b4524ffc3b816d9780aaef7">Aws::Eventstreamrpc::LoneResponseRetriever</a> = typedef std::function&lt;<a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>(const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;modelName)&gt;</td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ad66093380b4524ffc3b816d9780aaef7">Aws::Eventstreamrpc::LoneResponseRetriever</a> = typedef std::function&lt;<a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>(const Crt::String &amp;modelName)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -253,7 +253,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="event__stream__rpc_8h.html#a12e71232ed4239e90b003efdc3ee65e7">Aws::Eventstreamrpc::MessageType</a> = typedef <a class="el" href="event__stream__rpc_8h.html#a12e71232ed4239e90b003efdc3ee65e7">aws_event_stream_rpc_message_type</a></td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a17196886a4195a25c1e092353b6dd591">Aws::Eventstreamrpc::MessageType</a> = typedef aws_event_stream_rpc_message_type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -287,7 +287,7 @@ Enumerations</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ab5cad65cb0b604e904a9a5994391edec">Aws::Eventstreamrpc::StreamingResponseRetriever</a> = typedef std::function&lt;<a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>(const <a class="el" href="namespace_aws_1_1_crt.html#a865381ab2bc5db45524fa6ce43c394c3">Crt::String</a> &amp;modelName)&gt;</td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_eventstreamrpc.html#ab5cad65cb0b604e904a9a5994391edec">Aws::Eventstreamrpc::StreamingResponseRetriever</a> = typedef std::function&lt;<a class="el" href="namespace_aws_1_1_eventstreamrpc.html#a7e66573a35814b594c484f3a25b7b406">ExpectedResponseFactory</a>(const Crt::String &amp;modelName)&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">

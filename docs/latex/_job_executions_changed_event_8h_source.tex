@@ -3,37 +3,37 @@
 \mbox{\hyperlink{_job_executions_changed_event_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_date_time_8h}{aws/crt/DateTime.h}}>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <aws/crt/DateTime.h>}}
 \DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_job_execution_summary_8h}{aws/iotjobs/JobExecutionSummary.h}}>}}
 \DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_job_status_8h}{aws/iotjobs/JobStatus.h}}>}}
 \DoxyCodeLine{9 }
 \DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{jobs_2include_2aws_2iotjobs_2_exports_8h}{aws/iotjobs/Exports.h}}>}}
 \DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_json_object_8h}{aws/crt/JsonObject.h}}>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_stl_allocator_8h}{aws/crt/StlAllocator.h}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <aws/crt/JsonObject.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <aws/crt/StlAllocator.h>}}
 \DoxyCodeLine{14 }
 \DoxyCodeLine{15 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
 \DoxyCodeLine{16 \{}
 \DoxyCodeLine{17     \textcolor{keyword}{namespace }Iotjobs}
 \DoxyCodeLine{18     \{}
 \DoxyCodeLine{19 }
-\DoxyCodeLine{20         \textcolor{keyword}{class }\mbox{\hyperlink{jobs_2include_2aws_2iotjobs_2_exports_8h_ade8baf38a194e843be5cac2029f44036}{AWS\_IOTJOBS\_API}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event}{JobExecutionsChangedEvent}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{20         \textcolor{keyword}{class }\mbox{\hyperlink{jobs_2include_2aws_2iotjobs_2_exports_8h_ade8baf38a194e843be5cac2029f44036}{AWS\_IOTJOBS\_API}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event}{JobExecutionsChangedEvent}} final}
 \DoxyCodeLine{21         \{}
 \DoxyCodeLine{22           \textcolor{keyword}{public}:}
 \DoxyCodeLine{23             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event_aa11ba0196e72eeda78b1ad398934662a}{JobExecutionsChangedEvent}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{24 }
-\DoxyCodeLine{25             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event}{JobExecutionsChangedEvent}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
-\DoxyCodeLine{26             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event}{JobExecutionsChangedEvent}} \&operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
+\DoxyCodeLine{25             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event}{JobExecutionsChangedEvent}}(\textcolor{keyword}{const} Crt::JsonView \&doc);}
+\DoxyCodeLine{26             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event}{JobExecutionsChangedEvent}} \&operator=(\textcolor{keyword}{const} Crt::JsonView \&doc);}
 \DoxyCodeLine{27 }
-\DoxyCodeLine{28             \textcolor{keywordtype}{void} SerializeToObject(\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Crt::JsonObject}} \&doc) \textcolor{keyword}{const};}
+\DoxyCodeLine{28             \textcolor{keywordtype}{void} SerializeToObject(Crt::JsonObject \&doc) \textcolor{keyword}{const};}
 \DoxyCodeLine{29 }
-\DoxyCodeLine{30             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional}}<}
-\DoxyCodeLine{31                 \mbox{\hyperlink{namespace_aws_1_1_crt_a1cf42e328e4553fa884d30468915df73}{Aws::Crt::Map<Aws::Iotjobs::JobStatus, Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>}}>>}
+\DoxyCodeLine{30             Aws::Crt::Optional<}
+\DoxyCodeLine{31                 Aws::Crt::Map<Aws::Iotjobs::JobStatus, Aws::Crt::Vector<Aws::Iotjobs::JobExecutionSummary>>>}
 \DoxyCodeLine{32                 \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event_aba26239e6c6b2430dab204f14a3a2d2a}{Jobs}};}
-\DoxyCodeLine{33             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws::Crt::Optional<Aws::Crt::DateTime>}} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event_a968a3d05036ce060c3321043aa911890}{Timestamp}};}
+\DoxyCodeLine{33             Aws::Crt::Optional<Aws::Crt::DateTime> \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event_a968a3d05036ce060c3321043aa911890}{Timestamp}};}
 \DoxyCodeLine{34 }
 \DoxyCodeLine{35           \textcolor{keyword}{private}:}
-\DoxyCodeLine{36             \textcolor{keyword}{static} \textcolor{keywordtype}{void} LoadFromObject(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event}{JobExecutionsChangedEvent}} \&obj, \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Crt::JsonView}} \&doc);}
+\DoxyCodeLine{36             \textcolor{keyword}{static} \textcolor{keywordtype}{void} LoadFromObject(\mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_event}{JobExecutionsChangedEvent}} \&obj, \textcolor{keyword}{const} Crt::JsonView \&doc);}
 \DoxyCodeLine{37         \};}
 \DoxyCodeLine{38     \} \textcolor{comment}{// namespace Iotjobs}}
 \DoxyCodeLine{39 \} \textcolor{comment}{// namespace Aws}}

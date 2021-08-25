@@ -17,20 +17,20 @@ Inheritance diagram for Awstest\+::Echo\+Message\+Request\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_awstest_1_1_echo_message_request_ad553c8f68f5890af2ac929b403a07cee}{Echo\+Message\+Request}} (const \mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} \&)=default
 \item 
-void \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a28fcc04bf9d5a4799286482483e22dfa}{Set\+Message}} (const \mbox{\hyperlink{class_awstest_1_1_message_data}{Message\+Data}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) noexcept
+void \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a28fcc04bf9d5a4799286482483e22dfa}{Set\+Message}} (const \mbox{\hyperlink{class_awstest_1_1_message_data}{Message\+Data}} \&message) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_awstest_1_1_message_data}{Message\+Data}} $>$ \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a22f279b3bc1e093e990b098d8ef9b64c}{Get\+Message}} () noexcept
+Aws\+::\+Crt\+::\+Optional$<$ \mbox{\hyperlink{class_awstest_1_1_message_data}{Message\+Data}} $>$ \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a22f279b3bc1e093e990b098d8ef9b64c}{Get\+Message}} () noexcept
 \item 
-void \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a0a4e8930127c81e2e68beb985b0c5b4b}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&payload\+Object) const noexcept override
+void \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a0a4e8930127c81e2e68beb985b0c5b4b}{Serialize\+To\+Json\+Object}} (Aws\+::\+Crt\+::\+Json\+Object \&payload\+Object) const noexcept override
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_awstest_1_1_echo_message_request_acdabf07abd5aef9f69f9eca5cf3952af}{operator$<$}} (const \mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} \&) const noexcept
+bool \mbox{\hyperlink{class_awstest_1_1_echo_message_request_acdabf07abd5aef9f69f9eca5cf3952af}{operator$<$}} (const \mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} \&) const noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a88a3629f5af09022ecb8a48296eec0a1}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} \&, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&) noexcept
+static void \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a88a3629f5af09022ecb8a48296eec0a1}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} \&, const Aws\+::\+Crt\+::\+Json\+View \&) noexcept
 \item 
-static \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a32ade6118c3af92458ac3891ef8dee69}{s\+\_\+allocate\+From\+Payload}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$) noexcept
+static Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a32ade6118c3af92458ac3891ef8dee69}{s\+\_\+allocate\+From\+Payload}} (Aws\+::\+Crt\+::\+String\+View, Aws\+::\+Crt\+::\+Allocator $\ast$) noexcept
 \item 
 static void \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a6ee8658309b90d4bfe12eb6b61298fce}{s\+\_\+custom\+Deleter}} (\mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} $\ast$) noexcept
 \end{DoxyCompactItemize}
@@ -42,7 +42,7 @@ static const char $\ast$ \mbox{\hyperlink{class_awstest_1_1_echo_message_request
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a36faabf821a7268a20f276214463afcd}{Get\+Model\+Name}} () const noexcept override
+Aws\+::\+Crt\+::\+String \mbox{\hyperlink{class_awstest_1_1_echo_message_request_a36faabf821a7268a20f276214463afcd}{Get\+Model\+Name}} () const noexcept override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -67,13 +67,13 @@ static const char $\ast$ \mbox{\hyperlink{class_awstest_1_1_echo_message_request
 \index{Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}!GetMessage@{GetMessage}}
 \index{GetMessage@{GetMessage}!Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}}
 \doxysubsubsection{\texorpdfstring{GetMessage()}{GetMessage()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_awstest_1_1_message_data}{Message\+Data}}$>$ Awstest\+::\+Echo\+Message\+Request\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Optional$<$\mbox{\hyperlink{class_awstest_1_1_message_data}{Message\+Data}}$>$ Awstest\+::\+Echo\+Message\+Request\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_message_request_a36faabf821a7268a20f276214463afcd}\label{class_awstest_1_1_echo_message_request_a36faabf821a7268a20f276214463afcd}} 
 \index{Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Awstest\+::\+Echo\+Message\+Request\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+String Awstest\+::\+Echo\+Message\+Request\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -83,13 +83,13 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}}
 \doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Awstest\+::\+Echo\+Message\+Request\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Awstest\+::\+Echo\+Message\+Request\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_message_request_a32ade6118c3af92458ac3891ef8dee69}\label{class_awstest_1_1_echo_message_request_a32ade6118c3af92458ac3891ef8dee69}} 
 \index{Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}!s\_allocateFromPayload@{s\_allocateFromPayload}}
 \index{s\_allocateFromPayload@{s\_allocateFromPayload}!Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}}
 \doxysubsubsection{\texorpdfstring{s\_allocateFromPayload()}{s\_allocateFromPayload()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Awstest\+::\+Echo\+Message\+Request\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}}]{string\+View,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Awstest\+::\+Echo\+Message\+Request\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+String\+View}]{string\+View,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_message_request_a6ee8658309b90d4bfe12eb6b61298fce}\label{class_awstest_1_1_echo_message_request_a6ee8658309b90d4bfe12eb6b61298fce}} 
 \index{Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}!s\_customDeleter@{s\_customDeleter}}
@@ -101,17 +101,13 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}!s\_loadFromJsonView@{s\_loadFromJsonView}}
 \index{s\_loadFromJsonView@{s\_loadFromJsonView}!Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}}
 \doxysubsubsection{\texorpdfstring{s\_loadFromJsonView()}{s\_loadFromJsonView()}}
-{\footnotesize\ttfamily void Awstest\+::\+Echo\+Message\+Request\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} \&}]{echo\+Message\+Request,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Awstest\+::\+Echo\+Message\+Request\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_awstest_1_1_echo_message_request}{Echo\+Message\+Request}} \&}]{echo\+Message\+Request,  }\item[{const Aws\+::\+Crt\+::\+Json\+View \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_message_request_a0a4e8930127c81e2e68beb985b0c5b4b}\label{class_awstest_1_1_echo_message_request_a0a4e8930127c81e2e68beb985b0c5b4b}} 
 \index{Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}!SerializeToJsonObject@{SerializeToJsonObject}}
 \index{SerializeToJsonObject@{SerializeToJsonObject}!Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}}
 \doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
-{\footnotesize\ttfamily void Awstest\+::\+Echo\+Message\+Request\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
-
-
-
-Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_a20ac68efd9842d7234b52e440d0df17b}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
+{\footnotesize\ttfamily void Awstest\+::\+Echo\+Message\+Request\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+Json\+Object \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_message_request_a28fcc04bf9d5a4799286482483e22dfa}\label{class_awstest_1_1_echo_message_request_a28fcc04bf9d5a4799286482483e22dfa}} 
 \index{Awstest::EchoMessageRequest@{Awstest::EchoMessageRequest}!SetMessage@{SetMessage}}

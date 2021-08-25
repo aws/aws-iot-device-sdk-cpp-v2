@@ -7,11 +7,11 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client_a33a80df02b6d32d699afd9560c095b79}{Echo\+Test\+Rpc\+Client}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Aws\+::\+Crt\+::\+Io\+::\+Client\+Bootstrap}} \&client\+Bootstrap, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws\+::\+Crt\+::g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client_a33a80df02b6d32d699afd9560c095b79}{Echo\+Test\+Rpc\+Client}} (Aws\+::\+Crt\+::\+Io\+::\+Client\+Bootstrap \&client\+Bootstrap, Aws\+::\+Crt\+::\+Allocator $\ast$allocator=Aws\+::\+Crt\+::g\+\_\+allocator) noexcept
 \item 
 std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client_a52eb97a0414fa559a62aee67583167f7}{Connect}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler}{Connection\+Lifecycle\+Handler}} \&lifecycle\+Handler, const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config}{Connection\+Config}} \&connection\+Config=\mbox{\hyperlink{class_awstest_1_1_default_connection_config}{Default\+Connection\+Config}}()) noexcept
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client_a9b2ffd6e4ff0955a952492fb4ec0fcc0}{Is\+Connected}} () const noexcept
+bool \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client_a9b2ffd6e4ff0955a952492fb4ec0fcc0}{Is\+Connected}} () const noexcept
 \item 
 void \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client_ad1b8c2bcb07af51c7603be7cecbbdde1}{Close}} () noexcept
 \item 
@@ -36,7 +36,7 @@ void \mbox{\hyperlink{class_awstest_1_1_echo_test_rpc_client_ad1b8c2bcb07af51c76
 \index{Awstest::EchoTestRpcClient@{Awstest::EchoTestRpcClient}!EchoTestRpcClient@{EchoTestRpcClient}}
 \index{EchoTestRpcClient@{EchoTestRpcClient}!Awstest::EchoTestRpcClient@{Awstest::EchoTestRpcClient}}
 \doxysubsubsection{\texorpdfstring{EchoTestRpcClient()}{EchoTestRpcClient()}}
-{\footnotesize\ttfamily Awstest\+::\+Echo\+Test\+Rpc\+Client\+::\+Echo\+Test\+Rpc\+Client (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Aws\+::\+Crt\+::\+Io\+::\+Client\+Bootstrap}} \&}]{client\+Bootstrap,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Aws\+::\+Crt\+::g\+\_\+allocator}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Awstest\+::\+Echo\+Test\+Rpc\+Client\+::\+Echo\+Test\+Rpc\+Client (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+Io\+::\+Client\+Bootstrap \&}]{client\+Bootstrap,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator = {\ttfamily Aws\+:\+:Crt\+:\+:g\+\_\+allocator} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_test_rpc_client_ae0be1bea1b899fc96fb8edd5b9cd9a93}\label{class_awstest_1_1_echo_test_rpc_client_ae0be1bea1b899fc96fb8edd5b9cd9a93}} 
 \index{Awstest::EchoTestRpcClient@{Awstest::EchoTestRpcClient}!````~EchoTestRpcClient@{$\sim$EchoTestRpcClient}}
@@ -73,7 +73,7 @@ An {\ttfamily Rpc\+Error} that can be used to check whether the connection was e
 \index{Awstest::EchoTestRpcClient@{Awstest::EchoTestRpcClient}!IsConnected@{IsConnected}}
 \index{IsConnected@{IsConnected}!Awstest::EchoTestRpcClient@{Awstest::EchoTestRpcClient}}
 \doxysubsubsection{\texorpdfstring{IsConnected()}{IsConnected()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Awstest\+::\+Echo\+Test\+Rpc\+Client\+::\+Is\+Connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Awstest\+::\+Echo\+Test\+Rpc\+Client\+::\+Is\+Connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_awstest_1_1_echo_test_rpc_client_ae765652385d9d63f621ea96c3207a05f}\label{class_awstest_1_1_echo_test_rpc_client_ae765652385d9d63f621ea96c3207a05f}} 
 \index{Awstest::EchoTestRpcClient@{Awstest::EchoTestRpcClient}!NewCauseServiceError@{NewCauseServiceError}}

@@ -5,7 +5,7 @@
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_discover_response_8h}{aws/discovery/DiscoverResponse.h}}>}}
 \DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_http_connection_manager_8h}{aws/crt/http/HttpConnectionManager.h}}>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <aws/crt/http/HttpConnectionManager.h>}}
 \DoxyCodeLine{9 }
 \DoxyCodeLine{10 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
 \DoxyCodeLine{11 \{}
@@ -25,34 +25,34 @@
 \DoxyCodeLine{25 }
 \DoxyCodeLine{26             \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_a9d59a6754a505321002203137e7eb791}{\string~DiscoveryClientConfig}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{27 }
-\DoxyCodeLine{32             \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt::Io::ClientBootstrap}} *\mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_ae5b899bd90f420d5284fcfaab3cbb7b6}{Bootstrap}};}
+\DoxyCodeLine{32             Crt::Io::ClientBootstrap *\mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_ae5b899bd90f420d5284fcfaab3cbb7b6}{Bootstrap}};}
 \DoxyCodeLine{33 }
-\DoxyCodeLine{38             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::Io::TlsContext>}} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_a202a447fd0c0fcddc8642bbcfa1e2b7f}{TlsContext}};}
+\DoxyCodeLine{38             Crt::Optional<Crt::Io::TlsContext> \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_a202a447fd0c0fcddc8642bbcfa1e2b7f}{TlsContext}};}
 \DoxyCodeLine{39 }
-\DoxyCodeLine{44             \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Crt::Io::SocketOptions}} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_a4d4f8d5477105c75e535aee88a644929}{SocketOptions}};}
+\DoxyCodeLine{44             Crt::Io::SocketOptions \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_a4d4f8d5477105c75e535aee88a644929}{SocketOptions}};}
 \DoxyCodeLine{45 }
-\DoxyCodeLine{50             \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_aa3c9b69a3a097a82e873c6b9cd9e5744}{Region}};}
+\DoxyCodeLine{50             Crt::String \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_aa3c9b69a3a097a82e873c6b9cd9e5744}{Region}};}
 \DoxyCodeLine{51 }
 \DoxyCodeLine{55             \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_aba8bb6f980d91e0f28feaf7dbc9a6af7}{MaxConnections}};}
 \DoxyCodeLine{56 }
-\DoxyCodeLine{61             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions>}} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_ad3acafd24d1878afd38b360ce341a779}{ProxyOptions}};}
+\DoxyCodeLine{61             Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions> \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config_ad3acafd24d1878afd38b360ce341a779}{ProxyOptions}};}
 \DoxyCodeLine{62         \};}
 \DoxyCodeLine{63 }
-\DoxyCodeLine{64         \textcolor{keyword}{class }\mbox{\hyperlink{discovery_2include_2aws_2discovery_2_exports_8h_a7af651c3166ffae77b5162be57be627a}{AWS\_DISCOVERY\_API}} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client}{DiscoveryClient}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{64         \textcolor{keyword}{class }\mbox{\hyperlink{discovery_2include_2aws_2discovery_2_exports_8h_a7af651c3166ffae77b5162be57be627a}{AWS\_DISCOVERY\_API}} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client}{DiscoveryClient}} final}
 \DoxyCodeLine{65         \{}
 \DoxyCodeLine{66           \textcolor{keyword}{public}:}
-\DoxyCodeLine{67             \textcolor{keywordtype}{bool} Discover(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&thingName, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_discovery_aa4671b96af3b6408de9fb3366f6763b6}{OnDiscoverResponse}} \&onDiscoverResponse) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{67             \textcolor{keywordtype}{bool} Discover(\textcolor{keyword}{const} Crt::String \&thingName, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_discovery_aa4671b96af3b6408de9fb3366f6763b6}{OnDiscoverResponse}} \&onDiscoverResponse) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{68 }
 \DoxyCodeLine{69             \textcolor{keyword}{static} std::shared\_ptr<DiscoveryClient> CreateClient(}
-\DoxyCodeLine{70                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config}{DiscoveryClientConfig}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}},}
-\DoxyCodeLine{71                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a70bd46137cf25dda46f2138ddbee9681}{Crt::DefaultAllocator}}());}
+\DoxyCodeLine{70                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config}{DiscoveryClientConfig}} \&config,}
+\DoxyCodeLine{71                 Crt::Allocator *allocator = Crt::DefaultAllocator());}
 \DoxyCodeLine{72 }
 \DoxyCodeLine{73           \textcolor{keyword}{private}:}
-\DoxyCodeLine{74             \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client}{DiscoveryClient}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config}{DiscoveryClientConfig}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{74             \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client}{DiscoveryClient}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_discovery_1_1_discovery_client_config}{DiscoveryClientConfig}} \&config, Crt::Allocator *allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{75 }
 \DoxyCodeLine{76             std::shared\_ptr<Crt::Http::HttpClientConnectionManager> m\_connectionManager;}
-\DoxyCodeLine{77             \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} m\_hostName;}
-\DoxyCodeLine{78             \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *m\_allocator;}
+\DoxyCodeLine{77             Crt::String m\_hostName;}
+\DoxyCodeLine{78             Crt::Allocator *m\_allocator;}
 \DoxyCodeLine{79         \};}
 \DoxyCodeLine{80     \} \textcolor{comment}{// namespace Discovery}}
 \DoxyCodeLine{81 \} \textcolor{comment}{// namespace Aws}}

@@ -5,10 +5,10 @@
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{identity_2include_2aws_2iotidentity_2_exports_8h}{aws/iotidentity/Exports.h}}>}}
 \DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_stl_allocator_8h}{aws/crt/StlAllocator.h}}>}}
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{aws/crt/Types.h}}>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <aws/crt/StlAllocator.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <aws/crt/Types.h>}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2mqtt_2_mqtt_client_8h}{aws/crt/mqtt/MqttClient.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <aws/crt/mqtt/MqttClient.h>}}
 \DoxyCodeLine{12 }
 \DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
 \DoxyCodeLine{14 \{}
@@ -47,63 +47,63 @@
 \DoxyCodeLine{47         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a4504c319f56c89fe823fbca6fb9cf6f2}{OnSubscribeToCreateCertificateFromCsrRejectedResponse}} =}
 \DoxyCodeLine{48             std::function<void(\mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_error_response}{Aws::Iotidentity::ErrorResponse}} *, \textcolor{keywordtype}{int} ioErr)>;}
 \DoxyCodeLine{49 }
-\DoxyCodeLine{50         \textcolor{keyword}{class }\mbox{\hyperlink{identity_2include_2aws_2iotidentity_2_exports_8h_ad88d9dfe2f6a5eb2b84813abdcc433ac}{AWS\_IOTIDENTITY\_API}} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_iot_identity_client}{IotIdentityClient}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{50         \textcolor{keyword}{class }\mbox{\hyperlink{identity_2include_2aws_2iotidentity_2_exports_8h_ad88d9dfe2f6a5eb2b84813abdcc433ac}{AWS\_IOTIDENTITY\_API}} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_iot_identity_client}{IotIdentityClient}} final}
 \DoxyCodeLine{51         \{}
 \DoxyCodeLine{52           \textcolor{keyword}{public}:}
 \DoxyCodeLine{53             \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_iot_identity_client}{IotIdentityClient}}(\textcolor{keyword}{const} std::shared\_ptr<Aws::Crt::Mqtt::MqttConnection> \&connection);}
 \DoxyCodeLine{54 }
-\DoxyCodeLine{55             \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{55             \textcolor{keyword}{operator} bool() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{56             \textcolor{keywordtype}{int} GetLastError() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{57 }
 \DoxyCodeLine{58             \textcolor{keywordtype}{bool} SubscribeToCreateCertificateFromCsrAccepted(}
 \DoxyCodeLine{59                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_create_certificate_from_csr_subscription_request}{Aws::Iotidentity::CreateCertificateFromCsrSubscriptionRequest}} \&request,}
-\DoxyCodeLine{60                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{61                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a793b38d4587bacd3b1fac7316bf1c7ae}{OnSubscribeToCreateCertificateFromCsrAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{60                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{61                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a793b38d4587bacd3b1fac7316bf1c7ae}{OnSubscribeToCreateCertificateFromCsrAcceptedResponse}} \&handler,}
 \DoxyCodeLine{62                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_aebce234af86622f340f63339638378c3}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{63 }
 \DoxyCodeLine{64             \textcolor{keywordtype}{bool} SubscribeToCreateKeysAndCertificateRejected(}
 \DoxyCodeLine{65                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_create_keys_and_certificate_subscription_request}{Aws::Iotidentity::CreateKeysAndCertificateSubscriptionRequest}} \&request,}
-\DoxyCodeLine{66                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{67                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a12b63c7c1bf19768fefe71c7c1103682}{OnSubscribeToCreateKeysAndCertificateRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{66                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{67                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a12b63c7c1bf19768fefe71c7c1103682}{OnSubscribeToCreateKeysAndCertificateRejectedResponse}} \&handler,}
 \DoxyCodeLine{68                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_aebce234af86622f340f63339638378c3}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{69 }
 \DoxyCodeLine{70             \textcolor{keywordtype}{bool} SubscribeToRegisterThingAccepted(}
 \DoxyCodeLine{71                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_register_thing_subscription_request}{Aws::Iotidentity::RegisterThingSubscriptionRequest}} \&request,}
-\DoxyCodeLine{72                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{73                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_ac79bcf2ab7483101ddcf1f393e4450dc}{OnSubscribeToRegisterThingAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{72                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{73                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_ac79bcf2ab7483101ddcf1f393e4450dc}{OnSubscribeToRegisterThingAcceptedResponse}} \&handler,}
 \DoxyCodeLine{74                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_aebce234af86622f340f63339638378c3}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{75 }
 \DoxyCodeLine{76             \textcolor{keywordtype}{bool} SubscribeToRegisterThingRejected(}
 \DoxyCodeLine{77                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_register_thing_subscription_request}{Aws::Iotidentity::RegisterThingSubscriptionRequest}} \&request,}
-\DoxyCodeLine{78                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{79                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_aee309502370101fd7a1bccab8775cc89}{OnSubscribeToRegisterThingRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{78                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{79                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_aee309502370101fd7a1bccab8775cc89}{OnSubscribeToRegisterThingRejectedResponse}} \&handler,}
 \DoxyCodeLine{80                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_aebce234af86622f340f63339638378c3}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{81 }
 \DoxyCodeLine{82             \textcolor{keywordtype}{bool} SubscribeToCreateKeysAndCertificateAccepted(}
 \DoxyCodeLine{83                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_create_keys_and_certificate_subscription_request}{Aws::Iotidentity::CreateKeysAndCertificateSubscriptionRequest}} \&request,}
-\DoxyCodeLine{84                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{85                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a2a2b99068c2ccb9acde0de4ee4e38bbb}{OnSubscribeToCreateKeysAndCertificateAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{84                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{85                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a2a2b99068c2ccb9acde0de4ee4e38bbb}{OnSubscribeToCreateKeysAndCertificateAcceptedResponse}} \&handler,}
 \DoxyCodeLine{86                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_aebce234af86622f340f63339638378c3}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{87 }
 \DoxyCodeLine{88             \textcolor{keywordtype}{bool} SubscribeToCreateCertificateFromCsrRejected(}
 \DoxyCodeLine{89                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_create_certificate_from_csr_subscription_request}{Aws::Iotidentity::CreateCertificateFromCsrSubscriptionRequest}} \&request,}
-\DoxyCodeLine{90                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{91                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a4504c319f56c89fe823fbca6fb9cf6f2}{OnSubscribeToCreateCertificateFromCsrRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{90                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{91                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a4504c319f56c89fe823fbca6fb9cf6f2}{OnSubscribeToCreateCertificateFromCsrRejectedResponse}} \&handler,}
 \DoxyCodeLine{92                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_aebce234af86622f340f63339638378c3}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{93 }
 \DoxyCodeLine{94             \textcolor{keywordtype}{bool} PublishCreateCertificateFromCsr(}
 \DoxyCodeLine{95                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_create_certificate_from_csr_request}{Aws::Iotidentity::CreateCertificateFromCsrRequest}} \&request,}
-\DoxyCodeLine{96                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{96                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{97                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a7d76d9ad43125fcc2366e72947382cd3}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{98 }
 \DoxyCodeLine{99             \textcolor{keywordtype}{bool} PublishCreateKeysAndCertificate(}
 \DoxyCodeLine{100                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_create_keys_and_certificate_request}{Aws::Iotidentity::CreateKeysAndCertificateRequest}} \&request,}
-\DoxyCodeLine{101                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{101                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{102                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a7d76d9ad43125fcc2366e72947382cd3}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{103 }
 \DoxyCodeLine{104             \textcolor{keywordtype}{bool} PublishRegisterThing(}
 \DoxyCodeLine{105                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotidentity_1_1_register_thing_request}{Aws::Iotidentity::RegisterThingRequest}} \&request,}
-\DoxyCodeLine{106                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{106                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{107                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotidentity_a7d76d9ad43125fcc2366e72947382cd3}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{108 }
 \DoxyCodeLine{109           \textcolor{keyword}{private}:}

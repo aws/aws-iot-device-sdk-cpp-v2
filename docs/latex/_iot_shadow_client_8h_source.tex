@@ -5,10 +5,10 @@
 \DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{shadow_2include_2aws_2iotshadow_2_exports_8h}{aws/iotshadow/Exports.h}}>}}
 \DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{_stl_allocator_8h}{aws/crt/StlAllocator.h}}>}}
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{include_2aws_2crt_2_types_8h}{aws/crt/Types.h}}>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <aws/crt/StlAllocator.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <aws/crt/Types.h>}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{crt_2mqtt_2_mqtt_client_8h}{aws/crt/mqtt/MqttClient.h}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <aws/crt/mqtt/MqttClient.h>}}
 \DoxyCodeLine{12 }
 \DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_aws}{Aws}}}
 \DoxyCodeLine{14 \{}
@@ -88,138 +88,138 @@
 \DoxyCodeLine{88 }
 \DoxyCodeLine{89         \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a88cbf504a1c56209adbea7883d59bee2}{OnSubscribeToGetShadowRejectedResponse}} = std::function<void(\mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_error_response}{Aws::Iotshadow::ErrorResponse}} *, \textcolor{keywordtype}{int} ioErr)>;}
 \DoxyCodeLine{90 }
-\DoxyCodeLine{91         \textcolor{keyword}{class }\mbox{\hyperlink{shadow_2include_2aws_2iotshadow_2_exports_8h_a0ff5d9187662f08ef15bc492c2dd0145}{AWS\_IOTSHADOW\_API}} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_iot_shadow_client}{IotShadowClient}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
+\DoxyCodeLine{91         \textcolor{keyword}{class }\mbox{\hyperlink{shadow_2include_2aws_2iotshadow_2_exports_8h_a0ff5d9187662f08ef15bc492c2dd0145}{AWS\_IOTSHADOW\_API}} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_iot_shadow_client}{IotShadowClient}} final}
 \DoxyCodeLine{92         \{}
 \DoxyCodeLine{93           \textcolor{keyword}{public}:}
 \DoxyCodeLine{94             \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_iot_shadow_client}{IotShadowClient}}(\textcolor{keyword}{const} std::shared\_ptr<Aws::Crt::Mqtt::MqttConnection> \&connection);}
 \DoxyCodeLine{95 }
-\DoxyCodeLine{96             \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{96             \textcolor{keyword}{operator} bool() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{97             \textcolor{keywordtype}{int} GetLastError() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{98 }
 \DoxyCodeLine{99             \textcolor{keywordtype}{bool} SubscribeToDeleteNamedShadowRejected(}
 \DoxyCodeLine{100                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_delete_named_shadow_subscription_request}{Aws::Iotshadow::DeleteNamedShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{101                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{102                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a28f19d65c4e0380e871d8f9e87248c16}{OnSubscribeToDeleteNamedShadowRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{101                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{102                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a28f19d65c4e0380e871d8f9e87248c16}{OnSubscribeToDeleteNamedShadowRejectedResponse}} \&handler,}
 \DoxyCodeLine{103                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{104 }
 \DoxyCodeLine{105             \textcolor{keywordtype}{bool} SubscribeToGetNamedShadowAccepted(}
 \DoxyCodeLine{106                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_get_named_shadow_subscription_request}{Aws::Iotshadow::GetNamedShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{107                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{108                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a139b099f69a2c51dc8fcd18ad5247ecb}{OnSubscribeToGetNamedShadowAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{107                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{108                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a139b099f69a2c51dc8fcd18ad5247ecb}{OnSubscribeToGetNamedShadowAcceptedResponse}} \&handler,}
 \DoxyCodeLine{109                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{110 }
 \DoxyCodeLine{111             \textcolor{keywordtype}{bool} SubscribeToShadowDeltaUpdatedEvents(}
 \DoxyCodeLine{112                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_delta_updated_subscription_request}{Aws::Iotshadow::ShadowDeltaUpdatedSubscriptionRequest}} \&request,}
-\DoxyCodeLine{113                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{114                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a32fd2ebf609e176633091bde7d232f95}{OnSubscribeToShadowDeltaUpdatedEventsResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{113                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{114                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a32fd2ebf609e176633091bde7d232f95}{OnSubscribeToShadowDeltaUpdatedEventsResponse}} \&handler,}
 \DoxyCodeLine{115                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{116 }
 \DoxyCodeLine{117             \textcolor{keywordtype}{bool} SubscribeToDeleteShadowAccepted(}
 \DoxyCodeLine{118                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_delete_shadow_subscription_request}{Aws::Iotshadow::DeleteShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{119                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{120                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a7c2cb8be1d72beb71e22fd166a108826}{OnSubscribeToDeleteShadowAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{119                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{120                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a7c2cb8be1d72beb71e22fd166a108826}{OnSubscribeToDeleteShadowAcceptedResponse}} \&handler,}
 \DoxyCodeLine{121                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{122 }
 \DoxyCodeLine{123             \textcolor{keywordtype}{bool} SubscribeToUpdateNamedShadowAccepted(}
 \DoxyCodeLine{124                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_update_named_shadow_subscription_request}{Aws::Iotshadow::UpdateNamedShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{125                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{126                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_aa9a7ab23f90f77d0223094f0f41f85c7}{OnSubscribeToUpdateNamedShadowAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{125                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{126                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_aa9a7ab23f90f77d0223094f0f41f85c7}{OnSubscribeToUpdateNamedShadowAcceptedResponse}} \&handler,}
 \DoxyCodeLine{127                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{128 }
 \DoxyCodeLine{129             \textcolor{keywordtype}{bool} SubscribeToDeleteNamedShadowAccepted(}
 \DoxyCodeLine{130                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_delete_named_shadow_subscription_request}{Aws::Iotshadow::DeleteNamedShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{131                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{132                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a4e8c00d1d21e2ca061f426446692bacb}{OnSubscribeToDeleteNamedShadowAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{131                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{132                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a4e8c00d1d21e2ca061f426446692bacb}{OnSubscribeToDeleteNamedShadowAcceptedResponse}} \&handler,}
 \DoxyCodeLine{133                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{134 }
 \DoxyCodeLine{135             \textcolor{keywordtype}{bool} SubscribeToUpdateShadowAccepted(}
 \DoxyCodeLine{136                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_update_shadow_subscription_request}{Aws::Iotshadow::UpdateShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{137                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{138                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_ab49bb875bde199437974e54f223b6544}{OnSubscribeToUpdateShadowAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{137                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{138                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_ab49bb875bde199437974e54f223b6544}{OnSubscribeToUpdateShadowAcceptedResponse}} \&handler,}
 \DoxyCodeLine{139                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{140 }
 \DoxyCodeLine{141             \textcolor{keywordtype}{bool} SubscribeToUpdateShadowRejected(}
 \DoxyCodeLine{142                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_update_shadow_subscription_request}{Aws::Iotshadow::UpdateShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{143                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{144                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a9e6686c3c64c9dca780520603565d8db}{OnSubscribeToUpdateShadowRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{143                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{144                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a9e6686c3c64c9dca780520603565d8db}{OnSubscribeToUpdateShadowRejectedResponse}} \&handler,}
 \DoxyCodeLine{145                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{146 }
 \DoxyCodeLine{147             \textcolor{keywordtype}{bool} SubscribeToDeleteShadowRejected(}
 \DoxyCodeLine{148                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_delete_shadow_subscription_request}{Aws::Iotshadow::DeleteShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{149                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{150                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_aa71693063dddb3f8db651bd7a94d64aa}{OnSubscribeToDeleteShadowRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{149                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{150                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_aa71693063dddb3f8db651bd7a94d64aa}{OnSubscribeToDeleteShadowRejectedResponse}} \&handler,}
 \DoxyCodeLine{151                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{152 }
 \DoxyCodeLine{153             \textcolor{keywordtype}{bool} SubscribeToUpdateNamedShadowRejected(}
 \DoxyCodeLine{154                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_update_named_shadow_subscription_request}{Aws::Iotshadow::UpdateNamedShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{155                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{156                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a8f18ac029fc0beec5affff2d1a8770f7}{OnSubscribeToUpdateNamedShadowRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{155                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{156                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a8f18ac029fc0beec5affff2d1a8770f7}{OnSubscribeToUpdateNamedShadowRejectedResponse}} \&handler,}
 \DoxyCodeLine{157                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{158 }
 \DoxyCodeLine{159             \textcolor{keywordtype}{bool} SubscribeToNamedShadowUpdatedEvents(}
 \DoxyCodeLine{160                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_named_shadow_updated_subscription_request}{Aws::Iotshadow::NamedShadowUpdatedSubscriptionRequest}} \&request,}
-\DoxyCodeLine{161                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{162                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a1ecb26554a893e56aa70183cb4188a45}{OnSubscribeToNamedShadowUpdatedEventsResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{161                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{162                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a1ecb26554a893e56aa70183cb4188a45}{OnSubscribeToNamedShadowUpdatedEventsResponse}} \&handler,}
 \DoxyCodeLine{163                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{164 }
 \DoxyCodeLine{165             \textcolor{keywordtype}{bool} SubscribeToGetShadowAccepted(}
 \DoxyCodeLine{166                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_get_shadow_subscription_request}{Aws::Iotshadow::GetShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{167                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{168                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a7351bc44c298db5fdbbb9ad4b36d3213}{OnSubscribeToGetShadowAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{167                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{168                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a7351bc44c298db5fdbbb9ad4b36d3213}{OnSubscribeToGetShadowAcceptedResponse}} \&handler,}
 \DoxyCodeLine{169                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{170 }
 \DoxyCodeLine{171             \textcolor{keywordtype}{bool} SubscribeToShadowUpdatedEvents(}
 \DoxyCodeLine{172                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_shadow_updated_subscription_request}{Aws::Iotshadow::ShadowUpdatedSubscriptionRequest}} \&request,}
-\DoxyCodeLine{173                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{174                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_af782f0c4119ba963357943b75dc80633}{OnSubscribeToShadowUpdatedEventsResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{173                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{174                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_af782f0c4119ba963357943b75dc80633}{OnSubscribeToShadowUpdatedEventsResponse}} \&handler,}
 \DoxyCodeLine{175                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{176 }
 \DoxyCodeLine{177             \textcolor{keywordtype}{bool} SubscribeToNamedShadowDeltaUpdatedEvents(}
 \DoxyCodeLine{178                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_named_shadow_delta_updated_subscription_request}{Aws::Iotshadow::NamedShadowDeltaUpdatedSubscriptionRequest}} \&request,}
-\DoxyCodeLine{179                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{180                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a477c7df07cf6d16244a60faeb49b48cb}{OnSubscribeToNamedShadowDeltaUpdatedEventsResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{179                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{180                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a477c7df07cf6d16244a60faeb49b48cb}{OnSubscribeToNamedShadowDeltaUpdatedEventsResponse}} \&handler,}
 \DoxyCodeLine{181                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{182 }
 \DoxyCodeLine{183             \textcolor{keywordtype}{bool} SubscribeToGetNamedShadowRejected(}
 \DoxyCodeLine{184                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_get_named_shadow_subscription_request}{Aws::Iotshadow::GetNamedShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{185                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{186                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_ae960873a7020c89de0b137cb2a513e68}{OnSubscribeToGetNamedShadowRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{185                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{186                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_ae960873a7020c89de0b137cb2a513e68}{OnSubscribeToGetNamedShadowRejectedResponse}} \&handler,}
 \DoxyCodeLine{187                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{188 }
 \DoxyCodeLine{189             \textcolor{keywordtype}{bool} SubscribeToGetShadowRejected(}
 \DoxyCodeLine{190                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_get_shadow_subscription_request}{Aws::Iotshadow::GetShadowSubscriptionRequest}} \&request,}
-\DoxyCodeLine{191                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{192                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a88cbf504a1c56209adbea7883d59bee2}{OnSubscribeToGetShadowRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{191                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{192                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a88cbf504a1c56209adbea7883d59bee2}{OnSubscribeToGetShadowRejectedResponse}} \&handler,}
 \DoxyCodeLine{193                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6821fd90363538797d367c184dab079b}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{194 }
 \DoxyCodeLine{195             \textcolor{keywordtype}{bool} PublishGetShadow(}
 \DoxyCodeLine{196                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_get_shadow_request}{Aws::Iotshadow::GetShadowRequest}} \&request,}
-\DoxyCodeLine{197                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{197                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{198                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6de052281b1162068086d9e849876cea}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{199 }
 \DoxyCodeLine{200             \textcolor{keywordtype}{bool} PublishDeleteShadow(}
 \DoxyCodeLine{201                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_delete_shadow_request}{Aws::Iotshadow::DeleteShadowRequest}} \&request,}
-\DoxyCodeLine{202                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{202                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{203                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6de052281b1162068086d9e849876cea}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{204 }
 \DoxyCodeLine{205             \textcolor{keywordtype}{bool} PublishUpdateShadow(}
 \DoxyCodeLine{206                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_update_shadow_request}{Aws::Iotshadow::UpdateShadowRequest}} \&request,}
-\DoxyCodeLine{207                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{207                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{208                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6de052281b1162068086d9e849876cea}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{209 }
 \DoxyCodeLine{210             \textcolor{keywordtype}{bool} PublishDeleteNamedShadow(}
 \DoxyCodeLine{211                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_delete_named_shadow_request}{Aws::Iotshadow::DeleteNamedShadowRequest}} \&request,}
-\DoxyCodeLine{212                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{212                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{213                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6de052281b1162068086d9e849876cea}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{214 }
 \DoxyCodeLine{215             \textcolor{keywordtype}{bool} PublishGetNamedShadow(}
 \DoxyCodeLine{216                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_get_named_shadow_request}{Aws::Iotshadow::GetNamedShadowRequest}} \&request,}
-\DoxyCodeLine{217                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{217                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{218                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6de052281b1162068086d9e849876cea}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{219 }
 \DoxyCodeLine{220             \textcolor{keywordtype}{bool} PublishUpdateNamedShadow(}
 \DoxyCodeLine{221                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotshadow_1_1_update_named_shadow_request}{Aws::Iotshadow::UpdateNamedShadowRequest}} \&request,}
-\DoxyCodeLine{222                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{222                 \mbox{\hyperlink{namespace_aws_1_1_greengrass_a9ed868d06a33ca59bbf044e6b4b5e2ac}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{223                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotshadow_a6de052281b1162068086d9e849876cea}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{224 }
 \DoxyCodeLine{225           \textcolor{keyword}{private}:}

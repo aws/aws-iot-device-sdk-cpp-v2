@@ -17,20 +17,20 @@ Inheritance diagram for Aws\+::Greengrass\+::Json\+Message\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_abbe534f41c256c3c8c6f7033923af36e}{Json\+Message}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&)=default
 \item 
-void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_adafc8136a56e3838ac7c46b3657f179c}{Set\+Message}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) noexcept
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_adafc8136a56e3838ac7c46b3657f179c}{Set\+Message}} (const Aws\+::\+Crt\+::\+Json\+Object \&message) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_ad1833ca2a4caf23cfb30c6e517f3be79}{Get\+Message}} () noexcept
+Aws\+::\+Crt\+::\+Optional$<$ Aws\+::\+Crt\+::\+Json\+Object $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_ad1833ca2a4caf23cfb30c6e517f3be79}{Get\+Message}} () noexcept
 \item 
-void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_a87d9d6fc564b1dfadd93802fd771f633}{Serialize\+To\+Json\+Object}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&payload\+Object) const noexcept override
+void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_a87d9d6fc564b1dfadd93802fd771f633}{Serialize\+To\+Json\+Object}} (Aws\+::\+Crt\+::\+Json\+Object \&payload\+Object) const noexcept override
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_ae45a6864643ea596b68eb42bba717500}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&) const noexcept
+bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_ae45a6864643ea596b68eb42bba717500}{operator$<$}} (const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&) const noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_a7cf4fd0f9cada6fdc248931a98abd6d2}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&) noexcept
+static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_a7cf4fd0f9cada6fdc248931a98abd6d2}{s\+\_\+load\+From\+Json\+View}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&, const Aws\+::\+Crt\+::\+Json\+View \&) noexcept
 \item 
-static \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_add0df2c66821cf2e23d88250d7dbf620}{s\+\_\+allocate\+From\+Payload}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$) noexcept
+static Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_add0df2c66821cf2e23d88250d7dbf620}{s\+\_\+allocate\+From\+Payload}} (Aws\+::\+Crt\+::\+String\+View, Aws\+::\+Crt\+::\+Allocator $\ast$) noexcept
 \item 
 static void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_ac257d54e3a37b6a07e90f7d22e55b769}{s\+\_\+custom\+Deleter}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} $\ast$) noexcept
 \end{DoxyCompactItemize}
@@ -42,7 +42,7 @@ static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_mess
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_a6919414b41f0eff4960305a61b04b51e}{Get\+Model\+Name}} () const noexcept override
+Aws\+::\+Crt\+::\+String \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message_a6919414b41f0eff4960305a61b04b51e}{Get\+Model\+Name}} () const noexcept override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -67,13 +67,13 @@ static const char $\ast$ \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_mess
 \index{Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}!GetMessage@{GetMessage}}
 \index{GetMessage@{GetMessage}!Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}}
 \doxysubsubsection{\texorpdfstring{GetMessage()}{GetMessage()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Aws\+::\+Crt\+::\+Optional}}$<$\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}}$>$ Aws\+::\+Greengrass\+::\+Json\+Message\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Optional$<$Aws\+::\+Crt\+::\+Json\+Object$>$ Aws\+::\+Greengrass\+::\+Json\+Message\+::\+Get\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_json_message_a6919414b41f0eff4960305a61b04b51e}\label{class_aws_1_1_greengrass_1_1_json_message_a6919414b41f0eff4960305a61b04b51e}} 
 \index{Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Aws\+::\+Crt\+::\+String}} Aws\+::\+Greengrass\+::\+Json\+Message\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+String Aws\+::\+Greengrass\+::\+Json\+Message\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -83,13 +83,13 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}}
 \doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Json\+Message\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Greengrass\+::\+Json\+Message\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_json_message_add0df2c66821cf2e23d88250d7dbf620}\label{class_aws_1_1_greengrass_1_1_json_message_add0df2c66821cf2e23d88250d7dbf620}} 
 \index{Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}!s\_allocateFromPayload@{s\_allocateFromPayload}}
 \index{s\_allocateFromPayload@{s\_allocateFromPayload}!Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}}
 \doxysubsubsection{\texorpdfstring{s\_allocateFromPayload()}{s\_allocateFromPayload()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Aws\+::\+Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Aws\+::\+Greengrass\+::\+Json\+Message\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a97616772752d5faecef66dc230cdb7ab}{Aws\+::\+Crt\+::\+String\+View}}}]{string\+View,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Scoped\+Resource$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ Aws\+::\+Greengrass\+::\+Json\+Message\+::s\+\_\+allocate\+From\+Payload (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+String\+View}]{string\+View,  }\item[{Aws\+::\+Crt\+::\+Allocator $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_json_message_ac257d54e3a37b6a07e90f7d22e55b769}\label{class_aws_1_1_greengrass_1_1_json_message_ac257d54e3a37b6a07e90f7d22e55b769}} 
 \index{Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}!s\_customDeleter@{s\_customDeleter}}
@@ -101,23 +101,19 @@ Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base
 \index{Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}!s\_loadFromJsonView@{s\_loadFromJsonView}}
 \index{s\_loadFromJsonView@{s\_loadFromJsonView}!Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}}
 \doxysubsubsection{\texorpdfstring{s\_loadFromJsonView()}{s\_loadFromJsonView()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Json\+Message\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&}]{json\+Message,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_view}{Aws\+::\+Crt\+::\+Json\+View}} \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Json\+Message\+::s\+\_\+load\+From\+Json\+View (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_json_message}{Json\+Message}} \&}]{json\+Message,  }\item[{const Aws\+::\+Crt\+::\+Json\+View \&}]{json\+View }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_json_message_a87d9d6fc564b1dfadd93802fd771f633}\label{class_aws_1_1_greengrass_1_1_json_message_a87d9d6fc564b1dfadd93802fd771f633}} 
 \index{Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}!SerializeToJsonObject@{SerializeToJsonObject}}
 \index{SerializeToJsonObject@{SerializeToJsonObject}!Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}}
 \doxysubsubsection{\texorpdfstring{SerializeToJsonObject()}{SerializeToJsonObject()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Json\+Message\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}, {\ttfamily [noexcept]}}
-
-
-
-Implements \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base_a20ac68efd9842d7234b52e440d0df17b}{Aws\+::\+Eventstreamrpc\+::\+Abstract\+Shape\+Base}}.
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Json\+Message\+::\+Serialize\+To\+Json\+Object (\begin{DoxyParamCaption}\item[{Aws\+::\+Crt\+::\+Json\+Object \&}]{payload\+Object }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_greengrass_1_1_json_message_adafc8136a56e3838ac7c46b3657f179c}\label{class_aws_1_1_greengrass_1_1_json_message_adafc8136a56e3838ac7c46b3657f179c}} 
 \index{Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}!SetMessage@{SetMessage}}
 \index{SetMessage@{SetMessage}!Aws::Greengrass::JsonMessage@{Aws::Greengrass::JsonMessage}}
 \doxysubsubsection{\texorpdfstring{SetMessage()}{SetMessage()}}
-{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Json\+Message\+::\+Set\+Message (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_json_object}{Aws\+::\+Crt\+::\+Json\+Object}} \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Greengrass\+::\+Json\+Message\+::\+Set\+Message (\begin{DoxyParamCaption}\item[{const Aws\+::\+Crt\+::\+Json\+Object \&}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 
 

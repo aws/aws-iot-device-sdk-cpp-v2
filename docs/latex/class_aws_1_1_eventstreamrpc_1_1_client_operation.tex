@@ -13,7 +13,7 @@ Inheritance diagram for Aws\+::Eventstreamrpc\+::Client\+Operation\+:\begin{figu
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_af1682939fc2558a0cc840b154fc51521}{Client\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&connection, \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{Stream\+Response\+Handler}} $\ast$stream\+Handler, const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{Operation\+Model\+Context}} \&operation\+Model\+Context, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_af1682939fc2558a0cc840b154fc51521}{Client\+Operation}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&connection, \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{Stream\+Response\+Handler}} $\ast$stream\+Handler, const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{Operation\+Model\+Context}} \&operation\+Model\+Context, Crt\+::\+Allocator $\ast$allocator) noexcept
 \item 
 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a4447f3fe93afb0a7c01522ee3945e337}{$\sim$\+Client\+Operation}} () noexcept
 \item 
@@ -32,7 +32,7 @@ std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{R
 \item 
 std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_add0e852785c87f4cfcf8c475c5d5fd49}{Send\+Stream\+Event}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $\ast$shape, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback) noexcept
 \item 
-virtual \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a00bdab8695bd71490f5e346d82bac8ae}{Get\+Model\+Name}} () const noexcept=0
+virtual Crt\+::\+String \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_operation_a00bdab8695bd71490f5e346d82bac8ae}{Get\+Model\+Name}} () const noexcept=0
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -46,7 +46,7 @@ const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}
 \index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!ClientOperation@{ClientOperation}}
 \index{ClientOperation@{ClientOperation}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
 \doxysubsubsection{\texorpdfstring{ClientOperation()}{ClientOperation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Client\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&}]{connection,  }\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{Stream\+Response\+Handler}} $\ast$}]{stream\+Handler,  }\item[{const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{Operation\+Model\+Context}} \&}]{operation\+Model\+Context,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Client\+Operation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection}{Client\+Connection}} \&}]{connection,  }\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler}{Stream\+Response\+Handler}} $\ast$}]{stream\+Handler,  }\item[{const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}{Operation\+Model\+Context}} \&}]{operation\+Model\+Context,  }\item[{Crt\+::\+Allocator $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_operation_a4447f3fe93afb0a7c01522ee3945e337}\label{class_aws_1_1_eventstreamrpc_1_1_client_operation_a4447f3fe93afb0a7c01522ee3945e337}} 
 \index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!````~ClientOperation@{$\sim$ClientOperation}}
@@ -85,7 +85,7 @@ const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_model_context}
 \index{Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}!GetModelName@{GetModelName}}
 \index{GetModelName@{GetModelName}!Aws::Eventstreamrpc::ClientOperation@{Aws::Eventstreamrpc::ClientOperation}}
 \doxysubsubsection{\texorpdfstring{GetModelName()}{GetModelName()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily virtual Crt\+::\+String Aws\+::\+Eventstreamrpc\+::\+Client\+Operation\+::\+Get\+Model\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
 
 
 

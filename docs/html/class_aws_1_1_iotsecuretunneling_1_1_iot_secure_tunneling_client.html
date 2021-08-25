@@ -78,13 +78,13 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a39f6ee5ba0edc9fd00acb8e9ac1e899c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iotsecuretunneling_1_1_iot_secure_tunneling_client.html#a39f6ee5ba0edc9fd00acb8e9ac1e899c">IotSecureTunnelingClient</a> (const std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html">Aws::Crt::Mqtt::MqttConnection</a> &gt; &amp;connection)</td></tr>
+<tr class="memitem:a39f6ee5ba0edc9fd00acb8e9ac1e899c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iotsecuretunneling_1_1_iot_secure_tunneling_client.html#a39f6ee5ba0edc9fd00acb8e9ac1e899c">IotSecureTunnelingClient</a> (const std::shared_ptr&lt; Aws::Crt::Mqtt::MqttConnection &gt; &amp;connection)</td></tr>
 <tr class="separator:a39f6ee5ba0edc9fd00acb8e9ac1e899c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9fb2b4adade37c544906000010a6a58"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iotsecuretunneling_1_1_iot_secure_tunneling_client.html#ad9fb2b4adade37c544906000010a6a58">operator bool</a> () const noexcept</td></tr>
 <tr class="separator:ad9fb2b4adade37c544906000010a6a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05ac05a97a30624b1a1e9c90ac96bb37"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iotsecuretunneling_1_1_iot_secure_tunneling_client.html#a05ac05a97a30624b1a1e9c90ac96bb37">GetLastError</a> () const noexcept</td></tr>
 <tr class="separator:a05ac05a97a30624b1a1e9c90ac96bb37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e0acb6d74b9662f65c57791e88a835c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iotsecuretunneling_1_1_iot_secure_tunneling_client.html#a9e0acb6d74b9662f65c57791e88a835c">SubscribeToTunnelsNotify</a> (const <a class="el" href="class_aws_1_1_iotsecuretunneling_1_1_subscribe_to_tunnels_notify_request.html">Aws::Iotsecuretunneling::SubscribeToTunnelsNotifyRequest</a> &amp;request, <a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">Aws::Crt::Mqtt::QOS</a> <a class="el" href="connection__state__test_8c.html#a65ee2b4b16f25052c441ff9959dcc7e7">qos</a>, const <a class="el" href="namespace_aws_1_1_iotsecuretunneling.html#a797633de52d6cd33b0501015b81dd018">OnSubscribeToTunnelsNotifyResponse</a> &amp;<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>, const <a class="el" href="namespace_aws_1_1_iotsecuretunneling.html#ac688b4e8a594a42f501e0636fd2e4fe1">OnSubscribeComplete</a> &amp;onSubAck)</td></tr>
+<tr class="memitem:a9e0acb6d74b9662f65c57791e88a835c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_iotsecuretunneling_1_1_iot_secure_tunneling_client.html#a9e0acb6d74b9662f65c57791e88a835c">SubscribeToTunnelsNotify</a> (const <a class="el" href="class_aws_1_1_iotsecuretunneling_1_1_subscribe_to_tunnels_notify_request.html">Aws::Iotsecuretunneling::SubscribeToTunnelsNotifyRequest</a> &amp;request, Aws::Crt::Mqtt::QOS qos, const <a class="el" href="namespace_aws_1_1_iotsecuretunneling.html#a797633de52d6cd33b0501015b81dd018">OnSubscribeToTunnelsNotifyResponse</a> &amp;handler, const <a class="el" href="namespace_aws_1_1_iotsecuretunneling.html#ac688b4e8a594a42f501e0636fd2e4fe1">OnSubscribeComplete</a> &amp;onSubAck)</td></tr>
 <tr class="separator:a9e0acb6d74b9662f65c57791e88a835c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -97,7 +97,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Aws::Iotsecuretunneling::IotSecureTunnelingClient::IotSecureTunnelingClient </td>
           <td>(</td>
-          <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html">Aws::Crt::Mqtt::MqttConnection</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::shared_ptr&lt; Aws::Crt::Mqtt::MqttConnection &gt; &amp;&#160;</td>
           <td class="paramname"><em>connection</em></td><td>)</td>
           <td></td>
         </tr>
@@ -142,7 +142,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Aws::Iotsecuretunneling::IotSecureTunnelingClient::operator <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> </td>
+          <td class="memname">Aws::Iotsecuretunneling::IotSecureTunnelingClient::operator bool </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -164,7 +164,7 @@ Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> Aws::Iotsecuretunneling::IotSecureTunnelingClient::SubscribeToTunnelsNotify </td>
+          <td class="memname">bool Aws::Iotsecuretunneling::IotSecureTunnelingClient::SubscribeToTunnelsNotify </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_aws_1_1_iotsecuretunneling_1_1_subscribe_to_tunnels_notify_request.html">Aws::Iotsecuretunneling::SubscribeToTunnelsNotifyRequest</a> &amp;&#160;</td>
           <td class="paramname"><em>request</em>, </td>
@@ -172,7 +172,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">Aws::Crt::Mqtt::QOS</a>&#160;</td>
+          <td class="paramtype">Aws::Crt::Mqtt::QOS&#160;</td>
           <td class="paramname"><em>qos</em>, </td>
         </tr>
         <tr>

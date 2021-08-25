@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['tablestruct_0',['TableStruct',['../classcom_1_1amazonaws_1_1iot_1_1securedtunneling_1_1_message.html#ad343b80e6dbf12b95eba0ba1eed5a68c',1,'com::amazonaws::iot::securedtunneling::Message']]]
+  ['clientconnection_0',['ClientConnection',['../class_aws_1_1_eventstreamrpc_1_1_event_stream_cpp_to_native_crt_builder.html#a57ddb58ac9f33fbc303507690b67add3',1,'Aws::Eventstreamrpc::EventStreamCppToNativeCrtBuilder']]],
+  ['clientcontinuation_1',['ClientContinuation',['../class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler.html#a262d214378ef767fbe67711ef6b302bc',1,'Aws::Eventstreamrpc::ClientContinuationHandler::ClientContinuation()'],['../class_aws_1_1_eventstreamrpc_1_1_client_connection.html#a262d214378ef767fbe67711ef6b302bc',1,'Aws::Eventstreamrpc::ClientConnection::ClientContinuation()'],['../class_aws_1_1_eventstreamrpc_1_1_event_stream_cpp_to_native_crt_builder.html#a262d214378ef767fbe67711ef6b302bc',1,'Aws::Eventstreamrpc::EventStreamCppToNativeCrtBuilder::ClientContinuation()']]],
+  ['clientoperation_2',['ClientOperation',['../class_aws_1_1_eventstreamrpc_1_1_client_continuation.html#a801758a1d1d520c86b1bfe7753bba171',1,'Aws::Eventstreamrpc::ClientContinuation::ClientOperation()'],['../class_aws_1_1_eventstreamrpc_1_1_stream_response_handler.html#a801758a1d1d520c86b1bfe7753bba171',1,'Aws::Eventstreamrpc::StreamResponseHandler::ClientOperation()']]],
+  ['close_3',['Close',['../class_aws_1_1_eventstreamrpc_1_1_client_connection.html#a01e934abd5dd8a7ed45c116d695c7642',1,'Aws::Eventstreamrpc::ClientConnection']]]
 ];
