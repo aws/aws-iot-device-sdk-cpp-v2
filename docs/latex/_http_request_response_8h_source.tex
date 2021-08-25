@@ -49,7 +49,7 @@
 \DoxyCodeLine{59                 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_ab9c575ff04252836dc9d2b25fddfe804}{GetUnderlyingMessage}}() const noexcept \{ \textcolor{keywordflow}{return} m\_message; \}}
 \DoxyCodeLine{60 }
 \DoxyCodeLine{61               \textcolor{keyword}{protected}:}
-\DoxyCodeLine{62                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{HttpMessage}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{62                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{HttpMessage}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{structaws__http__message_aea01100006cf6e0012bcf3268ec97a0a}{allocator}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *message) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{63 }
 \DoxyCodeLine{64                 \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_ad8b14bbca8abb0f1535903e7e6cba5f2}{m\_allocator}};}
 \DoxyCodeLine{65                 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message_a963abd6f507b23919f8dcca317eb13ef}{m\_message}};}
@@ -61,7 +61,7 @@
 \DoxyCodeLine{74                 \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt::MqttConnection}};}
 \DoxyCodeLine{75 }
 \DoxyCodeLine{76               \textcolor{keyword}{public}:}
-\DoxyCodeLine{77                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{HttpRequest}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
+\DoxyCodeLine{77                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{HttpRequest}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
 \DoxyCodeLine{78 }
 \DoxyCodeLine{82                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional<ByteCursor>}} GetMethod() const noexcept;}
 \DoxyCodeLine{83 }
@@ -72,13 +72,13 @@
 \DoxyCodeLine{97                 \textcolor{keywordtype}{bool} SetPath(\mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} path) noexcept;}
 \DoxyCodeLine{98 }
 \DoxyCodeLine{99               protected:}
-\DoxyCodeLine{100                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{HttpRequest}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}});}
+\DoxyCodeLine{100                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{HttpRequest}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator, struct \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *message);}
 \DoxyCodeLine{101             \};}
 \DoxyCodeLine{102 }
 \DoxyCodeLine{106             class \mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_response}{HttpResponse}} : public \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_message}{HttpMessage}}}
 \DoxyCodeLine{107             \{}
 \DoxyCodeLine{108               \textcolor{keyword}{public}:}
-\DoxyCodeLine{109                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_response}{HttpResponse}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
+\DoxyCodeLine{109                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_response}{HttpResponse}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
 \DoxyCodeLine{110 }
 \DoxyCodeLine{114                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional<int>}} GetResponseCode() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{115 }

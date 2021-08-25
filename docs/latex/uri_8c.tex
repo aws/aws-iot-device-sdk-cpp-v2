@@ -56,9 +56,9 @@ static void \mbox{\hyperlink{uri_8c_a3553110f0b8b186ad1f68339292aa46f}{s\+\_\+pa
 \item 
 static int \mbox{\hyperlink{uri_8c_a12916edc61874b2890a65e2367f8cdad}{s\+\_\+init\+\_\+from\+\_\+uri\+\_\+str}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
 \item 
-int \mbox{\hyperlink{uri_8c_ac0db8aecee077e0d3b419ab890808bd0}{aws\+\_\+uri\+\_\+init\+\_\+parse}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$uri\+\_\+str)
+int \mbox{\hyperlink{uri_8c_ac0db8aecee077e0d3b419ab890808bd0}{aws\+\_\+uri\+\_\+init\+\_\+parse}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$uri\+\_\+str)
 \item 
-int \mbox{\hyperlink{uri_8c_a45679de4995ac8359726da89c6e52871}{aws\+\_\+uri\+\_\+init\+\_\+from\+\_\+builder\+\_\+options}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__uri__builder__options}{aws\+\_\+uri\+\_\+builder\+\_\+options}} $\ast$options)
+int \mbox{\hyperlink{uri_8c_a45679de4995ac8359726da89c6e52871}{aws\+\_\+uri\+\_\+init\+\_\+from\+\_\+builder\+\_\+options}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__uri__builder__options}{aws\+\_\+uri\+\_\+builder\+\_\+options}} $\ast$options)
 \item 
 void \mbox{\hyperlink{uri_8c_a73c8610748d0612fa20f042842edf4b0}{aws\+\_\+uri\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
 \item 
@@ -76,7 +76,7 @@ const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor
 \item 
 uint16\+\_\+t \mbox{\hyperlink{uri_8c_af404b250543b5a8be2df320bdf3a5c80}{aws\+\_\+uri\+\_\+port}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{uri_8c_a83c4963705d2f02b65fa97c3cad517e3}{aws\+\_\+uri\+\_\+query\+\_\+string\+\_\+next\+\_\+param}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$param)
+bool \mbox{\hyperlink{uri_8c_a83c4963705d2f02b65fa97c3cad517e3}{aws\+\_\+uri\+\_\+query\+\_\+string\+\_\+next\+\_\+param}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$param)
 \item 
 int \mbox{\hyperlink{uri_8c_ad7d1d65d4fd65d3291b6b3546f476a36}{aws\+\_\+uri\+\_\+query\+\_\+string\+\_\+params}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$out\+\_\+params)
 \item 
@@ -270,7 +270,7 @@ Returns the query string portion of the uri, minus the \textquotesingle{}?\textq
 \index{uri.c@{uri.c}!aws\_uri\_query\_string\_next\_param@{aws\_uri\_query\_string\_next\_param}}
 \index{aws\_uri\_query\_string\_next\_param@{aws\_uri\_query\_string\_next\_param}!uri.c@{uri.c}}
 \doxysubsubsection{\texorpdfstring{aws\_uri\_query\_string\_next\_param()}{aws\_uri\_query\_string\_next\_param()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+uri\+\_\+query\+\_\+string\+\_\+next\+\_\+param (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri,  }\item[{struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$}]{param }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+uri\+\_\+query\+\_\+string\+\_\+next\+\_\+param (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$}]{uri,  }\item[{struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$}]{param }\end{DoxyParamCaption})}
 
 For iterating over the params in the uri query string. {\ttfamily param} is an in/out argument used to track progress, it MUST be zeroed out to start. If true is returned, {\ttfamily param} contains the value of the next param. If false is returned, there are no further params.
 

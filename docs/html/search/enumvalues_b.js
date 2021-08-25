@@ -1,17 +1,12 @@
 var searchData=
 [
-  ['length_5ffield_5fsize_0',['LENGTH_FIELD_SIZE',['../tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h.html#ac34c4c978f4130a92a5068f9e21ea9fcab22d65cad389d3b5bff91d3752bae785',1,'LENGTH_FIELD_SIZE():&#160;s2n_hash.h'],['../tests_2sidetrail_2working_2stubs_2s2n__hash_8h.html#a1f3b6c692395e5007ff47ce5d9304c1cab22d65cad389d3b5bff91d3752bae785',1,'LENGTH_FIELD_SIZE():&#160;s2n_hash.h']]],
-  ['lifecycle_5fstate_5fbroken_1',['LIFECYCLE_STATE_BROKEN',['../namespace_aws_1_1_greengrass.html#a481357a4b911987bae78abbd527d50d5ae09be397eff03343d3f00d508ab7b049',1,'Aws::Greengrass']]],
-  ['lifecycle_5fstate_5ferrored_2',['LIFECYCLE_STATE_ERRORED',['../namespace_aws_1_1_greengrass.html#a481357a4b911987bae78abbd527d50d5aeac0f7b1b7ba0f6a477a13f2067cefff',1,'Aws::Greengrass']]],
-  ['lifecycle_5fstate_5ffinished_3',['LIFECYCLE_STATE_FINISHED',['../namespace_aws_1_1_greengrass.html#a481357a4b911987bae78abbd527d50d5a44c45d8a1109a8c486072c25aff5ca1c',1,'Aws::Greengrass']]],
-  ['lifecycle_5fstate_5finstalled_4',['LIFECYCLE_STATE_INSTALLED',['../namespace_aws_1_1_greengrass.html#a481357a4b911987bae78abbd527d50d5adb8526dc539a55a3b52779206f602bf4',1,'Aws::Greengrass']]],
-  ['lifecycle_5fstate_5fnew_5',['LIFECYCLE_STATE_NEW',['../namespace_aws_1_1_greengrass.html#a481357a4b911987bae78abbd527d50d5a71d277aa17e8377250f77fa4c1ac398f',1,'Aws::Greengrass']]],
-  ['lifecycle_5fstate_5frunning_6',['LIFECYCLE_STATE_RUNNING',['../namespace_aws_1_1_greengrass.html#a481357a4b911987bae78abbd527d50d5af981257eedb080c1f6ffdc17d1ba811d',1,'Aws::Greengrass']]],
-  ['lifecycle_5fstate_5fstarting_7',['LIFECYCLE_STATE_STARTING',['../namespace_aws_1_1_greengrass.html#a481357a4b911987bae78abbd527d50d5afde7f179a875978172dffede8726c3e4',1,'Aws::Greengrass']]],
-  ['lifecycle_5fstate_5fstopping_8',['LIFECYCLE_STATE_STOPPING',['../namespace_aws_1_1_greengrass.html#a481357a4b911987bae78abbd527d50d5a8b094bb303d7f8f9dbd71d2a624ad9fe',1,'Aws::Greengrass']]],
-  ['linux_5fncs_5festablished_9',['LINUX_NCS_ESTABLISHED',['../linux_2network_8c.html#ac2b904acb8a05fe3b46a162832cd7ca5a9752707e2923dfd70330e54adda16b61',1,'network.c']]],
-  ['linux_5fncs_5flisten_10',['LINUX_NCS_LISTEN',['../linux_2network_8c.html#ac2b904acb8a05fe3b46a162832cd7ca5a023c6a01794e6842e825b8170c2ed2cd',1,'network.c']]],
-  ['linux_5fncs_5funknown_11',['LINUX_NCS_UNKNOWN',['../linux_2network_8c.html#ac2b904acb8a05fe3b46a162832cd7ca5abd629ab52e43a3e7062f02f2b425c861',1,'network.c']]],
-  ['listening_12',['LISTENING',['../posix_2socket_8c.html#a4a055720116545d1fd52227e417488f8a21e214ebac934264f5b9e3ddffae1031',1,'LISTENING():&#160;socket.c'],['../windows_2iocp_2socket_8c.html#a4a055720116545d1fd52227e417488f8a21e214ebac934264f5b9e3ddffae1031',1,'LISTENING():&#160;socket.c']]],
-  ['local_13',['Local',['../namespace_aws_1_1_crt_1_1_io.html#a12c31e83beb297296621c8a361b58f8ea509820290d57f333403f490dde7316f4',1,'Aws::Crt::Io']]]
+  ['march_0',['March',['../namespace_aws_1_1_crt.html#ac61790998f4b26a7441e38849a6e8701afa3e5edac607a88d8fd7ecb9d6d67424',1,'Aws::Crt']]],
+  ['max_5fcompletion_5fpackets_5fper_5floop_1',['MAX_COMPLETION_PACKETS_PER_LOOP',['../iocp__event__loop_8c.html#ae8a3b6a5d0d3244ed73924ab2421a0d0ab7d41edbf78a2e62216e94381e852dd8',1,'iocp_event_loop.c']]],
+  ['max_5fevents_2',['MAX_EVENTS',['../kqueue__event__loop_8c.html#a1f9aebf1de3ebbf4283a4dcf73308562a9776f519b571d5070710cef6885cb9b8',1,'MAX_EVENTS():&#160;kqueue_event_loop.c'],['../epoll__event__loop_8c.html#a1fb9092bcdeada2d206bdc74afbbe122a9776f519b571d5070710cef6885cb9b8',1,'MAX_EVENTS():&#160;epoll_event_loop.c']]],
+  ['may_3',['May',['../namespace_aws_1_1_crt.html#ac61790998f4b26a7441e38849a6e8701a195fbb57ffe7449796d23466085ce6d8',1,'Aws::Crt']]],
+  ['monday_4',['Monday',['../namespace_aws_1_1_crt.html#aceed5cb5b58c971ed0503442659e895fa6f8522e0610541f1ef215a22ffa66ff6',1,'Aws::Crt']]],
+  ['monitoring_5fbecause_5ferror_5fsuspected_5',['MONITORING_BECAUSE_ERROR_SUSPECTED',['../windows_2iocp_2pipe_8c.html#aa25ed84a123ccff61f07beec9e346658a443310cacbbd4115b3a2c57f0ddc8747',1,'pipe.c']]],
+  ['monitoring_5fbecause_5fsubscribing_6',['MONITORING_BECAUSE_SUBSCRIBING',['../windows_2iocp_2pipe_8c.html#aa25ed84a123ccff61f07beec9e346658aaffddb24778d60d5c04f301df7732164',1,'pipe.c']]],
+  ['monitoring_5fbecause_5fwaiting_5ffor_5fdata_7',['MONITORING_BECAUSE_WAITING_FOR_DATA',['../windows_2iocp_2pipe_8c.html#aa25ed84a123ccff61f07beec9e346658ad2d59ef8c360256eab279b321b5868ee',1,'pipe.c']]],
+  ['must_5fbe_5fodd_8',['MUST_BE_ODD',['../bike__r1_2sampling_8h.html#a05a502058ce3ce1b6acbdcfec4cdcd7ea21923a757deb45b5398e7dbbaf571100',1,'MUST_BE_ODD():&#160;sampling.h'],['../bike__r2_2sampling_8h.html#a05a502058ce3ce1b6acbdcfec4cdcd7ea21923a757deb45b5398e7dbbaf571100',1,'MUST_BE_ODD():&#160;sampling.h']]]
 ];

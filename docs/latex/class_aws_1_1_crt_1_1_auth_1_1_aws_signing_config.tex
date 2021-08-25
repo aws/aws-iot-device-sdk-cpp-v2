@@ -13,7 +13,7 @@ Inheritance diagram for Aws\+::Crt\+::Auth\+::Aws\+Signing\+Config\+:\begin{figu
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a76d3e44bee020ce74bfc5c0f801b6f68}{Aws\+Signing\+Config}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}})
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a76d3e44bee020ce74bfc5c0f801b6f68}{Aws\+Signing\+Config}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}})
 \item 
 virtual \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_aa78b997ad06087d78b3aa403784bd03c}{$\sim$\+Aws\+Signing\+Config}} ()
 \item 
@@ -39,17 +39,17 @@ void \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a66764e8
 \item 
 void \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_ac8a7f3c0ed008f12c262a19a9e3d244e}{Set\+Signing\+Timepoint}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_date_time}{Date\+Time}} \&date) noexcept
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a1d37d5c3a1001dfcb485ce81f194ff40}{Get\+Use\+Double\+Uri\+Encode}} () const noexcept
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a1d37d5c3a1001dfcb485ce81f194ff40}{Get\+Use\+Double\+Uri\+Encode}} () const noexcept
 \item 
-void \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a1f61da7cbf84b0053f63b5b8fc045538}{Set\+Use\+Double\+Uri\+Encode}} (\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} use\+Double\+Uri\+Encode) noexcept
+void \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a1f61da7cbf84b0053f63b5b8fc045538}{Set\+Use\+Double\+Uri\+Encode}} (bool use\+Double\+Uri\+Encode) noexcept
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a16c90136e15ae21b067e4bca53c86013}{Get\+Should\+Normalize\+Uri\+Path}} () const noexcept
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a16c90136e15ae21b067e4bca53c86013}{Get\+Should\+Normalize\+Uri\+Path}} () const noexcept
 \item 
-void \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_af7749064a60ba35a5b743688ab2c7aa7}{Set\+Should\+Normalize\+Uri\+Path}} (\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} should\+Normalize\+Uri\+Path) noexcept
+void \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_af7749064a60ba35a5b743688ab2c7aa7}{Set\+Should\+Normalize\+Uri\+Path}} (bool should\+Normalize\+Uri\+Path) noexcept
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a48f34ce6307a4af5f0ee9bc1d744e37e}{Get\+Omit\+Session\+Token}} () const noexcept
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a48f34ce6307a4af5f0ee9bc1d744e37e}{Get\+Omit\+Session\+Token}} () const noexcept
 \item 
-void \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a3af09c40f7e5f46d2156221afa1321f8}{Set\+Omit\+Session\+Token}} (\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} omit\+Session\+Token) noexcept
+void \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a3af09c40f7e5f46d2156221afa1321f8}{Set\+Omit\+Session\+Token}} (bool omit\+Session\+Token) noexcept
 \item 
 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}{Should\+Sign\+Header\+Cb}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_aea11e7dce8bee7b1a5e6b570e9d6ab66}{Get\+Should\+Sign\+Header\+Callback}} () const noexcept
 \item 
@@ -118,7 +118,7 @@ Get the credentials provider to use for signing. \mbox{\Hypertarget{class_aws_1_
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!GetOmitSessionToken@{GetOmitSessionToken}}
 \index{GetOmitSessionToken@{GetOmitSessionToken}!Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}}
 \doxysubsubsection{\texorpdfstring{GetOmitSessionToken()}{GetOmitSessionToken()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Get\+Omit\+Session\+Token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Get\+Omit\+Session\+Token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Gets whether or not to omit the session token during signing. Only set to true when performing a websocket handshake with IoT Core. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a34e76a2694f048badb07a2852501a9fb}\label{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a34e76a2694f048badb07a2852501a9fb}} 
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!GetRegion@{GetRegion}}
@@ -136,7 +136,7 @@ Gets the (signing) name of the AWS service to sign a request for \mbox{\Hypertar
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!GetShouldNormalizeUriPath@{GetShouldNormalizeUriPath}}
 \index{GetShouldNormalizeUriPath@{GetShouldNormalizeUriPath}!Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}}
 \doxysubsubsection{\texorpdfstring{GetShouldNormalizeUriPath()}{GetShouldNormalizeUriPath()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Get\+Should\+Normalize\+Uri\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Get\+Should\+Normalize\+Uri\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Gets whether or not the uri paths should be normalized when building the canonical request \mbox{\Hypertarget{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_aea11e7dce8bee7b1a5e6b570e9d6ab66}\label{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_aea11e7dce8bee7b1a5e6b570e9d6ab66}} 
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!GetShouldSignHeaderCallback@{GetShouldSignHeaderCallback}}
@@ -188,7 +188,7 @@ Implements \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config_ac24
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!GetUseDoubleUriEncode@{GetUseDoubleUriEncode}}
 \index{GetUseDoubleUriEncode@{GetUseDoubleUriEncode}!Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}}
 \doxysubsubsection{\texorpdfstring{GetUseDoubleUriEncode()}{GetUseDoubleUriEncode()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Get\+Use\+Double\+Uri\+Encode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Get\+Use\+Double\+Uri\+Encode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Gets whether or not the signing process should perform a uri encode step before creating the canonical request. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_afddf3144a9018f3966170a3182f8c552}\label{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_afddf3144a9018f3966170a3182f8c552}} 
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!SetCredentials@{SetCredentials}}
@@ -212,7 +212,7 @@ Set the credentials provider to use for signing. \mbox{\Hypertarget{class_aws_1_
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!SetOmitSessionToken@{SetOmitSessionToken}}
 \index{SetOmitSessionToken@{SetOmitSessionToken}!Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}}
 \doxysubsubsection{\texorpdfstring{SetOmitSessionToken()}{SetOmitSessionToken()}}
-{\footnotesize\ttfamily void Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Set\+Omit\+Session\+Token (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{omit\+Session\+Token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Set\+Omit\+Session\+Token (\begin{DoxyParamCaption}\item[{bool}]{omit\+Session\+Token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Sets whether or not to omit the session token during signing. Only set to true when performing a websocket handshake with IoT Core. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a6c6e9ea9e2b87328d775c43d91370556}\label{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_a6c6e9ea9e2b87328d775c43d91370556}} 
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!SetRegion@{SetRegion}}
@@ -230,7 +230,7 @@ Sets the (signing) name of the AWS service to sign a request for \mbox{\Hypertar
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!SetShouldNormalizeUriPath@{SetShouldNormalizeUriPath}}
 \index{SetShouldNormalizeUriPath@{SetShouldNormalizeUriPath}!Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}}
 \doxysubsubsection{\texorpdfstring{SetShouldNormalizeUriPath()}{SetShouldNormalizeUriPath()}}
-{\footnotesize\ttfamily void Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Set\+Should\+Normalize\+Uri\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{should\+Normalize\+Uri\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Set\+Should\+Normalize\+Uri\+Path (\begin{DoxyParamCaption}\item[{bool}]{should\+Normalize\+Uri\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Sets whether or not the uri paths should be normalized when building the canonical request \mbox{\Hypertarget{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_ae2380d82bc60d2e535a9dc6b8baefef9}\label{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_ae2380d82bc60d2e535a9dc6b8baefef9}} 
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!SetShouldSignHeaderCallback@{SetShouldSignHeaderCallback}}
@@ -272,7 +272,7 @@ Sets the timestamp to use during the signing process. \mbox{\Hypertarget{class_a
 \index{Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}!SetUseDoubleUriEncode@{SetUseDoubleUriEncode}}
 \index{SetUseDoubleUriEncode@{SetUseDoubleUriEncode}!Aws::Crt::Auth::AwsSigningConfig@{Aws::Crt::Auth::AwsSigningConfig}}
 \doxysubsubsection{\texorpdfstring{SetUseDoubleUriEncode()}{SetUseDoubleUriEncode()}}
-{\footnotesize\ttfamily void Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Set\+Use\+Double\+Uri\+Encode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{use\+Double\+Uri\+Encode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Crt\+::\+Auth\+::\+Aws\+Signing\+Config\+::\+Set\+Use\+Double\+Uri\+Encode (\begin{DoxyParamCaption}\item[{bool}]{use\+Double\+Uri\+Encode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Sets whether or not the signing process should perform a uri encode step before creating the canonical request. 
 

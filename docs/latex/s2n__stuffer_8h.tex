@@ -42,7 +42,7 @@ struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+r
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__stuffer_8h_affe0866d605f82d09ab527a90294ea5b}{s2n\+\_\+stuffer\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
+bool \mbox{\hyperlink{s2n__stuffer_8h_affe0866d605f82d09ab527a90294ea5b}{s2n\+\_\+stuffer\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8h_af556836db8ed75fdb89af3d418fab2ee}{s2n\+\_\+stuffer\+\_\+init}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct s2n\+\_\+blob $\ast$in)
 \item 
@@ -66,7 +66,7 @@ int \mbox{\hyperlink{s2n__stuffer_8h_a2b6b54f7856d92f06f823bc26d10f4ba}{s2n\+\_\
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8h_a5db4885b533f28f111a04221c040a407}{s2n\+\_\+stuffer\+\_\+wipe\+\_\+n}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, const uint32\+\_\+t n)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__stuffer_8h_ab7101e6845348537f5d2fcc792f44cde}{s2n\+\_\+stuffer\+\_\+is\+\_\+consumed}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
+bool \mbox{\hyperlink{s2n__stuffer_8h_ab7101e6845348537f5d2fcc792f44cde}{s2n\+\_\+stuffer\+\_\+is\+\_\+consumed}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8h_a49bb9749c055c6fb6f713cebeaa14cb5}{s2n\+\_\+stuffer\+\_\+read}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct s2n\+\_\+blob $\ast$out)
 \item 
@@ -116,7 +116,7 @@ int \mbox{\hyperlink{s2n__stuffer_8h_a958a82fb4dfe3517bcfd95f46807f715}{s2n\+\_\
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8h_af5be81568462bd6626c1d00a939ff30d}{s2n\+\_\+stuffer\+\_\+write\+\_\+uint64}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, const uint64\+\_\+t u)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__stuffer_8h_a0321c76c37c2550418d41e9933e3b2cd}{s2n\+\_\+stuffer\+\_\+reservation\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+reservation}} $\ast$reservation)
+bool \mbox{\hyperlink{s2n__stuffer_8h_a0321c76c37c2550418d41e9933e3b2cd}{s2n\+\_\+stuffer\+\_\+reservation\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+reservation}} $\ast$reservation)
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8h_a3fa3b7404670d70655f4f31397209aa2}{s2n\+\_\+stuffer\+\_\+reserve\+\_\+uint16}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+reservation}} $\ast$reservation)
 \item 
@@ -134,9 +134,9 @@ int \mbox{\hyperlink{s2n__stuffer_8h_ac5804d7e0c506ac66d62bacd11cd99cc}{s2n\+\_\
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8h_ab090e316ef5eca9ce16cca3520a94e7e}{s2n\+\_\+stuffer\+\_\+peek\+\_\+char}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, char $\ast$c)
 \item 
-int \mbox{\hyperlink{s2n__stuffer_8h_a5ab3277576af346c7a22e5824fcb3027}{s2n\+\_\+stuffer\+\_\+read\+\_\+token}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, char delim)
+int \mbox{\hyperlink{s2n__stuffer_8h_a5ab3277576af346c7a22e5824fcb3027}{s2n\+\_\+stuffer\+\_\+read\+\_\+token}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$token, char delim)
 \item 
-int \mbox{\hyperlink{s2n__stuffer_8h_a268c4897aa5b39aa5906f45425a0345c}{s2n\+\_\+stuffer\+\_\+read\+\_\+line}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+int \mbox{\hyperlink{s2n__stuffer_8h_a268c4897aa5b39aa5906f45425a0345c}{s2n\+\_\+stuffer\+\_\+read\+\_\+line}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$token)
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8h_a424d9e84250b9bbed97707f56ab3f0eb}{s2n\+\_\+stuffer\+\_\+peek\+\_\+check\+\_\+for\+\_\+str}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$\mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}}, const char $\ast$expected)
 \item 
@@ -156,7 +156,7 @@ int \mbox{\hyperlink{s2n__stuffer_8h_abdb8ea972bc65569944ce760b97283cf}{s2n\+\_\
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8h_acc09d820f511dde4633ecad55f062a87}{s2n\+\_\+stuffer\+\_\+dhparams\+\_\+from\+\_\+pem}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pem, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$pkcs3)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__stuffer_8h_a0b7030e56b38db2f42b56061429243f8}{s2n\+\_\+is\+\_\+base64\+\_\+char}} (unsigned char c)
+bool \mbox{\hyperlink{s2n__stuffer_8h_a0b7030e56b38db2f42b56061429243f8}{s2n\+\_\+is\+\_\+base64\+\_\+char}} (unsigned char c)
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8h_a525cdc554c91b64fd48ac2581572b185}{s2n\+\_\+stuffer\+\_\+extract\+\_\+blob}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct s2n\+\_\+blob $\ast$out)
 \end{DoxyCompactItemize}
@@ -242,7 +242,7 @@ int \mbox{\hyperlink{s2n__stuffer_8h_a525cdc554c91b64fd48ac2581572b185}{s2n\+\_\
 \index{s2n\_stuffer.h@{s2n\_stuffer.h}!s2n\_is\_base64\_char@{s2n\_is\_base64\_char}}
 \index{s2n\_is\_base64\_char@{s2n\_is\_base64\_char}!s2n\_stuffer.h@{s2n\_stuffer.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_is\_base64\_char()}{s2n\_is\_base64\_char()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+is\+\_\+base64\+\_\+char (\begin{DoxyParamCaption}\item[{unsigned char}]{c }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+is\+\_\+base64\+\_\+char (\begin{DoxyParamCaption}\item[{unsigned char}]{c }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__stuffer_8h_a32c836a77ead9490bde10e13dcbed39c}\label{s2n__stuffer_8h_a32c836a77ead9490bde10e13dcbed39c}} 
 \index{s2n\_stuffer.h@{s2n\_stuffer.h}!s2n\_stuffer\_alloc@{s2n\_stuffer\_alloc}}
@@ -314,13 +314,13 @@ int \mbox{\hyperlink{s2n__stuffer_8h_a525cdc554c91b64fd48ac2581572b185}{s2n\+\_\
 \index{s2n\_stuffer.h@{s2n\_stuffer.h}!s2n\_stuffer\_is\_consumed@{s2n\_stuffer\_is\_consumed}}
 \index{s2n\_stuffer\_is\_consumed@{s2n\_stuffer\_is\_consumed}!s2n\_stuffer.h@{s2n\_stuffer.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_stuffer\_is\_consumed()}{s2n\_stuffer\_is\_consumed()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+stuffer\+\_\+is\+\_\+consumed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+stuffer\+\_\+is\+\_\+consumed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__stuffer_8h_affe0866d605f82d09ab527a90294ea5b}\label{s2n__stuffer_8h_affe0866d605f82d09ab527a90294ea5b}} 
 \index{s2n\_stuffer.h@{s2n\_stuffer.h}!s2n\_stuffer\_is\_valid@{s2n\_stuffer\_is\_valid}}
 \index{s2n\_stuffer\_is\_valid@{s2n\_stuffer\_is\_valid}!s2n\_stuffer.h@{s2n\_stuffer.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_stuffer\_is\_valid()}{s2n\_stuffer\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+stuffer\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+stuffer\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})}
 
 Note that we do not assert any properties on the alloced, growable, and tainted fields, as all possible combinations of boolean values in those fields are valid.\mbox{\Hypertarget{s2n__stuffer_8h_ab090e316ef5eca9ce16cca3520a94e7e}\label{s2n__stuffer_8h_ab090e316ef5eca9ce16cca3520a94e7e}} 
 \index{s2n\_stuffer.h@{s2n\_stuffer.h}!s2n\_stuffer\_peek\_char@{s2n\_stuffer\_peek\_char}}
@@ -434,7 +434,7 @@ NOTE\+: In general, shift before masking. This avoids needing to worry about how
 \index{s2n\_stuffer.h@{s2n\_stuffer.h}!s2n\_stuffer\_reservation\_is\_valid@{s2n\_stuffer\_reservation\_is\_valid}}
 \index{s2n\_stuffer\_reservation\_is\_valid@{s2n\_stuffer\_reservation\_is\_valid}!s2n\_stuffer.h@{s2n\_stuffer.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_stuffer\_reservation\_is\_valid()}{s2n\_stuffer\_reservation\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+stuffer\+\_\+reservation\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+reservation}} $\ast$}]{reservation }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+stuffer\+\_\+reservation\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+reservation}} $\ast$}]{reservation }\end{DoxyParamCaption})}
 
 Note that we need two dereferences here to decrease proof complexity for CBMC (see \href{https://github.com/awslabs/s2n/issues/2290}{\texttt{ https\+://github.\+com/awslabs/s2n/issues/2290}}). We can roll back this change once CBMC can handle common subexpression elimination.\mbox{\Hypertarget{s2n__stuffer_8h_aff927b856ba44d7f6bbf45703f510fec}\label{s2n__stuffer_8h_aff927b856ba44d7f6bbf45703f510fec}} 
 \index{s2n\_stuffer.h@{s2n\_stuffer.h}!s2n\_stuffer\_reserve\_space@{s2n\_stuffer\_reserve\_space}}

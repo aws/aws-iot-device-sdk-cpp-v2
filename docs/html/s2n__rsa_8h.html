@@ -76,8 +76,8 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="stdint_8h_source.html">stdint.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="s2n_8h_source.html">s2n.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="rsa_8h_source.html">openssl/rsa.h</a>&gt;</code><br />
-<code>#include &quot;<a class="el" href="crypto_2s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
+<code>#include &lt;openssl/rsa.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
 <code>#include &quot;utils/s2n_blob.h&quot;</code><br />
 </div>
 <p><a href="s2n__rsa_8h_source.html">Go to the source code of this file.</a></p>
@@ -98,9 +98,9 @@ Typedefs</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:abf12aedfa877ab5d3571dcef0761551a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8h.html#abf12aedfa877ab5d3571dcef0761551a">s2n_rsa_pkey_init</a> (struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *pkey)</td></tr>
 <tr class="separator:abf12aedfa877ab5d3571dcef0761551a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebc78ef72eed49d74cfdec0e6f5b5cbb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8h.html#aebc78ef72eed49d74cfdec0e6f5b5cbb">s2n_evp_pkey_to_rsa_public_key</a> (<a class="el" href="s2n__rsa_8h.html#a39c78a896071c3b225e937f6c2df0c6a">s2n_rsa_public_key</a> *rsa_key, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *pkey)</td></tr>
+<tr class="memitem:aebc78ef72eed49d74cfdec0e6f5b5cbb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8h.html#aebc78ef72eed49d74cfdec0e6f5b5cbb">s2n_evp_pkey_to_rsa_public_key</a> (<a class="el" href="s2n__rsa_8h.html#a39c78a896071c3b225e937f6c2df0c6a">s2n_rsa_public_key</a> *rsa_key, EVP_PKEY *pkey)</td></tr>
 <tr class="separator:aebc78ef72eed49d74cfdec0e6f5b5cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50d26f3a1a854a5643d9ce0e9a03dcfe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8h.html#a50d26f3a1a854a5643d9ce0e9a03dcfe">s2n_evp_pkey_to_rsa_private_key</a> (<a class="el" href="s2n__rsa_8h.html#acf56abde98084e44e10b59d97bb6de58">s2n_rsa_private_key</a> *rsa_key, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *pkey)</td></tr>
+<tr class="memitem:a50d26f3a1a854a5643d9ce0e9a03dcfe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8h.html#a50d26f3a1a854a5643d9ce0e9a03dcfe">s2n_evp_pkey_to_rsa_private_key</a> (<a class="el" href="s2n__rsa_8h.html#acf56abde98084e44e10b59d97bb6de58">s2n_rsa_private_key</a> *rsa_key, EVP_PKEY *pkey)</td></tr>
 <tr class="separator:a50d26f3a1a854a5643d9ce0e9a03dcfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -148,7 +148,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>pkey</em>&#160;</td>
         </tr>
         <tr>
@@ -176,7 +176,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>pkey</em>&#160;</td>
         </tr>
         <tr>

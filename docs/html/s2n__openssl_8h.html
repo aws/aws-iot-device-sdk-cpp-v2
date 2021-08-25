@@ -77,9 +77,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a41eb32498fb48cdae68b3fc479f46671"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__openssl_8h.html#a41eb32498fb48cdae68b3fc479f46671">S2N_OPENSSL_VERSION_AT_LEAST</a>(major,  minor,  fix)&#160;&#160;&#160;    (<a class="el" href="opensslv_8h.html#ae05e9f9f2eb8a9e64f38cbdc47062d6e">OPENSSL_VERSION_NUMBER</a> &gt;= ((major &lt;&lt; 28) + (minor &lt;&lt; 20) + (fix &lt;&lt; 12)))</td></tr>
+<tr class="memitem:a41eb32498fb48cdae68b3fc479f46671"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__openssl_8h.html#a41eb32498fb48cdae68b3fc479f46671">S2N_OPENSSL_VERSION_AT_LEAST</a>(major,  minor,  fix)&#160;&#160;&#160;    (OPENSSL_VERSION_NUMBER &gt;= ((major &lt;&lt; 28) + (minor &lt;&lt; 20) + (fix &lt;&lt; 12)))</td></tr>
 <tr class="separator:a41eb32498fb48cdae68b3fc479f46671"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06c4827dde66bf2760b2304875106af0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__openssl_8h.html#a06c4827dde66bf2760b2304875106af0">s2n_evp_ctx_init</a>(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)&#160;&#160;&#160;EVP_CIPHER_CTX_init(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)</td></tr>
+<tr class="memitem:a06c4827dde66bf2760b2304875106af0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__openssl_8h.html#a06c4827dde66bf2760b2304875106af0">s2n_evp_ctx_init</a>(ctx)&#160;&#160;&#160;EVP_CIPHER_CTX_init(ctx)</td></tr>
 <tr class="separator:a06c4827dde66bf2760b2304875106af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a139c143fdaf865bfcd6d20659cba1c05"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__openssl_8h.html#a139c143fdaf865bfcd6d20659cba1c05">S2N_LIBCRYPTO_SUPPORTS_CUSTOM_RAND</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a139c143fdaf865bfcd6d20659cba1c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -95,8 +95,8 @@ Macros</h2></td></tr>
           <td class="memname">#define s2n_evp_ctx_init</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a></td><td>)</td>
-          <td>&#160;&#160;&#160;EVP_CIPHER_CTX_init(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)</td>
+          <td class="paramname">ctx</td><td>)</td>
+          <td>&#160;&#160;&#160;EVP_CIPHER_CTX_init(ctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -144,7 +144,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;    (<a class="el" href="opensslv_8h.html#ae05e9f9f2eb8a9e64f38cbdc47062d6e">OPENSSL_VERSION_NUMBER</a> &gt;= ((major &lt;&lt; 28) + (minor &lt;&lt; 20) + (fix &lt;&lt; 12)))</td>
+          <td></td><td>&#160;&#160;&#160;    (OPENSSL_VERSION_NUMBER &gt;= ((major &lt;&lt; 28) + (minor &lt;&lt; 20) + (fix &lt;&lt; 12)))</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -29,34 +29,34 @@ struct \mbox{\hyperlink{structepoll__event__data}{epoll\+\_\+event\+\_\+data}}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \{ \mbox{\hyperlink{epoll__event__loop_8c_a900dca9b26de42491763226e12dcd47baf30df71dff869383fae968f90644988b}{DEFAULT\+\_\+\+TIMEOUT}} = 100 $\ast$ 1000
-, \mbox{\hyperlink{epoll__event__loop_8c_a900dca9b26de42491763226e12dcd47ba9776f519b571d5070710cef6885cb9b8}{MAX\+\_\+\+EVENTS}} = 100
+enum \{ \mbox{\hyperlink{epoll__event__loop_8c_a1fb9092bcdeada2d206bdc74afbbe122af30df71dff869383fae968f90644988b}{DEFAULT\+\_\+\+TIMEOUT}} = 100 $\ast$ 1000
+, \mbox{\hyperlink{epoll__event__loop_8c_a1fb9092bcdeada2d206bdc74afbbe122a9776f519b571d5070710cef6885cb9b8}{MAX\+\_\+\+EVENTS}} = 100
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{epoll__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static void \mbox{\hyperlink{epoll__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{epoll__event__loop_8c_af38881a8c5e6861452a81b7b32530239}{s\+\_\+run}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static int \mbox{\hyperlink{epoll__event__loop_8c_af38881a8c5e6861452a81b7b32530239}{s\+\_\+run}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{epoll__event__loop_8c_acfc31f03610b29043dec817307e76127}{s\+\_\+stop}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static int \mbox{\hyperlink{epoll__event__loop_8c_acfc31f03610b29043dec817307e76127}{s\+\_\+stop}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{epoll__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}{s\+\_\+wait\+\_\+for\+\_\+stop\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static int \mbox{\hyperlink{epoll__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}{s\+\_\+wait\+\_\+for\+\_\+stop\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static void \mbox{\hyperlink{epoll__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}{s\+\_\+schedule\+\_\+task\+\_\+now}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+static void \mbox{\hyperlink{epoll__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}{s\+\_\+schedule\+\_\+task\+\_\+now}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
 \item 
-static void \mbox{\hyperlink{epoll__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}{s\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+static void \mbox{\hyperlink{epoll__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}{s\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
 \item 
-static void \mbox{\hyperlink{epoll__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}{s\+\_\+cancel\+\_\+task}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+static void \mbox{\hyperlink{epoll__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}{s\+\_\+cancel\+\_\+task}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
 \item 
-static int \mbox{\hyperlink{epoll__event__loop_8c_a145d2830ffa7e965684b3be1e250c5a3}{s\+\_\+subscribe\+\_\+to\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, \mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}} $\ast$\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}{on\+\_\+event}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{epoll__event__loop_8c_a145d2830ffa7e965684b3be1e250c5a3}{s\+\_\+subscribe\+\_\+to\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, \mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}} $\ast$on\+\_\+event, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{epoll__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}{s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
+static int \mbox{\hyperlink{epoll__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}{s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
 \item 
-static void \mbox{\hyperlink{epoll__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}{s\+\_\+free\+\_\+io\+\_\+event\+\_\+resources}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{epoll__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}{s\+\_\+free\+\_\+io\+\_\+event\+\_\+resources}} (void $\ast$user\+\_\+data)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{epoll__event__loop_8c_a84e7cfae5afd8646c3cef9b4a96052e7}{s\+\_\+is\+\_\+on\+\_\+callers\+\_\+thread}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static bool \mbox{\hyperlink{epoll__event__loop_8c_a84e7cfae5afd8646c3cef9b4a96052e7}{s\+\_\+is\+\_\+on\+\_\+callers\+\_\+thread}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
 static void \mbox{\hyperlink{epoll__event__loop_8c_a4fd3605d3eb2e52854101ae2e557c991}{s\+\_\+main\+\_\+loop}} (void $\ast$args)
 \item 
@@ -66,13 +66,13 @@ struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast
 \item 
 static void \mbox{\hyperlink{epoll__event__loop_8c_ad54a0e8fcb26baf1980c55c7205f880f}{s\+\_\+stop\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$args, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-static void \mbox{\hyperlink{epoll__event__loop_8c_ab4c13873f170e080cfc0387c3eedecbd}{s\+\_\+schedule\+\_\+task\+\_\+common}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+static void \mbox{\hyperlink{epoll__event__loop_8c_ab4c13873f170e080cfc0387c3eedecbd}{s\+\_\+schedule\+\_\+task\+\_\+common}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
 \item 
 static void \mbox{\hyperlink{epoll__event__loop_8c_a0dcebf0a9a57c0b6c9ef8082637a24ab}{s\+\_\+unsubscribe\+\_\+cleanup\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-static void \mbox{\hyperlink{epoll__event__loop_8c_ac6ed8c42f9186a2438b19ea914917cc9}{s\+\_\+on\+\_\+tasks\+\_\+to\+\_\+schedule}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{epoll__event__loop_8c_ac6ed8c42f9186a2438b19ea914917cc9}{s\+\_\+on\+\_\+tasks\+\_\+to\+\_\+schedule}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, void $\ast$user\+\_\+data)
 \item 
-static void \mbox{\hyperlink{epoll__event__loop_8c_a394a537348a431af90e8517bc33d5d05}{s\+\_\+process\+\_\+task\+\_\+pre\+\_\+queue}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static void \mbox{\hyperlink{epoll__event__loop_8c_a394a537348a431af90e8517bc33d5d05}{s\+\_\+process\+\_\+task\+\_\+pre\+\_\+queue}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -97,16 +97,16 @@ static struct \mbox{\hyperlink{structaws__event__loop__vtable}{aws\+\_\+event\+\
 Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{epoll__event__loop_8c_a900dca9b26de42491763226e12dcd47b}\label{epoll__event__loop_8c_a900dca9b26de42491763226e12dcd47b}} 
+\mbox{\Hypertarget{epoll__event__loop_8c_a1fb9092bcdeada2d206bdc74afbbe122}\label{epoll__event__loop_8c_a1fb9092bcdeada2d206bdc74afbbe122}} 
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_TIMEOUT@{DEFAULT\_TIMEOUT}!epoll\_event\_loop.c@{epoll\_event\_loop.c}}\index{epoll\_event\_loop.c@{epoll\_event\_loop.c}!DEFAULT\_TIMEOUT@{DEFAULT\_TIMEOUT}}}\mbox{\Hypertarget{epoll__event__loop_8c_a900dca9b26de42491763226e12dcd47baf30df71dff869383fae968f90644988b}\label{epoll__event__loop_8c_a900dca9b26de42491763226e12dcd47baf30df71dff869383fae968f90644988b}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_TIMEOUT@{DEFAULT\_TIMEOUT}!epoll\_event\_loop.c@{epoll\_event\_loop.c}}\index{epoll\_event\_loop.c@{epoll\_event\_loop.c}!DEFAULT\_TIMEOUT@{DEFAULT\_TIMEOUT}}}\mbox{\Hypertarget{epoll__event__loop_8c_a1fb9092bcdeada2d206bdc74afbbe122af30df71dff869383fae968f90644988b}\label{epoll__event__loop_8c_a1fb9092bcdeada2d206bdc74afbbe122af30df71dff869383fae968f90644988b}} 
 DEFAULT\+\_\+\+TIMEOUT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX\_EVENTS@{MAX\_EVENTS}!epoll\_event\_loop.c@{epoll\_event\_loop.c}}\index{epoll\_event\_loop.c@{epoll\_event\_loop.c}!MAX\_EVENTS@{MAX\_EVENTS}}}\mbox{\Hypertarget{epoll__event__loop_8c_a900dca9b26de42491763226e12dcd47ba9776f519b571d5070710cef6885cb9b8}\label{epoll__event__loop_8c_a900dca9b26de42491763226e12dcd47ba9776f519b571d5070710cef6885cb9b8}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX\_EVENTS@{MAX\_EVENTS}!epoll\_event\_loop.c@{epoll\_event\_loop.c}}\index{epoll\_event\_loop.c@{epoll\_event\_loop.c}!MAX\_EVENTS@{MAX\_EVENTS}}}\mbox{\Hypertarget{epoll__event__loop_8c_a1fb9092bcdeada2d206bdc74afbbe122a9776f519b571d5070710cef6885cb9b8}\label{epoll__event__loop_8c_a1fb9092bcdeada2d206bdc74afbbe122a9776f519b571d5070710cef6885cb9b8}} 
 MAX\+\_\+\+EVENTS&\\
 \hline
 
@@ -148,7 +148,7 @@ Creates an instance of the default event loop implementation for the current arc
 \index{epoll\_event\_loop.c@{epoll\_event\_loop.c}!s\_is\_on\_callers\_thread@{s\_is\_on\_callers\_thread}}
 \index{s\_is\_on\_callers\_thread@{s\_is\_on\_callers\_thread}!epoll\_event\_loop.c@{epoll\_event\_loop.c}}
 \doxysubsubsection{\texorpdfstring{s\_is\_on\_callers\_thread()}{s\_is\_on\_callers\_thread()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+on\+\_\+callers\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+is\+\_\+on\+\_\+callers\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{epoll__event__loop_8c_a4fd3605d3eb2e52854101ae2e557c991}\label{epoll__event__loop_8c_a4fd3605d3eb2e52854101ae2e557c991}} 
 \index{epoll\_event\_loop.c@{epoll\_event\_loop.c}!s\_main\_loop@{s\_main\_loop}}

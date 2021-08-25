@@ -18,7 +18,7 @@
 \item 
 void \mbox{\hyperlink{aws-c-common_2source_2common_8c_a0a9b372da7a789aa38aa85794cca9bfc}{aws\+\_\+secure\+\_\+zero}} (void $\ast$p\+Buf, size\+\_\+t bufsize)
 \item 
-void \mbox{\hyperlink{aws-c-common_2source_2common_8c_a64c104412a7aba1f39a45a55ddf49da3}{aws\+\_\+common\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{aws-c-common_2source_2common_8c_a64c104412a7aba1f39a45a55ddf49da3}{aws\+\_\+common\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{aws-c-common_2source_2common_8c_ab8d7867a2f9183ecaa6818267d3d2323}{aws\+\_\+common\+\_\+library\+\_\+clean\+\_\+up}} (void)
 \item 
@@ -47,7 +47,7 @@ static struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+
 \item 
 static struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} \mbox{\hyperlink{aws-c-common_2source_2common_8c_aceb3a0d71020b1ded2990c2ed82e0caa}{s\+\_\+common\+\_\+log\+\_\+subject\+\_\+list}}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws-c-common_2source_2common_8c_ae0869a9f98ed9b90216504c9e93aab8c}{s\+\_\+common\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+static bool \mbox{\hyperlink{aws-c-common_2source_2common_8c_ae0869a9f98ed9b90216504c9e93aab8c}{s\+\_\+common\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}
 \end{DoxyCompactItemize}
 
 
@@ -134,7 +134,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{common.c@{common.c}!s\_common\_library\_initialized@{s\_common\_library\_initialized}}
 \index{s\_common\_library\_initialized@{s\_common\_library\_initialized}!common.c@{common.c}}
 \doxysubsubsection{\texorpdfstring{s\_common\_library\_initialized}{s\_common\_library\_initialized}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+common\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily bool s\+\_\+common\+\_\+library\+\_\+initialized = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{aws-c-common_2source_2common_8c_ab90c7a35711ac0f2be0d7ee525499276}\label{aws-c-common_2source_2common_8c_ab90c7a35711ac0f2be0d7ee525499276}} 
 \index{common.c@{common.c}!s\_common\_log\_subject\_infos@{s\_common\_log\_subject\_infos}}

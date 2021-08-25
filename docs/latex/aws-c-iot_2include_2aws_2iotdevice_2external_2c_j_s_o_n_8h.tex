@@ -51,7 +51,7 @@ struct \mbox{\hyperlink{structc_j_s_o_n___hooks}{c\+JSON\+\_\+\+Hooks}}
 \item 
 \#define \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_adab3f1e3586395bdb2da5a40059cb24b}{c\+JSON\+\_\+\+Set\+Number\+Value}}(object,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}})~((object != NULL) ? c\+JSON\+\_\+\+Set\+Number\+Helper(object, (double)\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}}) \+: (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}}))
 \item 
-\#define \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac3d6e5782fb4bb3c7a25c7c5b1868f06}{c\+JSON\+\_\+\+Array\+For\+Each}}(element,  array)~\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}{for}}(element = (array != NULL) ? (array)-\/$>$child \+: NULL; element != NULL; element = element-\/$>$next)
+\#define \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_ac3d6e5782fb4bb3c7a25c7c5b1868f06}{c\+JSON\+\_\+\+Array\+For\+Each}}(element,  array)~for(element = (array != NULL) ? (array)-\/$>$child \+: NULL; element != NULL; element = element-\/$>$next)
 \end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -135,7 +135,7 @@ const char $\ast$const const char $\ast$const \mbox{\hyperlink{aws-c-iot_2includ
 \index{cJSON.h@{cJSON.h}!cJSON\_ArrayForEach@{cJSON\_ArrayForEach}}
 \index{cJSON\_ArrayForEach@{cJSON\_ArrayForEach}!cJSON.h@{cJSON.h}}
 \doxysubsubsection{\texorpdfstring{cJSON\_ArrayForEach}{cJSON\_ArrayForEach}}
-{\footnotesize\ttfamily \#define c\+JSON\+\_\+\+Array\+For\+Each(\begin{DoxyParamCaption}\item[{}]{element,  }\item[{}]{array }\end{DoxyParamCaption})~\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}{for}}(element = (array != NULL) ? (array)-\/$>$child \+: NULL; element != NULL; element = element-\/$>$next)}
+{\footnotesize\ttfamily \#define c\+JSON\+\_\+\+Array\+For\+Each(\begin{DoxyParamCaption}\item[{}]{element,  }\item[{}]{array }\end{DoxyParamCaption})~for(element = (array != NULL) ? (array)-\/$>$child \+: NULL; element != NULL; element = element-\/$>$next)}
 
 \mbox{\Hypertarget{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a79203c3ba406ffd5736627cc1e082e38}\label{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a79203c3ba406ffd5736627cc1e082e38}} 
 \index{cJSON.h@{cJSON.h}!CJSON\_CDECL@{CJSON\_CDECL}}

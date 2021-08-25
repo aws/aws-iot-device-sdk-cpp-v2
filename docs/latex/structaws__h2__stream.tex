@@ -20,20 +20,20 @@ struct \{\\
 \>int32\_t \mbox{\hyperlink{structaws__h2__stream_a57d66bb595df644b08e8a0bb7b48dc0a}{window\_size\_peer}}\\
 \>int64\_t \mbox{\hyperlink{structaws__h2__stream_a0af1b93d97b79e94d93d058de047dbdf}{window\_size\_self}}\\
 \>struct \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} $\ast$ \mbox{\hyperlink{structaws__h2__stream_a9fa11c1613300476c360a3d5c99cf13f}{outgoing\_message}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h2__stream_afd29c08c92db2d944a081845d6a6ce18}{received\_main\_headers}}\\
-\} \mbox{\hyperlink{structaws__h2__stream_abadcdf4fd5f76c49d3d1ea4e162b1cf2}{thread\_data}}\\
+\>bool \mbox{\hyperlink{structaws__h2__stream_afd29c08c92db2d944a081845d6a6ce18}{received\_main\_headers}}\\
+\} \mbox{\hyperlink{structaws__h2__stream_a14ea630b6e0826f865b55e31a43f954d}{thread\_data}}\\
 
 \end{tabbing}\item 
 \begin{tabbing}
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
 \>struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structaws__h2__stream_a67cea5b0531543309e1c06ce24f10a32}{lock}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h2__stream_ae57d0a646365f81fd7d3f224a9c2c4a6}{is\_cross\_thread\_work\_task\_scheduled}}\\
+\>bool \mbox{\hyperlink{structaws__h2__stream_ae57d0a646365f81fd7d3f224a9c2c4a6}{is\_cross\_thread\_work\_task\_scheduled}}\\
 \>size\_t \mbox{\hyperlink{structaws__h2__stream_a1b92bb599ee575b331d81ffd2ef68281}{window\_update\_size}}\\
 \>uint32\_t \mbox{\hyperlink{structaws__h2__stream_a696872b61bf2c75e912c5896dad7bab8}{user\_reset\_error\_code}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h2__stream_a7a8b606d60c5e0af8483e285c40ca83e}{reset\_called}}\\
+\>bool \mbox{\hyperlink{structaws__h2__stream_a7a8b606d60c5e0af8483e285c40ca83e}{reset\_called}}\\
 \>enum \mbox{\hyperlink{h2__stream_8h_a6fbb0dfccf48daf422c944592c52ae11}{aws\_h2\_stream\_api\_state}} \mbox{\hyperlink{structaws__h2__stream_aba963aaa190f262f26bb2ebbf2222678}{api\_state}}\\
-\} \mbox{\hyperlink{structaws__h2__stream_a0a6ec98d511b69124fe45218257f15c2}{synced\_data}}\\
+\} \mbox{\hyperlink{structaws__h2__stream_abd60e5b89b1f1662cdcf1f36f0c7d4ad}{synced\_data}}\\
 
 \end{tabbing}\item 
 int64\+\_\+t \mbox{\hyperlink{structaws__h2__stream_ab949d9c90bcb154f553407af2e6f764b}{sent\+\_\+reset\+\_\+error\+\_\+code}}
@@ -65,7 +65,7 @@ int64\+\_\+t \mbox{\hyperlink{structaws__h2__stream_a96078cb0c474580b4fe10bf7cf2
 \index{aws\_h2\_stream@{aws\_h2\_stream}!is\_cross\_thread\_work\_task\_scheduled@{is\_cross\_thread\_work\_task\_scheduled}}
 \index{is\_cross\_thread\_work\_task\_scheduled@{is\_cross\_thread\_work\_task\_scheduled}!aws\_h2\_stream@{aws\_h2\_stream}}
 \doxysubsubsection{\texorpdfstring{is\_cross\_thread\_work\_task\_scheduled}{is\_cross\_thread\_work\_task\_scheduled}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h2\+\_\+stream\+::is\+\_\+cross\+\_\+thread\+\_\+work\+\_\+task\+\_\+scheduled}
+{\footnotesize\ttfamily bool aws\+\_\+h2\+\_\+stream\+::is\+\_\+cross\+\_\+thread\+\_\+work\+\_\+task\+\_\+scheduled}
 
 \mbox{\Hypertarget{structaws__h2__stream_a67cea5b0531543309e1c06ce24f10a32}\label{structaws__h2__stream_a67cea5b0531543309e1c06ce24f10a32}} 
 \index{aws\_h2\_stream@{aws\_h2\_stream}!lock@{lock}}
@@ -89,7 +89,7 @@ int64\+\_\+t \mbox{\hyperlink{structaws__h2__stream_a96078cb0c474580b4fe10bf7cf2
 \index{aws\_h2\_stream@{aws\_h2\_stream}!received\_main\_headers@{received\_main\_headers}}
 \index{received\_main\_headers@{received\_main\_headers}!aws\_h2\_stream@{aws\_h2\_stream}}
 \doxysubsubsection{\texorpdfstring{received\_main\_headers}{received\_main\_headers}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h2\+\_\+stream\+::received\+\_\+main\+\_\+headers}
+{\footnotesize\ttfamily bool aws\+\_\+h2\+\_\+stream\+::received\+\_\+main\+\_\+headers}
 
 \mbox{\Hypertarget{structaws__h2__stream_a96078cb0c474580b4fe10bf7cf22562b}\label{structaws__h2__stream_a96078cb0c474580b4fe10bf7cf22562b}} 
 \index{aws\_h2\_stream@{aws\_h2\_stream}!received\_reset\_error\_code@{received\_reset\_error\_code}}
@@ -101,7 +101,7 @@ int64\+\_\+t \mbox{\hyperlink{structaws__h2__stream_a96078cb0c474580b4fe10bf7cf2
 \index{aws\_h2\_stream@{aws\_h2\_stream}!reset\_called@{reset\_called}}
 \index{reset\_called@{reset\_called}!aws\_h2\_stream@{aws\_h2\_stream}}
 \doxysubsubsection{\texorpdfstring{reset\_called}{reset\_called}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h2\+\_\+stream\+::reset\+\_\+called}
+{\footnotesize\ttfamily bool aws\+\_\+h2\+\_\+stream\+::reset\+\_\+called}
 
 \mbox{\Hypertarget{structaws__h2__stream_ab949d9c90bcb154f553407af2e6f764b}\label{structaws__h2__stream_ab949d9c90bcb154f553407af2e6f764b}} 
 \index{aws\_h2\_stream@{aws\_h2\_stream}!sent\_reset\_error\_code@{sent\_reset\_error\_code}}
@@ -115,13 +115,13 @@ int64\+\_\+t \mbox{\hyperlink{structaws__h2__stream_a96078cb0c474580b4fe10bf7cf2
 \doxysubsubsection{\texorpdfstring{state}{state}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394d}{aws\+\_\+h2\+\_\+stream\+\_\+state}} aws\+\_\+h2\+\_\+stream\+::state}
 
-\mbox{\Hypertarget{structaws__h2__stream_a0a6ec98d511b69124fe45218257f15c2}\label{structaws__h2__stream_a0a6ec98d511b69124fe45218257f15c2}} 
+\mbox{\Hypertarget{structaws__h2__stream_abd60e5b89b1f1662cdcf1f36f0c7d4ad}\label{structaws__h2__stream_abd60e5b89b1f1662cdcf1f36f0c7d4ad}} 
 \index{aws\_h2\_stream@{aws\_h2\_stream}!synced\_data@{synced\_data}}
 \index{synced\_data@{synced\_data}!aws\_h2\_stream@{aws\_h2\_stream}}
 \doxysubsubsection{\texorpdfstring{}{}}
 {\footnotesize\ttfamily struct  \{ ... \}  aws\+\_\+h2\+\_\+stream\+::synced\+\_\+data}
 
-\mbox{\Hypertarget{structaws__h2__stream_abadcdf4fd5f76c49d3d1ea4e162b1cf2}\label{structaws__h2__stream_abadcdf4fd5f76c49d3d1ea4e162b1cf2}} 
+\mbox{\Hypertarget{structaws__h2__stream_a14ea630b6e0826f865b55e31a43f954d}\label{structaws__h2__stream_a14ea630b6e0826f865b55e31a43f954d}} 
 \index{aws\_h2\_stream@{aws\_h2\_stream}!thread\_data@{thread\_data}}
 \index{thread\_data@{thread\_data}!aws\_h2\_stream@{aws\_h2\_stream}}
 \doxysubsubsection{\texorpdfstring{}{}}

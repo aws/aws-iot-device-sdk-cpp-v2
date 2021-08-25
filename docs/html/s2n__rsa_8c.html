@@ -72,12 +72,12 @@ $(function() {
   <div class="headertitle"><div class="title">s2n_rsa.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="evp_8h_source.html">openssl/evp.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="rsa_8h_source.html">openssl/rsa.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;openssl/evp.h&gt;</code><br />
+<code>#include &lt;openssl/rsa.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="stdint_8h_source.html">stdint.h</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n__errno_8h_source.html">error/s2n_errno.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__stuffer_8h_source.html">stuffer/s2n_stuffer.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="crypto_2s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__drbg_8h_source.html">crypto/s2n_drbg.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__rsa_8h_source.html">crypto/s2n_rsa.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__rsa__signing_8h_source.html">crypto/s2n_rsa_signing.h</a>&quot;</code><br />
@@ -106,9 +106,9 @@ Functions</h2></td></tr>
 <tr class="separator:adb016dea126aadd4344a235f265cbbc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa816b57a496a66ba5ad7edbf729afbb4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8c.html#aa816b57a496a66ba5ad7edbf729afbb4">s2n_rsa_check_key_exists</a> (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *pkey)</td></tr>
 <tr class="separator:aa816b57a496a66ba5ad7edbf729afbb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20252df5d1ee76910d54aedb96b97c20"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8c.html#a20252df5d1ee76910d54aedb96b97c20">s2n_evp_pkey_to_rsa_public_key</a> (<a class="el" href="s2n__rsa_8h.html#a39c78a896071c3b225e937f6c2df0c6a">s2n_rsa_public_key</a> *rsa_key, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *evp_public_key)</td></tr>
+<tr class="memitem:a20252df5d1ee76910d54aedb96b97c20"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8c.html#a20252df5d1ee76910d54aedb96b97c20">s2n_evp_pkey_to_rsa_public_key</a> (<a class="el" href="s2n__rsa_8h.html#a39c78a896071c3b225e937f6c2df0c6a">s2n_rsa_public_key</a> *rsa_key, EVP_PKEY *evp_public_key)</td></tr>
 <tr class="separator:a20252df5d1ee76910d54aedb96b97c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeee68756913d37e576b104f44379c297"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8c.html#aeee68756913d37e576b104f44379c297">s2n_evp_pkey_to_rsa_private_key</a> (<a class="el" href="s2n__rsa_8h.html#acf56abde98084e44e10b59d97bb6de58">s2n_rsa_private_key</a> *rsa_key, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *evp_private_key)</td></tr>
+<tr class="memitem:aeee68756913d37e576b104f44379c297"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8c.html#aeee68756913d37e576b104f44379c297">s2n_evp_pkey_to_rsa_private_key</a> (<a class="el" href="s2n__rsa_8h.html#acf56abde98084e44e10b59d97bb6de58">s2n_rsa_private_key</a> *rsa_key, EVP_PKEY *evp_private_key)</td></tr>
 <tr class="separator:aeee68756913d37e576b104f44379c297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf12aedfa877ab5d3571dcef0761551a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa_8c.html#abf12aedfa877ab5d3571dcef0761551a">s2n_rsa_pkey_init</a> (struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *pkey)</td></tr>
 <tr class="separator:abf12aedfa877ab5d3571dcef0761551a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,7 +129,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>evp_private_key</em>&#160;</td>
         </tr>
         <tr>
@@ -157,7 +157,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>evp_public_key</em>&#160;</td>
         </tr>
         <tr>

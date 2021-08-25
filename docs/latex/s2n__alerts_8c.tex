@@ -70,15 +70,15 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__alerts_8c_ae04705b728d9251bcebff77856cde5f6}{s2n\+\_\+alerts\+\_\+supported}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+static bool \mbox{\hyperlink{s2n__alerts_8c_ae04705b728d9251bcebff77856cde5f6}{s2n\+\_\+alerts\+\_\+supported}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__alerts_8c_a26caca1045e4e31ff053600bcf6dc208}{s2n\+\_\+handle\+\_\+as\+\_\+warning}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t level, uint8\+\_\+t type)
+static bool \mbox{\hyperlink{s2n__alerts_8c_a26caca1045e4e31ff053600bcf6dc208}{s2n\+\_\+handle\+\_\+as\+\_\+warning}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t level, uint8\+\_\+t type)
 \item 
 int \mbox{\hyperlink{s2n__alerts_8c_a45bdea2fd7faa208c0272f56bfb8c656}{s2n\+\_\+process\+\_\+alert\+\_\+fragment}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
 int \mbox{\hyperlink{s2n__alerts_8c_aa64cc9d8af1c1afc16c6720c02fef789}{s2n\+\_\+queue\+\_\+writer\+\_\+close\+\_\+alert\+\_\+warning}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-static int \mbox{\hyperlink{s2n__alerts_8c_af91ff6164cff98df80855a9a93a78e20}{s2n\+\_\+queue\+\_\+reader\+\_\+alert}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t level, uint8\+\_\+t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static int \mbox{\hyperlink{s2n__alerts_8c_af91ff6164cff98df80855a9a93a78e20}{s2n\+\_\+queue\+\_\+reader\+\_\+alert}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t level, uint8\+\_\+t error\+\_\+code)
 \item 
 int \mbox{\hyperlink{s2n__alerts_8c_aaab45cd713be8d161a114cf078b52635}{s2n\+\_\+queue\+\_\+reader\+\_\+unsupported\+\_\+protocol\+\_\+version\+\_\+alert}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
@@ -256,13 +256,13 @@ int \mbox{\hyperlink{s2n__alerts_8c_a85c39069581e54153f38ee260878714d}{s2n\+\_\+
 \index{s2n\_alerts.c@{s2n\_alerts.c}!s2n\_alerts\_supported@{s2n\_alerts\_supported}}
 \index{s2n\_alerts\_supported@{s2n\_alerts\_supported}!s2n\_alerts.c@{s2n\_alerts.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_alerts\_supported()}{s2n\_alerts\_supported()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+alerts\+\_\+supported (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s2n\+\_\+alerts\+\_\+supported (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__alerts_8c_a26caca1045e4e31ff053600bcf6dc208}\label{s2n__alerts_8c_a26caca1045e4e31ff053600bcf6dc208}} 
 \index{s2n\_alerts.c@{s2n\_alerts.c}!s2n\_handle\_as\_warning@{s2n\_handle\_as\_warning}}
 \index{s2n\_handle\_as\_warning@{s2n\_handle\_as\_warning}!s2n\_alerts.c@{s2n\_alerts.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_handle\_as\_warning()}{s2n\_handle\_as\_warning()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+handle\+\_\+as\+\_\+warning (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t}]{level,  }\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s2n\+\_\+handle\+\_\+as\+\_\+warning (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{uint8\+\_\+t}]{level,  }\item[{uint8\+\_\+t}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__alerts_8c_a45bdea2fd7faa208c0272f56bfb8c656}\label{s2n__alerts_8c_a45bdea2fd7faa208c0272f56bfb8c656}} 
 \index{s2n\_alerts.c@{s2n\_alerts.c}!s2n\_process\_alert\_fragment@{s2n\_process\_alert\_fragment}}

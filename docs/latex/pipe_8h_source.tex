@@ -18,13 +18,13 @@
 \DoxyCodeLine{19     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__pipe__write__end_a5519afdb0071a9c6e47d93e2aa34b631}{impl\_data}};}
 \DoxyCodeLine{20 \};}
 \DoxyCodeLine{21 }
-\DoxyCodeLine{31 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{pipe_8h_a09fca130eff2201e2e708346b1712daf}{aws\_pipe\_on\_readable\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__pipe__read__end}{aws\_pipe\_read\_end}} *read\_end, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{31 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{pipe_8h_a09fca130eff2201e2e708346b1712daf}{aws\_pipe\_on\_readable\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__pipe__read__end}{aws\_pipe\_read\_end}} *read\_end, \textcolor{keywordtype}{int} error\_code, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{32 }
 \DoxyCodeLine{42 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{pipe_8h_af5d692be5742b1a7a8e8eca17c1c1673}{aws\_pipe\_on\_write\_completed\_fn}})(}
 \DoxyCodeLine{43     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__pipe__write__end}{aws\_pipe\_write\_end}} *write\_end,}
-\DoxyCodeLine{44     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{44     \textcolor{keywordtype}{int} error\_code,}
 \DoxyCodeLine{45     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} src\_buffer,}
-\DoxyCodeLine{46     void *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{46     void *user\_data);}
 \DoxyCodeLine{47 }
 \DoxyCodeLine{48 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
 \DoxyCodeLine{49 }
@@ -34,7 +34,7 @@
 \DoxyCodeLine{58     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *read\_end\_event\_loop,}
 \DoxyCodeLine{59     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__pipe__write__end}{aws\_pipe\_write\_end}} *write\_end,}
 \DoxyCodeLine{60     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop}{aws\_event\_loop}} *write\_end\_event\_loop,}
-\DoxyCodeLine{61     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{61     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator);}
 \DoxyCodeLine{62 }
 \DoxyCodeLine{67 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
 \DoxyCodeLine{68 \textcolor{keywordtype}{int} \mbox{\hyperlink{pipe_8h_aef2448e9bd099dc5b05e76a4829d3e90}{aws\_pipe\_clean\_up\_read\_end}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__pipe__read__end}{aws\_pipe\_read\_end}} *read\_end);}
@@ -53,7 +53,7 @@
 \DoxyCodeLine{100     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__pipe__write__end}{aws\_pipe\_write\_end}} *write\_end,}
 \DoxyCodeLine{101     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} src\_buffer,}
 \DoxyCodeLine{102     \mbox{\hyperlink{pipe_8h_af5d692be5742b1a7a8e8eca17c1c1673}{aws\_pipe\_on\_write\_completed\_fn}} *on\_completed,}
-\DoxyCodeLine{103     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{103     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{104 }
 \DoxyCodeLine{114 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
 \DoxyCodeLine{115 \textcolor{keywordtype}{int} \mbox{\hyperlink{pipe_8h_aae85bd6247acc61240671660953dc8b4}{aws\_pipe\_read}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__pipe__read__end}{aws\_pipe\_read\_end}} *read\_end, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *dst\_buffer, \textcolor{keywordtype}{size\_t} *num\_bytes\_read);}
@@ -62,7 +62,7 @@
 \DoxyCodeLine{125 \textcolor{keywordtype}{int} \mbox{\hyperlink{pipe_8h_ad00ed7c19eca63b7f7ed4896090af02d}{aws\_pipe\_subscribe\_to\_readable\_events}}(}
 \DoxyCodeLine{126     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__pipe__read__end}{aws\_pipe\_read\_end}} *read\_end,}
 \DoxyCodeLine{127     \mbox{\hyperlink{pipe_8h_a09fca130eff2201e2e708346b1712daf}{aws\_pipe\_on\_readable\_fn}} *on\_readable,}
-\DoxyCodeLine{128     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{128     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{129 }
 \DoxyCodeLine{134 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
 \DoxyCodeLine{135 \textcolor{keywordtype}{int} \mbox{\hyperlink{pipe_8h_a925d5e9018c3015524ed1c7970cfc7f4}{aws\_pipe\_unsubscribe\_from\_readable\_events}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__pipe__read__end}{aws\_pipe\_read\_end}} *read\_end);}

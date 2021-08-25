@@ -1,16 +1,5 @@
 \hypertarget{structepoll__loop}{}\doxysection{epoll\+\_\+loop Struct Reference}
 \label{structepoll__loop}\index{epoll\_loop@{epoll\_loop}}
-
-
-{\ttfamily \#include $<$preamble.\+h$>$}
-
-\doxysubsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\+\_\+(group queue) \+\_\+(\+\_\+(group \mbox{\hyperlink{structepoll__loop_a4ecc5ba880f439fb20c7f0662c7cf902}{stop\+\_\+task}}) \+\_\+( \mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\+\_\+}} (\+:\mbox{\hyperlink{structepoll__loop_a4ecc5ba880f439fb20c7f0662c7cf902}{stop\+\_\+task}}) struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox{\hyperlink{structepoll__loop_a72481aadd9aab7a133da55c68b53aa7a}{stop\+\_\+task\+\_\+ptr}}
-\item 
-\+\_\+(group status) \+\_\+( \mbox{\hyperlink{structepoll__loop_a7979b6c036f2398f71f835525d876aac}{\+\_\+}} (\+:status) \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structepoll__loop_acb2bb98fcb30ca9d684bd6ed49c4e2c3}{should\+\_\+continue}}
-\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,29 +27,10 @@ struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox
 \item 
 int \mbox{\hyperlink{structepoll__loop_a40f1f7386150d88969c1e945613481c7}{epoll\+\_\+fd}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structepoll__loop_ac6d2f29cdee7eaccf6bf07ee8293fddc}{should\+\_\+process\+\_\+task\+\_\+pre\+\_\+queue}}
+bool \mbox{\hyperlink{structepoll__loop_ac6d2f29cdee7eaccf6bf07ee8293fddc}{should\+\_\+process\+\_\+task\+\_\+pre\+\_\+queue}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structepoll__loop_acb2bb98fcb30ca9d684bd6ed49c4e2c3}{should\+\_\+continue}}
-\item 
-\mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\+\_\+}}(group \mbox{\hyperlink{structepoll__loop_a4ed6ec104571f5cf3e84aec2e1c7b3d7}{scheduler}}) \mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\+\_\+}}(struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} \mbox{\hyperlink{structepoll__loop_a907a0b8fc7eaa6f839b004841d05d3ec}{thread\+\_\+created\+\_\+on}}
-\item 
-\mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\+\_\+}}(group read\+\_\+handle) \mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\+\_\+}}(struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} \mbox{\hyperlink{structepoll__loop_a1c65cc87a2f5607d1712812fa39cde56}{write\+\_\+task\+\_\+handle}}
+bool \mbox{\hyperlink{structepoll__loop_acb2bb98fcb30ca9d684bd6ed49c4e2c3}{should\+\_\+continue}}
 \end{DoxyCompactItemize}
-
-
-\doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{structepoll__loop_a7979b6c036f2398f71f835525d876aac}\label{structepoll__loop_a7979b6c036f2398f71f835525d876aac}} 
-\index{epoll\_loop@{epoll\_loop}!\_@{\_}}
-\index{\_@{\_}!epoll\_loop@{epoll\_loop}}
-\doxysubsubsection{\texorpdfstring{\_()}{\_()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \+\_\+ (group status) \+\_\+( epoll\+\_\+loop\+::\+\_\+ (\begin{DoxyParamCaption}\item[{\+:status}]{ }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}\label{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}} 
-\index{epoll\_loop@{epoll\_loop}!\_@{\_}}
-\index{\_@{\_}!epoll\_loop@{epoll\_loop}}
-\doxysubsubsection{\texorpdfstring{\_()}{\_()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \+\_\+ (group queue) \+\_\+( \+\_\+ (group \mbox{\hyperlink{structepoll__loop_a4ecc5ba880f439fb20c7f0662c7cf902}{stop\+\_\+task}}) \+\_\+( epoll\+\_\+loop\+::\+\_\+ (\begin{DoxyParamCaption}\item[{\+:\mbox{\hyperlink{structepoll__loop_a4ecc5ba880f439fb20c7f0662c7cf902}{stop\+\_\+task}}}]{ }\end{DoxyParamCaption})}
-
 
 
 \doxysubsection{Member Data Documentation}
@@ -92,13 +62,13 @@ int \mbox{\hyperlink{structepoll__loop_a40f1f7386150d88969c1e945613481c7}{epoll\
 \index{epoll\_loop@{epoll\_loop}!should\_continue@{should\_continue}}
 \index{should\_continue@{should\_continue}!epoll\_loop@{epoll\_loop}}
 \doxysubsubsection{\texorpdfstring{should\_continue}{should\_continue}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} epoll\+\_\+loop\+::should\+\_\+continue}
+{\footnotesize\ttfamily bool epoll\+\_\+loop\+::should\+\_\+continue}
 
 \mbox{\Hypertarget{structepoll__loop_ac6d2f29cdee7eaccf6bf07ee8293fddc}\label{structepoll__loop_ac6d2f29cdee7eaccf6bf07ee8293fddc}} 
 \index{epoll\_loop@{epoll\_loop}!should\_process\_task\_pre\_queue@{should\_process\_task\_pre\_queue}}
 \index{should\_process\_task\_pre\_queue@{should\_process\_task\_pre\_queue}!epoll\_loop@{epoll\_loop}}
 \doxysubsubsection{\texorpdfstring{should\_process\_task\_pre\_queue}{should\_process\_task\_pre\_queue}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} epoll\+\_\+loop\+::should\+\_\+process\+\_\+task\+\_\+pre\+\_\+queue}
+{\footnotesize\ttfamily bool epoll\+\_\+loop\+::should\+\_\+process\+\_\+task\+\_\+pre\+\_\+queue}
 
 \mbox{\Hypertarget{structepoll__loop_a4ecc5ba880f439fb20c7f0662c7cf902}\label{structepoll__loop_a4ecc5ba880f439fb20c7f0662c7cf902}} 
 \index{epoll\_loop@{epoll\_loop}!stop\_task@{stop\_task}}
@@ -127,14 +97,8 @@ int \mbox{\hyperlink{structepoll__loop_a40f1f7386150d88969c1e945613481c7}{epoll\
 \mbox{\Hypertarget{structepoll__loop_a55250b8115a00fbb011fb43bf23b708d}\label{structepoll__loop_a55250b8115a00fbb011fb43bf23b708d}} 
 \index{epoll\_loop@{epoll\_loop}!thread\_created\_on@{thread\_created\_on}}
 \index{thread\_created\_on@{thread\_created\_on}!epoll\_loop@{epoll\_loop}}
-\doxysubsubsection{\texorpdfstring{thread\_created\_on}{thread\_created\_on}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{thread\_created\_on}{thread\_created\_on}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} epoll\+\_\+loop\+::thread\+\_\+created\+\_\+on}
-
-\mbox{\Hypertarget{structepoll__loop_a907a0b8fc7eaa6f839b004841d05d3ec}\label{structepoll__loop_a907a0b8fc7eaa6f839b004841d05d3ec}} 
-\index{epoll\_loop@{epoll\_loop}!thread\_created\_on@{thread\_created\_on}}
-\index{thread\_created\_on@{thread\_created\_on}!epoll\_loop@{epoll\_loop}}
-\doxysubsubsection{\texorpdfstring{thread\_created\_on}{thread\_created\_on}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\+\_\+}} (group \mbox{\hyperlink{structepoll__loop_a4ed6ec104571f5cf3e84aec2e1c7b3d7}{scheduler}}) \mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\+\_\+}}( struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} epoll\+\_\+loop\+::thread\+\_\+created\+\_\+on}
 
 \mbox{\Hypertarget{structepoll__loop_ae59c4b5d4df90d1abe53ef4881b287ca}\label{structepoll__loop_ae59c4b5d4df90d1abe53ef4881b287ca}} 
 \index{epoll\_loop@{epoll\_loop}!thread\_joined\_to@{thread\_joined\_to}}
@@ -151,18 +115,11 @@ int \mbox{\hyperlink{structepoll__loop_a40f1f7386150d88969c1e945613481c7}{epoll\
 \mbox{\Hypertarget{structepoll__loop_a88449adadbf5dd8cde0e966d4667f7f8}\label{structepoll__loop_a88449adadbf5dd8cde0e966d4667f7f8}} 
 \index{epoll\_loop@{epoll\_loop}!write\_task\_handle@{write\_task\_handle}}
 \index{write\_task\_handle@{write\_task\_handle}!epoll\_loop@{epoll\_loop}}
-\doxysubsubsection{\texorpdfstring{write\_task\_handle}{write\_task\_handle}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{write\_task\_handle}{write\_task\_handle}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} epoll\+\_\+loop\+::write\+\_\+task\+\_\+handle}
 
-\mbox{\Hypertarget{structepoll__loop_a1c65cc87a2f5607d1712812fa39cde56}\label{structepoll__loop_a1c65cc87a2f5607d1712812fa39cde56}} 
-\index{epoll\_loop@{epoll\_loop}!write\_task\_handle@{write\_task\_handle}}
-\index{write\_task\_handle@{write\_task\_handle}!epoll\_loop@{epoll\_loop}}
-\doxysubsubsection{\texorpdfstring{write\_task\_handle}{write\_task\_handle}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\+\_\+}} (group read\+\_\+handle) \mbox{\hyperlink{structepoll__loop_af68eb7f6d763af1e3e5306188c9487e0}{\+\_\+}}( struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} epoll\+\_\+loop\+::write\+\_\+task\+\_\+handle}
 
 
-
-The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/linux/\mbox{\hyperlink{epoll__event__loop_8c}{epoll\+\_\+event\+\_\+loop.\+c}}\item 
-crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/\mbox{\hyperlink{preamble_8h}{preamble.\+h}}\end{DoxyCompactItemize}
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/source/linux/\mbox{\hyperlink{epoll__event__loop_8c}{epoll\+\_\+event\+\_\+loop.\+c}}\end{DoxyCompactItemize}

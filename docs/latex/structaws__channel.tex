@@ -35,7 +35,7 @@ struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} \mbox
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
 \>struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__channel_aeff23dabc9c91d0b7988fb49dc81a622}{list}}\\
-\} \mbox{\hyperlink{structaws__channel_a24a744691fb76b3f75760105511c985d}{channel\_thread\_tasks}}\\
+\} \mbox{\hyperlink{structaws__channel_a5098378fbe049b5921cc23e57f22e1c1}{channel\_thread\_tasks}}\\
 
 \end{tabbing}\item 
 \begin{tabbing}
@@ -45,17 +45,17 @@ struct \{\\
 \>struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__channel_aeff23dabc9c91d0b7988fb49dc81a622}{list}}\\
 \>struct \mbox{\hyperlink{structaws__task}{aws\_task}} \mbox{\hyperlink{structaws__channel_a4df4fd275c9e25853ef6d1ae9e72329d}{scheduling\_task}}\\
 \>struct \mbox{\hyperlink{structshutdown__task}{shutdown\_task}} \mbox{\hyperlink{structaws__channel_a42cbdd1d8ea4e5d02b13522bd9be8474}{shutdown\_task}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__channel_a70294f76417bdc4cd806f6d38b83d0d1}{is\_channel\_shut\_down}}\\
-\} \mbox{\hyperlink{structaws__channel_a97fb12022d2ca7892001bfe91f69af2f}{cross\_thread\_tasks}}\\
+\>bool \mbox{\hyperlink{structaws__channel_a70294f76417bdc4cd806f6d38b83d0d1}{is\_channel\_shut\_down}}\\
+\} \mbox{\hyperlink{structaws__channel_a56d0d5b9eff9d9a225eb7cce62669125}{cross\_thread\_tasks}}\\
 
 \end{tabbing}\item 
 size\+\_\+t \mbox{\hyperlink{structaws__channel_a5eb75a1e528b4fb6722f28d9c366bf81}{window\+\_\+update\+\_\+batch\+\_\+emit\+\_\+threshold}}
 \item 
 struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \mbox{\hyperlink{structaws__channel_aaca783723b428280861e6a59219b1013}{window\+\_\+update\+\_\+task}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__channel_a23328386a782df1381ee623405739573}{read\+\_\+back\+\_\+pressure\+\_\+enabled}}
+bool \mbox{\hyperlink{structaws__channel_a23328386a782df1381ee623405739573}{read\+\_\+back\+\_\+pressure\+\_\+enabled}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__channel_af0bad7e74b3bba947f129c7619f99e02}{window\+\_\+update\+\_\+in\+\_\+progress}}
+bool \mbox{\hyperlink{structaws__channel_af0bad7e74b3bba947f129c7619f99e02}{window\+\_\+update\+\_\+in\+\_\+progress}}
 \end{DoxyCompactItemize}
 
 
@@ -72,13 +72,13 @@ struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \
 \doxysubsubsection{\texorpdfstring{channel\_state}{channel\_state}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200c}{aws\+\_\+channel\+\_\+state}} aws\+\_\+channel\+::channel\+\_\+state}
 
-\mbox{\Hypertarget{structaws__channel_a24a744691fb76b3f75760105511c985d}\label{structaws__channel_a24a744691fb76b3f75760105511c985d}} 
+\mbox{\Hypertarget{structaws__channel_a5098378fbe049b5921cc23e57f22e1c1}\label{structaws__channel_a5098378fbe049b5921cc23e57f22e1c1}} 
 \index{aws\_channel@{aws\_channel}!channel\_thread\_tasks@{channel\_thread\_tasks}}
 \index{channel\_thread\_tasks@{channel\_thread\_tasks}!aws\_channel@{aws\_channel}}
 \doxysubsubsection{\texorpdfstring{}{}}
 {\footnotesize\ttfamily struct  \{ ... \}  aws\+\_\+channel\+::channel\+\_\+thread\+\_\+tasks}
 
-\mbox{\Hypertarget{structaws__channel_a97fb12022d2ca7892001bfe91f69af2f}\label{structaws__channel_a97fb12022d2ca7892001bfe91f69af2f}} 
+\mbox{\Hypertarget{structaws__channel_a56d0d5b9eff9d9a225eb7cce62669125}\label{structaws__channel_a56d0d5b9eff9d9a225eb7cce62669125}} 
 \index{aws\_channel@{aws\_channel}!cross\_thread\_tasks@{cross\_thread\_tasks}}
 \index{cross\_thread\_tasks@{cross\_thread\_tasks}!aws\_channel@{aws\_channel}}
 \doxysubsubsection{\texorpdfstring{}{}}
@@ -100,7 +100,7 @@ struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \
 \index{aws\_channel@{aws\_channel}!is\_channel\_shut\_down@{is\_channel\_shut\_down}}
 \index{is\_channel\_shut\_down@{is\_channel\_shut\_down}!aws\_channel@{aws\_channel}}
 \doxysubsubsection{\texorpdfstring{is\_channel\_shut\_down}{is\_channel\_shut\_down}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+channel\+::is\+\_\+channel\+\_\+shut\+\_\+down}
+{\footnotesize\ttfamily bool aws\+\_\+channel\+::is\+\_\+channel\+\_\+shut\+\_\+down}
 
 \mbox{\Hypertarget{structaws__channel_aeff23dabc9c91d0b7988fb49dc81a622}\label{structaws__channel_aeff23dabc9c91d0b7988fb49dc81a622}} 
 \index{aws\_channel@{aws\_channel}!list@{list}}
@@ -136,7 +136,7 @@ struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \
 \index{aws\_channel@{aws\_channel}!read\_back\_pressure\_enabled@{read\_back\_pressure\_enabled}}
 \index{read\_back\_pressure\_enabled@{read\_back\_pressure\_enabled}!aws\_channel@{aws\_channel}}
 \doxysubsubsection{\texorpdfstring{read\_back\_pressure\_enabled}{read\_back\_pressure\_enabled}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+channel\+::read\+\_\+back\+\_\+pressure\+\_\+enabled}
+{\footnotesize\ttfamily bool aws\+\_\+channel\+::read\+\_\+back\+\_\+pressure\+\_\+enabled}
 
 \mbox{\Hypertarget{structaws__channel_a1018b47a2fe373a741603698c69e0f70}\label{structaws__channel_a1018b47a2fe373a741603698c69e0f70}} 
 \index{aws\_channel@{aws\_channel}!refcount@{refcount}}
@@ -202,7 +202,7 @@ struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \
 \index{aws\_channel@{aws\_channel}!window\_update\_in\_progress@{window\_update\_in\_progress}}
 \index{window\_update\_in\_progress@{window\_update\_in\_progress}!aws\_channel@{aws\_channel}}
 \doxysubsubsection{\texorpdfstring{window\_update\_in\_progress}{window\_update\_in\_progress}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+channel\+::window\+\_\+update\+\_\+in\+\_\+progress}
+{\footnotesize\ttfamily bool aws\+\_\+channel\+::window\+\_\+update\+\_\+in\+\_\+progress}
 
 \mbox{\Hypertarget{structaws__channel_aaca783723b428280861e6a59219b1013}\label{structaws__channel_aaca783723b428280861e6a59219b1013}} 
 \index{aws\_channel@{aws\_channel}!window\_update\_task@{window\_update\_task}}

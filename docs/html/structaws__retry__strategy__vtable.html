@@ -76,13 +76,13 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:a0bb48584f5f36b0258d0231a8d743c41"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__retry__strategy__vtable.html#a0bb48584f5f36b0258d0231a8d743c41">destroy</a> )(struct <a class="el" href="structaws__retry__strategy.html">aws_retry_strategy</a> *retry_strategy)</td></tr>
 <tr class="separator:a0bb48584f5f36b0258d0231a8d743c41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a358f1f061cb4db7524b4674be5df15e4"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__retry__strategy__vtable.html#a358f1f061cb4db7524b4674be5df15e4">acquire_token</a> )(struct <a class="el" href="structaws__retry__strategy.html">aws_retry_strategy</a> *retry_strategy, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *partition_id, <a class="el" href="retry__strategy_8h.html#a840055993c2a9788207792f45db2e27f">aws_retry_strategy_on_retry_token_acquired_fn</a> *on_acquired, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>, uint64_t timeout_ms)</td></tr>
+<tr class="memitem:a358f1f061cb4db7524b4674be5df15e4"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__retry__strategy__vtable.html#a358f1f061cb4db7524b4674be5df15e4">acquire_token</a> )(struct <a class="el" href="structaws__retry__strategy.html">aws_retry_strategy</a> *retry_strategy, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *partition_id, <a class="el" href="retry__strategy_8h.html#a840055993c2a9788207792f45db2e27f">aws_retry_strategy_on_retry_token_acquired_fn</a> *on_acquired, void *user_data, uint64_t timeout_ms)</td></tr>
 <tr class="separator:a358f1f061cb4db7524b4674be5df15e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad21c911c31114164368a08a559e3d376"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__retry__strategy__vtable.html#ad21c911c31114164368a08a559e3d376">schedule_retry</a> )(struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a3f037ea767197698bc0b4c14fa155431">token</a>, enum <a class="el" href="retry__strategy_8h.html#af89c6cafd32c7015ca7157a0c36ecb0c">aws_retry_error_type</a> error_type, <a class="el" href="retry__strategy_8h.html#ade4a870a92bb428e8688ec1c07273220">aws_retry_strategy_on_retry_ready_fn</a> *retry_ready, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:ad21c911c31114164368a08a559e3d376"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__retry__strategy__vtable.html#ad21c911c31114164368a08a559e3d376">schedule_retry</a> )(struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *token, enum <a class="el" href="retry__strategy_8h.html#af89c6cafd32c7015ca7157a0c36ecb0c">aws_retry_error_type</a> error_type, <a class="el" href="retry__strategy_8h.html#ade4a870a92bb428e8688ec1c07273220">aws_retry_strategy_on_retry_ready_fn</a> *retry_ready, void *user_data)</td></tr>
 <tr class="separator:ad21c911c31114164368a08a559e3d376"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0480f716f73a1e440020517649959938"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__retry__strategy__vtable.html#a0480f716f73a1e440020517649959938">record_success</a> )(struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a3f037ea767197698bc0b4c14fa155431">token</a>)</td></tr>
+<tr class="memitem:a0480f716f73a1e440020517649959938"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__retry__strategy__vtable.html#a0480f716f73a1e440020517649959938">record_success</a> )(struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *token)</td></tr>
 <tr class="separator:a0480f716f73a1e440020517649959938"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18da8a69cbaba0eb44b5e2fedffb5a80"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__retry__strategy__vtable.html#a18da8a69cbaba0eb44b5e2fedffb5a80">release_token</a> )(struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a3f037ea767197698bc0b4c14fa155431">token</a>)</td></tr>
+<tr class="memitem:a18da8a69cbaba0eb44b5e2fedffb5a80"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__retry__strategy__vtable.html#a18da8a69cbaba0eb44b5e2fedffb5a80">release_token</a> )(struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *token)</td></tr>
 <tr class="separator:a18da8a69cbaba0eb44b5e2fedffb5a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -93,7 +93,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_retry_strategy_vtable::acquire_token) (struct <a class="el" href="structaws__retry__strategy.html">aws_retry_strategy</a> *retry_strategy, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *partition_id, <a class="el" href="retry__strategy_8h.html#a840055993c2a9788207792f45db2e27f">aws_retry_strategy_on_retry_token_acquired_fn</a> *on_acquired, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>, uint64_t timeout_ms)</td>
+          <td class="memname">int(* aws_retry_strategy_vtable::acquire_token) (struct <a class="el" href="structaws__retry__strategy.html">aws_retry_strategy</a> *retry_strategy, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *partition_id, <a class="el" href="retry__strategy_8h.html#a840055993c2a9788207792f45db2e27f">aws_retry_strategy_on_retry_token_acquired_fn</a> *on_acquired, void *user_data, uint64_t timeout_ms)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -121,7 +121,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_retry_strategy_vtable::record_success) (struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a3f037ea767197698bc0b4c14fa155431">token</a>)</td>
+          <td class="memname">int(* aws_retry_strategy_vtable::record_success) (struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *token)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -135,7 +135,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* aws_retry_strategy_vtable::release_token) (struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a3f037ea767197698bc0b4c14fa155431">token</a>)</td>
+          <td class="memname">void(* aws_retry_strategy_vtable::release_token) (struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *token)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -149,7 +149,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* aws_retry_strategy_vtable::schedule_retry) (struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a3f037ea767197698bc0b4c14fa155431">token</a>, enum <a class="el" href="retry__strategy_8h.html#af89c6cafd32c7015ca7157a0c36ecb0c">aws_retry_error_type</a> error_type, <a class="el" href="retry__strategy_8h.html#ade4a870a92bb428e8688ec1c07273220">aws_retry_strategy_on_retry_ready_fn</a> *retry_ready, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">int(* aws_retry_strategy_vtable::schedule_retry) (struct <a class="el" href="structaws__retry__token.html">aws_retry_token</a> *token, enum <a class="el" href="retry__strategy_8h.html#af89c6cafd32c7015ca7157a0c36ecb0c">aws_retry_error_type</a> error_type, <a class="el" href="retry__strategy_8h.html#ade4a870a92bb428e8688ec1c07273220">aws_retry_strategy_on_retry_ready_fn</a> *retry_ready, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">

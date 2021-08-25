@@ -105,27 +105,27 @@ Functions</h2></td></tr>
 <tr class="separator:ad5af6c26fb0d52fb1e87e3de6dc19f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfe78474313e3417bedbe59f453a7d8b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#abfe78474313e3417bedbe59f453a7d8b">s_server_unlock_synced_data</a> (struct <a class="el" href="structaws__http__server.html">aws_http_server</a> *server)</td></tr>
 <tr class="separator:abfe78474313e3417bedbe59f453a7d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f8d04d47698ee4b329433653fd177d6"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a9f8d04d47698ee4b329433653fd177d6">s_connection_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> is_server, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> is_using_tls, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> manual_window_management, size_t initial_window_size, const struct <a class="el" href="structaws__http1__connection__options.html">aws_http1_connection_options</a> *http1_options, const struct <a class="el" href="structaws__http2__connection__options.html">aws_http2_connection_options</a> *http2_options)</td></tr>
+<tr class="memitem:a9f8d04d47698ee4b329433653fd177d6"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a9f8d04d47698ee4b329433653fd177d6">s_connection_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, bool is_server, bool is_using_tls, bool manual_window_management, size_t initial_window_size, const struct <a class="el" href="structaws__http1__connection__options.html">aws_http1_connection_options</a> *http1_options, const struct <a class="el" href="structaws__http2__connection__options.html">aws_http2_connection_options</a> *http2_options)</td></tr>
 <tr class="separator:a9f8d04d47698ee4b329433653fd177d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bc13730feb3a067d0975a10fbb9b978"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a3bc13730feb3a067d0975a10fbb9b978">aws_http_connection_close</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
 <tr class="separator:a3bc13730feb3a067d0975a10fbb9b978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7275b058954e348968c04074940212fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a7275b058954e348968c04074940212fd">aws_http_connection_is_open</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
+<tr class="memitem:a7275b058954e348968c04074940212fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a7275b058954e348968c04074940212fd">aws_http_connection_is_open</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
 <tr class="separator:a7275b058954e348968c04074940212fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb837565803c5c287ee64997dd25e28b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#aeb837565803c5c287ee64997dd25e28b">aws_http_connection_new_requests_allowed</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
+<tr class="memitem:aeb837565803c5c287ee64997dd25e28b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#aeb837565803c5c287ee64997dd25e28b">aws_http_connection_new_requests_allowed</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
 <tr class="separator:aeb837565803c5c287ee64997dd25e28b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af539ca2964c069e70473e6477c85c7bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#af539ca2964c069e70473e6477c85c7bc">aws_http_connection_is_client</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
+<tr class="memitem:af539ca2964c069e70473e6477c85c7bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#af539ca2964c069e70473e6477c85c7bc">aws_http_connection_is_client</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
 <tr class="separator:af539ca2964c069e70473e6477c85c7bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45f05500760bbe9ef0f90ab64443a48e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a45f05500760bbe9ef0f90ab64443a48e">aws_http_connection_is_server</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
+<tr class="memitem:a45f05500760bbe9ef0f90ab64443a48e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a45f05500760bbe9ef0f90ab64443a48e">aws_http_connection_is_server</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
 <tr class="separator:a45f05500760bbe9ef0f90ab64443a48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e8d2c7c78b8c48267487d0ae29c1e60"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a5e8d2c7c78b8c48267487d0ae29c1e60">aws_http_connection_update_window</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, size_t increment_size)</td></tr>
 <tr class="separator:a5e8d2c7c78b8c48267487d0ae29c1e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99381f6229323c38a24e399a420989b2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a99381f6229323c38a24e399a420989b2">s_check_http2_connection</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection)</td></tr>
 <tr class="separator:a99381f6229323c38a24e399a420989b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b5057a1acd029b6fda10143eef145fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a9b5057a1acd029b6fda10143eef145fe">aws_http2_connection_change_settings</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, const struct <a class="el" href="structaws__http2__setting.html">aws_http2_setting</a> *settings_array, size_t num_settings, <a class="el" href="connection_8h.html#a96fcc2412e49224b6c36d1356b609ee8">aws_http2_on_change_settings_complete_fn</a> *on_completed, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a9b5057a1acd029b6fda10143eef145fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a9b5057a1acd029b6fda10143eef145fe">aws_http2_connection_change_settings</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, const struct <a class="el" href="structaws__http2__setting.html">aws_http2_setting</a> *settings_array, size_t num_settings, <a class="el" href="connection_8h.html#a96fcc2412e49224b6c36d1356b609ee8">aws_http2_on_change_settings_complete_fn</a> *on_completed, void *user_data)</td></tr>
 <tr class="separator:a9b5057a1acd029b6fda10143eef145fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae744f75d00df430532aea8ad776759c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#ae744f75d00df430532aea8ad776759c3">aws_http2_connection_ping</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *optional_opaque_data, <a class="el" href="connection_8h.html#aef09b06b4e26402e4cdd097c869dcb32">aws_http2_on_ping_complete_fn</a> *on_ack, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:ae744f75d00df430532aea8ad776759c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#ae744f75d00df430532aea8ad776759c3">aws_http2_connection_ping</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *optional_opaque_data, <a class="el" href="connection_8h.html#aef09b06b4e26402e4cdd097c869dcb32">aws_http2_on_ping_complete_fn</a> *on_ack, void *user_data)</td></tr>
 <tr class="separator:ae744f75d00df430532aea8ad776759c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a648613943a872b64a69695436e0ff161"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a648613943a872b64a69695436e0ff161">aws_http2_connection_send_goaway</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, uint32_t http2_error, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> allow_more_streams, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *optional_debug_data)</td></tr>
+<tr class="memitem:a648613943a872b64a69695436e0ff161"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a648613943a872b64a69695436e0ff161">aws_http2_connection_send_goaway</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, uint32_t http2_error, bool allow_more_streams, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *optional_debug_data)</td></tr>
 <tr class="separator:a648613943a872b64a69695436e0ff161"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e505a79ad648f40158b0830086b824f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a0e505a79ad648f40158b0830086b824f">aws_http2_connection_get_sent_goaway</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *http2_connection, uint32_t *out_http2_error, uint32_t *out_last_stream_id)</td></tr>
 <tr class="separator:a0e505a79ad648f40158b0830086b824f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,21 +141,21 @@ Functions</h2></td></tr>
 <tr class="separator:a62afbcc4f6c44f940f0f6236d850e7d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aead66daaf971eea94209360aec2afcb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#aead66daaf971eea94209360aec2afcb7">aws_http_connection_release</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
 <tr class="separator:aead66daaf971eea94209360aec2afcb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47243190ef7e5fc214b9bc2b5df760f9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a47243190ef7e5fc214b9bc2b5df760f9">s_server_bootstrap_on_accept_channel_setup</a> (struct <a class="el" href="structaws__server__bootstrap.html">aws_server_bootstrap</a> *bootstrap, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a47243190ef7e5fc214b9bc2b5df760f9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a47243190ef7e5fc214b9bc2b5df760f9">s_server_bootstrap_on_accept_channel_setup</a> (struct <a class="el" href="structaws__server__bootstrap.html">aws_server_bootstrap</a> *bootstrap, int error_code, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *user_data)</td></tr>
 <tr class="separator:a47243190ef7e5fc214b9bc2b5df760f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a332603453b46631d376b6b60518bdec7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a332603453b46631d376b6b60518bdec7">s_http_server_clean_up</a> (struct <a class="el" href="structaws__http__server.html">aws_http_server</a> *server)</td></tr>
 <tr class="separator:a332603453b46631d376b6b60518bdec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d0999d66ec581110b5d3c2bc49bab92"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a2d0999d66ec581110b5d3c2bc49bab92">s_server_bootstrap_on_accept_channel_shutdown</a> (struct <a class="el" href="structaws__server__bootstrap.html">aws_server_bootstrap</a> *bootstrap, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a2d0999d66ec581110b5d3c2bc49bab92"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a2d0999d66ec581110b5d3c2bc49bab92">s_server_bootstrap_on_accept_channel_shutdown</a> (struct <a class="el" href="structaws__server__bootstrap.html">aws_server_bootstrap</a> *bootstrap, int error_code, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *user_data)</td></tr>
 <tr class="separator:a2d0999d66ec581110b5d3c2bc49bab92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3d90332ba2520db866eb9f97d905bbe"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#ad3d90332ba2520db866eb9f97d905bbe">s_server_bootstrap_on_server_listener_destroy</a> (struct <a class="el" href="structaws__server__bootstrap.html">aws_server_bootstrap</a> *bootstrap, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:ad3d90332ba2520db866eb9f97d905bbe"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#ad3d90332ba2520db866eb9f97d905bbe">s_server_bootstrap_on_server_listener_destroy</a> (struct <a class="el" href="structaws__server__bootstrap.html">aws_server_bootstrap</a> *bootstrap, void *user_data)</td></tr>
 <tr class="separator:ad3d90332ba2520db866eb9f97d905bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30b0da20d6ae5ac5464cc3b1013f8c7d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__http__server.html">aws_http_server</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a30b0da20d6ae5ac5464cc3b1013f8c7d">aws_http_server_new</a> (const struct <a class="el" href="structaws__http__server__options.html">aws_http_server_options</a> *options)</td></tr>
 <tr class="separator:a30b0da20d6ae5ac5464cc3b1013f8c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e04d99cb0334dfaab3943d67efe3e99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a6e04d99cb0334dfaab3943d67efe3e99">aws_http_server_release</a> (struct <a class="el" href="structaws__http__server.html">aws_http_server</a> *server)</td></tr>
 <tr class="separator:a6e04d99cb0334dfaab3943d67efe3e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a165efa4e1cdcfa14881938b7a1e3f8aa"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a165efa4e1cdcfa14881938b7a1e3f8aa">s_client_bootstrap_on_channel_setup</a> (struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *channel_bootstrap, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a165efa4e1cdcfa14881938b7a1e3f8aa"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a165efa4e1cdcfa14881938b7a1e3f8aa">s_client_bootstrap_on_channel_setup</a> (struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *channel_bootstrap, int error_code, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *user_data)</td></tr>
 <tr class="separator:a165efa4e1cdcfa14881938b7a1e3f8aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a5ed990603fb23e54c9f1e1495ff392"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a2a5ed990603fb23e54c9f1e1495ff392">s_client_bootstrap_on_channel_shutdown</a> (struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *channel_bootstrap, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a2a5ed990603fb23e54c9f1e1495ff392"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a2a5ed990603fb23e54c9f1e1495ff392">s_client_bootstrap_on_channel_shutdown</a> (struct <a class="el" href="structaws__client__bootstrap.html">aws_client_bootstrap</a> *channel_bootstrap, int error_code, struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, void *user_data)</td></tr>
 <tr class="separator:a2a5ed990603fb23e54c9f1e1495ff392"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e10146938f70e596f15e9dad9103d71"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="connection_8c.html#a2e10146938f70e596f15e9dad9103d71">s_validate_http_client_connection_options</a> (const struct <a class="el" href="structaws__http__client__connection__options.html">aws_http_client_connection_options</a> *options)</td></tr>
 <tr class="separator:a2e10146938f70e596f15e9dad9103d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -466,7 +466,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>allow_more_streams</em>, </td>
         </tr>
         <tr>
@@ -677,7 +677,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_http_connection_is_client </td>
+          <td class="memname">bool aws_http_connection_is_client </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td>
           <td class="paramname"><em>connection</em></td><td>)</td>
@@ -696,7 +696,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_http_connection_is_open </td>
+          <td class="memname">bool aws_http_connection_is_open </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td>
           <td class="paramname"><em>connection</em></td><td>)</td>
@@ -715,7 +715,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_http_connection_is_server </td>
+          <td class="memname">bool aws_http_connection_is_server </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td>
           <td class="paramname"><em>connection</em></td><td>)</td>
@@ -734,7 +734,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_http_connection_new_requests_allowed </td>
+          <td class="memname">bool aws_http_connection_new_requests_allowed </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td>
           <td class="paramname"><em>connection</em></td><td>)</td>
@@ -1053,19 +1053,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>is_server</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>is_using_tls</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>manual_window_management</em>, </td>
         </tr>
         <tr>

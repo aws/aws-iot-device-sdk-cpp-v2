@@ -12,7 +12,7 @@
 \DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{connection__manager_8h}{aws/http/connection\_manager.h}}>}}
 \DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{retry__strategy_8h}{aws/io/retry\_strategy.h}}>}}
 \DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws__imds__client_8h_a784298284433abce7c294ff0be3c4793}{aws\_imds\_client\_shutdown\_completed\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{15 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws__imds__client_8h_a784298284433abce7c294ff0be3c4793}{aws\_imds\_client\_shutdown\_completed\_fn}})(\textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{16 }
 \DoxyCodeLine{20 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__imds__client__shutdown__options}{aws\_imds\_client\_shutdown\_options}} \{}
 \DoxyCodeLine{21     \mbox{\hyperlink{aws__imds__client_8h_a784298284433abce7c294ff0be3c4793}{aws\_imds\_client\_shutdown\_completed\_fn}} *\mbox{\hyperlink{structaws__imds__client__shutdown__options_a73a65ce3abfba32c230a1df21536d2a0}{shutdown\_callback}};}
@@ -54,7 +54,7 @@
 \DoxyCodeLine{60 \textcolor{comment}{ * Standard callback for instance metadata queries}}
 \DoxyCodeLine{61 \textcolor{comment}{ */}}
 \DoxyCodeLine{62 \textcolor{keyword}{typedef} void(}
-\DoxyCodeLine{63     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *resource, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{63     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *resource, \textcolor{keywordtype}{int} error\_code, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{64 }
 \DoxyCodeLine{68 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__imds__iam__profile}{aws\_imds\_iam\_profile}} \{}
 \DoxyCodeLine{69     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__date__time}{aws\_date\_time}} \mbox{\hyperlink{structaws__imds__iam__profile_a6556c84255fc738c305881dd537a5c1a}{last\_updated}};}
@@ -83,22 +83,22 @@
 \DoxyCodeLine{97 }
 \DoxyCodeLine{98 \textcolor{comment}{/* the item typed stored in array is pointer to aws\_byte\_cursor */}}
 \DoxyCodeLine{99 \textcolor{keyword}{typedef} void(}
-\DoxyCodeLine{100     \mbox{\hyperlink{aws__imds__client_8h_a186f335140b4adec5def33e90cb88941}{aws\_imds\_client\_on\_get\_array\_callback\_fn}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *array, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{100     \mbox{\hyperlink{aws__imds__client_8h_a186f335140b4adec5def33e90cb88941}{aws\_imds\_client\_on\_get\_array\_callback\_fn}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *array, \textcolor{keywordtype}{int} error\_code, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{101 }
 \DoxyCodeLine{102 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws__imds__client_8h_a96761591084ab36be4cf59b9426b0327}{aws\_imds\_client\_on\_get\_credentials\_callback\_fn}})(}
 \DoxyCodeLine{103     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__credentials}{aws\_credentials}} *credentials,}
-\DoxyCodeLine{104     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{105     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{104     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{105     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{106 }
 \DoxyCodeLine{107 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws__imds__client_8h_a5807103fc1463281f7a5e2294e2467a4}{aws\_imds\_client\_on\_get\_iam\_profile\_callback\_fn}})(}
 \DoxyCodeLine{108     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__imds__iam__profile}{aws\_imds\_iam\_profile}} *iam\_profile\_info,}
-\DoxyCodeLine{109     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{110     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{109     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{110     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{111 }
 \DoxyCodeLine{112 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws__imds__client_8h_a4d4f9b92984247e961884566be638598}{aws\_imds\_client\_on\_get\_instance\_info\_callback\_fn}})(}
 \DoxyCodeLine{113     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__imds__instance__info}{aws\_imds\_instance\_info}} *instance\_info,}
-\DoxyCodeLine{114     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{115     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{114     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{115     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{116 }
 \DoxyCodeLine{120 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}};}
 \DoxyCodeLine{121 }
@@ -106,7 +106,7 @@
 \DoxyCodeLine{123 }
 \DoxyCodeLine{132 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{133 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *\mbox{\hyperlink{aws__imds__client_8h_a000c5499726a066932bfa2f66b90c292}{aws\_imds\_client\_new}}(}
-\DoxyCodeLine{134     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{134     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__imds__client_ac79853e13ae0f9d50791ffe94ae93522}{allocator}},}
 \DoxyCodeLine{135     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client__options}{aws\_imds\_client\_options}} *options);}
 \DoxyCodeLine{136 }
 \DoxyCodeLine{142 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
@@ -120,140 +120,140 @@
 \DoxyCodeLine{164     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{165     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} resource\_path,}
 \DoxyCodeLine{166     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{167     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{167     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{168 }
 \DoxyCodeLine{177 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{178 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_ab0530b3506270e01e846dbb27e26ff83}{aws\_imds\_client\_get\_ami\_id}}(}
 \DoxyCodeLine{179     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{180     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{181     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{181     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{182 }
 \DoxyCodeLine{191 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{192 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_ae20917469ddc9b64668361c78c93ad2d}{aws\_imds\_client\_get\_ami\_launch\_index}}(}
 \DoxyCodeLine{193     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{194     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{195     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{195     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{196 }
 \DoxyCodeLine{205 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{206 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_ac47728d7319683b4548b855a09a0bda9}{aws\_imds\_client\_get\_ami\_manifest\_path}}(}
 \DoxyCodeLine{207     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{208     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{209     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{209     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{210 }
 \DoxyCodeLine{219 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{220 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a141dd3ffa0f723d891a2a4bec0832814}{aws\_imds\_client\_get\_ancestor\_ami\_ids}}(}
 \DoxyCodeLine{221     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{222     \mbox{\hyperlink{aws__imds__client_8h_a186f335140b4adec5def33e90cb88941}{aws\_imds\_client\_on\_get\_array\_callback\_fn}} callback,}
-\DoxyCodeLine{223     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{223     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{224 }
 \DoxyCodeLine{233 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{234 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a7adeca573083a2320eb9de718083d058}{aws\_imds\_client\_get\_instance\_action}}(}
 \DoxyCodeLine{235     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{236     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{237     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{237     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{238 }
 \DoxyCodeLine{247 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{248 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a58c27efb03bcc0669b5969d23c09c122}{aws\_imds\_client\_get\_instance\_id}}(}
 \DoxyCodeLine{249     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{250     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{251     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{251     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{252 }
 \DoxyCodeLine{261 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{262 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a116eac1f0095daf7336e0cc9e99adf28}{aws\_imds\_client\_get\_instance\_type}}(}
 \DoxyCodeLine{263     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{264     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{265     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{265     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{266 }
 \DoxyCodeLine{275 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{276 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a2e49fd6e01849687721d2076555d0a16}{aws\_imds\_client\_get\_mac\_address}}(}
 \DoxyCodeLine{277     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{278     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{279     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{279     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{280 }
 \DoxyCodeLine{289 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{290 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a2ca3cfe2ada9ac59d54f07c4eeb37c82}{aws\_imds\_client\_get\_private\_ip\_address}}(}
 \DoxyCodeLine{291     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{292     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{293     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{293     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{294 }
 \DoxyCodeLine{303 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{304 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a11cec9817880ef5e4c3cc256c05a0c42}{aws\_imds\_client\_get\_availability\_zone}}(}
 \DoxyCodeLine{305     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{306     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{307     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{307     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{308 }
 \DoxyCodeLine{317 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{318 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a3375f711b76976da28c2bb3692606d10}{aws\_imds\_client\_get\_product\_codes}}(}
 \DoxyCodeLine{319     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{320     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{321     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{321     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{322 }
 \DoxyCodeLine{331 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{332 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a37e791354d878fb23b1ed81bc437dd8b}{aws\_imds\_client\_get\_public\_key}}(}
 \DoxyCodeLine{333     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{334     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{335     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{335     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{336 }
 \DoxyCodeLine{345 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{346 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_af8c1b1ca601ddb3de78239a455967b5f}{aws\_imds\_client\_get\_ramdisk\_id}}(}
 \DoxyCodeLine{347     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{348     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{349     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{349     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{350 }
 \DoxyCodeLine{359 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{360 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a601428b62b3978b7ecf221e25f4e3b2f}{aws\_imds\_client\_get\_reservation\_id}}(}
 \DoxyCodeLine{361     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{362     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{363     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{363     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{364 }
 \DoxyCodeLine{373 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{374 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a4c6f20429a1b59afc259bb19acf1d5ca}{aws\_imds\_client\_get\_security\_groups}}(}
 \DoxyCodeLine{375     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{376     \mbox{\hyperlink{aws__imds__client_8h_a186f335140b4adec5def33e90cb88941}{aws\_imds\_client\_on\_get\_array\_callback\_fn}} callback,}
-\DoxyCodeLine{377     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{377     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{378 }
 \DoxyCodeLine{387 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{388 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a60565b737f820c10e48a7725ea14e39f}{aws\_imds\_client\_get\_block\_device\_mapping}}(}
 \DoxyCodeLine{389     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{390     \mbox{\hyperlink{aws__imds__client_8h_a186f335140b4adec5def33e90cb88941}{aws\_imds\_client\_on\_get\_array\_callback\_fn}} callback,}
-\DoxyCodeLine{391     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{391     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{392 }
 \DoxyCodeLine{401 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{402 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_ad7f3d1a6e88c17ac3cb2ec7fa9354b17}{aws\_imds\_client\_get\_attached\_iam\_role}}(}
 \DoxyCodeLine{403     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{404     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{405     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{405     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{406 }
 \DoxyCodeLine{416 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{417 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_abafa99667f2099d501dd6ea8ec21c96c}{aws\_imds\_client\_get\_credentials}}(}
 \DoxyCodeLine{418     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{419     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} iam\_role\_name,}
 \DoxyCodeLine{420     \mbox{\hyperlink{aws__imds__client_8h_a96761591084ab36be4cf59b9426b0327}{aws\_imds\_client\_on\_get\_credentials\_callback\_fn}} callback,}
-\DoxyCodeLine{421     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{421     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{422 }
 \DoxyCodeLine{431 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{432 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_ac99b48318b3b20314fc1c63d7e161dca}{aws\_imds\_client\_get\_iam\_profile}}(}
 \DoxyCodeLine{433     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{434     \mbox{\hyperlink{aws__imds__client_8h_a5807103fc1463281f7a5e2294e2467a4}{aws\_imds\_client\_on\_get\_iam\_profile\_callback\_fn}} callback,}
-\DoxyCodeLine{435     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{435     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{436 }
 \DoxyCodeLine{445 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{446 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_aa025894743e9b99b4b453755086beee9}{aws\_imds\_client\_get\_user\_data}}(}
 \DoxyCodeLine{447     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{448     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{449     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{449     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{450 }
 \DoxyCodeLine{459 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{460 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_aae4f5d581f43a88d42fb2fa41c05834f}{aws\_imds\_client\_get\_instance\_signature}}(}
 \DoxyCodeLine{461     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{462     \mbox{\hyperlink{aws__imds__client_8h_a0f2b3e7c917d8d4ccaca4cb3f0d6ed47}{aws\_imds\_client\_on\_get\_resource\_callback\_fn}} callback,}
-\DoxyCodeLine{463     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{463     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{464 }
 \DoxyCodeLine{473 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{474 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__imds__client_8h_a6fb1148a3e3e4487c769f94697454641}{aws\_imds\_client\_get\_instance\_info}}(}
 \DoxyCodeLine{475     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__imds__client}{aws\_imds\_client}} *client,}
 \DoxyCodeLine{476     \mbox{\hyperlink{aws__imds__client_8h_a4d4f9b92984247e961884566be638598}{aws\_imds\_client\_on\_get\_instance\_info\_callback\_fn}} callback,}
-\DoxyCodeLine{477     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{477     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{478 }
 \DoxyCodeLine{479 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
 \DoxyCodeLine{480 }

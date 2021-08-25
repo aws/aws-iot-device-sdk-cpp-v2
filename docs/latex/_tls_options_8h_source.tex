@@ -35,22 +35,22 @@
 \DoxyCodeLine{39                 explicit operator \textcolor{keywordtype}{bool}() const noexcept \{ \textcolor{keywordflow}{return} m\_isInit; \}}
 \DoxyCodeLine{43                 \textcolor{keywordtype}{int} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_ad9cd96f33ba5c3f1333d5ece85b8062d}{LastError}}() const noexcept \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\_last\_error}}(); \}}
 \DoxyCodeLine{44 }
-\DoxyCodeLine{49                 \textcolor{keyword}{static} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{TlsContextOptions}} InitDefaultClient(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{49                 \textcolor{keyword}{static} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{TlsContextOptions}} InitDefaultClient(\mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{57                 \textcolor{keyword}{static} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{TlsContextOptions}} InitClientWithMtls(}
 \DoxyCodeLine{58                     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *cert\_path,}
 \DoxyCodeLine{59                     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pkey\_path,}
-\DoxyCodeLine{60                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{60                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{61 }
 \DoxyCodeLine{69                 \textcolor{keyword}{static} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{TlsContextOptions}} InitClientWithMtls(}
-\DoxyCodeLine{70                     \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}{cert}},}
+\DoxyCodeLine{70                     \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} \&cert,}
 \DoxyCodeLine{71                     \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} \&pkey,}
-\DoxyCodeLine{72                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{72                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{73 }
 \DoxyCodeLine{74 \textcolor{preprocessor}{\#ifdef \_\_APPLE\_\_}}
 \DoxyCodeLine{84                 \textcolor{keyword}{static} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{TlsContextOptions}} InitClientWithMtlsPkcs12(}
 \DoxyCodeLine{85                     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pkcs12\_path,}
 \DoxyCodeLine{86                     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pkcs12\_pwd,}
-\DoxyCodeLine{87                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{87                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{88 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{89 }
 \DoxyCodeLine{94                 \textcolor{keyword}{static} \textcolor{keywordtype}{bool} IsAlpnSupported() noexcept;}
@@ -82,7 +82,7 @@
 \DoxyCodeLine{157                 \textcolor{keywordtype}{bool} SetServerName(\mbox{\hyperlink{structaws__byte__cursor}{ByteCursor}} \&serverName) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{158 }
 \DoxyCodeLine{165                 \textcolor{keywordtype}{bool} SetAlpnList(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *alpnList) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{169                 \textcolor{keyword}{explicit} \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_isInit; \}}
+\DoxyCodeLine{169                 \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_isInit; \}}
 \DoxyCodeLine{173                 \textcolor{keywordtype}{int} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_connection_options_acf31a07e1dd85b5e28b9fbc7458d8d64}{LastError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_lastError; \}}
 \DoxyCodeLine{175                 \textcolor{keyword}{const} \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *GetUnderlyingHandle() const noexcept}
 \DoxyCodeLine{176                 \{}
@@ -90,7 +90,7 @@
 \DoxyCodeLine{178                 \}}
 \DoxyCodeLine{179 }
 \DoxyCodeLine{180               \textcolor{keyword}{private}:}
-\DoxyCodeLine{181                 TlsConnectionOptions(\mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}}, \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{181                 TlsConnectionOptions(\mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *ctx, \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{182                 \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} m\_tls\_connection\_options;}
 \DoxyCodeLine{183                 \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *m\_allocator;}
 \DoxyCodeLine{184                 \textcolor{keywordtype}{int} m\_lastError;}
@@ -103,7 +103,7 @@
 \DoxyCodeLine{191             \{}
 \DoxyCodeLine{192               \textcolor{keyword}{public}:}
 \DoxyCodeLine{193                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{TlsContext}}() \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{194                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{TlsContext}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{TlsContextOptions}} \&options, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a0e6e89d764e66080a9abd0513079d1b8}{TlsMode}} mode, \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{194                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{TlsContext}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{TlsContextOptions}} \&options, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a0e6e89d764e66080a9abd0513079d1b8}{TlsMode}} mode, \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{195                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_a78edf7b804187cc05a594db4a577050b}{\string~TlsContext}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{196                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_affec6fc99388b77764586ff797bc51c7}{TlsContext}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{TlsContext}} \&) \textcolor{keyword}{noexcept} = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{197                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{TlsContext}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_adc14c6b5e766f2bbe96470afe1757c5a}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{TlsContext}} \&) \textcolor{keyword}{noexcept} = \textcolor{keywordflow}{default};}

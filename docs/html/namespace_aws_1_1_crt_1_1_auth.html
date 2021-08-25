@@ -123,7 +123,7 @@ Typedefs</h2></td></tr>
 <tr class="separator:a5c7cfc1fb715fdb4c2d8945678d68199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4ca80a8fc66d38af49bf5431b5c8ebf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ab4ca80a8fc66d38af49bf5431b5c8ebf">OnHttpRequestSigningComplete</a> = std::function&lt; void(const std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_request.html">Aws::Crt::Http::HttpRequest</a> &gt; &amp;, int)&gt;</td></tr>
 <tr class="separator:ab4ca80a8fc66d38af49bf5431b5c8ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2cea667fd111a653516b658d877922d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ae2cea667fd111a653516b658d877922d">ShouldSignHeaderCb</a> = <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>(*)(const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">Crt::ByteCursor</a> *, void *)</td></tr>
+<tr class="memitem:ae2cea667fd111a653516b658d877922d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ae2cea667fd111a653516b658d877922d">ShouldSignHeaderCb</a> = bool(*)(const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">Crt::ByteCursor</a> *, void *)</td></tr>
 <tr class="separator:ae2cea667fd111a653516b658d877922d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -147,7 +147,7 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9eeae13f9e18779ae17865afc0e1c277"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider.html">ICredentialsProvider</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a9eeae13f9e18779ae17865afc0e1c277">s_CreateWrappedProvider</a> (struct <a class="el" href="structaws__credentials__provider.html">aws_credentials_provider</a> *raw_provider, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)</td></tr>
+<tr class="memitem:a9eeae13f9e18779ae17865afc0e1c277"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider.html">ICredentialsProvider</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a9eeae13f9e18779ae17865afc0e1c277">s_CreateWrappedProvider</a> (struct <a class="el" href="structaws__credentials__provider.html">aws_credentials_provider</a> *raw_provider, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator)</td></tr>
 <tr class="separator:a9eeae13f9e18779ae17865afc0e1c277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53d9086fb22c2cab6d4679b6ef219696"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#a53d9086fb22c2cab6d4679b6ef219696">s_http_signing_complete_fn</a> (struct <a class="el" href="structaws__signing__result.html">aws_signing_result</a> *result, int errorCode, void *userdata)</td></tr>
 <tr class="separator:a53d9086fb22c2cab6d4679b6ef219696"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,7 +190,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ae2cea667fd111a653516b658d877922d">Aws::Crt::Auth::ShouldSignHeaderCb</a> = typedef <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> (*)(const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">Crt::ByteCursor</a> *, void *)</td>
+          <td class="memname">using <a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ae2cea667fd111a653516b658d877922d">Aws::Crt::Auth::ShouldSignHeaderCb</a> = typedef bool (*)(const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">Crt::ByteCursor</a> *, void *)</td>
         </tr>
       </table>
 </div><div class="memdoc">

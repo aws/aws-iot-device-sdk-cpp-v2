@@ -7,7 +7,7 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{websocket__impl_8h}{aws/http/private/websocket\_impl.h}}>}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\_websocket\_encoder\_payload\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *out\_buf, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{11 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\_websocket\_encoder\_payload\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *out\_buf, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{12 }
 \DoxyCodeLine{13 \textcolor{keyword}{enum} \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ff}{aws\_websocket\_encoder\_state}} \{}
 \DoxyCodeLine{14     \mbox{\hyperlink{websocket__encoder_8h_a9996aaad71e1df749b6c2a09a408f8ffa0625b912510d4b7ac75e619ce5bfca28}{AWS\_WEBSOCKET\_ENCODER\_STATE\_INIT}},}
@@ -40,7 +40,7 @@
 \DoxyCodeLine{41 \textcolor{keywordtype}{void} \mbox{\hyperlink{websocket__encoder_8h_a3e5d3d1ed4ee86ea3436f2e63680f91f}{aws\_websocket\_encoder\_init}}(}
 \DoxyCodeLine{42     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket__encoder}{aws\_websocket\_encoder}} *encoder,}
 \DoxyCodeLine{43     \mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\_websocket\_encoder\_payload\_fn}} *stream\_outgoing\_payload,}
-\DoxyCodeLine{44     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{44     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{45 }
 \DoxyCodeLine{46 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{47 \textcolor{keywordtype}{int} \mbox{\hyperlink{websocket__encoder_8h_ab83c4fb9f6a3245213755f94968ac8b6}{aws\_websocket\_encoder\_start\_frame}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket__encoder}{aws\_websocket\_encoder}} *encoder, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket__frame}{aws\_websocket\_frame}} *frame);}

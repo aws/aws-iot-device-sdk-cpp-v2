@@ -29,15 +29,15 @@ struct \mbox{\hyperlink{structprintbuffer}{printbuffer}}
 \item 
 \#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a940bb34b2c297c3d8297d506a3955839}{internal\+\_\+free}}~free
 \item 
-\#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a91654176e81c707d28b99dd0bf783ed5}{internal\+\_\+realloc}}~\mbox{\hyperlink{s2n__mem_8c_a8703cc44a683e2d87a2bd765b8ec2adb}{realloc}}
+\#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a91654176e81c707d28b99dd0bf783ed5}{internal\+\_\+realloc}}~realloc
 \item 
 \#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a5714bac836668a1b9af55465b78531ef}{static\+\_\+strlen}}(string\+\_\+literal)~(sizeof(string\+\_\+literal) -\/ sizeof(\char`\"{}\char`\"{}))
 \item 
-\#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a2257377f8b81f4f76a16b698f681af34}{can\+\_\+read}}(buffer,  size)~(((buffer) != NULL) \&\& (((buffer)-\/$>$offset + (size)) $<$= (buffer)-\/$>$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}))
+\#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a2257377f8b81f4f76a16b698f681af34}{can\+\_\+read}}(buffer,  size)~(((buffer) != NULL) \&\& (((buffer)-\/$>$offset + (size)) $<$= (buffer)-\/$>$\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}))
 \item 
-\#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_ae210aa01f1afe7510658c392f0f6e128}{can\+\_\+access\+\_\+at\+\_\+index}}(buffer,  \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})~(((buffer) != NULL) \&\& (((buffer)-\/$>$offset + (\mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})) $<$ (buffer)-\/$>$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}))
+\#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_ae210aa01f1afe7510658c392f0f6e128}{can\+\_\+access\+\_\+at\+\_\+index}}(buffer,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}})~(((buffer) != NULL) \&\& (((buffer)-\/$>$offset + (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}})) $<$ (buffer)-\/$>$\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}))
 \item 
-\#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a5c873a43d8a78ce9a6d9e8eb41d65d2d}{cannot\+\_\+access\+\_\+at\+\_\+index}}(buffer,  \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})~(!\mbox{\hyperlink{c_j_s_o_n_8cpp_ae210aa01f1afe7510658c392f0f6e128}{can\+\_\+access\+\_\+at\+\_\+index}}(buffer, \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}}))
+\#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a5c873a43d8a78ce9a6d9e8eb41d65d2d}{cannot\+\_\+access\+\_\+at\+\_\+index}}(buffer,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}})~(!\mbox{\hyperlink{c_j_s_o_n_8cpp_ae210aa01f1afe7510658c392f0f6e128}{can\+\_\+access\+\_\+at\+\_\+index}}(buffer, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}}))
 \item 
 \#define \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_ac538057ef78677344d222b763251af5e}{buffer\+\_\+at\+\_\+offset}}(buffer)~((buffer)-\/$>$content + (buffer)-\/$>$offset)
 \item 
@@ -107,7 +107,7 @@ static unsigned char $\ast$ \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2sourc
 \item 
 \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_aed7e219a2b9187880c97c6f0ea5fa1b4}{CJSON\+\_\+\+PUBLIC}} (\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{c\+JSON\+\_\+bool}})
 \item 
-static \mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a82f460889bcb63ee840fc821feef5aa5}{get\+\_\+array\+\_\+item}} (const \mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$array, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+static \mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a82f460889bcb63ee840fc821feef5aa5}{get\+\_\+array\+\_\+item}} (const \mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$array, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}})
 \item 
 static \mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$ \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a768303890e9be802d51b0e0a110302f4}{get\+\_\+object\+\_\+item}} (const \mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$const object, const char $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, const \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{c\+JSON\+\_\+bool}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a05334336676ca1cd88db19ede4a065de}{case\+\_\+sensitive}})
 \item 
@@ -127,7 +127,7 @@ static void \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j
 \item 
 static void \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a4b9e22afcb0d33932c691b5af9f2560a}{skip\+\_\+multiline\+\_\+comment}} (char $\ast$$\ast$input)
 \item 
-static void \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a569f331078de59d01dee9351fa106e3b}{minify\+\_\+string}} (char $\ast$$\ast$input, char $\ast$$\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+static void \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a569f331078de59d01dee9351fa106e3b}{minify\+\_\+string}} (char $\ast$$\ast$input, char $\ast$$\ast$output)
 \item 
 \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a0b3a6bc5d2c01a027675cf52246b9424}{CJSON\+\_\+\+PUBLIC}} (void $\ast$)
 \end{DoxyCompactItemize}
@@ -151,19 +151,19 @@ static \mbox{\hyperlink{structinternal__hooks}{internal\+\_\+hooks}} \mbox{\hype
 \index{cJSON.c@{cJSON.c}!can\_access\_at\_index@{can\_access\_at\_index}}
 \index{can\_access\_at\_index@{can\_access\_at\_index}!cJSON.c@{cJSON.c}}
 \doxysubsubsection{\texorpdfstring{can\_access\_at\_index}{can\_access\_at\_index}}
-{\footnotesize\ttfamily \#define can\+\_\+access\+\_\+at\+\_\+index(\begin{DoxyParamCaption}\item[{}]{buffer,  }\item[{}]{\mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}} }\end{DoxyParamCaption})~(((buffer) != NULL) \&\& (((buffer)-\/$>$offset + (\mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})) $<$ (buffer)-\/$>$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}))}
+{\footnotesize\ttfamily \#define can\+\_\+access\+\_\+at\+\_\+index(\begin{DoxyParamCaption}\item[{}]{buffer,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}} }\end{DoxyParamCaption})~(((buffer) != NULL) \&\& (((buffer)-\/$>$offset + (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}})) $<$ (buffer)-\/$>$\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}))}
 
 \mbox{\Hypertarget{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a2257377f8b81f4f76a16b698f681af34}\label{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a2257377f8b81f4f76a16b698f681af34}} 
 \index{cJSON.c@{cJSON.c}!can\_read@{can\_read}}
 \index{can\_read@{can\_read}!cJSON.c@{cJSON.c}}
 \doxysubsubsection{\texorpdfstring{can\_read}{can\_read}}
-{\footnotesize\ttfamily \#define can\+\_\+read(\begin{DoxyParamCaption}\item[{}]{buffer,  }\item[{}]{size }\end{DoxyParamCaption})~(((buffer) != NULL) \&\& (((buffer)-\/$>$offset + (size)) $<$= (buffer)-\/$>$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}))}
+{\footnotesize\ttfamily \#define can\+\_\+read(\begin{DoxyParamCaption}\item[{}]{buffer,  }\item[{}]{size }\end{DoxyParamCaption})~(((buffer) != NULL) \&\& (((buffer)-\/$>$offset + (size)) $<$= (buffer)-\/$>$\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}))}
 
 \mbox{\Hypertarget{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a5c873a43d8a78ce9a6d9e8eb41d65d2d}\label{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a5c873a43d8a78ce9a6d9e8eb41d65d2d}} 
 \index{cJSON.c@{cJSON.c}!cannot\_access\_at\_index@{cannot\_access\_at\_index}}
 \index{cannot\_access\_at\_index@{cannot\_access\_at\_index}!cJSON.c@{cJSON.c}}
 \doxysubsubsection{\texorpdfstring{cannot\_access\_at\_index}{cannot\_access\_at\_index}}
-{\footnotesize\ttfamily \#define cannot\+\_\+access\+\_\+at\+\_\+index(\begin{DoxyParamCaption}\item[{}]{buffer,  }\item[{}]{\mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}} }\end{DoxyParamCaption})~(!\mbox{\hyperlink{c_j_s_o_n_8cpp_ae210aa01f1afe7510658c392f0f6e128}{can\+\_\+access\+\_\+at\+\_\+index}}(buffer, \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}}))}
+{\footnotesize\ttfamily \#define cannot\+\_\+access\+\_\+at\+\_\+index(\begin{DoxyParamCaption}\item[{}]{buffer,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}} }\end{DoxyParamCaption})~(!\mbox{\hyperlink{c_j_s_o_n_8cpp_ae210aa01f1afe7510658c392f0f6e128}{can\+\_\+access\+\_\+at\+\_\+index}}(buffer, \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}}))}
 
 \mbox{\Hypertarget{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a13f540fa846f658531751b5ccb78f303}\label{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a13f540fa846f658531751b5ccb78f303}} 
 \index{cJSON.c@{cJSON.c}!cjson\_min@{cjson\_min}}
@@ -193,7 +193,7 @@ static \mbox{\hyperlink{structinternal__hooks}{internal\+\_\+hooks}} \mbox{\hype
 \index{cJSON.c@{cJSON.c}!internal\_realloc@{internal\_realloc}}
 \index{internal\_realloc@{internal\_realloc}!cJSON.c@{cJSON.c}}
 \doxysubsubsection{\texorpdfstring{internal\_realloc}{internal\_realloc}}
-{\footnotesize\ttfamily \#define internal\+\_\+realloc~\mbox{\hyperlink{s2n__mem_8c_a8703cc44a683e2d87a2bd765b8ec2adb}{realloc}}}
+{\footnotesize\ttfamily \#define internal\+\_\+realloc~realloc}
 
 \mbox{\Hypertarget{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a5714bac836668a1b9af55465b78531ef}\label{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a5714bac836668a1b9af55465b78531ef}} 
 \index{cJSON.c@{cJSON.c}!static\_strlen@{static\_strlen}}

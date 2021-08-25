@@ -18,18 +18,18 @@ struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_stl_allocator_1_1rebind}{rebind}}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}} = \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{std\+::allocator}}$<$ T $>$
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}} = std\+::allocator$<$ T $>$
 \item 
 using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}{size\+\_\+type}} = std\+::size\+\_\+t
 \item 
-using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}} = typename std\+::allocator\+\_\+traits$<$ \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{std\+::allocator}}$<$ T $>$ $>$\+::pointer
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}} = typename std\+::allocator\+\_\+traits$<$ std\+::allocator$<$ T $>$ $>$\+::pointer
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a7a33fce7a208df119287657f3555f261}{Stl\+Allocator}} () noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a4744bfdb69fa6c0514fd8425a9cea7f3}{Stl\+Allocator}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a4744bfdb69fa6c0514fd8425a9cea7f3}{Stl\+Allocator}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator) noexcept
 \item 
 \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ae1d130f0891abd502d3c43c8b326366c}{Stl\+Allocator}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Stl\+Allocator}}$<$ T $>$ \&\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}) noexcept
 \item 
@@ -54,14 +54,14 @@ void \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a060ac0a43eb52efd4e328
 \index{Base@{Base}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{Base}{Base}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}} =  \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{std\+::allocator}}$<$T$>$}
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}} =  std\+::allocator$<$T$>$}
 
 \mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}\label{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}} 
 \index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!RawPointer@{RawPointer}}
 \index{RawPointer@{RawPointer}!Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{RawPointer}{RawPointer}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}} =  typename std\+::allocator\+\_\+traits$<$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{std\+::allocator}}$<$T$>$ $>$\+::pointer}
+using \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{Aws\+::\+Crt\+::\+Stl\+Allocator}}$<$ T $>$\+::\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{Raw\+Pointer}} =  typename std\+::allocator\+\_\+traits$<$std\+::allocator$<$T$>$ $>$\+::pointer}
 
 \mbox{\Hypertarget{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}\label{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}} 
 \index{Aws::Crt::StlAllocator$<$ T $>$@{Aws::Crt::StlAllocator$<$ T $>$}!size\_type@{size\_type}}

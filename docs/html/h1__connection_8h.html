@@ -89,9 +89,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af8e94e4b50d614f906924b69487389ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__connection_8h.html#af8e94e4b50d614f906924b69487389ba">aws_http_connection_new_http1_1_server</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> manual_window_management, size_t initial_window_size, const struct <a class="el" href="structaws__http1__connection__options.html">aws_http1_connection_options</a> *http1_options)</td></tr>
+<tr class="memitem:af8e94e4b50d614f906924b69487389ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__connection_8h.html#af8e94e4b50d614f906924b69487389ba">aws_http_connection_new_http1_1_server</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, bool manual_window_management, size_t initial_window_size, const struct <a class="el" href="structaws__http1__connection__options.html">aws_http1_connection_options</a> *http1_options)</td></tr>
 <tr class="separator:af8e94e4b50d614f906924b69487389ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab722b955ed4ec4fd8a1ca2fbfe2d9d5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__connection_8h.html#ab722b955ed4ec4fd8a1ca2fbfe2d9d5b">aws_http_connection_new_http1_1_client</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> manual_window_management, size_t initial_window_size, const struct <a class="el" href="structaws__http1__connection__options.html">aws_http1_connection_options</a> *http1_options)</td></tr>
+<tr class="memitem:ab722b955ed4ec4fd8a1ca2fbfe2d9d5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__connection_8h.html#ab722b955ed4ec4fd8a1ca2fbfe2d9d5b">aws_http_connection_new_http1_1_client</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, bool manual_window_management, size_t initial_window_size, const struct <a class="el" href="structaws__http1__connection__options.html">aws_http1_connection_options</a> *http1_options)</td></tr>
 <tr class="separator:ab722b955ed4ec4fd8a1ca2fbfe2d9d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf6859ca63c0e930fa21537a2d734209"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> struct <a class="el" href="structaws__h1__window__stats.html">aws_h1_window_stats</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__connection_8h.html#adf6859ca63c0e930fa21537a2d734209">aws_h1_connection_window_stats</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection_base)</td></tr>
 <tr class="separator:adf6859ca63c0e930fa21537a2d734209"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,7 +213,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>manual_window_management</em>, </td>
         </tr>
         <tr>
@@ -253,7 +253,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>manual_window_management</em>, </td>
         </tr>
         <tr>

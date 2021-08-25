@@ -19,7 +19,7 @@ struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef void() \mbox{\hyperlink{io_8h_a845852ad8f2bbee9e220f6b7dc54ab3a}{aws\+\_\+channel\+\_\+on\+\_\+message\+\_\+write\+\_\+completed\+\_\+fn}}(struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, int err\+\_\+code, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{io_8h_a845852ad8f2bbee9e220f6b7dc54ab3a}{aws\+\_\+channel\+\_\+on\+\_\+message\+\_\+write\+\_\+completed\+\_\+fn}}(struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message, int err\+\_\+code, void $\ast$user\+\_\+data)
 \item 
 typedef int() \mbox{\hyperlink{io_8h_a7a7ab49e790eaef3914aba12fdfae2c4}{aws\+\_\+io\+\_\+clock\+\_\+fn}}(uint64\+\_\+t $\ast$timestamp)
 \end{DoxyCompactItemize}
@@ -94,7 +94,7 @@ enum \mbox{\hyperlink{io_8h_a992b7c7d0dd589fe9e12b11290b5680d}{aws\+\_\+io\+\_\+
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{io_8h_adf101fca9667ea0e35905940fd8850cc}{aws\+\_\+io\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{io_8h_adf101fca9667ea0e35905940fd8850cc}{aws\+\_\+io\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{io_8h_a5a6ffa68d855e55ed4670f6759b05fe1}{aws\+\_\+io\+\_\+library\+\_\+clean\+\_\+up}} (void)
 \item 
@@ -116,7 +116,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{io.h@{io.h}!aws\_channel\_on\_message\_write\_completed\_fn@{aws\_channel\_on\_message\_write\_completed\_fn}}
 \index{aws\_channel\_on\_message\_write\_completed\_fn@{aws\_channel\_on\_message\_write\_completed\_fn}!io.h@{io.h}}
 \doxysubsubsection{\texorpdfstring{aws\_channel\_on\_message\_write\_completed\_fn}{aws\_channel\_on\_message\_write\_completed\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+channel\+\_\+on\+\_\+message\+\_\+write\+\_\+completed\+\_\+fn(struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, int err\+\_\+code, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+channel\+\_\+on\+\_\+message\+\_\+write\+\_\+completed\+\_\+fn(struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message, int err\+\_\+code, void $\ast$user\+\_\+data)}
 
 \mbox{\Hypertarget{io_8h_a7a7ab49e790eaef3914aba12fdfae2c4}\label{io_8h_a7a7ab49e790eaef3914aba12fdfae2c4}} 
 \index{io.h@{io.h}!aws\_io\_clock\_fn@{aws\_io\_clock\_fn}}

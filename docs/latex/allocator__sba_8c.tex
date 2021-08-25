@@ -27,13 +27,13 @@ struct \mbox{\hyperlink{structsmall__block__allocator}{small\+\_\+block\+\_\+all
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \mbox{\hyperlink{allocator__sba_8c_a06a08ff51d68e6c8b860a8276a6cd525}{s\+\_\+null\+\_\+lock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+static int \mbox{\hyperlink{allocator__sba_8c_a06a08ff51d68e6c8b860a8276a6cd525}{s\+\_\+null\+\_\+lock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$mutex)
 \item 
-static int \mbox{\hyperlink{allocator__sba_8c_a12fb9654c0a730b646f4381d5ce0d1d7}{s\+\_\+null\+\_\+unlock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+static int \mbox{\hyperlink{allocator__sba_8c_a12fb9654c0a730b646f4381d5ce0d1d7}{s\+\_\+null\+\_\+unlock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$mutex)
 \item 
-static int \mbox{\hyperlink{allocator__sba_8c_a7ecbd34ed5d0a8ec8acc45b178054499}{s\+\_\+mutex\+\_\+lock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+static int \mbox{\hyperlink{allocator__sba_8c_a7ecbd34ed5d0a8ec8acc45b178054499}{s\+\_\+mutex\+\_\+lock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$mutex)
 \item 
-static int \mbox{\hyperlink{allocator__sba_8c_a354a54d84a7e994f04f4ea9cbc618d2d}{s\+\_\+mutex\+\_\+unlock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$\mbox{\hyperlink{socket__test_8c_afcf3eb5de9fdf3520bcb22246393b8d5}{mutex}})
+static int \mbox{\hyperlink{allocator__sba_8c_a354a54d84a7e994f04f4ea9cbc618d2d}{s\+\_\+mutex\+\_\+unlock}} (struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} $\ast$mutex)
 \item 
 static void $\ast$ \mbox{\hyperlink{allocator__sba_8c_a2f516431b54620cf35d50475aa73a2f4}{s\+\_\+page\+\_\+base}} (const void $\ast$addr)
 \item 
@@ -43,19 +43,19 @@ static void $\ast$ \mbox{\hyperlink{allocator__sba_8c_a1666affb0dd3b0eceee434846
 \item 
 static void \mbox{\hyperlink{allocator__sba_8c_a2460696f1e056c3c5679961fffa80d04}{s\+\_\+aligned\+\_\+free}} (void $\ast$addr)
 \item 
-static void $\ast$ \mbox{\hyperlink{allocator__sba_8c_ae0a00d8335b6774876d7569fac6b4595}{s\+\_\+sba\+\_\+mem\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+static void $\ast$ \mbox{\hyperlink{allocator__sba_8c_ae0a00d8335b6774876d7569fac6b4595}{s\+\_\+sba\+\_\+mem\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t size)
 \item 
-static void \mbox{\hyperlink{allocator__sba_8c_aed22e53ed7c5c1659b44ee2f4e2e8c73}{s\+\_\+sba\+\_\+mem\+\_\+release}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr)
+static void \mbox{\hyperlink{allocator__sba_8c_aed22e53ed7c5c1659b44ee2f4e2e8c73}{s\+\_\+sba\+\_\+mem\+\_\+release}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$ptr)
 \item 
-static void $\ast$ \mbox{\hyperlink{allocator__sba_8c_a606b7257f4ab14a7a1a66c6ddc779e40}{s\+\_\+sba\+\_\+mem\+\_\+realloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$old\+\_\+ptr, size\+\_\+t old\+\_\+size, size\+\_\+t new\+\_\+size)
+static void $\ast$ \mbox{\hyperlink{allocator__sba_8c_a606b7257f4ab14a7a1a66c6ddc779e40}{s\+\_\+sba\+\_\+mem\+\_\+realloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$old\+\_\+ptr, size\+\_\+t old\+\_\+size, size\+\_\+t new\+\_\+size)
 \item 
-static void $\ast$ \mbox{\hyperlink{allocator__sba_8c_a8b0042dbac38d428cca5108a3573663a}{s\+\_\+sba\+\_\+mem\+\_\+calloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t num, size\+\_\+t size)
+static void $\ast$ \mbox{\hyperlink{allocator__sba_8c_a8b0042dbac38d428cca5108a3573663a}{s\+\_\+sba\+\_\+mem\+\_\+calloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t num, size\+\_\+t size)
 \item 
-static int \mbox{\hyperlink{allocator__sba_8c_a0d6eaf51863be0877ee1332639caa341}{s\+\_\+sba\+\_\+init}} (struct \mbox{\hyperlink{structsmall__block__allocator}{small\+\_\+block\+\_\+allocator}} $\ast$sba, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} multi\+\_\+threaded)
+static int \mbox{\hyperlink{allocator__sba_8c_a0d6eaf51863be0877ee1332639caa341}{s\+\_\+sba\+\_\+init}} (struct \mbox{\hyperlink{structsmall__block__allocator}{small\+\_\+block\+\_\+allocator}} $\ast$sba, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, bool multi\+\_\+threaded)
 \item 
 static void \mbox{\hyperlink{allocator__sba_8c_ad739481b72a52cd2168c257e94bdf397}{s\+\_\+sba\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structsmall__block__allocator}{small\+\_\+block\+\_\+allocator}} $\ast$sba)
 \item 
-struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{allocator__sba_8c_acfa7fc798fc1f9634a1a840c1a0f12c0}{aws\+\_\+small\+\_\+block\+\_\+allocator\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} multi\+\_\+threaded)
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{allocator__sba_8c_acfa7fc798fc1f9634a1a840c1a0f12c0}{aws\+\_\+small\+\_\+block\+\_\+allocator\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, bool multi\+\_\+threaded)
 \item 
 void \mbox{\hyperlink{allocator__sba_8c_a9dd1c28ea68161c061c0e785cb087804}{aws\+\_\+small\+\_\+block\+\_\+allocator\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$sba\+\_\+allocator)
 \item 
@@ -118,7 +118,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{allocator\_sba.c@{allocator\_sba.c}!aws\_small\_block\_allocator\_new@{aws\_small\_block\_allocator\_new}}
 \index{aws\_small\_block\_allocator\_new@{aws\_small\_block\_allocator\_new}!allocator\_sba.c@{allocator\_sba.c}}
 \doxysubsubsection{\texorpdfstring{aws\_small\_block\_allocator\_new()}{aws\_small\_block\_allocator\_new()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+small\+\_\+block\+\_\+allocator\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{multi\+\_\+threaded }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}}$\ast$ aws\+\_\+small\+\_\+block\+\_\+allocator\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{bool}]{multi\+\_\+threaded }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{allocator__sba_8c_a1666affb0dd3b0eceee43484661c50fc}\label{allocator__sba_8c_a1666affb0dd3b0eceee43484661c50fc}} 
 \index{allocator\_sba.c@{allocator\_sba.c}!s\_aligned\_alloc@{s\_aligned\_alloc}}
@@ -208,7 +208,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{allocator\_sba.c@{allocator\_sba.c}!s\_sba\_init@{s\_sba\_init}}
 \index{s\_sba\_init@{s\_sba\_init}!allocator\_sba.c@{allocator\_sba.c}}
 \doxysubsubsection{\texorpdfstring{s\_sba\_init()}{s\_sba\_init()}}
-{\footnotesize\ttfamily static int s\+\_\+sba\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsmall__block__allocator}{small\+\_\+block\+\_\+allocator}} $\ast$}]{sba,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{multi\+\_\+threaded }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+sba\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsmall__block__allocator}{small\+\_\+block\+\_\+allocator}} $\ast$}]{sba,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{bool}]{multi\+\_\+threaded }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{allocator__sba_8c_ae0a00d8335b6774876d7569fac6b4595}\label{allocator__sba_8c_ae0a00d8335b6774876d7569fac6b4595}} 
 \index{allocator\_sba.c@{allocator\_sba.c}!s\_sba\_mem\_acquire@{s\_sba\_mem\_acquire}}

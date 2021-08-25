@@ -78,7 +78,7 @@ $(function() {
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n__fips_8h_source.html">crypto/s2n_fips.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__errno_8h_source.html">error/s2n_errno.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="crypto_2s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__extension__list_8h_source.html">tls/extensions/s2n_extension_list.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__server__key__share_8h_source.html">tls/extensions/s2n_server_key_share.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__auth__selection_8h_source.html">tls/s2n_auth_selection.h</a>&quot;</code><br />
@@ -104,17 +104,17 @@ Functions</h2></td></tr>
 <tr class="separator:ad06d27cf81b479d3f48d4627ab51a753"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02bb3c2ada8d3b4a71f3c711fb9dfa1c"><td class="memItemLeft" align="right" valign="top">static S2N_RESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a02bb3c2ada8d3b4a71f3c711fb9dfa1c">s2n_generate_client_session_id</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn)</td></tr>
 <tr class="separator:a02bb3c2ada8d3b4a71f3c711fb9dfa1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5689c62209bfc29b0962838c6bc41f89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a5689c62209bfc29b0962838c6bc41f89">s2n_client_hello_get_raw_message_length</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch)</td></tr>
+<tr class="memitem:a5689c62209bfc29b0962838c6bc41f89"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a5689c62209bfc29b0962838c6bc41f89">s2n_client_hello_get_raw_message_length</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch)</td></tr>
 <tr class="separator:a5689c62209bfc29b0962838c6bc41f89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc2fcb5966ad4b6d22a89727a8cf2944"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#adc2fcb5966ad4b6d22a89727a8cf2944">s2n_client_hello_get_raw_message</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, uint8_t *out, uint32_t max_length)</td></tr>
+<tr class="memitem:adc2fcb5966ad4b6d22a89727a8cf2944"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#adc2fcb5966ad4b6d22a89727a8cf2944">s2n_client_hello_get_raw_message</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, uint8_t *out, uint32_t max_length)</td></tr>
 <tr class="separator:adc2fcb5966ad4b6d22a89727a8cf2944"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a815543875b41e5da2ccbe2831553601d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a815543875b41e5da2ccbe2831553601d">s2n_client_hello_get_cipher_suites_length</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch)</td></tr>
+<tr class="memitem:a815543875b41e5da2ccbe2831553601d"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a815543875b41e5da2ccbe2831553601d">s2n_client_hello_get_cipher_suites_length</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch)</td></tr>
 <tr class="separator:a815543875b41e5da2ccbe2831553601d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a113987fe36ab319891384066b2dfb3a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a113987fe36ab319891384066b2dfb3a1">s2n_client_hello_get_cipher_suites</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, uint8_t *out, uint32_t max_length)</td></tr>
+<tr class="memitem:a113987fe36ab319891384066b2dfb3a1"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a113987fe36ab319891384066b2dfb3a1">s2n_client_hello_get_cipher_suites</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, uint8_t *out, uint32_t max_length)</td></tr>
 <tr class="separator:a113987fe36ab319891384066b2dfb3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46e3118de74f99309377dc6d29e13505"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a46e3118de74f99309377dc6d29e13505">s2n_client_hello_get_extensions_length</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch)</td></tr>
+<tr class="memitem:a46e3118de74f99309377dc6d29e13505"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a46e3118de74f99309377dc6d29e13505">s2n_client_hello_get_extensions_length</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch)</td></tr>
 <tr class="separator:a46e3118de74f99309377dc6d29e13505"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74e8156c08e08689f562f0d7ce00a7b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a74e8156c08e08689f562f0d7ce00a7b2">s2n_client_hello_get_extensions</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, uint8_t *out, uint32_t max_length)</td></tr>
+<tr class="memitem:a74e8156c08e08689f562f0d7ce00a7b2"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a74e8156c08e08689f562f0d7ce00a7b2">s2n_client_hello_get_extensions</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, uint8_t *out, uint32_t max_length)</td></tr>
 <tr class="separator:a74e8156c08e08689f562f0d7ce00a7b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07540df1e75501102df5fb3da44feb96"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a07540df1e75501102df5fb3da44feb96">s2n_client_hello_free</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *client_hello)</td></tr>
 <tr class="separator:a07540df1e75501102df5fb3da44feb96"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,9 +132,9 @@ Functions</h2></td></tr>
 <tr class="separator:ac1466c1ce812576f187dacd032e682e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa945ce98b6fc363c579005fa32673ec7"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#aa945ce98b6fc363c579005fa32673ec7">s2n_client_hello_get_parsed_extension</a> (<a class="el" href="s2n_8h.html#ab2b46f61765da5529f931afb8dd8a1f8">s2n_tls_extension_type</a> extension_type, <a class="el" href="structs2n__parsed__extensions__list.html">s2n_parsed_extensions_list</a> *parsed_extension_list, <a class="el" href="structs2n__parsed__extension.html">s2n_parsed_extension</a> **parsed_extension)</td></tr>
 <tr class="separator:aa945ce98b6fc363c579005fa32673ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae85a8bd71fa76824bf53549c431fd7bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#ae85a8bd71fa76824bf53549c431fd7bc">s2n_client_hello_get_extension_length</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, <a class="el" href="s2n_8h.html#ab2b46f61765da5529f931afb8dd8a1f8">s2n_tls_extension_type</a> extension_type)</td></tr>
+<tr class="memitem:ae85a8bd71fa76824bf53549c431fd7bc"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#ae85a8bd71fa76824bf53549c431fd7bc">s2n_client_hello_get_extension_length</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, <a class="el" href="s2n_8h.html#ab2b46f61765da5529f931afb8dd8a1f8">s2n_tls_extension_type</a> extension_type)</td></tr>
 <tr class="separator:ae85a8bd71fa76824bf53549c431fd7bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a060cbcf62018e06b8006b149df487c4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a060cbcf62018e06b8006b149df487c4d">s2n_client_hello_get_extension_by_id</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, <a class="el" href="s2n_8h.html#ab2b46f61765da5529f931afb8dd8a1f8">s2n_tls_extension_type</a> extension_type, uint8_t *out, uint32_t max_length)</td></tr>
+<tr class="memitem:a060cbcf62018e06b8006b149df487c4d"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__hello_8c.html#a060cbcf62018e06b8006b149df487c4d">s2n_client_hello_get_extension_by_id</a> (struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *ch, <a class="el" href="s2n_8h.html#ab2b46f61765da5529f931afb8dd8a1f8">s2n_tls_extension_type</a> extension_type, uint8_t *out, uint32_t max_length)</td></tr>
 <tr class="separator:a060cbcf62018e06b8006b149df487c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -199,7 +199,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> s2n_client_hello_get_cipher_suites </td>
+          <td class="memname">ssize_t s2n_client_hello_get_cipher_suites </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *&#160;</td>
           <td class="paramname"><em>ch</em>, </td>
@@ -233,7 +233,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> s2n_client_hello_get_cipher_suites_length </td>
+          <td class="memname">ssize_t s2n_client_hello_get_cipher_suites_length </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *&#160;</td>
           <td class="paramname"><em>ch</em></td><td>)</td>
@@ -251,7 +251,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> s2n_client_hello_get_extension_by_id </td>
+          <td class="memname">ssize_t s2n_client_hello_get_extension_by_id </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *&#160;</td>
           <td class="paramname"><em>ch</em>, </td>
@@ -291,7 +291,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> s2n_client_hello_get_extension_length </td>
+          <td class="memname">ssize_t s2n_client_hello_get_extension_length </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *&#160;</td>
           <td class="paramname"><em>ch</em>, </td>
@@ -319,7 +319,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> s2n_client_hello_get_extensions </td>
+          <td class="memname">ssize_t s2n_client_hello_get_extensions </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *&#160;</td>
           <td class="paramname"><em>ch</em>, </td>
@@ -353,7 +353,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> s2n_client_hello_get_extensions_length </td>
+          <td class="memname">ssize_t s2n_client_hello_get_extensions_length </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *&#160;</td>
           <td class="paramname"><em>ch</em></td><td>)</td>
@@ -413,7 +413,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> s2n_client_hello_get_raw_message </td>
+          <td class="memname">ssize_t s2n_client_hello_get_raw_message </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *&#160;</td>
           <td class="paramname"><em>ch</em>, </td>
@@ -447,7 +447,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> s2n_client_hello_get_raw_message_length </td>
+          <td class="memname">ssize_t s2n_client_hello_get_raw_message_length </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__client__hello.html">s2n_client_hello</a> *&#160;</td>
           <td class="paramname"><em>ch</em></td><td>)</td>

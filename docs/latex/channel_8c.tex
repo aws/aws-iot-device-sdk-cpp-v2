@@ -29,7 +29,7 @@ struct \mbox{\hyperlink{structchannel__shutdown__task__args}{channel\+\_\+shutdo
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \{ \mbox{\hyperlink{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}{KB\+\_\+16}} = 16 $\ast$ 1024
+enum \{ \mbox{\hyperlink{channel_8c_afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728}{KB\+\_\+16}} = 16 $\ast$ 1024
  \}
 \item 
 enum \mbox{\hyperlink{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200c}{aws\+\_\+channel\+\_\+state}} \{ \mbox{\hyperlink{channel_8c_a145f97ada78b6ee9e0aab8c7aa7e200ca4c83f2ba135bfdb374ff7dbaea11f7fb}{AWS\+\_\+\+CHANNEL\+\_\+\+SETTING\+\_\+\+UP}}
@@ -61,15 +61,15 @@ void \mbox{\hyperlink{channel_8c_a997fd75a24929fa75dec1e4346635078}{aws\+\_\+cha
 \item 
 void \mbox{\hyperlink{channel_8c_af538b24333d3a5a7a434f8214c00d5a9}{aws\+\_\+channel\+\_\+release\+\_\+hold}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
 \item 
-static int \mbox{\hyperlink{channel_8c_a7ff5c6573e9ee75999de512eb9ae675c}{s\+\_\+channel\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} shutdown\+\_\+immediately)
+static int \mbox{\hyperlink{channel_8c_a7ff5c6573e9ee75999de512eb9ae675c}{s\+\_\+channel\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int error\+\_\+code, bool shutdown\+\_\+immediately)
 \item 
 static void \mbox{\hyperlink{channel_8c_a2363d5e271fd83587c1e8128f2be0827}{s\+\_\+on\+\_\+shutdown\+\_\+completion\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
 static void \mbox{\hyperlink{channel_8c_a16e4c1a549b3c160c7df1410cb78863f}{s\+\_\+shutdown\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-int \mbox{\hyperlink{channel_8c_a136dec28372bafca15c52abc876c84c6}{aws\+\_\+channel\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+int \mbox{\hyperlink{channel_8c_a136dec28372bafca15c52abc876c84c6}{aws\+\_\+channel\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, int error\+\_\+code)
 \item 
-struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ \mbox{\hyperlink{channel_8c_a6c9b7905706d982c37f9e5c125aa8512}{aws\+\_\+channel\+\_\+acquire\+\_\+message\+\_\+from\+\_\+pool}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, enum \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\+\_\+io\+\_\+message\+\_\+type}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}}, size\+\_\+t size\+\_\+hint)
+struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ \mbox{\hyperlink{channel_8c_a6c9b7905706d982c37f9e5c125aa8512}{aws\+\_\+channel\+\_\+acquire\+\_\+message\+\_\+from\+\_\+pool}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, enum \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\+\_\+io\+\_\+message\+\_\+type}} message\+\_\+type, size\+\_\+t size\+\_\+hint)
 \item 
 struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$ \mbox{\hyperlink{channel_8c_a4846decb3214f553cf8246e44785c431}{aws\+\_\+channel\+\_\+slot\+\_\+new}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
 \item 
@@ -83,7 +83,7 @@ int \mbox{\hyperlink{channel_8c_aae23519d2041e97c043fb9ebd206ba17}{aws\+\_\+chan
 \item 
 static void \mbox{\hyperlink{channel_8c_adcb04543063f17a06040cc5fbcc8c93a}{s\+\_\+channel\+\_\+task\+\_\+run}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-void \mbox{\hyperlink{channel_8c_a2c46f872a25bd2541b213c532813d3b5}{aws\+\_\+channel\+\_\+task\+\_\+init}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, \mbox{\hyperlink{channel_8h_af19f695ba5e5d8dc58cce82c4c1c645e}{aws\+\_\+channel\+\_\+task\+\_\+fn}} $\ast$\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_abbaac6de4b607959ddeab2c29055a668}{task\+\_\+fn}}, void $\ast$arg, const char $\ast$type\+\_\+tag)
+void \mbox{\hyperlink{channel_8c_a2c46f872a25bd2541b213c532813d3b5}{aws\+\_\+channel\+\_\+task\+\_\+init}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, \mbox{\hyperlink{channel_8h_af19f695ba5e5d8dc58cce82c4c1c645e}{aws\+\_\+channel\+\_\+task\+\_\+fn}} $\ast$task\+\_\+fn, void $\ast$arg, const char $\ast$type\+\_\+tag)
 \item 
 static void \mbox{\hyperlink{channel_8c_a24ffa215b6a69ffe59becb46aff75759}{s\+\_\+register\+\_\+pending\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
 \item 
@@ -91,11 +91,11 @@ void \mbox{\hyperlink{channel_8c_a9642128221f90fc7fdaa69e957c22c7e}{aws\+\_\+cha
 \item 
 void \mbox{\hyperlink{channel_8c_a014e9d885eb34c2750ca7b22932d07f7}{aws\+\_\+channel\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{channel_8c_a6f1bd887ae61a45cfd20068fa177a17f}{aws\+\_\+channel\+\_\+thread\+\_\+is\+\_\+callers\+\_\+thread}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+bool \mbox{\hyperlink{channel_8c_a6f1bd887ae61a45cfd20068fa177a17f}{aws\+\_\+channel\+\_\+thread\+\_\+is\+\_\+callers\+\_\+thread}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
 \item 
 static void \mbox{\hyperlink{channel_8c_a69ea92a4c3ee7eb41054644e229ff9db}{s\+\_\+update\+\_\+channel\+\_\+slot\+\_\+message\+\_\+overheads}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
 \item 
-int \mbox{\hyperlink{channel_8c_a46595b50216279630f6c357a6cfd81b3}{aws\+\_\+channel\+\_\+slot\+\_\+set\+\_\+handler}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+int \mbox{\hyperlink{channel_8c_a46595b50216279630f6c357a6cfd81b3}{aws\+\_\+channel\+\_\+slot\+\_\+set\+\_\+handler}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
 int \mbox{\hyperlink{channel_8c_ac3075bd6f624dab2ddc610f45e1d098f}{aws\+\_\+channel\+\_\+slot\+\_\+remove}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
 \item 
@@ -107,7 +107,7 @@ int \mbox{\hyperlink{channel_8c_a89622dad2d95250793140d0577d69e52}{aws\+\_\+chan
 \item 
 int \mbox{\hyperlink{channel_8c_a5afdc9fe4448a163c8b1adb75d120a19}{aws\+\_\+channel\+\_\+slot\+\_\+insert\+\_\+left}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$to\+\_\+add)
 \item 
-int \mbox{\hyperlink{channel_8c_a62e2e08ead1c914209fbf17587a527fa}{aws\+\_\+channel\+\_\+slot\+\_\+send\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir)
+int \mbox{\hyperlink{channel_8c_a62e2e08ead1c914209fbf17587a527fa}{aws\+\_\+channel\+\_\+slot\+\_\+send\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir)
 \item 
 struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ \mbox{\hyperlink{channel_8c_acaa6777d47c8591cacaacad26a123de3}{aws\+\_\+channel\+\_\+slot\+\_\+acquire\+\_\+max\+\_\+message\+\_\+for\+\_\+write}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
 \item 
@@ -115,27 +115,27 @@ static void \mbox{\hyperlink{channel_8c_ac8a1e797fb030e8d27944ea2bedce853}{s\+\_
 \item 
 int \mbox{\hyperlink{channel_8c_ace28e826f0cda574669c64bc25d73aa7}{aws\+\_\+channel\+\_\+slot\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t window)
 \item 
-int \mbox{\hyperlink{channel_8c_a7e0aeec89ec6a0356bd5bedb2cbdf4d6}{aws\+\_\+channel\+\_\+slot\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int err\+\_\+code, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+int \mbox{\hyperlink{channel_8c_a7e0aeec89ec6a0356bd5bedb2cbdf4d6}{aws\+\_\+channel\+\_\+slot\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int err\+\_\+code, bool free\+\_\+scarce\+\_\+resources\+\_\+immediately)
 \item 
 static void \mbox{\hyperlink{channel_8c_a017a204cd4a9f6af20e21866d892f512}{s\+\_\+run\+\_\+shutdown\+\_\+write\+\_\+direction}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-int \mbox{\hyperlink{channel_8c_ac02bdc09609e77ed5d606d75dab8665a}{aws\+\_\+channel\+\_\+slot\+\_\+on\+\_\+handler\+\_\+shutdown\+\_\+complete}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int err\+\_\+code, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+int \mbox{\hyperlink{channel_8c_ac02bdc09609e77ed5d606d75dab8665a}{aws\+\_\+channel\+\_\+slot\+\_\+on\+\_\+handler\+\_\+shutdown\+\_\+complete}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int err\+\_\+code, bool free\+\_\+scarce\+\_\+resources\+\_\+immediately)
 \item 
 size\+\_\+t \mbox{\hyperlink{channel_8c_ac2703e4910b55901604efb6b1437169e}{aws\+\_\+channel\+\_\+slot\+\_\+downstream\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
 \item 
 size\+\_\+t \mbox{\hyperlink{channel_8c_a6eb3555dcee0178d6d2579b69e5a5d8a}{aws\+\_\+channel\+\_\+slot\+\_\+upstream\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
 \item 
-void \mbox{\hyperlink{channel_8c_a5c4291e035ed0bce84847d62c3530ae7}{aws\+\_\+channel\+\_\+handler\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+void \mbox{\hyperlink{channel_8c_a5c4291e035ed0bce84847d62c3530ae7}{aws\+\_\+channel\+\_\+handler\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-int \mbox{\hyperlink{channel_8c_a593c06122e2de124ff5eb9466d7ebc1f}{aws\+\_\+channel\+\_\+handler\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+int \mbox{\hyperlink{channel_8c_a593c06122e2de124ff5eb9466d7ebc1f}{aws\+\_\+channel\+\_\+handler\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message)
 \item 
-int \mbox{\hyperlink{channel_8c_a6a6a79555c173c477a87468171e5d116}{aws\+\_\+channel\+\_\+handler\+\_\+process\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+int \mbox{\hyperlink{channel_8c_a6a6a79555c173c477a87468171e5d116}{aws\+\_\+channel\+\_\+handler\+\_\+process\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message)
 \item 
-int \mbox{\hyperlink{channel_8c_aad29b3effeca8c0f96a98f3bdd3721d0}{aws\+\_\+channel\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t size)
+int \mbox{\hyperlink{channel_8c_aad29b3effeca8c0f96a98f3bdd3721d0}{aws\+\_\+channel\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t size)
 \item 
-int \mbox{\hyperlink{channel_8c_aef86fb523e1c2cfbff4236eba9dea108}{aws\+\_\+channel\+\_\+handler\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+int \mbox{\hyperlink{channel_8c_aef86fb523e1c2cfbff4236eba9dea108}{aws\+\_\+channel\+\_\+handler\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int error\+\_\+code, bool free\+\_\+scarce\+\_\+resources\+\_\+immediately)
 \item 
-size\+\_\+t \mbox{\hyperlink{channel_8c_ad1bf994287f08ecfcbd954165fe9dd38}{aws\+\_\+channel\+\_\+handler\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+size\+\_\+t \mbox{\hyperlink{channel_8c_ad1bf994287f08ecfcbd954165fe9dd38}{aws\+\_\+channel\+\_\+handler\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
 struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$ \mbox{\hyperlink{channel_8c_ae57618bf0dc50fd6bcdf9abe104d7a1a}{aws\+\_\+channel\+\_\+get\+\_\+first\+\_\+slot}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
 \item 
@@ -143,7 +143,7 @@ static void \mbox{\hyperlink{channel_8c_ab03cd7122686a085dccd396e31ed820a}{s\+\_
 \item 
 static void \mbox{\hyperlink{channel_8c_a3966ebac4f40510a4992240cc202765c}{s\+\_\+channel\+\_\+gather\+\_\+statistics\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-int \mbox{\hyperlink{channel_8c_a8d68e394434da99942eacdd668fa91f8}{aws\+\_\+channel\+\_\+set\+\_\+statistics\+\_\+handler}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+int \mbox{\hyperlink{channel_8c_a8d68e394434da99942eacdd668fa91f8}{aws\+\_\+channel\+\_\+set\+\_\+statistics\+\_\+handler}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$handler)
 \item 
 struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{channel_8c_acef9224f64bad376195da55ca1b80a8b}{aws\+\_\+channel\+\_\+get\+\_\+event\+\_\+loop}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
 \end{DoxyCompactItemize}
@@ -152,7 +152,7 @@ struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast
 \item 
 static size\+\_\+t \mbox{\hyperlink{channel_8c_a4dd0a78dba2e91f78128f60c1319739f}{s\+\_\+message\+\_\+pool\+\_\+key}} = 0
 \item 
-size\+\_\+t \mbox{\hyperlink{channel_8c_ab8036c39ac363ac0ace8ce7f487f8e81}{g\+\_\+aws\+\_\+channel\+\_\+max\+\_\+fragment\+\_\+size}} = \mbox{\hyperlink{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}{KB\+\_\+16}}
+size\+\_\+t \mbox{\hyperlink{channel_8c_ab8036c39ac363ac0ace8ce7f487f8e81}{g\+\_\+aws\+\_\+channel\+\_\+max\+\_\+fragment\+\_\+size}} = \mbox{\hyperlink{channel_8c_afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728}{KB\+\_\+16}}
 \end{DoxyCompactItemize}
 
 
@@ -166,12 +166,12 @@ size\+\_\+t \mbox{\hyperlink{channel_8c_ab8036c39ac363ac0ace8ce7f487f8e81}{g\+\_
 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{channel_8c_afb730582952b7ceec73d7dc9bf7bef39}\label{channel_8c_afb730582952b7ceec73d7dc9bf7bef39}} 
+\mbox{\Hypertarget{channel_8c_afa231099d07583c3ed0981e0bb665f55}\label{channel_8c_afa231099d07583c3ed0981e0bb665f55}} 
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{KB\_16@{KB\_16}!channel.c@{channel.c}}\index{channel.c@{channel.c}!KB\_16@{KB\_16}}}\mbox{\Hypertarget{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}\label{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KB\_16@{KB\_16}!channel.c@{channel.c}}\index{channel.c@{channel.c}!KB\_16@{KB\_16}}}\mbox{\Hypertarget{channel_8c_afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728}\label{channel_8c_afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728}} 
 KB\+\_\+16&\\
 \hline
 
@@ -279,7 +279,7 @@ Calls process\+\_\+write\+\_\+message on handler\textquotesingle{}s vtable. \mbo
 \index{channel.c@{channel.c}!aws\_channel\_handler\_shutdown@{aws\_channel\_handler\_shutdown}}
 \index{aws\_channel\_handler\_shutdown@{aws\_channel\_handler\_shutdown}!channel.c@{channel.c}}
 \doxysubsubsection{\texorpdfstring{aws\_channel\_handler\_shutdown()}{aws\_channel\_handler\_shutdown()}}
-{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+handler\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+handler\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{bool}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
 
 calls shutdown\+\_\+direction on handler\textquotesingle{}s vtable. \mbox{\Hypertarget{channel_8c_a04fbab8955bde89dab96485442344698}\label{channel_8c_a04fbab8955bde89dab96485442344698}} 
 \index{channel.c@{channel.c}!aws\_channel\_new@{aws\_channel\_new}}
@@ -385,7 +385,7 @@ Allocates and initializes a new slot for use with the channel. If this is the fi
 \index{channel.c@{channel.c}!aws\_channel\_slot\_on\_handler\_shutdown\_complete@{aws\_channel\_slot\_on\_handler\_shutdown\_complete}}
 \index{aws\_channel\_slot\_on\_handler\_shutdown\_complete@{aws\_channel\_slot\_on\_handler\_shutdown\_complete}!channel.c@{channel.c}}
 \doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_on\_handler\_shutdown\_complete()}{aws\_channel\_slot\_on\_handler\_shutdown\_complete()}}
-{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+on\+\_\+handler\+\_\+shutdown\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{err\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+on\+\_\+handler\+\_\+shutdown\+\_\+complete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{err\+\_\+code,  }\item[{bool}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
 
 Called by handlers once they have finished their shutdown in the \textquotesingle{}dir\textquotesingle{} direction. Propagates the shutdown process to the next handler in the channel. \mbox{\Hypertarget{channel_8c_ac3075bd6f624dab2ddc610f45e1d098f}\label{channel_8c_ac3075bd6f624dab2ddc610f45e1d098f}} 
 \index{channel.c@{channel.c}!aws\_channel\_slot\_remove@{aws\_channel\_slot\_remove}}
@@ -417,7 +417,7 @@ Sets the handler for a slot, the slot will also call get\+\_\+current\+\_\+windo
 \index{channel.c@{channel.c}!aws\_channel\_slot\_shutdown@{aws\_channel\_slot\_shutdown}}
 \index{aws\_channel\_slot\_shutdown@{aws\_channel\_slot\_shutdown}!channel.c@{channel.c}}
 \doxysubsubsection{\texorpdfstring{aws\_channel\_slot\_shutdown()}{aws\_channel\_slot\_shutdown()}}
-{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{err\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+channel\+\_\+slot\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{err\+\_\+code,  }\item[{bool}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
 
 Initiates shutdown on slot. callbacks-\/\texorpdfstring{$>$}{>}on\+\_\+shutdown\+\_\+completed will be called once the shutdown process is completed. \mbox{\Hypertarget{channel_8c_a6eb3555dcee0178d6d2579b69e5a5d8a}\label{channel_8c_a6eb3555dcee0178d6d2579b69e5a5d8a}} 
 \index{channel.c@{channel.c}!aws\_channel\_slot\_upstream\_message\_overhead@{aws\_channel\_slot\_upstream\_message\_overhead}}
@@ -435,7 +435,7 @@ Initializes channel\+\_\+task for use. \mbox{\Hypertarget{channel_8c_a6f1bd887ae
 \index{channel.c@{channel.c}!aws\_channel\_thread\_is\_callers\_thread@{aws\_channel\_thread\_is\_callers\_thread}}
 \index{aws\_channel\_thread\_is\_callers\_thread@{aws\_channel\_thread\_is\_callers\_thread}!channel.c@{channel.c}}
 \doxysubsubsection{\texorpdfstring{aws\_channel\_thread\_is\_callers\_thread()}{aws\_channel\_thread\_is\_callers\_thread()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+channel\+\_\+thread\+\_\+is\+\_\+callers\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+channel\+\_\+thread\+\_\+is\+\_\+callers\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel }\end{DoxyParamCaption})}
 
 Returns true if the caller is on the event loop\textquotesingle{}s thread. If false, you likely need to use aws\+\_\+channel\+\_\+schedule\+\_\+task(). This function is safe to call from any thread. \mbox{\Hypertarget{channel_8c_a3966ebac4f40510a4992240cc202765c}\label{channel_8c_a3966ebac4f40510a4992240cc202765c}} 
 \index{channel.c@{channel.c}!s\_channel\_gather\_statistics\_task@{s\_channel\_gather\_statistics\_task}}
@@ -447,7 +447,7 @@ Returns true if the caller is on the event loop\textquotesingle{}s thread. If fa
 \index{channel.c@{channel.c}!s\_channel\_shutdown@{s\_channel\_shutdown}}
 \index{s\_channel\_shutdown@{s\_channel\_shutdown}!channel.c@{channel.c}}
 \doxysubsubsection{\texorpdfstring{s\_channel\_shutdown()}{s\_channel\_shutdown()}}
-{\footnotesize\ttfamily static int s\+\_\+channel\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{shutdown\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+channel\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$}]{channel,  }\item[{int}]{error\+\_\+code,  }\item[{bool}]{shutdown\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{channel_8c_adcb04543063f17a06040cc5fbcc8c93a}\label{channel_8c_adcb04543063f17a06040cc5fbcc8c93a}} 
 \index{channel.c@{channel.c}!s\_channel\_task\_run@{s\_channel\_task\_run}}
@@ -540,7 +540,7 @@ Returns true if the caller is on the event loop\textquotesingle{}s thread. If fa
 \index{channel.c@{channel.c}!g\_aws\_channel\_max\_fragment\_size@{g\_aws\_channel\_max\_fragment\_size}}
 \index{g\_aws\_channel\_max\_fragment\_size@{g\_aws\_channel\_max\_fragment\_size}!channel.c@{channel.c}}
 \doxysubsubsection{\texorpdfstring{g\_aws\_channel\_max\_fragment\_size}{g\_aws\_channel\_max\_fragment\_size}}
-{\footnotesize\ttfamily size\+\_\+t g\+\_\+aws\+\_\+channel\+\_\+max\+\_\+fragment\+\_\+size = \mbox{\hyperlink{channel_8c_afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728}{KB\+\_\+16}}}
+{\footnotesize\ttfamily size\+\_\+t g\+\_\+aws\+\_\+channel\+\_\+max\+\_\+fragment\+\_\+size = \mbox{\hyperlink{channel_8c_afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728}{KB\+\_\+16}}}
 
 \mbox{\Hypertarget{channel_8c_a4dd0a78dba2e91f78128f60c1319739f}\label{channel_8c_a4dd0a78dba2e91f78128f60c1319739f}} 
 \index{channel.c@{channel.c}!s\_message\_pool\_key@{s\_message\_pool\_key}}

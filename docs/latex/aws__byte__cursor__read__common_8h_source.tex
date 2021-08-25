@@ -5,12 +5,12 @@
 \DoxyCodeLine{1 }
 \DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{byte__buf_8h}{aws/common/byte\_buf.h}}>}}
 \DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{make__common__data__structures_8h}{proof\_helpers/make\_common\_data\_structures.h}}>}}
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{aws-c-common_2verification_2cbmc_2include_2proof__helpers_2proof__allocators_8h}{proof\_helpers/proof\_allocators.h}}>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{proof__allocators_8h}{proof\_helpers/proof\_allocators.h}}>}}
 \DoxyCodeLine{9 }
 \DoxyCodeLine{10 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws__byte__cursor__read__common_8h_a7198243cc2137dd241c4df21a19a87e3}{aws\_byte\_cursor\_read\_common\_harness}}() \{}
 \DoxyCodeLine{11     \textcolor{comment}{/* parameters */}}
 \DoxyCodeLine{12     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} cur;}
-\DoxyCodeLine{13     \mbox{\hyperlink{aws__byte__cursor__read__be16__harness_8c_a0665e41ec72efcba7c916c14e7f8e4c6}{DEST\_TYPE}} *\mbox{\hyperlink{namespacecreate-projects_a30fed16487e895222a4b2a8e95fe2e2f}{dest}} = \mbox{\hyperlink{aws-c-common_2verification_2cbmc_2include_2proof__helpers_2proof__allocators_8h_aaa127ec3bf84bdf0e9274082aa3c7354}{can\_fail\_malloc}}(\textcolor{keyword}{sizeof}(*\mbox{\hyperlink{namespacecreate-projects_a30fed16487e895222a4b2a8e95fe2e2f}{dest}}));}
+\DoxyCodeLine{13     \mbox{\hyperlink{aws__byte__cursor__read__be16__harness_8c_a0665e41ec72efcba7c916c14e7f8e4c6}{DEST\_TYPE}} *\mbox{\hyperlink{namespacecreate-projects_a30fed16487e895222a4b2a8e95fe2e2f}{dest}} = \mbox{\hyperlink{proof__allocators_8h_aaa127ec3bf84bdf0e9274082aa3c7354}{can\_fail\_malloc}}(\textcolor{keyword}{sizeof}(*\mbox{\hyperlink{namespacecreate-projects_a30fed16487e895222a4b2a8e95fe2e2f}{dest}}));}
 \DoxyCodeLine{14 }
 \DoxyCodeLine{15     \textcolor{comment}{/* assumptions */}}
 \DoxyCodeLine{16     \mbox{\hyperlink{make__common__data__structures_8h_a505d14abe6c1f43f7195d1959b7c9490}{ensure\_byte\_cursor\_has\_allocated\_buffer\_member}}(\&cur);}

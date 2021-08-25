@@ -131,7 +131,7 @@ Macros</h2></td></tr>
 <tr class="separator:ae5b1335bfccc358f566bea6f7e4bfdc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adab3f1e3586395bdb2da5a40059cb24b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h.html#adab3f1e3586395bdb2da5a40059cb24b">cJSON_SetNumberValue</a>(object,  <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a01b4671c6b7cc8f831c951c000a37735">number</a>)&#160;&#160;&#160;((object != NULL) ? cJSON_SetNumberHelper(object, (double)<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a01b4671c6b7cc8f831c951c000a37735">number</a>) : (<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a01b4671c6b7cc8f831c951c000a37735">number</a>))</td></tr>
 <tr class="separator:adab3f1e3586395bdb2da5a40059cb24b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3d6e5782fb4bb3c7a25c7c5b1868f06"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h.html#ac3d6e5782fb4bb3c7a25c7c5b1868f06">cJSON_ArrayForEach</a>(element,  array)&#160;&#160;&#160;<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a21314beab9f26179a0f1cd5f14f63f44">for</a>(element = (array != NULL) ? (array)-&gt;child : NULL; element != NULL; element = element-&gt;next)</td></tr>
+<tr class="memitem:ac3d6e5782fb4bb3c7a25c7c5b1868f06"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h.html#ac3d6e5782fb4bb3c7a25c7c5b1868f06">cJSON_ArrayForEach</a>(element,  array)&#160;&#160;&#160;for(element = (array != NULL) ? (array)-&gt;child : NULL; element != NULL; element = element-&gt;next)</td></tr>
 <tr class="separator:ac3d6e5782fb4bb3c7a25c7c5b1868f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -153,7 +153,7 @@ Functions</h2></td></tr>
 <tr class="separator:ad2eb4e3a6ec670cc7b3912f683972792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c5185b6eaacaa320bd6461e6b1f9300"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a3c5185b6eaacaa320bd6461e6b1f9300">Aws::CJSON_PUBLIC</a> (char *) cJSON_Print(const <a class="el" href="structc_j_s_o_n.html">cJSON</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#ac011de571ff16ba220d2e0d757e4e8b0">item</a>)</td></tr>
 <tr class="separator:a3c5185b6eaacaa320bd6461e6b1f9300"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32981f90bfc94b72b3062d2e7ff08acc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a32981f90bfc94b72b3062d2e7ff08acc">Aws::cJSON_PrintPreallocated</a> (<a class="el" href="structc_j_s_o_n.html">cJSON</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#ac011de571ff16ba220d2e0d757e4e8b0">item</a>, char *buffer, const int <a class="el" href="iocp__event__loop_8c.html#ae809d5359ac030c60a30a8f0b2294b82">length</a>, const <a class="el" href="aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h.html#aea0a1491f73d98b7cc4b8b791c408a4a">cJSON_bool</a> format)</td></tr>
+<tr class="memitem:a32981f90bfc94b72b3062d2e7ff08acc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a32981f90bfc94b72b3062d2e7ff08acc">Aws::cJSON_PrintPreallocated</a> (<a class="el" href="structc_j_s_o_n.html">cJSON</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#ac011de571ff16ba220d2e0d757e4e8b0">item</a>, char *buffer, const int <a class="el" href="iocp__event__loop_8c.html#a09ef0d7d086ae398d78b446470ae8b3a">length</a>, const <a class="el" href="aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h.html#aea0a1491f73d98b7cc4b8b791c408a4a">cJSON_bool</a> format)</td></tr>
 <tr class="separator:a32981f90bfc94b72b3062d2e7ff08acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fb370a4e9fce06d7d1495696261babf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a4fb370a4e9fce06d7d1495696261babf">Aws::CJSON_PUBLIC</a> (int) cJSON_GetArraySize(const <a class="el" href="structc_j_s_o_n.html">cJSON</a> *array)</td></tr>
 <tr class="separator:a4fb370a4e9fce06d7d1495696261babf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,7 +166,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a52c438299b08516e5d87b48ded603a6e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a52c438299b08516e5d87b48ded603a6e">Aws::length</a> = <a class="el" href="iocp__event__loop_8c.html#ae809d5359ac030c60a30a8f0b2294b82">length</a></td></tr>
+<tr class="memitem:a52c438299b08516e5d87b48ded603a6e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a52c438299b08516e5d87b48ded603a6e">Aws::length</a> = <a class="el" href="iocp__event__loop_8c.html#a09ef0d7d086ae398d78b446470ae8b3a">length</a></td></tr>
 <tr class="separator:a52c438299b08516e5d87b48ded603a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6aa1ba4d23552e6f67db375f5dddf8bc"><td class="memItemLeft" align="right" valign="top">size_t const char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_aws.html#a6aa1ba4d23552e6f67db375f5dddf8bc">Aws::return_parse_end</a></td></tr>
 <tr class="separator:a6aa1ba4d23552e6f67db375f5dddf8bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -239,7 +239,7 @@ Variables</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a21314beab9f26179a0f1cd5f14f63f44">for</a>(element = (array != NULL) ? (array)-&gt;child : NULL; element != NULL; element = element-&gt;next)</td>
+          <td></td><td>&#160;&#160;&#160;for(element = (array != NULL) ? (array)-&gt;child : NULL; element != NULL; element = element-&gt;next)</td>
         </tr>
       </table>
 </div><div class="memdoc">

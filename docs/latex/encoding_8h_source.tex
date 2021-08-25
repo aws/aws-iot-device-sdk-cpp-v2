@@ -27,7 +27,7 @@
 \DoxyCodeLine{28 \textcolor{comment}{ * insufficient capacity.}}
 \DoxyCodeLine{29 \textcolor{comment}{ */}}
 \DoxyCodeLine{30 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{31 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_ac84d6b8ec7652570e4423ce3d833f379}{aws\_hex\_encode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_encode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{31 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_ac84d6b8ec7652570e4423ce3d833f379}{aws\_hex\_encode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_encode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} output);}
 \DoxyCodeLine{32 }
 \DoxyCodeLine{33 \textcolor{comment}{/*}}
 \DoxyCodeLine{34 \textcolor{comment}{ * Base 16 (hex) encodes the contents of to\_encode and appends the result in}}
@@ -36,7 +36,7 @@
 \DoxyCodeLine{37 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{38 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a150572cc72ce32650f92893b4815bfb9}{aws\_hex\_encode\_append\_dynamic}}(}
 \DoxyCodeLine{39     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_encode,}
-\DoxyCodeLine{40     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{40     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} output);}
 \DoxyCodeLine{41 }
 \DoxyCodeLine{42 \textcolor{comment}{/*}}
 \DoxyCodeLine{43 \textcolor{comment}{ * computes the length necessary to store the result of aws\_hex\_decode().}}
@@ -51,7 +51,7 @@
 \DoxyCodeLine{52 \textcolor{comment}{ * should be.}}
 \DoxyCodeLine{53 \textcolor{comment}{ */}}
 \DoxyCodeLine{54 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{55 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_ad50df47b1dcf8deb1c8b8747bd5290a4}{aws\_hex\_decode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_decode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{55 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_ad50df47b1dcf8deb1c8b8747bd5290a4}{aws\_hex\_decode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_decode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} output);}
 \DoxyCodeLine{56 }
 \DoxyCodeLine{57 \textcolor{comment}{/*}}
 \DoxyCodeLine{58 \textcolor{comment}{ * Computes the length necessary to store the output of aws\_base64\_encode call.}}
@@ -65,7 +65,7 @@
 \DoxyCodeLine{66 \textcolor{comment}{ * Base 64 encodes the contents of to\_encode and stores the result in output.}}
 \DoxyCodeLine{67 \textcolor{comment}{ */}}
 \DoxyCodeLine{68 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{69 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a37993bbd432b5eb1a5103d3168171e7b}{aws\_base64\_encode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_encode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{69 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a37993bbd432b5eb1a5103d3168171e7b}{aws\_base64\_encode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_encode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} output);}
 \DoxyCodeLine{70 }
 \DoxyCodeLine{71 \textcolor{comment}{/*}}
 \DoxyCodeLine{72 \textcolor{comment}{ * Computes the length necessary to store the output of aws\_base64\_decode call.}}
@@ -78,7 +78,7 @@
 \DoxyCodeLine{79 \textcolor{comment}{ * Base 64 decodes the contents of to\_decode and stores the result in output.}}
 \DoxyCodeLine{80 \textcolor{comment}{ */}}
 \DoxyCodeLine{81 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{82 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a5097b5bbf67d33303d4be54f93177a2e}{aws\_base64\_decode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_decode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{82 \textcolor{keywordtype}{int} \mbox{\hyperlink{encoding_8h_a5097b5bbf67d33303d4be54f93177a2e}{aws\_base64\_decode}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} to\_decode, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\_RESTRICT}} output);}
 \DoxyCodeLine{83 }
 \DoxyCodeLine{84 \textcolor{comment}{/* Add a 64 bit unsigned integer to the buffer, ensuring network -\/ byte order}}
 \DoxyCodeLine{85 \textcolor{comment}{ * Assumes the buffer size is at least 8 bytes.}}

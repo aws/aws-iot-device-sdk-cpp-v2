@@ -14,27 +14,27 @@
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \{ \mbox{\hyperlink{h1__connection_8c_a7ff5f2dff38e7639981794c43dc9167bae6544594c949a178df7b79f83c61cfcd}{DECODER\+\_\+\+INITIAL\+\_\+\+SCRATCH\+\_\+\+SIZE}} = 256
+enum \{ \mbox{\hyperlink{h1__connection_8c_adb49720dc49f7d4e4cf9adbf2948e409ae6544594c949a178df7b79f83c61cfcd}{DECODER\+\_\+\+INITIAL\+\_\+\+SCRATCH\+\_\+\+SIZE}} = 256
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_ad84adecd98cab3482fa0beae1100435d}{s\+\_\+handler\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+static int \mbox{\hyperlink{h1__connection_8c_ad84adecd98cab3482fa0beae1100435d}{s\+\_\+handler\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_ae9a81c1bef30f4f9667cc6f18c3a186e}{s\+\_\+handler\+\_\+process\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+static int \mbox{\hyperlink{h1__connection_8c_ae9a81c1bef30f4f9667cc6f18c3a186e}{s\+\_\+handler\+\_\+process\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_a017ea68f21f7106cebe2694c6c2be97b}{s\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t size)
+static int \mbox{\hyperlink{h1__connection_8c_a017ea68f21f7106cebe2694c6c2be97b}{s\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t size)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_a20ea43d01e1f0ca25cd6edcfd02c423d}{s\+\_\+handler\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+static int \mbox{\hyperlink{h1__connection_8c_a20ea43d01e1f0ca25cd6edcfd02c423d}{s\+\_\+handler\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int error\+\_\+code, bool free\+\_\+scarce\+\_\+resources\+\_\+immediately)
 \item 
-static size\+\_\+t \mbox{\hyperlink{h1__connection_8c_a033c1a843b8a8c8aced31f19f7352249}{s\+\_\+handler\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static size\+\_\+t \mbox{\hyperlink{h1__connection_8c_a033c1a843b8a8c8aced31f19f7352249}{s\+\_\+handler\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static size\+\_\+t \mbox{\hyperlink{h1__connection_8c_a6aa3dbdbf1287961459f1cdce3d67b73}{s\+\_\+handler\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static size\+\_\+t \mbox{\hyperlink{h1__connection_8c_a6aa3dbdbf1287961459f1cdce3d67b73}{s\+\_\+handler\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static void \mbox{\hyperlink{h1__connection_8c_a43d3807a0d169ba7bd26392dd4ed4d33}{s\+\_\+handler\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static void \mbox{\hyperlink{h1__connection_8c_a43d3807a0d169ba7bd26392dd4ed4d33}{s\+\_\+handler\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static void \mbox{\hyperlink{h1__connection_8c_a0500f8ccce030b66ba082760b6f8aee7}{s\+\_\+handler\+\_\+installed}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+static void \mbox{\hyperlink{h1__connection_8c_a0500f8ccce030b66ba082760b6f8aee7}{s\+\_\+handler\+\_\+installed}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
 \item 
 static struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$ \mbox{\hyperlink{h1__connection_8c_a21576603e103e6367c14146cd0cc1c58}{s\+\_\+make\+\_\+request}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$client\+\_\+connection, const struct \mbox{\hyperlink{structaws__http__make__request__options}{aws\+\_\+http\+\_\+make\+\_\+request\+\_\+options}} $\ast$options)
 \item 
@@ -44,35 +44,35 @@ static int \mbox{\hyperlink{h1__connection_8c_a7e4a63d9927a21a577ab6ab8ecf361d1}
 \item 
 static void \mbox{\hyperlink{h1__connection_8c_a0095b678b9056fb533e36dd24d7f29d4}{s\+\_\+connection\+\_\+close}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection\+\_\+base)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__connection_8c_ac73f7befa6071daaf5c90fe3318f7f61}{s\+\_\+connection\+\_\+is\+\_\+open}} (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection\+\_\+base)
+static bool \mbox{\hyperlink{h1__connection_8c_ac73f7befa6071daaf5c90fe3318f7f61}{s\+\_\+connection\+\_\+is\+\_\+open}} (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection\+\_\+base)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__connection_8c_a43d4958c3f4c6be774463228b04aa2e7}{s\+\_\+connection\+\_\+new\+\_\+requests\+\_\+allowed}} (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection\+\_\+base)
+static bool \mbox{\hyperlink{h1__connection_8c_a43d4958c3f4c6be774463228b04aa2e7}{s\+\_\+connection\+\_\+new\+\_\+requests\+\_\+allowed}} (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection\+\_\+base)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_a2a021adde4b3308ae67dc21d5624bb64}{s\+\_\+decoder\+\_\+on\+\_\+request}} (enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}} method\+\_\+enum, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$method\+\_\+str, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$uri, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{h1__connection_8c_a2a021adde4b3308ae67dc21d5624bb64}{s\+\_\+decoder\+\_\+on\+\_\+request}} (enum \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\+\_\+http\+\_\+method}} method\+\_\+enum, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$method\+\_\+str, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$uri, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_aaed2183a91619151cabf6c9cb99f5537}{s\+\_\+decoder\+\_\+on\+\_\+response}} (int status\+\_\+code, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{h1__connection_8c_aaed2183a91619151cabf6c9cb99f5537}{s\+\_\+decoder\+\_\+on\+\_\+response}} (int status\+\_\+code, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_a5ce181d9882292e08e9d6ce7e66ed486}{s\+\_\+decoder\+\_\+on\+\_\+header}} (const struct \mbox{\hyperlink{structaws__h1__decoded__header}{aws\+\_\+h1\+\_\+decoded\+\_\+header}} $\ast$header, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{h1__connection_8c_a5ce181d9882292e08e9d6ce7e66ed486}{s\+\_\+decoder\+\_\+on\+\_\+header}} (const struct \mbox{\hyperlink{structaws__h1__decoded__header}{aws\+\_\+h1\+\_\+decoded\+\_\+header}} $\ast$header, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_afb197fe76d89d0e18074a5081c3d0911}{s\+\_\+decoder\+\_\+on\+\_\+body}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$data, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} finished, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{h1__connection_8c_afb197fe76d89d0e18074a5081c3d0911}{s\+\_\+decoder\+\_\+on\+\_\+body}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$data, bool finished, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_a4d1cb55383c038d324b48f7b213d6a7e}{s\+\_\+decoder\+\_\+on\+\_\+done}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{h1__connection_8c_a4d1cb55383c038d324b48f7b213d6a7e}{s\+\_\+decoder\+\_\+on\+\_\+done}} (void $\ast$user\+\_\+data)
 \item 
-static void \mbox{\hyperlink{h1__connection_8c_a2d860abd2afb1ef51c9a9240454a3196}{s\+\_\+reset\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static void \mbox{\hyperlink{h1__connection_8c_a2d860abd2afb1ef51c9a9240454a3196}{s\+\_\+reset\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static void \mbox{\hyperlink{h1__connection_8c_a5c620bb05a415271aa481c61eece3953}{s\+\_\+gather\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stats)
+static void \mbox{\hyperlink{h1__connection_8c_a5c620bb05a415271aa481c61eece3953}{s\+\_\+gather\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stats)
 \item 
-static void \mbox{\hyperlink{h1__connection_8c_a4133723f2005efd052b43358f678fb8a}{s\+\_\+write\+\_\+outgoing\+\_\+stream}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} first\+\_\+try)
+static void \mbox{\hyperlink{h1__connection_8c_a4133723f2005efd052b43358f678fb8a}{s\+\_\+write\+\_\+outgoing\+\_\+stream}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, bool first\+\_\+try)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_acc3ac24708ad197e311b49f0a016d829}{s\+\_\+try\+\_\+process\+\_\+next\+\_\+stream\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$out\+\_\+stop\+\_\+processing)
+static int \mbox{\hyperlink{h1__connection_8c_acc3ac24708ad197e311b49f0a016d829}{s\+\_\+try\+\_\+process\+\_\+next\+\_\+stream\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, bool $\ast$out\+\_\+stop\+\_\+processing)
 \item 
 void \mbox{\hyperlink{h1__connection_8c_a95d1d0721c2a75351d483eab71f74c04}{aws\+\_\+h1\+\_\+connection\+\_\+lock\+\_\+synced\+\_\+data}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection)
 \item 
 void \mbox{\hyperlink{h1__connection_8c_a73103a64bb83bf633e66a398262975ae}{aws\+\_\+h1\+\_\+connection\+\_\+unlock\+\_\+synced\+\_\+data}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection)
 \item 
-static void \mbox{\hyperlink{h1__connection_8c_a3c9b1b40e1a3de9930e2b2ba6c392b9d}{s\+\_\+stop}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} stop\+\_\+reading, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} stop\+\_\+writing, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} schedule\+\_\+shutdown, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static void \mbox{\hyperlink{h1__connection_8c_a3c9b1b40e1a3de9930e2b2ba6c392b9d}{s\+\_\+stop}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, bool stop\+\_\+reading, bool stop\+\_\+writing, bool schedule\+\_\+shutdown, int error\+\_\+code)
 \item 
-static void \mbox{\hyperlink{h1__connection_8c_aa1daa69ff39d40624ccc12132e86c458}{s\+\_\+shutdown\+\_\+due\+\_\+to\+\_\+error}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static void \mbox{\hyperlink{h1__connection_8c_aa1daa69ff39d40624ccc12132e86c458}{s\+\_\+shutdown\+\_\+due\+\_\+to\+\_\+error}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, int error\+\_\+code)
 \item 
 static size\+\_\+t \mbox{\hyperlink{h1__connection_8c_a08c6db0f35b74a2314cc6fc1e7c6e987}{s\+\_\+calculate\+\_\+midchannel\+\_\+desired\+\_\+connection\+\_\+window}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection)
 \item 
@@ -84,7 +84,7 @@ int \mbox{\hyperlink{h1__connection_8c_a49374a365ecc247718b30a3b171fac22}{aws\+\
 \item 
 static void \mbox{\hyperlink{h1__connection_8c_a5bb553d164cbcd755e76f26583d441a9}{s\+\_\+cross\+\_\+thread\+\_\+work\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$channel\+\_\+task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-static void \mbox{\hyperlink{h1__connection_8c_a01dad4bfc0db966ca56bec759b680bec}{s\+\_\+stream\+\_\+complete}} (struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}} $\ast$stream, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static void \mbox{\hyperlink{h1__connection_8c_a01dad4bfc0db966ca56bec759b680bec}{s\+\_\+stream\+\_\+complete}} (struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}} $\ast$stream, int error\+\_\+code)
 \item 
 static void \mbox{\hyperlink{h1__connection_8c_a3e2643895e496e4f24f0075f06ea791e}{s\+\_\+add\+\_\+time\+\_\+measurement\+\_\+to\+\_\+stats}} (uint64\+\_\+t start\+\_\+ns, uint64\+\_\+t end\+\_\+ns, uint64\+\_\+t $\ast$output\+\_\+ms)
 \item 
@@ -96,7 +96,7 @@ static void \mbox{\hyperlink{h1__connection_8c_a9332ea86d88f97071ce9c7a9a4aae2e9
 \item 
 static struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}} $\ast$ \mbox{\hyperlink{h1__connection_8c_add5921b22d655c012b9830e7afc8d989}{s\+\_\+update\+\_\+outgoing\+\_\+stream\+\_\+ptr}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection)
 \item 
-static void \mbox{\hyperlink{h1__connection_8c_a2c49a95d8dfb8f7e1ec8463bb50f38c3}{s\+\_\+on\+\_\+channel\+\_\+write\+\_\+complete}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, int err\+\_\+code, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{h1__connection_8c_a2c49a95d8dfb8f7e1ec8463bb50f38c3}{s\+\_\+on\+\_\+channel\+\_\+write\+\_\+complete}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message, int err\+\_\+code, void $\ast$user\+\_\+data)
 \item 
 static void \mbox{\hyperlink{h1__connection_8c_a12b178a16d0ec4c9017a535b3614841e}{s\+\_\+outgoing\+\_\+stream\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
@@ -104,13 +104,13 @@ void \mbox{\hyperlink{h1__connection_8c_a1d3af92b773ea5f2b8931b9599b48980}{aws\+
 \item 
 static int \mbox{\hyperlink{h1__connection_8c_a8b57a5c8e6e53d522d3372e912156965}{s\+\_\+mark\+\_\+head\+\_\+done}} (struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}} $\ast$incoming\+\_\+stream)
 \item 
-static struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$ \mbox{\hyperlink{h1__connection_8c_a7685b5a85d70b6ef68662e7c4f5ffd39}{s\+\_\+connection\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} manual\+\_\+window\+\_\+management, size\+\_\+t initial\+\_\+window\+\_\+size, const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$http1\+\_\+options, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} server)
+static struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$ \mbox{\hyperlink{h1__connection_8c_a7685b5a85d70b6ef68662e7c4f5ffd39}{s\+\_\+connection\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, bool manual\+\_\+window\+\_\+management, size\+\_\+t initial\+\_\+window\+\_\+size, const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$http1\+\_\+options, bool server)
 \item 
-struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{h1__connection_8c_a2c300f9afec865b1820dbe0927a2b1b7}{aws\+\_\+http\+\_\+connection\+\_\+new\+\_\+http1\+\_\+1\+\_\+server}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} manual\+\_\+window\+\_\+management, size\+\_\+t initial\+\_\+window\+\_\+size, const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$http1\+\_\+options)
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{h1__connection_8c_a2c300f9afec865b1820dbe0927a2b1b7}{aws\+\_\+http\+\_\+connection\+\_\+new\+\_\+http1\+\_\+1\+\_\+server}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, bool manual\+\_\+window\+\_\+management, size\+\_\+t initial\+\_\+window\+\_\+size, const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$http1\+\_\+options)
 \item 
-struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{h1__connection_8c_ad65d37ddfe84a836ce0073304475004e}{aws\+\_\+http\+\_\+connection\+\_\+new\+\_\+http1\+\_\+1\+\_\+client}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} manual\+\_\+window\+\_\+management, size\+\_\+t initial\+\_\+window\+\_\+size, const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$http1\+\_\+options)
+struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$ \mbox{\hyperlink{h1__connection_8c_ad65d37ddfe84a836ce0073304475004e}{aws\+\_\+http\+\_\+connection\+\_\+new\+\_\+http1\+\_\+1\+\_\+client}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, bool manual\+\_\+window\+\_\+management, size\+\_\+t initial\+\_\+window\+\_\+size, const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$http1\+\_\+options)
 \item 
-static int \mbox{\hyperlink{h1__connection_8c_aadbaef2fc3baddf0116e653172ad62c6}{s\+\_\+try\+\_\+process\+\_\+next\+\_\+midchannel\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$out\+\_\+stop\+\_\+processing)
+static int \mbox{\hyperlink{h1__connection_8c_aadbaef2fc3baddf0116e653172ad62c6}{s\+\_\+try\+\_\+process\+\_\+next\+\_\+midchannel\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection, bool $\ast$out\+\_\+stop\+\_\+processing)
 \item 
 static struct \mbox{\hyperlink{structaws__h1__stream}{aws\+\_\+h1\+\_\+stream}} $\ast$ \mbox{\hyperlink{h1__connection_8c_a267a1569a4a6ec5529f83e03eaac520b}{s\+\_\+server\+\_\+invoke\+\_\+on\+\_\+incoming\+\_\+request}} (struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$connection)
 \item 
@@ -132,12 +132,12 @@ static const struct \mbox{\hyperlink{structaws__h1__decoder__vtable}{aws\+\_\+h1
 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{h1__connection_8c_a7ff5f2dff38e7639981794c43dc9167b}\label{h1__connection_8c_a7ff5f2dff38e7639981794c43dc9167b}} 
+\mbox{\Hypertarget{h1__connection_8c_adb49720dc49f7d4e4cf9adbf2948e409}\label{h1__connection_8c_adb49720dc49f7d4e4cf9adbf2948e409}} 
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum}
 
 Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{DECODER\_INITIAL\_SCRATCH\_SIZE@{DECODER\_INITIAL\_SCRATCH\_SIZE}!h1\_connection.c@{h1\_connection.c}}\index{h1\_connection.c@{h1\_connection.c}!DECODER\_INITIAL\_SCRATCH\_SIZE@{DECODER\_INITIAL\_SCRATCH\_SIZE}}}\mbox{\Hypertarget{h1__connection_8c_a7ff5f2dff38e7639981794c43dc9167bae6544594c949a178df7b79f83c61cfcd}\label{h1__connection_8c_a7ff5f2dff38e7639981794c43dc9167bae6544594c949a178df7b79f83c61cfcd}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DECODER\_INITIAL\_SCRATCH\_SIZE@{DECODER\_INITIAL\_SCRATCH\_SIZE}!h1\_connection.c@{h1\_connection.c}}\index{h1\_connection.c@{h1\_connection.c}!DECODER\_INITIAL\_SCRATCH\_SIZE@{DECODER\_INITIAL\_SCRATCH\_SIZE}}}\mbox{\Hypertarget{h1__connection_8c_adb49720dc49f7d4e4cf9adbf2948e409ae6544594c949a178df7b79f83c61cfcd}\label{h1__connection_8c_adb49720dc49f7d4e4cf9adbf2948e409ae6544594c949a178df7b79f83c61cfcd}} 
 DECODER\+\_\+\+INITIAL\+\_\+\+SCRATCH\+\_\+\+SIZE&\\
 \hline
 
@@ -193,13 +193,13 @@ Try to kick off the outgoing-\/stream-\/task. If task is already active, nothing
 \index{h1\_connection.c@{h1\_connection.c}!aws\_http\_connection\_new\_http1\_1\_client@{aws\_http\_connection\_new\_http1\_1\_client}}
 \index{aws\_http\_connection\_new\_http1\_1\_client@{aws\_http\_connection\_new\_http1\_1\_client}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_connection\_new\_http1\_1\_client()}{aws\_http\_connection\_new\_http1\_1\_client()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+new\+\_\+http1\+\_\+1\+\_\+client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{manual\+\_\+window\+\_\+management,  }\item[{size\+\_\+t}]{initial\+\_\+window\+\_\+size,  }\item[{const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$}]{http1\+\_\+options }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+new\+\_\+http1\+\_\+1\+\_\+client (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{bool}]{manual\+\_\+window\+\_\+management,  }\item[{size\+\_\+t}]{initial\+\_\+window\+\_\+size,  }\item[{const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$}]{http1\+\_\+options }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{h1__connection_8c_a2c300f9afec865b1820dbe0927a2b1b7}\label{h1__connection_8c_a2c300f9afec865b1820dbe0927a2b1b7}} 
 \index{h1\_connection.c@{h1\_connection.c}!aws\_http\_connection\_new\_http1\_1\_server@{aws\_http\_connection\_new\_http1\_1\_server}}
 \index{aws\_http\_connection\_new\_http1\_1\_server@{aws\_http\_connection\_new\_http1\_1\_server}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_connection\_new\_http1\_1\_server()}{aws\_http\_connection\_new\_http1\_1\_server()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+new\+\_\+http1\+\_\+1\+\_\+server (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{manual\+\_\+window\+\_\+management,  }\item[{size\+\_\+t}]{initial\+\_\+window\+\_\+size,  }\item[{const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$}]{http1\+\_\+options }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}}$\ast$ aws\+\_\+http\+\_\+connection\+\_\+new\+\_\+http1\+\_\+1\+\_\+server (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{bool}]{manual\+\_\+window\+\_\+management,  }\item[{size\+\_\+t}]{initial\+\_\+window\+\_\+size,  }\item[{const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$}]{http1\+\_\+options }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{h1__connection_8c_a3e2643895e496e4f24f0075f06ea791e}\label{h1__connection_8c_a3e2643895e496e4f24f0075f06ea791e}} 
 \index{h1\_connection.c@{h1\_connection.c}!s\_add\_time\_measurement\_to\_stats@{s\_add\_time\_measurement\_to\_stats}}
@@ -235,19 +235,19 @@ Public function for closing connection. \mbox{\Hypertarget{h1__connection_8c_ac7
 \index{h1\_connection.c@{h1\_connection.c}!s\_connection\_is\_open@{s\_connection\_is\_open}}
 \index{s\_connection\_is\_open@{s\_connection\_is\_open}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{s\_connection\_is\_open()}{s\_connection\_is\_open()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+connection\+\_\+is\+\_\+open (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection\+\_\+base }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+connection\+\_\+is\+\_\+open (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection\+\_\+base }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__connection_8c_a7685b5a85d70b6ef68662e7c4f5ffd39}\label{h1__connection_8c_a7685b5a85d70b6ef68662e7c4f5ffd39}} 
 \index{h1\_connection.c@{h1\_connection.c}!s\_connection\_new@{s\_connection\_new}}
 \index{s\_connection\_new@{s\_connection\_new}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{s\_connection\_new()}{s\_connection\_new()}}
-{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}}$\ast$ s\+\_\+connection\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{manual\+\_\+window\+\_\+management,  }\item[{size\+\_\+t}]{initial\+\_\+window\+\_\+size,  }\item[{const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$}]{http1\+\_\+options,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{server }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}}$\ast$ s\+\_\+connection\+\_\+new (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{bool}]{manual\+\_\+window\+\_\+management,  }\item[{size\+\_\+t}]{initial\+\_\+window\+\_\+size,  }\item[{const struct \mbox{\hyperlink{structaws__http1__connection__options}{aws\+\_\+http1\+\_\+connection\+\_\+options}} $\ast$}]{http1\+\_\+options,  }\item[{bool}]{server }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__connection_8c_a43d4958c3f4c6be774463228b04aa2e7}\label{h1__connection_8c_a43d4958c3f4c6be774463228b04aa2e7}} 
 \index{h1\_connection.c@{h1\_connection.c}!s\_connection\_new\_requests\_allowed@{s\_connection\_new\_requests\_allowed}}
 \index{s\_connection\_new\_requests\_allowed@{s\_connection\_new\_requests\_allowed}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{s\_connection\_new\_requests\_allowed()}{s\_connection\_new\_requests\_allowed()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+connection\+\_\+new\+\_\+requests\+\_\+allowed (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection\+\_\+base }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+connection\+\_\+new\+\_\+requests\+\_\+allowed (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection\+\_\+base }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__connection_8c_a5bb553d164cbcd755e76f26583d441a9}\label{h1__connection_8c_a5bb553d164cbcd755e76f26583d441a9}} 
 \index{h1\_connection.c@{h1\_connection.c}!s\_cross\_thread\_work\_task@{s\_cross\_thread\_work\_task}}
@@ -259,7 +259,7 @@ Public function for closing connection. \mbox{\Hypertarget{h1__connection_8c_ac7
 \index{h1\_connection.c@{h1\_connection.c}!s\_decoder\_on\_body@{s\_decoder\_on\_body}}
 \index{s\_decoder\_on\_body@{s\_decoder\_on\_body}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{s\_decoder\_on\_body()}{s\_decoder\_on\_body()}}
-{\footnotesize\ttfamily static int s\+\_\+decoder\+\_\+on\+\_\+body (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{data,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{finished,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+decoder\+\_\+on\+\_\+body (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{data,  }\item[{bool}]{finished,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__connection_8c_a4d1cb55383c038d324b48f7b213d6a7e}\label{h1__connection_8c_a4d1cb55383c038d324b48f7b213d6a7e}} 
 \index{h1\_connection.c@{h1\_connection.c}!s\_decoder\_on\_done@{s\_decoder\_on\_done}}
@@ -337,7 +337,7 @@ Public function for closing connection. \mbox{\Hypertarget{h1__connection_8c_ac7
 \index{h1\_connection.c@{h1\_connection.c}!s\_handler\_shutdown@{s\_handler\_shutdown}}
 \index{s\_handler\_shutdown@{s\_handler\_shutdown}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{s\_handler\_shutdown()}{s\_handler\_shutdown()}}
-{\footnotesize\ttfamily static int s\+\_\+handler\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+handler\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{bool}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__connection_8c_a21576603e103e6367c14146cd0cc1c58}\label{h1__connection_8c_a21576603e103e6367c14146cd0cc1c58}} 
 \index{h1\_connection.c@{h1\_connection.c}!s\_make\_request@{s\_make\_request}}
@@ -409,7 +409,7 @@ The user MUST create the new request-\/handler stream during the on-\/incoming-\
 \index{h1\_connection.c@{h1\_connection.c}!s\_stop@{s\_stop}}
 \index{s\_stop@{s\_stop}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{s\_stop()}{s\_stop()}}
-{\footnotesize\ttfamily static void s\+\_\+stop (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{stop\+\_\+reading,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{stop\+\_\+writing,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{schedule\+\_\+shutdown,  }\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static void s\+\_\+stop (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$}]{connection,  }\item[{bool}]{stop\+\_\+reading,  }\item[{bool}]{stop\+\_\+writing,  }\item[{bool}]{schedule\+\_\+shutdown,  }\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Internal function for bringing connection to a stop. Invoked multiple times, including when\+:
 \begin{DoxyItemize}
@@ -433,13 +433,13 @@ Internal function for bringing connection to a stop. Invoked multiple times, inc
 \index{h1\_connection.c@{h1\_connection.c}!s\_try\_process\_next\_midchannel\_read\_message@{s\_try\_process\_next\_midchannel\_read\_message}}
 \index{s\_try\_process\_next\_midchannel\_read\_message@{s\_try\_process\_next\_midchannel\_read\_message}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{s\_try\_process\_next\_midchannel\_read\_message()}{s\_try\_process\_next\_midchannel\_read\_message()}}
-{\footnotesize\ttfamily static int s\+\_\+try\+\_\+process\+\_\+next\+\_\+midchannel\+\_\+read\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{out\+\_\+stop\+\_\+processing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+try\+\_\+process\+\_\+next\+\_\+midchannel\+\_\+read\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$}]{connection,  }\item[{bool $\ast$}]{out\+\_\+stop\+\_\+processing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__connection_8c_acc3ac24708ad197e311b49f0a016d829}\label{h1__connection_8c_acc3ac24708ad197e311b49f0a016d829}} 
 \index{h1\_connection.c@{h1\_connection.c}!s\_try\_process\_next\_stream\_read\_message@{s\_try\_process\_next\_stream\_read\_message}}
 \index{s\_try\_process\_next\_stream\_read\_message@{s\_try\_process\_next\_stream\_read\_message}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{s\_try\_process\_next\_stream\_read\_message()}{s\_try\_process\_next\_stream\_read\_message()}}
-{\footnotesize\ttfamily static int s\+\_\+try\+\_\+process\+\_\+next\+\_\+stream\+\_\+read\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{out\+\_\+stop\+\_\+processing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+try\+\_\+process\+\_\+next\+\_\+stream\+\_\+read\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$}]{connection,  }\item[{bool $\ast$}]{out\+\_\+stop\+\_\+processing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__connection_8c_a72b829b95324b8a3b0f28f4fe1fd8bce}\label{h1__connection_8c_a72b829b95324b8a3b0f28f4fe1fd8bce}} 
 \index{h1\_connection.c@{h1\_connection.c}!s\_update\_connection\_window@{s\_update\_connection\_window}}
@@ -459,7 +459,7 @@ Called from event-\/loop thread. This function has lots of side effects. \mbox{\
 \index{h1\_connection.c@{h1\_connection.c}!s\_write\_outgoing\_stream@{s\_write\_outgoing\_stream}}
 \index{s\_write\_outgoing\_stream@{s\_write\_outgoing\_stream}!h1\_connection.c@{h1\_connection.c}}
 \doxysubsubsection{\texorpdfstring{s\_write\_outgoing\_stream()}{s\_write\_outgoing\_stream()}}
-{\footnotesize\ttfamily static void s\+\_\+write\+\_\+outgoing\+\_\+stream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$}]{connection,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{first\+\_\+try }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static void s\+\_\+write\+\_\+outgoing\+\_\+stream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__connection}{aws\+\_\+h1\+\_\+connection}} $\ast$}]{connection,  }\item[{bool}]{first\+\_\+try }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 

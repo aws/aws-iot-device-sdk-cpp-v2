@@ -15,27 +15,27 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{s2n__ecc__evp_8c_a11318ac48f109127ae724247c352c08d}{DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC}} (\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$, \mbox{\hyperlink{evp_8h_a448d9f9209a54694aff045d403850db7}{EVP\+\_\+\+PKEY\+\_\+free}})
+\mbox{\hyperlink{s2n__ecc__evp_8c_a11318ac48f109127ae724247c352c08d}{DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC}} (EVP\+\_\+\+PKEY $\ast$, EVP\+\_\+\+PKEY\+\_\+free)
 \item 
-\mbox{\hyperlink{s2n__ecc__evp_8c_a0ed3e80e463c5092b6f205ebf39c2433}{DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC}} (\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$, \mbox{\hyperlink{evp_8h_a9a2d5ac99985dda36f15bd92d83c1621}{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+free}})
+\mbox{\hyperlink{s2n__ecc__evp_8c_a0ed3e80e463c5092b6f205ebf39c2433}{DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC}} (EVP\+\_\+\+PKEY\+\_\+\+CTX $\ast$, EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+free)
 \item 
-\mbox{\hyperlink{s2n__ecc__evp_8c_a360903a9bad07b49b18e95848990867d}{DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC}} (\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$, \mbox{\hyperlink{ec_8h_af3759e18dd8bf0c3144527c0377668a7}{EC\+\_\+\+KEY\+\_\+free}})
+\mbox{\hyperlink{s2n__ecc__evp_8c_a360903a9bad07b49b18e95848990867d}{DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC}} (EC\+\_\+\+KEY $\ast$, EC\+\_\+\+KEY\+\_\+free)
 \item 
 \mbox{\hyperlink{s2n__ecc__evp_8c_a74f3292c747d83d248182599e70f89c2}{DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC}} (EC\+\_\+\+POINT $\ast$, EC\+\_\+\+POINT\+\_\+free)
 \item 
 int \mbox{\hyperlink{s2n__ecc__evp_8c_abce45989e8b921f36e6b4c7ee98fe2b5}{s2n\+\_\+is\+\_\+evp\+\_\+apis\+\_\+supported}} ()
 \item 
-static int \mbox{\hyperlink{s2n__ecc__evp_8c_ac2f9574ae916c7b7f08e5b244fae77ec}{s2n\+\_\+ecc\+\_\+evp\+\_\+write\+\_\+point\+\_\+data\+\_\+snug}} (const EC\+\_\+\+POINT $\ast$point, const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$group, struct s2n\+\_\+blob $\ast$out)
+static int \mbox{\hyperlink{s2n__ecc__evp_8c_ac2f9574ae916c7b7f08e5b244fae77ec}{s2n\+\_\+ecc\+\_\+evp\+\_\+write\+\_\+point\+\_\+data\+\_\+snug}} (const EC\+\_\+\+POINT $\ast$point, const EC\+\_\+\+GROUP $\ast$group, struct s2n\+\_\+blob $\ast$out)
 \item 
-static int \mbox{\hyperlink{s2n__ecc__evp_8c_a51168facad33b6f7243468452acf19bf}{s2n\+\_\+ecc\+\_\+evp\+\_\+calculate\+\_\+point\+\_\+length}} (const EC\+\_\+\+POINT $\ast$point, const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$group, uint8\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+static int \mbox{\hyperlink{s2n__ecc__evp_8c_a51168facad33b6f7243468452acf19bf}{s2n\+\_\+ecc\+\_\+evp\+\_\+calculate\+\_\+point\+\_\+length}} (const EC\+\_\+\+POINT $\ast$point, const EC\+\_\+\+GROUP $\ast$group, uint8\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})
 \item 
-static EC\+\_\+\+POINT $\ast$ \mbox{\hyperlink{s2n__ecc__evp_8c_a710250141a7dfe0a9edb4a660e849343}{s2n\+\_\+ecc\+\_\+evp\+\_\+blob\+\_\+to\+\_\+point}} (struct s2n\+\_\+blob $\ast$blob, const \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$ec\+\_\+key)
+static EC\+\_\+\+POINT $\ast$ \mbox{\hyperlink{s2n__ecc__evp_8c_a710250141a7dfe0a9edb4a660e849343}{s2n\+\_\+ecc\+\_\+evp\+\_\+blob\+\_\+to\+\_\+point}} (struct s2n\+\_\+blob $\ast$blob, const EC\+\_\+\+KEY $\ast$ec\+\_\+key)
 \item 
-static int \mbox{\hyperlink{s2n__ecc__evp_8c_a70e3e9dd292d06a031854bda77c5bf06}{s2n\+\_\+ecc\+\_\+evp\+\_\+generate\+\_\+key\+\_\+nist\+\_\+curves}} (const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$named\+\_\+curve, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$$\ast$evp\+\_\+pkey)
+static int \mbox{\hyperlink{s2n__ecc__evp_8c_a70e3e9dd292d06a031854bda77c5bf06}{s2n\+\_\+ecc\+\_\+evp\+\_\+generate\+\_\+key\+\_\+nist\+\_\+curves}} (const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$named\+\_\+curve, EVP\+\_\+\+PKEY $\ast$$\ast$evp\+\_\+pkey)
 \item 
-static int \mbox{\hyperlink{s2n__ecc__evp_8c_a7fa7f62a9d799d3484cc103c01493d19}{s2n\+\_\+ecc\+\_\+evp\+\_\+generate\+\_\+own\+\_\+key}} (const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$named\+\_\+curve, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$$\ast$evp\+\_\+pkey)
+static int \mbox{\hyperlink{s2n__ecc__evp_8c_a7fa7f62a9d799d3484cc103c01493d19}{s2n\+\_\+ecc\+\_\+evp\+\_\+generate\+\_\+own\+\_\+key}} (const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$named\+\_\+curve, EVP\+\_\+\+PKEY $\ast$$\ast$evp\+\_\+pkey)
 \item 
-static int \mbox{\hyperlink{s2n__ecc__evp_8c_a08fb44a5733d4864ad6e48885a89e940}{s2n\+\_\+ecc\+\_\+evp\+\_\+compute\+\_\+shared\+\_\+secret}} (\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$own\+\_\+key, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$peer\+\_\+public, uint16\+\_\+t iana\+\_\+id, struct s2n\+\_\+blob $\ast$shared\+\_\+secret)
+static int \mbox{\hyperlink{s2n__ecc__evp_8c_a08fb44a5733d4864ad6e48885a89e940}{s2n\+\_\+ecc\+\_\+evp\+\_\+compute\+\_\+shared\+\_\+secret}} (EVP\+\_\+\+PKEY $\ast$own\+\_\+key, EVP\+\_\+\+PKEY $\ast$peer\+\_\+public, uint16\+\_\+t iana\+\_\+id, struct s2n\+\_\+blob $\ast$shared\+\_\+secret)
 \item 
 int \mbox{\hyperlink{s2n__ecc__evp_8c_ae42a9376615e668d0850625aa905eae7}{s2n\+\_\+ecc\+\_\+evp\+\_\+generate\+\_\+ephemeral\+\_\+key}} (struct \mbox{\hyperlink{structs2n__ecc__evp__params}{s2n\+\_\+ecc\+\_\+evp\+\_\+params}} $\ast$ecc\+\_\+evp\+\_\+params)
 \item 
@@ -90,7 +90,7 @@ const size\+\_\+t \mbox{\hyperlink{s2n__ecc__evp_8c_aee1f66cebdcaad96b8189621319
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!DEFINE\_POINTER\_CLEANUP\_FUNC@{DEFINE\_POINTER\_CLEANUP\_FUNC}}
 \index{DEFINE\_POINTER\_CLEANUP\_FUNC@{DEFINE\_POINTER\_CLEANUP\_FUNC}!s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}}
 \doxysubsubsection{\texorpdfstring{DEFINE\_POINTER\_CLEANUP\_FUNC()}{DEFINE\_POINTER\_CLEANUP\_FUNC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{,  }\item[{\mbox{\hyperlink{ec_8h_af3759e18dd8bf0c3144527c0377668a7}{EC\+\_\+\+KEY\+\_\+free}}}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC (\begin{DoxyParamCaption}\item[{EC\+\_\+\+KEY $\ast$}]{,  }\item[{EC\+\_\+\+KEY\+\_\+free}]{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__ecc__evp_8c_a74f3292c747d83d248182599e70f89c2}\label{s2n__ecc__evp_8c_a74f3292c747d83d248182599e70f89c2}} 
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!DEFINE\_POINTER\_CLEANUP\_FUNC@{DEFINE\_POINTER\_CLEANUP\_FUNC}}
@@ -102,31 +102,31 @@ const size\+\_\+t \mbox{\hyperlink{s2n__ecc__evp_8c_aee1f66cebdcaad96b8189621319
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!DEFINE\_POINTER\_CLEANUP\_FUNC@{DEFINE\_POINTER\_CLEANUP\_FUNC}}
 \index{DEFINE\_POINTER\_CLEANUP\_FUNC@{DEFINE\_POINTER\_CLEANUP\_FUNC}!s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}}
 \doxysubsubsection{\texorpdfstring{DEFINE\_POINTER\_CLEANUP\_FUNC()}{DEFINE\_POINTER\_CLEANUP\_FUNC()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{,  }\item[{\mbox{\hyperlink{evp_8h_a448d9f9209a54694aff045d403850db7}{EVP\+\_\+\+PKEY\+\_\+free}}}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC (\begin{DoxyParamCaption}\item[{EVP\+\_\+\+PKEY $\ast$}]{,  }\item[{EVP\+\_\+\+PKEY\+\_\+free}]{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__ecc__evp_8c_a0ed3e80e463c5092b6f205ebf39c2433}\label{s2n__ecc__evp_8c_a0ed3e80e463c5092b6f205ebf39c2433}} 
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!DEFINE\_POINTER\_CLEANUP\_FUNC@{DEFINE\_POINTER\_CLEANUP\_FUNC}}
 \index{DEFINE\_POINTER\_CLEANUP\_FUNC@{DEFINE\_POINTER\_CLEANUP\_FUNC}!s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}}
 \doxysubsubsection{\texorpdfstring{DEFINE\_POINTER\_CLEANUP\_FUNC()}{DEFINE\_POINTER\_CLEANUP\_FUNC()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aaadbb75633e4460a52864970a3b875de}{EVP\+\_\+\+PKEY\+\_\+\+CTX}} $\ast$}]{,  }\item[{\mbox{\hyperlink{evp_8h_a9a2d5ac99985dda36f15bd92d83c1621}{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+free}}}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily DEFINE\+\_\+\+POINTER\+\_\+\+CLEANUP\+\_\+\+FUNC (\begin{DoxyParamCaption}\item[{EVP\+\_\+\+PKEY\+\_\+\+CTX $\ast$}]{,  }\item[{EVP\+\_\+\+PKEY\+\_\+\+CTX\+\_\+free}]{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__ecc__evp_8c_a710250141a7dfe0a9edb4a660e849343}\label{s2n__ecc__evp_8c_a710250141a7dfe0a9edb4a660e849343}} 
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!s2n\_ecc\_evp\_blob\_to\_point@{s2n\_ecc\_evp\_blob\_to\_point}}
 \index{s2n\_ecc\_evp\_blob\_to\_point@{s2n\_ecc\_evp\_blob\_to\_point}!s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_ecc\_evp\_blob\_to\_point()}{s2n\_ecc\_evp\_blob\_to\_point()}}
-{\footnotesize\ttfamily static EC\+\_\+\+POINT $\ast$ s2n\+\_\+ecc\+\_\+evp\+\_\+blob\+\_\+to\+\_\+point (\begin{DoxyParamCaption}\item[{struct s2n\+\_\+blob $\ast$}]{blob,  }\item[{const \mbox{\hyperlink{ossl__typ_8h_a756878ae60b2fc17d4217e77ffe5e0d3}{EC\+\_\+\+KEY}} $\ast$}]{ec\+\_\+key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static EC\+\_\+\+POINT $\ast$ s2n\+\_\+ecc\+\_\+evp\+\_\+blob\+\_\+to\+\_\+point (\begin{DoxyParamCaption}\item[{struct s2n\+\_\+blob $\ast$}]{blob,  }\item[{const EC\+\_\+\+KEY $\ast$}]{ec\+\_\+key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__ecc__evp_8c_a51168facad33b6f7243468452acf19bf}\label{s2n__ecc__evp_8c_a51168facad33b6f7243468452acf19bf}} 
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!s2n\_ecc\_evp\_calculate\_point\_length@{s2n\_ecc\_evp\_calculate\_point\_length}}
 \index{s2n\_ecc\_evp\_calculate\_point\_length@{s2n\_ecc\_evp\_calculate\_point\_length}!s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_ecc\_evp\_calculate\_point\_length()}{s2n\_ecc\_evp\_calculate\_point\_length()}}
-{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+calculate\+\_\+point\+\_\+length (\begin{DoxyParamCaption}\item[{const EC\+\_\+\+POINT $\ast$}]{point,  }\item[{const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$}]{group,  }\item[{uint8\+\_\+t $\ast$}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+calculate\+\_\+point\+\_\+length (\begin{DoxyParamCaption}\item[{const EC\+\_\+\+POINT $\ast$}]{point,  }\item[{const EC\+\_\+\+GROUP $\ast$}]{group,  }\item[{uint8\+\_\+t $\ast$}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__ecc__evp_8c_a08fb44a5733d4864ad6e48885a89e940}\label{s2n__ecc__evp_8c_a08fb44a5733d4864ad6e48885a89e940}} 
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!s2n\_ecc\_evp\_compute\_shared\_secret@{s2n\_ecc\_evp\_compute\_shared\_secret}}
 \index{s2n\_ecc\_evp\_compute\_shared\_secret@{s2n\_ecc\_evp\_compute\_shared\_secret}!s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_ecc\_evp\_compute\_shared\_secret()}{s2n\_ecc\_evp\_compute\_shared\_secret()}}
-{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+compute\+\_\+shared\+\_\+secret (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{own\+\_\+key,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{peer\+\_\+public,  }\item[{uint16\+\_\+t}]{iana\+\_\+id,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+compute\+\_\+shared\+\_\+secret (\begin{DoxyParamCaption}\item[{EVP\+\_\+\+PKEY $\ast$}]{own\+\_\+key,  }\item[{EVP\+\_\+\+PKEY $\ast$}]{peer\+\_\+public,  }\item[{uint16\+\_\+t}]{iana\+\_\+id,  }\item[{struct s2n\+\_\+blob $\ast$}]{shared\+\_\+secret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__ecc__evp_8c_afa83be553ee1ef9f460d0cdd1dbe355c}\label{s2n__ecc__evp_8c_afa83be553ee1ef9f460d0cdd1dbe355c}} 
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!s2n\_ecc\_evp\_compute\_shared\_secret\_as\_client@{s2n\_ecc\_evp\_compute\_shared\_secret\_as\_client}}
@@ -162,13 +162,13 @@ const size\+\_\+t \mbox{\hyperlink{s2n__ecc__evp_8c_aee1f66cebdcaad96b8189621319
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!s2n\_ecc\_evp\_generate\_key\_nist\_curves@{s2n\_ecc\_evp\_generate\_key\_nist\_curves}}
 \index{s2n\_ecc\_evp\_generate\_key\_nist\_curves@{s2n\_ecc\_evp\_generate\_key\_nist\_curves}!s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_ecc\_evp\_generate\_key\_nist\_curves()}{s2n\_ecc\_evp\_generate\_key\_nist\_curves()}}
-{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+generate\+\_\+key\+\_\+nist\+\_\+curves (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$}]{named\+\_\+curve,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$$\ast$}]{evp\+\_\+pkey }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+generate\+\_\+key\+\_\+nist\+\_\+curves (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$}]{named\+\_\+curve,  }\item[{EVP\+\_\+\+PKEY $\ast$$\ast$}]{evp\+\_\+pkey }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__ecc__evp_8c_a7fa7f62a9d799d3484cc103c01493d19}\label{s2n__ecc__evp_8c_a7fa7f62a9d799d3484cc103c01493d19}} 
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!s2n\_ecc\_evp\_generate\_own\_key@{s2n\_ecc\_evp\_generate\_own\_key}}
 \index{s2n\_ecc\_evp\_generate\_own\_key@{s2n\_ecc\_evp\_generate\_own\_key}!s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_ecc\_evp\_generate\_own\_key()}{s2n\_ecc\_evp\_generate\_own\_key()}}
-{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+generate\+\_\+own\+\_\+key (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$}]{named\+\_\+curve,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$$\ast$}]{evp\+\_\+pkey }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+generate\+\_\+own\+\_\+key (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__ecc__named__curve}{s2n\+\_\+ecc\+\_\+named\+\_\+curve}} $\ast$}]{named\+\_\+curve,  }\item[{EVP\+\_\+\+PKEY $\ast$$\ast$}]{evp\+\_\+pkey }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__ecc__evp_8c_a1886a16385de7053ad886b7adee3ea68}\label{s2n__ecc__evp_8c_a1886a16385de7053ad886b7adee3ea68}} 
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!s2n\_ecc\_evp\_params\_free@{s2n\_ecc\_evp\_params\_free}}
@@ -216,7 +216,7 @@ const size\+\_\+t \mbox{\hyperlink{s2n__ecc__evp_8c_aee1f66cebdcaad96b8189621319
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!s2n\_ecc\_evp\_write\_point\_data\_snug@{s2n\_ecc\_evp\_write\_point\_data\_snug}}
 \index{s2n\_ecc\_evp\_write\_point\_data\_snug@{s2n\_ecc\_evp\_write\_point\_data\_snug}!s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_ecc\_evp\_write\_point\_data\_snug()}{s2n\_ecc\_evp\_write\_point\_data\_snug()}}
-{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+write\+\_\+point\+\_\+data\+\_\+snug (\begin{DoxyParamCaption}\item[{const EC\+\_\+\+POINT $\ast$}]{point,  }\item[{const \mbox{\hyperlink{ec_8h_aca3c2dfa5546740e0f575013960a598a}{EC\+\_\+\+GROUP}} $\ast$}]{group,  }\item[{struct s2n\+\_\+blob $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s2n\+\_\+ecc\+\_\+evp\+\_\+write\+\_\+point\+\_\+data\+\_\+snug (\begin{DoxyParamCaption}\item[{const EC\+\_\+\+POINT $\ast$}]{point,  }\item[{const EC\+\_\+\+GROUP $\ast$}]{group,  }\item[{struct s2n\+\_\+blob $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__ecc__evp_8c_abce45989e8b921f36e6b4c7ee98fe2b5}\label{s2n__ecc__evp_8c_abce45989e8b921f36e6b4c7ee98fe2b5}} 
 \index{s2n\_ecc\_evp.c@{s2n\_ecc\_evp.c}!s2n\_is\_evp\_apis\_supported@{s2n\_is\_evp\_apis\_supported}}
@@ -261,7 +261,7 @@ const size\+\_\+t \mbox{\hyperlink{s2n__ecc__evp_8c_aee1f66cebdcaad96b8189621319
 \DoxyCodeLine{=}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{        .iana\_id = \mbox{\hyperlink{s2n__tls__parameters_8h_a757a1067e7373e3594f0a575e0a05d1f}{TLS\_EC\_CURVE\_SECP\_256\_R1}},}
-\DoxyCodeLine{        .libcrypto\_nid = \mbox{\hyperlink{objects_8h_ac177770ddc9957dc8f93327507e99476}{NID\_X9\_62\_prime256v1}},}
+\DoxyCodeLine{        .libcrypto\_nid = NID\_X9\_62\_prime256v1,}
 \DoxyCodeLine{        .name = \textcolor{stringliteral}{"{}secp256r1"{}},}
 \DoxyCodeLine{        .share\_size = \mbox{\hyperlink{s2n__ecc__evp_8h_ad8441166a2e506aa5becd998992a7d8d}{SECP256R1\_SHARE\_SIZE}},}
 \DoxyCodeLine{\}}
@@ -278,7 +278,7 @@ const size\+\_\+t \mbox{\hyperlink{s2n__ecc__evp_8c_aee1f66cebdcaad96b8189621319
 \DoxyCodeLine{=}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{        .iana\_id = \mbox{\hyperlink{s2n__tls__parameters_8h_a601d2910b7217811cc85b865d6bc252e}{TLS\_EC\_CURVE\_SECP\_384\_R1}},}
-\DoxyCodeLine{        .libcrypto\_nid = \mbox{\hyperlink{objects_8h_ab548204ceb887b38de104fa9d2113a70}{NID\_secp384r1}},}
+\DoxyCodeLine{        .libcrypto\_nid = NID\_secp384r1,}
 \DoxyCodeLine{        .name = \textcolor{stringliteral}{"{}secp384r1"{}},}
 \DoxyCodeLine{        .share\_size = \mbox{\hyperlink{s2n__ecc__evp_8h_aa6390a6519141fa632499728c23c5fad}{SECP384R1\_SHARE\_SIZE}},}
 \DoxyCodeLine{\}}

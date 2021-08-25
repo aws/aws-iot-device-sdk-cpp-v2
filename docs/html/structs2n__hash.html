@@ -70,25 +70,25 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="crypto_2s2n__hash_8h_source.html">s2n_hash.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="s2n__hash_8h_source.html">s2n_hash.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a2c6a410142af4c5c28de1879b1df0bee"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a2c6a410142af4c5c28de1879b1df0bee">alloc</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:a2c6a410142af4c5c28de1879b1df0bee"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a2c6a410142af4c5c28de1879b1df0bee">alloc</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state)</td></tr>
 <tr class="separator:a2c6a410142af4c5c28de1879b1df0bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6fa89105e2f7e0b67c424509733711a"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#af6fa89105e2f7e0b67c424509733711a">allow_md5_for_fips</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:af6fa89105e2f7e0b67c424509733711a"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#af6fa89105e2f7e0b67c424509733711a">allow_md5_for_fips</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state)</td></tr>
 <tr class="separator:af6fa89105e2f7e0b67c424509733711a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a993b0f9d836311a02f72e16e436d98"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a5a993b0f9d836311a02f72e16e436d98">init</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>, <a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> alg)</td></tr>
+<tr class="memitem:a5a993b0f9d836311a02f72e16e436d98"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a5a993b0f9d836311a02f72e16e436d98">init</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state, <a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> alg)</td></tr>
 <tr class="separator:a5a993b0f9d836311a02f72e16e436d98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30d5ef1abaf9620379bd597ca8aad92e"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a30d5ef1abaf9620379bd597ca8aad92e">update</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>, const void *data, uint32_t size)</td></tr>
+<tr class="memitem:a30d5ef1abaf9620379bd597ca8aad92e"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a30d5ef1abaf9620379bd597ca8aad92e">update</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state, const void *data, uint32_t size)</td></tr>
 <tr class="separator:a30d5ef1abaf9620379bd597ca8aad92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaea755b79175a9cd8fd85d83b402a95"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#afaea755b79175a9cd8fd85d83b402a95">digest</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>, void *out, uint32_t size)</td></tr>
+<tr class="memitem:afaea755b79175a9cd8fd85d83b402a95"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#afaea755b79175a9cd8fd85d83b402a95">digest</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state, void *out, uint32_t size)</td></tr>
 <tr class="separator:afaea755b79175a9cd8fd85d83b402a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9158c69980de0ebc6a43feed87e38c2b"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a9158c69980de0ebc6a43feed87e38c2b">copy</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *to, struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *from)</td></tr>
 <tr class="separator:a9158c69980de0ebc6a43feed87e38c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a704cb28ef84fb1eb59bb880320cf2fc6"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a704cb28ef84fb1eb59bb880320cf2fc6">reset</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:a704cb28ef84fb1eb59bb880320cf2fc6"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a704cb28ef84fb1eb59bb880320cf2fc6">reset</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state)</td></tr>
 <tr class="separator:a704cb28ef84fb1eb59bb880320cf2fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e967365f4c8eadf2dad0eb92c606523"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a3e967365f4c8eadf2dad0eb92c606523">free</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:a3e967365f4c8eadf2dad0eb92c606523"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash.html#a3e967365f4c8eadf2dad0eb92c606523">free</a> )(struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state)</td></tr>
 <tr class="separator:a3e967365f4c8eadf2dad0eb92c606523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -99,7 +99,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_hash::alloc) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>)</td>
+          <td class="memname">int(* s2n_hash::alloc) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -113,7 +113,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_hash::allow_md5_for_fips) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>)</td>
+          <td class="memname">int(* s2n_hash::allow_md5_for_fips) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -141,7 +141,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_hash::digest) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>, void *out, uint32_t size)</td>
+          <td class="memname">int(* s2n_hash::digest) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state, void *out, uint32_t size)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -155,7 +155,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_hash::free) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>)</td>
+          <td class="memname">int(* s2n_hash::free) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -169,7 +169,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_hash::init) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>, <a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> alg)</td>
+          <td class="memname">int(* s2n_hash::init) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state, <a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> alg)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -183,7 +183,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_hash::reset) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>)</td>
+          <td class="memname">int(* s2n_hash::reset) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -197,7 +197,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* s2n_hash::update) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *<a class="el" href="structstate.html">state</a>, const void *data, uint32_t size)</td>
+          <td class="memname">int(* s2n_hash::update) (struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *state, const void *data, uint32_t size)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -205,7 +205,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>crt/aws-crt-cpp/crt/s2n/crypto/<a class="el" href="crypto_2s2n__hash_8h_source.html">s2n_hash.h</a></li>
+<li>crt/aws-crt-cpp/crt/s2n/crypto/<a class="el" href="s2n__hash_8h_source.html">s2n_hash.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

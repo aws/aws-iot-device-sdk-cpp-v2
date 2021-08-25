@@ -40,13 +40,13 @@ size\+\_\+t \mbox{\hyperlink{windows_2system__info_8c_aca88f516da9f93795842282af
 \item 
 void \mbox{\hyperlink{windows_2system__info_8c_a223c151bb08c85c1fd57dc5119ba4a26}{aws\+\_\+get\+\_\+cpu\+\_\+ids\+\_\+for\+\_\+group}} (uint16\+\_\+t group\+\_\+idx, struct \mbox{\hyperlink{structaws__cpu__info}{aws\+\_\+cpu\+\_\+info}} $\ast$cpu\+\_\+ids\+\_\+array, size\+\_\+t cpu\+\_\+ids\+\_\+array\+\_\+length)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{windows_2system__info_8c_aa9b0ffb3291a4fcae2bebbf9494e05f8}{aws\+\_\+is\+\_\+debugger\+\_\+present}} (void)
+bool \mbox{\hyperlink{windows_2system__info_8c_aa9b0ffb3291a4fcae2bebbf9494e05f8}{aws\+\_\+is\+\_\+debugger\+\_\+present}} (void)
 \item 
 void \mbox{\hyperlink{windows_2system__info_8c_acc43780f42fd5a18c766b9ae33ca2db7}{aws\+\_\+debug\+\_\+break}} (void)
 \item 
-static void \mbox{\hyperlink{windows_2system__info_8c_a322aeb5c66d9e54cdc3e1c7aa5fc5f6c}{s\+\_\+init\+\_\+dbghelp\+\_\+impl}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{windows_2system__info_8c_a322aeb5c66d9e54cdc3e1c7aa5fc5f6c}{s\+\_\+init\+\_\+dbghelp\+\_\+impl}} (void $\ast$user\+\_\+data)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{windows_2system__info_8c_ab0d4c9f9492adbeebbcf99ec4fafc940}{s\+\_\+init\+\_\+dbghelp}} ()
+static bool \mbox{\hyperlink{windows_2system__info_8c_ab0d4c9f9492adbeebbcf99ec4fafc940}{s\+\_\+init\+\_\+dbghelp}} ()
 \item 
 size\+\_\+t \mbox{\hyperlink{windows_2system__info_8c_a757cfabeca613ebc3d9cc98d939f9a64}{aws\+\_\+backtrace}} (void $\ast$$\ast$stack\+\_\+frames, size\+\_\+t size)
 \item 
@@ -174,7 +174,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{system\_info.c@{system\_info.c}!aws\_is\_debugger\_present@{aws\_is\_debugger\_present}}
 \index{aws\_is\_debugger\_present@{aws\_is\_debugger\_present}!system\_info.c@{system\_info.c}}
 \doxysubsubsection{\texorpdfstring{aws\_is\_debugger\_present()}{aws\_is\_debugger\_present()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+is\+\_\+debugger\+\_\+present (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+is\+\_\+debugger\+\_\+present (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{windows_2system__info_8c_af0509a37aa269d82326131ed6b6c58db}\label{windows_2system__info_8c_af0509a37aa269d82326131ed6b6c58db}} 
 \index{system\_info.c@{system\_info.c}!aws\_system\_info\_processor\_count@{aws\_system\_info\_processor\_count}}
@@ -186,7 +186,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{system\_info.c@{system\_info.c}!s\_init\_dbghelp@{s\_init\_dbghelp}}
 \index{s\_init\_dbghelp@{s\_init\_dbghelp}!system\_info.c@{system\_info.c}}
 \doxysubsubsection{\texorpdfstring{s\_init\_dbghelp()}{s\_init\_dbghelp()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+init\+\_\+dbghelp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+init\+\_\+dbghelp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{windows_2system__info_8c_a322aeb5c66d9e54cdc3e1c7aa5fc5f6c}\label{windows_2system__info_8c_a322aeb5c66d9e54cdc3e1c7aa5fc5f6c}} 
 \index{system\_info.c@{system\_info.c}!s\_init\_dbghelp\_impl@{s\_init\_dbghelp\_impl}}

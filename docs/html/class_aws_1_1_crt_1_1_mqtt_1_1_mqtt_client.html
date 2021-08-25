@@ -78,7 +78,7 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ada79325f23d4c193c4d382cd682809da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#ada79325f23d4c193c4d382cd682809da">MqttClient</a> (<a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html">Io::ClientBootstrap</a> &amp;bootstrap, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="memitem:ada79325f23d4c193c4d382cd682809da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#ada79325f23d4c193c4d382cd682809da">MqttClient</a> (<a class="el" href="class_aws_1_1_crt_1_1_io_1_1_client_bootstrap.html">Io::ClientBootstrap</a> &amp;bootstrap, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
 <tr class="separator:ada79325f23d4c193c4d382cd682809da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09dfbd45e2e63e934b02d739bba16eca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#a09dfbd45e2e63e934b02d739bba16eca">~MqttClient</a> ()</td></tr>
 <tr class="separator:a09dfbd45e2e63e934b02d739bba16eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -94,9 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1c093255bd0c66560af52dd621c690f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3024eb6205a4ff5f9d436e368967ef1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#ac3024eb6205a4ff5f9d436e368967ef1">LastError</a> () const noexcept</td></tr>
 <tr class="separator:ac3024eb6205a4ff5f9d436e368967ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae104e0ee2e856b370bb248cae0d83e7f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html">MqttConnection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#ae104e0ee2e856b370bb248cae0d83e7f">NewConnection</a> (const char *hostName, uint16_t port, const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_socket_options.html">Io::SocketOptions</a> &amp;socketOptions, const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context.html">Crt::Io::TlsContext</a> &amp;tlsContext, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> useWebsocket=<a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a>) noexcept</td></tr>
+<tr class="memitem:ae104e0ee2e856b370bb248cae0d83e7f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html">MqttConnection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#ae104e0ee2e856b370bb248cae0d83e7f">NewConnection</a> (const char *hostName, uint16_t port, const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_socket_options.html">Io::SocketOptions</a> &amp;socketOptions, const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_tls_context.html">Crt::Io::TlsContext</a> &amp;tlsContext, bool useWebsocket=<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a>) noexcept</td></tr>
 <tr class="separator:ae104e0ee2e856b370bb248cae0d83e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2760755a26dbda70759d06dff7c4c7a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html">MqttConnection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#af2760755a26dbda70759d06dff7c4c7a">NewConnection</a> (const char *hostName, uint16_t port, const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_socket_options.html">Io::SocketOptions</a> &amp;socketOptions, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> useWebsocket=<a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a>) noexcept</td></tr>
+<tr class="memitem:af2760755a26dbda70759d06dff7c4c7a"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection.html">MqttConnection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client.html#af2760755a26dbda70759d06dff7c4c7a">NewConnection</a> (const char *hostName, uint16_t port, const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_socket_options.html">Io::SocketOptions</a> &amp;socketOptions, bool useWebsocket=<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a>) noexcept</td></tr>
 <tr class="separator:af2760755a26dbda70759d06dff7c4c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -265,8 +265,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
-          <td class="paramname"><em>useWebsocket</em> = <code><a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a></code>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>useWebsocket</em> = <code><a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -320,8 +320,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
-          <td class="paramname"><em>useWebsocket</em> = <code><a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a></code>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>useWebsocket</em> = <code><a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -349,7 +349,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Aws::Crt::Mqtt::MqttClient::operator <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> </td>
+          <td class="memname">Aws::Crt::Mqtt::MqttClient::operator bool </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>

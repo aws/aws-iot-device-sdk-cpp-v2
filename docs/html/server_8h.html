@@ -95,13 +95,13 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aeaf0b36b54b3dca4116e419340b5480a"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#aeaf0b36b54b3dca4116e419340b5480a">aws_http_server_on_incoming_connection_fn</a>(struct <a class="el" href="structaws__http__server.html">aws_http_server</a> *server, struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:aeaf0b36b54b3dca4116e419340b5480a"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#aeaf0b36b54b3dca4116e419340b5480a">aws_http_server_on_incoming_connection_fn</a>(struct <a class="el" href="structaws__http__server.html">aws_http_server</a> *server, struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, int error_code, void *user_data)</td></tr>
 <tr class="separator:aeaf0b36b54b3dca4116e419340b5480a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90fedaba3a21e6c87d99863578ea683b"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a90fedaba3a21e6c87d99863578ea683b">aws_http_server_on_destroy_fn</a>(void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a90fedaba3a21e6c87d99863578ea683b"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a90fedaba3a21e6c87d99863578ea683b">aws_http_server_on_destroy_fn</a>(void *user_data)</td></tr>
 <tr class="separator:a90fedaba3a21e6c87d99863578ea683b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6effccb7b5a98a71a0e839aca506eca"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af6effccb7b5a98a71a0e839aca506eca">aws_http_on_incoming_request_fn</a>(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:af6effccb7b5a98a71a0e839aca506eca"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#af6effccb7b5a98a71a0e839aca506eca">aws_http_on_incoming_request_fn</a>(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, void *user_data)</td></tr>
 <tr class="separator:af6effccb7b5a98a71a0e839aca506eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a721b690df7d3a9102e0e3dd49208cac4"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a721b690df7d3a9102e0e3dd49208cac4">aws_http_on_server_connection_shutdown_fn</a>(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, void *<a class="el" href="structconnection__user__data.html">connection_user_data</a>)</td></tr>
+<tr class="memitem:a721b690df7d3a9102e0e3dd49208cac4"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#a721b690df7d3a9102e0e3dd49208cac4">aws_http_on_server_connection_shutdown_fn</a>(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, int error_code, void *connection_user_data)</td></tr>
 <tr class="separator:a721b690df7d3a9102e0e3dd49208cac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -112,7 +112,7 @@ Functions</h2></td></tr>
 <tr class="separator:a4ffd6c2ff8443820b59a6aa5271f438f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfd782eeaf51696bbed4c5d103b93ad6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#acfd782eeaf51696bbed4c5d103b93ad6">aws_http_connection_configure_server</a> (struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, const struct <a class="el" href="structaws__http__server__connection__options.html">aws_http_server_connection_options</a> *options)</td></tr>
 <tr class="separator:acfd782eeaf51696bbed4c5d103b93ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab20d786961b87d8ce0f82c8d93fd7904"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#ab20d786961b87d8ce0f82c8d93fd7904">aws_http_connection_is_server</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
+<tr class="memitem:ab20d786961b87d8ce0f82c8d93fd7904"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="server_8h.html#ab20d786961b87d8ce0f82c8d93fd7904">aws_http_connection_is_server</a> (const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection)</td></tr>
 <tr class="separator:ab20d786961b87d8ce0f82c8d93fd7904"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -154,7 +154,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a>*() aws_http_on_incoming_request_fn(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">typedef struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a>*() aws_http_on_incoming_request_fn(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -169,7 +169,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_http_on_server_connection_shutdown_fn(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, void *<a class="el" href="structconnection__user__data.html">connection_user_data</a>)</td>
+          <td class="memname">typedef void() aws_http_on_server_connection_shutdown_fn(struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, int error_code, void *connection_user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -183,7 +183,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_http_server_on_destroy_fn(void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">typedef void() aws_http_server_on_destroy_fn(void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -197,7 +197,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_http_server_on_incoming_connection_fn(struct <a class="el" href="structaws__http__server.html">aws_http_server</a> *server, struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">typedef void() aws_http_server_on_incoming_connection_fn(struct <a class="el" href="structaws__http__server.html">aws_http_server</a> *server, struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *connection, int error_code, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -241,7 +241,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_http_connection_is_server </td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> bool aws_http_connection_is_server </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__http__connection.html">aws_http_connection</a> *&#160;</td>
           <td class="paramname"><em>connection</em></td><td>)</td>

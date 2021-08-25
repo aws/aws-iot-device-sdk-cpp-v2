@@ -118,7 +118,7 @@ Functions</h2></td></tr>
 <tr class="separator:a1fdde1ff8ebd70db29bde876ad97f725"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43cb690639ca2281aef238ecbcb816fb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__kex_8c.html#a43cb690639ca2281aef238ecbcb816fb">s2n_kex_tls_prf</a> (const struct <a class="el" href="structs2n__kex.html">s2n_kex</a> *kex, struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, struct s2n_blob *premaster_secret)</td></tr>
 <tr class="separator:a43cb690639ca2281aef238ecbcb816fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a904282bec21c3f5467f77710fc02a02c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__kex_8c.html#a904282bec21c3f5467f77710fc02a02c">s2n_kex_includes</a> (const struct <a class="el" href="structs2n__kex.html">s2n_kex</a> *kex, const struct <a class="el" href="structs2n__kex.html">s2n_kex</a> *query)</td></tr>
+<tr class="memitem:a904282bec21c3f5467f77710fc02a02c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__kex_8c.html#a904282bec21c3f5467f77710fc02a02c">s2n_kex_includes</a> (const struct <a class="el" href="structs2n__kex.html">s2n_kex</a> *kex, const struct <a class="el" href="structs2n__kex.html">s2n_kex</a> *query)</td></tr>
 <tr class="separator:a904282bec21c3f5467f77710fc02a02c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -454,7 +454,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s2n_kex_includes </td>
+          <td class="memname">bool s2n_kex_includes </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structs2n__kex.html">s2n_kex</a> *&#160;</td>
           <td class="paramname"><em>kex</em>, </td>
@@ -848,14 +848,14 @@ Variables</h2></td></tr>
 <div class="line">    .server_key_recv_read_data = <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>,</div>
 <div class="line">    .server_key_recv_parse_data = <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>,</div>
 <div class="line">    .server_key_send = <a class="code hl_variable" href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">NULL</a>,</div>
-<div class="line">    .client_key_recv = &amp;<a class="code hl_function" href="s2n__server__fuzz__test__overrides_8c.html#a3189be6ffa9dc24179dbb320db153295">s2n_rsa_client_key_recv</a>,</div>
+<div class="line">    .client_key_recv = &amp;<a class="code hl_function" href="s2n__client__key__exchange_8c.html#a3189be6ffa9dc24179dbb320db153295">s2n_rsa_client_key_recv</a>,</div>
 <div class="line">    .client_key_send = &amp;<a class="code hl_function" href="s2n__client__key__exchange_8c.html#a00a7d4e06f27911e116cc04c5ffe2d1d">s2n_rsa_client_key_send</a>,</div>
 <div class="line">    .prf = &amp;<a class="code hl_function" href="s2n__prf_8c.html#a4014572c10b4fd05b559b71d860595e3">s2n_tls_prf_master_secret</a>,</div>
 <div class="line">}</div>
 <div class="ttc" id="anamespace_aws_html_a41b67e809416e9bd96026fa1f414925d"><div class="ttname"><a href="namespace_aws.html#a41b67e809416e9bd96026fa1f414925d">Aws::NULL</a></div><div class="ttdeci">return NULL</div><div class="ttdef"><b>Definition:</b> cJSON.cpp:951</div></div>
 <div class="ttc" id="as2n__client__key__exchange_8c_html_a00a7d4e06f27911e116cc04c5ffe2d1d"><div class="ttname"><a href="s2n__client__key__exchange_8c.html#a00a7d4e06f27911e116cc04c5ffe2d1d">s2n_rsa_client_key_send</a></div><div class="ttdeci">int s2n_rsa_client_key_send(struct s2n_connection *conn, struct s2n_blob *shared_key)</div><div class="ttdef"><b>Definition:</b> s2n_client_key_exchange.c:245</div></div>
+<div class="ttc" id="as2n__client__key__exchange_8c_html_a3189be6ffa9dc24179dbb320db153295"><div class="ttname"><a href="s2n__client__key__exchange_8c.html#a3189be6ffa9dc24179dbb320db153295">s2n_rsa_client_key_recv</a></div><div class="ttdeci">int s2n_rsa_client_key_recv(struct s2n_connection *conn, struct s2n_blob *shared_key)</div><div class="ttdef"><b>Definition:</b> s2n_client_key_exchange.c:99</div></div>
 <div class="ttc" id="as2n__kex_8c_html_ac688560cc1900fa71f3ab4f3955b8162"><div class="ttname"><a href="s2n__kex_8c.html#ac688560cc1900fa71f3ab4f3955b8162">s2n_check_rsa_key</a></div><div class="ttdeci">static int s2n_check_rsa_key(const struct s2n_cipher_suite *cipher_suite, struct s2n_connection *conn)</div><div class="ttdef"><b>Definition:</b> s2n_kex.c:27</div></div>
-<div class="ttc" id="as2n__server__fuzz__test__overrides_8c_html_a3189be6ffa9dc24179dbb320db153295"><div class="ttname"><a href="s2n__server__fuzz__test__overrides_8c.html#a3189be6ffa9dc24179dbb320db153295">s2n_rsa_client_key_recv</a></div><div class="ttdeci">int s2n_rsa_client_key_recv(struct s2n_connection *conn, struct s2n_blob *shared_key)</div><div class="ttdef"><b>Definition:</b> s2n_server_fuzz_test_overrides.c:50</div></div>
 </div><!-- fragment -->
 </div>
 </div>

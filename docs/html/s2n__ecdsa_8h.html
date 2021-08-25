@@ -74,12 +74,12 @@ $(function() {
   <div class="headertitle"><div class="title">s2n_ecdsa.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="ecdsa_8h_source.html">openssl/ecdsa.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;openssl/ecdsa.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="stdint_8h_source.html">stdint.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="s2n_8h_source.html">s2n.h</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n__stuffer_8h_source.html">stuffer/s2n_stuffer.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__ecc__evp_8h_source.html">crypto/s2n_ecc_evp.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="crypto_2s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
 <code>#include &quot;utils/s2n_blob.h&quot;</code><br />
 </div>
 <p><a href="s2n__ecdsa_8h_source.html">Go to the source code of this file.</a></p>
@@ -102,9 +102,9 @@ Functions</h2></td></tr>
 <tr class="separator:ae07526b95a34d19149c628c4c7b8350e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08e5fdc26668d299ab81acf26598f347"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8h.html#a08e5fdc26668d299ab81acf26598f347">s2n_ecdsa_pkey_matches_curve</a> (const struct <a class="el" href="structs2n__ecdsa__key.html">s2n_ecdsa_key</a> *ecdsa_key, const struct <a class="el" href="structs2n__ecc__named__curve.html">s2n_ecc_named_curve</a> *curve)</td></tr>
 <tr class="separator:a08e5fdc26668d299ab81acf26598f347"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a578cc5fe5323eac5ced9223f0bb52c1e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8h.html#a578cc5fe5323eac5ced9223f0bb52c1e">s2n_evp_pkey_to_ecdsa_public_key</a> (<a class="el" href="s2n__ecdsa_8h.html#a149e7053a0f77d5b772f15195ee48407">s2n_ecdsa_public_key</a> *ecdsa_key, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *pkey)</td></tr>
+<tr class="memitem:a578cc5fe5323eac5ced9223f0bb52c1e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8h.html#a578cc5fe5323eac5ced9223f0bb52c1e">s2n_evp_pkey_to_ecdsa_public_key</a> (<a class="el" href="s2n__ecdsa_8h.html#a149e7053a0f77d5b772f15195ee48407">s2n_ecdsa_public_key</a> *ecdsa_key, EVP_PKEY *pkey)</td></tr>
 <tr class="separator:a578cc5fe5323eac5ced9223f0bb52c1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0b02b671eada572e50f4f7c82f4eb02"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8h.html#af0b02b671eada572e50f4f7c82f4eb02">s2n_evp_pkey_to_ecdsa_private_key</a> (<a class="el" href="s2n__ecdsa_8h.html#a5dd51a0a33cc7da735ab991c31d42fc4">s2n_ecdsa_private_key</a> *ecdsa_key, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *pkey)</td></tr>
+<tr class="memitem:af0b02b671eada572e50f4f7c82f4eb02"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8h.html#af0b02b671eada572e50f4f7c82f4eb02">s2n_evp_pkey_to_ecdsa_private_key</a> (<a class="el" href="s2n__ecdsa_8h.html#a5dd51a0a33cc7da735ab991c31d42fc4">s2n_ecdsa_private_key</a> *ecdsa_key, EVP_PKEY *pkey)</td></tr>
 <tr class="separator:af0b02b671eada572e50f4f7c82f4eb02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -198,7 +198,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>pkey</em>&#160;</td>
         </tr>
         <tr>
@@ -226,7 +226,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>pkey</em>&#160;</td>
         </tr>
         <tr>

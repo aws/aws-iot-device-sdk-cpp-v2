@@ -15,11 +15,11 @@
 \DoxyCodeLine{15 }
 \DoxyCodeLine{23 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{retry__strategy_8h_a840055993c2a9788207792f45db2e27f}{aws\_retry\_strategy\_on\_retry\_token\_acquired\_fn}})(}
 \DoxyCodeLine{24     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__strategy}{aws\_retry\_strategy}} *retry\_strategy,}
-\DoxyCodeLine{25     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{26     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}},}
-\DoxyCodeLine{27     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{26     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *token,}
+\DoxyCodeLine{27     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{28 }
-\DoxyCodeLine{36 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\_retry\_strategy\_on\_retry\_ready\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{36 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\_retry\_strategy\_on\_retry\_ready\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *token, \textcolor{keywordtype}{int} error\_code, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{37 }
 \DoxyCodeLine{38 \textcolor{keyword}{enum} \mbox{\hyperlink{retry__strategy_8h_af89c6cafd32c7015ca7157a0c36ecb0c}{aws\_retry\_error\_type}} \{}
 \DoxyCodeLine{42     \mbox{\hyperlink{retry__strategy_8h_af89c6cafd32c7015ca7157a0c36ecb0caac26e05a8ef7994a7690b1482dda89ac}{AWS\_RETRY\_ERROR\_TYPE\_TRANSIENT}},}
@@ -34,15 +34,15 @@
 \DoxyCodeLine{55         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__strategy}{aws\_retry\_strategy}} *retry\_strategy,}
 \DoxyCodeLine{56         \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *partition\_id,}
 \DoxyCodeLine{57         \mbox{\hyperlink{retry__strategy_8h_a840055993c2a9788207792f45db2e27f}{aws\_retry\_strategy\_on\_retry\_token\_acquired\_fn}} *on\_acquired,}
-\DoxyCodeLine{58         \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}},}
+\DoxyCodeLine{58         \textcolor{keywordtype}{void} *user\_data,}
 \DoxyCodeLine{59         uint64\_t timeout\_ms);}
 \DoxyCodeLine{60     int (*\mbox{\hyperlink{structaws__retry__strategy__vtable_ad21c911c31114164368a08a559e3d376}{schedule\_retry}})(}
-\DoxyCodeLine{61         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}},}
+\DoxyCodeLine{61         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *token,}
 \DoxyCodeLine{62         \textcolor{keyword}{enum} \mbox{\hyperlink{retry__strategy_8h_af89c6cafd32c7015ca7157a0c36ecb0c}{aws\_retry\_error\_type}} error\_type,}
 \DoxyCodeLine{63         \mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\_retry\_strategy\_on\_retry\_ready\_fn}} *retry\_ready,}
-\DoxyCodeLine{64         \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{65     int (*\mbox{\hyperlink{structaws__retry__strategy__vtable_a0480f716f73a1e440020517649959938}{record\_success}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}});}
-\DoxyCodeLine{66     void (*\mbox{\hyperlink{structaws__retry__strategy__vtable_a18da8a69cbaba0eb44b5e2fedffb5a80}{release\_token}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}});}
+\DoxyCodeLine{64         \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{65     int (*\mbox{\hyperlink{structaws__retry__strategy__vtable_a0480f716f73a1e440020517649959938}{record\_success}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *token);}
+\DoxyCodeLine{66     void (*\mbox{\hyperlink{structaws__retry__strategy__vtable_a18da8a69cbaba0eb44b5e2fedffb5a80}{release\_token}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *token);}
 \DoxyCodeLine{67 \};}
 \DoxyCodeLine{68 }
 \DoxyCodeLine{69 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__strategy}{aws\_retry\_strategy}} \{}
@@ -87,26 +87,26 @@
 \DoxyCodeLine{137     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__retry__strategy}{aws\_retry\_strategy}} *retry\_strategy,}
 \DoxyCodeLine{138     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *partition\_id,}
 \DoxyCodeLine{139     \mbox{\hyperlink{retry__strategy_8h_a840055993c2a9788207792f45db2e27f}{aws\_retry\_strategy\_on\_retry\_token\_acquired\_fn}} *on\_acquired,}
-\DoxyCodeLine{140     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}},}
+\DoxyCodeLine{140     \textcolor{keywordtype}{void} *user\_data,}
 \DoxyCodeLine{141     uint64\_t timeout\_ms);}
 \DoxyCodeLine{142 }
 \DoxyCodeLine{152 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{retry__strategy_8h_ae54ea9ff39ddd2a21c87f4ef3e6111d5}{aws\_retry\_strategy\_schedule\_retry}}(}
-\DoxyCodeLine{153     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}},}
+\DoxyCodeLine{153     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *token,}
 \DoxyCodeLine{154     \textcolor{keyword}{enum} \mbox{\hyperlink{retry__strategy_8h_af89c6cafd32c7015ca7157a0c36ecb0c}{aws\_retry\_error\_type}} error\_type,}
 \DoxyCodeLine{155     \mbox{\hyperlink{retry__strategy_8h_ade4a870a92bb428e8688ec1c07273220}{aws\_retry\_strategy\_on\_retry\_ready\_fn}} *retry\_ready,}
-\DoxyCodeLine{156     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{162 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{retry__strategy_8h_a19f32fa855a56b5234d8abd40fa9922e}{aws\_retry\_token\_record\_success}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}});}
+\DoxyCodeLine{156     \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{162 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{retry__strategy_8h_a19f32fa855a56b5234d8abd40fa9922e}{aws\_retry\_token\_record\_success}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *token);}
 \DoxyCodeLine{163 }
-\DoxyCodeLine{167 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{retry__strategy_8h_a7d2534a49d742270a24a7483e176da9a}{aws\_retry\_token\_acquire}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}});}
+\DoxyCodeLine{167 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{retry__strategy_8h_a7d2534a49d742270a24a7483e176da9a}{aws\_retry\_token\_acquire}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *token);}
 \DoxyCodeLine{168 }
-\DoxyCodeLine{173 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{retry__strategy_8h_a99f18334e9edacf4b6d0e67e28c87955}{aws\_retry\_token\_release}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}});}
+\DoxyCodeLine{173 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{retry__strategy_8h_a99f18334e9edacf4b6d0e67e28c87955}{aws\_retry\_token\_release}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__retry__token}{aws\_retry\_token}} *token);}
 \DoxyCodeLine{179 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__strategy}{aws\_retry\_strategy}} *\mbox{\hyperlink{retry__strategy_8h_add4d5f38922a24014a74b58998527ef1}{aws\_retry\_strategy\_new\_exponential\_backoff}}(}
-\DoxyCodeLine{180     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
-\DoxyCodeLine{181     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__exponential__backoff__retry__options}{aws\_exponential\_backoff\_retry\_options}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{180     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__retry__strategy_a7af5c628300e7722b48ee94ffbdf50ee}{allocator}},}
+\DoxyCodeLine{181     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__exponential__backoff__retry__options}{aws\_exponential\_backoff\_retry\_options}} *\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}});}
 \DoxyCodeLine{182 }
 \DoxyCodeLine{207 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__retry__strategy}{aws\_retry\_strategy}} *\mbox{\hyperlink{retry__strategy_8h_a97ad1815c4d84da1651ef5d69ded9b3c}{aws\_retry\_strategy\_new\_standard}}(}
-\DoxyCodeLine{208     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
-\DoxyCodeLine{209     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__standard__retry__options}{aws\_standard\_retry\_options}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{208     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__retry__strategy_a7af5c628300e7722b48ee94ffbdf50ee}{allocator}},}
+\DoxyCodeLine{209     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__standard__retry__options}{aws\_standard\_retry\_options}} *\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}});}
 \DoxyCodeLine{210 }
 \DoxyCodeLine{211 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
 \DoxyCodeLine{212 }

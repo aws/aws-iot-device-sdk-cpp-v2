@@ -22,9 +22,9 @@
 \DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{stdint_8h}{stdint.h}}>}}
 \DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{s2n_8h}{s2n.h}}>}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{rsa_8h}{openssl/rsa.h}}>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <openssl/rsa.h>}}
 \DoxyCodeLine{22 }
-\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{crypto_2s2n__hash_8h}{crypto/s2n\_hash.h}}"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__hash_8h}{crypto/s2n\_hash.h}}"{}}}
 \DoxyCodeLine{24 }
 \DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}utils/s2n\_blob.h"{}}}
 \DoxyCodeLine{26 }
@@ -40,7 +40,7 @@
 \DoxyCodeLine{36 }
 \DoxyCodeLine{37 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__rsa_8h_abf12aedfa877ab5d3571dcef0761551a}{s2n\_rsa\_pkey\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *pkey);}
 \DoxyCodeLine{38 }
-\DoxyCodeLine{39 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__rsa_8h_aebc78ef72eed49d74cfdec0e6f5b5cbb}{s2n\_evp\_pkey\_to\_rsa\_public\_key}}(\mbox{\hyperlink{structs2n__rsa__key}{s2n\_rsa\_public\_key}} *rsa\_key, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\_PKEY}} *pkey);}
-\DoxyCodeLine{40 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__rsa_8h_a50d26f3a1a854a5643d9ce0e9a03dcfe}{s2n\_evp\_pkey\_to\_rsa\_private\_key}}(\mbox{\hyperlink{structs2n__rsa__key}{s2n\_rsa\_private\_key}} *rsa\_key, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\_PKEY}} *pkey);}
+\DoxyCodeLine{39 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__rsa_8h_aebc78ef72eed49d74cfdec0e6f5b5cbb}{s2n\_evp\_pkey\_to\_rsa\_public\_key}}(\mbox{\hyperlink{structs2n__rsa__key}{s2n\_rsa\_public\_key}} *rsa\_key, EVP\_PKEY *pkey);}
+\DoxyCodeLine{40 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__rsa_8h_a50d26f3a1a854a5643d9ce0e9a03dcfe}{s2n\_evp\_pkey\_to\_rsa\_private\_key}}(\mbox{\hyperlink{structs2n__rsa__key}{s2n\_rsa\_private\_key}} *rsa\_key, EVP\_PKEY *pkey);}
 
 \end{DoxyCode}

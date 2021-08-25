@@ -12,7 +12,7 @@
 \DoxyCodeLine{13 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__signable}{aws\_signable}};}
 \DoxyCodeLine{14 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}};}
 \DoxyCodeLine{15 }
-\DoxyCodeLine{27 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\_signing\_complete\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *userdata);}
+\DoxyCodeLine{27 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\_signing\_complete\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__signing__result}{aws\_signing\_result}} *result, \textcolor{keywordtype}{int} error\_code, \textcolor{keywordtype}{void} *userdata);}
 \DoxyCodeLine{28 }
 \DoxyCodeLine{29 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
 \DoxyCodeLine{30 }
@@ -51,7 +51,7 @@
 \DoxyCodeLine{63 }
 \DoxyCodeLine{77 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{78 \textcolor{keywordtype}{int} \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_a9966fdbaacd1f788c92300343f6fcf21}{aws\_sign\_request\_aws}}(}
-\DoxyCodeLine{79     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{79     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__signing__result_a9f74a3634a1e92a0171b3b4a3cdc85b4}{allocator}},}
 \DoxyCodeLine{80     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signable}{aws\_signable}} *signable,}
 \DoxyCodeLine{81     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__config__base}{aws\_signing\_config\_base}} *base\_config,}
 \DoxyCodeLine{82     \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\_signing\_complete\_fn}} *on\_complete,}

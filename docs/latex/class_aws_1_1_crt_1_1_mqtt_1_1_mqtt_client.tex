@@ -7,7 +7,7 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_ada79325f23d4c193c4d382cd682809da}{Mqtt\+Client}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Io\+::\+Client\+Bootstrap}} \&bootstrap, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_ada79325f23d4c193c4d382cd682809da}{Mqtt\+Client}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Io\+::\+Client\+Bootstrap}} \&bootstrap, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
 \item 
 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_a09dfbd45e2e63e934b02d739bba16eca}{$\sim$\+Mqtt\+Client}} ()
 \item 
@@ -23,9 +23,9 @@
 \item 
 int \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_ac3024eb6205a4ff5f9d436e368967ef1}{Last\+Error}} () const noexcept
 \item 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt\+Connection}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_ae104e0ee2e856b370bb248cae0d83e7f}{New\+Connection}} (const char $\ast$host\+Name, uint16\+\_\+t port, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} \&socket\+Options, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{Crt\+::\+Io\+::\+Tls\+Context}} \&tls\+Context, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} use\+Websocket=\mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}) noexcept
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt\+Connection}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_ae104e0ee2e856b370bb248cae0d83e7f}{New\+Connection}} (const char $\ast$host\+Name, uint16\+\_\+t port, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} \&socket\+Options, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{Crt\+::\+Io\+::\+Tls\+Context}} \&tls\+Context, bool use\+Websocket=\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}) noexcept
 \item 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt\+Connection}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_af2760755a26dbda70759d06dff7c4c7a}{New\+Connection}} (const char $\ast$host\+Name, uint16\+\_\+t port, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} \&socket\+Options, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} use\+Websocket=\mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}) noexcept
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt\+Connection}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_af2760755a26dbda70759d06dff7c4c7a}{New\+Connection}} (const char $\ast$host\+Name, uint16\+\_\+t port, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} \&socket\+Options, bool use\+Websocket=\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}) noexcept
 \end{DoxyCompactItemize}
 
 
@@ -73,19 +73,19 @@ the value of the last aws error encountered by operations on this instance.
 \index{Aws::Crt::Mqtt::MqttClient@{Aws::Crt::Mqtt::MqttClient}!NewConnection@{NewConnection}}
 \index{NewConnection@{NewConnection}!Aws::Crt::Mqtt::MqttClient@{Aws::Crt::Mqtt::MqttClient}}
 \doxysubsubsection{\texorpdfstring{NewConnection()}{NewConnection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt\+Connection}} $>$ Aws\+::\+Crt\+::\+Mqtt\+::\+Mqtt\+Client\+::\+New\+Connection (\begin{DoxyParamCaption}\item[{const char $\ast$}]{host\+Name,  }\item[{uint16\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} \&}]{socket\+Options,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{use\+Websocket = {\ttfamily \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt\+Connection}} $>$ Aws\+::\+Crt\+::\+Mqtt\+::\+Mqtt\+Client\+::\+New\+Connection (\begin{DoxyParamCaption}\item[{const char $\ast$}]{host\+Name,  }\item[{uint16\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} \&}]{socket\+Options,  }\item[{bool}]{use\+Websocket = {\ttfamily \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Create a new connection object over plain text from the client. The client must outlive all of its connection instances. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_ae104e0ee2e856b370bb248cae0d83e7f}\label{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_ae104e0ee2e856b370bb248cae0d83e7f}} 
 \index{Aws::Crt::Mqtt::MqttClient@{Aws::Crt::Mqtt::MqttClient}!NewConnection@{NewConnection}}
 \index{NewConnection@{NewConnection}!Aws::Crt::Mqtt::MqttClient@{Aws::Crt::Mqtt::MqttClient}}
 \doxysubsubsection{\texorpdfstring{NewConnection()}{NewConnection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt\+Connection}} $>$ Aws\+::\+Crt\+::\+Mqtt\+::\+Mqtt\+Client\+::\+New\+Connection (\begin{DoxyParamCaption}\item[{const char $\ast$}]{host\+Name,  }\item[{uint16\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} \&}]{socket\+Options,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{Crt\+::\+Io\+::\+Tls\+Context}} \&}]{tls\+Context,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{use\+Websocket = {\ttfamily \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Mqtt\+Connection}} $>$ Aws\+::\+Crt\+::\+Mqtt\+::\+Mqtt\+Client\+::\+New\+Connection (\begin{DoxyParamCaption}\item[{const char $\ast$}]{host\+Name,  }\item[{uint16\+\_\+t}]{port,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Io\+::\+Socket\+Options}} \&}]{socket\+Options,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context}{Crt\+::\+Io\+::\+Tls\+Context}} \&}]{tls\+Context,  }\item[{bool}]{use\+Websocket = {\ttfamily \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Create a new connection object using TLS from the client. The client must outlive all of its connection instances. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_a1c093255bd0c66560af52dd621c690f5}\label{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_a1c093255bd0c66560af52dd621c690f5}} 
 \index{Aws::Crt::Mqtt::MqttClient@{Aws::Crt::Mqtt::MqttClient}!operator bool@{operator bool}}
 \index{operator bool@{operator bool}!Aws::Crt::Mqtt::MqttClient@{Aws::Crt::Mqtt::MqttClient}}
 \doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
-{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Mqtt\+::\+Mqtt\+Client\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Mqtt\+::\+Mqtt\+Client\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \begin{DoxyReturn}{Returns}
 true if the instance is in a valid state, false otherwise. 

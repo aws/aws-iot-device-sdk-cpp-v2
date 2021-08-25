@@ -84,13 +84,13 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad5fcc400df7aa9cbbf50fa45ceead6fc"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#ad5fcc400df7aa9cbbf50fa45ceead6fc">s_is_valid_topic</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="el" href="connection__state__test_8c.html#ad99baabff61442b2d602f6dd84310f89">topic</a>, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> is_filter)</td></tr>
+<tr class="memitem:ad5fcc400df7aa9cbbf50fa45ceead6fc"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#ad5fcc400df7aa9cbbf50fa45ceead6fc">s_is_valid_topic</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic, bool is_filter)</td></tr>
 <tr class="separator:ad5fcc400df7aa9cbbf50fa45ceead6fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f3a72d758d7d60ae9f5a6e41b256576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#a9f3a72d758d7d60ae9f5a6e41b256576">aws_mqtt_is_valid_topic</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="el" href="connection__state__test_8c.html#ad99baabff61442b2d602f6dd84310f89">topic</a>)</td></tr>
+<tr class="memitem:a9f3a72d758d7d60ae9f5a6e41b256576"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#a9f3a72d758d7d60ae9f5a6e41b256576">aws_mqtt_is_valid_topic</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic)</td></tr>
 <tr class="separator:a9f3a72d758d7d60ae9f5a6e41b256576"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3c9ed94b3903da6025185e312e1ea35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#af3c9ed94b3903da6025185e312e1ea35">aws_mqtt_is_valid_topic_filter</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic_filter)</td></tr>
+<tr class="memitem:af3c9ed94b3903da6025185e312e1ea35"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#af3c9ed94b3903da6025185e312e1ea35">aws_mqtt_is_valid_topic_filter</a> (const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic_filter)</td></tr>
 <tr class="separator:af3c9ed94b3903da6025185e312e1ea35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a271c65375deec96e20d1c6553e1e74c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#a271c65375deec96e20d1c6553e1e74c1">aws_mqtt_library_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)</td></tr>
+<tr class="memitem:a271c65375deec96e20d1c6553e1e74c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#a271c65375deec96e20d1c6553e1e74c1">aws_mqtt_library_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
 <tr class="separator:a271c65375deec96e20d1c6553e1e74c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0904b0c5eee9a8eba8bf58c7e01d7c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#af0904b0c5eee9a8eba8bf58c7e01d7c6">aws_mqtt_library_clean_up</a> (void)</td></tr>
 <tr class="separator:af0904b0c5eee9a8eba8bf58c7e01d7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,7 +107,7 @@ Variables</h2></td></tr>
 <tr class="separator:ae3e7658479aca71bd56ce00849b45228"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0093e5c0ea95cf3530a5381a8e9d309"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__log__subject__info__list.html">aws_log_subject_info_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#af0093e5c0ea95cf3530a5381a8e9d309">s_logging_subjects_list</a></td></tr>
 <tr class="separator:af0093e5c0ea95cf3530a5381a8e9d309"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2211c2e911eac77a9e040c8ceea3977"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#ad2211c2e911eac77a9e040c8ceea3977">s_mqtt_library_initialized</a> = <a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a></td></tr>
+<tr class="memitem:ad2211c2e911eac77a9e040c8ceea3977"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mqtt_8c.html#ad2211c2e911eac77a9e040c8ceea3977">s_mqtt_library_initialized</a> = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td></tr>
 <tr class="separator:ad2211c2e911eac77a9e040c8ceea3977"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -165,7 +165,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_mqtt_is_valid_topic </td>
+          <td class="memname">bool aws_mqtt_is_valid_topic </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
           <td class="paramname"><em>topic</em></td><td>)</td>
@@ -183,7 +183,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_mqtt_is_valid_topic_filter </td>
+          <td class="memname">bool aws_mqtt_is_valid_topic_filter </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
           <td class="paramname"><em>topic_filter</em></td><td>)</td>
@@ -242,7 +242,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_is_valid_topic </td>
+          <td class="memname">static bool s_is_valid_topic </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *&#160;</td>
           <td class="paramname"><em>topic</em>, </td>
@@ -250,7 +250,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>is_filter</em>&#160;</td>
         </tr>
         <tr>
@@ -388,7 +388,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_mqtt_library_initialized = <a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a></td>
+          <td class="memname">bool s_mqtt_library_initialized = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td>
         </tr>
       </table>
   </td>

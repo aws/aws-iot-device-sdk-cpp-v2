@@ -11,7 +11,7 @@ struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $
 \item 
 size\+\_\+t \mbox{\hyperlink{structaws__websocket_a02585e9fd6eec10d58bdf12174b9b98c}{initial\+\_\+window\+\_\+size}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_ac52be1f0b6a544738f8b0604f2e3da6b}{manual\+\_\+window\+\_\+update}}
+bool \mbox{\hyperlink{structaws__websocket_ac52be1f0b6a544738f8b0604f2e3da6b}{manual\+\_\+window\+\_\+update}}
 \item 
 void $\ast$ \mbox{\hyperlink{structaws__websocket_a69a1379bbf2de90dbb2b61c6ff7c1100}{user\+\_\+data}}
 \item 
@@ -31,7 +31,7 @@ struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \
 \item 
 struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} \mbox{\hyperlink{structaws__websocket_a898a2e94dab04186f6580bdf6cfa4f71}{close\+\_\+timeout\+\_\+task}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_a1496a850b004c7cc3723373221446dc3}{is\+\_\+server}}
+bool \mbox{\hyperlink{structaws__websocket_a1496a850b004c7cc3723373221446dc3}{is\+\_\+server}}
 \item 
 \begin{tabbing}
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
@@ -45,15 +45,15 @@ struct \{\\
 \>enum \mbox{\hyperlink{websocket_8h_ad679ed8349ba7076e743f5e439918fe6}{aws\_websocket\_opcode}} \mbox{\hyperlink{structaws__websocket_a812524e5125f662b21727339cff4b2c3}{continuation\_of\_opcode}}\\
 \>size\_t \mbox{\hyperlink{structaws__websocket_aa56a870308ad29c7bbc8ef557d182568}{incoming\_message\_window\_update}}\\
 \>struct \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} $\ast$ \mbox{\hyperlink{structaws__websocket_a0b9862eac35620281570c4461497e774}{last\_known\_right\_slot}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_a4da9bc15c1e34bbef2628e4f9a0d1d1b}{is\_reading\_stopped}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_a93cb712e928a35b6a5061539131d3079}{is\_writing\_stopped}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_a26d7ad3ac159f65948025140e15e0cd8}{is\_shutting\_down\_and\_waiting\_for\_close\_frame\_to\_be\_written}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_a4da9bc15c1e34bbef2628e4f9a0d1d1b}{is\_reading\_stopped}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_a93cb712e928a35b6a5061539131d3079}{is\_writing\_stopped}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_a26d7ad3ac159f65948025140e15e0cd8}{is\_shutting\_down\_and\_waiting\_for\_close\_frame\_to\_be\_written}}\\
 \>int \mbox{\hyperlink{structaws__websocket_accb278aeddf6f8a5ede6ad5e7c14ec9d}{channel\_shutdown\_error\_code}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_aeef05480f0072436745c9b92a47871ec}{channel\_shutdown\_free\_scarce\_resources\_immediately}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_a2e63e7733ad93af2e593e615e9a9243d}{is\_waiting\_for\_write\_completion}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_a70ecfa9e41743bc86a309c10df880add}{is\_waiting\_on\_payload\_stream\_task}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_a7e1f527768f0fbc3677140cb268c96dc}{is\_midchannel\_handler}}\\
-\} \mbox{\hyperlink{structaws__websocket_a2e018c7ef1488ea93768c71af4571367}{thread\_data}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_aeef05480f0072436745c9b92a47871ec}{channel\_shutdown\_free\_scarce\_resources\_immediately}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_a2e63e7733ad93af2e593e615e9a9243d}{is\_waiting\_for\_write\_completion}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_a70ecfa9e41743bc86a309c10df880add}{is\_waiting\_on\_payload\_stream\_task}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_a7e1f527768f0fbc3677140cb268c96dc}{is\_midchannel\_handler}}\\
+\} \mbox{\hyperlink{structaws__websocket_ae429a32de868ed70bf1fbdd6a6039309}{thread\_data}}\\
 
 \end{tabbing}\item 
 \begin{tabbing}
@@ -64,11 +64,11 @@ struct \{\\
 \>size\_t \mbox{\hyperlink{structaws__websocket_a6c835dfa50b7f447c0db2865f1a5c08f}{window\_increment\_size}}\\
 \>int \mbox{\hyperlink{structaws__websocket_a4e09e2d3eb3d33067415a5a9c803e8e4}{send\_frame\_error\_code}}\\
 \>int \mbox{\hyperlink{structaws__websocket_a317a9909db61515d5c6d1f4b12246c04}{shutdown\_channel\_task\_error\_code}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_a195a3311d42a29eed8215b411fd3b488}{is\_shutdown\_channel\_task\_scheduled}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_ab13de25679987c20d1a02a068205ece6}{is\_move\_synced\_data\_to\_thread\_task\_scheduled}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_a7e1f527768f0fbc3677140cb268c96dc}{is\_midchannel\_handler}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket_ae61b16f80bb14e842af198a1714f43d7}{is\_released}}\\
-\} \mbox{\hyperlink{structaws__websocket_a7c20e680618d20532cfd69bf5027ffb3}{synced\_data}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_a195a3311d42a29eed8215b411fd3b488}{is\_shutdown\_channel\_task\_scheduled}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_ab13de25679987c20d1a02a068205ece6}{is\_move\_synced\_data\_to\_thread\_task\_scheduled}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_a7e1f527768f0fbc3677140cb268c96dc}{is\_midchannel\_handler}}\\
+\>bool \mbox{\hyperlink{structaws__websocket_ae61b16f80bb14e842af198a1714f43d7}{is\_released}}\\
+\} \mbox{\hyperlink{structaws__websocket_a1490921d5b3879f5484596700e502504}{synced\_data}}\\
 
 \end{tabbing}\end{DoxyCompactItemize}
 
@@ -96,7 +96,7 @@ struct \{\\
 \index{aws\_websocket@{aws\_websocket}!channel\_shutdown\_free\_scarce\_resources\_immediately@{channel\_shutdown\_free\_scarce\_resources\_immediately}}
 \index{channel\_shutdown\_free\_scarce\_resources\_immediately@{channel\_shutdown\_free\_scarce\_resources\_immediately}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{channel\_shutdown\_free\_scarce\_resources\_immediately}{channel\_shutdown\_free\_scarce\_resources\_immediately}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::channel\+\_\+shutdown\+\_\+free\+\_\+scarce\+\_\+resources\+\_\+immediately}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::channel\+\_\+shutdown\+\_\+free\+\_\+scarce\+\_\+resources\+\_\+immediately}
 
 \mbox{\Hypertarget{structaws__websocket_a227cde2ccd4b53cc811d44f02a39b61d}\label{structaws__websocket_a227cde2ccd4b53cc811d44f02a39b61d}} 
 \index{aws\_websocket@{aws\_websocket}!channel\_slot@{channel\_slot}}
@@ -168,61 +168,61 @@ struct \{\\
 \index{aws\_websocket@{aws\_websocket}!is\_midchannel\_handler@{is\_midchannel\_handler}}
 \index{is\_midchannel\_handler@{is\_midchannel\_handler}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_midchannel\_handler}{is\_midchannel\_handler}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+midchannel\+\_\+handler}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+midchannel\+\_\+handler}
 
 \mbox{\Hypertarget{structaws__websocket_ab13de25679987c20d1a02a068205ece6}\label{structaws__websocket_ab13de25679987c20d1a02a068205ece6}} 
 \index{aws\_websocket@{aws\_websocket}!is\_move\_synced\_data\_to\_thread\_task\_scheduled@{is\_move\_synced\_data\_to\_thread\_task\_scheduled}}
 \index{is\_move\_synced\_data\_to\_thread\_task\_scheduled@{is\_move\_synced\_data\_to\_thread\_task\_scheduled}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_move\_synced\_data\_to\_thread\_task\_scheduled}{is\_move\_synced\_data\_to\_thread\_task\_scheduled}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+move\+\_\+synced\+\_\+data\+\_\+to\+\_\+thread\+\_\+task\+\_\+scheduled}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+move\+\_\+synced\+\_\+data\+\_\+to\+\_\+thread\+\_\+task\+\_\+scheduled}
 
 \mbox{\Hypertarget{structaws__websocket_a4da9bc15c1e34bbef2628e4f9a0d1d1b}\label{structaws__websocket_a4da9bc15c1e34bbef2628e4f9a0d1d1b}} 
 \index{aws\_websocket@{aws\_websocket}!is\_reading\_stopped@{is\_reading\_stopped}}
 \index{is\_reading\_stopped@{is\_reading\_stopped}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_reading\_stopped}{is\_reading\_stopped}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+reading\+\_\+stopped}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+reading\+\_\+stopped}
 
 \mbox{\Hypertarget{structaws__websocket_ae61b16f80bb14e842af198a1714f43d7}\label{structaws__websocket_ae61b16f80bb14e842af198a1714f43d7}} 
 \index{aws\_websocket@{aws\_websocket}!is\_released@{is\_released}}
 \index{is\_released@{is\_released}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_released}{is\_released}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+released}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+released}
 
 \mbox{\Hypertarget{structaws__websocket_a1496a850b004c7cc3723373221446dc3}\label{structaws__websocket_a1496a850b004c7cc3723373221446dc3}} 
 \index{aws\_websocket@{aws\_websocket}!is\_server@{is\_server}}
 \index{is\_server@{is\_server}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_server}{is\_server}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+server}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+server}
 
 \mbox{\Hypertarget{structaws__websocket_a195a3311d42a29eed8215b411fd3b488}\label{structaws__websocket_a195a3311d42a29eed8215b411fd3b488}} 
 \index{aws\_websocket@{aws\_websocket}!is\_shutdown\_channel\_task\_scheduled@{is\_shutdown\_channel\_task\_scheduled}}
 \index{is\_shutdown\_channel\_task\_scheduled@{is\_shutdown\_channel\_task\_scheduled}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_shutdown\_channel\_task\_scheduled}{is\_shutdown\_channel\_task\_scheduled}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+shutdown\+\_\+channel\+\_\+task\+\_\+scheduled}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+shutdown\+\_\+channel\+\_\+task\+\_\+scheduled}
 
 \mbox{\Hypertarget{structaws__websocket_a26d7ad3ac159f65948025140e15e0cd8}\label{structaws__websocket_a26d7ad3ac159f65948025140e15e0cd8}} 
 \index{aws\_websocket@{aws\_websocket}!is\_shutting\_down\_and\_waiting\_for\_close\_frame\_to\_be\_written@{is\_shutting\_down\_and\_waiting\_for\_close\_frame\_to\_be\_written}}
 \index{is\_shutting\_down\_and\_waiting\_for\_close\_frame\_to\_be\_written@{is\_shutting\_down\_and\_waiting\_for\_close\_frame\_to\_be\_written}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_shutting\_down\_and\_waiting\_for\_close\_frame\_to\_be\_written}{is\_shutting\_down\_and\_waiting\_for\_close\_frame\_to\_be\_written}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+shutting\+\_\+down\+\_\+and\+\_\+waiting\+\_\+for\+\_\+close\+\_\+frame\+\_\+to\+\_\+be\+\_\+written}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+shutting\+\_\+down\+\_\+and\+\_\+waiting\+\_\+for\+\_\+close\+\_\+frame\+\_\+to\+\_\+be\+\_\+written}
 
 \mbox{\Hypertarget{structaws__websocket_a2e63e7733ad93af2e593e615e9a9243d}\label{structaws__websocket_a2e63e7733ad93af2e593e615e9a9243d}} 
 \index{aws\_websocket@{aws\_websocket}!is\_waiting\_for\_write\_completion@{is\_waiting\_for\_write\_completion}}
 \index{is\_waiting\_for\_write\_completion@{is\_waiting\_for\_write\_completion}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_waiting\_for\_write\_completion}{is\_waiting\_for\_write\_completion}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+waiting\+\_\+for\+\_\+write\+\_\+completion}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+waiting\+\_\+for\+\_\+write\+\_\+completion}
 
 \mbox{\Hypertarget{structaws__websocket_a70ecfa9e41743bc86a309c10df880add}\label{structaws__websocket_a70ecfa9e41743bc86a309c10df880add}} 
 \index{aws\_websocket@{aws\_websocket}!is\_waiting\_on\_payload\_stream\_task@{is\_waiting\_on\_payload\_stream\_task}}
 \index{is\_waiting\_on\_payload\_stream\_task@{is\_waiting\_on\_payload\_stream\_task}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_waiting\_on\_payload\_stream\_task}{is\_waiting\_on\_payload\_stream\_task}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+waiting\+\_\+on\+\_\+payload\+\_\+stream\+\_\+task}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+waiting\+\_\+on\+\_\+payload\+\_\+stream\+\_\+task}
 
 \mbox{\Hypertarget{structaws__websocket_a93cb712e928a35b6a5061539131d3079}\label{structaws__websocket_a93cb712e928a35b6a5061539131d3079}} 
 \index{aws\_websocket@{aws\_websocket}!is\_writing\_stopped@{is\_writing\_stopped}}
 \index{is\_writing\_stopped@{is\_writing\_stopped}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{is\_writing\_stopped}{is\_writing\_stopped}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::is\+\_\+writing\+\_\+stopped}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::is\+\_\+writing\+\_\+stopped}
 
 \mbox{\Hypertarget{structaws__websocket_a0b9862eac35620281570c4461497e774}\label{structaws__websocket_a0b9862eac35620281570c4461497e774}} 
 \index{aws\_websocket@{aws\_websocket}!last\_known\_right\_slot@{last\_known\_right\_slot}}
@@ -240,7 +240,7 @@ struct \{\\
 \index{aws\_websocket@{aws\_websocket}!manual\_window\_update@{manual\_window\_update}}
 \index{manual\_window\_update@{manual\_window\_update}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{manual\_window\_update}{manual\_window\_update}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+::manual\+\_\+window\+\_\+update}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+::manual\+\_\+window\+\_\+update}
 
 \mbox{\Hypertarget{structaws__websocket_aa07a4699adaf6943df5445547d655f5c}\label{structaws__websocket_aa07a4699adaf6943df5445547d655f5c}} 
 \index{aws\_websocket@{aws\_websocket}!move\_synced\_data\_to\_thread\_task@{move\_synced\_data\_to\_thread\_task}}
@@ -290,13 +290,13 @@ struct \{\\
 \doxysubsubsection{\texorpdfstring{shutdown\_channel\_task\_error\_code}{shutdown\_channel\_task\_error\_code}}
 {\footnotesize\ttfamily int aws\+\_\+websocket\+::shutdown\+\_\+channel\+\_\+task\+\_\+error\+\_\+code}
 
-\mbox{\Hypertarget{structaws__websocket_a7c20e680618d20532cfd69bf5027ffb3}\label{structaws__websocket_a7c20e680618d20532cfd69bf5027ffb3}} 
+\mbox{\Hypertarget{structaws__websocket_a1490921d5b3879f5484596700e502504}\label{structaws__websocket_a1490921d5b3879f5484596700e502504}} 
 \index{aws\_websocket@{aws\_websocket}!synced\_data@{synced\_data}}
 \index{synced\_data@{synced\_data}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{}{}}
 {\footnotesize\ttfamily struct  \{ ... \}  aws\+\_\+websocket\+::synced\+\_\+data}
 
-\mbox{\Hypertarget{structaws__websocket_a2e018c7ef1488ea93768c71af4571367}\label{structaws__websocket_a2e018c7ef1488ea93768c71af4571367}} 
+\mbox{\Hypertarget{structaws__websocket_ae429a32de868ed70bf1fbdd6a6039309}\label{structaws__websocket_ae429a32de868ed70bf1fbdd6a6039309}} 
 \index{aws\_websocket@{aws\_websocket}!thread\_data@{thread\_data}}
 \index{thread\_data@{thread\_data}!aws\_websocket@{aws\_websocket}}
 \doxysubsubsection{\texorpdfstring{}{}}

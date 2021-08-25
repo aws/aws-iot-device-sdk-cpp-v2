@@ -10,13 +10,13 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8c_ad5fcc400df7aa9cbbf50fa45ceead6fc}{s\+\_\+is\+\_\+valid\+\_\+topic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+filter)
+static bool \mbox{\hyperlink{mqtt_8c_ad5fcc400df7aa9cbbf50fa45ceead6fc}{s\+\_\+is\+\_\+valid\+\_\+topic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic, bool is\+\_\+filter)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8c_a9f3a72d758d7d60ae9f5a6e41b256576}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}})
+bool \mbox{\hyperlink{mqtt_8c_a9f3a72d758d7d60ae9f5a6e41b256576}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8c_af3c9ed94b3903da6025185e312e1ea35}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic\+\_\+filter)
+bool \mbox{\hyperlink{mqtt_8c_af3c9ed94b3903da6025185e312e1ea35}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic\+\_\+filter)
 \item 
-void \mbox{\hyperlink{mqtt_8c_a271c65375deec96e20d1c6553e1e74c1}{aws\+\_\+mqtt\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{mqtt_8c_a271c65375deec96e20d1c6553e1e74c1}{aws\+\_\+mqtt\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{mqtt_8c_af0904b0c5eee9a8eba8bf58c7e01d7c6}{aws\+\_\+mqtt\+\_\+library\+\_\+clean\+\_\+up}} (void)
 \item 
@@ -33,7 +33,7 @@ static struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+
 \item 
 static struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} \mbox{\hyperlink{mqtt_8c_af0093e5c0ea95cf3530a5381a8e9d309}{s\+\_\+logging\+\_\+subjects\+\_\+list}}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8c_ad2211c2e911eac77a9e040c8ceea3977}{s\+\_\+mqtt\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+static bool \mbox{\hyperlink{mqtt_8c_ad2211c2e911eac77a9e040c8ceea3977}{s\+\_\+mqtt\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}
 \end{DoxyCompactItemize}
 
 
@@ -57,13 +57,13 @@ static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \m
 \index{mqtt.c@{mqtt.c}!aws\_mqtt\_is\_valid\_topic@{aws\_mqtt\_is\_valid\_topic}}
 \index{aws\_mqtt\_is\_valid\_topic@{aws\_mqtt\_is\_valid\_topic}!mqtt.c@{mqtt.c}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_is\_valid\_topic()}{aws\_mqtt\_is\_valid\_topic()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{mqtt_8c_af3c9ed94b3903da6025185e312e1ea35}\label{mqtt_8c_af3c9ed94b3903da6025185e312e1ea35}} 
 \index{mqtt.c@{mqtt.c}!aws\_mqtt\_is\_valid\_topic\_filter@{aws\_mqtt\_is\_valid\_topic\_filter}}
 \index{aws\_mqtt\_is\_valid\_topic\_filter@{aws\_mqtt\_is\_valid\_topic\_filter}!mqtt.c@{mqtt.c}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_is\_valid\_topic\_filter()}{aws\_mqtt\_is\_valid\_topic\_filter()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic\+\_\+filter }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic\+\_\+filter }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{mqtt_8c_af0904b0c5eee9a8eba8bf58c7e01d7c6}\label{mqtt_8c_af0904b0c5eee9a8eba8bf58c7e01d7c6}} 
 \index{mqtt.c@{mqtt.c}!aws\_mqtt\_library\_clean\_up@{aws\_mqtt\_library\_clean\_up}}
@@ -81,7 +81,7 @@ Initializes internal datastructures used by aws-\/c-\/mqtt. Must be called befor
 \index{mqtt.c@{mqtt.c}!s\_is\_valid\_topic@{s\_is\_valid\_topic}}
 \index{s\_is\_valid\_topic@{s\_is\_valid\_topic}!mqtt.c@{mqtt.c}}
 \doxysubsubsection{\texorpdfstring{s\_is\_valid\_topic()}{s\_is\_valid\_topic()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+valid\+\_\+topic (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{is\+\_\+filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+is\+\_\+valid\+\_\+topic (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic,  }\item[{bool}]{is\+\_\+filter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
 
@@ -139,5 +139,5 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{mqtt.c@{mqtt.c}!s\_mqtt\_library\_initialized@{s\_mqtt\_library\_initialized}}
 \index{s\_mqtt\_library\_initialized@{s\_mqtt\_library\_initialized}!mqtt.c@{mqtt.c}}
 \doxysubsubsection{\texorpdfstring{s\_mqtt\_library\_initialized}{s\_mqtt\_library\_initialized}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+mqtt\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily bool s\+\_\+mqtt\+\_\+library\+\_\+initialized = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}\hspace{0.3cm}{\ttfamily [static]}}
 

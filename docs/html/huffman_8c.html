@@ -75,7 +75,7 @@ $(function() {
   <div class="headertitle"><div class="title">huffman.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="compression_2huffman_8h_source.html">aws/compression/huffman.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="huffman_8h_source.html">aws/compression/huffman.h</a>&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -86,7 +86,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ae7dde2fa79bd559c2cd2d17121b9e9a2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#ae7dde2fa79bd559c2cd2d17121b9e9a2">BITSIZEOF</a>(<a class="el" href="connection__state__test_8c.html#ae763072d6c1a1d8daad8f1857de864b9">val</a>)&#160;&#160;&#160;(sizeof(<a class="el" href="connection__state__test_8c.html#ae763072d6c1a1d8daad8f1857de864b9">val</a>) * 8)</td></tr>
+<tr class="memitem:ae7dde2fa79bd559c2cd2d17121b9e9a2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#ae7dde2fa79bd559c2cd2d17121b9e9a2">BITSIZEOF</a>(val)&#160;&#160;&#160;(sizeof(val) * 8)</td></tr>
 <tr class="separator:ae7dde2fa79bd559c2cd2d17121b9e9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -99,17 +99,17 @@ Functions</h2></td></tr>
 <tr class="separator:aa3d0dcc3ee61d48163ea9549d4ba3ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98a3558253155db4e4bcd89f495c9253"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#a98a3558253155db4e4bcd89f495c9253">aws_huffman_decoder_reset</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder)</td></tr>
 <tr class="separator:a98a3558253155db4e4bcd89f495c9253"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0d650ec8be681db24a5d1a171fed8ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#ac0d650ec8be681db24a5d1a171fed8ea">aws_huffman_decoder_allow_growth</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> allow_growth)</td></tr>
+<tr class="memitem:ac0d650ec8be681db24a5d1a171fed8ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#ac0d650ec8be681db24a5d1a171fed8ea">aws_huffman_decoder_allow_growth</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, bool allow_growth)</td></tr>
 <tr class="separator:ac0d650ec8be681db24a5d1a171fed8ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc45dedd3c294727f880d36a1da75b87"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#abc45dedd3c294727f880d36a1da75b87">encode_write_bit_pattern</a> (struct <a class="el" href="structencoder__state.html">encoder_state</a> *<a class="el" href="structstate.html">state</a>, struct <a class="el" href="structaws__huffman__code.html">aws_huffman_code</a> bit_pattern)</td></tr>
+<tr class="memitem:abc45dedd3c294727f880d36a1da75b87"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#abc45dedd3c294727f880d36a1da75b87">encode_write_bit_pattern</a> (struct <a class="el" href="structencoder__state.html">encoder_state</a> *state, struct <a class="el" href="structaws__huffman__code.html">aws_huffman_code</a> bit_pattern)</td></tr>
 <tr class="separator:abc45dedd3c294727f880d36a1da75b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0cd131935be624d7f384be2a8a8edfb"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#ab0cd131935be624d7f384be2a8a8edfb">aws_huffman_get_encoded_length</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> to_encode)</td></tr>
 <tr class="separator:ab0cd131935be624d7f384be2a8a8edfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f624cd40f674e8a1e245f2403a47e80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#a6f624cd40f674e8a1e245f2403a47e80">aws_huffman_encode</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_encode, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *<a class="el" href="log__formatter__test_8c.html#ae73289c5189c80c0661459b0f4743217">output</a>)</td></tr>
+<tr class="memitem:a6f624cd40f674e8a1e245f2403a47e80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#a6f624cd40f674e8a1e245f2403a47e80">aws_huffman_encode</a> (struct <a class="el" href="structaws__huffman__encoder.html">aws_huffman_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_encode, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
 <tr class="separator:a6f624cd40f674e8a1e245f2403a47e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa74d1e058aca0dd4d963abb4c56e5766"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#aa74d1e058aca0dd4d963abb4c56e5766">decode_fill_working_bits</a> (struct <a class="el" href="structdecoder__state.html">decoder_state</a> *<a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:aa74d1e058aca0dd4d963abb4c56e5766"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#aa74d1e058aca0dd4d963abb4c56e5766">decode_fill_working_bits</a> (struct <a class="el" href="structdecoder__state.html">decoder_state</a> *state)</td></tr>
 <tr class="separator:aa74d1e058aca0dd4d963abb4c56e5766"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbd64651eef64baf2cbdb5dd1273ffb3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#abbd64651eef64baf2cbdb5dd1273ffb3">aws_huffman_decode</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_decode, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *<a class="el" href="log__formatter__test_8c.html#ae73289c5189c80c0661459b0f4743217">output</a>)</td></tr>
+<tr class="memitem:abbd64651eef64baf2cbdb5dd1273ffb3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="huffman_8c.html#abbd64651eef64baf2cbdb5dd1273ffb3">aws_huffman_decode</a> (struct <a class="el" href="structaws__huffman__decoder.html">aws_huffman_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_decode, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
 <tr class="separator:abbd64651eef64baf2cbdb5dd1273ffb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -128,8 +128,8 @@ Variables</h2></td></tr>
           <td class="memname">#define BITSIZEOF</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="connection__state__test_8c.html#ae763072d6c1a1d8daad8f1857de864b9">val</a></td><td>)</td>
-          <td>&#160;&#160;&#160;(sizeof(<a class="el" href="connection__state__test_8c.html#ae763072d6c1a1d8daad8f1857de864b9">val</a>) * 8)</td>
+          <td class="paramname">val</td><td>)</td>
+          <td>&#160;&#160;&#160;(sizeof(val) * 8)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -196,7 +196,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>allow_growth</em>&#160;</td>
         </tr>
         <tr>

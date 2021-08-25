@@ -16,7 +16,7 @@
 \DoxyCodeLine{17     \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032ea10665bca2a3021788d78512a377f83a4}{AWS\_TASK\_STATUS\_CANCELED}},}
 \DoxyCodeLine{18 \} \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\_task\_status}};}
 \DoxyCodeLine{19 }
-\DoxyCodeLine{23 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\_task\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task}{aws\_task}} *task, \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}}, \textcolor{keyword}{enum} \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\_task\_status}});}
+\DoxyCodeLine{23 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\_task\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task}{aws\_task}} *task, \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__task_a0fc35cfbbc5a249945ada11097ce2839}{arg}}, \textcolor{keyword}{enum} \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\_task\_status}});}
 \DoxyCodeLine{24 }
 \DoxyCodeLine{25 \textcolor{comment}{/*}}
 \DoxyCodeLine{26 \textcolor{comment}{ * A task object.}}
@@ -24,11 +24,11 @@
 \DoxyCodeLine{28 \textcolor{comment}{ */}}
 \DoxyCodeLine{29 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task}{aws\_task}} \{}
 \DoxyCodeLine{30     \mbox{\hyperlink{task__scheduler_8h_a906b373bb52f20dfe8748e72fd71ba46}{aws\_task\_fn}} *\mbox{\hyperlink{structaws__task_abfc64c6ba2daa37981662fb7ebcd616d}{fn}};}
-\DoxyCodeLine{31     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__task_a25552ad61c11c2b0bde99077804fb55a}{arg}};}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__task_a0fc35cfbbc5a249945ada11097ce2839}{arg}};}
 \DoxyCodeLine{32     uint64\_t \mbox{\hyperlink{structaws__task_ab21a93bdb5ffeff38d1a0d6483518ad3}{timestamp}};}
 \DoxyCodeLine{33     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list__node}{aws\_linked\_list\_node}} \mbox{\hyperlink{structaws__task_adb32096bd375e5fa5fd0b17f1a87ec9f}{node}};}
 \DoxyCodeLine{34     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__priority__queue__node}{aws\_priority\_queue\_node}} \mbox{\hyperlink{structaws__task_aca9c82e3ebb5769ee4ff2325ce1a4eb3}{priority\_queue\_node}};}
-\DoxyCodeLine{35     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structaws__task_a98d174d61670d1bb89ebac74229c5916}{type\_tag}};}
+\DoxyCodeLine{35     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structaws__task_ae67880544be55b499b702456d8957c78}{type\_tag}};}
 \DoxyCodeLine{36 }
 \DoxyCodeLine{37     \textcolor{comment}{/* honor the ABI compat */}}
 \DoxyCodeLine{38     \textcolor{keyword}{union }\{}
@@ -38,7 +38,7 @@
 \DoxyCodeLine{42 \};}
 \DoxyCodeLine{43 }
 \DoxyCodeLine{44 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} \{}
-\DoxyCodeLine{45     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__task__scheduler_ac7c8ab5e397f2e394edeac71277f9f4f}{alloc}};}
+\DoxyCodeLine{45     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__task__scheduler_ae7778b983f3f568ba49b64d5f196d8fe}{alloc}};}
 \DoxyCodeLine{46     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__priority__queue}{aws\_priority\_queue}} \mbox{\hyperlink{structaws__task__scheduler_aa90e7d21f1aa41c7e67e084f6fd2615d}{timed\_queue}}; \textcolor{comment}{/* Tasks scheduled to run at specific times */}}
 \DoxyCodeLine{47     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__task__scheduler_acac49d1f6b7fefe19071e613c51454e0}{timed\_list}};     \textcolor{comment}{/* If timed\_queue runs out of memory, further timed tests are stored here */}}
 \DoxyCodeLine{48     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__task__scheduler_aa61034f778aa6df1a40e9e165a1196fd}{asap\_list}};      \textcolor{comment}{/* Tasks scheduled to run as soon as possible */}}

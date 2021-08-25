@@ -97,7 +97,7 @@
 \DoxyCodeLine{112     \textcolor{keyword}{struct }\{}
 \DoxyCodeLine{113         \textcolor{comment}{/*  the size of the largest frame payload */}}
 \DoxyCodeLine{114         uint32\_t \mbox{\hyperlink{structaws__h2__frame__encoder_a7458977b3d563ea606dbaee611a2817b}{max\_frame\_size}};}
-\DoxyCodeLine{115     \} \mbox{\hyperlink{structaws__h2__frame__encoder_ad21c1df8da6a2b99c4147c4871da070a}{settings}};}
+\DoxyCodeLine{115     \} \mbox{\hyperlink{structaws__h2__frame__encoder_a4fe1f15b38730a041e8aa200e1512e78}{settings}};}
 \DoxyCodeLine{116 }
 \DoxyCodeLine{117     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__frame__encoder_a00d1e1db8607dffc1e13606599539ca5}{has\_errored}};}
 \DoxyCodeLine{118 \};}
@@ -106,7 +106,7 @@
 \DoxyCodeLine{121 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__frames_8h_ae4a779bf2dbac1c4b116c95eb982bb94}{aws\_h2\_frame\_encode\_fn}}(}
 \DoxyCodeLine{122     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *frame\_base,}
 \DoxyCodeLine{123     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame__encoder}{aws\_h2\_frame\_encoder}} *encoder,}
-\DoxyCodeLine{124     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}},}
+\DoxyCodeLine{124     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *output,}
 \DoxyCodeLine{125     \textcolor{keywordtype}{bool} *complete);}
 \DoxyCodeLine{126 }
 \DoxyCodeLine{127 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame__vtable}{aws\_h2\_frame\_vtable}} \{}
@@ -144,7 +144,7 @@
 \DoxyCodeLine{174 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{175 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__frames_8h_a46a751a97e3627f7d9b133557eea3095}{aws\_h2\_frame\_encoder\_init}}(}
 \DoxyCodeLine{176     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame__encoder}{aws\_h2\_frame\_encoder}} *encoder,}
-\DoxyCodeLine{177     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{177     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{178     \textcolor{keyword}{const} \textcolor{keywordtype}{void} *logging\_id);}
 \DoxyCodeLine{179 }
 \DoxyCodeLine{180 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
@@ -154,7 +154,7 @@
 \DoxyCodeLine{193 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__frames_8h_a05086b5b206e9978ac93bc8074917e2a}{aws\_h2\_encode\_frame}}(}
 \DoxyCodeLine{194     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame__encoder}{aws\_h2\_frame\_encoder}} *encoder,}
 \DoxyCodeLine{195     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *frame,}
-\DoxyCodeLine{196     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}},}
+\DoxyCodeLine{196     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *output,}
 \DoxyCodeLine{197     \textcolor{keywordtype}{bool} *frame\_complete);}
 \DoxyCodeLine{198 }
 \DoxyCodeLine{211 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
@@ -166,7 +166,7 @@
 \DoxyCodeLine{217     uint8\_t pad\_length,}
 \DoxyCodeLine{218     int32\_t *stream\_window\_size\_peer,}
 \DoxyCodeLine{219     \textcolor{keywordtype}{size\_t} *connection\_window\_size\_peer,}
-\DoxyCodeLine{220     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}},}
+\DoxyCodeLine{220     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *output,}
 \DoxyCodeLine{221     \textcolor{keywordtype}{bool} *body\_complete,}
 \DoxyCodeLine{222     \textcolor{keywordtype}{bool} *body\_stalled);}
 \DoxyCodeLine{223 }
@@ -175,7 +175,7 @@
 \DoxyCodeLine{226 }
 \DoxyCodeLine{231 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{232 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *\mbox{\hyperlink{h2__frames_8h_a227dccf06feccadea104764fa4af04b7}{aws\_h2\_frame\_new\_headers}}(}
-\DoxyCodeLine{233     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{233     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{234     uint32\_t \mbox{\hyperlink{structaws__h2__frame_a3f192931f8ce1f5ad9c5537d3ae81aea}{stream\_id}},}
 \DoxyCodeLine{235     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__headers}{aws\_http\_headers}} *headers,}
 \DoxyCodeLine{236     \textcolor{keywordtype}{bool} end\_stream,}
@@ -184,26 +184,26 @@
 \DoxyCodeLine{239 }
 \DoxyCodeLine{240 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{241 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *\mbox{\hyperlink{h2__frames_8h_a4d5b5024510c8cb4fe4d95c13e8b88ea}{aws\_h2\_frame\_new\_priority}}(}
-\DoxyCodeLine{242     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{242     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{243     uint32\_t \mbox{\hyperlink{structaws__h2__frame_a3f192931f8ce1f5ad9c5537d3ae81aea}{stream\_id}},}
 \DoxyCodeLine{244     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame__priority__settings}{aws\_h2\_frame\_priority\_settings}} *priority);}
 \DoxyCodeLine{245 }
 \DoxyCodeLine{246 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{247 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *\mbox{\hyperlink{h2__frames_8h_a941a784a20cf02a2ca4df6303e295e40}{aws\_h2\_frame\_new\_rst\_stream}}(}
-\DoxyCodeLine{248     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{248     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{249     uint32\_t \mbox{\hyperlink{structaws__h2__frame_a3f192931f8ce1f5ad9c5537d3ae81aea}{stream\_id}},}
-\DoxyCodeLine{250     uint32\_t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}});}
+\DoxyCodeLine{250     uint32\_t error\_code);}
 \DoxyCodeLine{251 }
 \DoxyCodeLine{252 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{253 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *\mbox{\hyperlink{h2__frames_8h_a7649ca3fe765ff8ef7997736291a2d6d}{aws\_h2\_frame\_new\_settings}}(}
-\DoxyCodeLine{254     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{254     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{255     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http2__setting}{aws\_http2\_setting}} *settings\_array,}
 \DoxyCodeLine{256     \textcolor{keywordtype}{size\_t} num\_settings,}
 \DoxyCodeLine{257     \textcolor{keywordtype}{bool} ack);}
 \DoxyCodeLine{258 }
 \DoxyCodeLine{263 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{264 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *\mbox{\hyperlink{h2__frames_8h_a36d6d5c542f9a8eb34a0de6aec047cc0}{aws\_h2\_frame\_new\_push\_promise}}(}
-\DoxyCodeLine{265     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{265     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{266     uint32\_t \mbox{\hyperlink{structaws__h2__frame_a3f192931f8ce1f5ad9c5537d3ae81aea}{stream\_id}},}
 \DoxyCodeLine{267     uint32\_t promised\_stream\_id,}
 \DoxyCodeLine{268     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__headers}{aws\_http\_headers}} *headers,}
@@ -211,20 +211,20 @@
 \DoxyCodeLine{270 }
 \DoxyCodeLine{271 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{272 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *\mbox{\hyperlink{h2__frames_8h_aeee3ad4aebd7582f3a11d6f561303d9c}{aws\_h2\_frame\_new\_ping}}(}
-\DoxyCodeLine{273     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{273     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{274     \textcolor{keywordtype}{bool} ack,}
 \DoxyCodeLine{275     \textcolor{keyword}{const} uint8\_t opaque\_data[\mbox{\hyperlink{connection_8h_a99cebd5298f16fec37625e4a1a01c64a}{AWS\_HTTP2\_PING\_DATA\_SIZE}}]);}
 \DoxyCodeLine{276 }
 \DoxyCodeLine{277 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{278 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *\mbox{\hyperlink{h2__frames_8h_a2cc79ea49272c28b43830fee76c32ff1}{aws\_h2\_frame\_new\_goaway}}(}
-\DoxyCodeLine{279     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{279     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{280     uint32\_t last\_stream\_id,}
-\DoxyCodeLine{281     uint32\_t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{281     uint32\_t error\_code,}
 \DoxyCodeLine{282     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} debug\_data);}
 \DoxyCodeLine{283 }
 \DoxyCodeLine{284 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{285 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__frame}{aws\_h2\_frame}} *\mbox{\hyperlink{h2__frames_8h_abc9c0c999f5e6714cba0faf6ed7fad22}{aws\_h2\_frame\_new\_window\_update}}(}
-\DoxyCodeLine{286     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{286     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{287     uint32\_t \mbox{\hyperlink{structaws__h2__frame_a3f192931f8ce1f5ad9c5537d3ae81aea}{stream\_id}},}
 \DoxyCodeLine{288     uint32\_t window\_size\_increment);}
 \DoxyCodeLine{289 }

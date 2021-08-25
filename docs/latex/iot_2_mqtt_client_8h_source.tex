@@ -32,7 +32,7 @@
 \DoxyCodeLine{49                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a164f0b4ae6ab32eae4125e685349a8d1}{Crt::Mqtt::OnWebSocketHandshakeIntercept}} \&\&interceptor,}
 \DoxyCodeLine{50                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt::Optional<Crt::Http::HttpClientConnectionProxyOptions>}} \&proxyOptions);}
 \DoxyCodeLine{51 }
-\DoxyCodeLine{55             \textcolor{keyword}{explicit} \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_context ? \mbox{\hyperlink{namespace_aws_ac488d0932f9b9e0686736a3dc7a8bb08}{true}} : \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{55             \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_context ? \mbox{\hyperlink{namespace_aws_ac488d0932f9b9e0686736a3dc7a8bb08}{true}} : \textcolor{keyword}{false}; \}}
 \DoxyCodeLine{59             \textcolor{keywordtype}{int} \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_aebdc5d38cb40d62222d072629b1430aa}{LastError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_lastError; \}}
 \DoxyCodeLine{60 }
 \DoxyCodeLine{61           \textcolor{keyword}{private}:}
@@ -55,12 +55,12 @@
 \DoxyCodeLine{82             \mbox{\hyperlink{struct_aws_1_1_iot_1_1_websocket_config}{WebsocketConfig}}(}
 \DoxyCodeLine{83                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&signingRegion,}
 \DoxyCodeLine{84                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt::Io::ClientBootstrap}} *bootstrap,}
-\DoxyCodeLine{85                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{85                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{86 }
 \DoxyCodeLine{91             \mbox{\hyperlink{struct_aws_1_1_iot_1_1_websocket_config}{WebsocketConfig}}(}
 \DoxyCodeLine{92                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&signingRegion,}
 \DoxyCodeLine{93                 \textcolor{keyword}{const} std::shared\_ptr<Crt::Auth::ICredentialsProvider> \&credentialsProvider,}
-\DoxyCodeLine{94                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{94                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{95 }
 \DoxyCodeLine{105             \mbox{\hyperlink{struct_aws_1_1_iot_1_1_websocket_config}{WebsocketConfig}}(}
 \DoxyCodeLine{106                 \textcolor{keyword}{const} std::shared\_ptr<Crt::Auth::ICredentialsProvider> \&credentialsProvider,}
@@ -84,16 +84,16 @@
 \DoxyCodeLine{136             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{MqttClientConnectionConfigBuilder}}(}
 \DoxyCodeLine{137                 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *certPath,}
 \DoxyCodeLine{138                 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pkeyPath,}
-\DoxyCodeLine{139                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{139                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{140 }
 \DoxyCodeLine{145             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{MqttClientConnectionConfigBuilder}}(}
-\DoxyCodeLine{146                 \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{Crt::ByteCursor}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}{cert}},}
+\DoxyCodeLine{146                 \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{Crt::ByteCursor}} \&cert,}
 \DoxyCodeLine{147                 \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{Crt::ByteCursor}} \&pkey,}
-\DoxyCodeLine{148                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{148                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{149 }
 \DoxyCodeLine{153             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{MqttClientConnectionConfigBuilder}}(}
-\DoxyCodeLine{154                 \textcolor{keyword}{const} \mbox{\hyperlink{struct_aws_1_1_iot_1_1_websocket_config}{WebsocketConfig}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}},}
-\DoxyCodeLine{155                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{154                 \textcolor{keyword}{const} \mbox{\hyperlink{struct_aws_1_1_iot_1_1_websocket_config}{WebsocketConfig}} \&\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}},}
+\DoxyCodeLine{155                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{156 }
 \DoxyCodeLine{160             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{MqttClientConnectionConfigBuilder}} \&WithEndpoint(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt::String}} \&endpoint);}
 \DoxyCodeLine{161 }
@@ -103,7 +103,7 @@
 \DoxyCodeLine{173 }
 \DoxyCodeLine{178             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{MqttClientConnectionConfigBuilder}} \&WithCertificateAuthority(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *caPath) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{179 }
-\DoxyCodeLine{184             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{MqttClientConnectionConfigBuilder}} \&WithCertificateAuthority(\textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{Crt::ByteCursor}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}{cert}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{184             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{MqttClientConnectionConfigBuilder}} \&WithCertificateAuthority(\textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{Crt::ByteCursor}} \&cert) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{185 }
 \DoxyCodeLine{187             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{MqttClientConnectionConfigBuilder}} \&WithTcpKeepAlive() \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{188 }
@@ -118,7 +118,7 @@
 \DoxyCodeLine{207             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{MqttClientConnectionConfigBuilder}} \&WithMinimumTlsVersion(\mbox{\hyperlink{tls__channel__handler_8h_abbbf7d37040b11f033b40ca7bac19e88}{aws\_tls\_versions}} minimumTlsVersion) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{208 }
 \DoxyCodeLine{212             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config}{MqttClientConnectionConfig}} Build() \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{216             \textcolor{keyword}{explicit} \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_isGood; \}}
+\DoxyCodeLine{216             \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_isGood; \}}
 \DoxyCodeLine{220             \textcolor{keywordtype}{int} \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_aa312bce48376a994ef873b1b65e92624}{LastError}}() const noexcept \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\_last\_error}}(); \}}
 \DoxyCodeLine{221 }
 \DoxyCodeLine{222           \textcolor{keyword}{private}:}
@@ -134,11 +134,11 @@
 \DoxyCodeLine{237         \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client}{MqttClient}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
 \DoxyCodeLine{238         \{}
 \DoxyCodeLine{239           \textcolor{keyword}{public}:}
-\DoxyCodeLine{240             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client}{MqttClient}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt::Io::ClientBootstrap}} \&bootstrap, \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{240             \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client}{MqttClient}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt::Io::ClientBootstrap}} \&bootstrap, \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt::g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{241 }
-\DoxyCodeLine{242             std::shared\_ptr<Crt::Mqtt::MqttConnection> NewConnection(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config}{MqttClientConnectionConfig}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{242             std::shared\_ptr<Crt::Mqtt::MqttConnection> NewConnection(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config}{MqttClientConnectionConfig}} \&\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{246             \textcolor{keywordtype}{int} \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_a7019e052869b4b121aed212f2b3347a4}{LastError}}() const noexcept \{ \textcolor{keywordflow}{return} m\_client.LastError(); \}}
-\DoxyCodeLine{250             \textcolor{keyword}{explicit} \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_client ? \mbox{\hyperlink{namespace_aws_ac488d0932f9b9e0686736a3dc7a8bb08}{true}} : \textcolor{keyword}{false}; \}}
+\DoxyCodeLine{250             \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_client ? \mbox{\hyperlink{namespace_aws_ac488d0932f9b9e0686736a3dc7a8bb08}{true}} : \textcolor{keyword}{false}; \}}
 \DoxyCodeLine{251 }
 \DoxyCodeLine{252           \textcolor{keyword}{private}:}
 \DoxyCodeLine{253             \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client}{Crt::Mqtt::MqttClient}} m\_client;}

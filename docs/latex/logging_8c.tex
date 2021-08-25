@@ -35,11 +35,11 @@ static int \mbox{\hyperlink{logging_8c_a8b809253e069d5548106e93699537cdf}{s\+\_\
 \item 
 static enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}} \mbox{\hyperlink{logging_8c_a126a22c0b35bd1e7ff7e9b45a24f1245}{s\+\_\+aws\+\_\+logger\+\_\+pipeline\+\_\+get\+\_\+log\+\_\+level}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_aeef1d2e32e5ef74f68cfdb04d4785852}{aws\+\_\+log\+\_\+subject\+\_\+t}} subject)
 \item 
-int \mbox{\hyperlink{logging_8c_a7c1bce6687489ec5f16f97a342eb0f2b}{aws\+\_\+logger\+\_\+init\+\_\+standard}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__logger__standard__options}{aws\+\_\+logger\+\_\+standard\+\_\+options}} $\ast$options)
+int \mbox{\hyperlink{logging_8c_a7c1bce6687489ec5f16f97a342eb0f2b}{aws\+\_\+logger\+\_\+init\+\_\+standard}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__logger__standard__options}{aws\+\_\+logger\+\_\+standard\+\_\+options}} $\ast$options)
 \item 
 static void \mbox{\hyperlink{logging_8c_a6f6e8be5303783a40075a88b819f10b5}{s\+\_\+aws\+\_\+pipeline\+\_\+logger\+\_\+unowned\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger)
 \item 
-int \mbox{\hyperlink{logging_8c_ab924402731babed4b5c6829b4541bd6f}{aws\+\_\+logger\+\_\+init\+\_\+from\+\_\+external}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__formatter}{aws\+\_\+log\+\_\+formatter}} $\ast$formatter, struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}} level)
+int \mbox{\hyperlink{logging_8c_ab924402731babed4b5c6829b4541bd6f}{aws\+\_\+logger\+\_\+init\+\_\+from\+\_\+external}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__log__formatter}{aws\+\_\+log\+\_\+formatter}} $\ast$formatter, struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, enum \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2logging_8h_a204470b509c45cf30e9a58fce82d41b5}{aws\+\_\+log\+\_\+level}} level)
 \item 
 void \mbox{\hyperlink{logging_8c_a85d95d532e7aa59c458d9cdb9ca078d1}{aws\+\_\+logger\+\_\+set}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger)
 \item 
@@ -67,14 +67,14 @@ static int \mbox{\hyperlink{logging_8c_a31f5506f1fcfd212fbb77616374e78c6}{s\+\_\
 \item 
 static void \mbox{\hyperlink{logging_8c_a30669434383e269c5293c2c8dcd1b577}{s\+\_\+noalloc\+\_\+stderr\+\_\+logger\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger)
 \item 
-int \mbox{\hyperlink{logging_8c_a23f6d4ee237837f6dfab4173932d89b2}{aws\+\_\+logger\+\_\+init\+\_\+noalloc}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__logger__standard__options}{aws\+\_\+logger\+\_\+standard\+\_\+options}} $\ast$options)
+int \mbox{\hyperlink{logging_8c_a23f6d4ee237837f6dfab4173932d89b2}{aws\+\_\+logger\+\_\+init\+\_\+noalloc}} (struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} $\ast$logger, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__logger__standard__options}{aws\+\_\+logger\+\_\+standard\+\_\+options}} $\ast$options)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 static struct \mbox{\hyperlink{structaws__logger__vtable}{aws\+\_\+logger\+\_\+vtable}} \mbox{\hyperlink{logging_8c_a8724fb2fc568d25d54c58b962cbfc7f6}{s\+\_\+null\+\_\+vtable}}
 \item 
-static struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} \mbox{\hyperlink{logging_8c_a78cf7b3d7ed74b6f752dd865041b8eb6}{s\+\_\+null\+\_\+logger}} = \{.\mbox{\hyperlink{event__stream__channel__handler_8c_abe14756ac2de521c54084a2ecf70cd92}{vtable}} = \&\mbox{\hyperlink{logging_8c_a8724fb2fc568d25d54c58b962cbfc7f6}{s\+\_\+null\+\_\+vtable}}, .\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = NULL, .p\+\_\+impl = NULL\}
+static struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} \mbox{\hyperlink{logging_8c_a78cf7b3d7ed74b6f752dd865041b8eb6}{s\+\_\+null\+\_\+logger}} = \{.\mbox{\hyperlink{event__stream__channel__handler_8c_abe14756ac2de521c54084a2ecf70cd92}{vtable}} = \&\mbox{\hyperlink{logging_8c_a8724fb2fc568d25d54c58b962cbfc7f6}{s\+\_\+null\+\_\+vtable}}, .allocator = NULL, .p\+\_\+impl = NULL\}
 \item 
 struct \mbox{\hyperlink{structaws__logger__vtable}{aws\+\_\+logger\+\_\+vtable}} \mbox{\hyperlink{logging_8c_ad51e0de4bbdb409c4fc1ec2ef7c41276}{g\+\_\+pipeline\+\_\+logger\+\_\+owned\+\_\+vtable}}
 \item 
@@ -303,7 +303,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{logging.c@{logging.c}!s\_null\_logger@{s\_null\_logger}}
 \index{s\_null\_logger@{s\_null\_logger}!logging.c@{logging.c}}
 \doxysubsubsection{\texorpdfstring{s\_null\_logger}{s\_null\_logger}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} s\+\_\+null\+\_\+logger = \{.\mbox{\hyperlink{event__stream__channel__handler_8c_abe14756ac2de521c54084a2ecf70cd92}{vtable}} = \&\mbox{\hyperlink{logging_8c_a8724fb2fc568d25d54c58b962cbfc7f6}{s\+\_\+null\+\_\+vtable}}, .\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = NULL, .p\+\_\+impl = NULL\}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__logger}{aws\+\_\+logger}} s\+\_\+null\+\_\+logger = \{.\mbox{\hyperlink{event__stream__channel__handler_8c_abe14756ac2de521c54084a2ecf70cd92}{vtable}} = \&\mbox{\hyperlink{logging_8c_a8724fb2fc568d25d54c58b962cbfc7f6}{s\+\_\+null\+\_\+vtable}}, .allocator = NULL, .p\+\_\+impl = NULL\}\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{logging_8c_a8724fb2fc568d25d54c58b962cbfc7f6}\label{logging_8c_a8724fb2fc568d25d54c58b962cbfc7f6}} 
 \index{logging.c@{logging.c}!s\_null\_vtable@{s\_null\_vtable}}

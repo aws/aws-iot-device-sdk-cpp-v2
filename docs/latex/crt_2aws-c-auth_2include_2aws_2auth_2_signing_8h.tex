@@ -5,12 +5,12 @@
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef void() \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\+\_\+signing\+\_\+complete\+\_\+fn}}(struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$result, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+typedef void() \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\+\_\+signing\+\_\+complete\+\_\+fn}}(struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$result, int error\+\_\+code, void $\ast$userdata)
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_a9966fdbaacd1f788c92300343f6fcf21}{aws\+\_\+sign\+\_\+request\+\_\+aws}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, const struct \mbox{\hyperlink{structaws__signing__config__base}{aws\+\_\+signing\+\_\+config\+\_\+base}} $\ast$base\+\_\+config, \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\+\_\+signing\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+complete, void $\ast$userdata)
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_a9966fdbaacd1f788c92300343f6fcf21}{aws\+\_\+sign\+\_\+request\+\_\+aws}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, const struct \mbox{\hyperlink{structaws__signing__config__base}{aws\+\_\+signing\+\_\+config\+\_\+base}} $\ast$base\+\_\+config, \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\+\_\+signing\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+complete, void $\ast$userdata)
 \end{DoxyCompactItemize}
 
 
@@ -19,7 +19,7 @@ typedef void() \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h
 \index{signing.h@{signing.h}!aws\_signing\_complete\_fn@{aws\_signing\_complete\_fn}}
 \index{aws\_signing\_complete\_fn@{aws\_signing\_complete\_fn}!signing.h@{signing.h}}
 \doxysubsubsection{\texorpdfstring{aws\_signing\_complete\_fn}{aws\_signing\_complete\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+signing\+\_\+complete\+\_\+fn(struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$result, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)}
+{\footnotesize\ttfamily typedef void() aws\+\_\+signing\+\_\+complete\+\_\+fn(struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$result, int error\+\_\+code, void $\ast$userdata)}
 
 Gets called by the signing function when the signing is complete.
 

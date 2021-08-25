@@ -17,17 +17,17 @@ static uint64\+\_\+t \mbox{\hyperlink{fips202_8c_a004819d73a18a2b0f6f843e90a51b0
 \item 
 static void \mbox{\hyperlink{fips202_8c_a2f91c6ac838e5fada375d2171e3e48ef}{store64}} (uint8\+\_\+t $\ast$x, uint64\+\_\+t u)
 \item 
-static void \mbox{\hyperlink{fips202_8c_a6582e3f63eca4c5d2b2fff864a157f2c}{Keccak\+F1600\+\_\+\+State\+Permute}} (uint64\+\_\+t $\ast$\mbox{\hyperlink{structstate}{state}})
+static void \mbox{\hyperlink{fips202_8c_a6582e3f63eca4c5d2b2fff864a157f2c}{Keccak\+F1600\+\_\+\+State\+Permute}} (uint64\+\_\+t $\ast$state)
 \item 
 static void \mbox{\hyperlink{fips202_8c_a733b53f15c4af4215a923850af349ae7}{keccak\+\_\+absorb}} (uint64\+\_\+t $\ast$s, uint32\+\_\+t r, const uint8\+\_\+t $\ast$m, size\+\_\+t mlen, uint8\+\_\+t p)
 \item 
 static void \mbox{\hyperlink{fips202_8c_ac5dc72fc49cf8bc3b4e4c83d861b7551}{keccak\+\_\+squeezeblocks}} (uint8\+\_\+t $\ast$h, size\+\_\+t nblocks, uint64\+\_\+t $\ast$s, uint32\+\_\+t r)
 \item 
-static void \mbox{\hyperlink{fips202_8c_a2ba60dbed19b88529d538e0c1a00476c}{shake256\+\_\+absorb}} (\mbox{\hyperlink{structshake256__ctx}{shake256\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
+static void \mbox{\hyperlink{fips202_8c_a2ba60dbed19b88529d538e0c1a00476c}{shake256\+\_\+absorb}} (\mbox{\hyperlink{structshake256__ctx}{shake256\+\_\+ctx}} $\ast$state, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
 \item 
-static void \mbox{\hyperlink{fips202_8c_a3d6059c2b748d3158f10107545aabf6f}{shake256\+\_\+squeezeblocks}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t nblocks, \mbox{\hyperlink{structshake256__ctx}{shake256\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static void \mbox{\hyperlink{fips202_8c_a3d6059c2b748d3158f10107545aabf6f}{shake256\+\_\+squeezeblocks}} (uint8\+\_\+t $\ast$output, size\+\_\+t nblocks, \mbox{\hyperlink{structshake256__ctx}{shake256\+\_\+ctx}} $\ast$state)
 \item 
-void \mbox{\hyperlink{fips202_8c_a270512bae02a672a432ff5d72aada606}{shake256}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t outlen, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
+void \mbox{\hyperlink{fips202_8c_a270512bae02a672a432ff5d72aada606}{shake256}} (uint8\+\_\+t $\ast$output, size\+\_\+t outlen, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}

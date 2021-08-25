@@ -16,16 +16,16 @@ typedef void() \mbox{\hyperlink{connection__manager__system__vtable_8h_a51b56ca2
 \item 
 typedef void() \mbox{\hyperlink{connection__manager__system__vtable_8h_a793c5158eba52684c6777bf1a554135d}{aws\+\_\+http\+\_\+connection\+\_\+release\+\_\+connection\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
 \item 
-typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \mbox{\hyperlink{connection__manager__system__vtable_8h_a9a6121c6da5fb7cd7420631371a6d0f5}{aws\+\_\+http\+\_\+connection\+\_\+is\+\_\+connection\+\_\+available\+\_\+fn}}(const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+typedef bool() \mbox{\hyperlink{connection__manager__system__vtable_8h_a9a6121c6da5fb7cd7420631371a6d0f5}{aws\+\_\+http\+\_\+connection\+\_\+is\+\_\+connection\+\_\+available\+\_\+fn}}(const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
 \item 
-typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \mbox{\hyperlink{connection__manager__system__vtable_8h_aed512b0bc9702d44dae70e24e5e07de9}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+is\+\_\+callers\+\_\+thread\+\_\+fn}}(struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
+typedef bool() \mbox{\hyperlink{connection__manager__system__vtable_8h_aed512b0bc9702d44dae70e24e5e07de9}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+is\+\_\+callers\+\_\+thread\+\_\+fn}}(struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)
 \item 
 typedef struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$() \mbox{\hyperlink{connection__manager__system__vtable_8h_a6556338669bed296f51c3d276c263e81}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+connection\+\_\+get\+\_\+channel\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{connection__manager__system__vtable_8h_a35b3d27615770de3a95e4bcee6076c0e}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$table)
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} bool \mbox{\hyperlink{connection__manager__system__vtable_8h_a35b3d27615770de3a95e4bcee6076c0e}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$table)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{connection__manager__system__vtable_8h_a3f00086248f129ad46ab887bce0b21d7}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+set\+\_\+system\+\_\+vtable}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$system\+\_\+vtable)
 \end{DoxyCompactItemize}
@@ -41,7 +41,7 @@ typedef struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$() 
 \index{connection\_manager\_system\_vtable.h@{connection\_manager\_system\_vtable.h}!aws\_http\_connection\_is\_connection\_available\_fn@{aws\_http\_connection\_is\_connection\_available\_fn}}
 \index{aws\_http\_connection\_is\_connection\_available\_fn@{aws\_http\_connection\_is\_connection\_available\_fn}!connection\_manager\_system\_vtable.h@{connection\_manager\_system\_vtable.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_connection\_is\_connection\_available\_fn}{aws\_http\_connection\_is\_connection\_available\_fn}}
-{\footnotesize\ttfamily typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() aws\+\_\+http\+\_\+connection\+\_\+is\+\_\+connection\+\_\+available\+\_\+fn(const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)}
+{\footnotesize\ttfamily typedef bool() aws\+\_\+http\+\_\+connection\+\_\+is\+\_\+connection\+\_\+available\+\_\+fn(const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)}
 
 \mbox{\Hypertarget{connection__manager__system__vtable_8h_a51b56ca23bf998a76fab3db8ec52a447}\label{connection__manager__system__vtable_8h_a51b56ca23bf998a76fab3db8ec52a447}} 
 \index{connection\_manager\_system\_vtable.h@{connection\_manager\_system\_vtable.h}!aws\_http\_connection\_manager\_close\_connection\_fn@{aws\_http\_connection\_manager\_close\_connection\_fn}}
@@ -65,7 +65,7 @@ typedef struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$() 
 \index{connection\_manager\_system\_vtable.h@{connection\_manager\_system\_vtable.h}!aws\_http\_connection\_manager\_is\_callers\_thread\_fn@{aws\_http\_connection\_manager\_is\_callers\_thread\_fn}}
 \index{aws\_http\_connection\_manager\_is\_callers\_thread\_fn@{aws\_http\_connection\_manager\_is\_callers\_thread\_fn}!connection\_manager\_system\_vtable.h@{connection\_manager\_system\_vtable.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_is\_callers\_thread\_fn}{aws\_http\_connection\_manager\_is\_callers\_thread\_fn}}
-{\footnotesize\ttfamily typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+is\+\_\+callers\+\_\+thread\+\_\+fn(struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)}
+{\footnotesize\ttfamily typedef bool() aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+is\+\_\+callers\+\_\+thread\+\_\+fn(struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel)}
 
 \mbox{\Hypertarget{connection__manager__system__vtable_8h_a793c5158eba52684c6777bf1a554135d}\label{connection__manager__system__vtable_8h_a793c5158eba52684c6777bf1a554135d}} 
 \index{connection\_manager\_system\_vtable.h@{connection\_manager\_system\_vtable.h}!aws\_http\_connection\_release\_connection\_fn@{aws\_http\_connection\_release\_connection\_fn}}
@@ -86,7 +86,7 @@ typedef struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$() 
 \index{connection\_manager\_system\_vtable.h@{connection\_manager\_system\_vtable.h}!aws\_http\_connection\_manager\_system\_vtable\_is\_valid@{aws\_http\_connection\_manager\_system\_vtable\_is\_valid}}
 \index{aws\_http\_connection\_manager\_system\_vtable\_is\_valid@{aws\_http\_connection\_manager\_system\_vtable\_is\_valid}!connection\_manager\_system\_vtable.h@{connection\_manager\_system\_vtable.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_system\_vtable\_is\_valid()}{aws\_http\_connection\_manager\_system\_vtable\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$}]{table }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} bool aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection__manager__system__vtable}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+system\+\_\+vtable}} $\ast$}]{table }\end{DoxyParamCaption})}
 
 
 

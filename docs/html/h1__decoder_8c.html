@@ -114,19 +114,19 @@ Functions</h2></td></tr>
 <tr class="separator:a19b568df26cecdb65fc4444ce9742b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36a900c638fc58b2567e9d31eec08e0d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a36a900c638fc58b2567e9d31eec08e0d">s_linestate_chunk_size</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input)</td></tr>
 <tr class="separator:a36a900c638fc58b2567e9d31eec08e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb9c51d4cfd2b8c8bfba58a20b4e9651"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#abb9c51d4cfd2b8c8bfba58a20b4e9651">s_scan_for_crlf</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input, size_t *bytes_processed)</td></tr>
+<tr class="memitem:abb9c51d4cfd2b8c8bfba58a20b4e9651"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#abb9c51d4cfd2b8c8bfba58a20b4e9651">s_scan_for_crlf</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input, size_t *bytes_processed)</td></tr>
 <tr class="separator:abb9c51d4cfd2b8c8bfba58a20b4e9651"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a111651dd88a36f11e561416218e83529"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a111651dd88a36f11e561416218e83529">s_cat</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> to_append)</td></tr>
 <tr class="separator:a111651dd88a36f11e561416218e83529"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab55cd90e35f194a6786d420e6ae38e45"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#ab55cd90e35f194a6786d420e6ae38e45">s_state_getline</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
 <tr class="separator:ab55cd90e35f194a6786d420e6ae38e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a425cd185ebfb5d0801b6eb4ee8269c06"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a425cd185ebfb5d0801b6eb4ee8269c06">s_cursor_split_impl</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input, char split_on, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor_array, size_t num_cursors, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> error_if_more_splits_possible)</td></tr>
+<tr class="memitem:a425cd185ebfb5d0801b6eb4ee8269c06"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a425cd185ebfb5d0801b6eb4ee8269c06">s_cursor_split_impl</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input, char split_on, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor_array, size_t num_cursors, bool error_if_more_splits_possible)</td></tr>
 <tr class="separator:a425cd185ebfb5d0801b6eb4ee8269c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa68a7ab49a2e0546de215f523de1556"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#afa68a7ab49a2e0546de215f523de1556">s_cursor_split_first_n_times</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input, char split_on, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor_array, size_t num_cursors)</td></tr>
 <tr class="separator:afa68a7ab49a2e0546de215f523de1556"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac75f6848ac91da129ea14d9c209b69ad"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#ac75f6848ac91da129ea14d9c209b69ad">s_cursor_split_exactly_n_times</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input, char split_on, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *cursor_array, size_t num_cursors)</td></tr>
 <tr class="separator:ac75f6848ac91da129ea14d9c209b69ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74a48056024699334beba3f56a053c5b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a74a48056024699334beba3f56a053c5b">s_set_state</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, <a class="el" href="h2__decoder_8c.html#a5cbd6947260ee4cfdb36c38cf180d612">state_fn</a> *<a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:a74a48056024699334beba3f56a053c5b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a74a48056024699334beba3f56a053c5b">s_set_state</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, <a class="el" href="h2__decoder_8c.html#a5cbd6947260ee4cfdb36c38cf180d612">state_fn</a> *state)</td></tr>
 <tr class="separator:a74a48056024699334beba3f56a053c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae453d4589583bd14b72508717eaa87a7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#ae453d4589583bd14b72508717eaa87a7">s_set_line_state</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, <a class="el" href="h1__decoder_8c.html#ae04111cdbc5b24c34198be9248d0c845">linestate_fn</a> *line_processor)</td></tr>
 <tr class="separator:ae453d4589583bd14b72508717eaa87a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,7 +140,7 @@ Functions</h2></td></tr>
 <tr class="separator:a6908cefe4caf439fad7451b849800ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a423b031cdea661ad698bf2cc2432a380"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a423b031cdea661ad698bf2cc2432a380">s_state_chunk</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *input)</td></tr>
 <tr class="separator:a423b031cdea661ad698bf2cc2432a380"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a46f3a5581042daa0ba53d47c8d9463"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a1a46f3a5581042daa0ba53d47c8d9463">s_check_info_response_status_code</a> (int code_val)</td></tr>
+<tr class="memitem:a1a46f3a5581042daa0ba53d47c8d9463"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a1a46f3a5581042daa0ba53d47c8d9463">s_check_info_response_status_code</a> (int code_val)</td></tr>
 <tr class="separator:a1a46f3a5581042daa0ba53d47c8d9463"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee75a25427bc0feab7ded4551142a74e"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#aee75a25427bc0feab7ded4551142a74e">aws_h1_decoder_new</a> (struct <a class="el" href="structaws__h1__decoder__params.html">aws_h1_decoder_params</a> *params)</td></tr>
 <tr class="separator:aee75a25427bc0feab7ded4551142a74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,13 +152,13 @@ Functions</h2></td></tr>
 <tr class="separator:a6729bf5000bfa6a990a4d2c319802bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada4c7111a82009eacd39af895d65cdad"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#ada4c7111a82009eacd39af895d65cdad">aws_h1_decoder_get_content_length</a> (const struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder)</td></tr>
 <tr class="separator:ada4c7111a82009eacd39af895d65cdad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a084c5933d7d4134de9cdf828f9441b8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a084c5933d7d4134de9cdf828f9441b8e">aws_h1_decoder_get_body_headers_ignored</a> (const struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder)</td></tr>
+<tr class="memitem:a084c5933d7d4134de9cdf828f9441b8e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a084c5933d7d4134de9cdf828f9441b8e">aws_h1_decoder_get_body_headers_ignored</a> (const struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder)</td></tr>
 <tr class="separator:a084c5933d7d4134de9cdf828f9441b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5842bb0a8e2c256a2aa352e37014b0c7"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#a5842bb0a8e2c256a2aa352e37014b0c7">aws_h1_decoder_get_header_block</a> (const struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder)</td></tr>
 <tr class="separator:a5842bb0a8e2c256a2aa352e37014b0c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab97845f20e6536bbad61e49db863c9af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#ab97845f20e6536bbad61e49db863c9af">aws_h1_decoder_set_logging_id</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, const void *id)</td></tr>
 <tr class="separator:ab97845f20e6536bbad61e49db863c9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe9d28c0ede6805bf596aaf44de49bf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#afe9d28c0ede6805bf596aaf44de49bf6">aws_h1_decoder_set_body_headers_ignored</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> body_headers_ignored)</td></tr>
+<tr class="memitem:afe9d28c0ede6805bf596aaf44de49bf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__decoder_8c.html#afe9d28c0ede6805bf596aaf44de49bf6">aws_h1_decoder_set_body_headers_ignored</a> (struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *decoder, bool body_headers_ignored)</td></tr>
 <tr class="separator:afe9d28c0ede6805bf596aaf44de49bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -244,7 +244,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_h1_decoder_get_body_headers_ignored </td>
+          <td class="memname">bool aws_h1_decoder_get_body_headers_ignored </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *&#160;</td>
           <td class="paramname"><em>decoder</em></td><td>)</td>
@@ -342,7 +342,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>body_headers_ignored</em>&#160;</td>
         </tr>
         <tr>
@@ -598,7 +598,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_check_info_response_status_code </td>
+          <td class="memname">static bool s_check_info_response_status_code </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>code_val</em></td><td>)</td>
@@ -746,7 +746,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>error_if_more_splits_possible</em>&#160;</td>
         </tr>
         <tr>
@@ -1006,7 +1006,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_scan_for_crlf </td>
+          <td class="memname">static bool s_scan_for_crlf </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__h1__decoder.html">aws_h1_decoder</a> *&#160;</td>
           <td class="paramname"><em>decoder</em>, </td>

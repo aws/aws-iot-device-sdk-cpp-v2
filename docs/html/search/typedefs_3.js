@@ -12,7 +12,6 @@ var searchData=
   ['const_5fpointer_9',['const_pointer',['../class_aws_1_1_crt_1_1basic__string__view.html#ad20569cff3292f3e58174afb4a8f5542',1,'Aws::Crt::basic_string_view']]],
   ['const_5freference_10',['const_reference',['../class_aws_1_1_crt_1_1basic__string__view.html#acca360a1e9cf7f0ffa33f9d55d022f0a',1,'Aws::Crt::basic_string_view']]],
   ['const_5freverse_5fiterator_11',['const_reverse_iterator',['../class_aws_1_1_crt_1_1basic__string__view.html#a687fc2e7c9ccc75f0e9041be8a0f75de',1,'Aws::Crt::basic_string_view']]],
-  ['crc_5ffn_12',['crc_fn',['../crc__test_8c.html#a9b49ed6a03ebc5cb2400666402561b47',1,'crc_test.c']]],
-  ['createsigningconfig_13',['CreateSigningConfig',['../namespace_aws_1_1_iot.html#a4b7bd202524f790cef32d4cd5830d787',1,'Aws::Iot']]],
-  ['ct_5ft_14',['ct_t',['../crt_2s2n_2pq-crypto_2bike__r1_2_types_8h.html#af73f2ecb4332d23d4f5e5bd026fc4a85',1,'ct_t():&#160;types.h'],['../crt_2s2n_2pq-crypto_2bike__r2_2_types_8h.html#af73f2ecb4332d23d4f5e5bd026fc4a85',1,'ct_t():&#160;types.h']]]
+  ['createsigningconfig_12',['CreateSigningConfig',['../namespace_aws_1_1_iot.html#a4b7bd202524f790cef32d4cd5830d787',1,'Aws::Iot']]],
+  ['ct_5ft_13',['ct_t',['../crt_2s2n_2pq-crypto_2bike__r1_2_types_8h.html#af73f2ecb4332d23d4f5e5bd026fc4a85',1,'ct_t():&#160;types.h'],['../crt_2s2n_2pq-crypto_2bike__r2_2_types_8h.html#af73f2ecb4332d23d4f5e5bd026fc4a85',1,'ct_t():&#160;types.h']]]
 ];

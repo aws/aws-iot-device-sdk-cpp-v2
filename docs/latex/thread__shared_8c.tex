@@ -14,7 +14,7 @@ void \mbox{\hyperlink{thread__shared_8c_adf5afe0e8f3efb85e50463bf982aadb2}{aws\+
 \item 
 size\+\_\+t \mbox{\hyperlink{thread__shared_8c_a5964ea886be0e3dbe0b9c11c551c10ab}{aws\+\_\+thread\+\_\+get\+\_\+managed\+\_\+thread\+\_\+count}} (void)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{thread__shared_8c_a2cf207b79f6340376378ebf9f71cddcb}{s\+\_\+one\+\_\+or\+\_\+fewer\+\_\+managed\+\_\+threads\+\_\+unjoined}} (void $\ast$context)
+static bool \mbox{\hyperlink{thread__shared_8c_a2cf207b79f6340376378ebf9f71cddcb}{s\+\_\+one\+\_\+or\+\_\+fewer\+\_\+managed\+\_\+threads\+\_\+unjoined}} (void $\ast$context)
 \item 
 void \mbox{\hyperlink{thread__shared_8c_aa8781779571eb88f647ebba5b42f9195}{aws\+\_\+thread\+\_\+set\+\_\+managed\+\_\+join\+\_\+timeout\+\_\+ns}} (uint64\+\_\+t timeout\+\_\+in\+\_\+ns)
 \item 
@@ -27,7 +27,7 @@ void \mbox{\hyperlink{thread__shared_8c_a3e58b9aeb25ae61f11861dd6b9c8a008}{aws\+
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{thread__shared_8c_a6530298433ef493bb48c379bf9277dc1}{s\+\_\+managed\+\_\+thread\+\_\+lock}} = \mbox{\hyperlink{preamble_8h_a82cd305754a1424bf8139695ab9dd6e1}{AWS\+\_\+\+MUTEX\+\_\+\+INIT}}
+static struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} \mbox{\hyperlink{thread__shared_8c_a6530298433ef493bb48c379bf9277dc1}{s\+\_\+managed\+\_\+thread\+\_\+lock}} = \mbox{\hyperlink{mutex_8h_a82cd305754a1424bf8139695ab9dd6e1}{AWS\+\_\+\+MUTEX\+\_\+\+INIT}}
 \item 
 static struct \mbox{\hyperlink{structaws__condition__variable}{aws\+\_\+condition\+\_\+variable}} \mbox{\hyperlink{thread__shared_8c_aa26ff297fe492ebf89e345bdaf5e481d}{s\+\_\+managed\+\_\+thread\+\_\+signal}} = \mbox{\hyperlink{condition__variable_8h_a5effb5909f01b8f646e71f1a11e31657}{AWS\+\_\+\+CONDITION\+\_\+\+VARIABLE\+\_\+\+INIT}}
 \item 
@@ -99,7 +99,7 @@ Overrides how long, in nanoseconds, that aws\+\_\+thread\+\_\+join\+\_\+all\+\_\
 \index{thread\_shared.c@{thread\_shared.c}!s\_one\_or\_fewer\_managed\_threads\_unjoined@{s\_one\_or\_fewer\_managed\_threads\_unjoined}}
 \index{s\_one\_or\_fewer\_managed\_threads\_unjoined@{s\_one\_or\_fewer\_managed\_threads\_unjoined}!thread\_shared.c@{thread\_shared.c}}
 \doxysubsubsection{\texorpdfstring{s\_one\_or\_fewer\_managed\_threads\_unjoined()}{s\_one\_or\_fewer\_managed\_threads\_unjoined()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+one\+\_\+or\+\_\+fewer\+\_\+managed\+\_\+threads\+\_\+unjoined (\begin{DoxyParamCaption}\item[{void $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+one\+\_\+or\+\_\+fewer\+\_\+managed\+\_\+threads\+\_\+unjoined (\begin{DoxyParamCaption}\item[{void $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -114,7 +114,7 @@ Overrides how long, in nanoseconds, that aws\+\_\+thread\+\_\+join\+\_\+all\+\_\
 \index{thread\_shared.c@{thread\_shared.c}!s\_managed\_thread\_lock@{s\_managed\_thread\_lock}}
 \index{s\_managed\_thread\_lock@{s\_managed\_thread\_lock}!thread\_shared.c@{thread\_shared.c}}
 \doxysubsubsection{\texorpdfstring{s\_managed\_thread\_lock}{s\_managed\_thread\_lock}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} s\+\_\+managed\+\_\+thread\+\_\+lock = \mbox{\hyperlink{preamble_8h_a82cd305754a1424bf8139695ab9dd6e1}{AWS\+\_\+\+MUTEX\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__mutex}{aws\+\_\+mutex}} s\+\_\+managed\+\_\+thread\+\_\+lock = \mbox{\hyperlink{mutex_8h_a82cd305754a1424bf8139695ab9dd6e1}{AWS\+\_\+\+MUTEX\+\_\+\+INIT}}\hspace{0.3cm}{\ttfamily [static]}}
 
 Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{thread__shared_8c_aa26ff297fe492ebf89e345bdaf5e481d}\label{thread__shared_8c_aa26ff297fe492ebf89e345bdaf5e481d}} 
 \index{thread\_shared.c@{thread\_shared.c}!s\_managed\_thread\_signal@{s\_managed\_thread\_signal}}

@@ -17,11 +17,11 @@ void $\ast$ \mbox{\hyperlink{structaws__websocket__send__frame__options_a8336a86
 \item 
 uint8\+\_\+t \mbox{\hyperlink{structaws__websocket__send__frame__options_a68f7328bfb114f71ada92271e42f8449}{opcode}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket__send__frame__options_a2c3d4d8fda6d9bde6889294718fb9ca8}{fin}}
+bool \mbox{\hyperlink{structaws__websocket__send__frame__options_a2c3d4d8fda6d9bde6889294718fb9ca8}{fin}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket__send__frame__options_a5d06d668e0e40eba17ca13ce7faaf8a6}{high\+\_\+priority}}
+bool \mbox{\hyperlink{structaws__websocket__send__frame__options_a5d06d668e0e40eba17ca13ce7faaf8a6}{high\+\_\+priority}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__websocket__send__frame__options_a69e94a6eabdbc667241df7c83a8c4772}{rsv}} \mbox{[}3\mbox{]}
+bool \mbox{\hyperlink{structaws__websocket__send__frame__options_a69e94a6eabdbc667241df7c83a8c4772}{rsv}} \mbox{[}3\mbox{]}
 \end{DoxyCompactItemize}
 
 
@@ -33,13 +33,13 @@ Options for sending a websocket frame. This structure is copied immediately by a
 \index{aws\_websocket\_send\_frame\_options@{aws\_websocket\_send\_frame\_options}!fin@{fin}}
 \index{fin@{fin}!aws\_websocket\_send\_frame\_options@{aws\_websocket\_send\_frame\_options}}
 \doxysubsubsection{\texorpdfstring{fin}{fin}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options\+::fin}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options\+::fin}
 
 Indicates that this is the final fragment in a message. The first fragment MAY also be the final fragment. \mbox{\Hypertarget{structaws__websocket__send__frame__options_a5d06d668e0e40eba17ca13ce7faaf8a6}\label{structaws__websocket__send__frame__options_a5d06d668e0e40eba17ca13ce7faaf8a6}} 
 \index{aws\_websocket\_send\_frame\_options@{aws\_websocket\_send\_frame\_options}!high\_priority@{high\_priority}}
 \index{high\_priority@{high\_priority}!aws\_websocket\_send\_frame\_options@{aws\_websocket\_send\_frame\_options}}
 \doxysubsubsection{\texorpdfstring{high\_priority}{high\_priority}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options\+::high\+\_\+priority}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options\+::high\+\_\+priority}
 
 If true, frame will be sent before those with normal priority. Useful for opcodes like PING and PONG where low latency is important. This feature may only be used with \char`\"{}control\char`\"{} opcodes, not \char`\"{}data\char`\"{} opcodes like BINARY and TEXT. \mbox{\Hypertarget{structaws__websocket__send__frame__options_a94e3c646e7e8770c7cd937591ff6d5e0}\label{structaws__websocket__send__frame__options_a94e3c646e7e8770c7cd937591ff6d5e0}} 
 \index{aws\_websocket\_send\_frame\_options@{aws\_websocket\_send\_frame\_options}!on\_complete@{on\_complete}}
@@ -63,7 +63,7 @@ Size of payload to be sent via {\ttfamily stream\+\_\+outgoing\+\_\+payload} cal
 \index{aws\_websocket\_send\_frame\_options@{aws\_websocket\_send\_frame\_options}!rsv@{rsv}}
 \index{rsv@{rsv}!aws\_websocket\_send\_frame\_options@{aws\_websocket\_send\_frame\_options}}
 \doxysubsubsection{\texorpdfstring{rsv}{rsv}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options\+::rsv\mbox{[}3\mbox{]}}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options\+::rsv\mbox{[}3\mbox{]}}
 
 MUST be 0 unless an extension is negotiated that defines meanings for non-\/zero values. \mbox{\Hypertarget{structaws__websocket__send__frame__options_a76832186330ccb2f95d9afe7f8a11c77}\label{structaws__websocket__send__frame__options_a76832186330ccb2f95d9afe7f8a11c77}} 
 \index{aws\_websocket\_send\_frame\_options@{aws\_websocket\_send\_frame\_options}!stream\_outgoing\_payload@{stream\_outgoing\_payload}}

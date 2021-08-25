@@ -73,7 +73,7 @@ $(function() {
   <div class="headertitle"><div class="title">s2n_dhe.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="dh_8h_source.html">openssl/dh.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;openssl/dh.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n__stuffer_8h_source.html">stuffer/s2n_stuffer.h</a>&quot;</code><br />
 <code>#include &quot;utils/s2n_blob.h&quot;</code><br />
 </div>
@@ -90,7 +90,7 @@ Functions</h2></td></tr>
 <tr class="separator:a2a588f9f6c78190225878f36cfb98ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb70d409d79a64d53764a24de78de3c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8h.html#acb70d409d79a64d53764a24de78de3c8">s2n_dh_p_g_Ys_to_dh_params</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *dh_params, struct s2n_blob *p, struct s2n_blob *g, struct s2n_blob *ys)</td></tr>
 <tr class="separator:acb70d409d79a64d53764a24de78de3c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a847b2d0a73d4e014a41c50b9780b8245"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8h.html#a847b2d0a73d4e014a41c50b9780b8245">s2n_dh_params_to_p_g_Ys</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *server_dh_params, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *out, struct s2n_blob *<a class="el" href="log__formatter__test_8c.html#ae73289c5189c80c0661459b0f4743217">output</a>)</td></tr>
+<tr class="memitem:a847b2d0a73d4e014a41c50b9780b8245"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8h.html#a847b2d0a73d4e014a41c50b9780b8245">s2n_dh_params_to_p_g_Ys</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *server_dh_params, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *out, struct s2n_blob *output)</td></tr>
 <tr class="separator:a847b2d0a73d4e014a41c50b9780b8245"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ea5b026f3ee78ae37fe194a8e27a203"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8h.html#a7ea5b026f3ee78ae37fe194a8e27a203">s2n_dh_compute_shared_secret_as_server</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *server_dh_params, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *Yc_in, struct s2n_blob *shared_key)</td></tr>
 <tr class="separator:a7ea5b026f3ee78ae37fe194a8e27a203"><td class="memSeparator" colspan="2">&#160;</td></tr>

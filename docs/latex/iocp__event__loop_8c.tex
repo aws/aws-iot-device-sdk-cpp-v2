@@ -25,7 +25,7 @@ typedef struct \mbox{\hyperlink{struct_i_o___s_t_a_t_u_s___b_l_o_c_k}{IO\+\_\+\+
 \item 
 typedef struct \mbox{\hyperlink{struct_i_o___s_t_a_t_u_s___b_l_o_c_k}{IO\+\_\+\+STATUS\+\_\+\+BLOCK}} void $\ast$ \mbox{\hyperlink{iocp__event__loop_8c_a4fbf950ac5ea245a82bfe9ba01c66853}{file\+\_\+information}}
 \item 
-typedef struct \mbox{\hyperlink{struct_i_o___s_t_a_t_u_s___b_l_o_c_k}{IO\+\_\+\+STATUS\+\_\+\+BLOCK}} void ULONG \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}} = \mbox{\hyperlink{array__list_8inl_ac23f7d03ebc1074e77a1525136877742}{aws\+\_\+array\+\_\+list\+\_\+length}}(\&\mbox{\hyperlink{connection__state__test_8c_a780186bdbd571102fffb79d504492c78}{state\+\_\+test\+\_\+data}}-\/$>$qos\+\_\+returned)
+typedef struct \mbox{\hyperlink{struct_i_o___s_t_a_t_u_s___b_l_o_c_k}{IO\+\_\+\+STATUS\+\_\+\+BLOCK}} void ULONG \mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}
 \item 
 typedef struct \mbox{\hyperlink{struct_i_o___s_t_a_t_u_s___b_l_o_c_k}{IO\+\_\+\+STATUS\+\_\+\+BLOCK}} void ULONG enum \mbox{\hyperlink{iocp__event__loop_8c_ad3023e57bc24037425f4864fe357dec4}{FILE\+\_\+\+INFORMATION\+\_\+\+CLASS}} \mbox{\hyperlink{iocp__event__loop_8c_ab9e2f92eaa70042d585499f7d6e6fd49}{file\+\_\+information\+\_\+class}}
 \item 
@@ -47,8 +47,8 @@ enum \mbox{\hyperlink{iocp__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}{ev
 , \mbox{\hyperlink{iocp__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256fae4d2053a745be9893fcb0b642b3b7f98}{EVENT\+\_\+\+THREAD\+\_\+\+STATE\+\_\+\+STOPPING}}
  \}
 \item 
-enum \{ \mbox{\hyperlink{iocp__event__loop_8c_afa9be5679ab03d785820f2474c5ccc6ea6f3ee53c12faf52a4f48190db20e2567}{DEFAULT\+\_\+\+TIMEOUT\+\_\+\+MS}} = 100000
-, \mbox{\hyperlink{iocp__event__loop_8c_afa9be5679ab03d785820f2474c5ccc6eab7d41edbf78a2e62216e94381e852dd8}{MAX\+\_\+\+COMPLETION\+\_\+\+PACKETS\+\_\+\+PER\+\_\+\+LOOP}} = 100
+enum \{ \mbox{\hyperlink{iocp__event__loop_8c_ae8a3b6a5d0d3244ed73924ab2421a0d0a6f3ee53c12faf52a4f48190db20e2567}{DEFAULT\+\_\+\+TIMEOUT\+\_\+\+MS}} = 100000
+, \mbox{\hyperlink{iocp__event__loop_8c_ae8a3b6a5d0d3244ed73924ab2421a0d0ab7d41edbf78a2e62216e94381e852dd8}{MAX\+\_\+\+COMPLETION\+\_\+\+PACKETS\+\_\+\+PER\+\_\+\+LOOP}} = 100
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
@@ -56,43 +56,43 @@ enum \{ \mbox{\hyperlink{iocp__event__loop_8c_afa9be5679ab03d785820f2474c5ccc6ea
 \item 
 typedef \mbox{\hyperlink{iocp__event__loop_8c_a08ce14c086a606027e826461925cc2ce}{NTSTATUS}} (NTAPI NTSet\+Information\+File)(HANDLE file\+\_\+handle
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static void \mbox{\hyperlink{iocp__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{iocp__event__loop_8c_af38881a8c5e6861452a81b7b32530239}{s\+\_\+run}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static int \mbox{\hyperlink{iocp__event__loop_8c_af38881a8c5e6861452a81b7b32530239}{s\+\_\+run}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{iocp__event__loop_8c_acfc31f03610b29043dec817307e76127}{s\+\_\+stop}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static int \mbox{\hyperlink{iocp__event__loop_8c_acfc31f03610b29043dec817307e76127}{s\+\_\+stop}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{iocp__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}{s\+\_\+wait\+\_\+for\+\_\+stop\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static int \mbox{\hyperlink{iocp__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}{s\+\_\+wait\+\_\+for\+\_\+stop\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}{s\+\_\+schedule\+\_\+task\+\_\+now}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+static void \mbox{\hyperlink{iocp__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}{s\+\_\+schedule\+\_\+task\+\_\+now}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}{s\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+static void \mbox{\hyperlink{iocp__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}{s\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}{s\+\_\+cancel\+\_\+task}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+static void \mbox{\hyperlink{iocp__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}{s\+\_\+cancel\+\_\+task}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
 \item 
-static int \mbox{\hyperlink{iocp__event__loop_8c_a2e80cfff05dba6f1834dab1fd4f3eb07}{s\+\_\+connect\+\_\+to\+\_\+io\+\_\+completion\+\_\+port}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
+static int \mbox{\hyperlink{iocp__event__loop_8c_a2e80cfff05dba6f1834dab1fd4f3eb07}{s\+\_\+connect\+\_\+to\+\_\+io\+\_\+completion\+\_\+port}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{iocp__event__loop_8c_a5676dd4fa2da80a7826e098608d9e9ac}{s\+\_\+is\+\_\+event\+\_\+thread}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static bool \mbox{\hyperlink{iocp__event__loop_8c_a5676dd4fa2da80a7826e098608d9e9ac}{s\+\_\+is\+\_\+event\+\_\+thread}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{iocp__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}{s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
+static int \mbox{\hyperlink{iocp__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}{s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}{s\+\_\+free\+\_\+io\+\_\+event\+\_\+resources}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{iocp__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}{s\+\_\+free\+\_\+io\+\_\+event\+\_\+resources}} (void $\ast$user\+\_\+data)
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_acd9aae463a544d67815aa5b85155ea8e}{s\+\_\+event\+\_\+thread\+\_\+main}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{iocp__event__loop_8c_acd9aae463a544d67815aa5b85155ea8e}{s\+\_\+event\+\_\+thread\+\_\+main}} (void $\ast$user\+\_\+data)
 \item 
-void \mbox{\hyperlink{iocp__event__loop_8c_afe544ee8dc8555dac5e0d2f67c9b93f0}{aws\+\_\+overlapped\+\_\+init}} (struct aws\+\_\+overlapped $\ast$overlapped, aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+completion\+\_\+fn $\ast$on\+\_\+completion, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+void \mbox{\hyperlink{iocp__event__loop_8c_afe544ee8dc8555dac5e0d2f67c9b93f0}{aws\+\_\+overlapped\+\_\+init}} (struct aws\+\_\+overlapped $\ast$overlapped, aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+completion\+\_\+fn $\ast$on\+\_\+completion, void $\ast$user\+\_\+data)
 \item 
 void \mbox{\hyperlink{iocp__event__loop_8c_aaf1d55845fbda1ec5a0eb6b4ec7ae6e1}{aws\+\_\+overlapped\+\_\+reset}} (struct aws\+\_\+overlapped $\ast$overlapped)
 \item 
 struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{iocp__event__loop_8c_a188bd20a712f74ebc46b8bc374b73ea2}{aws\+\_\+event\+\_\+loop\+\_\+new\+\_\+default\+\_\+with\+\_\+options}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, const struct \mbox{\hyperlink{structaws__event__loop__options}{aws\+\_\+event\+\_\+loop\+\_\+options}} $\ast$options)
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_a580e55fe4da13e66b05f3f4faf61c07f}{s\+\_\+signal\+\_\+synced\+\_\+data\+\_\+changed}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static void \mbox{\hyperlink{iocp__event__loop_8c_a580e55fe4da13e66b05f3f4faf61c07f}{s\+\_\+signal\+\_\+synced\+\_\+data\+\_\+changed}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_ab4c13873f170e080cfc0387c3eedecbd}{s\+\_\+schedule\+\_\+task\+\_\+common}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+static void \mbox{\hyperlink{iocp__event__loop_8c_ab4c13873f170e080cfc0387c3eedecbd}{s\+\_\+schedule\+\_\+task\+\_\+common}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_ad40ace18ba1aa76bc9b718fc65deb488}{s\+\_\+process\+\_\+tasks\+\_\+to\+\_\+schedule}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$tasks\+\_\+to\+\_\+schedule)
+static void \mbox{\hyperlink{iocp__event__loop_8c_ad40ace18ba1aa76bc9b718fc65deb488}{s\+\_\+process\+\_\+tasks\+\_\+to\+\_\+schedule}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$tasks\+\_\+to\+\_\+schedule)
 \item 
-static void \mbox{\hyperlink{iocp__event__loop_8c_aa99ace5da40045ee769ca7aae038efc9}{s\+\_\+process\+\_\+synced\+\_\+data}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static void \mbox{\hyperlink{iocp__event__loop_8c_aa99ace5da40045ee769ca7aae038efc9}{s\+\_\+process\+\_\+synced\+\_\+data}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -128,25 +128,25 @@ struct \mbox{\hyperlink{structaws__event__loop__vtable}{aws\+\_\+event\+\_\+loop
 \doxysubsubsection{\texorpdfstring{io\_status\_block}{io\_status\_block}}
 {\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_i_o___s_t_a_t_u_s___b_l_o_c_k}{IO\+\_\+\+STATUS\+\_\+\+BLOCK}}$\ast$ \mbox{\hyperlink{iocp__event__loop_8c_ae03e4563233ee7b50edee13a82ca2b12}{io\+\_\+status\+\_\+block}}}
 
-\mbox{\Hypertarget{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}\label{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}} 
+\mbox{\Hypertarget{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}\label{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}} 
 \index{iocp\_event\_loop.c@{iocp\_event\_loop.c}!length@{length}}
 \index{length@{length}!iocp\_event\_loop.c@{iocp\_event\_loop.c}}
 \doxysubsubsection{\texorpdfstring{length}{length}}
-{\footnotesize\ttfamily size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}} = \mbox{\hyperlink{array__list_8inl_ac23f7d03ebc1074e77a1525136877742}{aws\+\_\+array\+\_\+list\+\_\+length}}(\&\mbox{\hyperlink{connection__state__test_8c_a780186bdbd571102fffb79d504492c78}{state\+\_\+test\+\_\+data}}-\/$>$qos\+\_\+returned)}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_i_o___s_t_a_t_u_s___b_l_o_c_k}{IO\+\_\+\+STATUS\+\_\+\+BLOCK}} void ULONG \mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}}
 
 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{iocp__event__loop_8c_afa9be5679ab03d785820f2474c5ccc6e}\label{iocp__event__loop_8c_afa9be5679ab03d785820f2474c5ccc6e}} 
+\mbox{\Hypertarget{iocp__event__loop_8c_ae8a3b6a5d0d3244ed73924ab2421a0d0}\label{iocp__event__loop_8c_ae8a3b6a5d0d3244ed73924ab2421a0d0}} 
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_TIMEOUT\_MS@{DEFAULT\_TIMEOUT\_MS}!iocp\_event\_loop.c@{iocp\_event\_loop.c}}\index{iocp\_event\_loop.c@{iocp\_event\_loop.c}!DEFAULT\_TIMEOUT\_MS@{DEFAULT\_TIMEOUT\_MS}}}\mbox{\Hypertarget{iocp__event__loop_8c_afa9be5679ab03d785820f2474c5ccc6ea6f3ee53c12faf52a4f48190db20e2567}\label{iocp__event__loop_8c_afa9be5679ab03d785820f2474c5ccc6ea6f3ee53c12faf52a4f48190db20e2567}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_TIMEOUT\_MS@{DEFAULT\_TIMEOUT\_MS}!iocp\_event\_loop.c@{iocp\_event\_loop.c}}\index{iocp\_event\_loop.c@{iocp\_event\_loop.c}!DEFAULT\_TIMEOUT\_MS@{DEFAULT\_TIMEOUT\_MS}}}\mbox{\Hypertarget{iocp__event__loop_8c_ae8a3b6a5d0d3244ed73924ab2421a0d0a6f3ee53c12faf52a4f48190db20e2567}\label{iocp__event__loop_8c_ae8a3b6a5d0d3244ed73924ab2421a0d0a6f3ee53c12faf52a4f48190db20e2567}} 
 DEFAULT\+\_\+\+TIMEOUT\+\_\+\+MS&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX\_COMPLETION\_PACKETS\_PER\_LOOP@{MAX\_COMPLETION\_PACKETS\_PER\_LOOP}!iocp\_event\_loop.c@{iocp\_event\_loop.c}}\index{iocp\_event\_loop.c@{iocp\_event\_loop.c}!MAX\_COMPLETION\_PACKETS\_PER\_LOOP@{MAX\_COMPLETION\_PACKETS\_PER\_LOOP}}}\mbox{\Hypertarget{iocp__event__loop_8c_afa9be5679ab03d785820f2474c5ccc6eab7d41edbf78a2e62216e94381e852dd8}\label{iocp__event__loop_8c_afa9be5679ab03d785820f2474c5ccc6eab7d41edbf78a2e62216e94381e852dd8}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX\_COMPLETION\_PACKETS\_PER\_LOOP@{MAX\_COMPLETION\_PACKETS\_PER\_LOOP}!iocp\_event\_loop.c@{iocp\_event\_loop.c}}\index{iocp\_event\_loop.c@{iocp\_event\_loop.c}!MAX\_COMPLETION\_PACKETS\_PER\_LOOP@{MAX\_COMPLETION\_PACKETS\_PER\_LOOP}}}\mbox{\Hypertarget{iocp__event__loop_8c_ae8a3b6a5d0d3244ed73924ab2421a0d0ab7d41edbf78a2e62216e94381e852dd8}\label{iocp__event__loop_8c_ae8a3b6a5d0d3244ed73924ab2421a0d0ab7d41edbf78a2e62216e94381e852dd8}} 
 MAX\+\_\+\+COMPLETION\+\_\+\+PACKETS\+\_\+\+PER\+\_\+\+LOOP&\\
 \hline
 
@@ -256,7 +256,7 @@ Creates an instance of the default event loop implementation for the current arc
 \index{iocp\_event\_loop.c@{iocp\_event\_loop.c}!s\_is\_event\_thread@{s\_is\_event\_thread}}
 \index{s\_is\_event\_thread@{s\_is\_event\_thread}!iocp\_event\_loop.c@{iocp\_event\_loop.c}}
 \doxysubsubsection{\texorpdfstring{s\_is\_event\_thread()}{s\_is\_event\_thread()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+event\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+is\+\_\+event\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{iocp__event__loop_8c_aa99ace5da40045ee769ca7aae038efc9}\label{iocp__event__loop_8c_aa99ace5da40045ee769ca7aae038efc9}} 
 \index{iocp\_event\_loop.c@{iocp\_event\_loop.c}!s\_process\_synced\_data@{s\_process\_synced\_data}}

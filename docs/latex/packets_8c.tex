@@ -4,10 +4,10 @@
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \{ \mbox{\hyperlink{packets_8c_abe974f22edeef8189603ba75fd90ff3ca9c45687812152c9182d3851d2453be68}{S\+\_\+\+PROTOCOL\+\_\+\+LEVEL}} = 4
+enum \{ \mbox{\hyperlink{packets_8c_af8654c714018c6241d9ebd01f3fb5a26a9c45687812152c9182d3851d2453be68}{S\+\_\+\+PROTOCOL\+\_\+\+LEVEL}} = 4
  \}
 \item 
-enum \{ \mbox{\hyperlink{packets_8c_a1b70d876770ccff427513794d6b0b2a7a76b7f2b55f4662fa1d700ecbae175dcf}{S\+\_\+\+BIT\+\_\+1\+\_\+\+FLAGS}} = 0x2
+enum \{ \mbox{\hyperlink{packets_8c_a2f80701c36e79c0640d91c788feee0b3a76b7f2b55f4662fa1d700ecbae175dcf}{S\+\_\+\+BIT\+\_\+1\+\_\+\+FLAGS}} = 0x2
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
@@ -25,23 +25,23 @@ int \mbox{\hyperlink{packets_8c_a632f97892adc98d8240b7ca9b8e07e62}{aws\+\_\+mqtt
 \item 
 int \mbox{\hyperlink{packets_8c_a03369c72d0db8402e881be34340799d3}{aws\+\_\+mqtt\+\_\+packet\+\_\+ack\+\_\+decode}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, struct \mbox{\hyperlink{structaws__mqtt__packet__ack}{aws\+\_\+mqtt\+\_\+packet\+\_\+ack}} $\ast$packet)
 \item 
-int \mbox{\hyperlink{packets_8c_a38ca6414e3b18be5f7aa1525d8624ae4}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$packet, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} client\+\_\+identifier, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} clean\+\_\+session, uint16\+\_\+t keep\+\_\+alive)
+int \mbox{\hyperlink{packets_8c_a38ca6414e3b18be5f7aa1525d8624ae4}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$packet, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} client\+\_\+identifier, bool clean\+\_\+session, uint16\+\_\+t keep\+\_\+alive)
 \item 
-int \mbox{\hyperlink{packets_8c_a9b604c0d094b108ffe18ba837a907500}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+add\+\_\+credentials}} (struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$packet, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{connection__state__test_8c_a6e350427887d766b20857e72025d592c}{username}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{connection__state__test_8c_af7b550f3b3dbd60c52719a28b826fdd8}{password}})
+int \mbox{\hyperlink{packets_8c_a9b604c0d094b108ffe18ba837a907500}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+add\+\_\+credentials}} (struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$packet, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} username, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} password)
 \item 
-int \mbox{\hyperlink{packets_8c_a46cc60bd749017b049e175070bc283a4}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+add\+\_\+will}} (struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$packet, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} retain, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}})
+int \mbox{\hyperlink{packets_8c_a46cc60bd749017b049e175070bc283a4}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+add\+\_\+will}} (struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$packet, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} topic, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} qos, bool retain, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} payload)
 \item 
 int \mbox{\hyperlink{packets_8c_a9b467d9bbdd96300d152c76692b99702}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+encode}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$packet)
 \item 
 int \mbox{\hyperlink{packets_8c_a06018991894a58a7e0eb46eea2260d87}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+decode}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$packet)
 \item 
-int \mbox{\hyperlink{packets_8c_abe420a066457d9bccb8522d95498fb07}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__connack}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack}} $\ast$packet, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} session\+\_\+present, enum \mbox{\hyperlink{mqtt_8h_adb6a66eb91a6664fe93a8e3f82016e06}{aws\+\_\+mqtt\+\_\+connect\+\_\+return\+\_\+code}} return\+\_\+code)
+int \mbox{\hyperlink{packets_8c_abe420a066457d9bccb8522d95498fb07}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__connack}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack}} $\ast$packet, bool session\+\_\+present, enum \mbox{\hyperlink{mqtt_8h_adb6a66eb91a6664fe93a8e3f82016e06}{aws\+\_\+mqtt\+\_\+connect\+\_\+return\+\_\+code}} return\+\_\+code)
 \item 
 int \mbox{\hyperlink{packets_8c_a783569192f541899d1265d70b3a2a964}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack\+\_\+encode}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const struct \mbox{\hyperlink{structaws__mqtt__packet__connack}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack}} $\ast$packet)
 \item 
 int \mbox{\hyperlink{packets_8c_a84aecffe0378d97a56faa4a3f863bf1b}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack\+\_\+decode}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, struct \mbox{\hyperlink{structaws__mqtt__packet__connack}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack}} $\ast$packet)
 \item 
-int \mbox{\hyperlink{packets_8c_a7962fd04f35174367cdbceed4a075165}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$packet, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} retain, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} topic\+\_\+name, uint16\+\_\+t packet\+\_\+identifier, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}})
+int \mbox{\hyperlink{packets_8c_a7962fd04f35174367cdbceed4a075165}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$packet, bool retain, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} qos, bool \mbox{\hyperlink{bike__r2_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} topic\+\_\+name, uint16\+\_\+t packet\+\_\+identifier, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} payload)
 \item 
 int \mbox{\hyperlink{packets_8c_a0cd58c3d97f40d194fdd4ee5aa39b15a}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+encode}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$packet)
 \item 
@@ -49,11 +49,11 @@ int \mbox{\hyperlink{packets_8c_ad720db5192d110a26c97b039268d83d7}{aws\+\_\+mqtt
 \item 
 int \mbox{\hyperlink{packets_8c_a8b3ca1a2ae3f5529055e63d044ee0b6e}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+decode}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$packet)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{packets_8c_a5e218bb198528af79ea36ad7ab4231fb}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+get\+\_\+dup}} (const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$packet)
+bool \mbox{\hyperlink{packets_8c_a5e218bb198528af79ea36ad7ab4231fb}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+get\+\_\+dup}} (const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$packet)
 \item 
 enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{packets_8c_a7004b64900f025b859b086c96ed588be}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+get\+\_\+qos}} (const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$packet)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{packets_8c_af367fc94e6e3e679162b6bfe4fe3fca2}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+get\+\_\+retain}} (const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$packet)
+bool \mbox{\hyperlink{packets_8c_af367fc94e6e3e679162b6bfe4fe3fca2}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+get\+\_\+retain}} (const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$packet)
 \item 
 int \mbox{\hyperlink{packets_8c_a9dda18fb69fd3f3141ca7e6af6d875af}{aws\+\_\+mqtt\+\_\+packet\+\_\+puback\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__ack}{aws\+\_\+mqtt\+\_\+packet\+\_\+ack}} $\ast$packet, uint16\+\_\+t packet\+\_\+identifier)
 \item 
@@ -63,21 +63,21 @@ int \mbox{\hyperlink{packets_8c_ab524011e547c9137f369eef5b7f27b87}{aws\+\_\+mqtt
 \item 
 int \mbox{\hyperlink{packets_8c_a5cf3385e638a046aee475ac583487301}{aws\+\_\+mqtt\+\_\+packet\+\_\+pubcomp\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__ack}{aws\+\_\+mqtt\+\_\+packet\+\_\+ack}} $\ast$packet, uint16\+\_\+t packet\+\_\+identifier)
 \item 
-int \mbox{\hyperlink{packets_8c_a19f929927740b3e0976d14a0168c93ec}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe}} $\ast$packet, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, uint16\+\_\+t packet\+\_\+identifier)
+int \mbox{\hyperlink{packets_8c_a19f929927740b3e0976d14a0168c93ec}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe}} $\ast$packet, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, uint16\+\_\+t packet\+\_\+identifier)
 \item 
 void \mbox{\hyperlink{packets_8c_ae0108991916407f2c45fbe420f52af56}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe}} $\ast$packet)
 \item 
-int \mbox{\hyperlink{packets_8c_abca9ecb88a48ef9a99028e5dbbf91873}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe\+\_\+add\+\_\+topic}} (struct \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe}} $\ast$packet, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} topic\+\_\+filter, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}})
+int \mbox{\hyperlink{packets_8c_abca9ecb88a48ef9a99028e5dbbf91873}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe\+\_\+add\+\_\+topic}} (struct \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe}} $\ast$packet, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} topic\+\_\+filter, enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}} qos)
 \item 
 int \mbox{\hyperlink{packets_8c_af5e773e32b55517557753c0eb80dbeb9}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe\+\_\+encode}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const struct \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe}} $\ast$packet)
 \item 
 int \mbox{\hyperlink{packets_8c_a0c3c04904cc6480128106426ef57f514}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe\+\_\+decode}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, struct \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+subscribe}} $\ast$packet)
 \item 
-int \mbox{\hyperlink{packets_8c_a594778a676213727d5920dfdb07542bb}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__suback}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback}} $\ast$packet, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, uint16\+\_\+t packet\+\_\+identifier)
+int \mbox{\hyperlink{packets_8c_a594778a676213727d5920dfdb07542bb}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__suback}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback}} $\ast$packet, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, uint16\+\_\+t packet\+\_\+identifier)
 \item 
 void \mbox{\hyperlink{packets_8c_a91fcf607520ec07510a0671963ceeb15}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__mqtt__packet__suback}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback}} $\ast$packet)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{packets_8c_a11751538cbee775655c7419c2a8e5722}{s\+\_\+return\+\_\+code\+\_\+check}} (uint8\+\_\+t return\+\_\+code)
+static bool \mbox{\hyperlink{packets_8c_a11751538cbee775655c7419c2a8e5722}{s\+\_\+return\+\_\+code\+\_\+check}} (uint8\+\_\+t return\+\_\+code)
 \item 
 int \mbox{\hyperlink{packets_8c_ac9b536b325db809e3f074a0e4547292e}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback\+\_\+add\+\_\+return\+\_\+code}} (struct \mbox{\hyperlink{structaws__mqtt__packet__suback}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback}} $\ast$packet, uint8\+\_\+t return\+\_\+code)
 \item 
@@ -85,7 +85,7 @@ int \mbox{\hyperlink{packets_8c_a7e611a5ae2b3ef5d6f903f7c6f843f24}{aws\+\_\+mqtt
 \item 
 int \mbox{\hyperlink{packets_8c_a8fdc16de86f20b86829164693f1487af}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback\+\_\+decode}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, struct \mbox{\hyperlink{structaws__mqtt__packet__suback}{aws\+\_\+mqtt\+\_\+packet\+\_\+suback}} $\ast$packet)
 \item 
-int \mbox{\hyperlink{packets_8c_a57ed59b2b39372b4fd2dd1bb3cf940e0}{aws\+\_\+mqtt\+\_\+packet\+\_\+unsubscribe\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__unsubscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+unsubscribe}} $\ast$packet, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, uint16\+\_\+t packet\+\_\+identifier)
+int \mbox{\hyperlink{packets_8c_a57ed59b2b39372b4fd2dd1bb3cf940e0}{aws\+\_\+mqtt\+\_\+packet\+\_\+unsubscribe\+\_\+init}} (struct \mbox{\hyperlink{structaws__mqtt__packet__unsubscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+unsubscribe}} $\ast$packet, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, uint16\+\_\+t packet\+\_\+identifier)
 \item 
 void \mbox{\hyperlink{packets_8c_a337d656e7fea211757639ed9f79b098b}{aws\+\_\+mqtt\+\_\+packet\+\_\+unsubscribe\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__mqtt__packet__unsubscribe}{aws\+\_\+mqtt\+\_\+packet\+\_\+unsubscribe}} $\ast$packet)
 \item 
@@ -117,22 +117,22 @@ static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+curso
 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{packets_8c_abe974f22edeef8189603ba75fd90ff3c}\label{packets_8c_abe974f22edeef8189603ba75fd90ff3c}} 
+\mbox{\Hypertarget{packets_8c_af8654c714018c6241d9ebd01f3fb5a26}\label{packets_8c_af8654c714018c6241d9ebd01f3fb5a26}} 
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum}
 
 Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\_PROTOCOL\_LEVEL@{S\_PROTOCOL\_LEVEL}!packets.c@{packets.c}}\index{packets.c@{packets.c}!S\_PROTOCOL\_LEVEL@{S\_PROTOCOL\_LEVEL}}}\mbox{\Hypertarget{packets_8c_abe974f22edeef8189603ba75fd90ff3ca9c45687812152c9182d3851d2453be68}\label{packets_8c_abe974f22edeef8189603ba75fd90ff3ca9c45687812152c9182d3851d2453be68}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\_PROTOCOL\_LEVEL@{S\_PROTOCOL\_LEVEL}!packets.c@{packets.c}}\index{packets.c@{packets.c}!S\_PROTOCOL\_LEVEL@{S\_PROTOCOL\_LEVEL}}}\mbox{\Hypertarget{packets_8c_af8654c714018c6241d9ebd01f3fb5a26a9c45687812152c9182d3851d2453be68}\label{packets_8c_af8654c714018c6241d9ebd01f3fb5a26a9c45687812152c9182d3851d2453be68}} 
 S\+\_\+\+PROTOCOL\+\_\+\+LEVEL&\\
 \hline
 
 \end{DoxyEnumFields}
-\mbox{\Hypertarget{packets_8c_a1b70d876770ccff427513794d6b0b2a7}\label{packets_8c_a1b70d876770ccff427513794d6b0b2a7}} 
+\mbox{\Hypertarget{packets_8c_a2f80701c36e79c0640d91c788feee0b3}\label{packets_8c_a2f80701c36e79c0640d91c788feee0b3}} 
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{S\_BIT\_1\_FLAGS@{S\_BIT\_1\_FLAGS}!packets.c@{packets.c}}\index{packets.c@{packets.c}!S\_BIT\_1\_FLAGS@{S\_BIT\_1\_FLAGS}}}\mbox{\Hypertarget{packets_8c_a1b70d876770ccff427513794d6b0b2a7a76b7f2b55f4662fa1d700ecbae175dcf}\label{packets_8c_a1b70d876770ccff427513794d6b0b2a7a76b7f2b55f4662fa1d700ecbae175dcf}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\_BIT\_1\_FLAGS@{S\_BIT\_1\_FLAGS}!packets.c@{packets.c}}\index{packets.c@{packets.c}!S\_BIT\_1\_FLAGS@{S\_BIT\_1\_FLAGS}}}\mbox{\Hypertarget{packets_8c_a2f80701c36e79c0640d91c788feee0b3a76b7f2b55f4662fa1d700ecbae175dcf}\label{packets_8c_a2f80701c36e79c0640d91c788feee0b3a76b7f2b55f4662fa1d700ecbae175dcf}} 
 S\+\_\+\+BIT\+\_\+1\+\_\+\+FLAGS&\\
 \hline
 
@@ -168,7 +168,7 @@ S\+\_\+\+BIT\+\_\+1\+\_\+\+FLAGS&\\
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_connack\_init@{aws\_mqtt\_packet\_connack\_init}}
 \index{aws\_mqtt\_packet\_connack\_init@{aws\_mqtt\_packet\_connack\_init}!packets.c@{packets.c}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_packet\_connack\_init()}{aws\_mqtt\_packet\_connack\_init()}}
-{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+packet\+\_\+connack\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__packet__connack}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack}} $\ast$}]{packet,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{session\+\_\+present,  }\item[{enum \mbox{\hyperlink{mqtt_8h_adb6a66eb91a6664fe93a8e3f82016e06}{aws\+\_\+mqtt\+\_\+connect\+\_\+return\+\_\+code}}}]{return\+\_\+code }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+packet\+\_\+connack\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__packet__connack}{aws\+\_\+mqtt\+\_\+packet\+\_\+connack}} $\ast$}]{packet,  }\item[{bool}]{session\+\_\+present,  }\item[{enum \mbox{\hyperlink{mqtt_8h_adb6a66eb91a6664fe93a8e3f82016e06}{aws\+\_\+mqtt\+\_\+connect\+\_\+return\+\_\+code}}}]{return\+\_\+code }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{packets_8c_a9b604c0d094b108ffe18ba837a907500}\label{packets_8c_a9b604c0d094b108ffe18ba837a907500}} 
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_connect\_add\_credentials@{aws\_mqtt\_packet\_connect\_add\_credentials}}
@@ -180,7 +180,7 @@ S\+\_\+\+BIT\+\_\+1\+\_\+\+FLAGS&\\
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_connect\_add\_will@{aws\_mqtt\_packet\_connect\_add\_will}}
 \index{aws\_mqtt\_packet\_connect\_add\_will@{aws\_mqtt\_packet\_connect\_add\_will}!packets.c@{packets.c}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_packet\_connect\_add\_will()}{aws\_mqtt\_packet\_connect\_add\_will()}}
-{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+add\+\_\+will (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$}]{packet,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{topic,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{retain,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{payload }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+add\+\_\+will (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$}]{packet,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{topic,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{bool}]{retain,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{payload }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{packets_8c_a06018991894a58a7e0eb46eea2260d87}\label{packets_8c_a06018991894a58a7e0eb46eea2260d87}} 
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_connect\_decode@{aws\_mqtt\_packet\_connect\_decode}}
@@ -198,7 +198,7 @@ S\+\_\+\+BIT\+\_\+1\+\_\+\+FLAGS&\\
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_connect\_init@{aws\_mqtt\_packet\_connect\_init}}
 \index{aws\_mqtt\_packet\_connect\_init@{aws\_mqtt\_packet\_connect\_init}!packets.c@{packets.c}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_packet\_connect\_init()}{aws\_mqtt\_packet\_connect\_init()}}
-{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$}]{packet,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{client\+\_\+identifier,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{clean\+\_\+session,  }\item[{uint16\+\_\+t}]{keep\+\_\+alive }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+packet\+\_\+connect\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\+\_\+mqtt\+\_\+packet\+\_\+connect}} $\ast$}]{packet,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{client\+\_\+identifier,  }\item[{bool}]{clean\+\_\+session,  }\item[{uint16\+\_\+t}]{keep\+\_\+alive }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{packets_8c_a0acea02890c758620df7d4ccccf673b8}\label{packets_8c_a0acea02890c758620df7d4ccccf673b8}} 
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_connection\_decode@{aws\_mqtt\_packet\_connection\_decode}}
@@ -264,7 +264,7 @@ S\+\_\+\+BIT\+\_\+1\+\_\+\+FLAGS&\\
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_publish\_get\_dup@{aws\_mqtt\_packet\_publish\_get\_dup}}
 \index{aws\_mqtt\_packet\_publish\_get\_dup@{aws\_mqtt\_packet\_publish\_get\_dup}!packets.c@{packets.c}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_packet\_publish\_get\_dup()}{aws\_mqtt\_packet\_publish\_get\_dup()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+get\+\_\+dup (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$}]{packet }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+get\+\_\+dup (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$}]{packet }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{packets_8c_a7004b64900f025b859b086c96ed588be}\label{packets_8c_a7004b64900f025b859b086c96ed588be}} 
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_publish\_get\_qos@{aws\_mqtt\_packet\_publish\_get\_qos}}
@@ -276,13 +276,13 @@ S\+\_\+\+BIT\+\_\+1\+\_\+\+FLAGS&\\
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_publish\_get\_retain@{aws\_mqtt\_packet\_publish\_get\_retain}}
 \index{aws\_mqtt\_packet\_publish\_get\_retain@{aws\_mqtt\_packet\_publish\_get\_retain}!packets.c@{packets.c}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_packet\_publish\_get\_retain()}{aws\_mqtt\_packet\_publish\_get\_retain()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+get\+\_\+retain (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$}]{packet }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+get\+\_\+retain (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$}]{packet }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{packets_8c_a7962fd04f35174367cdbceed4a075165}\label{packets_8c_a7962fd04f35174367cdbceed4a075165}} 
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_publish\_init@{aws\_mqtt\_packet\_publish\_init}}
 \index{aws\_mqtt\_packet\_publish\_init@{aws\_mqtt\_packet\_publish\_init}!packets.c@{packets.c}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_packet\_publish\_init()}{aws\_mqtt\_packet\_publish\_init()}}
-{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$}]{packet,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{retain,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{dup,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{topic\+\_\+name,  }\item[{uint16\+\_\+t}]{packet\+\_\+identifier,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{payload }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+mqtt\+\_\+packet\+\_\+publish\+\_\+init (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\+\_\+mqtt\+\_\+packet\+\_\+publish}} $\ast$}]{packet,  }\item[{bool}]{retain,  }\item[{enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\+\_\+mqtt\+\_\+qos}}}]{qos,  }\item[{bool}]{dup,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{topic\+\_\+name,  }\item[{uint16\+\_\+t}]{packet\+\_\+identifier,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{payload }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{packets_8c_ac79da98e84b28a33511be5f763d91c80}\label{packets_8c_ac79da98e84b28a33511be5f763d91c80}} 
 \index{packets.c@{packets.c}!aws\_mqtt\_packet\_pubrec\_init@{aws\_mqtt\_packet\_pubrec\_init}}
@@ -420,7 +420,7 @@ S\+\_\+\+BIT\+\_\+1\+\_\+\+FLAGS&\\
 \index{packets.c@{packets.c}!s\_return\_code\_check@{s\_return\_code\_check}}
 \index{s\_return\_code\_check@{s\_return\_code\_check}!packets.c@{packets.c}}
 \doxysubsubsection{\texorpdfstring{s\_return\_code\_check()}{s\_return\_code\_check()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+return\+\_\+code\+\_\+check (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{return\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+return\+\_\+code\+\_\+check (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{return\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{packets_8c_a175e9d364a1741fa9a57bae2b6f6bbd0}\label{packets_8c_a175e9d364a1741fa9a57bae2b6f6bbd0}} 
 \index{packets.c@{packets.c}!s\_sizeof\_encoded\_buffer@{s\_sizeof\_encoded\_buffer}}

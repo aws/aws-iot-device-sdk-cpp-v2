@@ -17,10 +17,10 @@
 \DoxyCodeLine{18 }
 \DoxyCodeLine{19 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\_http\_connection\_manager\_on\_connection\_setup\_fn}})(}
 \DoxyCodeLine{20     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection,}
-\DoxyCodeLine{21     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{22     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__connection_a3da01f7e63d5ed5b85a1572196b232f5}{user\_data}});}
 \DoxyCodeLine{23 }
-\DoxyCodeLine{24 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{connection__manager_8h_a5f57518dd7da5bcafe02c731b8819861}{aws\_http\_connection\_manager\_shutdown\_complete\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{24 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{connection__manager_8h_a5f57518dd7da5bcafe02c731b8819861}{aws\_http\_connection\_manager\_shutdown\_complete\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__connection_a3da01f7e63d5ed5b85a1572196b232f5}{user\_data}});}
 \DoxyCodeLine{25 }
 \DoxyCodeLine{26 \textcolor{comment}{/*}}
 \DoxyCodeLine{27 \textcolor{comment}{ * Connection manager configuration struct.}}
@@ -86,7 +86,7 @@
 \DoxyCodeLine{94 \textcolor{comment}{ */}}
 \DoxyCodeLine{95 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{96 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection__manager}{aws\_http\_connection\_manager}} *\mbox{\hyperlink{connection__manager_8h_a13d4b554288c191890c274b0466dec20}{aws\_http\_connection\_manager\_new}}(}
-\DoxyCodeLine{97     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{97     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__http__connection__manager_a9cd348b998cc432d07932bb565ad1cd8}{allocator}},}
 \DoxyCodeLine{98     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection__manager__options}{aws\_http\_connection\_manager\_options}} *options);}
 \DoxyCodeLine{99 }
 \DoxyCodeLine{100 \textcolor{comment}{/*}}
@@ -101,7 +101,7 @@
 \DoxyCodeLine{109 \textcolor{keywordtype}{void} \mbox{\hyperlink{connection__manager_8h_a5ad463b48c79fa12e182877794ff88c7}{aws\_http\_connection\_manager\_acquire\_connection}}(}
 \DoxyCodeLine{110     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection__manager}{aws\_http\_connection\_manager}} *manager,}
 \DoxyCodeLine{111     \mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\_http\_connection\_manager\_on\_connection\_setup\_fn}} *callback,}
-\DoxyCodeLine{112     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{112     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{113 }
 \DoxyCodeLine{114 \textcolor{comment}{/*}}
 \DoxyCodeLine{115 \textcolor{comment}{ * Returns a connection back to the manager.  All acquired connections must}}

@@ -39,23 +39,23 @@
 \DoxyCodeLine{39 \};}
 \DoxyCodeLine{40 }
 \DoxyCodeLine{45 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{tls__channel__handler_8h_a240e06727f51737d1155842078b3f4d6}{aws\_tls\_on\_negotiation\_result\_fn}})(}
-\DoxyCodeLine{46     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{46     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler,}
 \DoxyCodeLine{47     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
-\DoxyCodeLine{48     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{49     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{48     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{50 }
 \DoxyCodeLine{56 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{tls__channel__handler_8h_ac830427f63136275ea488ef72feee6c0}{aws\_tls\_on\_data\_read\_fn}})(}
-\DoxyCodeLine{57     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{57     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler,}
 \DoxyCodeLine{58     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
 \DoxyCodeLine{59     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}},}
-\DoxyCodeLine{60     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{60     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{61 }
 \DoxyCodeLine{66 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{tls__channel__handler_8h_a3b389b01f78075673ba3a91f949bf880}{aws\_tls\_on\_error\_fn}})(}
-\DoxyCodeLine{67     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{67     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler,}
 \DoxyCodeLine{68     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
 \DoxyCodeLine{69     \textcolor{keywordtype}{int} err,}
-\DoxyCodeLine{70     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
-\DoxyCodeLine{71     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{70     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *message,}
+\DoxyCodeLine{71     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{72 }
 \DoxyCodeLine{73 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} \{}
 \DoxyCodeLine{77     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{structaws__tls__connection__options_a59658c94e3e22432ca932301b888ae94}{alpn\_list}};}
@@ -105,7 +105,7 @@
 \DoxyCodeLine{183 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_ad6bf661e1cb1f36bb09063d606d5af64}{AWS\_TLS\_NEGOTIATED\_PROTOCOL\_MESSAGE}} = 0x01;}
 \DoxyCodeLine{184 }
 \DoxyCodeLine{185 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *(}
-\DoxyCodeLine{186     *\mbox{\hyperlink{tls__channel__handler_8h_aeb78e4bb9cb5ee52495822f010e094a9}{aws\_tls\_on\_protocol\_negotiated}})(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *new\_slot, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *protocol, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{186     *\mbox{\hyperlink{tls__channel__handler_8h_aeb78e4bb9cb5ee52495822f010e094a9}{aws\_tls\_on\_protocol\_negotiated}})(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *new\_slot, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *protocol, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{187 }
 \DoxyCodeLine{191 \textcolor{keyword}{enum} \mbox{\hyperlink{tls__channel__handler_8h_acd0d4a209d8b49f615a54aecb301b99e}{aws\_tls\_negotiation\_status}} \{}
 \DoxyCodeLine{192     \mbox{\hyperlink{tls__channel__handler_8h_acd0d4a209d8b49f615a54aecb301b99ea756a80ecfab0f5bcb74e313deb6ca17c}{AWS\_TLS\_NEGOTIATION\_STATUS\_NONE}},}
@@ -119,33 +119,33 @@
 \DoxyCodeLine{200 \textcolor{comment}{/******************************** tls options init stuff ***********************/}}
 \DoxyCodeLine{204 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{tls__channel__handler_8h_a80abd0740ea25b59c871f574b989b673}{aws\_tls\_ctx\_options\_init\_default\_client}}(}
 \DoxyCodeLine{205     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{206     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{206     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator);}
 \DoxyCodeLine{210 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{tls__channel__handler_8h_a1f9702b905b1062154cb715f6e4b75e1}{aws\_tls\_ctx\_options\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options);}
 \DoxyCodeLine{211 }
 \DoxyCodeLine{212 \textcolor{preprocessor}{\#if !defined(AWS\_OS\_IOS)}}
 \DoxyCodeLine{213 }
 \DoxyCodeLine{220 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_a113b4bac0f5695f544b451a79eaa19b6}{aws\_tls\_ctx\_options\_init\_client\_mtls\_from\_path}}(}
 \DoxyCodeLine{221     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{222     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{222     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{223     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *cert\_path,}
 \DoxyCodeLine{224     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pkey\_path);}
 \DoxyCodeLine{225 }
 \DoxyCodeLine{231 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_acdffebe5962410439fc9a32c6e7a68ac}{aws\_tls\_ctx\_options\_init\_client\_mtls}}(}
 \DoxyCodeLine{232     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{233     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
-\DoxyCodeLine{234     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}{cert}},}
+\DoxyCodeLine{233     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
+\DoxyCodeLine{234     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *cert,}
 \DoxyCodeLine{235     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *pkey);}
 \DoxyCodeLine{236 }
 \DoxyCodeLine{243 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_a2b795673b1b11fd1597d90a17d3d3bda}{aws\_tls\_ctx\_options\_init\_default\_server\_from\_path}}(}
 \DoxyCodeLine{244     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{245     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{245     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{246     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *cert\_path,}
 \DoxyCodeLine{247     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pkey\_path);}
 \DoxyCodeLine{248 }
 \DoxyCodeLine{254 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_ac0a816d72db69bb831710bdcfce8def5}{aws\_tls\_ctx\_options\_init\_default\_server}}(}
 \DoxyCodeLine{255     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{256     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
-\DoxyCodeLine{257     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}{cert}},}
+\DoxyCodeLine{256     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
+\DoxyCodeLine{257     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *cert,}
 \DoxyCodeLine{258     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *pkey);}
 \DoxyCodeLine{259 }
 \DoxyCodeLine{260 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* AWS\_OS\_IOS */}\textcolor{preprocessor}{}}
@@ -153,37 +153,37 @@
 \DoxyCodeLine{262 \textcolor{preprocessor}{\#ifdef \_WIN32}}
 \DoxyCodeLine{269 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} aws\_tls\_ctx\_options\_init\_client\_mtls\_from\_system\_path(}
 \DoxyCodeLine{270     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{271     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{271     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{272     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *cert\_reg\_path);}
 \DoxyCodeLine{273 }
 \DoxyCodeLine{280 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} aws\_tls\_ctx\_options\_init\_default\_server\_from\_system\_path(}
 \DoxyCodeLine{281     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{282     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{282     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{283     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *cert\_reg\_path);}
 \DoxyCodeLine{284 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_WIN32 */}\textcolor{preprocessor}{}}
 \DoxyCodeLine{285 }
 \DoxyCodeLine{286 \textcolor{preprocessor}{\#ifdef \_\_APPLE\_\_}}
 \DoxyCodeLine{292 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} aws\_tls\_ctx\_options\_init\_client\_mtls\_pkcs12\_from\_path(}
 \DoxyCodeLine{293     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{294     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{294     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{295     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pkcs12\_path,}
 \DoxyCodeLine{296     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *pkcs\_pwd);}
 \DoxyCodeLine{297 }
 \DoxyCodeLine{303 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} aws\_tls\_ctx\_options\_init\_client\_mtls\_pkcs12(}
 \DoxyCodeLine{304     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{305     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{305     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{306     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *pkcs12,}
 \DoxyCodeLine{307     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *pkcs\_pwd);}
 \DoxyCodeLine{308 }
 \DoxyCodeLine{314 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} aws\_tls\_ctx\_options\_init\_server\_pkcs12\_from\_path(}
 \DoxyCodeLine{315     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{316     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{316     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{317     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *pkcs12\_path,}
 \DoxyCodeLine{318     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *pkcs\_password);}
 \DoxyCodeLine{319 }
 \DoxyCodeLine{325 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} aws\_tls\_ctx\_options\_init\_server\_pkcs12(}
 \DoxyCodeLine{326     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options,}
-\DoxyCodeLine{327     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{327     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{328     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *pkcs12,}
 \DoxyCodeLine{329     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *pkcs\_password);}
 \DoxyCodeLine{330 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* \_\_APPLE\_\_ */}\textcolor{preprocessor}{}}
@@ -207,9 +207,9 @@
 \DoxyCodeLine{368 }
 \DoxyCodeLine{372 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{tls__channel__handler_8h_a4173b18d504d72ea6a54a5ace121b941}{aws\_tls\_connection\_options\_init\_from\_ctx}}(}
 \DoxyCodeLine{373     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *conn\_options,}
-\DoxyCodeLine{374     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{374     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *ctx);}
 \DoxyCodeLine{375 }
-\DoxyCodeLine{380 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{tls__channel__handler_8h_a340b007b1d110740861200670b67437f}{aws\_tls\_connection\_options\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *\mbox{\hyperlink{connection__state__test_8c_afe7db95b0401b8dbd61145beab76a3c4}{connection\_options}});}
+\DoxyCodeLine{380 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{tls__channel__handler_8h_a340b007b1d110740861200670b67437f}{aws\_tls\_connection\_options\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *connection\_options);}
 \DoxyCodeLine{381 }
 \DoxyCodeLine{385 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_ad9fb2a3858739b708bed080f3bbf2422}{aws\_tls\_connection\_options\_copy}}(}
 \DoxyCodeLine{386     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *to,}
@@ -220,16 +220,16 @@
 \DoxyCodeLine{394     \mbox{\hyperlink{tls__channel__handler_8h_a240e06727f51737d1155842078b3f4d6}{aws\_tls\_on\_negotiation\_result\_fn}} *on\_negotiation\_result,}
 \DoxyCodeLine{395     \mbox{\hyperlink{tls__channel__handler_8h_ac830427f63136275ea488ef72feee6c0}{aws\_tls\_on\_data\_read\_fn}} *on\_data\_read,}
 \DoxyCodeLine{396     \mbox{\hyperlink{tls__channel__handler_8h_a3b389b01f78075673ba3a91f949bf880}{aws\_tls\_on\_error\_fn}} *on\_error,}
-\DoxyCodeLine{397     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{397     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{398 }
 \DoxyCodeLine{403 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_a2ec5b928b6babe9d93bd605fe869f911}{aws\_tls\_connection\_options\_set\_server\_name}}(}
 \DoxyCodeLine{404     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *conn\_options,}
-\DoxyCodeLine{405     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{405     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{406     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *server\_name);}
 \DoxyCodeLine{407 }
 \DoxyCodeLine{413 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_a2fcff7fdfb7c941553f71bb5d883f1e3}{aws\_tls\_connection\_options\_set\_alpn\_list}}(}
 \DoxyCodeLine{414     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *conn\_options,}
-\DoxyCodeLine{415     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{415     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{416     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *alpn\_list);}
 \DoxyCodeLine{417 }
 \DoxyCodeLine{418 \textcolor{comment}{/********************************* TLS context and state management *********************************/}}
@@ -239,21 +239,21 @@
 \DoxyCodeLine{430 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{tls__channel__handler_8h_aa3614aca37ffbb9d9cc398b666cad896}{aws\_tls\_is\_cipher\_pref\_supported}}(\textcolor{keyword}{enum} \mbox{\hyperlink{tls__channel__handler_8h_a076545636747167b7bdc27894137ef53}{aws\_tls\_cipher\_pref}} cipher\_pref);}
 \DoxyCodeLine{431 }
 \DoxyCodeLine{438 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{tls__channel__handler_8h_af9a1c09bd7d678245272b819ca58c2e1}{aws\_tls\_client\_handler\_new}}(}
-\DoxyCodeLine{439     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{439     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{440     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *options,}
 \DoxyCodeLine{441     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *\mbox{\hyperlink{structaws__channel__handler_aacd0130a225a17d8c4d34fcebdb4b0c6}{slot}});}
 \DoxyCodeLine{442 }
 \DoxyCodeLine{448 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{tls__channel__handler_8h_a9359de21db64bd9941f1aa656bfb440f}{aws\_tls\_server\_handler\_new}}(}
-\DoxyCodeLine{449     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{449     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{450     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__connection__options}{aws\_tls\_connection\_options}} *options,}
 \DoxyCodeLine{451     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *\mbox{\hyperlink{structaws__channel__handler_aacd0130a225a17d8c4d34fcebdb4b0c6}{slot}});}
 \DoxyCodeLine{452 }
 \DoxyCodeLine{458 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{tls__channel__handler_8h_aad58117676386e5b244a7b1a8651eba9}{aws\_tls\_alpn\_handler\_new}}(}
-\DoxyCodeLine{459     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{459     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{460     \mbox{\hyperlink{tls__channel__handler_8h_aeb78e4bb9cb5ee52495822f010e094a9}{aws\_tls\_on\_protocol\_negotiated}} on\_protocol\_negotiated,}
-\DoxyCodeLine{461     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{461     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{462 }
-\DoxyCodeLine{467 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_a7131b25700e88b0e4ddd8fbdc498320b}{aws\_tls\_client\_handler\_start\_negotiation}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{467 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_a7131b25700e88b0e4ddd8fbdc498320b}{aws\_tls\_client\_handler\_start\_negotiation}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler);}
 \DoxyCodeLine{468 }
 \DoxyCodeLine{473 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *\mbox{\hyperlink{tls__channel__handler_8h_a0728cb0af00ac435184a1c9f76c861a6}{aws\_tls\_server\_ctx\_new}}(}
 \DoxyCodeLine{474     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__tls__ctx_adc6e6c680459f05e983233046421d100}{alloc}},}
@@ -263,20 +263,20 @@
 \DoxyCodeLine{482     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__tls__ctx_adc6e6c680459f05e983233046421d100}{alloc}},}
 \DoxyCodeLine{483     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx__options}{aws\_tls\_ctx\_options}} *options);}
 \DoxyCodeLine{484 }
-\DoxyCodeLine{490 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *\mbox{\hyperlink{tls__channel__handler_8h_a4272492d77f1e0993ba2d406be569dd8}{aws\_tls\_ctx\_acquire}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{490 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *\mbox{\hyperlink{tls__channel__handler_8h_a4272492d77f1e0993ba2d406be569dd8}{aws\_tls\_ctx\_acquire}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *ctx);}
 \DoxyCodeLine{491 }
-\DoxyCodeLine{495 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{tls__channel__handler_8h_a77855d5cd82c83b96069b89465af23af}{aws\_tls\_ctx\_release}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{495 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{tls__channel__handler_8h_a77855d5cd82c83b96069b89465af23af}{aws\_tls\_ctx\_release}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__tls__ctx}{aws\_tls\_ctx}} *ctx);}
 \DoxyCodeLine{496 }
 \DoxyCodeLine{502 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{tls__channel__handler_8h_adafcb9b675d7dd515ae857e6f1910bf8}{aws\_tls\_handler\_write}}(}
-\DoxyCodeLine{503     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{503     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler,}
 \DoxyCodeLine{504     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__slot}{aws\_channel\_slot}} *slot,}
 \DoxyCodeLine{505     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}},}
 \DoxyCodeLine{506     \mbox{\hyperlink{io_8h_a845852ad8f2bbee9e220f6b7dc54ab3a}{aws\_channel\_on\_message\_write\_completed\_fn}} *on\_write\_completed,}
 \DoxyCodeLine{507     \textcolor{keywordtype}{void} *completion\_user\_data);}
 \DoxyCodeLine{508 }
-\DoxyCodeLine{513 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{tls__channel__handler_8h_a9150966f84098e53da68e12aa39ed980}{aws\_tls\_handler\_protocol}}(struct \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{513 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{tls__channel__handler_8h_a9150966f84098e53da68e12aa39ed980}{aws\_tls\_handler\_protocol}}(struct \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler);}
 \DoxyCodeLine{514 }
-\DoxyCodeLine{518 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{tls__channel__handler_8h_a6d766ca9bd359d751bfd92f44ce1e020}{aws\_tls\_handler\_server\_name}}(struct \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{518 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} \mbox{\hyperlink{tls__channel__handler_8h_a6d766ca9bd359d751bfd92f44ce1e020}{aws\_tls\_handler\_server\_name}}(struct \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler);}
 \DoxyCodeLine{519 }
 \DoxyCodeLine{520 \textcolor{comment}{/********************************* Misc TLS related *********************************/}}
 \DoxyCodeLine{521 }

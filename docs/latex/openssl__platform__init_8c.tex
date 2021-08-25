@@ -22,15 +22,15 @@ enum \mbox{\hyperlink{openssl__platform__init_8c_a3b5941d4c443689a59c4363c7ff8c7
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$ \mbox{\hyperlink{openssl__platform__init_8c_a631c9742a44d89809858ce3430e73f20}{HMAC\+\_\+\+CTX\+\_\+new}} (void)
+HMAC\+\_\+\+CTX $\ast$ \mbox{\hyperlink{openssl__platform__init_8c_a631c9742a44d89809858ce3430e73f20}{HMAC\+\_\+\+CTX\+\_\+new}} (void)
 \item 
-static void \mbox{\hyperlink{openssl__platform__init_8c_a456fae37ebf8f77cd0124f7ee2945f08}{s\+\_\+hmac\+\_\+ctx\+\_\+clean\+\_\+up\+\_\+noop}} (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+static void \mbox{\hyperlink{openssl__platform__init_8c_a456fae37ebf8f77cd0124f7ee2945f08}{s\+\_\+hmac\+\_\+ctx\+\_\+clean\+\_\+up\+\_\+noop}} (HMAC\+\_\+\+CTX $\ast$ctx)
 \item 
-static \mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$ \mbox{\hyperlink{openssl__platform__init_8c_ab64890299769f85194b3622b2b6c60f2}{s\+\_\+hmac\+\_\+ctx\+\_\+new}} (void)
+static HMAC\+\_\+\+CTX $\ast$ \mbox{\hyperlink{openssl__platform__init_8c_ab64890299769f85194b3622b2b6c60f2}{s\+\_\+hmac\+\_\+ctx\+\_\+new}} (void)
 \item 
-static void \mbox{\hyperlink{openssl__platform__init_8c_a174a60aac29a4e5bf38df81d5660afb9}{s\+\_\+hmac\+\_\+ctx\+\_\+free}} (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+static void \mbox{\hyperlink{openssl__platform__init_8c_a174a60aac29a4e5bf38df81d5660afb9}{s\+\_\+hmac\+\_\+ctx\+\_\+free}} (HMAC\+\_\+\+CTX $\ast$ctx)
 \item 
-static int \mbox{\hyperlink{openssl__platform__init_8c_abcad30c39ed4e55b1ac3ce18963244d4}{s\+\_\+hmac\+\_\+ctx\+\_\+reset}} (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+static int \mbox{\hyperlink{openssl__platform__init_8c_abcad30c39ed4e55b1ac3ce18963244d4}{s\+\_\+hmac\+\_\+ctx\+\_\+reset}} (HMAC\+\_\+\+CTX $\ast$ctx)
 \item 
 static void \mbox{\hyperlink{openssl__platform__init_8c_a44612a9965b0c7ab96ffdbf8bcabb729}{s\+\_\+locking\+\_\+fn}} (int mode, int n, const char $\ast$unused0, int unused1)
 \item 
@@ -38,7 +38,7 @@ static unsigned long \mbox{\hyperlink{openssl__platform__init_8c_a32b5a9b5f4fb92
 \item 
 static int \mbox{\hyperlink{openssl__platform__init_8c_a77eda81393829b2784e555abefa2f92f}{s\+\_\+resolve\+\_\+libcrypto\+\_\+hmac}} (enum \mbox{\hyperlink{openssl__platform__init_8c_a3b5941d4c443689a59c4363c7ff8c7e2}{aws\+\_\+libcrypto\+\_\+version}} version, void $\ast$module)
 \item 
-\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$ \mbox{\hyperlink{openssl__platform__init_8c_a54bfa0296db2c131ef69e3a18c445357}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+create}} (void)
+EVP\+\_\+\+MD\+\_\+\+CTX $\ast$ \mbox{\hyperlink{openssl__platform__init_8c_a54bfa0296db2c131ef69e3a18c445357}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+create}} (void)
 \item 
 static int \mbox{\hyperlink{openssl__platform__init_8c_a759ace0165b9b477585d49dbdb5314fd}{s\+\_\+resolve\+\_\+libcrypto\+\_\+symbols}} (enum \mbox{\hyperlink{openssl__platform__init_8c_a3b5941d4c443689a59c4363c7ff8c7e2}{aws\+\_\+libcrypto\+\_\+version}} version, void $\ast$module)
 \item 
@@ -46,7 +46,7 @@ static int \mbox{\hyperlink{openssl__platform__init_8c_adfd93fcdbef2d135c7119b93
 \item 
 static int \mbox{\hyperlink{openssl__platform__init_8c_a1c35e92353fc16f6377647d77376a34a}{s\+\_\+resolve\+\_\+libcrypto}} (void)
 \item 
-void \mbox{\hyperlink{openssl__platform__init_8c_a407f69e844ac10381051b1d82e7de6c2}{aws\+\_\+cal\+\_\+platform\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{openssl__platform__init_8c_a407f69e844ac10381051b1d82e7de6c2}{aws\+\_\+cal\+\_\+platform\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{openssl__platform__init_8c_adb680a9a227a90f27c43f8a871248988}{aws\+\_\+cal\+\_\+platform\+\_\+clean\+\_\+up}} (void)
 \end{DoxyCompactItemize}
@@ -122,37 +122,37 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{openssl\_platform\_init.c@{openssl\_platform\_init.c}!EVP\_MD\_CTX\_create@{EVP\_MD\_CTX\_create}}
 \index{EVP\_MD\_CTX\_create@{EVP\_MD\_CTX\_create}!openssl\_platform\_init.c@{openssl\_platform\_init.c}}
 \doxysubsubsection{\texorpdfstring{EVP\_MD\_CTX\_create()}{EVP\_MD\_CTX\_create()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}}$\ast$ EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+create (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily EVP\+\_\+\+MD\+\_\+\+CTX$\ast$ EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+create (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{openssl__platform__init_8c_a631c9742a44d89809858ce3430e73f20}\label{openssl__platform__init_8c_a631c9742a44d89809858ce3430e73f20}} 
 \index{openssl\_platform\_init.c@{openssl\_platform\_init.c}!HMAC\_CTX\_new@{HMAC\_CTX\_new}}
 \index{HMAC\_CTX\_new@{HMAC\_CTX\_new}!openssl\_platform\_init.c@{openssl\_platform\_init.c}}
 \doxysubsubsection{\texorpdfstring{HMAC\_CTX\_new()}{HMAC\_CTX\_new()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}}$\ast$ HMAC\+\_\+\+CTX\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily HMAC\+\_\+\+CTX$\ast$ HMAC\+\_\+\+CTX\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{openssl__platform__init_8c_a456fae37ebf8f77cd0124f7ee2945f08}\label{openssl__platform__init_8c_a456fae37ebf8f77cd0124f7ee2945f08}} 
 \index{openssl\_platform\_init.c@{openssl\_platform\_init.c}!s\_hmac\_ctx\_clean\_up\_noop@{s\_hmac\_ctx\_clean\_up\_noop}}
 \index{s\_hmac\_ctx\_clean\_up\_noop@{s\_hmac\_ctx\_clean\_up\_noop}!openssl\_platform\_init.c@{openssl\_platform\_init.c}}
 \doxysubsubsection{\texorpdfstring{s\_hmac\_ctx\_clean\_up\_noop()}{s\_hmac\_ctx\_clean\_up\_noop()}}
-{\footnotesize\ttfamily static void s\+\_\+hmac\+\_\+ctx\+\_\+clean\+\_\+up\+\_\+noop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static void s\+\_\+hmac\+\_\+ctx\+\_\+clean\+\_\+up\+\_\+noop (\begin{DoxyParamCaption}\item[{HMAC\+\_\+\+CTX $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{openssl__platform__init_8c_a174a60aac29a4e5bf38df81d5660afb9}\label{openssl__platform__init_8c_a174a60aac29a4e5bf38df81d5660afb9}} 
 \index{openssl\_platform\_init.c@{openssl\_platform\_init.c}!s\_hmac\_ctx\_free@{s\_hmac\_ctx\_free}}
 \index{s\_hmac\_ctx\_free@{s\_hmac\_ctx\_free}!openssl\_platform\_init.c@{openssl\_platform\_init.c}}
 \doxysubsubsection{\texorpdfstring{s\_hmac\_ctx\_free()}{s\_hmac\_ctx\_free()}}
-{\footnotesize\ttfamily static void s\+\_\+hmac\+\_\+ctx\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static void s\+\_\+hmac\+\_\+ctx\+\_\+free (\begin{DoxyParamCaption}\item[{HMAC\+\_\+\+CTX $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{openssl__platform__init_8c_ab64890299769f85194b3622b2b6c60f2}\label{openssl__platform__init_8c_ab64890299769f85194b3622b2b6c60f2}} 
 \index{openssl\_platform\_init.c@{openssl\_platform\_init.c}!s\_hmac\_ctx\_new@{s\_hmac\_ctx\_new}}
 \index{s\_hmac\_ctx\_new@{s\_hmac\_ctx\_new}!openssl\_platform\_init.c@{openssl\_platform\_init.c}}
 \doxysubsubsection{\texorpdfstring{s\_hmac\_ctx\_new()}{s\_hmac\_ctx\_new()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}}$\ast$ s\+\_\+hmac\+\_\+ctx\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static HMAC\+\_\+\+CTX$\ast$ s\+\_\+hmac\+\_\+ctx\+\_\+new (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{openssl__platform__init_8c_abcad30c39ed4e55b1ac3ce18963244d4}\label{openssl__platform__init_8c_abcad30c39ed4e55b1ac3ce18963244d4}} 
 \index{openssl\_platform\_init.c@{openssl\_platform\_init.c}!s\_hmac\_ctx\_reset@{s\_hmac\_ctx\_reset}}
 \index{s\_hmac\_ctx\_reset@{s\_hmac\_ctx\_reset}!openssl\_platform\_init.c@{openssl\_platform\_init.c}}
 \doxysubsubsection{\texorpdfstring{s\_hmac\_ctx\_reset()}{s\_hmac\_ctx\_reset()}}
-{\footnotesize\ttfamily static int s\+\_\+hmac\+\_\+ctx\+\_\+reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+hmac\+\_\+ctx\+\_\+reset (\begin{DoxyParamCaption}\item[{HMAC\+\_\+\+CTX $\ast$}]{ctx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{openssl__platform__init_8c_a32b5a9b5f4fb9210a51e4e76ae27df15}\label{openssl__platform__init_8c_a32b5a9b5f4fb9210a51e4e76ae27df15}} 
 \index{openssl\_platform\_init.c@{openssl\_platform\_init.c}!s\_id\_fn@{s\_id\_fn}}

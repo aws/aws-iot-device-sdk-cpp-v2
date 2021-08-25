@@ -73,7 +73,7 @@
 \DoxyCodeLine{84 \textcolor{comment}{ * Creates a stream that operates on a range of bytes}}
 \DoxyCodeLine{85 \textcolor{comment}{ */}}
 \DoxyCodeLine{86 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a393d18b3bf17c5b621dba239e8542d7e}{aws\_input\_stream\_new\_from\_cursor}}(}
-\DoxyCodeLine{87     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{87     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__input__stream_a2d8b3fd047d0b2c78739f74912ba352b}{allocator}},}
 \DoxyCodeLine{88     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *cursor);}
 \DoxyCodeLine{89 }
 \DoxyCodeLine{90 \textcolor{comment}{/*}}
@@ -81,14 +81,14 @@
 \DoxyCodeLine{92 \textcolor{comment}{ * Destruction closes the file.}}
 \DoxyCodeLine{93 \textcolor{comment}{ */}}
 \DoxyCodeLine{94 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_acd681692955fa18e641bb4bafcfdb161}{aws\_input\_stream\_new\_from\_file}}(}
-\DoxyCodeLine{95     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{95     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__input__stream_a2d8b3fd047d0b2c78739f74912ba352b}{allocator}},}
 \DoxyCodeLine{96     \textcolor{keyword}{const} \textcolor{keywordtype}{char} *file\_name);}
 \DoxyCodeLine{97 }
 \DoxyCodeLine{98 \textcolor{comment}{/*}}
 \DoxyCodeLine{99 \textcolor{comment}{ * Creates an input stream that reads from an already opened file.}}
 \DoxyCodeLine{100 \textcolor{comment}{ * Destruction does not close the file.}}
 \DoxyCodeLine{101 \textcolor{comment}{ */}}
-\DoxyCodeLine{102 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_affabb407b49d3002bb20d46d93f49a7e}{aws\_input\_stream\_new\_from\_open\_file}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, FILE *\mbox{\hyperlink{namespacefixup__makefiles_a48861649c723a22094b936f074258210}{file}});}
+\DoxyCodeLine{102 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}} *\mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_affabb407b49d3002bb20d46d93f49a7e}{aws\_input\_stream\_new\_from\_open\_file}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__input__stream_a2d8b3fd047d0b2c78739f74912ba352b}{allocator}}, FILE *file);}
 \DoxyCodeLine{103 }
 \DoxyCodeLine{104 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
 \DoxyCodeLine{105 }

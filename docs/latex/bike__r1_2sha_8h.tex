@@ -1,0 +1,125 @@
+\hypertarget{bike__r1_2sha_8h}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\+\_\+r1/sha.h File Reference}
+\label{bike__r1_2sha_8h}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/sha.h@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/sha.h}}
+{\ttfamily \#include \char`\"{}cleanup.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utilities.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$openssl/sha.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsha384__hash__s}{sha384\+\_\+hash\+\_\+s}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bike__r1_2sha_8h_ab19f3e68f02543f8a1254eb005ad3196}{SHA384\+\_\+\+HASH\+\_\+\+SIZE}}~48ULL
+\item 
+\#define \mbox{\hyperlink{bike__r1_2sha_8h_a2e2b8d5760a5d7c829bb4e93c7a1e191}{SHA384\+\_\+\+HASH\+\_\+\+QWORDS}}~(\mbox{\hyperlink{bike__r2_2sha_8h_ab19f3e68f02543f8a1254eb005ad3196}{SHA384\+\_\+\+HASH\+\_\+\+SIZE}} / 8)
+\item 
+\#define \mbox{\hyperlink{bike__r1_2sha_8h_ab7a96c2b74558f71a90996fdaf1e6380}{NUM\+\_\+\+OF\+\_\+\+BLOCKS\+\_\+\+IN\+\_\+\+MB}}~4ULL
+\item 
+\#define \mbox{\hyperlink{bike__r1_2sha_8h_a4dad3eb9a2ee8bb922d41f2092da8ad8}{SLICE\+\_\+\+REM}}~111ULL
+\item 
+\#define \mbox{\hyperlink{bike__r1_2sha_8h_a538a96f35ac7f3afd7b4d7fc69e078c0}{MAX\+\_\+\+MB\+\_\+\+SLICES}}~8ULL
+\item 
+\#define \mbox{\hyperlink{bike__r1_2sha_8h_a7b65d39b4e3e3b991ad75149530595a9}{HASH\+\_\+\+BLOCK\+\_\+\+SIZE}}~128ULL
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structsha384__hash__s}{sha384\+\_\+hash\+\_\+s}} \mbox{\hyperlink{bike__r1_2sha_8h_aa9f039444abcc4df906730fdb7c8e422}{sha384\+\_\+hash\+\_\+t}}
+\item 
+typedef \mbox{\hyperlink{bike__r1_2sha_8h_aa9f039444abcc4df906730fdb7c8e422}{sha384\+\_\+hash\+\_\+t}} \mbox{\hyperlink{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}{sha\+\_\+hash\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bike__r1_2sha_8h_ada1a6f47414daa292526358c94de8819}{bike\+\_\+static\+\_\+assert}} (sizeof(\mbox{\hyperlink{bike__r1_2sha_8h_aa9f039444abcc4df906730fdb7c8e422}{sha384\+\_\+hash\+\_\+t}})==\mbox{\hyperlink{bike__r2_2sha_8h_ab19f3e68f02543f8a1254eb005ad3196}{SHA384\+\_\+\+HASH\+\_\+\+SIZE}}, sha384\+\_\+hash\+\_\+size)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2sha_8h_aa8f71234e9c11022e830cfdb05d8f4a7}{sha\+\_\+hash\+\_\+cleanup}} (\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}{sha\+\_\+hash\+\_\+t}} $\ast$o)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} int \mbox{\hyperlink{bike__r1_2sha_8h_ad5490abb31aff61c8987612eaabe4ea9}{sha}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}{sha\+\_\+hash\+\_\+t}} $\ast$hash\+\_\+out, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t byte\+\_\+len, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t $\ast$msg)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2sha_8h_a5de848c12c771762f74789905e94fa03}{sha\+\_\+mb}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}{sha\+\_\+hash\+\_\+t}} $\ast$hash\+\_\+out, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t $\ast$msg, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t byte\+\_\+len, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t num)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bike__r1_2sha_8h_a7b65d39b4e3e3b991ad75149530595a9}\label{bike__r1_2sha_8h_a7b65d39b4e3e3b991ad75149530595a9}} 
+\index{sha.h@{sha.h}!HASH\_BLOCK\_SIZE@{HASH\_BLOCK\_SIZE}}
+\index{HASH\_BLOCK\_SIZE@{HASH\_BLOCK\_SIZE}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{HASH\_BLOCK\_SIZE}{HASH\_BLOCK\_SIZE}}
+{\footnotesize\ttfamily \#define HASH\+\_\+\+BLOCK\+\_\+\+SIZE~128ULL}
+
+\mbox{\Hypertarget{bike__r1_2sha_8h_a538a96f35ac7f3afd7b4d7fc69e078c0}\label{bike__r1_2sha_8h_a538a96f35ac7f3afd7b4d7fc69e078c0}} 
+\index{sha.h@{sha.h}!MAX\_MB\_SLICES@{MAX\_MB\_SLICES}}
+\index{MAX\_MB\_SLICES@{MAX\_MB\_SLICES}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_MB\_SLICES}{MAX\_MB\_SLICES}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+MB\+\_\+\+SLICES~8ULL}
+
+\mbox{\Hypertarget{bike__r1_2sha_8h_ab7a96c2b74558f71a90996fdaf1e6380}\label{bike__r1_2sha_8h_ab7a96c2b74558f71a90996fdaf1e6380}} 
+\index{sha.h@{sha.h}!NUM\_OF\_BLOCKS\_IN\_MB@{NUM\_OF\_BLOCKS\_IN\_MB}}
+\index{NUM\_OF\_BLOCKS\_IN\_MB@{NUM\_OF\_BLOCKS\_IN\_MB}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{NUM\_OF\_BLOCKS\_IN\_MB}{NUM\_OF\_BLOCKS\_IN\_MB}}
+{\footnotesize\ttfamily \#define NUM\+\_\+\+OF\+\_\+\+BLOCKS\+\_\+\+IN\+\_\+\+MB~4ULL}
+
+\mbox{\Hypertarget{bike__r1_2sha_8h_a2e2b8d5760a5d7c829bb4e93c7a1e191}\label{bike__r1_2sha_8h_a2e2b8d5760a5d7c829bb4e93c7a1e191}} 
+\index{sha.h@{sha.h}!SHA384\_HASH\_QWORDS@{SHA384\_HASH\_QWORDS}}
+\index{SHA384\_HASH\_QWORDS@{SHA384\_HASH\_QWORDS}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{SHA384\_HASH\_QWORDS}{SHA384\_HASH\_QWORDS}}
+{\footnotesize\ttfamily \#define SHA384\+\_\+\+HASH\+\_\+\+QWORDS~(\mbox{\hyperlink{bike__r2_2sha_8h_ab19f3e68f02543f8a1254eb005ad3196}{SHA384\+\_\+\+HASH\+\_\+\+SIZE}} / 8)}
+
+\mbox{\Hypertarget{bike__r1_2sha_8h_ab19f3e68f02543f8a1254eb005ad3196}\label{bike__r1_2sha_8h_ab19f3e68f02543f8a1254eb005ad3196}} 
+\index{sha.h@{sha.h}!SHA384\_HASH\_SIZE@{SHA384\_HASH\_SIZE}}
+\index{SHA384\_HASH\_SIZE@{SHA384\_HASH\_SIZE}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{SHA384\_HASH\_SIZE}{SHA384\_HASH\_SIZE}}
+{\footnotesize\ttfamily \#define SHA384\+\_\+\+HASH\+\_\+\+SIZE~48ULL}
+
+\mbox{\Hypertarget{bike__r1_2sha_8h_a4dad3eb9a2ee8bb922d41f2092da8ad8}\label{bike__r1_2sha_8h_a4dad3eb9a2ee8bb922d41f2092da8ad8}} 
+\index{sha.h@{sha.h}!SLICE\_REM@{SLICE\_REM}}
+\index{SLICE\_REM@{SLICE\_REM}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{SLICE\_REM}{SLICE\_REM}}
+{\footnotesize\ttfamily \#define SLICE\+\_\+\+REM~111ULL}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{bike__r1_2sha_8h_aa9f039444abcc4df906730fdb7c8e422}\label{bike__r1_2sha_8h_aa9f039444abcc4df906730fdb7c8e422}} 
+\index{sha.h@{sha.h}!sha384\_hash\_t@{sha384\_hash\_t}}
+\index{sha384\_hash\_t@{sha384\_hash\_t}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{sha384\_hash\_t}{sha384\_hash\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structsha384__hash__s}{sha384\+\_\+hash\+\_\+s}} \mbox{\hyperlink{bike__r1_2sha_8h_aa9f039444abcc4df906730fdb7c8e422}{sha384\+\_\+hash\+\_\+t}}}
+
+\mbox{\Hypertarget{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}\label{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}} 
+\index{sha.h@{sha.h}!sha\_hash\_t@{sha\_hash\_t}}
+\index{sha\_hash\_t@{sha\_hash\_t}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{sha\_hash\_t}{sha\_hash\_t}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{bike__r1_2sha_8h_aa9f039444abcc4df906730fdb7c8e422}{sha384\+\_\+hash\+\_\+t}} \mbox{\hyperlink{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}{sha\+\_\+hash\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bike__r1_2sha_8h_ada1a6f47414daa292526358c94de8819}\label{bike__r1_2sha_8h_ada1a6f47414daa292526358c94de8819}} 
+\index{sha.h@{sha.h}!bike\_static\_assert@{bike\_static\_assert}}
+\index{bike\_static\_assert@{bike\_static\_assert}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{bike\_static\_assert()}{bike\_static\_assert()}}
+{\footnotesize\ttfamily bike\+\_\+static\+\_\+assert (\begin{DoxyParamCaption}\item[{sizeof(\mbox{\hyperlink{bike__r1_2sha_8h_aa9f039444abcc4df906730fdb7c8e422}{sha384\+\_\+hash\+\_\+t}})}]{ = {\ttfamily =\mbox{\hyperlink{bike__r2_2sha_8h_ab19f3e68f02543f8a1254eb005ad3196}{SHA384\+\_\+\+HASH\+\_\+\+SIZE}}},  }\item[{sha384\+\_\+hash\+\_\+size}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2sha_8h_ad5490abb31aff61c8987612eaabe4ea9}\label{bike__r1_2sha_8h_ad5490abb31aff61c8987612eaabe4ea9}} 
+\index{sha.h@{sha.h}!sha@{sha}}
+\index{sha@{sha}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{sha()}{sha()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} int sha (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}{sha\+\_\+hash\+\_\+t}} $\ast$}]{hash\+\_\+out,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t}]{byte\+\_\+len,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t $\ast$}]{msg }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2sha_8h_aa8f71234e9c11022e830cfdb05d8f4a7}\label{bike__r1_2sha_8h_aa8f71234e9c11022e830cfdb05d8f4a7}} 
+\index{sha.h@{sha.h}!sha\_hash\_cleanup@{sha\_hash\_cleanup}}
+\index{sha\_hash\_cleanup@{sha\_hash\_cleanup}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{sha\_hash\_cleanup()}{sha\_hash\_cleanup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void sha\+\_\+hash\+\_\+cleanup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}{sha\+\_\+hash\+\_\+t}} $\ast$}]{o }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2sha_8h_a5de848c12c771762f74789905e94fa03}\label{bike__r1_2sha_8h_a5de848c12c771762f74789905e94fa03}} 
+\index{sha.h@{sha.h}!sha\_mb@{sha\_mb}}
+\index{sha\_mb@{sha\_mb}!sha.h@{sha.h}}
+\doxysubsubsection{\texorpdfstring{sha\_mb()}{sha\_mb()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void sha\+\_\+mb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{bike__r1_2sha_8h_a9bc434a92d09c9459e896b13161891a3}{sha\+\_\+hash\+\_\+t}} $\ast$}]{hash\+\_\+out,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t $\ast$}]{msg,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t}]{byte\+\_\+len,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint32\+\_\+t}]{num }\end{DoxyParamCaption})}
+

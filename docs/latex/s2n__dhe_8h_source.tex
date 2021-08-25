@@ -19,19 +19,19 @@
 \DoxyCodeLine{15 }
 \DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{dh_8h}{openssl/dh.h}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <openssl/dh.h>}}
 \DoxyCodeLine{19 }
 \DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__stuffer_8h}{stuffer/s2n\_stuffer.h}}"{}}}
 \DoxyCodeLine{21 }
 \DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}utils/s2n\_blob.h"{}}}
 \DoxyCodeLine{23 }
 \DoxyCodeLine{24 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} \{}
-\DoxyCodeLine{25     \mbox{\hyperlink{structdh__st}{DH}} *\mbox{\hyperlink{structs2n__dh__params_a57e955638d373ec41d4667b7ec5e058c}{dh}};}
+\DoxyCodeLine{25     DH *\mbox{\hyperlink{structs2n__dh__params_a57e955638d373ec41d4667b7ec5e058c}{dh}};}
 \DoxyCodeLine{26 \};}
 \DoxyCodeLine{27 }
 \DoxyCodeLine{28 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__dhe_8h_a2a588f9f6c78190225878f36cfb98ae8}{s2n\_pkcs3\_to\_dh\_params}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} *dh\_params, \textcolor{keyword}{struct} s2n\_blob *pkcs3);}
 \DoxyCodeLine{29 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__dhe_8h_acb70d409d79a64d53764a24de78de3c8}{s2n\_dh\_p\_g\_Ys\_to\_dh\_params}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} *dh\_params, \textcolor{keyword}{struct} s2n\_blob *\mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}}, \textcolor{keyword}{struct} s2n\_blob *g, \textcolor{keyword}{struct} s2n\_blob *ys);}
-\DoxyCodeLine{30 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__dhe_8h_a847b2d0a73d4e014a41c50b9780b8245}{s2n\_dh\_params\_to\_p\_g\_Ys}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} *server\_dh\_params, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *out, \textcolor{keyword}{struct} s2n\_blob *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{30 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__dhe_8h_a847b2d0a73d4e014a41c50b9780b8245}{s2n\_dh\_params\_to\_p\_g\_Ys}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} *server\_dh\_params, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *out, \textcolor{keyword}{struct} s2n\_blob *output);}
 \DoxyCodeLine{31 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__dhe_8h_a7ea5b026f3ee78ae37fe194a8e27a203}{s2n\_dh\_compute\_shared\_secret\_as\_server}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} *server\_dh\_params, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *Yc\_in, \textcolor{keyword}{struct} s2n\_blob *shared\_key);}
 \DoxyCodeLine{32 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__dhe_8h_a5883f9a420e0b7c297b061ea0ed108e8}{s2n\_dh\_compute\_shared\_secret\_as\_client}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} *server\_dh\_params, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *Yc\_out, \textcolor{keyword}{struct} s2n\_blob *shared\_key);}
 \DoxyCodeLine{33 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__dhe_8h_a3de1805a7078d382e8f9c8fd776b75b0}{s2n\_dh\_params\_copy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} *from, \textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__dh__params}{s2n\_dh\_params}} *to);}

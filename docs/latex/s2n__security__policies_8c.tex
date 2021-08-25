@@ -9,21 +9,21 @@
 \item 
 int \mbox{\hyperlink{s2n__security__policies_8c_ac2a9e12156cc5692314a3eed4b9ca0e0}{s2n\+\_\+find\+\_\+security\+\_\+policy\+\_\+from\+\_\+version}} (const char $\ast$version, const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$$\ast$security\+\_\+policy)
 \item 
-int \mbox{\hyperlink{s2n__security__policies_8c_a21b09fcd09e2d33e8ed9389a109f2ab2}{s2n\+\_\+config\+\_\+set\+\_\+cipher\+\_\+preferences}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const char $\ast$version)
+int \mbox{\hyperlink{s2n__security__policies_8c_a21b09fcd09e2d33e8ed9389a109f2ab2}{s2n\+\_\+config\+\_\+set\+\_\+cipher\+\_\+preferences}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config, const char $\ast$version)
 \item 
 int \mbox{\hyperlink{s2n__security__policies_8c_a0cbc213077fc4852ee1e6548a536605f}{s2n\+\_\+connection\+\_\+set\+\_\+cipher\+\_\+preferences}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const char $\ast$version)
 \item 
 int \mbox{\hyperlink{s2n__security__policies_8c_a06f488900164c8de5d3f7d5bb34ceef7}{s2n\+\_\+security\+\_\+policies\+\_\+init}} ()
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__security__policies_8c_a04a6a209caf95739b12b3bfd472d2401}{s2n\+\_\+ecc\+\_\+is\+\_\+extension\+\_\+required}} (const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$security\+\_\+policy)
+bool \mbox{\hyperlink{s2n__security__policies_8c_a04a6a209caf95739b12b3bfd472d2401}{s2n\+\_\+ecc\+\_\+is\+\_\+extension\+\_\+required}} (const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$security\+\_\+policy)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__security__policies_8c_a326f4492e042bdbe6cf7bca94731c523}{s2n\+\_\+pq\+\_\+kem\+\_\+is\+\_\+extension\+\_\+required}} (const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$security\+\_\+policy)
+bool \mbox{\hyperlink{s2n__security__policies_8c_a326f4492e042bdbe6cf7bca94731c523}{s2n\+\_\+pq\+\_\+kem\+\_\+is\+\_\+extension\+\_\+required}} (const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$security\+\_\+policy)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__security__policies_8c_a95f8561372914ac42566eaab42ed90bd}{s2n\+\_\+security\+\_\+policy\+\_\+supports\+\_\+tls13}} (const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$security\+\_\+policy)
+bool \mbox{\hyperlink{s2n__security__policies_8c_a95f8561372914ac42566eaab42ed90bd}{s2n\+\_\+security\+\_\+policy\+\_\+supports\+\_\+tls13}} (const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$security\+\_\+policy)
 \item 
 int \mbox{\hyperlink{s2n__security__policies_8c_aa4255b35f25d89d9512956c594f432e2}{s2n\+\_\+connection\+\_\+is\+\_\+valid\+\_\+for\+\_\+cipher\+\_\+preferences}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const char $\ast$version)
 \item 
-int \mbox{\hyperlink{s2n__security__policies_8c_a223b6acafdfd73116c1f550442ac0aba}{s2n\+\_\+validate\+\_\+kem\+\_\+preferences}} (const struct \mbox{\hyperlink{structs2n__kem__preferences}{s2n\+\_\+kem\+\_\+preferences}} $\ast$kem\+\_\+preferences, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} pq\+\_\+kem\+\_\+extension\+\_\+required)
+int \mbox{\hyperlink{s2n__security__policies_8c_a223b6acafdfd73116c1f550442ac0aba}{s2n\+\_\+validate\+\_\+kem\+\_\+preferences}} (const struct \mbox{\hyperlink{structs2n__kem__preferences}{s2n\+\_\+kem\+\_\+preferences}} $\ast$kem\+\_\+preferences, bool pq\+\_\+kem\+\_\+extension\+\_\+required)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -173,7 +173,7 @@ struct \mbox{\hyperlink{structs2n__security__policy__selection}{s2n\+\_\+securit
 \index{s2n\_security\_policies.c@{s2n\_security\_policies.c}!s2n\_ecc\_is\_extension\_required@{s2n\_ecc\_is\_extension\_required}}
 \index{s2n\_ecc\_is\_extension\_required@{s2n\_ecc\_is\_extension\_required}!s2n\_security\_policies.c@{s2n\_security\_policies.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_ecc\_is\_extension\_required()}{s2n\_ecc\_is\_extension\_required()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+ecc\+\_\+is\+\_\+extension\+\_\+required (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$}]{security\+\_\+policy }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+ecc\+\_\+is\+\_\+extension\+\_\+required (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$}]{security\+\_\+policy }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__security__policies_8c_ac2a9e12156cc5692314a3eed4b9ca0e0}\label{s2n__security__policies_8c_ac2a9e12156cc5692314a3eed4b9ca0e0}} 
 \index{s2n\_security\_policies.c@{s2n\_security\_policies.c}!s2n\_find\_security\_policy\_from\_version@{s2n\_find\_security\_policy\_from\_version}}
@@ -185,7 +185,7 @@ struct \mbox{\hyperlink{structs2n__security__policy__selection}{s2n\+\_\+securit
 \index{s2n\_security\_policies.c@{s2n\_security\_policies.c}!s2n\_pq\_kem\_is\_extension\_required@{s2n\_pq\_kem\_is\_extension\_required}}
 \index{s2n\_pq\_kem\_is\_extension\_required@{s2n\_pq\_kem\_is\_extension\_required}!s2n\_security\_policies.c@{s2n\_security\_policies.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_pq\_kem\_is\_extension\_required()}{s2n\_pq\_kem\_is\_extension\_required()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+pq\+\_\+kem\+\_\+is\+\_\+extension\+\_\+required (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$}]{security\+\_\+policy }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+pq\+\_\+kem\+\_\+is\+\_\+extension\+\_\+required (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$}]{security\+\_\+policy }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__security__policies_8c_a06f488900164c8de5d3f7d5bb34ceef7}\label{s2n__security__policies_8c_a06f488900164c8de5d3f7d5bb34ceef7}} 
 \index{s2n\_security\_policies.c@{s2n\_security\_policies.c}!s2n\_security\_policies\_init@{s2n\_security\_policies\_init}}
@@ -197,13 +197,13 @@ struct \mbox{\hyperlink{structs2n__security__policy__selection}{s2n\+\_\+securit
 \index{s2n\_security\_policies.c@{s2n\_security\_policies.c}!s2n\_security\_policy\_supports\_tls13@{s2n\_security\_policy\_supports\_tls13}}
 \index{s2n\_security\_policy\_supports\_tls13@{s2n\_security\_policy\_supports\_tls13}!s2n\_security\_policies.c@{s2n\_security\_policies.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_security\_policy\_supports\_tls13()}{s2n\_security\_policy\_supports\_tls13()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+security\+\_\+policy\+\_\+supports\+\_\+tls13 (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$}]{security\+\_\+policy }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+security\+\_\+policy\+\_\+supports\+\_\+tls13 (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__security__policy}{s2n\+\_\+security\+\_\+policy}} $\ast$}]{security\+\_\+policy }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__security__policies_8c_a223b6acafdfd73116c1f550442ac0aba}\label{s2n__security__policies_8c_a223b6acafdfd73116c1f550442ac0aba}} 
 \index{s2n\_security\_policies.c@{s2n\_security\_policies.c}!s2n\_validate\_kem\_preferences@{s2n\_validate\_kem\_preferences}}
 \index{s2n\_validate\_kem\_preferences@{s2n\_validate\_kem\_preferences}!s2n\_security\_policies.c@{s2n\_security\_policies.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_validate\_kem\_preferences()}{s2n\_validate\_kem\_preferences()}}
-{\footnotesize\ttfamily int s2n\+\_\+validate\+\_\+kem\+\_\+preferences (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__kem__preferences}{s2n\+\_\+kem\+\_\+preferences}} $\ast$}]{kem\+\_\+preferences,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{pq\+\_\+kem\+\_\+extension\+\_\+required }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int s2n\+\_\+validate\+\_\+kem\+\_\+preferences (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__kem__preferences}{s2n\+\_\+kem\+\_\+preferences}} $\ast$}]{kem\+\_\+preferences,  }\item[{bool}]{pq\+\_\+kem\+\_\+extension\+\_\+required }\end{DoxyParamCaption})}
 
 
 

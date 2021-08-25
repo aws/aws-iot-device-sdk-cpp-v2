@@ -19,18 +19,18 @@
 \DoxyCodeLine{15 }
 \DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{evp_8h}{openssl/evp.h}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <openssl/evp.h>}}
 \DoxyCodeLine{19 }
 \DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__openssl_8h}{crypto/s2n\_openssl.h}}"{}}}
 \DoxyCodeLine{21 }
 \DoxyCodeLine{22 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__evp__digest}{s2n\_evp\_digest}} \{}
-\DoxyCodeLine{23     \textcolor{keyword}{const} \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\_MD}} *\mbox{\hyperlink{structs2n__evp__digest_a3c50c7ded763387284590660ff842505}{md}};}
-\DoxyCodeLine{24     \mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\_MD\_CTX}} *\mbox{\hyperlink{structs2n__evp__digest_a3c0f19022ceac6e6ff76e3b014559e06}{ctx}};}
+\DoxyCodeLine{23     \textcolor{keyword}{const} EVP\_MD *\mbox{\hyperlink{structs2n__evp__digest_a3c50c7ded763387284590660ff842505}{md}};}
+\DoxyCodeLine{24     EVP\_MD\_CTX *\mbox{\hyperlink{structs2n__evp__digest_a3c0f19022ceac6e6ff76e3b014559e06}{ctx}};}
 \DoxyCodeLine{25 \};}
 \DoxyCodeLine{26 }
 \DoxyCodeLine{27 \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__evp__hmac__state}{s2n\_evp\_hmac\_state}} \{}
 \DoxyCodeLine{28     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__evp__digest}{s2n\_evp\_digest}} \mbox{\hyperlink{structs2n__evp__hmac__state_aa5da087a2b5ff864d182777ab64fb7d9}{evp\_digest}};}
-\DoxyCodeLine{29     \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\_PKEY}} *\mbox{\hyperlink{structs2n__evp__hmac__state_ac3aaa2698f1d0e24a4843b7c2c7c718f}{mac\_key}};}
+\DoxyCodeLine{29     EVP\_PKEY *\mbox{\hyperlink{structs2n__evp__hmac__state_ac3aaa2698f1d0e24a4843b7c2c7c718f}{mac\_key}};}
 \DoxyCodeLine{30 \};}
 \DoxyCodeLine{31 }
 \DoxyCodeLine{32 \textcolor{comment}{/* Define API's that change based on the OpenSSL Major Version. */}}

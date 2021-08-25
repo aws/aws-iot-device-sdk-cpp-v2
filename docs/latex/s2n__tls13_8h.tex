@@ -8,17 +8,17 @@
 \item 
 \mbox{\hyperlink{s2n_8h_af1c2b8586154a9094d6978137ef001ac}{S2\+N\+\_\+\+API}} \mbox{\hyperlink{s2n__tls13_8h_a7255709d3a2db7c7726a344fe72e7c31}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((deprecated)) extern int \mbox{\hyperlink{s2n__tls13_8c_a34a7d1de7cf50bd0e53a3e8e87e7cc02}{s2n\+\_\+enable\+\_\+tls13}}()
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__tls13_8h_abc1ce95d0d727580e7a1874a33bf7c26}{s2n\+\_\+use\+\_\+default\+\_\+tls13\+\_\+config}} ()
+bool \mbox{\hyperlink{s2n__tls13_8h_abc1ce95d0d727580e7a1874a33bf7c26}{s2n\+\_\+use\+\_\+default\+\_\+tls13\+\_\+config}} ()
 \item 
 int \mbox{\hyperlink{s2n__tls13_8h_aa4a420ea3b3df9836c2c79c7a09b9f2e}{s2n\+\_\+disable\+\_\+tls13}} ()
 \item 
 int \mbox{\hyperlink{s2n__tls13_8h_aca489f3709138f6d2f7b151f0fffd7e6}{s2n\+\_\+reset\+\_\+tls13}} ()
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__tls13_8h_a08ebe030106fad48c5d92182debd5ae1}{s2n\+\_\+is\+\_\+valid\+\_\+tls13\+\_\+cipher}} (const uint8\+\_\+t version\mbox{[}2\mbox{]})
+bool \mbox{\hyperlink{s2n__tls13_8h_a08ebe030106fad48c5d92182debd5ae1}{s2n\+\_\+is\+\_\+valid\+\_\+tls13\+\_\+cipher}} (const uint8\+\_\+t version\mbox{[}2\mbox{]})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__tls13_8h_a59b87eac68ac424a9b3b023502e4d97a}{s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+handshake}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+bool \mbox{\hyperlink{s2n__tls13_8h_a59b87eac68ac424a9b3b023502e4d97a}{s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+handshake}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__tls13_8h_a51365dbfc5a7da6b42476b1747bedc1b}{s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
+bool \mbox{\hyperlink{s2n__tls13_8h_a51365dbfc5a7da6b42476b1747bedc1b}{s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
 int \mbox{\hyperlink{s2n__tls13_8h_a71bed2acda1a44486b4d4b420c37590a}{s2n\+\_\+set\+\_\+hello\+\_\+retry\+\_\+required}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \end{DoxyCompactItemize}
@@ -46,19 +46,19 @@ uint8\+\_\+t \mbox{\hyperlink{s2n__tls13_8h_aa07a7cb48395c23be92c081c74a388fa}{h
 \index{s2n\_tls13.h@{s2n\_tls13.h}!s2n\_is\_hello\_retry\_handshake@{s2n\_is\_hello\_retry\_handshake}}
 \index{s2n\_is\_hello\_retry\_handshake@{s2n\_is\_hello\_retry\_handshake}!s2n\_tls13.h@{s2n\_tls13.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_is\_hello\_retry\_handshake()}{s2n\_is\_hello\_retry\_handshake()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+handshake (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+handshake (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__tls13_8h_a51365dbfc5a7da6b42476b1747bedc1b}\label{s2n__tls13_8h_a51365dbfc5a7da6b42476b1747bedc1b}} 
 \index{s2n\_tls13.h@{s2n\_tls13.h}!s2n\_is\_hello\_retry\_message@{s2n\_is\_hello\_retry\_message}}
 \index{s2n\_is\_hello\_retry\_message@{s2n\_is\_hello\_retry\_message}!s2n\_tls13.h@{s2n\_tls13.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_is\_hello\_retry\_message()}{s2n\_is\_hello\_retry\_message()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+is\+\_\+hello\+\_\+retry\+\_\+message (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__tls13_8h_a08ebe030106fad48c5d92182debd5ae1}\label{s2n__tls13_8h_a08ebe030106fad48c5d92182debd5ae1}} 
 \index{s2n\_tls13.h@{s2n\_tls13.h}!s2n\_is\_valid\_tls13\_cipher@{s2n\_is\_valid\_tls13\_cipher}}
 \index{s2n\_is\_valid\_tls13\_cipher@{s2n\_is\_valid\_tls13\_cipher}!s2n\_tls13.h@{s2n\_tls13.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_is\_valid\_tls13\_cipher()}{s2n\_is\_valid\_tls13\_cipher()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+is\+\_\+valid\+\_\+tls13\+\_\+cipher (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{version\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+is\+\_\+valid\+\_\+tls13\+\_\+cipher (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{version\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__tls13_8h_aca489f3709138f6d2f7b151f0fffd7e6}\label{s2n__tls13_8h_aca489f3709138f6d2f7b151f0fffd7e6}} 
 \index{s2n\_tls13.h@{s2n\_tls13.h}!s2n\_reset\_tls13@{s2n\_reset\_tls13}}
@@ -76,7 +76,7 @@ uint8\+\_\+t \mbox{\hyperlink{s2n__tls13_8h_aa07a7cb48395c23be92c081c74a388fa}{h
 \index{s2n\_tls13.h@{s2n\_tls13.h}!s2n\_use\_default\_tls13\_config@{s2n\_use\_default\_tls13\_config}}
 \index{s2n\_use\_default\_tls13\_config@{s2n\_use\_default\_tls13\_config}!s2n\_tls13.h@{s2n\_tls13.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_use\_default\_tls13\_config()}{s2n\_use\_default\_tls13\_config()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+use\+\_\+default\+\_\+tls13\+\_\+config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+use\+\_\+default\+\_\+tls13\+\_\+config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 

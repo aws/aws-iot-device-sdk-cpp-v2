@@ -39,7 +39,7 @@ struct \mbox{\hyperlink{structs2n__stacktrace}{s2n\+\_\+stacktrace}}
 \item 
 \#define \mbox{\hyperlink{s2n__errno_8h_a744406e4f809ffb684fce4dcf7f09b46}{\+\_\+\+S2\+N\+\_\+\+DEBUG\+\_\+\+LINE}}~\char`\"{}Error encountered in \char`\"{} \+\_\+\+\_\+\+FILE\+\_\+\+\_\+ \char`\"{} line \char`\"{} STRING\+\_\+\+\_\+\+LINE\+\_\+\+\_\+
 \item 
-\#define \mbox{\hyperlink{s2n__errno_8h_a8ff0ec4c8bae4bf113b902bbcbb5c217}{\+\_\+\+S2\+N\+\_\+\+ERROR}}(x)~do \{ \mbox{\hyperlink{s2n__errno_8h_aa49f28a1b495ce5ff49417b96a9972f5}{s2n\+\_\+debug\+\_\+str}} = \mbox{\hyperlink{s2n__errno_8h_a744406e4f809ffb684fce4dcf7f09b46}{\+\_\+\+S2\+N\+\_\+\+DEBUG\+\_\+\+LINE}}; \mbox{\hyperlink{error_2s2n__errno_8c_a40090b57614b9677d4cbcdd3c3276e7d}{s2n\+\_\+errno}} = ( x ); \mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__errno_8c_a6e68e1334f36bdd03f6a42a1a2cdcef3}{s2n\+\_\+calculate\+\_\+stacktrace}}(); \} while (0)
+\#define \mbox{\hyperlink{s2n__errno_8h_a8ff0ec4c8bae4bf113b902bbcbb5c217}{\+\_\+\+S2\+N\+\_\+\+ERROR}}(x)~do \{ \mbox{\hyperlink{s2n__errno_8h_aa49f28a1b495ce5ff49417b96a9972f5}{s2n\+\_\+debug\+\_\+str}} = \mbox{\hyperlink{s2n__errno_8h_a744406e4f809ffb684fce4dcf7f09b46}{\+\_\+\+S2\+N\+\_\+\+DEBUG\+\_\+\+LINE}}; \mbox{\hyperlink{s2n__errno_8c_a40090b57614b9677d4cbcdd3c3276e7d}{s2n\+\_\+errno}} = ( x ); \mbox{\hyperlink{s2n__errno_8h_a6e68e1334f36bdd03f6a42a1a2cdcef3}{s2n\+\_\+calculate\+\_\+stacktrace}}(); \} while (0)
 \item 
 \#define \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}(x)~do \{ \mbox{\hyperlink{s2n__errno_8h_a8ff0ec4c8bae4bf113b902bbcbb5c217}{\+\_\+\+S2\+N\+\_\+\+ERROR}}( ( x ) ); return -\/1; \} while (0)
 \item 
@@ -47,11 +47,11 @@ struct \mbox{\hyperlink{structs2n__stacktrace}{s2n\+\_\+stacktrace}}
 \item 
 \#define \mbox{\hyperlink{s2n__errno_8h_a646d14078a34eb9c7388c22f83ce171c}{S2\+N\+\_\+\+ERROR\+\_\+\+PTR}}(x)~do \{ \mbox{\hyperlink{s2n__errno_8h_a8ff0ec4c8bae4bf113b902bbcbb5c217}{\+\_\+\+S2\+N\+\_\+\+ERROR}}( ( x ) ); return NULL; \} while (0)
 \item 
-\#define \mbox{\hyperlink{s2n__errno_8h_aeecc0d576290d5e08683d4b7789ef349}{S2\+N\+\_\+\+ERROR\+\_\+\+IF}}(cond,  x)~do \{ \mbox{\hyperlink{connection__state__test_8c_a0028ec690a2d04dca42f6fd3dee7f3bd}{if}} ( cond ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}( x ); \}\} while (0)
+\#define \mbox{\hyperlink{s2n__errno_8h_aeecc0d576290d5e08683d4b7789ef349}{S2\+N\+\_\+\+ERROR\+\_\+\+IF}}(cond,  x)~do \{ if ( cond ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}( x ); \}\} while (0)
 \item 
-\#define \mbox{\hyperlink{s2n__errno_8h_a22de1f0eebebee1d5d4c193a7e671f98}{S2\+N\+\_\+\+ERROR\+\_\+\+IF\+\_\+\+PTR}}(cond,  x)~do \{ \mbox{\hyperlink{connection__state__test_8c_a0028ec690a2d04dca42f6fd3dee7f3bd}{if}} ( cond ) \{ \mbox{\hyperlink{s2n__errno_8h_a646d14078a34eb9c7388c22f83ce171c}{S2\+N\+\_\+\+ERROR\+\_\+\+PTR}}( x ); \}\} while (0)
+\#define \mbox{\hyperlink{s2n__errno_8h_a22de1f0eebebee1d5d4c193a7e671f98}{S2\+N\+\_\+\+ERROR\+\_\+\+IF\+\_\+\+PTR}}(cond,  x)~do \{ if ( cond ) \{ \mbox{\hyperlink{s2n__errno_8h_a646d14078a34eb9c7388c22f83ce171c}{S2\+N\+\_\+\+ERROR\+\_\+\+PTR}}( x ); \}\} while (0)
 \item 
-\#define \mbox{\hyperlink{s2n__errno_8h_a5866e7dc3523fcd703e13668eb5a8143}{S2\+N\+\_\+\+ERROR\+\_\+\+IS\+\_\+\+BLOCKING}}(x)~( \mbox{\hyperlink{error_2s2n__errno_8c_a526856aac3b44999c3f716a3df648da1}{s2n\+\_\+error\+\_\+get\+\_\+type}}(x) == \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a5bcbdbf63fe745654c4ae0fb8d28bbd2}{S2\+N\+\_\+\+ERR\+\_\+\+T\+\_\+\+BLOCKED}} )
+\#define \mbox{\hyperlink{s2n__errno_8h_a5866e7dc3523fcd703e13668eb5a8143}{S2\+N\+\_\+\+ERROR\+\_\+\+IS\+\_\+\+BLOCKING}}(x)~( \mbox{\hyperlink{s2n__errno_8c_a526856aac3b44999c3f716a3df648da1}{s2n\+\_\+error\+\_\+get\+\_\+type}}(x) == \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a5bcbdbf63fe745654c4ae0fb8d28bbd2}{S2\+N\+\_\+\+ERR\+\_\+\+T\+\_\+\+BLOCKED}} )
 \item 
 \#define \mbox{\hyperlink{s2n__errno_8h_aea3771f79b5a403a9abcf6e576f3381a}{S2\+N\+\_\+\+OBJECT\+\_\+\+PTR\+\_\+\+IS\+\_\+\+READABLE}}(ptr)~((ptr) != NULL)
 \item 
@@ -328,9 +328,9 @@ enum \mbox{\hyperlink{s2n__errno_8h_a64ed9ec59a957387654c5e5865325374}{s2n\+\_\+
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__errno_8h_a1cc521c7e67e6f74a43252e47b96d157}{s2n\+\_\+stack\+\_\+traces\+\_\+enabled}} ()
+bool \mbox{\hyperlink{s2n__errno_8h_a1cc521c7e67e6f74a43252e47b96d157}{s2n\+\_\+stack\+\_\+traces\+\_\+enabled}} ()
 \item 
-int \mbox{\hyperlink{s2n__errno_8h_aa2f3c467dc21f58b5b241f4faa950eaa}{s2n\+\_\+stack\+\_\+traces\+\_\+enabled\+\_\+set}} (\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} newval)
+int \mbox{\hyperlink{s2n__errno_8h_aa2f3c467dc21f58b5b241f4faa950eaa}{s2n\+\_\+stack\+\_\+traces\+\_\+enabled\+\_\+set}} (bool newval)
 \item 
 int \mbox{\hyperlink{s2n__errno_8h_a6e68e1334f36bdd03f6a42a1a2cdcef3}{s2n\+\_\+calculate\+\_\+stacktrace}} (void)
 \item 
@@ -358,7 +358,7 @@ int \mbox{\hyperlink{s2n__errno_8h_a8ec528859087926493b386725ba34ed7}{s2n\+\_\+g
 \index{s2n\_errno.h@{s2n\_errno.h}!\_S2N\_ERROR@{\_S2N\_ERROR}}
 \index{\_S2N\_ERROR@{\_S2N\_ERROR}!s2n\_errno.h@{s2n\_errno.h}}
 \doxysubsubsection{\texorpdfstring{\_S2N\_ERROR}{\_S2N\_ERROR}}
-{\footnotesize\ttfamily \#define \+\_\+\+S2\+N\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{s2n__errno_8h_aa49f28a1b495ce5ff49417b96a9972f5}{s2n\+\_\+debug\+\_\+str}} = \mbox{\hyperlink{s2n__errno_8h_a744406e4f809ffb684fce4dcf7f09b46}{\+\_\+\+S2\+N\+\_\+\+DEBUG\+\_\+\+LINE}}; \mbox{\hyperlink{error_2s2n__errno_8c_a40090b57614b9677d4cbcdd3c3276e7d}{s2n\+\_\+errno}} = ( x ); \mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__errno_8c_a6e68e1334f36bdd03f6a42a1a2cdcef3}{s2n\+\_\+calculate\+\_\+stacktrace}}(); \} while (0)}
+{\footnotesize\ttfamily \#define \+\_\+\+S2\+N\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{s2n__errno_8h_aa49f28a1b495ce5ff49417b96a9972f5}{s2n\+\_\+debug\+\_\+str}} = \mbox{\hyperlink{s2n__errno_8h_a744406e4f809ffb684fce4dcf7f09b46}{\+\_\+\+S2\+N\+\_\+\+DEBUG\+\_\+\+LINE}}; \mbox{\hyperlink{s2n__errno_8c_a40090b57614b9677d4cbcdd3c3276e7d}{s2n\+\_\+errno}} = ( x ); \mbox{\hyperlink{s2n__errno_8h_a6e68e1334f36bdd03f6a42a1a2cdcef3}{s2n\+\_\+calculate\+\_\+stacktrace}}(); \} while (0)}
 
 \mbox{\Hypertarget{s2n__errno_8h_aeaf53ba302f9c5b3028e84f0d9c20985}\label{s2n__errno_8h_aeaf53ba302f9c5b3028e84f0d9c20985}} 
 \index{s2n\_errno.h@{s2n\_errno.h}!S2N\_DEBUG\_STR\_LEN@{S2N\_DEBUG\_STR\_LEN}}
@@ -430,19 +430,19 @@ int \mbox{\hyperlink{s2n__errno_8h_a8ec528859087926493b386725ba34ed7}{s2n\+\_\+g
 \index{s2n\_errno.h@{s2n\_errno.h}!S2N\_ERROR\_IF@{S2N\_ERROR\_IF}}
 \index{S2N\_ERROR\_IF@{S2N\_ERROR\_IF}!s2n\_errno.h@{s2n\_errno.h}}
 \doxysubsubsection{\texorpdfstring{S2N\_ERROR\_IF}{S2N\_ERROR\_IF}}
-{\footnotesize\ttfamily \#define S2\+N\+\_\+\+ERROR\+\_\+\+IF(\begin{DoxyParamCaption}\item[{}]{cond,  }\item[{}]{x }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{connection__state__test_8c_a0028ec690a2d04dca42f6fd3dee7f3bd}{if}} ( cond ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}( x ); \}\} while (0)}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+ERROR\+\_\+\+IF(\begin{DoxyParamCaption}\item[{}]{cond,  }\item[{}]{x }\end{DoxyParamCaption})~do \{ if ( cond ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}( x ); \}\} while (0)}
 
 \mbox{\Hypertarget{s2n__errno_8h_a22de1f0eebebee1d5d4c193a7e671f98}\label{s2n__errno_8h_a22de1f0eebebee1d5d4c193a7e671f98}} 
 \index{s2n\_errno.h@{s2n\_errno.h}!S2N\_ERROR\_IF\_PTR@{S2N\_ERROR\_IF\_PTR}}
 \index{S2N\_ERROR\_IF\_PTR@{S2N\_ERROR\_IF\_PTR}!s2n\_errno.h@{s2n\_errno.h}}
 \doxysubsubsection{\texorpdfstring{S2N\_ERROR\_IF\_PTR}{S2N\_ERROR\_IF\_PTR}}
-{\footnotesize\ttfamily \#define S2\+N\+\_\+\+ERROR\+\_\+\+IF\+\_\+\+PTR(\begin{DoxyParamCaption}\item[{}]{cond,  }\item[{}]{x }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{connection__state__test_8c_a0028ec690a2d04dca42f6fd3dee7f3bd}{if}} ( cond ) \{ \mbox{\hyperlink{s2n__errno_8h_a646d14078a34eb9c7388c22f83ce171c}{S2\+N\+\_\+\+ERROR\+\_\+\+PTR}}( x ); \}\} while (0)}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+ERROR\+\_\+\+IF\+\_\+\+PTR(\begin{DoxyParamCaption}\item[{}]{cond,  }\item[{}]{x }\end{DoxyParamCaption})~do \{ if ( cond ) \{ \mbox{\hyperlink{s2n__errno_8h_a646d14078a34eb9c7388c22f83ce171c}{S2\+N\+\_\+\+ERROR\+\_\+\+PTR}}( x ); \}\} while (0)}
 
 \mbox{\Hypertarget{s2n__errno_8h_a5866e7dc3523fcd703e13668eb5a8143}\label{s2n__errno_8h_a5866e7dc3523fcd703e13668eb5a8143}} 
 \index{s2n\_errno.h@{s2n\_errno.h}!S2N\_ERROR\_IS\_BLOCKING@{S2N\_ERROR\_IS\_BLOCKING}}
 \index{S2N\_ERROR\_IS\_BLOCKING@{S2N\_ERROR\_IS\_BLOCKING}!s2n\_errno.h@{s2n\_errno.h}}
 \doxysubsubsection{\texorpdfstring{S2N\_ERROR\_IS\_BLOCKING}{S2N\_ERROR\_IS\_BLOCKING}}
-{\footnotesize\ttfamily \#define S2\+N\+\_\+\+ERROR\+\_\+\+IS\+\_\+\+BLOCKING(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~( \mbox{\hyperlink{error_2s2n__errno_8c_a526856aac3b44999c3f716a3df648da1}{s2n\+\_\+error\+\_\+get\+\_\+type}}(x) == \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a5bcbdbf63fe745654c4ae0fb8d28bbd2}{S2\+N\+\_\+\+ERR\+\_\+\+T\+\_\+\+BLOCKED}} )}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+ERROR\+\_\+\+IS\+\_\+\+BLOCKING(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~( \mbox{\hyperlink{s2n__errno_8c_a526856aac3b44999c3f716a3df648da1}{s2n\+\_\+error\+\_\+get\+\_\+type}}(x) == \mbox{\hyperlink{s2n_8h_a41f8ab66d28ce2f33fa8dbf858c0ac44a5bcbdbf63fe745654c4ae0fb8d28bbd2}{S2\+N\+\_\+\+ERR\+\_\+\+T\+\_\+\+BLOCKED}} )}
 
 \mbox{\Hypertarget{s2n__errno_8h_a92ba6de5b529656b6be2589f611ff456}\label{s2n__errno_8h_a92ba6de5b529656b6be2589f611ff456}} 
 \index{s2n\_errno.h@{s2n\_errno.h}!S2N\_ERROR\_PRESERVE\_ERRNO@{S2N\_ERROR\_PRESERVE\_ERRNO}}
@@ -1368,13 +1368,13 @@ S2\+N\+\_\+\+ERR\+\_\+\+T\+\_\+\+USAGE\+\_\+\+END&\\
 \index{s2n\_errno.h@{s2n\_errno.h}!s2n\_stack\_traces\_enabled@{s2n\_stack\_traces\_enabled}}
 \index{s2n\_stack\_traces\_enabled@{s2n\_stack\_traces\_enabled}!s2n\_errno.h@{s2n\_errno.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_stack\_traces\_enabled()}{s2n\_stack\_traces\_enabled()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+stack\+\_\+traces\+\_\+enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+stack\+\_\+traces\+\_\+enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__errno_8h_aa2f3c467dc21f58b5b241f4faa950eaa}\label{s2n__errno_8h_aa2f3c467dc21f58b5b241f4faa950eaa}} 
 \index{s2n\_errno.h@{s2n\_errno.h}!s2n\_stack\_traces\_enabled\_set@{s2n\_stack\_traces\_enabled\_set}}
 \index{s2n\_stack\_traces\_enabled\_set@{s2n\_stack\_traces\_enabled\_set}!s2n\_errno.h@{s2n\_errno.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_stack\_traces\_enabled\_set()}{s2n\_stack\_traces\_enabled\_set()}}
-{\footnotesize\ttfamily int s2n\+\_\+stack\+\_\+traces\+\_\+enabled\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{newval }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int s2n\+\_\+stack\+\_\+traces\+\_\+enabled\+\_\+set (\begin{DoxyParamCaption}\item[{bool}]{newval }\end{DoxyParamCaption})}
 
 
 

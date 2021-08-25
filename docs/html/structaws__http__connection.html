@@ -92,26 +92,26 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ac3d1ea5f2b0004e3bd5b438fa47fccfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42cb90b1fdc543077cce874b6d6795a7"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection.html#a42cb90b1fdc543077cce874b6d6795a7">next_stream_id</a></td></tr>
 <tr class="separator:a42cb90b1fdc543077cce874b6d6795a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f06484bad4bc0c9b542f508d69f6bdd"><td class="memItemLeft" >union {</td></tr>
-<tr class="memitem:a38fab42baeb46e6cf8967df3ab0d46e9"><td class="memItemLeft" >&#160;&#160;&#160;struct <b>aws_http_connection_client_data</b> {</td></tr>
-<tr class="memitem:a1028b3a2456f5f2659dcc0ab5cee2395"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#abf65d703c216b834eb4073c87bc4a8eb">delete_me</a></td></tr>
-<tr class="separator:a1028b3a2456f5f2659dcc0ab5cee2395"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38fab42baeb46e6cf8967df3ab0d46e9"><td class="memItemLeft" valign="top">&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#aa4e74112a2484d4af4ff86c4b1f072c7">client</a></td></tr>
-<tr class="separator:a38fab42baeb46e6cf8967df3ab0d46e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4725a208f18e15371182f1f01dc020aa"><td class="memItemLeft" >&#160;&#160;&#160;struct <b>aws_http_connection_server_data</b> {</td></tr>
-<tr class="memitem:ab1b5fb3daccc25a043e57a632a3505fd"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="server_8h.html#af6effccb7b5a98a71a0e839aca506eca">aws_http_on_incoming_request_fn</a> *&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#af402c851366a999f97be5e9f0165a605">on_incoming_request</a></td></tr>
-<tr class="separator:ab1b5fb3daccc25a043e57a632a3505fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade7f380c79b91e861ba780ed1862bd13"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="server_8h.html#a721b690df7d3a9102e0e3dd49208cac4">aws_http_on_server_connection_shutdown_fn</a> *&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#a1714090eeb163ba171a88f8f59cb2d06">on_shutdown</a></td></tr>
-<tr class="separator:ade7f380c79b91e861ba780ed1862bd13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4725a208f18e15371182f1f01dc020aa"><td class="memItemLeft" valign="top">&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#a57676dfa2b198e7396e8757f38697e6b">server</a></td></tr>
-<tr class="separator:a4725a208f18e15371182f1f01dc020aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f06484bad4bc0c9b542f508d69f6bdd"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection.html#a2f06484bad4bc0c9b542f508d69f6bdd">client_or_server_data</a></td></tr>
-<tr class="separator:a2f06484bad4bc0c9b542f508d69f6bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39729677c843b96cfe87115f8758ad3c"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:a432bccfec19365af5ef8b0d6457d36f8"><td class="memItemLeft" >&#160;&#160;&#160;struct <b>aws_http_connection_client_data</b> {</td></tr>
+<tr class="memitem:a512308ebca68d5d5b36f3aac23d09da9"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#abf65d703c216b834eb4073c87bc4a8eb">delete_me</a></td></tr>
+<tr class="separator:a512308ebca68d5d5b36f3aac23d09da9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a432bccfec19365af5ef8b0d6457d36f8"><td class="memItemLeft" valign="top">&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#acd4e09c2be0a9aa439f5a057df9fb799">client</a></td></tr>
+<tr class="separator:a432bccfec19365af5ef8b0d6457d36f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4ce86e13a731af653230bdee7fae8e0"><td class="memItemLeft" >&#160;&#160;&#160;struct <b>aws_http_connection_server_data</b> {</td></tr>
+<tr class="memitem:a844bdcf78c730b225b5b933d8d91df62"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="server_8h.html#af6effccb7b5a98a71a0e839aca506eca">aws_http_on_incoming_request_fn</a> *&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#af402c851366a999f97be5e9f0165a605">on_incoming_request</a></td></tr>
+<tr class="separator:a844bdcf78c730b225b5b933d8d91df62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6bb8e6727d19f2a3fc1c91c5656ee67"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="server_8h.html#a721b690df7d3a9102e0e3dd49208cac4">aws_http_on_server_connection_shutdown_fn</a> *&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#a1714090eeb163ba171a88f8f59cb2d06">on_shutdown</a></td></tr>
+<tr class="separator:af6bb8e6727d19f2a3fc1c91c5656ee67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4ce86e13a731af653230bdee7fae8e0"><td class="memItemLeft" valign="top">&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="structaws__http__connection.html#a25c04f43796331abc801431edcf4f123">server</a></td></tr>
+<tr class="separator:ad4ce86e13a731af653230bdee7fae8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39729677c843b96cfe87115f8758ad3c"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection.html#a39729677c843b96cfe87115f8758ad3c">client_or_server_data</a></td></tr>
+<tr class="separator:a39729677c843b96cfe87115f8758ad3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b25389d61d2c120bbdd502ef3e43614"><td class="memItemLeft" align="right" valign="top">struct aws_http_connection_client_data *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection.html#a6b25389d61d2c120bbdd502ef3e43614">client_data</a></td></tr>
 <tr class="separator:a6b25389d61d2c120bbdd502ef3e43614"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a689ee3d3e83639fbfaf4f9696248fe6e"><td class="memItemLeft" align="right" valign="top">struct aws_http_connection_server_data *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection.html#a689ee3d3e83639fbfaf4f9696248fe6e">server_data</a></td></tr>
 <tr class="separator:a689ee3d3e83639fbfaf4f9696248fe6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94d687437ce0bddb27df2da83db2b646"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection.html#a94d687437ce0bddb27df2da83db2b646">manual_window_management</a></td></tr>
+<tr class="memitem:a94d687437ce0bddb27df2da83db2b646"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__http__connection.html#a94d687437ce0bddb27df2da83db2b646">manual_window_management</a></td></tr>
 <tr class="separator:a94d687437ce0bddb27df2da83db2b646"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -159,8 +159,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa4e74112a2484d4af4ff86c4b1f072c7" name="aa4e74112a2484d4af4ff86c4b1f072c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4e74112a2484d4af4ff86c4b1f072c7">&#9670;&nbsp;</a></span></h2>
+<a id="acd4e09c2be0a9aa439f5a057df9fb799" name="acd4e09c2be0a9aa439f5a057df9fb799"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd4e09c2be0a9aa439f5a057df9fb799">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,8 +187,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a2f06484bad4bc0c9b542f508d69f6bdd" name="a2f06484bad4bc0c9b542f508d69f6bdd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f06484bad4bc0c9b542f508d69f6bdd">&#9670;&nbsp;</a></span></h2>
+<a id="a39729677c843b96cfe87115f8758ad3c" name="a39729677c843b96cfe87115f8758ad3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39729677c843b96cfe87115f8758ad3c">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,7 +236,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_http_connection::manual_window_management</td>
+          <td class="memname">bool aws_http_connection::manual_window_management</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -313,8 +313,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a57676dfa2b198e7396e8757f38697e6b" name="a57676dfa2b198e7396e8757f38697e6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57676dfa2b198e7396e8757f38697e6b">&#9670;&nbsp;</a></span></h2>
+<a id="a25c04f43796331abc801431edcf4f123" name="a25c04f43796331abc801431edcf4f123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25c04f43796331abc801431edcf4f123">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">

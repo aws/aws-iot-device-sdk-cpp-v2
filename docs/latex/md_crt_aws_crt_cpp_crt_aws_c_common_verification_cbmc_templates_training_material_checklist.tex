@@ -23,7 +23,7 @@ and that these answers can be found in one of three places\+:
 \item The proof readme file.
 \end{DoxyItemize}
 
-The best practices for writing a proof are described in the section \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g}{How to Write a CBMC Proof}} of the \mbox{\hyperlink{index_md_README}{training material}} in this \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates__r_e_a_d_m_e}{starter kit}}. Reviewers should keep these best practices in mind when reading a proof. We recommend that any deviations from best practices be explained in the readme file.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md122}{}\doxysection{Properties checked}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md122}
+The best practices for writing a proof are described in the section \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g}{How to Write a CBMC Proof}} of the \mbox{\hyperlink{index_md_README}{training material}} in this \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates__r_e_a_d_m_e}{starter kit}}. Reviewers should keep these best practices in mind when reading a proof. We recommend that any deviations from best practices be explained in the readme file.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md121}{}\doxysection{Properties checked}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md121}
 Check the following\+:
 
 
@@ -51,7 +51,7 @@ Note that the starter kit uses these flags by default. Note, however, that a dev
 There are valid reasons to omit flags either for a project or for an individual proof. But the decision and the reason for the decision must be documented either in a project readme or a proof readme file.
 \end{DoxyItemize}
 
-CBMC checks assertions in the code. This is understood and need not be documented.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md123}{}\doxysection{Assumptions made}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md123}
+CBMC checks assertions in the code. This is understood and need not be documented.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md122}{}\doxysection{Assumptions made}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md122}
 Check the following\+:
 
 
@@ -75,7 +75,7 @@ In particular, do not embed definitions in the supporting code or header files. 
 \item Confirm that all stubs used in the proof are acceptable abstractions of the actual code.
 
 Acceptable could mean simply that every behavior of the original code is a behavior of the abstraction.
-\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md124}{}\doxysection{Results checked}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md124}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md123}{}\doxysection{Results checked}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md123}
 Look at the report in the checks attached to the pull request.
 
 
@@ -83,7 +83,7 @@ Look at the report in the checks attached to the pull request.
 \item Confirm that the coverage is acceptable and confirm that the readme file explains the reason for any lines not covered.
 \item Confirm that the list of missing functions is acceptable.
 \item Confirm that there are no errors reported.
-\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md125}{}\doxysection{Other things to consider}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md125}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md124}{}\doxysection{Other things to consider}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material_checklist_autotoc_md124}
 
 \begin{DoxyItemize}
 \item Consider writing function contracts for the function under test as described in \mbox{\hyperlink{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g}{How to Write a CBMC Proof}} of the \mbox{\hyperlink{index_md_README}{training material}}. The check list above ensures that the properties (including the assumptions about the input) that must be true before function invocation are clearly stated in the proof harness. Consider adding a statement of what properties must be true after function invocation as assertions at the end of the proof harness.

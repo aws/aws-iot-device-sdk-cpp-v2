@@ -1,6 +1,6 @@
-C99 implementation of the HTTP/1.\+1 and HTTP/2 specifications\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md234}{}\doxysection{License}\label{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md234}
-This library is licensed under the Apache 2.\+0 License.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md235}{}\doxysection{Usage}\label{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md235}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md236}{}\doxysubsubsection{Building s2n (\+Linux Only)}\label{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md236}
+C99 implementation of the HTTP/1.\+1 and HTTP/2 specifications\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md233}{}\doxysection{License}\label{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md233}
+This library is licensed under the Apache 2.\+0 License.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md234}{}\doxysection{Usage}\label{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md234}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md235}{}\doxysubsubsection{Building s2n (\+Linux Only)}\label{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md235}
 If you are building on Linux, you will need to build s2n before being able to build aws-\/c-\/io, which is a dependency for aws-\/c-\/http. For our CRT\textquotesingle{}s, we build s2n at a specific commit, and recommend doing the same when using it with this library. That commit hash can be found \href{https://github.com/awslabs/aws-crt-cpp/tree/main/aws-common-runtime}{\texttt{ here}}. The commands below will build s2n using Open\+SSL 1.\+1.\+1. For using other versions of Open\+SSL, there is additional information in the \href{https://github.com/awslabs/s2n/blob/main/docs/USAGE-GUIDE.md}{\texttt{ s2n Usage Guide}}.
 
 
@@ -33,7 +33,7 @@ If you are building on Linux, you will need to build s2n before being able to bu
 \DoxyCodeLine{cmake -\/-\/build s2n/build -\/-\/target install}
 
 \end{DoxyCode}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md237}{}\doxysubsubsection{Building aws-\/c-\/http and Remaining Dependencies}\label{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md237}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md236}{}\doxysubsubsection{Building aws-\/c-\/http and Remaining Dependencies}\label{md_crt_aws_crt_cpp_crt_aws_c_http__r_e_a_d_m_e_autotoc_md236}
 Note that aws-\/c-\/http has several dependencies that need to be built.
 
 

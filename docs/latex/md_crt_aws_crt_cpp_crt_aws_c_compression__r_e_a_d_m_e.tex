@@ -1,6 +1,6 @@
-This is a cross-\/platform C99 implementation of compression algorithms such as gzip, and huffman encoding/decoding. Currently only huffman is implemented.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md185}{}\doxysection{License}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md185}
-This library is licensed under the Apache 2.\+0 License.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md186}{}\doxysection{Usage}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md186}
-This library has a strong dependency on \href{https://github.com/awslabs/aws-c-common}{\texttt{ aws-\/c-\/common}}. Please see that repository\textquotesingle{}s \href{https://github.com/awslabs/aws-c-common/blob/master/README.md}{\texttt{ README.\+md}} for information on how to install it.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md187}{}\doxysubsection{Huffman}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md187}
+This is a cross-\/platform C99 implementation of compression algorithms such as gzip, and huffman encoding/decoding. Currently only huffman is implemented.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md184}{}\doxysection{License}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md184}
+This library is licensed under the Apache 2.\+0 License.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md185}{}\doxysection{Usage}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md185}
+This library has a strong dependency on \href{https://github.com/awslabs/aws-c-common}{\texttt{ aws-\/c-\/common}}. Please see that repository\textquotesingle{}s \href{https://github.com/awslabs/aws-c-common/blob/master/README.md}{\texttt{ README.\+md}} for information on how to install it.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md186}{}\doxysubsection{Huffman}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md186}
 The Huffman implemention in this library is designed around the concept of a generic \char`\"{}symbol coder\char`\"{} object, which defines how each symbol (value between 0 and 255) is encoded and decoded. This object looks like this\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__huffman__code}{aws\_huffman\_code}} (*aws\_huffman\_symbol\_encoder)(uint8\_t symbol, \textcolor{keywordtype}{void} *userdata);}
@@ -23,8 +23,8 @@ The Huffman implemention in this library is designed around the concept of a gen
 The table definition file should be in the following format\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{comment}{/*           sym               bits   code len */}}
-\DoxyCodeLine{\mbox{\hyperlink{testing_2compression_2huffman_8h_ad33f352c33f5b3fdce87fd856455a905}{HUFFMAN\_CODE}}(  0,      \textcolor{stringliteral}{"{}1100101110"{}}, 0x32e, 10)}
-\DoxyCodeLine{\mbox{\hyperlink{testing_2compression_2huffman_8h_ad33f352c33f5b3fdce87fd856455a905}{HUFFMAN\_CODE}}(  1,      "{}1100101111"{}, 0x32f, 10)}
+\DoxyCodeLine{HUFFMAN\_CODE(  0,      \textcolor{stringliteral}{"{}1100101110"{}}, 0x32e, 10)}
+\DoxyCodeLine{HUFFMAN\_CODE(  1,      "{}1100101111"{}, 0x32f, 10)}
 \DoxyCodeLine{\textcolor{comment}{/* ... */}}
 
 \end{DoxyCode}
@@ -40,9 +40,9 @@ The table definition file should be in the following format\+:
 \#\#\#\# Note This file may also be {\ttfamily \#include}d in the following way to generate a static list of codes\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{comment}{/* Provides the HUFFMAN\_CODE macro */}}
-\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{testing_2compression_2huffman_8h}{aws/testing/compression/huffman.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <aws/testing/compression/huffman.h>}}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keyword}{struct }\mbox{\hyperlink{structhuffman__test__code__point}{huffman\_test\_code\_point}} \mbox{\hyperlink{generator_8c_abed2c35818733bc0405f93692efa135a}{code\_points}}[] = \{}
+\DoxyCodeLine{\textcolor{keyword}{static} \textcolor{keyword}{struct }huffman\_test\_code\_point \mbox{\hyperlink{generator_8c_abed2c35818733bc0405f93692efa135a}{code\_points}}[] = \{}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include "{}test\_huffman\_static\_table.def"{}}}
 \DoxyCodeLine{\};}
 
@@ -60,63 +60,63 @@ An example implementation of this file is provided in {\ttfamily tests/test\+\_\
 To use the coder, forward declare that function, and pass the result as the second argument to {\ttfamily aws\+\_\+huffman\+\_\+encoder\+\_\+init} and {\ttfamily aws\+\_\+huffman\+\_\+decoder\+\_\+init}. 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__huffman__encoder}{aws\_huffman\_encoder}} encoder;}
-\DoxyCodeLine{\mbox{\hyperlink{compression_2huffman_8h_aef42048ee2ee54c445163ca4dfb05b84}{aws\_huffman\_encoder\_init}}(\&encoder, \{coder\_name\}\_get\_coder());}
+\DoxyCodeLine{\mbox{\hyperlink{huffman_8h_aef42048ee2ee54c445163ca4dfb05b84}{aws\_huffman\_encoder\_init}}(\&encoder, \{coder\_name\}\_get\_coder());}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__huffman__decoder}{aws\_huffman\_decoder}} decoder;}
-\DoxyCodeLine{\mbox{\hyperlink{compression_2huffman_8h_acbe357203649d987303f9194d7cf2c7c}{aws\_huffman\_decoder\_init}}(\&decoder, \{coder\_name\}\_get\_coder())}
+\DoxyCodeLine{\mbox{\hyperlink{huffman_8h_acbe357203649d987303f9194d7cf2c7c}{aws\_huffman\_decoder\_init}}(\&decoder, \{coder\_name\}\_get\_coder())}
 
 \end{DoxyCode}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md188}{}\doxysubsubsection{Encoding}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md188}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md187}{}\doxysubsubsection{Encoding}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md187}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{compression_2huffman_8h_abb6619ecad41953fa7c46a4577a9a6a7}{aws\_huffman\_encode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__huffman__encoder}{aws\_huffman\_encoder}} *encoder, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *to\_encode, \textcolor{keywordtype}{size\_t} *\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, uint8\_t *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \textcolor{keywordtype}{size\_t} *output\_size);}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{huffman_8h_abb6619ecad41953fa7c46a4577a9a6a7}{aws\_huffman\_encode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__huffman__encoder}{aws\_huffman\_encoder}} *encoder, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *to\_encode, \textcolor{keywordtype}{size\_t} *\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}, uint8\_t *output, \textcolor{keywordtype}{size\_t} *output\_size);}
 
 \end{DoxyCode}
  The encoder is built to support partial encoding. This means that if there isn\textquotesingle{}t enough space in {\ttfamily output}, the encoder will encode as much as possible, update {\ttfamily length} to indicate how much was consumed, {\ttfamily output\+\_\+size} won\textquotesingle{}t change, and {\ttfamily AWS\+\_\+\+ERROR\+\_\+\+SHORT\+\_\+\+BUFFER} will be raised. {\ttfamily aws\+\_\+huffman\+\_\+encode} may then be called again like the following pseudo-\/code\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keywordtype}{void} encode\_and\_send(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *to\_encode, \textcolor{keywordtype}{size\_t} size) \{}
 \DoxyCodeLine{    \textcolor{keywordflow}{while} (size > 0) \{}
-\DoxyCodeLine{        uint8\_t \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}[some\_chunk\_size];}
-\DoxyCodeLine{        \textcolor{keywordtype}{size\_t} output\_size = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{        uint8\_t output[some\_chunk\_size];}
+\DoxyCodeLine{        \textcolor{keywordtype}{size\_t} output\_size = \textcolor{keyword}{sizeof}(output);}
 \DoxyCodeLine{        \textcolor{keywordtype}{size\_t} bytes\_read = size;}
-\DoxyCodeLine{        \mbox{\hyperlink{compression_2huffman_8h_abb6619ecad41953fa7c46a4577a9a6a7}{aws\_huffman\_encode}}(encoder, to\_encode, \&bytes\_read, \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \&output\_size);}
+\DoxyCodeLine{        \mbox{\hyperlink{huffman_8h_abb6619ecad41953fa7c46a4577a9a6a7}{aws\_huffman\_encode}}(encoder, to\_encode, \&bytes\_read, output, \&output\_size);}
 \DoxyCodeLine{        \textcolor{comment}{/* AWS\_ERROR\_SHORT\_BUFFER was raised... */}}
-\DoxyCodeLine{        send\_output\_to\_someone\_else(\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, output\_size);}
+\DoxyCodeLine{        send\_output\_to\_someone\_else(output, output\_size);}
 \DoxyCodeLine{}
 \DoxyCodeLine{        to\_encode += bytes\_read;}
 \DoxyCodeLine{        size -\/= bytes\_read;}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{    \textcolor{comment}{/* Be sure to reset the encoder after use */}}
-\DoxyCodeLine{    \mbox{\hyperlink{compression_2huffman_8h_a128c1ec79c02828844a9f28d6f52ff9a}{aws\_huffman\_encoder\_reset}}(encoder);}
+\DoxyCodeLine{    \mbox{\hyperlink{huffman_8h_a128c1ec79c02828844a9f28d6f52ff9a}{aws\_huffman\_encoder\_reset}}(encoder);}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
 
 
-{\ttfamily \mbox{\hyperlink{structaws__huffman__encoder}{aws\+\_\+huffman\+\_\+encoder}}} also has a {\ttfamily uint8\+\_\+t} field called {\ttfamily eos\+\_\+padding} that defines how any unwritten bits in the last byte of output are filled. The most significant bits will used. For example, if the last byte contains only 3 bits and {\ttfamily eos\+\_\+padding} is {\ttfamily 0b01010101}, {\ttfamily 01010} will be appended to the byte.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md189}{}\doxysubsubsection{Decoding}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md189}
+{\ttfamily \mbox{\hyperlink{structaws__huffman__encoder}{aws\+\_\+huffman\+\_\+encoder}}} also has a {\ttfamily uint8\+\_\+t} field called {\ttfamily eos\+\_\+padding} that defines how any unwritten bits in the last byte of output are filled. The most significant bits will used. For example, if the last byte contains only 3 bits and {\ttfamily eos\+\_\+padding} is {\ttfamily 0b01010101}, {\ttfamily 01010} will be appended to the byte.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md188}{}\doxysubsubsection{Decoding}\label{md_crt_aws_crt_cpp_crt_aws_c_compression__r_e_a_d_m_e_autotoc_md188}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{}
-\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{compression_2huffman_8h_a13f0c95fa9e1f8471f63a19fd402010f}{aws\_huffman\_decode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__huffman__decoder}{aws\_huffman\_decoder}} *decoder, \textcolor{keyword}{const} uint8\_t *to\_decode, \textcolor{keywordtype}{size\_t} *\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, \textcolor{keywordtype}{char} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \textcolor{keywordtype}{size\_t} *output\_size);}
+\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{huffman_8h_a13f0c95fa9e1f8471f63a19fd402010f}{aws\_huffman\_decode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__huffman__decoder}{aws\_huffman\_decoder}} *decoder, \textcolor{keyword}{const} uint8\_t *to\_decode, \textcolor{keywordtype}{size\_t} *\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}, \textcolor{keywordtype}{char} *output, \textcolor{keywordtype}{size\_t} *output\_size);}
 
 \end{DoxyCode}
  The decoder is built to support partial encoding. This means that if there isn\textquotesingle{}t enough space in {\ttfamily output}, the decoder will decode as much as possible, update {\ttfamily length} to indicate how much was consumed, {\ttfamily output\+\_\+size} won\textquotesingle{}t change, and {\ttfamily AWS\+\_\+\+ERROR\+\_\+\+SHORT\+\_\+\+BUFFER} will be raised. {\ttfamily aws\+\_\+huffman\+\_\+decode} may then be called again like the following pseudo-\/code\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keywordtype}{void} decode\_and\_send(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *to\_decode, \textcolor{keywordtype}{size\_t} size) \{}
 \DoxyCodeLine{    \textcolor{keywordflow}{while} (size > 0) \{}
-\DoxyCodeLine{        uint8\_t \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}[some\_chunk\_size];}
-\DoxyCodeLine{        \textcolor{keywordtype}{size\_t} output\_size = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{        uint8\_t output[some\_chunk\_size];}
+\DoxyCodeLine{        \textcolor{keywordtype}{size\_t} output\_size = \textcolor{keyword}{sizeof}(output);}
 \DoxyCodeLine{        \textcolor{keywordtype}{size\_t} bytes\_read = size;}
-\DoxyCodeLine{        \mbox{\hyperlink{compression_2huffman_8h_a13f0c95fa9e1f8471f63a19fd402010f}{aws\_huffman\_decode}}(decoder, to\_decode, \&bytes\_read, \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \&output\_size);}
+\DoxyCodeLine{        \mbox{\hyperlink{huffman_8h_a13f0c95fa9e1f8471f63a19fd402010f}{aws\_huffman\_decode}}(decoder, to\_decode, \&bytes\_read, output, \&output\_size);}
 \DoxyCodeLine{        \textcolor{comment}{/* AWS\_ERROR\_SHORT\_BUFFER was raised... */}}
-\DoxyCodeLine{        send\_output\_to\_someone\_else(\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, output\_size);}
+\DoxyCodeLine{        send\_output\_to\_someone\_else(output, output\_size);}
 \DoxyCodeLine{}
 \DoxyCodeLine{        to\_decode += bytes\_read;}
 \DoxyCodeLine{        size -\/= bytes\_read;}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{    \textcolor{comment}{/* Be sure to reset the decoder after use */}}
-\DoxyCodeLine{    \mbox{\hyperlink{compression_2huffman_8h_a34c1b6073a00cf0933968f7fb9e699bb}{aws\_huffman\_decoder\_reset}}(decoder);}
+\DoxyCodeLine{    \mbox{\hyperlink{huffman_8h_a34c1b6073a00cf0933968f7fb9e699bb}{aws\_huffman\_decoder\_reset}}(decoder);}
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}

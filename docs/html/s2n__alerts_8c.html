@@ -143,15 +143,15 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae04705b728d9251bcebff77856cde5f6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__alerts_8c.html#ae04705b728d9251bcebff77856cde5f6">s2n_alerts_supported</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn)</td></tr>
+<tr class="memitem:ae04705b728d9251bcebff77856cde5f6"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__alerts_8c.html#ae04705b728d9251bcebff77856cde5f6">s2n_alerts_supported</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn)</td></tr>
 <tr class="separator:ae04705b728d9251bcebff77856cde5f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26caca1045e4e31ff053600bcf6dc208"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__alerts_8c.html#a26caca1045e4e31ff053600bcf6dc208">s2n_handle_as_warning</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, uint8_t level, uint8_t type)</td></tr>
+<tr class="memitem:a26caca1045e4e31ff053600bcf6dc208"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__alerts_8c.html#a26caca1045e4e31ff053600bcf6dc208">s2n_handle_as_warning</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, uint8_t level, uint8_t type)</td></tr>
 <tr class="separator:a26caca1045e4e31ff053600bcf6dc208"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45bdea2fd7faa208c0272f56bfb8c656"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__alerts_8c.html#a45bdea2fd7faa208c0272f56bfb8c656">s2n_process_alert_fragment</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn)</td></tr>
 <tr class="separator:a45bdea2fd7faa208c0272f56bfb8c656"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa64cc9d8af1c1afc16c6720c02fef789"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__alerts_8c.html#aa64cc9d8af1c1afc16c6720c02fef789">s2n_queue_writer_close_alert_warning</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn)</td></tr>
 <tr class="separator:aa64cc9d8af1c1afc16c6720c02fef789"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af91ff6164cff98df80855a9a93a78e20"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__alerts_8c.html#af91ff6164cff98df80855a9a93a78e20">s2n_queue_reader_alert</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, uint8_t level, uint8_t <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>)</td></tr>
+<tr class="memitem:af91ff6164cff98df80855a9a93a78e20"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__alerts_8c.html#af91ff6164cff98df80855a9a93a78e20">s2n_queue_reader_alert</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, uint8_t level, uint8_t error_code)</td></tr>
 <tr class="separator:af91ff6164cff98df80855a9a93a78e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaab45cd713be8d161a114cf078b52635"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__alerts_8c.html#aaab45cd713be8d161a114cf078b52635">s2n_queue_reader_unsupported_protocol_version_alert</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn)</td></tr>
 <tr class="separator:aaab45cd713be8d161a114cf078b52635"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -548,7 +548,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s2n_alerts_supported </td>
+          <td class="memname">static bool s2n_alerts_supported </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *&#160;</td>
           <td class="paramname"><em>conn</em></td><td>)</td>
@@ -574,7 +574,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s2n_handle_as_warning </td>
+          <td class="memname">static bool s2n_handle_as_warning </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>

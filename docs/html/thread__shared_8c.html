@@ -87,7 +87,7 @@ Functions</h2></td></tr>
 <tr class="separator:adf5afe0e8f3efb85e50463bf982aadb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5964ea886be0e3dbe0b9c11c551c10ab"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread__shared_8c.html#a5964ea886be0e3dbe0b9c11c551c10ab">aws_thread_get_managed_thread_count</a> (void)</td></tr>
 <tr class="separator:a5964ea886be0e3dbe0b9c11c551c10ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cf207b79f6340376378ebf9f71cddcb"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread__shared_8c.html#a2cf207b79f6340376378ebf9f71cddcb">s_one_or_fewer_managed_threads_unjoined</a> (void *context)</td></tr>
+<tr class="memitem:a2cf207b79f6340376378ebf9f71cddcb"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread__shared_8c.html#a2cf207b79f6340376378ebf9f71cddcb">s_one_or_fewer_managed_threads_unjoined</a> (void *context)</td></tr>
 <tr class="separator:a2cf207b79f6340376378ebf9f71cddcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8781779571eb88f647ebba5b42f9195"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread__shared_8c.html#aa8781779571eb88f647ebba5b42f9195">aws_thread_set_managed_join_timeout_ns</a> (uint64_t timeout_in_ns)</td></tr>
 <tr class="separator:aa8781779571eb88f647ebba5b42f9195"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -100,7 +100,7 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a6530298433ef493bb48c379bf9277dc1"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread__shared_8c.html#a6530298433ef493bb48c379bf9277dc1">s_managed_thread_lock</a> = <a class="el" href="preamble_8h.html#a82cd305754a1424bf8139695ab9dd6e1">AWS_MUTEX_INIT</a></td></tr>
+<tr class="memitem:a6530298433ef493bb48c379bf9277dc1"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__mutex.html">aws_mutex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread__shared_8c.html#a6530298433ef493bb48c379bf9277dc1">s_managed_thread_lock</a> = <a class="el" href="mutex_8h.html#a82cd305754a1424bf8139695ab9dd6e1">AWS_MUTEX_INIT</a></td></tr>
 <tr class="separator:a6530298433ef493bb48c379bf9277dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa26ff297fe492ebf89e345bdaf5e481d"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__condition__variable.html">aws_condition_variable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread__shared_8c.html#aa26ff297fe492ebf89e345bdaf5e481d">s_managed_thread_signal</a> = <a class="el" href="condition__variable_8h.html#a5effb5909f01b8f646e71f1a11e31657">AWS_CONDITION_VARIABLE_INIT</a></td></tr>
 <tr class="separator:aa26ff297fe492ebf89e345bdaf5e481d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -264,7 +264,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_one_or_fewer_managed_threads_unjoined </td>
+          <td class="memname">static bool s_one_or_fewer_managed_threads_unjoined </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>context</em></td><td>)</td>
@@ -313,7 +313,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> s_managed_thread_lock = <a class="el" href="preamble_8h.html#a82cd305754a1424bf8139695ab9dd6e1">AWS_MUTEX_INIT</a></td>
+          <td class="memname">struct <a class="el" href="structaws__mutex.html">aws_mutex</a> s_managed_thread_lock = <a class="el" href="mutex_8h.html#a82cd305754a1424bf8139695ab9dd6e1">AWS_MUTEX_INIT</a></td>
         </tr>
       </table>
   </td>

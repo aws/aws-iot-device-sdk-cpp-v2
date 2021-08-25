@@ -74,7 +74,7 @@ $(function() {
   <div class="headertitle"><div class="title">s2n_evp.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="evp_8h_source.html">openssl/evp.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;openssl/evp.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n__openssl_8h_source.html">crypto/s2n_openssl.h</a>&quot;</code><br />
 </div>
 <p><a href="s2n__evp_8h_source.html">Go to the source code of this file.</a></p>
@@ -92,7 +92,7 @@ Macros</h2></td></tr>
 <tr class="separator:a3bd26aa6b08fa15493b06cac66308236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42d659f1cc383f91e6201f20ef286ffb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__evp_8h.html#a42d659f1cc383f91e6201f20ef286ffb">S2N_EVP_MD_CTX_RESET</a>(md_ctx)&#160;&#160;&#160;(EVP_MD_CTX_cleanup(md_ctx))</td></tr>
 <tr class="separator:a42d659f1cc383f91e6201f20ef286ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2015ebbb90dce5a345064d8b28f9f2d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__evp_8h.html#ab2015ebbb90dce5a345064d8b28f9f2d">S2N_EVP_MD_CTX_FREE</a>(md_ctx)&#160;&#160;&#160;(<a class="el" href="evp_8h.html#a798a317aba35bca0a90b1cff9c22dd81">EVP_MD_CTX_destroy</a>(md_ctx))</td></tr>
+<tr class="memitem:ab2015ebbb90dce5a345064d8b28f9f2d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__evp_8h.html#ab2015ebbb90dce5a345064d8b28f9f2d">S2N_EVP_MD_CTX_FREE</a>(md_ctx)&#160;&#160;&#160;(EVP_MD_CTX_destroy(md_ctx))</td></tr>
 <tr class="separator:ab2015ebbb90dce5a345064d8b28f9f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -114,7 +114,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">md_ctx</td><td>)</td>
-          <td>&#160;&#160;&#160;(<a class="el" href="evp_8h.html#a798a317aba35bca0a90b1cff9c22dd81">EVP_MD_CTX_destroy</a>(md_ctx))</td>
+          <td>&#160;&#160;&#160;(EVP_MD_CTX_destroy(md_ctx))</td>
         </tr>
       </table>
 </div><div class="memdoc">

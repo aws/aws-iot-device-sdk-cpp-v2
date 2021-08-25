@@ -70,27 +70,25 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="crypto_2s2n__hash_8h_source.html">s2n_hash.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="s2n__hash_8h_source.html">s2n_hash.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a7565dc5833388e93631822516a8d0758"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structs2n__hash.html">s2n_hash</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash__state.html#a7565dc5833388e93631822516a8d0758">hash_impl</a></td></tr>
 <tr class="separator:a7565dc5833388e93631822516a8d0758"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0b6c694b58615e3b449cea37998d3ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash__state.html#ae0b6c694b58615e3b449cea37998d3ec">alg</a></td></tr>
+<tr class="memitem:ae0b6c694b58615e3b449cea37998d3ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash__state.html#ae0b6c694b58615e3b449cea37998d3ec">alg</a></td></tr>
 <tr class="separator:ae0b6c694b58615e3b449cea37998d3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97088ea25c2aa3d8ca8b606c9c033e7a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash__state.html#a97088ea25c2aa3d8ca8b606c9c033e7a">is_ready_for_input</a></td></tr>
 <tr class="separator:a97088ea25c2aa3d8ca8b606c9c033e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe71bf53e68f3bae1b272965fbcba5a6"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash__state.html#afe71bf53e68f3bae1b272965fbcba5a6">currently_in_hash</a></td></tr>
 <tr class="separator:afe71bf53e68f3bae1b272965fbcba5a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7baf712897bf5b0d3f83bf038b1e234"><td class="memItemLeft" >union {</td></tr>
-<tr class="memitem:ac6c9e4487480ad171664c909c3ad84e0"><td class="memItemLeft" >&#160;&#160;&#160;union <a class="el" href="unions2n__hash__low__level__digest.html">s2n_hash_low_level_digest</a>&#160;&#160;&#160;<a class="el" href="structs2n__hash__state.html#a84569a6ca65e77a2ecc9eb603987818c">low_level</a></td></tr>
-<tr class="separator:ac6c9e4487480ad171664c909c3ad84e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55383cf7597277697adc6e6968b408ef"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structs2n__hash__evp__digest.html">s2n_hash_evp_digest</a>&#160;&#160;&#160;<a class="el" href="structs2n__hash__state.html#a5511002881fb260b09a951a5ec6b5bd6">high_level</a></td></tr>
-<tr class="separator:a55383cf7597277697adc6e6968b408ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7baf712897bf5b0d3f83bf038b1e234"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash__state.html#ac7baf712897bf5b0d3f83bf038b1e234">digest</a></td></tr>
-<tr class="separator:ac7baf712897bf5b0d3f83bf038b1e234"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9036270da1d4c04df2344de98853e472"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash__state.html#a9036270da1d4c04df2344de98853e472">currently_in_hash_block</a></td></tr>
-<tr class="separator:a9036270da1d4c04df2344de98853e472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad313bdd8f08bd9f4b02b41c0f9a73aa2"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:a4593ea578a87d0e17ac3c7bda11cf8ef"><td class="memItemLeft" >&#160;&#160;&#160;union <a class="el" href="unions2n__hash__low__level__digest.html">s2n_hash_low_level_digest</a>&#160;&#160;&#160;<a class="el" href="structs2n__hash__state.html#a84569a6ca65e77a2ecc9eb603987818c">low_level</a></td></tr>
+<tr class="separator:a4593ea578a87d0e17ac3c7bda11cf8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbceaf0c5240cd16937a8ef5a747cb3d"><td class="memItemLeft" >&#160;&#160;&#160;struct <a class="el" href="structs2n__hash__evp__digest.html">s2n_hash_evp_digest</a>&#160;&#160;&#160;<a class="el" href="structs2n__hash__state.html#a5511002881fb260b09a951a5ec6b5bd6">high_level</a></td></tr>
+<tr class="separator:acbceaf0c5240cd16937a8ef5a747cb3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad313bdd8f08bd9f4b02b41c0f9a73aa2"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structs2n__hash__state.html#ad313bdd8f08bd9f4b02b41c0f9a73aa2">digest</a></td></tr>
+<tr class="separator:ad313bdd8f08bd9f4b02b41c0f9a73aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="ae0b6c694b58615e3b449cea37998d3ec" name="ae0b6c694b58615e3b449cea37998d3ec"></a>
@@ -100,7 +98,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> s2n_hash_state::alg</td>
+          <td class="memname"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> s2n_hash_state::alg</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -121,22 +119,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9036270da1d4c04df2344de98853e472" name="a9036270da1d4c04df2344de98853e472"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9036270da1d4c04df2344de98853e472">&#9670;&nbsp;</a></span>currently_in_hash_block</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int s2n_hash_state::currently_in_hash_block</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac7baf712897bf5b0d3f83bf038b1e234" name="ac7baf712897bf5b0d3f83bf038b1e234"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7baf712897bf5b0d3f83bf038b1e234">&#9670;&nbsp;</a></span></h2>
+<a id="ad313bdd8f08bd9f4b02b41c0f9a73aa2" name="ad313bdd8f08bd9f4b02b41c0f9a73aa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad313bdd8f08bd9f4b02b41c0f9a73aa2">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,10 +189,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following files:<ul>
-<li>crt/aws-crt-cpp/crt/s2n/crypto/<a class="el" href="crypto_2s2n__hash_8h_source.html">s2n_hash.h</a></li>
-<li>crt/aws-crt-cpp/crt/s2n/tests/sidetrail/working/s2n-cbc/stubs/<a class="el" href="tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h_source.html">s2n_hash.h</a></li>
-<li>crt/aws-crt-cpp/crt/s2n/tests/sidetrail/working/stubs/<a class="el" href="tests_2sidetrail_2working_2stubs_2s2n__hash_8h_source.html">s2n_hash.h</a></li>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>crt/aws-crt-cpp/crt/s2n/crypto/<a class="el" href="s2n__hash_8h_source.html">s2n_hash.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

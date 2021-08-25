@@ -121,9 +121,9 @@ Functions</h2></td></tr>
 <tr class="separator:aa018ea755c675c94e43c5e80606e979a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4c45995571b5f0044ec07383d07e6ed"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#ab4c45995571b5f0044ec07383d07e6ed">get_month_number_from_str</a> (const char *time_string, size_t start_index, size_t stop_index)</td></tr>
 <tr class="separator:ab4c45995571b5f0044ec07383d07e6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a799dc60bec7501564b7c1d93c816101b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a799dc60bec7501564b7c1d93c816101b">is_utc_time_zone</a> (const char *str)</td></tr>
+<tr class="memitem:a799dc60bec7501564b7c1d93c816101b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a799dc60bec7501564b7c1d93c816101b">is_utc_time_zone</a> (const char *str)</td></tr>
 <tr class="separator:a799dc60bec7501564b7c1d93c816101b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ab3eae924e489a90dd27c68b535b6b7"><td class="memItemLeft" align="right" valign="top">struct tm&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a9ab3eae924e489a90dd27c68b535b6b7">s_get_time_struct</a> (struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> local_time)</td></tr>
+<tr class="memitem:a9ab3eae924e489a90dd27c68b535b6b7"><td class="memItemLeft" align="right" valign="top">struct tm&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a9ab3eae924e489a90dd27c68b535b6b7">s_get_time_struct</a> (struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, bool local_time)</td></tr>
 <tr class="separator:a9ab3eae924e489a90dd27c68b535b6b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee0fd2cbe41b044ec457e51834dfe149"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#aee0fd2cbe41b044ec457e51834dfe149">aws_date_time_init_now</a> (struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt)</td></tr>
 <tr class="separator:aee0fd2cbe41b044ec457e51834dfe149"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,21 +157,21 @@ Functions</h2></td></tr>
 <tr class="separator:a8c2ac52f83554148006976d88ebb8fdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac683eeb1f612748f57bb36e4d8a75c6d"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#ac683eeb1f612748f57bb36e4d8a75c6d">aws_date_time_as_millis</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt)</td></tr>
 <tr class="separator:ac683eeb1f612748f57bb36e4d8a75c6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7815cc07135a0296957708d697502de"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#ab7815cc07135a0296957708d697502de">aws_date_time_year</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> local_time)</td></tr>
+<tr class="memitem:ab7815cc07135a0296957708d697502de"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#ab7815cc07135a0296957708d697502de">aws_date_time_year</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, bool local_time)</td></tr>
 <tr class="separator:ab7815cc07135a0296957708d697502de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a328c73d7a48745fe1b32625395f2c29c"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="date__time_8h.html#ab40cd55ec991f137b08db63de66ecb90">aws_date_month</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a328c73d7a48745fe1b32625395f2c29c">aws_date_time_month</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> local_time)</td></tr>
+<tr class="memitem:a328c73d7a48745fe1b32625395f2c29c"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="date__time_8h.html#ab40cd55ec991f137b08db63de66ecb90">aws_date_month</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a328c73d7a48745fe1b32625395f2c29c">aws_date_time_month</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, bool local_time)</td></tr>
 <tr class="separator:a328c73d7a48745fe1b32625395f2c29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab868a13516568dc1ab430e2eb136108f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#ab868a13516568dc1ab430e2eb136108f">aws_date_time_month_day</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> local_time)</td></tr>
+<tr class="memitem:ab868a13516568dc1ab430e2eb136108f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#ab868a13516568dc1ab430e2eb136108f">aws_date_time_month_day</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, bool local_time)</td></tr>
 <tr class="separator:ab868a13516568dc1ab430e2eb136108f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f48f1c51e3bfb064311d71de7f95cd9"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="date__time_8h.html#a5905b42242cf9d876ef6df0ebb09a317">aws_date_day_of_week</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a7f48f1c51e3bfb064311d71de7f95cd9">aws_date_time_day_of_week</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> local_time)</td></tr>
+<tr class="memitem:a7f48f1c51e3bfb064311d71de7f95cd9"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="date__time_8h.html#a5905b42242cf9d876ef6df0ebb09a317">aws_date_day_of_week</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a7f48f1c51e3bfb064311d71de7f95cd9">aws_date_time_day_of_week</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, bool local_time)</td></tr>
 <tr class="separator:a7f48f1c51e3bfb064311d71de7f95cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6958c8180ba35f7d634fbb0d305fe2b6"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a6958c8180ba35f7d634fbb0d305fe2b6">aws_date_time_hour</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> local_time)</td></tr>
+<tr class="memitem:a6958c8180ba35f7d634fbb0d305fe2b6"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a6958c8180ba35f7d634fbb0d305fe2b6">aws_date_time_hour</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, bool local_time)</td></tr>
 <tr class="separator:a6958c8180ba35f7d634fbb0d305fe2b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab42d350a70ffc33bffb69d50a4436aef"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#ab42d350a70ffc33bffb69d50a4436aef">aws_date_time_minute</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> local_time)</td></tr>
+<tr class="memitem:ab42d350a70ffc33bffb69d50a4436aef"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#ab42d350a70ffc33bffb69d50a4436aef">aws_date_time_minute</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, bool local_time)</td></tr>
 <tr class="separator:ab42d350a70ffc33bffb69d50a4436aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d752aa9739086d3e538e8c5baf142a1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a2d752aa9739086d3e538e8c5baf142a1">aws_date_time_second</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> local_time)</td></tr>
+<tr class="memitem:a2d752aa9739086d3e538e8c5baf142a1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a2d752aa9739086d3e538e8c5baf142a1">aws_date_time_second</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, bool local_time)</td></tr>
 <tr class="separator:a2d752aa9739086d3e538e8c5baf142a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c6980ae309291a1c0a32321c0bff619"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a2c6980ae309291a1c0a32321c0bff619">aws_date_time_dst</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> local_time)</td></tr>
+<tr class="memitem:a2c6980ae309291a1c0a32321c0bff619"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a2c6980ae309291a1c0a32321c0bff619">aws_date_time_dst</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *dt, bool local_time)</td></tr>
 <tr class="separator:a2c6980ae309291a1c0a32321c0bff619"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08b4819bbe7cea7fd618e7ce73818628"><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8c.html#a08b4819bbe7cea7fd618e7ce73818628">aws_date_time_diff</a> (const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *a, const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
 <tr class="separator:a08b4819bbe7cea7fd618e7ce73818628"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -346,7 +346,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local_time</em>&#160;</td>
         </tr>
         <tr>
@@ -395,7 +395,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_date_time_dst </td>
+          <td class="memname">bool aws_date_time_dst </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__date__time.html">aws_date_time</a> *&#160;</td>
           <td class="paramname"><em>dt</em>, </td>
@@ -403,7 +403,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local_time</em>&#160;</td>
         </tr>
         <tr>
@@ -431,7 +431,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local_time</em>&#160;</td>
         </tr>
         <tr>
@@ -609,7 +609,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local_time</em>&#160;</td>
         </tr>
         <tr>
@@ -637,7 +637,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local_time</em>&#160;</td>
         </tr>
         <tr>
@@ -665,7 +665,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local_time</em>&#160;</td>
         </tr>
         <tr>
@@ -693,7 +693,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local_time</em>&#160;</td>
         </tr>
         <tr>
@@ -861,7 +861,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local_time</em>&#160;</td>
         </tr>
         <tr>
@@ -926,7 +926,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> is_utc_time_zone </td>
+          <td class="memname">static bool is_utc_time_zone </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -1025,7 +1025,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>local_time</em>&#160;</td>
         </tr>
         <tr>

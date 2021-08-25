@@ -78,15 +78,15 @@ Public Attributes</h2></td></tr>
 <tr class="separator:aa7790aa18726a668def157a5361c8f76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade521cdfd622ddd2468d542ae9ed87c6"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#ade521cdfd622ddd2468d542ae9ed87c6">on_headers_i</a> )(uint32_t stream_id, const struct <a class="el" href="structaws__http__header.html">aws_http_header</a> *header, enum <a class="el" href="http__impl_8h.html#a12be5e482ebfe4d5f53c5a493099818f">aws_http_header_name</a> name_enum, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block_type, void *userdata)</td></tr>
 <tr class="separator:ade521cdfd622ddd2468d542ae9ed87c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a741a187e1fc8ee05f23a167bf9fbcfc5"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a741a187e1fc8ee05f23a167bf9fbcfc5">on_headers_end</a> )(uint32_t stream_id, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> malformed, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block_type, void *userdata)</td></tr>
+<tr class="memitem:a741a187e1fc8ee05f23a167bf9fbcfc5"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a741a187e1fc8ee05f23a167bf9fbcfc5">on_headers_end</a> )(uint32_t stream_id, bool malformed, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block_type, void *userdata)</td></tr>
 <tr class="separator:a741a187e1fc8ee05f23a167bf9fbcfc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a203bcfc606088f5d95e320d003c4f14a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a203bcfc606088f5d95e320d003c4f14a">on_push_promise_begin</a> )(uint32_t stream_id, uint32_t promised_stream_id, void *userdata)</td></tr>
 <tr class="separator:a203bcfc606088f5d95e320d003c4f14a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae44330e8ea2456589b09b692468deae2"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#ae44330e8ea2456589b09b692468deae2">on_push_promise_i</a> )(uint32_t stream_id, const struct <a class="el" href="structaws__http__header.html">aws_http_header</a> *header, enum <a class="el" href="http__impl_8h.html#a12be5e482ebfe4d5f53c5a493099818f">aws_http_header_name</a> name_enum, void *userdata)</td></tr>
 <tr class="separator:ae44330e8ea2456589b09b692468deae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a007c218f7caa94b5ca93f150f2a8f1b8"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a007c218f7caa94b5ca93f150f2a8f1b8">on_push_promise_end</a> )(uint32_t stream_id, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> malformed, void *userdata)</td></tr>
+<tr class="memitem:a007c218f7caa94b5ca93f150f2a8f1b8"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a007c218f7caa94b5ca93f150f2a8f1b8">on_push_promise_end</a> )(uint32_t stream_id, bool malformed, void *userdata)</td></tr>
 <tr class="separator:a007c218f7caa94b5ca93f150f2a8f1b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1431903ce90b64db02448f4f9092a6d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#ab1431903ce90b64db02448f4f9092a6d">on_data_begin</a> )(uint32_t stream_id, uint32_t payload_len, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> end_stream, void *userdata)</td></tr>
+<tr class="memitem:ab1431903ce90b64db02448f4f9092a6d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#ab1431903ce90b64db02448f4f9092a6d">on_data_begin</a> )(uint32_t stream_id, uint32_t payload_len, bool end_stream, void *userdata)</td></tr>
 <tr class="separator:ab1431903ce90b64db02448f4f9092a6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa685554f7c7d4110b1715aaf5f24e53a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#aa685554f7c7d4110b1715aaf5f24e53a">on_data_i</a> )(uint32_t stream_id, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> data, void *userdata)</td></tr>
 <tr class="separator:aa685554f7c7d4110b1715aaf5f24e53a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -94,7 +94,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a862798b96843499139b81f4fb16b8529"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06e763bb5b93806d87450431c092629a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a06e763bb5b93806d87450431c092629a">on_end_stream</a> )(uint32_t stream_id, void *userdata)</td></tr>
 <tr class="separator:a06e763bb5b93806d87450431c092629a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cddde1905311979fd5611a1e55130a9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a9cddde1905311979fd5611a1e55130a9">on_rst_stream</a> )(uint32_t stream_id, uint32_t <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, void *userdata)</td></tr>
+<tr class="memitem:a9cddde1905311979fd5611a1e55130a9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a9cddde1905311979fd5611a1e55130a9">on_rst_stream</a> )(uint32_t stream_id, uint32_t error_code, void *userdata)</td></tr>
 <tr class="separator:a9cddde1905311979fd5611a1e55130a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56802d17a62215fc43fc4abd585f1c12"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a56802d17a62215fc43fc4abd585f1c12">on_ping_ack</a> )(uint8_t opaque_data[<a class="el" href="connection_8h.html#a99cebd5298f16fec37625e4a1a01c64a">AWS_HTTP2_PING_DATA_SIZE</a>], void *userdata)</td></tr>
 <tr class="separator:a56802d17a62215fc43fc4abd585f1c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -104,7 +104,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a6f9ed30e39209199ba77590257e0c764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03a4550425ac014bff301d3f2d815fce"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a03a4550425ac014bff301d3f2d815fce">on_settings</a> )(const struct <a class="el" href="structaws__http2__setting.html">aws_http2_setting</a> *settings_array, size_t num_settings, void *userdata)</td></tr>
 <tr class="separator:a03a4550425ac014bff301d3f2d815fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73b411e2011d1f9301de165289c659ac"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a73b411e2011d1f9301de165289c659ac">on_goaway_begin</a> )(uint32_t last_stream, uint32_t <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, uint32_t debug_data_length, void *userdata)</td></tr>
+<tr class="memitem:a73b411e2011d1f9301de165289c659ac"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#a73b411e2011d1f9301de165289c659ac">on_goaway_begin</a> )(uint32_t last_stream, uint32_t error_code, uint32_t debug_data_length, void *userdata)</td></tr>
 <tr class="separator:a73b411e2011d1f9301de165289c659ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2695c65c873d986ad6abb12c4394501"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaws__h2__decoder__vtable.html#ab2695c65c873d986ad6abb12c4394501">on_goaway_i</a> )(struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> debug_data, void *userdata)</td></tr>
 <tr class="separator:ab2695c65c873d986ad6abb12c4394501"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,7 +123,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(* aws_h2_decoder_vtable::on_data_begin) (uint32_t stream_id, uint32_t payload_len, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> end_stream, void *userdata)</td>
+          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(* aws_h2_decoder_vtable::on_data_begin) (uint32_t stream_id, uint32_t payload_len, bool end_stream, void *userdata)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -179,7 +179,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>( * aws_h2_decoder_vtable::on_goaway_begin) (uint32_t last_stream, uint32_t <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, uint32_t debug_data_length, void *userdata)</td>
+          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>( * aws_h2_decoder_vtable::on_goaway_begin) (uint32_t last_stream, uint32_t error_code, uint32_t debug_data_length, void *userdata)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -235,7 +235,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>( * aws_h2_decoder_vtable::on_headers_end) (uint32_t stream_id, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> malformed, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block_type, void *userdata)</td>
+          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>( * aws_h2_decoder_vtable::on_headers_end) (uint32_t stream_id, bool malformed, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block_type, void *userdata)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -305,7 +305,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(* aws_h2_decoder_vtable::on_push_promise_end) (uint32_t stream_id, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> malformed, void *userdata)</td>
+          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(* aws_h2_decoder_vtable::on_push_promise_end) (uint32_t stream_id, bool malformed, void *userdata)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -333,7 +333,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(* aws_h2_decoder_vtable::on_rst_stream) (uint32_t stream_id, uint32_t <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, void *userdata)</td>
+          <td class="memname">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>(* aws_h2_decoder_vtable::on_rst_stream) (uint32_t stream_id, uint32_t error_code, void *userdata)</td>
         </tr>
       </table>
 </div><div class="memdoc">

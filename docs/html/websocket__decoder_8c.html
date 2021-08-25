@@ -99,9 +99,9 @@ Functions</h2></td></tr>
 <tr class="separator:a60db3051aa0dddc30725cfa7f841c640"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0b1ad78223e116e8fd8f08766ec1e02"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8c.html#ae0b1ad78223e116e8fd8f08766ec1e02">s_state_payload</a> (struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data)</td></tr>
 <tr class="separator:ae0b1ad78223e116e8fd8f08766ec1e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1248542d18757a2eac1f9cea3ff8f647"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8c.html#a1248542d18757a2eac1f9cea3ff8f647">aws_websocket_decoder_process</a> (struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *frame_complete)</td></tr>
+<tr class="memitem:a1248542d18757a2eac1f9cea3ff8f647"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8c.html#a1248542d18757a2eac1f9cea3ff8f647">aws_websocket_decoder_process</a> (struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, bool *frame_complete)</td></tr>
 <tr class="separator:a1248542d18757a2eac1f9cea3ff8f647"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e4d2435d4bf4078441de01e650808e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8c.html#a8e4d2435d4bf4078441de01e650808e2">aws_websocket_decoder_init</a> (struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a> *decoder, <a class="el" href="websocket__decoder_8h.html#a500a94daa4d5564f07794f8280a121e1">aws_websocket_decoder_frame_fn</a> *on_frame, <a class="el" href="websocket__decoder_8h.html#a07eafb6d2e544a056420074ae68c2808">aws_websocket_decoder_payload_fn</a> *on_payload, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a8e4d2435d4bf4078441de01e650808e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8c.html#a8e4d2435d4bf4078441de01e650808e2">aws_websocket_decoder_init</a> (struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a> *decoder, <a class="el" href="websocket__decoder_8h.html#a500a94daa4d5564f07794f8280a121e1">aws_websocket_decoder_frame_fn</a> *on_frame, <a class="el" href="websocket__decoder_8h.html#a07eafb6d2e544a056420074ae68c2808">aws_websocket_decoder_payload_fn</a> *on_payload, void *user_data)</td></tr>
 <tr class="separator:a8e4d2435d4bf4078441de01e650808e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -187,7 +187,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *&#160;</td>
+          <td class="paramtype">bool *&#160;</td>
           <td class="paramname"><em>frame_complete</em>&#160;</td>
         </tr>
         <tr>

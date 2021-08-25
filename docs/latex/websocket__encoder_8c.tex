@@ -29,9 +29,9 @@ int \mbox{\hyperlink{websocket__encoder_8c_a961d65b98a6df430cf7d74ea43acb875}{aw
 \item 
 int \mbox{\hyperlink{websocket__encoder_8c_a59ee24e2a20e90b786f7511bc41afafe}{aws\+\_\+websocket\+\_\+encoder\+\_\+start\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{websocket__encoder_8c_a9694876b2a3af7e01349257778e36aa1}{aws\+\_\+websocket\+\_\+encoder\+\_\+is\+\_\+frame\+\_\+in\+\_\+progress}} (const struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder)
+bool \mbox{\hyperlink{websocket__encoder_8c_a9694876b2a3af7e01349257778e36aa1}{aws\+\_\+websocket\+\_\+encoder\+\_\+is\+\_\+frame\+\_\+in\+\_\+progress}} (const struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder)
 \item 
-void \mbox{\hyperlink{websocket__encoder_8c_a5dd80d85bf518169423e1c4bd5969213}{aws\+\_\+websocket\+\_\+encoder\+\_\+init}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, \mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\+\_\+websocket\+\_\+encoder\+\_\+payload\+\_\+fn}} $\ast$stream\+\_\+outgoing\+\_\+payload, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+void \mbox{\hyperlink{websocket__encoder_8c_a5dd80d85bf518169423e1c4bd5969213}{aws\+\_\+websocket\+\_\+encoder\+\_\+init}} (struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$encoder, \mbox{\hyperlink{websocket__encoder_8h_a88751c383d67dacb1ba7c3b9df5b342f}{aws\+\_\+websocket\+\_\+encoder\+\_\+payload\+\_\+fn}} $\ast$stream\+\_\+outgoing\+\_\+payload, void $\ast$user\+\_\+data)
 \item 
 uint64\+\_\+t \mbox{\hyperlink{websocket__encoder_8c_a32e01b6093b3807caea01cf6fbca2f77}{aws\+\_\+websocket\+\_\+frame\+\_\+encoded\+\_\+size}} (const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame)
 \end{DoxyCompactItemize}
@@ -62,7 +62,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{websocket\_encoder.c@{websocket\_encoder.c}!aws\_websocket\_encoder\_is\_frame\_in\_progress@{aws\_websocket\_encoder\_is\_frame\_in\_progress}}
 \index{aws\_websocket\_encoder\_is\_frame\_in\_progress@{aws\_websocket\_encoder\_is\_frame\_in\_progress}!websocket\_encoder.c@{websocket\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{aws\_websocket\_encoder\_is\_frame\_in\_progress()}{aws\_websocket\_encoder\_is\_frame\_in\_progress()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+encoder\+\_\+is\+\_\+frame\+\_\+in\+\_\+progress (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+\_\+encoder\+\_\+is\+\_\+frame\+\_\+in\+\_\+progress (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__websocket__encoder}{aws\+\_\+websocket\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{websocket__encoder_8c_a961d65b98a6df430cf7d74ea43acb875}\label{websocket__encoder_8c_a961d65b98a6df430cf7d74ea43acb875}} 
 \index{websocket\_encoder.c@{websocket\_encoder.c}!aws\_websocket\_encoder\_process@{aws\_websocket\_encoder\_process}}

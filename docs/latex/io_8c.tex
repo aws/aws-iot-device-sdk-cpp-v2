@@ -15,7 +15,7 @@ void \mbox{\hyperlink{io_8c_afab811e5c6f4d0858a73f55e7b2d5ff1}{aws\+\_\+tls\+\_\
 \item 
 void \mbox{\hyperlink{io_8c_aea1cb55465720941c9ae163ae6b1b228}{aws\+\_\+tls\+\_\+clean\+\_\+up\+\_\+static\+\_\+state}} (void)
 \item 
-void \mbox{\hyperlink{io_8c_aaa4d8b13e11600cc12d221bf4a60e434}{aws\+\_\+io\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{io_8c_aaa4d8b13e11600cc12d221bf4a60e434}{aws\+\_\+io\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{io_8c_a137f7fded52a428b8ed343e2909ce66f}{aws\+\_\+io\+\_\+library\+\_\+clean\+\_\+up}} (void)
 \item 
@@ -32,7 +32,7 @@ static struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+
 \item 
 static struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} \mbox{\hyperlink{io_8c_a23e0f062493de270348c489b84eb360c}{s\+\_\+io\+\_\+log\+\_\+subject\+\_\+list}}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{io_8c_a54e69ff2b787a2bc69deb17b7eadbecf}{s\+\_\+io\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+static bool \mbox{\hyperlink{io_8c_a54e69ff2b787a2bc69deb17b7eadbecf}{s\+\_\+io\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}
 \end{DoxyCompactItemize}
 
 
@@ -89,7 +89,7 @@ Initializes internal datastructures used by aws-\/c-\/io. Must be called before 
 \index{io.c@{io.c}!s\_io\_library\_initialized@{s\_io\_library\_initialized}}
 \index{s\_io\_library\_initialized@{s\_io\_library\_initialized}!io.c@{io.c}}
 \doxysubsubsection{\texorpdfstring{s\_io\_library\_initialized}{s\_io\_library\_initialized}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+io\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily bool s\+\_\+io\+\_\+library\+\_\+initialized = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{io_8c_ab0a31a4c8312ce447d897e74d0d2d96d}\label{io_8c_ab0a31a4c8312ce447d897e74d0d2d96d}} 
 \index{io.c@{io.c}!s\_io\_log\_subject\_infos@{s\_io\_log\_subject\_infos}}

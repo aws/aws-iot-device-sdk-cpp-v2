@@ -1,6 +1,6 @@
 
 
-SCRAM is a symmetric encryption mode, based on AES-\/\+GCM, that includes new cryptographic protections against dangerous short-\/cuts that applications sometimes take.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md503}{}\doxysection{Cryptographic protection against release of unauthenticated plaintext}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md503}
+SCRAM is a symmetric encryption mode, based on AES-\/\+GCM, that includes new cryptographic protections against dangerous short-\/cuts that applications sometimes take.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md498}{}\doxysection{Cryptographic protection against release of unauthenticated plaintext}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md498}
 Modern cryptographic libraries offer \textquotesingle{}in place\textquotesingle{} encryption and decryption. By avoiding copies of the memory, encrypting and decrypting data in place saves both memory and CPU. While offering great performance, this interface depends on a promise from the application developer not to use or look at the decrypted plaintext until it has been authenticated by the cryprographic library. Application developers do not always appreciate that this authentication occurs only once the entire message has been received, and that it is not safe to process the data until then.
 
 There are two variants of this mis-\/use\+:
@@ -18,7 +18,7 @@ When using SCRAM, a recipient simply must first (correctly) compute the message 
 
 
 
-For applications that are using SCRAM to simply encrypt bulk data, this kind of application failure still results in data corruption. But for applications that are using SCRAM to encrypt data that must conform to a schema, or data that contains instructions, this kind of application failure is generally much safer. Without any control over the data that is decrypted, an attacker\textquotesingle{}s ability to abuse the application failure, or to find meaningful decryption or message forgery oracles is severely limited.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md504}{}\doxysection{Integration of message padding into the AEAD layer}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md504}
+For applications that are using SCRAM to simply encrypt bulk data, this kind of application failure still results in data corruption. But for applications that are using SCRAM to encrypt data that must conform to a schema, or data that contains instructions, this kind of application failure is generally much safer. Without any control over the data that is decrypted, an attacker\textquotesingle{}s ability to abuse the application failure, or to find meaningful decryption or message forgery oracles is severely limited.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md499}{}\doxysection{Integration of message padding into the AEAD layer}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md499}
 Modern cryptography is extremely good at disguising data as meaningless noise, however analysis of encrypted data volumes and traffic timings remains the most practical attack on well-\/encrypted information.
 
 Without any measures to prevent these attacks, the size and timing of encrypted messages can be enough information for an attacker (who has access to the encrypted data) to decipher a voice call, determine the keystrokes used in a password, or to identify content being accessed by using size-\/based fingerprints.
@@ -27,7 +27,7 @@ To enhance protection against these risks, SCRAM integrates message padding dire
 
 By integrating padding, SCRAM handles the details that developers can sometimes get wrong, for example many application developers mistakenly believe that a random amount of padding is sufficient to hide the length of a message.
 
-Applications using SCRAM don\textquotesingle{}t have to use padding, it\textquotesingle{}s not enforced, but adding padding to the AEAD layer acts as a noteworthy reminder to application developers and code-\/auditors that obfuscation of message sizes and timings is an important consideration for cryptographic systems. For example, it will be noticable during a code-\/review that padding has not been chosen.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md505}{}\doxysection{SCRAM algorithm}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md505}
+Applications using SCRAM don\textquotesingle{}t have to use padding, it\textquotesingle{}s not enforced, but adding padding to the AEAD layer acts as a noteworthy reminder to application developers and code-\/auditors that obfuscation of message sizes and timings is an important consideration for cryptographic systems. For example, it will be noticable during a code-\/review that padding has not been chosen.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md500}{}\doxysection{SCRAM algorithm}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md500}
 SCRAM is being developed as part of Amazon s2n and is open source. The working specification of the SCRAM algorithm is maintained in Python.
 
 There are several ways of achieving SCRAM\textquotesingle{}s cryptographic goals, but our choices are heavily guided by ensuring that SCRAM\textquotesingle{}s security proofs can be simple, robust, and build on top of well-\/established properties of existing cryptographic primitives.
@@ -36,9 +36,9 @@ The design of SCRAM is also intended to make use of operations that are already 
 
 SCRAM is not yet finalized; some performance sensitive details of SCRAM may change as we experiment with different workloads and datasets. We are always open to feedback from application developers about how SCRAM may be useful in their applications.
 
-Once measurements and any changes are finalized, we will be publishing a final SCRAM specification, accompanying security proofs, and other learnings.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md506}{}\doxysection{SCRAM material}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md506}
+Once measurements and any changes are finalized, we will be publishing a final SCRAM specification, accompanying security proofs, and other learnings.\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md501}{}\doxysection{SCRAM material}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md501}
 
 \begin{DoxyItemize}
 \item \href{https://www.youtube.com/watch?time_continue=2489&v=oam8FDNJhbE}{\texttt{ Watch AWS CISO Stephen Schmidt announce SCRAM}}
-\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md507}{}\doxysection{SCRAM team}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md507}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md502}{}\doxysection{SCRAM team}\label{md_crt_aws_crt_cpp_crt_s2n_scram__r_e_a_d_m_e_autotoc_md502}
 SCRAM is designed and maintained by Shay Gueron, Colm Mac\+Carthaigh, and Alex Weibel from the AWS Cryptography team. Shay Gueron is also a professor at the University of Haifa. 

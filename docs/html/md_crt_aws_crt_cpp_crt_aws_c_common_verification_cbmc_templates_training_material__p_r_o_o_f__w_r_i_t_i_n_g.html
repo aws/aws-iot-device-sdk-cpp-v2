@@ -87,7 +87,7 @@ $(function() {
 </ul>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md162"></a>
+<h1><a class="anchor" id="autotoc_md161"></a>
 The components of a CBMC proof</h1>
 <p >A CBMC proof normally consists of several components:</p>
 <ol type="1">
@@ -147,7 +147,7 @@ The components of a CBMC proof</h1>
 </li>
 </ol>
 <p >The remainder of this document describes how build each one of these components.</p>
-<h1><a class="anchor" id="autotoc_md163"></a>
+<h1><a class="anchor" id="autotoc_md162"></a>
 Running example.</h1>
 <p >We will use the <code><a class="el" href="structaws__array__list.html">aws_array_list</a></code> module from <a href="https://github.com/awslabs/aws-c-common">AWS C Common</a> open-source project as our running example. This module provides a polymorphic array defined as follows:</p>
 <div class="fragment"><div class="line">struct aws_array_list {</div>
@@ -172,9 +172,9 @@ Running example.</h1>
 <div class="line">    }</div>
 <div class="line">    return aws_raise_error(AWS_ERROR_INVALID_INDEX);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md164"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md163"></a>
 The Proof harness</h1>
-<h2><a class="anchor" id="autotoc_md165"></a>
+<h2><a class="anchor" id="autotoc_md164"></a>
 What does a good proof harness look like?</h2>
 <p >Syntactically, a proof harness looks quite similar to a unit test. The main difference is that a proof harness calls the target function with a partially-constrained input rather than a concrete value; when symbolically executed by CBMC, this has the effect of exploring the function under <em>all</em> possible inputs that satisfy the constraints.</p>
 <p >We have developed a style of writing proofs that we believe is readable, maintainable, and modular. This style was driven by feedback from developers, and addresses the need to communicate <em>exactly what we are proving</em> to developers and users.</p>
@@ -233,7 +233,7 @@ What does a good proof harness look like?</h2>
 <ol type="1">
 <li>Check any function postconditions using <code>assert</code> statements.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md166"></a>
+<h2><a class="anchor" id="autotoc_md165"></a>
 How to write a good proof harness</h2>
 <p >We recommend approaching writing a proof-harness as an iterative process:</p>
 <ol type="1">
@@ -266,7 +266,7 @@ How to write a good proof harness</h2>
 <div class="line">    * In aws_array_list_get_at_ptr</div>
 <div class="line">      * Line 347:</div>
 <div class="line">        * [trace] val != ((void*)0) check failed</div>
-</div><!-- fragment --><p> Consult our <a class="el" href="_d_e_b_u_g_g_i_n_g_8md.html">guide to debugging CBMC output</a> for suggestions about how to understand this output.</p>
+</div><!-- fragment --><p> Consult our guide to debugging CBMC output for suggestions about how to understand this output.</p>
 </li>
 </ol>
 <ol type="1">
@@ -303,7 +303,7 @@ How to write a good proof harness</h2>
 <div class="line">assert(val != NULL);</div>
 </div><!-- fragment --></li>
 </ol>
-<h1><a class="anchor" id="autotoc_md167"></a>
+<h1><a class="anchor" id="autotoc_md166"></a>
 The Proof Makefile</h1>
 <p >The Makefile for our running example looks like this:</p>
 <div class="fragment"><div class="line"># Sufficently long to get full coverage on the aws_array_list APIs</div>
@@ -357,7 +357,7 @@ The Proof Makefile</h1>
 <li><code>include ../Makefile.common</code> to take advantage of the standard templates declared in that file.</li>
 </ol>
 <p >Most makefiles should like exactly like this. [TODO discuss wellspring, litani]</p>
-<h1><a class="anchor" id="autotoc_md168"></a>
+<h1><a class="anchor" id="autotoc_md167"></a>
 The &lt;tt&gt;is_valid()&lt;/tt&gt; function</h1>
 <p >The <code><a class="el" href="log__formatter_8c.html#a7b1d0df736739f38994ed29f54cffdf3">is_valid()</a></code> functions used in preconditions are developed using an iterative process. For each <b>data-structure</b> module, start by specifying the simplest predicates that you can think of for the data structure &mdash; usually, that the data of the data structure is correctly allocated. Then, gradually refine these predicates, until you have a set of reasonable invariants for the data structure.</p>
 <p >You can verify that invariants are reasonable by:</p>
@@ -374,7 +374,7 @@ The &lt;tt&gt;is_valid()&lt;/tt&gt; function</h1>
 <p class="startli">In both these cases, fix the bug in the code, then make sure the invariant now succeeds during the tests.</p>
 </li>
 </ol>
-<h2><a class="anchor" id="autotoc_md169"></a>
+<h2><a class="anchor" id="autotoc_md168"></a>
 Example of an &lt;tt&gt;is_valid()&lt;/tt&gt; function</h2>
 <p >For instance, in the case of the <code>array_list</code>, we started with the invariant that <code>data</code> points to <code>current_size</code> allocated bytes. After several iterations, the validity invariant for <code>array_list</code> ended up looking like this:</p>
 <div class="fragment"><div class="line">bool aws_array_list_is_valid(const struct aws_array_list *list) {</div>
@@ -400,7 +400,7 @@ Example of an &lt;tt&gt;is_valid()&lt;/tt&gt; function</h2>
 <ol type="1">
 <li>the <code>item_size</code> must be positive.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md170"></a>
+<h1><a class="anchor" id="autotoc_md169"></a>
 The &lt;tt&gt;ensure_allocated&lt;/tt&gt; function</h1>
 <p >Ideally, all properties in a proof harness would be written in a declarative style. Unfortunately, CBMC currently does offer support that allows code to <code>__CPROVER_assume()</code> that memory is correctly allocated. Instead, it must be allocated using imperative calls to <code>malloc()</code>. By default, CBMC <code>malloc()</code> never returns <code>null</code>. So its important that you explicitly handle the case where the pointer might be <code>null</code>.</p>
 <p >Its important to separate the work done in this function from the work done in an <code>is_valid</code> function. This function should only worry about allocating the memory needed by the data-structure. Any other validity constraints should be handled by the <code><a class="el" href="log__formatter_8c.html#a7b1d0df736739f38994ed29f54cffdf3">is_valid()</a></code> check.</p>
@@ -414,12 +414,12 @@ The &lt;tt&gt;ensure_allocated&lt;/tt&gt; function</h1>
 <div class="line">        list-&gt;alloc = nondet_bool() ? NULL : can_fail_allocator();</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md171"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md170"></a>
 Stubs and abstractions</h1>
 <ul>
 <li>TODO</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md172"></a>
+<h1><a class="anchor" id="autotoc_md171"></a>
 How do I add the function contract to the function being verified?</h1>
 <p >We strongly recommend adding all checks and assumptions from the proof harness to the function being verified as runtime assertions. This provides value in several ways.</p>
 <ol type="1">
@@ -431,7 +431,7 @@ How do I add the function contract to the function being verified?</h1>
 <ol type="1">
 <li><b>It helps focus the mind.</b> It is easy to let standards slip during code-reviews for test and verification code. "Even if its not perfect, its better than nothing, so might as well just click approve." Adding the proof assumptions and checks to the codebase itself as runtime assertions causes reviewers to take them much more seriously, which leads to both increased proof quality, and improved code quality.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md173"></a>
+<h2><a class="anchor" id="autotoc_md172"></a>
 Example using function contracts</h2>
 <p >In the running example, our verification harness assumed the following preconditions</p>
 <div class="fragment"><div class="line">__CPROVER_assume(aws_array_list_is_valid(list));</div>

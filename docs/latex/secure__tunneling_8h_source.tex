@@ -37,13 +37,13 @@
 \DoxyCodeLine{33 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{secure__tunneling_8h_a09b1058d9d3a451587075231390b3a2f}{aws\_secure\_tunneling\_close\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__secure__tunnel}{aws\_secure\_tunnel}} *secure\_tunnel);}
 \DoxyCodeLine{34 }
 \DoxyCodeLine{35 \textcolor{comment}{/* Callbacks */}}
-\DoxyCodeLine{36 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_ace499bc4a7b97fbbda7302b08d7fa448}{aws\_secure\_tunneling\_on\_connection\_complete\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{37 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_a6c21686fac8da0785ee2a640106c6851}{aws\_secure\_tunneling\_on\_connection\_shutdown\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{38 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_af6aa39c79cf6459efc3a8dee35a059e1}{aws\_secure\_tunneling\_on\_send\_data\_complete\_fn}})(\textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{39 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_ada253ea56c18ebfd492084245374402f}{aws\_secure\_tunneling\_on\_data\_receive\_fn}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *data, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{40 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_a2a1450c1588e0025b6bac6b78caba36f}{aws\_secure\_tunneling\_on\_stream\_start\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{41 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_a1dd0fecbd1ccd6e606da569d6e4e8540}{aws\_secure\_tunneling\_on\_stream\_reset\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{42 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_acf890a9fa869ce97866a5a8b30162ad3}{aws\_secure\_tunneling\_on\_session\_reset\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{36 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_ace499bc4a7b97fbbda7302b08d7fa448}{aws\_secure\_tunneling\_on\_connection\_complete\_fn}})(\textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{37 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_a6c21686fac8da0785ee2a640106c6851}{aws\_secure\_tunneling\_on\_connection\_shutdown\_fn}})(\textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{38 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_af6aa39c79cf6459efc3a8dee35a059e1}{aws\_secure\_tunneling\_on\_send\_data\_complete\_fn}})(\textcolor{keywordtype}{int} error\_code, \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{39 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_ada253ea56c18ebfd492084245374402f}{aws\_secure\_tunneling\_on\_data\_receive\_fn}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *data, \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{40 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_a2a1450c1588e0025b6bac6b78caba36f}{aws\_secure\_tunneling\_on\_stream\_start\_fn}})(\textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{41 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_a1dd0fecbd1ccd6e606da569d6e4e8540}{aws\_secure\_tunneling\_on\_stream\_reset\_fn}})(\textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{42 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{secure__tunneling_8h_acf890a9fa869ce97866a5a8b30162ad3}{aws\_secure\_tunneling\_on\_session\_reset\_fn}})(\textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{43 }
 \DoxyCodeLine{44 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__secure__tunnel__vtable}{aws\_secure\_tunnel\_vtable}} \{}
 \DoxyCodeLine{45     \mbox{\hyperlink{secure__tunneling_8h_a5facd269785470d53d6bcc94b465e293}{aws\_secure\_tunneling\_connect\_fn}} *\mbox{\hyperlink{structaws__secure__tunnel__vtable_aeed85ac0042f04e8a564aefe8d9a787e}{connect}};}
@@ -131,7 +131,7 @@
 \DoxyCodeLine{127     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket}{aws\_websocket}} *\mbox{\hyperlink{structaws__secure__tunnel_a50dab06890d61c5a1154be8c1ec9fe59}{websocket}},}
 \DoxyCodeLine{128     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__websocket__incoming__frame}{aws\_websocket\_incoming\_frame}} *frame,}
 \DoxyCodeLine{129     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} data,}
-\DoxyCodeLine{130     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{130     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{131 }
 \DoxyCodeLine{132 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
 \DoxyCodeLine{133 }

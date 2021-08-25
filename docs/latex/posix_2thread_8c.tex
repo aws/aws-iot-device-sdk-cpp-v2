@@ -38,9 +38,9 @@ void \mbox{\hyperlink{posix_2thread_8c_a5980a5cc0642efa031c719036634d6dd}{aws\+\
 \item 
 static void \mbox{\hyperlink{posix_2thread_8c_aa16d242f21d72f6c49c69aa1b607f424}{s\+\_\+call\+\_\+once}} (void)
 \item 
-void \mbox{\hyperlink{posix_2thread_8c_a9731a40ee809685778a982ebdc4a19df}{aws\+\_\+thread\+\_\+call\+\_\+once}} (\mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} $\ast$flag, void($\ast$call\+\_\+once)(void $\ast$), void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+void \mbox{\hyperlink{posix_2thread_8c_a9731a40ee809685778a982ebdc4a19df}{aws\+\_\+thread\+\_\+call\+\_\+once}} (\mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} $\ast$flag, void($\ast$call\+\_\+once)(void $\ast$), void $\ast$user\+\_\+data)
 \item 
-int \mbox{\hyperlink{posix_2thread_8c_a71a7c4541086f5b6bee512f1304eff1d}{aws\+\_\+thread\+\_\+init}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+int \mbox{\hyperlink{posix_2thread_8c_a71a7c4541086f5b6bee512f1304eff1d}{aws\+\_\+thread\+\_\+init}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 int \mbox{\hyperlink{posix_2thread_8c_af0631c7f59c8407e9fa499bb90220171}{aws\+\_\+thread\+\_\+launch}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread, void($\ast$func)(void $\ast$arg), void $\ast$arg, const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} $\ast$options)
 \item 
@@ -52,11 +52,11 @@ int \mbox{\hyperlink{posix_2thread_8c_a70898bce98fe4c548060429a879b1430}{aws\+\_
 \item 
 \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} \mbox{\hyperlink{posix_2thread_8c_a90137aae039692e4e95971f3e1111272}{aws\+\_\+thread\+\_\+current\+\_\+thread\+\_\+id}} (void)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{posix_2thread_8c_adeb71350e5f76a73ed34b1222e538f9b}{aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal}} (\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t1, \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t2)
+bool \mbox{\hyperlink{posix_2thread_8c_adeb71350e5f76a73ed34b1222e538f9b}{aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal}} (\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t1, \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t2)
 \item 
 void \mbox{\hyperlink{posix_2thread_8c_a961fb7b68e6dfdcb0b0e6dc3be829874}{aws\+\_\+thread\+\_\+current\+\_\+sleep}} (uint64\+\_\+t nanos)
 \item 
-int \mbox{\hyperlink{posix_2thread_8c_aa48dd55efd1af141765108232cfd8d66}{aws\+\_\+thread\+\_\+current\+\_\+at\+\_\+exit}} (\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\+\_\+thread\+\_\+atexit\+\_\+fn}} $\ast$callback, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+int \mbox{\hyperlink{posix_2thread_8c_aa48dd55efd1af141765108232cfd8d66}{aws\+\_\+thread\+\_\+current\+\_\+at\+\_\+exit}} (\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\+\_\+thread\+\_\+atexit\+\_\+fn}} $\ast$callback, void $\ast$user\+\_\+data)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -160,7 +160,7 @@ Creates an OS level thread and associates it with func. context will be passed t
 \index{thread.c@{thread.c}!aws\_thread\_thread\_id\_equal@{aws\_thread\_thread\_id\_equal}}
 \index{aws\_thread\_thread\_id\_equal@{aws\_thread\_thread\_id\_equal}!thread.c@{thread.c}}
 \doxysubsubsection{\texorpdfstring{aws\_thread\_thread\_id\_equal()}{aws\_thread\_thread\_id\_equal()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t1,  }\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t2 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t1,  }\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t2 }\end{DoxyParamCaption})}
 
 Compare thread ids. \mbox{\Hypertarget{posix_2thread_8c_aa16d242f21d72f6c49c69aa1b607f424}\label{posix_2thread_8c_aa16d242f21d72f6c49c69aa1b607f424}} 
 \index{thread.c@{thread.c}!s\_call\_once@{s\_call\_once}}

@@ -9,9 +9,9 @@ struct \mbox{\hyperlink{structaws__websocket__decoder}{aws\+\_\+websocket\+\_\+d
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef int() \mbox{\hyperlink{websocket__decoder_8h_a500a94daa4d5564f07794f8280a121e1}{aws\+\_\+websocket\+\_\+decoder\+\_\+frame\+\_\+fn}}(const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef int() \mbox{\hyperlink{websocket__decoder_8h_a500a94daa4d5564f07794f8280a121e1}{aws\+\_\+websocket\+\_\+decoder\+\_\+frame\+\_\+fn}}(const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame, void $\ast$user\+\_\+data)
 \item 
-typedef int() \mbox{\hyperlink{websocket__decoder_8h_a07eafb6d2e544a056420074ae68c2808}{aws\+\_\+websocket\+\_\+decoder\+\_\+payload\+\_\+fn}}(struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef int() \mbox{\hyperlink{websocket__decoder_8h_a07eafb6d2e544a056420074ae68c2808}{aws\+\_\+websocket\+\_\+decoder\+\_\+payload\+\_\+fn}}(struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, void $\ast$user\+\_\+data)
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -33,9 +33,9 @@ enum \mbox{\hyperlink{websocket__decoder_8h_a66ab202976c0cf938a41a9f411f74469}{a
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{websocket__decoder_8h_a2453010a4195d01e3b5fb22793978b65}{aws\+\_\+websocket\+\_\+decoder\+\_\+init}} (struct \mbox{\hyperlink{structaws__websocket__decoder}{aws\+\_\+websocket\+\_\+decoder}} $\ast$decoder, \mbox{\hyperlink{websocket__decoder_8h_a500a94daa4d5564f07794f8280a121e1}{aws\+\_\+websocket\+\_\+decoder\+\_\+frame\+\_\+fn}} $\ast$on\+\_\+frame, \mbox{\hyperlink{websocket__decoder_8h_a07eafb6d2e544a056420074ae68c2808}{aws\+\_\+websocket\+\_\+decoder\+\_\+payload\+\_\+fn}} $\ast$on\+\_\+payload, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{websocket__decoder_8h_a2453010a4195d01e3b5fb22793978b65}{aws\+\_\+websocket\+\_\+decoder\+\_\+init}} (struct \mbox{\hyperlink{structaws__websocket__decoder}{aws\+\_\+websocket\+\_\+decoder}} $\ast$decoder, \mbox{\hyperlink{websocket__decoder_8h_a500a94daa4d5564f07794f8280a121e1}{aws\+\_\+websocket\+\_\+decoder\+\_\+frame\+\_\+fn}} $\ast$on\+\_\+frame, \mbox{\hyperlink{websocket__decoder_8h_a07eafb6d2e544a056420074ae68c2808}{aws\+\_\+websocket\+\_\+decoder\+\_\+payload\+\_\+fn}} $\ast$on\+\_\+payload, void $\ast$user\+\_\+data)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{websocket__decoder_8h_a53fa736a27af409a90401914df800650}{aws\+\_\+websocket\+\_\+decoder\+\_\+process}} (struct \mbox{\hyperlink{structaws__websocket__decoder}{aws\+\_\+websocket\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$data, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$frame\+\_\+complete)
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{websocket__decoder_8h_a53fa736a27af409a90401914df800650}{aws\+\_\+websocket\+\_\+decoder\+\_\+process}} (struct \mbox{\hyperlink{structaws__websocket__decoder}{aws\+\_\+websocket\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$data, bool $\ast$frame\+\_\+complete)
 \end{DoxyCompactItemize}
 
 
@@ -44,13 +44,13 @@ enum \mbox{\hyperlink{websocket__decoder_8h_a66ab202976c0cf938a41a9f411f74469}{a
 \index{websocket\_decoder.h@{websocket\_decoder.h}!aws\_websocket\_decoder\_frame\_fn@{aws\_websocket\_decoder\_frame\_fn}}
 \index{aws\_websocket\_decoder\_frame\_fn@{aws\_websocket\_decoder\_frame\_fn}!websocket\_decoder.h@{websocket\_decoder.h}}
 \doxysubsubsection{\texorpdfstring{aws\_websocket\_decoder\_frame\_fn}{aws\_websocket\_decoder\_frame\_fn}}
-{\footnotesize\ttfamily typedef int() aws\+\_\+websocket\+\_\+decoder\+\_\+frame\+\_\+fn(const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef int() aws\+\_\+websocket\+\_\+decoder\+\_\+frame\+\_\+fn(const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame, void $\ast$user\+\_\+data)}
 
 Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. \mbox{\Hypertarget{websocket__decoder_8h_a07eafb6d2e544a056420074ae68c2808}\label{websocket__decoder_8h_a07eafb6d2e544a056420074ae68c2808}} 
 \index{websocket\_decoder.h@{websocket\_decoder.h}!aws\_websocket\_decoder\_payload\_fn@{aws\_websocket\_decoder\_payload\_fn}}
 \index{aws\_websocket\_decoder\_payload\_fn@{aws\_websocket\_decoder\_payload\_fn}!websocket\_decoder.h@{websocket\_decoder.h}}
 \doxysubsubsection{\texorpdfstring{aws\_websocket\_decoder\_payload\_fn}{aws\_websocket\_decoder\_payload\_fn}}
-{\footnotesize\ttfamily typedef int() aws\+\_\+websocket\+\_\+decoder\+\_\+payload\+\_\+fn(struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef int() aws\+\_\+websocket\+\_\+decoder\+\_\+payload\+\_\+fn(struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, void $\ast$user\+\_\+data)}
 
 
 
@@ -112,6 +112,6 @@ AWS\+\_\+\+WEBSOCKET\+\_\+\+DECODER\+\_\+\+STATE\+\_\+\+DONE&\\
 \index{websocket\_decoder.h@{websocket\_decoder.h}!aws\_websocket\_decoder\_process@{aws\_websocket\_decoder\_process}}
 \index{aws\_websocket\_decoder\_process@{aws\_websocket\_decoder\_process}!websocket\_decoder.h@{websocket\_decoder.h}}
 \doxysubsubsection{\texorpdfstring{aws\_websocket\_decoder\_process()}{aws\_websocket\_decoder\_process()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+websocket\+\_\+decoder\+\_\+process (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__decoder}{aws\+\_\+websocket\+\_\+decoder}} $\ast$}]{decoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{data,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{frame\+\_\+complete }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int aws\+\_\+websocket\+\_\+decoder\+\_\+process (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket__decoder}{aws\+\_\+websocket\+\_\+decoder}} $\ast$}]{decoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{data,  }\item[{bool $\ast$}]{frame\+\_\+complete }\end{DoxyParamCaption})}
 
 Returns when all data is processed, or a frame and its payload have completed. {\ttfamily data} will be advanced to reflect the amount of data processed by this call. {\ttfamily frame\+\_\+complete} will be set true if this call returned due to completion of a frame. The {\ttfamily on\+\_\+frame} and {\ttfamily on\+\_\+payload} callbacks may each be invoked once as a result of this call. If an error occurs, the decoder is invalid forevermore. 

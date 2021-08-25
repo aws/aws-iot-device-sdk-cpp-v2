@@ -10,29 +10,29 @@ static size\+\_\+t \mbox{\hyperlink{source_2encoding_8c_aa1ea7108827975653e964b0
 \item 
 static void \mbox{\hyperlink{source_2encoding_8c_ac2dc64ff500c47943cf2864b4f805c90}{aws\+\_\+common\+\_\+private\+\_\+base64\+\_\+encode\+\_\+sse41}} (const unsigned char $\ast$in, unsigned char $\ast$out, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{source_2encoding_8c_a39793b482ac90f561b4625403a68f125}{aws\+\_\+common\+\_\+private\+\_\+has\+\_\+avx2}} (void)
+static bool \mbox{\hyperlink{source_2encoding_8c_a39793b482ac90f561b4625403a68f125}{aws\+\_\+common\+\_\+private\+\_\+has\+\_\+avx2}} (void)
 \item 
 int \mbox{\hyperlink{source_2encoding_8c_af98e42e05a3d5db767f604df49567d02}{aws\+\_\+hex\+\_\+compute\+\_\+encoded\+\_\+len}} (size\+\_\+t to\+\_\+encode\+\_\+len, size\+\_\+t $\ast$encoded\+\_\+length)
 \item 
-int \mbox{\hyperlink{source_2encoding_8c_a2acfa65d205918cd769f92d893db88f9}{aws\+\_\+hex\+\_\+encode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{source_2encoding_8c_a2acfa65d205918cd769f92d893db88f9}{aws\+\_\+hex\+\_\+encode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} output)
 \item 
-int \mbox{\hyperlink{source_2encoding_8c_adda95a0e80c8302d7b054e7e2695f02d}{aws\+\_\+hex\+\_\+encode\+\_\+append\+\_\+dynamic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{source_2encoding_8c_adda95a0e80c8302d7b054e7e2695f02d}{aws\+\_\+hex\+\_\+encode\+\_\+append\+\_\+dynamic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} output)
 \item 
 static int \mbox{\hyperlink{source_2encoding_8c_a7b15fb2472d92de118b5e8917bfe6246}{s\+\_\+hex\+\_\+decode\+\_\+char\+\_\+to\+\_\+int}} (char character, uint8\+\_\+t $\ast$int\+\_\+val)
 \item 
 int \mbox{\hyperlink{source_2encoding_8c_a636632966544de4c5be3d7948c42c7dc}{aws\+\_\+hex\+\_\+compute\+\_\+decoded\+\_\+len}} (size\+\_\+t to\+\_\+decode\+\_\+len, size\+\_\+t $\ast$decoded\+\_\+len)
 \item 
-int \mbox{\hyperlink{source_2encoding_8c_ad412268773aa854eb02d77b36326d25e}{aws\+\_\+hex\+\_\+decode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+decode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{source_2encoding_8c_ad412268773aa854eb02d77b36326d25e}{aws\+\_\+hex\+\_\+decode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+decode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} output)
 \item 
 int \mbox{\hyperlink{source_2encoding_8c_a8dc3bc3c1b1f8e8c67fa9f2adc1a9c1a}{aws\+\_\+base64\+\_\+compute\+\_\+encoded\+\_\+len}} (size\+\_\+t to\+\_\+encode\+\_\+len, size\+\_\+t $\ast$encoded\+\_\+len)
 \item 
 int \mbox{\hyperlink{source_2encoding_8c_afe237c144377d7ea1d29b68f7fe771b7}{aws\+\_\+base64\+\_\+compute\+\_\+decoded\+\_\+len}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+decode, size\+\_\+t $\ast$decoded\+\_\+len)
 \item 
-int \mbox{\hyperlink{source_2encoding_8c_ae8c56d1ecdea639736cf10a0ed0b3196}{aws\+\_\+base64\+\_\+encode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{source_2encoding_8c_ae8c56d1ecdea639736cf10a0ed0b3196}{aws\+\_\+base64\+\_\+encode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} output)
 \item 
 static int \mbox{\hyperlink{source_2encoding_8c_aa8bbd39e69f77db3a54e119d86e90b57}{s\+\_\+base64\+\_\+get\+\_\+decoded\+\_\+value}} (unsigned char to\+\_\+decode, uint8\+\_\+t $\ast$value, int8\+\_\+t allow\+\_\+sentinal)
 \item 
-int \mbox{\hyperlink{source_2encoding_8c_a08fbd6a790eef06e996cfe68260a0b00}{aws\+\_\+base64\+\_\+decode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+decode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{source_2encoding_8c_a08fbd6a790eef06e996cfe68260a0b00}{aws\+\_\+base64\+\_\+decode}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+decode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} output)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -88,7 +88,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{encoding.c@{encoding.c}!aws\_common\_private\_has\_avx2@{aws\_common\_private\_has\_avx2}}
 \index{aws\_common\_private\_has\_avx2@{aws\_common\_private\_has\_avx2}!encoding.c@{encoding.c}}
 \doxysubsubsection{\texorpdfstring{aws\_common\_private\_has\_avx2()}{aws\_common\_private\_has\_avx2()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+common\+\_\+private\+\_\+has\+\_\+avx2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static bool aws\+\_\+common\+\_\+private\+\_\+has\+\_\+avx2 (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 \mbox{\Hypertarget{source_2encoding_8c_a636632966544de4c5be3d7948c42c7dc}\label{source_2encoding_8c_a636632966544de4c5be3d7948c42c7dc}} 
 \index{encoding.c@{encoding.c}!aws\_hex\_compute\_decoded\_len@{aws\_hex\_compute\_decoded\_len}}

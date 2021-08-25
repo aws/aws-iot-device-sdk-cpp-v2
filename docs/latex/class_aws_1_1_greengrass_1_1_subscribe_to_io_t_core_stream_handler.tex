@@ -15,13 +15,13 @@ Inheritance diagram for Aws\+::Greengrass\+::Subscribe\+To\+Io\+TCore\+Stream\+H
 \item 
 virtual void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_stream_handler_aec72bc55e82120340f2e1d2d5c9bef06}{On\+Stream\+Event}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_io_t_core_message}{Io\+TCore\+Message}} $\ast$response)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_stream_handler_a40a3e8c7835f4a3f2148b8b262f59e9e}{On\+Stream\+Error}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} rpc\+Error)
+virtual bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_stream_handler_a40a3e8c7835f4a3f2148b8b262f59e9e}{On\+Stream\+Error}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} rpc\+Error)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_stream_handler_aec935656192d0c663041e505818abd74}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}} $\ast$operation\+Error)
+virtual bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_stream_handler_aec935656192d0c663041e505818abd74}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}} $\ast$operation\+Error)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_stream_handler_a5d49388b298f65d955c69c180e657e21}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_unauthorized_error}{Unauthorized\+Error}} $\ast$operation\+Error)
+virtual bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_stream_handler_a5d49388b298f65d955c69c180e657e21}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_unauthorized_error}{Unauthorized\+Error}} $\ast$operation\+Error)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_stream_handler_a157cf95685b57ef6e3f1054645860be4}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $\ast$operation\+Error)
+virtual bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_io_t_core_stream_handler_a157cf95685b57ef6e3f1054645860be4}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $\ast$operation\+Error)
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -31,7 +31,7 @@ virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \
 \index{Aws::Greengrass::SubscribeToIoTCoreStreamHandler@{Aws::Greengrass::SubscribeToIoTCoreStreamHandler}!OnStreamError@{OnStreamError}}
 \index{OnStreamError@{OnStreamError}!Aws::Greengrass::SubscribeToIoTCoreStreamHandler@{Aws::Greengrass::SubscribeToIoTCoreStreamHandler}}
 \doxysubsubsection{\texorpdfstring{OnStreamError()}{OnStreamError()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Subscribe\+To\+Io\+TCore\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Greengrass\+::\+Subscribe\+To\+Io\+TCore\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 A callback that is invoked upon receiving ANY error response from the server. 
 \begin{DoxyParams}{Parameters}
@@ -42,7 +42,7 @@ A callback that is invoked upon receiving ANY error response from the server.
 \index{Aws::Greengrass::SubscribeToIoTCoreStreamHandler@{Aws::Greengrass::SubscribeToIoTCoreStreamHandler}!OnStreamError@{OnStreamError}}
 \index{OnStreamError@{OnStreamError}!Aws::Greengrass::SubscribeToIoTCoreStreamHandler@{Aws::Greengrass::SubscribeToIoTCoreStreamHandler}}
 \doxysubsubsection{\texorpdfstring{OnStreamError()}{OnStreamError()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Subscribe\+To\+Io\+TCore\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}}]{rpc\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Greengrass\+::\+Subscribe\+To\+Io\+TCore\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}}]{rpc\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 A callback that is invoked when an error occurs while parsing a message from the stream. 
 \begin{DoxyParams}{Parameters}
@@ -53,7 +53,7 @@ A callback that is invoked when an error occurs while parsing a message from the
 \index{Aws::Greengrass::SubscribeToIoTCoreStreamHandler@{Aws::Greengrass::SubscribeToIoTCoreStreamHandler}!OnStreamError@{OnStreamError}}
 \index{OnStreamError@{OnStreamError}!Aws::Greengrass::SubscribeToIoTCoreStreamHandler@{Aws::Greengrass::SubscribeToIoTCoreStreamHandler}}
 \doxysubsubsection{\texorpdfstring{OnStreamError()}{OnStreamError()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Subscribe\+To\+Io\+TCore\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Greengrass\+::\+Subscribe\+To\+Io\+TCore\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 A callback that is invoked upon receiving an error of type {\ttfamily \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}}}. 
 \begin{DoxyParams}{Parameters}
@@ -64,7 +64,7 @@ A callback that is invoked upon receiving an error of type {\ttfamily \mbox{\hyp
 \index{Aws::Greengrass::SubscribeToIoTCoreStreamHandler@{Aws::Greengrass::SubscribeToIoTCoreStreamHandler}!OnStreamError@{OnStreamError}}
 \index{OnStreamError@{OnStreamError}!Aws::Greengrass::SubscribeToIoTCoreStreamHandler@{Aws::Greengrass::SubscribeToIoTCoreStreamHandler}}
 \doxysubsubsection{\texorpdfstring{OnStreamError()}{OnStreamError()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Subscribe\+To\+Io\+TCore\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_unauthorized_error}{Unauthorized\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Greengrass\+::\+Subscribe\+To\+Io\+TCore\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_unauthorized_error}{Unauthorized\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 A callback that is invoked upon receiving an error of type {\ttfamily \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_unauthorized_error}{Unauthorized\+Error}}}. 
 \begin{DoxyParams}{Parameters}

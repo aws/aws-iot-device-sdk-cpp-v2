@@ -18,8 +18,8 @@
 \DoxyCodeLine{19     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{structaws__xml__attribute_ab78cb5e62418f711c8ce067a836465a9}{value}};}
 \DoxyCodeLine{20 \};}
 \DoxyCodeLine{21 }
-\DoxyCodeLine{31 \textcolor{keyword}{typedef} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}(}
-\DoxyCodeLine{32     \mbox{\hyperlink{xml__parser_8h_afedd313edac72129d785e92911065544}{aws\_xml\_parser\_on\_node\_encountered\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__xml__parser}{aws\_xml\_parser}} *\mbox{\hyperlink{namespacecreate-projects_aed3f5230d66ad2f924551c9dcc9998d1}{parser}}, \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__xml__node}{aws\_xml\_node}} *node, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{31 \textcolor{keyword}{typedef} bool(}
+\DoxyCodeLine{32     \mbox{\hyperlink{xml__parser_8h_afedd313edac72129d785e92911065544}{aws\_xml\_parser\_on\_node\_encountered\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__xml__parser}{aws\_xml\_parser}} *\mbox{\hyperlink{namespacecreate-projects_aed3f5230d66ad2f924551c9dcc9998d1}{parser}}, \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__xml__node}{aws\_xml\_node}} *node, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{33 }
 \DoxyCodeLine{34 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__xml__parser__options}{aws\_xml\_parser\_options}} \{}
 \DoxyCodeLine{35     \textcolor{comment}{/* xml document to parse. */}}
@@ -33,7 +33,7 @@
 \DoxyCodeLine{43 }
 \DoxyCodeLine{47 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{48 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__xml__parser}{aws\_xml\_parser}} *\mbox{\hyperlink{xml__parser_8h_aa6716c469008f8d5ac36a0e0e9afd069}{aws\_xml\_parser\_new}}(}
-\DoxyCodeLine{49     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{49     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__xml__parser_a2ed3c6705b8d5b908e5fdbdb60e74d7c}{allocator}},}
 \DoxyCodeLine{50     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__xml__parser__options}{aws\_xml\_parser\_options}} *options);}
 \DoxyCodeLine{51 }
 \DoxyCodeLine{52 \textcolor{comment}{/*}}
@@ -46,7 +46,7 @@
 \DoxyCodeLine{63 \textcolor{keywordtype}{int} \mbox{\hyperlink{xml__parser_8h_a6af92de83c4ad870d809bf359a079188}{aws\_xml\_parser\_parse}}(}
 \DoxyCodeLine{64     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__xml__parser}{aws\_xml\_parser}} *\mbox{\hyperlink{namespacecreate-projects_aed3f5230d66ad2f924551c9dcc9998d1}{parser}},}
 \DoxyCodeLine{65     \mbox{\hyperlink{xml__parser_8h_afedd313edac72129d785e92911065544}{aws\_xml\_parser\_on\_node\_encountered\_fn}} *on\_node\_encountered,}
-\DoxyCodeLine{66     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{66     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{67 }
 \DoxyCodeLine{72 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{73 \textcolor{keywordtype}{int} \mbox{\hyperlink{xml__parser_8h_adb48aa7caf205cedd6f827f710a4ba53}{aws\_xml\_node\_as\_body}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__xml__parser}{aws\_xml\_parser}} *\mbox{\hyperlink{namespacecreate-projects_aed3f5230d66ad2f924551c9dcc9998d1}{parser}}, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__xml__node}{aws\_xml\_node}} *node, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *out\_body);}
@@ -56,7 +56,7 @@
 \DoxyCodeLine{80     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__xml__parser}{aws\_xml\_parser}} *\mbox{\hyperlink{namespacecreate-projects_aed3f5230d66ad2f924551c9dcc9998d1}{parser}},}
 \DoxyCodeLine{81     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__xml__node}{aws\_xml\_node}} *node,}
 \DoxyCodeLine{82     \mbox{\hyperlink{xml__parser_8h_afedd313edac72129d785e92911065544}{aws\_xml\_parser\_on\_node\_encountered\_fn}} *on\_node\_encountered,}
-\DoxyCodeLine{83     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{83     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{84 }
 \DoxyCodeLine{85 \textcolor{comment}{/*}}
 \DoxyCodeLine{86 \textcolor{comment}{ * Get the name of an xml node.}}

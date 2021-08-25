@@ -81,14 +81,14 @@
 \DoxyCodeLine{77 }
 \DoxyCodeLine{78 \textcolor{comment}{// BSR returns ceil(log2(val))}}
 \DoxyCodeLine{79 \mbox{\hyperlink{bike__r1_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\_INLINE\_}} uint8\_t}
-\DoxyCodeLine{80 \mbox{\hyperlink{bike__r1_2utilities_8h_a7ead18ca187534a8f737d240a7905fa7}{bit\_scan\_reverse}}(uint64\_t \mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}})}
+\DoxyCodeLine{80 \mbox{\hyperlink{bike__r1_2utilities_8h_a7ead18ca187534a8f737d240a7905fa7}{bit\_scan\_reverse}}(uint64\_t val)}
 \DoxyCodeLine{81 \{}
 \DoxyCodeLine{82   \textcolor{comment}{// index is always smaller than 64}}
 \DoxyCodeLine{83   uint8\_t \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}} = 0;}
 \DoxyCodeLine{84 }
-\DoxyCodeLine{85   \textcolor{keywordflow}{while}(\mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}} != 0)}
+\DoxyCodeLine{85   \textcolor{keywordflow}{while}(val != 0)}
 \DoxyCodeLine{86   \{}
-\DoxyCodeLine{87     \mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}} >>= 1;}
+\DoxyCodeLine{87     val >>= 1;}
 \DoxyCodeLine{88     \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}}++;}
 \DoxyCodeLine{89   \}}
 \DoxyCodeLine{90 }

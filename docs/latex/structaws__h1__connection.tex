@@ -27,19 +27,19 @@ struct \{\\
 \>\>struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h1__connection_a838e9efbe429c10c8d7b791b122c8330}{messages}}\\
 \>\>size\_t \mbox{\hyperlink{structaws__h1__connection_a5db62b6700201f261a0facff1d64e02d}{pending\_bytes}}\\
 \>\>size\_t \mbox{\hyperlink{structaws__h1__connection_a14e619a2799de2bf0893458983a2474b}{capacity}}\\
-\>\} \mbox{\hyperlink{structaws__h1__connection_a7ef089b87c2d084d751dcb87df8098a2}{read\_buffer}}\\
+\>\} \mbox{\hyperlink{structaws__h1__connection_a25561d26f5de69f271f1e38918a9708e}{read\_buffer}}\\
 \>size\_t \mbox{\hyperlink{structaws__h1__connection_af7447ac23cd5dca53c6245aa178c7a44}{connection\_window}}\\
 \>size\_t \mbox{\hyperlink{structaws__h1__connection_aa74fba6213d403353016d172a236d5b2}{recent\_window\_increments}}\\
 \>struct \mbox{\hyperlink{structaws__crt__statistics__http1__channel}{aws\_crt\_statistics\_http1\_channel}} \mbox{\hyperlink{structaws__h1__connection_a426e6d2f5113cd840ede26bebf74c410}{stats}}\\
 \>uint64\_t \mbox{\hyperlink{structaws__h1__connection_a0e76b83ce23c80bab72a2c862ad94d71}{outgoing\_stream\_timestamp\_ns}}\\
 \>uint64\_t \mbox{\hyperlink{structaws__h1__connection_a1d824af4c1576c1aaa8e089968192995}{incoming\_stream\_timestamp\_ns}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h1__connection_a29d87d449635e37824dcc4f7d289de80}{is\_reading\_stopped}}: 1\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h1__connection_ae5814dc9638bdc1fdcef88b7856f1890}{is\_writing\_stopped}}: 1\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h1__connection_a1e8e23216c614aace73d5aed5b48e158}{has\_switched\_protocols}}: 1\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h1__connection_ad3e0ed7c5ca0a2fe9b6b78887055382d}{can\_create\_request\_handler\_stream}}: 1\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h1__connection_a2f21c8d3824a38bf976c08c5aa937373}{is\_outgoing\_stream\_task\_active}}: 1\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h1__connection_a7cc70504544f6d3191bcfe03de4e614f}{is\_processing\_read\_messages}}: 1\\
-\} \mbox{\hyperlink{structaws__h1__connection_a35eec3bace7433768e76fe6bbbe7a5ef}{thread\_data}}\\
+\>bool \mbox{\hyperlink{structaws__h1__connection_a29d87d449635e37824dcc4f7d289de80}{is\_reading\_stopped}}: 1\\
+\>bool \mbox{\hyperlink{structaws__h1__connection_ae5814dc9638bdc1fdcef88b7856f1890}{is\_writing\_stopped}}: 1\\
+\>bool \mbox{\hyperlink{structaws__h1__connection_a1e8e23216c614aace73d5aed5b48e158}{has\_switched\_protocols}}: 1\\
+\>bool \mbox{\hyperlink{structaws__h1__connection_ad3e0ed7c5ca0a2fe9b6b78887055382d}{can\_create\_request\_handler\_stream}}: 1\\
+\>bool \mbox{\hyperlink{structaws__h1__connection_a2f21c8d3824a38bf976c08c5aa937373}{is\_outgoing\_stream\_task\_active}}: 1\\
+\>bool \mbox{\hyperlink{structaws__h1__connection_a7cc70504544f6d3191bcfe03de4e614f}{is\_processing\_read\_messages}}: 1\\
+\} \mbox{\hyperlink{structaws__h1__connection_a0ef02230f49cd5d0528205972ee998d1}{thread\_data}}\\
 
 \end{tabbing}\item 
 \begin{tabbing}
@@ -49,9 +49,9 @@ struct \{\\
 \>struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h1__connection_af59379fe58a0509c4e2ba0ae18a6c9c5}{new\_client\_stream\_list}}\\
 \>size\_t \mbox{\hyperlink{structaws__h1__connection_af793e47e2452c2415168760108f911ed}{window\_update\_size}}\\
 \>int \mbox{\hyperlink{structaws__h1__connection_a106b8e6cac74e8273270f78e54561b5d}{new\_stream\_error\_code}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h1__connection_afcc177409ef329edd235fe20cf001d95}{is\_cross\_thread\_work\_task\_scheduled}}: 1\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__h1__connection_adf359a7bbe3610b66eed0d2fc2f0952d}{is\_open}}: 1\\
-\} \mbox{\hyperlink{structaws__h1__connection_adfe8d514edf00493aabe80888c0a0d92}{synced\_data}}\\
+\>bool \mbox{\hyperlink{structaws__h1__connection_afcc177409ef329edd235fe20cf001d95}{is\_cross\_thread\_work\_task\_scheduled}}: 1\\
+\>bool \mbox{\hyperlink{structaws__h1__connection_adf359a7bbe3610b66eed0d2fc2f0952d}{is\_open}}: 1\\
+\} \mbox{\hyperlink{structaws__h1__connection_a51bf40d087d972580b3dc3d72efd8595}{synced\_data}}\\
 
 \end{tabbing}\end{DoxyCompactItemize}
 
@@ -70,7 +70,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{aws\_h1\_connection@{aws\_h1\_connection}!can\_create\_request\_handler\_stream@{can\_create\_request\_handler\_stream}}
 \index{can\_create\_request\_handler\_stream@{can\_create\_request\_handler\_stream}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{can\_create\_request\_handler\_stream}{can\_create\_request\_handler\_stream}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+connection\+::can\+\_\+create\+\_\+request\+\_\+handler\+\_\+stream}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+connection\+::can\+\_\+create\+\_\+request\+\_\+handler\+\_\+stream}
 
 \mbox{\Hypertarget{structaws__h1__connection_a14e619a2799de2bf0893458983a2474b}\label{structaws__h1__connection_a14e619a2799de2bf0893458983a2474b}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!capacity@{capacity}}
@@ -100,7 +100,7 @@ The connection\textquotesingle{}s current window size. We use this variable, ins
 \index{aws\_h1\_connection@{aws\_h1\_connection}!has\_switched\_protocols@{has\_switched\_protocols}}
 \index{has\_switched\_protocols@{has\_switched\_protocols}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{has\_switched\_protocols}{has\_switched\_protocols}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+connection\+::has\+\_\+switched\+\_\+protocols}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+connection\+::has\+\_\+switched\+\_\+protocols}
 
 \mbox{\Hypertarget{structaws__h1__connection_a6f8ce16d2ca30619b16a120eca787641}\label{structaws__h1__connection_a6f8ce16d2ca30619b16a120eca787641}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!incoming\_stream@{incoming\_stream}}
@@ -130,37 +130,37 @@ The connection\textquotesingle{}s current window size. We use this variable, ins
 \index{aws\_h1\_connection@{aws\_h1\_connection}!is\_cross\_thread\_work\_task\_scheduled@{is\_cross\_thread\_work\_task\_scheduled}}
 \index{is\_cross\_thread\_work\_task\_scheduled@{is\_cross\_thread\_work\_task\_scheduled}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{is\_cross\_thread\_work\_task\_scheduled}{is\_cross\_thread\_work\_task\_scheduled}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+connection\+::is\+\_\+cross\+\_\+thread\+\_\+work\+\_\+task\+\_\+scheduled}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+connection\+::is\+\_\+cross\+\_\+thread\+\_\+work\+\_\+task\+\_\+scheduled}
 
 \mbox{\Hypertarget{structaws__h1__connection_adf359a7bbe3610b66eed0d2fc2f0952d}\label{structaws__h1__connection_adf359a7bbe3610b66eed0d2fc2f0952d}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!is\_open@{is\_open}}
 \index{is\_open@{is\_open}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{is\_open}{is\_open}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+connection\+::is\+\_\+open}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+connection\+::is\+\_\+open}
 
 \mbox{\Hypertarget{structaws__h1__connection_a2f21c8d3824a38bf976c08c5aa937373}\label{structaws__h1__connection_a2f21c8d3824a38bf976c08c5aa937373}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!is\_outgoing\_stream\_task\_active@{is\_outgoing\_stream\_task\_active}}
 \index{is\_outgoing\_stream\_task\_active@{is\_outgoing\_stream\_task\_active}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{is\_outgoing\_stream\_task\_active}{is\_outgoing\_stream\_task\_active}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+connection\+::is\+\_\+outgoing\+\_\+stream\+\_\+task\+\_\+active}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+connection\+::is\+\_\+outgoing\+\_\+stream\+\_\+task\+\_\+active}
 
 \mbox{\Hypertarget{structaws__h1__connection_a7cc70504544f6d3191bcfe03de4e614f}\label{structaws__h1__connection_a7cc70504544f6d3191bcfe03de4e614f}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!is\_processing\_read\_messages@{is\_processing\_read\_messages}}
 \index{is\_processing\_read\_messages@{is\_processing\_read\_messages}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{is\_processing\_read\_messages}{is\_processing\_read\_messages}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+connection\+::is\+\_\+processing\+\_\+read\+\_\+messages}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+connection\+::is\+\_\+processing\+\_\+read\+\_\+messages}
 
 \mbox{\Hypertarget{structaws__h1__connection_a29d87d449635e37824dcc4f7d289de80}\label{structaws__h1__connection_a29d87d449635e37824dcc4f7d289de80}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!is\_reading\_stopped@{is\_reading\_stopped}}
 \index{is\_reading\_stopped@{is\_reading\_stopped}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{is\_reading\_stopped}{is\_reading\_stopped}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+connection\+::is\+\_\+reading\+\_\+stopped}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+connection\+::is\+\_\+reading\+\_\+stopped}
 
 \mbox{\Hypertarget{structaws__h1__connection_ae5814dc9638bdc1fdcef88b7856f1890}\label{structaws__h1__connection_ae5814dc9638bdc1fdcef88b7856f1890}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!is\_writing\_stopped@{is\_writing\_stopped}}
 \index{is\_writing\_stopped@{is\_writing\_stopped}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{is\_writing\_stopped}{is\_writing\_stopped}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+connection\+::is\+\_\+writing\+\_\+stopped}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+connection\+::is\+\_\+writing\+\_\+stopped}
 
 \mbox{\Hypertarget{structaws__h1__connection_a054ad12a5bbcba2883f9672c0235873e}\label{structaws__h1__connection_a054ad12a5bbcba2883f9672c0235873e}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!lock@{lock}}
@@ -210,7 +210,7 @@ The connection\textquotesingle{}s current window size. We use this variable, ins
 \doxysubsubsection{\texorpdfstring{pending\_bytes}{pending\_bytes}}
 {\footnotesize\ttfamily size\+\_\+t aws\+\_\+h1\+\_\+connection\+::pending\+\_\+bytes}
 
-\mbox{\Hypertarget{structaws__h1__connection_a7ef089b87c2d084d751dcb87df8098a2}\label{structaws__h1__connection_a7ef089b87c2d084d751dcb87df8098a2}} 
+\mbox{\Hypertarget{structaws__h1__connection_a25561d26f5de69f271f1e38918a9708e}\label{structaws__h1__connection_a25561d26f5de69f271f1e38918a9708e}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!read\_buffer@{read\_buffer}}
 \index{read\_buffer@{read\_buffer}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{}{}}
@@ -236,13 +236,13 @@ The {\ttfamily \mbox{\hyperlink{structaws__io__message_a46ae86c705a38aada14da1e9
 \doxysubsubsection{\texorpdfstring{stream\_list}{stream\_list}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} aws\+\_\+h1\+\_\+connection\+::stream\+\_\+list}
 
-\mbox{\Hypertarget{structaws__h1__connection_adfe8d514edf00493aabe80888c0a0d92}\label{structaws__h1__connection_adfe8d514edf00493aabe80888c0a0d92}} 
+\mbox{\Hypertarget{structaws__h1__connection_a51bf40d087d972580b3dc3d72efd8595}\label{structaws__h1__connection_a51bf40d087d972580b3dc3d72efd8595}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!synced\_data@{synced\_data}}
 \index{synced\_data@{synced\_data}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{}{}}
 {\footnotesize\ttfamily struct  \{ ... \}  aws\+\_\+h1\+\_\+connection\+::synced\+\_\+data}
 
-\mbox{\Hypertarget{structaws__h1__connection_a35eec3bace7433768e76fe6bbbe7a5ef}\label{structaws__h1__connection_a35eec3bace7433768e76fe6bbbe7a5ef}} 
+\mbox{\Hypertarget{structaws__h1__connection_a0ef02230f49cd5d0528205972ee998d1}\label{structaws__h1__connection_a0ef02230f49cd5d0528205972ee998d1}} 
 \index{aws\_h1\_connection@{aws\_h1\_connection}!thread\_data@{thread\_data}}
 \index{thread\_data@{thread\_data}!aws\_h1\_connection@{aws\_h1\_connection}}
 \doxysubsubsection{\texorpdfstring{}{}}

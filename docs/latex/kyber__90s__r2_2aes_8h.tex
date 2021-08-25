@@ -18,13 +18,13 @@ Header defining the API for OQS AES.
 \item 
 \#define \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a05eca5c09519447fa012a144e7162142}{aes256\+\_\+ecb\+\_\+keyexp}}(r,  key)~\mbox{\hyperlink{aes__c_8c_a55e7e726130c579a878903ed0ce97835}{OQS\+\_\+\+AES256\+\_\+\+ECB\+\_\+load\+\_\+schedule}}((key), (r), 1);
 \item 
-\#define \mbox{\hyperlink{kyber__90s__r2_2aes_8h_ae6ad82e829ba622ed6a253d2128237e2}{aes256\+\_\+ecb}}(out,  in,  nblocks,  \mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})~\mbox{\hyperlink{aes__c_8c_a1a3cf53ff5c63f35f36c932288d6aa26}{OQS\+\_\+\+AES256\+\_\+\+ECB\+\_\+enc\+\_\+sch}}((in), (nblocks) $\ast$ \mbox{\hyperlink{kyber__90s__r2_2aes_8h_ad8df4253939933e4aef7e94dd7ae1710}{AES\+\_\+\+BLOCKBYTES}}, $\ast$(\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}), (out));
+\#define \mbox{\hyperlink{kyber__90s__r2_2aes_8h_ae6ad82e829ba622ed6a253d2128237e2}{aes256\+\_\+ecb}}(out,  in,  nblocks,  ctx)~\mbox{\hyperlink{aes__c_8c_a1a3cf53ff5c63f35f36c932288d6aa26}{OQS\+\_\+\+AES256\+\_\+\+ECB\+\_\+enc\+\_\+sch}}((in), (nblocks) $\ast$ \mbox{\hyperlink{kyber__90s__r2_2aes_8h_ad8df4253939933e4aef7e94dd7ae1710}{AES\+\_\+\+BLOCKBYTES}}, $\ast$(ctx), (out));
 \item 
 \#define \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a30dfebc1fe262573d0894682d6480636}{aes256\+\_\+ctr\+\_\+keyexp}}(r,  key)~\mbox{\hyperlink{aes__c_8c_ab36027adadc5d98a2fb47667b9803028}{OQS\+\_\+\+AES256\+\_\+\+CTR\+\_\+load\+\_\+schedule}}((key), (r));
 \item 
-\#define \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a900d5fde2dea162c6807305c1e60d4c4}{aes256\+\_\+ctr}}(out,  outlen,  iv,  \mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})~\mbox{\hyperlink{aes__c_8c_a444ffe2a14aafcfc0383635be0741d1e}{OQS\+\_\+\+AES256\+\_\+\+CTR\+\_\+sch}}((iv), \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a1f41694c0b8d6b0e534b8fa2d0f627fc}{AESCTR\+\_\+\+NONCEBYTES}}, $\ast$(\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}), (out), (outlen))
+\#define \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a900d5fde2dea162c6807305c1e60d4c4}{aes256\+\_\+ctr}}(out,  outlen,  iv,  ctx)~\mbox{\hyperlink{aes__c_8c_a444ffe2a14aafcfc0383635be0741d1e}{OQS\+\_\+\+AES256\+\_\+\+CTR\+\_\+sch}}((iv), \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a1f41694c0b8d6b0e534b8fa2d0f627fc}{AESCTR\+\_\+\+NONCEBYTES}}, $\ast$(ctx), (out), (outlen))
 \item 
-\#define \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a261e9366bb211925fece4f27c05c9f96}{aes256\+\_\+ctx\+\_\+release}}(\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})~\mbox{\hyperlink{aes__c_8c_add003da1130c29e18de326ad9c0360cb}{OQS\+\_\+\+AES256\+\_\+free\+\_\+schedule}}($\ast$(\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}));
+\#define \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a261e9366bb211925fece4f27c05c9f96}{aes256\+\_\+ctx\+\_\+release}}(ctx)~\mbox{\hyperlink{aes__c_8c_add003da1130c29e18de326ad9c0360cb}{OQS\+\_\+\+AES256\+\_\+free\+\_\+schedule}}($\ast$(ctx));
 \item 
 \#define \mbox{\hyperlink{kyber__90s__r2_2aes_8h_aa40575ee378577b1c5b856aede290372}{OQS\+\_\+\+EXIT\+\_\+\+IF\+\_\+\+NULLPTR}}(x)
 \end{DoxyCompactItemize}
@@ -80,7 +80,7 @@ SPDX-\/\+License-\/\+Identifier\+: MIT
 \index{aes.h@{aes.h}!aes256\_ctr@{aes256\_ctr}}
 \index{aes256\_ctr@{aes256\_ctr}!aes.h@{aes.h}}
 \doxysubsubsection{\texorpdfstring{aes256\_ctr}{aes256\_ctr}}
-{\footnotesize\ttfamily \#define aes256\+\_\+ctr(\begin{DoxyParamCaption}\item[{}]{out,  }\item[{}]{outlen,  }\item[{}]{iv,  }\item[{}]{\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}} }\end{DoxyParamCaption})~\mbox{\hyperlink{aes__c_8c_a444ffe2a14aafcfc0383635be0741d1e}{OQS\+\_\+\+AES256\+\_\+\+CTR\+\_\+sch}}((iv), \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a1f41694c0b8d6b0e534b8fa2d0f627fc}{AESCTR\+\_\+\+NONCEBYTES}}, $\ast$(\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}), (out), (outlen))}
+{\footnotesize\ttfamily \#define aes256\+\_\+ctr(\begin{DoxyParamCaption}\item[{}]{out,  }\item[{}]{outlen,  }\item[{}]{iv,  }\item[{}]{ctx }\end{DoxyParamCaption})~\mbox{\hyperlink{aes__c_8c_a444ffe2a14aafcfc0383635be0741d1e}{OQS\+\_\+\+AES256\+\_\+\+CTR\+\_\+sch}}((iv), \mbox{\hyperlink{kyber__90s__r2_2aes_8h_a1f41694c0b8d6b0e534b8fa2d0f627fc}{AESCTR\+\_\+\+NONCEBYTES}}, $\ast$(ctx), (out), (outlen))}
 
 \mbox{\Hypertarget{kyber__90s__r2_2aes_8h_a30dfebc1fe262573d0894682d6480636}\label{kyber__90s__r2_2aes_8h_a30dfebc1fe262573d0894682d6480636}} 
 \index{aes.h@{aes.h}!aes256\_ctr\_keyexp@{aes256\_ctr\_keyexp}}
@@ -92,13 +92,13 @@ SPDX-\/\+License-\/\+Identifier\+: MIT
 \index{aes.h@{aes.h}!aes256\_ctx\_release@{aes256\_ctx\_release}}
 \index{aes256\_ctx\_release@{aes256\_ctx\_release}!aes.h@{aes.h}}
 \doxysubsubsection{\texorpdfstring{aes256\_ctx\_release}{aes256\_ctx\_release}}
-{\footnotesize\ttfamily \#define aes256\+\_\+ctx\+\_\+release(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}} }\end{DoxyParamCaption})~\mbox{\hyperlink{aes__c_8c_add003da1130c29e18de326ad9c0360cb}{OQS\+\_\+\+AES256\+\_\+free\+\_\+schedule}}($\ast$(\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}));}
+{\footnotesize\ttfamily \#define aes256\+\_\+ctx\+\_\+release(\begin{DoxyParamCaption}\item[{}]{ctx }\end{DoxyParamCaption})~\mbox{\hyperlink{aes__c_8c_add003da1130c29e18de326ad9c0360cb}{OQS\+\_\+\+AES256\+\_\+free\+\_\+schedule}}($\ast$(ctx));}
 
 \mbox{\Hypertarget{kyber__90s__r2_2aes_8h_ae6ad82e829ba622ed6a253d2128237e2}\label{kyber__90s__r2_2aes_8h_ae6ad82e829ba622ed6a253d2128237e2}} 
 \index{aes.h@{aes.h}!aes256\_ecb@{aes256\_ecb}}
 \index{aes256\_ecb@{aes256\_ecb}!aes.h@{aes.h}}
 \doxysubsubsection{\texorpdfstring{aes256\_ecb}{aes256\_ecb}}
-{\footnotesize\ttfamily \#define aes256\+\_\+ecb(\begin{DoxyParamCaption}\item[{}]{out,  }\item[{}]{in,  }\item[{}]{nblocks,  }\item[{}]{\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}} }\end{DoxyParamCaption})~\mbox{\hyperlink{aes__c_8c_a1a3cf53ff5c63f35f36c932288d6aa26}{OQS\+\_\+\+AES256\+\_\+\+ECB\+\_\+enc\+\_\+sch}}((in), (nblocks) $\ast$ \mbox{\hyperlink{kyber__90s__r2_2aes_8h_ad8df4253939933e4aef7e94dd7ae1710}{AES\+\_\+\+BLOCKBYTES}}, $\ast$(\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}), (out));}
+{\footnotesize\ttfamily \#define aes256\+\_\+ecb(\begin{DoxyParamCaption}\item[{}]{out,  }\item[{}]{in,  }\item[{}]{nblocks,  }\item[{}]{ctx }\end{DoxyParamCaption})~\mbox{\hyperlink{aes__c_8c_a1a3cf53ff5c63f35f36c932288d6aa26}{OQS\+\_\+\+AES256\+\_\+\+ECB\+\_\+enc\+\_\+sch}}((in), (nblocks) $\ast$ \mbox{\hyperlink{kyber__90s__r2_2aes_8h_ad8df4253939933e4aef7e94dd7ae1710}{AES\+\_\+\+BLOCKBYTES}}, $\ast$(ctx), (out));}
 
 \mbox{\Hypertarget{kyber__90s__r2_2aes_8h_a05eca5c09519447fa012a144e7162142}\label{kyber__90s__r2_2aes_8h_a05eca5c09519447fa012a144e7162142}} 
 \index{aes.h@{aes.h}!aes256\_ecb\_keyexp@{aes256\_ecb\_keyexp}}

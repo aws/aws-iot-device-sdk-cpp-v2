@@ -21,7 +21,7 @@
 \DoxyCodeLine{22 \textcolor{comment}{ */}}
 \DoxyCodeLine{23 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__channel}{aws\_log\_channel}};}
 \DoxyCodeLine{24 }
-\DoxyCodeLine{25 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{log__channel_8h_ae100e2b25366adccaa157a6a8e587f28}{aws\_log\_channel\_send\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__channel}{aws\_log\_channel}} *channel, \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}});}
+\DoxyCodeLine{25 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{log__channel_8h_ae100e2b25366adccaa157a6a8e587f28}{aws\_log\_channel\_send\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__channel}{aws\_log\_channel}} *channel, \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *output);}
 \DoxyCodeLine{26 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{log__channel_8h_a1e9a089590a13353849a3398f5edd5d2}{aws\_log\_channel\_clean\_up\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__channel}{aws\_log\_channel}} *channel);}
 \DoxyCodeLine{27 }
 \DoxyCodeLine{28 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__log__channel__vtable}{aws\_log\_channel\_vtable}} \{}
@@ -46,7 +46,7 @@
 \DoxyCodeLine{47 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{48 \textcolor{keywordtype}{int} \mbox{\hyperlink{log__channel_8h_a8474ee6afd0943dde9d192af80371daa}{aws\_log\_channel\_init\_foreground}}(}
 \DoxyCodeLine{49     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__log__channel}{aws\_log\_channel}} *channel,}
-\DoxyCodeLine{50     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{50     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__log__writer_ad591385b69600e028b80d8ffec0471fe}{allocator}},}
 \DoxyCodeLine{51     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__log__writer}{aws\_log\_writer}} *writer);}
 \DoxyCodeLine{52 }
 \DoxyCodeLine{53 \textcolor{comment}{/*}}
@@ -57,7 +57,7 @@
 \DoxyCodeLine{58 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{59 \textcolor{keywordtype}{int} \mbox{\hyperlink{log__channel_8h_a6beebb7ce98cb1f59936e7d7310838f0}{aws\_log\_channel\_init\_background}}(}
 \DoxyCodeLine{60     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__log__channel}{aws\_log\_channel}} *channel,}
-\DoxyCodeLine{61     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{61     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__log__writer_ad591385b69600e028b80d8ffec0471fe}{allocator}},}
 \DoxyCodeLine{62     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__log__writer}{aws\_log\_writer}} *writer);}
 \DoxyCodeLine{63 }
 \DoxyCodeLine{64 \textcolor{comment}{/*}}

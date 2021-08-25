@@ -80,12 +80,12 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ac35de70031cf940e13c7862208b1defd"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h.html#ac35de70031cf940e13c7862208b1defd">aws_signing_complete_fn</a>(struct <a class="el" href="structaws__signing__result.html">aws_signing_result</a> *result, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, void *userdata)</td></tr>
+<tr class="memitem:ac35de70031cf940e13c7862208b1defd"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h.html#ac35de70031cf940e13c7862208b1defd">aws_signing_complete_fn</a>(struct <a class="el" href="structaws__signing__result.html">aws_signing_result</a> *result, int error_code, void *userdata)</td></tr>
 <tr class="separator:ac35de70031cf940e13c7862208b1defd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9966fdbaacd1f788c92300343f6fcf21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h.html#a9966fdbaacd1f788c92300343f6fcf21">aws_sign_request_aws</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct <a class="el" href="structaws__signing__config__base.html">aws_signing_config_base</a> *base_config, <a class="el" href="crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h.html#ac35de70031cf940e13c7862208b1defd">aws_signing_complete_fn</a> *on_complete, void *userdata)</td></tr>
+<tr class="memitem:a9966fdbaacd1f788c92300343f6fcf21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h.html#ada04eaddb51503ac54105d49ef3176a8">AWS_AUTH_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h.html#a9966fdbaacd1f788c92300343f6fcf21">aws_sign_request_aws</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__signable.html">aws_signable</a> *signable, const struct <a class="el" href="structaws__signing__config__base.html">aws_signing_config_base</a> *base_config, <a class="el" href="crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h.html#ac35de70031cf940e13c7862208b1defd">aws_signing_complete_fn</a> *on_complete, void *userdata)</td></tr>
 <tr class="separator:a9966fdbaacd1f788c92300343f6fcf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -96,7 +96,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_signing_complete_fn(struct <a class="el" href="structaws__signing__result.html">aws_signing_result</a> *result, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, void *userdata)</td>
+          <td class="memname">typedef void() aws_signing_complete_fn(struct <a class="el" href="structaws__signing__result.html">aws_signing_result</a> *result, int error_code, void *userdata)</td>
         </tr>
       </table>
 </div><div class="memdoc">

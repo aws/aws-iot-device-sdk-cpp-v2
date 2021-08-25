@@ -83,7 +83,7 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a9689dc1056c82d2e525536c779cee910"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a9689dc1056c82d2e525536c779cee910">AWS_PRECONDITION_ON_CHANNEL_THREAD</a>(STREAM)&#160;&#160;&#160;    <a class="el" href="preamble_8h.html#ad3b457c5120fb126921c12f6ac4fd54d">AWS_PRECONDITION</a>(<a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a>(<a class="el" href="h2__stream_8c.html#a99844eff536049baba11e1ea29246336">s_get_h2_connection</a>(STREAM)-&gt;base.channel_slot-&gt;channel))</td></tr>
+<tr class="memitem:a9689dc1056c82d2e525536c779cee910"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a9689dc1056c82d2e525536c779cee910">AWS_PRECONDITION_ON_CHANNEL_THREAD</a>(STREAM)&#160;&#160;&#160;    <a class="el" href="assert_8h.html#a85e84d0663c92cc36481637c606af164">AWS_PRECONDITION</a>(<a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a>(<a class="el" href="h2__stream_8c.html#a99844eff536049baba11e1ea29246336">s_get_h2_connection</a>(STREAM)-&gt;base.channel_slot-&gt;channel))</td></tr>
 <tr class="separator:a9689dc1056c82d2e525536c779cee910"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -102,7 +102,7 @@ Functions</h2></td></tr>
 <tr class="separator:a6099337646e0c9c7abb521e5744d3213"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d30536133c39f5bd7a4eda50dbe3830"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a0d30536133c39f5bd7a4eda50dbe3830">s_send_rst_and_close_stream</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__h2err.html">aws_h2err</a> stream_error)</td></tr>
 <tr class="separator:a0d30536133c39f5bd7a4eda50dbe3830"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafa04dc3a832a6b40853d876f538b6d4"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#aafa04dc3a832a6b40853d876f538b6d4">aws_h2_stream_state_to_str</a> (enum <a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394d">aws_h2_stream_state</a> <a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:aafa04dc3a832a6b40853d876f538b6d4"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#aafa04dc3a832a6b40853d876f538b6d4">aws_h2_stream_state_to_str</a> (enum <a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394d">aws_h2_stream_state</a> state)</td></tr>
 <tr class="separator:aafa04dc3a832a6b40853d876f538b6d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99844eff536049baba11e1ea29246336"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__h2__connection.html">aws_h2_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a99844eff536049baba11e1ea29246336">s_get_h2_connection</a> (const struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream)</td></tr>
 <tr class="separator:a99844eff536049baba11e1ea29246336"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,25 +118,25 @@ Functions</h2></td></tr>
 <tr class="separator:a2de0ecc85d495c779738315def97e823"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52c3ee4ca960f68f62b77065d06a0cdf"><td class="memItemLeft" align="right" valign="top">enum <a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394d">aws_h2_stream_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a52c3ee4ca960f68f62b77065d06a0cdf">aws_h2_stream_get_state</a> (const struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream)</td></tr>
 <tr class="separator:a52c3ee4ca960f68f62b77065d06a0cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae67e87ebd29152e596187de3838b3365"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#ae67e87ebd29152e596187de3838b3365">aws_h2_stream_window_size_change</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, int32_t size_changed, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> self)</td></tr>
+<tr class="memitem:ae67e87ebd29152e596187de3838b3365"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#ae67e87ebd29152e596187de3838b3365">aws_h2_stream_window_size_change</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, int32_t size_changed, bool self)</td></tr>
 <tr class="separator:ae67e87ebd29152e596187de3838b3365"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40cb8648428b59bac90114c9c09b7147"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a40cb8648428b59bac90114c9c09b7147">aws_h2_stream_on_activated</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *out_has_outgoing_data)</td></tr>
+<tr class="memitem:a40cb8648428b59bac90114c9c09b7147"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a40cb8648428b59bac90114c9c09b7147">aws_h2_stream_on_activated</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, bool *out_has_outgoing_data)</td></tr>
 <tr class="separator:a40cb8648428b59bac90114c9c09b7147"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05ca23cdf2a411d9e9f31fa3e8f7378b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a05ca23cdf2a411d9e9f31fa3e8f7378b">aws_h2_stream_encode_data_frame</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__h2__frame__encoder.html">aws_h2_frame_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *<a class="el" href="log__formatter__test_8c.html#ae73289c5189c80c0661459b0f4743217">output</a>, int *data_encode_status)</td></tr>
+<tr class="memitem:a05ca23cdf2a411d9e9f31fa3e8f7378b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a05ca23cdf2a411d9e9f31fa3e8f7378b">aws_h2_stream_encode_data_frame</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__h2__frame__encoder.html">aws_h2_frame_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output, int *data_encode_status)</td></tr>
 <tr class="separator:a05ca23cdf2a411d9e9f31fa3e8f7378b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc0feece7cabd840c4d28584c604b26c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#acc0feece7cabd840c4d28584c604b26c">aws_h2_stream_on_decoder_headers_begin</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream)</td></tr>
 <tr class="separator:acc0feece7cabd840c4d28584c604b26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbf7c51368d49c551847e2278fb4d5b9"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#acbf7c51368d49c551847e2278fb4d5b9">aws_h2_stream_on_decoder_headers_i</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, const struct <a class="el" href="structaws__http__header.html">aws_http_header</a> *header, enum <a class="el" href="http__impl_8h.html#a12be5e482ebfe4d5f53c5a493099818f">aws_http_header_name</a> name_enum, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block_type)</td></tr>
 <tr class="separator:acbf7c51368d49c551847e2278fb4d5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f6a6a13535438ab4f2b62abec4befdf"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a5f6a6a13535438ab4f2b62abec4befdf">aws_h2_stream_on_decoder_headers_end</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> malformed, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block_type)</td></tr>
+<tr class="memitem:a5f6a6a13535438ab4f2b62abec4befdf"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a5f6a6a13535438ab4f2b62abec4befdf">aws_h2_stream_on_decoder_headers_end</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, bool malformed, enum <a class="el" href="request__response_8h.html#ad38060b55775ed67cd4f7fa2c8d4b266">aws_http_header_block</a> block_type)</td></tr>
 <tr class="separator:a5f6a6a13535438ab4f2b62abec4befdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e895f1e663394d7edd8d2405a59438a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a8e895f1e663394d7edd8d2405a59438a">aws_h2_stream_on_decoder_push_promise</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, uint32_t promised_stream_id)</td></tr>
 <tr class="separator:a8e895f1e663394d7edd8d2405a59438a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa342407cac15121a7ab79d629c92811d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#aa342407cac15121a7ab79d629c92811d">aws_h2_stream_on_decoder_data_begin</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, uint32_t payload_len, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> end_stream)</td></tr>
+<tr class="memitem:aa342407cac15121a7ab79d629c92811d"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#aa342407cac15121a7ab79d629c92811d">aws_h2_stream_on_decoder_data_begin</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, uint32_t payload_len, bool end_stream)</td></tr>
 <tr class="separator:aa342407cac15121a7ab79d629c92811d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab29cf7b4b31eb14cd6e1c848ca7920bf"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#ab29cf7b4b31eb14cd6e1c848ca7920bf">aws_h2_stream_on_decoder_data_i</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> data)</td></tr>
 <tr class="separator:ab29cf7b4b31eb14cd6e1c848ca7920bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dbbd39333aefdd03fe0947b668977c3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a6dbbd39333aefdd03fe0947b668977c3">aws_h2_stream_on_decoder_window_update</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, uint32_t window_size_increment, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *window_resume)</td></tr>
+<tr class="memitem:a6dbbd39333aefdd03fe0947b668977c3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a6dbbd39333aefdd03fe0947b668977c3">aws_h2_stream_on_decoder_window_update</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream, uint32_t window_size_increment, bool *window_resume)</td></tr>
 <tr class="separator:a6dbbd39333aefdd03fe0947b668977c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11988f18a3dca95cd789ed16f24adef6"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h2err.html">aws_h2err</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a11988f18a3dca95cd789ed16f24adef6">aws_h2_stream_on_decoder_end_stream</a> (struct <a class="el" href="structaws__h2__stream.html">aws_h2_stream</a> *stream)</td></tr>
 <tr class="separator:a11988f18a3dca95cd789ed16f24adef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,9 +147,9 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a060f3baf70f7fd295281139f35dcd9de"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__http__stream__vtable.html">aws_http_stream_vtable</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a060f3baf70f7fd295281139f35dcd9de">s_h2_stream_vtable</a></td></tr>
 <tr class="separator:a060f3baf70f7fd295281139f35dcd9de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d3aa4be1f0e91724b5be80ed76c19c0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a6d3aa4be1f0e91724b5be80ed76c19c0">s_client_state_allows_frame_type</a> [<a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123">AWS_H2_STREAM_STATE_COUNT</a>][<a class="el" href="h2__frames_8h.html#a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a">AWS_H2_FRAME_TYPE_COUNT</a>]</td></tr>
+<tr class="memitem:a6d3aa4be1f0e91724b5be80ed76c19c0"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a6d3aa4be1f0e91724b5be80ed76c19c0">s_client_state_allows_frame_type</a> [<a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123">AWS_H2_STREAM_STATE_COUNT</a>][<a class="el" href="h2__frames_8h.html#a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a">AWS_H2_FRAME_TYPE_COUNT</a>]</td></tr>
 <tr class="separator:a6d3aa4be1f0e91724b5be80ed76c19c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d7e72db0cbb62aaa267dfc2122a3a5d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a0d7e72db0cbb62aaa267dfc2122a3a5d">s_server_state_allows_frame_type</a> [<a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123">AWS_H2_STREAM_STATE_COUNT</a>][<a class="el" href="h2__frames_8h.html#a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a">AWS_H2_FRAME_TYPE_COUNT</a>]</td></tr>
+<tr class="memitem:a0d7e72db0cbb62aaa267dfc2122a3a5d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h2__stream_8c.html#a0d7e72db0cbb62aaa267dfc2122a3a5d">s_server_state_allows_frame_type</a> [<a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123">AWS_H2_STREAM_STATE_COUNT</a>][<a class="el" href="h2__frames_8h.html#a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a">AWS_H2_FRAME_TYPE_COUNT</a>]</td></tr>
 <tr class="separator:a0d7e72db0cbb62aaa267dfc2122a3a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -164,7 +164,7 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">STREAM</td><td>)</td>
-          <td>&#160;&#160;&#160;    <a class="el" href="preamble_8h.html#ad3b457c5120fb126921c12f6ac4fd54d">AWS_PRECONDITION</a>(<a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a>(<a class="el" href="h2__stream_8c.html#a99844eff536049baba11e1ea29246336">s_get_h2_connection</a>(STREAM)-&gt;base.channel_slot-&gt;channel))</td>
+          <td>&#160;&#160;&#160;    <a class="el" href="assert_8h.html#a85e84d0663c92cc36481637c606af164">AWS_PRECONDITION</a>(<a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a>(<a class="el" href="h2__stream_8c.html#a99844eff536049baba11e1ea29246336">s_get_h2_connection</a>(STREAM)-&gt;base.channel_slot-&gt;channel))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -273,7 +273,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *&#160;</td>
+          <td class="paramtype">bool *&#160;</td>
           <td class="paramname"><em>out_has_outgoing_data</em>&#160;</td>
         </tr>
         <tr>
@@ -307,7 +307,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>end_stream</em>&#160;</td>
         </tr>
         <tr>
@@ -399,7 +399,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>malformed</em>, </td>
         </tr>
         <tr>
@@ -535,7 +535,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *&#160;</td>
+          <td class="paramtype">bool *&#160;</td>
           <td class="paramname"><em>window_resume</em>&#160;</td>
         </tr>
         <tr>
@@ -587,7 +587,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>self</em>&#160;</td>
         </tr>
         <tr>
@@ -1010,7 +1010,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_client_state_allows_frame_type[<a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123">AWS_H2_STREAM_STATE_COUNT</a>][<a class="el" href="h2__frames_8h.html#a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a">AWS_H2_FRAME_TYPE_COUNT</a>]</td>
+          <td class="memname">bool s_client_state_allows_frame_type[<a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123">AWS_H2_STREAM_STATE_COUNT</a>][<a class="el" href="h2__frames_8h.html#a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a">AWS_H2_FRAME_TYPE_COUNT</a>]</td>
         </tr>
       </table>
   </td>
@@ -1062,7 +1062,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_server_state_allows_frame_type[<a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123">AWS_H2_STREAM_STATE_COUNT</a>][<a class="el" href="h2__frames_8h.html#a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a">AWS_H2_FRAME_TYPE_COUNT</a>]</td>
+          <td class="memname">bool s_server_state_allows_frame_type[<a class="el" href="h2__stream_8h.html#a57d944707462ad83b29c20ead685394da5004b501e4cfe4054b6d60777db6f123">AWS_H2_STREAM_STATE_COUNT</a>][<a class="el" href="h2__frames_8h.html#a4a89507d5388407e919c5082064401dba8cb0f068d4464354bddf908b8282295a">AWS_H2_FRAME_TYPE_COUNT</a>]</td>
         </tr>
       </table>
   </td>

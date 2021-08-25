@@ -11,11 +11,11 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{cal_8c_a407f69e844ac10381051b1d82e7de6c2}{aws\+\_\+cal\+\_\+platform\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{cal_8c_a407f69e844ac10381051b1d82e7de6c2}{aws\+\_\+cal\+\_\+platform\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{cal_8c_adb680a9a227a90f27c43f8a871248988}{aws\+\_\+cal\+\_\+platform\+\_\+clean\+\_\+up}} (void)
 \item 
-void \mbox{\hyperlink{cal_8c_aa63491f5049189b76f2271cd1d6370a5}{aws\+\_\+cal\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{cal_8c_aa63491f5049189b76f2271cd1d6370a5}{aws\+\_\+cal\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{cal_8c_a1f4161db6a38398fc8ceccaed4e3886e}{aws\+\_\+cal\+\_\+library\+\_\+clean\+\_\+up}} (void)
 \end{DoxyCompactItemize}
@@ -26,7 +26,7 @@ static struct \mbox{\hyperlink{structaws__error__info}{aws\+\_\+error\+\_\+info}
 \item 
 static struct \mbox{\hyperlink{structaws__error__info__list}{aws\+\_\+error\+\_\+info\+\_\+list}} \mbox{\hyperlink{cal_8c_a5ea700514e70a0da767872486e1c257a}{s\+\_\+list}}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{cal_8c_a43a899c46112980667acd5ac9ac8cfca}{s\+\_\+cal\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+static bool \mbox{\hyperlink{cal_8c_a43a899c46112980667acd5ac9ac8cfca}{s\+\_\+cal\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}
 \end{DoxyCompactItemize}
 
 
@@ -71,7 +71,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{cal.c@{cal.c}!s\_cal\_library\_initialized@{s\_cal\_library\_initialized}}
 \index{s\_cal\_library\_initialized@{s\_cal\_library\_initialized}!cal.c@{cal.c}}
 \doxysubsubsection{\texorpdfstring{s\_cal\_library\_initialized}{s\_cal\_library\_initialized}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+cal\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily bool s\+\_\+cal\+\_\+library\+\_\+initialized = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{cal_8c_a255baa9b51b60f5b91a01313637fc353}\label{cal_8c_a255baa9b51b60f5b91a01313637fc353}} 
 \index{cal.c@{cal.c}!s\_errors@{s\_errors}}

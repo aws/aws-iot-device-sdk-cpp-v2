@@ -6,15 +6,15 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{byte__buf_8c_adf8ed14982cd1aa9e83c924ebb5856ae}{aws\+\_\+byte\+\_\+buf\+\_\+init}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t capacity)
+int \mbox{\hyperlink{byte__buf_8c_adf8ed14982cd1aa9e83c924ebb5856ae}{aws\+\_\+byte\+\_\+buf\+\_\+init}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t capacity)
 \item 
-int \mbox{\hyperlink{byte__buf_8c_afcaa669dd210b0cf9820deca75c9a686}{aws\+\_\+byte\+\_\+buf\+\_\+init\+\_\+copy}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$src)
+int \mbox{\hyperlink{byte__buf_8c_afcaa669dd210b0cf9820deca75c9a686}{aws\+\_\+byte\+\_\+buf\+\_\+init\+\_\+copy}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$src)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a07926449452596f7b4750430607a9277}{aws\+\_\+byte\+\_\+buf\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}})
+bool \mbox{\hyperlink{byte__buf_8c_a07926449452596f7b4750430607a9277}{aws\+\_\+byte\+\_\+buf\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a6a58a8d6758717dcdbf2ed031d44d68c}{aws\+\_\+byte\+\_\+cursor\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
+bool \mbox{\hyperlink{byte__buf_8c_a6a58a8d6758717dcdbf2ed031d44d68c}{aws\+\_\+byte\+\_\+cursor\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
 \item 
-void \mbox{\hyperlink{byte__buf_8c_aba38e9db5164e21174386de288aa1c7d}{aws\+\_\+byte\+\_\+buf\+\_\+reset}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} zero\+\_\+contents)
+void \mbox{\hyperlink{byte__buf_8c_aba38e9db5164e21174386de288aa1c7d}{aws\+\_\+byte\+\_\+buf\+\_\+reset}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, bool zero\+\_\+contents)
 \item 
 void \mbox{\hyperlink{byte__buf_8c_acbddfbd5ccda972a6630cd841fec7b21}{aws\+\_\+byte\+\_\+buf\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}})
 \item 
@@ -22,67 +22,67 @@ void \mbox{\hyperlink{byte__buf_8c_ac1d0a2e070ce4e156bc636c9873eb4ad}{aws\+\_\+b
 \item 
 void \mbox{\hyperlink{byte__buf_8c_a9f4e4659a9a46d1014b10424a87b8286}{aws\+\_\+byte\+\_\+buf\+\_\+clean\+\_\+up\+\_\+secure}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a2246da0ca31f44fc92d4ebc9fa16cb45}{aws\+\_\+byte\+\_\+buf\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const a, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+bool \mbox{\hyperlink{byte__buf_8c_a2246da0ca31f44fc92d4ebc9fa16cb45}{aws\+\_\+byte\+\_\+buf\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const a, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a23180f5c686096e7f2902e147635aeb1}{aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const a, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+bool \mbox{\hyperlink{byte__buf_8c_a23180f5c686096e7f2902e147635aeb1}{aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const a, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_ab9d84517a8dd0c4ab2b3b17c108814c4}{aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+c\+\_\+str}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const char $\ast$const c\+\_\+str)
+bool \mbox{\hyperlink{byte__buf_8c_ab9d84517a8dd0c4ab2b3b17c108814c4}{aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+c\+\_\+str}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const char $\ast$const c\+\_\+str)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_af2e8f1e9a122054ada8a3e867aa9a6f8}{aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const char $\ast$const c\+\_\+str)
+bool \mbox{\hyperlink{byte__buf_8c_af2e8f1e9a122054ada8a3e867aa9a6f8}{aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const char $\ast$const c\+\_\+str)
 \item 
-int \mbox{\hyperlink{byte__buf_8c_add0e7102270fffc97b9d7da4d0a38bd7}{aws\+\_\+byte\+\_\+buf\+\_\+init\+\_\+copy\+\_\+from\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} src)
+int \mbox{\hyperlink{byte__buf_8c_add0e7102270fffc97b9d7da4d0a38bd7}{aws\+\_\+byte\+\_\+buf\+\_\+init\+\_\+copy\+\_\+from\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} src)
 \item 
-int \mbox{\hyperlink{byte__buf_8c_aac5490e5293c67b8f0a82342ea81c917}{aws\+\_\+byte\+\_\+buf\+\_\+init\+\_\+cache\+\_\+and\+\_\+update\+\_\+cursors}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},...)
+int \mbox{\hyperlink{byte__buf_8c_aac5490e5293c67b8f0a82342ea81c917}{aws\+\_\+byte\+\_\+buf\+\_\+init\+\_\+cache\+\_\+and\+\_\+update\+\_\+cursors}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator,...)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a8500b18cf261cffbd69dec5f4dd698c1}{aws\+\_\+byte\+\_\+cursor\+\_\+next\+\_\+split}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} input\+\_\+str, char split\+\_\+on, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} substr)
+bool \mbox{\hyperlink{byte__buf_8c_a8500b18cf261cffbd69dec5f4dd698c1}{aws\+\_\+byte\+\_\+cursor\+\_\+next\+\_\+split}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} input\+\_\+str, char split\+\_\+on, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} substr)
 \item 
-int \mbox{\hyperlink{byte__buf_8c_a49db4870532ddfadf616887d3fb2fed5}{aws\+\_\+byte\+\_\+cursor\+\_\+split\+\_\+on\+\_\+char\+\_\+n}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} input\+\_\+str, char split\+\_\+on, size\+\_\+t n, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{byte__buf_8c_a49db4870532ddfadf616887d3fb2fed5}{aws\+\_\+byte\+\_\+cursor\+\_\+split\+\_\+on\+\_\+char\+\_\+n}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} input\+\_\+str, char split\+\_\+on, size\+\_\+t n, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} output)
 \item 
-int \mbox{\hyperlink{byte__buf_8c_ac6ebbd786227e59a3aba25b8abe43d6e}{aws\+\_\+byte\+\_\+cursor\+\_\+split\+\_\+on\+\_\+char}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} input\+\_\+str, char split\+\_\+on, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{byte__buf_8c_ac6ebbd786227e59a3aba25b8abe43d6e}{aws\+\_\+byte\+\_\+cursor\+\_\+split\+\_\+on\+\_\+char}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} input\+\_\+str, char split\+\_\+on, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} output)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_a8034dfb48cf116946a092436e409bf9a}{aws\+\_\+byte\+\_\+cursor\+\_\+find\+\_\+exact}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} input\+\_\+str, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to\+\_\+find, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$first\+\_\+find)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_a6ed7bf940089a3adfb6e44ab70203156}{aws\+\_\+byte\+\_\+buf\+\_\+cat}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest, size\+\_\+t number\+\_\+of\+\_\+args,...)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a6ac432a626706052a527c1349fb8cbd4}{aws\+\_\+byte\+\_\+cursor\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$a, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+bool \mbox{\hyperlink{byte__buf_8c_a6ac432a626706052a527c1349fb8cbd4}{aws\+\_\+byte\+\_\+cursor\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$a, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a509e25ff72150c5f4f4a40e48432c402}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$a, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+bool \mbox{\hyperlink{byte__buf_8c_a509e25ff72150c5f4f4a40e48432c402}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$a, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
 \mbox{\hyperlink{byte__buf_8c_af9e2f9f9e603d6d21aceba0cccb77bb9}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT}} (\mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\+\_\+\+ARRAY\+\_\+\+SIZE}}(\mbox{\hyperlink{byte__buf_8c_a44397e404df152393bd3201025f462ef}{s\+\_\+tolower\+\_\+table}})==256)
 \item 
 const uint8\+\_\+t $\ast$ \mbox{\hyperlink{byte__buf_8c_af1fe4a204cae799ed595d635d9979590}{aws\+\_\+lookup\+\_\+table\+\_\+to\+\_\+lower\+\_\+get}} (void)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_ad7140a0d5f0196940bcf1d62f4679f33}{aws\+\_\+array\+\_\+eq\+\_\+ignore\+\_\+case}} (const void $\ast$const array\+\_\+a, const size\+\_\+t len\+\_\+a, const void $\ast$const array\+\_\+b, const size\+\_\+t len\+\_\+b)
+bool \mbox{\hyperlink{byte__buf_8c_ad7140a0d5f0196940bcf1d62f4679f33}{aws\+\_\+array\+\_\+eq\+\_\+ignore\+\_\+case}} (const void $\ast$const array\+\_\+a, const size\+\_\+t len\+\_\+a, const void $\ast$const array\+\_\+b, const size\+\_\+t len\+\_\+b)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_aa60206f73448db770f5f66a54cf72b5a}{aws\+\_\+array\+\_\+eq}} (const void $\ast$const array\+\_\+a, const size\+\_\+t len\+\_\+a, const void $\ast$const array\+\_\+b, const size\+\_\+t len\+\_\+b)
+bool \mbox{\hyperlink{byte__buf_8c_aa60206f73448db770f5f66a54cf72b5a}{aws\+\_\+array\+\_\+eq}} (const void $\ast$const array\+\_\+a, const size\+\_\+t len\+\_\+a, const void $\ast$const array\+\_\+b, const size\+\_\+t len\+\_\+b)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_ab764fa5e408f601deef8f78aa969a92c}{aws\+\_\+array\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case}} (const void $\ast$const array, const size\+\_\+t array\+\_\+len, const char $\ast$const c\+\_\+str)
+bool \mbox{\hyperlink{byte__buf_8c_ab764fa5e408f601deef8f78aa969a92c}{aws\+\_\+array\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case}} (const void $\ast$const array, const size\+\_\+t array\+\_\+len, const char $\ast$const c\+\_\+str)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a173ae70dc07148c93669d9bf695ab9bd}{aws\+\_\+array\+\_\+eq\+\_\+c\+\_\+str}} (const void $\ast$const array, const size\+\_\+t array\+\_\+len, const char $\ast$const c\+\_\+str)
+bool \mbox{\hyperlink{byte__buf_8c_a173ae70dc07148c93669d9bf695ab9bd}{aws\+\_\+array\+\_\+eq\+\_\+c\+\_\+str}} (const void $\ast$const array, const size\+\_\+t array\+\_\+len, const char $\ast$const c\+\_\+str)
 \item 
 uint64\+\_\+t \mbox{\hyperlink{byte__buf_8c_ab2b52ce0371e324b33ec2006fe3207fa}{aws\+\_\+hash\+\_\+array\+\_\+ignore\+\_\+case}} (const void $\ast$array, const size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
 uint64\+\_\+t \mbox{\hyperlink{byte__buf_8c_a2bb583d1f274a5863b152cee4749bcc9}{aws\+\_\+hash\+\_\+byte\+\_\+cursor\+\_\+ptr\+\_\+ignore\+\_\+case}} (const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a31a7dc00c06d8a4abe69a9680934336a}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+byte\+\_\+buf}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const a, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+bool \mbox{\hyperlink{byte__buf_8c_a31a7dc00c06d8a4abe69a9680934336a}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+byte\+\_\+buf}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const a, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a6952e4ba3307e2a05d5edadc0d92cee0}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+byte\+\_\+buf\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const a, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+bool \mbox{\hyperlink{byte__buf_8c_a6952e4ba3307e2a05d5edadc0d92cee0}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+byte\+\_\+buf\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const a, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a410ca19b956f672343dfa71c2f534abe}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+c\+\_\+str}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const cursor, const char $\ast$const c\+\_\+str)
+bool \mbox{\hyperlink{byte__buf_8c_a410ca19b956f672343dfa71c2f534abe}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+c\+\_\+str}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const cursor, const char $\ast$const c\+\_\+str)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_afbd816b132e73605793c8a7b848997b1}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const cursor, const char $\ast$const c\+\_\+str)
+bool \mbox{\hyperlink{byte__buf_8c_afbd816b132e73605793c8a7b848997b1}{aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const cursor, const char $\ast$const c\+\_\+str)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_acd3ab456a1b70a558da8e18e2724a948}{aws\+\_\+byte\+\_\+buf\+\_\+append}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$to, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$from)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_a448b75fae26a0e95e178ac9629482e6f}{aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+with\+\_\+lookup}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} from, const uint8\+\_\+t $\ast$lookup\+\_\+table)
 \item 
-static int \mbox{\hyperlink{byte__buf_8c_aec56ee1008054c5a0aee809cc324e330}{s\+\_\+aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+dynamic}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$to, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$from, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} clear\+\_\+released\+\_\+memory)
+static int \mbox{\hyperlink{byte__buf_8c_aec56ee1008054c5a0aee809cc324e330}{s\+\_\+aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+dynamic}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$to, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$from, bool clear\+\_\+released\+\_\+memory)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_ab4a34b2d690f402d6f1eb78da880d43d}{aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+dynamic}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$to, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$from)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_a208d9f01f769fbc2440aa7d98019e639}{aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+dynamic\+\_\+secure}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$to, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$from)
 \item 
-static int \mbox{\hyperlink{byte__buf_8c_a8af92432cfe7cc34703f62e15cc3283b}{s\+\_\+aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+byte\+\_\+dynamic}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, uint8\+\_\+t value, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} clear\+\_\+released\+\_\+memory)
+static int \mbox{\hyperlink{byte__buf_8c_a8af92432cfe7cc34703f62e15cc3283b}{s\+\_\+aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+byte\+\_\+dynamic}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, uint8\+\_\+t value, bool clear\+\_\+released\+\_\+memory)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_a7ba06d49ab6e673130c3205c666e37c9}{aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+byte\+\_\+dynamic}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, uint8\+\_\+t value)
 \item 
@@ -98,7 +98,7 @@ struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mb
 \item 
 struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{byte__buf_8c_a14a6efa66bf2efa66dd764c5b120129a}{aws\+\_\+byte\+\_\+cursor\+\_\+trim\+\_\+pred}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$source, \mbox{\hyperlink{byte__buf_8h_ace0fa67cb735decc07988bf215701e22}{aws\+\_\+byte\+\_\+predicate\+\_\+fn}} $\ast$predicate)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a0582daf1e0324e84c2eeddadbae49b76}{aws\+\_\+byte\+\_\+cursor\+\_\+satisfies\+\_\+pred}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$source, \mbox{\hyperlink{byte__buf_8h_ace0fa67cb735decc07988bf215701e22}{aws\+\_\+byte\+\_\+predicate\+\_\+fn}} $\ast$predicate)
+bool \mbox{\hyperlink{byte__buf_8c_a0582daf1e0324e84c2eeddadbae49b76}{aws\+\_\+byte\+\_\+cursor\+\_\+satisfies\+\_\+pred}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$source, \mbox{\hyperlink{byte__buf_8h_ace0fa67cb735decc07988bf215701e22}{aws\+\_\+byte\+\_\+predicate\+\_\+fn}} $\ast$predicate)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_a36c04f9cc728fb734ef9bc26432d177a}{aws\+\_\+byte\+\_\+cursor\+\_\+compare\+\_\+lexical}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$lhs, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$rhs)
 \item 
@@ -116,75 +116,75 @@ struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mb
 \item 
 struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{byte__buf_8c_a3af2b9b3bd6c53ad69de9f506590edf0}{aws\+\_\+byte\+\_\+cursor\+\_\+from\+\_\+array}} (const void $\ast$const bytes, const size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
-size\+\_\+t \mbox{\hyperlink{byte__buf_8c_a877b6197e84a8a1671549cda787236d7}{aws\+\_\+nospec\+\_\+mask}} (size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}}, size\+\_\+t bound)
+size\+\_\+t \mbox{\hyperlink{byte__buf_8c_a877b6197e84a8a1671549cda787236d7}{aws\+\_\+nospec\+\_\+mask}} (size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}}, size\+\_\+t bound)
 \item 
 struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{byte__buf_8c_a71e79909e24bdfce3bb0e3331886dcd3}{aws\+\_\+byte\+\_\+cursor\+\_\+advance}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const cursor, const size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
 struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{byte__buf_8c_a6b3528b29474a2962bf2c4c231e6abea}{aws\+\_\+byte\+\_\+cursor\+\_\+advance\+\_\+nospec}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const cursor, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a667d2681ddc208ee6c9145d93366c41d}{aws\+\_\+byte\+\_\+cursor\+\_\+read}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} cur, void $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} dest, const size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+bool \mbox{\hyperlink{byte__buf_8c_a667d2681ddc208ee6c9145d93366c41d}{aws\+\_\+byte\+\_\+cursor\+\_\+read}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} cur, void $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} dest, const size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_af16de03a2ca7561f966a77e8c22e1877}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+and\+\_\+fill\+\_\+buffer}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} cur, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} dest)
+bool \mbox{\hyperlink{byte__buf_8c_af16de03a2ca7561f966a77e8c22e1877}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+and\+\_\+fill\+\_\+buffer}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} cur, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} dest)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a571e1fa5c7a551535358f724dd40c7cb}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+u8}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} cur, uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} var)
+bool \mbox{\hyperlink{byte__buf_8c_a571e1fa5c7a551535358f724dd40c7cb}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+u8}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} cur, uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} var)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_aa8053828c7196b06a93ae486a5e996c7}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be16}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint16\+\_\+t $\ast$var)
+bool \mbox{\hyperlink{byte__buf_8c_aa8053828c7196b06a93ae486a5e996c7}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be16}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint16\+\_\+t $\ast$var)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_afeaca6f258268874e503eb1672eff64b}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be24}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint32\+\_\+t $\ast$var)
+bool \mbox{\hyperlink{byte__buf_8c_afeaca6f258268874e503eb1672eff64b}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be24}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint32\+\_\+t $\ast$var)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_aa1da6b78bf530fdc1536abd48e4ef084}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be32}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint32\+\_\+t $\ast$var)
+bool \mbox{\hyperlink{byte__buf_8c_aa1da6b78bf530fdc1536abd48e4ef084}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be32}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint32\+\_\+t $\ast$var)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a33db95c91d74113e776e269b29b75d24}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+float\+\_\+be32}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, float $\ast$var)
+bool \mbox{\hyperlink{byte__buf_8c_a33db95c91d74113e776e269b29b75d24}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+float\+\_\+be32}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, float $\ast$var)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a08b8d2d5abfa40c7d5da0d87889bb50c}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+float\+\_\+be64}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, double $\ast$var)
+bool \mbox{\hyperlink{byte__buf_8c_a08b8d2d5abfa40c7d5da0d87889bb50c}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+float\+\_\+be64}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, double $\ast$var)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a60ebd0319d386143460aebd349870761}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be64}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint64\+\_\+t $\ast$var)
+bool \mbox{\hyperlink{byte__buf_8c_a60ebd0319d386143460aebd349870761}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be64}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint64\+\_\+t $\ast$var)
 \item 
 \mbox{\hyperlink{byte__buf_8c_af7741579301dfe24b74938c1e34f0729}{AWS\+\_\+\+STATIC\+\_\+\+ASSERT}} (\mbox{\hyperlink{macros_8h_a7b837cfd09e209fa32b1129f8bc9c431}{AWS\+\_\+\+ARRAY\+\_\+\+SIZE}}(\mbox{\hyperlink{byte__buf_8c_a153765cf45f5be0abaeb4b946bb3e816}{s\+\_\+hex\+\_\+to\+\_\+num\+\_\+table}})==256)
 \item 
 const uint8\+\_\+t $\ast$ \mbox{\hyperlink{byte__buf_8c_ad2393c6ee6236ff1b1adc0bfc9424257}{aws\+\_\+lookup\+\_\+table\+\_\+hex\+\_\+to\+\_\+num\+\_\+get}} (void)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_aba4686c6333f36ab47caa3032c4f5cd0}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+hex\+\_\+u8}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint8\+\_\+t $\ast$var)
+bool \mbox{\hyperlink{byte__buf_8c_aba4686c6333f36ab47caa3032c4f5cd0}{aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+hex\+\_\+u8}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cur, uint8\+\_\+t $\ast$var)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a69f9a5b942f8bd53e13037e65cd88d87}{aws\+\_\+byte\+\_\+buf\+\_\+advance}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} buffer, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, const size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+bool \mbox{\hyperlink{byte__buf_8c_a69f9a5b942f8bd53e13037e65cd88d87}{aws\+\_\+byte\+\_\+buf\+\_\+advance}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} buffer, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} output, const size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_ad5eb15960520d84856f48e4cfe44e41c}{aws\+\_\+byte\+\_\+buf\+\_\+write}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} src, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
+bool \mbox{\hyperlink{byte__buf_8c_ad5eb15960520d84856f48e4cfe44e41c}{aws\+\_\+byte\+\_\+buf\+\_\+write}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} src, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a9ee727a2ce9e82fe553908fe7fa69799}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+from\+\_\+whole\+\_\+buffer}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} src)
+bool \mbox{\hyperlink{byte__buf_8c_a9ee727a2ce9e82fe553908fe7fa69799}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+from\+\_\+whole\+\_\+buffer}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} src)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_ae96b20ca3aa078b8c4437be04d9eb673}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+from\+\_\+whole\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} src)
+bool \mbox{\hyperlink{byte__buf_8c_ae96b20ca3aa078b8c4437be04d9eb673}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+from\+\_\+whole\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} src)
 \item 
 struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{byte__buf_8c_a85b9ae8e8822d3a05daf3fc5eb513aef}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+to\+\_\+capacity}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$advancing\+\_\+cursor)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_ad4f47337cb3ec100c5473ab188c3eb05}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+u8}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint8\+\_\+t c)
+bool \mbox{\hyperlink{byte__buf_8c_ad4f47337cb3ec100c5473ab188c3eb05}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+u8}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint8\+\_\+t c)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a21ddba7196eb554b19184ab12129fb4b}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+u8\+\_\+n}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint8\+\_\+t c, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
+bool \mbox{\hyperlink{byte__buf_8c_a21ddba7196eb554b19184ab12129fb4b}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+u8\+\_\+n}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint8\+\_\+t c, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a91870598496fcac2bf5d77ad6a998b7e}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be16}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint16\+\_\+t x)
+bool \mbox{\hyperlink{byte__buf_8c_a91870598496fcac2bf5d77ad6a998b7e}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be16}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint16\+\_\+t x)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_abf380cf62e596ce34aaceabcf7996d9c}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be24}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint32\+\_\+t x)
+bool \mbox{\hyperlink{byte__buf_8c_abf380cf62e596ce34aaceabcf7996d9c}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be24}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint32\+\_\+t x)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a81fd5bb13722894ccbfb6a39ed03e660}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be32}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint32\+\_\+t x)
+bool \mbox{\hyperlink{byte__buf_8c_a81fd5bb13722894ccbfb6a39ed03e660}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be32}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint32\+\_\+t x)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a40b9731ae303c500db1ca2420bf4f622}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+float\+\_\+be32}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, float x)
+bool \mbox{\hyperlink{byte__buf_8c_a40b9731ae303c500db1ca2420bf4f622}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+float\+\_\+be32}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, float x)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a7f5ea0bdff141303034776d462a902e0}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be64}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint64\+\_\+t x)
+bool \mbox{\hyperlink{byte__buf_8c_a7f5ea0bdff141303034776d462a902e0}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be64}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, uint64\+\_\+t x)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_afac0cfa18673d619707634bcbd7c460e}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+float\+\_\+be64}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, double x)
+bool \mbox{\hyperlink{byte__buf_8c_afac0cfa18673d619707634bcbd7c460e}{aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+float\+\_\+be64}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, double x)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_a42ca07fbf29e7b255dadc32d72fccc1b}{aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+and\+\_\+update}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$to, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$from\+\_\+and\+\_\+update)
 \item 
 int \mbox{\hyperlink{byte__buf_8c_ab8f3b8863e45d8b2c415567d865a7c74}{aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+null\+\_\+terminator}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_ad0f48987b0892ebe2e376a6547ef6fa0}{aws\+\_\+isalnum}} (uint8\+\_\+t ch)
+bool \mbox{\hyperlink{byte__buf_8c_ad0f48987b0892ebe2e376a6547ef6fa0}{aws\+\_\+isalnum}} (uint8\+\_\+t ch)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a3aa4205568acb1986c0bf61a1795c7ac}{aws\+\_\+isalpha}} (uint8\+\_\+t ch)
+bool \mbox{\hyperlink{byte__buf_8c_a3aa4205568acb1986c0bf61a1795c7ac}{aws\+\_\+isalpha}} (uint8\+\_\+t ch)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a193948a51fc6548d8de1bc5da56ea9c0}{aws\+\_\+isdigit}} (uint8\+\_\+t ch)
+bool \mbox{\hyperlink{byte__buf_8c_a193948a51fc6548d8de1bc5da56ea9c0}{aws\+\_\+isdigit}} (uint8\+\_\+t ch)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_a35764ea0c22877bb13898dbf1b930c98}{aws\+\_\+isxdigit}} (uint8\+\_\+t ch)
+bool \mbox{\hyperlink{byte__buf_8c_a35764ea0c22877bb13898dbf1b930c98}{aws\+\_\+isxdigit}} (uint8\+\_\+t ch)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{byte__buf_8c_ab7f620e2ee444abb2b32ce93be3085d4}{aws\+\_\+isspace}} (uint8\+\_\+t ch)
+bool \mbox{\hyperlink{byte__buf_8c_ab7f620e2ee444abb2b32ce93be3085d4}{aws\+\_\+isspace}} (uint8\+\_\+t ch)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -202,31 +202,31 @@ static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+curso
 \index{byte\_buf.c@{byte\_buf.c}!aws\_array\_eq@{aws\_array\_eq}}
 \index{aws\_array\_eq@{aws\_array\_eq}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_array\_eq()}{aws\_array\_eq()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+array\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{array\+\_\+a,  }\item[{const size\+\_\+t}]{len\+\_\+a,  }\item[{const void $\ast$}]{array\+\_\+b,  }\item[{const size\+\_\+t}]{len\+\_\+b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+array\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{array\+\_\+a,  }\item[{const size\+\_\+t}]{len\+\_\+a,  }\item[{const void $\ast$}]{array\+\_\+b,  }\item[{const size\+\_\+t}]{len\+\_\+b }\end{DoxyParamCaption})}
 
 Compare two arrays. Return whether their contents are equivalent. NULL may be passed as the array pointer if its length is declared to be 0. \mbox{\Hypertarget{byte__buf_8c_a173ae70dc07148c93669d9bf695ab9bd}\label{byte__buf_8c_a173ae70dc07148c93669d9bf695ab9bd}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_array\_eq\_c\_str@{aws\_array\_eq\_c\_str}}
 \index{aws\_array\_eq\_c\_str@{aws\_array\_eq\_c\_str}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_array\_eq\_c\_str()}{aws\_array\_eq\_c\_str()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+array\+\_\+eq\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{array,  }\item[{const size\+\_\+t}]{array\+\_\+len,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+array\+\_\+eq\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{array,  }\item[{const size\+\_\+t}]{array\+\_\+len,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
 
 Compare an array and a null-\/terminated string. Returns true if their contents are equivalent. The array should NOT contain a null-\/terminator, or the comparison will always return false. NULL may be passed as the array pointer if its length is declared to be 0. \mbox{\Hypertarget{byte__buf_8c_ab764fa5e408f601deef8f78aa969a92c}\label{byte__buf_8c_ab764fa5e408f601deef8f78aa969a92c}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_array\_eq\_c\_str\_ignore\_case@{aws\_array\_eq\_c\_str\_ignore\_case}}
 \index{aws\_array\_eq\_c\_str\_ignore\_case@{aws\_array\_eq\_c\_str\_ignore\_case}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_array\_eq\_c\_str\_ignore\_case()}{aws\_array\_eq\_c\_str\_ignore\_case()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+array\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{array,  }\item[{const size\+\_\+t}]{array\+\_\+len,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+array\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{array,  }\item[{const size\+\_\+t}]{array\+\_\+len,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
 
 Perform a case-\/insensitive string comparison of an array and a null-\/terminated string. Return whether their contents are equivalent. The array should NOT contain a null-\/terminator, or the comparison will always return false. NULL may be passed as the array pointer if its length is declared to be 0. The \char`\"{}\+C\char`\"{} locale is used for comparing upper and lowercase letters. Data is assumed to be ASCII text, UTF-\/8 will work fine too. \mbox{\Hypertarget{byte__buf_8c_ad7140a0d5f0196940bcf1d62f4679f33}\label{byte__buf_8c_ad7140a0d5f0196940bcf1d62f4679f33}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_array\_eq\_ignore\_case@{aws\_array\_eq\_ignore\_case}}
 \index{aws\_array\_eq\_ignore\_case@{aws\_array\_eq\_ignore\_case}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_array\_eq\_ignore\_case()}{aws\_array\_eq\_ignore\_case()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+array\+\_\+eq\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{array\+\_\+a,  }\item[{const size\+\_\+t}]{len\+\_\+a,  }\item[{const void $\ast$const}]{array\+\_\+b,  }\item[{const size\+\_\+t}]{len\+\_\+b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+array\+\_\+eq\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const void $\ast$const}]{array\+\_\+a,  }\item[{const size\+\_\+t}]{len\+\_\+a,  }\item[{const void $\ast$const}]{array\+\_\+b,  }\item[{const size\+\_\+t}]{len\+\_\+b }\end{DoxyParamCaption})}
 
 Perform a case-\/insensitive string comparison of two arrays. Return whether their contents are equivalent. NULL may be passed as the array pointer if its length is declared to be 0. The \char`\"{}\+C\char`\"{} locale is used for comparing upper and lowercase letters. Data is assumed to be ASCII text, UTF-\/8 will work fine too. \mbox{\Hypertarget{byte__buf_8c_a69f9a5b942f8bd53e13037e65cd88d87}\label{byte__buf_8c_a69f9a5b942f8bd53e13037e65cd88d87}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_advance@{aws\_byte\_buf\_advance}}
 \index{aws\_byte\_buf\_advance@{aws\_byte\_buf\_advance}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_advance()}{aws\_byte\_buf\_advance()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+advance (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buffer,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{output,  }\item[{const size\+\_\+t}]{len }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+advance (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buffer,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const \mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{output,  }\item[{const size\+\_\+t}]{len }\end{DoxyParamCaption})}
 
 Appends a sub-\/buffer to the specified buffer.
 
@@ -324,25 +324,25 @@ Equivalent to calling aws\+\_\+byte\+\_\+buf\+\_\+secure\+\_\+zero and then aws\
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_eq@{aws\_byte\_buf\_eq}}
 \index{aws\_byte\_buf\_eq@{aws\_byte\_buf\_eq}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_eq()}{aws\_byte\_buf\_eq()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{b }\end{DoxyParamCaption})}
 
 Compare two \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} structures. Return whether their contents are equivalent. \mbox{\Hypertarget{byte__buf_8c_ab9d84517a8dd0c4ab2b3b17c108814c4}\label{byte__buf_8c_ab9d84517a8dd0c4ab2b3b17c108814c4}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_eq\_c\_str@{aws\_byte\_buf\_eq\_c\_str}}
 \index{aws\_byte\_buf\_eq\_c\_str@{aws\_byte\_buf\_eq\_c\_str}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_eq\_c\_str()}{aws\_byte\_buf\_eq\_c\_str()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{buf,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{buf,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
 
 Compare an \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} and a null-\/terminated string. Returns true if their contents are equivalent. The buffer should NOT contain a null-\/terminator, or the comparison will always return false. \mbox{\Hypertarget{byte__buf_8c_af2e8f1e9a122054ada8a3e867aa9a6f8}\label{byte__buf_8c_af2e8f1e9a122054ada8a3e867aa9a6f8}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_eq\_c\_str\_ignore\_case@{aws\_byte\_buf\_eq\_c\_str\_ignore\_case}}
 \index{aws\_byte\_buf\_eq\_c\_str\_ignore\_case@{aws\_byte\_buf\_eq\_c\_str\_ignore\_case}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_eq\_c\_str\_ignore\_case()}{aws\_byte\_buf\_eq\_c\_str\_ignore\_case()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{buf,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{buf,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
 
 Perform a case-\/insensitive string comparison of an \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} and a null-\/terminated string. Return whether their contents are equivalent. The buffer should NOT contain a null-\/terminator, or the comparison will always return false. The \char`\"{}\+C\char`\"{} locale is used for comparing upper and lowercase letters. Data is assumed to be ASCII text, UTF-\/8 will work fine too. \mbox{\Hypertarget{byte__buf_8c_a23180f5c686096e7f2902e147635aeb1}\label{byte__buf_8c_a23180f5c686096e7f2902e147635aeb1}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_eq\_ignore\_case@{aws\_byte\_buf\_eq\_ignore\_case}}
 \index{aws\_byte\_buf\_eq\_ignore\_case@{aws\_byte\_buf\_eq\_ignore\_case}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_eq\_ignore\_case()}{aws\_byte\_buf\_eq\_ignore\_case()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+eq\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{b }\end{DoxyParamCaption})}
 
 Perform a case-\/insensitive string comparison of two \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} structures. Return whether their contents are equivalent. The \char`\"{}\+C\char`\"{} locale is used for comparing upper and lowercase letters. Data is assumed to be ASCII text, UTF-\/8 will work fine too. \mbox{\Hypertarget{byte__buf_8c_a20059771adc23906f5e01f881ed4e14a}\label{byte__buf_8c_a20059771adc23906f5e01f881ed4e14a}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_from\_array@{aws\_byte\_buf\_from\_array}}
@@ -390,7 +390,7 @@ Copies src buffer into dest and sets the correct len and capacity. A new memory 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_is\_valid@{aws\_byte\_buf\_is\_valid}}
 \index{aws\_byte\_buf\_is\_valid@{aws\_byte\_buf\_is\_valid}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_is\_valid()}{aws\_byte\_buf\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{buf }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{buf }\end{DoxyParamCaption})}
 
 Evaluates the set of properties that define the shape of all valid \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} structures. It is also a cheap check, in the sense it run in constant time (i.\+e., no loops or recursion). \mbox{\Hypertarget{byte__buf_8c_af900ec5d14c51db19a58383ecdaecbe3}\label{byte__buf_8c_af900ec5d14c51db19a58383ecdaecbe3}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_reserve@{aws\_byte\_buf\_reserve}}
@@ -412,7 +412,7 @@ aws\+\_\+byte\+\_\+buf\+\_\+reserve\+\_\+relative(buf, x) $\sim$$\sim$ aws\+\_\+
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_reset@{aws\_byte\_buf\_reset}}
 \index{aws\_byte\_buf\_reset@{aws\_byte\_buf\_reset}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_reset()}{aws\_byte\_buf\_reset()}}
-{\footnotesize\ttfamily void aws\+\_\+byte\+\_\+buf\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{zero\+\_\+contents }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void aws\+\_\+byte\+\_\+buf\+\_\+reset (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{bool}]{zero\+\_\+contents }\end{DoxyParamCaption})}
 
 Resets the len of the buffer to 0, but does not free the memory. The buffer can then be reused. Optionally zeroes the contents, if the \char`\"{}zero\+\_\+contents\char`\"{} flag is true. \mbox{\Hypertarget{byte__buf_8c_ac1d0a2e070ce4e156bc636c9873eb4ad}\label{byte__buf_8c_ac1d0a2e070ce4e156bc636c9873eb4ad}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_secure\_zero@{aws\_byte\_buf\_secure\_zero}}
@@ -424,7 +424,7 @@ Sets all bytes of buffer to zero and resets len to zero. \mbox{\Hypertarget{byte
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write@{aws\_byte\_buf\_write}}
 \index{aws\_byte\_buf\_write@{aws\_byte\_buf\_write}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write()}{aws\_byte\_buf\_write()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buf,  }\item[{const uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{src,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buf,  }\item[{const uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{src,  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
 
 Write specified number of bytes from array to byte buffer.
 
@@ -432,7 +432,7 @@ On success, returns true and updates the buffer length accordingly. If there is 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_be16@{aws\_byte\_buf\_write\_be16}}
 \index{aws\_byte\_buf\_write\_be16@{aws\_byte\_buf\_write\_be16}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_be16()}{aws\_byte\_buf\_write\_be16()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be16 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint16\+\_\+t}]{x }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be16 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint16\+\_\+t}]{x }\end{DoxyParamCaption})}
 
 Writes a 16-\/bit integer in network byte order (big endian) to buffer.
 
@@ -440,7 +440,7 @@ On success, returns true and updates the cursor /length accordingly. If there is
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_be24@{aws\_byte\_buf\_write\_be24}}
 \index{aws\_byte\_buf\_write\_be24@{aws\_byte\_buf\_write\_be24}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_be24()}{aws\_byte\_buf\_write\_be24()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be24 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{x }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be24 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{x }\end{DoxyParamCaption})}
 
 Writes low 24-\/bits (3 bytes) of an unsigned integer in network byte order (big endian) to buffer. Ex\+: If x is 0x00\+AABBCC then \{0x\+AA, 0x\+BB, 0x\+CC\} is written to buffer.
 
@@ -448,7 +448,7 @@ On success, returns true and updates the buffer /length accordingly. If there is
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_be32@{aws\_byte\_buf\_write\_be32}}
 \index{aws\_byte\_buf\_write\_be32@{aws\_byte\_buf\_write\_be32}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_be32()}{aws\_byte\_buf\_write\_be32()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be32 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{x }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be32 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint32\+\_\+t}]{x }\end{DoxyParamCaption})}
 
 Writes a 32-\/bit integer in network byte order (big endian) to buffer.
 
@@ -456,7 +456,7 @@ On success, returns true and updates the cursor /length accordingly. If there is
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_be64@{aws\_byte\_buf\_write\_be64}}
 \index{aws\_byte\_buf\_write\_be64@{aws\_byte\_buf\_write\_be64}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_be64()}{aws\_byte\_buf\_write\_be64()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be64 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint64\+\_\+t}]{x }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+be64 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint64\+\_\+t}]{x }\end{DoxyParamCaption})}
 
 Writes a 64-\/bit integer in network byte order (big endian) to buffer.
 
@@ -464,7 +464,7 @@ On success, returns true and updates the cursor /length accordingly. If there is
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_float\_be32@{aws\_byte\_buf\_write\_float\_be32}}
 \index{aws\_byte\_buf\_write\_float\_be32@{aws\_byte\_buf\_write\_float\_be32}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_float\_be32()}{aws\_byte\_buf\_write\_float\_be32()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+float\+\_\+be32 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{float}]{x }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+float\+\_\+be32 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{float}]{x }\end{DoxyParamCaption})}
 
 Writes a 32-\/bit float in network byte order (big endian) to buffer.
 
@@ -472,7 +472,7 @@ On success, returns true and updates the cursor /length accordingly. If there is
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_float\_be64@{aws\_byte\_buf\_write\_float\_be64}}
 \index{aws\_byte\_buf\_write\_float\_be64@{aws\_byte\_buf\_write\_float\_be64}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_float\_be64()}{aws\_byte\_buf\_write\_float\_be64()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+float\+\_\+be64 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{double}]{x }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+float\+\_\+be64 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{double}]{x }\end{DoxyParamCaption})}
 
 Writes a 64-\/bit float in network byte order (big endian) to buffer.
 
@@ -480,7 +480,7 @@ On success, returns true and updates the cursor /length accordingly. If there is
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_from\_whole\_buffer@{aws\_byte\_buf\_write\_from\_whole\_buffer}}
 \index{aws\_byte\_buf\_write\_from\_whole\_buffer@{aws\_byte\_buf\_write\_from\_whole\_buffer}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_from\_whole\_buffer()}{aws\_byte\_buf\_write\_from\_whole\_buffer()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+from\+\_\+whole\+\_\+buffer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buf,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}}}]{src }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+from\+\_\+whole\+\_\+buffer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buf,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}}}]{src }\end{DoxyParamCaption})}
 
 Copies all bytes from buffer to buffer.
 
@@ -488,7 +488,7 @@ On success, returns true and updates the buffer /length accordingly. If there is
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_from\_whole\_cursor@{aws\_byte\_buf\_write\_from\_whole\_cursor}}
 \index{aws\_byte\_buf\_write\_from\_whole\_cursor@{aws\_byte\_buf\_write\_from\_whole\_cursor}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_from\_whole\_cursor()}{aws\_byte\_buf\_write\_from\_whole\_cursor()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+from\+\_\+whole\+\_\+cursor (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buf,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{src }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+from\+\_\+whole\+\_\+cursor (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buf,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{src }\end{DoxyParamCaption})}
 
 Copies all bytes from buffer to buffer.
 
@@ -508,7 +508,7 @@ Example\+: Given a buf with 2 bytes of space available and advancing\+\_\+cursor
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_u8@{aws\_byte\_buf\_write\_u8}}
 \index{aws\_byte\_buf\_write\_u8@{aws\_byte\_buf\_write\_u8}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_u8()}{aws\_byte\_buf\_write\_u8()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+u8 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buf,  }\item[{uint8\+\_\+t}]{c }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+u8 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{buf,  }\item[{uint8\+\_\+t}]{c }\end{DoxyParamCaption})}
 
 Copies one byte to buffer.
 
@@ -518,7 +518,7 @@ If there is insufficient space in the cursor, returns false, leaving the cursor 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_buf\_write\_u8\_n@{aws\_byte\_buf\_write\_u8\_n}}
 \index{aws\_byte\_buf\_write\_u8\_n@{aws\_byte\_buf\_write\_u8\_n}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_buf\_write\_u8\_n()}{aws\_byte\_buf\_write\_u8\_n()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+u8\+\_\+n (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint8\+\_\+t}]{c,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+buf\+\_\+write\+\_\+u8\+\_\+n (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buf,  }\item[{uint8\+\_\+t}]{c,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
 
 Writes one byte repeatedly to buffer (like memset)
 
@@ -554,37 +554,37 @@ Lexical (byte value) comparison of two byte cursors where the raw values are sen
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_eq@{aws\_byte\_cursor\_eq}}
 \index{aws\_byte\_cursor\_eq@{aws\_byte\_cursor\_eq}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_eq()}{aws\_byte\_cursor\_eq()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{b }\end{DoxyParamCaption})}
 
 Compare two \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} structures. Return whether their contents are equivalent. \mbox{\Hypertarget{byte__buf_8c_a31a7dc00c06d8a4abe69a9680934336a}\label{byte__buf_8c_a31a7dc00c06d8a4abe69a9680934336a}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_eq\_byte\_buf@{aws\_byte\_cursor\_eq\_byte\_buf}}
 \index{aws\_byte\_cursor\_eq\_byte\_buf@{aws\_byte\_cursor\_eq\_byte\_buf}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_eq\_byte\_buf()}{aws\_byte\_cursor\_eq\_byte\_buf()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+byte\+\_\+buf (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+byte\+\_\+buf (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{b }\end{DoxyParamCaption})}
 
 Compare an \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} and an \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}}. Return whether their contents are equivalent. \mbox{\Hypertarget{byte__buf_8c_a6952e4ba3307e2a05d5edadc0d92cee0}\label{byte__buf_8c_a6952e4ba3307e2a05d5edadc0d92cee0}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_eq\_byte\_buf\_ignore\_case@{aws\_byte\_cursor\_eq\_byte\_buf\_ignore\_case}}
 \index{aws\_byte\_cursor\_eq\_byte\_buf\_ignore\_case@{aws\_byte\_cursor\_eq\_byte\_buf\_ignore\_case}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_eq\_byte\_buf\_ignore\_case()}{aws\_byte\_cursor\_eq\_byte\_buf\_ignore\_case()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+byte\+\_\+buf\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+byte\+\_\+buf\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$const}]{b }\end{DoxyParamCaption})}
 
 Perform a case-\/insensitive string comparison of an \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} and an \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}}. Return whether their contents are equivalent. The \char`\"{}\+C\char`\"{} locale is used for comparing upper and lowercase letters. Data is assumed to be ASCII text, UTF-\/8 will work fine too. \mbox{\Hypertarget{byte__buf_8c_a410ca19b956f672343dfa71c2f534abe}\label{byte__buf_8c_a410ca19b956f672343dfa71c2f534abe}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_eq\_c\_str@{aws\_byte\_cursor\_eq\_c\_str}}
 \index{aws\_byte\_cursor\_eq\_c\_str@{aws\_byte\_cursor\_eq\_c\_str}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_eq\_c\_str()}{aws\_byte\_cursor\_eq\_c\_str()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const}]{cursor,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+c\+\_\+str (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const}]{cursor,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
 
 Compare an \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} and a null-\/terminated string. Returns true if their contents are equivalent. The cursor should NOT contain a null-\/terminator, or the comparison will always return false. \mbox{\Hypertarget{byte__buf_8c_afbd816b132e73605793c8a7b848997b1}\label{byte__buf_8c_afbd816b132e73605793c8a7b848997b1}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_eq\_c\_str\_ignore\_case@{aws\_byte\_cursor\_eq\_c\_str\_ignore\_case}}
 \index{aws\_byte\_cursor\_eq\_c\_str\_ignore\_case@{aws\_byte\_cursor\_eq\_c\_str\_ignore\_case}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_eq\_c\_str\_ignore\_case()}{aws\_byte\_cursor\_eq\_c\_str\_ignore\_case()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const}]{cursor,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+c\+\_\+str\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$const}]{cursor,  }\item[{const char $\ast$const}]{c\+\_\+str }\end{DoxyParamCaption})}
 
 Perform a case-\/insensitive string comparison of an \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} and a null-\/terminated string. Return whether their contents are equivalent. The cursor should NOT contain a null-\/terminator, or the comparison will always return false. The \char`\"{}\+C\char`\"{} locale is used for comparing upper and lowercase letters. Data is assumed to be ASCII text, UTF-\/8 will work fine too. \mbox{\Hypertarget{byte__buf_8c_a509e25ff72150c5f4f4a40e48432c402}\label{byte__buf_8c_a509e25ff72150c5f4f4a40e48432c402}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_eq\_ignore\_case@{aws\_byte\_cursor\_eq\_ignore\_case}}
 \index{aws\_byte\_cursor\_eq\_ignore\_case@{aws\_byte\_cursor\_eq\_ignore\_case}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_eq\_ignore\_case()}{aws\_byte\_cursor\_eq\_ignore\_case()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+eq\+\_\+ignore\+\_\+case (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{b }\end{DoxyParamCaption})}
 
 Perform a case-\/insensitive string comparison of two \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} structures. Return whether their contents are equivalent. The \char`\"{}\+C\char`\"{} locale is used for comparing upper and lowercase letters. Data is assumed to be ASCII text, UTF-\/8 will work fine too. \mbox{\Hypertarget{byte__buf_8c_a8034dfb48cf116946a092436e409bf9a}\label{byte__buf_8c_a8034dfb48cf116946a092436e409bf9a}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_find\_exact@{aws\_byte\_cursor\_find\_exact}}
@@ -614,7 +614,7 @@ Search for an exact byte match inside a cursor. The first match will be returned
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_is\_valid@{aws\_byte\_cursor\_is\_valid}}
 \index{aws\_byte\_cursor\_is\_valid@{aws\_byte\_cursor\_is\_valid}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_is\_valid()}{aws\_byte\_cursor\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cursor }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cursor }\end{DoxyParamCaption})}
 
 Evaluates the set of properties that define the shape of all valid \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} structures. It is also a cheap check, in the sense it runs in constant time (i.\+e., no loops or recursion). \mbox{\Hypertarget{byte__buf_8c_af052c1f50ed8119107b216d1623526ce}\label{byte__buf_8c_af052c1f50ed8119107b216d1623526ce}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_left\_trim\_pred@{aws\_byte\_cursor\_left\_trim\_pred}}
@@ -626,7 +626,7 @@ Shrinks a byte cursor from the left for as long as the supplied predicate is tru
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_next\_split@{aws\_byte\_cursor\_next\_split}}
 \index{aws\_byte\_cursor\_next\_split@{aws\_byte\_cursor\_next\_split}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_next\_split()}{aws\_byte\_cursor\_next\_split()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+next\+\_\+split (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{input\+\_\+str,  }\item[{char}]{split\+\_\+on,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{substr }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+next\+\_\+split (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{input\+\_\+str,  }\item[{char}]{split\+\_\+on,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{substr }\end{DoxyParamCaption})}
 
 No copies, no buffer allocations. Iterates over input\+\_\+str, and returns the next substring between split\+\_\+on instances.
 
@@ -638,7 +638,7 @@ It is the user\textquotesingle{}s responsibility to make sure the input buffer s
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read@{aws\_byte\_cursor\_read}}
 \index{aws\_byte\_cursor\_read@{aws\_byte\_cursor\_read}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read()}{aws\_byte\_cursor\_read()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{cur,  }\item[{void $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{dest,  }\item[{const size\+\_\+t}]{len }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{cur,  }\item[{void $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{dest,  }\item[{const size\+\_\+t}]{len }\end{DoxyParamCaption})}
 
 Reads specified length of data from byte cursor and copies it to the destination array.
 
@@ -646,7 +646,7 @@ On success, returns true and updates the cursor pointer/length accordingly. If t
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read\_and\_fill\_buffer@{aws\_byte\_cursor\_read\_and\_fill\_buffer}}
 \index{aws\_byte\_cursor\_read\_and\_fill\_buffer@{aws\_byte\_cursor\_read\_and\_fill\_buffer}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read\_and\_fill\_buffer()}{aws\_byte\_cursor\_read\_and\_fill\_buffer()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+and\+\_\+fill\+\_\+buffer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{cur,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{dest }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+and\+\_\+fill\+\_\+buffer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{cur,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{dest }\end{DoxyParamCaption})}
 
 Reads as many bytes from cursor as size of buffer, and copies them to buffer.
 
@@ -654,7 +654,7 @@ On success, returns true and updates the cursor pointer/length accordingly. If t
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read\_be16@{aws\_byte\_cursor\_read\_be16}}
 \index{aws\_byte\_cursor\_read\_be16@{aws\_byte\_cursor\_read\_be16}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read\_be16()}{aws\_byte\_cursor\_read\_be16()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be16 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint16\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be16 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint16\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
 
 Reads a 16-\/bit value in network byte order from cur, and places it in host byte order into var.
 
@@ -662,7 +662,7 @@ On success, returns true and updates the cursor pointer/length accordingly. If t
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read\_be24@{aws\_byte\_cursor\_read\_be24}}
 \index{aws\_byte\_cursor\_read\_be24@{aws\_byte\_cursor\_read\_be24}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read\_be24()}{aws\_byte\_cursor\_read\_be24()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be24 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint32\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be24 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint32\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
 
 Reads an unsigned 24-\/bit value (3 bytes) in network byte order from cur, and places it in host byte order into 32-\/bit var. Ex\+: if cur\textquotesingle{}s next 3 bytes are \{0x\+AA, 0x\+BB, 0x\+CC\}, then var becomes 0x00\+AABBCC.
 
@@ -670,7 +670,7 @@ On success, returns true and updates the cursor pointer/length accordingly. If t
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read\_be32@{aws\_byte\_cursor\_read\_be32}}
 \index{aws\_byte\_cursor\_read\_be32@{aws\_byte\_cursor\_read\_be32}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read\_be32()}{aws\_byte\_cursor\_read\_be32()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be32 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint32\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be32 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint32\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
 
 Reads a 32-\/bit value in network byte order from cur, and places it in host byte order into var.
 
@@ -678,7 +678,7 @@ On success, returns true and updates the cursor pointer/length accordingly. If t
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read\_be64@{aws\_byte\_cursor\_read\_be64}}
 \index{aws\_byte\_cursor\_read\_be64@{aws\_byte\_cursor\_read\_be64}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read\_be64()}{aws\_byte\_cursor\_read\_be64()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be64 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint64\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+be64 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint64\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
 
 Reads a 64-\/bit value in network byte order from cur, and places it in host byte order into var.
 
@@ -686,7 +686,7 @@ On success, returns true and updates the cursor pointer/length accordingly. If t
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read\_float\_be32@{aws\_byte\_cursor\_read\_float\_be32}}
 \index{aws\_byte\_cursor\_read\_float\_be32@{aws\_byte\_cursor\_read\_float\_be32}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read\_float\_be32()}{aws\_byte\_cursor\_read\_float\_be32()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+float\+\_\+be32 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{float $\ast$}]{var }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+float\+\_\+be32 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{float $\ast$}]{var }\end{DoxyParamCaption})}
 
 Reads a 32-\/bit value in network byte order from cur, and places it in host byte order into var.
 
@@ -694,7 +694,7 @@ On success, returns true and updates the cursor pointer/length accordingly. If t
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read\_float\_be64@{aws\_byte\_cursor\_read\_float\_be64}}
 \index{aws\_byte\_cursor\_read\_float\_be64@{aws\_byte\_cursor\_read\_float\_be64}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read\_float\_be64()}{aws\_byte\_cursor\_read\_float\_be64()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+float\+\_\+be64 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{double $\ast$}]{var }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+float\+\_\+be64 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{double $\ast$}]{var }\end{DoxyParamCaption})}
 
 Reads a 64-\/bit value in network byte order from cur, and places it in host byte order into var.
 
@@ -702,7 +702,7 @@ On success, returns true and updates the cursor pointer/length accordingly. If t
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read\_hex\_u8@{aws\_byte\_cursor\_read\_hex\_u8}}
 \index{aws\_byte\_cursor\_read\_hex\_u8@{aws\_byte\_cursor\_read\_hex\_u8}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read\_hex\_u8()}{aws\_byte\_cursor\_read\_hex\_u8()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+hex\+\_\+u8 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint8\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+hex\+\_\+u8 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cur,  }\item[{uint8\+\_\+t $\ast$}]{var }\end{DoxyParamCaption})}
 
 Reads 2 hex characters from ASCII/\+UTF-\/8 text to produce an 8-\/bit number. Accepts both lowercase \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}f\textquotesingle{} and uppercase \textquotesingle{}A\textquotesingle{}-\/\textquotesingle{}F\textquotesingle{}. For example\+: \char`\"{}0\+F\char`\"{} produces 15.
 
@@ -710,7 +710,7 @@ On success, returns true and advances the cursor by 2. If there is insufficient 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_read\_u8@{aws\_byte\_cursor\_read\_u8}}
 \index{aws\_byte\_cursor\_read\_u8@{aws\_byte\_cursor\_read\_u8}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_read\_u8()}{aws\_byte\_cursor\_read\_u8()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+u8 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{cur,  }\item[{uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{var }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+read\+\_\+u8 (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{cur,  }\item[{uint8\+\_\+t $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}}}]{var }\end{DoxyParamCaption})}
 
 Reads a single byte from cursor, placing it in $\ast$var.
 
@@ -724,7 +724,7 @@ Shrinks a byte cursor from the right for as long as the supplied predicate is tr
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_satisfies\_pred@{aws\_byte\_cursor\_satisfies\_pred}}
 \index{aws\_byte\_cursor\_satisfies\_pred@{aws\_byte\_cursor\_satisfies\_pred}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_byte\_cursor\_satisfies\_pred()}{aws\_byte\_cursor\_satisfies\_pred()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+byte\+\_\+cursor\+\_\+satisfies\+\_\+pred (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{source,  }\item[{\mbox{\hyperlink{byte__buf_8h_ace0fa67cb735decc07988bf215701e22}{aws\+\_\+byte\+\_\+predicate\+\_\+fn}} $\ast$}]{predicate }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+byte\+\_\+cursor\+\_\+satisfies\+\_\+pred (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{source,  }\item[{\mbox{\hyperlink{byte__buf_8h_ace0fa67cb735decc07988bf215701e22}{aws\+\_\+byte\+\_\+predicate\+\_\+fn}} $\ast$}]{predicate }\end{DoxyParamCaption})}
 
 Returns true if the byte cursor\textquotesingle{}s range of bytes all satisfy the predicate \mbox{\Hypertarget{byte__buf_8c_ac6ebbd786227e59a3aba25b8abe43d6e}\label{byte__buf_8c_ac6ebbd786227e59a3aba25b8abe43d6e}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_byte\_cursor\_split\_on\_char@{aws\_byte\_cursor\_split\_on\_char}}
@@ -778,19 +778,19 @@ Case-\/insensitive hash function for aws\+\_\+byte\+\_\+cursors stored in an \mb
 \index{byte\_buf.c@{byte\_buf.c}!aws\_isalnum@{aws\_isalnum}}
 \index{aws\_isalnum@{aws\_isalnum}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_isalnum()}{aws\_isalnum()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+isalnum (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+isalnum (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
 
 Like isalnum(), but ignores C locale. Returns true if ch has the value of ASCII/\+UTF-\/8\+: \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}z\textquotesingle{}, \textquotesingle{}A\textquotesingle{}-\/\textquotesingle{}Z\textquotesingle{}, or \textquotesingle{}0\textquotesingle{}-\/\textquotesingle{}9\textquotesingle{}. \mbox{\Hypertarget{byte__buf_8c_a3aa4205568acb1986c0bf61a1795c7ac}\label{byte__buf_8c_a3aa4205568acb1986c0bf61a1795c7ac}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_isalpha@{aws\_isalpha}}
 \index{aws\_isalpha@{aws\_isalpha}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_isalpha()}{aws\_isalpha()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+isalpha (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+isalpha (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
 
 Like isalpha(), but ignores C locale. Returns true if ch has the value of ASCII/\+UTF-\/8\+: \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}z\textquotesingle{} or \textquotesingle{}A\textquotesingle{}-\/\textquotesingle{}Z\textquotesingle{}. \mbox{\Hypertarget{byte__buf_8c_a193948a51fc6548d8de1bc5da56ea9c0}\label{byte__buf_8c_a193948a51fc6548d8de1bc5da56ea9c0}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_isdigit@{aws\_isdigit}}
 \index{aws\_isdigit@{aws\_isdigit}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_isdigit()}{aws\_isdigit()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+isdigit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+isdigit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
 
 Like isdigit(). Returns true if ch has the value of ASCII/\+UTF-\/8\+: \textquotesingle{}0\textquotesingle{}-\/\textquotesingle{}9\textquotesingle{}.
 
@@ -798,13 +798,13 @@ Note\+: C\textquotesingle{}s built-\/in isdigit() is also supposed to ignore the
 \index{byte\_buf.c@{byte\_buf.c}!aws\_isspace@{aws\_isspace}}
 \index{aws\_isspace@{aws\_isspace}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_isspace()}{aws\_isspace()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+isspace (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+isspace (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
 
 Like isspace(), but ignores C locale. Return true if ch has the value of ASCII/\+UTF-\/8\+: space (0x20), form feed (0x0C), line feed (0x0A), carriage return (0x0D), horizontal tab (0x09), or vertical tab (0x0B). \mbox{\Hypertarget{byte__buf_8c_a35764ea0c22877bb13898dbf1b930c98}\label{byte__buf_8c_a35764ea0c22877bb13898dbf1b930c98}} 
 \index{byte\_buf.c@{byte\_buf.c}!aws\_isxdigit@{aws\_isxdigit}}
 \index{aws\_isxdigit@{aws\_isxdigit}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{aws\_isxdigit()}{aws\_isxdigit()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+isxdigit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+isxdigit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{ch }\end{DoxyParamCaption})}
 
 Like isxdigit(). Returns true if ch has the value of ASCII/\+UTF-\/8\+: \textquotesingle{}0\textquotesingle{}-\/\textquotesingle{}9\textquotesingle{}, \textquotesingle{}a\textquotesingle{}-\/\textquotesingle{}f\textquotesingle{}, or \textquotesingle{}A\textquotesingle{}-\/\textquotesingle{}F\textquotesingle{}.
 
@@ -842,13 +842,13 @@ If index \texorpdfstring{$>$}{>}= bound, bound \texorpdfstring{$>$}{>} (SIZE\+\_
 \index{byte\_buf.c@{byte\_buf.c}!s\_aws\_byte\_buf\_append\_byte\_dynamic@{s\_aws\_byte\_buf\_append\_byte\_dynamic}}
 \index{s\_aws\_byte\_buf\_append\_byte\_dynamic@{s\_aws\_byte\_buf\_append\_byte\_dynamic}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{s\_aws\_byte\_buf\_append\_byte\_dynamic()}{s\_aws\_byte\_buf\_append\_byte\_dynamic()}}
-{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+byte\+\_\+dynamic (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{uint8\+\_\+t}]{value,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{clear\+\_\+released\+\_\+memory }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+byte\+\_\+dynamic (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{buffer,  }\item[{uint8\+\_\+t}]{value,  }\item[{bool}]{clear\+\_\+released\+\_\+memory }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{byte__buf_8c_aec56ee1008054c5a0aee809cc324e330}\label{byte__buf_8c_aec56ee1008054c5a0aee809cc324e330}} 
 \index{byte\_buf.c@{byte\_buf.c}!s\_aws\_byte\_buf\_append\_dynamic@{s\_aws\_byte\_buf\_append\_dynamic}}
 \index{s\_aws\_byte\_buf\_append\_dynamic@{s\_aws\_byte\_buf\_append\_dynamic}!byte\_buf.c@{byte\_buf.c}}
 \doxysubsubsection{\texorpdfstring{s\_aws\_byte\_buf\_append\_dynamic()}{s\_aws\_byte\_buf\_append\_dynamic()}}
-{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+dynamic (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{to,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{from,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{clear\+\_\+released\+\_\+memory }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+aws\+\_\+byte\+\_\+buf\+\_\+append\+\_\+dynamic (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{to,  }\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{from,  }\item[{bool}]{clear\+\_\+released\+\_\+memory }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 

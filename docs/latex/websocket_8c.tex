@@ -21,43 +21,43 @@ struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \mbox{\hyperlink{websocket_8c_ad84adecd98cab3482fa0beae1100435d}{s\+\_\+handler\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+static int \mbox{\hyperlink{websocket_8c_ad84adecd98cab3482fa0beae1100435d}{s\+\_\+handler\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message)
 \item 
-static int \mbox{\hyperlink{websocket_8c_ae9a81c1bef30f4f9667cc6f18c3a186e}{s\+\_\+handler\+\_\+process\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+static int \mbox{\hyperlink{websocket_8c_ae9a81c1bef30f4f9667cc6f18c3a186e}{s\+\_\+handler\+\_\+process\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message)
 \item 
-static int \mbox{\hyperlink{websocket_8c_a017ea68f21f7106cebe2694c6c2be97b}{s\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t size)
+static int \mbox{\hyperlink{websocket_8c_a017ea68f21f7106cebe2694c6c2be97b}{s\+\_\+handler\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t size)
 \item 
-static int \mbox{\hyperlink{websocket_8c_a20ea43d01e1f0ca25cd6edcfd02c423d}{s\+\_\+handler\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+static int \mbox{\hyperlink{websocket_8c_a20ea43d01e1f0ca25cd6edcfd02c423d}{s\+\_\+handler\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int error\+\_\+code, bool free\+\_\+scarce\+\_\+resources\+\_\+immediately)
 \item 
-static size\+\_\+t \mbox{\hyperlink{websocket_8c_a033c1a843b8a8c8aced31f19f7352249}{s\+\_\+handler\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static size\+\_\+t \mbox{\hyperlink{websocket_8c_a033c1a843b8a8c8aced31f19f7352249}{s\+\_\+handler\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static size\+\_\+t \mbox{\hyperlink{websocket_8c_a6aa3dbdbf1287961459f1cdce3d67b73}{s\+\_\+handler\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static size\+\_\+t \mbox{\hyperlink{websocket_8c_a6aa3dbdbf1287961459f1cdce3d67b73}{s\+\_\+handler\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static void \mbox{\hyperlink{websocket_8c_a43d3807a0d169ba7bd26392dd4ed4d33}{s\+\_\+handler\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static void \mbox{\hyperlink{websocket_8c_a43d3807a0d169ba7bd26392dd4ed4d33}{s\+\_\+handler\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static int \mbox{\hyperlink{websocket_8c_ad36fc7c9b6a6512773b3692d72ef7a87}{s\+\_\+encoder\+\_\+stream\+\_\+outgoing\+\_\+payload}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{websocket_8c_ad36fc7c9b6a6512773b3692d72ef7a87}{s\+\_\+encoder\+\_\+stream\+\_\+outgoing\+\_\+payload}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{websocket_8c_a6940c7461d80cc9de795867aff632ef9}{s\+\_\+decoder\+\_\+on\+\_\+frame}} (const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{websocket_8c_a6940c7461d80cc9de795867aff632ef9}{s\+\_\+decoder\+\_\+on\+\_\+frame}} (const struct \mbox{\hyperlink{structaws__websocket__frame}{aws\+\_\+websocket\+\_\+frame}} $\ast$frame, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{websocket_8c_a757495d12576ff1d7ebc87db48a72f4b}{s\+\_\+decoder\+\_\+on\+\_\+payload}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{websocket_8c_a757495d12576ff1d7ebc87db48a72f4b}{s\+\_\+decoder\+\_\+on\+\_\+payload}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, void $\ast$user\+\_\+data)
 \item 
 static int \mbox{\hyperlink{websocket_8c_a4055e6102d5747403ae764ccf23daec9}{s\+\_\+decoder\+\_\+on\+\_\+user\+\_\+payload}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data)
 \item 
 static int \mbox{\hyperlink{websocket_8c_a17cd0a7d438650b3213595558872981b}{s\+\_\+decoder\+\_\+on\+\_\+midchannel\+\_\+payload}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data)
 \item 
-static void \mbox{\hyperlink{websocket_8c_aa4597e3dd0ba4a327b0a26a18cce9a93}{s\+\_\+destroy\+\_\+outgoing\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, struct \mbox{\hyperlink{structoutgoing__frame}{outgoing\+\_\+frame}} $\ast$frame, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static void \mbox{\hyperlink{websocket_8c_aa4597e3dd0ba4a327b0a26a18cce9a93}{s\+\_\+destroy\+\_\+outgoing\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, struct \mbox{\hyperlink{structoutgoing__frame}{outgoing\+\_\+frame}} $\ast$frame, int error\+\_\+code)
 \item 
-static void \mbox{\hyperlink{websocket_8c_aa0ea97b981096f6780cd762bbc7fdea2}{s\+\_\+complete\+\_\+incoming\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$out\+\_\+callback\+\_\+result)
+static void \mbox{\hyperlink{websocket_8c_aa0ea97b981096f6780cd762bbc7fdea2}{s\+\_\+complete\+\_\+incoming\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int error\+\_\+code, bool $\ast$out\+\_\+callback\+\_\+result)
 \item 
 static void \mbox{\hyperlink{websocket_8c_a1796c833ec9fd71c5fc69324f8d6b62d}{s\+\_\+finish\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket)
 \item 
-static void \mbox{\hyperlink{websocket_8c_a452cec82ad71c3c416febfd8b9ee64b2}{s\+\_\+io\+\_\+message\+\_\+write\+\_\+completed}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, int err\+\_\+code, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{websocket_8c_a452cec82ad71c3c416febfd8b9ee64b2}{s\+\_\+io\+\_\+message\+\_\+write\+\_\+completed}} (struct \mbox{\hyperlink{structaws__channel}{aws\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message, int err\+\_\+code, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{websocket_8c_aacc8081379059f5407c2841dfe645b73}{s\+\_\+send\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, const struct \mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options}} $\ast$options, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} from\+\_\+public\+\_\+api)
+static int \mbox{\hyperlink{websocket_8c_aacc8081379059f5407c2841dfe645b73}{s\+\_\+send\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, const struct \mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options}} $\ast$options, bool from\+\_\+public\+\_\+api)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{websocket_8c_a7274d83fceab078798773933a7bad39d}{s\+\_\+midchannel\+\_\+send\+\_\+payload}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static bool \mbox{\hyperlink{websocket_8c_a7274d83fceab078798773933a7bad39d}{s\+\_\+midchannel\+\_\+send\+\_\+payload}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf, void $\ast$user\+\_\+data)
 \item 
-static void \mbox{\hyperlink{websocket_8c_abd88a4ad7506ab49e1d82816e751324d}{s\+\_\+midchannel\+\_\+send\+\_\+complete}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{websocket_8c_abd88a4ad7506ab49e1d82816e751324d}{s\+\_\+midchannel\+\_\+send\+\_\+complete}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int error\+\_\+code, void $\ast$user\+\_\+data)
 \item 
 static void \mbox{\hyperlink{websocket_8c_af1eb2af29fb4d490c731f495aac90e7a}{s\+\_\+move\+\_\+synced\+\_\+data\+\_\+to\+\_\+thread\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
@@ -69,11 +69,11 @@ static void \mbox{\hyperlink{websocket_8c_aaa23cef66398d52af29e611e09e741a5}{s\+
 \item 
 static void \mbox{\hyperlink{websocket_8c_a569af67ec44b4bc927e5ce36eb7efc68}{s\+\_\+close\+\_\+timeout\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-static void \mbox{\hyperlink{websocket_8c_afbd5a05bfa28e312712831f7fb31d60a}{s\+\_\+schedule\+\_\+channel\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static void \mbox{\hyperlink{websocket_8c_afbd5a05bfa28e312712831f7fb31d60a}{s\+\_\+schedule\+\_\+channel\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int error\+\_\+code)
 \item 
-static void \mbox{\hyperlink{websocket_8c_ae73de53f3991bd02c6dafdaed36b89b7}{s\+\_\+shutdown\+\_\+due\+\_\+to\+\_\+write\+\_\+err}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static void \mbox{\hyperlink{websocket_8c_ae73de53f3991bd02c6dafdaed36b89b7}{s\+\_\+shutdown\+\_\+due\+\_\+to\+\_\+write\+\_\+err}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int error\+\_\+code)
 \item 
-static void \mbox{\hyperlink{websocket_8c_a313a4597edfeab85ce1283766e2254a7}{s\+\_\+shutdown\+\_\+due\+\_\+to\+\_\+read\+\_\+err}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static void \mbox{\hyperlink{websocket_8c_a313a4597edfeab85ce1283766e2254a7}{s\+\_\+shutdown\+\_\+due\+\_\+to\+\_\+read\+\_\+err}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int error\+\_\+code)
 \item 
 static void \mbox{\hyperlink{websocket_8c_a0f70cd77d486b2868ce2e4f067a16499}{s\+\_\+stop\+\_\+writing}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, int send\+\_\+frame\+\_\+error\+\_\+code)
 \item 
@@ -81,7 +81,7 @@ static void \mbox{\hyperlink{websocket_8c_a974d88d1a41ca4181d4fda9a9470b992}{s\+
 \item 
 const char $\ast$ \mbox{\hyperlink{websocket_8c_aa30d39a2766642e07f57378ade3390e5}{aws\+\_\+websocket\+\_\+opcode\+\_\+str}} (uint8\+\_\+t opcode)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{websocket_8c_a06153a1145e982bea407655d07adff5c}{aws\+\_\+websocket\+\_\+is\+\_\+data\+\_\+frame}} (uint8\+\_\+t opcode)
+bool \mbox{\hyperlink{websocket_8c_a06153a1145e982bea407655d07adff5c}{aws\+\_\+websocket\+\_\+is\+\_\+data\+\_\+frame}} (uint8\+\_\+t opcode)
 \item 
 static void \mbox{\hyperlink{websocket_8c_a21b5f4ee9eec51e9fdc9ee038844580b}{s\+\_\+lock\+\_\+synced\+\_\+data}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket)
 \item 
@@ -99,7 +99,7 @@ static void \mbox{\hyperlink{websocket_8c_a8027705024a3c56c63349b6cbd3deb89}{s\+
 \item 
 int \mbox{\hyperlink{websocket_8c_a0bda921270f5fc6a4dd3668c57f0ec5b}{aws\+\_\+websocket\+\_\+send\+\_\+frame}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, const struct \mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options}} $\ast$options)
 \item 
-void \mbox{\hyperlink{websocket_8c_adf620f87401022705aff0656f1b766a9}{aws\+\_\+websocket\+\_\+close}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} free\+\_\+scarce\+\_\+resources\+\_\+immediately)
+void \mbox{\hyperlink{websocket_8c_adf620f87401022705aff0656f1b766a9}{aws\+\_\+websocket\+\_\+close}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, bool free\+\_\+scarce\+\_\+resources\+\_\+immediately)
 \item 
 static void \mbox{\hyperlink{websocket_8c_add715d995ee4b7b9fa7f0df0750d9df6}{s\+\_\+increment\+\_\+read\+\_\+window\+\_\+action}} (struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$websocket, size\+\_\+t size)
 \item 
@@ -107,7 +107,7 @@ void \mbox{\hyperlink{websocket_8c_a1b57b2a554f0ccf4ef6a85fdc8e111bc}{aws\+\_\+w
 \item 
 int \mbox{\hyperlink{websocket_8c_a553e8220cbb71901bc2d74606d20e5f6}{aws\+\_\+websocket\+\_\+random\+\_\+handshake\+\_\+key}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst)
 \item 
-struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{websocket_8c_a3d0f245fb8bd9ac04b1594c9ea48d4d2}{aws\+\_\+http\+\_\+message\+\_\+new\+\_\+websocket\+\_\+handshake\+\_\+request}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} path, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} host)
+struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$ \mbox{\hyperlink{websocket_8c_a3d0f245fb8bd9ac04b1594c9ea48d4d2}{aws\+\_\+http\+\_\+message\+\_\+new\+\_\+websocket\+\_\+handshake\+\_\+request}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} path, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} host)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -129,7 +129,7 @@ Host\+: $<$host$>$ Upgrade\+: websocket Connection\+: Upgrade Sec-\/\+Web\+Socke
 \index{websocket.c@{websocket.c}!aws\_websocket\_close@{aws\_websocket\_close}}
 \index{aws\_websocket\_close@{aws\_websocket\_close}!websocket.c@{websocket.c}}
 \doxysubsubsection{\texorpdfstring{aws\_websocket\_close()}{aws\_websocket\_close()}}
-{\footnotesize\ttfamily void aws\+\_\+websocket\+\_\+close (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void aws\+\_\+websocket\+\_\+close (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{bool}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})}
 
 Close the websocket connection. It is safe to call this, even if the connection is already closed or closing. The websocket will attempt to send a CLOSE frame during normal shutdown. If {\ttfamily free\+\_\+scarce\+\_\+resources\+\_\+immediately} is true, the connection will be torn down as quickly as possible. This function may be called from any thread. \mbox{\Hypertarget{websocket_8c_a95db4a47f610f4678ecabf50ac4c98f5}\label{websocket_8c_a95db4a47f610f4678ecabf50ac4c98f5}} 
 \index{websocket.c@{websocket.c}!aws\_websocket\_convert\_to\_midchannel\_handler@{aws\_websocket\_convert\_to\_midchannel\_handler}}
@@ -172,7 +172,7 @@ Manually increment the read window. The read window shrinks as payload data is r
 \index{websocket.c@{websocket.c}!aws\_websocket\_is\_data\_frame@{aws\_websocket\_is\_data\_frame}}
 \index{aws\_websocket\_is\_data\_frame@{aws\_websocket\_is\_data\_frame}!websocket.c@{websocket.c}}
 \doxysubsubsection{\texorpdfstring{aws\_websocket\_is\_data\_frame()}{aws\_websocket\_is\_data\_frame()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+websocket\+\_\+is\+\_\+data\+\_\+frame (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{opcode }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+websocket\+\_\+is\+\_\+data\+\_\+frame (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{opcode }\end{DoxyParamCaption})}
 
 Return true if opcode is for a data frame, false if opcode if for a control frame. \mbox{\Hypertarget{websocket_8c_aa30d39a2766642e07f57378ade3390e5}\label{websocket_8c_aa30d39a2766642e07f57378ade3390e5}} 
 \index{websocket.c@{websocket.c}!aws\_websocket\_opcode\_str@{aws\_websocket\_opcode\_str}}
@@ -210,7 +210,7 @@ Send a websocket frame. The {\ttfamily options} struct is copied. A callback wil
 \index{websocket.c@{websocket.c}!s\_complete\_incoming\_frame@{s\_complete\_incoming\_frame}}
 \index{s\_complete\_incoming\_frame@{s\_complete\_incoming\_frame}!websocket.c@{websocket.c}}
 \doxysubsubsection{\texorpdfstring{s\_complete\_incoming\_frame()}{s\_complete\_incoming\_frame()}}
-{\footnotesize\ttfamily static void s\+\_\+complete\+\_\+incoming\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{out\+\_\+callback\+\_\+result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static void s\+\_\+complete\+\_\+incoming\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{int}]{error\+\_\+code,  }\item[{bool $\ast$}]{out\+\_\+callback\+\_\+result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{websocket_8c_a6940c7461d80cc9de795867aff632ef9}\label{websocket_8c_a6940c7461d80cc9de795867aff632ef9}} 
 \index{websocket.c@{websocket.c}!s\_decoder\_on\_frame@{s\_decoder\_on\_frame}}
@@ -300,7 +300,7 @@ Send a websocket frame. The {\ttfamily options} struct is copied. A callback wil
 \index{websocket.c@{websocket.c}!s\_handler\_shutdown@{s\_handler\_shutdown}}
 \index{s\_handler\_shutdown@{s\_handler\_shutdown}!websocket.c@{websocket.c}}
 \doxysubsubsection{\texorpdfstring{s\_handler\_shutdown()}{s\_handler\_shutdown()}}
-{\footnotesize\ttfamily static int s\+\_\+handler\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+handler\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{bool}]{free\+\_\+scarce\+\_\+resources\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{websocket_8c_add715d995ee4b7b9fa7f0df0750d9df6}\label{websocket_8c_add715d995ee4b7b9fa7f0df0750d9df6}} 
 \index{websocket.c@{websocket.c}!s\_increment\_read\_window\_action@{s\_increment\_read\_window\_action}}
@@ -336,7 +336,7 @@ Send a websocket frame. The {\ttfamily options} struct is copied. A callback wil
 \index{websocket.c@{websocket.c}!s\_midchannel\_send\_payload@{s\_midchannel\_send\_payload}}
 \index{s\_midchannel\_send\_payload@{s\_midchannel\_send\_payload}!websocket.c@{websocket.c}}
 \doxysubsubsection{\texorpdfstring{s\_midchannel\_send\_payload()}{s\_midchannel\_send\_payload()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+midchannel\+\_\+send\+\_\+payload (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+midchannel\+\_\+send\+\_\+payload (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{out\+\_\+buf,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{websocket_8c_af1eb2af29fb4d490c731f495aac90e7a}\label{websocket_8c_af1eb2af29fb4d490c731f495aac90e7a}} 
 \index{websocket.c@{websocket.c}!s\_move\_synced\_data\_to\_thread\_task@{s\_move\_synced\_data\_to\_thread\_task}}
@@ -354,7 +354,7 @@ Send a websocket frame. The {\ttfamily options} struct is copied. A callback wil
 \index{websocket.c@{websocket.c}!s\_send\_frame@{s\_send\_frame}}
 \index{s\_send\_frame@{s\_send\_frame}!websocket.c@{websocket.c}}
 \doxysubsubsection{\texorpdfstring{s\_send\_frame()}{s\_send\_frame()}}
-{\footnotesize\ttfamily static int s\+\_\+send\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{const struct \mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options}} $\ast$}]{options,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{from\+\_\+public\+\_\+api }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+send\+\_\+frame (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__websocket}{aws\+\_\+websocket}} $\ast$}]{websocket,  }\item[{const struct \mbox{\hyperlink{structaws__websocket__send__frame__options}{aws\+\_\+websocket\+\_\+send\+\_\+frame\+\_\+options}} $\ast$}]{options,  }\item[{bool}]{from\+\_\+public\+\_\+api }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{websocket_8c_ac9ce8dacd06b4a226b791955a4bfdf16}\label{websocket_8c_ac9ce8dacd06b4a226b791955a4bfdf16}} 
 \index{websocket.c@{websocket.c}!s\_shutdown\_channel\_task@{s\_shutdown\_channel\_task}}

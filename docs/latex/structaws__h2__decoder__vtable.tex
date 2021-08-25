@@ -11,15 +11,15 @@ struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperli
 \item 
 struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_ade521cdfd622ddd2468d542ae9ed87c6}{on\+\_\+headers\+\_\+i}} )(uint32\+\_\+t stream\+\_\+id, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} name\+\_\+enum, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type, void $\ast$userdata)
 \item 
-struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a741a187e1fc8ee05f23a167bf9fbcfc5}{on\+\_\+headers\+\_\+end}} )(uint32\+\_\+t stream\+\_\+id, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} malformed, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type, void $\ast$userdata)
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a741a187e1fc8ee05f23a167bf9fbcfc5}{on\+\_\+headers\+\_\+end}} )(uint32\+\_\+t stream\+\_\+id, bool malformed, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type, void $\ast$userdata)
 \item 
 struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a203bcfc606088f5d95e320d003c4f14a}{on\+\_\+push\+\_\+promise\+\_\+begin}} )(uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t promised\+\_\+stream\+\_\+id, void $\ast$userdata)
 \item 
 struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_ae44330e8ea2456589b09b692468deae2}{on\+\_\+push\+\_\+promise\+\_\+i}} )(uint32\+\_\+t stream\+\_\+id, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, enum \mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818f}{aws\+\_\+http\+\_\+header\+\_\+name}} name\+\_\+enum, void $\ast$userdata)
 \item 
-struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a007c218f7caa94b5ca93f150f2a8f1b8}{on\+\_\+push\+\_\+promise\+\_\+end}} )(uint32\+\_\+t stream\+\_\+id, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} malformed, void $\ast$userdata)
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a007c218f7caa94b5ca93f150f2a8f1b8}{on\+\_\+push\+\_\+promise\+\_\+end}} )(uint32\+\_\+t stream\+\_\+id, bool malformed, void $\ast$userdata)
 \item 
-struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_ab1431903ce90b64db02448f4f9092a6d}{on\+\_\+data\+\_\+begin}} )(uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t payload\+\_\+len, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} end\+\_\+stream, void $\ast$userdata)
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_ab1431903ce90b64db02448f4f9092a6d}{on\+\_\+data\+\_\+begin}} )(uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t payload\+\_\+len, bool end\+\_\+stream, void $\ast$userdata)
 \item 
 struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_aa685554f7c7d4110b1715aaf5f24e53a}{on\+\_\+data\+\_\+i}} )(uint32\+\_\+t stream\+\_\+id, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} data, void $\ast$userdata)
 \item 
@@ -27,7 +27,7 @@ struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperli
 \item 
 struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a06e763bb5b93806d87450431c092629a}{on\+\_\+end\+\_\+stream}} )(uint32\+\_\+t stream\+\_\+id, void $\ast$userdata)
 \item 
-struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a9cddde1905311979fd5611a1e55130a9}{on\+\_\+rst\+\_\+stream}} )(uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a9cddde1905311979fd5611a1e55130a9}{on\+\_\+rst\+\_\+stream}} )(uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t error\+\_\+code, void $\ast$userdata)
 \item 
 struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a56802d17a62215fc43fc4abd585f1c12}{on\+\_\+ping\+\_\+ack}} )(uint8\+\_\+t opaque\+\_\+data\mbox{[}\mbox{\hyperlink{connection_8h_a99cebd5298f16fec37625e4a1a01c64a}{AWS\+\_\+\+HTTP2\+\_\+\+PING\+\_\+\+DATA\+\_\+\+SIZE}}\mbox{]}, void $\ast$userdata)
 \item 
@@ -37,7 +37,7 @@ struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperli
 \item 
 struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a03a4550425ac014bff301d3f2d815fce}{on\+\_\+settings}} )(const struct \mbox{\hyperlink{structaws__http2__setting}{aws\+\_\+http2\+\_\+setting}} $\ast$settings\+\_\+array, size\+\_\+t num\+\_\+settings, void $\ast$userdata)
 \item 
-struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a73b411e2011d1f9301de165289c659ac}{on\+\_\+goaway\+\_\+begin}} )(uint32\+\_\+t last\+\_\+stream, uint32\+\_\+t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, uint32\+\_\+t debug\+\_\+data\+\_\+length, void $\ast$userdata)
+struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_a73b411e2011d1f9301de165289c659ac}{on\+\_\+goaway\+\_\+begin}} )(uint32\+\_\+t last\+\_\+stream, uint32\+\_\+t error\+\_\+code, uint32\+\_\+t debug\+\_\+data\+\_\+length, void $\ast$userdata)
 \item 
 struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ \mbox{\hyperlink{structaws__h2__decoder__vtable_ab2695c65c873d986ad6abb12c4394501}{on\+\_\+goaway\+\_\+i}} )(struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} debug\+\_\+data, void $\ast$userdata)
 \item 
@@ -55,7 +55,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_data\_begin@{on\_data\_begin}}
 \index{on\_data\_begin@{on\_data\_begin}!aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}}
 \doxysubsubsection{\texorpdfstring{on\_data\_begin}{on\_data\_begin}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+data\+\_\+begin) (uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t payload\+\_\+len, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} end\+\_\+stream, void $\ast$userdata)}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+data\+\_\+begin) (uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t payload\+\_\+len, bool end\+\_\+stream, void $\ast$userdata)}
 
 \mbox{\Hypertarget{structaws__h2__decoder__vtable_a862798b96843499139b81f4fb16b8529}\label{structaws__h2__decoder__vtable_a862798b96843499139b81f4fb16b8529}} 
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_data\_end@{on\_data\_end}}
@@ -79,7 +79,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_goaway\_begin@{on\_goaway\_begin}}
 \index{on\_goaway\_begin@{on\_goaway\_begin}!aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}}
 \doxysubsubsection{\texorpdfstring{on\_goaway\_begin}{on\_goaway\_begin}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}( $\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+goaway\+\_\+begin) (uint32\+\_\+t last\+\_\+stream, uint32\+\_\+t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, uint32\+\_\+t debug\+\_\+data\+\_\+length, void $\ast$userdata)}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}( $\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+goaway\+\_\+begin) (uint32\+\_\+t last\+\_\+stream, uint32\+\_\+t error\+\_\+code, uint32\+\_\+t debug\+\_\+data\+\_\+length, void $\ast$userdata)}
 
 \mbox{\Hypertarget{structaws__h2__decoder__vtable_aa755b3416573462c59f7686d4f8a3a6d}\label{structaws__h2__decoder__vtable_aa755b3416573462c59f7686d4f8a3a6d}} 
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_goaway\_end@{on\_goaway\_end}}
@@ -103,7 +103,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_headers\_end@{on\_headers\_end}}
 \index{on\_headers\_end@{on\_headers\_end}!aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}}
 \doxysubsubsection{\texorpdfstring{on\_headers\_end}{on\_headers\_end}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}( $\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+headers\+\_\+end) (uint32\+\_\+t stream\+\_\+id, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} malformed, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type, void $\ast$userdata)}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}( $\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+headers\+\_\+end) (uint32\+\_\+t stream\+\_\+id, bool malformed, enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} block\+\_\+type, void $\ast$userdata)}
 
 \mbox{\Hypertarget{structaws__h2__decoder__vtable_ade521cdfd622ddd2468d542ae9ed87c6}\label{structaws__h2__decoder__vtable_ade521cdfd622ddd2468d542ae9ed87c6}} 
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_headers\_i@{on\_headers\_i}}
@@ -133,7 +133,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_push\_promise\_end@{on\_push\_promise\_end}}
 \index{on\_push\_promise\_end@{on\_push\_promise\_end}!aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}}
 \doxysubsubsection{\texorpdfstring{on\_push\_promise\_end}{on\_push\_promise\_end}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+push\+\_\+promise\+\_\+end) (uint32\+\_\+t stream\+\_\+id, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} malformed, void $\ast$userdata)}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+push\+\_\+promise\+\_\+end) (uint32\+\_\+t stream\+\_\+id, bool malformed, void $\ast$userdata)}
 
 \mbox{\Hypertarget{structaws__h2__decoder__vtable_ae44330e8ea2456589b09b692468deae2}\label{structaws__h2__decoder__vtable_ae44330e8ea2456589b09b692468deae2}} 
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_push\_promise\_i@{on\_push\_promise\_i}}
@@ -145,7 +145,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_rst\_stream@{on\_rst\_stream}}
 \index{on\_rst\_stream@{on\_rst\_stream}!aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}}
 \doxysubsubsection{\texorpdfstring{on\_rst\_stream}{on\_rst\_stream}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+rst\+\_\+stream) (uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$userdata)}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__h2err}{aws\+\_\+h2err}}($\ast$ aws\+\_\+h2\+\_\+decoder\+\_\+vtable\+::on\+\_\+rst\+\_\+stream) (uint32\+\_\+t stream\+\_\+id, uint32\+\_\+t error\+\_\+code, void $\ast$userdata)}
 
 \mbox{\Hypertarget{structaws__h2__decoder__vtable_a03a4550425ac014bff301d3f2d815fce}\label{structaws__h2__decoder__vtable_a03a4550425ac014bff301d3f2d815fce}} 
 \index{aws\_h2\_decoder\_vtable@{aws\_h2\_decoder\_vtable}!on\_settings@{on\_settings}}

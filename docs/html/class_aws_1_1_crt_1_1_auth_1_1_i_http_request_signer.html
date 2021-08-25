@@ -99,9 +99,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acd2958f3d93ae5c7634256eb68b02cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cd78d8cd9c75991a12cee92e6bd93bf"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer.html#a0cd78d8cd9c75991a12cee92e6bd93bf">~IHttpRequestSigner</a> ()=default</td></tr>
 <tr class="separator:a0cd78d8cd9c75991a12cee92e6bd93bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72a0db10e8a8528ead4d4a4a5afe3fb0"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer.html#a72a0db10e8a8528ead4d4a4a5afe3fb0">SignRequest</a> (const std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_request.html">Aws::Crt::Http::HttpRequest</a> &gt; &amp;request, const <a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_signing_config.html">ISigningConfig</a> &amp;<a class="el" href="s2n__client__key__recv__fuzz__test_8c.html#a7d70bb7bed95daae1233293126bb9523">config</a>, const <a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ab4ca80a8fc66d38af49bf5431b5c8ebf">OnHttpRequestSigningComplete</a> &amp;completionCallback)=0</td></tr>
+<tr class="memitem:a72a0db10e8a8528ead4d4a4a5afe3fb0"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer.html#a72a0db10e8a8528ead4d4a4a5afe3fb0">SignRequest</a> (const std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_request.html">Aws::Crt::Http::HttpRequest</a> &gt; &amp;request, const <a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_signing_config.html">ISigningConfig</a> &amp;config, const <a class="el" href="namespace_aws_1_1_crt_1_1_auth.html#ab4ca80a8fc66d38af49bf5431b5c8ebf">OnHttpRequestSigningComplete</a> &amp;completionCallback)=0</td></tr>
 <tr class="separator:a72a0db10e8a8528ead4d4a4a5afe3fb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac97a65937fbc26e702fe1176743dd81a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer.html#ac97a65937fbc26e702fe1176743dd81a">IsValid</a> () const =0</td></tr>
+<tr class="memitem:ac97a65937fbc26e702fe1176743dd81a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer.html#ac97a65937fbc26e702fe1176743dd81a">IsValid</a> () const =0</td></tr>
 <tr class="separator:ac97a65937fbc26e702fe1176743dd81a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -220,7 +220,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> Aws::Crt::Auth::IHttpRequestSigner::IsValid </td>
+          <td class="memname">virtual bool Aws::Crt::Auth::IHttpRequestSigner::IsValid </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -300,7 +300,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> Aws::Crt::Auth::IHttpRequestSigner::SignRequest </td>
+          <td class="memname">virtual bool Aws::Crt::Auth::IHttpRequestSigner::SignRequest </td>
           <td>(</td>
           <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_request.html">Aws::Crt::Http::HttpRequest</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>request</em>, </td>

@@ -105,9 +105,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:afb730582952b7ceec73d7dc9bf7bef39"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="channel_8c.html#afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728">KB_16</a> = 16 * 1024
+<tr class="memitem:afa231099d07583c3ed0981e0bb665f55"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="channel_8c.html#afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728">KB_16</a> = 16 * 1024
  }</td></tr>
-<tr class="separator:afb730582952b7ceec73d7dc9bf7bef39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:afa231099d07583c3ed0981e0bb665f55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a145f97ada78b6ee9e0aab8c7aa7e200c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a145f97ada78b6ee9e0aab8c7aa7e200c">aws_channel_state</a> { <a class="el" href="channel_8c.html#a145f97ada78b6ee9e0aab8c7aa7e200ca4c83f2ba135bfdb374ff7dbaea11f7fb">AWS_CHANNEL_SETTING_UP</a>
 , <a class="el" href="channel_8c.html#a145f97ada78b6ee9e0aab8c7aa7e200ca68ce32c76dccbf3eab8851f3425da950">AWS_CHANNEL_ACTIVE</a>
 , <a class="el" href="channel_8c.html#a145f97ada78b6ee9e0aab8c7aa7e200cae6a3752eafe574bd80f8c94a23ca42a3">AWS_CHANNEL_SHUTTING_DOWN</a>
@@ -137,15 +137,15 @@ Functions</h2></td></tr>
 <tr class="separator:a997fd75a24929fa75dec1e4346635078"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af538b24333d3a5a7a434f8214c00d5a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#af538b24333d3a5a7a434f8214c00d5a9">aws_channel_release_hold</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel)</td></tr>
 <tr class="separator:af538b24333d3a5a7a434f8214c00d5a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ff5c6573e9ee75999de512eb9ae675c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a7ff5c6573e9ee75999de512eb9ae675c">s_channel_shutdown</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> shutdown_immediately)</td></tr>
+<tr class="memitem:a7ff5c6573e9ee75999de512eb9ae675c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a7ff5c6573e9ee75999de512eb9ae675c">s_channel_shutdown</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, int error_code, bool shutdown_immediately)</td></tr>
 <tr class="separator:a7ff5c6573e9ee75999de512eb9ae675c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2363d5e271fd83587c1e8128f2be0827"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a2363d5e271fd83587c1e8128f2be0827">s_on_shutdown_completion_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
 <tr class="separator:a2363d5e271fd83587c1e8128f2be0827"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16e4c1a549b3c160c7df1410cb78863f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a16e4c1a549b3c160c7df1410cb78863f">s_shutdown_task</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
 <tr class="separator:a16e4c1a549b3c160c7df1410cb78863f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a136dec28372bafca15c52abc876c84c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a136dec28372bafca15c52abc876c84c6">aws_channel_shutdown</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>)</td></tr>
+<tr class="memitem:a136dec28372bafca15c52abc876c84c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a136dec28372bafca15c52abc876c84c6">aws_channel_shutdown</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, int error_code)</td></tr>
 <tr class="separator:a136dec28372bafca15c52abc876c84c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c9b7905706d982c37f9e5c125aa8512"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a6c9b7905706d982c37f9e5c125aa8512">aws_channel_acquire_message_from_pool</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, enum <a class="el" href="io_8h.html#a0613a6ef5306823c98d09f67957af701">aws_io_message_type</a> <a class="el" href="event__stream__rpc__server__connection__test_8c.html#ad0d320d82426002775afef62bff133a7">message_type</a>, size_t size_hint)</td></tr>
+<tr class="memitem:a6c9b7905706d982c37f9e5c125aa8512"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a6c9b7905706d982c37f9e5c125aa8512">aws_channel_acquire_message_from_pool</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, enum <a class="el" href="io_8h.html#a0613a6ef5306823c98d09f67957af701">aws_io_message_type</a> message_type, size_t size_hint)</td></tr>
 <tr class="separator:a6c9b7905706d982c37f9e5c125aa8512"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4846decb3214f553cf8246e44785c431"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a4846decb3214f553cf8246e44785c431">aws_channel_slot_new</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel)</td></tr>
 <tr class="separator:a4846decb3214f553cf8246e44785c431"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,7 +159,7 @@ Functions</h2></td></tr>
 <tr class="separator:aae23519d2041e97c043fb9ebd206ba17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcb04543063f17a06040cc5fbcc8c93a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#adcb04543063f17a06040cc5fbcc8c93a">s_channel_task_run</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
 <tr class="separator:adcb04543063f17a06040cc5fbcc8c93a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c46f872a25bd2541b213c532813d3b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a2c46f872a25bd2541b213c532813d3b5">aws_channel_task_init</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, <a class="el" href="channel_8h.html#af19f695ba5e5d8dc58cce82c4c1c645e">aws_channel_task_fn</a> *<a class="el" href="aws-c-io_2tests_2vcc_2client_8c.html#abbaac6de4b607959ddeab2c29055a668">task_fn</a>, void *arg, const char *type_tag)</td></tr>
+<tr class="memitem:a2c46f872a25bd2541b213c532813d3b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a2c46f872a25bd2541b213c532813d3b5">aws_channel_task_init</a> (struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, <a class="el" href="channel_8h.html#af19f695ba5e5d8dc58cce82c4c1c645e">aws_channel_task_fn</a> *task_fn, void *arg, const char *type_tag)</td></tr>
 <tr class="separator:a2c46f872a25bd2541b213c532813d3b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24ffa215b6a69ffe59becb46aff75759"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a24ffa215b6a69ffe59becb46aff75759">s_register_pending_task</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *channel_task, uint64_t run_at_nanos)</td></tr>
 <tr class="separator:a24ffa215b6a69ffe59becb46aff75759"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,11 +167,11 @@ Functions</h2></td></tr>
 <tr class="separator:a9642128221f90fc7fdaa69e957c22c7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a014e9d885eb34c2750ca7b22932d07f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a014e9d885eb34c2750ca7b22932d07f7">aws_channel_schedule_task_future</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, struct <a class="el" href="structaws__channel__task.html">aws_channel_task</a> *task, uint64_t run_at_nanos)</td></tr>
 <tr class="separator:a014e9d885eb34c2750ca7b22932d07f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f1bd887ae61a45cfd20068fa177a17f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel)</td></tr>
+<tr class="memitem:a6f1bd887ae61a45cfd20068fa177a17f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a6f1bd887ae61a45cfd20068fa177a17f">aws_channel_thread_is_callers_thread</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel)</td></tr>
 <tr class="separator:a6f1bd887ae61a45cfd20068fa177a17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69ea92a4c3ee7eb41054644e229ff9db"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a69ea92a4c3ee7eb41054644e229ff9db">s_update_channel_slot_message_overheads</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel)</td></tr>
 <tr class="separator:a69ea92a4c3ee7eb41054644e229ff9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46595b50216279630f6c357a6cfd81b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a46595b50216279630f6c357a6cfd81b3">aws_channel_slot_set_handler</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>)</td></tr>
+<tr class="memitem:a46595b50216279630f6c357a6cfd81b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a46595b50216279630f6c357a6cfd81b3">aws_channel_slot_set_handler</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
 <tr class="separator:a46595b50216279630f6c357a6cfd81b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3075bd6f624dab2ddc610f45e1d098f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ac3075bd6f624dab2ddc610f45e1d098f">aws_channel_slot_remove</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot)</td></tr>
 <tr class="separator:ac3075bd6f624dab2ddc610f45e1d098f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -183,7 +183,7 @@ Functions</h2></td></tr>
 <tr class="separator:a89622dad2d95250793140d0577d69e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5afdc9fe4448a163c8b1adb75d120a19"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a5afdc9fe4448a163c8b1adb75d120a19">aws_channel_slot_insert_left</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *to_add)</td></tr>
 <tr class="separator:a5afdc9fe4448a163c8b1adb75d120a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62e2e08ead1c914209fbf17587a527fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a62e2e08ead1c914209fbf17587a527fa">aws_channel_slot_send_message</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a6095cc5ed7333d602d0c342e436eb2c5">message</a>, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir)</td></tr>
+<tr class="memitem:a62e2e08ead1c914209fbf17587a527fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a62e2e08ead1c914209fbf17587a527fa">aws_channel_slot_send_message</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *message, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir)</td></tr>
 <tr class="separator:a62e2e08ead1c914209fbf17587a527fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaa6777d47c8591cacaacad26a123de3"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#acaa6777d47c8591cacaacad26a123de3">aws_channel_slot_acquire_max_message_for_write</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot)</td></tr>
 <tr class="separator:acaa6777d47c8591cacaacad26a123de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,27 +191,27 @@ Functions</h2></td></tr>
 <tr class="separator:ac8a1e797fb030e8d27944ea2bedce853"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace28e826f0cda574669c64bc25d73aa7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ace28e826f0cda574669c64bc25d73aa7">aws_channel_slot_increment_read_window</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, size_t window)</td></tr>
 <tr class="separator:ace28e826f0cda574669c64bc25d73aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e0aeec89ec6a0356bd5bedb2cbdf4d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a7e0aeec89ec6a0356bd5bedb2cbdf4d6">aws_channel_slot_shutdown</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir, int err_code, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> free_scarce_resources_immediately)</td></tr>
+<tr class="memitem:a7e0aeec89ec6a0356bd5bedb2cbdf4d6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a7e0aeec89ec6a0356bd5bedb2cbdf4d6">aws_channel_slot_shutdown</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir, int err_code, bool free_scarce_resources_immediately)</td></tr>
 <tr class="separator:a7e0aeec89ec6a0356bd5bedb2cbdf4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a017a204cd4a9f6af20e21866d892f512"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a017a204cd4a9f6af20e21866d892f512">s_run_shutdown_write_direction</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
 <tr class="separator:a017a204cd4a9f6af20e21866d892f512"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac02bdc09609e77ed5d606d75dab8665a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ac02bdc09609e77ed5d606d75dab8665a">aws_channel_slot_on_handler_shutdown_complete</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir, int err_code, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> free_scarce_resources_immediately)</td></tr>
+<tr class="memitem:ac02bdc09609e77ed5d606d75dab8665a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ac02bdc09609e77ed5d606d75dab8665a">aws_channel_slot_on_handler_shutdown_complete</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir, int err_code, bool free_scarce_resources_immediately)</td></tr>
 <tr class="separator:ac02bdc09609e77ed5d606d75dab8665a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2703e4910b55901604efb6b1437169e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ac2703e4910b55901604efb6b1437169e">aws_channel_slot_downstream_read_window</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot)</td></tr>
 <tr class="separator:ac2703e4910b55901604efb6b1437169e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6eb3555dcee0178d6d2579b69e5a5d8a"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a6eb3555dcee0178d6d2579b69e5a5d8a">aws_channel_slot_upstream_message_overhead</a> (struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot)</td></tr>
 <tr class="separator:a6eb3555dcee0178d6d2579b69e5a5d8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4291e035ed0bce84847d62c3530ae7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a5c4291e035ed0bce84847d62c3530ae7">aws_channel_handler_destroy</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>)</td></tr>
+<tr class="memitem:a5c4291e035ed0bce84847d62c3530ae7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a5c4291e035ed0bce84847d62c3530ae7">aws_channel_handler_destroy</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
 <tr class="separator:a5c4291e035ed0bce84847d62c3530ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a593c06122e2de124ff5eb9466d7ebc1f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a593c06122e2de124ff5eb9466d7ebc1f">aws_channel_handler_process_read_message</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a6095cc5ed7333d602d0c342e436eb2c5">message</a>)</td></tr>
+<tr class="memitem:a593c06122e2de124ff5eb9466d7ebc1f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a593c06122e2de124ff5eb9466d7ebc1f">aws_channel_handler_process_read_message</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *message)</td></tr>
 <tr class="separator:a593c06122e2de124ff5eb9466d7ebc1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a6a79555c173c477a87468171e5d116"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a6a6a79555c173c477a87468171e5d116">aws_channel_handler_process_write_message</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a6095cc5ed7333d602d0c342e436eb2c5">message</a>)</td></tr>
+<tr class="memitem:a6a6a79555c173c477a87468171e5d116"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a6a6a79555c173c477a87468171e5d116">aws_channel_handler_process_write_message</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *message)</td></tr>
 <tr class="separator:a6a6a79555c173c477a87468171e5d116"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad29b3effeca8c0f96a98f3bdd3721d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#aad29b3effeca8c0f96a98f3bdd3721d0">aws_channel_handler_increment_read_window</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, size_t size)</td></tr>
+<tr class="memitem:aad29b3effeca8c0f96a98f3bdd3721d0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#aad29b3effeca8c0f96a98f3bdd3721d0">aws_channel_handler_increment_read_window</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, size_t size)</td></tr>
 <tr class="separator:aad29b3effeca8c0f96a98f3bdd3721d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef86fb523e1c2cfbff4236eba9dea108"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#aef86fb523e1c2cfbff4236eba9dea108">aws_channel_handler_shutdown</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> free_scarce_resources_immediately)</td></tr>
+<tr class="memitem:aef86fb523e1c2cfbff4236eba9dea108"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#aef86fb523e1c2cfbff4236eba9dea108">aws_channel_handler_shutdown</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum <a class="el" href="channel_8h.html#a38e100b8bf2153399c980f5a33407cac">aws_channel_direction</a> dir, int error_code, bool free_scarce_resources_immediately)</td></tr>
 <tr class="separator:aef86fb523e1c2cfbff4236eba9dea108"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1bf994287f08ecfcbd954165fe9dd38"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ad1bf994287f08ecfcbd954165fe9dd38">aws_channel_handler_initial_window_size</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>)</td></tr>
+<tr class="memitem:ad1bf994287f08ecfcbd954165fe9dd38"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ad1bf994287f08ecfcbd954165fe9dd38">aws_channel_handler_initial_window_size</a> (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler)</td></tr>
 <tr class="separator:ad1bf994287f08ecfcbd954165fe9dd38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae57618bf0dc50fd6bcdf9abe104d7a1a"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ae57618bf0dc50fd6bcdf9abe104d7a1a">aws_channel_get_first_slot</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel)</td></tr>
 <tr class="separator:ae57618bf0dc50fd6bcdf9abe104d7a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,7 +219,7 @@ Functions</h2></td></tr>
 <tr class="separator:ab03cd7122686a085dccd396e31ed820a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3966ebac4f40510a4992240cc202765c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a3966ebac4f40510a4992240cc202765c">s_channel_gather_statistics_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *arg, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
 <tr class="separator:a3966ebac4f40510a4992240cc202765c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d68e394434da99942eacdd668fa91f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a8d68e394434da99942eacdd668fa91f8">aws_channel_set_statistics_handler</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, struct <a class="el" href="structaws__crt__statistics__handler.html">aws_crt_statistics_handler</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>)</td></tr>
+<tr class="memitem:a8d68e394434da99942eacdd668fa91f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a8d68e394434da99942eacdd668fa91f8">aws_channel_set_statistics_handler</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel, struct <a class="el" href="structaws__crt__statistics__handler.html">aws_crt_statistics_handler</a> *handler)</td></tr>
 <tr class="separator:a8d68e394434da99942eacdd668fa91f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acef9224f64bad376195da55ca1b80a8b"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#acef9224f64bad376195da55ca1b80a8b">aws_channel_get_event_loop</a> (struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel)</td></tr>
 <tr class="separator:acef9224f64bad376195da55ca1b80a8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -228,7 +228,7 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a4dd0a78dba2e91f78128f60c1319739f"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#a4dd0a78dba2e91f78128f60c1319739f">s_message_pool_key</a> = 0</td></tr>
 <tr class="separator:a4dd0a78dba2e91f78128f60c1319739f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8036c39ac363ac0ace8ce7f487f8e81"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ab8036c39ac363ac0ace8ce7f487f8e81">g_aws_channel_max_fragment_size</a> = <a class="el" href="channel_8c.html#afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728">KB_16</a></td></tr>
+<tr class="memitem:ab8036c39ac363ac0ace8ce7f487f8e81"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="channel_8c.html#ab8036c39ac363ac0ace8ce7f487f8e81">g_aws_channel_max_fragment_size</a> = <a class="el" href="channel_8c.html#afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728">KB_16</a></td></tr>
 <tr class="separator:ab8036c39ac363ac0ace8ce7f487f8e81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -247,8 +247,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="afb730582952b7ceec73d7dc9bf7bef39" name="afb730582952b7ceec73d7dc9bf7bef39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb730582952b7ceec73d7dc9bf7bef39">&#9670;&nbsp;</a></span>anonymous enum</h2>
+<a id="afa231099d07583c3ed0981e0bb665f55" name="afa231099d07583c3ed0981e0bb665f55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa231099d07583c3ed0981e0bb665f55">&#9670;&nbsp;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,7 +259,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728" name="afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728"></a>KB_16&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728" name="afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728"></a>KB_16&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -635,7 +635,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>free_scarce_resources_immediately</em>&#160;</td>
         </tr>
         <tr>
@@ -1094,7 +1094,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>free_scarce_resources_immediately</em>&#160;</td>
         </tr>
         <tr>
@@ -1248,7 +1248,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>free_scarce_resources_immediately</em>&#160;</td>
         </tr>
         <tr>
@@ -1329,7 +1329,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_channel_thread_is_callers_thread </td>
+          <td class="memname">bool aws_channel_thread_is_callers_thread </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__channel.html">aws_channel</a> *&#160;</td>
           <td class="paramname"><em>channel</em></td><td>)</td>
@@ -1407,7 +1407,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>shutdown_immediately</em>&#160;</td>
         </tr>
         <tr>
@@ -1941,7 +1941,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t g_aws_channel_max_fragment_size = <a class="el" href="channel_8c.html#afb730582952b7ceec73d7dc9bf7bef39a5e28b47f80a33fa63e786b8fa182b728">KB_16</a></td>
+          <td class="memname">size_t g_aws_channel_max_fragment_size = <a class="el" href="channel_8c.html#afa231099d07583c3ed0981e0bb665f55a5e28b47f80a33fa63e786b8fa182b728">KB_16</a></td>
         </tr>
       </table>
 </div><div class="memdoc">

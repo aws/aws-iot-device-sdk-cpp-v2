@@ -62,49 +62,49 @@ static size\+\_\+t \mbox{\hyperlink{sha2__c_8c_a8c02c24bf559136ef4b915310ed3f1c9
 \item 
 static size\+\_\+t \mbox{\hyperlink{sha2__c_8c_ac53478cbbec7baed39fd6a6fd3077c15}{crypto\+\_\+hashblocks\+\_\+sha512}} (uint8\+\_\+t $\ast$statebytes, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
 \item 
-void \mbox{\hyperlink{sha2__c_8c_a9b7d1b942498eec64aba8e6e0298aaa7}{sha256\+\_\+inc\+\_\+init}} (\mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{sha2__c_8c_a9b7d1b942498eec64aba8e6e0298aaa7}{sha256\+\_\+inc\+\_\+init}} (\mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$state)
 \item 
-void \mbox{\hyperlink{sha2__c_8c_ac8e3e11f993900a473bd7329fd6eb609}{sha512\+\_\+inc\+\_\+init}} (\mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{sha2__c_8c_ac8e3e11f993900a473bd7329fd6eb609}{sha512\+\_\+inc\+\_\+init}} (\mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$state)
 \item 
 void \mbox{\hyperlink{sha2__c_8c_ad0bb9a40994d968e8d07cec3ee9f89f7}{sha256\+\_\+inc\+\_\+ctx\+\_\+clone}} (\mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$stateout, const \mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$statein)
 \item 
 void \mbox{\hyperlink{sha2__c_8c_a8d7aa7400e91d84c21a27758d0a2e23a}{sha512\+\_\+inc\+\_\+ctx\+\_\+clone}} (\mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$stateout, const \mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$statein)
 \item 
-void \mbox{\hyperlink{sha2__c_8c_a4b375ae684ba95046339ae5d47876e4b}{sha256\+\_\+inc\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{sha2__c_8c_a4b375ae684ba95046339ae5d47876e4b}{sha256\+\_\+inc\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$state)
 \item 
-void \mbox{\hyperlink{sha2__c_8c_a8cae4afe324c58af74b84bd46fbb141f}{sha512\+\_\+inc\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{sha2__c_8c_a8cae4afe324c58af74b84bd46fbb141f}{sha512\+\_\+inc\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$state)
 \item 
-void \mbox{\hyperlink{sha2__c_8c_a021181a74d88aa976039ed33effa2fff}{sha256\+\_\+inc\+\_\+blocks}} (\mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$in, size\+\_\+t inblocks)
+void \mbox{\hyperlink{sha2__c_8c_a021181a74d88aa976039ed33effa2fff}{sha256\+\_\+inc\+\_\+blocks}} (\mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$state, const uint8\+\_\+t $\ast$in, size\+\_\+t inblocks)
 \item 
-void \mbox{\hyperlink{sha2__c_8c_a08a890a865d7d6ac28874c8a080fc59c}{sha512\+\_\+inc\+\_\+blocks}} (\mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$in, size\+\_\+t inblocks)
+void \mbox{\hyperlink{sha2__c_8c_a08a890a865d7d6ac28874c8a080fc59c}{sha512\+\_\+inc\+\_\+blocks}} (\mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$state, const uint8\+\_\+t $\ast$in, size\+\_\+t inblocks)
 \item 
-void \mbox{\hyperlink{sha2__c_8c_a9f6d128d6f5edc048c8d9a589f2fd25d}{sha256\+\_\+inc\+\_\+finalize}} (uint8\+\_\+t $\ast$out, \mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
+void \mbox{\hyperlink{sha2__c_8c_a9f6d128d6f5edc048c8d9a589f2fd25d}{sha256\+\_\+inc\+\_\+finalize}} (uint8\+\_\+t $\ast$out, \mbox{\hyperlink{structsha256ctx}{sha256ctx}} $\ast$state, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
 \item 
-void \mbox{\hyperlink{sha2__c_8c_a5753b0e1a645643f93637376dec599c5}{sha512\+\_\+inc\+\_\+finalize}} (uint8\+\_\+t $\ast$out, \mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
+void \mbox{\hyperlink{sha2__c_8c_a5753b0e1a645643f93637376dec599c5}{sha512\+\_\+inc\+\_\+finalize}} (uint8\+\_\+t $\ast$out, \mbox{\hyperlink{structsha512ctx}{sha512ctx}} $\ast$state, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
 \item 
 void \mbox{\hyperlink{sha2__c_8c_ade0a2fa9e741f287081aafc482e92c40}{sha256}} (uint8\+\_\+t $\ast$out, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
 \item 
 void \mbox{\hyperlink{sha2__c_8c_a8bb4975e95355bf7672d19cd3a717c3c}{sha512}} (uint8\+\_\+t $\ast$out, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
 \item 
-void \mbox{\hyperlink{sha2__c_8c_ad20511b40e08387db1ee9860eb3c8bba}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+inc\+\_\+init}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{sha2__c_8c_ad20511b40e08387db1ee9860eb3c8bba}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+inc\+\_\+init}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$state)
 \begin{DoxyCompactList}\small\item\em Allocate and initialize the state for the SHA-\/256 incremental hashing API. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sha2__c_8c_a54a5c02eb02c44959f469b6c07902fae}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+inc\+\_\+ctx\+\_\+clone}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$dest, const \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$src)
 \begin{DoxyCompactList}\small\item\em Duplicate state for the SHA-\/256 incremental hashing API. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{sha2__c_8c_a56ec2d41c22af0a9ef89d7280a804eb2}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+inc\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{sha2__c_8c_a56ec2d41c22af0a9ef89d7280a804eb2}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+inc\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$state)
 \begin{DoxyCompactList}\small\item\em Destroy state. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{sha2__c_8c_a15222e425273fccd88d09726a16ea095}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+inc\+\_\+blocks}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$in, size\+\_\+t inblocks)
+void \mbox{\hyperlink{sha2__c_8c_a15222e425273fccd88d09726a16ea095}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+inc\+\_\+blocks}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$state, const uint8\+\_\+t $\ast$in, size\+\_\+t inblocks)
 \begin{DoxyCompactList}\small\item\em Process blocks with SHA-\/256 and update the state. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{sha2__c_8c_ae3af93bd4b734b6ac3487efa97edd426}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+inc\+\_\+finalize}} (uint8\+\_\+t $\ast$out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
+void \mbox{\hyperlink{sha2__c_8c_ae3af93bd4b734b6ac3487efa97edd426}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+inc\+\_\+finalize}} (uint8\+\_\+t $\ast$out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\+\_\+\+SHA2\+\_\+sha256\+\_\+ctx}} $\ast$state, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
 \begin{DoxyCompactList}\small\item\em Process more message bytes with SHA-\/256 and return the hash code in the output byte array. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{sha2__c_8c_a9873f4a72e863b2ebe72653d74e73873}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+inc\+\_\+init}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{sha2__c_8c_a9873f4a72e863b2ebe72653d74e73873}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+inc\+\_\+init}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$state)
 \begin{DoxyCompactList}\small\item\em Allocate and initialize the state for the SHA-\/512 incremental hashing API. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sha2__c_8c_ac53b0c92309cf27e3db64b1c8ad568ab}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+inc\+\_\+ctx\+\_\+clone}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$dest, const \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$src)
 \begin{DoxyCompactList}\small\item\em Duplicate state for the SHA-\/512 incremental hashing API. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{sha2__c_8c_af43719da0eb8d4c60c910327dc59ef87}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+inc\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{sha2__c_8c_af43719da0eb8d4c60c910327dc59ef87}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+inc\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$state)
 \begin{DoxyCompactList}\small\item\em Destroy state. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{sha2__c_8c_ab1e27dde4f6d7f2c31499d063b9c083c}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+inc\+\_\+blocks}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$in, size\+\_\+t inblocks)
+void \mbox{\hyperlink{sha2__c_8c_ab1e27dde4f6d7f2c31499d063b9c083c}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+inc\+\_\+blocks}} (\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$state, const uint8\+\_\+t $\ast$in, size\+\_\+t inblocks)
 \begin{DoxyCompactList}\small\item\em Process blocks with SHA-\/512 and update the state. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{sha2__c_8c_aec5e29c08f5c662889571f5055cff539}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+inc\+\_\+finalize}} (uint8\+\_\+t $\ast$out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
+void \mbox{\hyperlink{sha2__c_8c_aec5e29c08f5c662889571f5055cff539}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+inc\+\_\+finalize}} (uint8\+\_\+t $\ast$out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\+\_\+\+SHA2\+\_\+sha512\+\_\+ctx}} $\ast$state, const uint8\+\_\+t $\ast$in, size\+\_\+t inlen)
 \begin{DoxyCompactList}\small\item\em Process more message bytes with SHA-\/512 and return the hash code in the output byte array. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}

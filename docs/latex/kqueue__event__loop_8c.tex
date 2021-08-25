@@ -35,52 +35,52 @@ enum \mbox{\hyperlink{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444b}{
 , \mbox{\hyperlink{kqueue__event__loop_8c_a32aca31287253cf1f0a361779d8d444ba68d3369d10b3e3c3214d93dea0701ba2}{WRITE\+\_\+\+FD}}
  \}
 \item 
-enum \{ \mbox{\hyperlink{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a56577c4e43ee5b2b00ed607177260d54}{DEFAULT\+\_\+\+TIMEOUT\+\_\+\+SEC}} = 100
-, \mbox{\hyperlink{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a9776f519b571d5070710cef6885cb9b8}{MAX\+\_\+\+EVENTS}} = 100
+enum \{ \mbox{\hyperlink{kqueue__event__loop_8c_a1f9aebf1de3ebbf4283a4dcf73308562a56577c4e43ee5b2b00ed607177260d54}{DEFAULT\+\_\+\+TIMEOUT\+\_\+\+SEC}} = 100
+, \mbox{\hyperlink{kqueue__event__loop_8c_a1f9aebf1de3ebbf4283a4dcf73308562a9776f519b571d5070710cef6885cb9b8}{MAX\+\_\+\+EVENTS}} = 100
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static void \mbox{\hyperlink{kqueue__event__loop_8c_ae4d279aefe418c7ff499e2330edfaebe}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{kqueue__event__loop_8c_af38881a8c5e6861452a81b7b32530239}{s\+\_\+run}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static int \mbox{\hyperlink{kqueue__event__loop_8c_af38881a8c5e6861452a81b7b32530239}{s\+\_\+run}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{kqueue__event__loop_8c_acfc31f03610b29043dec817307e76127}{s\+\_\+stop}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static int \mbox{\hyperlink{kqueue__event__loop_8c_acfc31f03610b29043dec817307e76127}{s\+\_\+stop}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static int \mbox{\hyperlink{kqueue__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}{s\+\_\+wait\+\_\+for\+\_\+stop\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static int \mbox{\hyperlink{kqueue__event__loop_8c_a848eaf3db34e302ab51a0b1e5db0301d}{s\+\_\+wait\+\_\+for\+\_\+stop\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}{s\+\_\+schedule\+\_\+task\+\_\+now}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+static void \mbox{\hyperlink{kqueue__event__loop_8c_aa94599eb2a7b8b9254280095f9754ad5}{s\+\_\+schedule\+\_\+task\+\_\+now}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}{s\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+static void \mbox{\hyperlink{kqueue__event__loop_8c_a2e3ae8cb3038258eb6fa06b3b9240f86}{s\+\_\+schedule\+\_\+task\+\_\+future}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}{s\+\_\+cancel\+\_\+task}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
+static void \mbox{\hyperlink{kqueue__event__loop_8c_a5c472b11ffdab30e2850c90eb8b2a981}{s\+\_\+cancel\+\_\+task}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
 \item 
-static int \mbox{\hyperlink{kqueue__event__loop_8c_a145d2830ffa7e965684b3be1e250c5a3}{s\+\_\+subscribe\+\_\+to\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, \mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}} $\ast$\mbox{\hyperlink{aws-c-io_2tests_2vcc_2client_8c_aecd23ce2ae847316bf3407d76a0d966f}{on\+\_\+event}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{kqueue__event__loop_8c_a145d2830ffa7e965684b3be1e250c5a3}{s\+\_\+subscribe\+\_\+to\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, \mbox{\hyperlink{event__loop_8h_a566c239a15c99256d054af59e81a4038}{aws\+\_\+event\+\_\+loop\+\_\+on\+\_\+event\+\_\+fn}} $\ast$on\+\_\+event, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{kqueue__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}{s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
+static int \mbox{\hyperlink{kqueue__event__loop_8c_a870ed3ec8a7e0de2f1f9fce0a8bad6d0}{s\+\_\+unsubscribe\+\_\+from\+\_\+io\+\_\+events}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}{s\+\_\+free\+\_\+io\+\_\+event\+\_\+resources}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{kqueue__event__loop_8c_a9d17888b99edaf5c227d48bfaffafa10}{s\+\_\+free\+\_\+io\+\_\+event\+\_\+resources}} (void $\ast$user\+\_\+data)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{kqueue__event__loop_8c_a5676dd4fa2da80a7826e098608d9e9ac}{s\+\_\+is\+\_\+event\+\_\+thread}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static bool \mbox{\hyperlink{kqueue__event__loop_8c_a5676dd4fa2da80a7826e098608d9e9ac}{s\+\_\+is\+\_\+event\+\_\+thread}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_acd9aae463a544d67815aa5b85155ea8e}{s\+\_\+event\+\_\+thread\+\_\+main}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{kqueue__event__loop_8c_acd9aae463a544d67815aa5b85155ea8e}{s\+\_\+event\+\_\+thread\+\_\+main}} (void $\ast$user\+\_\+data)
 \item 
 int \mbox{\hyperlink{kqueue__event__loop_8c_a1b9e9feb4dd63eecee47ba9ac21612b2}{aws\+\_\+open\+\_\+nonblocking\+\_\+posix\+\_\+pipe}} (int pipe\+\_\+fds\mbox{[}2\mbox{]})
 \item 
 struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{kqueue__event__loop_8c_a188bd20a712f74ebc46b8bc374b73ea2}{aws\+\_\+event\+\_\+loop\+\_\+new\+\_\+default\+\_\+with\+\_\+options}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, const struct \mbox{\hyperlink{structaws__event__loop__options}{aws\+\_\+event\+\_\+loop\+\_\+options}} $\ast$options)
 \item 
-void \mbox{\hyperlink{kqueue__event__loop_8c_a5b8de5e436e144cdd9cfb0b02ed9119a}{signal\+\_\+cross\+\_\+thread\+\_\+data\+\_\+changed}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+void \mbox{\hyperlink{kqueue__event__loop_8c_a5b8de5e436e144cdd9cfb0b02ed9119a}{signal\+\_\+cross\+\_\+thread\+\_\+data\+\_\+changed}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_ab4c13873f170e080cfc0387c3eedecbd}{s\+\_\+schedule\+\_\+task\+\_\+common}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
+static void \mbox{\hyperlink{kqueue__event__loop_8c_ab4c13873f170e080cfc0387c3eedecbd}{s\+\_\+schedule\+\_\+task\+\_\+common}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, uint64\+\_\+t run\+\_\+at\+\_\+nanos)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_a0aff5ebcb3e78689334a545f0b9f1272}{s\+\_\+subscribe\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}}, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+static void \mbox{\hyperlink{kqueue__event__loop_8c_a0aff5ebcb3e78689334a545f0b9f1272}{s\+\_\+subscribe\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$user\+\_\+data, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_aef78dd6edee8e6a2987c3f99d1973c84}{s\+\_\+clean\+\_\+up\+\_\+handle\+\_\+data\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}}, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+static void \mbox{\hyperlink{kqueue__event__loop_8c_aef78dd6edee8e6a2987c3f99d1973c84}{s\+\_\+clean\+\_\+up\+\_\+handle\+\_\+data\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$user\+\_\+data, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_ad40ace18ba1aa76bc9b718fc65deb488}{s\+\_\+process\+\_\+tasks\+\_\+to\+\_\+schedule}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$tasks\+\_\+to\+\_\+schedule)
+static void \mbox{\hyperlink{kqueue__event__loop_8c_ad40ace18ba1aa76bc9b718fc65deb488}{s\+\_\+process\+\_\+tasks\+\_\+to\+\_\+schedule}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$tasks\+\_\+to\+\_\+schedule)
 \item 
-static void \mbox{\hyperlink{kqueue__event__loop_8c_af266c44394c94d9f11ace32f11daafc3}{s\+\_\+process\+\_\+cross\+\_\+thread\+\_\+data}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+static void \mbox{\hyperlink{kqueue__event__loop_8c_af266c44394c94d9f11ace32f11daafc3}{s\+\_\+process\+\_\+cross\+\_\+thread\+\_\+data}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
 static int \mbox{\hyperlink{kqueue__event__loop_8c_a769b4482ce2afbb60983aea5393039d4}{s\+\_\+aws\+\_\+event\+\_\+flags\+\_\+from\+\_\+kevent}} (struct kevent $\ast$kevent)
 \end{DoxyCompactItemize}
@@ -92,16 +92,16 @@ struct \mbox{\hyperlink{structaws__event__loop__vtable}{aws\+\_\+event\+\_\+loop
 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{kqueue__event__loop_8c_a84627a72058502328269676b81780f89}\label{kqueue__event__loop_8c_a84627a72058502328269676b81780f89}} 
+\mbox{\Hypertarget{kqueue__event__loop_8c_a1f9aebf1de3ebbf4283a4dcf73308562}\label{kqueue__event__loop_8c_a1f9aebf1de3ebbf4283a4dcf73308562}} 
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_TIMEOUT\_SEC@{DEFAULT\_TIMEOUT\_SEC}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!DEFAULT\_TIMEOUT\_SEC@{DEFAULT\_TIMEOUT\_SEC}}}\mbox{\Hypertarget{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a56577c4e43ee5b2b00ed607177260d54}\label{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a56577c4e43ee5b2b00ed607177260d54}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEFAULT\_TIMEOUT\_SEC@{DEFAULT\_TIMEOUT\_SEC}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!DEFAULT\_TIMEOUT\_SEC@{DEFAULT\_TIMEOUT\_SEC}}}\mbox{\Hypertarget{kqueue__event__loop_8c_a1f9aebf1de3ebbf4283a4dcf73308562a56577c4e43ee5b2b00ed607177260d54}\label{kqueue__event__loop_8c_a1f9aebf1de3ebbf4283a4dcf73308562a56577c4e43ee5b2b00ed607177260d54}} 
 DEFAULT\+\_\+\+TIMEOUT\+\_\+\+SEC&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX\_EVENTS@{MAX\_EVENTS}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!MAX\_EVENTS@{MAX\_EVENTS}}}\mbox{\Hypertarget{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a9776f519b571d5070710cef6885cb9b8}\label{kqueue__event__loop_8c_a84627a72058502328269676b81780f89a9776f519b571d5070710cef6885cb9b8}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX\_EVENTS@{MAX\_EVENTS}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}\index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!MAX\_EVENTS@{MAX\_EVENTS}}}\mbox{\Hypertarget{kqueue__event__loop_8c_a1f9aebf1de3ebbf4283a4dcf73308562a9776f519b571d5070710cef6885cb9b8}\label{kqueue__event__loop_8c_a1f9aebf1de3ebbf4283a4dcf73308562a9776f519b571d5070710cef6885cb9b8}} 
 MAX\+\_\+\+EVENTS&\\
 \hline
 
@@ -209,7 +209,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_is\_event\_thread@{s\_is\_event\_thread}}
 \index{s\_is\_event\_thread@{s\_is\_event\_thread}!kqueue\_event\_loop.c@{kqueue\_event\_loop.c}}
 \doxysubsubsection{\texorpdfstring{s\_is\_event\_thread()}{s\_is\_event\_thread()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+event\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+is\+\_\+event\+\_\+thread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$}]{event\+\_\+loop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{kqueue__event__loop_8c_af266c44394c94d9f11ace32f11daafc3}\label{kqueue__event__loop_8c_af266c44394c94d9f11ace32f11daafc3}} 
 \index{kqueue\_event\_loop.c@{kqueue\_event\_loop.c}!s\_process\_cross\_thread\_data@{s\_process\_cross\_thread\_data}}

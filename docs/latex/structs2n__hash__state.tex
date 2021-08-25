@@ -9,7 +9,7 @@
 \item 
 const struct \mbox{\hyperlink{structs2n__hash}{s2n\+\_\+hash}} $\ast$ \mbox{\hyperlink{structs2n__hash__state_a7565dc5833388e93631822516a8d0758}{hash\+\_\+impl}}
 \item 
-\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} \mbox{\hyperlink{structs2n__hash__state_ae0b6c694b58615e3b449cea37998d3ec}{alg}}
+\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} \mbox{\hyperlink{structs2n__hash__state_ae0b6c694b58615e3b449cea37998d3ec}{alg}}
 \item 
 uint8\+\_\+t \mbox{\hyperlink{structs2n__hash__state_a97088ea25c2aa3d8ca8b606c9c033e7a}{is\+\_\+ready\+\_\+for\+\_\+input}}
 \item 
@@ -20,11 +20,9 @@ xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 union \{\\
 \>union \mbox{\hyperlink{unions2n__hash__low__level__digest}{s2n\_hash\_low\_level\_digest}} \mbox{\hyperlink{structs2n__hash__state_a84569a6ca65e77a2ecc9eb603987818c}{low\_level}}\\
 \>struct \mbox{\hyperlink{structs2n__hash__evp__digest}{s2n\_hash\_evp\_digest}} \mbox{\hyperlink{structs2n__hash__state_a5511002881fb260b09a951a5ec6b5bd6}{high\_level}}\\
-\} \mbox{\hyperlink{structs2n__hash__state_ac7baf712897bf5b0d3f83bf038b1e234}{digest}}\\
+\} \mbox{\hyperlink{structs2n__hash__state_ad313bdd8f08bd9f4b02b41c0f9a73aa2}{digest}}\\
 
-\end{tabbing}\item 
-int \mbox{\hyperlink{structs2n__hash__state_a9036270da1d4c04df2344de98853e472}{currently\+\_\+in\+\_\+hash\+\_\+block}}
-\end{DoxyCompactItemize}
+\end{tabbing}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Data Documentation}
@@ -32,7 +30,7 @@ int \mbox{\hyperlink{structs2n__hash__state_a9036270da1d4c04df2344de98853e472}{c
 \index{s2n\_hash\_state@{s2n\_hash\_state}!alg@{alg}}
 \index{alg@{alg}!s2n\_hash\_state@{s2n\_hash\_state}}
 \doxysubsubsection{\texorpdfstring{alg}{alg}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} s2n\+\_\+hash\+\_\+state\+::alg}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} s2n\+\_\+hash\+\_\+state\+::alg}
 
 \mbox{\Hypertarget{structs2n__hash__state_afe71bf53e68f3bae1b272965fbcba5a6}\label{structs2n__hash__state_afe71bf53e68f3bae1b272965fbcba5a6}} 
 \index{s2n\_hash\_state@{s2n\_hash\_state}!currently\_in\_hash@{currently\_in\_hash}}
@@ -40,13 +38,7 @@ int \mbox{\hyperlink{structs2n__hash__state_a9036270da1d4c04df2344de98853e472}{c
 \doxysubsubsection{\texorpdfstring{currently\_in\_hash}{currently\_in\_hash}}
 {\footnotesize\ttfamily uint64\+\_\+t s2n\+\_\+hash\+\_\+state\+::currently\+\_\+in\+\_\+hash}
 
-\mbox{\Hypertarget{structs2n__hash__state_a9036270da1d4c04df2344de98853e472}\label{structs2n__hash__state_a9036270da1d4c04df2344de98853e472}} 
-\index{s2n\_hash\_state@{s2n\_hash\_state}!currently\_in\_hash\_block@{currently\_in\_hash\_block}}
-\index{currently\_in\_hash\_block@{currently\_in\_hash\_block}!s2n\_hash\_state@{s2n\_hash\_state}}
-\doxysubsubsection{\texorpdfstring{currently\_in\_hash\_block}{currently\_in\_hash\_block}}
-{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+state\+::currently\+\_\+in\+\_\+hash\+\_\+block}
-
-\mbox{\Hypertarget{structs2n__hash__state_ac7baf712897bf5b0d3f83bf038b1e234}\label{structs2n__hash__state_ac7baf712897bf5b0d3f83bf038b1e234}} 
+\mbox{\Hypertarget{structs2n__hash__state_ad313bdd8f08bd9f4b02b41c0f9a73aa2}\label{structs2n__hash__state_ad313bdd8f08bd9f4b02b41c0f9a73aa2}} 
 \index{s2n\_hash\_state@{s2n\_hash\_state}!digest@{digest}}
 \index{digest@{digest}!s2n\_hash\_state@{s2n\_hash\_state}}
 \doxysubsubsection{\texorpdfstring{}{}}
@@ -78,8 +70,6 @@ int \mbox{\hyperlink{structs2n__hash__state_a9036270da1d4c04df2344de98853e472}{c
 
 
 
-The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-crt/aws-\/crt-\/cpp/crt/s2n/crypto/\mbox{\hyperlink{crypto_2s2n__hash_8h}{s2n\+\_\+hash.\+h}}\item 
-crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/working/s2n-\/cbc/stubs/\mbox{\hyperlink{tests_2sidetrail_2working_2s2n-cbc_2stubs_2s2n__hash_8h}{s2n\+\_\+hash.\+h}}\item 
-crt/aws-\/crt-\/cpp/crt/s2n/tests/sidetrail/working/stubs/\mbox{\hyperlink{tests_2sidetrail_2working_2stubs_2s2n__hash_8h}{s2n\+\_\+hash.\+h}}\end{DoxyCompactItemize}
+crt/aws-\/crt-\/cpp/crt/s2n/crypto/\mbox{\hyperlink{s2n__hash_8h}{s2n\+\_\+hash.\+h}}\end{DoxyCompactItemize}

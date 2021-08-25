@@ -33,53 +33,53 @@
 \DoxyCodeLine{29 \textcolor{preprocessor}{\#define sha512\_inc\_finalize oqs\_sha2\_sha512\_inc\_finalize}}
 \DoxyCodeLine{30 \textcolor{preprocessor}{\#define sha512 OQS\_SHA2\_sha512}}
 \DoxyCodeLine{31 }
-\DoxyCodeLine{41 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a406f19d52227a9692eea614ab42a94fb}{OQS\_SHA2\_sha256}}(uint8\_t *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \textcolor{keyword}{const} uint8\_t *input, \textcolor{keywordtype}{size\_t} inplen);}
+\DoxyCodeLine{41 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a406f19d52227a9692eea614ab42a94fb}{OQS\_SHA2\_sha256}}(uint8\_t *output, \textcolor{keyword}{const} uint8\_t *input, \textcolor{keywordtype}{size\_t} inplen);}
 \DoxyCodeLine{42 }
 \DoxyCodeLine{44 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
 \DoxyCodeLine{46     \textcolor{keywordtype}{void} *\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx_aa6e01b99eb8c76bd58a7a9a10ea1d48d}{ctx}};}
 \DoxyCodeLine{47 \} \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}};}
 \DoxyCodeLine{48 }
-\DoxyCodeLine{57 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_ad20511b40e08387db1ee9860eb3c8bba}{OQS\_SHA2\_sha256\_inc\_init}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{57 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_ad20511b40e08387db1ee9860eb3c8bba}{OQS\_SHA2\_sha256\_inc\_init}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *state);}
 \DoxyCodeLine{58 }
 \DoxyCodeLine{69 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a54a5c02eb02c44959f469b6c07902fae}{OQS\_SHA2\_sha256\_inc\_ctx\_clone}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *\mbox{\hyperlink{namespacecreate-projects_a30fed16487e895222a4b2a8e95fe2e2f}{dest}}, \textcolor{keyword}{const} \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *src);}
 \DoxyCodeLine{70 }
-\DoxyCodeLine{80 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a15222e425273fccd88d09726a16ea095}{OQS\_SHA2\_sha256\_inc\_blocks}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *\mbox{\hyperlink{structstate}{state}}, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inblocks);}
+\DoxyCodeLine{80 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a15222e425273fccd88d09726a16ea095}{OQS\_SHA2\_sha256\_inc\_blocks}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *state, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inblocks);}
 \DoxyCodeLine{81 }
-\DoxyCodeLine{94 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_ae3af93bd4b734b6ac3487efa97edd426}{OQS\_SHA2\_sha256\_inc\_finalize}}(uint8\_t *out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *\mbox{\hyperlink{structstate}{state}}, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inlen);}
+\DoxyCodeLine{94 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_ae3af93bd4b734b6ac3487efa97edd426}{OQS\_SHA2\_sha256\_inc\_finalize}}(uint8\_t *out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *state, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inlen);}
 \DoxyCodeLine{95 }
-\DoxyCodeLine{104 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a56ec2d41c22af0a9ef89d7280a804eb2}{OQS\_SHA2\_sha256\_inc\_ctx\_release}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{104 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a56ec2d41c22af0a9ef89d7280a804eb2}{OQS\_SHA2\_sha256\_inc\_ctx\_release}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha256__ctx}{OQS\_SHA2\_sha256\_ctx}} *state);}
 \DoxyCodeLine{105 }
-\DoxyCodeLine{115 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a1adae067cfa1f48c31dc4c38c7e38bc6}{OQS\_SHA2\_sha384}}(uint8\_t *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \textcolor{keyword}{const} uint8\_t *input, \textcolor{keywordtype}{size\_t} inplen);}
+\DoxyCodeLine{115 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a1adae067cfa1f48c31dc4c38c7e38bc6}{OQS\_SHA2\_sha384}}(uint8\_t *output, \textcolor{keyword}{const} uint8\_t *input, \textcolor{keywordtype}{size\_t} inplen);}
 \DoxyCodeLine{116 }
 \DoxyCodeLine{118 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
 \DoxyCodeLine{120     \textcolor{keywordtype}{void} *\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx_aae9abec5dd4251b95116d871bd2c96f1}{ctx}};}
 \DoxyCodeLine{121 \} \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}};}
 \DoxyCodeLine{122 }
-\DoxyCodeLine{131 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a0121f53ebbeaa48752fd26e75cb06069}{OQS\_SHA2\_sha384\_inc\_init}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{131 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a0121f53ebbeaa48752fd26e75cb06069}{OQS\_SHA2\_sha384\_inc\_init}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *state);}
 \DoxyCodeLine{132 }
 \DoxyCodeLine{143 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a3f0f51a6c856dea2128bee9b7a334ad6}{OQS\_SHA2\_sha384\_inc\_ctx\_clone}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *\mbox{\hyperlink{namespacecreate-projects_a30fed16487e895222a4b2a8e95fe2e2f}{dest}}, \textcolor{keyword}{const} \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *src);}
 \DoxyCodeLine{144 }
-\DoxyCodeLine{154 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_ac664885d19f24d106c6760810c7c99a0}{OQS\_SHA2\_sha384\_inc\_blocks}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *\mbox{\hyperlink{structstate}{state}}, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inblocks);}
+\DoxyCodeLine{154 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_ac664885d19f24d106c6760810c7c99a0}{OQS\_SHA2\_sha384\_inc\_blocks}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *state, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inblocks);}
 \DoxyCodeLine{155 }
-\DoxyCodeLine{168 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a135fc854a9086a847d1236edc06e3139}{OQS\_SHA2\_sha384\_inc\_finalize}}(uint8\_t *out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *\mbox{\hyperlink{structstate}{state}}, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inlen);}
+\DoxyCodeLine{168 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a135fc854a9086a847d1236edc06e3139}{OQS\_SHA2\_sha384\_inc\_finalize}}(uint8\_t *out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *state, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inlen);}
 \DoxyCodeLine{169 }
-\DoxyCodeLine{178 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a72384ad478b0d5eadfb1ffead35fc74e}{OQS\_SHA2\_sha384\_inc\_ctx\_release}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{178 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a72384ad478b0d5eadfb1ffead35fc74e}{OQS\_SHA2\_sha384\_inc\_ctx\_release}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha384__ctx}{OQS\_SHA2\_sha384\_ctx}} *state);}
 \DoxyCodeLine{179 }
-\DoxyCodeLine{189 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a4acf8c2007c2da04e67d36aa0f94ee56}{OQS\_SHA2\_sha512}}(uint8\_t *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \textcolor{keyword}{const} uint8\_t *input, \textcolor{keywordtype}{size\_t} inplen);}
+\DoxyCodeLine{189 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a4acf8c2007c2da04e67d36aa0f94ee56}{OQS\_SHA2\_sha512}}(uint8\_t *output, \textcolor{keyword}{const} uint8\_t *input, \textcolor{keywordtype}{size\_t} inplen);}
 \DoxyCodeLine{190 }
 \DoxyCodeLine{192 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{}
 \DoxyCodeLine{194     \textcolor{keywordtype}{void} *\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx_ada8c4880ba528fd197ae613d09821145}{ctx}};}
 \DoxyCodeLine{195 \} \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}};}
 \DoxyCodeLine{196 }
-\DoxyCodeLine{205 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a9873f4a72e863b2ebe72653d74e73873}{OQS\_SHA2\_sha512\_inc\_init}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{205 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_a9873f4a72e863b2ebe72653d74e73873}{OQS\_SHA2\_sha512\_inc\_init}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *state);}
 \DoxyCodeLine{206 }
 \DoxyCodeLine{217 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_ac53b0c92309cf27e3db64b1c8ad568ab}{OQS\_SHA2\_sha512\_inc\_ctx\_clone}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *\mbox{\hyperlink{namespacecreate-projects_a30fed16487e895222a4b2a8e95fe2e2f}{dest}}, \textcolor{keyword}{const} \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *src);}
 \DoxyCodeLine{218 }
-\DoxyCodeLine{228 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_ab1e27dde4f6d7f2c31499d063b9c083c}{OQS\_SHA2\_sha512\_inc\_blocks}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *\mbox{\hyperlink{structstate}{state}}, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inblocks);}
+\DoxyCodeLine{228 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_ab1e27dde4f6d7f2c31499d063b9c083c}{OQS\_SHA2\_sha512\_inc\_blocks}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *state, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inblocks);}
 \DoxyCodeLine{229 }
-\DoxyCodeLine{242 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_aec5e29c08f5c662889571f5055cff539}{OQS\_SHA2\_sha512\_inc\_finalize}}(uint8\_t *out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *\mbox{\hyperlink{structstate}{state}}, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inlen);}
+\DoxyCodeLine{242 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_aec5e29c08f5c662889571f5055cff539}{OQS\_SHA2\_sha512\_inc\_finalize}}(uint8\_t *out, \mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *state, \textcolor{keyword}{const} uint8\_t *in, \textcolor{keywordtype}{size\_t} inlen);}
 \DoxyCodeLine{243 }
-\DoxyCodeLine{252 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_af43719da0eb8d4c60c910327dc59ef87}{OQS\_SHA2\_sha512\_inc\_ctx\_release}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{252 \textcolor{keywordtype}{void} \mbox{\hyperlink{sha2_8h_af43719da0eb8d4c60c910327dc59ef87}{OQS\_SHA2\_sha512\_inc\_ctx\_release}}(\mbox{\hyperlink{struct_o_q_s___s_h_a2__sha512__ctx}{OQS\_SHA2\_sha512\_ctx}} *state);}
 \DoxyCodeLine{253 }
 \DoxyCodeLine{254 \textcolor{preprocessor}{\#endif}}
 

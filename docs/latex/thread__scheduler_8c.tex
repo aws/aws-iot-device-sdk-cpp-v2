@@ -19,11 +19,11 @@ struct \mbox{\hyperlink{structcancellation__node}{cancellation\+\_\+node}}
 \item 
 static void \mbox{\hyperlink{thread__scheduler_8c_ac0d118f6454704494a68941a3a0544a6}{s\+\_\+destroy\+\_\+callback}} (void $\ast$arg)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{thread__scheduler_8c_a66cc441a653486f33d4d4218bdf69f44}{s\+\_\+thread\+\_\+should\+\_\+wake}} (void $\ast$arg)
+static bool \mbox{\hyperlink{thread__scheduler_8c_a66cc441a653486f33d4d4218bdf69f44}{s\+\_\+thread\+\_\+should\+\_\+wake}} (void $\ast$arg)
 \item 
 static void \mbox{\hyperlink{thread__scheduler_8c_a3fcd339d3e01edcb47d677e21bd52aa9}{s\+\_\+thread\+\_\+fn}} (void $\ast$arg)
 \item 
-struct \mbox{\hyperlink{structaws__thread__scheduler}{aws\+\_\+thread\+\_\+scheduler}} $\ast$ \mbox{\hyperlink{thread__scheduler_8c_a4d27a8b6a24ff14bef8aa1539430ebe7}{aws\+\_\+thread\+\_\+scheduler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} $\ast$thread\+\_\+options)
+struct \mbox{\hyperlink{structaws__thread__scheduler}{aws\+\_\+thread\+\_\+scheduler}} $\ast$ \mbox{\hyperlink{thread__scheduler_8c_a4d27a8b6a24ff14bef8aa1539430ebe7}{aws\+\_\+thread\+\_\+scheduler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} $\ast$thread\+\_\+options)
 \item 
 void \mbox{\hyperlink{thread__scheduler_8c_a3a43476b2734999211f57c49a9555a65}{aws\+\_\+thread\+\_\+scheduler\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__thread__scheduler}{aws\+\_\+thread\+\_\+scheduler}} $\ast$scheduler)
 \item 
@@ -94,5 +94,5 @@ Schedules a task to run as soon as possible. \mbox{\Hypertarget{thread__schedule
 \index{thread\_scheduler.c@{thread\_scheduler.c}!s\_thread\_should\_wake@{s\_thread\_should\_wake}}
 \index{s\_thread\_should\_wake@{s\_thread\_should\_wake}!thread\_scheduler.c@{thread\_scheduler.c}}
 \doxysubsubsection{\texorpdfstring{s\_thread\_should\_wake()}{s\_thread\_should\_wake()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+thread\+\_\+should\+\_\+wake (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+thread\+\_\+should\+\_\+wake (\begin{DoxyParamCaption}\item[{void $\ast$}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 

@@ -25,30 +25,30 @@ virtual \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_ad47fbd2318d6
 \item 
 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a1d367e40fb699edfbc586f1da8d359c9}{operator bool}} () const noexcept
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a103064353d7d3d35ecaca566e48febe3}{Is\+Valid}} () const noexcept=0
+virtual bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a103064353d7d3d35ecaca566e48febe3}{Is\+Valid}} () const noexcept=0
 \item 
 \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_aa683964eae083c1f7f01a5cef6d5c88c}{Get\+Underlying\+Stream}} () noexcept
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a63148e32fbcb9b8c607e3b0b038f2e88}{Read}} (\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&dest)
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a63148e32fbcb9b8c607e3b0b038f2e88}{Read}} (\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&dest)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a6c04d790f1741ea0a49285e7aa4928fc}{Seek}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_af399239ad685d64f2f5b88a0906a232c}{Offset\+Type}} \mbox{\hyperlink{namespace_aws_a4b36e73e20878ce98336cfdea0494281}{offset}}, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_adf764940aea50b061f1ac67366cf41d0}{Stream\+Seek\+Basis}} seek\+Basis)
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a6c04d790f1741ea0a49285e7aa4928fc}{Seek}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_af399239ad685d64f2f5b88a0906a232c}{Offset\+Type}} \mbox{\hyperlink{namespace_aws_a4b36e73e20878ce98336cfdea0494281}{offset}}, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_adf764940aea50b061f1ac67366cf41d0}{Stream\+Seek\+Basis}} seek\+Basis)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a710e72d2234c334663801a98106c92ac}{Get\+Status}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a610cfe7a844d9e8b9ea7e319bc1ed1ea}{Stream\+Status}} \&status)
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a710e72d2234c334663801a98106c92ac}{Get\+Status}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a610cfe7a844d9e8b9ea7e319bc1ed1ea}{Stream\+Status}} \&status)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_aa50980fbe2d533a751a1f37a96266730}{Get\+Length}} (int64\+\_\+t \&\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_aa50980fbe2d533a751a1f37a96266730}{Get\+Length}} (int64\+\_\+t \&\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a26cb94f412126dd985c57abba94562b2}{Input\+Stream}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}})
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a26cb94f412126dd985c57abba94562b2}{Input\+Stream}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Aws\+::\+Crt\+::\+Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}})
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a2881d8accf87c8f772b820baebb84775}{Read\+Impl}} (\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}}) noexcept=0
+virtual bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a2881d8accf87c8f772b820baebb84775}{Read\+Impl}} (\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&\mbox{\hyperlink{namespace_aws_ab680d00d3625d576b9160710e643da63}{buffer}}) noexcept=0
 \item 
 virtual \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a610cfe7a844d9e8b9ea7e319bc1ed1ea}{Stream\+Status}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a4318d7da0fa035074515decdc0525f22}{Get\+Status\+Impl}} () const noexcept=0
 \item 
 virtual int64\+\_\+t \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_ac4b910d4b8f609c00af16f548a89f774}{Get\+Length\+Impl}} () const noexcept=0
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a298a36dc295090095ddb98946b4d0da2}{Seek\+Impl}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_af399239ad685d64f2f5b88a0906a232c}{Offset\+Type}} \mbox{\hyperlink{namespace_aws_a4b36e73e20878ce98336cfdea0494281}{offset}}, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_adf764940aea50b061f1ac67366cf41d0}{Stream\+Seek\+Basis}} seek\+Basis) noexcept=0
+virtual bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a298a36dc295090095ddb98946b4d0da2}{Seek\+Impl}} (\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_af399239ad685d64f2f5b88a0906a232c}{Offset\+Type}} \mbox{\hyperlink{namespace_aws_a4b36e73e20878ce98336cfdea0494281}{offset}}, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_adf764940aea50b061f1ac67366cf41d0}{Stream\+Seek\+Basis}} seek\+Basis) noexcept=0
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -91,7 +91,7 @@ virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!GetLength@{GetLength}}
 \index{GetLength@{GetLength}!Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}}
 \doxysubsubsection{\texorpdfstring{GetLength()}{GetLength()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Get\+Length (\begin{DoxyParamCaption}\item[{int64\+\_\+t \&}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Get\+Length (\begin{DoxyParamCaption}\item[{int64\+\_\+t \&}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_aws_1_1_crt_1_1_io_1_1_input_stream_ac4b910d4b8f609c00af16f548a89f774}\label{class_aws_1_1_crt_1_1_io_1_1_input_stream_ac4b910d4b8f609c00af16f548a89f774}} 
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!GetLengthImpl@{GetLengthImpl}}
@@ -112,7 +112,7 @@ Implemented in \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_std_i_o_stream_inpu
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!GetStatus@{GetStatus}}
 \index{GetStatus@{GetStatus}!Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}}
 \doxysubsubsection{\texorpdfstring{GetStatus()}{GetStatus()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Get\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a610cfe7a844d9e8b9ea7e319bc1ed1ea}{Stream\+Status}} \&}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Get\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_a610cfe7a844d9e8b9ea7e319bc1ed1ea}{Stream\+Status}} \&}]{status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_aws_1_1_crt_1_1_io_1_1_input_stream_a4318d7da0fa035074515decdc0525f22}\label{class_aws_1_1_crt_1_1_io_1_1_input_stream_a4318d7da0fa035074515decdc0525f22}} 
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!GetStatusImpl@{GetStatusImpl}}
@@ -137,7 +137,7 @@ Implemented in \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_std_i_o_stream_inpu
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!IsValid@{IsValid}}
 \index{IsValid@{IsValid}!Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}}
 \doxysubsubsection{\texorpdfstring{IsValid()}{IsValid()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -147,7 +147,7 @@ Implemented in \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_std_i_o_stream_inpu
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!operator bool@{operator bool}}
 \index{operator bool@{operator bool}!Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}}
 \doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
-{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_crt_1_1_io_1_1_input_stream_ad75dadb36312abc4c9126b1e5e338897}\label{class_aws_1_1_crt_1_1_io_1_1_input_stream_ad75dadb36312abc4c9126b1e5e338897}} 
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!operator=@{operator=}}
@@ -165,13 +165,13 @@ Implemented in \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_std_i_o_stream_inpu
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!Read@{Read}}
 \index{Read@{Read}!Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}}
 \doxysubsubsection{\texorpdfstring{Read()}{Read()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&}]{dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&}]{dest }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_aws_1_1_crt_1_1_io_1_1_input_stream_a2881d8accf87c8f772b820baebb84775}\label{class_aws_1_1_crt_1_1_io_1_1_input_stream_a2881d8accf87c8f772b820baebb84775}} 
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!ReadImpl@{ReadImpl}}
 \index{ReadImpl@{ReadImpl}!Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}}
 \doxysubsubsection{\texorpdfstring{ReadImpl()}{ReadImpl()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Read\+Impl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Read\+Impl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Byte\+Buf}} \&}]{buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
 
 
 
@@ -181,13 +181,13 @@ Implemented in \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_std_i_o_stream_inpu
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!Seek@{Seek}}
 \index{Seek@{Seek}!Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}}
 \doxysubsubsection{\texorpdfstring{Seek()}{Seek()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Seek (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_af399239ad685d64f2f5b88a0906a232c}{Offset\+Type}}}]{offset,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_adf764940aea50b061f1ac67366cf41d0}{Stream\+Seek\+Basis}}}]{seek\+Basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Seek (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_af399239ad685d64f2f5b88a0906a232c}{Offset\+Type}}}]{offset,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_adf764940aea50b061f1ac67366cf41d0}{Stream\+Seek\+Basis}}}]{seek\+Basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{class_aws_1_1_crt_1_1_io_1_1_input_stream_a298a36dc295090095ddb98946b4d0da2}\label{class_aws_1_1_crt_1_1_io_1_1_input_stream_a298a36dc295090095ddb98946b4d0da2}} 
 \index{Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}!SeekImpl@{SeekImpl}}
 \index{SeekImpl@{SeekImpl}!Aws::Crt::Io::InputStream@{Aws::Crt::Io::InputStream}}
 \doxysubsubsection{\texorpdfstring{SeekImpl()}{SeekImpl()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Seek\+Impl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_af399239ad685d64f2f5b88a0906a232c}{Offset\+Type}}}]{offset,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_adf764940aea50b061f1ac67366cf41d0}{Stream\+Seek\+Basis}}}]{seek\+Basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Crt\+::\+Io\+::\+Input\+Stream\+::\+Seek\+Impl (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_af399239ad685d64f2f5b88a0906a232c}{Offset\+Type}}}]{offset,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_adf764940aea50b061f1ac67366cf41d0}{Stream\+Seek\+Basis}}}]{seek\+Basis }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}, {\ttfamily [noexcept]}}
 
 Seek\textquotesingle{}s the stream to seek\+Basis based offset bytes.
 

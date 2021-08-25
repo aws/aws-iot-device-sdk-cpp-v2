@@ -67,12 +67,12 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >C99 implementation of the HTTP/1.1 and HTTP/2 specifications</p>
-<h1><a class="anchor" id="autotoc_md234"></a>
+<h1><a class="anchor" id="autotoc_md233"></a>
 License</h1>
 <p >This library is licensed under the Apache 2.0 License.</p>
-<h1><a class="anchor" id="autotoc_md235"></a>
+<h1><a class="anchor" id="autotoc_md234"></a>
 Usage</h1>
-<h3><a class="anchor" id="autotoc_md236"></a>
+<h3><a class="anchor" id="autotoc_md235"></a>
 Building s2n (Linux Only)</h3>
 <p >If you are building on Linux, you will need to build s2n before being able to build aws-c-io, which is a dependency for aws-c-http. For our CRT's, we build s2n at a specific commit, and recommend doing the same when using it with this library. That commit hash can be found <a href="https://github.com/awslabs/aws-crt-cpp/tree/main/aws-common-runtime">here</a>. The commands below will build s2n using OpenSSL 1.1.1. For using other versions of OpenSSL, there is additional information in the <a href="https://github.com/awslabs/s2n/blob/main/docs/USAGE-GUIDE.md">s2n Usage Guide</a>.</p>
 <div class="fragment"><div class="line">git clone git@github.com:awslabs/s2n.git</div>
@@ -101,7 +101,7 @@ Building s2n (Linux Only)</h3>
 <div class="line">cd ../../../</div>
 <div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S s2n -B s2n/build</div>
 <div class="line">cmake --build s2n/build --target install</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md237"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md236"></a>
 Building aws-c-http and Remaining Dependencies</h3>
 <p >Note that aws-c-http has several dependencies that need to be built.</p>
 <div class="fragment"><div class="line">git clone git@github.com:awslabs/aws-c-common.git</div>

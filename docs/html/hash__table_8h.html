@@ -101,7 +101,7 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a9538a6cea5ae96678de8456865b2f18a"><td class="memItemLeft" align="right" valign="top">typedef uint64_t()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a9538a6cea5ae96678de8456865b2f18a">aws_hash_fn</a>(const void *key)</td></tr>
 <tr class="separator:a9538a6cea5ae96678de8456865b2f18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4c204703f44b4d6416c26fee7b6cc20"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#aa4c204703f44b4d6416c26fee7b6cc20">aws_hash_callback_eq_fn</a>(const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
+<tr class="memitem:aa4c204703f44b4d6416c26fee7b6cc20"><td class="memItemLeft" align="right" valign="top">typedef bool()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#aa4c204703f44b4d6416c26fee7b6cc20">aws_hash_callback_eq_fn</a>(const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
 <tr class="separator:aa4c204703f44b4d6416c26fee7b6cc20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f8e4476b6d413463590d13536b6bdc0"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a5f8e4476b6d413463590d13536b6bdc0">aws_hash_callback_destroy_fn</a>(void *key_or_value)</td></tr>
 <tr class="separator:a5f8e4476b6d413463590d13536b6bdc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,11 +128,11 @@ Functions</h2></td></tr>
 <tr class="separator:a700fc077ce26e8403d93959e8c841431"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fe206a6a7394e75e7e5622820e6798b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a8fe206a6a7394e75e7e5622820e6798b">aws_hash_iter_begin</a> (const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *map)</td></tr>
 <tr class="separator:a8fe206a6a7394e75e7e5622820e6798b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad63e4bb4f6e910a13852b787e7cbfb8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#ad63e4bb4f6e910a13852b787e7cbfb8a">aws_hash_iter_done</a> (const struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a> *iter)</td></tr>
+<tr class="memitem:ad63e4bb4f6e910a13852b787e7cbfb8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#ad63e4bb4f6e910a13852b787e7cbfb8a">aws_hash_iter_done</a> (const struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a> *iter)</td></tr>
 <tr class="separator:ad63e4bb4f6e910a13852b787e7cbfb8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0cdf5633b03a89ca37b97afe05b5c23f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a0cdf5633b03a89ca37b97afe05b5c23f">aws_hash_iter_next</a> (struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a> *iter)</td></tr>
 <tr class="separator:a0cdf5633b03a89ca37b97afe05b5c23f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af84d547045957470c5fdf0fc1914bf6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#af84d547045957470c5fdf0fc1914bf6f">aws_hash_iter_delete</a> (struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a> *iter, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> destroy_contents)</td></tr>
+<tr class="memitem:af84d547045957470c5fdf0fc1914bf6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#af84d547045957470c5fdf0fc1914bf6f">aws_hash_iter_delete</a> (struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a> *iter, bool destroy_contents)</td></tr>
 <tr class="separator:af84d547045957470c5fdf0fc1914bf6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a755ddae77d97ed2fa8f4ef66002c6958"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a755ddae77d97ed2fa8f4ef66002c6958">aws_hash_table_find</a> (const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *map, const void *key, struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> **p_elem)</td></tr>
 <tr class="separator:a755ddae77d97ed2fa8f4ef66002c6958"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,7 +146,7 @@ Functions</h2></td></tr>
 <tr class="separator:ae48029f3f6228f99d2a9d200d4deffce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b07eb97de82842e068dc87b0f29d9e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a6b07eb97de82842e068dc87b0f29d9e0">aws_hash_table_foreach</a> (struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *map, int(*callback)(void *context, struct <a class="el" href="structaws__hash__element.html">aws_hash_element</a> *p_element), void *context)</td></tr>
 <tr class="separator:a6b07eb97de82842e068dc87b0f29d9e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaff08f080ef1729248b6de9dfebe086e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#aaff08f080ef1729248b6de9dfebe086e">aws_hash_table_eq</a> (const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *a, const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>, <a class="el" href="hash__table_8h.html#aa4c204703f44b4d6416c26fee7b6cc20">aws_hash_callback_eq_fn</a> *value_eq)</td></tr>
+<tr class="memitem:aaff08f080ef1729248b6de9dfebe086e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#aaff08f080ef1729248b6de9dfebe086e">aws_hash_table_eq</a> (const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *a, const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>, <a class="el" href="hash__table_8h.html#aa4c204703f44b4d6416c26fee7b6cc20">aws_hash_callback_eq_fn</a> *value_eq)</td></tr>
 <tr class="separator:aaff08f080ef1729248b6de9dfebe086e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a218e8978f03480fdf60d0a82eca829d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a218e8978f03480fdf60d0a82eca829d2">aws_hash_table_clear</a> (struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *map)</td></tr>
 <tr class="separator:a218e8978f03480fdf60d0a82eca829d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,17 +160,17 @@ Functions</h2></td></tr>
 <tr class="separator:a0e68cb14dcee1d7bfd2577915ab4b764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7daa1334545abd6b3828a999e5367e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#ab7daa1334545abd6b3828a999e5367e2">aws_hash_combine</a> (uint64_t item1, uint64_t item2)</td></tr>
 <tr class="separator:ab7daa1334545abd6b3828a999e5367e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6006dac2411e525ffe2dfee4fd2df743"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a6006dac2411e525ffe2dfee4fd2df743">aws_hash_callback_c_str_eq</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
+<tr class="memitem:a6006dac2411e525ffe2dfee4fd2df743"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a6006dac2411e525ffe2dfee4fd2df743">aws_hash_callback_c_str_eq</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
 <tr class="separator:a6006dac2411e525ffe2dfee4fd2df743"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeda732308f1bb929d793b34b4ab743ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#aeda732308f1bb929d793b34b4ab743ca">aws_hash_callback_string_eq</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
+<tr class="memitem:aeda732308f1bb929d793b34b4ab743ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#aeda732308f1bb929d793b34b4ab743ca">aws_hash_callback_string_eq</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
 <tr class="separator:aeda732308f1bb929d793b34b4ab743ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77a675f15c466e740b7f9ceaf1211d86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a77a675f15c466e740b7f9ceaf1211d86">aws_hash_callback_string_destroy</a> (void *a)</td></tr>
 <tr class="separator:a77a675f15c466e740b7f9ceaf1211d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f0aa2ac53250b983da7367cdf5f6cb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a0f0aa2ac53250b983da7367cdf5f6cb0">aws_ptr_eq</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
+<tr class="memitem:a0f0aa2ac53250b983da7367cdf5f6cb0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#a0f0aa2ac53250b983da7367cdf5f6cb0">aws_ptr_eq</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
 <tr class="separator:a0f0aa2ac53250b983da7367cdf5f6cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac972dbd127cbd9be80213d66f9920c4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#ac972dbd127cbd9be80213d66f9920c4c">aws_hash_table_is_valid</a> (const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *map)</td></tr>
+<tr class="memitem:ac972dbd127cbd9be80213d66f9920c4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#ac972dbd127cbd9be80213d66f9920c4c">aws_hash_table_is_valid</a> (const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *map)</td></tr>
 <tr class="separator:ac972dbd127cbd9be80213d66f9920c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa064e929f1befd71d2f79d1878181c3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#aa064e929f1befd71d2f79d1878181c3f">aws_hash_iter_is_valid</a> (const struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a> *iter)</td></tr>
+<tr class="memitem:aa064e929f1befd71d2f79d1878181c3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hash__table_8h.html#aa064e929f1befd71d2f79d1878181c3f">aws_hash_iter_is_valid</a> (const struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a> *iter)</td></tr>
 <tr class="separator:aa064e929f1befd71d2f79d1878181c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -228,7 +228,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>() aws_hash_callback_eq_fn(const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td>
+          <td class="memname">typedef bool() aws_hash_callback_eq_fn(const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -319,7 +319,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_hash_callback_c_str_eq </td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool aws_hash_callback_c_str_eq </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>a</em>, </td>
@@ -367,7 +367,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_hash_callback_string_eq </td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool aws_hash_callback_string_eq </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>a</em>, </td>
@@ -452,7 +452,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>destroy_contents</em>&#160;</td>
         </tr>
         <tr>
@@ -479,7 +479,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_hash_iter_done </td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool aws_hash_iter_done </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a> *&#160;</td>
           <td class="paramname"><em>iter</em></td><td>)</td>
@@ -498,7 +498,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_hash_iter_is_valid </td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool aws_hash_iter_is_valid </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__hash__iter.html">aws_hash_iter</a> *&#160;</td>
           <td class="paramname"><em>iter</em></td><td>)</td>
@@ -660,7 +660,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_hash_table_eq </td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool aws_hash_table_eq </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *&#160;</td>
           <td class="paramname"><em>a</em>, </td>
@@ -861,7 +861,7 @@ AWS_COMMON_HASH_TABLE_ITER_DELETE   - Deletes the current value and</h1>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_hash_table_is_valid </td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool aws_hash_table_is_valid </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *&#160;</td>
           <td class="paramname"><em>map</em></td><td>)</td>
@@ -1060,7 +1060,7 @@ AWS_COMMON_HASH_TABLE_ITER_DELETE   - Deletes the current value and</h1>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_ptr_eq </td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool aws_ptr_eq </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>a</em>, </td>

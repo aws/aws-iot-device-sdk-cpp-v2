@@ -40,14 +40,14 @@
 \DoxyCodeLine{53                     \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_event_loop_group}{EventLoopGroup}} \&elGroup,}
 \DoxyCodeLine{54                     \textcolor{keywordtype}{size\_t} maxHosts,}
 \DoxyCodeLine{55                     \textcolor{keywordtype}{size\_t} maxTTL,}
-\DoxyCodeLine{56                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{56                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{57                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{\string~DefaultHostResolver}}();}
 \DoxyCodeLine{58                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a59e25b42b810a6f62b31b9db794536cd}{DefaultHostResolver}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{59                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a30475299241bd247372e095b7a6cc14d}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{60                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a3b8ceca8e65d425eadffc389225b0010}{DefaultHostResolver}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{61                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a163c9a7c75b092334491d2838157cf1e}{operator=}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver}{DefaultHostResolver}} \&\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{62 }
-\DoxyCodeLine{66                 \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_initialized; \}}
+\DoxyCodeLine{66                 \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_initialized; \}}
 \DoxyCodeLine{70                 \textcolor{keywordtype}{int} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_default_host_resolver_a9565cc5a541c28081416f05723276916}{LastError}}() const noexcept \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a1322935281a00b323a6307e42738781e}{aws\_last\_error}}(); \}}
 \DoxyCodeLine{71 }
 \DoxyCodeLine{78                 \textcolor{keywordtype}{bool} ResolveHost(\textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&host, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_io_acbf0e730c9b86819e74f33f7b5eed73d}{OnHostResolved}} \&onResolved) \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
@@ -66,7 +66,7 @@
 \DoxyCodeLine{93                     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *host\_name,}
 \DoxyCodeLine{94                     \textcolor{keywordtype}{int} err\_code,}
 \DoxyCodeLine{95                     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *host\_addresses,}
-\DoxyCodeLine{96                     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{96                     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{97             \};}
 \DoxyCodeLine{98         \} \textcolor{comment}{// namespace Io}}
 \DoxyCodeLine{99     \}     \textcolor{comment}{// namespace Crt}}

@@ -117,9 +117,9 @@ Functions</h2></td></tr>
 <tr class="separator:a8f33c43df78e6b47b51fd1b71130ad8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24d67ac88e0b485e9c66de1385d089c3"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__key__share_8c.html#a24d67ac88e0b485e9c66de1385d089c3">s2n_client_key_share_parse_ecc</a> (struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *key_share, const struct <a class="el" href="structs2n__ecc__named__curve.html">s2n_ecc_named_curve</a> *curve, struct <a class="el" href="structs2n__ecc__evp__params.html">s2n_ecc_evp_params</a> *ecc_params)</td></tr>
 <tr class="separator:a24d67ac88e0b485e9c66de1385d089c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6c961b0f97623e507f2bdeb638cffe7"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__key__share_8c.html#ab6c961b0f97623e507f2bdeb638cffe7">s2n_client_key_share_recv_ecc</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *key_share, uint16_t curve_iana_id, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *match)</td></tr>
+<tr class="memitem:ab6c961b0f97623e507f2bdeb638cffe7"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__key__share_8c.html#ab6c961b0f97623e507f2bdeb638cffe7">s2n_client_key_share_recv_ecc</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *key_share, uint16_t curve_iana_id, bool *match)</td></tr>
 <tr class="separator:ab6c961b0f97623e507f2bdeb638cffe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad68688414de149c28b088e749e61235e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__key__share_8c.html#ad68688414de149c28b088e749e61235e">s2n_client_key_share_recv_pq_hybrid</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *key_share, uint16_t kem_group_iana_id, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *match)</td></tr>
+<tr class="memitem:ad68688414de149c28b088e749e61235e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__key__share_8c.html#ad68688414de149c28b088e749e61235e">s2n_client_key_share_recv_pq_hybrid</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *key_share, uint16_t kem_group_iana_id, bool *match)</td></tr>
 <tr class="separator:ad68688414de149c28b088e749e61235e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adccdb2e464175aa89180945dab93771f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__key__share_8c.html#adccdb2e464175aa89180945dab93771f">s2n_extensions_client_key_share_size</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn)</td></tr>
 <tr class="separator:adccdb2e464175aa89180945dab93771f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -289,7 +289,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *&#160;</td>
+          <td class="paramtype">bool *&#160;</td>
           <td class="paramname"><em>match</em>&#160;</td>
         </tr>
         <tr>
@@ -337,7 +337,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *&#160;</td>
+          <td class="paramtype">bool *&#160;</td>
           <td class="paramname"><em>match</em>&#160;</td>
         </tr>
         <tr>

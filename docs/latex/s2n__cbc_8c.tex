@@ -1,0 +1,23 @@
+\hypertarget{s2n__cbc_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\+\_\+cbc.c File Reference}
+\label{s2n__cbc_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_cbc.c@{crt/aws-\/crt-\/cpp/crt/s2n/tls/s2n\_cbc.c}}
+{\ttfamily \#include $<$sys/param.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}error/s2n\+\_\+errno.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+safety.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/s2n\+\_\+mem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}crypto/s2n\+\_\+hmac.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tls/s2n\+\_\+record.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{s2n__cbc_8c_a49a0a2c5708c690625b2474555727b80}{s2n\+\_\+verify\+\_\+cbc}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$hmac, struct s2n\+\_\+blob $\ast$decrypted)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{s2n__cbc_8c_a49a0a2c5708c690625b2474555727b80}\label{s2n__cbc_8c_a49a0a2c5708c690625b2474555727b80}} 
+\index{s2n\_cbc.c@{s2n\_cbc.c}!s2n\_verify\_cbc@{s2n\_verify\_cbc}}
+\index{s2n\_verify\_cbc@{s2n\_verify\_cbc}!s2n\_cbc.c@{s2n\_cbc.c}}
+\doxysubsubsection{\texorpdfstring{s2n\_verify\_cbc()}{s2n\_verify\_cbc()}}
+{\footnotesize\ttfamily int s2n\+\_\+verify\+\_\+cbc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{struct \mbox{\hyperlink{structs2n__hmac__state}{s2n\+\_\+hmac\+\_\+state}} $\ast$}]{hmac,  }\item[{struct s2n\+\_\+blob $\ast$}]{decrypted }\end{DoxyParamCaption})}
+

@@ -82,9 +82,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a259f158b302b994a0de035170d340351"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a282a67fbc4ea7b8729bfc0ddfd4ee1bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#a282a67fbc4ea7b8729bfc0ddfd4ee1bd">~Uri</a> ()</td></tr>
 <tr class="separator:a282a67fbc4ea7b8729bfc0ddfd4ee1bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad89f20188060ad11ad900409626b74dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#ad89f20188060ad11ad900409626b74dd">Uri</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">ByteCursor</a> &amp;cursor, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="memitem:ad89f20188060ad11ad900409626b74dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#ad89f20188060ad11ad900409626b74dd">Uri</a> (const <a class="el" href="namespace_aws_1_1_crt.html#a14ac076b0baa520bccb2b7236e4e78b7">ByteCursor</a> &amp;cursor, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
 <tr class="separator:ad89f20188060ad11ad900409626b74dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a928b689765c8a886868578c9fdc8881b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#a928b689765c8a886868578c9fdc8881b">Uri</a> (<a class="el" href="structaws__uri__builder__options.html">aws_uri_builder_options</a> &amp;builderOptions, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="memitem:a928b689765c8a886868578c9fdc8881b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#a928b689765c8a886868578c9fdc8881b">Uri</a> (<a class="el" href="structaws__uri__builder__options.html">aws_uri_builder_options</a> &amp;builderOptions, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
 <tr class="separator:a928b689765c8a886868578c9fdc8881b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadc7458b20f551a5ef555e45ae128fae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#aadc7458b20f551a5ef555e45ae128fae">Uri</a> (const <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html">Uri</a> &amp;)</td></tr>
 <tr class="separator:aadc7458b20f551a5ef555e45ae128fae"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,7 +193,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Parses <code>cursor</code> as a URI. Upon failure the <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool()</a> operator will return false and <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#a44219c00cfe813b84275d27cd6ba85c5">LastError()</a> will contain the errorCode. </p>
+<p >Parses <code>cursor</code> as a URI. Upon failure the bool() operator will return false and <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#a44219c00cfe813b84275d27cd6ba85c5">LastError()</a> will contain the errorCode. </p>
 
 </div>
 </div>
@@ -230,7 +230,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Builds a URI from <code>builderOptions</code>. Upon failure the <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool()</a> operator will return false and <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#a44219c00cfe813b84275d27cd6ba85c5">LastError()</a> will contain the errorCode. </p>
+<p >Builds a URI from <code>builderOptions</code>. Upon failure the bool() operator will return false and <a class="el" href="class_aws_1_1_crt_1_1_io_1_1_uri.html#a44219c00cfe813b84275d27cd6ba85c5">LastError()</a> will contain the errorCode. </p>
 
 </div>
 </div>
@@ -523,7 +523,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Aws::Crt::Io::Uri::operator <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> </td>
+          <td class="memname">Aws::Crt::Io::Uri::operator bool </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>

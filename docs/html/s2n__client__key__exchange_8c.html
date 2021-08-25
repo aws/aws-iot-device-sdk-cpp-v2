@@ -105,7 +105,7 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5cd248d126c905501a6f375bd4253820"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__key__exchange_8c.html#a5cd248d126c905501a6f375bd4253820">s2n_rsa_client_key_recv_complete</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> rsa_failed, struct s2n_blob *shared_key)</td></tr>
+<tr class="memitem:a5cd248d126c905501a6f375bd4253820"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__key__exchange_8c.html#a5cd248d126c905501a6f375bd4253820">s2n_rsa_client_key_recv_complete</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, bool rsa_failed, struct s2n_blob *shared_key)</td></tr>
 <tr class="separator:a5cd248d126c905501a6f375bd4253820"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab97ca3bc992e0bc12a21b37e3e2c1460"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__client__key__exchange_8c.html#ab97ca3bc992e0bc12a21b37e3e2c1460">s2n_hybrid_client_action</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, struct s2n_blob *combined_shared_key, <a class="el" href="s2n__client__key__exchange_8c.html#ab8d13a1df971f7bc4ac2c48bdb8a762b">s2n_kex_client_key_method</a> kex_method, uint32_t *cursor, <a class="el" href="s2n__client__key__exchange_8c.html#a5ba560ac4460a7b1aa8940efe0519e39">s2n_stuffer_action</a> stuffer_action)</td></tr>
 <tr class="separator:ab97ca3bc992e0bc12a21b37e3e2c1460"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -581,7 +581,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>rsa_failed</em>, </td>
         </tr>
         <tr>

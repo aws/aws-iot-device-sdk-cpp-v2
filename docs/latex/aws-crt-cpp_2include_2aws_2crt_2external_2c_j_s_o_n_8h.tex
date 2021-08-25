@@ -52,7 +52,7 @@ namespace \mbox{\hyperlink{namespace_aws}{Aws}}
 \item 
 \#define \mbox{\hyperlink{aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h_adab3f1e3586395bdb2da5a40059cb24b}{c\+JSON\+\_\+\+Set\+Number\+Value}}(object,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}})~((object != NULL) ? c\+JSON\+\_\+\+Set\+Number\+Helper(object, (double)\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}}) \+: (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a01b4671c6b7cc8f831c951c000a37735}{number}}))
 \item 
-\#define \mbox{\hyperlink{aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h_ac3d6e5782fb4bb3c7a25c7c5b1868f06}{c\+JSON\+\_\+\+Array\+For\+Each}}(element,  array)~\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}{for}}(element = (array != NULL) ? (array)-\/$>$child \+: NULL; element != NULL; element = element-\/$>$next)
+\#define \mbox{\hyperlink{aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h_ac3d6e5782fb4bb3c7a25c7c5b1868f06}{c\+JSON\+\_\+\+Array\+For\+Each}}(element,  array)~for(element = (array != NULL) ? (array)-\/$>$child \+: NULL; element != NULL; element = element-\/$>$next)
 \end{DoxyCompactItemize}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -74,7 +74,7 @@ typedef int \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{Aw
 \item 
 \mbox{\hyperlink{namespace_aws_a3c5185b6eaacaa320bd6461e6b1f9300}{Aws\+::\+CJSON\+\_\+\+PUBLIC}} (char $\ast$) c\+JSON\+\_\+\+Print(const \mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}})
 \item 
-\mbox{\hyperlink{namespace_aws_a32981f90bfc94b72b3062d2e7ff08acc}{Aws\+::c\+JSON\+\_\+\+Print\+Preallocated}} (\mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}}, char $\ast$buffer, const int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}, const \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{c\+JSON\+\_\+bool}} format)
+\mbox{\hyperlink{namespace_aws_a32981f90bfc94b72b3062d2e7ff08acc}{Aws\+::c\+JSON\+\_\+\+Print\+Preallocated}} (\mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ac011de571ff16ba220d2e0d757e4e8b0}{item}}, char $\ast$buffer, const int \mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}, const \mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_aea0a1491f73d98b7cc4b8b791c408a4a}{c\+JSON\+\_\+bool}} format)
 \item 
 \mbox{\hyperlink{namespace_aws_a4fb370a4e9fce06d7d1495696261babf}{Aws\+::\+CJSON\+\_\+\+PUBLIC}} (int) c\+JSON\+\_\+\+Get\+Array\+Size(const \mbox{\hyperlink{structc_j_s_o_n}{c\+JSON}} $\ast$array)
 \item 
@@ -87,7 +87,7 @@ typedef int \mbox{\hyperlink{namespace_aws_ae25be287ff4c494546ce21e78d16a660}{Aw
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-size\+\_\+t \mbox{\hyperlink{namespace_aws_a52c438299b08516e5d87b48ded603a6e}{Aws\+::length}} = \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}
+size\+\_\+t \mbox{\hyperlink{namespace_aws_a52c438299b08516e5d87b48ded603a6e}{Aws\+::length}} = \mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}
 \item 
 size\+\_\+t const char $\ast$$\ast$ \mbox{\hyperlink{namespace_aws_a6aa1ba4d23552e6f67db375f5dddf8bc}{Aws\+::return\+\_\+parse\+\_\+end}}
 \item 
@@ -136,7 +136,7 @@ const char $\ast$const const char $\ast$const \mbox{\hyperlink{namespace_aws_ac0
 \index{cJSON.h@{cJSON.h}!cJSON\_ArrayForEach@{cJSON\_ArrayForEach}}
 \index{cJSON\_ArrayForEach@{cJSON\_ArrayForEach}!cJSON.h@{cJSON.h}}
 \doxysubsubsection{\texorpdfstring{cJSON\_ArrayForEach}{cJSON\_ArrayForEach}}
-{\footnotesize\ttfamily \#define c\+JSON\+\_\+\+Array\+For\+Each(\begin{DoxyParamCaption}\item[{}]{element,  }\item[{}]{array }\end{DoxyParamCaption})~\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}{for}}(element = (array != NULL) ? (array)-\/$>$child \+: NULL; element != NULL; element = element-\/$>$next)}
+{\footnotesize\ttfamily \#define c\+JSON\+\_\+\+Array\+For\+Each(\begin{DoxyParamCaption}\item[{}]{element,  }\item[{}]{array }\end{DoxyParamCaption})~for(element = (array != NULL) ? (array)-\/$>$child \+: NULL; element != NULL; element = element-\/$>$next)}
 
 \mbox{\Hypertarget{aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h_a2d240682316354b5748f909ad220184b}\label{aws-crt-cpp_2include_2aws_2crt_2external_2c_j_s_o_n_8h_a2d240682316354b5748f909ad220184b}} 
 \index{cJSON.h@{cJSON.h}!cJSON\_False@{cJSON\_False}}

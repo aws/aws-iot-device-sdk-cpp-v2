@@ -25,9 +25,9 @@ struct \mbox{\hyperlink{structaws__signable__chunk__impl}{aws\+\_\+signable\+\_\
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \mbox{\hyperlink{sigv4__http__request_8c_a0d6a8cc32608732bad62a2e622cf071c}{s\+\_\+build\+\_\+request\+\_\+uri}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, const struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$signing\+\_\+result)
+static int \mbox{\hyperlink{sigv4__http__request_8c_a0d6a8cc32608732bad62a2e622cf071c}{s\+\_\+build\+\_\+request\+\_\+uri}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, const struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$signing\+\_\+result)
 \item 
-int \mbox{\hyperlink{sigv4__http__request_8c_af13e2afeb20c0f37bc393c7f1ff89c42}{aws\+\_\+apply\+\_\+signing\+\_\+result\+\_\+to\+\_\+http\+\_\+request}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$result)
+int \mbox{\hyperlink{sigv4__http__request_8c_af13e2afeb20c0f37bc393c7f1ff89c42}{aws\+\_\+apply\+\_\+signing\+\_\+result\+\_\+to\+\_\+http\+\_\+request}} (struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$result)
 \item 
 static int \mbox{\hyperlink{sigv4__http__request_8c_ae52fa11c944bde3f56844750fb2f0fce}{s\+\_\+aws\+\_\+signable\+\_\+http\+\_\+request\+\_\+get\+\_\+property}} (const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+value)
 \item 
@@ -37,7 +37,7 @@ static int \mbox{\hyperlink{sigv4__http__request_8c_a61cf1fde82657dcfd2c642370bf
 \item 
 static void \mbox{\hyperlink{sigv4__http__request_8c_a97ca640577996f0dd2575c901c2315be}{s\+\_\+aws\+\_\+signable\+\_\+http\+\_\+request\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable)
 \item 
-struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$ \mbox{\hyperlink{sigv4__http__request_8c_a5faef78a906143530016fcc8a73fbee0}{aws\+\_\+signable\+\_\+new\+\_\+http\+\_\+request}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request)
+struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$ \mbox{\hyperlink{sigv4__http__request_8c_a5faef78a906143530016fcc8a73fbee0}{aws\+\_\+signable\+\_\+new\+\_\+http\+\_\+request}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request)
 \item 
 static int \mbox{\hyperlink{sigv4__http__request_8c_a6d41dc8d0560b8d5c87179f0caaaacb4}{s\+\_\+aws\+\_\+signable\+\_\+chunk\+\_\+get\+\_\+property}} (const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$out\+\_\+value)
 \item 
@@ -47,7 +47,7 @@ static int \mbox{\hyperlink{sigv4__http__request_8c_aed433dbf31b30760591a200dcb2
 \item 
 static void \mbox{\hyperlink{sigv4__http__request_8c_aa0fd980480be33e9de925883983a3185}{s\+\_\+aws\+\_\+signable\+\_\+chunk\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable)
 \item 
-struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$ \mbox{\hyperlink{sigv4__http__request_8c_a2a8d2b829749b6ef372ef341ba2bc757}{aws\+\_\+signable\+\_\+new\+\_\+chunk}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$chunk\+\_\+data, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} previous\+\_\+signature)
+struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$ \mbox{\hyperlink{sigv4__http__request_8c_a2a8d2b829749b6ef372ef341ba2bc757}{aws\+\_\+signable\+\_\+new\+\_\+chunk}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$chunk\+\_\+data, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} previous\+\_\+signature)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}

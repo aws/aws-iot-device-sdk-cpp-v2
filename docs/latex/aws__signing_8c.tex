@@ -72,33 +72,33 @@ struct \mbox{\hyperlink{structstable__header}{stable\+\_\+header}}
 \item 
 \mbox{\hyperlink{aws__signing_8c_aa75e3a3a610b20613afe5ae19d3eb8dc}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+signature\+\_\+type\+\_\+sigv4\+\_\+http\+\_\+request, \char`\"{}AWS4-\/HMAC-\/SHA256\char`\"{})
 \item 
-\mbox{\hyperlink{aws__signing_8c_a62c1a5683e1bc90bad835fe504cb1154}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+signature\+\_\+type\+\_\+sigv4\+\_\+s3\+\_\+chunked\+\_\+payload, \char`\"{}AWS4-\/HMAC-\/SHA256-\/\mbox{\hyperlink{secure__tunneling__tests_8c_a35312e3b62c575eb2a53856683c11ddc}{PAYLOAD}}\char`\"{})
+\mbox{\hyperlink{aws__signing_8c_a62c1a5683e1bc90bad835fe504cb1154}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+signature\+\_\+type\+\_\+sigv4\+\_\+s3\+\_\+chunked\+\_\+payload, \char`\"{}AWS4-\/HMAC-\/SHA256-\/PAYLOAD\char`\"{})
 \item 
-int \mbox{\hyperlink{aws__signing_8c_a9e74fa5aa59bc2bae809bd79746cbc4d}{aws\+\_\+signing\+\_\+init\+\_\+signing\+\_\+tables}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+int \mbox{\hyperlink{aws__signing_8c_a9e74fa5aa59bc2bae809bd79746cbc4d}{aws\+\_\+signing\+\_\+init\+\_\+signing\+\_\+tables}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{aws__signing_8c_ac619ef67f0220e12c7127aa17274ba7c}{aws\+\_\+signing\+\_\+clean\+\_\+up\+\_\+signing\+\_\+tables}} (void)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__signing_8c_ab1178c8bc50cedbd4abfcf5e1606ecc8}{s\+\_\+is\+\_\+header\+\_\+based\+\_\+signature\+\_\+value}} (enum \mbox{\hyperlink{signing__config_8h_ae5f05618c006b3ee20bb8a0ff52a8eb9}{aws\+\_\+signature\+\_\+type}} signature\+\_\+type)
+static bool \mbox{\hyperlink{aws__signing_8c_ab1178c8bc50cedbd4abfcf5e1606ecc8}{s\+\_\+is\+\_\+header\+\_\+based\+\_\+signature\+\_\+value}} (enum \mbox{\hyperlink{signing__config_8h_ae5f05618c006b3ee20bb8a0ff52a8eb9}{aws\+\_\+signature\+\_\+type}} signature\+\_\+type)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__signing_8c_a6f63508625de19f95265e92db96bf82f}{s\+\_\+is\+\_\+query\+\_\+param\+\_\+based\+\_\+signature\+\_\+value}} (enum \mbox{\hyperlink{signing__config_8h_ae5f05618c006b3ee20bb8a0ff52a8eb9}{aws\+\_\+signature\+\_\+type}} signature\+\_\+type)
+static bool \mbox{\hyperlink{aws__signing_8c_a6f63508625de19f95265e92db96bf82f}{s\+\_\+is\+\_\+query\+\_\+param\+\_\+based\+\_\+signature\+\_\+value}} (enum \mbox{\hyperlink{signing__config_8h_ae5f05618c006b3ee20bb8a0ff52a8eb9}{aws\+\_\+signature\+\_\+type}} signature\+\_\+type)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_ad845fc835f4dfcdf7fbf0019313d53bf}{s\+\_\+get\+\_\+signature\+\_\+type\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
+static int \mbox{\hyperlink{aws__signing_8c_ad845fc835f4dfcdf7fbf0019313d53bf}{s\+\_\+get\+\_\+signature\+\_\+type\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_aa0d3ebdde206da901c91e70c82aae622}{s\+\_\+append\+\_\+sts\+\_\+signature\+\_\+type}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
+static int \mbox{\hyperlink{aws__signing_8c_aa0d3ebdde206da901c91e70c82aae622}{s\+\_\+append\+\_\+sts\+\_\+signature\+\_\+type}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
 \item 
-struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$ \mbox{\hyperlink{aws__signing_8c_a5462d54faa35ea61a11de1928e07f8dd}{aws\+\_\+signing\+\_\+state\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__signing__config__aws}{aws\+\_\+signing\+\_\+config\+\_\+aws}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\+\_\+signing\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+complete, void $\ast$userdata)
+struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$ \mbox{\hyperlink{aws__signing_8c_a5462d54faa35ea61a11de1928e07f8dd}{aws\+\_\+signing\+\_\+state\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__signing__config__aws}{aws\+\_\+signing\+\_\+config\+\_\+aws}} $\ast$config, const struct \mbox{\hyperlink{structaws__signable}{aws\+\_\+signable}} $\ast$signable, \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\+\_\+signing\+\_\+complete\+\_\+fn}} $\ast$on\+\_\+complete, void $\ast$userdata)
 \item 
-void \mbox{\hyperlink{aws__signing_8c_af079fc146e889fe2e8404c7ad03a2acd}{aws\+\_\+signing\+\_\+state\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{aws__signing_8c_af079fc146e889fe2e8404c7ad03a2acd}{aws\+\_\+signing\+\_\+state\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
 static int \mbox{\hyperlink{aws__signing_8c_a922df5f525e351dfb54e3e2a32e8eed4}{s\+\_\+append\+\_\+character\+\_\+to\+\_\+byte\+\_\+buf}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, uint8\+\_\+t value)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a1fd77efadb807a411775fb6c0058e7f7}{s\+\_\+append\+\_\+canonical\+\_\+method}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_a1fd77efadb807a411775fb6c0058e7f7}{s\+\_\+append\+\_\+canonical\+\_\+method}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
 static int \mbox{\hyperlink{aws__signing_8c_ab3b5aa29db10c3a70f950f8b476521fd}{s\+\_\+append\+\_\+with\+\_\+lookup}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$src, const uint8\+\_\+t $\ast$lookup\+\_\+table)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a4ad283517a1be8ae7f356ef1cc554c6e}{s\+\_\+append\+\_\+normalized\+\_\+path}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$raw\+\_\+path, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
+static int \mbox{\hyperlink{aws__signing_8c_a4ad283517a1be8ae7f356ef1cc554c6e}{s\+\_\+append\+\_\+normalized\+\_\+path}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$raw\+\_\+path, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a4a33fe5a386f43537a945532ca66d61d}{s\+\_\+append\+\_\+canonical\+\_\+path}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_a4a33fe5a386f43537a945532ca66d61d}{s\+\_\+append\+\_\+canonical\+\_\+path}} (const struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
 int \mbox{\hyperlink{aws__signing_8c_a5b7c3ed61f1bfe3a49205b6f4aeb07d9}{s\+\_\+canonical\+\_\+query\+\_\+param\+\_\+comparator}} (const void $\ast$lhs, const void $\ast$rhs)
 \item 
@@ -106,65 +106,65 @@ int \mbox{\hyperlink{aws__signing_8c_adfe521591e57808657016c659bb32fe3}{s\+\_\+c
 \item 
 static int \mbox{\hyperlink{aws__signing_8c_a8cc7b547c98d3833be0ef24439b82e67}{s\+\_\+append\+\_\+canonical\+\_\+query\+\_\+param}} (struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$encoded\+\_\+param, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a3df59b3851593ee269926cd26d19f110}{s\+\_\+add\+\_\+query\+\_\+param\+\_\+to\+\_\+signing\+\_\+result}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, const struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$unencoded\+\_\+param)
+static int \mbox{\hyperlink{aws__signing_8c_a3df59b3851593ee269926cd26d19f110}{s\+\_\+add\+\_\+query\+\_\+param\+\_\+to\+\_\+signing\+\_\+result}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, const struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$unencoded\+\_\+param)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_af609f0bd7d76c7d9fbef74cc87fe333e}{s\+\_\+add\+\_\+authorization\+\_\+query\+\_\+param}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$unencoded\+\_\+auth\+\_\+params, const struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$unencoded\+\_\+auth\+\_\+param)
+static int \mbox{\hyperlink{aws__signing_8c_af609f0bd7d76c7d9fbef74cc87fe333e}{s\+\_\+add\+\_\+authorization\+\_\+query\+\_\+param}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$unencoded\+\_\+auth\+\_\+params, const struct \mbox{\hyperlink{structaws__uri__param}{aws\+\_\+uri\+\_\+param}} $\ast$unencoded\+\_\+auth\+\_\+param)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__signing_8c_a269f24ca3b3496f6417a07f7eb522f1d}{s\+\_\+should\+\_\+sign\+\_\+header}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}})
+static bool \mbox{\hyperlink{aws__signing_8c_a269f24ca3b3496f6417a07f7eb522f1d}{s\+\_\+should\+\_\+sign\+\_\+header}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}})
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a4fc692b630a0e01faff243b18907557c}{s\+\_\+add\+\_\+authorization\+\_\+query\+\_\+params}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$unencoded\+\_\+query\+\_\+params)
+static int \mbox{\hyperlink{aws__signing_8c_a4fc692b630a0e01faff243b18907557c}{s\+\_\+add\+\_\+authorization\+\_\+query\+\_\+params}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$unencoded\+\_\+query\+\_\+params)
 \item 
 static int \mbox{\hyperlink{aws__signing_8c_aac10b5daa30d4ca01015b8152eab2626}{s\+\_\+validate\+\_\+query\+\_\+params}} (struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$unencoded\+\_\+query\+\_\+params)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_ad6b715e410d9576bf53394da830cd78b}{s\+\_\+transform\+\_\+query\+\_\+params}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$param\+\_\+list, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$temp\+\_\+strings, int($\ast$byte\+\_\+buf\+\_\+append\+\_\+dynamic\+\_\+param\+\_\+fn)(struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$))
+static int \mbox{\hyperlink{aws__signing_8c_ad6b715e410d9576bf53394da830cd78b}{s\+\_\+transform\+\_\+query\+\_\+params}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$param\+\_\+list, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$temp\+\_\+strings, int($\ast$byte\+\_\+buf\+\_\+append\+\_\+dynamic\+\_\+param\+\_\+fn)(struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$))
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a3522a4cc1affcf55360c7600b13f421f}{s\+\_\+append\+\_\+canonical\+\_\+query\+\_\+string}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_a3522a4cc1affcf55360c7600b13f421f}{s\+\_\+append\+\_\+canonical\+\_\+query\+\_\+string}} (struct \mbox{\hyperlink{structaws__uri}{aws\+\_\+uri}} $\ast$uri, struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws__signing_8c_a081e88b561b703bfad7490edc5d00be7}{s\+\_\+is\+\_\+space}} (uint8\+\_\+t value)
+static bool \mbox{\hyperlink{aws__signing_8c_a081e88b561b703bfad7490edc5d00be7}{s\+\_\+is\+\_\+space}} (uint8\+\_\+t value)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a1dfa6c2630d7d2d6992a5be594db00c2}{s\+\_\+append\+\_\+canonical\+\_\+header}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__signable__property__list__pair}{aws\+\_\+signable\+\_\+property\+\_\+list\+\_\+pair}} $\ast$header, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$last\+\_\+seen\+\_\+header\+\_\+name)
+static int \mbox{\hyperlink{aws__signing_8c_a1dfa6c2630d7d2d6992a5be594db00c2}{s\+\_\+append\+\_\+canonical\+\_\+header}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__signable__property__list__pair}{aws\+\_\+signable\+\_\+property\+\_\+list\+\_\+pair}} $\ast$header, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$last\+\_\+seen\+\_\+header\+\_\+name)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a5186266f5fb52952afc874f0db272bb9}{s\+\_\+add\+\_\+authorization\+\_\+header}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stable\+\_\+header\+\_\+list, size\+\_\+t $\ast$out\+\_\+required\+\_\+capacity, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} value)
+static int \mbox{\hyperlink{aws__signing_8c_a5186266f5fb52952afc874f0db272bb9}{s\+\_\+add\+\_\+authorization\+\_\+header}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stable\+\_\+header\+\_\+list, size\+\_\+t $\ast$out\+\_\+required\+\_\+capacity, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} value)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a51e8910f2b3355cef7bd6fdf06b2e3d3}{s\+\_\+build\+\_\+canonical\+\_\+stable\+\_\+header\+\_\+list}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stable\+\_\+header\+\_\+list, size\+\_\+t $\ast$out\+\_\+required\+\_\+capacity)
+static int \mbox{\hyperlink{aws__signing_8c_a51e8910f2b3355cef7bd6fdf06b2e3d3}{s\+\_\+build\+\_\+canonical\+\_\+stable\+\_\+header\+\_\+list}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stable\+\_\+header\+\_\+list, size\+\_\+t $\ast$out\+\_\+required\+\_\+capacity)
 \item 
 static int \mbox{\hyperlink{aws__signing_8c_af8893650d848ac05c4f1eb8549a96d46}{s\+\_\+validate\+\_\+signable\+\_\+header\+\_\+list}} (struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$header\+\_\+list)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_ad7d77e95331939bff5a7ce4801d0df3e}{s\+\_\+build\+\_\+canonical\+\_\+headers}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_ad7d77e95331939bff5a7ce4801d0df3e}{s\+\_\+build\+\_\+canonical\+\_\+headers}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a05efbb32ebb83434be763b36e581a541}{s\+\_\+build\+\_\+canonical\+\_\+payload}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_a05efbb32ebb83434be763b36e581a541}{s\+\_\+build\+\_\+canonical\+\_\+payload}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a4f57084aca041b2f61bc077bbf883625}{s\+\_\+append\+\_\+canonical\+\_\+payload\+\_\+hash}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_a4f57084aca041b2f61bc077bbf883625}{s\+\_\+append\+\_\+canonical\+\_\+payload\+\_\+hash}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
 \mbox{\hyperlink{aws__signing_8c_abebfc945f5a3f977c1a4c68458a5b795}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+credential\+\_\+scope\+\_\+sigv4\+\_\+terminator, \char`\"{}aws4\+\_\+request\char`\"{})
 \item 
 static int \mbox{\hyperlink{aws__signing_8c_a4c1ee5389aed0243591074c2f1fcf5a5}{s\+\_\+append\+\_\+credential\+\_\+scope\+\_\+terminator}} (enum \mbox{\hyperlink{signing__config_8h_a466313bef0cfb7e1e9c1a0234dad772b}{aws\+\_\+signing\+\_\+algorithm}} algorithm, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_adc6180da05472736977791026186121e}{s\+\_\+build\+\_\+credential\+\_\+scope}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_adc6180da05472736977791026186121e}{s\+\_\+build\+\_\+credential\+\_\+scope}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a0345ffa7dbebc8b9041fac251670335d}{s\+\_\+build\+\_\+canonical\+\_\+request\+\_\+hash}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_a0345ffa7dbebc8b9041fac251670335d}{s\+\_\+build\+\_\+canonical\+\_\+request\+\_\+hash}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_ab58bed4343716c313f39e2371a39f44a}{s\+\_\+build\+\_\+canonical\+\_\+request\+\_\+body\+\_\+chunk}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_ab58bed4343716c313f39e2371a39f44a}{s\+\_\+build\+\_\+canonical\+\_\+request\+\_\+body\+\_\+chunk}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_ac70b6b1c12a24c2bc2d07a4974db7e36}{s\+\_\+build\+\_\+canonical\+\_\+request\+\_\+sigv4}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_ac70b6b1c12a24c2bc2d07a4974db7e36}{s\+\_\+build\+\_\+canonical\+\_\+request\+\_\+sigv4}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws__signing_8c_aeb3675ca12709d444dfc138b060a87c2}{s\+\_\+get\+\_\+signed\+\_\+headers\+\_\+from\+\_\+canonical\+\_\+request}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} canonical\+\_\+request)
+static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{aws__signing_8c_aeb3675ca12709d444dfc138b060a87c2}{s\+\_\+get\+\_\+signed\+\_\+headers\+\_\+from\+\_\+canonical\+\_\+request}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} canonical\+\_\+request)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_ac65228260d6396e847ccaeff6e3bc01c}{s\+\_\+apply\+\_\+existing\+\_\+canonical\+\_\+request}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_ac65228260d6396e847ccaeff6e3bc01c}{s\+\_\+apply\+\_\+existing\+\_\+canonical\+\_\+request}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-int \mbox{\hyperlink{aws__signing_8c_a5feec2c8ba5f87f0e7d62cabe3548174}{aws\+\_\+signing\+\_\+build\+\_\+canonical\+\_\+request}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+int \mbox{\hyperlink{aws__signing_8c_a5feec2c8ba5f87f0e7d62cabe3548174}{aws\+\_\+signing\+\_\+build\+\_\+canonical\+\_\+request}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-int \mbox{\hyperlink{aws__signing_8c_af217c81effe042b1ae5e32695ea25e60}{aws\+\_\+signing\+\_\+build\+\_\+string\+\_\+to\+\_\+sign}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+int \mbox{\hyperlink{aws__signing_8c_af217c81effe042b1ae5e32695ea25e60}{aws\+\_\+signing\+\_\+build\+\_\+string\+\_\+to\+\_\+sign}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
 \mbox{\hyperlink{aws__signing_8c_a9ddcbff00cb92ce3b1227c4a1e8f1c2d}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+secret\+\_\+key\+\_\+prefix, \char`\"{}AWS4\char`\"{})
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a1ae23b78b46c67b0f64d43c70fa9d317}{s\+\_\+compute\+\_\+sigv4\+\_\+signing\+\_\+key}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
+static int \mbox{\hyperlink{aws__signing_8c_a1ae23b78b46c67b0f64d43c70fa9d317}{s\+\_\+compute\+\_\+sigv4\+\_\+signing\+\_\+key}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a09801d4bf8eec2683ffc4f824fba871e}{s\+\_\+calculate\+\_\+sigv4\+\_\+signature\+\_\+value}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{aws__signing_8c_a09801d4bf8eec2683ffc4f824fba871e}{s\+\_\+calculate\+\_\+sigv4\+\_\+signature\+\_\+value}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-int \mbox{\hyperlink{aws__signing_8c_a6d26606576fe3d4908fc3c8d5b7589d1}{s\+\_\+calculate\+\_\+signature\+\_\+value}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+int \mbox{\hyperlink{aws__signing_8c_a6d26606576fe3d4908fc3c8d5b7589d1}{s\+\_\+calculate\+\_\+signature\+\_\+value}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_a9fa33d4e2909eb29ff97e820cda24219}{s\+\_\+add\+\_\+authorization\+\_\+to\+\_\+result}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$authorization\+\_\+value)
+static int \mbox{\hyperlink{aws__signing_8c_a9fa33d4e2909eb29ff97e820cda24219}{s\+\_\+add\+\_\+authorization\+\_\+to\+\_\+result}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$authorization\+\_\+value)
 \item 
 \mbox{\hyperlink{aws__signing_8c_aa0f2239aa209ca99dc5b9f0c91de7131}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+credential\+\_\+prefix, \char`\"{} Credential=\char`\"{})
 \item 
@@ -172,9 +172,9 @@ static int \mbox{\hyperlink{aws__signing_8c_a9fa33d4e2909eb29ff97e820cda24219}{s
 \item 
 \mbox{\hyperlink{aws__signing_8c_a7ed9d204a0e5fce19d489d615c589e0c}{AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL}} (s\+\_\+signature\+\_\+prefix, \char`\"{}, Signature=\char`\"{})
 \item 
-static int \mbox{\hyperlink{aws__signing_8c_ae24285bb48763c2f04c17a186a009d64}{s\+\_\+append\+\_\+authorization\+\_\+header\+\_\+preamble}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
+static int \mbox{\hyperlink{aws__signing_8c_ae24285bb48763c2f04c17a186a009d64}{s\+\_\+append\+\_\+authorization\+\_\+header\+\_\+preamble}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dest)
 \item 
-int \mbox{\hyperlink{aws__signing_8c_a23d58cb7dfcddbce6644e3d8b1a90d18}{aws\+\_\+signing\+\_\+build\+\_\+authorization\+\_\+value}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$\mbox{\hyperlink{structstate}{state}})
+int \mbox{\hyperlink{aws__signing_8c_a23d58cb7dfcddbce6644e3d8b1a90d18}{aws\+\_\+signing\+\_\+build\+\_\+authorization\+\_\+value}} (struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$state)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -387,7 +387,7 @@ Initializes the internal table of headers that should not be signed \mbox{\Hyper
 \index{aws\_signing.c@{aws\_signing.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
 \index{AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}!aws\_signing.c@{aws\_signing.c}}
 \doxysubsubsection{\texorpdfstring{AWS\_STATIC\_STRING\_FROM\_LITERAL()}{AWS\_STATIC\_STRING\_FROM\_LITERAL()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
-{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+signature\+\_\+type\+\_\+sigv4\+\_\+s3\+\_\+chunked\+\_\+payload}]{,  }\item[{\char`\"{}AWS4-\/HMAC-\/SHA256-\/\mbox{\hyperlink{secure__tunneling__tests_8c_a35312e3b62c575eb2a53856683c11ddc}{PAYLOAD}}\char`\"{}}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily AWS\+\_\+\+STATIC\+\_\+\+STRING\+\_\+\+FROM\+\_\+\+LITERAL (\begin{DoxyParamCaption}\item[{s\+\_\+signature\+\_\+type\+\_\+sigv4\+\_\+s3\+\_\+chunked\+\_\+payload}]{,  }\item[{\char`\"{}AWS4-\/HMAC-\/SHA256-\/PAYLOAD\char`\"{}}]{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{aws__signing_8c_aa8e076f4b7b260d96ec68eda18c2609d}\label{aws__signing_8c_aa8e076f4b7b260d96ec68eda18c2609d}} 
 \index{aws\_signing.c@{aws\_signing.c}!AWS\_STATIC\_STRING\_FROM\_LITERAL@{AWS\_STATIC\_STRING\_FROM\_LITERAL}}
@@ -645,25 +645,25 @@ Given URI-\/encoded query param, write it to canonical buffer. \mbox{\Hypertarge
 \index{aws\_signing.c@{aws\_signing.c}!s\_is\_header\_based\_signature\_value@{s\_is\_header\_based\_signature\_value}}
 \index{s\_is\_header\_based\_signature\_value@{s\_is\_header\_based\_signature\_value}!aws\_signing.c@{aws\_signing.c}}
 \doxysubsubsection{\texorpdfstring{s\_is\_header\_based\_signature\_value()}{s\_is\_header\_based\_signature\_value()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+header\+\_\+based\+\_\+signature\+\_\+value (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{signing__config_8h_ae5f05618c006b3ee20bb8a0ff52a8eb9}{aws\+\_\+signature\+\_\+type}}}]{signature\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+is\+\_\+header\+\_\+based\+\_\+signature\+\_\+value (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{signing__config_8h_ae5f05618c006b3ee20bb8a0ff52a8eb9}{aws\+\_\+signature\+\_\+type}}}]{signature\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{aws__signing_8c_a6f63508625de19f95265e92db96bf82f}\label{aws__signing_8c_a6f63508625de19f95265e92db96bf82f}} 
 \index{aws\_signing.c@{aws\_signing.c}!s\_is\_query\_param\_based\_signature\_value@{s\_is\_query\_param\_based\_signature\_value}}
 \index{s\_is\_query\_param\_based\_signature\_value@{s\_is\_query\_param\_based\_signature\_value}!aws\_signing.c@{aws\_signing.c}}
 \doxysubsubsection{\texorpdfstring{s\_is\_query\_param\_based\_signature\_value()}{s\_is\_query\_param\_based\_signature\_value()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+query\+\_\+param\+\_\+based\+\_\+signature\+\_\+value (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{signing__config_8h_ae5f05618c006b3ee20bb8a0ff52a8eb9}{aws\+\_\+signature\+\_\+type}}}]{signature\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+is\+\_\+query\+\_\+param\+\_\+based\+\_\+signature\+\_\+value (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{signing__config_8h_ae5f05618c006b3ee20bb8a0ff52a8eb9}{aws\+\_\+signature\+\_\+type}}}]{signature\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{aws__signing_8c_a081e88b561b703bfad7490edc5d00be7}\label{aws__signing_8c_a081e88b561b703bfad7490edc5d00be7}} 
 \index{aws\_signing.c@{aws\_signing.c}!s\_is\_space@{s\_is\_space}}
 \index{s\_is\_space@{s\_is\_space}!aws\_signing.c@{aws\_signing.c}}
 \doxysubsubsection{\texorpdfstring{s\_is\_space()}{s\_is\_space()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+space (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+is\+\_\+space (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{aws__signing_8c_a269f24ca3b3496f6417a07f7eb522f1d}\label{aws__signing_8c_a269f24ca3b3496f6417a07f7eb522f1d}} 
 \index{aws\_signing.c@{aws\_signing.c}!s\_should\_sign\_header@{s\_should\_sign\_header}}
 \index{s\_should\_sign\_header@{s\_should\_sign\_header}!aws\_signing.c@{aws\_signing.c}}
 \doxysubsubsection{\texorpdfstring{s\_should\_sign\_header()}{s\_should\_sign\_header()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+should\+\_\+sign\+\_\+header (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$}]{state,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+should\+\_\+sign\+\_\+header (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__signing__state__aws}{aws\+\_\+signing\+\_\+state\+\_\+aws}} $\ast$}]{state,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{aws__signing_8c_ad6b715e410d9576bf53394da830cd78b}\label{aws__signing_8c_ad6b715e410d9576bf53394da830cd78b}} 
 \index{aws\_signing.c@{aws\_signing.c}!s\_transform\_query\_params@{s\_transform\_query\_params}}

@@ -10,14 +10,14 @@
 \DoxyCodeLine{11 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}};}
 \DoxyCodeLine{12 }
 \DoxyCodeLine{19 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{event__stream__channel__handler_8h_afe690198b28ed480dba4663dcee56de8}{aws\_event\_stream\_channel\_handler\_on\_message\_received\_fn}})(}
-\DoxyCodeLine{20     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__stream__message}{aws\_event\_stream\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
-\DoxyCodeLine{21     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{22     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{20     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__stream__message}{aws\_event\_stream\_message}} *message,}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{23 }
 \DoxyCodeLine{30 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{event__stream__channel__handler_8h_a86c28f1aa5fabade81592ac9688c029b}{aws\_event\_stream\_channel\_handler\_on\_message\_written\_fn}})(}
-\DoxyCodeLine{31     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__stream__message}{aws\_event\_stream\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
-\DoxyCodeLine{32     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{33     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{31     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__stream__message}{aws\_event\_stream\_message}} *message,}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{33     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{34 }
 \DoxyCodeLine{35 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__event__stream__channel__handler__options}{aws\_event\_stream\_channel\_handler\_options}} \{}
 \DoxyCodeLine{37     \mbox{\hyperlink{event__stream__channel__handler_8h_afe690198b28ed480dba4663dcee56de8}{aws\_event\_stream\_channel\_handler\_on\_message\_received\_fn}} *\mbox{\hyperlink{structaws__event__stream__channel__handler__options_a0d52fdca90d20c2d02b10f3d92c8c58d}{on\_message\_received}};}
@@ -28,20 +28,20 @@
 \DoxyCodeLine{50 }
 \DoxyCodeLine{51 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
 \DoxyCodeLine{56 \mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\_EVENT\_STREAM\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{event__stream__channel__handler_8h_a71cb9a7aae020a09e0d4d69ac2939434}{aws\_event\_stream\_channel\_handler\_new}}(}
-\DoxyCodeLine{57     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{57     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{58     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__stream__channel__handler__options}{aws\_event\_stream\_channel\_handler\_options}} *handler\_options);}
 \DoxyCodeLine{59 }
 \DoxyCodeLine{65 \mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\_EVENT\_STREAM\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{event__stream__channel__handler_8h_a4e6d873c52ae01bc6d8fdfd7d779269d}{aws\_event\_stream\_channel\_handler\_write\_message}}(}
-\DoxyCodeLine{66     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
-\DoxyCodeLine{67     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__stream__message}{aws\_event\_stream\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
+\DoxyCodeLine{66     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler,}
+\DoxyCodeLine{67     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__stream__message}{aws\_event\_stream\_message}} *message,}
 \DoxyCodeLine{68     \mbox{\hyperlink{event__stream__channel__handler_8h_a86c28f1aa5fabade81592ac9688c029b}{aws\_event\_stream\_channel\_handler\_on\_message\_written\_fn}} *on\_message\_written,}
-\DoxyCodeLine{69     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{69     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{70 }
 \DoxyCodeLine{74 \mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\_EVENT\_STREAM\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{event__stream__channel__handler_8h_a0921d350b87c676f34ed9243a0fed62e}{aws\_event\_stream\_channel\_handler\_increment\_read\_window}}(}
-\DoxyCodeLine{75     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{75     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler,}
 \DoxyCodeLine{76     \textcolor{keywordtype}{size\_t} window\_update\_size);}
 \DoxyCodeLine{77 }
-\DoxyCodeLine{78 \mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\_EVENT\_STREAM\_API}} \textcolor{keywordtype}{void} *\mbox{\hyperlink{event__stream__channel__handler_8h_a43d216e5e9c75548b94cc92f676d03b2}{aws\_event\_stream\_channel\_handler\_get\_user\_data}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{78 \mbox{\hyperlink{event__stream__exports_8h_a0a7fa56db996f6bbc7203dfc97da094a}{AWS\_EVENT\_STREAM\_API}} \textcolor{keywordtype}{void} *\mbox{\hyperlink{event__stream__channel__handler_8h_a43d216e5e9c75548b94cc92f676d03b2}{aws\_event\_stream\_channel\_handler\_get\_user\_data}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__channel__handler}{aws\_channel\_handler}} *handler);}
 \DoxyCodeLine{79 }
 \DoxyCodeLine{80 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
 \DoxyCodeLine{81 }

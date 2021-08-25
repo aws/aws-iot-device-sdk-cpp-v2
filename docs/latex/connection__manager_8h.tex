@@ -10,9 +10,9 @@ struct \mbox{\hyperlink{structaws__http__connection__manager__options}{aws\+\_\+
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef void() \mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int error\+\_\+code, void $\ast$user\+\_\+data)
 \item 
-typedef void() \mbox{\hyperlink{connection__manager_8h_a5f57518dd7da5bcafe02c731b8819861}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+shutdown\+\_\+complete\+\_\+fn}}(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{connection__manager_8h_a5f57518dd7da5bcafe02c731b8819861}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+shutdown\+\_\+complete\+\_\+fn}}(void $\ast$user\+\_\+data)
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -21,9 +21,9 @@ typedef void() \mbox{\hyperlink{connection__manager_8h_a5f57518dd7da5bcafe02c731
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{connection__manager_8h_a6a603284c8121292dca34c1ce89982c2}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+release}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$ \mbox{\hyperlink{connection__manager_8h_a13d4b554288c191890c274b0466dec20}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__connection__manager__options}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+options}} $\ast$options)
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$ \mbox{\hyperlink{connection__manager_8h_a13d4b554288c191890c274b0466dec20}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__http__connection__manager__options}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+options}} $\ast$options)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{connection__manager_8h_a5ad463b48c79fa12e182877794ff88c7}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+acquire\+\_\+connection}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, \mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}} $\ast$callback, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} void \mbox{\hyperlink{connection__manager_8h_a5ad463b48c79fa12e182877794ff88c7}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+acquire\+\_\+connection}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, \mbox{\hyperlink{connection__manager_8h_a7230a93c0a6f23053c925159c1fad0c3}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn}} $\ast$callback, void $\ast$user\+\_\+data)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{connection__manager_8h_a6577dad3f4e24e1576ade1b30ef1906e}{aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+release\+\_\+connection}} (struct \mbox{\hyperlink{structaws__http__connection__manager}{aws\+\_\+http\+\_\+connection\+\_\+manager}} $\ast$manager, struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
 \end{DoxyCompactItemize}
@@ -34,13 +34,13 @@ typedef void() \mbox{\hyperlink{connection__manager_8h_a5f57518dd7da5bcafe02c731
 \index{connection\_manager.h@{connection\_manager.h}!aws\_http\_connection\_manager\_on\_connection\_setup\_fn@{aws\_http\_connection\_manager\_on\_connection\_setup\_fn}}
 \index{aws\_http\_connection\_manager\_on\_connection\_setup\_fn@{aws\_http\_connection\_manager\_on\_connection\_setup\_fn}!connection\_manager.h@{connection\_manager.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_on\_connection\_setup\_fn}{aws\_http\_connection\_manager\_on\_connection\_setup\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+on\+\_\+connection\+\_\+setup\+\_\+fn(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int error\+\_\+code, void $\ast$user\+\_\+data)}
 
 \mbox{\Hypertarget{connection__manager_8h_a5f57518dd7da5bcafe02c731b8819861}\label{connection__manager_8h_a5f57518dd7da5bcafe02c731b8819861}} 
 \index{connection\_manager.h@{connection\_manager.h}!aws\_http\_connection\_manager\_shutdown\_complete\_fn@{aws\_http\_connection\_manager\_shutdown\_complete\_fn}}
 \index{aws\_http\_connection\_manager\_shutdown\_complete\_fn@{aws\_http\_connection\_manager\_shutdown\_complete\_fn}!connection\_manager.h@{connection\_manager.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_connection\_manager\_shutdown\_complete\_fn}{aws\_http\_connection\_manager\_shutdown\_complete\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+shutdown\+\_\+complete\+\_\+fn(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+connection\+\_\+manager\+\_\+shutdown\+\_\+complete\+\_\+fn(void $\ast$user\+\_\+data)}
 
 
 

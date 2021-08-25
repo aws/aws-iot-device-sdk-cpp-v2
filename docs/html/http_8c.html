@@ -97,7 +97,7 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a11530c19f6bc3f0261a4668f40436d6d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="http_8c.html#a11530c19f6bc3f0261a4668f40436d6d">s_destroy_enum_value</a> (void *value)</td></tr>
 <tr class="separator:a11530c19f6bc3f0261a4668f40436d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a249a55030cafb1dd9581f6d704ad950c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="http_8c.html#a249a55030cafb1dd9581f6d704ad950c">s_init_str_to_enum_hash_table</a> (struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *table, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *str_array, int start_index, int end_index, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> ignore_case)</td></tr>
+<tr class="memitem:a249a55030cafb1dd9581f6d704ad950c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="http_8c.html#a249a55030cafb1dd9581f6d704ad950c">s_init_str_to_enum_hash_table</a> (struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *table, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *str_array, int start_index, int end_index, bool ignore_case)</td></tr>
 <tr class="separator:a249a55030cafb1dd9581f6d704ad950c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa15b3ad92674b36ac39f4bc0877c92f9"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="http_8c.html#aa15b3ad92674b36ac39f4bc0877c92f9">s_find_in_str_to_enum_hash_table</a> (const struct <a class="el" href="structaws__hash__table.html">aws_hash_table</a> *table, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *key)</td></tr>
 <tr class="separator:aa15b3ad92674b36ac39f4bc0877c92f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,7 +152,7 @@ Variables</h2></td></tr>
 <tr class="separator:ae38b5f98e4af219ba8d715b3de505d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad35dd77080a3fe504b71da2f291740b3"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="http_8c.html#ad35dd77080a3fe504b71da2f291740b3">s_header_enum_to_str</a> [<a class="el" href="http__impl_8h.html#a12be5e482ebfe4d5f53c5a493099818fa5725ef4c402e78ffea3f505daf0932d0">AWS_HTTP_HEADER_COUNT</a>]</td></tr>
 <tr class="separator:ad35dd77080a3fe504b71da2f291740b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e0a762a360f8f4078afaba44e688669"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="http_8c.html#a3e0a762a360f8f4078afaba44e688669">s_library_initialized</a> = <a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a></td></tr>
+<tr class="memitem:a3e0a762a360f8f4078afaba44e688669"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="http_8c.html#a3e0a762a360f8f4078afaba44e688669">s_library_initialized</a> = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td></tr>
 <tr class="separator:a3e0a762a360f8f4078afaba44e688669"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e011b122c331d5dd58cb849b638fd21"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="http_8c.html#a3e011b122c331d5dd58cb849b638fd21">aws_http_method_get</a> = <a class="el" href="byte__buf_8h.html#a25bb15426b081484f79b35669fc81b90">AWS_BYTE_CUR_INIT_FROM_STRING_LITERAL</a>(&quot;GET&quot;)</td></tr>
 <tr class="separator:a3e011b122c331d5dd58cb849b638fd21"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -522,7 +522,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>ignore_case</em>&#160;</td>
         </tr>
         <tr>
@@ -947,7 +947,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_library_initialized = <a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a></td>
+          <td class="memname">bool s_library_initialized = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td>
         </tr>
       </table>
   </td>

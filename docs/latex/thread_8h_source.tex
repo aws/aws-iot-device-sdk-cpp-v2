@@ -50,7 +50,7 @@
 \DoxyCodeLine{77 \textcolor{preprocessor}{\#else}}
 \DoxyCodeLine{78 \textcolor{keyword}{typedef} pthread\_once\_t \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\_thread\_once}};}
 \DoxyCodeLine{79 \textcolor{preprocessor}{\#    define AWS\_THREAD\_ONCE\_STATIC\_INIT PTHREAD\_ONCE\_INIT}}
-\DoxyCodeLine{80 \textcolor{keyword}{typedef} \mbox{\hyperlink{preamble_8h_a37c756f466ee6aa44725fa95b55047cc}{pthread\_t}} \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\_thread\_id\_t}};}
+\DoxyCodeLine{80 \textcolor{keyword}{typedef} pthread\_t \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\_thread\_id\_t}};}
 \DoxyCodeLine{81 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{82 }
 \DoxyCodeLine{83 \textcolor{comment}{/*}}
@@ -61,7 +61,7 @@
 \DoxyCodeLine{88 \textcolor{preprocessor}{\#define AWS\_THREAD\_ID\_T\_REPR\_BUFSZ (sizeof(aws\_thread\_id\_t) * 2 + 1)}}
 \DoxyCodeLine{89 }
 \DoxyCodeLine{90 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__thread}{aws\_thread}} \{}
-\DoxyCodeLine{91     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__thread_abd657b6ca4e93a315061c3abeda1c1e6}{allocator}};}
+\DoxyCodeLine{91     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__thread_acf4c572979f9b0eb817f9e5d3fe35a3e}{allocator}};}
 \DoxyCodeLine{92     \textcolor{keyword}{enum} \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdc}{aws\_thread\_detach\_state}} \mbox{\hyperlink{structaws__thread_a3a9092306d47358602b0b16342c98a22}{detach\_state}};}
 \DoxyCodeLine{93 \textcolor{preprocessor}{\#ifdef \_WIN32}}
 \DoxyCodeLine{94     \textcolor{keywordtype}{void} *thread\_handle;}
@@ -74,10 +74,10 @@
 \DoxyCodeLine{104 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{105 \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__thread__options}{aws\_thread\_options}} *\mbox{\hyperlink{thread_8h_a393cb909ab896d3bc93f3db1d820b818}{aws\_default\_thread\_options}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{106 }
-\DoxyCodeLine{107 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{thread_8h_a22b23eae89a5c94f95dca6e6db1accc2}{aws\_thread\_call\_once}}(\mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\_thread\_once}} *flag, \textcolor{keywordtype}{void} (*call\_once)(\textcolor{keywordtype}{void} *), \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{107 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{thread_8h_a22b23eae89a5c94f95dca6e6db1accc2}{aws\_thread\_call\_once}}(\mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\_thread\_once}} *flag, \textcolor{keywordtype}{void} (*call\_once)(\textcolor{keywordtype}{void} *), \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{108 }
 \DoxyCodeLine{113 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{114 \textcolor{keywordtype}{int} \mbox{\hyperlink{thread_8h_afd023fdb173f9f30b73c1a7836692169}{aws\_thread\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__thread}{aws\_thread}} *thread, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{114 \textcolor{keywordtype}{int} \mbox{\hyperlink{thread_8h_afd023fdb173f9f30b73c1a7836692169}{aws\_thread\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__thread}{aws\_thread}} *thread, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator);}
 \DoxyCodeLine{115 }
 \DoxyCodeLine{121 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{122 \textcolor{keywordtype}{int} \mbox{\hyperlink{thread_8h_af4fab02896eab6897d29e4d88c1727c1}{aws\_thread\_launch}}(}
@@ -113,10 +113,10 @@
 \DoxyCodeLine{188 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{189 \textcolor{keywordtype}{void} \mbox{\hyperlink{thread_8h_a7102ce1697f8815273d004a7e4945df9}{aws\_thread\_current\_sleep}}(uint64\_t nanos);}
 \DoxyCodeLine{190 }
-\DoxyCodeLine{191 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\_thread\_atexit\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{191 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\_thread\_atexit\_fn}})(\textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{192 }
 \DoxyCodeLine{199 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{200 \textcolor{keywordtype}{int} \mbox{\hyperlink{thread_8h_a086d801cf3c365e4b982c52637acf9b5}{aws\_thread\_current\_at\_exit}}(\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\_thread\_atexit\_fn}} *callback, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{200 \textcolor{keywordtype}{int} \mbox{\hyperlink{thread_8h_a086d801cf3c365e4b982c52637acf9b5}{aws\_thread\_current\_at\_exit}}(\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\_thread\_atexit\_fn}} *callback, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{201 }
 \DoxyCodeLine{209 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{thread_8h_aeb83c3ddd739c2f4f49450ff767408a4}{aws\_thread\_increment\_unjoined\_count}}(\textcolor{keywordtype}{void});}
 \DoxyCodeLine{210 }

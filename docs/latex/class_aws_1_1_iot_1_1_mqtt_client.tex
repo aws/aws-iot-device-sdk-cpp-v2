@@ -7,9 +7,9 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_a9f06bf02c18de0c646ab6b0df59d0fe1}{Mqtt\+Client}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt\+::\+Io\+::\+Client\+Bootstrap}} \&bootstrap, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_a9f06bf02c18de0c646ab6b0df59d0fe1}{Mqtt\+Client}} (\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt\+::\+Io\+::\+Client\+Bootstrap}} \&bootstrap, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
 \item 
-std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Crt\+::\+Mqtt\+::\+Mqtt\+Connection}} $>$ \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_ac5faca751007ca4a3eebda88a6c06b2b}{New\+Connection}} (const \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config}{Mqtt\+Client\+Connection\+Config}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}) noexcept
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{Crt\+::\+Mqtt\+::\+Mqtt\+Connection}} $>$ \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_ac5faca751007ca4a3eebda88a6c06b2b}{New\+Connection}} (const \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config}{Mqtt\+Client\+Connection\+Config}} \&config) noexcept
 \item 
 int \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_a7019e052869b4b121aed212f2b3347a4}{Last\+Error}} () const noexcept
 \item 
@@ -49,7 +49,7 @@ the value of the last aws error encountered by operations on this instance.
 \index{Aws::Iot::MqttClient@{Aws::Iot::MqttClient}!operator bool@{operator bool}}
 \index{operator bool@{operator bool}!Aws::Iot::MqttClient@{Aws::Iot::MqttClient}}
 \doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
-{\footnotesize\ttfamily Aws\+::\+Iot\+::\+Mqtt\+Client\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Iot\+::\+Mqtt\+Client\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
 
 \begin{DoxyReturn}{Returns}
 true if the instance is in a valid state, false otherwise. 

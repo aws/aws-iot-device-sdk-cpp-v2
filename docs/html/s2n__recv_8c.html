@@ -97,11 +97,11 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8cf2911199525c145a2686a56ed6e47b"><td class="memItemLeft" align="right" valign="top">S2N_RESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__recv_8c.html#a8cf2911199525c145a2686a56ed6e47b">s2n_read_in_bytes</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *<a class="el" href="log__formatter__test_8c.html#ae73289c5189c80c0661459b0f4743217">output</a>, uint32_t <a class="el" href="iocp__event__loop_8c.html#ae809d5359ac030c60a30a8f0b2294b82">length</a>)</td></tr>
+<tr class="memitem:a8cf2911199525c145a2686a56ed6e47b"><td class="memItemLeft" align="right" valign="top">S2N_RESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__recv_8c.html#a8cf2911199525c145a2686a56ed6e47b">s2n_read_in_bytes</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *output, uint32_t <a class="el" href="iocp__event__loop_8c.html#a09ef0d7d086ae398d78b446470ae8b3a">length</a>)</td></tr>
 <tr class="separator:a8cf2911199525c145a2686a56ed6e47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a807adeb1baad4849f782cfd4de10d113"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__recv_8c.html#a807adeb1baad4849f782cfd4de10d113">s2n_read_full_record</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, uint8_t *record_type, int *isSSLv2)</td></tr>
 <tr class="separator:a807adeb1baad4849f782cfd4de10d113"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afede11e597a4db3024ec2b68733a643d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__recv_8c.html#afede11e597a4db3024ec2b68733a643d">s2n_recv</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>, <a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> size, <a class="el" href="s2n_8h.html#af70ca0b089daa98cd79a424d3f6af15d">s2n_blocked_status</a> *<a class="el" href="https_8c.html#ad4675d5d36c6aef3c5f7eaca1d538053">blocked</a>)</td></tr>
+<tr class="memitem:afede11e597a4db3024ec2b68733a643d"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__recv_8c.html#afede11e597a4db3024ec2b68733a643d">s2n_recv</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>, ssize_t size, <a class="el" href="s2n_8h.html#af70ca0b089daa98cd79a424d3f6af15d">s2n_blocked_status</a> *<a class="el" href="https_8c.html#ad4675d5d36c6aef3c5f7eaca1d538053">blocked</a>)</td></tr>
 <tr class="separator:afede11e597a4db3024ec2b68733a643d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af406aca136e7ea94d80e368e6c7142d7"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__recv_8c.html#af406aca136e7ea94d80e368e6c7142d7">s2n_peek</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn)</td></tr>
 <tr class="separator:af406aca136e7ea94d80e368e6c7142d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -217,7 +217,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a> s2n_recv </td>
+          <td class="memname">ssize_t s2n_recv </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *&#160;</td>
           <td class="paramname"><em>conn</em>, </td>
@@ -231,7 +231,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#af02a2e09430a9ed80bedb598467ce8d1">ssize_t</a>&#160;</td>
+          <td class="paramtype">ssize_t&#160;</td>
           <td class="paramname"><em>size</em>, </td>
         </tr>
         <tr>

@@ -39,13 +39,13 @@ enum \mbox{\hyperlink{der_8h_ae437a791664c221e76393a40c87b1762}{aws\+\_\+der\+\_
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$ \mbox{\hyperlink{der_8h_a9543cd8df33a2376db94d0793da5cd20}{aws\+\_\+der\+\_\+encoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t capacity)
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$ \mbox{\hyperlink{der_8h_a9543cd8df33a2376db94d0793da5cd20}{aws\+\_\+der\+\_\+encoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t capacity)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} void \mbox{\hyperlink{der_8h_a472a565b8d2595772d5391d873013fd6}{aws\+\_\+der\+\_\+encoder\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int \mbox{\hyperlink{der_8h_a528d7d998d3b4f72dcc00d08bc5ba0f3}{aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+integer}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} integer)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int \mbox{\hyperlink{der_8h_a63e3c3728987323192a515a361fea2c0}{aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a08f076c86f430b6f0e301fcf94223b38}{boolean}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int \mbox{\hyperlink{der_8h_a63e3c3728987323192a515a361fea2c0}{aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder, bool \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a08f076c86f430b6f0e301fcf94223b38}{boolean}})
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int \mbox{\hyperlink{der_8h_a5b75ffa2e762745825762b535ffc41ac}{aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+null}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder)
 \item 
@@ -63,11 +63,11 @@ enum \mbox{\hyperlink{der_8h_ae437a791664c221e76393a40c87b1762}{aws\+\_\+der\+\_
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int \mbox{\hyperlink{der_8h_a10ee776d87ce43eead3804506c6f4775}{aws\+\_\+der\+\_\+encoder\+\_\+get\+\_\+contents}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$contents)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$ \mbox{\hyperlink{der_8h_a020e6fe4b573c1cecc636835282eeb33}{aws\+\_\+der\+\_\+decoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input)
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$ \mbox{\hyperlink{der_8h_a020e6fe4b573c1cecc636835282eeb33}{aws\+\_\+der\+\_\+decoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} void \mbox{\hyperlink{der_8h_a57ea30b6c62773f38181970c7308c91e}{aws\+\_\+der\+\_\+decoder\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{der_8h_a2a38e0da87bab4800fdc86cdf369f33a}{aws\+\_\+der\+\_\+decoder\+\_\+next}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder)
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} bool \mbox{\hyperlink{der_8h_a2a38e0da87bab4800fdc86cdf369f33a}{aws\+\_\+der\+\_\+decoder\+\_\+next}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} enum \mbox{\hyperlink{der_8h_ae437a791664c221e76393a40c87b1762}{aws\+\_\+der\+\_\+type}} \mbox{\hyperlink{der_8h_ab2cb74eac3a4106f2cfd81e80a3b6fac}{aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+type}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder)
 \item 
@@ -79,7 +79,7 @@ enum \mbox{\hyperlink{der_8h_ae437a791664c221e76393a40c87b1762}{aws\+\_\+der\+\_
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int \mbox{\hyperlink{der_8h_a43f5016500ff1eaa08f987eb7bf824af}{aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+integer}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$integer)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int \mbox{\hyperlink{der_8h_a95af9caa5b9d827e1df6e423ff627e21}{aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a08f076c86f430b6f0e301fcf94223b38}{boolean}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int \mbox{\hyperlink{der_8h_a95af9caa5b9d827e1df6e423ff627e21}{aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder, bool $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a08f076c86f430b6f0e301fcf94223b38}{boolean}})
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int \mbox{\hyperlink{der_8h_ad19264e76c9194b6064286212c6756fb}{aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+blob}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$blob)
 \end{DoxyCompactItemize}
@@ -216,7 +216,7 @@ Initialized decoder, or NULL
 \index{der.h@{der.h}!aws\_der\_decoder\_next@{aws\_der\_decoder\_next}}
 \index{aws\_der\_decoder\_next@{aws\_der\_decoder\_next}!der.h@{der.h}}
 \doxysubsubsection{\texorpdfstring{aws\_der\_decoder\_next()}{aws\_der\_decoder\_next()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+der\+\_\+decoder\+\_\+next (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$}]{decoder }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} bool aws\+\_\+der\+\_\+decoder\+\_\+next (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$}]{decoder }\end{DoxyParamCaption})}
 
 Allows for iteration over the decoded TLVs. 
 \begin{DoxyParams}{Parameters}
@@ -246,7 +246,7 @@ AWS\+\_\+\+OP\+\_\+\+ERR if an error occurs, otherwise AWS\+\_\+\+OP\+\_\+\+SUCC
 \index{der.h@{der.h}!aws\_der\_decoder\_tlv\_boolean@{aws\_der\_decoder\_tlv\_boolean}}
 \index{aws\_der\_decoder\_tlv\_boolean@{aws\_der\_decoder\_tlv\_boolean}!der.h@{der.h}}
 \doxysubsubsection{\texorpdfstring{aws\_der\_decoder\_tlv\_boolean()}{aws\_der\_decoder\_tlv\_boolean()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$}]{decoder,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{boolean }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$}]{decoder,  }\item[{bool $\ast$}]{boolean }\end{DoxyParamCaption})}
 
 Extracts the current TLV BOOLEAN value (BOOLEAN) 
 \begin{DoxyParams}{Parameters}
@@ -451,7 +451,7 @@ AWS\+\_\+\+OP\+\_\+\+ERR if an error occurs, otherwise AWS\+\_\+\+OP\+\_\+\+SUCC
 \index{der.h@{der.h}!aws\_der\_encoder\_write\_boolean@{aws\_der\_encoder\_write\_boolean}}
 \index{aws\_der\_encoder\_write\_boolean@{aws\_der\_encoder\_write\_boolean}!der.h@{der.h}}
 \doxysubsubsection{\texorpdfstring{aws\_der\_encoder\_write\_boolean()}{aws\_der\_encoder\_write\_boolean()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$}]{encoder,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{boolean }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\+\_\+\+CAL\+\_\+\+API}} int aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$}]{encoder,  }\item[{bool}]{boolean }\end{DoxyParamCaption})}
 
 Writes a boolean to the DER stream 
 \begin{DoxyParams}{Parameters}

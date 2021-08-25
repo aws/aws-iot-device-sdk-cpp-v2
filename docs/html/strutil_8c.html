@@ -83,24 +83,24 @@ Functions</h2></td></tr>
 <tr class="separator:a73e0a6af4c0f6a2958bf6504bb4374cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16a9cce1e2a0118bb6666ba23c5f17d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a16a9cce1e2a0118bb6666ba23c5f17d2">aws_strutil_read_unsigned_hex</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> cursor, uint64_t *dst)</td></tr>
 <tr class="separator:a16a9cce1e2a0118bb6666ba23c5f17d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d99bcfc7815244bb44c0fd6d2c5da86"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a7d99bcfc7815244bb44c0fd6d2c5da86">s_trim</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> cursor, const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> trim_table[256])</td></tr>
+<tr class="memitem:a7d99bcfc7815244bb44c0fd6d2c5da86"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a7d99bcfc7815244bb44c0fd6d2c5da86">s_trim</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> cursor, const bool trim_table[256])</td></tr>
 <tr class="separator:a7d99bcfc7815244bb44c0fd6d2c5da86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac262ed7cb0c0c7c8ccd9474172f06406"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#ac262ed7cb0c0c7c8ccd9474172f06406">aws_strutil_trim_http_whitespace</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> cursor)</td></tr>
 <tr class="separator:ac262ed7cb0c0c7c8ccd9474172f06406"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a864cd52517631146f9808d9c07acb26b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a864cd52517631146f9808d9c07acb26b">s_is_token</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="event__stream__rpc__server__connection__test_8c.html#a3f037ea767197698bc0b4c14fa155431">token</a>, const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> token_table[256])</td></tr>
+<tr class="memitem:a864cd52517631146f9808d9c07acb26b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a864cd52517631146f9808d9c07acb26b">s_is_token</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> token, const bool token_table[256])</td></tr>
 <tr class="separator:a864cd52517631146f9808d9c07acb26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac57b0b180dda9b7174d11968901e72cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#ac57b0b180dda9b7174d11968901e72cf">aws_strutil_is_http_token</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="event__stream__rpc__server__connection__test_8c.html#a3f037ea767197698bc0b4c14fa155431">token</a>)</td></tr>
+<tr class="memitem:ac57b0b180dda9b7174d11968901e72cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#ac57b0b180dda9b7174d11968901e72cf">aws_strutil_is_http_token</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> token)</td></tr>
 <tr class="separator:ac57b0b180dda9b7174d11968901e72cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0194295eb9b65144d12eb6465a75f90e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a0194295eb9b65144d12eb6465a75f90e">aws_strutil_is_lowercase_http_token</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> <a class="el" href="event__stream__rpc__server__connection__test_8c.html#a3f037ea767197698bc0b4c14fa155431">token</a>)</td></tr>
+<tr class="memitem:a0194295eb9b65144d12eb6465a75f90e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a0194295eb9b65144d12eb6465a75f90e">aws_strutil_is_lowercase_http_token</a> (struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> token)</td></tr>
 <tr class="separator:a0194295eb9b65144d12eb6465a75f90e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a3ba145a96b2941190d05808ca292c464"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a3ba145a96b2941190d05808ca292c464">s_http_whitespace_table</a> [256]</td></tr>
+<tr class="memitem:a3ba145a96b2941190d05808ca292c464"><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a3ba145a96b2941190d05808ca292c464">s_http_whitespace_table</a> [256]</td></tr>
 <tr class="separator:a3ba145a96b2941190d05808ca292c464"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cde33bdebe855946e2d00fc43fb37be"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a4cde33bdebe855946e2d00fc43fb37be">s_http_token_table</a> [256]</td></tr>
+<tr class="memitem:a4cde33bdebe855946e2d00fc43fb37be"><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#a4cde33bdebe855946e2d00fc43fb37be">s_http_token_table</a> [256]</td></tr>
 <tr class="separator:a4cde33bdebe855946e2d00fc43fb37be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaefa5afe86b70f96032a090927010f18"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#aaefa5afe86b70f96032a090927010f18">s_http_lowercase_token_table</a> [256]</td></tr>
+<tr class="memitem:aaefa5afe86b70f96032a090927010f18"><td class="memItemLeft" align="right" valign="top">static const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="strutil_8c.html#aaefa5afe86b70f96032a090927010f18">s_http_lowercase_token_table</a> [256]</td></tr>
 <tr class="separator:aaefa5afe86b70f96032a090927010f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -111,7 +111,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_strutil_is_http_token </td>
+          <td class="memname">bool aws_strutil_is_http_token </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
           <td class="paramname"><em>token</em></td><td>)</td>
@@ -130,7 +130,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_strutil_is_lowercase_http_token </td>
+          <td class="memname">bool aws_strutil_is_lowercase_http_token </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
           <td class="paramname"><em>token</em></td><td>)</td>
@@ -233,7 +233,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_is_token </td>
+          <td class="memname">static bool s_is_token </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a>&#160;</td>
           <td class="paramname"><em>token</em>, </td>
@@ -241,7 +241,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">const bool&#160;</td>
           <td class="paramname"><em>token_table</em>[256]&#160;</td>
         </tr>
         <tr>
@@ -320,7 +320,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">const bool&#160;</td>
           <td class="paramname"><em>trim_table</em>[256]&#160;</td>
         </tr>
         <tr>
@@ -349,7 +349,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_http_lowercase_token_table[256]</td>
+          <td class="memname">const bool s_http_lowercase_token_table[256]</td>
         </tr>
       </table>
   </td>
@@ -383,7 +383,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_http_token_table[256]</td>
+          <td class="memname">const bool s_http_token_table[256]</td>
         </tr>
       </table>
   </td>
@@ -422,7 +422,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_http_whitespace_table[256]</td>
+          <td class="memname">const bool s_http_whitespace_table[256]</td>
         </tr>
       </table>
   </td>

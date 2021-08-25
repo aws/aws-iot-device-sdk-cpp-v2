@@ -20,17 +20,17 @@ void $\ast$ \mbox{\hyperlink{message__pool_8c_ab8f3e45299e094911028a9ad634f91ab}
 \item 
 void \mbox{\hyperlink{message__pool_8c_af343eeb0e401d7a5d5f5ed2f18a97cbb}{aws\+\_\+memory\+\_\+pool\+\_\+release}} (struct \mbox{\hyperlink{structaws__memory__pool}{aws\+\_\+memory\+\_\+pool}} $\ast$mempool, void $\ast$to\+\_\+release)
 \item 
-void $\ast$ \mbox{\hyperlink{message__pool_8c_a6caee8a0e254255aa7b76f8fc9f85829}{s\+\_\+message\+\_\+pool\+\_\+mem\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+void $\ast$ \mbox{\hyperlink{message__pool_8c_a6caee8a0e254255aa7b76f8fc9f85829}{s\+\_\+message\+\_\+pool\+\_\+mem\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t size)
 \item 
-void \mbox{\hyperlink{message__pool_8c_ab92020faf1ea2d1f70932ceee62e43d7}{s\+\_\+message\+\_\+pool\+\_\+mem\+\_\+release}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr)
+void \mbox{\hyperlink{message__pool_8c_ab92020faf1ea2d1f70932ceee62e43d7}{s\+\_\+message\+\_\+pool\+\_\+mem\+\_\+release}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$ptr)
 \item 
 int \mbox{\hyperlink{message__pool_8c_ae1e329e24764d797323664ae60193147}{aws\+\_\+message\+\_\+pool\+\_\+init}} (struct \mbox{\hyperlink{structaws__message__pool}{aws\+\_\+message\+\_\+pool}} $\ast$msg\+\_\+pool, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, struct \mbox{\hyperlink{structaws__message__pool__creation__args}{aws\+\_\+message\+\_\+pool\+\_\+creation\+\_\+args}} $\ast$args)
 \item 
 void \mbox{\hyperlink{message__pool_8c_a93bbfa976bfc3c99526d4c4853d4eda8}{aws\+\_\+message\+\_\+pool\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__message__pool}{aws\+\_\+message\+\_\+pool}} $\ast$msg\+\_\+pool)
 \item 
-struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ \mbox{\hyperlink{message__pool_8c_af010476ef0b16c387a7d531cfebae859}{aws\+\_\+message\+\_\+pool\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__message__pool}{aws\+\_\+message\+\_\+pool}} $\ast$msg\+\_\+pool, enum \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\+\_\+io\+\_\+message\+\_\+type}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}}, size\+\_\+t size\+\_\+hint)
+struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$ \mbox{\hyperlink{message__pool_8c_af010476ef0b16c387a7d531cfebae859}{aws\+\_\+message\+\_\+pool\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__message__pool}{aws\+\_\+message\+\_\+pool}} $\ast$msg\+\_\+pool, enum \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\+\_\+io\+\_\+message\+\_\+type}} message\+\_\+type, size\+\_\+t size\+\_\+hint)
 \item 
-void \mbox{\hyperlink{message__pool_8c_ad61616e3c9df6e78238897494d48b777}{aws\+\_\+message\+\_\+pool\+\_\+release}} (struct \mbox{\hyperlink{structaws__message__pool}{aws\+\_\+message\+\_\+pool}} $\ast$msg\+\_\+pool, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+void \mbox{\hyperlink{message__pool_8c_ad61616e3c9df6e78238897494d48b777}{aws\+\_\+message\+\_\+pool\+\_\+release}} (struct \mbox{\hyperlink{structaws__message__pool}{aws\+\_\+message\+\_\+pool}} $\ast$msg\+\_\+pool, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}

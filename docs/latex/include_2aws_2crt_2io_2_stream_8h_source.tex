@@ -37,7 +37,7 @@
 \DoxyCodeLine{38                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a4c6094ba9a7457d1406b23c625c817eb}{InputStream}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{InputStream}} \&\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{39                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{InputStream}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_ac001ce04acbaa13df20a3790e7bb17a0}{operator=}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{InputStream}} \&\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{40 }
-\DoxyCodeLine{41                 \textcolor{keyword}{explicit} \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} IsValid(); \}}
+\DoxyCodeLine{41                 \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} IsValid(); \}}
 \DoxyCodeLine{42                 \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a103064353d7d3d35ecaca566e48febe3}{IsValid}}() const noexcept = 0;}
 \DoxyCodeLine{43 }
 \DoxyCodeLine{44                 \mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}} *GetUnderlyingStream() noexcept \{ \textcolor{keywordflow}{return} \&m\_underlying\_stream; \}}
@@ -51,16 +51,16 @@
 \DoxyCodeLine{52                 \{}
 \DoxyCodeLine{53                     \textcolor{keywordflow}{return} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_adb07147f0cea88765aa760dd9457250e}{aws\_input\_stream\_get\_status}}(\&m\_underlying\_stream, \&status) == 0;}
 \DoxyCodeLine{54                 \}}
-\DoxyCodeLine{55                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_aa50980fbe2d533a751a1f37a96266730}{GetLength}}(int64\_t \&\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})}
+\DoxyCodeLine{55                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_aa50980fbe2d533a751a1f37a96266730}{GetLength}}(int64\_t \&\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})}
 \DoxyCodeLine{56                 \{}
-\DoxyCodeLine{57                     \textcolor{keywordflow}{return} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a127332e564d2d9868e8e9197d0833c23}{aws\_input\_stream\_get\_length}}(\&m\_underlying\_stream, \&\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}}) == 0;}
+\DoxyCodeLine{57                     \textcolor{keywordflow}{return} \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a127332e564d2d9868e8e9197d0833c23}{aws\_input\_stream\_get\_length}}(\&m\_underlying\_stream, \&\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}}) == 0;}
 \DoxyCodeLine{58                 \}}
 \DoxyCodeLine{59 }
 \DoxyCodeLine{60               \textcolor{keyword}{protected}:}
 \DoxyCodeLine{61                 \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a336d789eab234c8a4f5226ce535c7c7d}{m\_allocator}};}
 \DoxyCodeLine{62                 \mbox{\hyperlink{structaws__input__stream}{aws\_input\_stream}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream_a2d2f659060cab549b200711948b7c158}{m\_underlying\_stream}};}
 \DoxyCodeLine{63 }
-\DoxyCodeLine{64                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{InputStream}}(\mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
+\DoxyCodeLine{64                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_input_stream}{InputStream}}(\mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
 \DoxyCodeLine{65 }
 \DoxyCodeLine{66 \textcolor{comment}{                /***}}
 \DoxyCodeLine{67 \textcolor{comment}{                 * Read up-\/to buffer::capacity -\/ buffer::len into buffer::buffer}}
@@ -96,7 +96,7 @@
 \DoxyCodeLine{113               \textcolor{keyword}{public}:}
 \DoxyCodeLine{114                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_std_i_o_stream_input_stream}{StdIOStreamInputStream}}(}
 \DoxyCodeLine{115                     std::shared\_ptr<Aws::Crt::Io::IStream> stream,}
-\DoxyCodeLine{116                     \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{116                     \mbox{\hyperlink{structaws__allocator}{Aws::Crt::Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{117 }
 \DoxyCodeLine{118                 \textcolor{keywordtype}{bool} IsValid() \textcolor{keyword}{const} \textcolor{keyword}{noexcept} \textcolor{keyword}{override};}
 \DoxyCodeLine{119 }

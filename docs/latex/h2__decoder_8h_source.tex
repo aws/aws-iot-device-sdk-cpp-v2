@@ -58,7 +58,7 @@
 \DoxyCodeLine{59     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2err}{aws\_h2err}} (*\mbox{\hyperlink{structaws__h2__decoder__vtable_a06e763bb5b93806d87450431c092629a}{on\_end\_stream}})(uint32\_t stream\_id, \textcolor{keywordtype}{void} *userdata);}
 \DoxyCodeLine{60 }
 \DoxyCodeLine{61     \textcolor{comment}{/* Called once for RST\_STREAM frame */}}
-\DoxyCodeLine{62     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2err}{aws\_h2err}} (*\mbox{\hyperlink{structaws__h2__decoder__vtable_a9cddde1905311979fd5611a1e55130a9}{on\_rst\_stream}})(uint32\_t stream\_id, uint32\_t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *userdata);}
+\DoxyCodeLine{62     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2err}{aws\_h2err}} (*\mbox{\hyperlink{structaws__h2__decoder__vtable_a9cddde1905311979fd5611a1e55130a9}{on\_rst\_stream}})(uint32\_t stream\_id, uint32\_t error\_code, \textcolor{keywordtype}{void} *userdata);}
 \DoxyCodeLine{63 }
 \DoxyCodeLine{64     \textcolor{comment}{/* Called once For PING frame with ACK flag set */}}
 \DoxyCodeLine{65     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2err}{aws\_h2err}} (*\mbox{\hyperlink{structaws__h2__decoder__vtable_a56802d17a62215fc43fc4abd585f1c12}{on\_ping\_ack}})(uint8\_t opaque\_data[\mbox{\hyperlink{connection_8h_a99cebd5298f16fec37625e4a1a01c64a}{AWS\_HTTP2\_PING\_DATA\_SIZE}}], \textcolor{keywordtype}{void} *userdata);}
@@ -76,7 +76,7 @@
 \DoxyCodeLine{77     \textcolor{comment}{/* For GOAWAY frame: \_begin() is called, then 0+ \_i() calls, then \_end().}}
 \DoxyCodeLine{78 \textcolor{comment}{     * No other decoder callbacks will occur in this time. */}}
 \DoxyCodeLine{79     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2err}{aws\_h2err}} (}
-\DoxyCodeLine{80         *\mbox{\hyperlink{structaws__h2__decoder__vtable_a73b411e2011d1f9301de165289c659ac}{on\_goaway\_begin}})(uint32\_t last\_stream, uint32\_t \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, uint32\_t debug\_data\_length, \textcolor{keywordtype}{void} *userdata);}
+\DoxyCodeLine{80         *\mbox{\hyperlink{structaws__h2__decoder__vtable_a73b411e2011d1f9301de165289c659ac}{on\_goaway\_begin}})(uint32\_t last\_stream, uint32\_t error\_code, uint32\_t debug\_data\_length, \textcolor{keywordtype}{void} *userdata);}
 \DoxyCodeLine{81     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2err}{aws\_h2err}} (*\mbox{\hyperlink{structaws__h2__decoder__vtable_ab2695c65c873d986ad6abb12c4394501}{on\_goaway\_i}})(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} debug\_data, \textcolor{keywordtype}{void} *userdata);}
 \DoxyCodeLine{82     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2err}{aws\_h2err}} (*\mbox{\hyperlink{structaws__h2__decoder__vtable_aa755b3416573462c59f7686d4f8a3a6d}{on\_goaway\_end}})(\textcolor{keywordtype}{void} *userdata);}
 \DoxyCodeLine{83 }

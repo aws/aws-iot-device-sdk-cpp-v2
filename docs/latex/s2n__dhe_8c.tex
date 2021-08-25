@@ -19,11 +19,11 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$ \mbox{\hyperlink{s2n__dhe_8c_a4973ce1e482194575537f83333522ef0}{s2n\+\_\+get\+\_\+\+Ys\+\_\+dh\+\_\+param}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$dh\+\_\+params)
+static const BIGNUM $\ast$ \mbox{\hyperlink{s2n__dhe_8c_a4973ce1e482194575537f83333522ef0}{s2n\+\_\+get\+\_\+\+Ys\+\_\+dh\+\_\+param}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$dh\+\_\+params)
 \item 
-static const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$ \mbox{\hyperlink{s2n__dhe_8c_a2796640424a948a2e4395e08520a1a8e}{s2n\+\_\+get\+\_\+p\+\_\+dh\+\_\+param}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$dh\+\_\+params)
+static const BIGNUM $\ast$ \mbox{\hyperlink{s2n__dhe_8c_a2796640424a948a2e4395e08520a1a8e}{s2n\+\_\+get\+\_\+p\+\_\+dh\+\_\+param}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$dh\+\_\+params)
 \item 
-static const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}} $\ast$ \mbox{\hyperlink{s2n__dhe_8c_a3cf0920490049278e10db64320af39cb}{s2n\+\_\+get\+\_\+g\+\_\+dh\+\_\+param}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$dh\+\_\+params)
+static const BIGNUM $\ast$ \mbox{\hyperlink{s2n__dhe_8c_a3cf0920490049278e10db64320af39cb}{s2n\+\_\+get\+\_\+g\+\_\+dh\+\_\+param}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$dh\+\_\+params)
 \item 
 static int \mbox{\hyperlink{s2n__dhe_8c_a505a13a07ae132461c40ac191222e9ca}{s2n\+\_\+check\+\_\+p\+\_\+g\+\_\+dh\+\_\+params}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$dh\+\_\+params)
 \item 
@@ -37,7 +37,7 @@ int \mbox{\hyperlink{s2n__dhe_8c_a2a588f9f6c78190225878f36cfb98ae8}{s2n\+\_\+pkc
 \item 
 int \mbox{\hyperlink{s2n__dhe_8c_aeb2667fcb851a9b7ce54fc822d358f19}{s2n\+\_\+dh\+\_\+p\+\_\+g\+\_\+\+Ys\+\_\+to\+\_\+dh\+\_\+params}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$server\+\_\+dh\+\_\+params, struct s2n\+\_\+blob $\ast$p, struct s2n\+\_\+blob $\ast$g, struct s2n\+\_\+blob $\ast$Ys)
 \item 
-int \mbox{\hyperlink{s2n__dhe_8c_a847b2d0a73d4e014a41c50b9780b8245}{s2n\+\_\+dh\+\_\+params\+\_\+to\+\_\+p\+\_\+g\+\_\+\+Ys}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$server\+\_\+dh\+\_\+params, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, struct s2n\+\_\+blob $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{s2n__dhe_8c_a847b2d0a73d4e014a41c50b9780b8245}{s2n\+\_\+dh\+\_\+params\+\_\+to\+\_\+p\+\_\+g\+\_\+\+Ys}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$server\+\_\+dh\+\_\+params, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, struct s2n\+\_\+blob $\ast$output)
 \item 
 int \mbox{\hyperlink{s2n__dhe_8c_a5883f9a420e0b7c297b061ea0ed108e8}{s2n\+\_\+dh\+\_\+compute\+\_\+shared\+\_\+secret\+\_\+as\+\_\+client}} (struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$server\+\_\+dh\+\_\+params, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$Yc\+\_\+out, struct s2n\+\_\+blob $\ast$shared\+\_\+key)
 \item 
@@ -133,19 +133,19 @@ int \mbox{\hyperlink{s2n__dhe_8c_ad31b1e9b035a2f883bd9e8338e2e61de}{s2n\+\_\+dh\
 \index{s2n\_dhe.c@{s2n\_dhe.c}!s2n\_get\_g\_dh\_param@{s2n\_get\_g\_dh\_param}}
 \index{s2n\_get\_g\_dh\_param@{s2n\_get\_g\_dh\_param}!s2n\_dhe.c@{s2n\_dhe.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_get\_g\_dh\_param()}{s2n\_get\_g\_dh\_param()}}
-{\footnotesize\ttfamily static const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}}$\ast$ s2n\+\_\+get\+\_\+g\+\_\+dh\+\_\+param (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$}]{dh\+\_\+params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static const BIGNUM$\ast$ s2n\+\_\+get\+\_\+g\+\_\+dh\+\_\+param (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$}]{dh\+\_\+params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__dhe_8c_a2796640424a948a2e4395e08520a1a8e}\label{s2n__dhe_8c_a2796640424a948a2e4395e08520a1a8e}} 
 \index{s2n\_dhe.c@{s2n\_dhe.c}!s2n\_get\_p\_dh\_param@{s2n\_get\_p\_dh\_param}}
 \index{s2n\_get\_p\_dh\_param@{s2n\_get\_p\_dh\_param}!s2n\_dhe.c@{s2n\_dhe.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_get\_p\_dh\_param()}{s2n\_get\_p\_dh\_param()}}
-{\footnotesize\ttfamily static const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}}$\ast$ s2n\+\_\+get\+\_\+p\+\_\+dh\+\_\+param (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$}]{dh\+\_\+params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static const BIGNUM$\ast$ s2n\+\_\+get\+\_\+p\+\_\+dh\+\_\+param (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$}]{dh\+\_\+params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__dhe_8c_a4973ce1e482194575537f83333522ef0}\label{s2n__dhe_8c_a4973ce1e482194575537f83333522ef0}} 
 \index{s2n\_dhe.c@{s2n\_dhe.c}!s2n\_get\_Ys\_dh\_param@{s2n\_get\_Ys\_dh\_param}}
 \index{s2n\_get\_Ys\_dh\_param@{s2n\_get\_Ys\_dh\_param}!s2n\_dhe.c@{s2n\_dhe.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_get\_Ys\_dh\_param()}{s2n\_get\_Ys\_dh\_param()}}
-{\footnotesize\ttfamily static const \mbox{\hyperlink{ossl__typ_8h_a6fb19728907ec6515e4bfb716bffa141}{BIGNUM}}$\ast$ s2n\+\_\+get\+\_\+\+Ys\+\_\+dh\+\_\+param (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$}]{dh\+\_\+params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static const BIGNUM$\ast$ s2n\+\_\+get\+\_\+\+Ys\+\_\+dh\+\_\+param (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__dh__params}{s2n\+\_\+dh\+\_\+params}} $\ast$}]{dh\+\_\+params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__dhe_8c_a2a588f9f6c78190225878f36cfb98ae8}\label{s2n__dhe_8c_a2a588f9f6c78190225878f36cfb98ae8}} 
 \index{s2n\_dhe.c@{s2n\_dhe.c}!s2n\_pkcs3\_to\_dh\_params@{s2n\_pkcs3\_to\_dh\_params}}

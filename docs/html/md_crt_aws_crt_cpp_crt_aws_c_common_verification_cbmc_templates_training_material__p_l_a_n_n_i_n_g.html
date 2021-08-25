@@ -71,7 +71,7 @@ $(function() {
 <li><a href="#how-to-select-what-proofs-to-attempt-in-what-order">How to select what proofs to attempt, in what order</a></li>
 <li><a href="#how-to-get-a-sense-of-the-work-cbmc-will-involve">How to get a sense of the work CBMC will involve</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md159"></a>
+<h1><a class="anchor" id="autotoc_md158"></a>
 How to select what proofs to attempt, in what order</h1>
 <ol type="1">
 <li>Make a dependency graph of the modules in your program. There are a number of tools that can help with this, including <a href="https://www.doxygen.nl/manual/">doxygen</a>. In addition, you can manually determine a good approximation to the dependency graph using the <code>.h</code> files. If a module includes the <code>.h</code> file of another module, it likely depends on it.</li>
@@ -79,7 +79,7 @@ How to select what proofs to attempt, in what order</h1>
 <li>Inside a given module, select the best initial verification target. This is often, but not always, one of the simpler functions. In particular, you are looking for a function which is both easy to verify, and will give good insight into the data-structure invariants of the data-structures used in the given module. The more a function conforms to our <a class="el" href="md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__c_o_d_i_n_g__f_o_r__v_e_r_i_f_i_c_a_t_i_o_n.html">guidelines for coding for verification</a>, the easiest it will be to verify. In our experience, it often makes sense to start with allocation or initialization functions (which often have named that end in <code>_alloc()</code> or <code>_init()</code>.</li>
 <li>The first proof for a given module is typically the hardest. It typically requires the creation of an <code>_is_valid()</code> function and an <code>_ensure_is_allocated()</code> function. However, once these have been written once, the remainder of the module becomes much easier. The amount of time needed to complete a proof can vary significantly, from hours for a simple proof to days for a complex one. If the function has few dependencies, and conforms to the guidelines for coding for verification, we would expect an initial proof to take perhaps a day's work.[TODO I made up this number. We need data] If it is taking longer than this, try a different entry-point.</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md160"></a>
+<h1><a class="anchor" id="autotoc_md159"></a>
 How to get a sense of the work CBMC will involve</h1>
 <p >We recommend selecting a few (2-3) modules from the leaves of the dependency graph, and then doing 2-3 proofs from each module. This will give you a sense of</p>
 <ol type="1">

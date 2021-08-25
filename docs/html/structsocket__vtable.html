@@ -74,13 +74,13 @@ $(function() {
 Public Attributes</h2></td></tr>
 <tr class="memitem:a3d3ee292789a2d2cbdc6204b05e20fbd"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#a3d3ee292789a2d2cbdc6204b05e20fbd">connection_success</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket)</td></tr>
 <tr class="separator:a3d3ee292789a2d2cbdc6204b05e20fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35d437fc098b8690a188f19c8612d8d8"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#a35d437fc098b8690a188f19c8612d8d8">connection_error</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>)</td></tr>
+<tr class="memitem:a35d437fc098b8690a188f19c8612d8d8"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#a35d437fc098b8690a188f19c8612d8d8">connection_error</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, int error_code)</td></tr>
 <tr class="separator:a35d437fc098b8690a188f19c8612d8d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab76372bd45a6d1af10d76e2f6be2d25c"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#ab76372bd45a6d1af10d76e2f6be2d25c">close</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket)</td></tr>
 <tr class="separator:ab76372bd45a6d1af10d76e2f6be2d25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41d9d201df36d0ab80b7f2e48cf1c042"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#a41d9d201df36d0ab80b7f2e48cf1c042">connect</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, const struct <a class="el" href="structaws__socket__endpoint.html">aws_socket_endpoint</a> *remote_endpoint, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *connect_loop, <a class="el" href="socket_8h.html#a1d0b83fee87a38a3c099a6c88d39b6a4">aws_socket_on_connection_result_fn</a> *on_connection_result, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a41d9d201df36d0ab80b7f2e48cf1c042"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#a41d9d201df36d0ab80b7f2e48cf1c042">connect</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, const struct <a class="el" href="structaws__socket__endpoint.html">aws_socket_endpoint</a> *remote_endpoint, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *connect_loop, <a class="el" href="socket_8h.html#a1d0b83fee87a38a3c099a6c88d39b6a4">aws_socket_on_connection_result_fn</a> *on_connection_result, void *user_data)</td></tr>
 <tr class="separator:a41d9d201df36d0ab80b7f2e48cf1c042"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6227bd30c3e64800df3c5c9ed302a65"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#af6227bd30c3e64800df3c5c9ed302a65">start_accept</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *accept_loop, <a class="el" href="socket_8h.html#a10dca6bfdc5254969b118a59a93329d4">aws_socket_on_accept_result_fn</a> *on_accept_result, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:af6227bd30c3e64800df3c5c9ed302a65"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#af6227bd30c3e64800df3c5c9ed302a65">start_accept</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *accept_loop, <a class="el" href="socket_8h.html#a10dca6bfdc5254969b118a59a93329d4">aws_socket_on_accept_result_fn</a> *on_accept_result, void *user_data)</td></tr>
 <tr class="separator:af6227bd30c3e64800df3c5c9ed302a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16833cd8a56c26df721007e17a886366"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#a16833cd8a56c26df721007e17a886366">stop_accept</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket)</td></tr>
 <tr class="separator:a16833cd8a56c26df721007e17a886366"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -90,7 +90,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ac41ab253ff33f34615d568f45c2a0aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae6c427261e75f95952e411ce8f0038b"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#aae6c427261e75f95952e411ce8f0038b">read</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *buffer, size_t *amount_read)</td></tr>
 <tr class="separator:aae6c427261e75f95952e411ce8f0038b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3746186d8a491c59b86a47e25e8acb16"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#a3746186d8a491c59b86a47e25e8acb16">subscribe_to_read</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, <a class="el" href="socket_8h.html#aaec2a34992cc154435fc90dd167bf26b">aws_socket_on_readable_fn</a> *on_readable, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a3746186d8a491c59b86a47e25e8acb16"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsocket__vtable.html#a3746186d8a491c59b86a47e25e8acb16">subscribe_to_read</a> )(struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, <a class="el" href="socket_8h.html#aaec2a34992cc154435fc90dd167bf26b">aws_socket_on_readable_fn</a> *on_readable, void *user_data)</td></tr>
 <tr class="separator:a3746186d8a491c59b86a47e25e8acb16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -129,7 +129,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* socket_vtable::connect) (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, const struct <a class="el" href="structaws__socket__endpoint.html">aws_socket_endpoint</a> *remote_endpoint, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *connect_loop, <a class="el" href="socket_8h.html#a1d0b83fee87a38a3c099a6c88d39b6a4">aws_socket_on_connection_result_fn</a> *on_connection_result, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">int(* socket_vtable::connect) (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, const struct <a class="el" href="structaws__socket__endpoint.html">aws_socket_endpoint</a> *remote_endpoint, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *connect_loop, <a class="el" href="socket_8h.html#a1d0b83fee87a38a3c099a6c88d39b6a4">aws_socket_on_connection_result_fn</a> *on_connection_result, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -143,7 +143,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void(* socket_vtable::connection_error) (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>)</td>
+          <td class="memname">void(* socket_vtable::connection_error) (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, int error_code)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -199,7 +199,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* socket_vtable::start_accept) (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *accept_loop, <a class="el" href="socket_8h.html#a10dca6bfdc5254969b118a59a93329d4">aws_socket_on_accept_result_fn</a> *on_accept_result, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">int(* socket_vtable::start_accept) (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *accept_loop, <a class="el" href="socket_8h.html#a10dca6bfdc5254969b118a59a93329d4">aws_socket_on_accept_result_fn</a> *on_accept_result, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -227,7 +227,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int(* socket_vtable::subscribe_to_read) (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, <a class="el" href="socket_8h.html#aaec2a34992cc154435fc90dd167bf26b">aws_socket_on_readable_fn</a> *on_readable, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">int(* socket_vtable::subscribe_to_read) (struct <a class="el" href="structaws__socket.html">aws_socket</a> *socket, <a class="el" href="socket_8h.html#aaec2a34992cc154435fc90dd167bf26b">aws_socket_on_readable_fn</a> *on_readable, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">

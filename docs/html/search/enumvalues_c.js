@@ -1,26 +1,8 @@
 var searchData=
 [
-  ['march_0',['March',['../namespace_aws_1_1_crt.html#ac61790998f4b26a7441e38849a6e8701afa3e5edac607a88d8fd7ecb9d6d67424',1,'Aws::Crt']]],
-  ['max_5fcompletion_5fpackets_5fper_5floop_1',['MAX_COMPLETION_PACKETS_PER_LOOP',['../iocp__event__loop_8c.html#afa9be5679ab03d785820f2474c5ccc6eab7d41edbf78a2e62216e94381e852dd8',1,'iocp_event_loop.c']]],
-  ['max_5fevents_2',['MAX_EVENTS',['../kqueue__event__loop_8c.html#a84627a72058502328269676b81780f89a9776f519b571d5070710cef6885cb9b8',1,'MAX_EVENTS():&#160;kqueue_event_loop.c'],['../epoll__event__loop_8c.html#a900dca9b26de42491763226e12dcd47ba9776f519b571d5070710cef6885cb9b8',1,'MAX_EVENTS():&#160;epoll_event_loop.c']]],
-  ['may_3',['May',['../namespace_aws_1_1_crt.html#ac61790998f4b26a7441e38849a6e8701a195fbb57ffe7449796d23466085ce6d8',1,'Aws::Crt']]],
-  ['message_5ftype_5fdata_4',['Message_Type_DATA',['../namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling.html#a9527b11912f95c8668de39679f8d4399a5ad73704226c933ca4c0e0fbedb1b47f',1,'com::amazonaws::iot::securedtunneling']]],
-  ['message_5ftype_5fmessage_5ftype_5fint_5fmax_5fsentinel_5fdo_5fnot_5fuse_5f_5',['Message_Type_Message_Type_INT_MAX_SENTINEL_DO_NOT_USE_',['../namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling.html#a9527b11912f95c8668de39679f8d4399afb7941c5c6c9b5559e02febed3b81954',1,'com::amazonaws::iot::securedtunneling']]],
-  ['message_5ftype_5fmessage_5ftype_5fint_5fmin_5fsentinel_5fdo_5fnot_5fuse_5f_6',['Message_Type_Message_Type_INT_MIN_SENTINEL_DO_NOT_USE_',['../namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling.html#a9527b11912f95c8668de39679f8d4399ae9a4ec200abff85025068735d7c2117b',1,'com::amazonaws::iot::securedtunneling']]],
-  ['message_5ftype_5fsession_5freset_7',['Message_Type_SESSION_RESET',['../namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling.html#a9527b11912f95c8668de39679f8d4399ac1dfcb4aad676f78a46221bcaa79fb59',1,'com::amazonaws::iot::securedtunneling']]],
-  ['message_5ftype_5fstream_5freset_8',['Message_Type_STREAM_RESET',['../namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling.html#a9527b11912f95c8668de39679f8d4399a7b7c6a6b49d2a70efbb4d7663159e475',1,'com::amazonaws::iot::securedtunneling']]],
-  ['message_5ftype_5fstream_5fstart_9',['Message_Type_STREAM_START',['../namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling.html#a9527b11912f95c8668de39679f8d4399aca214bdc37585e8ff8df61bf04d89605',1,'com::amazonaws::iot::securedtunneling']]],
-  ['message_5ftype_5funknown_10',['Message_Type_UNKNOWN',['../namespacecom_1_1amazonaws_1_1iot_1_1securedtunneling.html#a9527b11912f95c8668de39679f8d4399ada7bc46a2653b65955de988807d97e46',1,'com::amazonaws::iot::securedtunneling']]],
-  ['monday_11',['Monday',['../namespace_aws_1_1_crt.html#aceed5cb5b58c971ed0503442659e895fa6f8522e0610541f1ef215a22ffa66ff6',1,'Aws::Crt']]],
-  ['monitoring_5fbecause_5ferror_5fsuspected_12',['MONITORING_BECAUSE_ERROR_SUSPECTED',['../windows_2iocp_2pipe_8c.html#aa25ed84a123ccff61f07beec9e346658a443310cacbbd4115b3a2c57f0ddc8747',1,'pipe.c']]],
-  ['monitoring_5fbecause_5fsubscribing_13',['MONITORING_BECAUSE_SUBSCRIBING',['../windows_2iocp_2pipe_8c.html#aa25ed84a123ccff61f07beec9e346658aaffddb24778d60d5c04f301df7732164',1,'pipe.c']]],
-  ['monitoring_5fbecause_5fwaiting_5ffor_5fdata_14',['MONITORING_BECAUSE_WAITING_FOR_DATA',['../windows_2iocp_2pipe_8c.html#aa25ed84a123ccff61f07beec9e346658ad2d59ef8c360256eab279b321b5868ee',1,'pipe.c']]],
-  ['mtet_5fempty_15',['MTET_EMPTY',['../test__connection__monitor_8c.html#af2c9fe7f95443c7bb8e0570d33432faba0cb50bb00c96653e70812fadc2f14047',1,'test_connection_monitor.c']]],
-  ['mtet_5fstats_16',['MTET_STATS',['../test__connection__monitor_8c.html#af2c9fe7f95443c7bb8e0570d33432faba6edd5a732f08dc8b5ed65e1859d0b825',1,'test_connection_monitor.c']]],
-  ['mthset_5fadd_5foutgoing_5fstream_17',['MTHSET_ADD_OUTGOING_STREAM',['../test__connection__monitor_8c.html#ad138ab726db50373f7b3bc9cd96a8759a21863a0dc9a7563f8ade34645590957a',1,'test_connection_monitor.c']]],
-  ['mthset_5fadd_5fresponse_5fdata_18',['MTHSET_ADD_RESPONSE_DATA',['../test__connection__monitor_8c.html#ad138ab726db50373f7b3bc9cd96a8759ac74d6a492bfed63d738810d7f668ed3f',1,'test_connection_monitor.c']]],
-  ['mthset_5fflush_19',['MTHSET_FLUSH',['../test__connection__monitor_8c.html#ad138ab726db50373f7b3bc9cd96a8759a2270393989005ee1d2afe9a34af0729e',1,'test_connection_monitor.c']]],
-  ['mthset_5ftick_20',['MTHSET_TICK',['../test__connection__monitor_8c.html#ad138ab726db50373f7b3bc9cd96a8759a10132d2b00b066d9a53f56a5c9b54462',1,'test_connection_monitor.c']]],
-  ['mthset_5fverify_21',['MTHSET_VERIFY',['../test__connection__monitor_8c.html#ad138ab726db50373f7b3bc9cd96a8759a6da4fec6452cc9d62bdbbb23d5d0542a',1,'test_connection_monitor.c']]],
-  ['must_5fbe_5fodd_22',['MUST_BE_ODD',['../bike__r1_2sampling_8h.html#a05a502058ce3ce1b6acbdcfec4cdcd7ea21923a757deb45b5398e7dbbaf571100',1,'MUST_BE_ODD():&#160;sampling.h'],['../bike__r2_2sampling_8h.html#a05a502058ce3ce1b6acbdcfec4cdcd7ea21923a757deb45b5398e7dbbaf571100',1,'MUST_BE_ODD():&#160;sampling.h']]]
+  ['no_5frestriction_0',['NO_RESTRICTION',['../bike__r1_2sampling_8h.html#a05a502058ce3ce1b6acbdcfec4cdcd7ea336c1d44f98ed8d9192d3592f183258c',1,'NO_RESTRICTION():&#160;sampling.h'],['../bike__r2_2sampling_8h.html#a05a502058ce3ce1b6acbdcfec4cdcd7ea336c1d44f98ed8d9192d3592f183258c',1,'NO_RESTRICTION():&#160;sampling.h']]],
+  ['nonblocking_1',['NonBlocking',['../namespace_aws_1_1_crt.html#a0cecd61d589e187a29d31942db459442a20a6cf714cbf179298b4d850849847b8',1,'Aws::Crt']]],
+  ['none_2',['None',['../namespace_aws_1_1_crt.html#a38935c4922a7101640006354d741ffeba6adf97f83acf6453d4a6a4b1070f3754',1,'Aws::Crt::None()'],['../namespace_aws_1_1_crt_1_1_auth.html#a8402cbde3f610cb7d12bf78c81834a2fa6adf97f83acf6453d4a6a4b1070f3754',1,'Aws::Crt::Auth::None()'],['../namespace_aws_1_1_crt_1_1_http.html#af3cef7161b636a6450f5cb4a50021979a6adf97f83acf6453d4a6a4b1070f3754',1,'Aws::Crt::Http::None()']]],
+  ['november_3',['November',['../namespace_aws_1_1_crt.html#ac61790998f4b26a7441e38849a6e8701a7e823b37564da492ca1629b4732289a8',1,'Aws::Crt']]],
+  ['num_5fcode_5fpoints_4',['num_code_points',['../generator_8c.html#adc29c2ff13d900c2f185ee95427fb06ca2c912f0a49c70e7bf1f6b1ed6fcca24e',1,'generator.c']]]
 ];

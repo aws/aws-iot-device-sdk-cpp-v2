@@ -15,33 +15,33 @@
 \DoxyCodeLine{21 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}};}
 \DoxyCodeLine{22 }
 \DoxyCodeLine{37 \textcolor{keyword}{typedef} void(}
-\DoxyCodeLine{38     \mbox{\hyperlink{connection_8h_afc803717ca6708a11d74a510288f7ff4}{aws\_http\_on\_client\_connection\_setup\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{38     \mbox{\hyperlink{connection_8h_afc803717ca6708a11d74a510288f7ff4}{aws\_http\_on\_client\_connection\_setup\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection, \textcolor{keywordtype}{int} error\_code, \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__connection_a3da01f7e63d5ed5b85a1572196b232f5}{user\_data}});}
 \DoxyCodeLine{39 }
 \DoxyCodeLine{47 \textcolor{keyword}{typedef} void(}
-\DoxyCodeLine{48     \mbox{\hyperlink{connection_8h_a4a810c4a3fb9abb4f364c1df0c79e169}{aws\_http\_on\_client\_connection\_shutdown\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{48     \mbox{\hyperlink{connection_8h_a4a810c4a3fb9abb4f364c1df0c79e169}{aws\_http\_on\_client\_connection\_shutdown\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection, \textcolor{keywordtype}{int} error\_code, \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__connection_a3da01f7e63d5ed5b85a1572196b232f5}{user\_data}});}
 \DoxyCodeLine{49 }
 \DoxyCodeLine{57 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{connection_8h_a96fcc2412e49224b6c36d1356b609ee8}{aws\_http2\_on\_change\_settings\_complete\_fn}})(}
 \DoxyCodeLine{58     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *http2\_connection,}
-\DoxyCodeLine{59     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{60     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{59     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{60     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__connection_a3da01f7e63d5ed5b85a1572196b232f5}{user\_data}});}
 \DoxyCodeLine{61 }
 \DoxyCodeLine{69 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{connection_8h_aef09b06b4e26402e4cdd097c869dcb32}{aws\_http2\_on\_ping\_complete\_fn}})(}
 \DoxyCodeLine{70     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *http2\_connection,}
 \DoxyCodeLine{71     uint64\_t round\_trip\_time\_ns,}
-\DoxyCodeLine{72     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{73     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{72     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{73     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__connection_a3da01f7e63d5ed5b85a1572196b232f5}{user\_data}});}
 \DoxyCodeLine{74 }
 \DoxyCodeLine{89 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{connection_8h_ae8a80c3d1d1077ba101bfbfa3b27730e}{aws\_http2\_on\_goaway\_received\_fn}})(}
 \DoxyCodeLine{90     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *http2\_connection,}
 \DoxyCodeLine{91     uint32\_t last\_stream\_id,}
 \DoxyCodeLine{92     uint32\_t http2\_error\_code,}
-\DoxyCodeLine{93     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{93     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__connection_a3da01f7e63d5ed5b85a1572196b232f5}{user\_data}});}
 \DoxyCodeLine{94 }
 \DoxyCodeLine{100 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{connection_8h_a16586f76fb0f6b7aced7c6cff88a76ea}{aws\_http2\_on\_remote\_settings\_change\_fn}})(}
 \DoxyCodeLine{101     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *http2\_connection,}
 \DoxyCodeLine{102     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http2__setting}{aws\_http2\_setting}} *settings\_array,}
 \DoxyCodeLine{103     \textcolor{keywordtype}{size\_t} num\_settings,}
-\DoxyCodeLine{104     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{104     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{105 }
 \DoxyCodeLine{109 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\_http\_connection\_monitoring\_options}} \{}
 \DoxyCodeLine{110 }
@@ -193,14 +193,14 @@
 \DoxyCodeLine{498     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http2__setting}{aws\_http2\_setting}} *settings\_array,}
 \DoxyCodeLine{499     \textcolor{keywordtype}{size\_t} num\_settings,}
 \DoxyCodeLine{500     \mbox{\hyperlink{connection_8h_a96fcc2412e49224b6c36d1356b609ee8}{aws\_http2\_on\_change\_settings\_complete\_fn}} *on\_completed,}
-\DoxyCodeLine{501     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{501     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{502 }
 \DoxyCodeLine{516 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{517 \textcolor{keywordtype}{int} \mbox{\hyperlink{connection_8h_a4cb87aa3b8241947849eaf458fcd864d}{aws\_http2\_connection\_ping}}(}
 \DoxyCodeLine{518     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *http2\_connection,}
 \DoxyCodeLine{519     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *optional\_opaque\_data,}
 \DoxyCodeLine{520     \mbox{\hyperlink{connection_8h_aef09b06b4e26402e4cdd097c869dcb32}{aws\_http2\_on\_ping\_complete\_fn}} *on\_completed,}
-\DoxyCodeLine{521     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{521     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{522 }
 \DoxyCodeLine{529 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{530 \textcolor{keywordtype}{int} \mbox{\hyperlink{connection_8h_a319936df692e7caf86bdeb88dd49f3d2}{aws\_http2\_connection\_get\_local\_settings}}(}

@@ -27,7 +27,7 @@ struct \mbox{\hyperlink{structsecure__transport__ctx}{secure\+\_\+transport\+\_\
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a92d9ad11095ac17f5933ef1838f9417b}{EST\+\_\+\+TLS\+\_\+\+RECORD\+\_\+\+OVERHEAD}}~53 /$\ast$ 5 \mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} header + 32 + 16 bytes \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}{for}} padding $\ast$/
+\#define \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a92d9ad11095ac17f5933ef1838f9417b}{EST\+\_\+\+TLS\+\_\+\+RECORD\+\_\+\+OVERHEAD}}~53 /$\ast$ 5 \mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} header + 32 + 16 bytes for padding $\ast$/
 \item 
 \#define \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a558d09f807c24253449e83211b1eab9e}{KB\+\_\+1}}~1024
 \item 
@@ -35,16 +35,16 @@ struct \mbox{\hyperlink{structsecure__transport__ctx}{secure\+\_\+transport\+\_\
 \item 
 \#define \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a8075d44613c327acb70ac8709613d582}{EST\+\_\+\+HANDSHAKE\+\_\+\+SIZE}}~(7 $\ast$ \mbox{\hyperlink{secure__channel__tls__handler_8c_a558d09f807c24253449e83211b1eab9e}{KB\+\_\+1}})
 \item 
-\#define \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a0c506895c0e9a60b17dc2d0ad8598251}{ALPN\+\_\+\+AVAILABLE}}~\mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\#define \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a0c506895c0e9a60b17dc2d0ad8598251}{ALPN\+\_\+\+AVAILABLE}}~\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}
 \item 
-\#define \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ad04a8c14adcf84500746103ef32e8a8f}{TLS13\+\_\+\+AVAILABLE}}~\mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+\#define \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ad04a8c14adcf84500746103ef32e8a8f}{TLS13\+\_\+\+AVAILABLE}}~\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a5038f7b1a07fc23e566c601156cd7974}{aws\+\_\+tls\+\_\+is\+\_\+alpn\+\_\+available}} (void)
+bool \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a5038f7b1a07fc23e566c601156cd7974}{aws\+\_\+tls\+\_\+is\+\_\+alpn\+\_\+available}} (void)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_afd57ef52691762929badca7228209ef4}{aws\+\_\+tls\+\_\+is\+\_\+cipher\+\_\+pref\+\_\+supported}} (enum \mbox{\hyperlink{tls__channel__handler_8h_a076545636747167b7bdc27894137ef53}{aws\+\_\+tls\+\_\+cipher\+\_\+pref}} cipher\+\_\+pref)
+bool \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_afd57ef52691762929badca7228209ef4}{aws\+\_\+tls\+\_\+is\+\_\+cipher\+\_\+pref\+\_\+supported}} (enum \mbox{\hyperlink{tls__channel__handler_8h_a076545636747167b7bdc27894137ef53}{aws\+\_\+tls\+\_\+cipher\+\_\+pref}} cipher\+\_\+pref)
 \item 
 void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_afab811e5c6f4d0858a73f55e7b2d5ff1}{aws\+\_\+tls\+\_\+init\+\_\+static\+\_\+state}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
 \item 
@@ -54,47 +54,47 @@ static OSStatus \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a03
 \item 
 static OSStatus \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_acf0877499af279e82dcfc8a756ac2e85}{s\+\_\+write\+\_\+cb}} (SSLConnection\+Ref conn, const void $\ast$data, size\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
-static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a573c6c56f4f3a65b1dbba1a5720656f9}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a573c6c56f4f3a65b1dbba1a5720656f9}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static CFString\+Ref \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_acea74e91560163fc94a39a0b7fabbfc5}{s\+\_\+get\+\_\+protocol}} (struct \mbox{\hyperlink{structsecure__transport__handler}{secure\+\_\+transport\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static CFString\+Ref \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_acea74e91560163fc94a39a0b7fabbfc5}{s\+\_\+get\+\_\+protocol}} (struct \mbox{\hyperlink{structsecure__transport__handler}{secure\+\_\+transport\+\_\+handler}} $\ast$handler)
 \item 
-static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a4dba6c1999329905368e4113f20a1189}{s\+\_\+set\+\_\+protocols}} (struct \mbox{\hyperlink{structsecure__transport__handler}{secure\+\_\+transport\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$alpn\+\_\+list)
+static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a4dba6c1999329905368e4113f20a1189}{s\+\_\+set\+\_\+protocols}} (struct \mbox{\hyperlink{structsecure__transport__handler}{secure\+\_\+transport\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$alpn\+\_\+list)
 \item 
-static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ac4f731c2d0cba2aa75a1dcfcbce70ca6}{s\+\_\+invoke\+\_\+negotiation\+\_\+callback}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, int err\+\_\+code)
+static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ac4f731c2d0cba2aa75a1dcfcbce70ca6}{s\+\_\+invoke\+\_\+negotiation\+\_\+callback}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, int err\+\_\+code)
 \item 
-static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a79779aed9c301c9838ecc95cb77f8890}{s\+\_\+drive\+\_\+negotiation}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a79779aed9c301c9838ecc95cb77f8890}{s\+\_\+drive\+\_\+negotiation}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
 static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a4c0e2b8e91ba79f95a135b342d5648ed}{s\+\_\+negotiation\+\_\+task}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ad78455205ff54b2fc7dc33eabf5be8ee}{aws\+\_\+tls\+\_\+client\+\_\+handler\+\_\+start\+\_\+negotiation}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ad78455205ff54b2fc7dc33eabf5be8ee}{aws\+\_\+tls\+\_\+client\+\_\+handler\+\_\+start\+\_\+negotiation}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_af51aabf4b9c1aff839ae232d682d9ed4}{s\+\_\+process\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_af51aabf4b9c1aff839ae232d682d9ed4}{s\+\_\+process\+\_\+write\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message)
 \item 
-static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_afcfa4a586ecd87f3b93780c51d5e81d9}{s\+\_\+handle\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} abort\+\_\+immediately)
+static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_afcfa4a586ecd87f3b93780c51d5e81d9}{s\+\_\+handle\+\_\+shutdown}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}} dir, int error\+\_\+code, bool abort\+\_\+immediately)
 \item 
-static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a89b7bb76dba8ea2d0dcf6bd16120da32}{s\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a89b7bb76dba8ea2d0dcf6bd16120da32}{s\+\_\+process\+\_\+read\+\_\+message}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, struct \mbox{\hyperlink{structaws__io__message}{aws\+\_\+io\+\_\+message}} $\ast$message)
 \item 
 static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_afc6be3238aa16503091aed09589f6aa0}{s\+\_\+run\+\_\+read}} (struct \mbox{\hyperlink{structaws__channel__task}{aws\+\_\+channel\+\_\+task}} $\ast$task, void $\ast$arg, \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a17f9334e2b904d19864dd6ecc8a4b2e8}{s\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t size)
+static int \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a17f9334e2b904d19864dd6ecc8a4b2e8}{s\+\_\+increment\+\_\+read\+\_\+window}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, size\+\_\+t size)
 \item 
-static size\+\_\+t \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ae638f621d23b167cc1480365c7446da1}{s\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static size\+\_\+t \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ae638f621d23b167cc1480365c7446da1}{s\+\_\+message\+\_\+overhead}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static size\+\_\+t \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_abf6b7a99d5242a62a61b200386a0fefa}{s\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static size\+\_\+t \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_abf6b7a99d5242a62a61b200386a0fefa}{s\+\_\+initial\+\_\+window\+\_\+size}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a2d860abd2afb1ef51c9a9240454a3196}{s\+\_\+reset\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a2d860abd2afb1ef51c9a9240454a3196}{s\+\_\+reset\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a5c620bb05a415271aa481c61eece3953}{s\+\_\+gather\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stats)
+static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a5c620bb05a415271aa481c61eece3953}{s\+\_\+gather\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stats)
 \item 
-struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a7254a489149e1b5498b6c3f96d9677d9}{aws\+\_\+tls\+\_\+handler\+\_\+protocol}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a7254a489149e1b5498b6c3f96d9677d9}{aws\+\_\+tls\+\_\+handler\+\_\+protocol}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ac6a5bf320d7418b9c63c1e293568f00e}{aws\+\_\+tls\+\_\+handler\+\_\+server\+\_\+name}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ac6a5bf320d7418b9c63c1e293568f00e}{aws\+\_\+tls\+\_\+handler\+\_\+server\+\_\+name}} (struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$handler)
 \item 
-static struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a180bd83bf71a9eb33d122c6ec0617de3}{s\+\_\+tls\+\_\+handler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$options, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, SSLProtocol\+Side protocol\+\_\+side)
+static struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a180bd83bf71a9eb33d122c6ec0617de3}{s\+\_\+tls\+\_\+handler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$options, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot, SSLProtocol\+Side protocol\+\_\+side)
 \item 
-struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_af37baf1e235331b32004a746d41aea14}{aws\+\_\+tls\+\_\+client\+\_\+handler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$options, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_af37baf1e235331b32004a746d41aea14}{aws\+\_\+tls\+\_\+client\+\_\+handler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$options, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
 \item 
-struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_aa1ba97fc708587fa7beec313377ded50}{aws\+\_\+tls\+\_\+server\+\_\+handler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$options, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
+struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$ \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_aa1ba97fc708587fa7beec313377ded50}{aws\+\_\+tls\+\_\+server\+\_\+handler\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__tls__connection__options}{aws\+\_\+tls\+\_\+connection\+\_\+options}} $\ast$options, struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$slot)
 \item 
 static void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_ab2e18933a5a1d523712ef24f92dc9528}{s\+\_\+aws\+\_\+secure\+\_\+transport\+\_\+ctx\+\_\+destroy}} (struct \mbox{\hyperlink{structsecure__transport__ctx}{secure\+\_\+transport\+\_\+ctx}} $\ast$\mbox{\hyperlink{structsecure__transport__ctx}{secure\+\_\+transport\+\_\+ctx}})
 \item 
@@ -104,7 +104,7 @@ struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}} $\ast$ \mbo
 \item 
 struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}} $\ast$ \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a4ba3f716d77e159c68c850d25d05b9f9}{aws\+\_\+tls\+\_\+client\+\_\+ctx\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, const struct \mbox{\hyperlink{structaws__tls__ctx__options}{aws\+\_\+tls\+\_\+ctx\+\_\+options}} $\ast$options)
 \item 
-void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a9d46adec548c725cc1dc03f342430c15}{aws\+\_\+tls\+\_\+ctx\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+void \mbox{\hyperlink{secure__transport__tls__channel__handler_8c_a9d46adec548c725cc1dc03f342430c15}{aws\+\_\+tls\+\_\+ctx\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__tls__ctx}{aws\+\_\+tls\+\_\+ctx}} $\ast$ctx)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -122,7 +122,7 @@ static struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+cha
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!ALPN\_AVAILABLE@{ALPN\_AVAILABLE}}
 \index{ALPN\_AVAILABLE@{ALPN\_AVAILABLE}!secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}}
 \doxysubsubsection{\texorpdfstring{ALPN\_AVAILABLE}{ALPN\_AVAILABLE}}
-{\footnotesize\ttfamily \#define ALPN\+\_\+\+AVAILABLE~\mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+{\footnotesize\ttfamily \#define ALPN\+\_\+\+AVAILABLE~\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}}
 
 \mbox{\Hypertarget{secure__transport__tls__channel__handler_8c_a8075d44613c327acb70ac8709613d582}\label{secure__transport__tls__channel__handler_8c_a8075d44613c327acb70ac8709613d582}} 
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!EST\_HANDSHAKE\_SIZE@{EST\_HANDSHAKE\_SIZE}}
@@ -134,7 +134,7 @@ static struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+cha
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!EST\_TLS\_RECORD\_OVERHEAD@{EST\_TLS\_RECORD\_OVERHEAD}}
 \index{EST\_TLS\_RECORD\_OVERHEAD@{EST\_TLS\_RECORD\_OVERHEAD}!secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}}
 \doxysubsubsection{\texorpdfstring{EST\_TLS\_RECORD\_OVERHEAD}{EST\_TLS\_RECORD\_OVERHEAD}}
-{\footnotesize\ttfamily \#define EST\+\_\+\+TLS\+\_\+\+RECORD\+\_\+\+OVERHEAD~53 /$\ast$ 5 \mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} header + 32 + 16 bytes \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a21314beab9f26179a0f1cd5f14f63f44}{for}} padding $\ast$/}
+{\footnotesize\ttfamily \#define EST\+\_\+\+TLS\+\_\+\+RECORD\+\_\+\+OVERHEAD~53 /$\ast$ 5 \mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} header + 32 + 16 bytes for padding $\ast$/}
 
 \mbox{\Hypertarget{secure__transport__tls__channel__handler_8c_a558d09f807c24253449e83211b1eab9e}\label{secure__transport__tls__channel__handler_8c_a558d09f807c24253449e83211b1eab9e}} 
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!KB\_1@{KB\_1}}
@@ -152,7 +152,7 @@ static struct \mbox{\hyperlink{structaws__channel__handler__vtable}{aws\+\_\+cha
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!TLS13\_AVAILABLE@{TLS13\_AVAILABLE}}
 \index{TLS13\_AVAILABLE@{TLS13\_AVAILABLE}!secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}}
 \doxysubsubsection{\texorpdfstring{TLS13\_AVAILABLE}{TLS13\_AVAILABLE}}
-{\footnotesize\ttfamily \#define TLS13\+\_\+\+AVAILABLE~\mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}}
+{\footnotesize\ttfamily \#define TLS13\+\_\+\+AVAILABLE~\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}}
 
 
 
@@ -209,13 +209,13 @@ Client mode only. This is the server name that was used for SNI and host name va
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!aws\_tls\_is\_alpn\_available@{aws\_tls\_is\_alpn\_available}}
 \index{aws\_tls\_is\_alpn\_available@{aws\_tls\_is\_alpn\_available}!secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}}
 \doxysubsubsection{\texorpdfstring{aws\_tls\_is\_alpn\_available()}{aws\_tls\_is\_alpn\_available()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+tls\+\_\+is\+\_\+alpn\+\_\+available (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+tls\+\_\+is\+\_\+alpn\+\_\+available (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
 
 Returns true if alpn is available in the underlying tls implementation. This function should always be called before setting an alpn list. \mbox{\Hypertarget{secure__transport__tls__channel__handler_8c_afd57ef52691762929badca7228209ef4}\label{secure__transport__tls__channel__handler_8c_afd57ef52691762929badca7228209ef4}} 
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!aws\_tls\_is\_cipher\_pref\_supported@{aws\_tls\_is\_cipher\_pref\_supported}}
 \index{aws\_tls\_is\_cipher\_pref\_supported@{aws\_tls\_is\_cipher\_pref\_supported}!secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}}
 \doxysubsubsection{\texorpdfstring{aws\_tls\_is\_cipher\_pref\_supported()}{aws\_tls\_is\_cipher\_pref\_supported()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+tls\+\_\+is\+\_\+cipher\+\_\+pref\+\_\+supported (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{tls__channel__handler_8h_a076545636747167b7bdc27894137ef53}{aws\+\_\+tls\+\_\+cipher\+\_\+pref}}}]{cipher\+\_\+pref }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+tls\+\_\+is\+\_\+cipher\+\_\+pref\+\_\+supported (\begin{DoxyParamCaption}\item[{enum \mbox{\hyperlink{tls__channel__handler_8h_a076545636747167b7bdc27894137ef53}{aws\+\_\+tls\+\_\+cipher\+\_\+pref}}}]{cipher\+\_\+pref }\end{DoxyParamCaption})}
 
 Returns true if this Cipher Preference is available in the underlying TLS implementation. This function should always be called before setting a Cipher Preference \mbox{\Hypertarget{secure__transport__tls__channel__handler_8c_a2000b94eba98fddaa032b14b1cc32d1a}\label{secure__transport__tls__channel__handler_8c_a2000b94eba98fddaa032b14b1cc32d1a}} 
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!aws\_tls\_server\_ctx\_new@{aws\_tls\_server\_ctx\_new}}
@@ -263,7 +263,7 @@ Creates a new tls channel handler in server mode. Options will be copied. You mu
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!s\_handle\_shutdown@{s\_handle\_shutdown}}
 \index{s\_handle\_shutdown@{s\_handle\_shutdown}!secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}}
 \doxysubsubsection{\texorpdfstring{s\_handle\_shutdown()}{s\_handle\_shutdown()}}
-{\footnotesize\ttfamily static int s\+\_\+handle\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{abort\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+handle\+\_\+shutdown (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__channel__handler}{aws\+\_\+channel\+\_\+handler}} $\ast$}]{handler,  }\item[{struct \mbox{\hyperlink{structaws__channel__slot}{aws\+\_\+channel\+\_\+slot}} $\ast$}]{slot,  }\item[{enum \mbox{\hyperlink{channel_8h_a38e100b8bf2153399c980f5a33407cac}{aws\+\_\+channel\+\_\+direction}}}]{dir,  }\item[{int}]{error\+\_\+code,  }\item[{bool}]{abort\+\_\+immediately }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{secure__transport__tls__channel__handler_8c_a17f9334e2b904d19864dd6ecc8a4b2e8}\label{secure__transport__tls__channel__handler_8c_a17f9334e2b904d19864dd6ecc8a4b2e8}} 
 \index{secure\_transport\_tls\_channel\_handler.c@{secure\_transport\_tls\_channel\_handler.c}!s\_increment\_read\_window@{s\_increment\_read\_window}}

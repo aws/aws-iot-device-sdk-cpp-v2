@@ -136,23 +136,23 @@ int \mbox{\hyperlink{s2n__handshake_8h_ae096884ca55de4f4b2b3c5f44797e71d}{s2n\+\
 \item 
 int \mbox{\hyperlink{s2n__handshake_8h_a1478b6c7ab0fe1f6104b50b52f6bd648}{s2n\+\_\+handshake\+\_\+require\+\_\+all\+\_\+hashes}} (struct \mbox{\hyperlink{structs2n__handshake}{s2n\+\_\+handshake}} $\ast$handshake)
 \item 
-uint8\+\_\+t \mbox{\hyperlink{s2n__handshake_8h_af3590807edbdc4911963da683d0d971e}{s2n\+\_\+handshake\+\_\+is\+\_\+hash\+\_\+required}} (struct \mbox{\hyperlink{structs2n__handshake}{s2n\+\_\+handshake}} $\ast$handshake, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} hash\+\_\+alg)
+uint8\+\_\+t \mbox{\hyperlink{s2n__handshake_8h_af3590807edbdc4911963da683d0d971e}{s2n\+\_\+handshake\+\_\+is\+\_\+hash\+\_\+required}} (struct \mbox{\hyperlink{structs2n__handshake}{s2n\+\_\+handshake}} $\ast$handshake, \mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} hash\+\_\+alg)
 \item 
 int \mbox{\hyperlink{s2n__handshake_8h_a3d7d2eeccc0a0161c6b64d0ef03653c9}{s2n\+\_\+conn\+\_\+update\+\_\+required\+\_\+handshake\+\_\+hashes}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-int \mbox{\hyperlink{s2n__handshake_8h_a39466dd2c9ea4761cce4569432dd627b}{s2n\+\_\+handshake\+\_\+get\+\_\+hash\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} hash\+\_\+alg, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$hash\+\_\+state)
+int \mbox{\hyperlink{s2n__handshake_8h_a39466dd2c9ea4761cce4569432dd627b}{s2n\+\_\+handshake\+\_\+get\+\_\+hash\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} hash\+\_\+alg, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$hash\+\_\+state)
 \item 
-int \mbox{\hyperlink{s2n__handshake_8h_ad4dfd52c43bce970af36644c9258a4e9}{s2n\+\_\+handshake\+\_\+reset\+\_\+hash\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} hash\+\_\+alg)
+int \mbox{\hyperlink{s2n__handshake_8h_ad4dfd52c43bce970af36644c9258a4e9}{s2n\+\_\+handshake\+\_\+reset\+\_\+hash\+\_\+state}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} hash\+\_\+alg)
 \item 
 int \mbox{\hyperlink{s2n__handshake_8h_a873914b2fcb622994fa93a112729eb9f}{s2n\+\_\+conn\+\_\+find\+\_\+name\+\_\+matching\+\_\+certs}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-int \mbox{\hyperlink{s2n__handshake_8h_aee3bf524e296bb19690109c55b3479d8}{s2n\+\_\+create\+\_\+wildcard\+\_\+hostname}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$hostname, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{s2n__handshake_8h_aee3bf524e296bb19690109c55b3479d8}{s2n\+\_\+create\+\_\+wildcard\+\_\+hostname}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$hostname, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$output)
 \item 
 struct \mbox{\hyperlink{structs2n__cert__chain__and__key}{s2n\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} $\ast$ \mbox{\hyperlink{s2n__handshake_8h_a074086300ce9cb7a04d4002ace3a753a}{s2n\+\_\+get\+\_\+compatible\+\_\+cert\+\_\+chain\+\_\+and\+\_\+key}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const \mbox{\hyperlink{s2n__pkey_8h_a9f8ffb59dc71a9fab8e636972279d441}{s2n\+\_\+pkey\+\_\+type}} cert\+\_\+type)
 \item 
 int \mbox{\hyperlink{s2n__handshake_8h_a9fa7d896377935d5dec894f583a5e279}{s2n\+\_\+conn\+\_\+update\+\_\+handshake\+\_\+hashes}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$data)
 \item 
-S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__handshake_8h_aeafadc720afd6a5fb38ef18277786f1d}{s2n\+\_\+quic\+\_\+read\+\_\+handshake\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}})
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__handshake_8h_aeafadc720afd6a5fb38ef18277786f1d}{s2n\+\_\+quic\+\_\+read\+\_\+handshake\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$message\+\_\+type)
 \item 
 S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__handshake_8h_a9fea6c4848b3ae51c324374ff4999ada}{s2n\+\_\+quic\+\_\+write\+\_\+handshake\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$in)
 \end{DoxyCompactItemize}
@@ -541,13 +541,13 @@ S2\+N\+\_\+\+ASYNC\+\_\+\+INVOKED\+\_\+\+COMPLETE&\\
 \index{s2n\_handshake.h@{s2n\_handshake.h}!s2n\_handshake\_get\_hash\_state@{s2n\_handshake\_get\_hash\_state}}
 \index{s2n\_handshake\_get\_hash\_state@{s2n\_handshake\_get\_hash\_state}!s2n\_handshake.h@{s2n\_handshake.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_handshake\_get\_hash\_state()}{s2n\_handshake\_get\_hash\_state()}}
-{\footnotesize\ttfamily int s2n\+\_\+handshake\+\_\+get\+\_\+hash\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{hash\+\_\+alg,  }\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{hash\+\_\+state }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int s2n\+\_\+handshake\+\_\+get\+\_\+hash\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{hash\+\_\+alg,  }\item[{struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$}]{hash\+\_\+state }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__handshake_8h_af3590807edbdc4911963da683d0d971e}\label{s2n__handshake_8h_af3590807edbdc4911963da683d0d971e}} 
 \index{s2n\_handshake.h@{s2n\_handshake.h}!s2n\_handshake\_is\_hash\_required@{s2n\_handshake\_is\_hash\_required}}
 \index{s2n\_handshake\_is\_hash\_required@{s2n\_handshake\_is\_hash\_required}!s2n\_handshake.h@{s2n\_handshake.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_handshake\_is\_hash\_required()}{s2n\_handshake\_is\_hash\_required()}}
-{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+handshake\+\_\+is\+\_\+hash\+\_\+required (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__handshake}{s2n\+\_\+handshake}} $\ast$}]{handshake,  }\item[{\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{hash\+\_\+alg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily uint8\+\_\+t s2n\+\_\+handshake\+\_\+is\+\_\+hash\+\_\+required (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__handshake}{s2n\+\_\+handshake}} $\ast$}]{handshake,  }\item[{\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{hash\+\_\+alg }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__handshake_8h_a1478b6c7ab0fe1f6104b50b52f6bd648}\label{s2n__handshake_8h_a1478b6c7ab0fe1f6104b50b52f6bd648}} 
 \index{s2n\_handshake.h@{s2n\_handshake.h}!s2n\_handshake\_require\_all\_hashes@{s2n\_handshake\_require\_all\_hashes}}
@@ -559,7 +559,7 @@ S2\+N\+\_\+\+ASYNC\+\_\+\+INVOKED\+\_\+\+COMPLETE&\\
 \index{s2n\_handshake.h@{s2n\_handshake.h}!s2n\_handshake\_reset\_hash\_state@{s2n\_handshake\_reset\_hash\_state}}
 \index{s2n\_handshake\_reset\_hash\_state@{s2n\_handshake\_reset\_hash\_state}!s2n\_handshake.h@{s2n\_handshake.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_handshake\_reset\_hash\_state()}{s2n\_handshake\_reset\_hash\_state()}}
-{\footnotesize\ttfamily int s2n\+\_\+handshake\+\_\+reset\+\_\+hash\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{hash\+\_\+alg }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int s2n\+\_\+handshake\+\_\+reset\+\_\+hash\+\_\+state (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{hash\+\_\+alg }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__handshake_8h_aeafadc720afd6a5fb38ef18277786f1d}\label{s2n__handshake_8h_aeafadc720afd6a5fb38ef18277786f1d}} 
 \index{s2n\_handshake.h@{s2n\_handshake.h}!s2n\_quic\_read\_handshake\_message@{s2n\_quic\_read\_handshake\_message}}

@@ -44,13 +44,13 @@
 \DoxyCodeLine{40           \textcolor{keyword}{public}:}
 \DoxyCodeLine{41             \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_iot_secure_tunneling_client}{IotSecureTunnelingClient}}(\textcolor{keyword}{const} std::shared\_ptr<Aws::Crt::Mqtt::MqttConnection> \&connection);}
 \DoxyCodeLine{42 }
-\DoxyCodeLine{43             \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{43             \textcolor{keyword}{operator} bool() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{44             \textcolor{keywordtype}{int} GetLastError() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{45 }
 \DoxyCodeLine{46             \textcolor{keywordtype}{bool} SubscribeToTunnelsNotify(}
 \DoxyCodeLine{47                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_subscribe_to_tunnels_notify_request}{Aws::Iotsecuretunneling::SubscribeToTunnelsNotifyRequest}} \&request,}
-\DoxyCodeLine{48                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{49                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a797633de52d6cd33b0501015b81dd018}{OnSubscribeToTunnelsNotifyResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{48                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{49                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_a797633de52d6cd33b0501015b81dd018}{OnSubscribeToTunnelsNotifyResponse}} \&handler,}
 \DoxyCodeLine{50                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_ac688b4e8a594a42f501e0636fd2e4fe1}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{51 }
 \DoxyCodeLine{52           \textcolor{keyword}{private}:}

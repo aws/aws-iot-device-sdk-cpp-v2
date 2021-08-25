@@ -109,18 +109,18 @@ Enumerations</h2></td></tr>
 , <a class="el" href="windows_2iocp_2pipe_8c.html#a8d5185929ae688e65e523d0d68cfa8c3ae84e65ef20c85d42e4148a8b43d0cf53">WRITE_END_STATE_OPEN</a>
  }</td></tr>
 <tr class="separator:a8d5185929ae688e65e523d0d68cfa8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8654c714018c6241d9ebd01f3fb5a26"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="windows_2iocp_2pipe_8c.html#af8654c714018c6241d9ebd01f3fb5a26a74893eeaac6bd1f590232d419cb78e6b">PIPE_BUFFER_SIZE</a> = 4096
-, <a class="el" href="windows_2iocp_2pipe_8c.html#af8654c714018c6241d9ebd01f3fb5a26a08d85d2a7616785215335f77060f85ca">PIPE_UNIQUE_NAME_MAX_TRIES</a> = 10
+<tr class="memitem:a7cc2e4244ca368f68e5746185eda6c4a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="windows_2iocp_2pipe_8c.html#a7cc2e4244ca368f68e5746185eda6c4aa74893eeaac6bd1f590232d419cb78e6b">PIPE_BUFFER_SIZE</a> = 4096
+, <a class="el" href="windows_2iocp_2pipe_8c.html#a7cc2e4244ca368f68e5746185eda6c4aa08d85d2a7616785215335f77060f85ca">PIPE_UNIQUE_NAME_MAX_TRIES</a> = 10
  }</td></tr>
-<tr class="separator:af8654c714018c6241d9ebd01f3fb5a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a7cc2e4244ca368f68e5746185eda6c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0466b8ae8934cc192ce3ddf319198036"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a0466b8ae8934cc192ce3ddf319198036">s_read_end_on_zero_byte_read_completion</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *<a class="el" href="socket__test_8c.html#a19ef9bd83c1b97025d8b626c0937c9d5">event_loop</a>, struct aws_overlapped *overlapped, int status_code, size_t num_bytes_transferred)</td></tr>
+<tr class="memitem:a0466b8ae8934cc192ce3ddf319198036"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a0466b8ae8934cc192ce3ddf319198036">s_read_end_on_zero_byte_read_completion</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct aws_overlapped *overlapped, int status_code, size_t num_bytes_transferred)</td></tr>
 <tr class="separator:a0466b8ae8934cc192ce3ddf319198036"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3d067e1958039d585da366f25327dc3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#aa3d067e1958039d585da366f25327dc3">s_read_end_report_error_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
+<tr class="memitem:aa3d067e1958039d585da366f25327dc3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#aa3d067e1958039d585da366f25327dc3">s_read_end_report_error_task</a> (struct <a class="el" href="structaws__task.html">aws_task</a> *task, void *user_data, enum <a class="el" href="task__scheduler_8h.html#ab115fdd804adabe90197d5ae212d032e">aws_task_status</a> status)</td></tr>
 <tr class="separator:aa3d067e1958039d585da366f25327dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a868551d37595441931d710c3f875073b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a868551d37595441931d710c3f875073b">s_write_end_on_write_completion</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *<a class="el" href="socket__test_8c.html#a19ef9bd83c1b97025d8b626c0937c9d5">event_loop</a>, struct aws_overlapped *overlapped, int status_code, size_t num_bytes_transferred)</td></tr>
+<tr class="memitem:a868551d37595441931d710c3f875073b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a868551d37595441931d710c3f875073b">s_write_end_on_write_completion</a> (struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *event_loop, struct aws_overlapped *overlapped, int status_code, size_t num_bytes_transferred)</td></tr>
 <tr class="separator:a868551d37595441931d710c3f875073b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab61b44fec5108e394db54788bffbc30a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#ab61b44fec5108e394db54788bffbc30a">s_translate_windows_error</a> (DWORD win_error)</td></tr>
 <tr class="separator:ab61b44fec5108e394db54788bffbc30a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +128,7 @@ Functions</h2></td></tr>
 <tr class="separator:abc9bed8b2ab4fb4bb09baca95b6e4e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9a0a3bc89c3adc7dc94281785c9c87a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h.html#a26db8dfe8d149d3ddd330c792f3e67df">AWS_IO_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#af9a0a3bc89c3adc7dc94281785c9c87a">aws_pipe_get_unique_name</a> (char *dst, size_t dst_size)</td></tr>
 <tr class="separator:af9a0a3bc89c3adc7dc94281785c9c87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf56e2682653ae18d116c31602657792"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#abf56e2682653ae18d116c31602657792">aws_pipe_init</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *read_end_event_loop, struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *write_end_event_loop, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)</td></tr>
+<tr class="memitem:abf56e2682653ae18d116c31602657792"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#abf56e2682653ae18d116c31602657792">aws_pipe_init</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *read_end_event_loop, struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end, struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *write_end_event_loop, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
 <tr class="separator:abf56e2682653ae18d116c31602657792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4c1f67b64cef9353f3a262fa1c8201c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#ae4c1f67b64cef9353f3a262fa1c8201c">aws_pipe_get_read_end_event_loop</a> (const struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end)</td></tr>
 <tr class="separator:ae4c1f67b64cef9353f3a262fa1c8201c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,11 +136,11 @@ Functions</h2></td></tr>
 <tr class="separator:a16d9b9fdd1cd326782c587caa516a9c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47e6a36d50031a7cb8ec7fba7566db73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a47e6a36d50031a7cb8ec7fba7566db73">aws_pipe_clean_up_read_end</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end)</td></tr>
 <tr class="separator:a47e6a36d50031a7cb8ec7fba7566db73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb80b8e196c415c55613f666773fd807"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#acb80b8e196c415c55613f666773fd807">s_read_end_is_subscribed</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end)</td></tr>
+<tr class="memitem:acb80b8e196c415c55613f666773fd807"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#acb80b8e196c415c55613f666773fd807">s_read_end_is_subscribed</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end)</td></tr>
 <tr class="separator:acb80b8e196c415c55613f666773fd807"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55d07f1d88f08d066a3f6ec7edc0d261"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a55d07f1d88f08d066a3f6ec7edc0d261">s_read_end_request_async_monitoring</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end, int request_reason)</td></tr>
 <tr class="separator:a55d07f1d88f08d066a3f6ec7edc0d261"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e9848629fbb79aa2e32820a610a536f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a7e9848629fbb79aa2e32820a610a536f">aws_pipe_subscribe_to_readable_events</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end, <a class="el" href="pipe_8h.html#a09fca130eff2201e2e708346b1712daf">aws_pipe_on_readable_fn</a> *on_readable, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a7e9848629fbb79aa2e32820a610a536f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a7e9848629fbb79aa2e32820a610a536f">aws_pipe_subscribe_to_readable_events</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end, <a class="el" href="pipe_8h.html#a09fca130eff2201e2e708346b1712daf">aws_pipe_on_readable_fn</a> *on_readable, void *user_data)</td></tr>
 <tr class="separator:a7e9848629fbb79aa2e32820a610a536f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a146f320d83d3ef8f4d2199c619ddf14c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a146f320d83d3ef8f4d2199c619ddf14c">aws_pipe_unsubscribe_from_readable_events</a> (struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *read_end)</td></tr>
 <tr class="separator:a146f320d83d3ef8f4d2199c619ddf14c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,7 +148,7 @@ Functions</h2></td></tr>
 <tr class="separator:a3fcb5b59e7ea3cf456c552f464b40f05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0caa54ae90f9251165a3cddd2dc94840"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a0caa54ae90f9251165a3cddd2dc94840">aws_pipe_clean_up_write_end</a> (struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end)</td></tr>
 <tr class="separator:a0caa54ae90f9251165a3cddd2dc94840"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b498acbbeebfbbe976672d7bcaa3dba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a1b498acbbeebfbbe976672d7bcaa3dba">aws_pipe_write</a> (struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> src_buffer, <a class="el" href="pipe_8h.html#af5d692be5742b1a7a8e8eca17c1c1673">aws_pipe_on_write_completed_fn</a> *on_completed, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a1b498acbbeebfbbe976672d7bcaa3dba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="windows_2iocp_2pipe_8c.html#a1b498acbbeebfbbe976672d7bcaa3dba">aws_pipe_write</a> (struct <a class="el" href="structaws__pipe__write__end.html">aws_pipe_write_end</a> *write_end, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> src_buffer, <a class="el" href="pipe_8h.html#af5d692be5742b1a7a8e8eca17c1c1673">aws_pipe_on_write_completed_fn</a> *on_completed, void *user_data)</td></tr>
 <tr class="separator:a1b498acbbeebfbbe976672d7bcaa3dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -157,8 +157,8 @@ Variables</h2></td></tr>
 <tr class="separator:aec8b3f48953ea51b70f09cfa1428130b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="af8654c714018c6241d9ebd01f3fb5a26" name="af8654c714018c6241d9ebd01f3fb5a26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8654c714018c6241d9ebd01f3fb5a26">&#9670;&nbsp;</a></span>anonymous enum</h2>
+<a id="a7cc2e4244ca368f68e5746185eda6c4a" name="a7cc2e4244ca368f68e5746185eda6c4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cc2e4244ca368f68e5746185eda6c4a">&#9670;&nbsp;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,8 +169,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af8654c714018c6241d9ebd01f3fb5a26a74893eeaac6bd1f590232d419cb78e6b" name="af8654c714018c6241d9ebd01f3fb5a26a74893eeaac6bd1f590232d419cb78e6b"></a>PIPE_BUFFER_SIZE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="af8654c714018c6241d9ebd01f3fb5a26a08d85d2a7616785215335f77060f85ca" name="af8654c714018c6241d9ebd01f3fb5a26a08d85d2a7616785215335f77060f85ca"></a>PIPE_UNIQUE_NAME_MAX_TRIES&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7cc2e4244ca368f68e5746185eda6c4aa74893eeaac6bd1f590232d419cb78e6b" name="a7cc2e4244ca368f68e5746185eda6c4aa74893eeaac6bd1f590232d419cb78e6b"></a>PIPE_BUFFER_SIZE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7cc2e4244ca368f68e5746185eda6c4aa08d85d2a7616785215335f77060f85ca" name="a7cc2e4244ca368f68e5746185eda6c4aa08d85d2a7616785215335f77060f85ca"></a>PIPE_UNIQUE_NAME_MAX_TRIES&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -550,7 +550,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_read_end_is_subscribed </td>
+          <td class="memname">static bool s_read_end_is_subscribed </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__pipe__read__end.html">aws_pipe_read_end</a> *&#160;</td>
           <td class="paramname"><em>read_end</em></td><td>)</td>

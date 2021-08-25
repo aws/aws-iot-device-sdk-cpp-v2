@@ -16,8 +16,8 @@
 \DoxyCodeLine{16     \textcolor{keyword}{union }\{}
 \DoxyCodeLine{17         \textcolor{keywordtype}{int} \mbox{\hyperlink{structaws__io__handle_a9aaf968bb3a2c137873f87d931c65648}{fd}};}
 \DoxyCodeLine{18         \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__io__handle_ad171e2a8986000bcb713c9ccc4701eaa}{handle}};}
-\DoxyCodeLine{19     \} \mbox{\hyperlink{structaws__io__handle_a221b774ac8aefce310960a9a742e2476}{data}};}
-\DoxyCodeLine{20     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__io__handle_adbc2235f4e7e0564bba639960bada767}{additional\_data}};}
+\DoxyCodeLine{19     \} \mbox{\hyperlink{structaws__io__handle_adeb75f297adaf506d71e4dc5c549a6d5}{data}};}
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__io__handle_ad86e9793e15c3027be29407c4b7d08d2}{additional\_data}};}
 \DoxyCodeLine{21 \};}
 \DoxyCodeLine{22 }
 \DoxyCodeLine{23 \textcolor{keyword}{enum} \mbox{\hyperlink{io_8h_a0613a6ef5306823c98d09f67957af701}{aws\_io\_message\_type}} \{}
@@ -29,9 +29,9 @@
 \DoxyCodeLine{29 }
 \DoxyCodeLine{30 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{io_8h_a845852ad8f2bbee9e220f6b7dc54ab3a}{aws\_channel\_on\_message\_write\_completed\_fn}})(}
 \DoxyCodeLine{31     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__channel}{aws\_channel}} *channel,}
-\DoxyCodeLine{32     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
+\DoxyCodeLine{32     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} *message,}
 \DoxyCodeLine{33     \textcolor{keywordtype}{int} err\_code,}
-\DoxyCodeLine{34     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__io__message_a04e70fba928af409328ef14fbee01852}{user\_data}});}
 \DoxyCodeLine{35 }
 \DoxyCodeLine{36 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__io__message}{aws\_io\_message}} \{}
 \DoxyCodeLine{41     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__io__message_af0fff9bb94840c14ee5f15ca624e3b72}{allocator}};}
@@ -110,7 +110,7 @@
 \DoxyCodeLine{141 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
 \DoxyCodeLine{142 }
 \DoxyCodeLine{147 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
-\DoxyCodeLine{148 \textcolor{keywordtype}{void} \mbox{\hyperlink{io_8h_adf101fca9667ea0e35905940fd8850cc}{aws\_io\_library\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{148 \textcolor{keywordtype}{void} \mbox{\hyperlink{io_8h_adf101fca9667ea0e35905940fd8850cc}{aws\_io\_library\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator);}
 \DoxyCodeLine{149 }
 \DoxyCodeLine{153 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}}}
 \DoxyCodeLine{154 \textcolor{keywordtype}{void} \mbox{\hyperlink{io_8h_a5a6ffa68d855e55ed4670f6759b05fe1}{aws\_io\_library\_clean\_up}}(\textcolor{keywordtype}{void});}

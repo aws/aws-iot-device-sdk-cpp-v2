@@ -29,9 +29,9 @@ static int \mbox{\hyperlink{s2n__ecdsa_8c_a62fab51d1d7572329412f93d7a8ae809}{s2n
 \item 
 static int \mbox{\hyperlink{s2n__ecdsa_8c_a918d9ade2ec8f30032eecabb31a2a512}{s2n\+\_\+ecdsa\+\_\+check\+\_\+key\+\_\+exists}} (const struct \mbox{\hyperlink{structs2n__pkey}{s2n\+\_\+pkey}} $\ast$pkey)
 \item 
-int \mbox{\hyperlink{s2n__ecdsa_8c_a2e5e9d7b4425a5afdc6b5bf18b8d7059}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+ecdsa\+\_\+private\+\_\+key}} (\mbox{\hyperlink{s2n__ecdsa_8h_a5dd51a0a33cc7da735ab991c31d42fc4}{s2n\+\_\+ecdsa\+\_\+private\+\_\+key}} $\ast$ecdsa\+\_\+key, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$evp\+\_\+private\+\_\+key)
+int \mbox{\hyperlink{s2n__ecdsa_8c_a2e5e9d7b4425a5afdc6b5bf18b8d7059}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+ecdsa\+\_\+private\+\_\+key}} (\mbox{\hyperlink{s2n__ecdsa_8h_a5dd51a0a33cc7da735ab991c31d42fc4}{s2n\+\_\+ecdsa\+\_\+private\+\_\+key}} $\ast$ecdsa\+\_\+key, EVP\+\_\+\+PKEY $\ast$evp\+\_\+private\+\_\+key)
 \item 
-int \mbox{\hyperlink{s2n__ecdsa_8c_a85e56f143e17979734453b87a10dbf4f}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+ecdsa\+\_\+public\+\_\+key}} (\mbox{\hyperlink{s2n__ecdsa_8h_a149e7053a0f77d5b772f15195ee48407}{s2n\+\_\+ecdsa\+\_\+public\+\_\+key}} $\ast$ecdsa\+\_\+key, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$evp\+\_\+public\+\_\+key)
+int \mbox{\hyperlink{s2n__ecdsa_8c_a85e56f143e17979734453b87a10dbf4f}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+ecdsa\+\_\+public\+\_\+key}} (\mbox{\hyperlink{s2n__ecdsa_8h_a149e7053a0f77d5b772f15195ee48407}{s2n\+\_\+ecdsa\+\_\+public\+\_\+key}} $\ast$ecdsa\+\_\+key, EVP\+\_\+\+PKEY $\ast$evp\+\_\+public\+\_\+key)
 \item 
 int \mbox{\hyperlink{s2n__ecdsa_8c_ae07526b95a34d19149c628c4c7b8350e}{s2n\+\_\+ecdsa\+\_\+pkey\+\_\+init}} (struct \mbox{\hyperlink{structs2n__pkey}{s2n\+\_\+pkey}} $\ast$pkey)
 \item 
@@ -92,11 +92,11 @@ int \mbox{\hyperlink{s2n__ecdsa_8c_a08e5fdc26668d299ab81acf26598f347}{s2n\+\_\+e
 \index{s2n\_ecdsa.c@{s2n\_ecdsa.c}!s2n\_evp\_pkey\_to\_ecdsa\_private\_key@{s2n\_evp\_pkey\_to\_ecdsa\_private\_key}}
 \index{s2n\_evp\_pkey\_to\_ecdsa\_private\_key@{s2n\_evp\_pkey\_to\_ecdsa\_private\_key}!s2n\_ecdsa.c@{s2n\_ecdsa.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_evp\_pkey\_to\_ecdsa\_private\_key()}{s2n\_evp\_pkey\_to\_ecdsa\_private\_key()}}
-{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+ecdsa\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__ecdsa_8h_a5dd51a0a33cc7da735ab991c31d42fc4}{s2n\+\_\+ecdsa\+\_\+private\+\_\+key}} $\ast$}]{ecdsa\+\_\+key,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{evp\+\_\+private\+\_\+key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+ecdsa\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__ecdsa_8h_a5dd51a0a33cc7da735ab991c31d42fc4}{s2n\+\_\+ecdsa\+\_\+private\+\_\+key}} $\ast$}]{ecdsa\+\_\+key,  }\item[{EVP\+\_\+\+PKEY $\ast$}]{evp\+\_\+private\+\_\+key }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__ecdsa_8c_a85e56f143e17979734453b87a10dbf4f}\label{s2n__ecdsa_8c_a85e56f143e17979734453b87a10dbf4f}} 
 \index{s2n\_ecdsa.c@{s2n\_ecdsa.c}!s2n\_evp\_pkey\_to\_ecdsa\_public\_key@{s2n\_evp\_pkey\_to\_ecdsa\_public\_key}}
 \index{s2n\_evp\_pkey\_to\_ecdsa\_public\_key@{s2n\_evp\_pkey\_to\_ecdsa\_public\_key}!s2n\_ecdsa.c@{s2n\_ecdsa.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_evp\_pkey\_to\_ecdsa\_public\_key()}{s2n\_evp\_pkey\_to\_ecdsa\_public\_key()}}
-{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+ecdsa\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__ecdsa_8h_a149e7053a0f77d5b772f15195ee48407}{s2n\+\_\+ecdsa\+\_\+public\+\_\+key}} $\ast$}]{ecdsa\+\_\+key,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{evp\+\_\+public\+\_\+key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+ecdsa\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__ecdsa_8h_a149e7053a0f77d5b772f15195ee48407}{s2n\+\_\+ecdsa\+\_\+public\+\_\+key}} $\ast$}]{ecdsa\+\_\+key,  }\item[{EVP\+\_\+\+PKEY $\ast$}]{evp\+\_\+public\+\_\+key }\end{DoxyParamCaption})}
 

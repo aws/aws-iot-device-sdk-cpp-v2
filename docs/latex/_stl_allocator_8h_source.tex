@@ -15,14 +15,14 @@
 \DoxyCodeLine{16         \textcolor{keyword}{using} \mbox{\hyperlink{structaws__allocator}{Allocator}} = \mbox{\hyperlink{structaws__allocator}{aws\_allocator}};}
 \DoxyCodeLine{17         \textcolor{keyword}{extern} \mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}};}
 \DoxyCodeLine{18 }
-\DoxyCodeLine{19         \textcolor{keyword}{template} <\textcolor{keyword}{typename} T> \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{StlAllocator}} : \textcolor{keyword}{public} \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{std::allocator}}<T>}
+\DoxyCodeLine{19         \textcolor{keyword}{template} <\textcolor{keyword}{typename} T> \textcolor{keyword}{class }\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{StlAllocator}} : \textcolor{keyword}{public} std::allocator<T>}
 \DoxyCodeLine{20         \{}
 \DoxyCodeLine{21           \textcolor{keyword}{public}:}
 \DoxyCodeLine{22             \textcolor{keyword}{using} \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}} = std::allocator<T>;}
 \DoxyCodeLine{23 }
 \DoxyCodeLine{24             \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a7a33fce7a208df119287657f3555f261}{StlAllocator}}() noexcept : \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}}() \{ \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}{m\_allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}; \}}
 \DoxyCodeLine{25 }
-\DoxyCodeLine{26             \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a4744bfdb69fa6c0514fd8425a9cea7f3}{StlAllocator}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) noexcept : \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}}() \{ \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}{m\_allocator}} = \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}; \}}
+\DoxyCodeLine{26             \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a4744bfdb69fa6c0514fd8425a9cea7f3}{StlAllocator}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator) noexcept : \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}}() \{ \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}{m\_allocator}} = allocator; \}}
 \DoxyCodeLine{27 }
 \DoxyCodeLine{28             \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ae1d130f0891abd502d3c43c8b326366c}{StlAllocator}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator}{StlAllocator<T>}} \&\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}) noexcept : \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_ad7e471cb2839c664bb211d0057cd543a}{Base}}(\mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}) \{ \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}{m\_allocator}} = \mbox{\hyperlink{namespace_aws_a63d22a0af7bbcae8152004baa4756a4d}{a}}.m\_allocator; \}}
 \DoxyCodeLine{29 }
@@ -52,7 +52,7 @@
 \DoxyCodeLine{53             \textcolor{keywordtype}{void} \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a060ac0a43eb52efd4e32889fa298561e}{deallocate}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a08643480cd7c52083c48e914a83ca878}{RawPointer}} \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}}, \mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a2791ff1e4ee66eadf9b9e78714de824d}{size\_type}})}
 \DoxyCodeLine{54             \{}
 \DoxyCodeLine{55                 \mbox{\hyperlink{assert_8h_a2c17f0f768532f761b99a8fee0c656f1}{AWS\_ASSERT}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}{m\_allocator}});}
-\DoxyCodeLine{56                 \mbox{\hyperlink{preamble_8h_a7f273578823e2deda95364138491f729}{aws\_mem\_release}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}{m\_allocator}}, \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}});}
+\DoxyCodeLine{56                 \mbox{\hyperlink{allocator_8h_ac34324e684063da863a00f4fb8129906}{aws\_mem\_release}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}{m\_allocator}}, \mbox{\hyperlink{namespace_aws_a704cef6a112538ac7afcf5098d6d248f}{p}});}
 \DoxyCodeLine{57             \}}
 \DoxyCodeLine{58 }
 \DoxyCodeLine{59             \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{class_aws_1_1_crt_1_1_stl_allocator_a300fc6267ca73db38028df6a2983793a}{m\_allocator}};}

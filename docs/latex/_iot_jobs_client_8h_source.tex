@@ -71,87 +71,87 @@
 \DoxyCodeLine{71           \textcolor{keyword}{public}:}
 \DoxyCodeLine{72             \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_iot_jobs_client}{IotJobsClient}}(\textcolor{keyword}{const} std::shared\_ptr<Aws::Crt::Mqtt::MqttConnection> \&connection);}
 \DoxyCodeLine{73 }
-\DoxyCodeLine{74             \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{74             \textcolor{keyword}{operator} bool() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{75             \textcolor{keywordtype}{int} GetLastError() \textcolor{keyword}{const} \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{76 }
 \DoxyCodeLine{77             \textcolor{keywordtype}{bool} SubscribeToUpdateJobExecutionAccepted(}
 \DoxyCodeLine{78                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_update_job_execution_subscription_request}{Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest}} \&request,}
-\DoxyCodeLine{79                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{80                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a81764500347710f52d7edc3c0b8b23d8}{OnSubscribeToUpdateJobExecutionAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{79                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{80                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a81764500347710f52d7edc3c0b8b23d8}{OnSubscribeToUpdateJobExecutionAcceptedResponse}} \&handler,}
 \DoxyCodeLine{81                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{82 }
 \DoxyCodeLine{83             \textcolor{keywordtype}{bool} SubscribeToGetPendingJobExecutionsRejected(}
 \DoxyCodeLine{84                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_subscription_request}{Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest}} \&request,}
-\DoxyCodeLine{85                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{86                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_aae67f2cdbc784dc39016d094d8d89acd}{OnSubscribeToGetPendingJobExecutionsRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{85                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{86                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_aae67f2cdbc784dc39016d094d8d89acd}{OnSubscribeToGetPendingJobExecutionsRejectedResponse}} \&handler,}
 \DoxyCodeLine{87                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{88 }
 \DoxyCodeLine{89             \textcolor{keywordtype}{bool} SubscribeToDescribeJobExecutionAccepted(}
 \DoxyCodeLine{90                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_describe_job_execution_subscription_request}{Aws::Iotjobs::DescribeJobExecutionSubscriptionRequest}} \&request,}
-\DoxyCodeLine{91                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{92                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a6f8bbf847d29433e0a5323c1123b422d}{OnSubscribeToDescribeJobExecutionAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{91                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{92                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a6f8bbf847d29433e0a5323c1123b422d}{OnSubscribeToDescribeJobExecutionAcceptedResponse}} \&handler,}
 \DoxyCodeLine{93                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{94 }
 \DoxyCodeLine{95             \textcolor{keywordtype}{bool} SubscribeToDescribeJobExecutionRejected(}
 \DoxyCodeLine{96                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_describe_job_execution_subscription_request}{Aws::Iotjobs::DescribeJobExecutionSubscriptionRequest}} \&request,}
-\DoxyCodeLine{97                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{98                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a9e74b89263116bf7dd5b346f42646c62}{OnSubscribeToDescribeJobExecutionRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{97                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{98                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a9e74b89263116bf7dd5b346f42646c62}{OnSubscribeToDescribeJobExecutionRejectedResponse}} \&handler,}
 \DoxyCodeLine{99                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{100 }
 \DoxyCodeLine{101             \textcolor{keywordtype}{bool} SubscribeToUpdateJobExecutionRejected(}
 \DoxyCodeLine{102                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_update_job_execution_subscription_request}{Aws::Iotjobs::UpdateJobExecutionSubscriptionRequest}} \&request,}
-\DoxyCodeLine{103                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{104                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_ac7064a46b3ac78b975defeb7c81b5c14}{OnSubscribeToUpdateJobExecutionRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{103                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{104                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_ac7064a46b3ac78b975defeb7c81b5c14}{OnSubscribeToUpdateJobExecutionRejectedResponse}} \&handler,}
 \DoxyCodeLine{105                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{106 }
 \DoxyCodeLine{107             \textcolor{keywordtype}{bool} SubscribeToJobExecutionsChangedEvents(}
 \DoxyCodeLine{108                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_job_executions_changed_subscription_request}{Aws::Iotjobs::JobExecutionsChangedSubscriptionRequest}} \&request,}
-\DoxyCodeLine{109                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{110                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_aa0b211a092dfec90561b82f2c2b72a40}{OnSubscribeToJobExecutionsChangedEventsResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{109                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{110                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_aa0b211a092dfec90561b82f2c2b72a40}{OnSubscribeToJobExecutionsChangedEventsResponse}} \&handler,}
 \DoxyCodeLine{111                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{112 }
 \DoxyCodeLine{113             \textcolor{keywordtype}{bool} SubscribeToStartNextPendingJobExecutionRejected(}
 \DoxyCodeLine{114                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_start_next_pending_job_execution_subscription_request}{Aws::Iotjobs::StartNextPendingJobExecutionSubscriptionRequest}} \&request,}
-\DoxyCodeLine{115                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{116                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_adaf640572f9062ba4a340d333f561490}{OnSubscribeToStartNextPendingJobExecutionRejectedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{115                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{116                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_adaf640572f9062ba4a340d333f561490}{OnSubscribeToStartNextPendingJobExecutionRejectedResponse}} \&handler,}
 \DoxyCodeLine{117                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{118 }
 \DoxyCodeLine{119             \textcolor{keywordtype}{bool} SubscribeToNextJobExecutionChangedEvents(}
 \DoxyCodeLine{120                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_next_job_execution_changed_subscription_request}{Aws::Iotjobs::NextJobExecutionChangedSubscriptionRequest}} \&request,}
-\DoxyCodeLine{121                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{122                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_aa671f953f53affebb5d9ec07c77a1859}{OnSubscribeToNextJobExecutionChangedEventsResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{121                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{122                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_aa671f953f53affebb5d9ec07c77a1859}{OnSubscribeToNextJobExecutionChangedEventsResponse}} \&handler,}
 \DoxyCodeLine{123                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{124 }
 \DoxyCodeLine{125             \textcolor{keywordtype}{bool} SubscribeToGetPendingJobExecutionsAccepted(}
 \DoxyCodeLine{126                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_subscription_request}{Aws::Iotjobs::GetPendingJobExecutionsSubscriptionRequest}} \&request,}
-\DoxyCodeLine{127                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{128                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a8e8c67348df86ba4ca3e354476cbb9eb}{OnSubscribeToGetPendingJobExecutionsAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{127                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{128                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a8e8c67348df86ba4ca3e354476cbb9eb}{OnSubscribeToGetPendingJobExecutionsAcceptedResponse}} \&handler,}
 \DoxyCodeLine{129                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{130 }
 \DoxyCodeLine{131             \textcolor{keywordtype}{bool} SubscribeToStartNextPendingJobExecutionAccepted(}
 \DoxyCodeLine{132                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_start_next_pending_job_execution_subscription_request}{Aws::Iotjobs::StartNextPendingJobExecutionSubscriptionRequest}} \&request,}
-\DoxyCodeLine{133                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{134                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a306c6931b270dccc3be328ad410e252d}{OnSubscribeToStartNextPendingJobExecutionAcceptedResponse}} \&\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{133                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
+\DoxyCodeLine{134                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a306c6931b270dccc3be328ad410e252d}{OnSubscribeToStartNextPendingJobExecutionAcceptedResponse}} \&handler,}
 \DoxyCodeLine{135                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a4b6b923d0199f5cb2bb2ba61c4bd0dcd}{OnSubscribeComplete}} \&onSubAck);}
 \DoxyCodeLine{136 }
 \DoxyCodeLine{137             \textcolor{keywordtype}{bool} PublishDescribeJobExecution(}
 \DoxyCodeLine{138                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_describe_job_execution_request}{Aws::Iotjobs::DescribeJobExecutionRequest}} \&request,}
-\DoxyCodeLine{139                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{139                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{140                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a8d27af0de5aa5b8553313acac5320300}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{141 }
 \DoxyCodeLine{142             \textcolor{keywordtype}{bool} PublishGetPendingJobExecutions(}
 \DoxyCodeLine{143                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_get_pending_job_executions_request}{Aws::Iotjobs::GetPendingJobExecutionsRequest}} \&request,}
-\DoxyCodeLine{144                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{144                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{145                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a8d27af0de5aa5b8553313acac5320300}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{146 }
 \DoxyCodeLine{147             \textcolor{keywordtype}{bool} PublishUpdateJobExecution(}
 \DoxyCodeLine{148                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_update_job_execution_request}{Aws::Iotjobs::UpdateJobExecutionRequest}} \&request,}
-\DoxyCodeLine{149                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{149                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{150                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a8d27af0de5aa5b8553313acac5320300}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{151 }
 \DoxyCodeLine{152             \textcolor{keywordtype}{bool} PublishStartNextPendingJobExecution(}
 \DoxyCodeLine{153                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_iotjobs_1_1_start_next_pending_job_execution_request}{Aws::Iotjobs::StartNextPendingJobExecutionRequest}} \&request,}
-\DoxyCodeLine{154                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{154                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{Aws::Crt::Mqtt::QOS}} qos,}
 \DoxyCodeLine{155                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_iotjobs_a8d27af0de5aa5b8553313acac5320300}{OnPublishComplete}} \&onPubAck);}
 \DoxyCodeLine{156 }
 \DoxyCodeLine{157           \textcolor{keyword}{private}:}

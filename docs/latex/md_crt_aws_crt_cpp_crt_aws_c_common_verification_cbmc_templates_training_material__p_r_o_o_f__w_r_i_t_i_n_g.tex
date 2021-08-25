@@ -20,7 +20,7 @@
 \begin{DoxyItemize}
 \item \href{\#example-using-function-contracts}{\texttt{ Example using function contracts}}
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md162}{}\doxysection{The components of a CBMC proof}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md162}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md161}{}\doxysection{The components of a CBMC proof}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md161}
 A CBMC proof normally consists of several components\+:
 
 
@@ -82,7 +82,7 @@ Much of the work done by these Makefiles is common among proofs. We provide a {\
 \end{DoxyEnumerate}
 \end{DoxyEnumerate}
 
-The remainder of this document describes how build each one of these components.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md163}{}\doxysection{Running example.}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md163}
+The remainder of this document describes how build each one of these components.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md162}{}\doxysection{Running example.}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md162}
 We will use the {\ttfamily \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}}} module from \href{https://github.com/awslabs/aws-c-common}{\texttt{ AWS C Common}} open-\/source project as our running example. This module provides a polymorphic array defined as follows\+:
 
 
@@ -120,8 +120,8 @@ Users of this data structure are expected to access its fields using getter and 
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md164}{}\doxysection{The Proof harness}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md164}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md165}{}\doxysubsection{What does a good proof harness look like?}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md165}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md163}{}\doxysection{The Proof harness}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md163}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md164}{}\doxysubsection{What does a good proof harness look like?}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md164}
 Syntactically, a proof harness looks quite similar to a unit test. The main difference is that a proof harness calls the target function with a partially-\/constrained input rather than a concrete value; when symbolically executed by CBMC, this has the effect of exploring the function under {\itshape all} possible inputs that satisfy the constraints.
 
 We have developed a style of writing proofs that we believe is readable, maintainable, and modular. This style was driven by feedback from developers, and addresses the need to communicate {\itshape exactly what we are proving} to developers and users.
@@ -192,7 +192,7 @@ The harness shown above consists of five parts\+:
 \end{DoxyEnumerate}
 \begin{DoxyEnumerate}
 \item Check any function postconditions using {\ttfamily assert} statements.
-\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md166}{}\doxysubsection{How to write a good proof harness}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md166}
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md165}{}\doxysubsection{How to write a good proof harness}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md165}
 We recommend approaching writing a proof-\/harness as an iterative process\+:
 
 
@@ -240,7 +240,7 @@ Leaving these values unconstrained will almost certainly lead to CBMC detecting 
 \DoxyCodeLine{        * [trace] val != ((void*)0) check failed}
 
 \end{DoxyCode}
- Consult our \mbox{\hyperlink{_d_e_b_u_g_g_i_n_g_8md}{guide to debugging CBMC output}} for suggestions about how to understand this output.
+ Consult our guide to debugging CBMC output for suggestions about how to understand this output.
 \end{DoxyEnumerate}
 \begin{DoxyEnumerate}
 \item Constrain each input in turn until all warnings are resolved. See the sections on writing {\ttfamily \+\_\+is\+\_\+valid()} and {\ttfamily \+\_\+ensure\+\_\+is\+\_\+allocated()} functions for details on how to do this
@@ -285,7 +285,7 @@ In our example harness, this is handled by the lines
 
 \end{DoxyCode}
 
-\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md167}{}\doxysection{The Proof Makefile}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md167}
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md166}{}\doxysection{The Proof Makefile}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md166}
 The Makefile for our running example looks like this\+:
 
 
@@ -346,7 +346,7 @@ The Makefile for our running example looks like this\+:
 \item {\ttfamily include ../\+Makefile.common} to take advantage of the standard templates declared in that file.
 \end{DoxyEnumerate}
 
-Most makefiles should like exactly like this. \mbox{[}TODO discuss wellspring, litani\mbox{]}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md168}{}\doxysection{The $<$tt$>$is\+\_\+valid()$<$/tt$>$ function}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md168}
+Most makefiles should like exactly like this. \mbox{[}TODO discuss wellspring, litani\mbox{]}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md167}{}\doxysection{The $<$tt$>$is\+\_\+valid()$<$/tt$>$ function}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md167}
 The {\ttfamily \mbox{\hyperlink{log__formatter_8c_a7b1d0df736739f38994ed29f54cffdf3}{is\+\_\+valid()}}} functions used in preconditions are developed using an iterative process. For each {\bfseries{data-\/structure}} module, start by specifying the simplest predicates that you can think of for the data structure --- usually, that the data of the data structure is correctly allocated. Then, gradually refine these predicates, until you have a set of reasonable invariants for the data structure.
 
 You can verify that invariants are reasonable by\+:
@@ -365,7 +365,7 @@ You can verify that invariants are reasonable by\+:
 \end{DoxyEnumerate}
 
 In both these cases, fix the bug in the code, then make sure the invariant now succeeds during the tests.
-\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md169}{}\doxysubsection{Example of an $<$tt$>$is\+\_\+valid()$<$/tt$>$ function}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md169}
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md168}{}\doxysubsection{Example of an $<$tt$>$is\+\_\+valid()$<$/tt$>$ function}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md168}
 For instance, in the case of the {\ttfamily array\+\_\+list}, we started with the invariant that {\ttfamily data} points to {\ttfamily current\+\_\+size} allocated bytes. After several iterations, the validity invariant for {\ttfamily array\+\_\+list} ended up looking like this\+:
 
 
@@ -398,7 +398,7 @@ The invariant above describes four conditions satisfied by a valid {\ttfamily ar
 \end{DoxyEnumerate}
 \begin{DoxyEnumerate}
 \item the {\ttfamily item\+\_\+size} must be positive.
-\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md170}{}\doxysection{The $<$tt$>$ensure\+\_\+allocated$<$/tt$>$ function}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md170}
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md169}{}\doxysection{The $<$tt$>$ensure\+\_\+allocated$<$/tt$>$ function}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md169}
 Ideally, all properties in a proof harness would be written in a declarative style. Unfortunately, CBMC currently does offer support that allows code to {\ttfamily \+\_\+\+\_\+\+CPROVER\+\_\+assume()} that memory is correctly allocated. Instead, it must be allocated using imperative calls to {\ttfamily malloc()}. By default, CBMC {\ttfamily malloc()} never returns {\ttfamily null}. So its important that you explicitly handle the case where the pointer might be {\ttfamily null}.
 
 Its important to separate the work done in this function from the work done in an {\ttfamily is\+\_\+valid} function. This function should only worry about allocating the memory needed by the data-\/structure. Any other validity constraints should be handled by the {\ttfamily \mbox{\hyperlink{log__formatter_8c_a7b1d0df736739f38994ed29f54cffdf3}{is\+\_\+valid()}}} check.
@@ -418,11 +418,11 @@ The {\ttfamily ensure} function for the running example is\+:
 \DoxyCodeLine{\}}
 
 \end{DoxyCode}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md171}{}\doxysection{Stubs and abstractions}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md171}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md170}{}\doxysection{Stubs and abstractions}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md170}
 
 \begin{DoxyItemize}
 \item TODO
-\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md172}{}\doxysection{How do I add the function contract to the function being verified?}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md172}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md171}{}\doxysection{How do I add the function contract to the function being verified?}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md171}
 We strongly recommend adding all checks and assumptions from the proof harness to the function being verified as runtime assertions. This provides value in several ways.
 
 
@@ -434,7 +434,7 @@ We strongly recommend adding all checks and assumptions from the proof harness t
 \end{DoxyEnumerate}
 \begin{DoxyEnumerate}
 \item {\bfseries{It helps focus the mind.}} It is easy to let standards slip during code-\/reviews for test and verification code. \char`\"{}\+Even if its not perfect, its better than nothing, so might as well just click approve.\char`\"{} Adding the proof assumptions and checks to the codebase itself as runtime assertions causes reviewers to take them much more seriously, which leads to both increased proof quality, and improved code quality.
-\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md173}{}\doxysubsection{Example using function contracts}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md173}
+\end{DoxyEnumerate}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md172}{}\doxysubsection{Example using function contracts}\label{md_crt_aws_crt_cpp_crt_aws_c_common_verification_cbmc_templates_training_material__p_r_o_o_f__w_r_i_t_i_n_g_autotoc_md172}
 In the running example, our verification harness assumed the following preconditions
 
 

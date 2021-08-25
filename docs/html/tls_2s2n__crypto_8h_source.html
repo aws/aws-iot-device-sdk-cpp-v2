@@ -95,7 +95,7 @@ $(function() {
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="s2n__certificate_8h.html">crypto/s2n_certificate.h</a>&quot;</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="s2n__cipher_8h.html">crypto/s2n_cipher.h</a>&quot;</span></div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="s2n__hmac_8h.html">crypto/s2n_hmac.h</a>&quot;</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="crypto_2s2n__hash_8h.html">crypto/s2n_hash.h</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="s2n__hash_8h.html">crypto/s2n_hash.h</a>&quot;</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="s2n__pkey_8h.html">crypto/s2n_pkey.h</a>&quot;</span></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="s2n__signature_8h.html">crypto/s2n_signature.h</a>&quot;</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="s2n__tls13__keys_8h.html">crypto/s2n_tls13_keys.h</a>&quot;</span></div>
@@ -143,7 +143,6 @@ $(function() {
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structs2n__crypto__parameters.html#abf9f007cb94658061cb9ffde15411a75">   71</a></span>    uint8_t <a class="code hl_variable" href="structs2n__crypto__parameters.html#abf9f007cb94658061cb9ffde15411a75">client_sequence_number</a>[<a class="code hl_define" href="s2n__crypto__constants_8h.html#ab6af529d3a237c0d8d2f67edcf831c25">S2N_TLS_SEQUENCE_NUM_LEN</a>];</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structs2n__crypto__parameters.html#a3aed6b356ada86966de19c5e411b8e4d">   72</a></span>    uint8_t <a class="code hl_variable" href="structs2n__crypto__parameters.html#a3aed6b356ada86966de19c5e411b8e4d">server_sequence_number</a>[<a class="code hl_define" href="s2n__crypto__constants_8h.html#ab6af529d3a237c0d8d2f67edcf831c25">S2N_TLS_SEQUENCE_NUM_LEN</a>];</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
-<div class="ttc" id="acrypto_2s2n__hash_8h_html"><div class="ttname"><a href="crypto_2s2n__hash_8h.html">s2n_hash.h</a></div></div>
 <div class="ttc" id="as2n__certificate_8h_html"><div class="ttname"><a href="s2n__certificate_8h.html">s2n_certificate.h</a></div></div>
 <div class="ttc" id="as2n__cipher_8h_html"><div class="ttname"><a href="s2n__cipher_8h.html">s2n_cipher.h</a></div></div>
 <div class="ttc" id="as2n__config_8h_html"><div class="ttname"><a href="s2n__config_8h.html">s2n_config.h</a></div></div>
@@ -155,6 +154,7 @@ $(function() {
 <div class="ttc" id="as2n__dhe_8h_html"><div class="ttname"><a href="s2n__dhe_8h.html">s2n_dhe.h</a></div></div>
 <div class="ttc" id="as2n__ecc__evp_8h_html"><div class="ttname"><a href="s2n__ecc__evp_8h.html">s2n_ecc_evp.h</a></div></div>
 <div class="ttc" id="as2n__ecc__evp_8h_html_ae3543231af9063c24d8fde795eb6f83c"><div class="ttname"><a href="s2n__ecc__evp_8h.html#ae3543231af9063c24d8fde795eb6f83c">S2N_ECC_EVP_SUPPORTED_CURVES_COUNT</a></div><div class="ttdeci">#define S2N_ECC_EVP_SUPPORTED_CURVES_COUNT</div><div class="ttdef"><b>Definition:</b> s2n_ecc_evp.h:53</div></div>
+<div class="ttc" id="as2n__hash_8h_html"><div class="ttname"><a href="s2n__hash_8h.html">s2n_hash.h</a></div></div>
 <div class="ttc" id="as2n__hmac_8h_html"><div class="ttname"><a href="s2n__hmac_8h.html">s2n_hmac.h</a></div></div>
 <div class="ttc" id="as2n__kem_8h_html"><div class="ttname"><a href="s2n__kem_8h.html">s2n_kem.h</a></div></div>
 <div class="ttc" id="as2n__kem_8h_html_a9784e70a5eeb0bdfc6f35de3a1157acd"><div class="ttname"><a href="s2n__kem_8h.html#a9784e70a5eeb0bdfc6f35de3a1157acd">S2N_SUPPORTED_KEM_GROUPS_COUNT</a></div><div class="ttdeci">#define S2N_SUPPORTED_KEM_GROUPS_COUNT</div><div class="ttdef"><b>Definition:</b> s2n_kem.h:76</div></div>

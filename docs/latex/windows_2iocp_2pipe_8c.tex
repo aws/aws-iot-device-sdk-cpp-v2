@@ -34,18 +34,18 @@ enum \mbox{\hyperlink{windows_2iocp_2pipe_8c_a8d5185929ae688e65e523d0d68cfa8c3}{
 , \mbox{\hyperlink{windows_2iocp_2pipe_8c_a8d5185929ae688e65e523d0d68cfa8c3ae84e65ef20c85d42e4148a8b43d0cf53}{WRITE\+\_\+\+END\+\_\+\+STATE\+\_\+\+OPEN}}
  \}
 \item 
-enum \{ \mbox{\hyperlink{windows_2iocp_2pipe_8c_af8654c714018c6241d9ebd01f3fb5a26a74893eeaac6bd1f590232d419cb78e6b}{PIPE\+\_\+\+BUFFER\+\_\+\+SIZE}} = 4096
-, \mbox{\hyperlink{windows_2iocp_2pipe_8c_af8654c714018c6241d9ebd01f3fb5a26a08d85d2a7616785215335f77060f85ca}{PIPE\+\_\+\+UNIQUE\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+TRIES}} = 10
+enum \{ \mbox{\hyperlink{windows_2iocp_2pipe_8c_a7cc2e4244ca368f68e5746185eda6c4aa74893eeaac6bd1f590232d419cb78e6b}{PIPE\+\_\+\+BUFFER\+\_\+\+SIZE}} = 4096
+, \mbox{\hyperlink{windows_2iocp_2pipe_8c_a7cc2e4244ca368f68e5746185eda6c4aa08d85d2a7616785215335f77060f85ca}{PIPE\+\_\+\+UNIQUE\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+TRIES}} = 10
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{windows_2iocp_2pipe_8c_a0466b8ae8934cc192ce3ddf319198036}{s\+\_\+read\+\_\+end\+\_\+on\+\_\+zero\+\_\+byte\+\_\+read\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct aws\+\_\+overlapped $\ast$overlapped, int status\+\_\+code, size\+\_\+t num\+\_\+bytes\+\_\+transferred)
+static void \mbox{\hyperlink{windows_2iocp_2pipe_8c_a0466b8ae8934cc192ce3ddf319198036}{s\+\_\+read\+\_\+end\+\_\+on\+\_\+zero\+\_\+byte\+\_\+read\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct aws\+\_\+overlapped $\ast$overlapped, int status\+\_\+code, size\+\_\+t num\+\_\+bytes\+\_\+transferred)
 \item 
-static void \mbox{\hyperlink{windows_2iocp_2pipe_8c_aa3d067e1958039d585da366f25327dc3}{s\+\_\+read\+\_\+end\+\_\+report\+\_\+error\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}}, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
+static void \mbox{\hyperlink{windows_2iocp_2pipe_8c_aa3d067e1958039d585da366f25327dc3}{s\+\_\+read\+\_\+end\+\_\+report\+\_\+error\+\_\+task}} (struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task, void $\ast$user\+\_\+data, enum \mbox{\hyperlink{task__scheduler_8h_ab115fdd804adabe90197d5ae212d032e}{aws\+\_\+task\+\_\+status}} status)
 \item 
-static void \mbox{\hyperlink{windows_2iocp_2pipe_8c_a868551d37595441931d710c3f875073b}{s\+\_\+write\+\_\+end\+\_\+on\+\_\+write\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct aws\+\_\+overlapped $\ast$overlapped, int status\+\_\+code, size\+\_\+t num\+\_\+bytes\+\_\+transferred)
+static void \mbox{\hyperlink{windows_2iocp_2pipe_8c_a868551d37595441931d710c3f875073b}{s\+\_\+write\+\_\+end\+\_\+on\+\_\+write\+\_\+completion}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct aws\+\_\+overlapped $\ast$overlapped, int status\+\_\+code, size\+\_\+t num\+\_\+bytes\+\_\+transferred)
 \item 
 static int \mbox{\hyperlink{windows_2iocp_2pipe_8c_ab61b44fec5108e394db54788bffbc30a}{s\+\_\+translate\+\_\+windows\+\_\+error}} (DWORD win\+\_\+error)
 \item 
@@ -53,7 +53,7 @@ static int \mbox{\hyperlink{windows_2iocp_2pipe_8c_abc9bed8b2ab4fb4bb09baca95b6e
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{windows_2iocp_2pipe_8c_af9a0a3bc89c3adc7dc94281785c9c87a}{aws\+\_\+pipe\+\_\+get\+\_\+unique\+\_\+name}} (char $\ast$dst, size\+\_\+t dst\+\_\+size)
 \item 
-int \mbox{\hyperlink{windows_2iocp_2pipe_8c_abf56e2682653ae18d116c31602657792}{aws\+\_\+pipe\+\_\+init}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$read\+\_\+end\+\_\+event\+\_\+loop, struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$write\+\_\+end\+\_\+event\+\_\+loop, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+int \mbox{\hyperlink{windows_2iocp_2pipe_8c_abf56e2682653ae18d116c31602657792}{aws\+\_\+pipe\+\_\+init}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$read\+\_\+end\+\_\+event\+\_\+loop, struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$write\+\_\+end\+\_\+event\+\_\+loop, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{windows_2iocp_2pipe_8c_ae4c1f67b64cef9353f3a262fa1c8201c}{aws\+\_\+pipe\+\_\+get\+\_\+read\+\_\+end\+\_\+event\+\_\+loop}} (const struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end)
 \item 
@@ -61,11 +61,11 @@ struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast
 \item 
 int \mbox{\hyperlink{windows_2iocp_2pipe_8c_a47e6a36d50031a7cb8ec7fba7566db73}{aws\+\_\+pipe\+\_\+clean\+\_\+up\+\_\+read\+\_\+end}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{windows_2iocp_2pipe_8c_acb80b8e196c415c55613f666773fd807}{s\+\_\+read\+\_\+end\+\_\+is\+\_\+subscribed}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end)
+static bool \mbox{\hyperlink{windows_2iocp_2pipe_8c_acb80b8e196c415c55613f666773fd807}{s\+\_\+read\+\_\+end\+\_\+is\+\_\+subscribed}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end)
 \item 
 static void \mbox{\hyperlink{windows_2iocp_2pipe_8c_a55d07f1d88f08d066a3f6ec7edc0d261}{s\+\_\+read\+\_\+end\+\_\+request\+\_\+async\+\_\+monitoring}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, int request\+\_\+reason)
 \item 
-int \mbox{\hyperlink{windows_2iocp_2pipe_8c_a7e9848629fbb79aa2e32820a610a536f}{aws\+\_\+pipe\+\_\+subscribe\+\_\+to\+\_\+readable\+\_\+events}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, \mbox{\hyperlink{pipe_8h_a09fca130eff2201e2e708346b1712daf}{aws\+\_\+pipe\+\_\+on\+\_\+readable\+\_\+fn}} $\ast$on\+\_\+readable, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+int \mbox{\hyperlink{windows_2iocp_2pipe_8c_a7e9848629fbb79aa2e32820a610a536f}{aws\+\_\+pipe\+\_\+subscribe\+\_\+to\+\_\+readable\+\_\+events}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, \mbox{\hyperlink{pipe_8h_a09fca130eff2201e2e708346b1712daf}{aws\+\_\+pipe\+\_\+on\+\_\+readable\+\_\+fn}} $\ast$on\+\_\+readable, void $\ast$user\+\_\+data)
 \item 
 int \mbox{\hyperlink{windows_2iocp_2pipe_8c_a146f320d83d3ef8f4d2199c619ddf14c}{aws\+\_\+pipe\+\_\+unsubscribe\+\_\+from\+\_\+readable\+\_\+events}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end)
 \item 
@@ -73,7 +73,7 @@ int \mbox{\hyperlink{windows_2iocp_2pipe_8c_a3fcb5b59e7ea3cf456c552f464b40f05}{a
 \item 
 int \mbox{\hyperlink{windows_2iocp_2pipe_8c_a0caa54ae90f9251165a3cddd2dc94840}{aws\+\_\+pipe\+\_\+clean\+\_\+up\+\_\+write\+\_\+end}} (struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end)
 \item 
-int \mbox{\hyperlink{windows_2iocp_2pipe_8c_a1b498acbbeebfbbe976672d7bcaa3dba}{aws\+\_\+pipe\+\_\+write}} (struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} src\+\_\+buffer, \mbox{\hyperlink{pipe_8h_af5d692be5742b1a7a8e8eca17c1c1673}{aws\+\_\+pipe\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn}} $\ast$on\+\_\+completed, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+int \mbox{\hyperlink{windows_2iocp_2pipe_8c_a1b498acbbeebfbbe976672d7bcaa3dba}{aws\+\_\+pipe\+\_\+write}} (struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} src\+\_\+buffer, \mbox{\hyperlink{pipe_8h_af5d692be5742b1a7a8e8eca17c1c1673}{aws\+\_\+pipe\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn}} $\ast$on\+\_\+completed, void $\ast$user\+\_\+data)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -83,16 +83,16 @@ int \mbox{\hyperlink{windows_2iocp_2pipe_8c_a1b498acbbeebfbbe976672d7bcaa3dba}{a
 
 
 \doxysubsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{windows_2iocp_2pipe_8c_af8654c714018c6241d9ebd01f3fb5a26}\label{windows_2iocp_2pipe_8c_af8654c714018c6241d9ebd01f3fb5a26}} 
+\mbox{\Hypertarget{windows_2iocp_2pipe_8c_a7cc2e4244ca368f68e5746185eda6c4a}\label{windows_2iocp_2pipe_8c_a7cc2e4244ca368f68e5746185eda6c4a}} 
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{PIPE\_BUFFER\_SIZE@{PIPE\_BUFFER\_SIZE}!pipe.c@{pipe.c}}\index{pipe.c@{pipe.c}!PIPE\_BUFFER\_SIZE@{PIPE\_BUFFER\_SIZE}}}\mbox{\Hypertarget{windows_2iocp_2pipe_8c_af8654c714018c6241d9ebd01f3fb5a26a74893eeaac6bd1f590232d419cb78e6b}\label{windows_2iocp_2pipe_8c_af8654c714018c6241d9ebd01f3fb5a26a74893eeaac6bd1f590232d419cb78e6b}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PIPE\_BUFFER\_SIZE@{PIPE\_BUFFER\_SIZE}!pipe.c@{pipe.c}}\index{pipe.c@{pipe.c}!PIPE\_BUFFER\_SIZE@{PIPE\_BUFFER\_SIZE}}}\mbox{\Hypertarget{windows_2iocp_2pipe_8c_a7cc2e4244ca368f68e5746185eda6c4aa74893eeaac6bd1f590232d419cb78e6b}\label{windows_2iocp_2pipe_8c_a7cc2e4244ca368f68e5746185eda6c4aa74893eeaac6bd1f590232d419cb78e6b}} 
 PIPE\+\_\+\+BUFFER\+\_\+\+SIZE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{PIPE\_UNIQUE\_NAME\_MAX\_TRIES@{PIPE\_UNIQUE\_NAME\_MAX\_TRIES}!pipe.c@{pipe.c}}\index{pipe.c@{pipe.c}!PIPE\_UNIQUE\_NAME\_MAX\_TRIES@{PIPE\_UNIQUE\_NAME\_MAX\_TRIES}}}\mbox{\Hypertarget{windows_2iocp_2pipe_8c_af8654c714018c6241d9ebd01f3fb5a26a08d85d2a7616785215335f77060f85ca}\label{windows_2iocp_2pipe_8c_af8654c714018c6241d9ebd01f3fb5a26a08d85d2a7616785215335f77060f85ca}} 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PIPE\_UNIQUE\_NAME\_MAX\_TRIES@{PIPE\_UNIQUE\_NAME\_MAX\_TRIES}!pipe.c@{pipe.c}}\index{pipe.c@{pipe.c}!PIPE\_UNIQUE\_NAME\_MAX\_TRIES@{PIPE\_UNIQUE\_NAME\_MAX\_TRIES}}}\mbox{\Hypertarget{windows_2iocp_2pipe_8c_a7cc2e4244ca368f68e5746185eda6c4aa08d85d2a7616785215335f77060f85ca}\label{windows_2iocp_2pipe_8c_a7cc2e4244ca368f68e5746185eda6c4aa08d85d2a7616785215335f77060f85ca}} 
 PIPE\+\_\+\+UNIQUE\+\_\+\+NAME\+\_\+\+MAX\+\_\+\+TRIES&\\
 \hline
 
@@ -230,7 +230,7 @@ Initiates an asynchrous write from the source buffer to the pipe. The data refer
 \index{pipe.c@{pipe.c}!s\_read\_end\_is\_subscribed@{s\_read\_end\_is\_subscribed}}
 \index{s\_read\_end\_is\_subscribed@{s\_read\_end\_is\_subscribed}!pipe.c@{pipe.c}}
 \doxysubsubsection{\texorpdfstring{s\_read\_end\_is\_subscribed()}{s\_read\_end\_is\_subscribed()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+read\+\_\+end\+\_\+is\+\_\+subscribed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$}]{read\+\_\+end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+read\+\_\+end\+\_\+is\+\_\+subscribed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$}]{read\+\_\+end }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{windows_2iocp_2pipe_8c_a0466b8ae8934cc192ce3ddf319198036}\label{windows_2iocp_2pipe_8c_a0466b8ae8934cc192ce3ddf319198036}} 
 \index{pipe.c@{pipe.c}!s\_read\_end\_on\_zero\_byte\_read\_completion@{s\_read\_end\_on\_zero\_byte\_read\_completion}}

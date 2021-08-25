@@ -12,17 +12,17 @@ struct \mbox{\hyperlink{structaws__file__writer}{aws\+\_\+file\+\_\+writer}}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \mbox{\hyperlink{log__writer_8c_a1b4ffa7ed68fd77b18d04aed7a0add75}{s\+\_\+aws\+\_\+file\+\_\+writer\+\_\+write}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+static int \mbox{\hyperlink{log__writer_8c_a1b4ffa7ed68fd77b18d04aed7a0add75}{s\+\_\+aws\+\_\+file\+\_\+writer\+\_\+write}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$output)
 \item 
 static void \mbox{\hyperlink{log__writer_8c_abb6955e40c15d98d4f60c63fbe28e4f5}{s\+\_\+aws\+\_\+file\+\_\+writer\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
 \item 
-static int \mbox{\hyperlink{log__writer_8c_acf41d4099358e1e73f1b9b7674c680db}{s\+\_\+aws\+\_\+file\+\_\+writer\+\_\+init\+\_\+internal}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const char $\ast$file\+\_\+name\+\_\+to\+\_\+open, FILE $\ast$currently\+\_\+open\+\_\+file)
+static int \mbox{\hyperlink{log__writer_8c_acf41d4099358e1e73f1b9b7674c680db}{s\+\_\+aws\+\_\+file\+\_\+writer\+\_\+init\+\_\+internal}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const char $\ast$file\+\_\+name\+\_\+to\+\_\+open, FILE $\ast$currently\+\_\+open\+\_\+file)
 \item 
-int \mbox{\hyperlink{log__writer_8c_a74cbe0f4fc29361cf6802ebffa38f709}{aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+stdout}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+int \mbox{\hyperlink{log__writer_8c_a74cbe0f4fc29361cf6802ebffa38f709}{aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+stdout}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
-int \mbox{\hyperlink{log__writer_8c_a3da2d2f8d202d78bc38e9207c847bd1a}{aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+stderr}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+int \mbox{\hyperlink{log__writer_8c_a3da2d2f8d202d78bc38e9207c847bd1a}{aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+stderr}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
-int \mbox{\hyperlink{log__writer_8c_a1bdadf00137b20bca2593cfb2a33983e}{aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+file}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__writer__file__options}{aws\+\_\+log\+\_\+writer\+\_\+file\+\_\+options}} $\ast$options)
+int \mbox{\hyperlink{log__writer_8c_a1bdadf00137b20bca2593cfb2a33983e}{aws\+\_\+log\+\_\+writer\+\_\+init\+\_\+file}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__log__writer__file__options}{aws\+\_\+log\+\_\+writer\+\_\+file\+\_\+options}} $\ast$options)
 \item 
 void \mbox{\hyperlink{log__writer_8c_a42e61c34aa55caea62c80d1bbb79975b}{aws\+\_\+log\+\_\+writer\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
 \end{DoxyCompactItemize}

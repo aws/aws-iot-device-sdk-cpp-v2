@@ -106,7 +106,7 @@
 \DoxyCodeLine{176 }
 \DoxyCodeLine{177             struct \mbox{\hyperlink{struct_aws_1_1_crt_1_1_http_1_1_client_stream_callback_data}{ClientStreamCallbackData}}}
 \DoxyCodeLine{178             \{}
-\DoxyCodeLine{179                 \mbox{\hyperlink{struct_aws_1_1_crt_1_1_http_1_1_client_stream_callback_data_a828f13f71d06fb64d03667b68e87396a}{ClientStreamCallbackData}}() : \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}(nullptr), stream(nullptr) \{\}}
+\DoxyCodeLine{179                 \mbox{\hyperlink{struct_aws_1_1_crt_1_1_http_1_1_client_stream_callback_data_a828f13f71d06fb64d03667b68e87396a}{ClientStreamCallbackData}}() : allocator(nullptr), stream(nullptr) \{\}}
 \DoxyCodeLine{180                 \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{struct_aws_1_1_crt_1_1_http_1_1_client_stream_callback_data_a89eb580a5bd5412713bed2e539eeaedd}{allocator}};}
 \DoxyCodeLine{181                 std::shared\_ptr<HttpStream> \mbox{\hyperlink{struct_aws_1_1_crt_1_1_http_1_1_client_stream_callback_data_a9f5950f7fb6c7c7ee6a544a8bf4b6e1c}{stream}};}
 \DoxyCodeLine{182             \};}
@@ -221,10 +221,10 @@
 \DoxyCodeLine{406 }
 \DoxyCodeLine{415                 \textcolor{keyword}{static} \textcolor{keywordtype}{bool} CreateConnection(}
 \DoxyCodeLine{416                     \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{HttpClientConnectionOptions}} \&connectionOptions,}
-\DoxyCodeLine{417                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{417                     \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{418 }
 \DoxyCodeLine{419               \textcolor{keyword}{protected}:}
-\DoxyCodeLine{420                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{HttpClientConnection}}(\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *m\_connection, \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{420                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection}{HttpClientConnection}}(\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *m\_connection, \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{421                 \mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a84a4b9d5ec439a84fcac7c4b94efffdf}{m\_connection}};}
 \DoxyCodeLine{422 }
 \DoxyCodeLine{423               \textcolor{keyword}{private}:}
@@ -233,12 +233,12 @@
 \DoxyCodeLine{426 }
 \DoxyCodeLine{427                 \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_onClientConnectionSetup(}
 \DoxyCodeLine{428                     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection,}
-\DoxyCodeLine{429                     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{430                     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{429                     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{430                     \textcolor{keywordtype}{void} *user\_data) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{431                 \textcolor{keyword}{static} \textcolor{keywordtype}{void} s\_onClientConnectionShutdown(}
 \DoxyCodeLine{432                     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection,}
-\DoxyCodeLine{433                     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{434                     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{433                     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{434                     \textcolor{keywordtype}{void} *user\_data) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{435             \};}
 \DoxyCodeLine{436 }
 \DoxyCodeLine{437         \} \textcolor{comment}{// namespace Http}}

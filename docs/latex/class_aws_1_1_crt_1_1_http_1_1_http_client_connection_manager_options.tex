@@ -24,7 +24,7 @@
 \item 
 size\+\_\+t \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options_a7fb01bcc751c2f6af2f622682cbe45eb}{Max\+Connections}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options_ad11468906db10b1ef09583efabcbce2d}{Enable\+Blocking\+Shutdown}}
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options_ad11468906db10b1ef09583efabcbce2d}{Enable\+Blocking\+Shutdown}}
 \end{DoxyCompactItemize}
 
 
@@ -78,7 +78,7 @@ The http connection options to use for each connection created by the manager \m
 \index{Aws::Crt::Http::HttpClientConnectionManagerOptions@{Aws::Crt::Http::HttpClientConnectionManagerOptions}!EnableBlockingShutdown@{EnableBlockingShutdown}}
 \index{EnableBlockingShutdown@{EnableBlockingShutdown}!Aws::Crt::Http::HttpClientConnectionManagerOptions@{Aws::Crt::Http::HttpClientConnectionManagerOptions}}
 \doxysubsubsection{\texorpdfstring{EnableBlockingShutdown}{EnableBlockingShutdown}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Manager\+Options\+::\+Enable\+Blocking\+Shutdown}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Manager\+Options\+::\+Enable\+Blocking\+Shutdown}
 
 If set, initiate shutdown will return a future that will allow a user to block until the connection manager has completely released all resources. This isn\textquotesingle{}t necessary during the normal flow of an application, but it is useful for scenarios, such as tests, that need deterministic shutdown ordering. Be aware, if you use this anywhere other than the main thread, you will most likely cause a deadlock. If this is set, you MUST call Initiate\+Shutdown() before releasing your last reference to the connection manager. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options_a7fb01bcc751c2f6af2f622682cbe45eb}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options_a7fb01bcc751c2f6af2f622682cbe45eb}} 
 \index{Aws::Crt::Http::HttpClientConnectionManagerOptions@{Aws::Crt::Http::HttpClientConnectionManagerOptions}!MaxConnections@{MaxConnections}}

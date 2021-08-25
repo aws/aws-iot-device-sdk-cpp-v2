@@ -13,7 +13,7 @@ struct \mbox{\hyperlink{structaws__signing__config__aws}{aws\+\_\+signing\+\_\+c
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() \mbox{\hyperlink{signing__config_8h_ac953025a14d19e2b675205f2bc37e912}{aws\+\_\+should\+\_\+sign\+\_\+header\+\_\+fn}}(const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, void $\ast$userdata)
+typedef bool() \mbox{\hyperlink{signing__config_8h_ac953025a14d19e2b675205f2bc37e912}{aws\+\_\+should\+\_\+sign\+\_\+header\+\_\+fn}}(const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, void $\ast$userdata)
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -43,7 +43,7 @@ enum \mbox{\hyperlink{signing__config_8h_a32744af79b282effdb4d74844142ea05}{aws\
 \item 
 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} const char $\ast$ \mbox{\hyperlink{signing__config_8h_a222a589b909a2e394dc00462dd738e13}{aws\+\_\+signing\+\_\+algorithm\+\_\+to\+\_\+string}} (enum \mbox{\hyperlink{signing__config_8h_a466313bef0cfb7e1e9c1a0234dad772b}{aws\+\_\+signing\+\_\+algorithm}} algorithm)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int \mbox{\hyperlink{signing__config_8h_aec4d47e981da99d7b3c86ad096375ac5}{aws\+\_\+validate\+\_\+aws\+\_\+signing\+\_\+config\+\_\+aws}} (const struct \mbox{\hyperlink{structaws__signing__config__aws}{aws\+\_\+signing\+\_\+config\+\_\+aws}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\+\_\+\+AUTH\+\_\+\+API}} int \mbox{\hyperlink{signing__config_8h_aec4d47e981da99d7b3c86ad096375ac5}{aws\+\_\+validate\+\_\+aws\+\_\+signing\+\_\+config\+\_\+aws}} (const struct \mbox{\hyperlink{structaws__signing__config__aws}{aws\+\_\+signing\+\_\+config\+\_\+aws}} $\ast$config)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -63,7 +63,7 @@ enum \mbox{\hyperlink{signing__config_8h_a32744af79b282effdb4d74844142ea05}{aws\
 \index{signing\_config.h@{signing\_config.h}!aws\_should\_sign\_header\_fn@{aws\_should\_sign\_header\_fn}}
 \index{aws\_should\_sign\_header\_fn@{aws\_should\_sign\_header\_fn}!signing\_config.h@{signing\_config.h}}
 \doxysubsubsection{\texorpdfstring{aws\_should\_sign\_header\_fn}{aws\_should\_sign\_header\_fn}}
-{\footnotesize\ttfamily typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() aws\+\_\+should\+\_\+sign\+\_\+header\+\_\+fn(const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, void $\ast$userdata)}
+{\footnotesize\ttfamily typedef bool() aws\+\_\+should\+\_\+sign\+\_\+header\+\_\+fn(const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}}, void $\ast$userdata)}
 
 
 

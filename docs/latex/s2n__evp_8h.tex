@@ -16,7 +16,7 @@ struct \mbox{\hyperlink{structs2n__evp__hmac__state}{s2n\+\_\+evp\+\_\+hmac\+\_\
 \item 
 \#define \mbox{\hyperlink{s2n__evp_8h_a42d659f1cc383f91e6201f20ef286ffb}{S2\+N\+\_\+\+EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+\+RESET}}(md\+\_\+ctx)~(EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+cleanup(md\+\_\+ctx))
 \item 
-\#define \mbox{\hyperlink{s2n__evp_8h_ab2015ebbb90dce5a345064d8b28f9f2d}{S2\+N\+\_\+\+EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+\+FREE}}(md\+\_\+ctx)~(\mbox{\hyperlink{evp_8h_a798a317aba35bca0a90b1cff9c22dd81}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+destroy}}(md\+\_\+ctx))
+\#define \mbox{\hyperlink{s2n__evp_8h_ab2015ebbb90dce5a345064d8b28f9f2d}{S2\+N\+\_\+\+EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+\+FREE}}(md\+\_\+ctx)~(EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+destroy(md\+\_\+ctx))
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -32,7 +32,7 @@ int \mbox{\hyperlink{s2n__evp_8h_a872a4528a8569722309e7eb25a3d1835}{s2n\+\_\+dig
 \index{s2n\_evp.h@{s2n\_evp.h}!S2N\_EVP\_MD\_CTX\_FREE@{S2N\_EVP\_MD\_CTX\_FREE}}
 \index{S2N\_EVP\_MD\_CTX\_FREE@{S2N\_EVP\_MD\_CTX\_FREE}!s2n\_evp.h@{s2n\_evp.h}}
 \doxysubsubsection{\texorpdfstring{S2N\_EVP\_MD\_CTX\_FREE}{S2N\_EVP\_MD\_CTX\_FREE}}
-{\footnotesize\ttfamily \#define S2\+N\+\_\+\+EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+\+FREE(\begin{DoxyParamCaption}\item[{}]{md\+\_\+ctx }\end{DoxyParamCaption})~(\mbox{\hyperlink{evp_8h_a798a317aba35bca0a90b1cff9c22dd81}{EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+destroy}}(md\+\_\+ctx))}
+{\footnotesize\ttfamily \#define S2\+N\+\_\+\+EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+\+FREE(\begin{DoxyParamCaption}\item[{}]{md\+\_\+ctx }\end{DoxyParamCaption})~(EVP\+\_\+\+MD\+\_\+\+CTX\+\_\+destroy(md\+\_\+ctx))}
 
 \mbox{\Hypertarget{s2n__evp_8h_a3bd26aa6b08fa15493b06cac66308236}\label{s2n__evp_8h_a3bd26aa6b08fa15493b06cac66308236}} 
 \index{s2n\_evp.h@{s2n\_evp.h}!S2N\_EVP\_MD\_CTX\_NEW@{S2N\_EVP\_MD\_CTX\_NEW}}

@@ -84,27 +84,27 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac801e6bce0974a3c1a83661cf6853a1c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#ac801e6bce0974a3c1a83661cf6853a1c">s2n_handshake_write_header</a> (struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *out, uint8_t <a class="el" href="event__stream__rpc__server__connection__test_8c.html#ad0d320d82426002775afef62bff133a7">message_type</a>)</td></tr>
+<tr class="memitem:ac801e6bce0974a3c1a83661cf6853a1c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#ac801e6bce0974a3c1a83661cf6853a1c">s2n_handshake_write_header</a> (struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *out, uint8_t message_type)</td></tr>
 <tr class="separator:ac801e6bce0974a3c1a83661cf6853a1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08cc596d168cc7187747fecdef9da53b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a08cc596d168cc7187747fecdef9da53b">s2n_handshake_finish_header</a> (struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *out)</td></tr>
 <tr class="separator:a08cc596d168cc7187747fecdef9da53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8930886c2b7fb7a73ef11c9c7c3c3b42"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a8930886c2b7fb7a73ef11c9c7c3c3b42">s2n_handshake_parse_header</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, uint8_t *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#ad0d320d82426002775afef62bff133a7">message_type</a>, uint32_t *<a class="el" href="iocp__event__loop_8c.html#ae809d5359ac030c60a30a8f0b2294b82">length</a>)</td></tr>
+<tr class="memitem:a8930886c2b7fb7a73ef11c9c7c3c3b42"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a8930886c2b7fb7a73ef11c9c7c3c3b42">s2n_handshake_parse_header</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, uint8_t *message_type, uint32_t *<a class="el" href="iocp__event__loop_8c.html#a09ef0d7d086ae398d78b446470ae8b3a">length</a>)</td></tr>
 <tr class="separator:a8930886c2b7fb7a73ef11c9c7c3c3b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad384ba82a86f540b1ff9e0874ef94a73"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#ad384ba82a86f540b1ff9e0874ef94a73">s2n_handshake_get_hash_state_ptr</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, <a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg, struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> **hash_state)</td></tr>
+<tr class="memitem:ad384ba82a86f540b1ff9e0874ef94a73"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#ad384ba82a86f540b1ff9e0874ef94a73">s2n_handshake_get_hash_state_ptr</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, <a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg, struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> **hash_state)</td></tr>
 <tr class="separator:ad384ba82a86f540b1ff9e0874ef94a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4dfd52c43bce970af36644c9258a4e9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#ad4dfd52c43bce970af36644c9258a4e9">s2n_handshake_reset_hash_state</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, <a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg)</td></tr>
+<tr class="memitem:ad4dfd52c43bce970af36644c9258a4e9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#ad4dfd52c43bce970af36644c9258a4e9">s2n_handshake_reset_hash_state</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, <a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg)</td></tr>
 <tr class="separator:ad4dfd52c43bce970af36644c9258a4e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39466dd2c9ea4761cce4569432dd627b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a39466dd2c9ea4761cce4569432dd627b">s2n_handshake_get_hash_state</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, <a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg, struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *hash_state)</td></tr>
+<tr class="memitem:a39466dd2c9ea4761cce4569432dd627b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a39466dd2c9ea4761cce4569432dd627b">s2n_handshake_get_hash_state</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, <a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg, struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *hash_state)</td></tr>
 <tr class="separator:a39466dd2c9ea4761cce4569432dd627b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1478b6c7ab0fe1f6104b50b52f6bd648"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a1478b6c7ab0fe1f6104b50b52f6bd648">s2n_handshake_require_all_hashes</a> (struct <a class="el" href="structs2n__handshake.html">s2n_handshake</a> *handshake)</td></tr>
 <tr class="separator:a1478b6c7ab0fe1f6104b50b52f6bd648"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad385b21c731db839fd1b8ee6840e23c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#aad385b21c731db839fd1b8ee6840e23c">s2n_handshake_require_hash</a> (struct <a class="el" href="structs2n__handshake.html">s2n_handshake</a> *handshake, <a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg)</td></tr>
+<tr class="memitem:aad385b21c731db839fd1b8ee6840e23c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#aad385b21c731db839fd1b8ee6840e23c">s2n_handshake_require_hash</a> (struct <a class="el" href="structs2n__handshake.html">s2n_handshake</a> *handshake, <a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg)</td></tr>
 <tr class="separator:aad385b21c731db839fd1b8ee6840e23c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3590807edbdc4911963da683d0d971e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#af3590807edbdc4911963da683d0d971e">s2n_handshake_is_hash_required</a> (struct <a class="el" href="structs2n__handshake.html">s2n_handshake</a> *handshake, <a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg)</td></tr>
+<tr class="memitem:af3590807edbdc4911963da683d0d971e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#af3590807edbdc4911963da683d0d971e">s2n_handshake_is_hash_required</a> (struct <a class="el" href="structs2n__handshake.html">s2n_handshake</a> *handshake, <a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg)</td></tr>
 <tr class="separator:af3590807edbdc4911963da683d0d971e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d7d2eeccc0a0161c6b64d0ef03653c9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a3d7d2eeccc0a0161c6b64d0ef03653c9">s2n_conn_update_required_handshake_hashes</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn)</td></tr>
 <tr class="separator:a3d7d2eeccc0a0161c6b64d0ef03653c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44c418fd64ccc5f634c0ae6180979f8a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a44c418fd64ccc5f634c0ae6180979f8a">s2n_create_wildcard_hostname</a> (struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *hostname_stuffer, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *<a class="el" href="log__formatter__test_8c.html#ae73289c5189c80c0661459b0f4743217">output</a>)</td></tr>
+<tr class="memitem:a44c418fd64ccc5f634c0ae6180979f8a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a44c418fd64ccc5f634c0ae6180979f8a">s2n_create_wildcard_hostname</a> (struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *hostname_stuffer, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *output)</td></tr>
 <tr class="separator:a44c418fd64ccc5f634c0ae6180979f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c3ac63902af207fc1e23e23a2ebef1d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__handshake_8c.html#a3c3ac63902af207fc1e23e23a2ebef1d">s2n_find_cert_matches</a> (struct s2n_map *domain_name_to_cert_map, struct s2n_blob *dns_name, struct <a class="el" href="structs2n__cert__chain__and__key.html">s2n_cert_chain_and_key</a> *matches[<a class="el" href="s2n__certificate_8h.html#a6268a0db3a04623da9e5767e9792c8b8">S2N_CERT_TYPE_COUNT</a>], uint8_t *match_exists)</td></tr>
 <tr class="separator:a3c3ac63902af207fc1e23e23a2ebef1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -287,7 +287,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
           <td class="paramname"><em>hash_alg</em>, </td>
         </tr>
         <tr>
@@ -324,7 +324,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
           <td class="paramname"><em>hash_alg</em>, </td>
         </tr>
         <tr>
@@ -363,7 +363,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
           <td class="paramname"><em>hash_alg</em>&#160;</td>
         </tr>
         <tr>
@@ -446,7 +446,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
           <td class="paramname"><em>hash_alg</em>&#160;</td>
         </tr>
         <tr>
@@ -479,7 +479,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
           <td class="paramname"><em>hash_alg</em>&#160;</td>
         </tr>
         <tr>

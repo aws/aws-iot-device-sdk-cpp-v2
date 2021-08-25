@@ -36,7 +36,7 @@ int \mbox{\hyperlink{s2n__resume_8c_aef2e99be4e9b1782b9d208ce80f02842}{s2n\+\_\+
 \item 
 int \mbox{\hyperlink{s2n__resume_8c_ad19683b9eb6d7635dc7d808d52744deb}{s2n\+\_\+store\+\_\+to\+\_\+cache}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-int \mbox{\hyperlink{s2n__resume_8c_a189634bd6e007ef2f724c2316c4ed465}{s2n\+\_\+connection\+\_\+set\+\_\+session}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const uint8\+\_\+t $\ast$session, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+int \mbox{\hyperlink{s2n__resume_8c_a189634bd6e007ef2f724c2316c4ed465}{s2n\+\_\+connection\+\_\+set\+\_\+session}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const uint8\+\_\+t $\ast$session, size\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})
 \item 
 int \mbox{\hyperlink{s2n__resume_8c_ac1edb95dd9752cd53a87a5d0a5344e68}{s2n\+\_\+connection\+\_\+get\+\_\+session}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$session, size\+\_\+t max\+\_\+length)
 \item 
@@ -48,13 +48,13 @@ int \mbox{\hyperlink{s2n__resume_8c_ade32eaf62615d542898c245e1fc59f68}{s2n\+\_\+
 \item 
 int \mbox{\hyperlink{s2n__resume_8c_a32ea84b259bc47d60a3a3637241447a0}{s2n\+\_\+connection\+\_\+is\+\_\+ocsp\+\_\+stapled}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-int \mbox{\hyperlink{s2n__resume_8c_aa22f1e61039bc0532e8779ba66c11ed7}{s2n\+\_\+config\+\_\+is\+\_\+encrypt\+\_\+decrypt\+\_\+key\+\_\+available}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+int \mbox{\hyperlink{s2n__resume_8c_aa22f1e61039bc0532e8779ba66c11ed7}{s2n\+\_\+config\+\_\+is\+\_\+encrypt\+\_\+decrypt\+\_\+key\+\_\+available}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config)
 \item 
-int \mbox{\hyperlink{s2n__resume_8c_a4d490abbf741f328848cdf8391431a41}{s2n\+\_\+compute\+\_\+weight\+\_\+of\+\_\+encrypt\+\_\+decrypt\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint8\+\_\+t $\ast$encrypt\+\_\+decrypt\+\_\+keys\+\_\+index, uint8\+\_\+t num\+\_\+encrypt\+\_\+decrypt\+\_\+keys, uint64\+\_\+t now)
+int \mbox{\hyperlink{s2n__resume_8c_a4d490abbf741f328848cdf8391431a41}{s2n\+\_\+compute\+\_\+weight\+\_\+of\+\_\+encrypt\+\_\+decrypt\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config, uint8\+\_\+t $\ast$encrypt\+\_\+decrypt\+\_\+keys\+\_\+index, uint8\+\_\+t num\+\_\+encrypt\+\_\+decrypt\+\_\+keys, uint64\+\_\+t now)
 \item 
-struct \mbox{\hyperlink{structs2n__ticket__key}{s2n\+\_\+ticket\+\_\+key}} $\ast$ \mbox{\hyperlink{s2n__resume_8c_a914427ef2b0b6934e38f3f6bd90a8172}{s2n\+\_\+get\+\_\+ticket\+\_\+encrypt\+\_\+decrypt\+\_\+key}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+struct \mbox{\hyperlink{structs2n__ticket__key}{s2n\+\_\+ticket\+\_\+key}} $\ast$ \mbox{\hyperlink{s2n__resume_8c_a914427ef2b0b6934e38f3f6bd90a8172}{s2n\+\_\+get\+\_\+ticket\+\_\+encrypt\+\_\+decrypt\+\_\+key}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config)
 \item 
-struct \mbox{\hyperlink{structs2n__ticket__key}{s2n\+\_\+ticket\+\_\+key}} $\ast$ \mbox{\hyperlink{s2n__resume_8c_a0a36aec54bd8a88ea460a3168531624c}{s2n\+\_\+find\+\_\+ticket\+\_\+key}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}})
+struct \mbox{\hyperlink{structs2n__ticket__key}{s2n\+\_\+ticket\+\_\+key}} $\ast$ \mbox{\hyperlink{s2n__resume_8c_a0a36aec54bd8a88ea460a3168531624c}{s2n\+\_\+find\+\_\+ticket\+\_\+key}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config, const uint8\+\_\+t $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_acc128f98d9ceca227038c771308eff39}{name}})
 \item 
 int \mbox{\hyperlink{s2n__resume_8c_af47d0d9b81212f68a39f86252f718268}{s2n\+\_\+encrypt\+\_\+session\+\_\+ticket}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$to)
 \item 
@@ -64,9 +64,9 @@ int \mbox{\hyperlink{s2n__resume_8c_ab048e80d689dd14eec32b62ca20a0a20}{s2n\+\_\+
 \item 
 int \mbox{\hyperlink{s2n__resume_8c_ab3f4d569baafbb5c99aea966a59cc220}{s2n\+\_\+decrypt\+\_\+session\+\_\+cache}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$from)
 \item 
-int \mbox{\hyperlink{s2n__resume_8c_a2b2d20ed8363aa84eaa570e8151bbcdc}{s2n\+\_\+config\+\_\+wipe\+\_\+expired\+\_\+ticket\+\_\+crypto\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, int8\+\_\+t expired\+\_\+key\+\_\+index)
+int \mbox{\hyperlink{s2n__resume_8c_a2b2d20ed8363aa84eaa570e8151bbcdc}{s2n\+\_\+config\+\_\+wipe\+\_\+expired\+\_\+ticket\+\_\+crypto\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config, int8\+\_\+t expired\+\_\+key\+\_\+index)
 \item 
-int \mbox{\hyperlink{s2n__resume_8c_a919cfa25f29ca5d1437661531d6ac264}{s2n\+\_\+config\+\_\+store\+\_\+ticket\+\_\+key}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, struct \mbox{\hyperlink{structs2n__ticket__key}{s2n\+\_\+ticket\+\_\+key}} $\ast$key)
+int \mbox{\hyperlink{s2n__resume_8c_a919cfa25f29ca5d1437661531d6ac264}{s2n\+\_\+config\+\_\+store\+\_\+ticket\+\_\+key}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config, struct \mbox{\hyperlink{structs2n__ticket__key}{s2n\+\_\+ticket\+\_\+key}} $\ast$key)
 \end{DoxyCompactItemize}
 
 

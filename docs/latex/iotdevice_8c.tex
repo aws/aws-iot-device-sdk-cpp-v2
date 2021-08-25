@@ -16,7 +16,7 @@ static void $\ast$ \mbox{\hyperlink{iotdevice_8c_ac5166c1f1f34e72fa1449d1a64856a
 \item 
 static void \mbox{\hyperlink{iotdevice_8c_a40f358ac3a044f9d32405dbb64084cba}{s\+\_\+c\+JSONFree}} (void $\ast$ptr)
 \item 
-void \mbox{\hyperlink{iotdevice_8c_abefb6dcc6a61d7daf6f34e9e56067ea7}{aws\+\_\+iotdevice\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{iotdevice_8c_abefb6dcc6a61d7daf6f34e9e56067ea7}{aws\+\_\+iotdevice\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{iotdevice_8c_a7b31d154ba6dd773e778d9ed5a87f1cb}{aws\+\_\+iotdevice\+\_\+library\+\_\+clean\+\_\+up}} (void)
 \end{DoxyCompactItemize}
@@ -33,7 +33,7 @@ static struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+
 \item 
 static struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} \mbox{\hyperlink{iotdevice_8c_af0093e5c0ea95cf3530a5381a8e9d309}{s\+\_\+logging\+\_\+subjects\+\_\+list}}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{iotdevice_8c_aa89c11756ee23dc257d9a5c360bb67fc}{s\+\_\+iotdevice\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+static bool \mbox{\hyperlink{iotdevice_8c_aa89c11756ee23dc257d9a5c360bb67fc}{s\+\_\+iotdevice\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}
 \end{DoxyCompactItemize}
 
 
@@ -113,7 +113,7 @@ Initializes internal datastructures used by aws-\/c-\/iot. Must be called before
 \index{iotdevice.c@{iotdevice.c}!s\_iotdevice\_library\_initialized@{s\_iotdevice\_library\_initialized}}
 \index{s\_iotdevice\_library\_initialized@{s\_iotdevice\_library\_initialized}!iotdevice.c@{iotdevice.c}}
 \doxysubsubsection{\texorpdfstring{s\_iotdevice\_library\_initialized}{s\_iotdevice\_library\_initialized}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+iotdevice\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily bool s\+\_\+iotdevice\+\_\+library\+\_\+initialized = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{iotdevice_8c_a5a460a3899dc4042a3ba4f3315467d57}\label{iotdevice_8c_a5a460a3899dc4042a3ba4f3315467d57}} 
 \index{iotdevice.c@{iotdevice.c}!s\_library\_allocator@{s\_library\_allocator}}

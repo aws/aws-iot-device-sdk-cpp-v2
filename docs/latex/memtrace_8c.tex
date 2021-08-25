@@ -28,13 +28,13 @@ struct \mbox{\hyperlink{structstack__metadata}{stack\+\_\+metadata}}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void $\ast$ \mbox{\hyperlink{memtrace_8c_a75d7474f8509320442b8097ec1bdae29}{s\+\_\+trace\+\_\+mem\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+static void $\ast$ \mbox{\hyperlink{memtrace_8c_a75d7474f8509320442b8097ec1bdae29}{s\+\_\+trace\+\_\+mem\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t size)
 \item 
-static void \mbox{\hyperlink{memtrace_8c_aaeddcc7e4acf15e90b9a00891ff0ea13}{s\+\_\+trace\+\_\+mem\+\_\+release}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr)
+static void \mbox{\hyperlink{memtrace_8c_aaeddcc7e4acf15e90b9a00891ff0ea13}{s\+\_\+trace\+\_\+mem\+\_\+release}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$ptr)
 \item 
-static void $\ast$ \mbox{\hyperlink{memtrace_8c_aeb550ee07077f0c276a4b5b94711c9ae}{s\+\_\+trace\+\_\+mem\+\_\+realloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$old\+\_\+ptr, size\+\_\+t old\+\_\+size, size\+\_\+t new\+\_\+size)
+static void $\ast$ \mbox{\hyperlink{memtrace_8c_aeb550ee07077f0c276a4b5b94711c9ae}{s\+\_\+trace\+\_\+mem\+\_\+realloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$old\+\_\+ptr, size\+\_\+t old\+\_\+size, size\+\_\+t new\+\_\+size)
 \item 
-static void $\ast$ \mbox{\hyperlink{memtrace_8c_a04523dc0265a6e34133ec1659d34253e}{s\+\_\+trace\+\_\+mem\+\_\+calloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t num, size\+\_\+t size)
+static void $\ast$ \mbox{\hyperlink{memtrace_8c_a04523dc0265a6e34133ec1659d34253e}{s\+\_\+trace\+\_\+mem\+\_\+calloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t num, size\+\_\+t size)
 \item 
 static void \mbox{\hyperlink{memtrace_8c_a99418fe81f1dd6a3c83e93015c4be119}{s\+\_\+destroy\+\_\+alloc}} (void $\ast$data)
 \item 
@@ -64,7 +64,7 @@ static int \mbox{\hyperlink{memtrace_8c_a86820e71f05f3aecc1cfc4a663d06297}{s\+\_
 \item 
 void \mbox{\hyperlink{memtrace_8c_ae33de1944fa5a9524f4ca9b528ff392c}{aws\+\_\+mem\+\_\+tracer\+\_\+dump}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$trace\+\_\+allocator)
 \item 
-struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{memtrace_8c_a042fab0d2473daa3f24c6d5ed758f82a}{aws\+\_\+mem\+\_\+tracer\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$deprecated, enum \mbox{\hyperlink{allocator_8h_a40c7e3dfd595c844b8edea06012be4e9}{aws\+\_\+mem\+\_\+trace\+\_\+level}} level, size\+\_\+t frames\+\_\+per\+\_\+stack)
+struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{memtrace_8c_a042fab0d2473daa3f24c6d5ed758f82a}{aws\+\_\+mem\+\_\+tracer\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$deprecated, enum \mbox{\hyperlink{allocator_8h_a40c7e3dfd595c844b8edea06012be4e9}{aws\+\_\+mem\+\_\+trace\+\_\+level}} level, size\+\_\+t frames\+\_\+per\+\_\+stack)
 \item 
 struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{memtrace_8c_a3429c34409d5c0f6d874366b3bc77633}{aws\+\_\+mem\+\_\+tracer\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$trace\+\_\+allocator)
 \item 

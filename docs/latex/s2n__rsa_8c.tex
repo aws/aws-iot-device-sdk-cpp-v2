@@ -34,9 +34,9 @@ static int \mbox{\hyperlink{s2n__rsa_8c_adb016dea126aadd4344a235f265cbbc3}{s2n\+
 \item 
 static int \mbox{\hyperlink{s2n__rsa_8c_aa816b57a496a66ba5ad7edbf729afbb4}{s2n\+\_\+rsa\+\_\+check\+\_\+key\+\_\+exists}} (const struct \mbox{\hyperlink{structs2n__pkey}{s2n\+\_\+pkey}} $\ast$pkey)
 \item 
-int \mbox{\hyperlink{s2n__rsa_8c_a20252df5d1ee76910d54aedb96b97c20}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+public\+\_\+key}} (\mbox{\hyperlink{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}{s2n\+\_\+rsa\+\_\+public\+\_\+key}} $\ast$rsa\+\_\+key, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$evp\+\_\+public\+\_\+key)
+int \mbox{\hyperlink{s2n__rsa_8c_a20252df5d1ee76910d54aedb96b97c20}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+public\+\_\+key}} (\mbox{\hyperlink{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}{s2n\+\_\+rsa\+\_\+public\+\_\+key}} $\ast$rsa\+\_\+key, EVP\+\_\+\+PKEY $\ast$evp\+\_\+public\+\_\+key)
 \item 
-int \mbox{\hyperlink{s2n__rsa_8c_aeee68756913d37e576b104f44379c297}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+private\+\_\+key}} (\mbox{\hyperlink{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}{s2n\+\_\+rsa\+\_\+private\+\_\+key}} $\ast$rsa\+\_\+key, \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$evp\+\_\+private\+\_\+key)
+int \mbox{\hyperlink{s2n__rsa_8c_aeee68756913d37e576b104f44379c297}{s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+private\+\_\+key}} (\mbox{\hyperlink{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}{s2n\+\_\+rsa\+\_\+private\+\_\+key}} $\ast$rsa\+\_\+key, EVP\+\_\+\+PKEY $\ast$evp\+\_\+private\+\_\+key)
 \item 
 int \mbox{\hyperlink{s2n__rsa_8c_abf12aedfa877ab5d3571dcef0761551a}{s2n\+\_\+rsa\+\_\+pkey\+\_\+init}} (struct \mbox{\hyperlink{structs2n__pkey}{s2n\+\_\+pkey}} $\ast$pkey)
 \end{DoxyCompactItemize}
@@ -47,13 +47,13 @@ int \mbox{\hyperlink{s2n__rsa_8c_abf12aedfa877ab5d3571dcef0761551a}{s2n\+\_\+rsa
 \index{s2n\_rsa.c@{s2n\_rsa.c}!s2n\_evp\_pkey\_to\_rsa\_private\_key@{s2n\_evp\_pkey\_to\_rsa\_private\_key}}
 \index{s2n\_evp\_pkey\_to\_rsa\_private\_key@{s2n\_evp\_pkey\_to\_rsa\_private\_key}!s2n\_rsa.c@{s2n\_rsa.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_evp\_pkey\_to\_rsa\_private\_key()}{s2n\_evp\_pkey\_to\_rsa\_private\_key()}}
-{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}{s2n\+\_\+rsa\+\_\+private\+\_\+key}} $\ast$}]{rsa\+\_\+key,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{evp\+\_\+private\+\_\+key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__rsa_8h_acf56abde98084e44e10b59d97bb6de58}{s2n\+\_\+rsa\+\_\+private\+\_\+key}} $\ast$}]{rsa\+\_\+key,  }\item[{EVP\+\_\+\+PKEY $\ast$}]{evp\+\_\+private\+\_\+key }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__rsa_8c_a20252df5d1ee76910d54aedb96b97c20}\label{s2n__rsa_8c_a20252df5d1ee76910d54aedb96b97c20}} 
 \index{s2n\_rsa.c@{s2n\_rsa.c}!s2n\_evp\_pkey\_to\_rsa\_public\_key@{s2n\_evp\_pkey\_to\_rsa\_public\_key}}
 \index{s2n\_evp\_pkey\_to\_rsa\_public\_key@{s2n\_evp\_pkey\_to\_rsa\_public\_key}!s2n\_rsa.c@{s2n\_rsa.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_evp\_pkey\_to\_rsa\_public\_key()}{s2n\_evp\_pkey\_to\_rsa\_public\_key()}}
-{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}{s2n\+\_\+rsa\+\_\+public\+\_\+key}} $\ast$}]{rsa\+\_\+key,  }\item[{\mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\+\_\+\+PKEY}} $\ast$}]{evp\+\_\+public\+\_\+key }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int s2n\+\_\+evp\+\_\+pkey\+\_\+to\+\_\+rsa\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__rsa_8h_a39c78a896071c3b225e937f6c2df0c6a}{s2n\+\_\+rsa\+\_\+public\+\_\+key}} $\ast$}]{rsa\+\_\+key,  }\item[{EVP\+\_\+\+PKEY $\ast$}]{evp\+\_\+public\+\_\+key }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__rsa_8c_aa816b57a496a66ba5ad7edbf729afbb4}\label{s2n__rsa_8c_aa816b57a496a66ba5ad7edbf729afbb4}} 
 \index{s2n\_rsa.c@{s2n\_rsa.c}!s2n\_rsa\_check\_key\_exists@{s2n\_rsa\_check\_key\_exists}}

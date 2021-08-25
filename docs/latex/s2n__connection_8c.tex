@@ -58,7 +58,7 @@ struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$ \mbo
 \item 
 static int \mbox{\hyperlink{s2n__connection_8c_aee52976df1673bb3581875e752b9f40a}{s2n\+\_\+connection\+\_\+free\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-static int \mbox{\hyperlink{s2n__connection_8c_adaaa73a489888b9f35725db0fa0c4dc4}{s2n\+\_\+connection\+\_\+zero}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, int mode, struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+static int \mbox{\hyperlink{s2n__connection_8c_adaaa73a489888b9f35725db0fa0c4dc4}{s2n\+\_\+connection\+\_\+zero}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, int mode, struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config)
 \item 
 static int \mbox{\hyperlink{s2n__connection_8c_a3dfd7151bd534c8c3e7b584d8c51c35d}{s2n\+\_\+connection\+\_\+wipe\+\_\+keys}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
@@ -78,9 +78,9 @@ static uint8\+\_\+t \mbox{\hyperlink{s2n__connection_8c_ae166183f547e9ec19605f30
 \item 
 int \mbox{\hyperlink{s2n__connection_8c_a03ed084d7fb943c7d32b13075ed8eff7}{s2n\+\_\+connection\+\_\+free}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-int \mbox{\hyperlink{s2n__connection_8c_a85ced5d91831da552d5c4997a3f30abb}{s2n\+\_\+connection\+\_\+set\+\_\+config}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+int \mbox{\hyperlink{s2n__connection_8c_a85ced5d91831da552d5c4997a3f30abb}{s2n\+\_\+connection\+\_\+set\+\_\+config}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config)
 \item 
-int \mbox{\hyperlink{s2n__connection_8c_a757266cf240d2d7934a67c107864bde2}{s2n\+\_\+connection\+\_\+set\+\_\+ctx}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+int \mbox{\hyperlink{s2n__connection_8c_a757266cf240d2d7934a67c107864bde2}{s2n\+\_\+connection\+\_\+set\+\_\+ctx}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$ctx)
 \item 
 void $\ast$ \mbox{\hyperlink{s2n__connection_8c_aed61f14f9d6c42a2f2112de31e1bc098}{s2n\+\_\+connection\+\_\+get\+\_\+ctx}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
@@ -90,9 +90,9 @@ int \mbox{\hyperlink{s2n__connection_8c_a2971a9b0817a47e5839be92568a900ec}{s2n\+
 \item 
 int \mbox{\hyperlink{s2n__connection_8c_aa869211ca9b49f497cdb5579935203de}{s2n\+\_\+connection\+\_\+wipe}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-int \mbox{\hyperlink{s2n__connection_8c_a9a9f3a1ed01c990ff2a872e61eeac0c6}{s2n\+\_\+connection\+\_\+set\+\_\+recv\+\_\+ctx}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+int \mbox{\hyperlink{s2n__connection_8c_a9a9f3a1ed01c990ff2a872e61eeac0c6}{s2n\+\_\+connection\+\_\+set\+\_\+recv\+\_\+ctx}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$ctx)
 \item 
-int \mbox{\hyperlink{s2n__connection_8c_af30f2fad91edf56d2f4c8e997c00ddaa}{s2n\+\_\+connection\+\_\+set\+\_\+send\+\_\+ctx}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+int \mbox{\hyperlink{s2n__connection_8c_af30f2fad91edf56d2f4c8e997c00ddaa}{s2n\+\_\+connection\+\_\+set\+\_\+send\+\_\+ctx}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$ctx)
 \item 
 int \mbox{\hyperlink{s2n__connection_8c_a0f9866c57470149eac4b4859f8be16b6}{s2n\+\_\+connection\+\_\+set\+\_\+recv\+\_\+cb}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n_8h_a0b5d6b77e35bf16aee077fe1c5860cc9}{s2n\+\_\+recv\+\_\+fn}} recv)
 \item 
@@ -164,7 +164,7 @@ uint64\+\_\+t \mbox{\hyperlink{s2n__connection_8c_a3525d6446cd932d3e7ca3133ce73e
 \item 
 int \mbox{\hyperlink{s2n__connection_8c_a746324b4543d50af7ebedc3ed91fbc57}{s2n\+\_\+connection\+\_\+kill}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-const uint8\+\_\+t $\ast$ \mbox{\hyperlink{s2n__connection_8c_a2b18cd3437636a7a21e10f3d5d09ff9d}{s2n\+\_\+connection\+\_\+get\+\_\+ocsp\+\_\+response}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint32\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+const uint8\+\_\+t $\ast$ \mbox{\hyperlink{s2n__connection_8c_a2b18cd3437636a7a21e10f3d5d09ff9d}{s2n\+\_\+connection\+\_\+get\+\_\+ocsp\+\_\+response}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint32\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})
 \item 
 int \mbox{\hyperlink{s2n__connection_8c_ab242f62c5824c72476844970b1ae7301}{s2n\+\_\+connection\+\_\+prefer\+\_\+throughput}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
@@ -172,7 +172,7 @@ int \mbox{\hyperlink{s2n__connection_8c_a332427237ca8907196034ac5768a65bf}{s2n\+
 \item 
 int \mbox{\hyperlink{s2n__connection_8c_ad515a652e0cc7242b62dd8b2d857b610}{s2n\+\_\+connection\+\_\+set\+\_\+dynamic\+\_\+record\+\_\+threshold}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint32\+\_\+t resize\+\_\+threshold, uint16\+\_\+t timeout\+\_\+threshold)
 \item 
-int \mbox{\hyperlink{s2n__connection_8c_a4bb601978bb9b9c43ba0dcf15681297f}{s2n\+\_\+connection\+\_\+set\+\_\+verify\+\_\+host\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n_8h_a8aa56850695a02753f726ea9860ec383}{s2n\+\_\+verify\+\_\+host\+\_\+fn}} \mbox{\hyperlink{s2n__mutual__auth__test_8c_a69e43241f08f9f58fb26a2e8396c4feb}{verify\+\_\+host\+\_\+fn}}, void $\ast$data)
+int \mbox{\hyperlink{s2n__connection_8c_a4bb601978bb9b9c43ba0dcf15681297f}{s2n\+\_\+connection\+\_\+set\+\_\+verify\+\_\+host\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{s2n_8h_a8aa56850695a02753f726ea9860ec383}{s2n\+\_\+verify\+\_\+host\+\_\+fn}} verify\+\_\+host\+\_\+fn, void $\ast$data)
 \item 
 int \mbox{\hyperlink{s2n__connection_8c_aa09fef2757e14e9bae358aa90212c172}{s2n\+\_\+connection\+\_\+recv\+\_\+stuffer}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint32\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
@@ -180,7 +180,7 @@ int \mbox{\hyperlink{s2n__connection_8c_a60d10402f1a17f1080a50af85de495fa}{s2n\+
 \item 
 int \mbox{\hyperlink{s2n__connection_8c_a1c1702970a75cd1a6879829f40492e77}{s2n\+\_\+connection\+\_\+is\+\_\+managed\+\_\+corked}} (const struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$\mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}})
 \item 
-const uint8\+\_\+t $\ast$ \mbox{\hyperlink{s2n__connection_8c_a2f6edef81f719b4b225af3bc24897b08}{s2n\+\_\+connection\+\_\+get\+\_\+sct\+\_\+list}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint32\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+const uint8\+\_\+t $\ast$ \mbox{\hyperlink{s2n__connection_8c_a2f6edef81f719b4b225af3bc24897b08}{s2n\+\_\+connection\+\_\+get\+\_\+sct\+\_\+list}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint32\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})
 \item 
 int \mbox{\hyperlink{s2n__connection_8c_a3ee0b87bce5bcd659b7e4ab101714fdf}{s2n\+\_\+connection\+\_\+is\+\_\+client\+\_\+auth\+\_\+enabled}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$\mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}})
 \item 

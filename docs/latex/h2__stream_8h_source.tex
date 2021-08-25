@@ -68,7 +68,7 @@
 \DoxyCodeLine{69         int64\_t \mbox{\hyperlink{structaws__h2__stream_a0af1b93d97b79e94d93d058de047dbdf}{window\_size\_self}};}
 \DoxyCodeLine{70         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *\mbox{\hyperlink{structaws__h2__stream_a9fa11c1613300476c360a3d5c99cf13f}{outgoing\_message}};}
 \DoxyCodeLine{71         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__stream_afd29c08c92db2d944a081845d6a6ce18}{received\_main\_headers}};}
-\DoxyCodeLine{72     \} \mbox{\hyperlink{structaws__h2__stream_abadcdf4fd5f76c49d3d1ea4e162b1cf2}{thread\_data}};}
+\DoxyCodeLine{72     \} \mbox{\hyperlink{structaws__h2__stream_a14ea630b6e0826f865b55e31a43f954d}{thread\_data}};}
 \DoxyCodeLine{73 }
 \DoxyCodeLine{74     \textcolor{comment}{/* Any thread may touch this data, but the lock must be held (unless it's an atomic) */}}
 \DoxyCodeLine{75     \textcolor{keyword}{struct }\{}
@@ -86,7 +86,7 @@
 \DoxyCodeLine{87 }
 \DoxyCodeLine{88         \textcolor{comment}{/* Simplified stream state. */}}
 \DoxyCodeLine{89         \textcolor{keyword}{enum} \mbox{\hyperlink{h2__stream_8h_a6fbb0dfccf48daf422c944592c52ae11}{aws\_h2\_stream\_api\_state}} \mbox{\hyperlink{structaws__h2__stream_aba963aaa190f262f26bb2ebbf2222678}{api\_state}};}
-\DoxyCodeLine{90     \} \mbox{\hyperlink{structaws__h2__stream_a0a6ec98d511b69124fe45218257f15c2}{synced\_data}};}
+\DoxyCodeLine{90     \} \mbox{\hyperlink{structaws__h2__stream_abd60e5b89b1f1662cdcf1f36f0c7d4ad}{synced\_data}};}
 \DoxyCodeLine{91 }
 \DoxyCodeLine{92     \textcolor{comment}{/* Store the sent reset HTTP/2 error code, set to -\/1, if none has sent so far */}}
 \DoxyCodeLine{93     int64\_t \mbox{\hyperlink{structaws__h2__stream_ab949d9c90bcb154f553407af2e6f764b}{sent\_reset\_error\_code}};}
@@ -95,7 +95,7 @@
 \DoxyCodeLine{96     int64\_t \mbox{\hyperlink{structaws__h2__stream_a96078cb0c474580b4fe10bf7cf22562b}{received\_reset\_error\_code}};}
 \DoxyCodeLine{97 \};}
 \DoxyCodeLine{98 }
-\DoxyCodeLine{99 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{h2__stream_8h_aafa04dc3a832a6b40853d876f538b6d4}{aws\_h2\_stream\_state\_to\_str}}(\textcolor{keyword}{enum} \mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394d}{aws\_h2\_stream\_state}} \mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{99 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{h2__stream_8h_aafa04dc3a832a6b40853d876f538b6d4}{aws\_h2\_stream\_state\_to\_str}}(\textcolor{keyword}{enum} \mbox{\hyperlink{h2__stream_8h_a57d944707462ad83b29c20ead685394d}{aws\_h2\_stream\_state}} state);}
 \DoxyCodeLine{100 }
 \DoxyCodeLine{101 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__stream}{aws\_h2\_stream}} *\mbox{\hyperlink{h2__stream_8h_a2de0ecc85d495c779738315def97e823}{aws\_h2\_stream\_new\_request}}(}
 \DoxyCodeLine{102     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *client\_connection,}
@@ -119,7 +119,7 @@
 \DoxyCodeLine{120 \textcolor{keywordtype}{int} \mbox{\hyperlink{h2__stream_8h_a05ca23cdf2a411d9e9f31fa3e8f7378b}{aws\_h2\_stream\_encode\_data\_frame}}(}
 \DoxyCodeLine{121     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__stream}{aws\_h2\_stream}} *stream,}
 \DoxyCodeLine{122     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__frame__encoder}{aws\_h2\_frame\_encoder}} *encoder,}
-\DoxyCodeLine{123     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}},}
+\DoxyCodeLine{123     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *output,}
 \DoxyCodeLine{124     \textcolor{keywordtype}{int} *data\_encode\_status);}
 \DoxyCodeLine{125 }
 \DoxyCodeLine{126 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2err}{aws\_h2err}} \mbox{\hyperlink{h2__stream_8h_acc0feece7cabd840c4d28584c604b26c}{aws\_h2\_stream\_on\_decoder\_headers\_begin}}(struct \mbox{\hyperlink{structaws__h2__stream}{aws\_h2\_stream}} *stream);}

@@ -9,7 +9,7 @@
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{s2n__drbg_8c_a8fe3896f33f4b6dfdce0d8485e18c5b8}{s2n\+\_\+drbg\+\_\+key\+\_\+size}}(drgb)~EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+key\+\_\+length((drbg)-\/$>$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})
+\#define \mbox{\hyperlink{s2n__drbg_8c_a8fe3896f33f4b6dfdce0d8485e18c5b8}{s2n\+\_\+drbg\+\_\+key\+\_\+size}}(drgb)~EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+key\+\_\+length((drbg)-\/$>$ctx)
 \item 
 \#define \mbox{\hyperlink{s2n__drbg_8c_af194024af76c4dcf64beef3cee68162e}{s2n\+\_\+drbg\+\_\+seed\+\_\+size}}(drgb)~(\mbox{\hyperlink{s2n__drbg_8h_a74d3844503fa6b8393fe438719d4d621}{S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE}} + \mbox{\hyperlink{s2n__drbg_8c_a8fe3896f33f4b6dfdce0d8485e18c5b8}{s2n\+\_\+drbg\+\_\+key\+\_\+size}}(drgb))
 \end{DoxyCompactItemize}
@@ -18,7 +18,7 @@
 \item 
 int \mbox{\hyperlink{s2n__drbg_8c_a2cf61669f5ff0c0182d412227aaaeff8}{s2n\+\_\+increment\+\_\+drbg\+\_\+counter}} (struct s2n\+\_\+blob $\ast$counter)
 \item 
-static int \mbox{\hyperlink{s2n__drbg_8c_a15e2f784a3eaa0f35b0297588b10e8f9}{s2n\+\_\+drbg\+\_\+block\+\_\+encrypt}} (\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, uint8\+\_\+t in\mbox{[}\mbox{\hyperlink{s2n__drbg_8h_a74d3844503fa6b8393fe438719d4d621}{S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE}}\mbox{]}, uint8\+\_\+t out\mbox{[}\mbox{\hyperlink{s2n__drbg_8h_a74d3844503fa6b8393fe438719d4d621}{S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE}}\mbox{]})
+static int \mbox{\hyperlink{s2n__drbg_8c_a15e2f784a3eaa0f35b0297588b10e8f9}{s2n\+\_\+drbg\+\_\+block\+\_\+encrypt}} (EVP\+\_\+\+CIPHER\+\_\+\+CTX $\ast$ctx, uint8\+\_\+t in\mbox{[}\mbox{\hyperlink{s2n__drbg_8h_a74d3844503fa6b8393fe438719d4d621}{S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE}}\mbox{]}, uint8\+\_\+t out\mbox{[}\mbox{\hyperlink{s2n__drbg_8h_a74d3844503fa6b8393fe438719d4d621}{S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE}}\mbox{]})
 \item 
 static int \mbox{\hyperlink{s2n__drbg_8c_a92bd6c5621da466261282374f0ecd318}{s2n\+\_\+drbg\+\_\+bits}} (struct \mbox{\hyperlink{structs2n__drbg}{s2n\+\_\+drbg}} $\ast$drbg, struct s2n\+\_\+blob $\ast$out)
 \item 
@@ -45,7 +45,7 @@ int \mbox{\hyperlink{s2n__drbg_8c_a0260b5f9c83b348b295782ef6ad61ec3}{s2n\+\_\+dr
 \index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_key\_size@{s2n\_drbg\_key\_size}}
 \index{s2n\_drbg\_key\_size@{s2n\_drbg\_key\_size}!s2n\_drbg.c@{s2n\_drbg.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_drbg\_key\_size}{s2n\_drbg\_key\_size}}
-{\footnotesize\ttfamily \#define s2n\+\_\+drbg\+\_\+key\+\_\+size(\begin{DoxyParamCaption}\item[{}]{drgb }\end{DoxyParamCaption})~EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+key\+\_\+length((drbg)-\/$>$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}})}
+{\footnotesize\ttfamily \#define s2n\+\_\+drbg\+\_\+key\+\_\+size(\begin{DoxyParamCaption}\item[{}]{drgb }\end{DoxyParamCaption})~EVP\+\_\+\+CIPHER\+\_\+\+CTX\+\_\+key\+\_\+length((drbg)-\/$>$ctx)}
 
 \mbox{\Hypertarget{s2n__drbg_8c_af194024af76c4dcf64beef3cee68162e}\label{s2n__drbg_8c_af194024af76c4dcf64beef3cee68162e}} 
 \index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_seed\_size@{s2n\_drbg\_seed\_size}}
@@ -66,7 +66,7 @@ int \mbox{\hyperlink{s2n__drbg_8c_a0260b5f9c83b348b295782ef6ad61ec3}{s2n\+\_\+dr
 \index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_block\_encrypt@{s2n\_drbg\_block\_encrypt}}
 \index{s2n\_drbg\_block\_encrypt@{s2n\_drbg\_block\_encrypt}!s2n\_drbg.c@{s2n\_drbg.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_drbg\_block\_encrypt()}{s2n\_drbg\_block\_encrypt()}}
-{\footnotesize\ttfamily static int s2n\+\_\+drbg\+\_\+block\+\_\+encrypt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ossl__typ_8h_aab2bd6a044e1d31ebc2fe82b3b0b3d9a}{EVP\+\_\+\+CIPHER\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{uint8\+\_\+t}]{in\mbox{[}\+S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE\mbox{]},  }\item[{uint8\+\_\+t}]{out\mbox{[}\+S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s2n\+\_\+drbg\+\_\+block\+\_\+encrypt (\begin{DoxyParamCaption}\item[{EVP\+\_\+\+CIPHER\+\_\+\+CTX $\ast$}]{ctx,  }\item[{uint8\+\_\+t}]{in\mbox{[}\+S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE\mbox{]},  }\item[{uint8\+\_\+t}]{out\mbox{[}\+S2\+N\+\_\+\+DRBG\+\_\+\+BLOCK\+\_\+\+SIZE\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{s2n__drbg_8c_a0260b5f9c83b348b295782ef6ad61ec3}\label{s2n__drbg_8c_a0260b5f9c83b348b295782ef6ad61ec3}} 
 \index{s2n\_drbg.c@{s2n\_drbg.c}!s2n\_drbg\_bytes\_used@{s2n\_drbg\_bytes\_used}}

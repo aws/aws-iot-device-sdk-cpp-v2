@@ -65,14 +65,14 @@
 \DoxyCodeLine{66 }
 \DoxyCodeLine{67 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{68 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__signing__state__aws}{aws\_signing\_state\_aws}} *\mbox{\hyperlink{aws__signing_8h_afd767cf2bbce7190770162c8ccfe41d4}{aws\_signing\_state\_new}}(}
-\DoxyCodeLine{69     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
-\DoxyCodeLine{70     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__config__aws}{aws\_signing\_config\_aws}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}},}
+\DoxyCodeLine{69     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__signing__state__aws_abaa0c11d4a503cdcee510a3de5522783}{allocator}},}
+\DoxyCodeLine{70     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__config__aws}{aws\_signing\_config\_aws}} *\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}},}
 \DoxyCodeLine{71     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signable}{aws\_signable}} *\mbox{\hyperlink{structaws__signing__state__aws_a55a256e108b463ad823e4473d22f0e17}{signable}},}
 \DoxyCodeLine{72     \mbox{\hyperlink{crt_2aws-c-auth_2include_2aws_2auth_2_signing_8h_ac35de70031cf940e13c7862208b1defd}{aws\_signing\_complete\_fn}} *\mbox{\hyperlink{structaws__signing__state__aws_a90fe0c13c17ab57db8822988300e357d}{on\_complete}},}
 \DoxyCodeLine{73     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__signing__state__aws_adb7906a8b4483c47ef8e7eb4836fd3d9}{userdata}});}
 \DoxyCodeLine{74 }
 \DoxyCodeLine{75 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
-\DoxyCodeLine{76 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws__signing_8h_ad113ffd86046df28b3b45405f9e3178d}{aws\_signing\_state\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__state__aws}{aws\_signing\_state\_aws}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{76 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws__signing_8h_ad113ffd86046df28b3b45405f9e3178d}{aws\_signing\_state\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__state__aws}{aws\_signing\_state\_aws}} *state);}
 \DoxyCodeLine{77 }
 \DoxyCodeLine{78 \textcolor{comment}{/*}}
 \DoxyCodeLine{79 \textcolor{comment}{ * A set of functions that together performs the AWS signing process based}}
@@ -86,13 +86,13 @@
 \DoxyCodeLine{87 \textcolor{comment}{ */}}
 \DoxyCodeLine{88 }
 \DoxyCodeLine{89 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
-\DoxyCodeLine{90 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__signing_8h_a97a563564e737f15dbc6657f0865d48c}{aws\_signing\_build\_canonical\_request}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__state__aws}{aws\_signing\_state\_aws}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{90 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__signing_8h_a97a563564e737f15dbc6657f0865d48c}{aws\_signing\_build\_canonical\_request}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__state__aws}{aws\_signing\_state\_aws}} *state);}
 \DoxyCodeLine{91 }
 \DoxyCodeLine{92 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
-\DoxyCodeLine{93 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__signing_8h_af89ef81e8a4e0a4181eff15559a2b87d}{aws\_signing\_build\_string\_to\_sign}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__state__aws}{aws\_signing\_state\_aws}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{93 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__signing_8h_af89ef81e8a4e0a4181eff15559a2b87d}{aws\_signing\_build\_string\_to\_sign}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__state__aws}{aws\_signing\_state\_aws}} *state);}
 \DoxyCodeLine{94 }
 \DoxyCodeLine{95 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
-\DoxyCodeLine{96 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__signing_8h_a3134fe55d76a4b72b5fa0509a70f4a50}{aws\_signing\_build\_authorization\_value}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__state__aws}{aws\_signing\_state\_aws}} *\mbox{\hyperlink{structstate}{state}});}
+\DoxyCodeLine{96 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__signing_8h_a3134fe55d76a4b72b5fa0509a70f4a50}{aws\_signing\_build\_authorization\_value}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__signing__state__aws}{aws\_signing\_state\_aws}} *state);}
 \DoxyCodeLine{97 }
 \DoxyCodeLine{98 \textcolor{comment}{/*}}
 \DoxyCodeLine{99 \textcolor{comment}{ * Named constants particular to the sigv4 signing algorithm.  Can be moved to a public header}}
@@ -106,7 +106,7 @@
 \DoxyCodeLine{107 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}} \textcolor{keyword}{extern} \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *\mbox{\hyperlink{aws__signing_8h_ae4cbad479ff8753c9a17216e67c82b55}{g\_aws\_signing\_security\_token\_name}};}
 \DoxyCodeLine{108 }
 \DoxyCodeLine{112 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
-\DoxyCodeLine{113 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__signing_8h_a135fc667460284908df6f71ebf919f8f}{aws\_signing\_init\_signing\_tables}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{113 \textcolor{keywordtype}{int} \mbox{\hyperlink{aws__signing_8h_a135fc667460284908df6f71ebf919f8f}{aws\_signing\_init\_signing\_tables}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__string_aec82409439d9c2333004c6b3551386f5}{allocator}});}
 \DoxyCodeLine{114 }
 \DoxyCodeLine{118 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2_exports_8h_ada04eaddb51503ac54105d49ef3176a8}{AWS\_AUTH\_API}}}
 \DoxyCodeLine{119 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws__signing_8h_a456c2636ddeda0bfd1c21cac2c9a2b28}{aws\_signing\_clean\_up\_signing\_tables}}(\textcolor{keywordtype}{void});}

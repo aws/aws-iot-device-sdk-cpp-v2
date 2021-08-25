@@ -93,7 +93,7 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:ab0ae41ea1fe8196572d6131efc73939f"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__async__pkey_8h.html#ab0ae41ea1fe8196572d6131efc73939f">s2n_async_pkey_sign_complete</a>) (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, struct s2n_blob *signature)</td></tr>
 <tr class="separator:ab0ae41ea1fe8196572d6131efc73939f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed227739da6e57341c0d04484879d0e7"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__async__pkey_8h.html#aed227739da6e57341c0d04484879d0e7">s2n_async_pkey_decrypt_complete</a>) (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> rsa_failed, struct s2n_blob *decrypted)</td></tr>
+<tr class="memitem:aed227739da6e57341c0d04484879d0e7"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__async__pkey_8h.html#aed227739da6e57341c0d04484879d0e7">s2n_async_pkey_decrypt_complete</a>) (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, bool rsa_failed, struct s2n_blob *decrypted)</td></tr>
 <tr class="separator:aed227739da6e57341c0d04484879d0e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -241,7 +241,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int(* s2n_async_pkey_decrypt_complete) (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> rsa_failed, struct s2n_blob *decrypted)</td>
+          <td class="memname">typedef int(* s2n_async_pkey_decrypt_complete) (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, bool rsa_failed, struct s2n_blob *decrypted)</td>
         </tr>
       </table>
 </div><div class="memdoc">

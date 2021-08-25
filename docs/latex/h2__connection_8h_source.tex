@@ -105,7 +105,7 @@
 \DoxyCodeLine{106         \textcolor{keywordtype}{int} \mbox{\hyperlink{structaws__h2__connection_a1a41a982262875355083967725de7d2d}{channel\_shutdown\_error\_code}};}
 \DoxyCodeLine{107         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__connection_a0c07f5015a37d68b21b7ac806c866a77}{channel\_shutdown\_immediately}};}
 \DoxyCodeLine{108         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h2__connection_a92651c5ed7ee36e1329f8ecaf4166f85}{channel\_shutdown\_waiting\_for\_goaway\_to\_be\_written}};}
-\DoxyCodeLine{109     \} \mbox{\hyperlink{structaws__h2__connection_a56e7828d8e8305faf32dfd063c4dd47f}{thread\_data}};}
+\DoxyCodeLine{109     \} \mbox{\hyperlink{structaws__h2__connection_acdb5fafbbdd7816ed5d94331092fa219}{thread\_data}};}
 \DoxyCodeLine{110 }
 \DoxyCodeLine{111     \textcolor{comment}{/* Any thread may touch this data, but the lock must be held (unless it's an atomic) */}}
 \DoxyCodeLine{112     \textcolor{keyword}{struct }\{}
@@ -155,7 +155,7 @@
 \DoxyCodeLine{156         uint32\_t \mbox{\hyperlink{structaws__h2__connection_a9bd9fbca04c75d7ade6c70c31bdbebab}{settings\_peer}}[\mbox{\hyperlink{connection_8h_a090c75cd60c15cf6b6a40e2e29812920a51444cff657a4ad0ef8d7b9641b24746}{AWS\_HTTP2\_SETTINGS\_END\_RANGE}}];}
 \DoxyCodeLine{157         \textcolor{comment}{/* For checking local settings to send/sent to peer from outside the event-\/loop thread. */}}
 \DoxyCodeLine{158         uint32\_t \mbox{\hyperlink{structaws__h2__connection_ab8e4bcd5ae01bd1bfa61748136881316}{settings\_self}}[\mbox{\hyperlink{connection_8h_a090c75cd60c15cf6b6a40e2e29812920a51444cff657a4ad0ef8d7b9641b24746}{AWS\_HTTP2\_SETTINGS\_END\_RANGE}}];}
-\DoxyCodeLine{159     \} \mbox{\hyperlink{structaws__h2__connection_a9a27868640e246138d33f57825e9fb75}{synced\_data}};}
+\DoxyCodeLine{159     \} \mbox{\hyperlink{structaws__h2__connection_a6ca82f38ef8acc5a935cb5683fc2163c}{synced\_data}};}
 \DoxyCodeLine{160 \};}
 \DoxyCodeLine{161 }
 \DoxyCodeLine{162 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h2__pending__settings}{aws\_h2\_pending\_settings}} \{}
@@ -207,13 +207,13 @@
 \DoxyCodeLine{211 }
 \DoxyCodeLine{212 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{213 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *\mbox{\hyperlink{h2__connection_8h_af490b0ce859722e75dd118d67adf2de3}{aws\_http\_connection\_new\_http2\_server}}(}
-\DoxyCodeLine{214     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{214     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{215     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__http__connection_a94d687437ce0bddb27df2da83db2b646}{manual\_window\_management}},}
 \DoxyCodeLine{216     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http2__connection__options}{aws\_http2\_connection\_options}} *http2\_options);}
 \DoxyCodeLine{217 }
 \DoxyCodeLine{218 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{219 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *\mbox{\hyperlink{h2__connection_8h_a77c6447657a861edc65df072a472a174}{aws\_http\_connection\_new\_http2\_client}}(}
-\DoxyCodeLine{220     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{220     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{221     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__http__connection_a94d687437ce0bddb27df2da83db2b646}{manual\_window\_management}},}
 \DoxyCodeLine{222     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http2__connection__options}{aws\_http2\_connection\_options}} *http2\_options);}
 \DoxyCodeLine{223 }
@@ -240,7 +240,7 @@
 \DoxyCodeLine{262     uint32\_t stream\_id,}
 \DoxyCodeLine{263     uint32\_t h2\_error\_code);}
 \DoxyCodeLine{264 }
-\DoxyCodeLine{268 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__connection_8h_a3971d9ff94ec25394c52ef2a9f2dba05}{aws\_h2\_connection\_shutdown\_due\_to\_write\_err}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__connection}{aws\_h2\_connection}} *connection, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}});}
+\DoxyCodeLine{268 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__connection_8h_a3971d9ff94ec25394c52ef2a9f2dba05}{aws\_h2\_connection\_shutdown\_due\_to\_write\_err}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__connection}{aws\_h2\_connection}} *connection, \textcolor{keywordtype}{int} error\_code);}
 \DoxyCodeLine{269 }
 \DoxyCodeLine{273 \textcolor{keywordtype}{void} \mbox{\hyperlink{h2__connection_8h_a5f273e3039ddd80cf9ff7b6f28bf61b6}{aws\_h2\_try\_write\_outgoing\_frames}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h2__connection}{aws\_h2\_connection}} *connection);}
 \DoxyCodeLine{274 }

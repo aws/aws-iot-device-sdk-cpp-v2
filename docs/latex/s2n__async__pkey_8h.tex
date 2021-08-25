@@ -17,7 +17,7 @@
 \item 
 typedef int($\ast$ \mbox{\hyperlink{s2n__async__pkey_8h_ab0ae41ea1fe8196572d6131efc73939f}{s2n\+\_\+async\+\_\+pkey\+\_\+sign\+\_\+complete}}) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$signature)
 \item 
-typedef int($\ast$ \mbox{\hyperlink{s2n__async__pkey_8h_aed227739da6e57341c0d04484879d0e7}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete}}) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} rsa\+\_\+failed, struct s2n\+\_\+blob $\ast$decrypted)
+typedef int($\ast$ \mbox{\hyperlink{s2n__async__pkey_8h_aed227739da6e57341c0d04484879d0e7}{s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete}}) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, bool rsa\+\_\+failed, struct s2n\+\_\+blob $\ast$decrypted)
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -82,7 +82,7 @@ S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__async__pkey_8h_a40030bf55355d66a65892e
 \index{s2n\_async\_pkey.h@{s2n\_async\_pkey.h}!s2n\_async\_pkey\_decrypt\_complete@{s2n\_async\_pkey\_decrypt\_complete}}
 \index{s2n\_async\_pkey\_decrypt\_complete@{s2n\_async\_pkey\_decrypt\_complete}!s2n\_async\_pkey.h@{s2n\_async\_pkey.h}}
 \doxysubsubsection{\texorpdfstring{s2n\_async\_pkey\_decrypt\_complete}{s2n\_async\_pkey\_decrypt\_complete}}
-{\footnotesize\ttfamily typedef int($\ast$ s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} rsa\+\_\+failed, struct s2n\+\_\+blob $\ast$decrypted)}
+{\footnotesize\ttfamily typedef int($\ast$ s2n\+\_\+async\+\_\+pkey\+\_\+decrypt\+\_\+complete) (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, bool rsa\+\_\+failed, struct s2n\+\_\+blob $\ast$decrypted)}
 
 \mbox{\Hypertarget{s2n__async__pkey_8h_ab0ae41ea1fe8196572d6131efc73939f}\label{s2n__async__pkey_8h_ab0ae41ea1fe8196572d6131efc73939f}} 
 \index{s2n\_async\_pkey.h@{s2n\_async\_pkey.h}!s2n\_async\_pkey\_sign\_complete@{s2n\_async\_pkey\_sign\_complete}}

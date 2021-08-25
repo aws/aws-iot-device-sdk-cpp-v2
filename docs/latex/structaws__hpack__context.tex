@@ -29,8 +29,8 @@ xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
 \>size\_t \mbox{\hyperlink{structaws__hpack__context_a1e23c112e852bf3d8b6c0b2ea381fe81}{last\_value}}\\
 \>size\_t \mbox{\hyperlink{structaws__hpack__context_a856266a99285f763dba28fcfd06190cf}{smallest\_value}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__hpack__context_acafd12cd3568fa95da7310f4ddf8d6bb}{pending}}\\
-\} \mbox{\hyperlink{structaws__hpack__context_abbad9f5aad66e240f2e0ef11edad49d6}{dynamic\_table\_size\_update}}\\
+\>bool \mbox{\hyperlink{structaws__hpack__context_acafd12cd3568fa95da7310f4ddf8d6bb}{pending}}\\
+\} \mbox{\hyperlink{structaws__hpack__context_ac7bf225c11d9fb1a783637eeb1ab9ca9}{dynamic\_table\_size\_update}}\\
 
 \end{tabbing}\item 
 \begin{tabbing}
@@ -45,7 +45,7 @@ struct \{\\
 \>size\_t \mbox{\hyperlink{structaws__hpack__context_a219351937379ea50c555cea567012fc5}{protocol\_max\_size\_setting}}\\
 \>struct \mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structaws__hpack__context_ac8976897199ad82e77af2f61699b6109}{reverse\_lookup}}\\
 \>struct \mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structaws__hpack__context_a9ac21e8a33f70b4defb63eeab3808a79}{reverse\_lookup\_name\_only}}\\
-\} \mbox{\hyperlink{structaws__hpack__context_af932ef3166cde5bfad27546411f6e7e4}{dynamic\_table}}\\
+\} \mbox{\hyperlink{structaws__hpack__context_a2cb4391b45e62db49d0e4b859f80c8fe}{dynamic\_table}}\\
 
 \end{tabbing}\item 
 struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__integer}{aws\+\_\+hpack\+\_\+context\+::hpack\+\_\+progress\+\_\+integer}} \mbox{\hyperlink{structaws__hpack__context_a9a844b8bf692eabca62009a49dda346c}{progress\+\_\+integer}}
@@ -81,13 +81,13 @@ struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__entry}{aws
 \doxysubsubsection{\texorpdfstring{decoder}{decoder}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__huffman__decoder}{aws\+\_\+huffman\+\_\+decoder}} aws\+\_\+hpack\+\_\+context\+::decoder}
 
-\mbox{\Hypertarget{structaws__hpack__context_af932ef3166cde5bfad27546411f6e7e4}\label{structaws__hpack__context_af932ef3166cde5bfad27546411f6e7e4}} 
+\mbox{\Hypertarget{structaws__hpack__context_a2cb4391b45e62db49d0e4b859f80c8fe}\label{structaws__hpack__context_a2cb4391b45e62db49d0e4b859f80c8fe}} 
 \index{aws\_hpack\_context@{aws\_hpack\_context}!dynamic\_table@{dynamic\_table}}
 \index{dynamic\_table@{dynamic\_table}!aws\_hpack\_context@{aws\_hpack\_context}}
 \doxysubsubsection{\texorpdfstring{}{}}
 {\footnotesize\ttfamily struct  \{ ... \}  aws\+\_\+hpack\+\_\+context\+::dynamic\+\_\+table}
 
-\mbox{\Hypertarget{structaws__hpack__context_abbad9f5aad66e240f2e0ef11edad49d6}\label{structaws__hpack__context_abbad9f5aad66e240f2e0ef11edad49d6}} 
+\mbox{\Hypertarget{structaws__hpack__context_ac7bf225c11d9fb1a783637eeb1ab9ca9}\label{structaws__hpack__context_ac7bf225c11d9fb1a783637eeb1ab9ca9}} 
 \index{aws\_hpack\_context@{aws\_hpack\_context}!dynamic\_table\_size\_update@{dynamic\_table\_size\_update}}
 \index{dynamic\_table\_size\_update@{dynamic\_table\_size\_update}!aws\_hpack\_context@{aws\_hpack\_context}}
 \doxysubsubsection{\texorpdfstring{}{}}
@@ -145,7 +145,7 @@ struct \mbox{\hyperlink{structaws__hpack__context_1_1hpack__progress__entry}{aws
 \index{aws\_hpack\_context@{aws\_hpack\_context}!pending@{pending}}
 \index{pending@{pending}!aws\_hpack\_context@{aws\_hpack\_context}}
 \doxysubsubsection{\texorpdfstring{pending}{pending}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hpack\+\_\+context\+::pending}
+{\footnotesize\ttfamily bool aws\+\_\+hpack\+\_\+context\+::pending}
 
 \mbox{\Hypertarget{structaws__hpack__context_a87290c8418d881edd8e18ca4e7665b08}\label{structaws__hpack__context_a87290c8418d881edd8e18ca4e7665b08}} 
 \index{aws\_hpack\_context@{aws\_hpack\_context}!progress\_entry@{progress\_entry}}

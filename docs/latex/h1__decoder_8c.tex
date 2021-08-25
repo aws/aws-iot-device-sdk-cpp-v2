@@ -40,19 +40,19 @@ static int \mbox{\hyperlink{h1__decoder_8c_a19b568df26cecdb65fc4444ce9742b12}{s\
 \item 
 static int \mbox{\hyperlink{h1__decoder_8c_a36a900c638fc58b2567e9d31eec08e0d}{s\+\_\+linestate\+\_\+chunk\+\_\+size}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__decoder_8c_abb9c51d4cfd2b8c8bfba58a20b4e9651}{s\+\_\+scan\+\_\+for\+\_\+crlf}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input, size\+\_\+t $\ast$bytes\+\_\+processed)
+static bool \mbox{\hyperlink{h1__decoder_8c_abb9c51d4cfd2b8c8bfba58a20b4e9651}{s\+\_\+scan\+\_\+for\+\_\+crlf}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input, size\+\_\+t $\ast$bytes\+\_\+processed)
 \item 
 static int \mbox{\hyperlink{h1__decoder_8c_a111651dd88a36f11e561416218e83529}{s\+\_\+cat}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} to\+\_\+append)
 \item 
 static int \mbox{\hyperlink{h1__decoder_8c_ab55cd90e35f194a6786d420e6ae38e45}{s\+\_\+state\+\_\+getline}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input)
 \item 
-static int \mbox{\hyperlink{h1__decoder_8c_a425cd185ebfb5d0801b6eb4ee8269c06}{s\+\_\+cursor\+\_\+split\+\_\+impl}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input, char split\+\_\+on, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor\+\_\+array, size\+\_\+t num\+\_\+cursors, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} error\+\_\+if\+\_\+more\+\_\+splits\+\_\+possible)
+static int \mbox{\hyperlink{h1__decoder_8c_a425cd185ebfb5d0801b6eb4ee8269c06}{s\+\_\+cursor\+\_\+split\+\_\+impl}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input, char split\+\_\+on, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor\+\_\+array, size\+\_\+t num\+\_\+cursors, bool error\+\_\+if\+\_\+more\+\_\+splits\+\_\+possible)
 \item 
 static int \mbox{\hyperlink{h1__decoder_8c_afa68a7ab49a2e0546de215f523de1556}{s\+\_\+cursor\+\_\+split\+\_\+first\+\_\+n\+\_\+times}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input, char split\+\_\+on, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor\+\_\+array, size\+\_\+t num\+\_\+cursors)
 \item 
 static int \mbox{\hyperlink{h1__decoder_8c_ac75f6848ac91da129ea14d9c209b69ad}{s\+\_\+cursor\+\_\+split\+\_\+exactly\+\_\+n\+\_\+times}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input, char split\+\_\+on, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor\+\_\+array, size\+\_\+t num\+\_\+cursors)
 \item 
-static void \mbox{\hyperlink{h1__decoder_8c_a74a48056024699334beba3f56a053c5b}{s\+\_\+set\+\_\+state}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, \mbox{\hyperlink{h2__decoder_8c_a5cbd6947260ee4cfdb36c38cf180d612}{state\+\_\+fn}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static void \mbox{\hyperlink{h1__decoder_8c_a74a48056024699334beba3f56a053c5b}{s\+\_\+set\+\_\+state}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, \mbox{\hyperlink{h2__decoder_8c_a5cbd6947260ee4cfdb36c38cf180d612}{state\+\_\+fn}} $\ast$state)
 \item 
 static void \mbox{\hyperlink{h1__decoder_8c_ae453d4589583bd14b72508717eaa87a7}{s\+\_\+set\+\_\+line\+\_\+state}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, \mbox{\hyperlink{h1__decoder_8c_ae04111cdbc5b24c34198be9248d0c845}{linestate\+\_\+fn}} $\ast$line\+\_\+processor)
 \item 
@@ -66,7 +66,7 @@ static int \mbox{\hyperlink{h1__decoder_8c_a6908cefe4caf439fad7451b849800ec3}{s\
 \item 
 static int \mbox{\hyperlink{h1__decoder_8c_a423b031cdea661ad698bf2cc2432a380}{s\+\_\+state\+\_\+chunk}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__decoder_8c_a1a46f3a5581042daa0ba53d47c8d9463}{s\+\_\+check\+\_\+info\+\_\+response\+\_\+status\+\_\+code}} (int code\+\_\+val)
+static bool \mbox{\hyperlink{h1__decoder_8c_a1a46f3a5581042daa0ba53d47c8d9463}{s\+\_\+check\+\_\+info\+\_\+response\+\_\+status\+\_\+code}} (int code\+\_\+val)
 \item 
 struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$ \mbox{\hyperlink{h1__decoder_8c_aee75a25427bc0feab7ded4551142a74e}{aws\+\_\+h1\+\_\+decoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__h1__decoder__params}{aws\+\_\+h1\+\_\+decoder\+\_\+params}} $\ast$params)
 \item 
@@ -78,13 +78,13 @@ int \mbox{\hyperlink{h1__decoder_8c_a6729bf5000bfa6a990a4d2c319802bc1}{aws\+\_\+
 \item 
 uint64\+\_\+t \mbox{\hyperlink{h1__decoder_8c_ada4c7111a82009eacd39af895d65cdad}{aws\+\_\+h1\+\_\+decoder\+\_\+get\+\_\+content\+\_\+length}} (const struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__decoder_8c_a084c5933d7d4134de9cdf828f9441b8e}{aws\+\_\+h1\+\_\+decoder\+\_\+get\+\_\+body\+\_\+headers\+\_\+ignored}} (const struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder)
+bool \mbox{\hyperlink{h1__decoder_8c_a084c5933d7d4134de9cdf828f9441b8e}{aws\+\_\+h1\+\_\+decoder\+\_\+get\+\_\+body\+\_\+headers\+\_\+ignored}} (const struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder)
 \item 
 enum \mbox{\hyperlink{request__response_8h_ad38060b55775ed67cd4f7fa2c8d4b266}{aws\+\_\+http\+\_\+header\+\_\+block}} \mbox{\hyperlink{h1__decoder_8c_a5842bb0a8e2c256a2aa352e37014b0c7}{aws\+\_\+h1\+\_\+decoder\+\_\+get\+\_\+header\+\_\+block}} (const struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder)
 \item 
 void \mbox{\hyperlink{h1__decoder_8c_ab97845f20e6536bbad61e49db863c9af}{aws\+\_\+h1\+\_\+decoder\+\_\+set\+\_\+logging\+\_\+id}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, const void $\ast$id)
 \item 
-void \mbox{\hyperlink{h1__decoder_8c_afe9d28c0ede6805bf596aaf44de49bf6}{aws\+\_\+h1\+\_\+decoder\+\_\+set\+\_\+body\+\_\+headers\+\_\+ignored}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} body\+\_\+headers\+\_\+ignored)
+void \mbox{\hyperlink{h1__decoder_8c_afe9d28c0ede6805bf596aaf44de49bf6}{aws\+\_\+h1\+\_\+decoder\+\_\+set\+\_\+body\+\_\+headers\+\_\+ignored}} (struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$decoder, bool body\+\_\+headers\+\_\+ignored)
 \end{DoxyCompactItemize}
 
 
@@ -120,7 +120,7 @@ void \mbox{\hyperlink{h1__decoder_8c_afe9d28c0ede6805bf596aaf44de49bf6}{aws\+\_\
 \index{h1\_decoder.c@{h1\_decoder.c}!aws\_h1\_decoder\_get\_body\_headers\_ignored@{aws\_h1\_decoder\_get\_body\_headers\_ignored}}
 \index{aws\_h1\_decoder\_get\_body\_headers\_ignored@{aws\_h1\_decoder\_get\_body\_headers\_ignored}!h1\_decoder.c@{h1\_decoder.c}}
 \doxysubsubsection{\texorpdfstring{aws\_h1\_decoder\_get\_body\_headers\_ignored()}{aws\_h1\_decoder\_get\_body\_headers\_ignored()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+decoder\+\_\+get\+\_\+body\+\_\+headers\+\_\+ignored (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$}]{decoder }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+decoder\+\_\+get\+\_\+body\+\_\+headers\+\_\+ignored (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$}]{decoder }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{h1__decoder_8c_ada4c7111a82009eacd39af895d65cdad}\label{h1__decoder_8c_ada4c7111a82009eacd39af895d65cdad}} 
 \index{h1\_decoder.c@{h1\_decoder.c}!aws\_h1\_decoder\_get\_content\_length@{aws\_h1\_decoder\_get\_content\_length}}
@@ -150,7 +150,7 @@ void \mbox{\hyperlink{h1__decoder_8c_afe9d28c0ede6805bf596aaf44de49bf6}{aws\+\_\
 \index{h1\_decoder.c@{h1\_decoder.c}!aws\_h1\_decoder\_set\_body\_headers\_ignored@{aws\_h1\_decoder\_set\_body\_headers\_ignored}}
 \index{aws\_h1\_decoder\_set\_body\_headers\_ignored@{aws\_h1\_decoder\_set\_body\_headers\_ignored}!h1\_decoder.c@{h1\_decoder.c}}
 \doxysubsubsection{\texorpdfstring{aws\_h1\_decoder\_set\_body\_headers\_ignored()}{aws\_h1\_decoder\_set\_body\_headers\_ignored()}}
-{\footnotesize\ttfamily void aws\+\_\+h1\+\_\+decoder\+\_\+set\+\_\+body\+\_\+headers\+\_\+ignored (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$}]{decoder,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{body\+\_\+headers\+\_\+ignored }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void aws\+\_\+h1\+\_\+decoder\+\_\+set\+\_\+body\+\_\+headers\+\_\+ignored (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$}]{decoder,  }\item[{bool}]{body\+\_\+headers\+\_\+ignored }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{h1__decoder_8c_ab97845f20e6536bbad61e49db863c9af}\label{h1__decoder_8c_ab97845f20e6536bbad61e49db863c9af}} 
 \index{h1\_decoder.c@{h1\_decoder.c}!aws\_h1\_decoder\_set\_logging\_id@{aws\_h1\_decoder\_set\_logging\_id}}
@@ -204,7 +204,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{h1\_decoder.c@{h1\_decoder.c}!s\_check\_info\_response\_status\_code@{s\_check\_info\_response\_status\_code}}
 \index{s\_check\_info\_response\_status\_code@{s\_check\_info\_response\_status\_code}!h1\_decoder.c@{h1\_decoder.c}}
 \doxysubsubsection{\texorpdfstring{s\_check\_info\_response\_status\_code()}{s\_check\_info\_response\_status\_code()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+check\+\_\+info\+\_\+response\+\_\+status\+\_\+code (\begin{DoxyParamCaption}\item[{int}]{code\+\_\+val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+check\+\_\+info\+\_\+response\+\_\+status\+\_\+code (\begin{DoxyParamCaption}\item[{int}]{code\+\_\+val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__decoder_8c_ac75f6848ac91da129ea14d9c209b69ad}\label{h1__decoder_8c_ac75f6848ac91da129ea14d9c209b69ad}} 
 \index{h1\_decoder.c@{h1\_decoder.c}!s\_cursor\_split\_exactly\_n\_times@{s\_cursor\_split\_exactly\_n\_times}}
@@ -222,7 +222,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{h1\_decoder.c@{h1\_decoder.c}!s\_cursor\_split\_impl@{s\_cursor\_split\_impl}}
 \index{s\_cursor\_split\_impl@{s\_cursor\_split\_impl}!h1\_decoder.c@{h1\_decoder.c}}
 \doxysubsubsection{\texorpdfstring{s\_cursor\_split\_impl()}{s\_cursor\_split\_impl()}}
-{\footnotesize\ttfamily static int s\+\_\+cursor\+\_\+split\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{input,  }\item[{char}]{split\+\_\+on,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cursor\+\_\+array,  }\item[{size\+\_\+t}]{num\+\_\+cursors,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{error\+\_\+if\+\_\+more\+\_\+splits\+\_\+possible }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+cursor\+\_\+split\+\_\+impl (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{input,  }\item[{char}]{split\+\_\+on,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{cursor\+\_\+array,  }\item[{size\+\_\+t}]{num\+\_\+cursors,  }\item[{bool}]{error\+\_\+if\+\_\+more\+\_\+splits\+\_\+possible }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__decoder_8c_a36a900c638fc58b2567e9d31eec08e0d}\label{h1__decoder_8c_a36a900c638fc58b2567e9d31eec08e0d}} 
 \index{h1\_decoder.c@{h1\_decoder.c}!s\_linestate\_chunk\_size@{s\_linestate\_chunk\_size}}
@@ -270,7 +270,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{h1\_decoder.c@{h1\_decoder.c}!s\_scan\_for\_crlf@{s\_scan\_for\_crlf}}
 \index{s\_scan\_for\_crlf@{s\_scan\_for\_crlf}!h1\_decoder.c@{h1\_decoder.c}}
 \doxysubsubsection{\texorpdfstring{s\_scan\_for\_crlf()}{s\_scan\_for\_crlf()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+scan\+\_\+for\+\_\+crlf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$}]{decoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{input,  }\item[{size\+\_\+t $\ast$}]{bytes\+\_\+processed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+scan\+\_\+for\+\_\+crlf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__decoder}{aws\+\_\+h1\+\_\+decoder}} $\ast$}]{decoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{input,  }\item[{size\+\_\+t $\ast$}]{bytes\+\_\+processed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__decoder_8c_ae453d4589583bd14b72508717eaa87a7}\label{h1__decoder_8c_ae453d4589583bd14b72508717eaa87a7}} 
 \index{h1\_decoder.c@{h1\_decoder.c}!s\_set\_line\_state@{s\_set\_line\_state}}

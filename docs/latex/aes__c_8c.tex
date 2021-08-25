@@ -19,7 +19,7 @@ typedef unsigned char \mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e6
 \item 
 static void \mbox{\hyperlink{aes__c_8c_a1e1745fde8c90d73e5304314a30c0d23}{xor}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$a, const \mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, int n)
 \item 
-static void \mbox{\hyperlink{aes__c_8c_a5b80040c51038cfb7aa7c78605f14eac}{xor\+\_\+round\+\_\+key}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$\mbox{\hyperlink{structstate}{state}}, const \mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$keys, int round)
+static void \mbox{\hyperlink{aes__c_8c_a5b80040c51038cfb7aa7c78605f14eac}{xor\+\_\+round\+\_\+key}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$state, const \mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$keys, int round)
 \item 
 static void \mbox{\hyperlink{aes__c_8c_afb624fa00b72ffb97127059001da6d40}{sub\+\_\+bytes}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$a, int n)
 \item 
@@ -43,17 +43,17 @@ void \mbox{\hyperlink{aes__c_8c_a0a4cdb7c805484c2948b36a17073d8c5}{OQS\+\_\+\+ME
 \item 
 void \mbox{\hyperlink{aes__c_8c_add003da1130c29e18de326ad9c0360cb}{OQS\+\_\+\+AES256\+\_\+free\+\_\+schedule}} (void $\ast$schedule)
 \item 
-static void \mbox{\hyperlink{aes__c_8c_a951c0441abdd9b11e3b41218f715a135}{shift\+\_\+rows}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static void \mbox{\hyperlink{aes__c_8c_a951c0441abdd9b11e3b41218f715a135}{shift\+\_\+rows}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$state)
 \item 
-static void \mbox{\hyperlink{aes__c_8c_aa45a6fca0857e65adffde65b6bcbcec3}{shift\+\_\+rows\+\_\+inv}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static void \mbox{\hyperlink{aes__c_8c_aa45a6fca0857e65adffde65b6bcbcec3}{shift\+\_\+rows\+\_\+inv}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$state)
 \item 
-static void \mbox{\hyperlink{aes__c_8c_aed4c9f51e9dbbf9997d3ca31bd7deb59}{mix\+\_\+col}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static void \mbox{\hyperlink{aes__c_8c_aed4c9f51e9dbbf9997d3ca31bd7deb59}{mix\+\_\+col}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$state)
 \item 
-static void \mbox{\hyperlink{aes__c_8c_a588ac185d36396479c9d79846df15483}{mix\+\_\+cols}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static void \mbox{\hyperlink{aes__c_8c_a588ac185d36396479c9d79846df15483}{mix\+\_\+cols}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$state)
 \item 
-static void \mbox{\hyperlink{aes__c_8c_a38a6f1e9f8fb96a5dc526f0a68d27104}{mix\+\_\+col\+\_\+inv}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static void \mbox{\hyperlink{aes__c_8c_a38a6f1e9f8fb96a5dc526f0a68d27104}{mix\+\_\+col\+\_\+inv}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$state)
 \item 
-static void \mbox{\hyperlink{aes__c_8c_a826af1386db18be53e48d23136b7d029}{mix\+\_\+cols\+\_\+inv}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$\mbox{\hyperlink{structstate}{state}})
+static void \mbox{\hyperlink{aes__c_8c_a826af1386db18be53e48d23136b7d029}{mix\+\_\+cols\+\_\+inv}} (\mbox{\hyperlink{aes__c_8c_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $\ast$state)
 \item 
 void \mbox{\hyperlink{aes__c_8c_a017f997ec2c532e77ee30bd98174b4dc}{oqs\+\_\+aes128\+\_\+enc\+\_\+sch\+\_\+block\+\_\+c}} (const uint8\+\_\+t $\ast$plaintext, const void $\ast$\+\_\+schedule, uint8\+\_\+t $\ast$ciphertext)
 \item 

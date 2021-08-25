@@ -47,7 +47,7 @@ using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a5c7cfc1fb715fdb4c2d894567
 \item 
 using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{On\+Http\+Request\+Signing\+Complete}} = std\+::function$<$ void(const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Request}} $>$ \&, int)$>$
 \item 
-using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}{Should\+Sign\+Header\+Cb}} = \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}($\ast$)(const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} $\ast$, void $\ast$)
+using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}{Should\+Sign\+Header\+Cb}} = bool($\ast$)(const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} $\ast$, void $\ast$)
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -71,7 +71,7 @@ enum class \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12b
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider}{ICredentials\+Provider}} $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a9eeae13f9e18779ae17865afc0e1c277}{s\+\_\+\+Create\+Wrapped\+Provider}} (struct \mbox{\hyperlink{structaws__credentials__provider}{aws\+\_\+credentials\+\_\+provider}} $\ast$raw\+\_\+provider, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_credentials_provider}{ICredentials\+Provider}} $>$ \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a9eeae13f9e18779ae17865afc0e1c277}{s\+\_\+\+Create\+Wrapped\+Provider}} (struct \mbox{\hyperlink{structaws__credentials__provider}{aws\+\_\+credentials\+\_\+provider}} $\ast$raw\+\_\+provider, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator)
 \item 
 static void \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a53d9086fb22c2cab6d4679b6ef219696}{s\+\_\+http\+\_\+signing\+\_\+complete\+\_\+fn}} (struct \mbox{\hyperlink{structaws__signing__result}{aws\+\_\+signing\+\_\+result}} $\ast$result, int error\+Code, void $\ast$userdata)
 \end{DoxyCompactItemize}
@@ -94,7 +94,7 @@ HTTP signing callback. The second parameter is an aws error code, The signing wa
 \index{Aws::Crt::Auth@{Aws::Crt::Auth}!ShouldSignHeaderCb@{ShouldSignHeaderCb}}
 \index{ShouldSignHeaderCb@{ShouldSignHeaderCb}!Aws::Crt::Auth@{Aws::Crt::Auth}}
 \doxysubsubsection{\texorpdfstring{ShouldSignHeaderCb}{ShouldSignHeaderCb}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}{Aws\+::\+Crt\+::\+Auth\+::\+Should\+Sign\+Header\+Cb}} = typedef \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} ($\ast$)(const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} $\ast$, void $\ast$)}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}{Aws\+::\+Crt\+::\+Auth\+::\+Should\+Sign\+Header\+Cb}} = typedef bool ($\ast$)(const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} $\ast$, void $\ast$)}
 
 
 

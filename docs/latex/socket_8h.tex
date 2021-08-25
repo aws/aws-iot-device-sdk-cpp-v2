@@ -20,13 +20,13 @@ struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}}
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef void() \mbox{\hyperlink{socket_8h_a1d0b83fee87a38a3c099a6c88d39b6a4}{aws\+\_\+socket\+\_\+on\+\_\+connection\+\_\+result\+\_\+fn}}(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{socket_8h_a1d0b83fee87a38a3c099a6c88d39b6a4}{aws\+\_\+socket\+\_\+on\+\_\+connection\+\_\+result\+\_\+fn}}(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int error\+\_\+code, void $\ast$user\+\_\+data)
 \item 
-typedef void() \mbox{\hyperlink{socket_8h_a10dca6bfdc5254969b118a59a93329d4}{aws\+\_\+socket\+\_\+on\+\_\+accept\+\_\+result\+\_\+fn}}(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$new\+\_\+socket, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{socket_8h_a10dca6bfdc5254969b118a59a93329d4}{aws\+\_\+socket\+\_\+on\+\_\+accept\+\_\+result\+\_\+fn}}(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int error\+\_\+code, struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$new\+\_\+socket, void $\ast$user\+\_\+data)
 \item 
-typedef void() \mbox{\hyperlink{socket_8h_a48bbcf4d8dabcf2ca8de7839cf94023d}{aws\+\_\+socket\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn}}(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, size\+\_\+t bytes\+\_\+written, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{socket_8h_a48bbcf4d8dabcf2ca8de7839cf94023d}{aws\+\_\+socket\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn}}(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int error\+\_\+code, size\+\_\+t bytes\+\_\+written, void $\ast$user\+\_\+data)
 \item 
-typedef void() \mbox{\hyperlink{socket_8h_aaec2a34992cc154435fc90dd167bf26b}{aws\+\_\+socket\+\_\+on\+\_\+readable\+\_\+fn}}(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{socket_8h_aaec2a34992cc154435fc90dd167bf26b}{aws\+\_\+socket\+\_\+on\+\_\+readable\+\_\+fn}}(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int error\+\_\+code, void $\ast$user\+\_\+data)
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -48,13 +48,13 @@ enum \mbox{\hyperlink{socket_8h_ae5fbe6e25ef1b13b8eeda1400fffebf9}{aws\+\_\+sock
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} void \mbox{\hyperlink{socket_8h_ac68f282d5ab2ae4a70f0673d572c4b39}{aws\+\_\+socket\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_acaf4e1f2373e6f2bd9042bfc32fc1dca}{aws\+\_\+socket\+\_\+connect}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, const struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} $\ast$remote\+\_\+endpoint, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, \mbox{\hyperlink{socket_8h_a1d0b83fee87a38a3c099a6c88d39b6a4}{aws\+\_\+socket\+\_\+on\+\_\+connection\+\_\+result\+\_\+fn}} $\ast$on\+\_\+connection\+\_\+result, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_acaf4e1f2373e6f2bd9042bfc32fc1dca}{aws\+\_\+socket\+\_\+connect}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, const struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} $\ast$remote\+\_\+endpoint, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, \mbox{\hyperlink{socket_8h_a1d0b83fee87a38a3c099a6c88d39b6a4}{aws\+\_\+socket\+\_\+on\+\_\+connection\+\_\+result\+\_\+fn}} $\ast$on\+\_\+connection\+\_\+result, void $\ast$user\+\_\+data)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a24930918606789bae1d07115ec644701}{aws\+\_\+socket\+\_\+bind}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, const struct \mbox{\hyperlink{structaws__socket__endpoint}{aws\+\_\+socket\+\_\+endpoint}} $\ast$local\+\_\+endpoint)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a52c612d76a40580b72d627ca4e62fb64}{aws\+\_\+socket\+\_\+listen}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int backlog\+\_\+size)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a796b04c08548fc2654136365cf3642b6}{aws\+\_\+socket\+\_\+start\+\_\+accept}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$accept\+\_\+loop, \mbox{\hyperlink{socket_8h_a10dca6bfdc5254969b118a59a93329d4}{aws\+\_\+socket\+\_\+on\+\_\+accept\+\_\+result\+\_\+fn}} $\ast$on\+\_\+accept\+\_\+result, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a796b04c08548fc2654136365cf3642b6}{aws\+\_\+socket\+\_\+start\+\_\+accept}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$accept\+\_\+loop, \mbox{\hyperlink{socket_8h_a10dca6bfdc5254969b118a59a93329d4}{aws\+\_\+socket\+\_\+on\+\_\+accept\+\_\+result\+\_\+fn}} $\ast$on\+\_\+accept\+\_\+result, void $\ast$user\+\_\+data)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a3b07310b3ed9f71e5a4f438f07aa07c8}{aws\+\_\+socket\+\_\+stop\+\_\+accept}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket)
 \item 
@@ -64,19 +64,19 @@ enum \mbox{\hyperlink{socket_8h_ae5fbe6e25ef1b13b8eeda1400fffebf9}{aws\+\_\+sock
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a46108b8b2ae77834255e828261a75338}{aws\+\_\+socket\+\_\+set\+\_\+options}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, const struct \mbox{\hyperlink{structaws__socket__options}{aws\+\_\+socket\+\_\+options}} $\ast$options)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a8e62e8e2b912fb346123b3697f9c6d90}{aws\+\_\+socket\+\_\+assign\+\_\+to\+\_\+event\+\_\+loop}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a8e62e8e2b912fb346123b3697f9c6d90}{aws\+\_\+socket\+\_\+assign\+\_\+to\+\_\+event\+\_\+loop}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$ \mbox{\hyperlink{socket_8h_a382e0848972e4bb4fdbbd221b871a082}{aws\+\_\+socket\+\_\+get\+\_\+event\+\_\+loop}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a4bf2cb38656161f726c9774c829a035f}{aws\+\_\+socket\+\_\+subscribe\+\_\+to\+\_\+readable\+\_\+events}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, \mbox{\hyperlink{socket_8h_aaec2a34992cc154435fc90dd167bf26b}{aws\+\_\+socket\+\_\+on\+\_\+readable\+\_\+fn}} $\ast$on\+\_\+readable, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a4bf2cb38656161f726c9774c829a035f}{aws\+\_\+socket\+\_\+subscribe\+\_\+to\+\_\+readable\+\_\+events}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, \mbox{\hyperlink{socket_8h_aaec2a34992cc154435fc90dd167bf26b}{aws\+\_\+socket\+\_\+on\+\_\+readable\+\_\+fn}} $\ast$on\+\_\+readable, void $\ast$user\+\_\+data)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a96805e90039531f8c2d36dcc04f21404}{aws\+\_\+socket\+\_\+read}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, size\+\_\+t $\ast$amount\+\_\+read)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_af6dc1df5c6676afc9339d3d3f1f61ecb}{aws\+\_\+socket\+\_\+write}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor, \mbox{\hyperlink{socket_8h_a48bbcf4d8dabcf2ca8de7839cf94023d}{aws\+\_\+socket\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn}} $\ast$written\+\_\+fn, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_af6dc1df5c6676afc9339d3d3f1f61ecb}{aws\+\_\+socket\+\_\+write}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor, \mbox{\hyperlink{socket_8h_a48bbcf4d8dabcf2ca8de7839cf94023d}{aws\+\_\+socket\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn}} $\ast$written\+\_\+fn, void $\ast$user\+\_\+data)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{socket_8h_a514d49bc5c826992d019536b6186c7e9}{aws\+\_\+socket\+\_\+get\+\_\+error}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{socket_8h_af63eee9e79df0e31ebfaf10a4b96e3cc}{aws\+\_\+socket\+\_\+is\+\_\+open}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket)
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} bool \mbox{\hyperlink{socket_8h_af63eee9e79df0e31ebfaf10a4b96e3cc}{aws\+\_\+socket\+\_\+is\+\_\+open}} (struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket)
 \end{DoxyCompactItemize}
 
 
@@ -94,7 +94,7 @@ enum \mbox{\hyperlink{socket_8h_ae5fbe6e25ef1b13b8eeda1400fffebf9}{aws\+\_\+sock
 \index{socket.h@{socket.h}!aws\_socket\_on\_accept\_result\_fn@{aws\_socket\_on\_accept\_result\_fn}}
 \index{aws\_socket\_on\_accept\_result\_fn@{aws\_socket\_on\_accept\_result\_fn}!socket.h@{socket.h}}
 \doxysubsubsection{\texorpdfstring{aws\_socket\_on\_accept\_result\_fn}{aws\_socket\_on\_accept\_result\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+socket\+\_\+on\+\_\+accept\+\_\+result\+\_\+fn(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$new\+\_\+socket, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+socket\+\_\+on\+\_\+accept\+\_\+result\+\_\+fn(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int error\+\_\+code, struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$new\+\_\+socket, void $\ast$user\+\_\+data)}
 
 Called by a listening socket when either an incoming connection has been received or an error occurred.
 
@@ -108,7 +108,7 @@ Do not call \mbox{\hyperlink{socket_8h_ac68f282d5ab2ae4a70f0673d572c4b39}{aws\+\
 \index{socket.h@{socket.h}!aws\_socket\_on\_connection\_result\_fn@{aws\_socket\_on\_connection\_result\_fn}}
 \index{aws\_socket\_on\_connection\_result\_fn@{aws\_socket\_on\_connection\_result\_fn}!socket.h@{socket.h}}
 \doxysubsubsection{\texorpdfstring{aws\_socket\_on\_connection\_result\_fn}{aws\_socket\_on\_connection\_result\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+socket\+\_\+on\+\_\+connection\+\_\+result\+\_\+fn(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+socket\+\_\+on\+\_\+connection\+\_\+result\+\_\+fn(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int error\+\_\+code, void $\ast$user\+\_\+data)}
 
 Called in client mode when an outgoing connection has succeeded or an error has occurred. If the connection was successful error\+\_\+code will be AWS\+\_\+\+ERROR\+\_\+\+SUCCESS and the socket has already been assigned to the event loop specified in \mbox{\hyperlink{socket_8h_acaf4e1f2373e6f2bd9042bfc32fc1dca}{aws\+\_\+socket\+\_\+connect()}}.
 
@@ -116,13 +116,13 @@ If an error occurred error\+\_\+code will be non-\/zero. \mbox{\Hypertarget{sock
 \index{socket.h@{socket.h}!aws\_socket\_on\_readable\_fn@{aws\_socket\_on\_readable\_fn}}
 \index{aws\_socket\_on\_readable\_fn@{aws\_socket\_on\_readable\_fn}!socket.h@{socket.h}}
 \doxysubsubsection{\texorpdfstring{aws\_socket\_on\_readable\_fn}{aws\_socket\_on\_readable\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+socket\+\_\+on\+\_\+readable\+\_\+fn(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+socket\+\_\+on\+\_\+readable\+\_\+fn(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int error\+\_\+code, void $\ast$user\+\_\+data)}
 
 Callback for when socket is either readable (edge-\/triggered) or when an error has occurred. If the socket is readable, error\+\_\+code will be AWS\+\_\+\+ERROR\+\_\+\+SUCCESS. \mbox{\Hypertarget{socket_8h_a48bbcf4d8dabcf2ca8de7839cf94023d}\label{socket_8h_a48bbcf4d8dabcf2ca8de7839cf94023d}} 
 \index{socket.h@{socket.h}!aws\_socket\_on\_write\_completed\_fn@{aws\_socket\_on\_write\_completed\_fn}}
 \index{aws\_socket\_on\_write\_completed\_fn@{aws\_socket\_on\_write\_completed\_fn}!socket.h@{socket.h}}
 \doxysubsubsection{\texorpdfstring{aws\_socket\_on\_write\_completed\_fn}{aws\_socket\_on\_write\_completed\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+socket\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, size\+\_\+t bytes\+\_\+written, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+socket\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn(struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$socket, int error\+\_\+code, size\+\_\+t bytes\+\_\+written, void $\ast$user\+\_\+data)}
 
 Callback for when the data passed to a call to \mbox{\hyperlink{socket_8h_af6dc1df5c6676afc9339d3d3f1f61ecb}{aws\+\_\+socket\+\_\+write()}} has either completed or failed. On success, error\+\_\+code will be AWS\+\_\+\+ERROR\+\_\+\+SUCCESS. 
 
@@ -200,7 +200,7 @@ If the socket has already been closed, you can safely, call this from any thread
 \doxysubsubsection{\texorpdfstring{aws\_socket\_close()}{aws\_socket\_close()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int aws\+\_\+socket\+\_\+close (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket }\end{DoxyParamCaption})}
 
-Calls {\ttfamily \mbox{\hyperlink{new__destroy_8c_a6cc331334d030ff39790e12d10ef25c1}{close()}}} on the socket and unregisters all io operations from the event loop. This function must be called from the event-\/loop\textquotesingle{}s thread unless this is a listening socket. If it\textquotesingle{}s a listening socket it can be called from any non-\/event-\/loop thread or the event-\/loop the socket is currently assigned to. If called from outside the event-\/loop, this function will block waiting on the socket to close. If this is called from an event-\/loop thread other than the one it\textquotesingle{}s assigned to, it presents the possibility of a deadlock, so don\textquotesingle{}t do it. \mbox{\Hypertarget{socket_8h_acaf4e1f2373e6f2bd9042bfc32fc1dca}\label{socket_8h_acaf4e1f2373e6f2bd9042bfc32fc1dca}} 
+Calls {\ttfamily close()} on the socket and unregisters all io operations from the event loop. This function must be called from the event-\/loop\textquotesingle{}s thread unless this is a listening socket. If it\textquotesingle{}s a listening socket it can be called from any non-\/event-\/loop thread or the event-\/loop the socket is currently assigned to. If called from outside the event-\/loop, this function will block waiting on the socket to close. If this is called from an event-\/loop thread other than the one it\textquotesingle{}s assigned to, it presents the possibility of a deadlock, so don\textquotesingle{}t do it. \mbox{\Hypertarget{socket_8h_acaf4e1f2373e6f2bd9042bfc32fc1dca}\label{socket_8h_acaf4e1f2373e6f2bd9042bfc32fc1dca}} 
 \index{socket.h@{socket.h}!aws\_socket\_connect@{aws\_socket\_connect}}
 \index{aws\_socket\_connect@{aws\_socket\_connect}!socket.h@{socket.h}}
 \doxysubsubsection{\texorpdfstring{aws\_socket\_connect()}{aws\_socket\_connect()}}
@@ -232,9 +232,9 @@ Initializes a socket object with socket options. options will be copied. \mbox{\
 \index{socket.h@{socket.h}!aws\_socket\_is\_open@{aws\_socket\_is\_open}}
 \index{aws\_socket\_is\_open@{aws\_socket\_is\_open}!socket.h@{socket.h}}
 \doxysubsubsection{\texorpdfstring{aws\_socket\_is\_open()}{aws\_socket\_is\_open()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+socket\+\_\+is\+\_\+open (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} bool aws\+\_\+socket\+\_\+is\+\_\+open (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$}]{socket }\end{DoxyParamCaption})}
 
-Returns true if the socket is still open (doesn\textquotesingle{}t mean connected or listening, only that it hasn\textquotesingle{}t had \mbox{\hyperlink{new__destroy_8c_a6cc331334d030ff39790e12d10ef25c1}{close()}} called. \mbox{\Hypertarget{socket_8h_a52c612d76a40580b72d627ca4e62fb64}\label{socket_8h_a52c612d76a40580b72d627ca4e62fb64}} 
+Returns true if the socket is still open (doesn\textquotesingle{}t mean connected or listening, only that it hasn\textquotesingle{}t had close() called. \mbox{\Hypertarget{socket_8h_a52c612d76a40580b72d627ca4e62fb64}\label{socket_8h_a52c612d76a40580b72d627ca4e62fb64}} 
 \index{socket.h@{socket.h}!aws\_socket\_listen@{aws\_socket\_listen}}
 \index{aws\_socket\_listen@{aws\_socket\_listen}!socket.h@{socket.h}}
 \doxysubsubsection{\texorpdfstring{aws\_socket\_listen()}{aws\_socket\_listen()}}
@@ -296,6 +296,6 @@ Writes to the socket. This call is non-\/blocking and will attempt to write as m
 
 NOTE! This function must be called from the event-\/loop used in aws\+\_\+socket\+\_\+assign\+\_\+to\+\_\+event\+\_\+loop
 
-For client sockets, \mbox{\hyperlink{namespacecommon_1_1s2n__test__common_a03b5a5411d86d56a6c117f325d2d75b5}{connect()}} and \mbox{\hyperlink{socket_8h_a8e62e8e2b912fb346123b3697f9c6d90}{aws\+\_\+socket\+\_\+assign\+\_\+to\+\_\+event\+\_\+loop()}} must be called before calling this.
+For client sockets, connect() and \mbox{\hyperlink{socket_8h_a8e62e8e2b912fb346123b3697f9c6d90}{aws\+\_\+socket\+\_\+assign\+\_\+to\+\_\+event\+\_\+loop()}} must be called before calling this.
 
 For incoming sockets from a listener, \mbox{\hyperlink{socket_8h_a8e62e8e2b912fb346123b3697f9c6d90}{aws\+\_\+socket\+\_\+assign\+\_\+to\+\_\+event\+\_\+loop()}} must be called first. 

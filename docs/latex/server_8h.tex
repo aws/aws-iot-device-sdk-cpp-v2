@@ -18,13 +18,13 @@ struct \mbox{\hyperlink{structaws__http__server__connection__options}{aws\+\_\+h
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef void() \mbox{\hyperlink{server_8h_aeaf0b36b54b3dca4116e419340b5480a}{aws\+\_\+http\+\_\+server\+\_\+on\+\_\+incoming\+\_\+connection\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__server}{aws\+\_\+http\+\_\+server}} $\ast$server, struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{server_8h_aeaf0b36b54b3dca4116e419340b5480a}{aws\+\_\+http\+\_\+server\+\_\+on\+\_\+incoming\+\_\+connection\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__server}{aws\+\_\+http\+\_\+server}} $\ast$server, struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int error\+\_\+code, void $\ast$user\+\_\+data)
 \item 
-typedef void() \mbox{\hyperlink{server_8h_a90fedaba3a21e6c87d99863578ea683b}{aws\+\_\+http\+\_\+server\+\_\+on\+\_\+destroy\+\_\+fn}}(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{server_8h_a90fedaba3a21e6c87d99863578ea683b}{aws\+\_\+http\+\_\+server\+\_\+on\+\_\+destroy\+\_\+fn}}(void $\ast$user\+\_\+data)
 \item 
-typedef struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$() \mbox{\hyperlink{server_8h_af6effccb7b5a98a71a0e839aca506eca}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+request\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$() \mbox{\hyperlink{server_8h_af6effccb7b5a98a71a0e839aca506eca}{aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+request\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, void $\ast$user\+\_\+data)
 \item 
-typedef void() \mbox{\hyperlink{server_8h_a721b690df7d3a9102e0e3dd49208cac4}{aws\+\_\+http\+\_\+on\+\_\+server\+\_\+connection\+\_\+shutdown\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{structconnection__user__data}{connection\+\_\+user\+\_\+data}})
+typedef void() \mbox{\hyperlink{server_8h_a721b690df7d3a9102e0e3dd49208cac4}{aws\+\_\+http\+\_\+on\+\_\+server\+\_\+connection\+\_\+shutdown\+\_\+fn}}(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int error\+\_\+code, void $\ast$connection\+\_\+user\+\_\+data)
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -35,7 +35,7 @@ typedef void() \mbox{\hyperlink{server_8h_a721b690df7d3a9102e0e3dd49208cac4}{aws
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} int \mbox{\hyperlink{server_8h_acfd782eeaf51696bbed4c5d103b93ad6}{aws\+\_\+http\+\_\+connection\+\_\+configure\+\_\+server}} (struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, const struct \mbox{\hyperlink{structaws__http__server__connection__options}{aws\+\_\+http\+\_\+server\+\_\+connection\+\_\+options}} $\ast$options)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{server_8h_ab20d786961b87d8ce0f82c8d93fd7904}{aws\+\_\+http\+\_\+connection\+\_\+is\+\_\+server}} (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} bool \mbox{\hyperlink{server_8h_ab20d786961b87d8ce0f82c8d93fd7904}{aws\+\_\+http\+\_\+connection\+\_\+is\+\_\+server}} (const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection)
 \end{DoxyCompactItemize}
 
 
@@ -59,25 +59,25 @@ Initializes \mbox{\hyperlink{structaws__http__server__options}{aws\+\_\+http\+\_
 \index{server.h@{server.h}!aws\_http\_on\_incoming\_request\_fn@{aws\_http\_on\_incoming\_request\_fn}}
 \index{aws\_http\_on\_incoming\_request\_fn@{aws\_http\_on\_incoming\_request\_fn}!server.h@{server.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_on\_incoming\_request\_fn}{aws\_http\_on\_incoming\_request\_fn}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$() aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+request\+\_\+fn(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}}$\ast$() aws\+\_\+http\+\_\+on\+\_\+incoming\+\_\+request\+\_\+fn(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, void $\ast$user\+\_\+data)}
 
 Invoked at the start of an incoming request. To process the request, the user must create a request handler stream and return it to the connection. If NULL is returned, the request will not be processed and the last error will be reported as the reason for failure. \mbox{\Hypertarget{server_8h_a721b690df7d3a9102e0e3dd49208cac4}\label{server_8h_a721b690df7d3a9102e0e3dd49208cac4}} 
 \index{server.h@{server.h}!aws\_http\_on\_server\_connection\_shutdown\_fn@{aws\_http\_on\_server\_connection\_shutdown\_fn}}
 \index{aws\_http\_on\_server\_connection\_shutdown\_fn@{aws\_http\_on\_server\_connection\_shutdown\_fn}!server.h@{server.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_on\_server\_connection\_shutdown\_fn}{aws\_http\_on\_server\_connection\_shutdown\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+on\+\_\+server\+\_\+connection\+\_\+shutdown\+\_\+fn(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{structconnection__user__data}{connection\+\_\+user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+on\+\_\+server\+\_\+connection\+\_\+shutdown\+\_\+fn(struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int error\+\_\+code, void $\ast$connection\+\_\+user\+\_\+data)}
 
 \mbox{\Hypertarget{server_8h_a90fedaba3a21e6c87d99863578ea683b}\label{server_8h_a90fedaba3a21e6c87d99863578ea683b}} 
 \index{server.h@{server.h}!aws\_http\_server\_on\_destroy\_fn@{aws\_http\_server\_on\_destroy\_fn}}
 \index{aws\_http\_server\_on\_destroy\_fn@{aws\_http\_server\_on\_destroy\_fn}!server.h@{server.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_server\_on\_destroy\_fn}{aws\_http\_server\_on\_destroy\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+server\+\_\+on\+\_\+destroy\+\_\+fn(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+server\+\_\+on\+\_\+destroy\+\_\+fn(void $\ast$user\+\_\+data)}
 
 \mbox{\Hypertarget{server_8h_aeaf0b36b54b3dca4116e419340b5480a}\label{server_8h_aeaf0b36b54b3dca4116e419340b5480a}} 
 \index{server.h@{server.h}!aws\_http\_server\_on\_incoming\_connection\_fn@{aws\_http\_server\_on\_incoming\_connection\_fn}}
 \index{aws\_http\_server\_on\_incoming\_connection\_fn@{aws\_http\_server\_on\_incoming\_connection\_fn}!server.h@{server.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_server\_on\_incoming\_connection\_fn}{aws\_http\_server\_on\_incoming\_connection\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+server\+\_\+on\+\_\+incoming\+\_\+connection\+\_\+fn(struct \mbox{\hyperlink{structaws__http__server}{aws\+\_\+http\+\_\+server}} $\ast$server, struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+http\+\_\+server\+\_\+on\+\_\+incoming\+\_\+connection\+\_\+fn(struct \mbox{\hyperlink{structaws__http__server}{aws\+\_\+http\+\_\+server}} $\ast$server, struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$connection, int error\+\_\+code, void $\ast$user\+\_\+data)}
 
 
 
@@ -92,7 +92,7 @@ Configure a server connection. This must be called from the server\textquotesing
 \index{server.h@{server.h}!aws\_http\_connection\_is\_server@{aws\_http\_connection\_is\_server}}
 \index{aws\_http\_connection\_is\_server@{aws\_http\_connection\_is\_server}!server.h@{server.h}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_connection\_is\_server()}{aws\_http\_connection\_is\_server()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+connection\+\_\+is\+\_\+server (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} bool aws\+\_\+http\+\_\+connection\+\_\+is\+\_\+server (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$}]{connection }\end{DoxyParamCaption})}
 
 Returns true if this is a server connection. \mbox{\Hypertarget{server_8h_a762b7fc8ff8bef361fa72afc96d00ad6}\label{server_8h_a762b7fc8ff8bef361fa72afc96d00ad6}} 
 \index{server.h@{server.h}!aws\_http\_server\_new@{aws\_http\_server\_new}}

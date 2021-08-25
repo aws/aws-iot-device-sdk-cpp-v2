@@ -19,11 +19,11 @@
 \DoxyCodeLine{15 }
 \DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{evp_8h}{openssl/evp.h}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <openssl/evp.h>}}
 \DoxyCodeLine{19 }
 \DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__signature_8h}{crypto/s2n\_signature.h}}"{}}}
 \DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__ecdsa_8h}{crypto/s2n\_ecdsa.h}}"{}}}
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{crypto_2s2n__hash_8h}{crypto/s2n\_hash.h}}"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__hash_8h}{crypto/s2n\_hash.h}}"{}}}
 \DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__rsa_8h}{crypto/s2n\_rsa.h}}"{}}}
 \DoxyCodeLine{24 }
 \DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}utils/s2n\_blob.h"{}}}
@@ -44,19 +44,19 @@
 \DoxyCodeLine{40     \textcolor{keyword}{union }\{}
 \DoxyCodeLine{41         \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__rsa__key}{s2n\_rsa\_key}} \mbox{\hyperlink{structs2n__pkey_ac9a95739f5cf56168824be1fb6f66a43}{rsa\_key}};}
 \DoxyCodeLine{42         \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__ecdsa__key}{s2n\_ecdsa\_key}} \mbox{\hyperlink{structs2n__pkey_a0118458b0931834f9d5b97ac4f59d927}{ecdsa\_key}};}
-\DoxyCodeLine{43     \} \mbox{\hyperlink{structs2n__pkey_a80c4b244a243aab8b0ef3be745c2b135}{key}};}
-\DoxyCodeLine{44     \mbox{\hyperlink{ossl__typ_8h_a2fca4fef9e4c7a2a739b1ea04acb56ce}{EVP\_PKEY}} *\mbox{\hyperlink{structs2n__pkey_a6ca7a2edd3efbada2611579749dd959a}{pkey}};}
+\DoxyCodeLine{43     \} \mbox{\hyperlink{structs2n__pkey_a78a48d60ce06e26bea0124ab1d009986}{key}};}
+\DoxyCodeLine{44     EVP\_PKEY *\mbox{\hyperlink{structs2n__pkey_a6ca7a2edd3efbada2611579749dd959a}{pkey}};}
 \DoxyCodeLine{45 }
-\DoxyCodeLine{46     int (*\mbox{\hyperlink{structs2n__pkey_a340dbedee000c9a64ceac3768f5065f5}{size}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a80c4b244a243aab8b0ef3be745c2b135}{key}});}
+\DoxyCodeLine{46     int (*\mbox{\hyperlink{structs2n__pkey_a340dbedee000c9a64ceac3768f5065f5}{size}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a78a48d60ce06e26bea0124ab1d009986}{key}});}
 \DoxyCodeLine{47     int (*\mbox{\hyperlink{structs2n__pkey_a5302537b80a82867dce1a5aaaa31c2a4}{sign}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *priv\_key, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\_signature\_algorithm}} sig\_alg,}
-\DoxyCodeLine{48             \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structs2n__hash__state_ac7baf712897bf5b0d3f83bf038b1e234}{digest}}, \textcolor{keyword}{struct }s2n\_blob *signature);}
+\DoxyCodeLine{48             \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structs2n__hash__state_ad313bdd8f08bd9f4b02b41c0f9a73aa2}{digest}}, \textcolor{keyword}{struct }s2n\_blob *signature);}
 \DoxyCodeLine{49     int (*\mbox{\hyperlink{structs2n__pkey_a2d2e869a50380471fb171469fad46869}{verify}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *pub\_key, \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\_signature\_algorithm}} sig\_alg,}
-\DoxyCodeLine{50             \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structs2n__hash__state_ac7baf712897bf5b0d3f83bf038b1e234}{digest}}, \textcolor{keyword}{struct }s2n\_blob *signature);}
-\DoxyCodeLine{51     int (*\mbox{\hyperlink{structs2n__pkey_a5e42c995a5eef288eba09c27298c3b9f}{encrypt}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a80c4b244a243aab8b0ef3be745c2b135}{key}}, \textcolor{keyword}{struct }s2n\_blob *in, \textcolor{keyword}{struct }s2n\_blob *out);}
-\DoxyCodeLine{52     int (*\mbox{\hyperlink{structs2n__pkey_af20c1671c32be6b9f6974a7013325d5a}{decrypt}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a80c4b244a243aab8b0ef3be745c2b135}{key}}, \textcolor{keyword}{struct }s2n\_blob *in, \textcolor{keyword}{struct }s2n\_blob *out);}
+\DoxyCodeLine{50             \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__hash__state}{s2n\_hash\_state}} *\mbox{\hyperlink{structs2n__hash__state_ad313bdd8f08bd9f4b02b41c0f9a73aa2}{digest}}, \textcolor{keyword}{struct }s2n\_blob *signature);}
+\DoxyCodeLine{51     int (*\mbox{\hyperlink{structs2n__pkey_a5e42c995a5eef288eba09c27298c3b9f}{encrypt}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a78a48d60ce06e26bea0124ab1d009986}{key}}, \textcolor{keyword}{struct }s2n\_blob *in, \textcolor{keyword}{struct }s2n\_blob *out);}
+\DoxyCodeLine{52     int (*\mbox{\hyperlink{structs2n__pkey_af20c1671c32be6b9f6974a7013325d5a}{decrypt}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a78a48d60ce06e26bea0124ab1d009986}{key}}, \textcolor{keyword}{struct }s2n\_blob *in, \textcolor{keyword}{struct }s2n\_blob *out);}
 \DoxyCodeLine{53     int (*\mbox{\hyperlink{structs2n__pkey_a858a093b3866390458ba4ba78c565f68}{match}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *pub\_key, \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *priv\_key); }
-\DoxyCodeLine{54     int (*\mbox{\hyperlink{structs2n__pkey_a147fb4594674db55f9ae154422d4be48}{free}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a80c4b244a243aab8b0ef3be745c2b135}{key}});}
-\DoxyCodeLine{55     int (*\mbox{\hyperlink{structs2n__pkey_aa1189a112394f3925489db9b886d01e7}{check\_key}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a80c4b244a243aab8b0ef3be745c2b135}{key}});}
+\DoxyCodeLine{54     int (*\mbox{\hyperlink{structs2n__pkey_a147fb4594674db55f9ae154422d4be48}{free}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a78a48d60ce06e26bea0124ab1d009986}{key}});}
+\DoxyCodeLine{55     int (*\mbox{\hyperlink{structs2n__pkey_aa1189a112394f3925489db9b886d01e7}{check\_key}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a78a48d60ce06e26bea0124ab1d009986}{key}});}
 \DoxyCodeLine{56 \};}
 \DoxyCodeLine{57 }
 \DoxyCodeLine{58 \textcolor{keywordtype}{int} \mbox{\hyperlink{s2n__pkey_8h_a576cae2e77ec22cbdf6fc66c51264a3c}{s2n\_pkey\_zero\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structs2n__pkey}{s2n\_pkey}} *\mbox{\hyperlink{structs2n__pkey_a6ca7a2edd3efbada2611579749dd959a}{pkey}});}

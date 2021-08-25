@@ -85,8 +85,8 @@ $(function() {
 <code>#include &quot;<a class="el" href="s2n__connection_8h_source.html">tls/s2n_connection.h</a>&quot;</code><br />
 <code>#include &lt;arpa/inet.h&gt;</code><br />
 <code>#include &lt;sys/socket.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="err_8h_source.html">openssl/err.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="asn1_8h_source.html">openssl/asn1.h</a>&gt;</code><br />
+<code>#include &lt;openssl/err.h&gt;</code><br />
+<code>#include &lt;openssl/asn1.h&gt;</code><br />
 <code>#include &lt;openssl/ocsp.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -127,7 +127,7 @@ Functions</h2></td></tr>
 <tr class="separator:a3c01448c0eba6f3da070efca52a9beb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14de21f9d6b7b411e1eee66a98d64feb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__x509__validator_8c.html#a14de21f9d6b7b411e1eee66a98d64feb">s2n_x509_validator_init</a> (struct <a class="el" href="structs2n__x509__validator.html">s2n_x509_validator</a> *validator, struct <a class="el" href="structs2n__x509__trust__store.html">s2n_x509_trust_store</a> *trust_store, uint8_t check_ocsp)</td></tr>
 <tr class="separator:a14de21f9d6b7b411e1eee66a98d64feb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bb65909f7e2156383aeb1c9d03b49c8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__x509__validator_8c.html#a2bb65909f7e2156383aeb1c9d03b49c8">wipe_cert_chain</a> (STACK_OF(X509) *<a class="el" href="s2n__tls13__cert__verify__recv__test_8c.html#aaed4d7a47677e806a98bdad84cc812ba">cert_chain</a>)</td></tr>
+<tr class="memitem:a2bb65909f7e2156383aeb1c9d03b49c8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__x509__validator_8c.html#a2bb65909f7e2156383aeb1c9d03b49c8">wipe_cert_chain</a> (STACK_OF(X509) *cert_chain)</td></tr>
 <tr class="separator:a2bb65909f7e2156383aeb1c9d03b49c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a9cb1ed3f0786296ad988185adce278"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__x509__validator_8c.html#a7a9cb1ed3f0786296ad988185adce278">s2n_x509_validator_wipe</a> (struct <a class="el" href="structs2n__x509__validator.html">s2n_x509_validator</a> *validator)</td></tr>
 <tr class="separator:a7a9cb1ed3f0786296ad988185adce278"><td class="memSeparator" colspan="2">&#160;</td></tr>

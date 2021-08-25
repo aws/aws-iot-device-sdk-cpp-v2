@@ -17,10 +17,10 @@ int \mbox{\hyperlink{structkqueue__loop_a5c856d53d5e918ed907c90c7164f904e}{cross
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
 \>struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structkqueue__loop_ac98ce361cc1f16f1d0fd3090b2666fb5}{mutex}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structkqueue__loop_a651b81dbe1c2f27410dc31814a20e2ec}{thread\_signaled}}\\
+\>bool \mbox{\hyperlink{structkqueue__loop_a651b81dbe1c2f27410dc31814a20e2ec}{thread\_signaled}}\\
 \>struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structkqueue__loop_a31cd00f9e01896f28d8c230af434905d}{tasks\_to\_schedule}}\\
 \>enum \mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}{event\_thread\_state}} \mbox{\hyperlink{structkqueue__loop_a423d881079120dae02c7b9459aae93db}{state}}\\
-\} \mbox{\hyperlink{structkqueue__loop_ab0b5957570e2eb7287304c95bd3b14f7}{cross\_thread\_data}}\\
+\} \mbox{\hyperlink{structkqueue__loop_abe8ae5108a17e76bdd26268c698635b2}{cross\_thread\_data}}\\
 
 \end{tabbing}\item 
 \begin{tabbing}
@@ -29,7 +29,7 @@ struct \{\\
 \>struct \mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} \mbox{\hyperlink{structkqueue__loop_abd7c512d4f9b194c2c31eeae22b5594f}{scheduler}}\\
 \>int \mbox{\hyperlink{structkqueue__loop_a0434dc58d36a02e4449ea27f3d79548b}{connected\_handle\_count}}\\
 \>enum \mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}{event\_thread\_state}} \mbox{\hyperlink{structkqueue__loop_a423d881079120dae02c7b9459aae93db}{state}}\\
-\} \mbox{\hyperlink{structkqueue__loop_afd55b957a3940da0b7f38f552d6f37b4}{thread\_data}}\\
+\} \mbox{\hyperlink{structkqueue__loop_a1cb42d24e33b1939d6e2a9e26233b70b}{thread\_data}}\\
 
 \end{tabbing}\item 
 struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} \mbox{\hyperlink{structkqueue__loop_a8af2bb065f2f7637174d93be942891ff}{thread\+\_\+options}}
@@ -43,7 +43,7 @@ struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options
 \doxysubsubsection{\texorpdfstring{connected\_handle\_count}{connected\_handle\_count}}
 {\footnotesize\ttfamily int kqueue\+\_\+loop\+::connected\+\_\+handle\+\_\+count}
 
-\mbox{\Hypertarget{structkqueue__loop_ab0b5957570e2eb7287304c95bd3b14f7}\label{structkqueue__loop_ab0b5957570e2eb7287304c95bd3b14f7}} 
+\mbox{\Hypertarget{structkqueue__loop_abe8ae5108a17e76bdd26268c698635b2}\label{structkqueue__loop_abe8ae5108a17e76bdd26268c698635b2}} 
 \index{kqueue\_loop@{kqueue\_loop}!cross\_thread\_data@{cross\_thread\_data}}
 \index{cross\_thread\_data@{cross\_thread\_data}!kqueue\_loop@{kqueue\_loop}}
 \doxysubsubsection{\texorpdfstring{}{}}
@@ -97,7 +97,7 @@ struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options
 \doxysubsubsection{\texorpdfstring{thread\_created\_on}{thread\_created\_on}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} kqueue\+\_\+loop\+::thread\+\_\+created\+\_\+on}
 
-\mbox{\Hypertarget{structkqueue__loop_afd55b957a3940da0b7f38f552d6f37b4}\label{structkqueue__loop_afd55b957a3940da0b7f38f552d6f37b4}} 
+\mbox{\Hypertarget{structkqueue__loop_a1cb42d24e33b1939d6e2a9e26233b70b}\label{structkqueue__loop_a1cb42d24e33b1939d6e2a9e26233b70b}} 
 \index{kqueue\_loop@{kqueue\_loop}!thread\_data@{thread\_data}}
 \index{thread\_data@{thread\_data}!kqueue\_loop@{kqueue\_loop}}
 \doxysubsubsection{\texorpdfstring{}{}}
@@ -119,7 +119,7 @@ struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options
 \index{kqueue\_loop@{kqueue\_loop}!thread\_signaled@{thread\_signaled}}
 \index{thread\_signaled@{thread\_signaled}!kqueue\_loop@{kqueue\_loop}}
 \doxysubsubsection{\texorpdfstring{thread\_signaled}{thread\_signaled}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} kqueue\+\_\+loop\+::thread\+\_\+signaled}
+{\footnotesize\ttfamily bool kqueue\+\_\+loop\+::thread\+\_\+signaled}
 
 
 

@@ -119,8 +119,7 @@ Functions</h2></td></tr>
 <p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0.</p>
 <p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. FUNCTION: memcpy</p>
 <p >This function overrides the original implementation of the memcpy function from <a class="el" href="string_8h.html">string.h</a>. It copies the values of n bytes from the *src to the *dst. It also checks if the size of the arrays pointed to by both the *dst and *src parameters are at least n bytes and if they overlap. Override the version of memcpy used by CBMC.</p>
-<p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. Override the version of memcpy used by CBMC. Users may not want to pay for the cost of performing the computation of memcpy in proofs. In that case, this stub at least checks for the preconditions and make sure to havoc all elements pointed by *dst up to n.</p>
-<p >Overrides the version of memcpy used by CBMC. Users may not want to pay for the cost of performing the computation of memcpy in proofs. In that case, this stub at least checks for the preconditions and assigns arbitrary values to *dst. </p>
+<p >Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. SPDX-License-Identifier: Apache-2.0. Override the version of memcpy used by CBMC. Users may not want to pay for the cost of performing the computation of memcpy in proofs. In that case, this stub at least checks for the preconditions and make sure to havoc all elements pointed by *dst up to n. </p>
 
 </div>
 </div>

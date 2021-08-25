@@ -72,8 +72,8 @@ $(function() {
   <div class="headertitle"><div class="title">s2n_ecdsa.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="ec_8h_source.html">openssl/ec.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="ecdsa_8h_source.html">openssl/ecdsa.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;openssl/ec.h&gt;</code><br />
+<code>#include &lt;openssl/ecdsa.h&gt;</code><br />
 <code>#include &lt;openssl/x509.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n__stuffer_8h_source.html">stuffer/s2n_stuffer.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__errno_8h_source.html">error/s2n_errno.h</a>&quot;</code><br />
@@ -83,7 +83,7 @@ $(function() {
 <code>#include &quot;utils/s2n_safety.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__ecdsa_8h_source.html">crypto/s2n_ecdsa.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__ecc__evp_8h_source.html">crypto/s2n_ecc_evp.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="crypto_2s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__openssl_8h_source.html">crypto/s2n_openssl.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__pkey_8h_source.html">crypto/s2n_pkey.h</a>&quot;</code><br />
 </div><table class="memberdecls">
@@ -101,9 +101,9 @@ Functions</h2></td></tr>
 <tr class="separator:a62fab51d1d7572329412f93d7a8ae809"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a918d9ade2ec8f30032eecabb31a2a512"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8c.html#a918d9ade2ec8f30032eecabb31a2a512">s2n_ecdsa_check_key_exists</a> (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *pkey)</td></tr>
 <tr class="separator:a918d9ade2ec8f30032eecabb31a2a512"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e5e9d7b4425a5afdc6b5bf18b8d7059"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8c.html#a2e5e9d7b4425a5afdc6b5bf18b8d7059">s2n_evp_pkey_to_ecdsa_private_key</a> (<a class="el" href="s2n__ecdsa_8h.html#a5dd51a0a33cc7da735ab991c31d42fc4">s2n_ecdsa_private_key</a> *ecdsa_key, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *evp_private_key)</td></tr>
+<tr class="memitem:a2e5e9d7b4425a5afdc6b5bf18b8d7059"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8c.html#a2e5e9d7b4425a5afdc6b5bf18b8d7059">s2n_evp_pkey_to_ecdsa_private_key</a> (<a class="el" href="s2n__ecdsa_8h.html#a5dd51a0a33cc7da735ab991c31d42fc4">s2n_ecdsa_private_key</a> *ecdsa_key, EVP_PKEY *evp_private_key)</td></tr>
 <tr class="separator:a2e5e9d7b4425a5afdc6b5bf18b8d7059"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85e56f143e17979734453b87a10dbf4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8c.html#a85e56f143e17979734453b87a10dbf4f">s2n_evp_pkey_to_ecdsa_public_key</a> (<a class="el" href="s2n__ecdsa_8h.html#a149e7053a0f77d5b772f15195ee48407">s2n_ecdsa_public_key</a> *ecdsa_key, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *evp_public_key)</td></tr>
+<tr class="memitem:a85e56f143e17979734453b87a10dbf4f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8c.html#a85e56f143e17979734453b87a10dbf4f">s2n_evp_pkey_to_ecdsa_public_key</a> (<a class="el" href="s2n__ecdsa_8h.html#a149e7053a0f77d5b772f15195ee48407">s2n_ecdsa_public_key</a> *ecdsa_key, EVP_PKEY *evp_public_key)</td></tr>
 <tr class="separator:a85e56f143e17979734453b87a10dbf4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae07526b95a34d19149c628c4c7b8350e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecdsa_8c.html#ae07526b95a34d19149c628c4c7b8350e">s2n_ecdsa_pkey_init</a> (struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *pkey)</td></tr>
 <tr class="separator:ae07526b95a34d19149c628c4c7b8350e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -374,7 +374,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>evp_private_key</em>&#160;</td>
         </tr>
         <tr>
@@ -402,7 +402,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>evp_public_key</em>&#160;</td>
         </tr>
         <tr>

@@ -85,10 +85,10 @@ $(function() {
 <li><a href="#how-do-i-debug-a-proof-failure">How do I debug a proof failure?</a></li>
 <li><a href="#what-are-some-examples-of-good-cbmc-proofs">What are some examples of good CBMC proofs?</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md145"></a>
+<h2><a class="anchor" id="autotoc_md144"></a>
 How should I select the initial entry-point to verify?</h2>
 <p >There are two basic approaches that we have used at AWS to verify C code using CBMC: <b>top down</b>, and <b>bottom up</b>. In our experience, the top-down approach is best suited to a</p>
-<h3><a class="anchor" id="autotoc_md146"></a>
+<h3><a class="anchor" id="autotoc_md145"></a>
 Top down approach</h3>
 <p >The top-down approach begins by selecting the most critical entry-points into the code. For example, when verifying an HTTP library, you might choose to begin with the network parser that handles data directly off the wire. Since this parser is directly exposed to untrusted input, verification leads to a significant security benefit.</p>
 <ul>
@@ -105,7 +105,7 @@ Top down approach</h3>
 </ul>
 </li>
 </ul>
-<h3><a class="anchor" id="autotoc_md147"></a>
+<h3><a class="anchor" id="autotoc_md146"></a>
 Bottom up approach</h3>
 <p >The bottom-up approach follows the natural dependency flow of the codebase being verified. In our experience, the more self-contained a piece of code is, the easier it is to verify.</p>
 <ol type="1">
@@ -113,10 +113,10 @@ Bottom up approach</h3>
 <li>Select the leaves of the graph - those modules which other modules depend upon, but which do not depend on other modules themselves. Typically, these include the basic data-structures and algorithms used by the rest of the codebase. Which one of these you choose is a matter of style: you can use the [TODO, link to coding guidelines] coding guidelines to help select modules which are likely to be good verification targets.</li>
 <li>Inside a given module, select the best initial verification target. This is often, but not always, one of the simpler functions. In particular, you are looking for a function which is both easy to verify, and will give good insight into the data-structure invariants of the data-structures used in the given module. In our experience, it often makes sense to start with allocation or initialization functions (which often have named that end in <code>_alloc()</code> or <code>_init()</code></li>
 </ol>
-<h2><a class="anchor" id="autotoc_md148"></a>
+<h2><a class="anchor" id="autotoc_md147"></a>
 How do I set up the tools I need?</h2>
 <p >[TODO] - basically brew install / apt-get install. Link to that page.</p>
-<h2><a class="anchor" id="autotoc_md149"></a>
+<h2><a class="anchor" id="autotoc_md148"></a>
 How do I set up my repository for verification?</h2>
 <p >We have created a "Proof Starter Kit" repository, which includes the basic information required to set up a build-system for your first proof.</p>
 <ol type="1">
@@ -152,7 +152,7 @@ How do I set up my repository for verification?</h2>
 <ol type="1">
 <li>Follow the instructions at [TODO where??] to enable CBMC CI for your repository</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md150"></a>
+<h2><a class="anchor" id="autotoc_md149"></a>
 How do I write a good proof harness?</h2>
 <p >We have developed a style of writing proofs that we believe is readable, maintainable, and modular. This style was driven by feedback from developers, and addresses the need to communicate <em>exactly what we are proving</em> to developers and users.</p>
 <p >Our proofs have the following features:</p><ol type="1">
@@ -211,7 +211,7 @@ How do I write a good proof harness?</h2>
 <p >This style of writing a proof harness is motivated by our desire to make assumptions explicit to developers. This style consists of two steps. The first step does the minimal work required to imperatively allocate structures with unconstrained fields, as described in Items 1 and 2 in the above list. The second step uses <code>assume</code> statements to enforce the specification about the values that go in those fields (Item 3). This makes the specification used in the proof harness clear and allows them to be further reused as assertions in the mainline code.</p>
 <p >Syntactically, a proof harness looks quite similar to a unit test. The main difference is that a proof harness calls the target function with a partially-constrained input rather than a concrete value; when symbolically executed by CBMC, this has the effect of exploring the function under <em>all</em> possible inputs that satisfy the constraints.</p>
 <p >In fact, historically, we started from unit tests, and tried to make them symbolic by replacing concrete values with unconstrained values. We found this difficult, since there are relations that constrain fields in a data structure and must be enforced (e.g., <code>length &lt; capacity</code> and <code>capacity != 0 IMPLIES buffer != 0</code>). Even worse, these imperative proof-harnesses turned out to be difficult to reason about and to explain to the development team.</p>
-<h2><a class="anchor" id="autotoc_md151"></a>
+<h2><a class="anchor" id="autotoc_md150"></a>
 How do I write function pre/post conditions?</h2>
 <p >The preconditions used as assumptions in (Item $(3)$) are developed using an iterative process. For each module, we start by specifying the simplest predicates that we can think of for the data structure &mdash; usually, that the data of the data structure is correctly allocated. Then we gradually refine these predicates, until the development team accepts them as reasonable invariants for the data structure, aided by having all the unit and regression tests pass.</p>
 <p >Using this process, we defined a set of predicates for each data structure in the C source file so that they can be easily accessed and modified by the library developers, and so that they serve as documentation for the library's users. For instance, in the case of the <code>array_list</code>, we started with the invariant that <code>data</code> points to <code>current_size</code> allocated bytes. After several iterations, the validity invariant for <code>array_list</code> ended up looking like this:</p>
@@ -249,13 +249,13 @@ How do I write function pre/post conditions?</h2>
 <ol type="1">
 <li>the <code>item_size</code> must be positive.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md152"></a>
+<h2><a class="anchor" id="autotoc_md151"></a>
 How do I write a proof Makefile?</h2>
-<h2><a class="anchor" id="autotoc_md153"></a>
+<h2><a class="anchor" id="autotoc_md152"></a>
 How do I write a good ensures function?</h2>
-<h2><a class="anchor" id="autotoc_md154"></a>
+<h2><a class="anchor" id="autotoc_md153"></a>
 How should I write a good is_valid function?</h2>
-<h2><a class="anchor" id="autotoc_md155"></a>
+<h2><a class="anchor" id="autotoc_md154"></a>
 I see 12 proof failures. How do I select which one to debug?</h2>
 <p >CBMC proof failures seem to come in batches: you run the proof, and see a dozen different errors reported In many cases, these failures are related: instead of stressing about the number of failures, pick one, debug it, and see if fixing it removes (many of) the others. Some good heuristics for deciding which failure to investigate:</p>
 <ol type="1">
@@ -267,10 +267,10 @@ I see 12 proof failures. How do I select which one to debug?</h2>
 <ol type="1">
 <li>Look for a simple type of failure. For example, the trace from a null dereference is often easier to follow than the trace for a use of a DEAD pointer. But they're normally exactly the same bug!</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md156"></a>
+<h2><a class="anchor" id="autotoc_md155"></a>
 How do I debug a proof failure?</h2>
 <p >There are a number of techniques that have proven useful in debugging proof failures.</p>
-<h2><a class="anchor" id="autotoc_md157"></a>
+<h2><a class="anchor" id="autotoc_md156"></a>
 What are some examples of good CBMC proofs?</h2>
 <p ><a href="https://github.com/awslabs/aws-c-common/blob/master/.cbmc-batch/jobs/aws_array_list_copy/aws_array_list_copy_harness.c">AWS-C-Common - Array List Copy</a></p>
 <p ><a href="https://github.com/awslabs/s2n/blob/master/tests/cbmc/proofs/s2n_stuffer_erase_and_read_bytes/s2n_stuffer_erase_and_read_bytes_harness.c">s2n: stuffer erase and read bytes</a> </p>

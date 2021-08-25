@@ -72,7 +72,7 @@ $(function() {
 <li><a href="#improving-verification-performance">Improving Verification Performance</a></li>
 </ul>
 <p >The basic principles of coding for verification are similar to those of coding for testability, with some modifications due to the nature of the SAT solver underlying CBMC.</p>
-<h1><a class="anchor" id="autotoc_md127"></a>
+<h1><a class="anchor" id="autotoc_md126"></a>
 Code Organization to Support Verification</h1>
 <ul>
 <li>Write small functions. Functions should:<ul>
@@ -87,7 +87,7 @@ Code Organization to Support Verification</h1>
 <li>Provide an easy way to access static functions and data structures for testing, if you must have them. For example, use a macro that overrides static.</li>
 <li>Make threads independently verifiable. When writing concurrent programs, reduce interaction to well-defined points. This enables verification of each thread in isolation.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md128"></a>
+<h1><a class="anchor" id="autotoc_md127"></a>
 Improving Verification Performance</h1>
 <ul>
 <li>Avoid void pointers (<code>void*</code>). There are two reasons people use void pointers:<ul>
@@ -95,7 +95,7 @@ Improving Verification Performance</h1>
 <li>To implement a form of polymorphism. Don't do this for gratuitous reasons (e.g., because it might someday be useful). Void pointers can block constant propagation which can dramatically reduce the size of the formula constructed for the constraint solver.</li>
 </ul>
 </li>
-<li>Avoid function pointers. When unavoidable, ensure that function pointer types have a unique signature. They really can make the difference between a proof and no proof. When CBMC encounters a function pointer, it has to consider all possibilities for what that function could be, based on loose signature matching. CBMC has to consider possible any function in the entire program whose address is taken with a signature matching the function pointer. So for each function invocation, the symbolic execution of a single function is replaced with the symbolic execution of a collection of functions (including the functions they call), and the combinatorial explosion makes the size of the formula too big for memory. The worst thing you can do is to give your functions the signature <code>void <a class="el" href="structfoo.html">foo(void *arg)</a></code>; see the point above about avoiding <code>void*</code>.</li>
+<li>Avoid function pointers. When unavoidable, ensure that function pointer types have a unique signature. They really can make the difference between a proof and no proof. When CBMC encounters a function pointer, it has to consider all possibilities for what that function could be, based on loose signature matching. CBMC has to consider possible any function in the entire program whose address is taken with a signature matching the function pointer. So for each function invocation, the symbolic execution of a single function is replaced with the symbolic execution of a collection of functions (including the functions they call), and the combinatorial explosion makes the size of the formula too big for memory. The worst thing you can do is to give your functions the signature <code>void foo(void *arg)</code>; see the point above about avoiding <code>void*</code>.</li>
 <li>Large (more than several kB in size) arrays can cause trouble. Again, defining the sizes of arrays in the build system means that we can cleanly re-define them to smaller bounds for our proofs.</li>
 <li>Data-structures should explicitly carry their size, as a parameter (e.g., Pascal strings are better than C strings).</li>
 <li>Stay type safe.<ul>

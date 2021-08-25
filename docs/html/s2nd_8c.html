@@ -92,8 +92,8 @@ $(function() {
 <code>#include &lt;getopt.h&gt;</code><br />
 <code>#include &lt;errno.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="s2n__errno_8h_source.html">error/s2n_errno.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="crypto_8h_source.html">openssl/crypto.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="err_8h_source.html">openssl/err.h</a>&gt;</code><br />
+<code>#include &lt;openssl/crypto.h&gt;</code><br />
+<code>#include &lt;openssl/err.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="s2n_8h_source.html">s2n.h</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n_2bin_2common_8h_source.html">common.h</a>&quot;</code><br />
 <code>#include &quot;utils/s2n_safety.h&quot;</code><br />
@@ -116,17 +116,17 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8aab504b1c39f7cdcf04aee0d0b92e50"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#a8aab504b1c39f7cdcf04aee0d0b92e50">cache_store_callback</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, void *<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>, uint64_t ttl, const void *key, uint64_t key_size, const void *value, uint64_t value_size)</td></tr>
+<tr class="memitem:a8aab504b1c39f7cdcf04aee0d0b92e50"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#a8aab504b1c39f7cdcf04aee0d0b92e50">cache_store_callback</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, void *ctx, uint64_t ttl, const void *key, uint64_t key_size, const void *value, uint64_t value_size)</td></tr>
 <tr class="separator:a8aab504b1c39f7cdcf04aee0d0b92e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76518c3daf7521be5dd26d13df982532"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#a76518c3daf7521be5dd26d13df982532">cache_retrieve_callback</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, void *<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>, const void *key, uint64_t key_size, void *value, uint64_t *value_size)</td></tr>
+<tr class="memitem:a76518c3daf7521be5dd26d13df982532"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#a76518c3daf7521be5dd26d13df982532">cache_retrieve_callback</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, void *ctx, const void *key, uint64_t key_size, void *value, uint64_t *value_size)</td></tr>
 <tr class="separator:a76518c3daf7521be5dd26d13df982532"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07c36a58a01ca824ad413a8bb1e7aafa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#a07c36a58a01ca824ad413a8bb1e7aafa">cache_delete_callback</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, void *<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>, const void *key, uint64_t key_size)</td></tr>
+<tr class="memitem:a07c36a58a01ca824ad413a8bb1e7aafa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#a07c36a58a01ca824ad413a8bb1e7aafa">cache_delete_callback</a> (struct <a class="el" href="structs2n__connection.html">s2n_connection</a> *conn, void *ctx, const void *key, uint64_t key_size)</td></tr>
 <tr class="separator:a07c36a58a01ca824ad413a8bb1e7aafa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a74b6acdedcb42ff546fc7824f2e43c"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#a7a74b6acdedcb42ff546fc7824f2e43c">unsafe_verify_host_fn</a> (const char *host_name, size_t host_name_len, void *data)</td></tr>
 <tr class="separator:a7a74b6acdedcb42ff546fc7824f2e43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ef30c42cbc289d899a8be5d2d8f77d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#a2ef30c42cbc289d899a8be5d2d8f77d0">usage</a> ()</td></tr>
 <tr class="separator:a2ef30c42cbc289d899a8be5d2d8f77d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5cbb30f3b497d9578336e2253a94622"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#ab5cbb30f3b497d9578336e2253a94622">handle_connection</a> (int fd, struct <a class="el" href="structs2n__config.html">s2n_config</a> *<a class="el" href="s2n__client__key__recv__fuzz__test_8c.html#a7d70bb7bed95daae1233293126bb9523">config</a>, struct <a class="el" href="structconn__settings.html">conn_settings</a> settings)</td></tr>
+<tr class="memitem:ab5cbb30f3b497d9578336e2253a94622"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#ab5cbb30f3b497d9578336e2253a94622">handle_connection</a> (int fd, struct <a class="el" href="structs2n__config.html">s2n_config</a> *config, struct <a class="el" href="structconn__settings.html">conn_settings</a> settings)</td></tr>
 <tr class="separator:ab5cbb30f3b497d9578336e2253a94622"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1835a0a190dc5fe4f925bb69443c770"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2nd_8c.html#ad1835a0a190dc5fe4f925bb69443c770">main</a> (int argc, char *const *argv)</td></tr>
 <tr class="separator:ad1835a0a190dc5fe4f925bb69443c770"><td class="memSeparator" colspan="2">&#160;</td></tr>

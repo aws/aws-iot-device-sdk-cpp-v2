@@ -16,27 +16,27 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{allocator_8c_aff8b14190e01cf699a1fb9024ec5e77c}{aws\+\_\+allocator\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
+bool \mbox{\hyperlink{allocator_8c_aff8b14190e01cf699a1fb9024ec5e77c}{aws\+\_\+allocator\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc)
 \item 
-static void $\ast$ \mbox{\hyperlink{allocator_8c_a8c974a7c1bdb0a707553d66cb2b2a774}{s\+\_\+default\+\_\+malloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+static void $\ast$ \mbox{\hyperlink{allocator_8c_a8c974a7c1bdb0a707553d66cb2b2a774}{s\+\_\+default\+\_\+malloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t size)
 \item 
-static void \mbox{\hyperlink{allocator_8c_a5cfb748970512aba8bd0722c37417ef9}{s\+\_\+default\+\_\+free}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr)
+static void \mbox{\hyperlink{allocator_8c_a5cfb748970512aba8bd0722c37417ef9}{s\+\_\+default\+\_\+free}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$ptr)
 \item 
-static void $\ast$ \mbox{\hyperlink{allocator_8c_a03d785266a55316e6add16d1d00be751}{s\+\_\+default\+\_\+realloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr, size\+\_\+t oldsize, size\+\_\+t newsize)
+static void $\ast$ \mbox{\hyperlink{allocator_8c_a03d785266a55316e6add16d1d00be751}{s\+\_\+default\+\_\+realloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$ptr, size\+\_\+t oldsize, size\+\_\+t newsize)
 \item 
-static void $\ast$ \mbox{\hyperlink{allocator_8c_a499c8ea13e34f3bdcb71d492e820a921}{s\+\_\+default\+\_\+calloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t num, size\+\_\+t size)
+static void $\ast$ \mbox{\hyperlink{allocator_8c_a499c8ea13e34f3bdcb71d492e820a921}{s\+\_\+default\+\_\+calloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t num, size\+\_\+t size)
 \item 
 struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{allocator_8c_ae175562e638c465c9a9641028f73fc4c}{aws\+\_\+default\+\_\+allocator}} (void)
 \item 
-void $\ast$ \mbox{\hyperlink{allocator_8c_a128d6f252b6e3784caf47005033ee2c7}{aws\+\_\+mem\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+void $\ast$ \mbox{\hyperlink{allocator_8c_a128d6f252b6e3784caf47005033ee2c7}{aws\+\_\+mem\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t size)
 \item 
-void $\ast$ \mbox{\hyperlink{allocator_8c_abfff75642e6495447bed6ed9054fc11f}{aws\+\_\+mem\+\_\+calloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t num, size\+\_\+t size)
+void $\ast$ \mbox{\hyperlink{allocator_8c_abfff75642e6495447bed6ed9054fc11f}{aws\+\_\+mem\+\_\+calloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t num, size\+\_\+t size)
 \item 
-void $\ast$ \mbox{\hyperlink{allocator_8c_a60bb853519cb92f1baeef9d8ad4f72f1}{aws\+\_\+mem\+\_\+acquire\+\_\+many}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}},...)
+void $\ast$ \mbox{\hyperlink{allocator_8c_a60bb853519cb92f1baeef9d8ad4f72f1}{aws\+\_\+mem\+\_\+acquire\+\_\+many}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_ad43c3812e6d13e0518d9f8b8f463ffcf}{count}},...)
 \item 
-void \mbox{\hyperlink{allocator_8c_ac655f22debddaf1b9d18935aee2cfafe}{aws\+\_\+mem\+\_\+release}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr)
+void \mbox{\hyperlink{allocator_8c_ac655f22debddaf1b9d18935aee2cfafe}{aws\+\_\+mem\+\_\+release}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$ptr)
 \item 
-int \mbox{\hyperlink{allocator_8c_aac151e9c85ddb43fdce0acd676c22fbf}{aws\+\_\+mem\+\_\+realloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$$\ast$ptr, size\+\_\+t oldsize, size\+\_\+t newsize)
+int \mbox{\hyperlink{allocator_8c_aac151e9c85ddb43fdce0acd676c22fbf}{aws\+\_\+mem\+\_\+realloc}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$$\ast$ptr, size\+\_\+t oldsize, size\+\_\+t newsize)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -65,7 +65,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{allocator.c@{allocator.c}!aws\_allocator\_is\_valid@{aws\_allocator\_is\_valid}}
 \index{aws\_allocator\_is\_valid@{aws\_allocator\_is\_valid}!allocator.c@{allocator.c}}
 \doxysubsubsection{\texorpdfstring{aws\_allocator\_is\_valid()}{aws\_allocator\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+allocator\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+allocator\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc }\end{DoxyParamCaption})}
 
 Inexpensive (constant time) check of data-\/structure invariants. \mbox{\Hypertarget{allocator_8c_ae175562e638c465c9a9641028f73fc4c}\label{allocator_8c_ae175562e638c465c9a9641028f73fc4c}} 
 \index{allocator.c@{allocator.c}!aws\_default\_allocator@{aws\_default\_allocator}}

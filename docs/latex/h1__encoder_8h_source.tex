@@ -65,13 +65,13 @@
 \DoxyCodeLine{70     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__stream}{aws\_http\_stream}} *\mbox{\hyperlink{structaws__h1__encoder_ae95d7056e0b07c24b321c4f846ef8653}{current\_stream}};}
 \DoxyCodeLine{71 \};}
 \DoxyCodeLine{72 }
-\DoxyCodeLine{73 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h1__chunk}{aws\_h1\_chunk}} *\mbox{\hyperlink{h1__encoder_8h_ad1e59cada806788c3f67ce390a116096}{aws\_h1\_chunk\_new}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http1__chunk__options}{aws\_http1\_chunk\_options}} *options);}
+\DoxyCodeLine{73 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h1__chunk}{aws\_h1\_chunk}} *\mbox{\hyperlink{h1__encoder_8h_ad1e59cada806788c3f67ce390a116096}{aws\_h1\_chunk\_new}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__h1__chunk_a70af8e42961de40446d6f35a60633b5a}{allocator}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http1__chunk__options}{aws\_http1\_chunk\_options}} *options);}
 \DoxyCodeLine{74 }
 \DoxyCodeLine{75 \textcolor{comment}{/* Just destroy the chunk (don't fire callback) */}}
 \DoxyCodeLine{76 \textcolor{keywordtype}{void} \mbox{\hyperlink{h1__encoder_8h_a7bb1a0c4b42a5af0a440eddc752b8186}{aws\_h1\_chunk\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__chunk}{aws\_h1\_chunk}} *chunk);}
 \DoxyCodeLine{77 }
 \DoxyCodeLine{78 \textcolor{comment}{/* Destroy chunk and fire its completion callback */}}
-\DoxyCodeLine{79 \textcolor{keywordtype}{void} \mbox{\hyperlink{h1__encoder_8h_ab386f903228f42dff507cef1b5c9799a}{aws\_h1\_chunk\_complete\_and\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__chunk}{aws\_h1\_chunk}} *chunk, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__stream}{aws\_http\_stream}} *http\_stream, \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}});}
+\DoxyCodeLine{79 \textcolor{keywordtype}{void} \mbox{\hyperlink{h1__encoder_8h_ab386f903228f42dff507cef1b5c9799a}{aws\_h1\_chunk\_complete\_and\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__chunk}{aws\_h1\_chunk}} *chunk, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__stream}{aws\_http\_stream}} *http\_stream, \textcolor{keywordtype}{int} error\_code);}
 \DoxyCodeLine{80 }
 \DoxyCodeLine{81 \textcolor{keywordtype}{int} \mbox{\hyperlink{h1__encoder_8h_a65fb7cd04a8ab01b0e7ff81198fc8481}{aws\_chunk\_line\_from\_options}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http1__chunk__options}{aws\_http1\_chunk\_options}} *options, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{structaws__h1__chunk_a69891799a06baaa1de1255572b9d2b2b}{chunk\_line}});}
 \DoxyCodeLine{82 }
@@ -80,23 +80,23 @@
 \DoxyCodeLine{85 \textcolor{comment}{/* Validate request and cache any info the encoder will need later in the "{}encoder message"{}. */}}
 \DoxyCodeLine{86 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{87 \textcolor{keywordtype}{int} \mbox{\hyperlink{h1__encoder_8h_a48876c64d7705aad9290637bc1fe8361}{aws\_h1\_encoder\_message\_init\_from\_request}}(}
-\DoxyCodeLine{88     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder__message}{aws\_h1\_encoder\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
-\DoxyCodeLine{89     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{88     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder__message}{aws\_h1\_encoder\_message}} *message,}
+\DoxyCodeLine{89     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__h1__chunk_a70af8e42961de40446d6f35a60633b5a}{allocator}},}
 \DoxyCodeLine{90     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *request,}
 \DoxyCodeLine{91     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} *pending\_chunk\_list);}
 \DoxyCodeLine{92 }
 \DoxyCodeLine{93 \textcolor{keywordtype}{int} \mbox{\hyperlink{h1__encoder_8h_aade6ff5aceeb5b196aa771ba22be0937}{aws\_h1\_encoder\_message\_init\_from\_response}}(}
-\DoxyCodeLine{94     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder__message}{aws\_h1\_encoder\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
-\DoxyCodeLine{95     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{94     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder__message}{aws\_h1\_encoder\_message}} *message,}
+\DoxyCodeLine{95     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__h1__chunk_a70af8e42961de40446d6f35a60633b5a}{allocator}},}
 \DoxyCodeLine{96     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *response,}
 \DoxyCodeLine{97     \textcolor{keywordtype}{bool} body\_headers\_ignored,}
 \DoxyCodeLine{98     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} *pending\_chunk\_list);}
 \DoxyCodeLine{99 }
 \DoxyCodeLine{100 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
-\DoxyCodeLine{101 \textcolor{keywordtype}{void} \mbox{\hyperlink{h1__encoder_8h_a94ed57f2f176c8023dc4b4a325b6f14d}{aws\_h1\_encoder\_message\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder__message}{aws\_h1\_encoder\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}});}
+\DoxyCodeLine{101 \textcolor{keywordtype}{void} \mbox{\hyperlink{h1__encoder_8h_a94ed57f2f176c8023dc4b4a325b6f14d}{aws\_h1\_encoder\_message\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder__message}{aws\_h1\_encoder\_message}} *message);}
 \DoxyCodeLine{102 }
 \DoxyCodeLine{103 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
-\DoxyCodeLine{104 \textcolor{keywordtype}{void} \mbox{\hyperlink{h1__encoder_8h_a3849fd276aaecc9f8b703228a006c214}{aws\_h1\_encoder\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder}{aws\_h1\_encoder}} *encoder, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}});}
+\DoxyCodeLine{104 \textcolor{keywordtype}{void} \mbox{\hyperlink{h1__encoder_8h_a3849fd276aaecc9f8b703228a006c214}{aws\_h1\_encoder\_init}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder}{aws\_h1\_encoder}} *encoder, \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__h1__chunk_a70af8e42961de40446d6f35a60633b5a}{allocator}});}
 \DoxyCodeLine{105 }
 \DoxyCodeLine{106 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{107 \textcolor{keywordtype}{void} \mbox{\hyperlink{h1__encoder_8h_acf3da07dc3c9be84328a177c24c28ace}{aws\_h1\_encoder\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder}{aws\_h1\_encoder}} *encoder);}
@@ -104,7 +104,7 @@
 \DoxyCodeLine{109 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{110 \textcolor{keywordtype}{int} \mbox{\hyperlink{h1__encoder_8h_a14fbc70de474bcc20b544b514c522ce3}{aws\_h1\_encoder\_start\_message}}(}
 \DoxyCodeLine{111     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder}{aws\_h1\_encoder}} *encoder,}
-\DoxyCodeLine{112     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder__message}{aws\_h1\_encoder\_message}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
+\DoxyCodeLine{112     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__h1__encoder__message}{aws\_h1\_encoder\_message}} *message,}
 \DoxyCodeLine{113     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__stream}{aws\_http\_stream}} *stream);}
 \DoxyCodeLine{114 }
 \DoxyCodeLine{115 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}

@@ -13,11 +13,11 @@
 \item 
 static void \mbox{\hyperlink{hash__table_8c_a561e18750dd4238e34b9a4ebe413272d}{s\+\_\+suppress\+\_\+unused\+\_\+lookup3\+\_\+func\+\_\+warnings}} (void)
 \item 
-static uint64\+\_\+t \mbox{\hyperlink{hash__table_8c_a4742604a69a60e8cd2744c856f895122}{s\+\_\+hash\+\_\+for}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, const void $\ast$key)
+static uint64\+\_\+t \mbox{\hyperlink{hash__table_8c_a4742604a69a60e8cd2744c856f895122}{s\+\_\+hash\+\_\+for}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$state, const void $\ast$key)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_a4ff62d8b2be59292bf3b6c8bc31af3f2}{s\+\_\+safe\+\_\+eq\+\_\+check}} (\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$equals\+\_\+fn, const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+static bool \mbox{\hyperlink{hash__table_8c_a4ff62d8b2be59292bf3b6c8bc31af3f2}{s\+\_\+safe\+\_\+eq\+\_\+check}} (\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$equals\+\_\+fn, const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_a0aa46b3c406c3de80068eb1f64b36699}{s\+\_\+hash\+\_\+keys\+\_\+eq}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+static bool \mbox{\hyperlink{hash__table_8c_a0aa46b3c406c3de80068eb1f64b36699}{s\+\_\+hash\+\_\+keys\+\_\+eq}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$state, const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
 static size\+\_\+t \mbox{\hyperlink{hash__table_8c_ae0c02d6f56e2810eb8eac36976fa76d6}{s\+\_\+index\+\_\+for}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$map, struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} $\ast$entry)
 \item 
@@ -35,13 +35,13 @@ void \mbox{\hyperlink{hash__table_8c_a8acda923a9a3eb7cbdb1c936b89db777}{aws\+\_\
 \item 
 void \mbox{\hyperlink{hash__table_8c_a442d9979faed0e8fa595803b49c999c7}{aws\+\_\+hash\+\_\+table\+\_\+move}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} to, struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{macros_8h_a9bb2dfa7c751efe1673e3f9c89eff17c}{AWS\+\_\+\+RESTRICT}} from)
 \item 
-static int \mbox{\hyperlink{hash__table_8c_a07357c5a65d1919cce9a144a84e3cb2a}{s\+\_\+find\+\_\+entry1}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, uint64\+\_\+t hash\+\_\+code, const void $\ast$key, struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} $\ast$$\ast$p\+\_\+entry, size\+\_\+t $\ast$p\+\_\+probe\+\_\+idx)
+static int \mbox{\hyperlink{hash__table_8c_a07357c5a65d1919cce9a144a84e3cb2a}{s\+\_\+find\+\_\+entry1}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$state, uint64\+\_\+t hash\+\_\+code, const void $\ast$key, struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} $\ast$$\ast$p\+\_\+entry, size\+\_\+t $\ast$p\+\_\+probe\+\_\+idx)
 \item 
-static int \mbox{\hyperlink{hash__table_8c_a759b1bb970808dd34206eff6a6e38ebc}{s\+\_\+find\+\_\+entry}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, uint64\+\_\+t hash\+\_\+code, const void $\ast$key, struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} $\ast$$\ast$p\+\_\+entry, size\+\_\+t $\ast$p\+\_\+probe\+\_\+idx)
+static int \mbox{\hyperlink{hash__table_8c_a759b1bb970808dd34206eff6a6e38ebc}{s\+\_\+find\+\_\+entry}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$state, uint64\+\_\+t hash\+\_\+code, const void $\ast$key, struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} $\ast$$\ast$p\+\_\+entry, size\+\_\+t $\ast$p\+\_\+probe\+\_\+idx)
 \item 
 int \mbox{\hyperlink{hash__table_8c_aa64beafd8485902db81ce78d6d3e4524}{aws\+\_\+hash\+\_\+table\+\_\+find}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$$\ast$p\+\_\+elem)
 \item 
-static struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} $\ast$ \mbox{\hyperlink{hash__table_8c_a563547acbf4174ed833d1612fa7b3681}{s\+\_\+emplace\+\_\+item}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} entry, size\+\_\+t probe\+\_\+idx)
+static struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} $\ast$ \mbox{\hyperlink{hash__table_8c_a563547acbf4174ed833d1612fa7b3681}{s\+\_\+emplace\+\_\+item}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$state, struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} entry, size\+\_\+t probe\+\_\+idx)
 \item 
 static int \mbox{\hyperlink{hash__table_8c_ae024373fee08d60715c9e1823802deea}{s\+\_\+expand\+\_\+table}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
 \item 
@@ -49,7 +49,7 @@ int \mbox{\hyperlink{hash__table_8c_abb050fbade00d5902a7f448c2fe8a53c}{aws\+\_\+
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{hash__table_8c_a788acdfdb835b839f5f4b2e93bf0e14c}{aws\+\_\+hash\+\_\+table\+\_\+put}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, void $\ast$value, int $\ast$was\+\_\+created)
 \item 
-static size\+\_\+t \mbox{\hyperlink{hash__table_8c_a4f41dca3338ae7e3fa5bd8e24aeb2f8d}{s\+\_\+remove\+\_\+entry}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} $\ast$entry)
+static size\+\_\+t \mbox{\hyperlink{hash__table_8c_a4f41dca3338ae7e3fa5bd8e24aeb2f8d}{s\+\_\+remove\+\_\+entry}} (struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$state, struct \mbox{\hyperlink{structhash__table__entry}{hash\+\_\+table\+\_\+entry}} $\ast$entry)
 \item 
 int \mbox{\hyperlink{hash__table_8c_ab95ad2e4f6f0630861b91ea08b4b2244}{aws\+\_\+hash\+\_\+table\+\_\+remove}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, const void $\ast$key, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+\_\+value, int $\ast$was\+\_\+present)
 \item 
@@ -57,17 +57,17 @@ int \mbox{\hyperlink{hash__table_8c_a9637fcb9a2d525a1c492b8bdee105928}{aws\+\_\+
 \item 
 int \mbox{\hyperlink{hash__table_8c_af789dc91ca29e84c0c5e53f847d641c1}{aws\+\_\+hash\+\_\+table\+\_\+foreach}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map, int($\ast$callback)(void $\ast$context, struct \mbox{\hyperlink{structaws__hash__element}{aws\+\_\+hash\+\_\+element}} $\ast$p\+Element), void $\ast$context)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_acb99d71172b06589b416b843a982ee8d}{aws\+\_\+hash\+\_\+table\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$a, const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$value\+\_\+eq)
+bool \mbox{\hyperlink{hash__table_8c_acb99d71172b06589b416b843a982ee8d}{aws\+\_\+hash\+\_\+table\+\_\+eq}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$a, const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}, \mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$value\+\_\+eq)
 \item 
 static void \mbox{\hyperlink{hash__table_8c_ab0e8a83f32f397f9b4df4bb4dc235335}{s\+\_\+get\+\_\+next\+\_\+element}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter, size\+\_\+t start\+\_\+slot)
 \item 
 struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} \mbox{\hyperlink{hash__table_8c_ab556a28dc6a88d729577c720209d3fe9}{aws\+\_\+hash\+\_\+iter\+\_\+begin}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_a9fa88a2db73cd7a9fc8a4e14d1a152e2}{aws\+\_\+hash\+\_\+iter\+\_\+done}} (const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
+bool \mbox{\hyperlink{hash__table_8c_a9fa88a2db73cd7a9fc8a4e14d1a152e2}{aws\+\_\+hash\+\_\+iter\+\_\+done}} (const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
 \item 
 void \mbox{\hyperlink{hash__table_8c_a853111399f6f58127648575c09842982}{aws\+\_\+hash\+\_\+iter\+\_\+next}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
 \item 
-void \mbox{\hyperlink{hash__table_8c_a15c1baf1b6e5c7e169752e555b7428c1}{aws\+\_\+hash\+\_\+iter\+\_\+delete}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} destroy\+\_\+contents)
+void \mbox{\hyperlink{hash__table_8c_a15c1baf1b6e5c7e169752e555b7428c1}{aws\+\_\+hash\+\_\+iter\+\_\+delete}} (struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter, bool destroy\+\_\+contents)
 \item 
 void \mbox{\hyperlink{hash__table_8c_ab6c0740854e63d3275a57552cc07bb7b}{aws\+\_\+hash\+\_\+table\+\_\+clear}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
 \item 
@@ -81,19 +81,19 @@ uint64\+\_\+t \mbox{\hyperlink{hash__table_8c_a720962da45153c414105a55910e4cff5}
 \item 
 uint64\+\_\+t \mbox{\hyperlink{hash__table_8c_ada608025c32c954bb64b061df2a9ccc4}{aws\+\_\+hash\+\_\+combine}} (uint64\+\_\+t item1, uint64\+\_\+t item2)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_a247fd154b620628c837093744469feb8}{aws\+\_\+hash\+\_\+callback\+\_\+c\+\_\+str\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+bool \mbox{\hyperlink{hash__table_8c_a247fd154b620628c837093744469feb8}{aws\+\_\+hash\+\_\+callback\+\_\+c\+\_\+str\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_a076b4d647b47bee67ad608b8c350d8df}{aws\+\_\+hash\+\_\+callback\+\_\+string\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+bool \mbox{\hyperlink{hash__table_8c_a076b4d647b47bee67ad608b8c350d8df}{aws\+\_\+hash\+\_\+callback\+\_\+string\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
 void \mbox{\hyperlink{hash__table_8c_a58b97ccc4d6a3ff8235a2a449c12c56b}{aws\+\_\+hash\+\_\+callback\+\_\+string\+\_\+destroy}} (void $\ast$a)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_a4d9ea528c0f119a03ba088b04134a0c1}{aws\+\_\+ptr\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+bool \mbox{\hyperlink{hash__table_8c_a4d9ea528c0f119a03ba088b04134a0c1}{aws\+\_\+ptr\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_aff4bf82035b05b9b8e976eb919ed6508}{aws\+\_\+hash\+\_\+table\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
+bool \mbox{\hyperlink{hash__table_8c_aff4bf82035b05b9b8e976eb919ed6508}{aws\+\_\+hash\+\_\+table\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$map)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_aeb6b02b5404af6dc40439723eb0aed96}{hash\+\_\+table\+\_\+state\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$map)
+bool \mbox{\hyperlink{hash__table_8c_aeb6b02b5404af6dc40439723eb0aed96}{hash\+\_\+table\+\_\+state\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$map)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hash__table_8c_a855920523cd1b94f984d6fee66f637cb}{aws\+\_\+hash\+\_\+iter\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
+bool \mbox{\hyperlink{hash__table_8c_a855920523cd1b94f984d6fee66f637cb}{aws\+\_\+hash\+\_\+iter\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$iter)
 \item 
 int \mbox{\hyperlink{hash__table_8c_a25f43ce27f9e6fe672a4ba05390a2de8}{hash\+\_\+table\+\_\+state\+\_\+required\+\_\+bytes}} (size\+\_\+t size, size\+\_\+t $\ast$required\+\_\+bytes)
 \end{DoxyCompactItemize}
@@ -116,7 +116,7 @@ Convenience hash function for NULL-\/terminated C-\/strings \mbox{\Hypertarget{h
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_callback\_c\_str\_eq@{aws\_hash\_callback\_c\_str\_eq}}
 \index{aws\_hash\_callback\_c\_str\_eq@{aws\_hash\_callback\_c\_str\_eq}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hash\_callback\_c\_str\_eq()}{aws\_hash\_callback\_c\_str\_eq()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+callback\+\_\+c\+\_\+str\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+hash\+\_\+callback\+\_\+c\+\_\+str\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
 
 Convenience eq callback for NULL-\/terminated C-\/strings \mbox{\Hypertarget{hash__table_8c_a58b97ccc4d6a3ff8235a2a449c12c56b}\label{hash__table_8c_a58b97ccc4d6a3ff8235a2a449c12c56b}} 
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_callback\_string\_destroy@{aws\_hash\_callback\_string\_destroy}}
@@ -128,7 +128,7 @@ Convenience destroy callback for AWS strings \mbox{\Hypertarget{hash__table_8c_a
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_callback\_string\_eq@{aws\_hash\_callback\_string\_eq}}
 \index{aws\_hash\_callback\_string\_eq@{aws\_hash\_callback\_string\_eq}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hash\_callback\_string\_eq()}{aws\_hash\_callback\_string\_eq()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+callback\+\_\+string\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+hash\+\_\+callback\+\_\+string\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
 
 Convenience eq callback for AWS strings \mbox{\Hypertarget{hash__table_8c_ada608025c32c954bb64b061df2a9ccc4}\label{hash__table_8c_ada608025c32c954bb64b061df2a9ccc4}} 
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_combine@{aws\_hash\_combine}}
@@ -148,7 +148,7 @@ This function cannot fail, but if there are no elements in the table, the return
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_iter\_delete@{aws\_hash\_iter\_delete}}
 \index{aws\_hash\_iter\_delete@{aws\_hash\_iter\_delete}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_delete()}{aws\_hash\_iter\_delete()}}
-{\footnotesize\ttfamily void aws\+\_\+hash\+\_\+iter\+\_\+delete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{destroy\+\_\+contents }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void aws\+\_\+hash\+\_\+iter\+\_\+delete (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter,  }\item[{bool}]{destroy\+\_\+contents }\end{DoxyParamCaption})}
 
 Deletes the element currently pointed-\/to by the hash iterator. After calling this method, the element member of the iterator should not be accessed until the next call to aws\+\_\+hash\+\_\+iter\+\_\+next.
 
@@ -161,13 +161,13 @@ Deletes the element currently pointed-\/to by the hash iterator. After calling t
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_iter\_done@{aws\_hash\_iter\_done}}
 \index{aws\_hash\_iter\_done@{aws\_hash\_iter\_done}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_done()}{aws\_hash\_iter\_done()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+iter\+\_\+done (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+hash\+\_\+iter\+\_\+done (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
 
 Returns true if iterator is done iterating through table, false otherwise. If this is true, the iterator will not include an element of the table. \mbox{\Hypertarget{hash__table_8c_a855920523cd1b94f984d6fee66f637cb}\label{hash__table_8c_a855920523cd1b94f984d6fee66f637cb}} 
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_iter\_is\_valid@{aws\_hash\_iter\_is\_valid}}
 \index{aws\_hash\_iter\_is\_valid@{aws\_hash\_iter\_is\_valid}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hash\_iter\_is\_valid()}{aws\_hash\_iter\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+iter\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+hash\+\_\+iter\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__iter}{aws\+\_\+hash\+\_\+iter}} $\ast$}]{iter }\end{DoxyParamCaption})}
 
 Given a pointer to a hash\+\_\+iter, checks that it is well-\/formed, with all data-\/structure invariants. \mbox{\Hypertarget{hash__table_8c_a853111399f6f58127648575c09842982}\label{hash__table_8c_a853111399f6f58127648575c09842982}} 
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_iter\_next@{aws\_hash\_iter\_next}}
@@ -221,7 +221,7 @@ Returns AWS\+\_\+\+OP\+\_\+\+SUCCESS if an item was found or created. Raises AWS
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_table\_eq@{aws\_hash\_table\_eq}}
 \index{aws\_hash\_table\_eq@{aws\_hash\_table\_eq}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hash\_table\_eq()}{aws\_hash\_table\_eq()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+table\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$}]{value\+\_\+eq }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+hash\+\_\+table\+\_\+eq (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{a,  }\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{b,  }\item[{\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$}]{value\+\_\+eq }\end{DoxyParamCaption})}
 
 Compares two hash tables for equality. Both hash tables must have equivalent key comparators; values will be compared using the comparator passed into this function. The key hash function does not need to be equivalent between the two hash tables. \mbox{\Hypertarget{hash__table_8c_aa64beafd8485902db81ce78d6d3e4524}\label{hash__table_8c_aa64beafd8485902db81ce78d6d3e4524}} 
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_table\_find@{aws\_hash\_table\_find}}
@@ -255,7 +255,7 @@ Initializes a hash map with initial capacity for \textquotesingle{}size\textquot
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_table\_is\_valid@{aws\_hash\_table\_is\_valid}}
 \index{aws\_hash\_table\_is\_valid@{aws\_hash\_table\_is\_valid}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hash\_table\_is\_valid()}{aws\_hash\_table\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+hash\+\_\+table\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+hash\+\_\+table\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{map }\end{DoxyParamCaption})}
 
 Best-\/effort check of \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} data-\/structure invariants Some invariants, such as that the number of entries is actually the same as the entry\+\_\+count field, would require a loop to check \mbox{\Hypertarget{hash__table_8c_a442d9979faed0e8fa595803b49c999c7}\label{hash__table_8c_a442d9979faed0e8fa595803b49c999c7}} 
 \index{hash\_table.c@{hash\_table.c}!aws\_hash\_table\_move@{aws\_hash\_table\_move}}
@@ -307,13 +307,13 @@ Neither hash table is required to be initialized; if one or both is uninitialize
 \index{hash\_table.c@{hash\_table.c}!aws\_ptr\_eq@{aws\_ptr\_eq}}
 \index{aws\_ptr\_eq@{aws\_ptr\_eq}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{aws\_ptr\_eq()}{aws\_ptr\_eq()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+ptr\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+ptr\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})}
 
 Equality function which compares pointer equality. \mbox{\Hypertarget{hash__table_8c_aeb6b02b5404af6dc40439723eb0aed96}\label{hash__table_8c_aeb6b02b5404af6dc40439723eb0aed96}} 
 \index{hash\_table.c@{hash\_table.c}!hash\_table\_state\_is\_valid@{hash\_table\_state\_is\_valid}}
 \index{hash\_table\_state\_is\_valid@{hash\_table\_state\_is\_valid}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{hash\_table\_state\_is\_valid()}{hash\_table\_state\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} hash\+\_\+table\+\_\+state\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$}]{map }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool hash\+\_\+table\+\_\+state\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$}]{map }\end{DoxyParamCaption})}
 
 Best-\/effort check of \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} data-\/structure invariants Some invariants, such as that the number of entries is actually the same as the entry\+\_\+count field, would require a loop to check \mbox{\Hypertarget{hash__table_8c_a25f43ce27f9e6fe672a4ba05390a2de8}\label{hash__table_8c_a25f43ce27f9e6fe672a4ba05390a2de8}} 
 \index{hash\_table.c@{hash\_table.c}!hash\_table\_state\_required\_bytes@{hash\_table\_state\_required\_bytes}}
@@ -369,7 +369,7 @@ Calculate the hash for the given key. Ensures a reasonable semantics for null ke
 \index{hash\_table.c@{hash\_table.c}!s\_hash\_keys\_eq@{s\_hash\_keys\_eq}}
 \index{s\_hash\_keys\_eq@{s\_hash\_keys\_eq}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{s\_hash\_keys\_eq()}{s\_hash\_keys\_eq()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+hash\+\_\+keys\+\_\+eq (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$}]{state,  }\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+hash\+\_\+keys\+\_\+eq (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structhash__table__state}{hash\+\_\+table\+\_\+state}} $\ast$}]{state,  }\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Check equality of two hash keys, with a reasonable semantics for null keys. \mbox{\Hypertarget{hash__table_8c_ae0c02d6f56e2810eb8eac36976fa76d6}\label{hash__table_8c_ae0c02d6f56e2810eb8eac36976fa76d6}} 
 \index{hash\_table.c@{hash\_table.c}!s\_index\_for@{s\_index\_for}}
@@ -387,7 +387,7 @@ Check equality of two hash keys, with a reasonable semantics for null keys. \mbo
 \index{hash\_table.c@{hash\_table.c}!s\_safe\_eq\_check@{s\_safe\_eq\_check}}
 \index{s\_safe\_eq\_check@{s\_safe\_eq\_check}!hash\_table.c@{hash\_table.c}}
 \doxysubsubsection{\texorpdfstring{s\_safe\_eq\_check()}{s\_safe\_eq\_check()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+safe\+\_\+eq\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$}]{equals\+\_\+fn,  }\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+safe\+\_\+eq\+\_\+check (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{hash__table_8h_aa4c204703f44b4d6416c26fee7b6cc20}{aws\+\_\+hash\+\_\+callback\+\_\+eq\+\_\+fn}} $\ast$}]{equals\+\_\+fn,  }\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Check equality of two objects, with a reasonable semantics for null. \mbox{\Hypertarget{hash__table_8c_a561e18750dd4238e34b9a4ebe413272d}\label{hash__table_8c_a561e18750dd4238e34b9a4ebe413272d}} 
 \index{hash\_table.c@{hash\_table.c}!s\_suppress\_unused\_lookup3\_func\_warnings@{s\_suppress\_unused\_lookup3\_func\_warnings}}

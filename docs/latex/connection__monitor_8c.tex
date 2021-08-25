@@ -11,15 +11,15 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{connection__monitor_8c_a20263d3af6d2bab17dae6c5df9f31b31}{s\+\_\+process\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, struct \mbox{\hyperlink{structaws__crt__statistics__sample__interval}{aws\+\_\+crt\+\_\+statistics\+\_\+sample\+\_\+interval}} $\ast$interval, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stats\+\_\+list, void $\ast$context)
+static void \mbox{\hyperlink{connection__monitor_8c_a20263d3af6d2bab17dae6c5df9f31b31}{s\+\_\+process\+\_\+statistics}} (struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$handler, struct \mbox{\hyperlink{structaws__crt__statistics__sample__interval}{aws\+\_\+crt\+\_\+statistics\+\_\+sample\+\_\+interval}} $\ast$interval, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$stats\+\_\+list, void $\ast$context)
 \item 
-static void \mbox{\hyperlink{connection__monitor_8c_a1a0add16ce62fa1da80e3d51166789d5}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static void \mbox{\hyperlink{connection__monitor_8c_a1a0add16ce62fa1da80e3d51166789d5}{s\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$handler)
 \item 
-static uint64\+\_\+t \mbox{\hyperlink{connection__monitor_8c_a906011fcb79936908bc88ca0fe66b108}{s\+\_\+get\+\_\+report\+\_\+interval\+\_\+ms}} (struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}})
+static uint64\+\_\+t \mbox{\hyperlink{connection__monitor_8c_a906011fcb79936908bc88ca0fe66b108}{s\+\_\+get\+\_\+report\+\_\+interval\+\_\+ms}} (struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$handler)
 \item 
-struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$ \mbox{\hyperlink{connection__monitor_8c_a1dae34a9d280a51c3392ebeb2ceefc4b}{aws\+\_\+crt\+\_\+statistics\+\_\+handler\+\_\+new\+\_\+http\+\_\+connection\+\_\+monitor}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} $\ast$options)
+struct \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\+\_\+crt\+\_\+statistics\+\_\+handler}} $\ast$ \mbox{\hyperlink{connection__monitor_8c_a1dae34a9d280a51c3392ebeb2ceefc4b}{aws\+\_\+crt\+\_\+statistics\+\_\+handler\+\_\+new\+\_\+http\+\_\+connection\+\_\+monitor}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} $\ast$options)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{connection__monitor_8c_a566ec488371b85d5363b5f40ccfe8c04}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} $\ast$options)
+bool \mbox{\hyperlink{connection__monitor_8c_a566ec488371b85d5363b5f40ccfe8c04}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} $\ast$options)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -39,7 +39,7 @@ Creates a new http connection monitor that regularly checks the connection\textq
 \index{connection\_monitor.c@{connection\_monitor.c}!aws\_http\_connection\_monitoring\_options\_is\_valid@{aws\_http\_connection\_monitoring\_options\_is\_valid}}
 \index{aws\_http\_connection\_monitoring\_options\_is\_valid@{aws\_http\_connection\_monitoring\_options\_is\_valid}!connection\_monitor.c@{connection\_monitor.c}}
 \doxysubsubsection{\texorpdfstring{aws\_http\_connection\_monitoring\_options\_is\_valid()}{aws\_http\_connection\_monitoring\_options\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__http__connection__monitoring__options}{aws\+\_\+http\+\_\+connection\+\_\+monitoring\+\_\+options}} $\ast$}]{options }\end{DoxyParamCaption})}
 
 Validates monitoring options to ensure they are sensible \mbox{\Hypertarget{connection__monitor_8c_a1a0add16ce62fa1da80e3d51166789d5}\label{connection__monitor_8c_a1a0add16ce62fa1da80e3d51166789d5}} 
 \index{connection\_monitor.c@{connection\_monitor.c}!s\_destroy@{s\_destroy}}

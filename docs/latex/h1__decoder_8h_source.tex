@@ -23,21 +23,21 @@
 \DoxyCodeLine{24 \};}
 \DoxyCodeLine{25 }
 \DoxyCodeLine{26 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h1__decoder__vtable}{aws\_h1\_decoder\_vtable}} \{}
-\DoxyCodeLine{31     int (*\mbox{\hyperlink{structaws__h1__decoder__vtable_ac3fcf4f0ad7390023462bb6e8dfbc7df}{on\_header}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h1__decoded__header}{aws\_h1\_decoded\_header}} *header, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{31     int (*\mbox{\hyperlink{structaws__h1__decoder__vtable_ac3fcf4f0ad7390023462bb6e8dfbc7df}{on\_header}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h1__decoded__header}{aws\_h1\_decoded\_header}} *header, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{32 }
-\DoxyCodeLine{39     int (*\mbox{\hyperlink{structaws__h1__decoder__vtable_a3ac1a5e163c46fd565943395e58b8984}{on\_body}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *data, \textcolor{keywordtype}{bool} finished, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{39     int (*\mbox{\hyperlink{structaws__h1__decoder__vtable_a3ac1a5e163c46fd565943395e58b8984}{on\_body}})(\textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *data, \textcolor{keywordtype}{bool} finished, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{40 }
 \DoxyCodeLine{41     \textcolor{comment}{/* Only needed for requests, can be NULL for responses. */}}
 \DoxyCodeLine{42     int (*\mbox{\hyperlink{structaws__h1__decoder__vtable_a69d78797b3a03ae217b3c26ce05cfcaa}{on\_request}})(}
 \DoxyCodeLine{43         \textcolor{keyword}{enum} \mbox{\hyperlink{http__impl_8h_ac79120e1ff515b00fe4965b384fd3f79}{aws\_http\_method}} method\_enum,}
 \DoxyCodeLine{44         \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *method\_str,}
 \DoxyCodeLine{45         \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *uri,}
-\DoxyCodeLine{46         \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{46         \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{47 }
 \DoxyCodeLine{48     \textcolor{comment}{/* Only needed for responses, can be NULL for requests. */}}
-\DoxyCodeLine{49     int (*\mbox{\hyperlink{structaws__h1__decoder__vtable_a38eedbd0367cd9c1e74c1b0ac3aaf180}{on\_response}})(\textcolor{keywordtype}{int} status\_code, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{49     int (*\mbox{\hyperlink{structaws__h1__decoder__vtable_a38eedbd0367cd9c1e74c1b0ac3aaf180}{on\_response}})(\textcolor{keywordtype}{int} status\_code, \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{50 }
-\DoxyCodeLine{51     int (*\mbox{\hyperlink{structaws__h1__decoder__vtable_a7cf1a881ad7e073b9895601396ae4242}{on\_done}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{51     int (*\mbox{\hyperlink{structaws__h1__decoder__vtable_a7cf1a881ad7e073b9895601396ae4242}{on\_done}})(\textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{52 \};}
 \DoxyCodeLine{53 }
 \DoxyCodeLine{57 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__h1__decoder__params}{aws\_h1\_decoder\_params}} \{}

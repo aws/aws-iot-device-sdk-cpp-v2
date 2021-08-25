@@ -47,12 +47,12 @@
 \DoxyCodeLine{65                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a8402cbde3f610cb7d12bf78c81834a2fad504cfaecd4e3f954736e2711d89b0d2}{XAmzContentSha256}} = \mbox{\hyperlink{signing__config_8h_a32744af79b282effdb4d74844142ea05a6130f738d83c7436584e8f0801be630d}{AWS\_SBHT\_X\_AMZ\_CONTENT\_SHA256}},}
 \DoxyCodeLine{66             \};}
 \DoxyCodeLine{67 }
-\DoxyCodeLine{68             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}{ShouldSignHeaderCb}} = \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (*)(\textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{Crt::ByteCursor}} *, \textcolor{keywordtype}{void} *);}
+\DoxyCodeLine{68             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ae2cea667fd111a653516b658d877922d}{ShouldSignHeaderCb}} = bool (*)(\textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__cursor}{Crt::ByteCursor}} *, \textcolor{keywordtype}{void} *);}
 \DoxyCodeLine{69 }
 \DoxyCodeLine{74             \textcolor{keyword}{class }\mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config}{AwsSigningConfig}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}}}
 \DoxyCodeLine{75             \{}
 \DoxyCodeLine{76               \textcolor{keyword}{public}:}
-\DoxyCodeLine{77                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config}{AwsSigningConfig}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
+\DoxyCodeLine{77                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config}{AwsSigningConfig}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
 \DoxyCodeLine{78                 \textcolor{keyword}{virtual} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config}{\string~AwsSigningConfig}}();}
 \DoxyCodeLine{79 }
 \DoxyCodeLine{80                 \textcolor{keyword}{virtual} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1}{SigningConfigType}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_aws_signing_config_aaf9b0dd90f5a8cb580bd6ad76cab5b72}{GetType}}() const noexcept\textcolor{keyword}{ override }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_a1ffa3d1dd5b6b4b4c917b5fff2a00bf1acc92a89d16aa4fe64e36cbbd7c0cfaac}{SigningConfigType::Aws}}; \}}
@@ -139,13 +139,13 @@
 \DoxyCodeLine{259             class \mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_sigv4_http_request_signer}{Sigv4HttpRequestSigner}} : public \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer}{IHttpRequestSigner}}}
 \DoxyCodeLine{260             \{}
 \DoxyCodeLine{261               \textcolor{keyword}{public}:}
-\DoxyCodeLine{262                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_sigv4_http_request_signer}{Sigv4HttpRequestSigner}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
+\DoxyCodeLine{262                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_sigv4_http_request_signer}{Sigv4HttpRequestSigner}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}});}
 \DoxyCodeLine{263                 \textcolor{keyword}{virtual} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_sigv4_http_request_signer_afa436c35e981ac6ef75cc8820cc24ffe}{\string~Sigv4HttpRequestSigner}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{264 }
 \DoxyCodeLine{265                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_sigv4_http_request_signer_aa7611bb9aad70da12e29b9fac88a5740}{IsValid}}()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}}
 \DoxyCodeLine{269                 \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} SignRequest(}
 \DoxyCodeLine{270                     \textcolor{keyword}{const} std::shared\_ptr<Aws::Crt::Http::HttpRequest> \&request,}
-\DoxyCodeLine{271                     \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}},}
+\DoxyCodeLine{271                     \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigningConfig}} \&\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}},}
 \DoxyCodeLine{272                     \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{OnHttpRequestSigningComplete}} \&completionCallback) \textcolor{keyword}{override};}
 \DoxyCodeLine{273 }
 \DoxyCodeLine{274               \textcolor{keyword}{private}:}

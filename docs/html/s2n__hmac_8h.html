@@ -75,7 +75,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="stdint_8h_source.html">stdint.h</a>&gt;</code><br />
-<code>#include &quot;<a class="el" href="crypto_2s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
 </div>
 <p><a href="s2n__hmac_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -110,25 +110,25 @@ Functions</h2></td></tr>
 <tr class="separator:a80f87d0c7345bf1f7919eba5ee5002a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15e6e1208d6496fe34493e3d24039574"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a15e6e1208d6496fe34493e3d24039574">s2n_hmac_is_available</a> (<a class="el" href="s2n__hmac_8h.html#a05e34c658a0066b52f746b931d53dbf8">s2n_hmac_algorithm</a> alg)</td></tr>
 <tr class="separator:a15e6e1208d6496fe34493e3d24039574"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a101eb64f136195ba8e538822967eb47c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a101eb64f136195ba8e538822967eb47c">s2n_hmac_hash_alg</a> (<a class="el" href="s2n__hmac_8h.html#a05e34c658a0066b52f746b931d53dbf8">s2n_hmac_algorithm</a> hmac_alg, <a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> *out)</td></tr>
+<tr class="memitem:a101eb64f136195ba8e538822967eb47c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a101eb64f136195ba8e538822967eb47c">s2n_hmac_hash_alg</a> (<a class="el" href="s2n__hmac_8h.html#a05e34c658a0066b52f746b931d53dbf8">s2n_hmac_algorithm</a> hmac_alg, <a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> *out)</td></tr>
 <tr class="separator:a101eb64f136195ba8e538822967eb47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68e42d89c4d93d68b49657cf84b81a11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a68e42d89c4d93d68b49657cf84b81a11">s2n_hash_hmac_alg</a> (<a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg, <a class="el" href="s2n__hmac_8h.html#a05e34c658a0066b52f746b931d53dbf8">s2n_hmac_algorithm</a> *out)</td></tr>
+<tr class="memitem:a68e42d89c4d93d68b49657cf84b81a11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a68e42d89c4d93d68b49657cf84b81a11">s2n_hash_hmac_alg</a> (<a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> hash_alg, <a class="el" href="s2n__hmac_8h.html#a05e34c658a0066b52f746b931d53dbf8">s2n_hmac_algorithm</a> *out)</td></tr>
 <tr class="separator:a68e42d89c4d93d68b49657cf84b81a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5699b99d7deb5fb806f95cbb183ae24"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#aa5699b99d7deb5fb806f95cbb183ae24">s2n_hmac_new</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *<a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:aa5699b99d7deb5fb806f95cbb183ae24"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#aa5699b99d7deb5fb806f95cbb183ae24">s2n_hmac_new</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *state)</td></tr>
 <tr class="separator:aa5699b99d7deb5fb806f95cbb183ae24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5056a3fc151619a2935471a5861fc3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#ad5056a3fc151619a2935471a5861fc3d">s2n_hmac_init</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *<a class="el" href="structstate.html">state</a>, <a class="el" href="s2n__hmac_8h.html#a05e34c658a0066b52f746b931d53dbf8">s2n_hmac_algorithm</a> alg, const void *key, uint32_t klen)</td></tr>
+<tr class="memitem:ad5056a3fc151619a2935471a5861fc3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#ad5056a3fc151619a2935471a5861fc3d">s2n_hmac_init</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *state, <a class="el" href="s2n__hmac_8h.html#a05e34c658a0066b52f746b931d53dbf8">s2n_hmac_algorithm</a> alg, const void *key, uint32_t klen)</td></tr>
 <tr class="separator:ad5056a3fc151619a2935471a5861fc3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dbba560a1ef91d4c2114c792f221333"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a9dbba560a1ef91d4c2114c792f221333">s2n_hmac_update</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *<a class="el" href="structstate.html">state</a>, const void *in, uint32_t size)</td></tr>
+<tr class="memitem:a9dbba560a1ef91d4c2114c792f221333"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a9dbba560a1ef91d4c2114c792f221333">s2n_hmac_update</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *state, const void *in, uint32_t size)</td></tr>
 <tr class="separator:a9dbba560a1ef91d4c2114c792f221333"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4501c4b9ea25f86e9c6c0e9d1bd9276b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a4501c4b9ea25f86e9c6c0e9d1bd9276b">s2n_hmac_digest</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *<a class="el" href="structstate.html">state</a>, void *out, uint32_t size)</td></tr>
+<tr class="memitem:a4501c4b9ea25f86e9c6c0e9d1bd9276b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a4501c4b9ea25f86e9c6c0e9d1bd9276b">s2n_hmac_digest</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *state, void *out, uint32_t size)</td></tr>
 <tr class="separator:a4501c4b9ea25f86e9c6c0e9d1bd9276b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2afcf63a3b7f8fc08957f53b820ad39f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a2afcf63a3b7f8fc08957f53b820ad39f">s2n_hmac_digest_two_compression_rounds</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *<a class="el" href="structstate.html">state</a>, void *out, uint32_t size)</td></tr>
+<tr class="memitem:a2afcf63a3b7f8fc08957f53b820ad39f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a2afcf63a3b7f8fc08957f53b820ad39f">s2n_hmac_digest_two_compression_rounds</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *state, void *out, uint32_t size)</td></tr>
 <tr class="separator:a2afcf63a3b7f8fc08957f53b820ad39f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7787cefe78aedac6b20db11cc451a433"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a7787cefe78aedac6b20db11cc451a433">s2n_hmac_digest_verify</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>, uint32_t <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a0f1e4ab31fd4f3ca4329091911f1f1af">len</a>)</td></tr>
 <tr class="separator:a7787cefe78aedac6b20db11cc451a433"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0c9b2a3fad1f7c88550da48d854ac56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#ad0c9b2a3fad1f7c88550da48d854ac56">s2n_hmac_free</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *<a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:ad0c9b2a3fad1f7c88550da48d854ac56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#ad0c9b2a3fad1f7c88550da48d854ac56">s2n_hmac_free</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *state)</td></tr>
 <tr class="separator:ad0c9b2a3fad1f7c88550da48d854ac56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4f30ec554d9a717c6269a5de8ae4acf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#ac4f30ec554d9a717c6269a5de8ae4acf">s2n_hmac_reset</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *<a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:ac4f30ec554d9a717c6269a5de8ae4acf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#ac4f30ec554d9a717c6269a5de8ae4acf">s2n_hmac_reset</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *state)</td></tr>
 <tr class="separator:ac4f30ec554d9a717c6269a5de8ae4acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6007599a9ecbe64464dc464093931f6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__hmac_8h.html#a6007599a9ecbe64464dc464093931f6a">s2n_hmac_copy</a> (struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *to, struct <a class="el" href="structs2n__hmac__state.html">s2n_hmac_state</a> *from)</td></tr>
 <tr class="separator:a6007599a9ecbe64464dc464093931f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -173,7 +173,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int s2n_hash_hmac_alg </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
           <td class="paramname"><em>hash_alg</em>, </td>
         </tr>
         <tr>
@@ -383,7 +383,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> *&#160;</td>
           <td class="paramname"><em>out</em>&#160;</td>
         </tr>
         <tr>

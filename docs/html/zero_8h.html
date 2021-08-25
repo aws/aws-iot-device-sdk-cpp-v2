@@ -84,14 +84,14 @@ $(function() {
 Macros</h2></td></tr>
 <tr class="memitem:a82e2dd41dbdf67adbce583f2585d503b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zero_8h.html#a82e2dd41dbdf67adbce583f2585d503b">AWS_ZERO_STRUCT</a>(object)</td></tr>
 <tr class="separator:a82e2dd41dbdf67adbce583f2585d503b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad59ed248a745d33630fd8bbe9e90afb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zero_8h.html#aad59ed248a745d33630fd8bbe9e90afb">AWS_ZERO_ARRAY</a>(array)&#160;&#160;&#160;<a class="el" href="memset__havoc_8c.html#ace6ee45c30e71865e6eb635200379db9">memset</a>((void *)(array), 0, sizeof(array))</td></tr>
+<tr class="memitem:aad59ed248a745d33630fd8bbe9e90afb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zero_8h.html#aad59ed248a745d33630fd8bbe9e90afb">AWS_ZERO_ARRAY</a>(array)&#160;&#160;&#160;<a class="el" href="memset__using__uint64_8c.html#ace6ee45c30e71865e6eb635200379db9">memset</a>((void *)(array), 0, sizeof(array))</td></tr>
 <tr class="separator:aad59ed248a745d33630fd8bbe9e90afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0d994c6de7e50e388355afae1ee17a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zero_8h.html#aa0d994c6de7e50e388355afae1ee17a9">AWS_IS_ZEROED</a>(object)&#160;&#160;&#160;<a class="el" href="zero_8inl.html#a089b7d725afe91fd28c12ed0fdf01346">aws_is_mem_zeroed</a>(&amp;(object), sizeof(object))</td></tr>
 <tr class="separator:aa0d994c6de7e50e388355afae1ee17a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9d8297b7d9fe1f7cd71c5f9b4eac607c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zero_8h.html#a9d8297b7d9fe1f7cd71c5f9b4eac607c">aws_is_mem_zeroed</a> (const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>, size_t bufsize)</td></tr>
+<tr class="memitem:a9d8297b7d9fe1f7cd71c5f9b4eac607c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zero_8h.html#a9d8297b7d9fe1f7cd71c5f9b4eac607c">aws_is_mem_zeroed</a> (const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>, size_t bufsize)</td></tr>
 <tr class="separator:a9d8297b7d9fe1f7cd71c5f9b4eac607c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77d222e3e7643fefb026ca201b085ce4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="zero_8h.html#a77d222e3e7643fefb026ca201b085ce4">aws_secure_zero</a> (void *pBuf, size_t bufsize)</td></tr>
 <tr class="separator:a77d222e3e7643fefb026ca201b085ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,7 +127,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">array</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="memset__havoc_8c.html#ace6ee45c30e71865e6eb635200379db9">memset</a>((void *)(array), 0, sizeof(array))</td>
+          <td>&#160;&#160;&#160;<a class="el" href="memset__using__uint64_8c.html#ace6ee45c30e71865e6eb635200379db9">memset</a>((void *)(array), 0, sizeof(array))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -165,7 +165,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_is_mem_zeroed </td>
+          <td class="memname"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> bool aws_is_mem_zeroed </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>buf</em>, </td>

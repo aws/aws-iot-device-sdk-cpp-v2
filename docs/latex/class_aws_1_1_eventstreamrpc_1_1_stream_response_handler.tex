@@ -20,7 +20,7 @@ virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_h
 \item 
 virtual void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler_a0cf0b295a1fb709d605b9f31356ed1e7}{On\+Stream\+Event}} (\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_abstract_shape_base}{Abstract\+Shape\+Base}} $>$ response)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler_a7f7061d6705df1922384eec12326f1c4}{On\+Stream\+Error}} (\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ operation\+Error, \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} rpc\+Error)
+virtual bool \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_stream_response_handler_a7f7061d6705df1922384eec12326f1c4}{On\+Stream\+Error}} (\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$ operation\+Error, \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} rpc\+Error)
 \end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -43,7 +43,7 @@ Invoked when stream is closed, so no more messages will be received. \mbox{\Hype
 \index{Aws::Eventstreamrpc::StreamResponseHandler@{Aws::Eventstreamrpc::StreamResponseHandler}!OnStreamError@{OnStreamError}}
 \index{OnStreamError@{OnStreamError}!Aws::Eventstreamrpc::StreamResponseHandler@{Aws::Eventstreamrpc::StreamResponseHandler}}
 \doxysubsubsection{\texorpdfstring{OnStreamError()}{OnStreamError()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Eventstreamrpc\+::\+Stream\+Response\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$}]{operation\+Error,  }\item[{\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}}]{rpc\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool Aws\+::\+Eventstreamrpc\+::\+Stream\+Response\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{Crt\+::\+Scoped\+Resource}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $>$}]{operation\+Error,  }\item[{\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}}]{rpc\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
 Invoked when a message is received on this continuation but results in an error.
 

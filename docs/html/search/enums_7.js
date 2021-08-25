@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['header_5fstyle_0',['header_style',['../fuzz__h2__decoder__correct_8c.html#aed795d914d0287954e5ff495fa1828f8',1,'fuzz_h2_decoder_correct.c']]],
-  ['httpversion_1',['HttpVersion',['../namespace_aws_1_1_crt_1_1_http.html#afba23b4ec95a8d1b95d18b2ffe5d82e5',1,'Aws::Crt::Http']]]
+  ['imds_5ftoken_5fcopy_5fresult_0',['imds_token_copy_result',['../aws__imds__client_8c.html#a2569c1400e019ba9abffa0714cbf25db',1,'aws_imds_client.c']]],
+  ['imds_5ftoken_5fstate_1',['imds_token_state',['../aws__imds__client_8c.html#ab1de8ff5c148a4156bcaf664cfebbb64',1,'aws_imds_client.c']]]
 ];

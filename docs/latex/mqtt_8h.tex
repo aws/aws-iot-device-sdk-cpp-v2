@@ -67,11 +67,11 @@ enum \mbox{\hyperlink{mqtt_8h_abe43752a6500fbfe684a21a78b825c4c}{aws\+\_\+mqtt\+
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8h_ac6055eb9a6ae6023bb097030682a53b9}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}})
+\mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} bool \mbox{\hyperlink{mqtt_8h_ac6055eb9a6ae6023bb097030682a53b9}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{mqtt_8h_aea6977fb51a40d924c62450118660d40}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic\+\_\+filter)
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} bool \mbox{\hyperlink{mqtt_8h_aea6977fb51a40d924c62450118660d40}{aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter}} (const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$topic\+\_\+filter)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} void \mbox{\hyperlink{mqtt_8h_a23d9763c6c0885eca6aff2e328231925}{aws\+\_\+mqtt\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} void \mbox{\hyperlink{mqtt_8h_a23d9763c6c0885eca6aff2e328231925}{aws\+\_\+mqtt\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} void \mbox{\hyperlink{mqtt_8h_a78b33e585c89fd6ca7199bca9a155ff4}{aws\+\_\+mqtt\+\_\+library\+\_\+clean\+\_\+up}} (void)
 \item 
@@ -275,13 +275,13 @@ AWS\+\_\+\+MQTT\+\_\+\+QOS\+\_\+\+FAILURE&\\
 \index{mqtt.h@{mqtt.h}!aws\_mqtt\_is\_valid\_topic@{aws\_mqtt\_is\_valid\_topic}}
 \index{aws\_mqtt\_is\_valid\_topic@{aws\_mqtt\_is\_valid\_topic}!mqtt.h@{mqtt.h}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_is\_valid\_topic()}{aws\_mqtt\_is\_valid\_topic()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} bool aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{mqtt_8h_aea6977fb51a40d924c62450118660d40}\label{mqtt_8h_aea6977fb51a40d924c62450118660d40}} 
 \index{mqtt.h@{mqtt.h}!aws\_mqtt\_is\_valid\_topic\_filter@{aws\_mqtt\_is\_valid\_topic\_filter}}
 \index{aws\_mqtt\_is\_valid\_topic\_filter@{aws\_mqtt\_is\_valid\_topic\_filter}!mqtt.h@{mqtt.h}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_is\_valid\_topic\_filter()}{aws\_mqtt\_is\_valid\_topic\_filter()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic\+\_\+filter }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\+\_\+\+MQTT\+\_\+\+API}} bool aws\+\_\+mqtt\+\_\+is\+\_\+valid\+\_\+topic\+\_\+filter (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{topic\+\_\+filter }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{mqtt_8h_a78b33e585c89fd6ca7199bca9a155ff4}\label{mqtt_8h_a78b33e585c89fd6ca7199bca9a155ff4}} 
 \index{mqtt.h@{mqtt.h}!aws\_mqtt\_library\_clean\_up@{aws\_mqtt\_library\_clean\_up}}

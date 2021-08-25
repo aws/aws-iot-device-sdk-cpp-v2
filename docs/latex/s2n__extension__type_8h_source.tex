@@ -43,7 +43,7 @@
 \DoxyCodeLine{39     int (*\mbox{\hyperlink{structs2n__connection_ad6b754dd178b26844526d97017c25e20}{recv}}) (\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn, \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} *\mbox{\hyperlink{structs2n__connection_addca8933098512273dca87e5d8b319dd}{in}});}
 \DoxyCodeLine{40 }
 \DoxyCodeLine{41     \textcolor{comment}{/* Returns true or false to indicate whether the extension should be sent */}}
-\DoxyCodeLine{42     \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (*should\_send) (\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
+\DoxyCodeLine{42     bool (*should\_send) (\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}
 \DoxyCodeLine{43 }
 \DoxyCodeLine{44     \textcolor{comment}{/* Handler called if an extension is not received */}}
 \DoxyCodeLine{45     int (*if\_missing) (\textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__connection}{s2n\_connection}} *conn);}

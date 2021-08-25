@@ -21,22 +21,17 @@ struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}}
 \item 
 typedef pthread\+\_\+once\+\_\+t \mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}}
 \item 
-typedef \mbox{\hyperlink{preamble_8h_a37c756f466ee6aa44725fa95b55047cc}{pthread\+\_\+t}} \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}
+typedef pthread\+\_\+t \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}
 \item 
-typedef void() \mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\+\_\+thread\+\_\+atexit\+\_\+fn}}(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+typedef void() \mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\+\_\+thread\+\_\+atexit\+\_\+fn}}(void $\ast$user\+\_\+data)
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdc}{aws\+\_\+thread\+\_\+detach\+\_\+state}} \{ \newline
-\mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd}{AWS\+\_\+\+THREAD\+\_\+\+NOT\+\_\+\+CREATED}} = 1
+enum \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdc}{aws\+\_\+thread\+\_\+detach\+\_\+state}} \{ \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd}{AWS\+\_\+\+THREAD\+\_\+\+NOT\+\_\+\+CREATED}} = 1
 , \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8}{AWS\+\_\+\+THREAD\+\_\+\+JOINABLE}}
 , \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511}{AWS\+\_\+\+THREAD\+\_\+\+JOIN\+\_\+\+COMPLETED}}
 , \mbox{\hyperlink{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca14decd6ca3bd5bd11380ce0904e55960}{AWS\+\_\+\+THREAD\+\_\+\+MANAGED}}
-, \newline
-\mbox{\hyperlink{preamble_8h_aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd}{AWS\+\_\+\+THREAD\+\_\+\+NOT\+\_\+\+CREATED}} = 1
-, \mbox{\hyperlink{preamble_8h_aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8}{AWS\+\_\+\+THREAD\+\_\+\+JOINABLE}}
-, \mbox{\hyperlink{preamble_8h_aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511}{AWS\+\_\+\+THREAD\+\_\+\+JOIN\+\_\+\+COMPLETED}}
  \}
 \item 
 enum \mbox{\hyperlink{thread_8h_a16ac4f7b945616df65e6bafb95e8a6b5}{aws\+\_\+thread\+\_\+join\+\_\+strategy}} \{ \mbox{\hyperlink{thread_8h_a16ac4f7b945616df65e6bafb95e8a6b5a6842ef9134acfa0a45bf15e168a00f33}{AWS\+\_\+\+TJS\+\_\+\+MANUAL}} = 0
@@ -48,9 +43,9 @@ enum \mbox{\hyperlink{thread_8h_a16ac4f7b945616df65e6bafb95e8a6b5}{aws\+\_\+thre
 \item 
 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\+\_\+\+EXTERN\+\_\+\+C\+\_\+\+BEGIN}} \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} $\ast$ \mbox{\hyperlink{thread_8h_a393cb909ab896d3bc93f3db1d820b818}{aws\+\_\+default\+\_\+thread\+\_\+options}} (void)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{thread_8h_a22b23eae89a5c94f95dca6e6db1accc2}{aws\+\_\+thread\+\_\+call\+\_\+once}} (\mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} $\ast$flag, void($\ast$call\+\_\+once)(void $\ast$), void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{thread_8h_a22b23eae89a5c94f95dca6e6db1accc2}{aws\+\_\+thread\+\_\+call\+\_\+once}} (\mbox{\hyperlink{thread_8h_a579092dc6d13c980765a1a4c2f95879a}{aws\+\_\+thread\+\_\+once}} $\ast$flag, void($\ast$call\+\_\+once)(void $\ast$), void $\ast$user\+\_\+data)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{thread_8h_afd023fdb173f9f30b73c1a7836692169}{aws\+\_\+thread\+\_\+init}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{thread_8h_afd023fdb173f9f30b73c1a7836692169}{aws\+\_\+thread\+\_\+init}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{thread_8h_af4fab02896eab6897d29e4d88c1727c1}{aws\+\_\+thread\+\_\+launch}} (struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} $\ast$thread, void($\ast$func)(void $\ast$arg), void $\ast$arg, const struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} $\ast$options)
 \item 
@@ -68,11 +63,11 @@ enum \mbox{\hyperlink{thread_8h_a16ac4f7b945616df65e6bafb95e8a6b5}{aws\+\_\+thre
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} \mbox{\hyperlink{thread_8h_a11295acc8823b9a3c5e6db63916527b6}{aws\+\_\+thread\+\_\+current\+\_\+thread\+\_\+id}} (void)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{thread_8h_abf2ecf236471c78abe87f73484ff8e8b}{aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal}} (\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t1, \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t2)
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} bool \mbox{\hyperlink{thread_8h_abf2ecf236471c78abe87f73484ff8e8b}{aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal}} (\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t1, \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}} t2)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{thread_8h_a7102ce1697f8815273d004a7e4945df9}{aws\+\_\+thread\+\_\+current\+\_\+sleep}} (uint64\+\_\+t nanos)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{thread_8h_a086d801cf3c365e4b982c52637acf9b5}{aws\+\_\+thread\+\_\+current\+\_\+at\+\_\+exit}} (\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\+\_\+thread\+\_\+atexit\+\_\+fn}} $\ast$callback, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} int \mbox{\hyperlink{thread_8h_a086d801cf3c365e4b982c52637acf9b5}{aws\+\_\+thread\+\_\+current\+\_\+at\+\_\+exit}} (\mbox{\hyperlink{thread_8h_ae015b53e5ea80a44f2c18e88df8645fd}{aws\+\_\+thread\+\_\+atexit\+\_\+fn}} $\ast$callback, void $\ast$user\+\_\+data)
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} void \mbox{\hyperlink{thread_8h_aeb83c3ddd739c2f4f49450ff767408a4}{aws\+\_\+thread\+\_\+increment\+\_\+unjoined\+\_\+count}} (void)
 \item 
@@ -100,13 +95,13 @@ enum \mbox{\hyperlink{thread_8h_a16ac4f7b945616df65e6bafb95e8a6b5}{aws\+\_\+thre
 \index{thread.h@{thread.h}!aws\_thread\_atexit\_fn@{aws\_thread\_atexit\_fn}}
 \index{aws\_thread\_atexit\_fn@{aws\_thread\_atexit\_fn}!thread.h@{thread.h}}
 \doxysubsubsection{\texorpdfstring{aws\_thread\_atexit\_fn}{aws\_thread\_atexit\_fn}}
-{\footnotesize\ttfamily typedef void() aws\+\_\+thread\+\_\+atexit\+\_\+fn(void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})}
+{\footnotesize\ttfamily typedef void() aws\+\_\+thread\+\_\+atexit\+\_\+fn(void $\ast$user\+\_\+data)}
 
 \mbox{\Hypertarget{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}\label{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}} 
 \index{thread.h@{thread.h}!aws\_thread\_id\_t@{aws\_thread\_id\_t}}
 \index{aws\_thread\_id\_t@{aws\_thread\_id\_t}!thread.h@{thread.h}}
 \doxysubsubsection{\texorpdfstring{aws\_thread\_id\_t}{aws\_thread\_id\_t}}
-{\footnotesize\ttfamily typedef \mbox{\hyperlink{preamble_8h_a37c756f466ee6aa44725fa95b55047cc}{pthread\+\_\+t}} \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}
+{\footnotesize\ttfamily typedef pthread\+\_\+t \mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}
 
 \mbox{\Hypertarget{thread_8h_a579092dc6d13c980765a1a4c2f95879a}\label{thread_8h_a579092dc6d13c980765a1a4c2f95879a}} 
 \index{thread.h@{thread.h}!aws\_thread\_once@{aws\_thread\_once}}
@@ -138,18 +133,6 @@ AWS\+\_\+\+THREAD\+\_\+\+JOIN\+\_\+\+COMPLETED&\\
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_THREAD\_MANAGED@{AWS\_THREAD\_MANAGED}!thread.h@{thread.h}}\index{thread.h@{thread.h}!AWS\_THREAD\_MANAGED@{AWS\_THREAD\_MANAGED}}}\mbox{\Hypertarget{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca14decd6ca3bd5bd11380ce0904e55960}\label{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca14decd6ca3bd5bd11380ce0904e55960}} 
 AWS\+\_\+\+THREAD\+\_\+\+MANAGED&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_THREAD\_NOT\_CREATED@{AWS\_THREAD\_NOT\_CREATED}!thread.h@{thread.h}}\index{thread.h@{thread.h}!AWS\_THREAD\_NOT\_CREATED@{AWS\_THREAD\_NOT\_CREATED}}}\mbox{\Hypertarget{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd}\label{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd}} 
-AWS\+\_\+\+THREAD\+\_\+\+NOT\+\_\+\+CREATED&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_THREAD\_JOINABLE@{AWS\_THREAD\_JOINABLE}!thread.h@{thread.h}}\index{thread.h@{thread.h}!AWS\_THREAD\_JOINABLE@{AWS\_THREAD\_JOINABLE}}}\mbox{\Hypertarget{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8}\label{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8}} 
-AWS\+\_\+\+THREAD\+\_\+\+JOINABLE&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{AWS\_THREAD\_JOIN\_COMPLETED@{AWS\_THREAD\_JOIN\_COMPLETED}!thread.h@{thread.h}}\index{thread.h@{thread.h}!AWS\_THREAD\_JOIN\_COMPLETED@{AWS\_THREAD\_JOIN\_COMPLETED}}}\mbox{\Hypertarget{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511}\label{thread_8h_aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511}} 
-AWS\+\_\+\+THREAD\+\_\+\+JOIN\+\_\+\+COMPLETED&\\
 \hline
 
 \end{DoxyEnumFields}
@@ -284,6 +267,6 @@ Overrides how long, in nanoseconds, that aws\+\_\+thread\+\_\+join\+\_\+all\+\_\
 \index{thread.h@{thread.h}!aws\_thread\_thread\_id\_equal@{aws\_thread\_thread\_id\_equal}}
 \index{aws\_thread\_thread\_id\_equal@{aws\_thread\_thread\_id\_equal}!thread.h@{thread.h}}
 \doxysubsubsection{\texorpdfstring{aws\_thread\_thread\_id\_equal()}{aws\_thread\_thread\_id\_equal()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t1,  }\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t2 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\+\_\+\+COMMON\+\_\+\+API}} bool aws\+\_\+thread\+\_\+thread\+\_\+id\+\_\+equal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t1,  }\item[{\mbox{\hyperlink{thread_8h_a9ff84a0781fdcab710b0fa5e0a84d046}{aws\+\_\+thread\+\_\+id\+\_\+t}}}]{t2 }\end{DoxyParamCaption})}
 
 Compare thread ids. 

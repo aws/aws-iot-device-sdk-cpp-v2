@@ -75,8 +75,8 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_source.html">aws/cal/hash.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="opensslcrypto__common_8h_source.html">aws/cal/private/opensslcrypto_common.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="evp_8h_source.html">openssl/evp.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="tests_2cbmc_2include_2openssl_2sha_8h_source.html">openssl/sha.h</a>&gt;</code><br />
+<code>#include &lt;openssl/evp.h&gt;</code><br />
+<code>#include &lt;openssl/sha.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -84,11 +84,11 @@ Functions</h2></td></tr>
 <tr class="separator:a91b82180a992b7c28c3359c8c27b4ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a526efe5a6450e006bd99d1b65753eed2"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hash_8c.html#a526efe5a6450e006bd99d1b65753eed2">s_update</a> (struct <a class="el" href="structaws__hash.html">aws_hash</a> *hash, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_hash)</td></tr>
 <tr class="separator:a526efe5a6450e006bd99d1b65753eed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9ae58473da633d143da2a72d59c2743"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hash_8c.html#ac9ae58473da633d143da2a72d59c2743">s_finalize</a> (struct <a class="el" href="structaws__hash.html">aws_hash</a> *hash, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *<a class="el" href="log__formatter__test_8c.html#ae73289c5189c80c0661459b0f4743217">output</a>)</td></tr>
+<tr class="memitem:ac9ae58473da633d143da2a72d59c2743"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hash_8c.html#ac9ae58473da633d143da2a72d59c2743">s_finalize</a> (struct <a class="el" href="structaws__hash.html">aws_hash</a> *hash, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
 <tr class="separator:ac9ae58473da633d143da2a72d59c2743"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09ff2c5413718badc2c1251292c1a9b8"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash.html">aws_hash</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hash_8c.html#a09ff2c5413718badc2c1251292c1a9b8">aws_md5_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)</td></tr>
+<tr class="memitem:a09ff2c5413718badc2c1251292c1a9b8"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash.html">aws_hash</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hash_8c.html#a09ff2c5413718badc2c1251292c1a9b8">aws_md5_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
 <tr class="separator:a09ff2c5413718badc2c1251292c1a9b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada95b9da50e03731fd4ea6920c6ddc51"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash.html">aws_hash</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hash_8c.html#ada95b9da50e03731fd4ea6920c6ddc51">aws_sha256_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)</td></tr>
+<tr class="memitem:ada95b9da50e03731fd4ea6920c6ddc51"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hash.html">aws_hash</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hash_8c.html#ada95b9da50e03731fd4ea6920c6ddc51">aws_sha256_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
 <tr class="separator:ada95b9da50e03731fd4ea6920c6ddc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>

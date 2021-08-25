@@ -21,17 +21,17 @@ static int \mbox{\hyperlink{log__channel_8c_a1b0f4cc68e6448e0cf03a6733364f1f6}{s
 \item 
 static void \mbox{\hyperlink{log__channel_8c_a5dd25f40fa06cd215d1633527273c537}{s\+\_\+foreground\+\_\+channel\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel)
 \item 
-int \mbox{\hyperlink{log__channel_8c_a47758e64776bfe297661bed05dc56406}{aws\+\_\+log\+\_\+channel\+\_\+init\+\_\+foreground}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
+int \mbox{\hyperlink{log__channel_8c_a47758e64776bfe297661bed05dc56406}{aws\+\_\+log\+\_\+channel\+\_\+init\+\_\+foreground}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
 \item 
 static int \mbox{\hyperlink{log__channel_8c_aa753c1bef64a9f1b9e23adbbccc1daa6}{s\+\_\+background\+\_\+channel\+\_\+send}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$log\+\_\+line)
 \item 
 static void \mbox{\hyperlink{log__channel_8c_ade576529f03e9a6aa38ffca8e6ec96a4}{s\+\_\+background\+\_\+channel\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{log__channel_8c_ad477a3e5c837ecb9290defa172ff3271}{s\+\_\+background\+\_\+wait}} (void $\ast$context)
+static bool \mbox{\hyperlink{log__channel_8c_ad477a3e5c837ecb9290defa172ff3271}{s\+\_\+background\+\_\+wait}} (void $\ast$context)
 \item 
-static void \mbox{\hyperlink{log__channel_8c_aac893a3de0a3466d0f63d929f3a4cb2c}{s\+\_\+background\+\_\+thread\+\_\+writer}} (void $\ast$\mbox{\hyperlink{s2n__random__test_8c_a0f610f2d18fccb16004d87d303601865}{thread\+\_\+data}})
+static void \mbox{\hyperlink{log__channel_8c_aac893a3de0a3466d0f63d929f3a4cb2c}{s\+\_\+background\+\_\+thread\+\_\+writer}} (void $\ast$thread\+\_\+data)
 \item 
-int \mbox{\hyperlink{log__channel_8c_a395b436ff21f6a4c7744a982f4e77ae3}{aws\+\_\+log\+\_\+channel\+\_\+init\+\_\+background}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
+int \mbox{\hyperlink{log__channel_8c_a395b436ff21f6a4c7744a982f4e77ae3}{aws\+\_\+log\+\_\+channel\+\_\+init\+\_\+background}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__log__writer}{aws\+\_\+log\+\_\+writer}} $\ast$writer)
 \item 
 void \mbox{\hyperlink{log__channel_8c_a26240f2ac2a7922ff483a05a2286e560}{aws\+\_\+log\+\_\+channel\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__channel}{aws\+\_\+log\+\_\+channel}} $\ast$channel)
 \end{DoxyCompactItemize}
@@ -85,7 +85,7 @@ static struct \mbox{\hyperlink{structaws__log__channel__vtable}{aws\+\_\+log\+\_
 \index{log\_channel.c@{log\_channel.c}!s\_background\_wait@{s\_background\_wait}}
 \index{s\_background\_wait@{s\_background\_wait}!log\_channel.c@{log\_channel.c}}
 \doxysubsubsection{\texorpdfstring{s\_background\_wait()}{s\_background\_wait()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+background\+\_\+wait (\begin{DoxyParamCaption}\item[{void $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+background\+\_\+wait (\begin{DoxyParamCaption}\item[{void $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{log__channel_8c_a5dd25f40fa06cd215d1633527273c537}\label{log__channel_8c_a5dd25f40fa06cd215d1633527273c537}} 
 \index{log\_channel.c@{log\_channel.c}!s\_foreground\_channel\_clean\_up@{s\_foreground\_channel\_clean\_up}}

@@ -40,7 +40,7 @@ uint16\+\_\+t \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connec
 \item 
 \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Optional}}$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_proxy_options}{Http\+Client\+Connection\+Proxy\+Options}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_a01eef53aed88044b415e181b789e9977}{Proxy\+Options}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ae9b4f3a6fb252371e4f432087051152b}{Manual\+Window\+Management}}
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_ae9b4f3a6fb252371e4f432087051152b}{Manual\+Window\+Management}}
 \end{DoxyCompactItemize}
 
 
@@ -112,7 +112,7 @@ The TCP read window allowed for \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_http}
 \index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!ManualWindowManagement@{ManualWindowManagement}}
 \index{ManualWindowManagement@{ManualWindowManagement}!Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}}
 \doxysubsubsection{\texorpdfstring{ManualWindowManagement}{ManualWindowManagement}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Manual\+Window\+Management}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+Options\+::\+Manual\+Window\+Management}
 
 If set to true, then the TCP read back pressure mechanism will be enabled. You should only use this if you\textquotesingle{}re allowing http response body data to escape the callbacks. E.\+g. you\textquotesingle{}re putting the data into a queue for another thread to process and need to make sure the memory usage is bounded. If this is enabled, you must call \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_stream_ad27cd3913c91ba66ebdd166ac9bc1f2e}{Http\+Stream\+::\+Update\+Window()}} for every byte read from the On\+Incoming\+Body callback. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_aa466296bd67bff85bcde1686f9d22ff0}\label{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options_aa466296bd67bff85bcde1686f9d22ff0}} 
 \index{Aws::Crt::Http::HttpClientConnectionOptions@{Aws::Crt::Http::HttpClientConnectionOptions}!OnConnectionSetupCallback@{OnConnectionSetupCallback}}

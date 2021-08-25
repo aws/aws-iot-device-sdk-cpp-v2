@@ -96,9 +96,9 @@ Functions</h2></td></tr>
 <tr class="separator:abfa73e087f3b07e617409cc281586346"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8f2bdb1d7c89d8c725f0b8c11c03d1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atomics_8inl.html#aa8f2bdb1d7c89d8c725f0b8c11c03d1d">aws_atomic_exchange_ptr</a> (volatile struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> *var, void *p)</td></tr>
 <tr class="separator:aa8f2bdb1d7c89d8c725f0b8c11c03d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af32b09b4f8f1501eb5f847077c263fce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atomics_8inl.html#af32b09b4f8f1501eb5f847077c263fce">aws_atomic_compare_exchange_int</a> (volatile struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> *var, size_t *expected, size_t desired)</td></tr>
+<tr class="memitem:af32b09b4f8f1501eb5f847077c263fce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atomics_8inl.html#af32b09b4f8f1501eb5f847077c263fce">aws_atomic_compare_exchange_int</a> (volatile struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> *var, size_t *expected, size_t desired)</td></tr>
 <tr class="separator:af32b09b4f8f1501eb5f847077c263fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a614b7a85e36f18da84679601b4f28c39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atomics_8inl.html#a614b7a85e36f18da84679601b4f28c39">aws_atomic_compare_exchange_ptr</a> (volatile struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> *var, void **expected, void *desired)</td></tr>
+<tr class="memitem:a614b7a85e36f18da84679601b4f28c39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atomics_8inl.html#a614b7a85e36f18da84679601b4f28c39">aws_atomic_compare_exchange_ptr</a> (volatile struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> *var, void **expected, void *desired)</td></tr>
 <tr class="separator:a614b7a85e36f18da84679601b4f28c39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff1c49b7fb7cdb5d48ada2c47f0167b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="atomics_8inl.html#aff1c49b7fb7cdb5d48ada2c47f0167b7">aws_atomic_fetch_add</a> (volatile struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> *var, size_t n)</td></tr>
 <tr class="separator:aff1c49b7fb7cdb5d48ada2c47f0167b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,7 +134,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_atomic_compare_exchange_int </td>
+          <td class="memname"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> bool aws_atomic_compare_exchange_int </td>
           <td>(</td>
           <td class="paramtype">volatile struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> *&#160;</td>
           <td class="paramname"><em>var</em>, </td>
@@ -169,7 +169,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_atomic_compare_exchange_ptr </td>
+          <td class="memname"><a class="el" href="codegen_8c.html#a81190a29adbf2dcd0430ed12b5aeadfa">AWS_STATIC_IMPL</a> bool aws_atomic_compare_exchange_ptr </td>
           <td>(</td>
           <td class="paramtype">volatile struct <a class="el" href="structaws__atomic__var.html">aws_atomic_var</a> *&#160;</td>
           <td class="paramname"><em>var</em>, </td>

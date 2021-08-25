@@ -13,7 +13,7 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{s2n__rsa__signing_8c_a1a77f33a54b4a33d2feba8bcdd20034f}{s2n\+\_\+hash\+\_\+\+NID\+\_\+type}} (\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg, int $\ast$out)
+int \mbox{\hyperlink{s2n__rsa__signing_8c_a1a77f33a54b4a33d2feba8bcdd20034f}{s2n\+\_\+hash\+\_\+\+NID\+\_\+type}} (\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg, int $\ast$out)
 \item 
 int \mbox{\hyperlink{s2n__rsa__signing_8c_adc9d2ddb97169fb6434a9c37f7b4deef}{s2n\+\_\+rsa\+\_\+pkcs1v15\+\_\+sign}} (const struct \mbox{\hyperlink{structs2n__pkey}{s2n\+\_\+pkey}} $\ast$priv, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$digest, struct s2n\+\_\+blob $\ast$signature)
 \item 
@@ -37,7 +37,7 @@ static int \mbox{\hyperlink{s2n__rsa__signing_8c_a5a967b2f7e0fc516ae5de575244222
 \index{s2n\_rsa\_signing.c@{s2n\_rsa\_signing.c}!s2n\_hash\_NID\_type@{s2n\_hash\_NID\_type}}
 \index{s2n\_hash\_NID\_type@{s2n\_hash\_NID\_type}!s2n\_rsa\_signing.c@{s2n\_rsa\_signing.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_hash\_NID\_type()}{s2n\_hash\_NID\_type()}}
-{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+\+NID\+\_\+type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{alg,  }\item[{int $\ast$}]{out }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int s2n\+\_\+hash\+\_\+\+NID\+\_\+type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}}}]{alg,  }\item[{int $\ast$}]{out }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__rsa__signing_8c_a93af72ba10d4fae119e6303871e8e0ec}\label{s2n__rsa__signing_8c_a93af72ba10d4fae119e6303871e8e0ec}} 
 \index{s2n\_rsa\_signing.c@{s2n\_rsa\_signing.c}!s2n\_is\_rsa\_pss\_signing\_supported@{s2n\_is\_rsa\_pss\_signing\_supported}}
@@ -81,11 +81,11 @@ static int \mbox{\hyperlink{s2n__rsa__signing_8c_a5a967b2f7e0fc516ae5de575244222
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{= \{}
-\DoxyCodeLine{    [\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}{S2N\_HASH\_MD5\_SHA1}}] = NID\_md5\_sha1,}
-\DoxyCodeLine{    [\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}{S2N\_HASH\_SHA1}}]     = NID\_sha1,}
-\DoxyCodeLine{    [\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}{S2N\_HASH\_SHA224}}]   = NID\_sha224,}
-\DoxyCodeLine{    [\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}{S2N\_HASH\_SHA256}}]   = NID\_sha256,}
-\DoxyCodeLine{    [\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}{S2N\_HASH\_SHA384}}]   = NID\_sha384,}
-\DoxyCodeLine{    [\mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}{S2N\_HASH\_SHA512}}]   = NID\_sha512 \}}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419}{S2N\_HASH\_MD5\_SHA1}}] = NID\_md5\_sha1,}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627}{S2N\_HASH\_SHA1}}]     = NID\_sha1,}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353}{S2N\_HASH\_SHA224}}]   = NID\_sha224,}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9}{S2N\_HASH\_SHA256}}]   = NID\_sha256,}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d}{S2N\_HASH\_SHA384}}]   = NID\_sha384,}
+\DoxyCodeLine{    [\mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993}{S2N\_HASH\_SHA512}}]   = NID\_sha512 \}}
 
 \end{DoxyCode}

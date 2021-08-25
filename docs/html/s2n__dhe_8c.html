@@ -73,9 +73,9 @@ $(function() {
   <div class="headertitle"><div class="title">s2n_dhe.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="evp_8h_source.html">openssl/evp.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="dh_8h_source.html">openssl/dh.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="bn_8h_source.html">openssl/bn.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;openssl/evp.h&gt;</code><br />
+<code>#include &lt;openssl/dh.h&gt;</code><br />
+<code>#include &lt;openssl/bn.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="stdint_8h_source.html">stdint.h</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n__errno_8h_source.html">error/s2n_errno.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__stuffer_8h_source.html">stuffer/s2n_stuffer.h</a>&quot;</code><br />
@@ -92,11 +92,11 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4973ce1e482194575537f83333522ef0"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="ossl__typ_8h.html#a6fb19728907ec6515e4bfb716bffa141">BIGNUM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a4973ce1e482194575537f83333522ef0">s2n_get_Ys_dh_param</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *dh_params)</td></tr>
+<tr class="memitem:a4973ce1e482194575537f83333522ef0"><td class="memItemLeft" align="right" valign="top">static const BIGNUM *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a4973ce1e482194575537f83333522ef0">s2n_get_Ys_dh_param</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *dh_params)</td></tr>
 <tr class="separator:a4973ce1e482194575537f83333522ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2796640424a948a2e4395e08520a1a8e"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="ossl__typ_8h.html#a6fb19728907ec6515e4bfb716bffa141">BIGNUM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a2796640424a948a2e4395e08520a1a8e">s2n_get_p_dh_param</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *dh_params)</td></tr>
+<tr class="memitem:a2796640424a948a2e4395e08520a1a8e"><td class="memItemLeft" align="right" valign="top">static const BIGNUM *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a2796640424a948a2e4395e08520a1a8e">s2n_get_p_dh_param</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *dh_params)</td></tr>
 <tr class="separator:a2796640424a948a2e4395e08520a1a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cf0920490049278e10db64320af39cb"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="ossl__typ_8h.html#a6fb19728907ec6515e4bfb716bffa141">BIGNUM</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a3cf0920490049278e10db64320af39cb">s2n_get_g_dh_param</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *dh_params)</td></tr>
+<tr class="memitem:a3cf0920490049278e10db64320af39cb"><td class="memItemLeft" align="right" valign="top">static const BIGNUM *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a3cf0920490049278e10db64320af39cb">s2n_get_g_dh_param</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *dh_params)</td></tr>
 <tr class="separator:a3cf0920490049278e10db64320af39cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a505a13a07ae132461c40ac191222e9ca"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a505a13a07ae132461c40ac191222e9ca">s2n_check_p_g_dh_params</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *dh_params)</td></tr>
 <tr class="separator:a505a13a07ae132461c40ac191222e9ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,7 +110,7 @@ Functions</h2></td></tr>
 <tr class="separator:a2a588f9f6c78190225878f36cfb98ae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb2667fcb851a9b7ce54fc822d358f19"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#aeb2667fcb851a9b7ce54fc822d358f19">s2n_dh_p_g_Ys_to_dh_params</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *server_dh_params, struct s2n_blob *p, struct s2n_blob *g, struct s2n_blob *Ys)</td></tr>
 <tr class="separator:aeb2667fcb851a9b7ce54fc822d358f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a847b2d0a73d4e014a41c50b9780b8245"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a847b2d0a73d4e014a41c50b9780b8245">s2n_dh_params_to_p_g_Ys</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *server_dh_params, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *out, struct s2n_blob *<a class="el" href="log__formatter__test_8c.html#ae73289c5189c80c0661459b0f4743217">output</a>)</td></tr>
+<tr class="memitem:a847b2d0a73d4e014a41c50b9780b8245"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a847b2d0a73d4e014a41c50b9780b8245">s2n_dh_params_to_p_g_Ys</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *server_dh_params, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *out, struct s2n_blob *output)</td></tr>
 <tr class="separator:a847b2d0a73d4e014a41c50b9780b8245"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5883f9a420e0b7c297b061ea0ed108e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__dhe_8c.html#a5883f9a420e0b7c297b061ea0ed108e8">s2n_dh_compute_shared_secret_as_client</a> (struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *server_dh_params, struct <a class="el" href="structs2n__stuffer.html">s2n_stuffer</a> *Yc_out, struct s2n_blob *shared_key)</td></tr>
 <tr class="separator:a5883f9a420e0b7c297b061ea0ed108e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -445,7 +445,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static const <a class="el" href="ossl__typ_8h.html#a6fb19728907ec6515e4bfb716bffa141">BIGNUM</a>* s2n_get_g_dh_param </td>
+          <td class="memname">static const BIGNUM* s2n_get_g_dh_param </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *&#160;</td>
           <td class="paramname"><em>dh_params</em></td><td>)</td>
@@ -471,7 +471,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static const <a class="el" href="ossl__typ_8h.html#a6fb19728907ec6515e4bfb716bffa141">BIGNUM</a>* s2n_get_p_dh_param </td>
+          <td class="memname">static const BIGNUM* s2n_get_p_dh_param </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *&#160;</td>
           <td class="paramname"><em>dh_params</em></td><td>)</td>
@@ -497,7 +497,7 @@ Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static const <a class="el" href="ossl__typ_8h.html#a6fb19728907ec6515e4bfb716bffa141">BIGNUM</a>* s2n_get_Ys_dh_param </td>
+          <td class="memname">static const BIGNUM* s2n_get_Ys_dh_param </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structs2n__dh__params.html">s2n_dh_params</a> *&#160;</td>
           <td class="paramname"><em>dh_params</em></td><td>)</td>

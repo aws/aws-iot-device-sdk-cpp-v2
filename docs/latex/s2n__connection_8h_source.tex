@@ -39,7 +39,7 @@
 \DoxyCodeLine{35 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__security__policies_8h}{tls/s2n\_security\_policies.h}}"{}}}
 \DoxyCodeLine{36 }
 \DoxyCodeLine{37 }
-\DoxyCodeLine{38 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{crypto_2s2n__hash_8h}{crypto/s2n\_hash.h}}"{}}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__hash_8h}{crypto/s2n\_hash.h}}"{}}}
 \DoxyCodeLine{39 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{s2n__hmac_8h}{crypto/s2n\_hmac.h}}"{}}}
 \DoxyCodeLine{40 }
 \DoxyCodeLine{41 \textcolor{preprocessor}{\#include "{}utils/s2n\_mem.h"{}}}
@@ -185,13 +185,13 @@
 \DoxyCodeLine{181     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} \mbox{\hyperlink{structs2n__connection_aefef8fa01abd44e997542b87f663b74e}{header\_in}};}
 \DoxyCodeLine{182     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} \mbox{\hyperlink{structs2n__connection_addca8933098512273dca87e5d8b319dd}{in}};}
 \DoxyCodeLine{183     \textcolor{keyword}{struct }\mbox{\hyperlink{structs2n__stuffer}{s2n\_stuffer}} \mbox{\hyperlink{structs2n__connection_ab7d690d1a02fbd7f5aad682df58a1901}{out}};}
-\DoxyCodeLine{184     \textcolor{keyword}{enum} \{ \mbox{\hyperlink{structs2n__connection_a8c37a9c10922377a93efd5b99459af1dae67d2491c0d1d9ba4428f60d0a7b4ee3}{ENCRYPTED}}, \mbox{\hyperlink{structs2n__connection_a8c37a9c10922377a93efd5b99459af1da9424dc655caf861e1ab8d69eb23373b9}{PLAINTEXT}} \} \mbox{\hyperlink{structs2n__connection_ae7dea73ce605db56778c9a9927bc16cd}{in\_status}};}
+\DoxyCodeLine{184     \textcolor{keyword}{enum} \{ \mbox{\hyperlink{structs2n__connection_ae781c5ea8694bb0f3bd9be70aa08e1ccae67d2491c0d1d9ba4428f60d0a7b4ee3}{ENCRYPTED}}, \mbox{\hyperlink{structs2n__connection_ae781c5ea8694bb0f3bd9be70aa08e1cca9424dc655caf861e1ab8d69eb23373b9}{PLAINTEXT}} \} \mbox{\hyperlink{structs2n__connection_abef3dd3f55c1029bf22e374a3d0aa5d5}{in\_status}};}
 \DoxyCodeLine{185 }
 \DoxyCodeLine{186     \textcolor{comment}{/* How much of the current user buffer have we already}}
 \DoxyCodeLine{187 \textcolor{comment}{     * encrypted and sent or have pending for the wire but have}}
 \DoxyCodeLine{188 \textcolor{comment}{     * not acknowledged to the user.}}
 \DoxyCodeLine{189 \textcolor{comment}{     */}}
-\DoxyCodeLine{190     \mbox{\hyperlink{preamble_8h_af02a2e09430a9ed80bedb598467ce8d1}{ssize\_t}} \mbox{\hyperlink{structs2n__connection_a62e11f3145d58cb6c0c9da44d0fc95f2}{current\_user\_data\_consumed}};}
+\DoxyCodeLine{190     ssize\_t \mbox{\hyperlink{structs2n__connection_a62e11f3145d58cb6c0c9da44d0fc95f2}{current\_user\_data\_consumed}};}
 \DoxyCodeLine{191 }
 \DoxyCodeLine{192     \textcolor{comment}{/* An alert may be fragmented across multiple records,}}
 \DoxyCodeLine{193 \textcolor{comment}{     * this stuffer is used to re-\/assemble.}}

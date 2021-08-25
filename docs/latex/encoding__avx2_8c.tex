@@ -13,13 +13,13 @@ static \+\_\+\+\_\+m256i \mbox{\hyperlink{encoding__avx2_8c_ac9f6621101179477e56
 \item 
 static \+\_\+\+\_\+m256i \mbox{\hyperlink{encoding__avx2_8c_a4a929aea68d9edbde567505d25c71ed8}{translate\+\_\+exact}} (\+\_\+\+\_\+m256i in, uint8\+\_\+t match, uint8\+\_\+t \mbox{\hyperlink{bike__r2_2decode_8h_ad425a6fe9898ee131f39b450bb67b2a2}{decode}})
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{encoding__avx2_8c_ae08b22062b4efb1024354ab39cc5eaed}{decode\+\_\+vec}} (\+\_\+\+\_\+m256i $\ast$in)
+static bool \mbox{\hyperlink{encoding__avx2_8c_ae08b22062b4efb1024354ab39cc5eaed}{decode\+\_\+vec}} (\+\_\+\+\_\+m256i $\ast$in)
 \item 
 \mbox{\hyperlink{encoding__avx2_8c_a16aa0ff151d8f1621d42d757334011e5}{AWS\+\_\+\+ALIGNED\+\_\+\+TYPEDEF}} (uint8\+\_\+t, aligned256\mbox{[}32\mbox{]}, 32)
 \item 
 static \+\_\+\+\_\+m256i \mbox{\hyperlink{encoding__avx2_8c_ad2d2c7e59c1360a6c6f8d47091bb6f9e}{pack\+\_\+vec}} (\+\_\+\+\_\+m256i in)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{encoding__avx2_8c_afb085ef0e54c685375cbd43777f6e208}{decode}} (const unsigned char $\ast$in, unsigned char $\ast$out)
+static bool \mbox{\hyperlink{encoding__avx2_8c_afb085ef0e54c685375cbd43777f6e208}{decode}} (const unsigned char $\ast$in, unsigned char $\ast$out)
 \item 
 size\+\_\+t \mbox{\hyperlink{encoding__avx2_8c_a6a0b44cae4dc4232c5449a173f20c2a2}{aws\+\_\+common\+\_\+private\+\_\+base64\+\_\+decode\+\_\+sse41}} (const unsigned char $\ast$in, unsigned char $\ast$out, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a0f1e4ab31fd4f3ca4329091911f1f1af}{len}})
 \item 
@@ -27,7 +27,7 @@ static \+\_\+\+\_\+m256i \mbox{\hyperlink{encoding__avx2_8c_a8af9166d386af564615
 \item 
 static \+\_\+\+\_\+m256i \mbox{\hyperlink{encoding__avx2_8c_af9191b7c04f0fb0c3b9d8efbf434cc25}{encode\+\_\+stride}} (\+\_\+\+\_\+m256i vec)
 \item 
-void \mbox{\hyperlink{encoding__avx2_8c_a88a83b1276ca3767759460f4255e8d08}{aws\+\_\+common\+\_\+private\+\_\+base64\+\_\+encode\+\_\+sse41}} (const uint8\+\_\+t $\ast$input, uint8\+\_\+t $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t inlen)
+void \mbox{\hyperlink{encoding__avx2_8c_a88a83b1276ca3767759460f4255e8d08}{aws\+\_\+common\+\_\+private\+\_\+base64\+\_\+encode\+\_\+sse41}} (const uint8\+\_\+t $\ast$input, uint8\+\_\+t $\ast$output, size\+\_\+t inlen)
 \end{DoxyCompactItemize}
 
 
@@ -54,13 +54,13 @@ void \mbox{\hyperlink{encoding__avx2_8c_a88a83b1276ca3767759460f4255e8d08}{aws\+
 \index{encoding\_avx2.c@{encoding\_avx2.c}!decode@{decode}}
 \index{decode@{decode}!encoding\_avx2.c@{encoding\_avx2.c}}
 \doxysubsubsection{\texorpdfstring{decode()}{decode()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} decode (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static bool decode (\begin{DoxyParamCaption}\item[{const unsigned char $\ast$}]{in,  }\item[{unsigned char $\ast$}]{out }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 \mbox{\Hypertarget{encoding__avx2_8c_ae08b22062b4efb1024354ab39cc5eaed}\label{encoding__avx2_8c_ae08b22062b4efb1024354ab39cc5eaed}} 
 \index{encoding\_avx2.c@{encoding\_avx2.c}!decode\_vec@{decode\_vec}}
 \index{decode\_vec@{decode\_vec}!encoding\_avx2.c@{encoding\_avx2.c}}
 \doxysubsubsection{\texorpdfstring{decode\_vec()}{decode\_vec()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} decode\+\_\+vec (\begin{DoxyParamCaption}\item[{\+\_\+\+\_\+m256i $\ast$}]{in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static bool decode\+\_\+vec (\begin{DoxyParamCaption}\item[{\+\_\+\+\_\+m256i $\ast$}]{in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 \mbox{\Hypertarget{encoding__avx2_8c_a8af9166d386af564615130837d2c6894}\label{encoding__avx2_8c_a8af9166d386af564615130837d2c6894}} 
 \index{encoding\_avx2.c@{encoding\_avx2.c}!encode\_chars@{encode\_chars}}

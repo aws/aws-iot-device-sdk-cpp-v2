@@ -18,7 +18,7 @@ static int \mbox{\hyperlink{serializer_8c_a9a18e087c53934050fbbc463280a7fbe}{s\+
 \item 
 static int \mbox{\hyperlink{serializer_8c_a9f242f719b1871edfc5b0503a3f5ea32}{s\+\_\+iot\+\_\+st\+\_\+encode\+\_\+varint}} (const uint8\+\_\+t field\+\_\+number, const uint8\+\_\+t wire\+\_\+type, const int32\+\_\+t value, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
 \item 
-static int \mbox{\hyperlink{serializer_8c_add213bde2ef5a96a678e904af0b91b50}{s\+\_\+iot\+\_\+st\+\_\+encode\+\_\+lengthdelim}} (const uint8\+\_\+t field\+\_\+number, const uint8\+\_\+t wire\+\_\+type, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
+static int \mbox{\hyperlink{serializer_8c_add213bde2ef5a96a678e904af0b91b50}{s\+\_\+iot\+\_\+st\+\_\+encode\+\_\+lengthdelim}} (const uint8\+\_\+t field\+\_\+number, const uint8\+\_\+t wire\+\_\+type, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$payload, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
 \item 
 static int \mbox{\hyperlink{serializer_8c_a6060882f1c1b2d3558f1cfd37a542675}{s\+\_\+iot\+\_\+st\+\_\+encode\+\_\+stream\+\_\+id}} (int32\+\_\+t data, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
 \item 
@@ -26,13 +26,13 @@ static int \mbox{\hyperlink{serializer_8c_a4a64a66b3069731571f4f6a0cc2330f9}{s\+
 \item 
 static int \mbox{\hyperlink{serializer_8c_a9cfb74cacd32ab3a9f7280ed0497a45e}{s\+\_\+iot\+\_\+st\+\_\+encode\+\_\+type}} (int32\+\_\+t data, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
 \item 
-static int \mbox{\hyperlink{serializer_8c_a3f8ba0278663e9bcd8f8b357200338ef}{s\+\_\+iot\+\_\+st\+\_\+encode\+\_\+payload}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
+static int \mbox{\hyperlink{serializer_8c_a3f8ba0278663e9bcd8f8b357200338ef}{s\+\_\+iot\+\_\+st\+\_\+encode\+\_\+payload}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$payload, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer)
 \item 
-int \mbox{\hyperlink{serializer_8c_aff7a307088ee8a4f5aee4c3261d09a91}{aws\+\_\+iot\+\_\+st\+\_\+msg\+\_\+serialize\+\_\+from\+\_\+struct}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__iot__st__msg}{aws\+\_\+iot\+\_\+st\+\_\+msg}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+int \mbox{\hyperlink{serializer_8c_aff7a307088ee8a4f5aee4c3261d09a91}{aws\+\_\+iot\+\_\+st\+\_\+msg\+\_\+serialize\+\_\+from\+\_\+struct}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__iot__st__msg}{aws\+\_\+iot\+\_\+st\+\_\+msg}} message)
 \item 
-static int \mbox{\hyperlink{serializer_8c_af6d0d495da416347047b73252d833e75}{s\+\_\+aws\+\_\+st\+\_\+decode\+\_\+lengthdelim}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, int \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+static int \mbox{\hyperlink{serializer_8c_af6d0d495da416347047b73252d833e75}{s\+\_\+aws\+\_\+st\+\_\+decode\+\_\+lengthdelim}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$buffer, int \mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})
 \item 
-int \mbox{\hyperlink{serializer_8c_adb80bec34b3c6174a4f41a94f92d3538}{aws\+\_\+iot\+\_\+st\+\_\+msg\+\_\+deserialize\+\_\+from\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__iot__st__msg}{aws\+\_\+iot\+\_\+st\+\_\+msg}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+int \mbox{\hyperlink{serializer_8c_adb80bec34b3c6174a4f41a94f92d3538}{aws\+\_\+iot\+\_\+st\+\_\+msg\+\_\+deserialize\+\_\+from\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__iot__st__msg}{aws\+\_\+iot\+\_\+st\+\_\+msg}} $\ast$message, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \end{DoxyCompactItemize}
 
 

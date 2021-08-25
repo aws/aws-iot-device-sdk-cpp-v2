@@ -88,14 +88,14 @@ Inheritance diagram for Aws::Crt::Http::HttpClientConnectionManager:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3ce78ad105347c7268ef0ebc06343702"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a3ce78ad105347c7268ef0ebc06343702">~HttpClientConnectionManager</a> ()</td></tr>
 <tr class="separator:a3ce78ad105347c7268ef0ebc06343702"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a999fd4f1158b5efdf0c202ecd37d2030"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a999fd4f1158b5efdf0c202ecd37d2030">AcquireConnection</a> (const <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#abf17b6f7768fa03af126b8c812ef9bd1">OnClientConnectionAvailable</a> &amp;onClientConnectionAvailable) noexcept</td></tr>
+<tr class="memitem:a999fd4f1158b5efdf0c202ecd37d2030"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a999fd4f1158b5efdf0c202ecd37d2030">AcquireConnection</a> (const <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#abf17b6f7768fa03af126b8c812ef9bd1">OnClientConnectionAvailable</a> &amp;onClientConnectionAvailable) noexcept</td></tr>
 <tr class="separator:a999fd4f1158b5efdf0c202ecd37d2030"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24a6f7601af6e8f980a5b505760c9dd4"><td class="memItemLeft" align="right" valign="top">std::future&lt; void &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a24a6f7601af6e8f980a5b505760c9dd4">InitiateShutdown</a> () noexcept</td></tr>
 <tr class="separator:a24a6f7601af6e8f980a5b505760c9dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a83d183a7fe35511db52f8085a1bfe817"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html">HttpClientConnectionManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a83d183a7fe35511db52f8085a1bfe817">NewClientConnectionManager</a> (const <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options.html">HttpClientConnectionManagerOptions</a> &amp;connectionManagerOptions, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
+<tr class="memitem:a83d183a7fe35511db52f8085a1bfe817"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html">HttpClientConnectionManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager.html#a83d183a7fe35511db52f8085a1bfe817">NewClientConnectionManager</a> (const <a class="el" href="class_aws_1_1_crt_1_1_http_1_1_http_client_connection_manager_options.html">HttpClientConnectionManagerOptions</a> &amp;connectionManagerOptions, <a class="el" href="namespace_aws_1_1_crt.html#a3c9efb213e2de565038afcfd4f8afcda">Allocator</a> *allocator=<a class="el" href="namespace_aws_1_1_crt.html#a7178ef65f261a8db52a624458331bbb2">g_allocator</a>) noexcept</td></tr>
 <tr class="separator:a83d183a7fe35511db52f8085a1bfe817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
@@ -134,7 +134,7 @@ Friends</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> Aws::Crt::Http::HttpClientConnectionManager::AcquireConnection </td>
+          <td class="memname">bool Aws::Crt::Http::HttpClientConnectionManager::AcquireConnection </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespace_aws_1_1_crt_1_1_http.html#abf17b6f7768fa03af126b8c812ef9bd1">OnClientConnectionAvailable</a> &amp;&#160;</td>
           <td class="paramname"><em>onClientConnectionAvailable</em></td><td>)</td>

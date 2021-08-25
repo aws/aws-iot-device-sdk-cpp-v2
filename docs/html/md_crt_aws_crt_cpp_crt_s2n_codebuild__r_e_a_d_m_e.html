@@ -66,13 +66,13 @@ $(function() {
   <div class="headertitle"><div class="title">CodeBuild script info </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h3><a class="anchor" id="autotoc_md315"></a>
+<div class="textblock"><h3><a class="anchor" id="autotoc_md310"></a>
 Design</h3>
 <ul>
 <li>How does CodeBuild decide what to install/test ? Historically the environment variables passed to the job dictate what is installed and which tests get run. CodeBuild has a pattern where environment variables can be over-ridden by CloudWatch events or batch jobs, so in some cases the CodeBuild job definition is generic or filled with placeholders (e.g. s2nFuzzScheduled).</li>
 <li>Why not build docker images with the dependencies layered in ? This is the end goal: get tests running in CodeBuild first, then optimize the containers where it makes sense.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md316"></a>
+<h3><a class="anchor" id="autotoc_md311"></a>
 Dep tree</h3>
 <p >General flow of the CodeBuild Test Projects</p>
 <ul>
@@ -108,7 +108,7 @@ Dep tree</h3>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md317"></a>
+<h2><a class="anchor" id="autotoc_md312"></a>
 Usage to setup Projects</h2>
 <p >Using your favorite virtualenv, install the following dependencies: </p><div class="fragment"><div class="line">pip install -r requirements.txt</div>
 </div><!-- fragment --><p >To bootstrap the CodeBuild jobs, the python script: </p><div class="fragment"><div class="line"># Verify your config is correct</div>
@@ -141,14 +141,14 @@ Usage to setup Projects</h2>
 <li>Use CloudFormation to create the stack with the generated template.</li>
 <li>Open the CodeBuild projects in the console and setup the Source correctly, using your OTP credentials to connect to Github</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md318"></a>
+<h2><a class="anchor" id="autotoc_md313"></a>
 Words about CodeBuild instance size and concurrency</h2>
 <p >The <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/limits.html">AWS Codebuild</a> docs list the number of concurrent jobs at 60. With extensive testing, we've learned this number appears to be weighted based on <a href="https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html">instance size</a> (or provisioning limits), so running all tests on the largest possible instances will reduce actual concurrency. Additionally provisioning time is currently longer for larger instances, so there is a time penalty that might not be recovered by using a larger instance for short lived tests.</p>
-<h2><a class="anchor" id="autotoc_md319"></a>
+<h2><a class="anchor" id="autotoc_md314"></a>
 Batch Builds</h2>
 <p >The <code>spec/buildspec_omnibus_batch.yml</code> contains a complete list of all CodeBuild jobs. In the future, this will replace the individual jobs created by the <a class="el" href="create__project_8py.html">create_project.py</a> script.</p>
 <p >The broken out batch jobs: fuzz, integration and general, are created with the script create_batch.sh, which uses jq to parse out the jobs by title.</p>
-<h2><a class="anchor" id="autotoc_md320"></a>
+<h2><a class="anchor" id="autotoc_md315"></a>
 Notes on moving from Travis-ci</h2>
 <ul>
 <li>Install_clang from Travis is using google chromium clang commit from 2017- which requires python2.7 (EOL); updated for CodeBuild.</li>
@@ -156,7 +156,7 @@ Notes on moving from Travis-ci</h2>
 <li>Warning message from the fuzzer about test speed appear in CodeBuild output, but not in Travis-CI with the same test (See comments on AWS forums about a difference in ANSI TERM support); this also affects colorized output.</li>
 <li>macOS/OSX platform files were not copied because CodeBuild does not support macOS builds.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md321"></a>
+<h2><a class="anchor" id="autotoc_md316"></a>
 Querying CodeBuild projects</h2>
 <p >Here is a sample of how to double check the size of the build hosts, as an example. AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY for an associated AWS account will need to be set for this to work, as well as a file called jobs, listing the names of all the CodeBuild jobs you'd like to check.</p>
 <div class="fragment"><div class="line">for i in $(cat jobs); do echo -e &quot;$i\t&quot;;aws codebuild batch-get-projects --name &quot;$i&quot; |jq &#39;.projects[].environment.computeType&#39;; done</div>

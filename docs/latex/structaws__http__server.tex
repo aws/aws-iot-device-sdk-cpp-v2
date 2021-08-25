@@ -7,9 +7,9 @@ struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{
 \item 
 struct \mbox{\hyperlink{structaws__server__bootstrap}{aws\+\_\+server\+\_\+bootstrap}} $\ast$ \mbox{\hyperlink{structaws__http__server_a6f186803003a6836c25a63c01a251367}{bootstrap}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__http__server_a565f261c3b976b723b696ff2a3e5bdf1}{is\+\_\+using\+\_\+tls}}
+bool \mbox{\hyperlink{structaws__http__server_a565f261c3b976b723b696ff2a3e5bdf1}{is\+\_\+using\+\_\+tls}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__http__server_ab4b6ebb1573d06ea571faec1d6cc88cb}{manual\+\_\+window\+\_\+management}}
+bool \mbox{\hyperlink{structaws__http__server_ab4b6ebb1573d06ea571faec1d6cc88cb}{manual\+\_\+window\+\_\+management}}
 \item 
 size\+\_\+t \mbox{\hyperlink{structaws__http__server_a4e61a2d661dd34690d926b4de4531311}{initial\+\_\+window\+\_\+size}}
 \item 
@@ -25,9 +25,9 @@ struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}} $\ast$ \mbox{\hyper
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
 \>struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structaws__http__server_ac72d510f12422f3921ab95b71a603104}{lock}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__http__server_a42ca32351e978ea4b984aff61ac8e04e}{is\_shutting\_down}}\\
+\>bool \mbox{\hyperlink{structaws__http__server_a42ca32351e978ea4b984aff61ac8e04e}{is\_shutting\_down}}\\
 \>struct \mbox{\hyperlink{structaws__hash__table}{aws\_hash\_table}} \mbox{\hyperlink{structaws__http__server_a7b7ba5bb715650c8343dee74519a2fcc}{channel\_to\_connection\_map}}\\
-\} \mbox{\hyperlink{structaws__http__server_a9abb870706f75347dd6f76d603b957d3}{synced\_data}}\\
+\} \mbox{\hyperlink{structaws__http__server_a63d26cc151c3eeac14f3936958eaaa87}{synced\_data}}\\
 
 \end{tabbing}\end{DoxyCompactItemize}
 
@@ -61,13 +61,13 @@ struct \{\\
 \index{aws\_http\_server@{aws\_http\_server}!is\_shutting\_down@{is\_shutting\_down}}
 \index{is\_shutting\_down@{is\_shutting\_down}!aws\_http\_server@{aws\_http\_server}}
 \doxysubsubsection{\texorpdfstring{is\_shutting\_down}{is\_shutting\_down}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+server\+::is\+\_\+shutting\+\_\+down}
+{\footnotesize\ttfamily bool aws\+\_\+http\+\_\+server\+::is\+\_\+shutting\+\_\+down}
 
 \mbox{\Hypertarget{structaws__http__server_a565f261c3b976b723b696ff2a3e5bdf1}\label{structaws__http__server_a565f261c3b976b723b696ff2a3e5bdf1}} 
 \index{aws\_http\_server@{aws\_http\_server}!is\_using\_tls@{is\_using\_tls}}
 \index{is\_using\_tls@{is\_using\_tls}!aws\_http\_server@{aws\_http\_server}}
 \doxysubsubsection{\texorpdfstring{is\_using\_tls}{is\_using\_tls}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+server\+::is\+\_\+using\+\_\+tls}
+{\footnotesize\ttfamily bool aws\+\_\+http\+\_\+server\+::is\+\_\+using\+\_\+tls}
 
 \mbox{\Hypertarget{structaws__http__server_ac72d510f12422f3921ab95b71a603104}\label{structaws__http__server_ac72d510f12422f3921ab95b71a603104}} 
 \index{aws\_http\_server@{aws\_http\_server}!lock@{lock}}
@@ -79,7 +79,7 @@ struct \{\\
 \index{aws\_http\_server@{aws\_http\_server}!manual\_window\_management@{manual\_window\_management}}
 \index{manual\_window\_management@{manual\_window\_management}!aws\_http\_server@{aws\_http\_server}}
 \doxysubsubsection{\texorpdfstring{manual\_window\_management}{manual\_window\_management}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+http\+\_\+server\+::manual\+\_\+window\+\_\+management}
+{\footnotesize\ttfamily bool aws\+\_\+http\+\_\+server\+::manual\+\_\+window\+\_\+management}
 
 \mbox{\Hypertarget{structaws__http__server_a9cdbd08ecc509a9f0783db98ac46fd4a}\label{structaws__http__server_a9cdbd08ecc509a9f0783db98ac46fd4a}} 
 \index{aws\_http\_server@{aws\_http\_server}!on\_destroy\_complete@{on\_destroy\_complete}}
@@ -99,7 +99,7 @@ struct \{\\
 \doxysubsubsection{\texorpdfstring{socket}{socket}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__socket}{aws\+\_\+socket}}$\ast$ aws\+\_\+http\+\_\+server\+::socket}
 
-\mbox{\Hypertarget{structaws__http__server_a9abb870706f75347dd6f76d603b957d3}\label{structaws__http__server_a9abb870706f75347dd6f76d603b957d3}} 
+\mbox{\Hypertarget{structaws__http__server_a63d26cc151c3eeac14f3936958eaaa87}\label{structaws__http__server_a63d26cc151c3eeac14f3936958eaaa87}} 
 \index{aws\_http\_server@{aws\_http\_server}!synced\_data@{synced\_data}}
 \index{synced\_data@{synced\_data}!aws\_http\_server@{aws\_http\_server}}
 \doxysubsubsection{\texorpdfstring{}{}}

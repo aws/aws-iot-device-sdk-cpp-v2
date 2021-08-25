@@ -94,8 +94,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a5c0c86c38647f98229becf17743f7cb5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a5c0c86c38647f98229becf17743f7cb5">AWS_OP_SUCCESS</a>&#160;&#160;&#160;(0)</td></tr>
-<tr class="separator:a5c0c86c38647f98229becf17743f7cb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa614dfea2e3cf41c68a4f2405f9d0e0f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#aa614dfea2e3cf41c68a4f2405f9d0e0f">AWS_OP_SUCCESS</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="separator:aa614dfea2e3cf41c68a4f2405f9d0e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24f294735cddb51d28b7f04883e690f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a24f294735cddb51d28b7f04883e690f6">AWS_OP_ERR</a>&#160;&#160;&#160;(-1)</td></tr>
 <tr class="separator:a24f294735cddb51d28b7f04883e690f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2b83263c3b9a30d324a04b5564ca71e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#ab2b83263c3b9a30d324a04b5564ca71e">AWS_ERROR_ENUM_STRIDE_BITS</a>&#160;&#160;&#160;10</td></tr>
@@ -111,7 +111,7 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a3209f2855bb6467d9b0ed0b243daa8e2"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a>(int err, void *<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)</td></tr>
+<tr class="memitem:a3209f2855bb6467d9b0ed0b243daa8e2"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a>(int err, void *ctx)</td></tr>
 <tr class="separator:a3209f2855bb6467d9b0ed0b243daa8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -180,67 +180,6 @@ Enumerations</h2></td></tr>
 &#160;&#160;<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a45579ecff1cc2e5b25e04302d4032c86aaee9db470f58952eace18c94bdab626e">AWS_ERROR_STRING_MATCH_NOT_FOUND</a>
 , <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a45579ecff1cc2e5b25e04302d4032c86a02e7bbb4ed227526df6a2d8f3b15cea7">AWS_ERROR_DIVIDE_BY_ZERO</a>
 , <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a45579ecff1cc2e5b25e04302d4032c86accd0ec0efee0c874169eed0451a00a3f">AWS_ERROR_END_COMMON_RANGE</a> = AWS_ERROR_ENUM_END_RANGE(AWS_C_COMMON_PACKAGE_ID)
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86adf338bac941b69fd3932405f57a83267">AWS_ERROR_SUCCESS</a> = 0
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86afc1e1a5c86509e16a8d6af94cbdb6edb">AWS_ERROR_OOM</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86ae178ce3419ba0af13fc60d796d81d70a">AWS_ERROR_UNKNOWN</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a53feb9934229fcc5a1eda9c33d5f1f50">AWS_ERROR_SHORT_BUFFER</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a20686840ef986e1f00e25e5ba2e8c70c">AWS_ERROR_OVERFLOW_DETECTED</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86ac9e8c3244b7723a0a75487e3534f5ec0">AWS_ERROR_UNSUPPORTED_OPERATION</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a6bb5d26f748fac071dcaa7524b3dc93c">AWS_ERROR_INVALID_BUFFER_SIZE</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86af0f0dafeac4f50863f90da3b6440b373">AWS_ERROR_INVALID_HEX_STR</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86af9e53f019480625ab2db4c0c6a0da8db">AWS_ERROR_INVALID_BASE64_STR</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86af69025f1ee0ec28fcbdecfc9bcb5b5ff">AWS_ERROR_INVALID_INDEX</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a5f29b5dc6e09efd4487211f6774adb08">AWS_ERROR_THREAD_INVALID_SETTINGS</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86adf09df001b2ac1f45e20b9a324e1dde6">AWS_ERROR_THREAD_INSUFFICIENT_RESOURCE</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a639a8b324f65aa8489ec8db0c0705750">AWS_ERROR_THREAD_NO_PERMISSIONS</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86ae34391db10a4108cef9a65a7bcb47a4e">AWS_ERROR_THREAD_NOT_JOINABLE</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86ade339d9923f47304a2b252702bd715a7">AWS_ERROR_THREAD_NO_SUCH_THREAD_ID</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a3ff6836b3e5673860158b9e7b832d6c3">AWS_ERROR_THREAD_DEADLOCK_DETECTED</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a3a5a5a612fb927a344cdc29187f94459">AWS_ERROR_MUTEX_NOT_INIT</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a56b11402045b262200e6c66de6f5bf58">AWS_ERROR_MUTEX_TIMEOUT</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a9c99e46a76eda1dcba7e303c5d4c7936">AWS_ERROR_MUTEX_CALLER_NOT_OWNER</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86aa15486e97497165fc3b07b1b54a01d23">AWS_ERROR_MUTEX_FAILED</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a79ffc27a6d6d488bf938daaa6d9e41b9">AWS_ERROR_COND_VARIABLE_INIT_FAILED</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a25a27cbbc2ded26f5dd2639238eb507a">AWS_ERROR_COND_VARIABLE_TIMED_OUT</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86adebe56dd0fb578ac69bbde67b9d970fd">AWS_ERROR_COND_VARIABLE_ERROR_UNKNOWN</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a35d705617d196b6fbb138fa48a6ed686">AWS_ERROR_CLOCK_FAILURE</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86ae6fa89d508959fd195e8a139ca89b788">AWS_ERROR_LIST_EMPTY</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a7491467b7dccbd6a299991bd2582f2f3">AWS_ERROR_DEST_COPY_TOO_SMALL</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a268ad62457fbe28e256ac8eb1e925ee2">AWS_ERROR_LIST_EXCEEDS_MAX_SIZE</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86abb4d5f0aff7f31dd7f7a5ae9e9eb14e3">AWS_ERROR_LIST_STATIC_MODE_CANT_SHRINK</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a15f4e90d13d9daad372019c39c92370e">AWS_ERROR_PRIORITY_QUEUE_FULL</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86aff84bc08e67a25d16fad59fdde85a9d7">AWS_ERROR_PRIORITY_QUEUE_EMPTY</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86aaf4171da12cf147411f8b844bbaba5bc">AWS_ERROR_PRIORITY_QUEUE_BAD_NODE</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a40ab46474f00acfe71387c373422747a">AWS_ERROR_HASHTBL_ITEM_NOT_FOUND</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a5f6a9bc1d04ace0374f87cc9270b71ef">AWS_ERROR_INVALID_DATE_STR</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a797735538721067acc7b5c1951f6213e">AWS_ERROR_INVALID_ARGUMENT</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86ad4a39a229cff24a1aa88aa144630b5f4">AWS_ERROR_RANDOM_GEN_FAILED</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86ae5ce494c63551cc910fe641d77132db3">AWS_ERROR_MALFORMED_INPUT_STRING</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a925c59474fc12f64e73786fcb06ec473">AWS_ERROR_UNIMPLEMENTED</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a25c51c91670f69eeb3b9ffb7080b561b">AWS_ERROR_INVALID_STATE</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a55e18c48f6cfad5b548c3032920738cd">AWS_ERROR_ENVIRONMENT_GET</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86aabb19e12efbd75a134b1eb8a8827263d">AWS_ERROR_ENVIRONMENT_SET</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a916dc7ffbeb774f6761549c390020dff">AWS_ERROR_ENVIRONMENT_UNSET</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a71dd77c9689fe6c5bd489e42fe1fb54d">AWS_ERROR_STREAM_UNSEEKABLE</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a242e8491a4410bb13267b8367b2c41ed">AWS_ERROR_NO_PERMISSION</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a8700a6b45b1ee769354086589261c03e">AWS_ERROR_FILE_INVALID_PATH</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a98c7373f1633d8f49ed77dd6b933b13d">AWS_ERROR_MAX_FDS_EXCEEDED</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a8f459ae50a5c2b3941baa25eb815d943">AWS_ERROR_SYS_CALL_FAILURE</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86a1180130c66c6fe41c607c6f0dd83db76">AWS_ERROR_C_STRING_BUFFER_NOT_NULL_TERMINATED</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86aaee9db470f58952eace18c94bdab626e">AWS_ERROR_STRING_MATCH_NOT_FOUND</a>
-, <a class="el" href="preamble_8h.html#a45579ecff1cc2e5b25e04302d4032c86accd0ec0efee0c874169eed0451a00a3f">AWS_ERROR_END_COMMON_RANGE</a> = 0x03FF
 <br />
  }</td></tr>
 <tr class="separator:a45579ecff1cc2e5b25e04302d4032c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -265,9 +204,9 @@ Functions</h2></td></tr>
 <tr class="separator:aaec981151ccff35f11f5756137d5f46c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d4d6f865808db70a4bd9836a19c6460"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a7d4d6f865808db70a4bd9836a19c6460">aws_restore_error</a> (int err)</td></tr>
 <tr class="separator:a7d4d6f865808db70a4bd9836a19c6460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ae28861288a9c9c038bcfd37ac8f512"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a7ae28861288a9c9c038bcfd37ac8f512">aws_set_global_error_handler_fn</a> (<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>, void *<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)</td></tr>
+<tr class="memitem:a7ae28861288a9c9c038bcfd37ac8f512"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a7ae28861288a9c9c038bcfd37ac8f512">aws_set_global_error_handler_fn</a> (<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a> *handler, void *ctx)</td></tr>
 <tr class="separator:a7ae28861288a9c9c038bcfd37ac8f512"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37d1743400b196971e6f57408b26e5c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a37d1743400b196971e6f57408b26e5c4">aws_set_thread_local_error_handler_fn</a> (<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a> *<a class="el" href="connection__state__test_8c.html#a5f4fb7eeb486f3159a0f17d3d7d59637">handler</a>, void *<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)</td></tr>
+<tr class="memitem:a37d1743400b196971e6f57408b26e5c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a37d1743400b196971e6f57408b26e5c4">aws_set_thread_local_error_handler_fn</a> (<a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#a3209f2855bb6467d9b0ed0b243daa8e2">aws_error_handler_fn</a> *handler, void *ctx)</td></tr>
 <tr class="separator:a37d1743400b196971e6f57408b26e5c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd62b52c211ad3a2de6ee6fe1975f91e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="aws-c-common_2include_2aws_2common_2error_8h.html#abd62b52c211ad3a2de6ee6fe1975f91e">aws_register_error_info</a> (const struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a> *error_info)</td></tr>
 <tr class="separator:abd62b52c211ad3a2de6ee6fe1975f91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -393,14 +332,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5c0c86c38647f98229becf17743f7cb5" name="a5c0c86c38647f98229becf17743f7cb5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c0c86c38647f98229becf17743f7cb5">&#9670;&nbsp;</a></span>AWS_OP_SUCCESS</h2>
+<a id="aa614dfea2e3cf41c68a4f2405f9d0e0f" name="aa614dfea2e3cf41c68a4f2405f9d0e0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa614dfea2e3cf41c68a4f2405f9d0e0f">&#9670;&nbsp;</a></span>AWS_OP_SUCCESS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">return AWS_OP_SUCCESS&#160;&#160;&#160;(0)</td>
+          <td class="memname">#define AWS_OP_SUCCESS&#160;&#160;&#160;(0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -416,7 +355,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_error_handler_fn(int err, void *<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)</td>
+          <td class="memname">typedef void() aws_error_handler_fn(int err, void *ctx)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -486,55 +425,6 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a1180130c66c6fe41c607c6f0dd83db76" name="a45579ecff1cc2e5b25e04302d4032c86a1180130c66c6fe41c607c6f0dd83db76"></a>AWS_ERROR_C_STRING_BUFFER_NOT_NULL_TERMINATED&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86aaee9db470f58952eace18c94bdab626e" name="a45579ecff1cc2e5b25e04302d4032c86aaee9db470f58952eace18c94bdab626e"></a>AWS_ERROR_STRING_MATCH_NOT_FOUND&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a02e7bbb4ed227526df6a2d8f3b15cea7" name="a45579ecff1cc2e5b25e04302d4032c86a02e7bbb4ed227526df6a2d8f3b15cea7"></a>AWS_ERROR_DIVIDE_BY_ZERO&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86accd0ec0efee0c874169eed0451a00a3f" name="a45579ecff1cc2e5b25e04302d4032c86accd0ec0efee0c874169eed0451a00a3f"></a>AWS_ERROR_END_COMMON_RANGE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86adf338bac941b69fd3932405f57a83267" name="a45579ecff1cc2e5b25e04302d4032c86adf338bac941b69fd3932405f57a83267"></a>AWS_ERROR_SUCCESS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86afc1e1a5c86509e16a8d6af94cbdb6edb" name="a45579ecff1cc2e5b25e04302d4032c86afc1e1a5c86509e16a8d6af94cbdb6edb"></a>AWS_ERROR_OOM&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86ae178ce3419ba0af13fc60d796d81d70a" name="a45579ecff1cc2e5b25e04302d4032c86ae178ce3419ba0af13fc60d796d81d70a"></a>AWS_ERROR_UNKNOWN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a53feb9934229fcc5a1eda9c33d5f1f50" name="a45579ecff1cc2e5b25e04302d4032c86a53feb9934229fcc5a1eda9c33d5f1f50"></a>AWS_ERROR_SHORT_BUFFER&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a20686840ef986e1f00e25e5ba2e8c70c" name="a45579ecff1cc2e5b25e04302d4032c86a20686840ef986e1f00e25e5ba2e8c70c"></a>AWS_ERROR_OVERFLOW_DETECTED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86ac9e8c3244b7723a0a75487e3534f5ec0" name="a45579ecff1cc2e5b25e04302d4032c86ac9e8c3244b7723a0a75487e3534f5ec0"></a>AWS_ERROR_UNSUPPORTED_OPERATION&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a6bb5d26f748fac071dcaa7524b3dc93c" name="a45579ecff1cc2e5b25e04302d4032c86a6bb5d26f748fac071dcaa7524b3dc93c"></a>AWS_ERROR_INVALID_BUFFER_SIZE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86af0f0dafeac4f50863f90da3b6440b373" name="a45579ecff1cc2e5b25e04302d4032c86af0f0dafeac4f50863f90da3b6440b373"></a>AWS_ERROR_INVALID_HEX_STR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86af9e53f019480625ab2db4c0c6a0da8db" name="a45579ecff1cc2e5b25e04302d4032c86af9e53f019480625ab2db4c0c6a0da8db"></a>AWS_ERROR_INVALID_BASE64_STR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86af69025f1ee0ec28fcbdecfc9bcb5b5ff" name="a45579ecff1cc2e5b25e04302d4032c86af69025f1ee0ec28fcbdecfc9bcb5b5ff"></a>AWS_ERROR_INVALID_INDEX&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a5f29b5dc6e09efd4487211f6774adb08" name="a45579ecff1cc2e5b25e04302d4032c86a5f29b5dc6e09efd4487211f6774adb08"></a>AWS_ERROR_THREAD_INVALID_SETTINGS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86adf09df001b2ac1f45e20b9a324e1dde6" name="a45579ecff1cc2e5b25e04302d4032c86adf09df001b2ac1f45e20b9a324e1dde6"></a>AWS_ERROR_THREAD_INSUFFICIENT_RESOURCE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a639a8b324f65aa8489ec8db0c0705750" name="a45579ecff1cc2e5b25e04302d4032c86a639a8b324f65aa8489ec8db0c0705750"></a>AWS_ERROR_THREAD_NO_PERMISSIONS&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86ae34391db10a4108cef9a65a7bcb47a4e" name="a45579ecff1cc2e5b25e04302d4032c86ae34391db10a4108cef9a65a7bcb47a4e"></a>AWS_ERROR_THREAD_NOT_JOINABLE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86ade339d9923f47304a2b252702bd715a7" name="a45579ecff1cc2e5b25e04302d4032c86ade339d9923f47304a2b252702bd715a7"></a>AWS_ERROR_THREAD_NO_SUCH_THREAD_ID&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a3ff6836b3e5673860158b9e7b832d6c3" name="a45579ecff1cc2e5b25e04302d4032c86a3ff6836b3e5673860158b9e7b832d6c3"></a>AWS_ERROR_THREAD_DEADLOCK_DETECTED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a3a5a5a612fb927a344cdc29187f94459" name="a45579ecff1cc2e5b25e04302d4032c86a3a5a5a612fb927a344cdc29187f94459"></a>AWS_ERROR_MUTEX_NOT_INIT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a56b11402045b262200e6c66de6f5bf58" name="a45579ecff1cc2e5b25e04302d4032c86a56b11402045b262200e6c66de6f5bf58"></a>AWS_ERROR_MUTEX_TIMEOUT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a9c99e46a76eda1dcba7e303c5d4c7936" name="a45579ecff1cc2e5b25e04302d4032c86a9c99e46a76eda1dcba7e303c5d4c7936"></a>AWS_ERROR_MUTEX_CALLER_NOT_OWNER&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86aa15486e97497165fc3b07b1b54a01d23" name="a45579ecff1cc2e5b25e04302d4032c86aa15486e97497165fc3b07b1b54a01d23"></a>AWS_ERROR_MUTEX_FAILED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a79ffc27a6d6d488bf938daaa6d9e41b9" name="a45579ecff1cc2e5b25e04302d4032c86a79ffc27a6d6d488bf938daaa6d9e41b9"></a>AWS_ERROR_COND_VARIABLE_INIT_FAILED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a25a27cbbc2ded26f5dd2639238eb507a" name="a45579ecff1cc2e5b25e04302d4032c86a25a27cbbc2ded26f5dd2639238eb507a"></a>AWS_ERROR_COND_VARIABLE_TIMED_OUT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86adebe56dd0fb578ac69bbde67b9d970fd" name="a45579ecff1cc2e5b25e04302d4032c86adebe56dd0fb578ac69bbde67b9d970fd"></a>AWS_ERROR_COND_VARIABLE_ERROR_UNKNOWN&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a35d705617d196b6fbb138fa48a6ed686" name="a45579ecff1cc2e5b25e04302d4032c86a35d705617d196b6fbb138fa48a6ed686"></a>AWS_ERROR_CLOCK_FAILURE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86ae6fa89d508959fd195e8a139ca89b788" name="a45579ecff1cc2e5b25e04302d4032c86ae6fa89d508959fd195e8a139ca89b788"></a>AWS_ERROR_LIST_EMPTY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a7491467b7dccbd6a299991bd2582f2f3" name="a45579ecff1cc2e5b25e04302d4032c86a7491467b7dccbd6a299991bd2582f2f3"></a>AWS_ERROR_DEST_COPY_TOO_SMALL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a268ad62457fbe28e256ac8eb1e925ee2" name="a45579ecff1cc2e5b25e04302d4032c86a268ad62457fbe28e256ac8eb1e925ee2"></a>AWS_ERROR_LIST_EXCEEDS_MAX_SIZE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86abb4d5f0aff7f31dd7f7a5ae9e9eb14e3" name="a45579ecff1cc2e5b25e04302d4032c86abb4d5f0aff7f31dd7f7a5ae9e9eb14e3"></a>AWS_ERROR_LIST_STATIC_MODE_CANT_SHRINK&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a15f4e90d13d9daad372019c39c92370e" name="a45579ecff1cc2e5b25e04302d4032c86a15f4e90d13d9daad372019c39c92370e"></a>AWS_ERROR_PRIORITY_QUEUE_FULL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86aff84bc08e67a25d16fad59fdde85a9d7" name="a45579ecff1cc2e5b25e04302d4032c86aff84bc08e67a25d16fad59fdde85a9d7"></a>AWS_ERROR_PRIORITY_QUEUE_EMPTY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86aaf4171da12cf147411f8b844bbaba5bc" name="a45579ecff1cc2e5b25e04302d4032c86aaf4171da12cf147411f8b844bbaba5bc"></a>AWS_ERROR_PRIORITY_QUEUE_BAD_NODE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a40ab46474f00acfe71387c373422747a" name="a45579ecff1cc2e5b25e04302d4032c86a40ab46474f00acfe71387c373422747a"></a>AWS_ERROR_HASHTBL_ITEM_NOT_FOUND&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a5f6a9bc1d04ace0374f87cc9270b71ef" name="a45579ecff1cc2e5b25e04302d4032c86a5f6a9bc1d04ace0374f87cc9270b71ef"></a>AWS_ERROR_INVALID_DATE_STR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a797735538721067acc7b5c1951f6213e" name="a45579ecff1cc2e5b25e04302d4032c86a797735538721067acc7b5c1951f6213e"></a>AWS_ERROR_INVALID_ARGUMENT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86ad4a39a229cff24a1aa88aa144630b5f4" name="a45579ecff1cc2e5b25e04302d4032c86ad4a39a229cff24a1aa88aa144630b5f4"></a>AWS_ERROR_RANDOM_GEN_FAILED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86ae5ce494c63551cc910fe641d77132db3" name="a45579ecff1cc2e5b25e04302d4032c86ae5ce494c63551cc910fe641d77132db3"></a>AWS_ERROR_MALFORMED_INPUT_STRING&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a925c59474fc12f64e73786fcb06ec473" name="a45579ecff1cc2e5b25e04302d4032c86a925c59474fc12f64e73786fcb06ec473"></a>AWS_ERROR_UNIMPLEMENTED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a25c51c91670f69eeb3b9ffb7080b561b" name="a45579ecff1cc2e5b25e04302d4032c86a25c51c91670f69eeb3b9ffb7080b561b"></a>AWS_ERROR_INVALID_STATE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a55e18c48f6cfad5b548c3032920738cd" name="a45579ecff1cc2e5b25e04302d4032c86a55e18c48f6cfad5b548c3032920738cd"></a>AWS_ERROR_ENVIRONMENT_GET&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86aabb19e12efbd75a134b1eb8a8827263d" name="a45579ecff1cc2e5b25e04302d4032c86aabb19e12efbd75a134b1eb8a8827263d"></a>AWS_ERROR_ENVIRONMENT_SET&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a916dc7ffbeb774f6761549c390020dff" name="a45579ecff1cc2e5b25e04302d4032c86a916dc7ffbeb774f6761549c390020dff"></a>AWS_ERROR_ENVIRONMENT_UNSET&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a71dd77c9689fe6c5bd489e42fe1fb54d" name="a45579ecff1cc2e5b25e04302d4032c86a71dd77c9689fe6c5bd489e42fe1fb54d"></a>AWS_ERROR_STREAM_UNSEEKABLE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a242e8491a4410bb13267b8367b2c41ed" name="a45579ecff1cc2e5b25e04302d4032c86a242e8491a4410bb13267b8367b2c41ed"></a>AWS_ERROR_NO_PERMISSION&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a8700a6b45b1ee769354086589261c03e" name="a45579ecff1cc2e5b25e04302d4032c86a8700a6b45b1ee769354086589261c03e"></a>AWS_ERROR_FILE_INVALID_PATH&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a98c7373f1633d8f49ed77dd6b933b13d" name="a45579ecff1cc2e5b25e04302d4032c86a98c7373f1633d8f49ed77dd6b933b13d"></a>AWS_ERROR_MAX_FDS_EXCEEDED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a8f459ae50a5c2b3941baa25eb815d943" name="a45579ecff1cc2e5b25e04302d4032c86a8f459ae50a5c2b3941baa25eb815d943"></a>AWS_ERROR_SYS_CALL_FAILURE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86a1180130c66c6fe41c607c6f0dd83db76" name="a45579ecff1cc2e5b25e04302d4032c86a1180130c66c6fe41c607c6f0dd83db76"></a>AWS_ERROR_C_STRING_BUFFER_NOT_NULL_TERMINATED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86aaee9db470f58952eace18c94bdab626e" name="a45579ecff1cc2e5b25e04302d4032c86aaee9db470f58952eace18c94bdab626e"></a>AWS_ERROR_STRING_MATCH_NOT_FOUND&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a45579ecff1cc2e5b25e04302d4032c86accd0ec0efee0c874169eed0451a00a3f" name="a45579ecff1cc2e5b25e04302d4032c86accd0ec0efee0c874169eed0451a00a3f"></a>AWS_ERROR_END_COMMON_RANGE&#160;</td><td class="fielddoc"></td></tr>
 </table>
 

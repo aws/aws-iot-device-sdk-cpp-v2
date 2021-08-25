@@ -4,7 +4,7 @@ Proofs\+: {\ttfamily tests/vcc/}
 
 Implementation\+: Linux event loop ({\ttfamily \mbox{\hyperlink{epoll__event__loop_8c}{source/linux/epoll\+\_\+event\+\_\+loop.\+c}}})
 
-Specification / Properties ({\ttfamily \mbox{\hyperlink{preamble_8h}{preamble.\+h}}})\+:
+Specification / Properties ({\ttfamily preamble.\+h})\+:
 \begin{DoxyItemize}
 \item {\itshape Memory safety}\+: the implementation only accesses valid memory.
 \item {\itshape Thread safety}\+: threads only update objects that they own.
@@ -13,12 +13,12 @@ Specification / Properties ({\ttfamily \mbox{\hyperlink{preamble_8h}{preamble.\+
 \item The scheduler for task execution is thread-\/local to the event loop thread (so is sequential since no other threads read or write directly to the scheduler). Tasks move from client threads to the event loop via properly-\/synchronized ownership transfers, using locking.
 \item Subscribe/notify for event execution is properly-\/synchronized via epoll.
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md247}{}\doxysection{Assumptions}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md247}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md246}{}\doxysection{Assumptions}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md246}
 Generally, we assume well-\/behaved clients; the correctness of underlying primitives (memory allocation, AWS C Common library, syscalls); and, minor assumptions due to limitations in VCC. More precisely, the proofs assume\+:
 
 
 \begin{DoxyItemize}
-\item Well-\/behaved client\+: all client threads use the event loop API in a manner that adheres to the specification. A badly-\/behaved client can invalidate the proven properties. For example, a client that reads, writes, or frees a task struct object that is scheduled on the event loop is racy and no longer thread safe. The specification given in {\ttfamily \mbox{\hyperlink{preamble_8h}{preamble.\+h}}} forbids this behavior (the ownership of the task struct changes as a result of the schedule function) but we cannot, in general, enforce this behavior since we do not verify client code.
+\item Well-\/behaved client\+: all client threads use the event loop API in a manner that adheres to the specification. A badly-\/behaved client can invalidate the proven properties. For example, a client that reads, writes, or frees a task struct object that is scheduled on the event loop is racy and no longer thread safe. The specification given in {\ttfamily preamble.\+h} forbids this behavior (the ownership of the task struct changes as a result of the schedule function) but we cannot, in general, enforce this behavior since we do not verify client code.
 \item Thread safety of the allocator functions {\ttfamily aws\+\_\+mem\+\_\+\{calloc,release\}}. This is important in the case where a client uses a custom allocator.
 \item Memory safety and function contracts for the following AWS C Common functions\+: \begin{DoxyVerb}aws_atomic_compare_exchange_ptr
 aws_atomic_{init, load, store}_{int, ptr}
@@ -38,7 +38,7 @@ epoll_{ctl, wait, create}
 eventfd
 read, write
 \end{DoxyVerb}
- The contracts are given in the {\ttfamily \mbox{\hyperlink{preamble_8h}{preamble.\+h}}} and proof files. The contracts are assumed, not proven. The memory safety of the AWS C Common linked list functions have been proven in CBMC.
+ The contracts are given in the {\ttfamily preamble.\+h} and proof files. The contracts are assumed, not proven. The memory safety of the AWS C Common linked list functions have been proven in CBMC.
 \item Thread safety of the epoll syscalls {\ttfamily epoll\+\_\+\{ctl, wait\}}. We additionally assume that the {\ttfamily ctl} (subscribe) and {\ttfamily wait} syscalls induce \char`\"{}happens     before\char`\"{} so that the litmus test (See Appendix) is data-\/race free and therefore properly-\/synchronizes event subscribe/notify.
 \item Minor assumptions due to limitations of the VCC tool.
 \begin{DoxyItemize}
@@ -46,7 +46,7 @@ read, write
 \item In {\ttfamily s\+\_\+run} we do not model the ownership transfer of the event loop from the client thread to the freshly-\/launched event loop thread. We manually validate that this assumption is reasonable.
 \end{DoxyItemize}
 \item The Sequentially Consistent Data Race Free (SC-\/\+DRF) guarantee required by the C11 standard\+: if a program is race-\/free and contains no non-\/\+SC atomic operations, then it has only SC semantics \mbox{[}Note 12, N1570\mbox{]}. We rely on SC-\/\+DRF to justify the use of VCC\textquotesingle{}s SC memory model. We manually validate that the event loop implementation contains no non-\/\+SC atomic operations. Validation is required for pre-\/\+C11 compilers.
-\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md248}{}\doxysection{Simplifications}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md248}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md247}{}\doxysection{Simplifications}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md247}
 
 \begin{DoxyItemize}
 \item Omit modeling of hash-\/table {\ttfamily local\+\_\+data} in event loop.
@@ -66,13 +66,13 @@ int pipe_fds[2] = {0};
 int pipe_fds[2]; pipe_fds[0] = 0; pipe_fds[1] = 0;
 \end{DoxyVerb}
  
-\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md249}{}\doxysection{Trusted computing base}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md249}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md248}{}\doxysection{Trusted computing base}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md248}
 
 \begin{DoxyItemize}
 \item Soundness of verification tools\+: VCC, Boogie, Z3
 \item C Compiler, because the verification is at the C code-\/level and the properties proved may not be preserved by compilation.
-\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md250}{}\doxysection{References}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md250}
-\mbox{[}N1570\mbox{]} ISO/\+IEC. Programming languages – C. International standard 9899\+:201x, 2011\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md251}{}\doxysection{Appendix}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md251}
+\end{DoxyItemize}\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md249}{}\doxysection{References}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md249}
+\mbox{[}N1570\mbox{]} ISO/\+IEC. Programming languages – C. International standard 9899\+:201x, 2011\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md250}{}\doxysection{Appendix}\label{md_crt_aws_crt_cpp_crt_aws_c_io_docs_epoll_event_loop_proof_autotoc_md250}
 Assumption on \char`\"{}happens before\char`\"{} induced by {\ttfamily epoll\+\_\+\{ctl/wait\}}. Informally, we need \char`\"{}message-\/passing\char`\"{} to hold so that the shared data passed from T1-\/to-\/\+T2 is guaranteed not-\/to-\/race. \begin{DoxyVerb}    // Initially *data == 0 (non-atomic location)
     // T1
     *data = 1;

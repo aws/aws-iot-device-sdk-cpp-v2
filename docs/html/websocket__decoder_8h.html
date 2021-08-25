@@ -86,9 +86,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a500a94daa4d5564f07794f8280a121e1"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8h.html#a500a94daa4d5564f07794f8280a121e1">aws_websocket_decoder_frame_fn</a>(const struct <a class="el" href="structaws__websocket__frame.html">aws_websocket_frame</a> *frame, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a500a94daa4d5564f07794f8280a121e1"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8h.html#a500a94daa4d5564f07794f8280a121e1">aws_websocket_decoder_frame_fn</a>(const struct <a class="el" href="structaws__websocket__frame.html">aws_websocket_frame</a> *frame, void *user_data)</td></tr>
 <tr class="separator:a500a94daa4d5564f07794f8280a121e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07eafb6d2e544a056420074ae68c2808"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8h.html#a07eafb6d2e544a056420074ae68c2808">aws_websocket_decoder_payload_fn</a>(struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> data, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a07eafb6d2e544a056420074ae68c2808"><td class="memItemLeft" align="right" valign="top">typedef int()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8h.html#a07eafb6d2e544a056420074ae68c2808">aws_websocket_decoder_payload_fn</a>(struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> data, void *user_data)</td></tr>
 <tr class="separator:a07eafb6d2e544a056420074ae68c2808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -111,9 +111,9 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2453010a4195d01e3b5fb22793978b65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8h.html#a2453010a4195d01e3b5fb22793978b65">aws_websocket_decoder_init</a> (struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a> *decoder, <a class="el" href="websocket__decoder_8h.html#a500a94daa4d5564f07794f8280a121e1">aws_websocket_decoder_frame_fn</a> *on_frame, <a class="el" href="websocket__decoder_8h.html#a07eafb6d2e544a056420074ae68c2808">aws_websocket_decoder_payload_fn</a> *on_payload, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a2453010a4195d01e3b5fb22793978b65"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8h.html#a2453010a4195d01e3b5fb22793978b65">aws_websocket_decoder_init</a> (struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a> *decoder, <a class="el" href="websocket__decoder_8h.html#a500a94daa4d5564f07794f8280a121e1">aws_websocket_decoder_frame_fn</a> *on_frame, <a class="el" href="websocket__decoder_8h.html#a07eafb6d2e544a056420074ae68c2808">aws_websocket_decoder_payload_fn</a> *on_payload, void *user_data)</td></tr>
 <tr class="separator:a2453010a4195d01e3b5fb22793978b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53fa736a27af409a90401914df800650"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8h.html#a53fa736a27af409a90401914df800650">aws_websocket_decoder_process</a> (struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *frame_complete)</td></tr>
+<tr class="memitem:a53fa736a27af409a90401914df800650"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h.html#a8eba90dca01a9989cacc0060fa84122a">AWS_HTTP_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="websocket__decoder_8h.html#a53fa736a27af409a90401914df800650">aws_websocket_decoder_process</a> (struct <a class="el" href="structaws__websocket__decoder.html">aws_websocket_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *data, bool *frame_complete)</td></tr>
 <tr class="separator:a53fa736a27af409a90401914df800650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -124,7 +124,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int() aws_websocket_decoder_frame_fn(const struct <a class="el" href="structaws__websocket__frame.html">aws_websocket_frame</a> *frame, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">typedef int() aws_websocket_decoder_frame_fn(const struct <a class="el" href="structaws__websocket__frame.html">aws_websocket_frame</a> *frame, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -139,7 +139,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int() aws_websocket_decoder_payload_fn(struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> data, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">typedef int() aws_websocket_decoder_payload_fn(struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> data, void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -235,7 +235,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *&#160;</td>
+          <td class="paramtype">bool *&#160;</td>
           <td class="paramname"><em>frame_complete</em>&#160;</td>
         </tr>
         <tr>

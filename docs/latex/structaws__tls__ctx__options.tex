@@ -25,7 +25,7 @@ struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} \mbox{\hy
 \item 
 size\+\_\+t \mbox{\hyperlink{structaws__tls__ctx__options_a251d50a4e12e6f3304fc4c6fb961b784}{max\+\_\+fragment\+\_\+size}}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structaws__tls__ctx__options_a84b17cdd289240c09593771aefc6d19e}{verify\+\_\+peer}}
+bool \mbox{\hyperlink{structaws__tls__ctx__options_a84b17cdd289240c09593771aefc6d19e}{verify\+\_\+peer}}
 \end{DoxyCompactItemize}
 
 
@@ -90,7 +90,7 @@ On windows, this field should be NULL only if you are using a system installed c
 \index{aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}!verify\_peer@{verify\_peer}}
 \index{verify\_peer@{verify\_peer}!aws\_tls\_ctx\_options@{aws\_tls\_ctx\_options}}
 \doxysubsubsection{\texorpdfstring{verify\_peer}{verify\_peer}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+tls\+\_\+ctx\+\_\+options\+::verify\+\_\+peer}
+{\footnotesize\ttfamily bool aws\+\_\+tls\+\_\+ctx\+\_\+options\+::verify\+\_\+peer}
 
 default is true for clients and false for servers. You should not change this default for clients unless you\textquotesingle{}re testing and don\textquotesingle{}t want to fool around with CA trust stores. Before you release to production, you\textquotesingle{}ll want to turn this back on and add your custom CA to the \mbox{\hyperlink{structaws__tls__ctx__options}{aws\+\_\+tls\+\_\+ctx\+\_\+options}}.
 

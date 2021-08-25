@@ -45,7 +45,7 @@ int \mbox{\hyperlink{s2n__kex_8c_a1fdde1ff8ebd70db29bde876ad97f725}{s2n\+\_\+kex
 \item 
 int \mbox{\hyperlink{s2n__kex_8c_a43cb690639ca2281aef238ecbcb816fb}{s2n\+\_\+kex\+\_\+tls\+\_\+prf}} (const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$kex, struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$premaster\+\_\+secret)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__kex_8c_a904282bec21c3f5467f77710fc02a02c}{s2n\+\_\+kex\+\_\+includes}} (const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$kex, const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$query)
+bool \mbox{\hyperlink{s2n__kex_8c_a904282bec21c3f5467f77710fc02a02c}{s2n\+\_\+kex\+\_\+includes}} (const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$kex, const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$query)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -121,7 +121,7 @@ const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} \mbox{\hyperlink{s2
 \index{s2n\_kex.c@{s2n\_kex.c}!s2n\_kex\_includes@{s2n\_kex\_includes}}
 \index{s2n\_kex\_includes@{s2n\_kex\_includes}!s2n\_kex.c@{s2n\_kex.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_kex\_includes()}{s2n\_kex\_includes()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+kex\+\_\+includes (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$}]{kex,  }\item[{const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$}]{query }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+kex\+\_\+includes (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$}]{kex,  }\item[{const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} $\ast$}]{query }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__kex_8c_a4844fa0417149b17f63f918a3cdbb326}\label{s2n__kex_8c_a4844fa0417149b17f63f918a3cdbb326}} 
 \index{s2n\_kex.c@{s2n\_kex.c}!s2n\_kex\_is\_ephemeral@{s2n\_kex\_is\_ephemeral}}
@@ -267,7 +267,7 @@ const struct \mbox{\hyperlink{structs2n__kex}{s2n\+\_\+kex}} \mbox{\hyperlink{s2
 \DoxyCodeLine{    .server\_key\_recv\_read\_data = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
 \DoxyCodeLine{    .server\_key\_recv\_parse\_data = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
 \DoxyCodeLine{    .server\_key\_send = \mbox{\hyperlink{namespace_aws_a41b67e809416e9bd96026fa1f414925d}{NULL}},}
-\DoxyCodeLine{    .client\_key\_recv = \&\mbox{\hyperlink{s2n__server__fuzz__test__overrides_8c_a3189be6ffa9dc24179dbb320db153295}{s2n\_rsa\_client\_key\_recv}},}
+\DoxyCodeLine{    .client\_key\_recv = \&\mbox{\hyperlink{s2n__client__key__exchange_8c_a3189be6ffa9dc24179dbb320db153295}{s2n\_rsa\_client\_key\_recv}},}
 \DoxyCodeLine{    .client\_key\_send = \&\mbox{\hyperlink{s2n__client__key__exchange_8c_a00a7d4e06f27911e116cc04c5ffe2d1d}{s2n\_rsa\_client\_key\_send}},}
 \DoxyCodeLine{    .prf = \&\mbox{\hyperlink{s2n__prf_8c_a4014572c10b4fd05b559b71d860595e3}{s2n\_tls\_prf\_master\_secret}},}
 \DoxyCodeLine{\}}

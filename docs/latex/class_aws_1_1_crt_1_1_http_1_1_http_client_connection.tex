@@ -25,7 +25,7 @@ virtual \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a
 \item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_stream}{Http\+Client\+Stream}} $>$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a872224827a5001b9f5dee1b22c060248}{New\+Client\+Stream}} (const \mbox{\hyperlink{struct_aws_1_1_crt_1_1_http_1_1_http_request_options}{Http\+Request\+Options}} \&request\+Options) noexcept
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_aea2f037c2daa716775eeb1958da8933d}{Is\+Open}} () const noexcept
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_aea2f037c2daa716775eeb1958da8933d}{Is\+Open}} () const noexcept
 \item 
 void \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a2099619e869a3bc6365f27fe1ce44f20}{Close}} () noexcept
 \item 
@@ -36,12 +36,12 @@ int \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_ac166
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a0d552f646074ba83b71a6cb45aba4b55}{Create\+Connection}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&connection\+Options, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) noexcept
+static bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a0d552f646074ba83b71a6cb45aba4b55}{Create\+Connection}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&connection\+Options, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator) noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a171692c127a7fddec5e525c95a9e1a77}{Http\+Client\+Connection}} (\mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a84a4b9d5ec439a84fcac7c4b94efffdf}{m\+\_\+connection}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a171692c127a7fddec5e525c95a9e1a77}{Http\+Client\+Connection}} (\mbox{\hyperlink{structaws__http__connection}{aws\+\_\+http\+\_\+connection}} $\ast$\mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_a84a4b9d5ec439a84fcac7c4b94efffdf}{m\+\_\+connection}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator) noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -93,7 +93,7 @@ Assuming {\ttfamily On\+Connection\+Shutdown} has not already been invoked, it w
 \index{Aws::Crt::Http::HttpClientConnection@{Aws::Crt::Http::HttpClientConnection}!CreateConnection@{CreateConnection}}
 \index{CreateConnection@{CreateConnection}!Aws::Crt::Http::HttpClientConnection@{Aws::Crt::Http::HttpClientConnection}}
 \doxysubsubsection{\texorpdfstring{CreateConnection()}{CreateConnection()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+::\+Create\+Connection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&}]{connection\+Options,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+::\+Create\+Connection (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_client_connection_options}{Http\+Client\+Connection\+Options}} \&}]{connection\+Options,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 Create a new Https Connection to host\+Name\+:port, using {\ttfamily socket\+Options} for tcp options and {\ttfamily tls\+Conn\+Options} for TLS/\+SSL options. If {\ttfamily tls\+Conn\+Options} is null http (plain-\/text) will be used.
 
@@ -110,7 +110,7 @@ protocol version the connection used
 \index{Aws::Crt::Http::HttpClientConnection@{Aws::Crt::Http::HttpClientConnection}!IsOpen@{IsOpen}}
 \index{IsOpen@{IsOpen}!Aws::Crt::Http::HttpClientConnection@{Aws::Crt::Http::HttpClientConnection}}
 \doxysubsubsection{\texorpdfstring{IsOpen()}{IsOpen()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+::\+Is\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Http\+::\+Http\+Client\+Connection\+::\+Is\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 \begin{DoxyReturn}{Returns}
 true unless the connection is closed or closing. 

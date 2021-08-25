@@ -9,9 +9,9 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__stuffer_8c_affe0866d605f82d09ab527a90294ea5b}{s2n\+\_\+stuffer\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
+bool \mbox{\hyperlink{s2n__stuffer_8c_affe0866d605f82d09ab527a90294ea5b}{s2n\+\_\+stuffer\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__stuffer_8c_a0321c76c37c2550418d41e9933e3b2cd}{s2n\+\_\+stuffer\+\_\+reservation\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+reservation}} $\ast$reservation)
+bool \mbox{\hyperlink{s2n__stuffer_8c_a0321c76c37c2550418d41e9933e3b2cd}{s2n\+\_\+stuffer\+\_\+reservation\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+reservation}} $\ast$reservation)
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8c_af556836db8ed75fdb89af3d418fab2ee}{s2n\+\_\+stuffer\+\_\+init}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, struct s2n\+\_\+blob $\ast$in)
 \item 
@@ -33,7 +33,7 @@ int \mbox{\hyperlink{s2n__stuffer_8c_a5d6db4ed8311ba66aec1227fceca24a9}{s2n\+\_\
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8c_a15cd08990395a34e8f22775c2db3455b}{s2n\+\_\+stuffer\+\_\+wipe\+\_\+n}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer, const uint32\+\_\+t size)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{s2n__stuffer_8c_ab7101e6845348537f5d2fcc792f44cde}{s2n\+\_\+stuffer\+\_\+is\+\_\+consumed}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
+bool \mbox{\hyperlink{s2n__stuffer_8c_ab7101e6845348537f5d2fcc792f44cde}{s2n\+\_\+stuffer\+\_\+is\+\_\+consumed}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
 \item 
 int \mbox{\hyperlink{s2n__stuffer_8c_a2b6b54f7856d92f06f823bc26d10f4ba}{s2n\+\_\+stuffer\+\_\+wipe}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$stuffer)
 \item 
@@ -128,13 +128,13 @@ int \mbox{\hyperlink{s2n__stuffer_8c_a525cdc554c91b64fd48ac2581572b185}{s2n\+\_\
 \index{s2n\_stuffer.c@{s2n\_stuffer.c}!s2n\_stuffer\_is\_consumed@{s2n\_stuffer\_is\_consumed}}
 \index{s2n\_stuffer\_is\_consumed@{s2n\_stuffer\_is\_consumed}!s2n\_stuffer.c@{s2n\_stuffer.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_stuffer\_is\_consumed()}{s2n\_stuffer\_is\_consumed()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+stuffer\+\_\+is\+\_\+consumed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+stuffer\+\_\+is\+\_\+consumed (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{s2n__stuffer_8c_affe0866d605f82d09ab527a90294ea5b}\label{s2n__stuffer_8c_affe0866d605f82d09ab527a90294ea5b}} 
 \index{s2n\_stuffer.c@{s2n\_stuffer.c}!s2n\_stuffer\_is\_valid@{s2n\_stuffer\_is\_valid}}
 \index{s2n\_stuffer\_is\_valid@{s2n\_stuffer\_is\_valid}!s2n\_stuffer.c@{s2n\_stuffer.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_stuffer\_is\_valid()}{s2n\_stuffer\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+stuffer\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+stuffer\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$}]{stuffer }\end{DoxyParamCaption})}
 
 Note that we do not assert any properties on the alloced, growable, and tainted fields, as all possible combinations of boolean values in those fields are valid.\mbox{\Hypertarget{s2n__stuffer_8c_a5148294f6ed0bf894afc83a31ee4f8a5}\label{s2n__stuffer_8c_a5148294f6ed0bf894afc83a31ee4f8a5}} 
 \index{s2n\_stuffer.c@{s2n\_stuffer.c}!s2n\_stuffer\_raw\_read@{s2n\_stuffer\_raw\_read}}
@@ -170,7 +170,7 @@ Note that we do not assert any properties on the alloced, growable, and tainted 
 \index{s2n\_stuffer.c@{s2n\_stuffer.c}!s2n\_stuffer\_reservation\_is\_valid@{s2n\_stuffer\_reservation\_is\_valid}}
 \index{s2n\_stuffer\_reservation\_is\_valid@{s2n\_stuffer\_reservation\_is\_valid}!s2n\_stuffer.c@{s2n\_stuffer.c}}
 \doxysubsubsection{\texorpdfstring{s2n\_stuffer\_reservation\_is\_valid()}{s2n\_stuffer\_reservation\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s2n\+\_\+stuffer\+\_\+reservation\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+reservation}} $\ast$}]{reservation }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool s2n\+\_\+stuffer\+\_\+reservation\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structs2n__stuffer__reservation}{s2n\+\_\+stuffer\+\_\+reservation}} $\ast$}]{reservation }\end{DoxyParamCaption})}
 
 Note that we need two dereferences here to decrease proof complexity for CBMC (see \href{https://github.com/awslabs/s2n/issues/2290}{\texttt{ https\+://github.\+com/awslabs/s2n/issues/2290}}). We can roll back this change once CBMC can handle common subexpression elimination.\mbox{\Hypertarget{s2n__stuffer_8c_aff927b856ba44d7f6bbf45703f510fec}\label{s2n__stuffer_8c_aff927b856ba44d7f6bbf45703f510fec}} 
 \index{s2n\_stuffer.c@{s2n\_stuffer.c}!s2n\_stuffer\_reserve\_space@{s2n\_stuffer\_reserve\_space}}

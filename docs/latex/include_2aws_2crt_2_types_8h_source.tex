@@ -126,28 +126,28 @@
 \DoxyCodeLine{137             \textcolor{keywordflow}{return} bc;}
 \DoxyCodeLine{138         \}}
 \DoxyCodeLine{139 }
-\DoxyCodeLine{140         \textcolor{keyword}{template} <\textcolor{keyword}{typename} T> \textcolor{keywordtype}{void} \mbox{\hyperlink{namespace_aws_1_1_crt_a5e912a3a4aa95134bbc477dde8e5ea5c}{Delete}}(T *t, \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})}
+\DoxyCodeLine{140         \textcolor{keyword}{template} <\textcolor{keyword}{typename} T> \textcolor{keywordtype}{void} \mbox{\hyperlink{namespace_aws_1_1_crt_a5e912a3a4aa95134bbc477dde8e5ea5c}{Delete}}(T *t, \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator)}
 \DoxyCodeLine{141         \{}
 \DoxyCodeLine{142             t-\/>\string~T();}
-\DoxyCodeLine{143             \mbox{\hyperlink{preamble_8h_a7f273578823e2deda95364138491f729}{aws\_mem\_release}}(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, t);}
+\DoxyCodeLine{143             \mbox{\hyperlink{allocator_8h_ac34324e684063da863a00f4fb8129906}{aws\_mem\_release}}(allocator, t);}
 \DoxyCodeLine{144         \}}
 \DoxyCodeLine{145 }
-\DoxyCodeLine{146         \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Args> T *\mbox{\hyperlink{namespace_aws_1_1_crt_a73cd1bbefbe5b887eb3cfdb791ac8213}{New}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, Args \&\&... \mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}})}
+\DoxyCodeLine{146         \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Args> T *\mbox{\hyperlink{namespace_aws_1_1_crt_a73cd1bbefbe5b887eb3cfdb791ac8213}{New}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator, Args \&\&... \mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}})}
 \DoxyCodeLine{147         \{}
-\DoxyCodeLine{148             T *t = \textcolor{keyword}{reinterpret\_cast<}T *\textcolor{keyword}{>}(\mbox{\hyperlink{allocator_8h_a5137d8d9aa39ddc261c3cb5e54c2c302}{aws\_mem\_acquire}}(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keyword}{sizeof}(T)));}
+\DoxyCodeLine{148             T *t = \textcolor{keyword}{reinterpret\_cast<}T *\textcolor{keyword}{>}(\mbox{\hyperlink{allocator_8h_a5137d8d9aa39ddc261c3cb5e54c2c302}{aws\_mem\_acquire}}(allocator, \textcolor{keyword}{sizeof}(T)));}
 \DoxyCodeLine{149             \textcolor{keywordflow}{if} (!t)}
 \DoxyCodeLine{150                 \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{151             \textcolor{keywordflow}{return} \textcolor{keyword}{new} (t) T(std::forward<Args>(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}})...);}
 \DoxyCodeLine{152         \}}
 \DoxyCodeLine{153 }
-\DoxyCodeLine{154         \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Args> std::shared\_ptr<T> \mbox{\hyperlink{namespace_aws_1_1_crt_a5fc09cfbc5a086a5fff17259564f1c47}{MakeShared}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, Args \&\&... \mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}})}
+\DoxyCodeLine{154         \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Args> std::shared\_ptr<T> \mbox{\hyperlink{namespace_aws_1_1_crt_a5fc09cfbc5a086a5fff17259564f1c47}{MakeShared}}(\mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator, Args \&\&... \mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}})}
 \DoxyCodeLine{155         \{}
-\DoxyCodeLine{156             T *t = \textcolor{keyword}{reinterpret\_cast<}T *\textcolor{keyword}{>}(\mbox{\hyperlink{allocator_8h_a5137d8d9aa39ddc261c3cb5e54c2c302}{aws\_mem\_acquire}}(\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, \textcolor{keyword}{sizeof}(T)));}
+\DoxyCodeLine{156             T *t = \textcolor{keyword}{reinterpret\_cast<}T *\textcolor{keyword}{>}(\mbox{\hyperlink{allocator_8h_a5137d8d9aa39ddc261c3cb5e54c2c302}{aws\_mem\_acquire}}(allocator, \textcolor{keyword}{sizeof}(T)));}
 \DoxyCodeLine{157             \textcolor{keywordflow}{if} (!t)}
 \DoxyCodeLine{158                 \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
 \DoxyCodeLine{159             \textcolor{keyword}{new} (t) T(std::forward<Args>(\mbox{\hyperlink{namespacecreate-projects_ab8fe9240ce5dfd5dc4a924e1079a1635}{args}})...);}
 \DoxyCodeLine{160 }
-\DoxyCodeLine{161             \textcolor{keywordflow}{return} std::shared\_ptr<T>(t, [\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}](T *obj) \{ \mbox{\hyperlink{namespace_aws_1_1_crt_a5e912a3a4aa95134bbc477dde8e5ea5c}{Delete}}(obj, \mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}); \});}
+\DoxyCodeLine{161             \textcolor{keywordflow}{return} std::shared\_ptr<T>(t, [allocator](T *obj) \{ \mbox{\hyperlink{namespace_aws_1_1_crt_a5e912a3a4aa95134bbc477dde8e5ea5c}{Delete}}(obj, allocator); \});}
 \DoxyCodeLine{162         \}}
 \DoxyCodeLine{163 }
 \DoxyCodeLine{164         \textcolor{keyword}{template} <\textcolor{keyword}{typename} T> \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_aa8f82604df3f410e862691561154627e}{ScopedResource}} = std::unique\_ptr<T, std::function<void(T *)>>;}

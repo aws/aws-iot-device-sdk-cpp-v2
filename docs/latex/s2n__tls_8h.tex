@@ -115,11 +115,11 @@ int \mbox{\hyperlink{s2n__tls_8h_aae0ef71221874b88d4ca45e9b98b7225}{s2n\+\_\+tls
 \item 
 int \mbox{\hyperlink{s2n__tls_8h_a4f2f856974131b822c5e9b89b814d4b6}{s2n\+\_\+process\+\_\+client\+\_\+hello}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn)
 \item 
-int \mbox{\hyperlink{s2n__tls_8h_ac801e6bce0974a3c1a83661cf6853a1c}{s2n\+\_\+handshake\+\_\+write\+\_\+header}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, uint8\+\_\+t \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}})
+int \mbox{\hyperlink{s2n__tls_8h_ac801e6bce0974a3c1a83661cf6853a1c}{s2n\+\_\+handshake\+\_\+write\+\_\+header}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, uint8\+\_\+t message\+\_\+type)
 \item 
 int \mbox{\hyperlink{s2n__tls_8h_a08cc596d168cc7187747fecdef9da53b}{s2n\+\_\+handshake\+\_\+finish\+\_\+header}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out)
 \item 
-int \mbox{\hyperlink{s2n__tls_8h_a8930886c2b7fb7a73ef11c9c7c3c3b42}{s2n\+\_\+handshake\+\_\+parse\+\_\+header}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}}, uint32\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+int \mbox{\hyperlink{s2n__tls_8h_a8930886c2b7fb7a73ef11c9c7c3c3b42}{s2n\+\_\+handshake\+\_\+parse\+\_\+header}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$message\+\_\+type, uint32\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})
 \item 
 int \mbox{\hyperlink{s2n__tls_8h_a807adeb1baad4849f782cfd4de10d113}{s2n\+\_\+read\+\_\+full\+\_\+record}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$record\+\_\+type, int $\ast$is\+SSLv2)
 \item 
@@ -185,7 +185,7 @@ uint16\+\_\+t \mbox{\hyperlink{s2n__tls_8h_a0b0ac16a66e80193cb3ef1731485ed96}{mf
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{        ((conn)-\/>\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}-\/>\mbox{\hyperlink{structs2n__config_aaf9751e18975cf827ceccf7abbd12fec}{use\_tickets}} \&\& \(\backslash\)}
+\DoxyCodeLine{        ((conn)-\/>\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}}-\/>use\_tickets \&\& \(\backslash\)}
 \DoxyCodeLine{        (conn)-\/>session\_ticket\_status == \mbox{\hyperlink{s2n__connection_8h_aa54bc347d58b0a9763319705d699ae02a9019222c114ccb3aa5d1a28903819bb5}{S2N\_NEW\_TICKET}})}
 
 \end{DoxyCode}

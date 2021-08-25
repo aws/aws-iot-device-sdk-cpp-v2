@@ -23,13 +23,13 @@ static uint32\+\_\+t \mbox{\hyperlink{der_8c_a8cd5276781f8bdf4c2698c65a8b02ac9}{
 \item 
 static int \mbox{\hyperlink{der_8c_a2bb34854a4a7f496dfdb073f05a5f8d4}{s\+\_\+der\+\_\+write\+\_\+tlv}} (struct \mbox{\hyperlink{structder__tlv}{der\+\_\+tlv}} $\ast$tlv, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}})
 \item 
-struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$ \mbox{\hyperlink{der_8c_a82fd318eb273be1c931b225f798eecfa}{aws\+\_\+der\+\_\+encoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t capacity)
+struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$ \mbox{\hyperlink{der_8c_a82fd318eb273be1c931b225f798eecfa}{aws\+\_\+der\+\_\+encoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t capacity)
 \item 
 void \mbox{\hyperlink{der_8c_a008c8714830309b57bdc3227e232bb85}{aws\+\_\+der\+\_\+encoder\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder)
 \item 
 int \mbox{\hyperlink{der_8c_ae8353d41f8b7e67d98213ace1910e47b}{aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+integer}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} integer)
 \item 
-int \mbox{\hyperlink{der_8c_ab852a89f1c2d4f2f6b3cf3044c02c2e6}{aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a08f076c86f430b6f0e301fcf94223b38}{boolean}})
+int \mbox{\hyperlink{der_8c_ab852a89f1c2d4f2f6b3cf3044c02c2e6}{aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder, bool \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a08f076c86f430b6f0e301fcf94223b38}{boolean}})
 \item 
 int \mbox{\hyperlink{der_8c_a8c20f15f606c1020997fdf65db41a80c}{aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+null}} (struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$encoder)
 \item 
@@ -53,13 +53,13 @@ int \mbox{\hyperlink{der_8c_a92aac395df8efb5c851b12086d6b0a74}{aws\+\_\+der\+\_\
 \item 
 int \mbox{\hyperlink{der_8c_a87f46f4e8297267363606b7e3e1f2e5c}{s\+\_\+decoder\+\_\+parse}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder)
 \item 
-struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$ \mbox{\hyperlink{der_8c_a5ef3a4c9071c3c50da9ac0913cf95667}{aws\+\_\+der\+\_\+decoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input)
+struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$ \mbox{\hyperlink{der_8c_a5ef3a4c9071c3c50da9ac0913cf95667}{aws\+\_\+der\+\_\+decoder\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} input)
 \item 
 void \mbox{\hyperlink{der_8c_a89a4ee9934ea836a06f95fe976aecf3e}{aws\+\_\+der\+\_\+decoder\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder)
 \item 
 int \mbox{\hyperlink{der_8c_adb36deb77b520f57ed79abcac77a3a43}{s\+\_\+parse\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cur)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{der_8c_a915adaf6123b5b1c716aafdb0bfcc32d}{aws\+\_\+der\+\_\+decoder\+\_\+next}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder)
+bool \mbox{\hyperlink{der_8c_a915adaf6123b5b1c716aafdb0bfcc32d}{aws\+\_\+der\+\_\+decoder\+\_\+next}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder)
 \item 
 static struct \mbox{\hyperlink{structder__tlv}{der\+\_\+tlv}} \mbox{\hyperlink{der_8c_aca3eafaf43b32ac3e0c914263ccc041a}{s\+\_\+decoder\+\_\+tlv}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder)
 \item 
@@ -75,7 +75,7 @@ int \mbox{\hyperlink{der_8c_ab18edf130e03781d530b61c3c9f00c7f}{aws\+\_\+der\+\_\
 \item 
 int \mbox{\hyperlink{der_8c_ac20e3e0d1642fae05627164672341393}{aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+integer}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$integer)
 \item 
-int \mbox{\hyperlink{der_8c_a0ea94d3d687e2e26a2875c70e9506caf}{aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a08f076c86f430b6f0e301fcf94223b38}{boolean}})
+int \mbox{\hyperlink{der_8c_a0ea94d3d687e2e26a2875c70e9506caf}{aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+boolean}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder, bool $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a08f076c86f430b6f0e301fcf94223b38}{boolean}})
 \item 
 int \mbox{\hyperlink{der_8c_a04424ef2ae0192cdb94329b6c9530ab7}{aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+blob}} (struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$decoder, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$blob)
 \end{DoxyCompactItemize}
@@ -113,7 +113,7 @@ Initialized decoder, or NULL
 \index{der.c@{der.c}!aws\_der\_decoder\_next@{aws\_der\_decoder\_next}}
 \index{aws\_der\_decoder\_next@{aws\_der\_decoder\_next}!der.c@{der.c}}
 \doxysubsubsection{\texorpdfstring{aws\_der\_decoder\_next()}{aws\_der\_decoder\_next()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+der\+\_\+decoder\+\_\+next (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$}]{decoder }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+der\+\_\+decoder\+\_\+next (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$}]{decoder }\end{DoxyParamCaption})}
 
 Allows for iteration over the decoded TLVs. 
 \begin{DoxyParams}{Parameters}
@@ -143,7 +143,7 @@ AWS\+\_\+\+OP\+\_\+\+ERR if an error occurs, otherwise AWS\+\_\+\+OP\+\_\+\+SUCC
 \index{der.c@{der.c}!aws\_der\_decoder\_tlv\_boolean@{aws\_der\_decoder\_tlv\_boolean}}
 \index{aws\_der\_decoder\_tlv\_boolean@{aws\_der\_decoder\_tlv\_boolean}!der.c@{der.c}}
 \doxysubsubsection{\texorpdfstring{aws\_der\_decoder\_tlv\_boolean()}{aws\_der\_decoder\_tlv\_boolean()}}
-{\footnotesize\ttfamily int aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$}]{decoder,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{boolean }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+der\+\_\+decoder\+\_\+tlv\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__decoder}{aws\+\_\+der\+\_\+decoder}} $\ast$}]{decoder,  }\item[{bool $\ast$}]{boolean }\end{DoxyParamCaption})}
 
 Extracts the current TLV BOOLEAN value (BOOLEAN) 
 \begin{DoxyParams}{Parameters}
@@ -348,7 +348,7 @@ AWS\+\_\+\+OP\+\_\+\+ERR if an error occurs, otherwise AWS\+\_\+\+OP\+\_\+\+SUCC
 \index{der.c@{der.c}!aws\_der\_encoder\_write\_boolean@{aws\_der\_encoder\_write\_boolean}}
 \index{aws\_der\_encoder\_write\_boolean@{aws\_der\_encoder\_write\_boolean}!der.c@{der.c}}
 \doxysubsubsection{\texorpdfstring{aws\_der\_encoder\_write\_boolean()}{aws\_der\_encoder\_write\_boolean()}}
-{\footnotesize\ttfamily int aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$}]{encoder,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{boolean }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+der\+\_\+encoder\+\_\+write\+\_\+boolean (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__der__encoder}{aws\+\_\+der\+\_\+encoder}} $\ast$}]{encoder,  }\item[{bool}]{boolean }\end{DoxyParamCaption})}
 
 Writes a boolean to the DER stream 
 \begin{DoxyParams}{Parameters}

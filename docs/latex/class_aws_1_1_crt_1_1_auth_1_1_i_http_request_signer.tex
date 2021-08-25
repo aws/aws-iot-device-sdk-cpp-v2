@@ -25,9 +25,9 @@ Inheritance diagram for Aws\+::Crt\+::Auth\+::IHttp\+Request\+Signer\+:\begin{fi
 \item 
 virtual \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_a0cd78d8cd9c75991a12cee92e6bd93bf}{$\sim$\+IHttp\+Request\+Signer}} ()=default
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_a72a0db10e8a8528ead4d4a4a5afe3fb0}{Sign\+Request}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Request}} $>$ \&request, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigning\+Config}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, const \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{On\+Http\+Request\+Signing\+Complete}} \&completion\+Callback)=0
+virtual bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_a72a0db10e8a8528ead4d4a4a5afe3fb0}{Sign\+Request}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Request}} $>$ \&request, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigning\+Config}} \&config, const \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{On\+Http\+Request\+Signing\+Complete}} \&completion\+Callback)=0
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_ac97a65937fbc26e702fe1176743dd81a}{Is\+Valid}} () const =0
+virtual bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_http_request_signer_ac97a65937fbc26e702fe1176743dd81a}{Is\+Valid}} () const =0
 \end{DoxyCompactItemize}
 
 
@@ -66,7 +66,7 @@ Abstract base for all http request signers. Synchronous interface. Intended to b
 \index{Aws::Crt::Auth::IHttpRequestSigner@{Aws::Crt::Auth::IHttpRequestSigner}!IsValid@{IsValid}}
 \index{IsValid@{IsValid}!Aws::Crt::Auth::IHttpRequestSigner@{Aws::Crt::Auth::IHttpRequestSigner}}
 \doxysubsubsection{\texorpdfstring{IsValid()}{IsValid()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Auth\+::\+IHttp\+Request\+Signer\+::\+Is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Crt\+::\+Auth\+::\+IHttp\+Request\+Signer\+::\+Is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 Whether or not the signer is in a valid state 
 
@@ -88,7 +88,7 @@ Implemented in \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_sigv4_http_reques
 \index{Aws::Crt::Auth::IHttpRequestSigner@{Aws::Crt::Auth::IHttpRequestSigner}!SignRequest@{SignRequest}}
 \index{SignRequest@{SignRequest}!Aws::Crt::Auth::IHttpRequestSigner@{Aws::Crt::Auth::IHttpRequestSigner}}
 \doxysubsubsection{\texorpdfstring{SignRequest()}{SignRequest()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Auth\+::\+IHttp\+Request\+Signer\+::\+Sign\+Request (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Request}} $>$ \&}]{request,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigning\+Config}} \&}]{config,  }\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{On\+Http\+Request\+Signing\+Complete}} \&}]{completion\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Crt\+::\+Auth\+::\+IHttp\+Request\+Signer\+::\+Sign\+Request (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_aws_1_1_crt_1_1_http_1_1_http_request}{Aws\+::\+Crt\+::\+Http\+::\+Http\+Request}} $>$ \&}]{request,  }\item[{const \mbox{\hyperlink{class_aws_1_1_crt_1_1_auth_1_1_i_signing_config}{ISigning\+Config}} \&}]{config,  }\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_auth_ab4ca80a8fc66d38af49bf5431b5c8ebf}{On\+Http\+Request\+Signing\+Complete}} \&}]{completion\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 

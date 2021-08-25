@@ -17,10 +17,10 @@
 \DoxyCodeLine{22 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{server_8h_aeaf0b36b54b3dca4116e419340b5480a}{aws\_http\_server\_on\_incoming\_connection\_fn}})(}
 \DoxyCodeLine{23     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__server}{aws\_http\_server}} *server,}
 \DoxyCodeLine{24     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection,}
-\DoxyCodeLine{25     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{26     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__connection_a3da01f7e63d5ed5b85a1572196b232f5}{user\_data}});}
 \DoxyCodeLine{27 }
-\DoxyCodeLine{28 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{server_8h_a90fedaba3a21e6c87d99863578ea683b}{aws\_http\_server\_on\_destroy\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{28 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{server_8h_a90fedaba3a21e6c87d99863578ea683b}{aws\_http\_server\_on\_destroy\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__connection_a3da01f7e63d5ed5b85a1572196b232f5}{user\_data}});}
 \DoxyCodeLine{29 }
 \DoxyCodeLine{34 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__server__options}{aws\_http\_server\_options}} \{}
 \DoxyCodeLine{39     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__http__server__options_aa07be8d6674ce81d6651d0e5a889940c}{self\_size}};}
@@ -50,12 +50,12 @@
 \DoxyCodeLine{113 \textcolor{preprocessor}{    \{ .self\_size = sizeof(struct aws\_http\_server\_options), .initial\_window\_size = SIZE\_MAX, \}}}
 \DoxyCodeLine{114 }
 \DoxyCodeLine{120 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__stream}{aws\_http\_stream}} *(}
-\DoxyCodeLine{121     \mbox{\hyperlink{server_8h_af6effccb7b5a98a71a0e839aca506eca}{aws\_http\_on\_incoming\_request\_fn}})(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{121     \mbox{\hyperlink{server_8h_af6effccb7b5a98a71a0e839aca506eca}{aws\_http\_on\_incoming\_request\_fn}})(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection, \textcolor{keywordtype}{void} *\mbox{\hyperlink{structaws__http__stream_a94168a6efd286b11659dffc2a28650e9}{user\_data}});}
 \DoxyCodeLine{122 }
 \DoxyCodeLine{123 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{server_8h_a721b690df7d3a9102e0e3dd49208cac4}{aws\_http\_on\_server\_connection\_shutdown\_fn}})(}
 \DoxyCodeLine{124     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *connection,}
-\DoxyCodeLine{125     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
-\DoxyCodeLine{126     \textcolor{keywordtype}{void} *\mbox{\hyperlink{structconnection__user__data}{connection\_user\_data}});}
+\DoxyCodeLine{125     \textcolor{keywordtype}{int} error\_code,}
+\DoxyCodeLine{126     \textcolor{keywordtype}{void} *connection\_user\_data);}
 \DoxyCodeLine{127 }
 \DoxyCodeLine{132 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__server__connection__options}{aws\_http\_server\_connection\_options}} \{}
 \DoxyCodeLine{137     \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__http__server__connection__options_a018b2b542b586ca4a229bcb8426bdf17}{self\_size}};}

@@ -73,11 +73,11 @@ $(function() {
   <div class="headertitle"><div class="title">s2n_rsa_signing.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="evp_8h_source.html">openssl/evp.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="rsa_8h_source.html">openssl/rsa.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;openssl/evp.h&gt;</code><br />
+<code>#include &lt;openssl/rsa.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n__errno_8h_source.html">error/s2n_errno.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__stuffer_8h_source.html">stuffer/s2n_stuffer.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="crypto_2s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="s2n__hash_8h_source.html">crypto/s2n_hash.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__rsa__pss_8h_source.html">crypto/s2n_rsa_pss.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__rsa__signing_8h_source.html">crypto/s2n_rsa_signing.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="s2n__pkey_8h_source.html">crypto/s2n_pkey.h</a>&quot;</code><br />
@@ -86,7 +86,7 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a1a77f33a54b4a33d2feba8bcdd20034f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa__signing_8c.html#a1a77f33a54b4a33d2feba8bcdd20034f">s2n_hash_NID_type</a> (<a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> alg, int *out)</td></tr>
+<tr class="memitem:a1a77f33a54b4a33d2feba8bcdd20034f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa__signing_8c.html#a1a77f33a54b4a33d2feba8bcdd20034f">s2n_hash_NID_type</a> (<a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a> alg, int *out)</td></tr>
 <tr class="separator:a1a77f33a54b4a33d2feba8bcdd20034f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc9d2ddb97169fb6434a9c37f7b4deef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__rsa__signing_8c.html#adc9d2ddb97169fb6434a9c37f7b4deef">s2n_rsa_pkcs1v15_sign</a> (const struct <a class="el" href="structs2n__pkey.html">s2n_pkey</a> *priv, struct <a class="el" href="structs2n__hash__state.html">s2n_hash_state</a> *digest, struct s2n_blob *signature)</td></tr>
 <tr class="separator:adc9d2ddb97169fb6434a9c37f7b4deef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,7 +114,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">int s2n_hash_NID_type </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5">s2n_hash_algorithm</a>&#160;</td>
           <td class="paramname"><em>alg</em>, </td>
         </tr>
         <tr>
@@ -307,18 +307,18 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    [<a class="code hl_enumvalue" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419">S2N_HASH_MD5_SHA1</a>] = NID_md5_sha1,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627">S2N_HASH_SHA1</a>]     = NID_sha1,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353">S2N_HASH_SHA224</a>]   = NID_sha224,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9">S2N_HASH_SHA256</a>]   = NID_sha256,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d">S2N_HASH_SHA384</a>]   = NID_sha384,</div>
-<div class="line">    [<a class="code hl_enumvalue" href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993">S2N_HASH_SHA512</a>]   = NID_sha512 }</div>
-<div class="ttc" id="acrypto_2s2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353"><div class="ttname"><a href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353">S2N_HASH_SHA224</a></div><div class="ttdeci">@ S2N_HASH_SHA224</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:32</div></div>
-<div class="ttc" id="acrypto_2s2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9"><div class="ttname"><a href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9">S2N_HASH_SHA256</a></div><div class="ttdeci">@ S2N_HASH_SHA256</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:33</div></div>
-<div class="ttc" id="acrypto_2s2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d"><div class="ttname"><a href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d">S2N_HASH_SHA384</a></div><div class="ttdeci">@ S2N_HASH_SHA384</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:34</div></div>
-<div class="ttc" id="acrypto_2s2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627"><div class="ttname"><a href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627">S2N_HASH_SHA1</a></div><div class="ttdeci">@ S2N_HASH_SHA1</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:31</div></div>
-<div class="ttc" id="acrypto_2s2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993"><div class="ttname"><a href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993">S2N_HASH_SHA512</a></div><div class="ttdeci">@ S2N_HASH_SHA512</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:35</div></div>
-<div class="ttc" id="acrypto_2s2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419"><div class="ttname"><a href="crypto_2s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419">S2N_HASH_MD5_SHA1</a></div><div class="ttdeci">@ S2N_HASH_MD5_SHA1</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:36</div></div>
+<div class="line">    [<a class="code hl_enumvalue" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419">S2N_HASH_MD5_SHA1</a>] = NID_md5_sha1,</div>
+<div class="line">    [<a class="code hl_enumvalue" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627">S2N_HASH_SHA1</a>]     = NID_sha1,</div>
+<div class="line">    [<a class="code hl_enumvalue" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353">S2N_HASH_SHA224</a>]   = NID_sha224,</div>
+<div class="line">    [<a class="code hl_enumvalue" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9">S2N_HASH_SHA256</a>]   = NID_sha256,</div>
+<div class="line">    [<a class="code hl_enumvalue" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d">S2N_HASH_SHA384</a>]   = NID_sha384,</div>
+<div class="line">    [<a class="code hl_enumvalue" href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993">S2N_HASH_SHA512</a>]   = NID_sha512 }</div>
+<div class="ttc" id="as2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353"><div class="ttname"><a href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a10e13733c5e845adaf60a6dae7487353">S2N_HASH_SHA224</a></div><div class="ttdeci">@ S2N_HASH_SHA224</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:32</div></div>
+<div class="ttc" id="as2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9"><div class="ttname"><a href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a80895804a25873b25a474b3440ba55c9">S2N_HASH_SHA256</a></div><div class="ttdeci">@ S2N_HASH_SHA256</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:33</div></div>
+<div class="ttc" id="as2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d"><div class="ttname"><a href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5a89bbfcefd1e166b1e852d6ba96a9878d">S2N_HASH_SHA384</a></div><div class="ttdeci">@ S2N_HASH_SHA384</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:34</div></div>
+<div class="ttc" id="as2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627"><div class="ttname"><a href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5aa460f813770b3e8d9678b19a6dc39627">S2N_HASH_SHA1</a></div><div class="ttdeci">@ S2N_HASH_SHA1</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:31</div></div>
+<div class="ttc" id="as2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993"><div class="ttname"><a href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5ab876b407741ca33d845c733c84355993">S2N_HASH_SHA512</a></div><div class="ttdeci">@ S2N_HASH_SHA512</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:35</div></div>
+<div class="ttc" id="as2n__hash_8h_html_a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419"><div class="ttname"><a href="s2n__hash_8h.html#a45fca4e9152a9bfb4b15f8d9f1a074e5ac0f7f343aebed483dfa89ad357fa6419">S2N_HASH_MD5_SHA1</a></div><div class="ttdeci">@ S2N_HASH_MD5_SHA1</div><div class="ttdef"><b>Definition:</b> s2n_hash.h:36</div></div>
 </div><!-- fragment -->
 </div>
 </div>

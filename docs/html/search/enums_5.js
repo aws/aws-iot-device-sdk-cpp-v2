@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['epoll_5fevents_0',['EPOLL_EVENTS',['../preamble_8h.html#ab97a65b5c201255d4fba9ca80a43361d',1,'preamble.h']]],
-  ['event_5fthread_5fstate_1',['event_thread_state',['../kqueue__event__loop_8c.html#afdfd8e98b260dcfe14e29c2d2fea256f',1,'event_thread_state():&#160;kqueue_event_loop.c'],['../iocp__event__loop_8c.html#afdfd8e98b260dcfe14e29c2d2fea256f',1,'event_thread_state():&#160;iocp_event_loop.c']]],
-  ['eventstreamrpcstatuscode_2',['EventStreamRpcStatusCode',['../namespace_aws_1_1_eventstreamrpc.html#a9e9bdfe1d204567865734a594f7b1920',1,'Aws::Eventstreamrpc']]]
+  ['file_5finformation_5fclass_0',['FILE_INFORMATION_CLASS',['../iocp__event__loop_8c.html#ad3023e57bc24037425f4864fe357dec4',1,'iocp_event_loop.c']]],
+  ['find_5flistener_5fentry_5fflags_1',['find_listener_entry_flags',['../host__resolver_8c.html#a3cf135227eaddd94f01cf94aef7fc84f',1,'host_resolver.c']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['new_5fconnection_5fresult_5ftype_0',['new_connection_result_type',['../test__connection__manager_8c.html#a7c3e03f4c60c99a104949c9ec74c5773',1,'test_connection_manager.c']]]
+  ['qos_0',['QOS',['../namespace_aws_1_1_greengrass.html#a9ed868d06a33ca59bbf044e6b4b5e2ac',1,'Aws::Greengrass']]]
 ];

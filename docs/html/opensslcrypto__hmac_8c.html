@@ -76,8 +76,8 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="crt_2aws-c-cal_2include_2aws_2cal_2_h_m_a_c_8h_source.html">aws/cal/hmac.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="opensslcrypto__common_8h_source.html">aws/cal/private/opensslcrypto_common.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="evp_8h_source.html">openssl/evp.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="crt_2s2n_2tests_2cbmc_2include_2openssl_2_h_m_a_c_8h_source.html">openssl/hmac.h</a>&gt;</code><br />
+<code>#include &lt;openssl/evp.h&gt;</code><br />
+<code>#include &lt;openssl/hmac.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -90,9 +90,9 @@ Functions</h2></td></tr>
 <tr class="separator:ac9fccbed5e29992f973c988f27df816f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9e316661f605c7ed8d23e457540ff6d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hmac_8c.html#ac9e316661f605c7ed8d23e457540ff6d">s_update</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *to_hmac)</td></tr>
 <tr class="separator:ac9e316661f605c7ed8d23e457540ff6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb0853e793e863f9ca3b34a9a9b9f1e0"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hmac_8c.html#acb0853e793e863f9ca3b34a9a9b9f1e0">s_finalize</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *<a class="el" href="log__formatter__test_8c.html#ae73289c5189c80c0661459b0f4743217">output</a>)</td></tr>
+<tr class="memitem:acb0853e793e863f9ca3b34a9a9b9f1e0"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hmac_8c.html#acb0853e793e863f9ca3b34a9a9b9f1e0">s_finalize</a> (struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *hmac, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *output)</td></tr>
 <tr class="separator:acb0853e793e863f9ca3b34a9a9b9f1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a75179fa3671f67e910908180bbb138"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hmac_8c.html#a2a75179fa3671f67e910908180bbb138">aws_sha256_hmac_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *secret)</td></tr>
+<tr class="memitem:a2a75179fa3671f67e910908180bbb138"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__hmac.html">aws_hmac</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__hmac_8c.html#a2a75179fa3671f67e910908180bbb138">aws_sha256_hmac_default_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *secret)</td></tr>
 <tr class="separator:a2a75179fa3671f67e910908180bbb138"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>

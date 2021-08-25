@@ -82,11 +82,11 @@
 \DoxyCodeLine{86 }
 \DoxyCodeLine{87 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{88 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__proxy__user__data}{aws\_http\_proxy\_user\_data}} *\mbox{\hyperlink{proxy__impl_8h_a13d0e8f2c98085a179103aec6e0e3785}{aws\_http\_proxy\_user\_data\_new}}(}
-\DoxyCodeLine{89     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{89     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__http__proxy__user__data_a05c7a686e2cbe02f654d4982fbc920c5}{allocator}},}
 \DoxyCodeLine{90     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__client__connection__options}{aws\_http\_client\_connection\_options}} *options);}
 \DoxyCodeLine{91 }
 \DoxyCodeLine{92 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
-\DoxyCodeLine{93 \textcolor{keywordtype}{void} \mbox{\hyperlink{proxy__impl_8h_a5abc7472063fa494923c25318d3a4617}{aws\_http\_proxy\_user\_data\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__proxy__user__data}{aws\_http\_proxy\_user\_data}} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{93 \textcolor{keywordtype}{void} \mbox{\hyperlink{proxy__impl_8h_a5abc7472063fa494923c25318d3a4617}{aws\_http\_proxy\_user\_data\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__proxy__user__data}{aws\_http\_proxy\_user\_data}} *user\_data);}
 \DoxyCodeLine{94 }
 \DoxyCodeLine{95 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{96 \textcolor{keywordtype}{int} \mbox{\hyperlink{proxy__impl_8h_ad991029983b9bde0320363bd6bd49dc6}{aws\_http\_client\_connect\_via\_proxy}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__client__connection__options}{aws\_http\_client\_connection\_options}} *options);}
@@ -101,16 +101,16 @@
 \DoxyCodeLine{105 }
 \DoxyCodeLine{106 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{107 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__proxy__config}{aws\_http\_proxy\_config}} *\mbox{\hyperlink{proxy__impl_8h_ab5967342a8815654668ee25a46d81416}{aws\_http\_proxy\_config\_new}}(}
-\DoxyCodeLine{108     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{108     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__http__proxy__config_a22f2d275e97337ae3a2491c54ddfd3e1}{allocator}},}
 \DoxyCodeLine{109     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__proxy__options}{aws\_http\_proxy\_options}} *options);}
 \DoxyCodeLine{110 }
 \DoxyCodeLine{111 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
-\DoxyCodeLine{112 \textcolor{keywordtype}{void} \mbox{\hyperlink{proxy__impl_8h_a67a04f41578b49f2d37dcb904a236537}{aws\_http\_proxy\_config\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__proxy__config}{aws\_http\_proxy\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{112 \textcolor{keywordtype}{void} \mbox{\hyperlink{proxy__impl_8h_a67a04f41578b49f2d37dcb904a236537}{aws\_http\_proxy\_config\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__proxy__config}{aws\_http\_proxy\_config}} *\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}});}
 \DoxyCodeLine{113 }
 \DoxyCodeLine{114 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{115 \textcolor{keywordtype}{void} \mbox{\hyperlink{proxy__impl_8h_abf86c3c5bef2c2c3e70b529881fb811e}{aws\_http\_proxy\_options\_init\_from\_config}}(}
 \DoxyCodeLine{116     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__proxy__options}{aws\_http\_proxy\_options}} *options,}
-\DoxyCodeLine{117     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__proxy__config}{aws\_http\_proxy\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}});}
+\DoxyCodeLine{117     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http__proxy__config}{aws\_http\_proxy\_config}} *\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}});}
 \DoxyCodeLine{118 }
 \DoxyCodeLine{119 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
 \DoxyCodeLine{120 }

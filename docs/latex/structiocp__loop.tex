@@ -15,10 +15,10 @@ struct \mbox{\hyperlink{structaws__atomic__var}{aws\+\_\+atomic\+\_\+var}} \mbox
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
 \>struct \mbox{\hyperlink{structaws__mutex}{aws\_mutex}} \mbox{\hyperlink{structiocp__loop_a392f0e21e7b6592efdcffe2c31a8342a}{mutex}}\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{structiocp__loop_a3b6f5f0f76d682805f10b1854e29d98b}{thread\_signaled}}\\
+\>bool \mbox{\hyperlink{structiocp__loop_a3b6f5f0f76d682805f10b1854e29d98b}{thread\_signaled}}\\
 \>struct \mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structiocp__loop_aef6ab7f4e6fd85432cf931a487f51b69}{tasks\_to\_schedule}}\\
 \>\mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}{event\_thread\_state}} \mbox{\hyperlink{structiocp__loop_a080d695defe88caa6b58609c0fe0383c}{state}}\\
-\} \mbox{\hyperlink{structiocp__loop_a87ec9d9e158b7d6d60e0ecd433d1873b}{synced\_data}}\\
+\} \mbox{\hyperlink{structiocp__loop_a9c31c3d1ae92e299094689c3b49c4a93}{synced\_data}}\\
 
 \end{tabbing}\item 
 \begin{tabbing}
@@ -26,7 +26,7 @@ xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
 \>struct \mbox{\hyperlink{structaws__task__scheduler}{aws\_task\_scheduler}} \mbox{\hyperlink{structiocp__loop_a03f8543095b70373b164779262f3d195}{scheduler}}\\
 \>\mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}{event\_thread\_state}} \mbox{\hyperlink{structiocp__loop_a080d695defe88caa6b58609c0fe0383c}{state}}\\
-\} \mbox{\hyperlink{structiocp__loop_a4c95acaf24357c932b30212a6bd4c845}{thread\_data}}\\
+\} \mbox{\hyperlink{structiocp__loop_ad2b30709afc971a4942ef4a555de55a9}{thread\_data}}\\
 
 \end{tabbing}\item 
 struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options}} \mbox{\hyperlink{structiocp__loop_aa550dd5fdf2a6415fd12dab84562bb8f}{thread\+\_\+options}}
@@ -64,7 +64,7 @@ struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options
 \doxysubsubsection{\texorpdfstring{state}{state}}
 {\footnotesize\ttfamily \mbox{\hyperlink{kqueue__event__loop_8c_afdfd8e98b260dcfe14e29c2d2fea256f}{event\+\_\+thread\+\_\+state}} iocp\+\_\+loop\+::state}
 
-\mbox{\Hypertarget{structiocp__loop_a87ec9d9e158b7d6d60e0ecd433d1873b}\label{structiocp__loop_a87ec9d9e158b7d6d60e0ecd433d1873b}} 
+\mbox{\Hypertarget{structiocp__loop_a9c31c3d1ae92e299094689c3b49c4a93}\label{structiocp__loop_a9c31c3d1ae92e299094689c3b49c4a93}} 
 \index{iocp\_loop@{iocp\_loop}!synced\_data@{synced\_data}}
 \index{synced\_data@{synced\_data}!iocp\_loop@{iocp\_loop}}
 \doxysubsubsection{\texorpdfstring{}{}}
@@ -82,7 +82,7 @@ struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options
 \doxysubsubsection{\texorpdfstring{thread\_created\_on}{thread\_created\_on}}
 {\footnotesize\ttfamily struct \mbox{\hyperlink{structaws__thread}{aws\+\_\+thread}} iocp\+\_\+loop\+::thread\+\_\+created\+\_\+on}
 
-\mbox{\Hypertarget{structiocp__loop_a4c95acaf24357c932b30212a6bd4c845}\label{structiocp__loop_a4c95acaf24357c932b30212a6bd4c845}} 
+\mbox{\Hypertarget{structiocp__loop_ad2b30709afc971a4942ef4a555de55a9}\label{structiocp__loop_ad2b30709afc971a4942ef4a555de55a9}} 
 \index{iocp\_loop@{iocp\_loop}!thread\_data@{thread\_data}}
 \index{thread\_data@{thread\_data}!iocp\_loop@{iocp\_loop}}
 \doxysubsubsection{\texorpdfstring{}{}}
@@ -104,7 +104,7 @@ struct \mbox{\hyperlink{structaws__thread__options}{aws\+\_\+thread\+\_\+options
 \index{iocp\_loop@{iocp\_loop}!thread\_signaled@{thread\_signaled}}
 \index{thread\_signaled@{thread\_signaled}!iocp\_loop@{iocp\_loop}}
 \doxysubsubsection{\texorpdfstring{thread\_signaled}{thread\_signaled}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} iocp\+\_\+loop\+::thread\+\_\+signaled}
+{\footnotesize\ttfamily bool iocp\+\_\+loop\+::thread\+\_\+signaled}
 
 
 

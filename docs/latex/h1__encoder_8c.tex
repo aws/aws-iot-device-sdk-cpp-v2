@@ -30,45 +30,45 @@ typedef int \mbox{\hyperlink{h1__encoder_8c_adcf519354da2b5c5a4196526e5e4f1d0}{e
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \mbox{\hyperlink{h1__encoder_8c_a14c4241e0e70aa3a5161adf91ae68eb7}{s\+\_\+scan\+\_\+outgoing\+\_\+headers}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$encoder\+\_\+message, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, size\+\_\+t $\ast$out\+\_\+header\+\_\+lines\+\_\+len, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} body\+\_\+headers\+\_\+ignored, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} body\+\_\+headers\+\_\+forbidden)
+static int \mbox{\hyperlink{h1__encoder_8c_a14c4241e0e70aa3a5161adf91ae68eb7}{s\+\_\+scan\+\_\+outgoing\+\_\+headers}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$encoder\+\_\+message, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$message, size\+\_\+t $\ast$out\+\_\+header\+\_\+lines\+\_\+len, bool body\+\_\+headers\+\_\+ignored, bool body\+\_\+headers\+\_\+forbidden)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__encoder_8c_a7bbabed22e3c41f54a34642d0e0e1b9e}{s\+\_\+write\+\_\+crlf}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst)
+static bool \mbox{\hyperlink{h1__encoder_8c_a7bbabed22e3c41f54a34642d0e0e1b9e}{s\+\_\+write\+\_\+crlf}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst)
 \item 
-static void \mbox{\hyperlink{h1__encoder_8c_adcd85c4bfd38f20a3e0b527e5657d435}{s\+\_\+write\+\_\+headers}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+static void \mbox{\hyperlink{h1__encoder_8c_adcd85c4bfd38f20a3e0b527e5657d435}{s\+\_\+write\+\_\+headers}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$message)
 \item 
-int \mbox{\hyperlink{h1__encoder_8c_a2f626979f0f65c977a9b4731502378f6}{aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+request}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$pending\+\_\+chunk\+\_\+list)
+int \mbox{\hyperlink{h1__encoder_8c_a2f626979f0f65c977a9b4731502378f6}{aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+request}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$message, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$request, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$pending\+\_\+chunk\+\_\+list)
 \item 
-int \mbox{\hyperlink{h1__encoder_8c_aade6ff5aceeb5b196aa771ba22be0937}{aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+response}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$response, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} body\+\_\+headers\+\_\+ignored, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$pending\+\_\+chunk\+\_\+list)
+int \mbox{\hyperlink{h1__encoder_8c_aade6ff5aceeb5b196aa771ba22be0937}{aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+response}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$message, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$response, bool body\+\_\+headers\+\_\+ignored, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$pending\+\_\+chunk\+\_\+list)
 \item 
-void \mbox{\hyperlink{h1__encoder_8c_a82812a3d15c217fcb2ec8ceb3f523b01}{aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}})
+void \mbox{\hyperlink{h1__encoder_8c_a82812a3d15c217fcb2ec8ceb3f523b01}{aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$message)
 \item 
-void \mbox{\hyperlink{h1__encoder_8c_a29f35cf176d79d8c73d8bdb8aede511b}{aws\+\_\+h1\+\_\+encoder\+\_\+init}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{h1__encoder_8c_a29f35cf176d79d8c73d8bdb8aede511b}{aws\+\_\+h1\+\_\+encoder\+\_\+init}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{h1__encoder_8c_aaa6352c80cccd57b5ff026d240175394}{aws\+\_\+h1\+\_\+encoder\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder)
 \item 
-int \mbox{\hyperlink{h1__encoder_8c_a510b68ea367a2380f33639adc7c42131}{aws\+\_\+h1\+\_\+encoder\+\_\+start\+\_\+message}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}}, struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
+int \mbox{\hyperlink{h1__encoder_8c_a510b68ea367a2380f33639adc7c42131}{aws\+\_\+h1\+\_\+encoder\+\_\+start\+\_\+message}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$message, struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$stream)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__encoder_8c_a3178a382e5abced2d83e5f09183ddcc8}{s\+\_\+write\+\_\+chunk\+\_\+size}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, uint64\+\_\+t chunk\+\_\+size)
+static bool \mbox{\hyperlink{h1__encoder_8c_a3178a382e5abced2d83e5f09183ddcc8}{s\+\_\+write\+\_\+chunk\+\_\+size}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, uint64\+\_\+t chunk\+\_\+size)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__encoder_8c_a30fbaec1d1c359b6869cad3adb029d73}{s\+\_\+write\+\_\+chunk\+\_\+extension}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, struct \mbox{\hyperlink{structaws__http1__chunk__extension}{aws\+\_\+http1\+\_\+chunk\+\_\+extension}} $\ast$chunk\+\_\+extension)
+static bool \mbox{\hyperlink{h1__encoder_8c_a30fbaec1d1c359b6869cad3adb029d73}{s\+\_\+write\+\_\+chunk\+\_\+extension}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, struct \mbox{\hyperlink{structaws__http1__chunk__extension}{aws\+\_\+http1\+\_\+chunk\+\_\+extension}} $\ast$chunk\+\_\+extension)
 \item 
 static size\+\_\+t \mbox{\hyperlink{h1__encoder_8c_ac96c5a858a51a4f1dea9c0a6dd309274}{s\+\_\+calculate\+\_\+chunk\+\_\+line\+\_\+size}} (const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$options)
 \item 
 static void \mbox{\hyperlink{h1__encoder_8c_af718daf075f7849292fb9992c323b716}{s\+\_\+populate\+\_\+chunk\+\_\+line\+\_\+buffer}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$chunk\+\_\+line, const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$options)
 \item 
-struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$ \mbox{\hyperlink{h1__encoder_8c_ad1e59cada806788c3f67ce390a116096}{aws\+\_\+h1\+\_\+chunk\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$options)
+struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$ \mbox{\hyperlink{h1__encoder_8c_ad1e59cada806788c3f67ce390a116096}{aws\+\_\+h1\+\_\+chunk\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__http1__chunk__options}{aws\+\_\+http1\+\_\+chunk\+\_\+options}} $\ast$options)
 \item 
 void \mbox{\hyperlink{h1__encoder_8c_a7bb1a0c4b42a5af0a440eddc752b8186}{aws\+\_\+h1\+\_\+chunk\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$chunk)
 \item 
-void \mbox{\hyperlink{h1__encoder_8c_ab386f903228f42dff507cef1b5c9799a}{aws\+\_\+h1\+\_\+chunk\+\_\+complete\+\_\+and\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$chunk, struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http\+\_\+stream, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+void \mbox{\hyperlink{h1__encoder_8c_ab386f903228f42dff507cef1b5c9799a}{aws\+\_\+h1\+\_\+chunk\+\_\+complete\+\_\+and\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__h1__chunk}{aws\+\_\+h1\+\_\+chunk}} $\ast$chunk, struct \mbox{\hyperlink{structaws__http__stream}{aws\+\_\+http\+\_\+stream}} $\ast$http\+\_\+stream, int error\+\_\+code)
 \item 
-static void \mbox{\hyperlink{h1__encoder_8c_a1e1a8c461f0f8e7bd3737d641b6b7d04}{s\+\_\+clean\+\_\+up\+\_\+current\+\_\+chunk}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static void \mbox{\hyperlink{h1__encoder_8c_a1e1a8c461f0f8e7bd3737d641b6b7d04}{s\+\_\+clean\+\_\+up\+\_\+current\+\_\+chunk}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, int error\+\_\+code)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__encoder_8c_a616b2e1ecb454ef0a5994a926c41a528}{s\+\_\+encode\+\_\+buf}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$src)
+static bool \mbox{\hyperlink{h1__encoder_8c_a616b2e1ecb454ef0a5994a926c41a528}{s\+\_\+encode\+\_\+buf}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$src)
 \item 
-static int \mbox{\hyperlink{h1__encoder_8c_a35d58db53e46c3c53e246b96b3c1cf51}{s\+\_\+encode\+\_\+stream}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, uint64\+\_\+t total\+\_\+length, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$out\+\_\+done)
+static int \mbox{\hyperlink{h1__encoder_8c_a35d58db53e46c3c53e246b96b3c1cf51}{s\+\_\+encode\+\_\+stream}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst, struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, uint64\+\_\+t total\+\_\+length, bool $\ast$out\+\_\+done)
 \item 
-static int \mbox{\hyperlink{h1__encoder_8c_a4aae5da13919a4239333aa9f0abb1155}{s\+\_\+switch\+\_\+state}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, enum \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512}{aws\+\_\+h1\+\_\+encoder\+\_\+state}} \mbox{\hyperlink{structstate}{state}})
+static int \mbox{\hyperlink{h1__encoder_8c_a4aae5da13919a4239333aa9f0abb1155}{s\+\_\+switch\+\_\+state}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, enum \mbox{\hyperlink{h1__encoder_8h_a17d39daaf33eb833a0b361a179437512}{aws\+\_\+h1\+\_\+encoder\+\_\+state}} state)
 \item 
 static int \mbox{\hyperlink{h1__encoder_8c_a940e6a0297a7ecbf58a1634c5386b642}{s\+\_\+state\+\_\+fn\+\_\+init}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst)
 \item 
@@ -90,9 +90,9 @@ static int \mbox{\hyperlink{h1__encoder_8c_a3ab2e0875554b049dd330f3f6c6bf534}{s\
 \item 
 int \mbox{\hyperlink{h1__encoder_8c_aacd4f1fd41757f9f90af27be74ca8648}{aws\+\_\+h1\+\_\+encoder\+\_\+process}} (struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$out\+\_\+buf)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__encoder_8c_a438482ad4915cd3c781c342a0d6d1d61}{aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+message\+\_\+in\+\_\+progress}} (const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder)
+bool \mbox{\hyperlink{h1__encoder_8c_a438482ad4915cd3c781c342a0d6d1d61}{aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+message\+\_\+in\+\_\+progress}} (const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{h1__encoder_8c_aa15441fe4a6b7d3e5892905c1e0c11fe}{aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+waiting\+\_\+for\+\_\+chunks}} (const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder)
+bool \mbox{\hyperlink{h1__encoder_8c_aa15441fe4a6b7d3e5892905c1e0c11fe}{aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+waiting\+\_\+for\+\_\+chunks}} (const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$encoder)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -172,13 +172,13 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{h1\_encoder.c@{h1\_encoder.c}!aws\_h1\_encoder\_is\_message\_in\_progress@{aws\_h1\_encoder\_is\_message\_in\_progress}}
 \index{aws\_h1\_encoder\_is\_message\_in\_progress@{aws\_h1\_encoder\_is\_message\_in\_progress}!h1\_encoder.c@{h1\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_is\_message\_in\_progress()}{aws\_h1\_encoder\_is\_message\_in\_progress()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+message\+\_\+in\+\_\+progress (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+message\+\_\+in\+\_\+progress (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{h1__encoder_8c_aa15441fe4a6b7d3e5892905c1e0c11fe}\label{h1__encoder_8c_aa15441fe4a6b7d3e5892905c1e0c11fe}} 
 \index{h1\_encoder.c@{h1\_encoder.c}!aws\_h1\_encoder\_is\_waiting\_for\_chunks@{aws\_h1\_encoder\_is\_waiting\_for\_chunks}}
 \index{aws\_h1\_encoder\_is\_waiting\_for\_chunks@{aws\_h1\_encoder\_is\_waiting\_for\_chunks}!h1\_encoder.c@{h1\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_is\_waiting\_for\_chunks()}{aws\_h1\_encoder\_is\_waiting\_for\_chunks()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+waiting\+\_\+for\+\_\+chunks (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+h1\+\_\+encoder\+\_\+is\+\_\+waiting\+\_\+for\+\_\+chunks (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{h1__encoder_8c_a82812a3d15c217fcb2ec8ceb3f523b01}\label{h1__encoder_8c_a82812a3d15c217fcb2ec8ceb3f523b01}} 
 \index{h1\_encoder.c@{h1\_encoder.c}!aws\_h1\_encoder\_message\_clean\_up@{aws\_h1\_encoder\_message\_clean\_up}}
@@ -196,7 +196,7 @@ Calculate total size needed for outgoing\+\_\+head\+\_\+buffer, then write to bu
 \index{h1\_encoder.c@{h1\_encoder.c}!aws\_h1\_encoder\_message\_init\_from\_response@{aws\_h1\_encoder\_message\_init\_from\_response}}
 \index{aws\_h1\_encoder\_message\_init\_from\_response@{aws\_h1\_encoder\_message\_init\_from\_response}!h1\_encoder.c@{h1\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{aws\_h1\_encoder\_message\_init\_from\_response()}{aws\_h1\_encoder\_message\_init\_from\_response()}}
-{\footnotesize\ttfamily int aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+response (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$}]{message,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{response,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{body\+\_\+headers\+\_\+ignored,  }\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{pending\+\_\+chunk\+\_\+list }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+h1\+\_\+encoder\+\_\+message\+\_\+init\+\_\+from\+\_\+response (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$}]{message,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{allocator,  }\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{response,  }\item[{bool}]{body\+\_\+headers\+\_\+ignored,  }\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{pending\+\_\+chunk\+\_\+list }\end{DoxyParamCaption})}
 
 Calculate total size needed for outgoing\+\_\+head\+\_\+buffer, then write to buffer.
 
@@ -228,13 +228,13 @@ no body needed in the response RFC-\/7230 section 3.\+3 Message Body\mbox{\Hyper
 \index{h1\_encoder.c@{h1\_encoder.c}!s\_encode\_buf@{s\_encode\_buf}}
 \index{s\_encode\_buf@{s\_encode\_buf}!h1\_encoder.c@{h1\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{s\_encode\_buf()}{s\_encode\_buf()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+encode\+\_\+buf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+encode\+\_\+buf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst,  }\item[{const struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{src }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__encoder_8c_a35d58db53e46c3c53e246b96b3c1cf51}\label{h1__encoder_8c_a35d58db53e46c3c53e246b96b3c1cf51}} 
 \index{h1\_encoder.c@{h1\_encoder.c}!s\_encode\_stream@{s\_encode\_stream}}
 \index{s\_encode\_stream@{s\_encode\_stream}!h1\_encoder.c@{h1\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{s\_encode\_stream()}{s\_encode\_stream()}}
-{\footnotesize\ttfamily static int s\+\_\+encode\+\_\+stream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst,  }\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{uint64\+\_\+t}]{total\+\_\+length,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{out\+\_\+done }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+encode\+\_\+stream (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder}{aws\+\_\+h1\+\_\+encoder}} $\ast$}]{encoder,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst,  }\item[{struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$}]{stream,  }\item[{uint64\+\_\+t}]{total\+\_\+length,  }\item[{bool $\ast$}]{out\+\_\+done }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__encoder_8c_af718daf075f7849292fb9992c323b716}\label{h1__encoder_8c_af718daf075f7849292fb9992c323b716}} 
 \index{h1\_encoder.c@{h1\_encoder.c}!s\_populate\_chunk\_line\_buffer@{s\_populate\_chunk\_line\_buffer}}
@@ -246,7 +246,7 @@ no body needed in the response RFC-\/7230 section 3.\+3 Message Body\mbox{\Hyper
 \index{h1\_encoder.c@{h1\_encoder.c}!s\_scan\_outgoing\_headers@{s\_scan\_outgoing\_headers}}
 \index{s\_scan\_outgoing\_headers@{s\_scan\_outgoing\_headers}!h1\_encoder.c@{h1\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{s\_scan\_outgoing\_headers()}{s\_scan\_outgoing\_headers()}}
-{\footnotesize\ttfamily static int s\+\_\+scan\+\_\+outgoing\+\_\+headers (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$}]{encoder\+\_\+message,  }\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message,  }\item[{size\+\_\+t $\ast$}]{out\+\_\+header\+\_\+lines\+\_\+len,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{body\+\_\+headers\+\_\+ignored,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{body\+\_\+headers\+\_\+forbidden }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static int s\+\_\+scan\+\_\+outgoing\+\_\+headers (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__h1__encoder__message}{aws\+\_\+h1\+\_\+encoder\+\_\+message}} $\ast$}]{encoder\+\_\+message,  }\item[{const struct \mbox{\hyperlink{structaws__http__message}{aws\+\_\+http\+\_\+message}} $\ast$}]{message,  }\item[{size\+\_\+t $\ast$}]{out\+\_\+header\+\_\+lines\+\_\+len,  }\item[{bool}]{body\+\_\+headers\+\_\+ignored,  }\item[{bool}]{body\+\_\+headers\+\_\+forbidden }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Scan headers to detect errors and determine anything we\textquotesingle{}ll need to know later (ex\+: total length). \mbox{\Hypertarget{h1__encoder_8c_af8a45f0b55cdd9677c0f1edbd5ba1627}\label{h1__encoder_8c_af8a45f0b55cdd9677c0f1edbd5ba1627}} 
 \index{h1\_encoder.c@{h1\_encoder.c}!s\_state\_fn\_chunk\_body@{s\_state\_fn\_chunk\_body}}
@@ -312,19 +312,19 @@ Scan headers to detect errors and determine anything we\textquotesingle{}ll need
 \index{h1\_encoder.c@{h1\_encoder.c}!s\_write\_chunk\_extension@{s\_write\_chunk\_extension}}
 \index{s\_write\_chunk\_extension@{s\_write\_chunk\_extension}!h1\_encoder.c@{h1\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{s\_write\_chunk\_extension()}{s\_write\_chunk\_extension()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+write\+\_\+chunk\+\_\+extension (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst,  }\item[{struct \mbox{\hyperlink{structaws__http1__chunk__extension}{aws\+\_\+http1\+\_\+chunk\+\_\+extension}} $\ast$}]{chunk\+\_\+extension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+write\+\_\+chunk\+\_\+extension (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst,  }\item[{struct \mbox{\hyperlink{structaws__http1__chunk__extension}{aws\+\_\+http1\+\_\+chunk\+\_\+extension}} $\ast$}]{chunk\+\_\+extension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__encoder_8c_a3178a382e5abced2d83e5f09183ddcc8}\label{h1__encoder_8c_a3178a382e5abced2d83e5f09183ddcc8}} 
 \index{h1\_encoder.c@{h1\_encoder.c}!s\_write\_chunk\_size@{s\_write\_chunk\_size}}
 \index{s\_write\_chunk\_size@{s\_write\_chunk\_size}!h1\_encoder.c@{h1\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{s\_write\_chunk\_size()}{s\_write\_chunk\_size()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+write\+\_\+chunk\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst,  }\item[{uint64\+\_\+t}]{chunk\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+write\+\_\+chunk\+\_\+size (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst,  }\item[{uint64\+\_\+t}]{chunk\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__encoder_8c_a7bbabed22e3c41f54a34642d0e0e1b9e}\label{h1__encoder_8c_a7bbabed22e3c41f54a34642d0e0e1b9e}} 
 \index{h1\_encoder.c@{h1\_encoder.c}!s\_write\_crlf@{s\_write\_crlf}}
 \index{s\_write\_crlf@{s\_write\_crlf}!h1\_encoder.c@{h1\_encoder.c}}
 \doxysubsubsection{\texorpdfstring{s\_write\_crlf()}{s\_write\_crlf()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+write\+\_\+crlf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+write\+\_\+crlf (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{dst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{h1__encoder_8c_adcd85c4bfd38f20a3e0b527e5657d435}\label{h1__encoder_8c_adcd85c4bfd38f20a3e0b527e5657d435}} 
 \index{h1\_encoder.c@{h1\_encoder.c}!s\_write\_headers@{s\_write\_headers}}

@@ -22,15 +22,15 @@
 \DoxyCodeLine{22         \{}
 \DoxyCodeLine{23           \textcolor{keyword}{public}:}
 \DoxyCodeLine{24             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional_a2d231eff6f2057ef026194c361a217d0}{Optional}}() : m\_value(nullptr) \{\}}
-\DoxyCodeLine{25             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional_a0abaf361d1696cf727cccab1b07ae121}{Optional}}(\textcolor{keyword}{const} T \&\mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}})}
+\DoxyCodeLine{25             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional_a0abaf361d1696cf727cccab1b07ae121}{Optional}}(\textcolor{keyword}{const} T \&val)}
 \DoxyCodeLine{26             \{}
-\DoxyCodeLine{27                 \textcolor{keyword}{new} (\&m\_storage) T(\mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}});}
+\DoxyCodeLine{27                 \textcolor{keyword}{new} (\&m\_storage) T(val);}
 \DoxyCodeLine{28                 m\_value = \textcolor{keyword}{reinterpret\_cast<}T *\textcolor{keyword}{>}(\&m\_storage);}
 \DoxyCodeLine{29             \}}
 \DoxyCodeLine{30 }
-\DoxyCodeLine{31             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional_a7e2b73a4f0a0619ea90ab233a77a0282}{Optional}}(T \&\&\mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}})}
+\DoxyCodeLine{31             \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional_a7e2b73a4f0a0619ea90ab233a77a0282}{Optional}}(T \&\&val)}
 \DoxyCodeLine{32             \{}
-\DoxyCodeLine{33                 \textcolor{keyword}{new} (\&m\_storage) T(std::forward<T>(\mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}}));}
+\DoxyCodeLine{33                 \textcolor{keyword}{new} (\&m\_storage) T(std::forward<T>(val));}
 \DoxyCodeLine{34                 m\_value = \textcolor{keyword}{reinterpret\_cast<}T *\textcolor{keyword}{>}(\&m\_storage);}
 \DoxyCodeLine{35             \}}
 \DoxyCodeLine{36 }
@@ -182,7 +182,7 @@
 \DoxyCodeLine{182             \textcolor{keyword}{const} T \&\&\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional_a8c6200da7a73403379591dd5dc42b6e7}{operator*}}() const \&\& \{ \textcolor{keywordflow}{return} std::move(*m\_value); \}}
 \DoxyCodeLine{183             T \&\&\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional_ac1afd6239f14821322f671e7b3ec57b6}{operator*}}() \&\& \{ \textcolor{keywordflow}{return} std::move(*m\_value); \}}
 \DoxyCodeLine{184 }
-\DoxyCodeLine{185             \textcolor{keyword}{explicit} \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept \{ \textcolor{keywordflow}{return} m\_value != \textcolor{keyword}{nullptr}; \}}
+\DoxyCodeLine{185             \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool() const noexcept \{ \textcolor{keywordflow}{return} m\_value != \textcolor{keyword}{nullptr}; \}}
 \DoxyCodeLine{186             \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional_a4356231bdd8a67fd565f8a8211a2e770}{has\_value}}() const noexcept \{ \textcolor{keywordflow}{return} m\_value != \textcolor{keyword}{nullptr}; \}}
 \DoxyCodeLine{187 }
 \DoxyCodeLine{188             T \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_optional_acac8a48c762fc374da936b3ef88d4de8}{value}}() \& \{ \textcolor{keywordflow}{return} *m\_value; \}}

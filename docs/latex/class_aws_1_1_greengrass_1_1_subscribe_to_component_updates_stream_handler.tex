@@ -15,13 +15,13 @@ Inheritance diagram for Aws\+::Greengrass\+::Subscribe\+To\+Component\+Updates\+
 \item 
 virtual void \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_stream_handler_a02f3342fcacc2b779c1d0c3078ea12ba}{On\+Stream\+Event}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_component_update_policy_events}{Component\+Update\+Policy\+Events}} $\ast$response)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_stream_handler_a32430df4bf40b59078ca07dd20dcdd50}{On\+Stream\+Error}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} rpc\+Error)
+virtual bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_stream_handler_a32430df4bf40b59078ca07dd20dcdd50}{On\+Stream\+Error}} (\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} rpc\+Error)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_stream_handler_a48f78dca422f25e41e905ba61d068411}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}} $\ast$operation\+Error)
+virtual bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_stream_handler_a48f78dca422f25e41e905ba61d068411}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}} $\ast$operation\+Error)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_stream_handler_ab0a527f22c6d50e03ad52f96bbc99f45}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_resource_not_found_error}{Resource\+Not\+Found\+Error}} $\ast$operation\+Error)
+virtual bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_stream_handler_ab0a527f22c6d50e03ad52f96bbc99f45}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_resource_not_found_error}{Resource\+Not\+Found\+Error}} $\ast$operation\+Error)
 \item 
-virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_stream_handler_a4661aad357abf00672e3bb0f7d867488}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $\ast$operation\+Error)
+virtual bool \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_subscribe_to_component_updates_stream_handler_a4661aad357abf00672e3bb0f7d867488}{On\+Stream\+Error}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $\ast$operation\+Error)
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -31,7 +31,7 @@ virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \
 \index{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler@{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler}!OnStreamError@{OnStreamError}}
 \index{OnStreamError@{OnStreamError}!Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler@{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler}}
 \doxysubsubsection{\texorpdfstring{OnStreamError()}{OnStreamError()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Subscribe\+To\+Component\+Updates\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Greengrass\+::\+Subscribe\+To\+Component\+Updates\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_operation_error}{Operation\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 A callback that is invoked upon receiving ANY error response from the server. 
 \begin{DoxyParams}{Parameters}
@@ -42,7 +42,7 @@ A callback that is invoked upon receiving ANY error response from the server.
 \index{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler@{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler}!OnStreamError@{OnStreamError}}
 \index{OnStreamError@{OnStreamError}!Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler@{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler}}
 \doxysubsubsection{\texorpdfstring{OnStreamError()}{OnStreamError()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Subscribe\+To\+Component\+Updates\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_resource_not_found_error}{Resource\+Not\+Found\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Greengrass\+::\+Subscribe\+To\+Component\+Updates\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_resource_not_found_error}{Resource\+Not\+Found\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 A callback that is invoked upon receiving an error of type {\ttfamily \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_resource_not_found_error}{Resource\+Not\+Found\+Error}}}. 
 \begin{DoxyParams}{Parameters}
@@ -53,7 +53,7 @@ A callback that is invoked upon receiving an error of type {\ttfamily \mbox{\hyp
 \index{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler@{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler}!OnStreamError@{OnStreamError}}
 \index{OnStreamError@{OnStreamError}!Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler@{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler}}
 \doxysubsubsection{\texorpdfstring{OnStreamError()}{OnStreamError()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Subscribe\+To\+Component\+Updates\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}}]{rpc\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Greengrass\+::\+Subscribe\+To\+Component\+Updates\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}}}]{rpc\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 A callback that is invoked when an error occurs while parsing a message from the stream. 
 \begin{DoxyParams}{Parameters}
@@ -64,7 +64,7 @@ A callback that is invoked when an error occurs while parsing a message from the
 \index{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler@{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler}!OnStreamError@{OnStreamError}}
 \index{OnStreamError@{OnStreamError}!Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler@{Aws::Greengrass::SubscribeToComponentUpdatesStreamHandler}}
 \doxysubsubsection{\texorpdfstring{OnStreamError()}{OnStreamError()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Greengrass\+::\+Subscribe\+To\+Component\+Updates\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily virtual bool Aws\+::\+Greengrass\+::\+Subscribe\+To\+Component\+Updates\+Stream\+Handler\+::\+On\+Stream\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}} $\ast$}]{operation\+Error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 A callback that is invoked upon receiving an error of type {\ttfamily \mbox{\hyperlink{class_aws_1_1_greengrass_1_1_service_error}{Service\+Error}}}. 
 \begin{DoxyParams}{Parameters}

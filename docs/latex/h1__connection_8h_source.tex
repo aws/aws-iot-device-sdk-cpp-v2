@@ -67,7 +67,7 @@
 \DoxyCodeLine{77             \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__linked__list}{aws\_linked\_list}} \mbox{\hyperlink{structaws__h1__connection_a838e9efbe429c10c8d7b791b122c8330}{messages}};}
 \DoxyCodeLine{78             \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__h1__connection_a5db62b6700201f261a0facff1d64e02d}{pending\_bytes}};}
 \DoxyCodeLine{79             \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__h1__connection_a14e619a2799de2bf0893458983a2474b}{capacity}};}
-\DoxyCodeLine{80         \} \mbox{\hyperlink{structaws__h1__connection_a7ef089b87c2d084d751dcb87df8098a2}{read\_buffer}};}
+\DoxyCodeLine{80         \} \mbox{\hyperlink{structaws__h1__connection_a25561d26f5de69f271f1e38918a9708e}{read\_buffer}};}
 \DoxyCodeLine{81 }
 \DoxyCodeLine{89         \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structaws__h1__connection_af7447ac23cd5dca53c6245aa178c7a44}{connection\_window}};}
 \DoxyCodeLine{90 }
@@ -95,7 +95,7 @@
 \DoxyCodeLine{112         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h1__connection_a2f21c8d3824a38bf976c08c5aa937373}{is\_outgoing\_stream\_task\_active}} : 1;}
 \DoxyCodeLine{113 }
 \DoxyCodeLine{114         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h1__connection_a7cc70504544f6d3191bcfe03de4e614f}{is\_processing\_read\_messages}} : 1;}
-\DoxyCodeLine{115     \} \mbox{\hyperlink{structaws__h1__connection_a35eec3bace7433768e76fe6bbbe7a5ef}{thread\_data}};}
+\DoxyCodeLine{115     \} \mbox{\hyperlink{structaws__h1__connection_a0ef02230f49cd5d0528205972ee998d1}{thread\_data}};}
 \DoxyCodeLine{116 }
 \DoxyCodeLine{117     \textcolor{comment}{/* Any thread may touch this data, but the lock must be held */}}
 \DoxyCodeLine{118     \textcolor{keyword}{struct }\{}
@@ -117,7 +117,7 @@
 \DoxyCodeLine{134         \textcolor{comment}{/* For checking status from outside the event-\/loop thread. */}}
 \DoxyCodeLine{135         \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__h1__connection_adf359a7bbe3610b66eed0d2fc2f0952d}{is\_open}} : 1;}
 \DoxyCodeLine{136 }
-\DoxyCodeLine{137     \} \mbox{\hyperlink{structaws__h1__connection_adfe8d514edf00493aabe80888c0a0d92}{synced\_data}};}
+\DoxyCodeLine{137     \} \mbox{\hyperlink{structaws__h1__connection_a51bf40d087d972580b3dc3d72efd8595}{synced\_data}};}
 \DoxyCodeLine{138 \};}
 \DoxyCodeLine{139 }
 \DoxyCodeLine{140 \textcolor{comment}{/* Allow tests to check current window stats */}}
@@ -136,14 +136,14 @@
 \DoxyCodeLine{153 }
 \DoxyCodeLine{154 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{155 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *\mbox{\hyperlink{h1__connection_8h_af8e94e4b50d614f906924b69487389ba}{aws\_http\_connection\_new\_http1\_1\_server}}(}
-\DoxyCodeLine{156     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{156     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{157     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__http__connection_a94d687437ce0bddb27df2da83db2b646}{manual\_window\_management}},}
 \DoxyCodeLine{158     \textcolor{keywordtype}{size\_t} initial\_window\_size,}
 \DoxyCodeLine{159     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http1__connection__options}{aws\_http1\_connection\_options}} *http1\_options);}
 \DoxyCodeLine{160 }
 \DoxyCodeLine{161 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\_HTTP\_API}}}
 \DoxyCodeLine{162 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__http__connection}{aws\_http\_connection}} *\mbox{\hyperlink{h1__connection_8h_ab722b955ed4ec4fd8a1ca2fbfe2d9d5b}{aws\_http\_connection\_new\_http1\_1\_client}}(}
-\DoxyCodeLine{163     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{163     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{164     \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__http__connection_a94d687437ce0bddb27df2da83db2b646}{manual\_window\_management}},}
 \DoxyCodeLine{165     \textcolor{keywordtype}{size\_t} initial\_window\_size,}
 \DoxyCodeLine{166     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__http1__connection__options}{aws\_http1\_connection\_options}} *http1\_options);}

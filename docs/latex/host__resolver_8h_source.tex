@@ -46,13 +46,13 @@
 \DoxyCodeLine{53     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *host\_name,}
 \DoxyCodeLine{54     \textcolor{keywordtype}{int} err\_code,}
 \DoxyCodeLine{55     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *host\_addresses,}
-\DoxyCodeLine{56     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{56     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{57 }
 \DoxyCodeLine{63 \textcolor{keyword}{typedef} int(\mbox{\hyperlink{host__resolver_8h_a185a9321bc3fa33f4334fbbca2016bfb}{aws\_resolve\_host\_implementation\_fn}})(}
-\DoxyCodeLine{64     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{64     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{65     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *host\_name,}
 \DoxyCodeLine{66     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *output\_addresses,}
-\DoxyCodeLine{67     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{67     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{68 }
 \DoxyCodeLine{69 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__resolution__config}{aws\_host\_resolution\_config}} \{}
 \DoxyCodeLine{70     \mbox{\hyperlink{host__resolver_8h_a185a9321bc3fa33f4334fbbca2016bfb}{aws\_resolve\_host\_implementation\_fn}} *\mbox{\hyperlink{structaws__host__resolution__config_a817c39eaf3c7fd50a0cdbe3b3ab9cc63}{impl}};}
@@ -70,8 +70,8 @@
 \DoxyCodeLine{86         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *resolver,}
 \DoxyCodeLine{87         \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__string}{aws\_string}} *host\_name,}
 \DoxyCodeLine{88         \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\_on\_host\_resolved\_result\_fn}} *res,}
-\DoxyCodeLine{89         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__resolution__config}{aws\_host\_resolution\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}},}
-\DoxyCodeLine{90         \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{89         \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__resolution__config}{aws\_host\_resolution\_config}} *\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}},}
+\DoxyCodeLine{90         \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{94     int (*\mbox{\hyperlink{structaws__host__resolver__vtable_a99065c019b8f3a12a59348fc876d566e}{record\_connection\_failure}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *resolver, \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__address}{aws\_host\_address}} *\mbox{\hyperlink{structaws__host__address_a765d62f4a180651e590eabbec7a94191}{address}});}
 \DoxyCodeLine{96     int (*\mbox{\hyperlink{structaws__host__resolver__vtable_ab218c06affbc98dd387691869d707d3e}{purge\_cache}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *resolver);}
 \DoxyCodeLine{98     size\_t (*\mbox{\hyperlink{structaws__host__resolver__vtable_a9b68962cb5de6e2439e374be57ceb74d}{get\_host\_address\_count}})(}
@@ -109,13 +109,13 @@
 \DoxyCodeLine{142 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{host__resolver_8h_a58b427c37bc775ebae5322b9bf1e0b3d}{aws\_host\_address\_clean\_up}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__host__address}{aws\_host\_address}} *address);}
 \DoxyCodeLine{143 }
 \DoxyCodeLine{146 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{host__resolver_8h_ab36ae8540e8e3d2655be0cee0a92521e}{aws\_default\_dns\_resolve}}(}
-\DoxyCodeLine{147     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{147     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{148     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *host\_name,}
 \DoxyCodeLine{149     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *output\_addresses,}
-\DoxyCodeLine{150     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{150     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{151 }
 \DoxyCodeLine{184 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *\mbox{\hyperlink{host__resolver_8h_a9405ac7cdf6e7020ce853ea0ce000cbf}{aws\_host\_resolver\_new\_default}}(}
-\DoxyCodeLine{185     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{185     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__host__resolver_a7ea86fea7032519ebed205f9db828e0d}{allocator}},}
 \DoxyCodeLine{186     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__host__resolver__default__options}{aws\_host\_resolver\_default\_options}} *options);}
 \DoxyCodeLine{187 }
 \DoxyCodeLine{193 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *\mbox{\hyperlink{host__resolver_8h_ab65ffc8f94135a6f99806e05c18e2892}{aws\_host\_resolver\_acquire}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *resolver);}
@@ -126,8 +126,8 @@
 \DoxyCodeLine{204     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *resolver,}
 \DoxyCodeLine{205     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__string}{aws\_string}} *host\_name,}
 \DoxyCodeLine{206     \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\_on\_host\_resolved\_result\_fn}} *res,}
-\DoxyCodeLine{207     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__host__resolution__config}{aws\_host\_resolution\_config}} *\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}},}
-\DoxyCodeLine{208     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{207     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__host__resolution__config}{aws\_host\_resolution\_config}} *\mbox{\hyperlink{namespacecreate__project_ab7f741ca784276a3f80325a8fb79fd95}{config}},}
+\DoxyCodeLine{208     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{209 }
 \DoxyCodeLine{213 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\_IO\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{host__resolver_8h_ad8a9f19466f76d2af80d1dce076f9b03}{aws\_host\_resolver\_record\_connection\_failure}}(}
 \DoxyCodeLine{214     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__host__resolver}{aws\_host\_resolver}} *resolver,}
@@ -154,7 +154,7 @@
 \DoxyCodeLine{241     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *new\_address\_list,}
 \DoxyCodeLine{242 }
 \DoxyCodeLine{243     \textcolor{comment}{/* User data that was specified when adding the listener. */}}
-\DoxyCodeLine{244     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{244     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{245 }
 \DoxyCodeLine{246 \textcolor{comment}{/* Callback for learning of an expired address from a listener. Memory for the expired address list is only guaranteed}}
 \DoxyCodeLine{247 \textcolor{comment}{ * to exist during the callback, and must be copied if the caller needs it to persist after. */}}
@@ -170,10 +170,10 @@
 \DoxyCodeLine{257     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *expired\_address\_list,}
 \DoxyCodeLine{258 }
 \DoxyCodeLine{259     \textcolor{comment}{/* User data that was specified when adding the listener. */}}
-\DoxyCodeLine{260     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{260     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{261 }
 \DoxyCodeLine{262 \textcolor{comment}{/* Callback for when the listener has completed its clean up. */}}
-\DoxyCodeLine{263 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{host__resolver_8h_a3d9d75231229cf40451d67427e2eb3d8}{aws\_host\_listener\_shutdown\_fn}})(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{263 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{host__resolver_8h_a3d9d75231229cf40451d67427e2eb3d8}{aws\_host\_listener\_shutdown\_fn}})(\textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{264 }
 \DoxyCodeLine{265 \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__host__listener__options}{aws\_host\_listener\_options}} \{}
 \DoxyCodeLine{266 }

@@ -67,14 +67,14 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p >C99 implementation of the MQTT 3.1.1 specification.</p>
-<h1><a class="anchor" id="autotoc_md305"></a>
+<h1><a class="anchor" id="autotoc_md300"></a>
 License</h1>
 <p >This library is licensed under the Apache 2.0 License.</p>
-<h1><a class="anchor" id="autotoc_md306"></a>
+<h1><a class="anchor" id="autotoc_md301"></a>
 Usage</h1>
-<h2><a class="anchor" id="autotoc_md307"></a>
+<h2><a class="anchor" id="autotoc_md302"></a>
 Building</h2>
-<h3><a class="anchor" id="autotoc_md308"></a>
+<h3><a class="anchor" id="autotoc_md303"></a>
 Building s2n (Linux Only)</h3>
 <p >If you are building on Linux, you will need to build s2n before being able to build aws-c-io, which is a dependency of aws-c-mqtt. For our CRT's, we build s2n at a specific commit, and recommend doing the same when using it with this library. That commit hash can be found <a href="https://github.com/awslabs/aws-crt-cpp/tree/main/aws-common-runtime">here</a>. The commands below will build s2n using OpenSSL 1.1.1. For using other versions of OpenSSL, there is additional information in the <a href="https://github.com/awslabs/s2n/blob/main/docs/USAGE-GUIDE.md">s2n Usage Guide</a>.</p>
 <div class="fragment"><div class="line">git clone git@github.com:awslabs/s2n.git</div>
@@ -103,7 +103,7 @@ Building s2n (Linux Only)</h3>
 <div class="line">cd ../../../</div>
 <div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S s2n -B s2n/build</div>
 <div class="line">cmake --build s2n/build --target install</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md309"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md304"></a>
 Building aws-c-mqtt and Remaining Dependencies</h3>
 <p >Note that aws-c-mqtt has several dependencies that need to be built.</p>
 <div class="fragment"><div class="line">git clone git@github.com:awslabs/aws-c-common.git</div>
@@ -125,17 +125,16 @@ Building aws-c-mqtt and Remaining Dependencies</h3>
 <div class="line">git clone git@github.com:awslabs/aws-c-mqtt.git</div>
 <div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S aws-c-mqtt -B aws-c-mqtt/build</div>
 <div class="line">cmake --build aws-c-mqtt/build --target install</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md310"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md305"></a>
 Overview</h2>
 <p >This library contains an MQTT implementation that is simple and easy to use, but also quite powerful and low on unnecessary copies. Here is a general overview of the API:</p>
-<h2><a class="anchor" id="autotoc_md311"></a>
+<h2><a class="anchor" id="autotoc_md306"></a>
 &lt;tt&gt;struct aws_mqtt_client;&lt;/tt&gt;</h2>
 <p ><code><a class="el" href="structaws__mqtt__client.html">aws_mqtt_client</a></code> is meant to be created once per application to pool common resources required for opening MQTT connections. The instance does not need to be allocated, and may be managed by the user.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> aws_mqtt_client_init(</div>
 <div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client.html">aws_mqtt_client</a> *client,</div>
-<div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__allocator.html">aws_allocator</a> *<a class="code hl_variable" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>,</div>
+<div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__allocator.html">aws_allocator</a> *allocator,</div>
 <div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__event__loop__group.html">aws_event_loop_group</a> *elg);</div>
-<div class="ttc" id="asocket__test_8c_html_a130cc941753892421e3f70bdee1049d1"><div class="ttname"><a href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a></div><div class="ttdeci">struct aws_allocator * allocator</div><div class="ttdef"><b>Definition:</b> socket_test.c:1337</div></div>
 <div class="ttc" id="astructaws__allocator_html"><div class="ttname"><a href="structaws__allocator.html">aws_allocator</a></div><div class="ttdef"><b>Definition:</b> allocator.h:15</div></div>
 <div class="ttc" id="astructaws__event__loop__group_html"><div class="ttname"><a href="structaws__event__loop__group.html">aws_event_loop_group</a></div><div class="ttdef"><b>Definition:</b> event_loop.h:116</div></div>
 <div class="ttc" id="astructaws__mqtt__client_html"><div class="ttname"><a href="structaws__mqtt__client.html">aws_mqtt_client</a></div><div class="ttdef"><b>Definition:</b> client.h:28</div></div>
@@ -147,7 +146,7 @@ Overview</h2>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> aws_mqtt_client_clean_up(<span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client.html">aws_mqtt_client</a> *client);</div>
 </div><!-- fragment --><p> Cleans up a client and frees all owned resources.</p>
 <p ><b>NOTE</b>: DO NOT CALL THIS FUNCTION UNTIL ALL OUTSTANDING CONNECTIONS ARE CLOSED.</p>
-<h2><a class="anchor" id="autotoc_md312"></a>
+<h2><a class="anchor" id="autotoc_md307"></a>
 &lt;tt&gt;struct aws_mqtt_client_connection;&lt;/tt&gt;</h2>
 <div class="fragment"><div class="line"><span class="keyword">struct </span><a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *<a class="code hl_function" href="client_8h.html#a74d960a25b25e4a270984406990700b0">aws_mqtt_client_connection_new</a>(</div>
 <div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client.html">aws_mqtt_client</a> *<a class="code hl_variable" href="structaws__mqtt__client__connection.html#a3f549d2ea074f1cc3eef29a54d8d83fa">client</a>,</div>
@@ -179,24 +178,24 @@ Overview</h2>
 <p ><b>NOTE</b>: DO NOT CALL THIS FUNCTION UNTIL THE CONNECTION IS CLOSED.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="client_8h.html#a62b3d8c85a2613fa1051b1c80b884cad">aws_mqtt_client_connection_set_will</a>(</div>
 <div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection,</div>
-<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="connection__state__test_8c.html#ad99baabff61442b2d602f6dd84310f89">topic</a>,</div>
-<div class="line">    <span class="keyword">enum</span> <a class="code hl_enumeration" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> <a class="code hl_variable" href="connection__state__test_8c.html#a65ee2b4b16f25052c441ff9959dcc7e7">qos</a>,</div>
+<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="structaws__mqtt__client__connection.html#a8beb4d40f151fdeb2f630cfebeac924e">topic</a>,</div>
+<div class="line">    <span class="keyword">enum</span> <a class="code hl_enumeration" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> <a class="code hl_variable" href="structaws__mqtt__client__connection.html#a5d116e4c37220a9397199e27e90b8bba">qos</a>,</div>
 <div class="line">    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structaws__mqtt__client__connection.html#a0a9b0439fd195534e3f95f4c216e7711">retain</a>,</div>
-<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="event__stream__rpc__server__connection__test_8c.html#ad1560a388c937f36f038c683175d82bf">payload</a>);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="structaws__mqtt__client__connection.html#ae79a30c3c428a546b220b93553ec3a75">payload</a>);</div>
 <div class="ttc" id="aclient_8h_html_a62b3d8c85a2613fa1051b1c80b884cad"><div class="ttname"><a href="client_8h.html#a62b3d8c85a2613fa1051b1c80b884cad">aws_mqtt_client_connection_set_will</a></div><div class="ttdeci">AWS_MQTT_API int aws_mqtt_client_connection_set_will(struct aws_mqtt_client_connection *connection, const struct aws_byte_cursor *topic, enum aws_mqtt_qos qos, bool retain, const struct aws_byte_cursor *payload)</div><div class="ttdef"><b>Definition:</b> client.c:833</div></div>
-<div class="ttc" id="aconnection__state__test_8c_html_a65ee2b4b16f25052c441ff9959dcc7e7"><div class="ttname"><a href="connection__state__test_8c.html#a65ee2b4b16f25052c441ff9959dcc7e7">qos</a></div><div class="ttdeci">uint8_t qos</div><div class="ttdef"><b>Definition:</b> connection_state_test.c:1124</div></div>
-<div class="ttc" id="aconnection__state__test_8c_html_ad99baabff61442b2d602f6dd84310f89"><div class="ttname"><a href="connection__state__test_8c.html#ad99baabff61442b2d602f6dd84310f89">topic</a></div><div class="ttdeci">struct aws_byte_cursor topic</div><div class="ttdef"><b>Definition:</b> connection_state_test.c:621</div></div>
-<div class="ttc" id="aevent__stream__rpc__server__connection__test_8c_html_ad1560a388c937f36f038c683175d82bf"><div class="ttname"><a href="event__stream__rpc__server__connection__test_8c.html#ad1560a388c937f36f038c683175d82bf">payload</a></div><div class="ttdeci">struct aws_byte_buf payload</div><div class="ttdef"><b>Definition:</b> event_stream_rpc_server_connection_test.c:388</div></div>
 <div class="ttc" id="amqtt_8h_html_a9c8e7e4cfbb7dcb3fc4a5402000998ce"><div class="ttname"><a href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a></div><div class="ttdeci">aws_mqtt_qos</div><div class="ttdef"><b>Definition:</b> mqtt.h:17</div></div>
 <div class="ttc" id="astructaws__mqtt__client__connection_html_a0a9b0439fd195534e3f95f4c216e7711"><div class="ttname"><a href="structaws__mqtt__client__connection.html#a0a9b0439fd195534e3f95f4c216e7711">aws_mqtt_client_connection::retain</a></div><div class="ttdeci">bool retain</div><div class="ttdef"><b>Definition:</b> client_impl.h:144</div></div>
+<div class="ttc" id="astructaws__mqtt__client__connection_html_a5d116e4c37220a9397199e27e90b8bba"><div class="ttname"><a href="structaws__mqtt__client__connection.html#a5d116e4c37220a9397199e27e90b8bba">aws_mqtt_client_connection::qos</a></div><div class="ttdeci">enum aws_mqtt_qos qos</div><div class="ttdef"><b>Definition:</b> client_impl.h:143</div></div>
+<div class="ttc" id="astructaws__mqtt__client__connection_html_a8beb4d40f151fdeb2f630cfebeac924e"><div class="ttname"><a href="structaws__mqtt__client__connection.html#a8beb4d40f151fdeb2f630cfebeac924e">aws_mqtt_client_connection::topic</a></div><div class="ttdeci">struct aws_byte_buf topic</div><div class="ttdef"><b>Definition:</b> client_impl.h:142</div></div>
+<div class="ttc" id="astructaws__mqtt__client__connection_html_ae79a30c3c428a546b220b93553ec3a75"><div class="ttname"><a href="structaws__mqtt__client__connection.html#ae79a30c3c428a546b220b93553ec3a75">aws_mqtt_client_connection::payload</a></div><div class="ttdeci">struct aws_byte_buf payload</div><div class="ttdef"><b>Definition:</b> client_impl.h:145</div></div>
 </div><!-- fragment --><p> Sets the last will and testament to be distributed by the server upon client disconnection. Must be called before <code>aws_mqtt_client_connection_connect</code>. See <code>aws_mqtt_client_connection_publish</code> for information on the parameters. <code>topic</code> and <code>payload</code> must persist past the call to <code>aws_mqtt_client_connection_connect</code>.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="client_8h.html#a9334da6046ba4c7c54bc9d102f1159da">aws_mqtt_client_connection_set_login</a>(</div>
 <div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection,</div>
-<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="connection__state__test_8c.html#a6e350427887d766b20857e72025d592c">username</a>,</div>
-<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="connection__state__test_8c.html#af7b550f3b3dbd60c52719a28b826fdd8">password</a>);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="structaws__mqtt__client__connection.html#aeaaf60b787337e2d69db65a5e9f51f1d">username</a>,</div>
+<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="structaws__mqtt__client__connection.html#a87b9ffc0a328a668199840189e1f8e6a">password</a>);</div>
 <div class="ttc" id="aclient_8h_html_a9334da6046ba4c7c54bc9d102f1159da"><div class="ttname"><a href="client_8h.html#a9334da6046ba4c7c54bc9d102f1159da">aws_mqtt_client_connection_set_login</a></div><div class="ttdeci">AWS_MQTT_API int aws_mqtt_client_connection_set_login(struct aws_mqtt_client_connection *connection, const struct aws_byte_cursor *username, const struct aws_byte_cursor *password)</div><div class="ttdef"><b>Definition:</b> client.c:898</div></div>
-<div class="ttc" id="aconnection__state__test_8c_html_a6e350427887d766b20857e72025d592c"><div class="ttname"><a href="connection__state__test_8c.html#a6e350427887d766b20857e72025d592c">username</a></div><div class="ttdeci">struct aws_byte_cursor username</div><div class="ttdef"><b>Definition:</b> connection_state_test.c:622</div></div>
-<div class="ttc" id="aconnection__state__test_8c_html_af7b550f3b3dbd60c52719a28b826fdd8"><div class="ttname"><a href="connection__state__test_8c.html#af7b550f3b3dbd60c52719a28b826fdd8">password</a></div><div class="ttdeci">struct aws_byte_cursor password</div><div class="ttdef"><b>Definition:</b> connection_state_test.c:623</div></div>
+<div class="ttc" id="astructaws__mqtt__client__connection_html_a87b9ffc0a328a668199840189e1f8e6a"><div class="ttname"><a href="structaws__mqtt__client__connection.html#a87b9ffc0a328a668199840189e1f8e6a">aws_mqtt_client_connection::password</a></div><div class="ttdeci">struct aws_string * password</div><div class="ttdef"><b>Definition:</b> client_impl.h:140</div></div>
+<div class="ttc" id="astructaws__mqtt__client__connection_html_aeaaf60b787337e2d69db65a5e9f51f1d"><div class="ttname"><a href="structaws__mqtt__client__connection.html#aeaaf60b787337e2d69db65a5e9f51f1d">aws_mqtt_client_connection::username</a></div><div class="ttdeci">struct aws_string * username</div><div class="ttdef"><b>Definition:</b> client_impl.h:139</div></div>
 </div><!-- fragment --><p> Sets the username and password to be sent to the server on connection. Must be called before <code>aws_mqtt_client_connection_connect</code>. <code>username</code> and <code>password</code> must persist past the call to <code>aws_mqtt_client_connection_connect</code>.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="client_8h.html#a1284ba84446c1160118dc004fba598ca">aws_mqtt_client_connection_set_reconnect_timeout</a>(</div>
 <div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection,</div>
@@ -219,13 +218,12 @@ Overview</h2>
 <div class="fragment"><div class="line">uint16_t aws_mqtt_client_connection_subscribe_single(</div>
 <div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection,</div>
 <div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *topic_filter,</div>
-<div class="line">    <span class="keyword">enum</span> <a class="code hl_enumeration" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> <a class="code hl_variable" href="connection__state__test_8c.html#a65ee2b4b16f25052c441ff9959dcc7e7">qos</a>,</div>
-<div class="line">    <a class="code hl_typedef" href="client_8h.html#a979def98388f4a6c7eb7de0c3c868555">aws_mqtt_client_publish_received_fn</a> *<a class="code hl_function" href="topic__tree__test_8c.html#ad7276cd5ba4292cd3ff3633137b853f8">on_publish</a>,</div>
+<div class="line">    <span class="keyword">enum</span> <a class="code hl_enumeration" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> <a class="code hl_variable" href="structaws__mqtt__client__connection.html#a5d116e4c37220a9397199e27e90b8bba">qos</a>,</div>
+<div class="line">    <a class="code hl_typedef" href="client_8h.html#a979def98388f4a6c7eb7de0c3c868555">aws_mqtt_client_publish_received_fn</a> *on_publish,</div>
 <div class="line">    <span class="keywordtype">void</span> *on_publish_ud,</div>
 <div class="line">    aws_mqtt_suback_single_fn *on_suback,</div>
 <div class="line">    <span class="keywordtype">void</span> *on_suback_ud);</div>
 <div class="ttc" id="aclient_8h_html_a979def98388f4a6c7eb7de0c3c868555"><div class="ttname"><a href="client_8h.html#a979def98388f4a6c7eb7de0c3c868555">aws_mqtt_client_publish_received_fn</a></div><div class="ttdeci">void() aws_mqtt_client_publish_received_fn(struct aws_mqtt_client_connection *connection, const struct aws_byte_cursor *topic, const struct aws_byte_cursor *payload, bool dup, enum aws_mqtt_qos qos, bool retain, void *userdata)</div><div class="ttdef"><b>Definition:</b> client.h:112</div></div>
-<div class="ttc" id="atopic__tree__test_8c_html_ad7276cd5ba4292cd3ff3633137b853f8"><div class="ttname"><a href="topic__tree__test_8c.html#ad7276cd5ba4292cd3ff3633137b853f8">on_publish</a></div><div class="ttdeci">static void on_publish(const struct aws_byte_cursor *topic, const struct aws_byte_cursor *payload, bool dup, enum aws_mqtt_qos qos, bool retain, void *user_data)</div><div class="ttdef"><b>Definition:</b> topic_tree_test.c:18</div></div>
 </div><!-- fragment --><p> Subscribes to the topic filter given with the given QoS. <code>on_publish</code> will be called whenever a packet matching <code>topic_filter</code> arrives. <code>on_suback</code> will be called when the SUBACK packet has been received. <code>topic_filter</code> must persist until <code>on_suback</code> is called. The packet_id of the SUBSCRIBE packet will be returned, or 0 on error.</p>
 <div class="fragment"><div class="line">uint16_t <a class="code hl_function" href="client_8h.html#a92292f9330f16c48a39fe2b09ae4381f">aws_mqtt_client_connection_unsubscribe</a>(</div>
 <div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection,</div>
@@ -237,10 +235,10 @@ Overview</h2>
 </div><!-- fragment --><p> Unsubscribes from the topic filter given. <code>topic_filter</code> must persist until <code>on_unsuback</code> is called. The packet_id of the UNSUBSCRIBE packet will be returned, or 0 on error.</p>
 <div class="fragment"><div class="line">uint16_t <a class="code hl_function" href="client_8h.html#accba3c63a72807cabf69fcf11a831954">aws_mqtt_client_connection_publish</a>(</div>
 <div class="line">    <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__mqtt__client__connection.html">aws_mqtt_client_connection</a> *connection,</div>
-<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="connection__state__test_8c.html#ad99baabff61442b2d602f6dd84310f89">topic</a>,</div>
-<div class="line">    <span class="keyword">enum</span> <a class="code hl_enumeration" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> <a class="code hl_variable" href="connection__state__test_8c.html#a65ee2b4b16f25052c441ff9959dcc7e7">qos</a>,</div>
+<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="structaws__mqtt__client__connection.html#a8beb4d40f151fdeb2f630cfebeac924e">topic</a>,</div>
+<div class="line">    <span class="keyword">enum</span> <a class="code hl_enumeration" href="mqtt_8h.html#a9c8e7e4cfbb7dcb3fc4a5402000998ce">aws_mqtt_qos</a> <a class="code hl_variable" href="structaws__mqtt__client__connection.html#a5d116e4c37220a9397199e27e90b8bba">qos</a>,</div>
 <div class="line">    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structaws__mqtt__client__connection.html#a0a9b0439fd195534e3f95f4c216e7711">retain</a>,</div>
-<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="event__stream__rpc__server__connection__test_8c.html#ad1560a388c937f36f038c683175d82bf">payload</a>,</div>
+<div class="line">    <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structaws__byte__cursor.html">aws_byte_cursor</a> *<a class="code hl_variable" href="structaws__mqtt__client__connection.html#ae79a30c3c428a546b220b93553ec3a75">payload</a>,</div>
 <div class="line">    <a class="code hl_typedef" href="client_8h.html#ab798c331e8c9a78dcb6fb7f300d8b59d">aws_mqtt_op_complete_fn</a> *on_complete,</div>
 <div class="line">    <span class="keywordtype">void</span> *userdata);</div>
 <div class="ttc" id="aclient_8h_html_accba3c63a72807cabf69fcf11a831954"><div class="ttname"><a href="client_8h.html#accba3c63a72807cabf69fcf11a831954">aws_mqtt_client_connection_publish</a></div><div class="ttdeci">AWS_MQTT_API uint16_t aws_mqtt_client_connection_publish(struct aws_mqtt_client_connection *connection, const struct aws_byte_cursor *topic, enum aws_mqtt_qos qos, bool retain, const struct aws_byte_cursor *payload, aws_mqtt_op_complete_fn *on_complete, void *userdata)</div><div class="ttdef"><b>Definition:</b> client.c:2680</div></div>

@@ -37,7 +37,7 @@ static int \mbox{\hyperlink{stream_8c_a9ab5d3b221d36fa2eff53a6f9fd3c60c}{s\+\_\+
 \item 
 static void \mbox{\hyperlink{stream_8c_a06b4fac033623336372e0b068b11d53a}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+byte\+\_\+cursor\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream)
 \item 
-struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{stream_8c_ac10adad8b14128e7fd9e514cd2b41b4d}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
+struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{stream_8c_ac10adad8b14128e7fd9e514cd2b41b4d}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+cursor}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$cursor)
 \item 
 static int \mbox{\hyperlink{stream_8c_a2dd342a659a8fc1f87a28203159df569}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+file\+\_\+seek}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, \mbox{\hyperlink{stdint_8h_a7c7388565c261c41172ec27cfbbcd9dc}{aws\+\_\+off\+\_\+t}} offset, enum \mbox{\hyperlink{crt_2aws-c-io_2include_2aws_2io_2_stream_8h_a0b9f7391a82ccf025bf6a216c6b3c20d}{aws\+\_\+stream\+\_\+seek\+\_\+basis}} basis)
 \item 
@@ -45,13 +45,13 @@ static int \mbox{\hyperlink{stream_8c_aae46d19eceee603b85d82f8f127737c0}{s\+\_\+
 \item 
 static int \mbox{\hyperlink{stream_8c_a5b66d66f2819d1ddb907379f7cb40427}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+file\+\_\+get\+\_\+status}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, struct \mbox{\hyperlink{structaws__stream__status}{aws\+\_\+stream\+\_\+status}} $\ast$status)
 \item 
-static int \mbox{\hyperlink{stream_8c_a694d9cc34ad0f486465caa0c2bafa7be}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+file\+\_\+get\+\_\+length}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, int64\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+static int \mbox{\hyperlink{stream_8c_a694d9cc34ad0f486465caa0c2bafa7be}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+file\+\_\+get\+\_\+length}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream, int64\+\_\+t $\ast$\mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})
 \item 
 static void \mbox{\hyperlink{stream_8c_a2610ef0018e9a1e4e048eaf34988d59f}{s\+\_\+aws\+\_\+input\+\_\+stream\+\_\+file\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$stream)
 \item 
-struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{stream_8c_a460fd9c02c8bff5ad46a218187305f71}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+file}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const char $\ast$file\+\_\+name)
+struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{stream_8c_a460fd9c02c8bff5ad46a218187305f71}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+file}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const char $\ast$file\+\_\+name)
 \item 
-struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{stream_8c_a40f0d04d0e6d0a2cbae45d87b952b2d3}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+open\+\_\+file}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, FILE $\ast$file)
+struct \mbox{\hyperlink{structaws__input__stream}{aws\+\_\+input\+\_\+stream}} $\ast$ \mbox{\hyperlink{stream_8c_a40f0d04d0e6d0a2cbae45d87b952b2d3}{aws\+\_\+input\+\_\+stream\+\_\+new\+\_\+from\+\_\+open\+\_\+file}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, FILE $\ast$file)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}

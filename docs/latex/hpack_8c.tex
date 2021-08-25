@@ -54,23 +54,23 @@ struct \mbox{\hyperlink{structaws__huffman__symbol__coder}{aws\+\_\+huffman\+\_\
 \item 
 static uint8\+\_\+t \mbox{\hyperlink{hpack_8c_a6e08673ed23e74690b59ea8ac22cf5e4}{s\+\_\+masked\+\_\+right\+\_\+bits\+\_\+u8}} (uint8\+\_\+t num\+\_\+masked\+\_\+bits)
 \item 
-static int \mbox{\hyperlink{hpack_8c_a51415ac3e01f2e889ef5a3e0079fcdb7}{s\+\_\+append\+\_\+u8\+\_\+dynamic}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, uint8\+\_\+t u8)
+static int \mbox{\hyperlink{hpack_8c_a51415ac3e01f2e889ef5a3e0079fcdb7}{s\+\_\+append\+\_\+u8\+\_\+dynamic}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output, uint8\+\_\+t u8)
 \item 
-static int \mbox{\hyperlink{hpack_8c_abf0cbeeaf208d1a19b77220d3520132e}{s\+\_\+ensure\+\_\+space}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t required\+\_\+space)
+static int \mbox{\hyperlink{hpack_8c_abf0cbeeaf208d1a19b77220d3520132e}{s\+\_\+ensure\+\_\+space}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output, size\+\_\+t required\+\_\+space)
 \item 
-int \mbox{\hyperlink{hpack_8c_a7b127250acc53995ad1a462c3c2207eb}{aws\+\_\+hpack\+\_\+encode\+\_\+integer}} (uint64\+\_\+t integer, uint8\+\_\+t starting\+\_\+bits, uint8\+\_\+t prefix\+\_\+size, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{hpack_8c_a7b127250acc53995ad1a462c3c2207eb}{aws\+\_\+hpack\+\_\+encode\+\_\+integer}} (uint64\+\_\+t integer, uint8\+\_\+t starting\+\_\+bits, uint8\+\_\+t prefix\+\_\+size, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output)
 \item 
 static uint64\+\_\+t \mbox{\hyperlink{hpack_8c_a49d503736e681d6fbd5c599a9f0a3606}{s\+\_\+header\+\_\+hash}} (const void $\ast$key)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{hpack_8c_adc74e4eaad93b394f966a96df391b1bd}{s\+\_\+header\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
+static bool \mbox{\hyperlink{hpack_8c_adc74e4eaad93b394f966a96df391b1bd}{s\+\_\+header\+\_\+eq}} (const void $\ast$a, const void $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \item 
-void \mbox{\hyperlink{hpack_8c_ac9adebb65c9b3b679a3bcdb71d20b861}{aws\+\_\+hpack\+\_\+static\+\_\+table\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{hpack_8c_ac9adebb65c9b3b679a3bcdb71d20b861}{aws\+\_\+hpack\+\_\+static\+\_\+table\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{hpack_8c_a53e40d741d507a4b18795ee10bf5c962}{aws\+\_\+hpack\+\_\+static\+\_\+table\+\_\+clean\+\_\+up}} ()
 \item 
-struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$ \mbox{\hyperlink{hpack_8c_a40694fd3f456328192392dafae60c12a}{aws\+\_\+hpack\+\_\+context\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, enum \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528}{aws\+\_\+http\+\_\+log\+\_\+subject}} log\+\_\+subject, const void $\ast$log\+\_\+id)
+struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$ \mbox{\hyperlink{hpack_8c_a40694fd3f456328192392dafae60c12a}{aws\+\_\+hpack\+\_\+context\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, enum \mbox{\hyperlink{http_8h_aa783fd3d3712ff6af327abc0c7a6c528}{aws\+\_\+http\+\_\+log\+\_\+subject}} log\+\_\+subject, const void $\ast$log\+\_\+id)
 \item 
-static struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$ \mbox{\hyperlink{hpack_8c_a03b570bf90ad4f9626fd69b3efa8323b}{s\+\_\+dynamic\+\_\+table\+\_\+get}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+static struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$ \mbox{\hyperlink{hpack_8c_a03b570bf90ad4f9626fd69b3efa8323b}{s\+\_\+dynamic\+\_\+table\+\_\+get}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}})
 \item 
 static void \mbox{\hyperlink{hpack_8c_afdba49a1b031ea99b61921df3ea5e07c}{s\+\_\+clean\+\_\+up\+\_\+dynamic\+\_\+table\+\_\+buffer}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context)
 \item 
@@ -82,11 +82,11 @@ size\+\_\+t \mbox{\hyperlink{hpack_8c_a553b791693c72d578ce1ee8b56d40ec3}{aws\+\_
 \item 
 size\+\_\+t \mbox{\hyperlink{hpack_8c_aa78a55f0833665d3c642542a77e217ac}{aws\+\_\+hpack\+\_\+get\+\_\+dynamic\+\_\+table\+\_\+num\+\_\+elements}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context)
 \item 
-const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$ \mbox{\hyperlink{hpack_8c_a323421604fa78cd549e9a7cb8f3a4fe1}{aws\+\_\+hpack\+\_\+get\+\_\+header}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, size\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$ \mbox{\hyperlink{hpack_8c_a323421604fa78cd549e9a7cb8f3a4fe1}{aws\+\_\+hpack\+\_\+get\+\_\+header}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, size\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}})
 \item 
-static const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$ \mbox{\hyperlink{hpack_8c_adc8e18cdaa6e97d5081b651a9323b3f1}{s\+\_\+get\+\_\+header\+\_\+u64}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, uint64\+\_\+t \mbox{\hyperlink{connection__state__test_8c_a3f42f10d93f6edb91d7d3f6edad25921}{index}})
+static const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$ \mbox{\hyperlink{hpack_8c_adc8e18cdaa6e97d5081b651a9323b3f1}{s\+\_\+get\+\_\+header\+\_\+u64}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, uint64\+\_\+t \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a750b5d744c39a06bfb13e6eb010e35d0}{index}})
 \item 
-size\+\_\+t \mbox{\hyperlink{hpack_8c_a2ba24e8e17643081322a29444d2ccf55}{aws\+\_\+hpack\+\_\+find\+\_\+index}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} search\+\_\+value, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$found\+\_\+value)
+size\+\_\+t \mbox{\hyperlink{hpack_8c_a2ba24e8e17643081322a29444d2ccf55}{aws\+\_\+hpack\+\_\+find\+\_\+index}} (const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, bool search\+\_\+value, bool $\ast$found\+\_\+value)
 \item 
 static int \mbox{\hyperlink{hpack_8c_ad8ed8bab762141f934189a11a47cf415}{s\+\_\+dynamic\+\_\+table\+\_\+shrink}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, size\+\_\+t max\+\_\+size)
 \item 
@@ -100,19 +100,19 @@ void \mbox{\hyperlink{hpack_8c_a56b3f11b49294519fc890ccc8742a65b}{aws\+\_\+hpack
 \item 
 void \mbox{\hyperlink{hpack_8c_a3470b77e2ef80c69bdbbbc5fd204a422}{aws\+\_\+hpack\+\_\+set\+\_\+protocol\+\_\+max\+\_\+size\+\_\+setting}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, uint32\+\_\+t setting\+\_\+max\+\_\+size)
 \item 
-int \mbox{\hyperlink{hpack_8c_a0a97464dfc3b0ac8e40824cef312a678}{aws\+\_\+hpack\+\_\+decode\+\_\+integer}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+decode, uint8\+\_\+t prefix\+\_\+size, uint64\+\_\+t $\ast$integer, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$complete)
+int \mbox{\hyperlink{hpack_8c_a0a97464dfc3b0ac8e40824cef312a678}{aws\+\_\+hpack\+\_\+decode\+\_\+integer}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+decode, uint8\+\_\+t prefix\+\_\+size, uint64\+\_\+t $\ast$integer, bool $\ast$complete)
 \item 
-int \mbox{\hyperlink{hpack_8c_ab8a667e6eb669fcea3bf992e85e6beb3}{aws\+\_\+hpack\+\_\+encode\+\_\+string}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{hpack_8c_ab8a667e6eb669fcea3bf992e85e6beb3}{aws\+\_\+hpack\+\_\+encode\+\_\+string}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} to\+\_\+encode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output)
 \item 
-int \mbox{\hyperlink{hpack_8c_a65d65f03df6afc11d4c38027e4e993b1}{aws\+\_\+hpack\+\_\+decode\+\_\+string}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+decode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$complete)
+int \mbox{\hyperlink{hpack_8c_a65d65f03df6afc11d4c38027e4e993b1}{aws\+\_\+hpack\+\_\+decode\+\_\+string}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+decode, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output, bool $\ast$complete)
 \item 
 int \mbox{\hyperlink{hpack_8c_ad78ac1d83214815d1aae6d6fce99e012}{aws\+\_\+hpack\+\_\+decode}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+decode, struct \mbox{\hyperlink{structaws__hpack__decode__result}{aws\+\_\+hpack\+\_\+decode\+\_\+result}} $\ast$result)
 \item 
 static int \mbox{\hyperlink{hpack_8c_ae9fe0bb15fb13469e1b7ea1b2e42ad44}{s\+\_\+convert\+\_\+http\+\_\+compression\+\_\+to\+\_\+literal\+\_\+entry\+\_\+type}} (enum \mbox{\hyperlink{request__response_8h_af01e6cd12390f752f0a69f36b670b21c}{aws\+\_\+http\+\_\+header\+\_\+compression}} compression, enum \mbox{\hyperlink{hpack_8c_a2d7479696445e72829421662a243236e}{aws\+\_\+hpack\+\_\+entry\+\_\+type}} $\ast$out\+\_\+entry\+\_\+type)
 \item 
-static int \mbox{\hyperlink{hpack_8c_a9de0e88c1e4acee5a0676b537f03f536}{s\+\_\+encode\+\_\+header\+\_\+field}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+static int \mbox{\hyperlink{hpack_8c_a9de0e88c1e4acee5a0676b537f03f536}{s\+\_\+encode\+\_\+header\+\_\+field}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$header, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output)
 \item 
-int \mbox{\hyperlink{hpack_8c_a7fb81484e9078e3f42b3652581448e01}{aws\+\_\+hpack\+\_\+encode\+\_\+header\+\_\+block}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}})
+int \mbox{\hyperlink{hpack_8c_a7fb81484e9078e3f42b3652581448e01}{aws\+\_\+hpack\+\_\+encode\+\_\+header\+\_\+block}} (struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$context, const struct \mbox{\hyperlink{structaws__http__headers}{aws\+\_\+http\+\_\+headers}} $\ast$headers, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -257,13 +257,13 @@ If an error occurs, the decoder is broken and \mbox{\hyperlink{bike__r1_2functio
 \index{hpack.c@{hpack.c}!aws\_hpack\_decode\_integer@{aws\_hpack\_decode\_integer}}
 \index{aws\_hpack\_decode\_integer@{aws\_hpack\_decode\_integer}!hpack.c@{hpack.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hpack\_decode\_integer()}{aws\_hpack\_decode\_integer()}}
-{\footnotesize\ttfamily int aws\+\_\+hpack\+\_\+decode\+\_\+integer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{to\+\_\+decode,  }\item[{uint8\+\_\+t}]{prefix\+\_\+size,  }\item[{uint64\+\_\+t $\ast$}]{integer,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{complete }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+hpack\+\_\+decode\+\_\+integer (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{to\+\_\+decode,  }\item[{uint8\+\_\+t}]{prefix\+\_\+size,  }\item[{uint64\+\_\+t $\ast$}]{integer,  }\item[{bool $\ast$}]{complete }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{hpack_8c_a65d65f03df6afc11d4c38027e4e993b1}\label{hpack_8c_a65d65f03df6afc11d4c38027e4e993b1}} 
 \index{hpack.c@{hpack.c}!aws\_hpack\_decode\_string@{aws\_hpack\_decode\_string}}
 \index{aws\_hpack\_decode\_string@{aws\_hpack\_decode\_string}!hpack.c@{hpack.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hpack\_decode\_string()}{aws\_hpack\_decode\_string()}}
-{\footnotesize\ttfamily int aws\+\_\+hpack\+\_\+decode\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{to\+\_\+decode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{complete }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int aws\+\_\+hpack\+\_\+decode\+\_\+string (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{to\+\_\+decode,  }\item[{struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$}]{output,  }\item[{bool $\ast$}]{complete }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{hpack_8c_a7fb81484e9078e3f42b3652581448e01}\label{hpack_8c_a7fb81484e9078e3f42b3652581448e01}} 
 \index{hpack.c@{hpack.c}!aws\_hpack\_encode\_header\_block@{aws\_hpack\_encode\_header\_block}}
@@ -287,7 +287,7 @@ Encode header-\/block into the output. This function will mutate the hpack conte
 \index{hpack.c@{hpack.c}!aws\_hpack\_find\_index@{aws\_hpack\_find\_index}}
 \index{aws\_hpack\_find\_index@{aws\_hpack\_find\_index}!hpack.c@{hpack.c}}
 \doxysubsubsection{\texorpdfstring{aws\_hpack\_find\_index()}{aws\_hpack\_find\_index()}}
-{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+find\+\_\+index (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{search\+\_\+value,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} $\ast$}]{found\+\_\+value }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily size\+\_\+t aws\+\_\+hpack\+\_\+find\+\_\+index (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__hpack__context}{aws\+\_\+hpack\+\_\+context}} $\ast$}]{context,  }\item[{const struct \mbox{\hyperlink{structaws__http__header}{aws\+\_\+http\+\_\+header}} $\ast$}]{header,  }\item[{bool}]{search\+\_\+value,  }\item[{bool $\ast$}]{found\+\_\+value }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{hpack_8c_aa78a55f0833665d3c642542a77e217ac}\label{hpack_8c_aa78a55f0833665d3c642542a77e217ac}} 
 \index{hpack.c@{hpack.c}!aws\_hpack\_get\_dynamic\_table\_num\_elements@{aws\_hpack\_get\_dynamic\_table\_num\_elements}}
@@ -413,7 +413,7 @@ Set the max size of the dynamic table (in octets). The size of each header is na
 \index{hpack.c@{hpack.c}!s\_header\_eq@{s\_header\_eq}}
 \index{s\_header\_eq@{s\_header\_eq}!hpack.c@{hpack.c}}
 \doxysubsubsection{\texorpdfstring{s\_header\_eq()}{s\_header\_eq()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+header\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+header\+\_\+eq (\begin{DoxyParamCaption}\item[{const void $\ast$}]{a,  }\item[{const void $\ast$}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{hpack_8c_a49d503736e681d6fbd5c599a9f0a3606}\label{hpack_8c_a49d503736e681d6fbd5c599a9f0a3606}} 
 \index{hpack.c@{hpack.c}!s\_header\_hash@{s\_header\_hash}}

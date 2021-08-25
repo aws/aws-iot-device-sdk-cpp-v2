@@ -92,13 +92,13 @@ Macros</h2></td></tr>
 <tr class="separator:ad8df4253939933e4aef7e94dd7ae1710"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05eca5c09519447fa012a144e7162142"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kyber__90s__r2_2aes_8h.html#a05eca5c09519447fa012a144e7162142">aes256_ecb_keyexp</a>(r,  key)&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#a55e7e726130c579a878903ed0ce97835">OQS_AES256_ECB_load_schedule</a>((key), (r), 1);</td></tr>
 <tr class="separator:a05eca5c09519447fa012a144e7162142"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6ad82e829ba622ed6a253d2128237e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kyber__90s__r2_2aes_8h.html#ae6ad82e829ba622ed6a253d2128237e2">aes256_ecb</a>(out,  in,  nblocks,  <a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#a1a3cf53ff5c63f35f36c932288d6aa26">OQS_AES256_ECB_enc_sch</a>((in), (nblocks) * <a class="el" href="kyber__90s__r2_2aes_8h.html#ad8df4253939933e4aef7e94dd7ae1710">AES_BLOCKBYTES</a>, *(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>), (out));</td></tr>
+<tr class="memitem:ae6ad82e829ba622ed6a253d2128237e2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kyber__90s__r2_2aes_8h.html#ae6ad82e829ba622ed6a253d2128237e2">aes256_ecb</a>(out,  in,  nblocks,  ctx)&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#a1a3cf53ff5c63f35f36c932288d6aa26">OQS_AES256_ECB_enc_sch</a>((in), (nblocks) * <a class="el" href="kyber__90s__r2_2aes_8h.html#ad8df4253939933e4aef7e94dd7ae1710">AES_BLOCKBYTES</a>, *(ctx), (out));</td></tr>
 <tr class="separator:ae6ad82e829ba622ed6a253d2128237e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30dfebc1fe262573d0894682d6480636"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kyber__90s__r2_2aes_8h.html#a30dfebc1fe262573d0894682d6480636">aes256_ctr_keyexp</a>(r,  key)&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#ab36027adadc5d98a2fb47667b9803028">OQS_AES256_CTR_load_schedule</a>((key), (r));</td></tr>
 <tr class="separator:a30dfebc1fe262573d0894682d6480636"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a900d5fde2dea162c6807305c1e60d4c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kyber__90s__r2_2aes_8h.html#a900d5fde2dea162c6807305c1e60d4c4">aes256_ctr</a>(out,  outlen,  iv,  <a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#a444ffe2a14aafcfc0383635be0741d1e">OQS_AES256_CTR_sch</a>((iv), <a class="el" href="kyber__90s__r2_2aes_8h.html#a1f41694c0b8d6b0e534b8fa2d0f627fc">AESCTR_NONCEBYTES</a>, *(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>), (out), (outlen))</td></tr>
+<tr class="memitem:a900d5fde2dea162c6807305c1e60d4c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kyber__90s__r2_2aes_8h.html#a900d5fde2dea162c6807305c1e60d4c4">aes256_ctr</a>(out,  outlen,  iv,  ctx)&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#a444ffe2a14aafcfc0383635be0741d1e">OQS_AES256_CTR_sch</a>((iv), <a class="el" href="kyber__90s__r2_2aes_8h.html#a1f41694c0b8d6b0e534b8fa2d0f627fc">AESCTR_NONCEBYTES</a>, *(ctx), (out), (outlen))</td></tr>
 <tr class="separator:a900d5fde2dea162c6807305c1e60d4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a261e9366bb211925fece4f27c05c9f96"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kyber__90s__r2_2aes_8h.html#a261e9366bb211925fece4f27c05c9f96">aes256_ctx_release</a>(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>)&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#add003da1130c29e18de326ad9c0360cb">OQS_AES256_free_schedule</a>(*(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>));</td></tr>
+<tr class="memitem:a261e9366bb211925fece4f27c05c9f96"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kyber__90s__r2_2aes_8h.html#a261e9366bb211925fece4f27c05c9f96">aes256_ctx_release</a>(ctx)&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#add003da1130c29e18de326ad9c0360cb">OQS_AES256_free_schedule</a>(*(ctx));</td></tr>
 <tr class="separator:a261e9366bb211925fece4f27c05c9f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa40575ee378577b1c5b856aede290372"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kyber__90s__r2_2aes_8h.html#aa40575ee378577b1c5b856aede290372">OQS_EXIT_IF_NULLPTR</a>(x)</td></tr>
 <tr class="separator:aa40575ee378577b1c5b856aede290372"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,12 +175,12 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>&#160;</td>
+          <td class="paramname">ctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#a444ffe2a14aafcfc0383635be0741d1e">OQS_AES256_CTR_sch</a>((iv), <a class="el" href="kyber__90s__r2_2aes_8h.html#a1f41694c0b8d6b0e534b8fa2d0f627fc">AESCTR_NONCEBYTES</a>, *(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>), (out), (outlen))</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#a444ffe2a14aafcfc0383635be0741d1e">OQS_AES256_CTR_sch</a>((iv), <a class="el" href="kyber__90s__r2_2aes_8h.html#a1f41694c0b8d6b0e534b8fa2d0f627fc">AESCTR_NONCEBYTES</a>, *(ctx), (out), (outlen))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -225,8 +225,8 @@ Functions</h2></td></tr>
           <td class="memname">#define aes256_ctx_release</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a></td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#add003da1130c29e18de326ad9c0360cb">OQS_AES256_free_schedule</a>(*(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>));</td>
+          <td class="paramname">ctx</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#add003da1130c29e18de326ad9c0360cb">OQS_AES256_free_schedule</a>(*(ctx));</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -261,12 +261,12 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>&#160;</td>
+          <td class="paramname">ctx&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#a1a3cf53ff5c63f35f36c932288d6aa26">OQS_AES256_ECB_enc_sch</a>((in), (nblocks) * <a class="el" href="kyber__90s__r2_2aes_8h.html#ad8df4253939933e4aef7e94dd7ae1710">AES_BLOCKBYTES</a>, *(<a class="el" href="connection__state__test_8c.html#a1f6d09b30c54854dfca659b7463ac207">ctx</a>), (out));</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="aes__c_8c.html#a1a3cf53ff5c63f35f36c932288d6aa26">OQS_AES256_ECB_enc_sch</a>((in), (nblocks) * <a class="el" href="kyber__90s__r2_2aes_8h.html#ad8df4253939933e4aef7e94dd7ae1710">AES_BLOCKBYTES</a>, *(ctx), (out));</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -33,9 +33,9 @@ struct \mbox{\hyperlink{structpending__callback}{pending\+\_\+callback}}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{host__resolver_8c_ae35e6e22a57c969ef971c6b26d753ec2}{HOST\+\_\+\+LISTENER\+\_\+\+FROM\+\_\+\+SYNCED\+\_\+\+NODE}}(listener\+\_\+node)~    \mbox{\hyperlink{preamble_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}((listener\+\_\+node), struct \mbox{\hyperlink{structhost__listener}{host\+\_\+listener}}, synced\+\_\+data)
+\#define \mbox{\hyperlink{host__resolver_8c_ae35e6e22a57c969ef971c6b26d753ec2}{HOST\+\_\+\+LISTENER\+\_\+\+FROM\+\_\+\+SYNCED\+\_\+\+NODE}}(listener\+\_\+node)~    \mbox{\hyperlink{macros_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}((listener\+\_\+node), struct \mbox{\hyperlink{structhost__listener}{host\+\_\+listener}}, synced\+\_\+data)
 \item 
-\#define \mbox{\hyperlink{host__resolver_8c_aa1537410387c1534bcd574a6dcadafc7}{HOST\+\_\+\+LISTENER\+\_\+\+FROM\+\_\+\+THREADED\+\_\+\+NODE}}(listener\+\_\+node)~    \mbox{\hyperlink{preamble_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}((listener\+\_\+node), struct \mbox{\hyperlink{structhost__listener}{host\+\_\+listener}}, threaded\+\_\+data)
+\#define \mbox{\hyperlink{host__resolver_8c_aa1537410387c1534bcd574a6dcadafc7}{HOST\+\_\+\+LISTENER\+\_\+\+FROM\+\_\+\+THREADED\+\_\+\+NODE}}(listener\+\_\+node)~    \mbox{\hyperlink{macros_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}((listener\+\_\+node), struct \mbox{\hyperlink{structhost__listener}{host\+\_\+listener}}, threaded\+\_\+data)
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -56,7 +56,7 @@ void \mbox{\hyperlink{host__resolver_8c_a699d6acfaff6bc8f392e60ae95617f77}{aws\+
 \item 
 void \mbox{\hyperlink{host__resolver_8c_a68c2e8546b78320265b3c0d0b6c52d8b}{aws\+\_\+host\+\_\+address\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$address)
 \item 
-int \mbox{\hyperlink{host__resolver_8c_a2a69ef84835a6ebec0e5926c5e399527}{aws\+\_\+host\+\_\+resolver\+\_\+resolve\+\_\+host}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn}} $\ast$res, struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+int \mbox{\hyperlink{host__resolver_8c_a2a69ef84835a6ebec0e5926c5e399527}{aws\+\_\+host\+\_\+resolver\+\_\+resolve\+\_\+host}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn}} $\ast$res, struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} $\ast$config, void $\ast$user\+\_\+data)
 \item 
 int \mbox{\hyperlink{host__resolver_8c_a21e2505edef47c6e46192ac01018d718}{aws\+\_\+host\+\_\+resolver\+\_\+purge\+\_\+cache}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver)
 \item 
@@ -96,7 +96,7 @@ static void \mbox{\hyperlink{host__resolver_8c_a330304d6842c759627ba5619a3afb33f
 \item 
 static void \mbox{\hyperlink{host__resolver_8c_aa9ed29d2f9f889cd1489c0b8505f16b4}{s\+\_\+clean\+\_\+up\+\_\+host\+\_\+entry}} (struct \mbox{\hyperlink{structhost__entry}{host\+\_\+entry}} $\ast$entry)
 \item 
-static void \mbox{\hyperlink{host__resolver_8c_a0af1388eb6ae55d43d59fb47bf57e9a5}{s\+\_\+on\+\_\+host\+\_\+entry\+\_\+shutdown\+\_\+completion}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{host__resolver_8c_a0af1388eb6ae55d43d59fb47bf57e9a5}{s\+\_\+on\+\_\+host\+\_\+entry\+\_\+shutdown\+\_\+completion}} (void $\ast$user\+\_\+data)
 \item 
 static int \mbox{\hyperlink{host__resolver_8c_afa25e3a575a9bdd8c093d42135c98974}{s\+\_\+copy\+\_\+address\+\_\+into\+\_\+array\+\_\+list}} (struct \mbox{\hyperlink{structaws__host__address}{aws\+\_\+host\+\_\+address}} $\ast$address, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$address\+\_\+list)
 \item 
@@ -118,7 +118,7 @@ static void \mbox{\hyperlink{host__resolver_8c_a9474eb177b15573e774d047fe7086b1e
 \item 
 static void \mbox{\hyperlink{host__resolver_8c_a5778fe51e6e6f8086c6ac219a7349dba}{s\+\_\+copy\+\_\+address\+\_\+into\+\_\+callback\+\_\+set}} (struct \mbox{\hyperlink{structaws__host__address__cache__entry}{aws\+\_\+host\+\_\+address\+\_\+cache\+\_\+entry}} $\ast$entry, struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$callback\+\_\+addresses, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{host__resolver_8c_a0f88a7bfbee384dd6af33140736bd50d}{s\+\_\+host\+\_\+entry\+\_\+finished\+\_\+pred}} (void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static bool \mbox{\hyperlink{host__resolver_8c_a0f88a7bfbee384dd6af33140736bd50d}{s\+\_\+host\+\_\+entry\+\_\+finished\+\_\+pred}} (void $\ast$user\+\_\+data)
 \item 
 static void \mbox{\hyperlink{host__resolver_8c_abb45f3bbc518f666aaec4ba7cab0eafe}{s\+\_\+resolver\+\_\+thread\+\_\+move\+\_\+listeners\+\_\+from\+\_\+listener\+\_\+entry}} (struct \mbox{\hyperlink{structdefault__host__resolver}{default\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$listener\+\_\+list)
 \item 
@@ -130,7 +130,7 @@ static void \mbox{\hyperlink{host__resolver_8c_a63f5251f3b90fbcda00678064a535456
 \item 
 static void \mbox{\hyperlink{host__resolver_8c_a9bcd7f8e7c71cd4b3a5c20cdf1708f38}{s\+\_\+resolver\+\_\+thread\+\_\+notify\+\_\+listeners}} (struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$listener\+\_\+list, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$new\+\_\+address\+\_\+list, const struct \mbox{\hyperlink{structaws__array__list}{aws\+\_\+array\+\_\+list}} $\ast$expired\+\_\+address\+\_\+list)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{host__resolver_8c_aa1bfb5c7fc874bd6c286c084319651b8}{s\+\_\+is\+\_\+host\+\_\+entry\+\_\+pinned\+\_\+by\+\_\+listener}} (struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$listener\+\_\+list)
+static bool \mbox{\hyperlink{host__resolver_8c_aa1bfb5c7fc874bd6c286c084319651b8}{s\+\_\+is\+\_\+host\+\_\+entry\+\_\+pinned\+\_\+by\+\_\+listener}} (struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$listener\+\_\+list)
 \item 
 static void \mbox{\hyperlink{host__resolver_8c_acddd80487befeeca521fa703ea0ce75f}{resolver\+\_\+thread\+\_\+fn}} (void $\ast$arg)
 \item 
@@ -140,15 +140,15 @@ static void \mbox{\hyperlink{host__resolver_8c_a82b1ec981c0c7615a777f2ba8c95f617
 \item 
 static void \mbox{\hyperlink{host__resolver_8c_a1140d44f4a0b1b83259a8989ada3de6a}{on\+\_\+failed\+\_\+address\+\_\+entry\+\_\+removed}} (void $\ast$value)
 \item 
-static int \mbox{\hyperlink{host__resolver_8c_a0f97dcb49f81f5ba2d2b6d75fe1930fa}{create\+\_\+and\+\_\+init\+\_\+host\+\_\+entry}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn}} $\ast$res, struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, uint64\+\_\+t timestamp, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{host__resolver_8c_a0f97dcb49f81f5ba2d2b6d75fe1930fa}{create\+\_\+and\+\_\+init\+\_\+host\+\_\+entry}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn}} $\ast$res, struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} $\ast$config, uint64\+\_\+t timestamp, void $\ast$user\+\_\+data)
 \item 
-static int \mbox{\hyperlink{host__resolver_8c_adbad1322fdffa982ffcf41b1737a9d06}{default\+\_\+resolve\+\_\+host}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn}} $\ast$res, struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static int \mbox{\hyperlink{host__resolver_8c_adbad1322fdffa982ffcf41b1737a9d06}{default\+\_\+resolve\+\_\+host}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, \mbox{\hyperlink{host__resolver_8h_a472032f021ffddd8863e1b8ef50b587f}{aws\+\_\+on\+\_\+host\+\_\+resolved\+\_\+result\+\_\+fn}} $\ast$res, struct \mbox{\hyperlink{structaws__host__resolution__config}{aws\+\_\+host\+\_\+resolution\+\_\+config}} $\ast$config, void $\ast$user\+\_\+data)
 \item 
 static size\+\_\+t \mbox{\hyperlink{host__resolver_8c_a37ae55518163e599209c400b90cc4433}{default\+\_\+get\+\_\+host\+\_\+address\+\_\+count}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$host\+\_\+resolver, const struct \mbox{\hyperlink{structaws__string}{aws\+\_\+string}} $\ast$host\+\_\+name, uint32\+\_\+t flags)
 \item 
 static void \mbox{\hyperlink{host__resolver_8c_adbf4e6a85da405e1b347d60474e2ab52}{s\+\_\+aws\+\_\+host\+\_\+resolver\+\_\+destroy}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver)
 \item 
-struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{host__resolver_8c_a0c8a5917f30df36e5851a35aa973b1f0}{aws\+\_\+host\+\_\+resolver\+\_\+new\+\_\+default}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__host__resolver__default__options}{aws\+\_\+host\+\_\+resolver\+\_\+default\+\_\+options}} $\ast$options)
+struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{host__resolver_8c_a0c8a5917f30df36e5851a35aa973b1f0}{aws\+\_\+host\+\_\+resolver\+\_\+new\+\_\+default}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__host__resolver__default__options}{aws\+\_\+host\+\_\+resolver\+\_\+default\+\_\+options}} $\ast$options)
 \item 
 struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$ \mbox{\hyperlink{host__resolver_8c_a9f9894d532f7b11a617e6cbfdf5fd4e2}{aws\+\_\+host\+\_\+resolver\+\_\+acquire}} (struct \mbox{\hyperlink{structaws__host__resolver}{aws\+\_\+host\+\_\+resolver}} $\ast$resolver)
 \item 
@@ -172,13 +172,13 @@ static struct \mbox{\hyperlink{structaws__host__resolver__vtable}{aws\+\_\+host\
 \index{host\_resolver.c@{host\_resolver.c}!HOST\_LISTENER\_FROM\_SYNCED\_NODE@{HOST\_LISTENER\_FROM\_SYNCED\_NODE}}
 \index{HOST\_LISTENER\_FROM\_SYNCED\_NODE@{HOST\_LISTENER\_FROM\_SYNCED\_NODE}!host\_resolver.c@{host\_resolver.c}}
 \doxysubsubsection{\texorpdfstring{HOST\_LISTENER\_FROM\_SYNCED\_NODE}{HOST\_LISTENER\_FROM\_SYNCED\_NODE}}
-{\footnotesize\ttfamily \#define HOST\+\_\+\+LISTENER\+\_\+\+FROM\+\_\+\+SYNCED\+\_\+\+NODE(\begin{DoxyParamCaption}\item[{}]{listener\+\_\+node }\end{DoxyParamCaption})~    \mbox{\hyperlink{preamble_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}((listener\+\_\+node), struct \mbox{\hyperlink{structhost__listener}{host\+\_\+listener}}, synced\+\_\+data)}
+{\footnotesize\ttfamily \#define HOST\+\_\+\+LISTENER\+\_\+\+FROM\+\_\+\+SYNCED\+\_\+\+NODE(\begin{DoxyParamCaption}\item[{}]{listener\+\_\+node }\end{DoxyParamCaption})~    \mbox{\hyperlink{macros_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}((listener\+\_\+node), struct \mbox{\hyperlink{structhost__listener}{host\+\_\+listener}}, synced\+\_\+data)}
 
 \mbox{\Hypertarget{host__resolver_8c_aa1537410387c1534bcd574a6dcadafc7}\label{host__resolver_8c_aa1537410387c1534bcd574a6dcadafc7}} 
 \index{host\_resolver.c@{host\_resolver.c}!HOST\_LISTENER\_FROM\_THREADED\_NODE@{HOST\_LISTENER\_FROM\_THREADED\_NODE}}
 \index{HOST\_LISTENER\_FROM\_THREADED\_NODE@{HOST\_LISTENER\_FROM\_THREADED\_NODE}!host\_resolver.c@{host\_resolver.c}}
 \doxysubsubsection{\texorpdfstring{HOST\_LISTENER\_FROM\_THREADED\_NODE}{HOST\_LISTENER\_FROM\_THREADED\_NODE}}
-{\footnotesize\ttfamily \#define HOST\+\_\+\+LISTENER\+\_\+\+FROM\+\_\+\+THREADED\+\_\+\+NODE(\begin{DoxyParamCaption}\item[{}]{listener\+\_\+node }\end{DoxyParamCaption})~    \mbox{\hyperlink{preamble_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}((listener\+\_\+node), struct \mbox{\hyperlink{structhost__listener}{host\+\_\+listener}}, threaded\+\_\+data)}
+{\footnotesize\ttfamily \#define HOST\+\_\+\+LISTENER\+\_\+\+FROM\+\_\+\+THREADED\+\_\+\+NODE(\begin{DoxyParamCaption}\item[{}]{listener\+\_\+node }\end{DoxyParamCaption})~    \mbox{\hyperlink{macros_8h_a3eff204324491e03d5f6c08ff088d7a7}{AWS\+\_\+\+CONTAINER\+\_\+\+OF}}((listener\+\_\+node), struct \mbox{\hyperlink{structhost__listener}{host\+\_\+listener}}, threaded\+\_\+data)}
 
 
 
@@ -480,7 +480,7 @@ calls resolve\+\_\+host on the vtable. config will be copied. \mbox{\Hypertarget
 \index{host\_resolver.c@{host\_resolver.c}!s\_host\_entry\_finished\_pred@{s\_host\_entry\_finished\_pred}}
 \index{s\_host\_entry\_finished\_pred@{s\_host\_entry\_finished\_pred}!host\_resolver.c@{host\_resolver.c}}
 \doxysubsubsection{\texorpdfstring{s\_host\_entry\_finished\_pred()}{s\_host\_entry\_finished\_pred()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+host\+\_\+entry\+\_\+finished\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+host\+\_\+entry\+\_\+finished\+\_\+pred (\begin{DoxyParamCaption}\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{host__resolver_8c_aeea724923f1a019416064ab915abd976}\label{host__resolver_8c_aeea724923f1a019416064ab915abd976}} 
 \index{host\_resolver.c@{host\_resolver.c}!s\_host\_listener\_destroy@{s\_host\_listener\_destroy}}
@@ -498,7 +498,7 @@ calls resolve\+\_\+host on the vtable. config will be copied. \mbox{\Hypertarget
 \index{host\_resolver.c@{host\_resolver.c}!s\_is\_host\_entry\_pinned\_by\_listener@{s\_is\_host\_entry\_pinned\_by\_listener}}
 \index{s\_is\_host\_entry\_pinned\_by\_listener@{s\_is\_host\_entry\_pinned\_by\_listener}!host\_resolver.c@{host\_resolver.c}}
 \doxysubsubsection{\texorpdfstring{s\_is\_host\_entry\_pinned\_by\_listener()}{s\_is\_host\_entry\_pinned\_by\_listener()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+host\+\_\+entry\+\_\+pinned\+\_\+by\+\_\+listener (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{listener\+\_\+list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+is\+\_\+host\+\_\+entry\+\_\+pinned\+\_\+by\+\_\+listener (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__linked__list}{aws\+\_\+linked\+\_\+list}} $\ast$}]{listener\+\_\+list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{host__resolver_8c_a0af1388eb6ae55d43d59fb47bf57e9a5}\label{host__resolver_8c_a0af1388eb6ae55d43d59fb47bf57e9a5}} 
 \index{host\_resolver.c@{host\_resolver.c}!s\_on\_host\_entry\_shutdown\_completion@{s\_on\_host\_entry\_shutdown\_completion}}

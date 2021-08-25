@@ -69,14 +69,14 @@ $(function() {
 <div class="textblock"><p >This is a module for the AWS SDK for C. It handles all IO and TLS work for application protocols.</p>
 <p >aws-c-io is an event driven framework for implementing application protocols. It is built on top of cross-platform abstractions that allow you as a developer to think only about the state machine and API for your protocols. A typical use-case would be to write something like Http on top of asynchronous-io with TLS already baked in. All of the platform and security concerns are already handled for you.</p>
 <p >It is designed to be light-weight, fast, portable, and flexible for multiple domain use-cases such as: embedded, server, client, and mobile.</p>
-<h1><a class="anchor" id="autotoc_md255"></a>
+<h1><a class="anchor" id="autotoc_md254"></a>
 License</h1>
 <p >This library is licensed under the Apache 2.0 License.</p>
-<h1><a class="anchor" id="autotoc_md256"></a>
+<h1><a class="anchor" id="autotoc_md255"></a>
 Usage</h1>
-<h2><a class="anchor" id="autotoc_md257"></a>
+<h2><a class="anchor" id="autotoc_md256"></a>
 Building</h2>
-<h3><a class="anchor" id="autotoc_md258"></a>
+<h3><a class="anchor" id="autotoc_md257"></a>
 Building s2n (Linux Only)</h3>
 <p >If you are building on Linux, you will need to build s2n before being able to build aws-c-io. For our CRT's, we build s2n at a specific commit, and recommend doing the same when using it with this library. That commit hash can be found <a href="https://github.com/awslabs/aws-crt-cpp/tree/main/crt">here</a>. The commands below will build s2n using OpenSSL 1.1.1. For using other versions of OpenSSL, there is additional information in the <a href="https://github.com/awslabs/s2n/blob/main/docs/USAGE-GUIDE.md">s2n Usage Guide</a>.</p>
 <div class="fragment"><div class="line">git clone git@github.com:awslabs/s2n.git</div>
@@ -105,7 +105,7 @@ Building s2n (Linux Only)</h3>
 <div class="line">cd ../../../</div>
 <div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S s2n -B s2n/build</div>
 <div class="line">cmake --build s2n/build --target install</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md259"></a>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md258"></a>
 Building aws-c-io and Remaining Dependencies</h3>
 <p >Note that aws-c-io has a dependency on aws-c-common so it must be built first:</p>
 <div class="fragment"><div class="line">git clone git@github.com:awslabs/aws-c-common.git</div>
@@ -119,7 +119,7 @@ Building aws-c-io and Remaining Dependencies</h3>
 <div class="line">git clone git@github.com:awslabs/aws-c-io.git</div>
 <div class="line">cmake -DCMAKE_PREFIX_PATH=&lt;install-path&gt; -DCMAKE_INSTALL_PREFIX=&lt;install-path&gt; -S aws-c-io -B aws-c-io/build</div>
 <div class="line">cmake --build aws-c-io/build --target install</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md260"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md259"></a>
 Usage Patterns</h2>
 <p >This library contains many primitive building blocks that can be configured in a myriad of ways. However, most likely you simply need to use the <code><a class="el" href="structaws__event__loop__group.html">aws_event_loop_group</a></code> and <code>aws_channel_bootstrap</code> APIs.</p>
 <p >Typical Client API Usage Pattern: </p><pre class="fragment">    /* setup */
@@ -200,9 +200,9 @@ Usage Patterns</h2>
     awS_event_loop_group_clean_up(&amp;el_group);
     aws_io_library_clean_up();
 </pre><p> If you are building a protocol on top of sockets without the use of TLS, you can still use this pattern as your starting point. Simply call the <code>aws_client_bootstrap_new_socket_channel</code> <code>aws_server_bootstrap_add_socket_listener</code> respectively: instead of the TLS variants.</p>
-<h1><a class="anchor" id="autotoc_md261"></a>
+<h1><a class="anchor" id="autotoc_md260"></a>
 Concepts</h1>
-<h2><a class="anchor" id="autotoc_md262"></a>
+<h2><a class="anchor" id="autotoc_md261"></a>
 Event Loop</h2>
 <p >Core to Async-IO is the event-loop. We provide an implementation for most platforms out of the box:</p>
 <table class="markdownTable">
@@ -223,22 +223,22 @@ Event Loop</h2>
 <li>Maintain an opaque data store for consumers</li>
 </ol>
 <p >The threading model for a channel (see below) is pinned to the thread of the event-loop. Each event-loop implementation provides an API to move a cross-thread call into the event-loop thread if necessary.</p>
-<h2><a class="anchor" id="autotoc_md263"></a>
+<h2><a class="anchor" id="autotoc_md262"></a>
 Channels and Slots</h2>
 <p >A channel is simply a container that drives the slots. It is responsible for providing an interface between slots and the underlying event-loop as well as invoking the slots to pass messages. As a channel runs. It also provides utilities for making sure slots and their handlers run in the correct thread and moving execution to that thread if necessary.</p>
 <p ><img src="docs/images/channels_slots.png" alt="Channels and Slots Diagram" class="inline"/></p>
 <p >In this diagram, a channel is a collection of slots, and it knows how to make them communicate. It also controls the lifetime of slots.</p>
 <p >When a channel is being shutdown, it will issue shutdown_direction messages in the appropriate direction. If it is in the read direction, it will call shutdown_direction on the first slot. Conversely, in the write direction, it will call shutdown_direction on the last slot in the channel. When all slots have successfully shutdown, the channel can be safely cleaned up and de-allocated.</p>
-<h2><a class="anchor" id="autotoc_md264"></a>
+<h2><a class="anchor" id="autotoc_md263"></a>
 Slots</h2>
 <p ><img src="docs/images/slots.png" alt="Slots Diagram" class="inline"/></p>
 <p >Slots maintain their links to adjacent slots in the channel. So as the channel is processed, each slot will read from its left-adjacent slot, send those messages to the handler, and call their right-adjacent slot when it needs to send a message. Conversely, each slot will read from its right-adjacent slot, send those messages to the handler, and send messages to the left-adjacent slot in the channel. Most importantly, slots contain a reference to a handler. Handlers are responsible for doing most of the work (see below). Finally, slots have utilities for manipulating the connections of the slots themselves.</p>
 <p >Slots can also be added, removed, or replaced dynamically from a channel.</p>
-<h2><a class="anchor" id="autotoc_md265"></a>
+<h2><a class="anchor" id="autotoc_md264"></a>
 Channel Handlers</h2>
 <p >The channel handler is the fundamental unit that protocol developers will implement. It contains all of your state machinery, framing, and optionally end-user APIs.</p>
 <p ><img src="docs/images/handler.png" alt="Handler Diagram" class="inline"/></p>
-<h3><a class="anchor" id="autotoc_md266"></a>
+<h3><a class="anchor" id="autotoc_md265"></a>
 Special, pre-defined handlers</h3>
 <p >Out of the box you get a few handlers pre-implemented.</p><ol type="1">
 <li>Sockets. We've done the heavy lifting of implementing a consistent sockets interface for each platform. Sockets interact directly with the underlying io and are invoked directly by the event-loop for io events.</li>
@@ -258,17 +258,17 @@ Special, pre-defined handlers</h3>
 <td class="markdownTableBodyNone">Windows   </td><td class="markdownTableBodyNone">Secure Channel. See <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa380123(v=vs.85).aspx">https://msdn.microsoft.com/en-us/library/windows/desktop/aa380123(v=vs.85).aspx</a>   </td></tr>
 </table>
 <p >In addition, you can always write your own handler around your favorite implementation and use that.</p>
-<h2><a class="anchor" id="autotoc_md267"></a>
+<h2><a class="anchor" id="autotoc_md266"></a>
 Typical Channel</h2>
 <p ><img src="docs/images/typical_channel.png" alt="Typical Channel Diagram" class="inline"/></p>
 <p >A typical channel will contain a socket handler, which receives io events from the event-loop. It will read up to 16 kb and pass the data to the next handler. The next handler is typically feeding a TLS implementation (see the above section on pre-defined handlers). The TLS handler will then pass the data to an application protocol. The application protocol could then expose an API to an application. When the application wants to send data, the whole process runs in reverse.</p>
 <p >Channels can be much more complex though. For example, there could be nested channels for multiplexing/de-multiplexing, or there could be more handlers to cut down on handler complexity.</p>
 <p >Note however, that a channel is always pinned to a single thread. It provides utilities for applications and handlers to move a task into that thread, but it is very important that handlers and application users of your handlers never block.</p>
-<h2><a class="anchor" id="autotoc_md268"></a>
+<h2><a class="anchor" id="autotoc_md267"></a>
 Channel IO Operation Fairness</h2>
 <p >Since multiple channels run in the same event-loop, we need to make sure channels are not starved by other active channels. To address this, the handlers consuming IO events from the event-loop should determine the appropriate max read and write and context switch before continuing. A context switch is performed, simply by scheduling a task to run at the current timestamp, to continue the IO operation.</p>
-<p >A reasonable default is 16kb, but a savvy implementation may want to upgrade a few connections to 256kb if they notice a particularly fast connection (e.g. you notice EAGAIN or EWOULDBLOCK is never returned from <a class="el" href="schedule_8c.html#a335d604526cc357e0f5c3ea78acd6266">write()</a> calls).</p>
-<h2><a class="anchor" id="autotoc_md269"></a>
+<p >A reasonable default is 16kb, but a savvy implementation may want to upgrade a few connections to 256kb if they notice a particularly fast connection (e.g. you notice EAGAIN or EWOULDBLOCK is never returned from write() calls).</p>
+<h2><a class="anchor" id="autotoc_md268"></a>
 Read Back Pressure</h2>
 <p >One of the most challenging aspects of asynchronous io programming, is managing when back-pressure should be applied to the underlying io layer. In the read direction, this is managed via update_window messages. Let's look at the below diagram for an example of how this works.</p>
 <p >In this example, we have a channel setup with an event-loop which manages io event notifications. The first slot contains a socket handler. The socket handler will read directly from the socket. The second slot has a TLS handler. Its only job is to encrypt/decrypt the data passed to it and pass it back to the channel. The third and final slot contains the actual application protocol handler (could be Http, SIP, RTP it doesn't really matter).</p>
@@ -290,43 +290,43 @@ Read Back Pressure</h2>
 </li>
 <li>The event-loop runs the scheduled read task from (3). The socket reads on the io-handle, but it returns EAGAIN or EWOULD_BLOCK. The channel now goes back to an idle state waiting on the event-loop to notify it that the socket is readable.</li>
 </ol>
-<h2><a class="anchor" id="autotoc_md270"></a>
+<h2><a class="anchor" id="autotoc_md269"></a>
 Write Back Pressure</h2>
 <p >Write back pressure comes into play when the application can produce data more quickly than it can be sent to the underlying io. To manage this, messages have members to attach a promise fn and context data to. When a handler exposes an API, it has the responsibility to take a fn and data from the user if over write is a possibility. The io-handler will invoke the promise after it has successfully written the last byte to the underlying io.</p>
-<h2><a class="anchor" id="autotoc_md271"></a>
+<h2><a class="anchor" id="autotoc_md270"></a>
 Thread Safety</h2>
 <p >In general, the plan for addressing thread-safety is to not share memory across threads. This library is designed around single threaded event-loops which process one or more channels. Anywhere a handler or channel exposes a back-channel API, it is responsible for checking which thread it was invoked from. If it is invoked from the event-loop's thread, then it may proceed as planned. If it is not, it is required to queue a task to do the work. When the task is executed, it will be executed in the correct thread.</p>
 <p >The functions we specify as thread-safe, we do so because those functions are necessary for abiding by the stated threading model. For example, since scheduling a task is the main function for addressing cross-threaded operations, it has to be thread-safe.</p>
-<h1><a class="anchor" id="autotoc_md272"></a>
+<h1><a class="anchor" id="autotoc_md271"></a>
 Terminology</h1>
 <p >We use a few terms in the following sections that are not necessarily "C concepts". We assume you know C, but here are some definitions that may be helpful.</p>
-<h2><a class="anchor" id="autotoc_md273"></a>
+<h2><a class="anchor" id="autotoc_md272"></a>
 Run-time Polymorphic</h2>
 <p >This means that the API is driven by a virtual-table. This is simply a struct of function pointers. They are invoked via a c extern style API, but ultimately those public functions simply invoke the corresponding function in the v-table.</p>
 <p >These are reserved for types that: a.) Need to be configurable, changable at runtime b.) Do not have immediate performance concerns caused by an indirect function call.</p>
-<h2><a class="anchor" id="autotoc_md274"></a>
+<h2><a class="anchor" id="autotoc_md273"></a>
 Compile-time Polymorphic</h2>
 <p >This means that the API is not necessarily driven by a virtual-table. It is exposed as a c extern style API, but the build system makes a decision about which symbols to compile based on factors such as platform and compile-time flags.</p>
 <p >These are reserved for types that: a.) Need to be configurable at compile-time based on platform or compile-time options. b.) Have performance concerns caused by an indirect function call.</p>
 <p >Note: that runtime configurability may still be something we need to expose here. In that case, a compiler flag will be used to denote that we are using a custom implementation for x feature. Then we will expose an implementation that indirectly invokes from a v-table and provides hooks for the application to plug into at runtime.</p>
-<h2><a class="anchor" id="autotoc_md275"></a>
+<h2><a class="anchor" id="autotoc_md274"></a>
 Promise, Promise Context</h2>
 <p >There are many phrases for this, callback, baton, event-handler etc... The key idea is that APIs that need to notify a caller when an asynchronous action is completed, should take a callback function and a pointer to an opaque object and invoke it upon completion. This term doesn't refer to the layout of the data. A promise in some instances may be a collection of functions in a structure. It's simply the language we use for the concept.</p>
-<h1><a class="anchor" id="autotoc_md276"></a>
+<h1><a class="anchor" id="autotoc_md275"></a>
 API</h1>
 <p ><b>Note: unless otherwise stated,</b></p>
 <ul>
 <li>no functions in this API are allowed to block.</li>
 <li>nothing is thread-safe unless explicitly stated.</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md277"></a>
+<h2><a class="anchor" id="autotoc_md276"></a>
 Event Loop</h2>
 <p >Event Loops are run-time polymorphic. We provide some implementations out of the box and a way to get an implementation without having to call a different function per platform. However, you can also create your own implementation and use it on any API that takes an event-loop as a parameter.</p>
 <p >From a design perspective, the event-loop is not aware of channels or any of its handlers. It interacts with other entities only via its API.</p>
-<h3><a class="anchor" id="autotoc_md278"></a>
+<h3><a class="anchor" id="autotoc_md277"></a>
 Layout</h3>
 <p >struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> { struct <a class="el" href="structaws__event__loop__vtable.html">aws_event_loop_vtable</a> vtable; aws_clock clock; struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator; struct aws_common_hash_table local_storage; void *impl_data; };</p>
-<h3><a class="anchor" id="autotoc_md279"></a>
+<h3><a class="anchor" id="autotoc_md278"></a>
 V-Table</h3>
 <pre class="fragment">struct aws_event_loop_vtable {
     void (*destroy)(struct aws_event_loop *);
@@ -349,11 +349,11 @@ V-Table</h3>
         void(*on_event)(struct aws_event_loop *, struct aws_io_handle *, int events, void *), void *user_data);
 </pre><p> A subscriber will call this function to register an io_handle for event monitoring. This function is thread-safe.</p>
 <p ><code>events</code> is a bit field of the events the subscriber wants to receive. A few events will always be registered (regardless of the value passed here), such as <code>AWS_IO_EVENT_HANDLE_REMOVED</code>. The event-loop will invoke <code>on_event</code> anytime it receives one or more of the registered events.</p>
-<p ><b>NOTE: The event-loop is not responsible for manipulating or setting io flags on io_handles. It will never call, <a class="el" href="process__task__pre__queue_8c.html#a0e885d768e1393007ace09824be70595">read()</a>, <a class="el" href="schedule_8c.html#a335d604526cc357e0f5c3ea78acd6266">write()</a>, <a class="el" href="namespacecommon_1_1s2n__test__common.html#a03b5a5411d86d56a6c117f325d2d75b5">connect()</a>, accept(), <a class="el" href="new__destroy_8c.html#a6cc331334d030ff39790e12d10ef25c1">close()</a> etc... on any io handle it does not explicitly own. It is the subscriber's responsibility to know how to respond to the event.</b></p>
+<p ><b>NOTE: The event-loop is not responsible for manipulating or setting io flags on io_handles. It will never call, read(), write(), connect(), accept(), close() etc... on any io handle it does not explicitly own. It is the subscriber's responsibility to know how to respond to the event.</b></p>
 <p ><b>NOTE: The event-loop will not maintain any state other than the io handles it is polling. So, for example, in edge-triggered epoll, it does not maintain a read ready list. It is the subscriber's responsibility to know it has more data to read or write and to schedule its tasks appropriately.</b> </p><pre class="fragment">int (*unsubscribe_from_io_events) (struct aws_event_loop *, struct aws_io_handle *);
-</pre><p> A subscriber will call this function to remove its io handle from the monitored events. For example, it would may this immediately before calling <a class="el" href="new__destroy_8c.html#a6cc331334d030ff39790e12d10ef25c1">close()</a> on a socket or pipe. <code>on_event</code> will still be invoked with <code>AWS_IO_EVENT_HANDLE_REMOVED</code> when this occurs. </p><pre class="fragment">BOOL (*is_on_callers_thread) (struct aws_event_loop *);
+</pre><p> A subscriber will call this function to remove its io handle from the monitored events. For example, it would may this immediately before calling close() on a socket or pipe. <code>on_event</code> will still be invoked with <code>AWS_IO_EVENT_HANDLE_REMOVED</code> when this occurs. </p><pre class="fragment">BOOL (*is_on_callers_thread) (struct aws_event_loop *);
 </pre><p> Returns <code>TRUE</code> if the caller is on the same thread as the event-loop. Returns <code>FALSE</code> otherwise. This allows users of the event-loop to make a decision about whether it is safe to interact with the loop directly, or if they need to schedule a task to run in the correct thread. This function is thread-safe.</p>
-<h3><a class="anchor" id="autotoc_md280"></a>
+<h3><a class="anchor" id="autotoc_md279"></a>
 API</h3>
 <pre class="fragment">int aws_event_loop_init_base (struct aws_allocator *, aws_clock clock, ...);
 </pre><p> Initializes common data for all event-loops regardless of implementation. All implementations must call this function before returning from their allocation function. </p><pre class="fragment">struct aws_event_loop *aws_event_loop_new_default (struct aws_allocator *, aws_clock clock, ...);
@@ -363,16 +363,16 @@ API</h3>
 </pre><p> All event-loops contain local storage for all users of the event-loop to store common data into. This function is for putting one of those objects by key. The key for this store is of type <code>size_t</code>. This function is NOT thread safe, and it expects the caller to be calling from the event-loop's thread. If this is not the case, the caller must first schedule a task on the event-loop to enter the correct thread. </p><pre class="fragment">int aws_event_loop_remove_local_object ( struct aws_event_loop *, void *key, void **item);
 </pre><p> All event loops contain local storage for all users of the event loop to store common data into. This function is for removing one of those objects by key. The key for this store is of type <code>void *</code>. This function is NOT thread safe, and it expects the caller to be calling from the event loop's thread. If this is not the case, the caller must first schedule a task on the event loop to enter the correct thread. If found, and item is not NULL, the removed item is moved to <code>item</code>. It is the removers responsibility to free the memory pointed to by item. If it is NULL, the default deallocation strategy for the event loop will be used. </p><pre class="fragment">int aws_event_loop_current_ticks ( struct aws_event_loop *, uint64_t *ticks);
 </pre><p> Gets the current tick count/timestamp for the event loop's clock. This function is thread-safe.</p>
-<h3><a class="anchor" id="autotoc_md281"></a>
+<h3><a class="anchor" id="autotoc_md280"></a>
 V-Table Shims</h3>
 <p >The remaining exported functions on event loop simply invoke the v-table functions and return. See the v-table section for more details.</p>
-<h2><a class="anchor" id="autotoc_md282"></a>
+<h2><a class="anchor" id="autotoc_md281"></a>
 Channels and Slots</h2>
-<h3><a class="anchor" id="autotoc_md283"></a>
+<h3><a class="anchor" id="autotoc_md282"></a>
 Layout</h3>
 <p >struct <a class="el" href="structaws__channel.html">aws_channel</a> { struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc; struct <a class="el" href="structaws__event__loop.html">aws_event_loop</a> *loop; struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *first; };</p>
 <p >struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> { struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc; struct <a class="el" href="structaws__channel.html">aws_channel</a> *channel; struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *adj_left; struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *adj_right; struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler; };</p>
-<h3><a class="anchor" id="autotoc_md284"></a>
+<h3><a class="anchor" id="autotoc_md283"></a>
 API (Channel/Slot interaction)</h3>
 <pre class="fragment">struct aws_channel_slot_ref *aws_channel_slot_new (struct aws_channel *channel);
 </pre><p> Creates a new slot using the channel's allocator, if it is the first slot in the channel, it will be added as the first slot in the channel. Otherwise, you'll need to use the insert or replace APIs for slots. </p><pre class="fragment">int aws_channel_slot_set_handler ( struct aws_channel_slot *, struct aws_channel_handler *handler );
@@ -385,7 +385,7 @@ API (Channel/Slot interaction)</h3>
 </pre><p> Usually called by a handler, this function calls the left-adjacent slot. </p><pre class="fragment">int aws_channel_slot_on_handler_shutdown_complete(struct aws_channel_slot *slot, enum aws_channel_direction dir,
                                                               int err_code, bool abort_immediately);
 </pre><p> Usually called by a handler, this function calls the adjacent slot's shutdown based on the <code>dir</code> argument.</p>
-<h2><a class="anchor" id="autotoc_md285"></a>
+<h2><a class="anchor" id="autotoc_md284"></a>
 API (Channel specific)</h2>
 <pre class="fragment">int aws_channel_init (struct aws_channel *channel, struct aws_allocator *alloc, struct aws_event_loop *el);
 </pre><p> Initializes a channel for operation. The event loop will be used for driving the channel. </p><pre class="fragment">int aws_channel_clean_up (struct aws_channel *channel);
@@ -397,13 +397,13 @@ API (Channel specific)</h2>
 </pre><p> Puts data into the event loop's data store. This data is shared by each channel using that event loop. </p><pre class="fragment">int aws_channel_schedule_task (struct aws_channel *, struct aws_task *task, uint64_t run_at);
 </pre><p> Schedules a task to run on the event loop. This function is thread-safe. </p><pre class="fragment">BOOL aws_channel_thread_is_callers_thread (struct aws_channel *);
 </pre><p> Checks if the caller is on the event loop's thread. This function is thread-safe.</p>
-<h2><a class="anchor" id="autotoc_md286"></a>
+<h2><a class="anchor" id="autotoc_md285"></a>
 Channel Handlers</h2>
 <p >Channel Handlers are runtime polymorphic. Here's some details on the virtual table (v-table):</p>
-<h3><a class="anchor" id="autotoc_md287"></a>
+<h3><a class="anchor" id="autotoc_md286"></a>
 Layout</h3>
 <p >struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> { struct <a class="el" href="structaws__channel__handler__vtable.html">aws_channel_handler_vtable</a> *vtable; struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *alloc; void *impl; };</p>
-<h3><a class="anchor" id="autotoc_md288"></a>
+<h3><a class="anchor" id="autotoc_md287"></a>
 V-Table</h3>
 <p >struct <a class="el" href="structaws__channel__handler__vtable.html">aws_channel_handler_vtable</a> { int (*data_in) ( struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *message ); int (*data_out) ( struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *message ); int (*on_window_update) (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, size_t size) int (*on_shutdown_notify) (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum aws_channel_direction dir, int error_code); int (*shutdown_direction) (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, enum aws_channel_direction dir); size_t (*initial_window_size) (struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler); void (*destroy)(struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler); };</p>
 <p ><code>int data_in ( struct <a class="el" href="structaws__channel__handler.html">aws_channel_handler</a> *handler, struct <a class="el" href="structaws__channel__slot.html">aws_channel_slot</a> *slot, struct <a class="el" href="structaws__io__message.html">aws_io_message</a> *message)</code></p>
@@ -418,14 +418,14 @@ V-Table</h3>
 <p >When a handler is added to a slot, the slot will call this function to determine the initial window size and will propagate a window_update message down the channel.</p>
 <p ><code>void destroy(struct aws_channel_handler *handler)</code></p>
 <p >Clean up any memory or resources owned by this handler, and then deallocate the handler itself.</p>
-<h3><a class="anchor" id="autotoc_md289"></a>
+<h3><a class="anchor" id="autotoc_md288"></a>
 API</h3>
 <p >All exported functions, simply shim into the v-table and return.</p>
-<h2><a class="anchor" id="autotoc_md290"></a>
+<h2><a class="anchor" id="autotoc_md289"></a>
 Sockets</h2>
 <p >We include a cross-platform API for sockets. We support TCP and UDP using IPv4 and IPv6, and Unix Domain sockets. On Windows, we use Named Pipes to support the functionality of Unix Domain sockets. On Windows, this is implemented with winsock2, and on all unix platforms we use the posix API.</p>
-<p >Upon a connection being established, the new socket (either as the result of a <code><a class="el" href="namespacecommon_1_1s2n__test__common.html#a03b5a5411d86d56a6c117f325d2d75b5">connect()</a></code> or <code>start_accept()</code> call) will not be attached to any event loops. It is your responsibility to register it with an event loop to begin receiving notifications.</p>
-<h3><a class="anchor" id="autotoc_md291"></a>
+<p >Upon a connection being established, the new socket (either as the result of a <code>connect()</code> or <code>start_accept()</code> call) will not be attached to any event loops. It is your responsibility to register it with an event loop to begin receiving notifications.</p>
+<h3><a class="anchor" id="autotoc_md290"></a>
 API</h3>
 <p >typedef enum aws_socket_domain { AWS_SOCKET_IPV4, AWS_SOCKET_IPV6, AWS_SOCKET_LOCAL, AWS_SOCKET_VSOCK, } aws_socket_domain;</p>
 <p ><code>AWS_SOCKET_IPV4</code> means an IPv4 address will be used.</p>
@@ -443,7 +443,7 @@ API</h3>
     void *user_data;
 };
 </pre><p> <code>on_incoming_connection()</code> will be invoked on a listening socket when new connections arrive. <code>socket</code> is the listening socket. <code>new_socket</code> is the newly created socket. It is the connection to the remote endpoint.</p>
-<p >NOTE: You are responsible for calling <code><a class="el" href="socket_8h.html#ac68f282d5ab2ae4a70f0673d572c4b39">aws_socket_clean_up()</a></code> and <code><a class="el" href="preamble_8h.html#a7f273578823e2deda95364138491f729">aws_mem_release()</a></code> on <code>new_socket</code> when you are finished with it.</p>
+<p >NOTE: You are responsible for calling <code><a class="el" href="socket_8h.html#ac68f282d5ab2ae4a70f0673d572c4b39">aws_socket_clean_up()</a></code> and <code><a class="el" href="allocator_8h.html#ac34324e684063da863a00f4fb8129906">aws_mem_release()</a></code> on <code>new_socket</code> when you are finished with it.</p>
 <p ><code>on_connection_established()</code> will be invoked after a connect call, upon a successful connection to the remote endpoint.</p>
 <p ><code>on_error()</code> will be invoked on both listening and connecting sockets to indicate any error conditions. </p><pre class="fragment">struct aws_socket_endpoint {
     char address[48];
@@ -463,7 +463,7 @@ API</h3>
 </pre><p> TCP and LOCAL only. Sets up the socket to listen on the address bound to in <code><a class="el" href="socket_8h.html#a24930918606789bae1d07115ec644701">aws_socket_bind()</a></code>. </p><pre class="fragment">int aws_socket_start_accept(struct aws_socket *socket);
 </pre><p> TCP and LOCAL only. The socket will begin accepting new connections. This is an asynchronous operation. New connections will arrive via the <code>on_incoming_connection()</code> callback. </p><pre class="fragment">int aws_socket_stop_accept(struct aws_socket *socket);
 </pre><p> TCP and LOCAL only. The socket will shutdown the listener. It is safe to call <code><a class="el" href="socket_8h.html#a796b04c08548fc2654136365cf3642b6">aws_socket_start_accept()</a></code> again after this operation. </p><pre class="fragment">int aws_socket_close(struct aws_socket *socket);
-</pre><p> Calls <code><a class="el" href="new__destroy_8c.html#a6cc331334d030ff39790e12d10ef25c1">close()</a></code> on the socket and unregisters all io operations from the event loop. </p><pre class="fragment">struct aws_io_handle *aws_socket_get_io_handle(struct aws_socket *socket);
+</pre><p> Calls <code>close()</code> on the socket and unregisters all io operations from the event loop. </p><pre class="fragment">struct aws_io_handle *aws_socket_get_io_handle(struct aws_socket *socket);
 </pre><p> Fetches the underlying io handle for use in event loop registrations and channel handlers. </p><pre class="fragment">int aws_socket_set_options(struct aws_socket *socket, struct aws_socket_options *options);
 </pre><p> Sets new socket options on the underlying socket. This is mainly useful in context of accepting a new connection via: <code>on_incoming_connection()</code>. </p><pre class="fragment">int aws_socket_read(struct aws_socket *socket, struct aws_byte_buf *buffer, size_t *amount_read);
 </pre><p> Reads from the socket. This call is non-blocking and will return <code>AWS_IO_SOCKET_READ_WOULD_BLOCK</code> if no data is available. <code>amount_read</code> is the amount of data read into <code>buffer</code>. </p><pre class="fragment">int aws_socket_write(struct aws_socket *socket, const struct aws_byte_buf *buffer, size_t *written);

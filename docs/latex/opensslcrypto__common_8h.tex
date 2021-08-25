@@ -13,31 +13,31 @@ struct \mbox{\hyperlink{structopenssl__evp__md__ctx__table}{openssl\+\_\+evp\+\_
 \doxysubsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef \mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a6b59ae3165ce40356b9f22cd994c5628}{hmac\+\_\+ctx\+\_\+new}}) (void)
+typedef HMAC\+\_\+\+CTX $\ast$($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a6b59ae3165ce40356b9f22cd994c5628}{hmac\+\_\+ctx\+\_\+new}}) (void)
 \item 
-typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a25b058178de10221d903ed4c00f0dc59}{hmac\+\_\+ctx\+\_\+reset}}) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$)
+typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a25b058178de10221d903ed4c00f0dc59}{hmac\+\_\+ctx\+\_\+reset}}) (HMAC\+\_\+\+CTX $\ast$)
 \item 
-typedef void($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a3f2ce450cb6665a489495281fd441a90}{hmac\+\_\+ctx\+\_\+free}}) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$)
+typedef void($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a3f2ce450cb6665a489495281fd441a90}{hmac\+\_\+ctx\+\_\+free}}) (HMAC\+\_\+\+CTX $\ast$)
 \item 
-typedef void($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a204e22b2a4085bfc968f79640c9809af}{hmac\+\_\+ctx\+\_\+init}}) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$)
+typedef void($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a204e22b2a4085bfc968f79640c9809af}{hmac\+\_\+ctx\+\_\+init}}) (HMAC\+\_\+\+CTX $\ast$)
 \item 
-typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a98da1b69655a936e6f8aac14e6bb1f34}{hmac\+\_\+ctx\+\_\+init\+\_\+ex}}) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$, const void $\ast$, int, const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$)
+typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a98da1b69655a936e6f8aac14e6bb1f34}{hmac\+\_\+ctx\+\_\+init\+\_\+ex}}) (HMAC\+\_\+\+CTX $\ast$, const void $\ast$, int, const EVP\+\_\+\+MD $\ast$, ENGINE $\ast$)
 \item 
-typedef void($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a909e77e0054e3a77d34868e017dfe203}{hmac\+\_\+ctx\+\_\+clean\+\_\+up}}) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$)
+typedef void($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a909e77e0054e3a77d34868e017dfe203}{hmac\+\_\+ctx\+\_\+clean\+\_\+up}}) (HMAC\+\_\+\+CTX $\ast$)
 \item 
-typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a4a46bd126f1c0591650862d09fc56462}{hmac\+\_\+ctx\+\_\+update}}) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$, const unsigned char $\ast$, size\+\_\+t)
+typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a4a46bd126f1c0591650862d09fc56462}{hmac\+\_\+ctx\+\_\+update}}) (HMAC\+\_\+\+CTX $\ast$, const unsigned char $\ast$, size\+\_\+t)
 \item 
-typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_ae1f6376e88bc82c79a20fbcb722cf386}{hmac\+\_\+ctx\+\_\+final}}) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$, unsigned char $\ast$, unsigned int $\ast$)
+typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_ae1f6376e88bc82c79a20fbcb722cf386}{hmac\+\_\+ctx\+\_\+final}}) (HMAC\+\_\+\+CTX $\ast$, unsigned char $\ast$, unsigned int $\ast$)
 \item 
-typedef \mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_aa1cd444b6cfba175bd139aad7f883d7c}{evp\+\_\+md\+\_\+ctx\+\_\+new}}) (void)
+typedef EVP\+\_\+\+MD\+\_\+\+CTX $\ast$($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_aa1cd444b6cfba175bd139aad7f883d7c}{evp\+\_\+md\+\_\+ctx\+\_\+new}}) (void)
 \item 
-typedef void($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a4e5c7951f5380831f841460f42cda0c3}{evp\+\_\+md\+\_\+ctx\+\_\+free}}) (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$)
+typedef void($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a4e5c7951f5380831f841460f42cda0c3}{evp\+\_\+md\+\_\+ctx\+\_\+free}}) (EVP\+\_\+\+MD\+\_\+\+CTX $\ast$)
 \item 
-typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_af638f86e179f208ed6680aafeb9c0890}{evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+init\+\_\+ex}}) (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$, const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$)
+typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_af638f86e179f208ed6680aafeb9c0890}{evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+init\+\_\+ex}}) (EVP\+\_\+\+MD\+\_\+\+CTX $\ast$, const EVP\+\_\+\+MD $\ast$, ENGINE $\ast$)
 \item 
-typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a397344a060e86eaca52d409f89b29176}{evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+update}}) (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$, const void $\ast$, size\+\_\+t)
+typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a397344a060e86eaca52d409f89b29176}{evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+update}}) (EVP\+\_\+\+MD\+\_\+\+CTX $\ast$, const void $\ast$, size\+\_\+t)
 \item 
-typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a4a8a2328ee6faebd9053953bfd69b5dc}{evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+final\+\_\+ex}}) (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$, unsigned char $\ast$, unsigned int $\ast$)
+typedef int($\ast$ \mbox{\hyperlink{opensslcrypto__common_8h_a4a8a2328ee6faebd9053953bfd69b5dc}{evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+final\+\_\+ex}}) (EVP\+\_\+\+MD\+\_\+\+CTX $\ast$, unsigned char $\ast$, unsigned int $\ast$)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -53,79 +53,79 @@ struct \mbox{\hyperlink{structopenssl__evp__md__ctx__table}{openssl\+\_\+evp\+\_
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!evp\_md\_ctx\_digest\_final\_ex@{evp\_md\_ctx\_digest\_final\_ex}}
 \index{evp\_md\_ctx\_digest\_final\_ex@{evp\_md\_ctx\_digest\_final\_ex}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{evp\_md\_ctx\_digest\_final\_ex}{evp\_md\_ctx\_digest\_final\_ex}}
-{\footnotesize\ttfamily typedef int($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+final\+\_\+ex) (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$, unsigned char $\ast$, unsigned int $\ast$)}
+{\footnotesize\ttfamily typedef int($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+final\+\_\+ex) (EVP\+\_\+\+MD\+\_\+\+CTX $\ast$, unsigned char $\ast$, unsigned int $\ast$)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_af638f86e179f208ed6680aafeb9c0890}\label{opensslcrypto__common_8h_af638f86e179f208ed6680aafeb9c0890}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!evp\_md\_ctx\_digest\_init\_ex@{evp\_md\_ctx\_digest\_init\_ex}}
 \index{evp\_md\_ctx\_digest\_init\_ex@{evp\_md\_ctx\_digest\_init\_ex}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{evp\_md\_ctx\_digest\_init\_ex}{evp\_md\_ctx\_digest\_init\_ex}}
-{\footnotesize\ttfamily typedef int($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+init\+\_\+ex) (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$, const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$)}
+{\footnotesize\ttfamily typedef int($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+init\+\_\+ex) (EVP\+\_\+\+MD\+\_\+\+CTX $\ast$, const EVP\+\_\+\+MD $\ast$, ENGINE $\ast$)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_a397344a060e86eaca52d409f89b29176}\label{opensslcrypto__common_8h_a397344a060e86eaca52d409f89b29176}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!evp\_md\_ctx\_digest\_update@{evp\_md\_ctx\_digest\_update}}
 \index{evp\_md\_ctx\_digest\_update@{evp\_md\_ctx\_digest\_update}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{evp\_md\_ctx\_digest\_update}{evp\_md\_ctx\_digest\_update}}
-{\footnotesize\ttfamily typedef int($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+update) (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$, const void $\ast$, size\+\_\+t)}
+{\footnotesize\ttfamily typedef int($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+digest\+\_\+update) (EVP\+\_\+\+MD\+\_\+\+CTX $\ast$, const void $\ast$, size\+\_\+t)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_a4e5c7951f5380831f841460f42cda0c3}\label{opensslcrypto__common_8h_a4e5c7951f5380831f841460f42cda0c3}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!evp\_md\_ctx\_free@{evp\_md\_ctx\_free}}
 \index{evp\_md\_ctx\_free@{evp\_md\_ctx\_free}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{evp\_md\_ctx\_free}{evp\_md\_ctx\_free}}
-{\footnotesize\ttfamily typedef void($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+free) (\mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}} $\ast$)}
+{\footnotesize\ttfamily typedef void($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+free) (EVP\+\_\+\+MD\+\_\+\+CTX $\ast$)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_aa1cd444b6cfba175bd139aad7f883d7c}\label{opensslcrypto__common_8h_aa1cd444b6cfba175bd139aad7f883d7c}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!evp\_md\_ctx\_new@{evp\_md\_ctx\_new}}
 \index{evp\_md\_ctx\_new@{evp\_md\_ctx\_new}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{evp\_md\_ctx\_new}{evp\_md\_ctx\_new}}
-{\footnotesize\ttfamily typedef \mbox{\hyperlink{ossl__typ_8h_a11ccc869c9ea1749e6fe88f44826b56a}{EVP\+\_\+\+MD\+\_\+\+CTX}}$\ast$($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+new) (void)}
+{\footnotesize\ttfamily typedef EVP\+\_\+\+MD\+\_\+\+CTX$\ast$($\ast$ evp\+\_\+md\+\_\+ctx\+\_\+new) (void)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_a909e77e0054e3a77d34868e017dfe203}\label{opensslcrypto__common_8h_a909e77e0054e3a77d34868e017dfe203}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!hmac\_ctx\_clean\_up@{hmac\_ctx\_clean\_up}}
 \index{hmac\_ctx\_clean\_up@{hmac\_ctx\_clean\_up}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_ctx\_clean\_up}{hmac\_ctx\_clean\_up}}
-{\footnotesize\ttfamily typedef void($\ast$ hmac\+\_\+ctx\+\_\+clean\+\_\+up) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$)}
+{\footnotesize\ttfamily typedef void($\ast$ hmac\+\_\+ctx\+\_\+clean\+\_\+up) (HMAC\+\_\+\+CTX $\ast$)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_ae1f6376e88bc82c79a20fbcb722cf386}\label{opensslcrypto__common_8h_ae1f6376e88bc82c79a20fbcb722cf386}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!hmac\_ctx\_final@{hmac\_ctx\_final}}
 \index{hmac\_ctx\_final@{hmac\_ctx\_final}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_ctx\_final}{hmac\_ctx\_final}}
-{\footnotesize\ttfamily typedef int($\ast$ hmac\+\_\+ctx\+\_\+final) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$, unsigned char $\ast$, unsigned int $\ast$)}
+{\footnotesize\ttfamily typedef int($\ast$ hmac\+\_\+ctx\+\_\+final) (HMAC\+\_\+\+CTX $\ast$, unsigned char $\ast$, unsigned int $\ast$)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_a3f2ce450cb6665a489495281fd441a90}\label{opensslcrypto__common_8h_a3f2ce450cb6665a489495281fd441a90}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!hmac\_ctx\_free@{hmac\_ctx\_free}}
 \index{hmac\_ctx\_free@{hmac\_ctx\_free}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_ctx\_free}{hmac\_ctx\_free}}
-{\footnotesize\ttfamily typedef void($\ast$ hmac\+\_\+ctx\+\_\+free) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$)}
+{\footnotesize\ttfamily typedef void($\ast$ hmac\+\_\+ctx\+\_\+free) (HMAC\+\_\+\+CTX $\ast$)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_a204e22b2a4085bfc968f79640c9809af}\label{opensslcrypto__common_8h_a204e22b2a4085bfc968f79640c9809af}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!hmac\_ctx\_init@{hmac\_ctx\_init}}
 \index{hmac\_ctx\_init@{hmac\_ctx\_init}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_ctx\_init}{hmac\_ctx\_init}}
-{\footnotesize\ttfamily typedef void($\ast$ hmac\+\_\+ctx\+\_\+init) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$)}
+{\footnotesize\ttfamily typedef void($\ast$ hmac\+\_\+ctx\+\_\+init) (HMAC\+\_\+\+CTX $\ast$)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_a98da1b69655a936e6f8aac14e6bb1f34}\label{opensslcrypto__common_8h_a98da1b69655a936e6f8aac14e6bb1f34}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!hmac\_ctx\_init\_ex@{hmac\_ctx\_init\_ex}}
 \index{hmac\_ctx\_init\_ex@{hmac\_ctx\_init\_ex}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_ctx\_init\_ex}{hmac\_ctx\_init\_ex}}
-{\footnotesize\ttfamily typedef int($\ast$ hmac\+\_\+ctx\+\_\+init\+\_\+ex) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$, const void $\ast$, int, const \mbox{\hyperlink{ossl__typ_8h_adfe5a64a40ab157ebdae9e7d2f52af2b}{EVP\+\_\+\+MD}} $\ast$, \mbox{\hyperlink{ossl__typ_8h_abac45b251498719318e60ab8d6192510}{ENGINE}} $\ast$)}
+{\footnotesize\ttfamily typedef int($\ast$ hmac\+\_\+ctx\+\_\+init\+\_\+ex) (HMAC\+\_\+\+CTX $\ast$, const void $\ast$, int, const EVP\+\_\+\+MD $\ast$, ENGINE $\ast$)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_a6b59ae3165ce40356b9f22cd994c5628}\label{opensslcrypto__common_8h_a6b59ae3165ce40356b9f22cd994c5628}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!hmac\_ctx\_new@{hmac\_ctx\_new}}
 \index{hmac\_ctx\_new@{hmac\_ctx\_new}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_ctx\_new}{hmac\_ctx\_new}}
-{\footnotesize\ttfamily typedef \mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}}$\ast$($\ast$ hmac\+\_\+ctx\+\_\+new) (void)}
+{\footnotesize\ttfamily typedef HMAC\+\_\+\+CTX$\ast$($\ast$ hmac\+\_\+ctx\+\_\+new) (void)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_a25b058178de10221d903ed4c00f0dc59}\label{opensslcrypto__common_8h_a25b058178de10221d903ed4c00f0dc59}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!hmac\_ctx\_reset@{hmac\_ctx\_reset}}
 \index{hmac\_ctx\_reset@{hmac\_ctx\_reset}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_ctx\_reset}{hmac\_ctx\_reset}}
-{\footnotesize\ttfamily typedef int($\ast$ hmac\+\_\+ctx\+\_\+reset) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$)}
+{\footnotesize\ttfamily typedef int($\ast$ hmac\+\_\+ctx\+\_\+reset) (HMAC\+\_\+\+CTX $\ast$)}
 
 \mbox{\Hypertarget{opensslcrypto__common_8h_a4a46bd126f1c0591650862d09fc56462}\label{opensslcrypto__common_8h_a4a46bd126f1c0591650862d09fc56462}} 
 \index{opensslcrypto\_common.h@{opensslcrypto\_common.h}!hmac\_ctx\_update@{hmac\_ctx\_update}}
 \index{hmac\_ctx\_update@{hmac\_ctx\_update}!opensslcrypto\_common.h@{opensslcrypto\_common.h}}
 \doxysubsubsection{\texorpdfstring{hmac\_ctx\_update}{hmac\_ctx\_update}}
-{\footnotesize\ttfamily typedef int($\ast$ hmac\+\_\+ctx\+\_\+update) (\mbox{\hyperlink{ossl__typ_8h_aa02d3175d4ca57c999f78794bf361c10}{HMAC\+\_\+\+CTX}} $\ast$, const unsigned char $\ast$, size\+\_\+t)}
+{\footnotesize\ttfamily typedef int($\ast$ hmac\+\_\+ctx\+\_\+update) (HMAC\+\_\+\+CTX $\ast$, const unsigned char $\ast$, size\+\_\+t)}
 
 
 

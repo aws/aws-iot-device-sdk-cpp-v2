@@ -45,9 +45,9 @@ static void \mbox{\hyperlink{date__time_8c_aa018ea755c675c94e43c5e80606e979a}{s\
 \item 
 static int \mbox{\hyperlink{date__time_8c_ab4c45995571b5f0044ec07383d07e6ed}{get\+\_\+month\+\_\+number\+\_\+from\+\_\+str}} (const char $\ast$time\+\_\+string, size\+\_\+t start\+\_\+index, size\+\_\+t stop\+\_\+index)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{date__time_8c_a799dc60bec7501564b7c1d93c816101b}{is\+\_\+utc\+\_\+time\+\_\+zone}} (const char $\ast$str)
+static bool \mbox{\hyperlink{date__time_8c_a799dc60bec7501564b7c1d93c816101b}{is\+\_\+utc\+\_\+time\+\_\+zone}} (const char $\ast$str)
 \item 
-struct tm \mbox{\hyperlink{date__time_8c_a9ab3eae924e489a90dd27c68b535b6b7}{s\+\_\+get\+\_\+time\+\_\+struct}} (struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+struct tm \mbox{\hyperlink{date__time_8c_a9ab3eae924e489a90dd27c68b535b6b7}{s\+\_\+get\+\_\+time\+\_\+struct}} (struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, bool local\+\_\+time)
 \item 
 void \mbox{\hyperlink{date__time_8c_aee0fd2cbe41b044ec457e51834dfe149}{aws\+\_\+date\+\_\+time\+\_\+init\+\_\+now}} (struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt)
 \item 
@@ -81,21 +81,21 @@ uint64\+\_\+t \mbox{\hyperlink{date__time_8c_a8c2ac52f83554148006976d88ebb8fdc}{
 \item 
 uint64\+\_\+t \mbox{\hyperlink{date__time_8c_ac683eeb1f612748f57bb36e4d8a75c6d}{aws\+\_\+date\+\_\+time\+\_\+as\+\_\+millis}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt)
 \item 
-uint16\+\_\+t \mbox{\hyperlink{date__time_8c_ab7815cc07135a0296957708d697502de}{aws\+\_\+date\+\_\+time\+\_\+year}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+uint16\+\_\+t \mbox{\hyperlink{date__time_8c_ab7815cc07135a0296957708d697502de}{aws\+\_\+date\+\_\+time\+\_\+year}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, bool local\+\_\+time)
 \item 
-enum \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\+\_\+date\+\_\+month}} \mbox{\hyperlink{date__time_8c_a328c73d7a48745fe1b32625395f2c29c}{aws\+\_\+date\+\_\+time\+\_\+month}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+enum \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\+\_\+date\+\_\+month}} \mbox{\hyperlink{date__time_8c_a328c73d7a48745fe1b32625395f2c29c}{aws\+\_\+date\+\_\+time\+\_\+month}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, bool local\+\_\+time)
 \item 
-uint8\+\_\+t \mbox{\hyperlink{date__time_8c_ab868a13516568dc1ab430e2eb136108f}{aws\+\_\+date\+\_\+time\+\_\+month\+\_\+day}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+uint8\+\_\+t \mbox{\hyperlink{date__time_8c_ab868a13516568dc1ab430e2eb136108f}{aws\+\_\+date\+\_\+time\+\_\+month\+\_\+day}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, bool local\+\_\+time)
 \item 
-enum \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\+\_\+date\+\_\+day\+\_\+of\+\_\+week}} \mbox{\hyperlink{date__time_8c_a7f48f1c51e3bfb064311d71de7f95cd9}{aws\+\_\+date\+\_\+time\+\_\+day\+\_\+of\+\_\+week}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+enum \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\+\_\+date\+\_\+day\+\_\+of\+\_\+week}} \mbox{\hyperlink{date__time_8c_a7f48f1c51e3bfb064311d71de7f95cd9}{aws\+\_\+date\+\_\+time\+\_\+day\+\_\+of\+\_\+week}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, bool local\+\_\+time)
 \item 
-uint8\+\_\+t \mbox{\hyperlink{date__time_8c_a6958c8180ba35f7d634fbb0d305fe2b6}{aws\+\_\+date\+\_\+time\+\_\+hour}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+uint8\+\_\+t \mbox{\hyperlink{date__time_8c_a6958c8180ba35f7d634fbb0d305fe2b6}{aws\+\_\+date\+\_\+time\+\_\+hour}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, bool local\+\_\+time)
 \item 
-uint8\+\_\+t \mbox{\hyperlink{date__time_8c_ab42d350a70ffc33bffb69d50a4436aef}{aws\+\_\+date\+\_\+time\+\_\+minute}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+uint8\+\_\+t \mbox{\hyperlink{date__time_8c_ab42d350a70ffc33bffb69d50a4436aef}{aws\+\_\+date\+\_\+time\+\_\+minute}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, bool local\+\_\+time)
 \item 
-uint8\+\_\+t \mbox{\hyperlink{date__time_8c_a2d752aa9739086d3e538e8c5baf142a1}{aws\+\_\+date\+\_\+time\+\_\+second}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+uint8\+\_\+t \mbox{\hyperlink{date__time_8c_a2d752aa9739086d3e538e8c5baf142a1}{aws\+\_\+date\+\_\+time\+\_\+second}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, bool local\+\_\+time)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{date__time_8c_a2c6980ae309291a1c0a32321c0bff619}{aws\+\_\+date\+\_\+time\+\_\+dst}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} local\+\_\+time)
+bool \mbox{\hyperlink{date__time_8c_a2c6980ae309291a1c0a32321c0bff619}{aws\+\_\+date\+\_\+time\+\_\+dst}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$dt, bool local\+\_\+time)
 \item 
 time\+\_\+t \mbox{\hyperlink{date__time_8c_a08b4819bbe7cea7fd618e7ce73818628}{aws\+\_\+date\+\_\+time\+\_\+diff}} (const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$a, const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})
 \end{DoxyCompactItemize}
@@ -259,7 +259,7 @@ ERROR&\\
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_day\_of\_week@{aws\_date\_time\_day\_of\_week}}
 \index{aws\_date\_time\_day\_of\_week@{aws\_date\_time\_day\_of\_week}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{aws\_date\_time\_day\_of\_week()}{aws\_date\_time\_day\_of\_week()}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\+\_\+date\+\_\+day\+\_\+of\+\_\+week}} aws\+\_\+date\+\_\+time\+\_\+day\+\_\+of\+\_\+week (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{date__time_8h_a5905b42242cf9d876ef6df0ebb09a317}{aws\+\_\+date\+\_\+day\+\_\+of\+\_\+week}} aws\+\_\+date\+\_\+time\+\_\+day\+\_\+of\+\_\+week (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{bool}]{local\+\_\+time }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{date__time_8c_a08b4819bbe7cea7fd618e7ce73818628}\label{date__time_8c_a08b4819bbe7cea7fd618e7ce73818628}} 
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_diff@{aws\_date\_time\_diff}}
@@ -271,13 +271,13 @@ returns the difference of a and b (a -\/ b) in seconds. \mbox{\Hypertarget{date_
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_dst@{aws\_date\_time\_dst}}
 \index{aws\_date\_time\_dst@{aws\_date\_time\_dst}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{aws\_date\_time\_dst()}{aws\_date\_time\_dst()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+date\+\_\+time\+\_\+dst (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+date\+\_\+time\+\_\+dst (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{bool}]{local\+\_\+time }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{date__time_8c_a6958c8180ba35f7d634fbb0d305fe2b6}\label{date__time_8c_a6958c8180ba35f7d634fbb0d305fe2b6}} 
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_hour@{aws\_date\_time\_hour}}
 \index{aws\_date\_time\_hour@{aws\_date\_time\_hour}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{aws\_date\_time\_hour()}{aws\_date\_time\_hour()}}
-{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+hour (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+hour (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{bool}]{local\+\_\+time }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{date__time_8c_a000e8e18a3332a15a5812897657e30d8}\label{date__time_8c_a000e8e18a3332a15a5812897657e30d8}} 
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_init\_epoch\_millis@{aws\_date\_time\_init\_epoch\_millis}}
@@ -319,25 +319,25 @@ Initializes dt to be the current system time. \mbox{\Hypertarget{date__time_8c_a
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_minute@{aws\_date\_time\_minute}}
 \index{aws\_date\_time\_minute@{aws\_date\_time\_minute}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{aws\_date\_time\_minute()}{aws\_date\_time\_minute()}}
-{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+minute (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+minute (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{bool}]{local\+\_\+time }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{date__time_8c_a328c73d7a48745fe1b32625395f2c29c}\label{date__time_8c_a328c73d7a48745fe1b32625395f2c29c}} 
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_month@{aws\_date\_time\_month}}
 \index{aws\_date\_time\_month@{aws\_date\_time\_month}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{aws\_date\_time\_month()}{aws\_date\_time\_month()}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\+\_\+date\+\_\+month}} aws\+\_\+date\+\_\+time\+\_\+month (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{date__time_8h_ab40cd55ec991f137b08db63de66ecb90}{aws\+\_\+date\+\_\+month}} aws\+\_\+date\+\_\+time\+\_\+month (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{bool}]{local\+\_\+time }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{date__time_8c_ab868a13516568dc1ab430e2eb136108f}\label{date__time_8c_ab868a13516568dc1ab430e2eb136108f}} 
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_month\_day@{aws\_date\_time\_month\_day}}
 \index{aws\_date\_time\_month\_day@{aws\_date\_time\_month\_day}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{aws\_date\_time\_month\_day()}{aws\_date\_time\_month\_day()}}
-{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+month\+\_\+day (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+month\+\_\+day (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{bool}]{local\+\_\+time }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{date__time_8c_a2d752aa9739086d3e538e8c5baf142a1}\label{date__time_8c_a2d752aa9739086d3e538e8c5baf142a1}} 
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_second@{aws\_date\_time\_second}}
 \index{aws\_date\_time\_second@{aws\_date\_time\_second}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{aws\_date\_time\_second()}{aws\_date\_time\_second()}}
-{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+second (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily uint8\+\_\+t aws\+\_\+date\+\_\+time\+\_\+second (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{bool}]{local\+\_\+time }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{date__time_8c_ad3bc3276ed186e473aaa6f250bffcef8}\label{date__time_8c_ad3bc3276ed186e473aaa6f250bffcef8}} 
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_to\_local\_time\_short\_str@{aws\_date\_time\_to\_local\_time\_short\_str}}
@@ -367,7 +367,7 @@ Copies the current time as a formatted date string in utc time into output\+\_\+
 \index{date\_time.c@{date\_time.c}!aws\_date\_time\_year@{aws\_date\_time\_year}}
 \index{aws\_date\_time\_year@{aws\_date\_time\_year}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{aws\_date\_time\_year()}{aws\_date\_time\_year()}}
-{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+date\+\_\+time\+\_\+year (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily uint16\+\_\+t aws\+\_\+date\+\_\+time\+\_\+year (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{bool}]{local\+\_\+time }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{date__time_8c_ab4c45995571b5f0044ec07383d07e6ed}\label{date__time_8c_ab4c45995571b5f0044ec07383d07e6ed}} 
 \index{date\_time.c@{date\_time.c}!get\_month\_number\_from\_str@{get\_month\_number\_from\_str}}
@@ -379,7 +379,7 @@ Copies the current time as a formatted date string in utc time into output\+\_\+
 \index{date\_time.c@{date\_time.c}!is\_utc\_time\_zone@{is\_utc\_time\_zone}}
 \index{is\_utc\_time\_zone@{is\_utc\_time\_zone}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{is\_utc\_time\_zone()}{is\_utc\_time\_zone()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+utc\+\_\+time\+\_\+zone (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool is\+\_\+utc\+\_\+time\+\_\+zone (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{date__time_8c_aa018ea755c675c94e43c5e80606e979a}\label{date__time_8c_aa018ea755c675c94e43c5e80606e979a}} 
 \index{date\_time.c@{date\_time.c}!s\_check\_init\_str\_to\_int@{s\_check\_init\_str\_to\_int}}
@@ -397,7 +397,7 @@ Copies the current time as a formatted date string in utc time into output\+\_\+
 \index{date\_time.c@{date\_time.c}!s\_get\_time\_struct@{s\_get\_time\_struct}}
 \index{s\_get\_time\_struct@{s\_get\_time\_struct}!date\_time.c@{date\_time.c}}
 \doxysubsubsection{\texorpdfstring{s\_get\_time\_struct()}{s\_get\_time\_struct()}}
-{\footnotesize\ttfamily struct tm s\+\_\+get\+\_\+time\+\_\+struct (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{local\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily struct tm s\+\_\+get\+\_\+time\+\_\+struct (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__date__time}{aws\+\_\+date\+\_\+time}} $\ast$}]{dt,  }\item[{bool}]{local\+\_\+time }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{date__time_8c_a12afe54f1e01c359650f74ae53f28fd8}\label{date__time_8c_a12afe54f1e01c359650f74ae53f28fd8}} 
 \index{date\_time.c@{date\_time.c}!s\_parse\_iso\_8601@{s\_parse\_iso\_8601}}

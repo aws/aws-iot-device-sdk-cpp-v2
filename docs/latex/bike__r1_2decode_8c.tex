@@ -1,0 +1,98 @@
+\hypertarget{bike__r1_2decode_8c}{}\doxysection{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\+\_\+r1/decode.c File Reference}
+\label{bike__r1_2decode_8c}\index{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/decode.c@{crt/aws-\/crt-\/cpp/crt/s2n/pq-\/crypto/bike\_r1/decode.c}}
+{\ttfamily \#include \char`\"{}decode.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gf2x.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utilities.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{bike__r1_2decode_8c_a8b2017af5ff641e7483447cb49f8fcf2}{MAX\+\_\+\+IT}}~5
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}} (\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$s)
+\item 
+\mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} \mbox{\hyperlink{bike__r1_2decode_8c_af4fa23b2a4793162f7da7876e1e5e64f}{compute\+\_\+syndrome}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$syndrome, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af73f2ecb4332d23d4f5e5bd026fc4a85}{ct\+\_\+t}} $\ast$ct, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a6fe2f50dc4ab08add3acc9f2c5afe1bc}{sk\+\_\+t}} $\ast$sk)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} \mbox{\hyperlink{bike__r1_2decode_8c_a7a41498f19732840478ff37d776ea2a6}{recompute\+\_\+syndrome}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$syndrome, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af73f2ecb4332d23d4f5e5bd026fc4a85}{ct\+\_\+t}} $\ast$ct, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a6fe2f50dc4ab08add3acc9f2c5afe1bc}{sk\+\_\+t}} $\ast$sk, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$splitted\+\_\+e)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} uint8\+\_\+t \mbox{\hyperlink{bike__r1_2decode_8c_a43d2998f383c46dcd753c1a04a4bf213}{get\+\_\+threshold}} (\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$s)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2decode_8c_a5fbbba7c738ae1c8cb0d20277c715da7}{bit\+\_\+sliced\+\_\+adder}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aba41854bbf045639acbbd5aaf1746e55}{upc\+\_\+t}} $\ast$upc, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$rotated\+\_\+syndrome, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const size\+\_\+t num\+\_\+of\+\_\+slices)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2decode_8c_a6e977cc134d081ab98e3198e268d9883}{bit\+\_\+slice\+\_\+full\+\_\+subtract}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aba41854bbf045639acbbd5aaf1746e55}{upc\+\_\+t}} $\ast$upc, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} uint8\+\_\+t val)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2decode_8c_ade011d16e37cb845a1f4c202d6ee0e54}{find\+\_\+err1}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$e, \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$black\+\_\+e, \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$gray\+\_\+e, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$syndrome, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a542f120ff173f92ae2f7f963469b6477}{compressed\+\_\+idx\+\_\+dv\+\_\+ar\+\_\+t}} wlist, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t threshold)
+\item 
+\mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void \mbox{\hyperlink{bike__r1_2decode_8c_ac8bb148c8c670e24504eb79ef869ed86}{find\+\_\+err2}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$e, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$pos\+\_\+e, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$syndrome, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a542f120ff173f92ae2f7f963469b6477}{compressed\+\_\+idx\+\_\+dv\+\_\+ar\+\_\+t}} wlist, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t threshold)
+\item 
+\mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} \mbox{\hyperlink{bike__r1_2decode_8c_af91d38a2257a7b0096f5df901f5e1f8c}{decode}} (\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$e, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$original\+\_\+s, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af73f2ecb4332d23d4f5e5bd026fc4a85}{ct\+\_\+t}} $\ast$ct, \mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a6fe2f50dc4ab08add3acc9f2c5afe1bc}{sk\+\_\+t}} $\ast$sk)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{bike__r1_2decode_8c_a8b2017af5ff641e7483447cb49f8fcf2}\label{bike__r1_2decode_8c_a8b2017af5ff641e7483447cb49f8fcf2}} 
+\index{decode.c@{decode.c}!MAX\_IT@{MAX\_IT}}
+\index{MAX\_IT@{MAX\_IT}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_IT}{MAX\_IT}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+IT~5}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{bike__r1_2decode_8c_a6e977cc134d081ab98e3198e268d9883}\label{bike__r1_2decode_8c_a6e977cc134d081ab98e3198e268d9883}} 
+\index{decode.c@{decode.c}!bit\_slice\_full\_subtract@{bit\_slice\_full\_subtract}}
+\index{bit\_slice\_full\_subtract@{bit\_slice\_full\_subtract}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{bit\_slice\_full\_subtract()}{bit\_slice\_full\_subtract()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void bit\+\_\+slice\+\_\+full\+\_\+subtract (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aba41854bbf045639acbbd5aaf1746e55}{upc\+\_\+t}} $\ast$}]{upc,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} uint8\+\_\+t}]{val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2decode_8c_a5fbbba7c738ae1c8cb0d20277c715da7}\label{bike__r1_2decode_8c_a5fbbba7c738ae1c8cb0d20277c715da7}} 
+\index{decode.c@{decode.c}!bit\_sliced\_adder@{bit\_sliced\_adder}}
+\index{bit\_sliced\_adder@{bit\_sliced\_adder}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{bit\_sliced\_adder()}{bit\_sliced\_adder()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void bit\+\_\+sliced\+\_\+adder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aba41854bbf045639acbbd5aaf1746e55}{upc\+\_\+t}} $\ast$}]{upc,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$}]{rotated\+\_\+syndrome,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const size\+\_\+t}]{num\+\_\+of\+\_\+slices }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2decode_8c_af4fa23b2a4793162f7da7876e1e5e64f}\label{bike__r1_2decode_8c_af4fa23b2a4793162f7da7876e1e5e64f}} 
+\index{decode.c@{decode.c}!compute\_syndrome@{compute\_syndrome}}
+\index{compute\_syndrome@{compute\_syndrome}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{compute\_syndrome()}{compute\_syndrome()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} compute\+\_\+syndrome (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$}]{syndrome,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af73f2ecb4332d23d4f5e5bd026fc4a85}{ct\+\_\+t}} $\ast$}]{ct,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a6fe2f50dc4ab08add3acc9f2c5afe1bc}{sk\+\_\+t}} $\ast$}]{sk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2decode_8c_af91d38a2257a7b0096f5df901f5e1f8c}\label{bike__r1_2decode_8c_af91d38a2257a7b0096f5df901f5e1f8c}} 
+\index{decode.c@{decode.c}!decode@{decode}}
+\index{decode@{decode}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} decode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$}]{original\+\_\+s,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af73f2ecb4332d23d4f5e5bd026fc4a85}{ct\+\_\+t}} $\ast$}]{ct,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a6fe2f50dc4ab08add3acc9f2c5afe1bc}{sk\+\_\+t}} $\ast$}]{sk }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}\label{bike__r1_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}} 
+\index{decode.c@{decode.c}!dup@{dup}}
+\index{dup@{dup}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{dup()}{dup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void dup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2decode_8c_ade011d16e37cb845a1f4c202d6ee0e54}\label{bike__r1_2decode_8c_ade011d16e37cb845a1f4c202d6ee0e54}} 
+\index{decode.c@{decode.c}!find\_err1@{find\_err1}}
+\index{find\_err1@{find\_err1}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{find\_err1()}{find\_err1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void find\+\_\+err1 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{black\+\_\+e,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{gray\+\_\+e,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$}]{syndrome,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a542f120ff173f92ae2f7f963469b6477}{compressed\+\_\+idx\+\_\+dv\+\_\+ar\+\_\+t}}}]{wlist,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t}]{threshold }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2decode_8c_ac8bb148c8c670e24504eb79ef869ed86}\label{bike__r1_2decode_8c_ac8bb148c8c670e24504eb79ef869ed86}} 
+\index{decode.c@{decode.c}!find\_err2@{find\_err2}}
+\index{find\_err2@{find\_err2}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{find\_err2()}{find\_err2()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} void find\+\_\+err2 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{e,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{pos\+\_\+e,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$}]{syndrome,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a542f120ff173f92ae2f7f963469b6477}{compressed\+\_\+idx\+\_\+dv\+\_\+ar\+\_\+t}}}]{wlist,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const uint8\+\_\+t}]{threshold }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2decode_8c_a43d2998f383c46dcd753c1a04a4bf213}\label{bike__r1_2decode_8c_a43d2998f383c46dcd753c1a04a4bf213}} 
+\index{decode.c@{decode.c}!get\_threshold@{get\_threshold}}
+\index{get\_threshold@{get\_threshold}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{get\_threshold()}{get\_threshold()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} uint8\+\_\+t get\+\_\+threshold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{bike__r1_2decode_8c_a7a41498f19732840478ff37d776ea2a6}\label{bike__r1_2decode_8c_a7a41498f19732840478ff37d776ea2a6}} 
+\index{decode.c@{decode.c}!recompute\_syndrome@{recompute\_syndrome}}
+\index{recompute\_syndrome@{recompute\_syndrome}!decode.c@{decode.c}}
+\doxysubsubsection{\texorpdfstring{recompute\_syndrome()}{recompute\_syndrome()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{bike__r2_2defs_8h_ad320c6003c1b51d78cb343e674b9432f}{\+\_\+\+INLINE\+\_\+}} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r2_2error_8h_ae78f298365f3659d41525fa9b2b855e2}{ret\+\_\+t}} recompute\+\_\+syndrome (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{bike__r2_2defs_8h_aec78e7a9e90a406a56f859ee456e8eae}{OUT}} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r2_2_types_8h_a083ca640ca2d17a5fd9132b6c7682a3b}{syndrome\+\_\+t}} $\ast$}]{syndrome,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_af73f2ecb4332d23d4f5e5bd026fc4a85}{ct\+\_\+t}} $\ast$}]{ct,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a6fe2f50dc4ab08add3acc9f2c5afe1bc}{sk\+\_\+t}} $\ast$}]{sk,  }\item[{\mbox{\hyperlink{bike__r2_2defs_8h_ac2bbd6d630a06a980d9a92ddb9a49928}{IN}} const \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_aa0c7d7e4195d0f7853975900da4db3eb}{split\+\_\+e\+\_\+t}} $\ast$}]{splitted\+\_\+e }\end{DoxyParamCaption})}
+

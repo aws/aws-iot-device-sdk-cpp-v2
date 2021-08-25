@@ -10,24 +10,24 @@ int \mbox{\hyperlink{strutil_8c_a73e0a6af4c0f6a2958bf6504bb4374cf}{aws\+\_\+stru
 \item 
 int \mbox{\hyperlink{strutil_8c_a16a9cce1e2a0118bb6666ba23c5f17d2}{aws\+\_\+strutil\+\_\+read\+\_\+unsigned\+\_\+hex}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor, uint64\+\_\+t $\ast$dst)
 \item 
-static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{strutil_8c_a7d99bcfc7815244bb44c0fd6d2c5da86}{s\+\_\+trim}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor, const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} trim\+\_\+table\mbox{[}256\mbox{]})
+static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{strutil_8c_a7d99bcfc7815244bb44c0fd6d2c5da86}{s\+\_\+trim}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor, const bool trim\+\_\+table\mbox{[}256\mbox{]})
 \item 
 struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{strutil_8c_ac262ed7cb0c0c7c8ccd9474172f06406}{aws\+\_\+strutil\+\_\+trim\+\_\+http\+\_\+whitespace}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{strutil_8c_a864cd52517631146f9808d9c07acb26b}{s\+\_\+is\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}}, const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} token\+\_\+table\mbox{[}256\mbox{]})
+static bool \mbox{\hyperlink{strutil_8c_a864cd52517631146f9808d9c07acb26b}{s\+\_\+is\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} token, const bool token\+\_\+table\mbox{[}256\mbox{]})
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{strutil_8c_ac57b0b180dda9b7174d11968901e72cf}{aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+bool \mbox{\hyperlink{strutil_8c_ac57b0b180dda9b7174d11968901e72cf}{aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} token)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{strutil_8c_a0194295eb9b65144d12eb6465a75f90e}{aws\+\_\+strutil\+\_\+is\+\_\+lowercase\+\_\+http\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+bool \mbox{\hyperlink{strutil_8c_a0194295eb9b65144d12eb6465a75f90e}{aws\+\_\+strutil\+\_\+is\+\_\+lowercase\+\_\+http\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} token)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{strutil_8c_a3ba145a96b2941190d05808ca292c464}{s\+\_\+http\+\_\+whitespace\+\_\+table}} \mbox{[}256\mbox{]}
+static const bool \mbox{\hyperlink{strutil_8c_a3ba145a96b2941190d05808ca292c464}{s\+\_\+http\+\_\+whitespace\+\_\+table}} \mbox{[}256\mbox{]}
 \item 
-static const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{strutil_8c_a4cde33bdebe855946e2d00fc43fb37be}{s\+\_\+http\+\_\+token\+\_\+table}} \mbox{[}256\mbox{]}
+static const bool \mbox{\hyperlink{strutil_8c_a4cde33bdebe855946e2d00fc43fb37be}{s\+\_\+http\+\_\+token\+\_\+table}} \mbox{[}256\mbox{]}
 \item 
-static const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{strutil_8c_aaefa5afe86b70f96032a090927010f18}{s\+\_\+http\+\_\+lowercase\+\_\+token\+\_\+table}} \mbox{[}256\mbox{]}
+static const bool \mbox{\hyperlink{strutil_8c_aaefa5afe86b70f96032a090927010f18}{s\+\_\+http\+\_\+lowercase\+\_\+token\+\_\+table}} \mbox{[}256\mbox{]}
 \end{DoxyCompactItemize}
 
 
@@ -36,13 +36,13 @@ static const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{boo
 \index{strutil.c@{strutil.c}!aws\_strutil\_is\_http\_token@{aws\_strutil\_is\_http\_token}}
 \index{aws\_strutil\_is\_http\_token@{aws\_strutil\_is\_http\_token}!strutil.c@{strutil.c}}
 \doxysubsubsection{\texorpdfstring{aws\_strutil\_is\_http\_token()}{aws\_strutil\_is\_http\_token()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token }\end{DoxyParamCaption})}
 
 Return whether this is a valid token, as defined by RFC7230 section 3.\+2.\+6\+: token = 1$\ast$tchar tchar = \char`\"{}!\char`\"{} / \char`\"{}\#\char`\"{} / \char`\"{}\$\char`\"{} / \char`\"{}\%\char`\"{} / \char`\"{}\&\char`\"{} / \char`\"{}\textquotesingle{}\char`\"{} / \char`\"{}$\ast$\char`\"{} / \char`\"{}+\char`\"{} / \char`\"{}-\/\char`\"{} / \char`\"{}.\char`\"{} / \char`\"{}$^\wedge$\char`\"{} / \char`\"{}\+\_\+\char`\"{} / \char`\"{}\`{}\char`\"{} / \char`\"{}$\vert$\char`\"{} / \char`\"{}$\sim$\char`\"{} / DIGIT / ALPHA \mbox{\Hypertarget{strutil_8c_a0194295eb9b65144d12eb6465a75f90e}\label{strutil_8c_a0194295eb9b65144d12eb6465a75f90e}} 
 \index{strutil.c@{strutil.c}!aws\_strutil\_is\_lowercase\_http\_token@{aws\_strutil\_is\_lowercase\_http\_token}}
 \index{aws\_strutil\_is\_lowercase\_http\_token@{aws\_strutil\_is\_lowercase\_http\_token}!strutil.c@{strutil.c}}
 \doxysubsubsection{\texorpdfstring{aws\_strutil\_is\_lowercase\_http\_token()}{aws\_strutil\_is\_lowercase\_http\_token()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+strutil\+\_\+is\+\_\+lowercase\+\_\+http\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+strutil\+\_\+is\+\_\+lowercase\+\_\+http\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token }\end{DoxyParamCaption})}
 
 Same as aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token\+\_\+valid(), but uppercase letters are forbidden. \mbox{\Hypertarget{strutil_8c_a16a9cce1e2a0118bb6666ba23c5f17d2}\label{strutil_8c_a16a9cce1e2a0118bb6666ba23c5f17d2}} 
 \index{strutil.c@{strutil.c}!aws\_strutil\_read\_unsigned\_hex@{aws\_strutil\_read\_unsigned\_hex}}
@@ -74,7 +74,7 @@ Return a cursor with all leading and trailing SPACE and TAB characters removed. 
 \index{strutil.c@{strutil.c}!s\_is\_token@{s\_is\_token}}
 \index{s\_is\_token@{s\_is\_token}!strutil.c@{strutil.c}}
 \doxysubsubsection{\texorpdfstring{s\_is\_token()}{s\_is\_token()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+is\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token,  }\item[{const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{token\+\_\+table\mbox{[}256\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+is\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token,  }\item[{const bool}]{token\+\_\+table\mbox{[}256\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{strutil_8c_a11c8700f0a70a303eb9a0c4b7173f145}\label{strutil_8c_a11c8700f0a70a303eb9a0c4b7173f145}} 
 \index{strutil.c@{strutil.c}!s\_read\_unsigned@{s\_read\_unsigned}}
@@ -86,7 +86,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{strutil.c@{strutil.c}!s\_trim@{s\_trim}}
 \index{s\_trim@{s\_trim}!strutil.c@{strutil.c}}
 \doxysubsubsection{\texorpdfstring{s\_trim()}{s\_trim()}}
-{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} s\+\_\+trim (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{cursor,  }\item[{const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{trim\+\_\+table\mbox{[}256\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} s\+\_\+trim (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{cursor,  }\item[{const bool}]{trim\+\_\+table\mbox{[}256\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -95,7 +95,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{strutil.c@{strutil.c}!s\_http\_lowercase\_token\_table@{s\_http\_lowercase\_token\_table}}
 \index{s\_http\_lowercase\_token\_table@{s\_http\_lowercase\_token\_table}!strutil.c@{strutil.c}}
 \doxysubsubsection{\texorpdfstring{s\_http\_lowercase\_token\_table}{s\_http\_lowercase\_token\_table}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+http\+\_\+lowercase\+\_\+token\+\_\+table\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily const bool s\+\_\+http\+\_\+lowercase\+\_\+token\+\_\+table\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
@@ -117,7 +117,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{strutil.c@{strutil.c}!s\_http\_token\_table@{s\_http\_token\_table}}
 \index{s\_http\_token\_table@{s\_http\_token\_table}!strutil.c@{strutil.c}}
 \doxysubsubsection{\texorpdfstring{s\_http\_token\_table}{s\_http\_token\_table}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+http\+\_\+token\+\_\+table\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily const bool s\+\_\+http\+\_\+token\+\_\+table\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
@@ -144,7 +144,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{strutil.c@{strutil.c}!s\_http\_whitespace\_table@{s\_http\_whitespace\_table}}
 \index{s\_http\_whitespace\_table@{s\_http\_whitespace\_table}!strutil.c@{strutil.c}}
 \doxysubsubsection{\texorpdfstring{s\_http\_whitespace\_table}{s\_http\_whitespace\_table}}
-{\footnotesize\ttfamily const \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+http\+\_\+whitespace\+\_\+table\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily const bool s\+\_\+http\+\_\+whitespace\+\_\+table\mbox{[}256\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}

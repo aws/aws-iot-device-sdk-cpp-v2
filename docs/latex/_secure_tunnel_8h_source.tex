@@ -26,7 +26,7 @@
 \DoxyCodeLine{27           \textcolor{keyword}{public}:}
 \DoxyCodeLine{28             \mbox{\hyperlink{class_aws_1_1_iotsecuretunneling_1_1_secure_tunnel}{SecureTunnel}}(}
 \DoxyCodeLine{29                 \textcolor{comment}{// Parameters map to aws\_secure\_tunneling\_connection\_config}}
-\DoxyCodeLine{30                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},                        \textcolor{comment}{// Should out live this object}}
+\DoxyCodeLine{30                 \mbox{\hyperlink{structaws__allocator}{Crt::Allocator}} *allocator,                        \textcolor{comment}{// Should out live this object}}
 \DoxyCodeLine{31                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Aws::Crt::Io::ClientBootstrap}} *clientBootstrap,   \textcolor{comment}{// Should out live this object}}
 \DoxyCodeLine{32                 \textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_socket_options}{Aws::Crt::Io::SocketOptions}} \&socketOptions, \textcolor{comment}{// Make a copy and save in this object}}
 \DoxyCodeLine{33 }
@@ -64,13 +64,13 @@
 \DoxyCodeLine{65 }
 \DoxyCodeLine{66           private:}
 \DoxyCodeLine{67             \textcolor{comment}{// aws-\/c-\/iot callbacks}}
-\DoxyCodeLine{68             static \textcolor{keywordtype}{void} s\_OnConnectionComplete(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{69             static \textcolor{keywordtype}{void} s\_OnConnectionShutdown(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{70             static \textcolor{keywordtype}{void} s\_OnSendDataComplete(\textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{71             static \textcolor{keywordtype}{void} s\_OnDataReceive(const struct \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *data, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{72             static \textcolor{keywordtype}{void} s\_OnStreamStart(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{73             static \textcolor{keywordtype}{void} s\_OnStreamReset(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
-\DoxyCodeLine{74             static \textcolor{keywordtype}{void} s\_OnSessionReset(\textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{68             static \textcolor{keywordtype}{void} s\_OnConnectionComplete(\textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{69             static \textcolor{keywordtype}{void} s\_OnConnectionShutdown(\textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{70             static \textcolor{keywordtype}{void} s\_OnSendDataComplete(\textcolor{keywordtype}{int} error\_code, \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{71             static \textcolor{keywordtype}{void} s\_OnDataReceive(const struct \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *data, \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{72             static \textcolor{keywordtype}{void} s\_OnStreamStart(\textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{73             static \textcolor{keywordtype}{void} s\_OnStreamReset(\textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{74             static \textcolor{keywordtype}{void} s\_OnSessionReset(\textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{75 }
 \DoxyCodeLine{76             \textcolor{comment}{// Client callbacks}}
 \DoxyCodeLine{77             \mbox{\hyperlink{namespace_aws_1_1_iotsecuretunneling_aa69abe9a918e0d59e1976143ee3b3448}{OnConnectionComplete}} m\_OnConnectionComplete;}

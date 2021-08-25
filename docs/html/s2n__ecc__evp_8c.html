@@ -76,7 +76,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="s2n__ecc__evp_8h_source.html">crypto/s2n_ecc_evp.h</a>&quot;</code><br />
 <code>#include &lt;openssl/ecdh.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="evp_8h_source.html">openssl/evp.h</a>&gt;</code><br />
+<code>#include &lt;openssl/evp.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="stdint_8h_source.html">stdint.h</a>&gt;</code><br />
 <code>#include &quot;<a class="el" href="s2n__tls__parameters_8h_source.html">tls/s2n_tls_parameters.h</a>&quot;</code><br />
 <code>#include &quot;utils/s2n_mem.h&quot;</code><br />
@@ -89,27 +89,27 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a11318ac48f109127ae724247c352c08d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a11318ac48f109127ae724247c352c08d">DEFINE_POINTER_CLEANUP_FUNC</a> (<a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *, <a class="el" href="evp_8h.html#a448d9f9209a54694aff045d403850db7">EVP_PKEY_free</a>)</td></tr>
+<tr class="memitem:a11318ac48f109127ae724247c352c08d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a11318ac48f109127ae724247c352c08d">DEFINE_POINTER_CLEANUP_FUNC</a> (EVP_PKEY *, EVP_PKEY_free)</td></tr>
 <tr class="separator:a11318ac48f109127ae724247c352c08d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ed3e80e463c5092b6f205ebf39c2433"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a0ed3e80e463c5092b6f205ebf39c2433">DEFINE_POINTER_CLEANUP_FUNC</a> (<a class="el" href="ossl__typ_8h.html#aaadbb75633e4460a52864970a3b875de">EVP_PKEY_CTX</a> *, <a class="el" href="evp_8h.html#a9a2d5ac99985dda36f15bd92d83c1621">EVP_PKEY_CTX_free</a>)</td></tr>
+<tr class="memitem:a0ed3e80e463c5092b6f205ebf39c2433"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a0ed3e80e463c5092b6f205ebf39c2433">DEFINE_POINTER_CLEANUP_FUNC</a> (EVP_PKEY_CTX *, EVP_PKEY_CTX_free)</td></tr>
 <tr class="separator:a0ed3e80e463c5092b6f205ebf39c2433"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a360903a9bad07b49b18e95848990867d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a360903a9bad07b49b18e95848990867d">DEFINE_POINTER_CLEANUP_FUNC</a> (<a class="el" href="ossl__typ_8h.html#a756878ae60b2fc17d4217e77ffe5e0d3">EC_KEY</a> *, <a class="el" href="ec_8h.html#af3759e18dd8bf0c3144527c0377668a7">EC_KEY_free</a>)</td></tr>
+<tr class="memitem:a360903a9bad07b49b18e95848990867d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a360903a9bad07b49b18e95848990867d">DEFINE_POINTER_CLEANUP_FUNC</a> (EC_KEY *, EC_KEY_free)</td></tr>
 <tr class="separator:a360903a9bad07b49b18e95848990867d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74f3292c747d83d248182599e70f89c2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a74f3292c747d83d248182599e70f89c2">DEFINE_POINTER_CLEANUP_FUNC</a> (EC_POINT *, EC_POINT_free)</td></tr>
 <tr class="separator:a74f3292c747d83d248182599e70f89c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abce45989e8b921f36e6b4c7ee98fe2b5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#abce45989e8b921f36e6b4c7ee98fe2b5">s2n_is_evp_apis_supported</a> ()</td></tr>
 <tr class="separator:abce45989e8b921f36e6b4c7ee98fe2b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2f9574ae916c7b7f08e5b244fae77ec"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#ac2f9574ae916c7b7f08e5b244fae77ec">s2n_ecc_evp_write_point_data_snug</a> (const EC_POINT *point, const <a class="el" href="ec_8h.html#aca3c2dfa5546740e0f575013960a598a">EC_GROUP</a> *group, struct s2n_blob *out)</td></tr>
+<tr class="memitem:ac2f9574ae916c7b7f08e5b244fae77ec"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#ac2f9574ae916c7b7f08e5b244fae77ec">s2n_ecc_evp_write_point_data_snug</a> (const EC_POINT *point, const EC_GROUP *group, struct s2n_blob *out)</td></tr>
 <tr class="separator:ac2f9574ae916c7b7f08e5b244fae77ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51168facad33b6f7243468452acf19bf"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a51168facad33b6f7243468452acf19bf">s2n_ecc_evp_calculate_point_length</a> (const EC_POINT *point, const <a class="el" href="ec_8h.html#aca3c2dfa5546740e0f575013960a598a">EC_GROUP</a> *group, uint8_t *<a class="el" href="iocp__event__loop_8c.html#ae809d5359ac030c60a30a8f0b2294b82">length</a>)</td></tr>
+<tr class="memitem:a51168facad33b6f7243468452acf19bf"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a51168facad33b6f7243468452acf19bf">s2n_ecc_evp_calculate_point_length</a> (const EC_POINT *point, const EC_GROUP *group, uint8_t *<a class="el" href="iocp__event__loop_8c.html#a09ef0d7d086ae398d78b446470ae8b3a">length</a>)</td></tr>
 <tr class="separator:a51168facad33b6f7243468452acf19bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a710250141a7dfe0a9edb4a660e849343"><td class="memItemLeft" align="right" valign="top">static EC_POINT *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a710250141a7dfe0a9edb4a660e849343">s2n_ecc_evp_blob_to_point</a> (struct s2n_blob *blob, const <a class="el" href="ossl__typ_8h.html#a756878ae60b2fc17d4217e77ffe5e0d3">EC_KEY</a> *ec_key)</td></tr>
+<tr class="memitem:a710250141a7dfe0a9edb4a660e849343"><td class="memItemLeft" align="right" valign="top">static EC_POINT *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a710250141a7dfe0a9edb4a660e849343">s2n_ecc_evp_blob_to_point</a> (struct s2n_blob *blob, const EC_KEY *ec_key)</td></tr>
 <tr class="separator:a710250141a7dfe0a9edb4a660e849343"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70e3e9dd292d06a031854bda77c5bf06"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a70e3e9dd292d06a031854bda77c5bf06">s2n_ecc_evp_generate_key_nist_curves</a> (const struct <a class="el" href="structs2n__ecc__named__curve.html">s2n_ecc_named_curve</a> *named_curve, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> **evp_pkey)</td></tr>
+<tr class="memitem:a70e3e9dd292d06a031854bda77c5bf06"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a70e3e9dd292d06a031854bda77c5bf06">s2n_ecc_evp_generate_key_nist_curves</a> (const struct <a class="el" href="structs2n__ecc__named__curve.html">s2n_ecc_named_curve</a> *named_curve, EVP_PKEY **evp_pkey)</td></tr>
 <tr class="separator:a70e3e9dd292d06a031854bda77c5bf06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fa7f62a9d799d3484cc103c01493d19"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a7fa7f62a9d799d3484cc103c01493d19">s2n_ecc_evp_generate_own_key</a> (const struct <a class="el" href="structs2n__ecc__named__curve.html">s2n_ecc_named_curve</a> *named_curve, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> **evp_pkey)</td></tr>
+<tr class="memitem:a7fa7f62a9d799d3484cc103c01493d19"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a7fa7f62a9d799d3484cc103c01493d19">s2n_ecc_evp_generate_own_key</a> (const struct <a class="el" href="structs2n__ecc__named__curve.html">s2n_ecc_named_curve</a> *named_curve, EVP_PKEY **evp_pkey)</td></tr>
 <tr class="separator:a7fa7f62a9d799d3484cc103c01493d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08fb44a5733d4864ad6e48885a89e940"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a08fb44a5733d4864ad6e48885a89e940">s2n_ecc_evp_compute_shared_secret</a> (<a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *own_key, <a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *peer_public, uint16_t iana_id, struct s2n_blob *shared_secret)</td></tr>
+<tr class="memitem:a08fb44a5733d4864ad6e48885a89e940"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#a08fb44a5733d4864ad6e48885a89e940">s2n_ecc_evp_compute_shared_secret</a> (EVP_PKEY *own_key, EVP_PKEY *peer_public, uint16_t iana_id, struct s2n_blob *shared_secret)</td></tr>
 <tr class="separator:a08fb44a5733d4864ad6e48885a89e940"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae42a9376615e668d0850625aa905eae7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="s2n__ecc__evp_8c.html#ae42a9376615e668d0850625aa905eae7">s2n_ecc_evp_generate_ephemeral_key</a> (struct <a class="el" href="structs2n__ecc__evp__params.html">s2n_ecc_evp_params</a> *ecc_evp_params)</td></tr>
 <tr class="separator:ae42a9376615e668d0850625aa905eae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -174,13 +174,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">DEFINE_POINTER_CLEANUP_FUNC </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a756878ae60b2fc17d4217e77ffe5e0d3">EC_KEY</a> *&#160;</td>
+          <td class="paramtype">EC_KEY *&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ec_8h.html#af3759e18dd8bf0c3144527c0377668a7">EC_KEY_free</a>&#160;</td>
+          <td class="paramtype">EC_KEY_free&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -230,13 +230,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">DEFINE_POINTER_CLEANUP_FUNC </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="evp_8h.html#a448d9f9209a54694aff045d403850db7">EVP_PKEY_free</a>&#160;</td>
+          <td class="paramtype">EVP_PKEY_free&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -258,13 +258,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">DEFINE_POINTER_CLEANUP_FUNC </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#aaadbb75633e4460a52864970a3b875de">EVP_PKEY_CTX</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY_CTX *&#160;</td>
           <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="evp_8h.html#a9a2d5ac99985dda36f15bd92d83c1621">EVP_PKEY_CTX_free</a>&#160;</td>
+          <td class="paramtype">EVP_PKEY_CTX_free&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -295,7 +295,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="ossl__typ_8h.html#a756878ae60b2fc17d4217e77ffe5e0d3">EC_KEY</a> *&#160;</td>
+          <td class="paramtype">const EC_KEY *&#160;</td>
           <td class="paramname"><em>ec_key</em>&#160;</td>
         </tr>
         <tr>
@@ -331,7 +331,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="ec_8h.html#aca3c2dfa5546740e0f575013960a598a">EC_GROUP</a> *&#160;</td>
+          <td class="paramtype">const EC_GROUP *&#160;</td>
           <td class="paramname"><em>group</em>, </td>
         </tr>
         <tr>
@@ -367,13 +367,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">static int s2n_ecc_evp_compute_shared_secret </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>own_key</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> *&#160;</td>
+          <td class="paramtype">EVP_PKEY *&#160;</td>
           <td class="paramname"><em>peer_public</em>, </td>
         </tr>
         <tr>
@@ -569,7 +569,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> **&#160;</td>
+          <td class="paramtype">EVP_PKEY **&#160;</td>
           <td class="paramname"><em>evp_pkey</em>&#160;</td>
         </tr>
         <tr>
@@ -605,7 +605,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="ossl__typ_8h.html#a2fca4fef9e4c7a2a739b1ea04acb56ce">EVP_PKEY</a> **&#160;</td>
+          <td class="paramtype">EVP_PKEY **&#160;</td>
           <td class="paramname"><em>evp_pkey</em>&#160;</td>
         </tr>
         <tr>
@@ -845,7 +845,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="ec_8h.html#aca3c2dfa5546740e0f575013960a598a">EC_GROUP</a> *&#160;</td>
+          <td class="paramtype">const EC_GROUP *&#160;</td>
           <td class="paramname"><em>group</em>, </td>
         </tr>
         <tr>
@@ -938,11 +938,10 @@ Variables</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">{</div>
 <div class="line">        .iana_id = <a class="code hl_define" href="s2n__tls__parameters_8h.html#a757a1067e7373e3594f0a575e0a05d1f">TLS_EC_CURVE_SECP_256_R1</a>,</div>
-<div class="line">        .libcrypto_nid = <a class="code hl_define" href="objects_8h.html#ac177770ddc9957dc8f93327507e99476">NID_X9_62_prime256v1</a>,</div>
+<div class="line">        .libcrypto_nid = NID_X9_62_prime256v1,</div>
 <div class="line">        .name = <span class="stringliteral">&quot;secp256r1&quot;</span>,</div>
 <div class="line">        .share_size = <a class="code hl_define" href="s2n__ecc__evp_8h.html#ad8441166a2e506aa5becd998992a7d8d">SECP256R1_SHARE_SIZE</a>,</div>
 <div class="line">}</div>
-<div class="ttc" id="aobjects_8h_html_ac177770ddc9957dc8f93327507e99476"><div class="ttname"><a href="objects_8h.html#ac177770ddc9957dc8f93327507e99476">NID_X9_62_prime256v1</a></div><div class="ttdeci">#define NID_X9_62_prime256v1</div><div class="ttdef"><b>Definition:</b> objects.h:22</div></div>
 <div class="ttc" id="as2n__ecc__evp_8h_html_ad8441166a2e506aa5becd998992a7d8d"><div class="ttname"><a href="s2n__ecc__evp_8h.html#ad8441166a2e506aa5becd998992a7d8d">SECP256R1_SHARE_SIZE</a></div><div class="ttdeci">#define SECP256R1_SHARE_SIZE</div><div class="ttdef"><b>Definition:</b> s2n_ecc_evp.h:28</div></div>
 <div class="ttc" id="as2n__tls__parameters_8h_html_a757a1067e7373e3594f0a575e0a05d1f"><div class="ttname"><a href="s2n__tls__parameters_8h.html#a757a1067e7373e3594f0a575e0a05d1f">TLS_EC_CURVE_SECP_256_R1</a></div><div class="ttdeci">#define TLS_EC_CURVE_SECP_256_R1</div><div class="ttdef"><b>Definition:</b> s2n_tls_parameters.h:189</div></div>
 </div><!-- fragment -->
@@ -962,11 +961,10 @@ Variables</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">=</div>
 <div class="line">{</div>
 <div class="line">        .iana_id = <a class="code hl_define" href="s2n__tls__parameters_8h.html#a601d2910b7217811cc85b865d6bc252e">TLS_EC_CURVE_SECP_384_R1</a>,</div>
-<div class="line">        .libcrypto_nid = <a class="code hl_define" href="objects_8h.html#ab548204ceb887b38de104fa9d2113a70">NID_secp384r1</a>,</div>
+<div class="line">        .libcrypto_nid = NID_secp384r1,</div>
 <div class="line">        .name = <span class="stringliteral">&quot;secp384r1&quot;</span>,</div>
 <div class="line">        .share_size = <a class="code hl_define" href="s2n__ecc__evp_8h.html#aa6390a6519141fa632499728c23c5fad">SECP384R1_SHARE_SIZE</a>,</div>
 <div class="line">}</div>
-<div class="ttc" id="aobjects_8h_html_ab548204ceb887b38de104fa9d2113a70"><div class="ttname"><a href="objects_8h.html#ab548204ceb887b38de104fa9d2113a70">NID_secp384r1</a></div><div class="ttdeci">#define NID_secp384r1</div><div class="ttdef"><b>Definition:</b> objects.h:23</div></div>
 <div class="ttc" id="as2n__ecc__evp_8h_html_aa6390a6519141fa632499728c23c5fad"><div class="ttname"><a href="s2n__ecc__evp_8h.html#aa6390a6519141fa632499728c23c5fad">SECP384R1_SHARE_SIZE</a></div><div class="ttdeci">#define SECP384R1_SHARE_SIZE</div><div class="ttdef"><b>Definition:</b> s2n_ecc_evp.h:29</div></div>
 <div class="ttc" id="as2n__tls__parameters_8h_html_a601d2910b7217811cc85b865d6bc252e"><div class="ttname"><a href="s2n__tls__parameters_8h.html#a601d2910b7217811cc85b865d6bc252e">TLS_EC_CURVE_SECP_384_R1</a></div><div class="ttdeci">#define TLS_EC_CURVE_SECP_384_R1</div><div class="ttdef"><b>Definition:</b> s2n_tls_parameters.h:190</div></div>
 </div><!-- fragment -->

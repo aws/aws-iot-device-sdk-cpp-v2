@@ -33,7 +33,7 @@ static int \mbox{\hyperlink{log__formatter_8c_a1d3cf7a98f16bce6967e06808f4695cc}
 \item 
 static void \mbox{\hyperlink{log__formatter_8c_a358cc60a4e6b79cb79033642652592ba}{s\+\_\+default\+\_\+aws\+\_\+log\+\_\+formatter\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__formatter}{aws\+\_\+log\+\_\+formatter}} $\ast$formatter)
 \item 
-int \mbox{\hyperlink{log__formatter_8c_ad4ec106c1908f6cfc5a4e51ec603f757}{aws\+\_\+log\+\_\+formatter\+\_\+init\+\_\+default}} (struct \mbox{\hyperlink{structaws__log__formatter}{aws\+\_\+log\+\_\+formatter}} $\ast$formatter, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, struct \mbox{\hyperlink{structaws__log__formatter__standard__options}{aws\+\_\+log\+\_\+formatter\+\_\+standard\+\_\+options}} $\ast$options)
+int \mbox{\hyperlink{log__formatter_8c_ad4ec106c1908f6cfc5a4e51ec603f757}{aws\+\_\+log\+\_\+formatter\+\_\+init\+\_\+default}} (struct \mbox{\hyperlink{structaws__log__formatter}{aws\+\_\+log\+\_\+formatter}} $\ast$formatter, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, struct \mbox{\hyperlink{structaws__log__formatter__standard__options}{aws\+\_\+log\+\_\+formatter\+\_\+standard\+\_\+options}} $\ast$options)
 \item 
 void \mbox{\hyperlink{log__formatter_8c_adce2800e611c30c1e177cd0936d2db56}{aws\+\_\+log\+\_\+formatter\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__log__formatter}{aws\+\_\+log\+\_\+formatter}} $\ast$formatter)
 \end{DoxyCompactItemize}
@@ -43,9 +43,9 @@ void \mbox{\hyperlink{log__formatter_8c_adce2800e611c30c1e177cd0936d2db56}{aws\+
 \begin{tabbing}
 xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
 struct \{\\
-\>\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{log__formatter_8c_a7b1d0df736739f38994ed29f54cffdf3}{is\_valid}}\\
+\>bool \mbox{\hyperlink{log__formatter_8c_a7b1d0df736739f38994ed29f54cffdf3}{is\_valid}}\\
 \>char \mbox{\hyperlink{log__formatter_8c_af9bf071cd7bc4f951d14955864e5ebaf}{repr}} \mbox{[}\mbox{\hyperlink{thread_8h_a7a510194fabb1bcd391c0bb55f7cf8da}{AWS\_THREAD\_ID\_T\_REPR\_BUFSZ}}\mbox{]}\\
-\} \mbox{\hyperlink{log__formatter_8c_aef743a60d157895c6cd474768c5b113f}{tl\_logging\_thread\_id}} = \{.\mbox{\hyperlink{log__formatter_8c_a7b1d0df736739f38994ed29f54cffdf3}{is\_valid}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\}\\
+\} \mbox{\hyperlink{log__formatter_8c_aef743a60d157895c6cd474768c5b113f}{tl\_logging\_thread\_id}} = \{.\mbox{\hyperlink{log__formatter_8c_a7b1d0df736739f38994ed29f54cffdf3}{is\_valid}} = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}\}\\
 
 \end{tabbing}\item 
 static struct \mbox{\hyperlink{structaws__log__formatter__vtable}{aws\+\_\+log\+\_\+formatter\+\_\+vtable}} \mbox{\hyperlink{log__formatter_8c_a67dae43f629c21fe9abe2cbe5aeecec1}{s\+\_\+default\+\_\+log\+\_\+formatter\+\_\+vtable}}
@@ -123,7 +123,7 @@ Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+Li
 \index{log\_formatter.c@{log\_formatter.c}!is\_valid@{is\_valid}}
 \index{is\_valid@{is\_valid}!log\_formatter.c@{log\_formatter.c}}
 \doxysubsubsection{\texorpdfstring{is\_valid}{is\_valid}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} is\+\_\+valid}
+{\footnotesize\ttfamily bool is\+\_\+valid}
 
 \mbox{\Hypertarget{log__formatter_8c_af9bf071cd7bc4f951d14955864e5ebaf}\label{log__formatter_8c_af9bf071cd7bc4f951d14955864e5ebaf}} 
 \index{log\_formatter.c@{log\_formatter.c}!repr@{repr}}

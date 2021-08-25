@@ -44,27 +44,27 @@
 \DoxyCodeLine{53                 void(\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&connection, \textcolor{keywordtype}{int} errorCode, \mbox{\hyperlink{mqtt_8h_adb6a66eb91a6664fe93a8e3f82016e06}{ReturnCode}} returnCode, \textcolor{keywordtype}{bool} sessionPresent)>;}
 \DoxyCodeLine{54 }
 \DoxyCodeLine{58             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_aedc46fe650f31ca76c9b045a45258ffc}{OnSubAckHandler}} = std::function<}
-\DoxyCodeLine{59                 void(\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&connection, uint16\_t packetId, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \textcolor{keywordtype}{int} errorCode)>;}
+\DoxyCodeLine{59                 void(\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&connection, uint16\_t packetId, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&topic, \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} qos, \textcolor{keywordtype}{int} errorCode)>;}
 \DoxyCodeLine{60 }
 \DoxyCodeLine{64             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a114f4b34cc46025478d479beaacc53ff}{OnMultiSubAckHandler}} = std::function<void(}
 \DoxyCodeLine{65                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&connection,}
 \DoxyCodeLine{66                 uint16\_t packetId,}
 \DoxyCodeLine{67                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Vector<String>}} \&topics,}
-\DoxyCodeLine{68                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{68                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} qos,}
 \DoxyCodeLine{69                 \textcolor{keywordtype}{int} errorCode)>;}
 \DoxyCodeLine{70 }
 \DoxyCodeLine{74             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_aa0e931986cc3e616c6adf935d760ecb0}{OnDisconnectHandler}} = std::function<void(\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&connection)>;}
 \DoxyCodeLine{75 }
 \DoxyCodeLine{87             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a44b5236aa0361ef97c0595eaf3d48b64}{OnMessageReceivedHandler}} = std::function<void(}
 \DoxyCodeLine{88                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&connection,}
-\DoxyCodeLine{89                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}},}
-\DoxyCodeLine{90                 \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__buf}{ByteBuf}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
-\DoxyCodeLine{91                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}},}
-\DoxyCodeLine{92                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{89                 \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&topic,}
+\DoxyCodeLine{90                 \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__buf}{ByteBuf}} \&payload,}
+\DoxyCodeLine{91                 \textcolor{keywordtype}{bool} \mbox{\hyperlink{bike__r1_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}},}
+\DoxyCodeLine{92                 \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} qos,}
 \DoxyCodeLine{93                 \textcolor{keywordtype}{bool} retain)>;}
 \DoxyCodeLine{94 }
 \DoxyCodeLine{98             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a4c45cd45103957d38303f03f37d251e2}{OnPublishReceivedHandler}} =}
-\DoxyCodeLine{99                 std::function<void(\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&connection, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__buf}{ByteBuf}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}})>;}
+\DoxyCodeLine{99                 std::function<void(\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&connection, \textcolor{keyword}{const} \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{String}} \&topic, \textcolor{keyword}{const} \mbox{\hyperlink{structaws__byte__buf}{ByteBuf}} \&payload)>;}
 \DoxyCodeLine{100 }
 \DoxyCodeLine{101             \textcolor{keyword}{using} \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a44fc5120bbbe950dc76488128259b18f}{OnOperationCompleteHandler}} =}
 \DoxyCodeLine{102                 std::function<void(\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&connection, uint16\_t packetId, \textcolor{keywordtype}{int} errorCode)>;}
@@ -85,12 +85,12 @@
 \DoxyCodeLine{133                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection_a83ad97e9bcf1e8aa58063b30873fa06e}{MqttConnection}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{134                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection_a464feef8ce602bead6f0b6f24ca124fb}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{135                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection_a55dbd5197293bc5e72cea9140d8ebd34}{operator=}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}} \&\&) = \textcolor{keyword}{delete};}
-\DoxyCodeLine{139                 \textcolor{keyword}{operator} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}() const noexcept;}
+\DoxyCodeLine{139                 \textcolor{keyword}{operator} bool() const noexcept;}
 \DoxyCodeLine{143                 \textcolor{keywordtype}{int} \mbox{\hyperlink{namespace_aws_1_1_crt_aec41cfe367315d4e4e1712f19e3d3061}{LastError}}() const noexcept;}
 \DoxyCodeLine{144 }
-\DoxyCodeLine{148                 \textcolor{keywordtype}{bool} SetWill(const \textcolor{keywordtype}{char} *\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}}, \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}}, \textcolor{keywordtype}{bool} retain, const \mbox{\hyperlink{structaws__byte__buf}{ByteBuf}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}) noexcept;}
+\DoxyCodeLine{148                 \textcolor{keywordtype}{bool} SetWill(const \textcolor{keywordtype}{char} *topic, \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} qos, \textcolor{keywordtype}{bool} retain, const \mbox{\hyperlink{structaws__byte__buf}{ByteBuf}} \&payload) noexcept;}
 \DoxyCodeLine{149 }
-\DoxyCodeLine{154                 \textcolor{keywordtype}{bool} SetLogin(const \textcolor{keywordtype}{char} *userName, const \textcolor{keywordtype}{char} *\mbox{\hyperlink{connection__state__test_8c_af7b550f3b3dbd60c52719a28b826fdd8}{password}}) noexcept;}
+\DoxyCodeLine{154                 \textcolor{keywordtype}{bool} SetLogin(const \textcolor{keywordtype}{char} *userName, const \textcolor{keywordtype}{char} *password) noexcept;}
 \DoxyCodeLine{155 }
 \DoxyCodeLine{159                 \textcolor{keywordtype}{bool} SetWebsocketProxyOptions(const Http::HttpClientConnectionProxyOptions \&proxyOptions) noexcept;}
 \DoxyCodeLine{160 }
@@ -108,24 +108,24 @@
 \DoxyCodeLine{188 }
 \DoxyCodeLine{194                 uint16\_t Subscribe(}
 \DoxyCodeLine{195                     const \textcolor{keywordtype}{char} *topicFilter,}
-\DoxyCodeLine{196                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{196                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} qos,}
 \DoxyCodeLine{197                     \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a44b5236aa0361ef97c0595eaf3d48b64}{OnMessageReceivedHandler}} \&\&onMessage,}
 \DoxyCodeLine{198                     \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_aedc46fe650f31ca76c9b045a45258ffc}{OnSubAckHandler}} \&\&onSubAck) noexcept;}
 \DoxyCodeLine{199 }
 \DoxyCodeLine{203                 uint16\_t Subscribe(}
 \DoxyCodeLine{204                     const \textcolor{keywordtype}{char} *topicFilter,}
-\DoxyCodeLine{205                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{205                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} qos,}
 \DoxyCodeLine{206                     \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a4c45cd45103957d38303f03f37d251e2}{OnPublishReceivedHandler}} \&\&onPublish,}
 \DoxyCodeLine{207                     \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_aedc46fe650f31ca76c9b045a45258ffc}{OnSubAckHandler}} \&\&onSubAck) noexcept;}
 \DoxyCodeLine{208 }
 \DoxyCodeLine{214                 uint16\_t Subscribe(}
 \DoxyCodeLine{215                     const \mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Vector}}<\mbox{\hyperlink{namespacestd}{std}}::pair<const \textcolor{keywordtype}{char} *, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a44b5236aa0361ef97c0595eaf3d48b64}{OnMessageReceivedHandler}}>> \&topicFilters,}
-\DoxyCodeLine{216                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{216                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} qos,}
 \DoxyCodeLine{217                     \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a114f4b34cc46025478d479beaacc53ff}{OnMultiSubAckHandler}} \&\&onOpComplete) noexcept;}
 \DoxyCodeLine{218 }
 \DoxyCodeLine{222                 uint16\_t Subscribe(}
 \DoxyCodeLine{223                     const \mbox{\hyperlink{namespace_aws_1_1_crt_ac975615d2a9140660077ef7b264d9b6c}{Vector}}<\mbox{\hyperlink{namespacestd}{std}}::pair<const \textcolor{keywordtype}{char} *, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a4c45cd45103957d38303f03f37d251e2}{OnPublishReceivedHandler}}>> \&topicFilters,}
-\DoxyCodeLine{224                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{224                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} qos,}
 \DoxyCodeLine{225                     \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a114f4b34cc46025478d479beaacc53ff}{OnMultiSubAckHandler}} \&\&onOpComplete) noexcept;}
 \DoxyCodeLine{226 }
 \DoxyCodeLine{231                 \textcolor{keywordtype}{bool} SetOnMessageHandler(\mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a44b5236aa0361ef97c0595eaf3d48b64}{OnMessageReceivedHandler}} \&\&onMessage) noexcept;}
@@ -135,10 +135,10 @@
 \DoxyCodeLine{242                 uint16\_t Unsubscribe(const \textcolor{keywordtype}{char} *topicFilter, \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a44fc5120bbbe950dc76488128259b18f}{OnOperationCompleteHandler}} \&\&onOpComplete) noexcept;}
 \DoxyCodeLine{243 }
 \DoxyCodeLine{248                 uint16\_t Publish(}
-\DoxyCodeLine{249                     const \textcolor{keywordtype}{char} *\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}},}
-\DoxyCodeLine{250                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{249                     const \textcolor{keywordtype}{char} *topic,}
+\DoxyCodeLine{250                     \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{QOS}} qos,}
 \DoxyCodeLine{251                     \textcolor{keywordtype}{bool} retain,}
-\DoxyCodeLine{252                     const \mbox{\hyperlink{structaws__byte__buf}{ByteBuf}} \&\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{252                     const \mbox{\hyperlink{structaws__byte__buf}{ByteBuf}} \&payload,}
 \DoxyCodeLine{253                     \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a44fc5120bbbe950dc76488128259b18f}{OnOperationCompleteHandler}} \&\&onOpComplete) noexcept;}
 \DoxyCodeLine{254 }
 \DoxyCodeLine{255                 \mbox{\hyperlink{namespace_aws_1_1_crt_1_1_mqtt_a4f836d0b80ada1251f643bf357b0fc60}{OnConnectionInterruptedHandler}} OnConnectionInterrupted;}
@@ -191,25 +191,25 @@
 \DoxyCodeLine{302                 static \textcolor{keywordtype}{void} s\_onDisconnect(\mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection, \textcolor{keywordtype}{void} *userData);}
 \DoxyCodeLine{303                 static \textcolor{keywordtype}{void} s\_onPublish(}
 \DoxyCodeLine{304                     \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
-\DoxyCodeLine{305                     const \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}},}
-\DoxyCodeLine{306                     const \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
-\DoxyCodeLine{307                     \textcolor{keywordtype}{bool} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}},}
-\DoxyCodeLine{308                     enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{305                     const \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *topic,}
+\DoxyCodeLine{306                     const \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *payload,}
+\DoxyCodeLine{307                     \textcolor{keywordtype}{bool} \mbox{\hyperlink{bike__r1_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}},}
+\DoxyCodeLine{308                     enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} qos,}
 \DoxyCodeLine{309                     \textcolor{keywordtype}{bool} retain,}
-\DoxyCodeLine{310                     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}});}
+\DoxyCodeLine{310                     \textcolor{keywordtype}{void} *user\_data);}
 \DoxyCodeLine{311 }
 \DoxyCodeLine{312                 static \textcolor{keywordtype}{void} s\_onSubAck(}
 \DoxyCodeLine{313                     \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
 \DoxyCodeLine{314                     uint16\_t packetId,}
-\DoxyCodeLine{315                     const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}},}
-\DoxyCodeLine{316                     enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{317                     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{315                     const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *topic,}
+\DoxyCodeLine{316                     enum \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} qos,}
+\DoxyCodeLine{317                     \textcolor{keywordtype}{int} error\_code,}
 \DoxyCodeLine{318                     \textcolor{keywordtype}{void} *userdata);}
 \DoxyCodeLine{319                 static \textcolor{keywordtype}{void} s\_onMultiSubAck(}
 \DoxyCodeLine{320                     \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
 \DoxyCodeLine{321                     uint16\_t packetId,}
 \DoxyCodeLine{322                     const struct \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *topic\_subacks,}
-\DoxyCodeLine{323                     \textcolor{keywordtype}{int} \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\_code}},}
+\DoxyCodeLine{323                     \textcolor{keywordtype}{int} error\_code,}
 \DoxyCodeLine{324                     \textcolor{keywordtype}{void} *userdata);}
 \DoxyCodeLine{325                 static \textcolor{keywordtype}{void} s\_onOpComplete(}
 \DoxyCodeLine{326                     \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
@@ -219,7 +219,7 @@
 \DoxyCodeLine{330 }
 \DoxyCodeLine{331                 static \textcolor{keywordtype}{void} s\_onWebsocketHandshake(}
 \DoxyCodeLine{332                     struct \mbox{\hyperlink{structaws__http__message}{aws\_http\_message}} *request,}
-\DoxyCodeLine{333                     \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\_data}},}
+\DoxyCodeLine{333                     \textcolor{keywordtype}{void} *user\_data,}
 \DoxyCodeLine{334                     \mbox{\hyperlink{client_8h_a8843612d75070b8c707c3b1519691715}{aws\_mqtt\_transform\_websocket\_handshake\_complete\_fn}} *complete\_fn,}
 \DoxyCodeLine{335                     \textcolor{keywordtype}{void} *complete\_ctx);}
 \DoxyCodeLine{336 }
@@ -233,7 +233,7 @@
 \DoxyCodeLine{349             class \mbox{\hyperlink{crt_2aws-crt-cpp_2include_2aws_2crt_2_exports_8h_a0a3f6c46aee6b588ce99a142cdb22d1d}{AWS\_CRT\_CPP\_API}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client}{MqttClient}} \mbox{\hyperlink{lookup3_8inl_ab4646d77540701d2eb2c877effbe5739}{final}}}
 \DoxyCodeLine{350             \{}
 \DoxyCodeLine{351               \textcolor{keyword}{public}:}
-\DoxyCodeLine{355                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client}{MqttClient}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Io::ClientBootstrap}} \&bootstrap, \mbox{\hyperlink{structaws__allocator}{Allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}} = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{355                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client}{MqttClient}}(\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Io::ClientBootstrap}} \&bootstrap, \mbox{\hyperlink{structaws__allocator}{Allocator}} *allocator = \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\_allocator}}) \textcolor{keyword}{noexcept};}
 \DoxyCodeLine{356 }
 \DoxyCodeLine{357                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client}{\string~MqttClient}}();}
 \DoxyCodeLine{358                 \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client_a358711e0f55a862143bdb4d69081fdfb}{MqttClient}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_client}{MqttClient}} \&) = \textcolor{keyword}{delete};}
@@ -248,12 +248,12 @@
 \DoxyCodeLine{377                     uint16\_t port,}
 \DoxyCodeLine{378                     const Io::SocketOptions \&socketOptions,}
 \DoxyCodeLine{379                     const Crt::Io::TlsContext \&tlsContext,}
-\DoxyCodeLine{380                     \textcolor{keywordtype}{bool} useWebsocket = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}) noexcept;}
+\DoxyCodeLine{380                     \textcolor{keywordtype}{bool} useWebsocket = \mbox{\hyperlink{aws-c-iot_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}) noexcept;}
 \DoxyCodeLine{385                 \mbox{\hyperlink{namespacestd}{std}}::shared\_ptr<\mbox{\hyperlink{class_aws_1_1_crt_1_1_mqtt_1_1_mqtt_connection}{MqttConnection}}> NewConnection(}
 \DoxyCodeLine{386                     const \textcolor{keywordtype}{char} *hostName,}
 \DoxyCodeLine{387                     uint16\_t port,}
 \DoxyCodeLine{388                     const Io::SocketOptions \&socketOptions,}
-\DoxyCodeLine{389                     \textcolor{keywordtype}{bool} useWebsocket = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}) noexcept;}
+\DoxyCodeLine{389                     \textcolor{keywordtype}{bool} useWebsocket = \mbox{\hyperlink{aws-c-iot_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}) noexcept;}
 \DoxyCodeLine{390 }
 \DoxyCodeLine{391               private:}
 \DoxyCodeLine{392                 \mbox{\hyperlink{structaws__mqtt__client}{aws\_mqtt\_client}} *m\_client;}

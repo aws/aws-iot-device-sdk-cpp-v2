@@ -147,16 +147,16 @@
 \DoxyCodeLine{165 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
 \DoxyCodeLine{166 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_a047b9e6dda484a42c7887c8b3602fbfe}{aws\_mqtt\_packet\_connect\_add\_will}}(}
 \DoxyCodeLine{167     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\_mqtt\_packet\_connect}} *packet,}
-\DoxyCodeLine{168     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}},}
-\DoxyCodeLine{169     \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{168     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} topic,}
+\DoxyCodeLine{169     \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} qos,}
 \DoxyCodeLine{170     \textcolor{keywordtype}{bool} retain,}
-\DoxyCodeLine{171     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}});}
+\DoxyCodeLine{171     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} payload);}
 \DoxyCodeLine{172 }
 \DoxyCodeLine{173 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
 \DoxyCodeLine{174 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_abe61bd5fc6523b4919ca9122223888da}{aws\_mqtt\_packet\_connect\_add\_credentials}}(}
 \DoxyCodeLine{175     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\_mqtt\_packet\_connect}} *packet,}
-\DoxyCodeLine{176     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{connection__state__test_8c_a6e350427887d766b20857e72025d592c}{username}},}
-\DoxyCodeLine{177     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{connection__state__test_8c_af7b550f3b3dbd60c52719a28b826fdd8}{password}});}
+\DoxyCodeLine{176     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} username,}
+\DoxyCodeLine{177     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} password);}
 \DoxyCodeLine{178 }
 \DoxyCodeLine{179 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
 \DoxyCodeLine{180 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_a3258db9205e37ce1a16c7d304db9a585}{aws\_mqtt\_packet\_connect\_encode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__connect}{aws\_mqtt\_packet\_connect}} *packet);}
@@ -186,11 +186,11 @@
 \DoxyCodeLine{204 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_a1ee27ac90ba18a0b3c2bf3ad648aba3e}{aws\_mqtt\_packet\_publish\_init}}(}
 \DoxyCodeLine{205     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\_mqtt\_packet\_publish}} *packet,}
 \DoxyCodeLine{206     \textcolor{keywordtype}{bool} retain,}
-\DoxyCodeLine{207     \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{208     \textcolor{keywordtype}{bool} \mbox{\hyperlink{s2n_2pq-crypto_2bike__r1_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}},}
+\DoxyCodeLine{207     \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} qos,}
+\DoxyCodeLine{208     \textcolor{keywordtype}{bool} \mbox{\hyperlink{bike__r1_2decode_8c_aa36ac9b28eef6905672b29e8e398053a}{dup}},}
 \DoxyCodeLine{209     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} topic\_name,}
 \DoxyCodeLine{210     uint16\_t packet\_identifier,}
-\DoxyCodeLine{211     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}});}
+\DoxyCodeLine{211     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} payload);}
 \DoxyCodeLine{212 }
 \DoxyCodeLine{213 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
 \DoxyCodeLine{214 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_a688f5c62164ab026936bde35c1c14794}{aws\_mqtt\_packet\_publish\_encode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__publish}{aws\_mqtt\_packet\_publish}} *packet);}
@@ -240,7 +240,7 @@
 \DoxyCodeLine{258 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
 \DoxyCodeLine{259 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_a8b5cad82258f5f3ff4d2694a963b23b6}{aws\_mqtt\_packet\_subscribe\_init}}(}
 \DoxyCodeLine{260     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\_mqtt\_packet\_subscribe}} *packet,}
-\DoxyCodeLine{261     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{261     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{262     uint16\_t packet\_identifier);}
 \DoxyCodeLine{263 }
 \DoxyCodeLine{264 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
@@ -250,7 +250,7 @@
 \DoxyCodeLine{268 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_abc60b4d5389e9a9cc5e6751b4c0ac898}{aws\_mqtt\_packet\_subscribe\_add\_topic}}(}
 \DoxyCodeLine{269     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\_mqtt\_packet\_subscribe}} *packet,}
 \DoxyCodeLine{270     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} topic\_filter,}
-\DoxyCodeLine{271     \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}});}
+\DoxyCodeLine{271     \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} qos);}
 \DoxyCodeLine{272 }
 \DoxyCodeLine{273 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
 \DoxyCodeLine{274 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_a3c719a335522765e9c1551b775284926}{aws\_mqtt\_packet\_subscribe\_encode}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *\mbox{\hyperlink{aws-c-iot_2include_2aws_2iotdevice_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__subscribe}{aws\_mqtt\_packet\_subscribe}} *packet);}
@@ -264,7 +264,7 @@
 \DoxyCodeLine{282 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
 \DoxyCodeLine{283 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_af75db7f96da76668b116c88f5968d445}{aws\_mqtt\_packet\_suback\_init}}(}
 \DoxyCodeLine{284     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__suback}{aws\_mqtt\_packet\_suback}} *packet,}
-\DoxyCodeLine{285     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{285     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{286     uint16\_t packet\_identifier);}
 \DoxyCodeLine{287 }
 \DoxyCodeLine{288 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
@@ -285,7 +285,7 @@
 \DoxyCodeLine{303 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}
 \DoxyCodeLine{304 \textcolor{keywordtype}{int} \mbox{\hyperlink{packets_8h_a5dcf3615355da4b38bd449176fc85579}{aws\_mqtt\_packet\_unsubscribe\_init}}(}
 \DoxyCodeLine{305     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__packet__unsubscribe}{aws\_mqtt\_packet\_unsubscribe}} *packet,}
-\DoxyCodeLine{306     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{306     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{307     uint16\_t packet\_identifier);}
 \DoxyCodeLine{308 }
 \DoxyCodeLine{309 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-mqtt_2include_2aws_2mqtt_2_exports_8h_a9f8288d6c805910baca30043ee3068bf}{AWS\_MQTT\_API}}}

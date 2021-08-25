@@ -88,11 +88,11 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a52a9ad66941039966d75d452729fd1f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a52a9ad66941039966d75d452729fd1f3">aws_event_stream_rpc_extract_message_metadata</a> (const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *message_headers, int32_t *stream_id, int32_t *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#ad0d320d82426002775afef62bff133a7">message_type</a>, int32_t *<a class="el" href="event__stream__rpc__client__connection__test_8c.html#ac326f3af21e805fb92c9de53524ae1fc">message_flags</a>, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a84fcf15d1f1f5692ab6453f9677a23ef">operation_name</a>)</td></tr>
+<tr class="memitem:a52a9ad66941039966d75d452729fd1f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a52a9ad66941039966d75d452729fd1f3">aws_event_stream_rpc_extract_message_metadata</a> (const struct <a class="el" href="structaws__array__list.html">aws_array_list</a> *message_headers, int32_t *stream_id, int32_t *message_type, int32_t *message_flags, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *operation_name)</td></tr>
 <tr class="separator:a52a9ad66941039966d75d452729fd1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29894881fcf48bb6c431b5977b6aa3d4"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#a29894881fcf48bb6c431b5977b6aa3d4">aws_event_stream_rpc_hash_streamid</a> (const void *to_hash)</td></tr>
 <tr class="separator:a29894881fcf48bb6c431b5977b6aa3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeac694215af778de6033079c9dc6d510"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#aeac694215af778de6033079c9dc6d510">aws_event_stream_rpc_streamid_eq</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
+<tr class="memitem:aeac694215af778de6033079c9dc6d510"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="event__stream__rpc__priv_8h.html#aeac694215af778de6033079c9dc6d510">aws_event_stream_rpc_streamid_eq</a> (const void *a, const void *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1a175e87536301df98c805ac0636ad7c">b</a>)</td></tr>
 <tr class="separator:aeac694215af778de6033079c9dc6d510"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -209,7 +209,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_event_stream_rpc_streamid_eq </td>
+          <td class="memname">bool aws_event_stream_rpc_streamid_eq </td>
           <td>(</td>
           <td class="paramtype">const void *&#160;</td>
           <td class="paramname"><em>a</em>, </td>

@@ -39,7 +39,7 @@
 \DoxyCodeLine{40 \textcolor{preprocessor}{        .formatted\_name = LN "{}: "{}} \#C "{}, "{} ES,                                                                          \(\backslash\)}
 \DoxyCodeLine{41     \}}
 \DoxyCodeLine{42 }
-\DoxyCodeLine{43 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}})(\textcolor{keywordtype}{int} err, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{43 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}})(\textcolor{keywordtype}{int} err, \textcolor{keywordtype}{void} *ctx);}
 \DoxyCodeLine{44 }
 \DoxyCodeLine{45 \mbox{\hyperlink{macros_8h_ab6f66af8231eba5da061b9ada0d29bad}{AWS\_EXTERN\_C\_BEGIN}}}
 \DoxyCodeLine{46 }
@@ -105,7 +105,7 @@
 \DoxyCodeLine{106 \textcolor{comment}{ * enabled.}}
 \DoxyCodeLine{107 \textcolor{comment}{ */}}
 \DoxyCodeLine{108 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{109 \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}} *\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a7ae28861288a9c9c038bcfd37ac8f512}{aws\_set\_global\_error\_handler\_fn}}(\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{109 \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}} *\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a7ae28861288a9c9c038bcfd37ac8f512}{aws\_set\_global\_error\_handler\_fn}}(\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}} *handler, \textcolor{keywordtype}{void} *ctx);}
 \DoxyCodeLine{110 }
 \DoxyCodeLine{111 \textcolor{comment}{/*}}
 \DoxyCodeLine{112 \textcolor{comment}{ * Sets a thread-\/local error handler function. This will override the global}}
@@ -114,7 +114,7 @@
 \DoxyCodeLine{115 \textcolor{comment}{ * will turn off this error callback after it has been enabled.}}
 \DoxyCodeLine{116 \textcolor{comment}{ */}}
 \DoxyCodeLine{117 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{118 \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}} *\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a37d1743400b196971e6f57408b26e5c4}{aws\_set\_thread\_local\_error\_handler\_fn}}(\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}}, \textcolor{keywordtype}{void} *\mbox{\hyperlink{channel__handler__test_8c_a1795d4ea01d211a7398ecd541c6f1302}{ctx}});}
+\DoxyCodeLine{118 \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}} *\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a37d1743400b196971e6f57408b26e5c4}{aws\_set\_thread\_local\_error\_handler\_fn}}(\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_a3209f2855bb6467d9b0ed0b243daa8e2}{aws\_error\_handler\_fn}} *handler, \textcolor{keywordtype}{void} *ctx);}
 \DoxyCodeLine{119 }
 \DoxyCodeLine{125 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{126 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2error_8h_abd62b52c211ad3a2de6ee6fe1975f91e}{aws\_register\_error\_info}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__error__info__list}{aws\_error\_info\_list}} *error\_info);}

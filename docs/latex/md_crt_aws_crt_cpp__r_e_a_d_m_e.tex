@@ -1,4 +1,4 @@
-C++ wrapper around the aws-\/c-\/$\ast$ libraries. Provides Cross-\/\+Platform Transport Protocols and SSL/\+TLS implementations for C++.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md611}{}\doxysubsection{Currently Included\+:}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md611}
+C++ wrapper around the aws-\/c-\/$\ast$ libraries. Provides Cross-\/\+Platform Transport Protocols and SSL/\+TLS implementations for C++.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md505}{}\doxysubsection{Currently Included\+:}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md505}
 
 \begin{DoxyItemize}
 \item aws-\/c-\/common\+: Cross-\/platform primitives and data structures.
@@ -10,16 +10,16 @@ C++ wrapper around the aws-\/c-\/$\ast$ libraries. Provides Cross-\/\+Platform T
 \item aws-\/c-\/event-\/stream\+: C99 implementation of the vnd.\+amazon.\+event-\/stream content-\/type.
 \end{DoxyItemize}
 
-More protocols and utilities are coming soon, so stay tuned.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md612}{}\doxysection{Building}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md612}
+More protocols and utilities are coming soon, so stay tuned.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md506}{}\doxysection{Building}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md506}
 The C99 libraries are already included for your convenience as submodules. If you would like to have us build them by default, be sure to either perform a recursive clone {\ttfamily git clone -\/-\/recursive} or initialize the submodules via. {\ttfamily git submodule update -\/-\/init}. Then, to build, specify the {\ttfamily -\/DBUILD\+\_\+\+DEPS=ON} CMake argument.
 
-If you want to manage these dependencies manually (e.\+g. you\textquotesingle{}re using them in other projects), simply specify {\ttfamily -\/DCMAKE\+\_\+\+PREFIX\+\_\+\+PATH} to point to the absolute path where you have them installed.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md613}{}\doxysubsection{MSVC}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md613}
-If you want to use a statically linked MSVCRT (/\+MT, /\+MTd), you can add {\ttfamily -\/DSTATIC\+\_\+\+CRT=ON} to your cmake configuration.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md614}{}\doxysection{Dependencies?}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md614}
-\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md615}{}\doxysubsection{Windows and Apple}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md615}
-There are no non-\/\+OS dependencies that AWS does not own, maintain, and ship.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md616}{}\doxysubsection{Unix}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md616}
+If you want to manage these dependencies manually (e.\+g. you\textquotesingle{}re using them in other projects), simply specify {\ttfamily -\/DCMAKE\+\_\+\+PREFIX\+\_\+\+PATH} to point to the absolute path where you have them installed.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md507}{}\doxysubsection{MSVC}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md507}
+If you want to use a statically linked MSVCRT (/\+MT, /\+MTd), you can add {\ttfamily -\/DSTATIC\+\_\+\+CRT=ON} to your cmake configuration.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md508}{}\doxysection{Dependencies?}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md508}
+\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md509}{}\doxysubsection{Windows and Apple}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md509}
+There are no non-\/\+OS dependencies that AWS does not own, maintain, and ship.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md510}{}\doxysubsection{Unix}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md510}
 The most likely answer is\+: none that you should care about.
 
-We do depend on an openssl compatible libcrypto implementation being in your path if you are on a unix system. Note\+: we do not actually use libssl. The most likely scenario is that libcrypto is already installed on your system. However, since many linux distributions these days do not provide a 32-\/bit libcrypto package, if you\textquotesingle{}re trying to perform a 32-\/bit build you will likely need to build and install libcrypto from source.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md617}{}\doxysection{Common Usage}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md617}
+We do depend on an openssl compatible libcrypto implementation being in your path if you are on a unix system. Note\+: we do not actually use libssl. The most likely scenario is that libcrypto is already installed on your system. However, since many linux distributions these days do not provide a 32-\/bit libcrypto package, if you\textquotesingle{}re trying to perform a 32-\/bit build you will likely need to build and install libcrypto from source.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md511}{}\doxysection{Common Usage}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md511}
 To do anything with IO, you\textquotesingle{}ll need to create a few objects that will be used by the rest of the library.
 
 For example\+:
@@ -84,7 +84,7 @@ If you plan on using TLS, you will need a Tls\+Context. These are NOT CHEAP, so 
 \end{DoxyCode}
 
 
-Lastly, you will need a client or server bootstrap to use a client or server protocol implementation. Since everything is non-\/blocking and event driven, this handles most of the \char`\"{}callback hell\char`\"{} inherent in the design. Assuming you aren\textquotesingle{}t partitioning threads for particular use-\/cases, you can have a single instance of this that you pass to multiple clients.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md618}{}\doxysection{Mac-\/\+Only TLS Behavior}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md618}
+Lastly, you will need a client or server bootstrap to use a client or server protocol implementation. Since everything is non-\/blocking and event driven, this handles most of the \char`\"{}callback hell\char`\"{} inherent in the design. Assuming you aren\textquotesingle{}t partitioning threads for particular use-\/cases, you can have a single instance of this that you pass to multiple clients.\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md512}{}\doxysection{Mac-\/\+Only TLS Behavior}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md512}
 Please note that on Mac, once a private key is used with a certificate, that certificate-\/key pair is imported into the Mac Keychain. All subsequent uses of that certificate will use the stored private key and ignore anything passed in programmatically. Beginning in v0.\+8.\+10, when a stored private key from the Keychain is used, the following will be logged at the \char`\"{}info\char`\"{} log level\+:
 
 
@@ -92,5 +92,5 @@ Please note that on Mac, once a private key is used with a certificate, that cer
 \DoxyCodeLine{static: certificate has an existing certificate-\/key pair that was previously imported into the Keychain.  Using key from Keychain instead of the one provided.}
 
 \end{DoxyCode}
-\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md619}{}\doxysection{License}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md619}
+\hypertarget{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md513}{}\doxysection{License}\label{md_crt_aws_crt_cpp__r_e_a_d_m_e_autotoc_md513}
 This library is licensed under the Apache 2.\+0 License. 

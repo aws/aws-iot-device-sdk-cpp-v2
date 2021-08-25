@@ -74,9 +74,9 @@ $(function() {
   <div class="headertitle"><div class="title">opensslcrypto_common.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;<a class="el" href="crypto_8h_source.html">openssl/crypto.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="evp_8h_source.html">openssl/evp.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="crt_2s2n_2tests_2cbmc_2include_2openssl_2_h_m_a_c_8h_source.html">openssl/hmac.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;openssl/crypto.h&gt;</code><br />
+<code>#include &lt;openssl/evp.h&gt;</code><br />
+<code>#include &lt;openssl/hmac.h&gt;</code><br />
 </div>
 <p><a href="opensslcrypto__common_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -89,31 +89,31 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a6b59ae3165ce40356b9f22cd994c5628"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a6b59ae3165ce40356b9f22cd994c5628">hmac_ctx_new</a>) (void)</td></tr>
+<tr class="memitem:a6b59ae3165ce40356b9f22cd994c5628"><td class="memItemLeft" align="right" valign="top">typedef HMAC_CTX *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a6b59ae3165ce40356b9f22cd994c5628">hmac_ctx_new</a>) (void)</td></tr>
 <tr class="separator:a6b59ae3165ce40356b9f22cd994c5628"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25b058178de10221d903ed4c00f0dc59"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a25b058178de10221d903ed4c00f0dc59">hmac_ctx_reset</a>) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *)</td></tr>
+<tr class="memitem:a25b058178de10221d903ed4c00f0dc59"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a25b058178de10221d903ed4c00f0dc59">hmac_ctx_reset</a>) (HMAC_CTX *)</td></tr>
 <tr class="separator:a25b058178de10221d903ed4c00f0dc59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f2ce450cb6665a489495281fd441a90"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a3f2ce450cb6665a489495281fd441a90">hmac_ctx_free</a>) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *)</td></tr>
+<tr class="memitem:a3f2ce450cb6665a489495281fd441a90"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a3f2ce450cb6665a489495281fd441a90">hmac_ctx_free</a>) (HMAC_CTX *)</td></tr>
 <tr class="separator:a3f2ce450cb6665a489495281fd441a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a204e22b2a4085bfc968f79640c9809af"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a204e22b2a4085bfc968f79640c9809af">hmac_ctx_init</a>) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *)</td></tr>
+<tr class="memitem:a204e22b2a4085bfc968f79640c9809af"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a204e22b2a4085bfc968f79640c9809af">hmac_ctx_init</a>) (HMAC_CTX *)</td></tr>
 <tr class="separator:a204e22b2a4085bfc968f79640c9809af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98da1b69655a936e6f8aac14e6bb1f34"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a98da1b69655a936e6f8aac14e6bb1f34">hmac_ctx_init_ex</a>) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *, const void *, int, const <a class="el" href="ossl__typ_8h.html#adfe5a64a40ab157ebdae9e7d2f52af2b">EVP_MD</a> *, <a class="el" href="ossl__typ_8h.html#abac45b251498719318e60ab8d6192510">ENGINE</a> *)</td></tr>
+<tr class="memitem:a98da1b69655a936e6f8aac14e6bb1f34"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a98da1b69655a936e6f8aac14e6bb1f34">hmac_ctx_init_ex</a>) (HMAC_CTX *, const void *, int, const EVP_MD *, ENGINE *)</td></tr>
 <tr class="separator:a98da1b69655a936e6f8aac14e6bb1f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a909e77e0054e3a77d34868e017dfe203"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a909e77e0054e3a77d34868e017dfe203">hmac_ctx_clean_up</a>) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *)</td></tr>
+<tr class="memitem:a909e77e0054e3a77d34868e017dfe203"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a909e77e0054e3a77d34868e017dfe203">hmac_ctx_clean_up</a>) (HMAC_CTX *)</td></tr>
 <tr class="separator:a909e77e0054e3a77d34868e017dfe203"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a46bd126f1c0591650862d09fc56462"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a4a46bd126f1c0591650862d09fc56462">hmac_ctx_update</a>) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *, const unsigned char *, size_t)</td></tr>
+<tr class="memitem:a4a46bd126f1c0591650862d09fc56462"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a4a46bd126f1c0591650862d09fc56462">hmac_ctx_update</a>) (HMAC_CTX *, const unsigned char *, size_t)</td></tr>
 <tr class="separator:a4a46bd126f1c0591650862d09fc56462"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1f6376e88bc82c79a20fbcb722cf386"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#ae1f6376e88bc82c79a20fbcb722cf386">hmac_ctx_final</a>) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *, unsigned char *, unsigned int *)</td></tr>
+<tr class="memitem:ae1f6376e88bc82c79a20fbcb722cf386"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#ae1f6376e88bc82c79a20fbcb722cf386">hmac_ctx_final</a>) (HMAC_CTX *, unsigned char *, unsigned int *)</td></tr>
 <tr class="separator:ae1f6376e88bc82c79a20fbcb722cf386"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1cd444b6cfba175bd139aad7f883d7c"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#aa1cd444b6cfba175bd139aad7f883d7c">evp_md_ctx_new</a>) (void)</td></tr>
+<tr class="memitem:aa1cd444b6cfba175bd139aad7f883d7c"><td class="memItemLeft" align="right" valign="top">typedef EVP_MD_CTX *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#aa1cd444b6cfba175bd139aad7f883d7c">evp_md_ctx_new</a>) (void)</td></tr>
 <tr class="separator:aa1cd444b6cfba175bd139aad7f883d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e5c7951f5380831f841460f42cda0c3"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a4e5c7951f5380831f841460f42cda0c3">evp_md_ctx_free</a>) (<a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a> *)</td></tr>
+<tr class="memitem:a4e5c7951f5380831f841460f42cda0c3"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a4e5c7951f5380831f841460f42cda0c3">evp_md_ctx_free</a>) (EVP_MD_CTX *)</td></tr>
 <tr class="separator:a4e5c7951f5380831f841460f42cda0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af638f86e179f208ed6680aafeb9c0890"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#af638f86e179f208ed6680aafeb9c0890">evp_md_ctx_digest_init_ex</a>) (<a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a> *, const <a class="el" href="ossl__typ_8h.html#adfe5a64a40ab157ebdae9e7d2f52af2b">EVP_MD</a> *, <a class="el" href="ossl__typ_8h.html#abac45b251498719318e60ab8d6192510">ENGINE</a> *)</td></tr>
+<tr class="memitem:af638f86e179f208ed6680aafeb9c0890"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#af638f86e179f208ed6680aafeb9c0890">evp_md_ctx_digest_init_ex</a>) (EVP_MD_CTX *, const EVP_MD *, ENGINE *)</td></tr>
 <tr class="separator:af638f86e179f208ed6680aafeb9c0890"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a397344a060e86eaca52d409f89b29176"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a397344a060e86eaca52d409f89b29176">evp_md_ctx_digest_update</a>) (<a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a> *, const void *, size_t)</td></tr>
+<tr class="memitem:a397344a060e86eaca52d409f89b29176"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a397344a060e86eaca52d409f89b29176">evp_md_ctx_digest_update</a>) (EVP_MD_CTX *, const void *, size_t)</td></tr>
 <tr class="separator:a397344a060e86eaca52d409f89b29176"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a8a2328ee6faebd9053953bfd69b5dc"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a4a8a2328ee6faebd9053953bfd69b5dc">evp_md_ctx_digest_final_ex</a>) (<a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a> *, unsigned char *, unsigned int *)</td></tr>
+<tr class="memitem:a4a8a2328ee6faebd9053953bfd69b5dc"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opensslcrypto__common_8h.html#a4a8a2328ee6faebd9053953bfd69b5dc">evp_md_ctx_digest_final_ex</a>) (EVP_MD_CTX *, unsigned char *, unsigned int *)</td></tr>
 <tr class="separator:a4a8a2328ee6faebd9053953bfd69b5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -131,7 +131,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int(* evp_md_ctx_digest_final_ex) (<a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a> *, unsigned char *, unsigned int *)</td>
+          <td class="memname">typedef int(* evp_md_ctx_digest_final_ex) (EVP_MD_CTX *, unsigned char *, unsigned int *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -145,7 +145,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int(* evp_md_ctx_digest_init_ex) (<a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a> *, const <a class="el" href="ossl__typ_8h.html#adfe5a64a40ab157ebdae9e7d2f52af2b">EVP_MD</a> *, <a class="el" href="ossl__typ_8h.html#abac45b251498719318e60ab8d6192510">ENGINE</a> *)</td>
+          <td class="memname">typedef int(* evp_md_ctx_digest_init_ex) (EVP_MD_CTX *, const EVP_MD *, ENGINE *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -159,7 +159,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int(* evp_md_ctx_digest_update) (<a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a> *, const void *, size_t)</td>
+          <td class="memname">typedef int(* evp_md_ctx_digest_update) (EVP_MD_CTX *, const void *, size_t)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -173,7 +173,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* evp_md_ctx_free) (<a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a> *)</td>
+          <td class="memname">typedef void(* evp_md_ctx_free) (EVP_MD_CTX *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -187,7 +187,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="ossl__typ_8h.html#a11ccc869c9ea1749e6fe88f44826b56a">EVP_MD_CTX</a>*(* evp_md_ctx_new) (void)</td>
+          <td class="memname">typedef EVP_MD_CTX*(* evp_md_ctx_new) (void)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -201,7 +201,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* hmac_ctx_clean_up) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *)</td>
+          <td class="memname">typedef void(* hmac_ctx_clean_up) (HMAC_CTX *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -215,7 +215,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int(* hmac_ctx_final) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *, unsigned char *, unsigned int *)</td>
+          <td class="memname">typedef int(* hmac_ctx_final) (HMAC_CTX *, unsigned char *, unsigned int *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -229,7 +229,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* hmac_ctx_free) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *)</td>
+          <td class="memname">typedef void(* hmac_ctx_free) (HMAC_CTX *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -243,7 +243,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* hmac_ctx_init) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *)</td>
+          <td class="memname">typedef void(* hmac_ctx_init) (HMAC_CTX *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -257,7 +257,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int(* hmac_ctx_init_ex) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *, const void *, int, const <a class="el" href="ossl__typ_8h.html#adfe5a64a40ab157ebdae9e7d2f52af2b">EVP_MD</a> *, <a class="el" href="ossl__typ_8h.html#abac45b251498719318e60ab8d6192510">ENGINE</a> *)</td>
+          <td class="memname">typedef int(* hmac_ctx_init_ex) (HMAC_CTX *, const void *, int, const EVP_MD *, ENGINE *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -271,7 +271,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a>*(* hmac_ctx_new) (void)</td>
+          <td class="memname">typedef HMAC_CTX*(* hmac_ctx_new) (void)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -285,7 +285,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int(* hmac_ctx_reset) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *)</td>
+          <td class="memname">typedef int(* hmac_ctx_reset) (HMAC_CTX *)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -299,7 +299,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef int(* hmac_ctx_update) (<a class="el" href="ossl__typ_8h.html#aa02d3175d4ca57c999f78794bf361c10">HMAC_CTX</a> *, const unsigned char *, size_t)</td>
+          <td class="memname">typedef int(* hmac_ctx_update) (HMAC_CTX *, const unsigned char *, size_t)</td>
         </tr>
       </table>
 </div><div class="memdoc">

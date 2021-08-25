@@ -106,45 +106,45 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a14c4241e0e70aa3a5161adf91ae68eb7"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a14c4241e0e70aa3a5161adf91ae68eb7">s_scan_outgoing_headers</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *encoder_message, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a6095cc5ed7333d602d0c342e436eb2c5">message</a>, size_t *out_header_lines_len, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> body_headers_ignored, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> body_headers_forbidden)</td></tr>
+<tr class="memitem:a14c4241e0e70aa3a5161adf91ae68eb7"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a14c4241e0e70aa3a5161adf91ae68eb7">s_scan_outgoing_headers</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *encoder_message, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *message, size_t *out_header_lines_len, bool body_headers_ignored, bool body_headers_forbidden)</td></tr>
 <tr class="separator:a14c4241e0e70aa3a5161adf91ae68eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bbabed22e3c41f54a34642d0e0e1b9e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a7bbabed22e3c41f54a34642d0e0e1b9e">s_write_crlf</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst)</td></tr>
+<tr class="memitem:a7bbabed22e3c41f54a34642d0e0e1b9e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a7bbabed22e3c41f54a34642d0e0e1b9e">s_write_crlf</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst)</td></tr>
 <tr class="separator:a7bbabed22e3c41f54a34642d0e0e1b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcd85c4bfd38f20a3e0b527e5657d435"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#adcd85c4bfd38f20a3e0b527e5657d435">s_write_headers</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a6095cc5ed7333d602d0c342e436eb2c5">message</a>)</td></tr>
+<tr class="memitem:adcd85c4bfd38f20a3e0b527e5657d435"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#adcd85c4bfd38f20a3e0b527e5657d435">s_write_headers</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *message)</td></tr>
 <tr class="separator:adcd85c4bfd38f20a3e0b527e5657d435"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f626979f0f65c977a9b4731502378f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a2f626979f0f65c977a9b4731502378f6">aws_h1_encoder_message_init_from_request</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a6095cc5ed7333d602d0c342e436eb2c5">message</a>, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> *pending_chunk_list)</td></tr>
+<tr class="memitem:a2f626979f0f65c977a9b4731502378f6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a2f626979f0f65c977a9b4731502378f6">aws_h1_encoder_message_init_from_request</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *request, struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> *pending_chunk_list)</td></tr>
 <tr class="separator:a2f626979f0f65c977a9b4731502378f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aade6ff5aceeb5b196aa771ba22be0937"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#aade6ff5aceeb5b196aa771ba22be0937">aws_h1_encoder_message_init_from_response</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a6095cc5ed7333d602d0c342e436eb2c5">message</a>, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *response, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> body_headers_ignored, struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> *pending_chunk_list)</td></tr>
+<tr class="memitem:aade6ff5aceeb5b196aa771ba22be0937"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#aade6ff5aceeb5b196aa771ba22be0937">aws_h1_encoder_message_init_from_response</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__http__message.html">aws_http_message</a> *response, bool body_headers_ignored, struct <a class="el" href="structaws__linked__list.html">aws_linked_list</a> *pending_chunk_list)</td></tr>
 <tr class="separator:aade6ff5aceeb5b196aa771ba22be0937"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82812a3d15c217fcb2ec8ceb3f523b01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a82812a3d15c217fcb2ec8ceb3f523b01">aws_h1_encoder_message_clean_up</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a6095cc5ed7333d602d0c342e436eb2c5">message</a>)</td></tr>
+<tr class="memitem:a82812a3d15c217fcb2ec8ceb3f523b01"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a82812a3d15c217fcb2ec8ceb3f523b01">aws_h1_encoder_message_clean_up</a> (struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message)</td></tr>
 <tr class="separator:a82812a3d15c217fcb2ec8ceb3f523b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29f35cf176d79d8c73d8bdb8aede511b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a29f35cf176d79d8c73d8bdb8aede511b">aws_h1_encoder_init</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)</td></tr>
+<tr class="memitem:a29f35cf176d79d8c73d8bdb8aede511b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a29f35cf176d79d8c73d8bdb8aede511b">aws_h1_encoder_init</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
 <tr class="separator:a29f35cf176d79d8c73d8bdb8aede511b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa6352c80cccd57b5ff026d240175394"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#aaa6352c80cccd57b5ff026d240175394">aws_h1_encoder_clean_up</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder)</td></tr>
 <tr class="separator:aaa6352c80cccd57b5ff026d240175394"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a510b68ea367a2380f33639adc7c42131"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a510b68ea367a2380f33639adc7c42131">aws_h1_encoder_start_message</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#a6095cc5ed7333d602d0c342e436eb2c5">message</a>, struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream)</td></tr>
+<tr class="memitem:a510b68ea367a2380f33639adc7c42131"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a510b68ea367a2380f33639adc7c42131">aws_h1_encoder_start_message</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__h1__encoder__message.html">aws_h1_encoder_message</a> *message, struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *stream)</td></tr>
 <tr class="separator:a510b68ea367a2380f33639adc7c42131"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3178a382e5abced2d83e5f09183ddcc8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a3178a382e5abced2d83e5f09183ddcc8">s_write_chunk_size</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, uint64_t chunk_size)</td></tr>
+<tr class="memitem:a3178a382e5abced2d83e5f09183ddcc8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a3178a382e5abced2d83e5f09183ddcc8">s_write_chunk_size</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, uint64_t chunk_size)</td></tr>
 <tr class="separator:a3178a382e5abced2d83e5f09183ddcc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30fbaec1d1c359b6869cad3adb029d73"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a30fbaec1d1c359b6869cad3adb029d73">s_write_chunk_extension</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, struct <a class="el" href="structaws__http1__chunk__extension.html">aws_http1_chunk_extension</a> *chunk_extension)</td></tr>
+<tr class="memitem:a30fbaec1d1c359b6869cad3adb029d73"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a30fbaec1d1c359b6869cad3adb029d73">s_write_chunk_extension</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, struct <a class="el" href="structaws__http1__chunk__extension.html">aws_http1_chunk_extension</a> *chunk_extension)</td></tr>
 <tr class="separator:a30fbaec1d1c359b6869cad3adb029d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac96c5a858a51a4f1dea9c0a6dd309274"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#ac96c5a858a51a4f1dea9c0a6dd309274">s_calculate_chunk_line_size</a> (const struct <a class="el" href="structaws__http1__chunk__options.html">aws_http1_chunk_options</a> *options)</td></tr>
 <tr class="separator:ac96c5a858a51a4f1dea9c0a6dd309274"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af718daf075f7849292fb9992c323b716"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#af718daf075f7849292fb9992c323b716">s_populate_chunk_line_buffer</a> (struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *chunk_line, const struct <a class="el" href="structaws__http1__chunk__options.html">aws_http1_chunk_options</a> *options)</td></tr>
 <tr class="separator:af718daf075f7849292fb9992c323b716"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1e59cada806788c3f67ce390a116096"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#ad1e59cada806788c3f67ce390a116096">aws_h1_chunk_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, const struct <a class="el" href="structaws__http1__chunk__options.html">aws_http1_chunk_options</a> *options)</td></tr>
+<tr class="memitem:ad1e59cada806788c3f67ce390a116096"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#ad1e59cada806788c3f67ce390a116096">aws_h1_chunk_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, const struct <a class="el" href="structaws__http1__chunk__options.html">aws_http1_chunk_options</a> *options)</td></tr>
 <tr class="separator:ad1e59cada806788c3f67ce390a116096"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bb1a0c4b42a5af0a440eddc752b8186"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a7bb1a0c4b42a5af0a440eddc752b8186">aws_h1_chunk_destroy</a> (struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a> *chunk)</td></tr>
 <tr class="separator:a7bb1a0c4b42a5af0a440eddc752b8186"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab386f903228f42dff507cef1b5c9799a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#ab386f903228f42dff507cef1b5c9799a">aws_h1_chunk_complete_and_destroy</a> (struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a> *chunk, struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *http_stream, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>)</td></tr>
+<tr class="memitem:ab386f903228f42dff507cef1b5c9799a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#ab386f903228f42dff507cef1b5c9799a">aws_h1_chunk_complete_and_destroy</a> (struct <a class="el" href="structaws__h1__chunk.html">aws_h1_chunk</a> *chunk, struct <a class="el" href="structaws__http__stream.html">aws_http_stream</a> *http_stream, int error_code)</td></tr>
 <tr class="separator:ab386f903228f42dff507cef1b5c9799a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e1a8c461f0f8e7bd3737d641b6b7d04"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a1e1a8c461f0f8e7bd3737d641b6b7d04">s_clean_up_current_chunk</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, int <a class="el" href="channel__handler__test_8c.html#a7d16b1c68c87cec009d972e79abfba78">error_code</a>)</td></tr>
+<tr class="memitem:a1e1a8c461f0f8e7bd3737d641b6b7d04"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a1e1a8c461f0f8e7bd3737d641b6b7d04">s_clean_up_current_chunk</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, int error_code)</td></tr>
 <tr class="separator:a1e1a8c461f0f8e7bd3737d641b6b7d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a616b2e1ecb454ef0a5994a926c41a528"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a616b2e1ecb454ef0a5994a926c41a528">s_encode_buf</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, const struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *src)</td></tr>
+<tr class="memitem:a616b2e1ecb454ef0a5994a926c41a528"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a616b2e1ecb454ef0a5994a926c41a528">s_encode_buf</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, const struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *src)</td></tr>
 <tr class="separator:a616b2e1ecb454ef0a5994a926c41a528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35d58db53e46c3c53e246b96b3c1cf51"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a35d58db53e46c3c53e246b96b3c1cf51">s_encode_stream</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, uint64_t total_length, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *out_done)</td></tr>
+<tr class="memitem:a35d58db53e46c3c53e246b96b3c1cf51"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a35d58db53e46c3c53e246b96b3c1cf51">s_encode_stream</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst, struct <a class="el" href="structaws__input__stream.html">aws_input_stream</a> *stream, uint64_t total_length, bool *out_done)</td></tr>
 <tr class="separator:a35d58db53e46c3c53e246b96b3c1cf51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4aae5da13919a4239333aa9f0abb1155"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a4aae5da13919a4239333aa9f0abb1155">s_switch_state</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, enum <a class="el" href="h1__encoder_8h.html#a17d39daaf33eb833a0b361a179437512">aws_h1_encoder_state</a> <a class="el" href="structstate.html">state</a>)</td></tr>
+<tr class="memitem:a4aae5da13919a4239333aa9f0abb1155"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a4aae5da13919a4239333aa9f0abb1155">s_switch_state</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, enum <a class="el" href="h1__encoder_8h.html#a17d39daaf33eb833a0b361a179437512">aws_h1_encoder_state</a> state)</td></tr>
 <tr class="separator:a4aae5da13919a4239333aa9f0abb1155"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a940e6a0297a7ecbf58a1634c5386b642"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a940e6a0297a7ecbf58a1634c5386b642">s_state_fn_init</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *dst)</td></tr>
 <tr class="separator:a940e6a0297a7ecbf58a1634c5386b642"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,9 +166,9 @@ Functions</h2></td></tr>
 <tr class="separator:a3ab2e0875554b049dd330f3f6c6bf534"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacd4f1fd41757f9f90af27be74ca8648"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#aacd4f1fd41757f9f90af27be74ca8648">aws_h1_encoder_process</a> (struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *out_buf)</td></tr>
 <tr class="separator:aacd4f1fd41757f9f90af27be74ca8648"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a438482ad4915cd3c781c342a0d6d1d61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a438482ad4915cd3c781c342a0d6d1d61">aws_h1_encoder_is_message_in_progress</a> (const struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder)</td></tr>
+<tr class="memitem:a438482ad4915cd3c781c342a0d6d1d61"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#a438482ad4915cd3c781c342a0d6d1d61">aws_h1_encoder_is_message_in_progress</a> (const struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder)</td></tr>
 <tr class="separator:a438482ad4915cd3c781c342a0d6d1d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa15441fe4a6b7d3e5892905c1e0c11fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#aa15441fe4a6b7d3e5892905c1e0c11fe">aws_h1_encoder_is_waiting_for_chunks</a> (const struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder)</td></tr>
+<tr class="memitem:aa15441fe4a6b7d3e5892905c1e0c11fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h1__encoder_8c.html#aa15441fe4a6b7d3e5892905c1e0c11fe">aws_h1_encoder_is_waiting_for_chunks</a> (const struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *encoder)</td></tr>
 <tr class="separator:aa15441fe4a6b7d3e5892905c1e0c11fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -429,7 +429,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_h1_encoder_is_message_in_progress </td>
+          <td class="memname">bool aws_h1_encoder_is_message_in_progress </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *&#160;</td>
           <td class="paramname"><em>encoder</em></td><td>)</td>
@@ -447,7 +447,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_h1_encoder_is_waiting_for_chunks </td>
+          <td class="memname">bool aws_h1_encoder_is_waiting_for_chunks </td>
           <td>(</td>
           <td class="paramtype">const struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *&#160;</td>
           <td class="paramname"><em>encoder</em></td><td>)</td>
@@ -544,7 +544,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>body_headers_ignored</em>, </td>
         </tr>
         <tr>
@@ -699,7 +699,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_encode_buf </td>
+          <td class="memname">static bool s_encode_buf </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__h1__encoder.html">aws_h1_encoder</a> *&#160;</td>
           <td class="paramname"><em>encoder</em>, </td>
@@ -767,7 +767,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *&#160;</td>
+          <td class="paramtype">bool *&#160;</td>
           <td class="paramname"><em>out_done</em>&#160;</td>
         </tr>
         <tr>
@@ -851,13 +851,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>body_headers_ignored</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>body_headers_forbidden</em>&#160;</td>
         </tr>
         <tr>
@@ -1246,7 +1246,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_write_chunk_extension </td>
+          <td class="memname">static bool s_write_chunk_extension </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
@@ -1282,7 +1282,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_write_chunk_size </td>
+          <td class="memname">static bool s_write_chunk_size </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
@@ -1318,7 +1318,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_write_crlf </td>
+          <td class="memname">static bool s_write_crlf </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *&#160;</td>
           <td class="paramname"><em>dst</em></td><td>)</td>

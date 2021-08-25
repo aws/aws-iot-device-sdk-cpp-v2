@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fixtures_0',['fixtures',['../namespacefixtures.html',1,'']]],
-  ['fixup_5fmakefiles_1',['fixup_makefiles',['../namespacefixup__makefiles.html',1,'']]]
+  ['prepare_0',['prepare',['../namespaceprepare.html',1,'']]]
 ];

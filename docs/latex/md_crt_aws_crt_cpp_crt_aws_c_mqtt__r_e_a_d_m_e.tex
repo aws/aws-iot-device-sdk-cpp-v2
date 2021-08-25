@@ -1,7 +1,7 @@
-C99 implementation of the MQTT 3.\+1.\+1 specification.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md305}{}\doxysection{License}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md305}
-This library is licensed under the Apache 2.\+0 License.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md306}{}\doxysection{Usage}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md306}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md307}{}\doxysubsection{Building}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md307}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md308}{}\doxysubsubsection{Building s2n (\+Linux Only)}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md308}
+C99 implementation of the MQTT 3.\+1.\+1 specification.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md300}{}\doxysection{License}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md300}
+This library is licensed under the Apache 2.\+0 License.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md301}{}\doxysection{Usage}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md301}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md302}{}\doxysubsection{Building}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md302}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md303}{}\doxysubsubsection{Building s2n (\+Linux Only)}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md303}
 If you are building on Linux, you will need to build s2n before being able to build aws-\/c-\/io, which is a dependency of aws-\/c-\/mqtt. For our CRT\textquotesingle{}s, we build s2n at a specific commit, and recommend doing the same when using it with this library. That commit hash can be found \href{https://github.com/awslabs/aws-crt-cpp/tree/main/aws-common-runtime}{\texttt{ here}}. The commands below will build s2n using Open\+SSL 1.\+1.\+1. For using other versions of Open\+SSL, there is additional information in the \href{https://github.com/awslabs/s2n/blob/main/docs/USAGE-GUIDE.md}{\texttt{ s2n Usage Guide}}.
 
 
@@ -34,7 +34,7 @@ If you are building on Linux, you will need to build s2n before being able to bu
 \DoxyCodeLine{cmake -\/-\/build s2n/build -\/-\/target install}
 
 \end{DoxyCode}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md309}{}\doxysubsubsection{Building aws-\/c-\/mqtt and Remaining Dependencies}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md309}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md304}{}\doxysubsubsection{Building aws-\/c-\/mqtt and Remaining Dependencies}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md304}
 Note that aws-\/c-\/mqtt has several dependencies that need to be built.
 
 
@@ -60,15 +60,15 @@ Note that aws-\/c-\/mqtt has several dependencies that need to be built.
 \DoxyCodeLine{cmake -\/-\/build aws-\/c-\/mqtt/build -\/-\/target install}
 
 \end{DoxyCode}
-\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md310}{}\doxysubsection{Overview}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md310}
-This library contains an MQTT implementation that is simple and easy to use, but also quite powerful and low on unnecessary copies. Here is a general overview of the API\+:\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md311}{}\doxysubsection{$<$tt$>$struct aws\+\_\+mqtt\+\_\+client;$<$/tt$>$}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md311}
+\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md305}{}\doxysubsection{Overview}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md305}
+This library contains an MQTT implementation that is simple and easy to use, but also quite powerful and low on unnecessary copies. Here is a general overview of the API\+:\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md306}{}\doxysubsection{$<$tt$>$struct aws\+\_\+mqtt\+\_\+client;$<$/tt$>$}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md306}
 {\ttfamily \mbox{\hyperlink{structaws__mqtt__client}{aws\+\_\+mqtt\+\_\+client}}} is meant to be created once per application to pool common resources required for opening MQTT connections. The instance does not need to be allocated, and may be managed by the user.
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keywordtype}{int} aws\_mqtt\_client\_init(}
 \DoxyCodeLine{    \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client}{aws\_mqtt\_client}} *client,}
-\DoxyCodeLine{    \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{    \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *allocator,}
 \DoxyCodeLine{    \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__event__loop__group}{aws\_event\_loop\_group}} *elg);}
 
 \end{DoxyCode}
@@ -86,7 +86,7 @@ This library contains an MQTT implementation that is simple and easy to use, but
 \end{DoxyCode}
  Cleans up a client and frees all owned resources.
 
-{\bfseries{NOTE}}\+: DO NOT CALL THIS FUNCTION UNTIL ALL OUTSTANDING CONNECTIONS ARE CLOSED.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md312}{}\doxysubsection{$<$tt$>$struct aws\+\_\+mqtt\+\_\+client\+\_\+connection;$<$/tt$>$}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md312}
+{\bfseries{NOTE}}\+: DO NOT CALL THIS FUNCTION UNTIL ALL OUTSTANDING CONNECTIONS ARE CLOSED.\hypertarget{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md307}{}\doxysubsection{$<$tt$>$struct aws\+\_\+mqtt\+\_\+client\+\_\+connection;$<$/tt$>$}\label{md_crt_aws_crt_cpp_crt_aws_c_mqtt__r_e_a_d_m_e_autotoc_md307}
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *\mbox{\hyperlink{client_8h_a74d960a25b25e4a270984406990700b0}{aws\_mqtt\_client\_connection\_new}}(}
@@ -121,10 +121,10 @@ This library contains an MQTT implementation that is simple and easy to use, but
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{client_8h_a62b3d8c85a2613fa1051b1c80b884cad}{aws\_mqtt\_client\_connection\_set\_will}}(}
 \DoxyCodeLine{    \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
-\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}},}
-\DoxyCodeLine{    \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a8beb4d40f151fdeb2f630cfebeac924e}{topic}},}
+\DoxyCodeLine{    \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{structaws__mqtt__client__connection_a5d116e4c37220a9397199e27e90b8bba}{qos}},}
 \DoxyCodeLine{    \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__mqtt__client__connection_a0a9b0439fd195534e3f95f4c216e7711}{retain}},}
-\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}});}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{structaws__mqtt__client__connection_ae79a30c3c428a546b220b93553ec3a75}{payload}});}
 
 \end{DoxyCode}
  Sets the last will and testament to be distributed by the server upon client disconnection. Must be called before {\ttfamily aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+connect}. See {\ttfamily aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+publish} for information on the parameters. {\ttfamily topic} and {\ttfamily payload} must persist past the call to {\ttfamily aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+connect}.
@@ -133,8 +133,8 @@ This library contains an MQTT implementation that is simple and easy to use, but
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{client_8h_a9334da6046ba4c7c54bc9d102f1159da}{aws\_mqtt\_client\_connection\_set\_login}}(}
 \DoxyCodeLine{    \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
-\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{connection__state__test_8c_a6e350427887d766b20857e72025d592c}{username}},}
-\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{connection__state__test_8c_af7b550f3b3dbd60c52719a28b826fdd8}{password}});}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{structaws__mqtt__client__connection_aeaaf60b787337e2d69db65a5e9f51f1d}{username}},}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a87b9ffc0a328a668199840189e1f8e6a}{password}});}
 
 \end{DoxyCode}
  Sets the username and password to be sent to the server on connection. Must be called before {\ttfamily aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+connect}. {\ttfamily username} and {\ttfamily password} must persist past the call to {\ttfamily aws\+\_\+mqtt\+\_\+client\+\_\+connection\+\_\+connect}.
@@ -172,8 +172,8 @@ This library contains an MQTT implementation that is simple and easy to use, but
 \DoxyCodeLine{uint16\_t aws\_mqtt\_client\_connection\_subscribe\_single(}
 \DoxyCodeLine{    \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
 \DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *topic\_filter,}
-\DoxyCodeLine{    \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
-\DoxyCodeLine{    \mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\_mqtt\_client\_publish\_received\_fn}} *\mbox{\hyperlink{topic__tree__test_8c_ad7276cd5ba4292cd3ff3633137b853f8}{on\_publish}},}
+\DoxyCodeLine{    \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{structaws__mqtt__client__connection_a5d116e4c37220a9397199e27e90b8bba}{qos}},}
+\DoxyCodeLine{    \mbox{\hyperlink{client_8h_a979def98388f4a6c7eb7de0c3c868555}{aws\_mqtt\_client\_publish\_received\_fn}} *on\_publish,}
 \DoxyCodeLine{    \textcolor{keywordtype}{void} *on\_publish\_ud,}
 \DoxyCodeLine{    aws\_mqtt\_suback\_single\_fn *on\_suback,}
 \DoxyCodeLine{    \textcolor{keywordtype}{void} *on\_suback\_ud);}
@@ -196,10 +196,10 @@ This library contains an MQTT implementation that is simple and easy to use, but
 \begin{DoxyCode}{0}
 \DoxyCodeLine{uint16\_t \mbox{\hyperlink{client_8h_accba3c63a72807cabf69fcf11a831954}{aws\_mqtt\_client\_connection\_publish}}(}
 \DoxyCodeLine{    \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__mqtt__client__connection}{aws\_mqtt\_client\_connection}} *connection,}
-\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{connection__state__test_8c_ad99baabff61442b2d602f6dd84310f89}{topic}},}
-\DoxyCodeLine{    \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{connection__state__test_8c_a65ee2b4b16f25052c441ff9959dcc7e7}{qos}},}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{structaws__mqtt__client__connection_a8beb4d40f151fdeb2f630cfebeac924e}{topic}},}
+\DoxyCodeLine{    \textcolor{keyword}{enum} \mbox{\hyperlink{mqtt_8h_a9c8e7e4cfbb7dcb3fc4a5402000998ce}{aws\_mqtt\_qos}} \mbox{\hyperlink{structaws__mqtt__client__connection_a5d116e4c37220a9397199e27e90b8bba}{qos}},}
 \DoxyCodeLine{    \textcolor{keywordtype}{bool} \mbox{\hyperlink{structaws__mqtt__client__connection_a0a9b0439fd195534e3f95f4c216e7711}{retain}},}
-\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}},}
+\DoxyCodeLine{    \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{structaws__mqtt__client__connection_ae79a30c3c428a546b220b93553ec3a75}{payload}},}
 \DoxyCodeLine{    \mbox{\hyperlink{client_8h_ab798c331e8c9a78dcb6fb7f300d8b59d}{aws\_mqtt\_op\_complete\_fn}} *on\_complete,}
 \DoxyCodeLine{    \textcolor{keywordtype}{void} *userdata);}
 

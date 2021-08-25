@@ -15,11 +15,11 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{s2n__kem_8c_afcb5f5b581771069726c37bafa1c8178}{s2n\+\_\+kem\+\_\+generate\+\_\+keypair}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+int \mbox{\hyperlink{s2n__kem_8c_afcb5f5b581771069726c37bafa1c8178}{s2n\+\_\+kem\+\_\+generate\+\_\+keypair}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$kem\+\_\+params)
 \item 
-int \mbox{\hyperlink{s2n__kem_8c_a62ac8833f481a4c76f0a45e72402feee}{s2n\+\_\+kem\+\_\+encapsulate}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}}, struct s2n\+\_\+blob $\ast$ciphertext)
+int \mbox{\hyperlink{s2n__kem_8c_a62ac8833f481a4c76f0a45e72402feee}{s2n\+\_\+kem\+\_\+encapsulate}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$kem\+\_\+params, struct s2n\+\_\+blob $\ast$ciphertext)
 \item 
-int \mbox{\hyperlink{s2n__kem_8c_a96b2f5683150670759429019144e1f14}{s2n\+\_\+kem\+\_\+decapsulate}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}}, const struct s2n\+\_\+blob $\ast$ciphertext)
+int \mbox{\hyperlink{s2n__kem_8c_a96b2f5683150670759429019144e1f14}{s2n\+\_\+kem\+\_\+decapsulate}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$kem\+\_\+params, const struct s2n\+\_\+blob $\ast$ciphertext)
 \item 
 static int \mbox{\hyperlink{s2n__kem_8c_a673c466c6da33a395612e6900bd31939}{s2n\+\_\+kem\+\_\+check\+\_\+kem\+\_\+compatibility}} (const uint8\+\_\+t iana\+\_\+value\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]}, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$candidate\+\_\+kem, uint8\+\_\+t $\ast$kem\+\_\+is\+\_\+compatible)
 \item 
@@ -27,7 +27,7 @@ int \mbox{\hyperlink{s2n__kem_8c_afd3bf103f84a1f42bd05343d107ec9a3}{s2n\+\_\+cho
 \item 
 int \mbox{\hyperlink{s2n__kem_8c_a29eb489ff98ee76f90e43121fa868bca}{s2n\+\_\+choose\+\_\+kem\+\_\+without\+\_\+peer\+\_\+pref\+\_\+list}} (const uint8\+\_\+t iana\+\_\+value\mbox{[}\mbox{\hyperlink{s2n__crypto__constants_8h_aad5e2a880d4b55cf5450393843a17cf8}{S2\+N\+\_\+\+TLS\+\_\+\+CIPHER\+\_\+\+SUITE\+\_\+\+LEN}}\mbox{]}, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$server\+\_\+kem\+\_\+pref\+\_\+list\mbox{[}$\,$\mbox{]}, const uint8\+\_\+t num\+\_\+server\+\_\+supported\+\_\+kems, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$$\ast$chosen\+\_\+kem)
 \item 
-int \mbox{\hyperlink{s2n__kem_8c_a7c4230187cab4374e551be66b1818b28}{s2n\+\_\+kem\+\_\+free}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+int \mbox{\hyperlink{s2n__kem_8c_a7c4230187cab4374e551be66b1818b28}{s2n\+\_\+kem\+\_\+free}} (struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$kem\+\_\+params)
 \item 
 int \mbox{\hyperlink{s2n__kem_8c_a3048d9e72bb9e5352176a67fd7ba6b6c}{s2n\+\_\+kem\+\_\+group\+\_\+free}} (struct \mbox{\hyperlink{structs2n__kem__group__params}{s2n\+\_\+kem\+\_\+group\+\_\+params}} $\ast$kem\+\_\+group\+\_\+params)
 \item 
@@ -35,13 +35,13 @@ int \mbox{\hyperlink{s2n__kem_8c_a93037879d9926fc6cc120104fc85b3bd}{s2n\+\_\+cip
 \item 
 int \mbox{\hyperlink{s2n__kem_8c_a448b5e1964fb2f1752b59e867f4ec8a7}{s2n\+\_\+get\+\_\+kem\+\_\+from\+\_\+extension\+\_\+id}} (\mbox{\hyperlink{s2n__kem_8h_a81b345122713c5da133f22798727415d}{kem\+\_\+extension\+\_\+size}} kem\+\_\+id, const struct \mbox{\hyperlink{structs2n__kem}{s2n\+\_\+kem}} $\ast$$\ast$kem)
 \item 
-int \mbox{\hyperlink{s2n__kem_8c_a06e9d82eaa1a51f1a8559758236df198}{s2n\+\_\+kem\+\_\+send\+\_\+public\+\_\+key}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+int \mbox{\hyperlink{s2n__kem_8c_a06e9d82eaa1a51f1a8559758236df198}{s2n\+\_\+kem\+\_\+send\+\_\+public\+\_\+key}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$kem\+\_\+params)
 \item 
-int \mbox{\hyperlink{s2n__kem_8c_a78e0ac3b18129d888473727022ce552a}{s2n\+\_\+kem\+\_\+recv\+\_\+public\+\_\+key}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+int \mbox{\hyperlink{s2n__kem_8c_a78e0ac3b18129d888473727022ce552a}{s2n\+\_\+kem\+\_\+recv\+\_\+public\+\_\+key}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$kem\+\_\+params)
 \item 
-int \mbox{\hyperlink{s2n__kem_8c_a16ed00e8c5fecec7dcb83a71a10c065b}{s2n\+\_\+kem\+\_\+send\+\_\+ciphertext}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+int \mbox{\hyperlink{s2n__kem_8c_a16ed00e8c5fecec7dcb83a71a10c065b}{s2n\+\_\+kem\+\_\+send\+\_\+ciphertext}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$out, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$kem\+\_\+params)
 \item 
-int \mbox{\hyperlink{s2n__kem_8c_abf01a14da74889cb2442abc6da1e36ef}{s2n\+\_\+kem\+\_\+recv\+\_\+ciphertext}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$\mbox{\hyperlink{s2n__sike__r2__recv__public__key__fuzz__test_8c_aab0dead5ec3d49b6b611891e34170741}{kem\+\_\+params}})
+int \mbox{\hyperlink{s2n__kem_8c_abf01a14da74889cb2442abc6da1e36ef}{s2n\+\_\+kem\+\_\+recv\+\_\+ciphertext}} (struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$in, struct \mbox{\hyperlink{structs2n__kem__params}{s2n\+\_\+kem\+\_\+params}} $\ast$kem\+\_\+params)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}

@@ -10,7 +10,7 @@ static int \mbox{\hyperlink{fixed__header_8c_a4ca44481d03176e46cdca76f46ca1470}{
 \item 
 enum \mbox{\hyperlink{fixed__header_8h_a88d0cb6ffb07fc72c20665d7ebeec76b}{aws\+\_\+mqtt\+\_\+packet\+\_\+type}} \mbox{\hyperlink{fixed__header_8c_a707fbd0cc6365fb674ef2024676aa77c}{aws\+\_\+mqtt\+\_\+get\+\_\+packet\+\_\+type}} (const uint8\+\_\+t $\ast$buffer)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{fixed__header_8c_af400dd0af9e23655af1e61c4acb6c957}{aws\+\_\+mqtt\+\_\+packet\+\_\+has\+\_\+flags}} (const struct \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\+\_\+mqtt\+\_\+fixed\+\_\+header}} $\ast$header)
+bool \mbox{\hyperlink{fixed__header_8c_af400dd0af9e23655af1e61c4acb6c957}{aws\+\_\+mqtt\+\_\+packet\+\_\+has\+\_\+flags}} (const struct \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\+\_\+mqtt\+\_\+fixed\+\_\+header}} $\ast$header)
 \item 
 int \mbox{\hyperlink{fixed__header_8c_ad3c86e6953c70782e87592ed96afe873}{aws\+\_\+mqtt\+\_\+fixed\+\_\+header\+\_\+encode}} (struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1fe855c208bc17a51a4d34fefdb2d5b1}{buf}}, const struct \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\+\_\+mqtt\+\_\+fixed\+\_\+header}} $\ast$header)
 \item 
@@ -41,7 +41,7 @@ Get the type of packet from the first byte of the buffer \mbox{[}MQTT-\/2.\+2.\+
 \index{fixed\_header.c@{fixed\_header.c}!aws\_mqtt\_packet\_has\_flags@{aws\_mqtt\_packet\_has\_flags}}
 \index{aws\_mqtt\_packet\_has\_flags@{aws\_mqtt\_packet\_has\_flags}!fixed\_header.c@{fixed\_header.c}}
 \doxysubsubsection{\texorpdfstring{aws\_mqtt\_packet\_has\_flags()}{aws\_mqtt\_packet\_has\_flags()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+mqtt\+\_\+packet\+\_\+has\+\_\+flags (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\+\_\+mqtt\+\_\+fixed\+\_\+header}} $\ast$}]{header }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+mqtt\+\_\+packet\+\_\+has\+\_\+flags (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__mqtt__fixed__header}{aws\+\_\+mqtt\+\_\+fixed\+\_\+header}} $\ast$}]{header }\end{DoxyParamCaption})}
 
 Get traits describing a packet described by header \mbox{[}MQTT-\/2.\+2.\+2\mbox{]}. \mbox{\Hypertarget{fixed__header_8c_a4ca44481d03176e46cdca76f46ca1470}\label{fixed__header_8c_a4ca44481d03176e46cdca76f46ca1470}} 
 \index{fixed\_header.c@{fixed\_header.c}!s\_decode\_remaining\_length@{s\_decode\_remaining\_length}}

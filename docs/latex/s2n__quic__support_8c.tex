@@ -14,15 +14,15 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__quic__support_8c_a8cf2911199525c145a2686a56ed6e47b}{s2n\+\_\+read\+\_\+in\+\_\+bytes}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, uint32\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_ae809d5359ac030c60a30a8f0b2294b82}{length}})
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__quic__support_8c_a8cf2911199525c145a2686a56ed6e47b}{s2n\+\_\+read\+\_\+in\+\_\+bytes}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct \mbox{\hyperlink{structs2n__stuffer}{s2n\+\_\+stuffer}} $\ast$output, uint32\+\_\+t \mbox{\hyperlink{iocp__event__loop_8c_a09ef0d7d086ae398d78b446470ae8b3a}{length}})
 \item 
-int \mbox{\hyperlink{s2n__quic__support_8c_a19bb23e233605b81182678a204218f8b}{s2n\+\_\+config\+\_\+enable\+\_\+quic}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}})
+int \mbox{\hyperlink{s2n__quic__support_8c_a19bb23e233605b81182678a204218f8b}{s2n\+\_\+config\+\_\+enable\+\_\+quic}} (struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config)
 \item 
 int \mbox{\hyperlink{s2n__quic__support_8c_aea975170cc113fc7f7d7a0d6a793eafd}{s2n\+\_\+connection\+\_\+set\+\_\+quic\+\_\+transport\+\_\+parameters}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const uint8\+\_\+t $\ast$data\+\_\+buffer, uint16\+\_\+t data\+\_\+len)
 \item 
 int \mbox{\hyperlink{s2n__quic__support_8c_a7f5843dbb5390ba9adb3cf3d056db913}{s2n\+\_\+connection\+\_\+get\+\_\+quic\+\_\+transport\+\_\+parameters}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, const uint8\+\_\+t $\ast$$\ast$data\+\_\+buffer, uint16\+\_\+t $\ast$data\+\_\+len)
 \item 
-S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__quic__support_8c_aeafadc720afd6a5fb38ef18277786f1d}{s2n\+\_\+quic\+\_\+read\+\_\+handshake\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_ad0d320d82426002775afef62bff133a7}{message\+\_\+type}})
+S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__quic__support_8c_aeafadc720afd6a5fb38ef18277786f1d}{s2n\+\_\+quic\+\_\+read\+\_\+handshake\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, uint8\+\_\+t $\ast$message\+\_\+type)
 \item 
 S2\+N\+\_\+\+RESULT \mbox{\hyperlink{s2n__quic__support_8c_a9fea6c4848b3ae51c324374ff4999ada}{s2n\+\_\+quic\+\_\+write\+\_\+handshake\+\_\+message}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, struct s2n\+\_\+blob $\ast$in)
 \end{DoxyCompactItemize}

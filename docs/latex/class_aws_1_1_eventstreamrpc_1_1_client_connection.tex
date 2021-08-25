@@ -7,7 +7,7 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_acf778b73a0f3f95f0d59f202f27e954e}{Client\+Connection}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_acf778b73a0f3f95f0d59f202f27e954e}{Client\+Connection}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
 \item 
 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_a8b408fc55d2bd76a761e0119af56a44a}{$\sim$\+Client\+Connection}} () noexcept
 \item 
@@ -21,15 +21,15 @@
 \item 
 std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_a71ccd8e9a769fb716176ea22ad6129e9}{Connect}} (const \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_config}{Connection\+Config}} \&connection\+Options, \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_connection_lifecycle_handler}{Connection\+Lifecycle\+Handler}} $\ast$connection\+Lifecycle\+Handler, \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_client_bootstrap}{Crt\+::\+Io\+::\+Client\+Bootstrap}} \&client\+Bootstrap) noexcept
 \item 
-std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_a327144bebf5c7dfc24fba67cc8419e56}{Send\+Ping}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt\+::\+List}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&headers, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Crt\+::\+Byte\+Buf}} $>$ \&\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback) noexcept
+std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_a327144bebf5c7dfc24fba67cc8419e56}{Send\+Ping}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt\+::\+List}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&headers, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Crt\+::\+Byte\+Buf}} $>$ \&payload, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback) noexcept
 \item 
-std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_a8904c34d302748166da636575aca0755}{Send\+Ping\+Response}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt\+::\+List}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&headers, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Crt\+::\+Byte\+Buf}} $>$ \&\mbox{\hyperlink{connection__state__test_8c_ad1560a388c937f36f038c683175d82bf}{payload}}, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback) noexcept
+std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{Rpc\+Error}} $>$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_a8904c34d302748166da636575aca0755}{Send\+Ping\+Response}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a700a767e9c8e9c2564c37e379beb91a8}{Crt\+::\+List}}$<$ \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_event_stream_header}{Event\+Stream\+Header}} $>$ \&headers, const \mbox{\hyperlink{class_aws_1_1_crt_1_1_optional}{Crt\+::\+Optional}}$<$ \mbox{\hyperlink{namespace_aws_1_1_crt_aa760a7d9714d6c28091c2b1cf7029876}{Crt\+::\+Byte\+Buf}} $>$ \&payload, \mbox{\hyperlink{namespace_aws_1_1_eventstreamrpc_a59543fd12aad2501f3b41795186a18e6}{On\+Message\+Flush\+Callback}} on\+Message\+Flush\+Callback) noexcept
 \item 
 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation}{Client\+Continuation}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_ad1a845e5e9ae0f53e6fae90dba9ddd90}{New\+Stream}} (\mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_continuation_handler}{Client\+Continuation\+Handler}} \&client\+Continuation\+Handler) noexcept
 \item 
 void \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_a716ae59d6b7770d1d3d0350caf5005e7}{Close}} () noexcept
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_ad2e1fafca6d04823a41662648c4224ed}{Is\+Open}} () const noexcept
+bool \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_ad2e1fafca6d04823a41662648c4224ed}{Is\+Open}} () const noexcept
 \item 
 \mbox{\hyperlink{class_aws_1_1_eventstreamrpc_1_1_client_connection_abdca2de24e329458284b72ad7d794537}{operator bool}} () const noexcept
 \end{DoxyCompactItemize}
@@ -86,7 +86,7 @@ std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{R
 \index{Aws::Eventstreamrpc::ClientConnection@{Aws::Eventstreamrpc::ClientConnection}!IsOpen@{IsOpen}}
 \index{IsOpen@{IsOpen}!Aws::Eventstreamrpc::ClientConnection@{Aws::Eventstreamrpc::ClientConnection}}
 \doxysubsubsection{\texorpdfstring{IsOpen()}{IsOpen()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Eventstreamrpc\+::\+Client\+Connection\+::\+Is\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Eventstreamrpc\+::\+Client\+Connection\+::\+Is\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 \mbox{\Hypertarget{class_aws_1_1_eventstreamrpc_1_1_client_connection_ad1a845e5e9ae0f53e6fae90dba9ddd90}\label{class_aws_1_1_eventstreamrpc_1_1_client_connection_ad1a845e5e9ae0f53e6fae90dba9ddd90}} 
 \index{Aws::Eventstreamrpc::ClientConnection@{Aws::Eventstreamrpc::ClientConnection}!NewStream@{NewStream}}
@@ -98,7 +98,7 @@ std\+::future$<$ \mbox{\hyperlink{struct_aws_1_1_eventstreamrpc_1_1_rpc_error}{R
 \index{Aws::Eventstreamrpc::ClientConnection@{Aws::Eventstreamrpc::ClientConnection}!operator bool@{operator bool}}
 \index{operator bool@{operator bool}!Aws::Eventstreamrpc::ClientConnection@{Aws::Eventstreamrpc::ClientConnection}}
 \doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
-{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Client\+Connection\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Eventstreamrpc\+::\+Client\+Connection\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 \begin{DoxyReturn}{Returns}
 true if the instance is in a valid state, false otherwise. 

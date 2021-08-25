@@ -23,26 +23,26 @@
 \item 
 int \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_ad9cd96f33ba5c3f1333d5ece85b8062d}{Last\+Error}} () const noexcept
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a2063851f18dbc35dea7e7eb5aaeff04d}{Set\+Alpn\+List}} (const char $\ast$alpn\+List) noexcept
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a2063851f18dbc35dea7e7eb5aaeff04d}{Set\+Alpn\+List}} (const char $\ast$alpn\+List) noexcept
 \item 
-void \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a94e652e626b9b6f5b6fcde274244fcb7}{Set\+Verify\+Peer}} (\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} verify\+Peer) noexcept
+void \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a94e652e626b9b6f5b6fcde274244fcb7}{Set\+Verify\+Peer}} (bool verify\+Peer) noexcept
 \item 
 void \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a612ebba81efc435130965600ed6dd88b}{Set\+Minimum\+Tls\+Version}} (\mbox{\hyperlink{tls__channel__handler_8h_abbbf7d37040b11f033b40ca7bac19e88}{aws\+\_\+tls\+\_\+versions}} minimum\+Tls\+Version)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a1861581c5a15ee7b9151044be94c3a9d}{Override\+Default\+Trust\+Store}} (const char $\ast$ca\+Path, const char $\ast$ca\+File) noexcept
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a1861581c5a15ee7b9151044be94c3a9d}{Override\+Default\+Trust\+Store}} (const char $\ast$ca\+Path, const char $\ast$ca\+File) noexcept
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a8bc5997adf0d28ebe70f6c84e1aaa972}{Override\+Default\+Trust\+Store}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&ca) noexcept
+bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a8bc5997adf0d28ebe70f6c84e1aaa972}{Override\+Default\+Trust\+Store}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&ca) noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{Tls\+Context\+Options}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a98bfeed1d9c8f66cda9db823f5aeae7e}{Init\+Default\+Client}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
+static \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{Tls\+Context\+Options}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a98bfeed1d9c8f66cda9db823f5aeae7e}{Init\+Default\+Client}} (\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
 \item 
-static \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{Tls\+Context\+Options}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a5c8b08e4a120d1f4b6651bbdb60a5d27}{Init\+Client\+With\+Mtls}} (const char $\ast$cert\+\_\+path, const char $\ast$pkey\+\_\+path, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
+static \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{Tls\+Context\+Options}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a5c8b08e4a120d1f4b6651bbdb60a5d27}{Init\+Client\+With\+Mtls}} (const char $\ast$cert\+\_\+path, const char $\ast$pkey\+\_\+path, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
 \item 
-static \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{Tls\+Context\+Options}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a21127a39cdf5ed6e6ffa675db02626c0}{Init\+Client\+With\+Mtls}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}{cert}}, const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&pkey, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
+static \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{Tls\+Context\+Options}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_a21127a39cdf5ed6e6ffa675db02626c0}{Init\+Client\+With\+Mtls}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&cert, const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&pkey, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_ad7e9b86c045f26c61b3f8b6ff44cc0f5}{Is\+Alpn\+Supported}} () noexcept
+static bool \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options_ad7e9b86c045f26c61b3f8b6ff44cc0f5}{Is\+Alpn\+Supported}} () noexcept
 \end{DoxyCompactItemize}
 \doxysubsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -115,7 +115,7 @@ Initializes \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_tls_context_options}{T
 \index{Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}!IsAlpnSupported@{IsAlpnSupported}}
 \index{IsAlpnSupported@{IsAlpnSupported}!Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}}
 \doxysubsubsection{\texorpdfstring{IsAlpnSupported()}{IsAlpnSupported()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Is\+Alpn\+Supported (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Is\+Alpn\+Supported (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
 
 \begin{DoxyReturn}{Returns}
 true if alpn is supported by the underlying security provider, false otherwise. 
@@ -133,7 +133,7 @@ the value of the last aws error encountered by operations on this instance.
 \index{Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}!operator bool@{operator bool}}
 \index{operator bool@{operator bool}!Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}}
 \doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
-{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
 
 \begin{DoxyReturn}{Returns}
 true if the instance is in a valid state, false otherwise. 
@@ -154,7 +154,7 @@ true if the instance is in a valid state, false otherwise.
 \index{Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}!OverrideDefaultTrustStore@{OverrideDefaultTrustStore}}
 \index{OverrideDefaultTrustStore@{OverrideDefaultTrustStore}!Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}}
 \doxysubsubsection{\texorpdfstring{OverrideDefaultTrustStore()}{OverrideDefaultTrustStore()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Override\+Default\+Trust\+Store (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&}]{ca }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Override\+Default\+Trust\+Store (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&}]{ca }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Overrides the default system trust store. 
 \begin{DoxyParams}{Parameters}
@@ -165,7 +165,7 @@ Overrides the default system trust store.
 \index{Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}!OverrideDefaultTrustStore@{OverrideDefaultTrustStore}}
 \index{OverrideDefaultTrustStore@{OverrideDefaultTrustStore}!Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}}
 \doxysubsubsection{\texorpdfstring{OverrideDefaultTrustStore()}{OverrideDefaultTrustStore()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Override\+Default\+Trust\+Store (\begin{DoxyParamCaption}\item[{const char $\ast$}]{ca\+Path,  }\item[{const char $\ast$}]{ca\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Override\+Default\+Trust\+Store (\begin{DoxyParamCaption}\item[{const char $\ast$}]{ca\+Path,  }\item[{const char $\ast$}]{ca\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Overrides the default system trust store. 
 \begin{DoxyParams}{Parameters}
@@ -178,7 +178,7 @@ Overrides the default system trust store.
 \index{Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}!SetAlpnList@{SetAlpnList}}
 \index{SetAlpnList@{SetAlpnList}!Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}}
 \doxysubsubsection{\texorpdfstring{SetAlpnList()}{SetAlpnList()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Set\+Alpn\+List (\begin{DoxyParamCaption}\item[{const char $\ast$}]{alpn\+List }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily bool Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Set\+Alpn\+List (\begin{DoxyParamCaption}\item[{const char $\ast$}]{alpn\+List }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 Sets the list of alpn protocols. 
 \begin{DoxyParams}{Parameters}
@@ -200,7 +200,7 @@ Sets the minimum TLS version allowed.
 \index{Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}!SetVerifyPeer@{SetVerifyPeer}}
 \index{SetVerifyPeer@{SetVerifyPeer}!Aws::Crt::Io::TlsContextOptions@{Aws::Crt::Io::TlsContextOptions}}
 \doxysubsubsection{\texorpdfstring{SetVerifyPeer()}{SetVerifyPeer()}}
-{\footnotesize\ttfamily void Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Set\+Verify\+Peer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{verify\+Peer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+{\footnotesize\ttfamily void Aws\+::\+Crt\+::\+Io\+::\+Tls\+Context\+Options\+::\+Set\+Verify\+Peer (\begin{DoxyParamCaption}\item[{bool}]{verify\+Peer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
 In client mode, this turns off x.\+509 validation. Don\textquotesingle{}t do this unless you\textquotesingle{}re testing. It\textquotesingle{}s much better, to just override the default trust store and pass the self-\/signed certificate as the ca\+File argument.
 

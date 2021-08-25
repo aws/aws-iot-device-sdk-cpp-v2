@@ -22,7 +22,7 @@
 \DoxyCodeLine{18     uint8\_t  \mbox{\hyperlink{structuint128__s_a8892802c5eb5a10eabe82e313e10a582}{bytes}}[16];}
 \DoxyCodeLine{19     uint32\_t \mbox{\hyperlink{structuint128__s_a9541e2ab77afc1a4bac2022953c0b766}{dw}}[4];}
 \DoxyCodeLine{20     uint64\_t \mbox{\hyperlink{structuint128__s_aec5e6131567e01993560e2647edeb979}{qw}}[2];}
-\DoxyCodeLine{21   \} \mbox{\hyperlink{structuint128__s_ad1e846833f2346ff46dbbcba192e8867}{u}};}
+\DoxyCodeLine{21   \} \mbox{\hyperlink{structuint128__s_a0a2e7876bcfcf74dafe5974c7a55788d}{u}};}
 \DoxyCodeLine{22 \} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a25c95bca9028da8fa96d48a8b08b8be3}{uint128\_t}};}
 \DoxyCodeLine{23 }
 \DoxyCodeLine{24 \textcolor{comment}{// Make sure no compiler optimizations.}}
@@ -86,14 +86,14 @@
 \DoxyCodeLine{82 \textcolor{comment}{// Pad e to the next Block}}
 \DoxyCodeLine{83 \textcolor{keyword}{typedef} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_ab8417090a3ebfb00929ee1b659fb84fa}{ALIGN}}(8) struct padded\_e\_s}
 \DoxyCodeLine{84 \{}
-\DoxyCodeLine{85   \mbox{\hyperlink{structe__s}{e\_t}}     \mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}};}
+\DoxyCodeLine{85   \mbox{\hyperlink{structe__s}{e\_t}}     val;}
 \DoxyCodeLine{86   uint8\_t pad[\mbox{\hyperlink{bike__r1_2bike__defs_8h_a0b03e48658b6d1ade6afe8cd86828558}{N\_PADDED\_SIZE}} -\/ \mbox{\hyperlink{bike__r1_2bike__defs_8h_ae06c31af750d255336e0baf9f6c7817b}{N\_SIZE}}];}
 \DoxyCodeLine{87 \} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a6debcbb16f42b6eb6bbfae2a6d1e087a}{padded\_e\_t}};}
 \DoxyCodeLine{88 }
 \DoxyCodeLine{89 \textcolor{comment}{// Pad r to the next Block}}
 \DoxyCodeLine{90 \textcolor{keyword}{typedef} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_ab8417090a3ebfb00929ee1b659fb84fa}{ALIGN}}(8) struct padded\_r\_s}
 \DoxyCodeLine{91 \{}
-\DoxyCodeLine{92   \mbox{\hyperlink{structr__s}{r\_t}}     \mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}};}
+\DoxyCodeLine{92   \mbox{\hyperlink{structr__s}{r\_t}}     val;}
 \DoxyCodeLine{93   uint8\_t pad[\mbox{\hyperlink{bike__r1_2bike__defs_8h_afc7e05b51256a92411ccdd88142819d3}{R\_PADDED\_SIZE}} -\/ \mbox{\hyperlink{bike__r1_2bike__defs_8h_ad4d659e6bce5a504df1310cb6401db53}{R\_SIZE}}];}
 \DoxyCodeLine{94 \} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a7620fdcd706f47d6fa41dc3c4de9291b}{padded\_r\_t}};}
 \DoxyCodeLine{95 }
@@ -105,7 +105,7 @@
 \DoxyCodeLine{101 \textcolor{comment}{// Need to allocate twice the room for the results}}
 \DoxyCodeLine{102 \textcolor{keyword}{typedef} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_ab8417090a3ebfb00929ee1b659fb84fa}{ALIGN}}(8) struct dbl\_padded\_r\_s}
 \DoxyCodeLine{103 \{}
-\DoxyCodeLine{104   \mbox{\hyperlink{structr__s}{r\_t}}     \mbox{\hyperlink{connection__state__test_8c_ae763072d6c1a1d8daad8f1857de864b9}{val}};}
+\DoxyCodeLine{104   \mbox{\hyperlink{structr__s}{r\_t}}     val;}
 \DoxyCodeLine{105   uint8\_t pad[(2 * \mbox{\hyperlink{bike__r1_2bike__defs_8h_afc7e05b51256a92411ccdd88142819d3}{R\_PADDED\_SIZE}}) -\/ \mbox{\hyperlink{bike__r1_2bike__defs_8h_ad4d659e6bce5a504df1310cb6401db53}{R\_SIZE}}];}
 \DoxyCodeLine{106 \} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_ad92e553e620698223e468aedd3db0303}{dbl\_padded\_r\_t}};}
 \DoxyCodeLine{107 }
@@ -132,7 +132,7 @@
 \DoxyCodeLine{128   \textcolor{keyword}{union }\{}
 \DoxyCodeLine{129     \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a7620fdcd706f47d6fa41dc3c4de9291b}{padded\_r\_t}} \mbox{\hyperlink{structupc__slice__s_a85ae00a25285d82de2f62e5a6fd66a3d}{r}};}
 \DoxyCodeLine{130     uint64\_t   \mbox{\hyperlink{structupc__slice__s_a3e09323e85dd16d6b667b6bea7af90c8}{qw}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a7620fdcd706f47d6fa41dc3c4de9291b}{padded\_r\_t}}) / 8];}
-\DoxyCodeLine{131   \} \mbox{\hyperlink{structupc__slice__s_aad246235d7830716abdd4acc95b81790}{u}};}
+\DoxyCodeLine{131   \} \mbox{\hyperlink{structupc__slice__s_ae1d75b62c30fc77b7660bac83f86c833}{u}};}
 \DoxyCodeLine{132 \} \mbox{\hyperlink{crt_2s2n_2pq-crypto_2bike__r1_2_types_8h_a994d50a0570099ea922d44e868d0d067}{upc\_slice\_t}};}
 \DoxyCodeLine{133 }
 \DoxyCodeLine{134 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structupc__s}{upc\_s}}}

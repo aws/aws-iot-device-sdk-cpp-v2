@@ -96,13 +96,13 @@ Functions</h2></td></tr>
 <tr class="separator:a8cd5276781f8bdf4c2698c65a8b02ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bb34854a4a7f496dfdb073f05a5f8d4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a2bb34854a4a7f496dfdb073f05a5f8d4">s_der_write_tlv</a> (struct <a class="el" href="structder__tlv.html">der_tlv</a> *tlv, struct <a class="el" href="structaws__byte__buf.html">aws_byte_buf</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a1fe855c208bc17a51a4d34fefdb2d5b1">buf</a>)</td></tr>
 <tr class="separator:a2bb34854a4a7f496dfdb073f05a5f8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82fd318eb273be1c931b225f798eecfa"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a82fd318eb273be1c931b225f798eecfa">aws_der_encoder_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, size_t capacity)</td></tr>
+<tr class="memitem:a82fd318eb273be1c931b225f798eecfa"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a82fd318eb273be1c931b225f798eecfa">aws_der_encoder_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, size_t capacity)</td></tr>
 <tr class="separator:a82fd318eb273be1c931b225f798eecfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a008c8714830309b57bdc3227e232bb85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a008c8714830309b57bdc3227e232bb85">aws_der_encoder_destroy</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder)</td></tr>
 <tr class="separator:a008c8714830309b57bdc3227e232bb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8353d41f8b7e67d98213ace1910e47b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ae8353d41f8b7e67d98213ace1910e47b">aws_der_encoder_write_integer</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> integer)</td></tr>
 <tr class="separator:ae8353d41f8b7e67d98213ace1910e47b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab852a89f1c2d4f2f6b3cf3044c02c2e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ab852a89f1c2d4f2f6b3cf3044c02c2e6">aws_der_encoder_write_boolean</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a08f076c86f430b6f0e301fcf94223b38">boolean</a>)</td></tr>
+<tr class="memitem:ab852a89f1c2d4f2f6b3cf3044c02c2e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ab852a89f1c2d4f2f6b3cf3044c02c2e6">aws_der_encoder_write_boolean</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder, bool <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a08f076c86f430b6f0e301fcf94223b38">boolean</a>)</td></tr>
 <tr class="separator:ab852a89f1c2d4f2f6b3cf3044c02c2e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c20f15f606c1020997fdf65db41a80c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a8c20f15f606c1020997fdf65db41a80c">aws_der_encoder_write_null</a> (struct <a class="el" href="structaws__der__encoder.html">aws_der_encoder</a> *encoder)</td></tr>
 <tr class="separator:a8c20f15f606c1020997fdf65db41a80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,13 +126,13 @@ Functions</h2></td></tr>
 <tr class="separator:a92aac395df8efb5c851b12086d6b0a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87f46f4e8297267363606b7e3e1f2e5c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a87f46f4e8297267363606b7e3e1f2e5c">s_decoder_parse</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:a87f46f4e8297267363606b7e3e1f2e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ef3a4c9071c3c50da9ac0913cf95667"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a5ef3a4c9071c3c50da9ac0913cf95667">aws_der_decoder_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input)</td></tr>
+<tr class="memitem:a5ef3a4c9071c3c50da9ac0913cf95667"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a5ef3a4c9071c3c50da9ac0913cf95667">aws_der_decoder_new</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> input)</td></tr>
 <tr class="separator:a5ef3a4c9071c3c50da9ac0913cf95667"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89a4ee9934ea836a06f95fe976aecf3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a89a4ee9934ea836a06f95fe976aecf3e">aws_der_decoder_destroy</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:a89a4ee9934ea836a06f95fe976aecf3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb36deb77b520f57ed79abcac77a3a43"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#adb36deb77b520f57ed79abcac77a3a43">s_parse_cursor</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> cur)</td></tr>
 <tr class="separator:adb36deb77b520f57ed79abcac77a3a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a915adaf6123b5b1c716aafdb0bfcc32d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a915adaf6123b5b1c716aafdb0bfcc32d">aws_der_decoder_next</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
+<tr class="memitem:a915adaf6123b5b1c716aafdb0bfcc32d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a915adaf6123b5b1c716aafdb0bfcc32d">aws_der_decoder_next</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:a915adaf6123b5b1c716aafdb0bfcc32d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca3eafaf43b32ac3e0c914263ccc041a"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structder__tlv.html">der_tlv</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#aca3eafaf43b32ac3e0c914263ccc041a">s_decoder_tlv</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder)</td></tr>
 <tr class="separator:aca3eafaf43b32ac3e0c914263ccc041a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -148,7 +148,7 @@ Functions</h2></td></tr>
 <tr class="separator:ab18edf130e03781d530b61c3c9f00c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac20e3e0d1642fae05627164672341393"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#ac20e3e0d1642fae05627164672341393">aws_der_decoder_tlv_integer</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *integer)</td></tr>
 <tr class="separator:ac20e3e0d1642fae05627164672341393"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ea94d3d687e2e26a2875c70e9506caf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a0ea94d3d687e2e26a2875c70e9506caf">aws_der_decoder_tlv_boolean</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a08f076c86f430b6f0e301fcf94223b38">boolean</a>)</td></tr>
+<tr class="memitem:a0ea94d3d687e2e26a2875c70e9506caf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a0ea94d3d687e2e26a2875c70e9506caf">aws_der_decoder_tlv_boolean</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, bool *<a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h.html#a08f076c86f430b6f0e301fcf94223b38">boolean</a>)</td></tr>
 <tr class="separator:a0ea94d3d687e2e26a2875c70e9506caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04424ef2ae0192cdb94329b6c9530ab7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="der_8c.html#a04424ef2ae0192cdb94329b6c9530ab7">aws_der_decoder_tlv_blob</a> (struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *decoder, struct <a class="el" href="structaws__byte__cursor.html">aws_byte_cursor</a> *blob)</td></tr>
 <tr class="separator:a04424ef2ae0192cdb94329b6c9530ab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,7 +221,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_der_decoder_next </td>
+          <td class="memname">bool aws_der_decoder_next </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structaws__der__decoder.html">aws_der_decoder</a> *&#160;</td>
           <td class="paramname"><em>decoder</em></td><td>)</td>
@@ -290,7 +290,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> *&#160;</td>
+          <td class="paramtype">bool *&#160;</td>
           <td class="paramname"><em>boolean</em>&#160;</td>
         </tr>
         <tr>
@@ -706,7 +706,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td>
+          <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>boolean</em>&#160;</td>
         </tr>
         <tr>

@@ -20,9 +20,9 @@ int \mbox{\hyperlink{task__scheduler_8c_a5024e39dfce176d2ef2d7ae98154aea6}{aws\+
 \item 
 void \mbox{\hyperlink{task__scheduler_8c_a4d8b58a3579609821ca40b3690e7e3d9}{aws\+\_\+task\+\_\+scheduler\+\_\+clean\+\_\+up}} (struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{task__scheduler_8c_a875becebb7cf5148052529ada828e7c0}{aws\+\_\+task\+\_\+scheduler\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler)
+bool \mbox{\hyperlink{task__scheduler_8c_a875becebb7cf5148052529ada828e7c0}{aws\+\_\+task\+\_\+scheduler\+\_\+is\+\_\+valid}} (const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler)
 \item 
-\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{task__scheduler_8c_a090286acb2bf733f8c7db92fd5031ee9}{aws\+\_\+task\+\_\+scheduler\+\_\+has\+\_\+tasks}} (const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler, uint64\+\_\+t $\ast$next\+\_\+task\+\_\+time)
+bool \mbox{\hyperlink{task__scheduler_8c_a090286acb2bf733f8c7db92fd5031ee9}{aws\+\_\+task\+\_\+scheduler\+\_\+has\+\_\+tasks}} (const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler, uint64\+\_\+t $\ast$next\+\_\+task\+\_\+time)
 \item 
 void \mbox{\hyperlink{task__scheduler_8c_a87ae63096361ad2f4438cb3c28518e10}{aws\+\_\+task\+\_\+scheduler\+\_\+schedule\+\_\+now}} (struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$scheduler, struct \mbox{\hyperlink{structaws__task}{aws\+\_\+task}} $\ast$task)
 \item 
@@ -68,7 +68,7 @@ Empties and executes all queued tasks, passing the AWS\+\_\+\+TASK\+\_\+\+STATUS
 \index{task\_scheduler.c@{task\_scheduler.c}!aws\_task\_scheduler\_has\_tasks@{aws\_task\_scheduler\_has\_tasks}}
 \index{aws\_task\_scheduler\_has\_tasks@{aws\_task\_scheduler\_has\_tasks}!task\_scheduler.c@{task\_scheduler.c}}
 \doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_has\_tasks()}{aws\_task\_scheduler\_has\_tasks()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+task\+\_\+scheduler\+\_\+has\+\_\+tasks (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler,  }\item[{uint64\+\_\+t $\ast$}]{next\+\_\+task\+\_\+time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+task\+\_\+scheduler\+\_\+has\+\_\+tasks (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler,  }\item[{uint64\+\_\+t $\ast$}]{next\+\_\+task\+\_\+time }\end{DoxyParamCaption})}
 
 Returns whether the scheduler has any scheduled tasks. next\+\_\+task\+\_\+time (optional) will be set to time of the next task, note that 0 will be set if tasks were added via \mbox{\hyperlink{task__scheduler_8h_af829b95fb361631a8ff1b1e3a663a81f}{aws\+\_\+task\+\_\+scheduler\+\_\+schedule\+\_\+now()}} and UINT64\+\_\+\+MAX will be set if no tasks are scheduled at all. \mbox{\Hypertarget{task__scheduler_8c_a5024e39dfce176d2ef2d7ae98154aea6}\label{task__scheduler_8c_a5024e39dfce176d2ef2d7ae98154aea6}} 
 \index{task\_scheduler.c@{task\_scheduler.c}!aws\_task\_scheduler\_init@{aws\_task\_scheduler\_init}}
@@ -80,7 +80,7 @@ Initializes a task scheduler instance. \mbox{\Hypertarget{task__scheduler_8c_a87
 \index{task\_scheduler.c@{task\_scheduler.c}!aws\_task\_scheduler\_is\_valid@{aws\_task\_scheduler\_is\_valid}}
 \index{aws\_task\_scheduler\_is\_valid@{aws\_task\_scheduler\_is\_valid}!task\_scheduler.c@{task\_scheduler.c}}
 \doxysubsubsection{\texorpdfstring{aws\_task\_scheduler\_is\_valid()}{aws\_task\_scheduler\_is\_valid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+task\+\_\+scheduler\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool aws\+\_\+task\+\_\+scheduler\+\_\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{const struct \mbox{\hyperlink{structaws__task__scheduler}{aws\+\_\+task\+\_\+scheduler}} $\ast$}]{scheduler }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{task__scheduler_8c_a749f6f8555f184727e09368539c86647}\label{task__scheduler_8c_a749f6f8555f184727e09368539c86647}} 
 \index{task\_scheduler.c@{task\_scheduler.c}!aws\_task\_scheduler\_run\_all@{aws\_task\_scheduler\_run\_all}}

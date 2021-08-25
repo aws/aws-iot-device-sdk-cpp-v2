@@ -28,17 +28,17 @@ typedef \mbox{\hyperlink{structshake128ctx}{shake128ctx}} \mbox{\hyperlink{fips2
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{fips202__kyber__r2_8h_a78c531883720dbec732be4d8e5b07259}{shake128\+\_\+absorb}} (\mbox{\hyperlink{structshake128ctx}{shake128ctx}} $\ast$\mbox{\hyperlink{structstate}{state}}, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
+void \mbox{\hyperlink{fips202__kyber__r2_8h_a78c531883720dbec732be4d8e5b07259}{shake128\+\_\+absorb}} (\mbox{\hyperlink{structshake128ctx}{shake128ctx}} $\ast$state, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
 \item 
-void \mbox{\hyperlink{fips202__kyber__r2_8h_a8d1a3d1462e701f2e1f44ea7e8e88eeb}{shake128\+\_\+squeezeblocks}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t nblocks, \mbox{\hyperlink{structshake128ctx}{shake128ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{fips202__kyber__r2_8h_a8d1a3d1462e701f2e1f44ea7e8e88eeb}{shake128\+\_\+squeezeblocks}} (uint8\+\_\+t $\ast$output, size\+\_\+t nblocks, \mbox{\hyperlink{structshake128ctx}{shake128ctx}} $\ast$state)
 \item 
-void \mbox{\hyperlink{fips202__kyber__r2_8h_ae403d3f0ee6d898fb9012704bcbf956e}{shake256\+\_\+kyber}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t outlen, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
+void \mbox{\hyperlink{fips202__kyber__r2_8h_ae403d3f0ee6d898fb9012704bcbf956e}{shake256\+\_\+kyber}} (uint8\+\_\+t $\ast$output, size\+\_\+t outlen, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
 \item 
-void \mbox{\hyperlink{fips202__kyber__r2_8h_aea7a526d3102307cb701d7e225ba519b}{sha3\+\_\+256}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
+void \mbox{\hyperlink{fips202__kyber__r2_8h_aea7a526d3102307cb701d7e225ba519b}{sha3\+\_\+256}} (uint8\+\_\+t $\ast$output, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
 \item 
-void \mbox{\hyperlink{fips202__kyber__r2_8h_ab41d66052ac5fa044bd8d5cd008e4a93}{sha3\+\_\+512}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
+void \mbox{\hyperlink{fips202__kyber__r2_8h_ab41d66052ac5fa044bd8d5cd008e4a93}{sha3\+\_\+512}} (uint8\+\_\+t $\ast$output, const uint8\+\_\+t $\ast$input, size\+\_\+t inlen)
 \item 
-void \mbox{\hyperlink{fips202__kyber__r2_8h_ad008cda29eba1f6d5592bd67268e26b4}{shake128\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{structshake128ctx}{shake128ctx}} $\ast$\mbox{\hyperlink{structstate}{state}})
+void \mbox{\hyperlink{fips202__kyber__r2_8h_ad008cda29eba1f6d5592bd67268e26b4}{shake128\+\_\+ctx\+\_\+release}} (\mbox{\hyperlink{structshake128ctx}{shake128ctx}} $\ast$state)
 \end{DoxyCompactItemize}
 
 

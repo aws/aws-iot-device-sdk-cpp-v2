@@ -18,7 +18,7 @@ static void $\ast$ \mbox{\hyperlink{auth_8c_ac5166c1f1f34e72fa1449d1a64856a10}{s
 \item 
 static void \mbox{\hyperlink{auth_8c_a40f358ac3a044f9d32405dbb64084cba}{s\+\_\+c\+JSONFree}} (void $\ast$ptr)
 \item 
-void \mbox{\hyperlink{auth_8c_ab826534eef36119eab4f7fd77c67a4cc}{aws\+\_\+auth\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+void \mbox{\hyperlink{auth_8c_ab826534eef36119eab4f7fd77c67a4cc}{aws\+\_\+auth\+\_\+library\+\_\+init}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{auth_8c_ae6cdddedcccc7de62cdf35cf640aaf24}{aws\+\_\+auth\+\_\+library\+\_\+clean\+\_\+up}} (void)
 \end{DoxyCompactItemize}
@@ -33,7 +33,7 @@ static struct \mbox{\hyperlink{structaws__log__subject__info}{aws\+\_\+log\+\_\+
 \item 
 static struct \mbox{\hyperlink{structaws__log__subject__info__list}{aws\+\_\+log\+\_\+subject\+\_\+info\+\_\+list}} \mbox{\hyperlink{auth_8c_ae663dc311824962cd48cc256ed99198f}{s\+\_\+auth\+\_\+log\+\_\+subject\+\_\+list}}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{auth_8c_a3e0a762a360f8f4078afaba44e688669}{s\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+static bool \mbox{\hyperlink{auth_8c_a3e0a762a360f8f4078afaba44e688669}{s\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}
 \item 
 static struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$ \mbox{\hyperlink{auth_8c_a5a460a3899dc4042a3ba4f3315467d57}{s\+\_\+library\+\_\+allocator}} = NULL
 \end{DoxyCompactItemize}
@@ -149,5 +149,5 @@ Initializes internal datastructures used by aws-\/c-\/auth. Must be called befor
 \index{auth.c@{auth.c}!s\_library\_initialized@{s\_library\_initialized}}
 \index{s\_library\_initialized@{s\_library\_initialized}!auth.c@{auth.c}}
 \doxysubsubsection{\texorpdfstring{s\_library\_initialized}{s\_library\_initialized}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily bool s\+\_\+library\+\_\+initialized = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}\hspace{0.3cm}{\ttfamily [static]}}
 

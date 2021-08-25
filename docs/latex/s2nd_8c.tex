@@ -41,17 +41,17 @@ struct \mbox{\hyperlink{structconn__settings}{conn\+\_\+settings}}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{s2nd_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}{cache\+\_\+store\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, uint64\+\_\+t ttl, const void $\ast$key, uint64\+\_\+t key\+\_\+size, const void $\ast$value, uint64\+\_\+t value\+\_\+size)
+int \mbox{\hyperlink{s2nd_8c_a8aab504b1c39f7cdcf04aee0d0b92e50}{cache\+\_\+store\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$ctx, uint64\+\_\+t ttl, const void $\ast$key, uint64\+\_\+t key\+\_\+size, const void $\ast$value, uint64\+\_\+t value\+\_\+size)
 \item 
-int \mbox{\hyperlink{s2nd_8c_a76518c3daf7521be5dd26d13df982532}{cache\+\_\+retrieve\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const void $\ast$key, uint64\+\_\+t key\+\_\+size, void $\ast$value, uint64\+\_\+t $\ast$value\+\_\+size)
+int \mbox{\hyperlink{s2nd_8c_a76518c3daf7521be5dd26d13df982532}{cache\+\_\+retrieve\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$ctx, const void $\ast$key, uint64\+\_\+t key\+\_\+size, void $\ast$value, uint64\+\_\+t $\ast$value\+\_\+size)
 \item 
-int \mbox{\hyperlink{s2nd_8c_a07c36a58a01ca824ad413a8bb1e7aafa}{cache\+\_\+delete\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$\mbox{\hyperlink{connection__state__test_8c_a1f6d09b30c54854dfca659b7463ac207}{ctx}}, const void $\ast$key, uint64\+\_\+t key\+\_\+size)
+int \mbox{\hyperlink{s2nd_8c_a07c36a58a01ca824ad413a8bb1e7aafa}{cache\+\_\+delete\+\_\+callback}} (struct \mbox{\hyperlink{structs2n__connection}{s2n\+\_\+connection}} $\ast$conn, void $\ast$ctx, const void $\ast$key, uint64\+\_\+t key\+\_\+size)
 \item 
 static uint8\+\_\+t \mbox{\hyperlink{s2nd_8c_a7a74b6acdedcb42ff546fc7824f2e43c}{unsafe\+\_\+verify\+\_\+host\+\_\+fn}} (const char $\ast$host\+\_\+name, size\+\_\+t host\+\_\+name\+\_\+len, void $\ast$data)
 \item 
 void \mbox{\hyperlink{s2nd_8c_a2ef30c42cbc289d899a8be5d2d8f77d0}{usage}} ()
 \item 
-int \mbox{\hyperlink{s2nd_8c_ab5cbb30f3b497d9578336e2253a94622}{handle\+\_\+connection}} (int fd, struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, struct \mbox{\hyperlink{structconn__settings}{conn\+\_\+settings}} settings)
+int \mbox{\hyperlink{s2nd_8c_ab5cbb30f3b497d9578336e2253a94622}{handle\+\_\+connection}} (int fd, struct \mbox{\hyperlink{structs2n__config}{s2n\+\_\+config}} $\ast$config, struct \mbox{\hyperlink{structconn__settings}{conn\+\_\+settings}} settings)
 \item 
 int \mbox{\hyperlink{s2nd_8c_ad1835a0a190dc5fe4f925bb69443c770}{main}} (int argc, char $\ast$const $\ast$argv)
 \end{DoxyCompactItemize}

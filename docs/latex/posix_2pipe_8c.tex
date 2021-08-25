@@ -24,7 +24,7 @@ struct \mbox{\hyperlink{structwrite__end__impl}{write\+\_\+end\+\_\+impl}}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{posix_2pipe_8c_a14dac9a970c26838aa14274450569e57}{s\+\_\+write\+\_\+end\+\_\+on\+\_\+event}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{posix_2pipe_8c_a14dac9a970c26838aa14274450569e57}{s\+\_\+write\+\_\+end\+\_\+on\+\_\+event}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, void $\ast$user\+\_\+data)
 \item 
 static int \mbox{\hyperlink{posix_2pipe_8c_a9ce6a5092db9cbd149c1fe0ecf5f35b4}{s\+\_\+translate\+\_\+posix\+\_\+error}} (int err)
 \item 
@@ -32,7 +32,7 @@ static int \mbox{\hyperlink{posix_2pipe_8c_ab1e35cd949ceb4abffef69f1c2dbe1aa}{s\
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-io_2include_2aws_2io_2_exports_8h_a26db8dfe8d149d3ddd330c792f3e67df}{AWS\+\_\+\+IO\+\_\+\+API}} int \mbox{\hyperlink{posix_2pipe_8c_a855c91f23030ab6c1c8c27cced91dc91}{aws\+\_\+open\+\_\+nonblocking\+\_\+posix\+\_\+pipe}} (int pipe\+\_\+fds\mbox{[}2\mbox{]})
 \item 
-int \mbox{\hyperlink{posix_2pipe_8c_abf56e2682653ae18d116c31602657792}{aws\+\_\+pipe\+\_\+init}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$read\+\_\+end\+\_\+event\+\_\+loop, struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$write\+\_\+end\+\_\+event\+\_\+loop, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+int \mbox{\hyperlink{posix_2pipe_8c_abf56e2682653ae18d116c31602657792}{aws\+\_\+pipe\+\_\+init}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$read\+\_\+end\+\_\+event\+\_\+loop, struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$write\+\_\+end\+\_\+event\+\_\+loop, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 int \mbox{\hyperlink{posix_2pipe_8c_a47e6a36d50031a7cb8ec7fba7566db73}{aws\+\_\+pipe\+\_\+clean\+\_\+up\+\_\+read\+\_\+end}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end)
 \item 
@@ -42,17 +42,17 @@ struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast
 \item 
 int \mbox{\hyperlink{posix_2pipe_8c_a482d5f51496dba8eb86fa1f937966ee3}{aws\+\_\+pipe\+\_\+read}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$dst\+\_\+buffer, size\+\_\+t $\ast$num\+\_\+bytes\+\_\+read)
 \item 
-static void \mbox{\hyperlink{posix_2pipe_8c_a5e9ace3329ac9b59db8a5665f99f45f4}{s\+\_\+read\+\_\+end\+\_\+on\+\_\+event}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$\mbox{\hyperlink{socket__test_8c_a19ef9bd83c1b97025d8b626c0937c9d5}{event\+\_\+loop}}, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+static void \mbox{\hyperlink{posix_2pipe_8c_a5e9ace3329ac9b59db8a5665f99f45f4}{s\+\_\+read\+\_\+end\+\_\+on\+\_\+event}} (struct \mbox{\hyperlink{structaws__event__loop}{aws\+\_\+event\+\_\+loop}} $\ast$event\+\_\+loop, struct \mbox{\hyperlink{structaws__io__handle}{aws\+\_\+io\+\_\+handle}} $\ast$handle, int events, void $\ast$user\+\_\+data)
 \item 
-int \mbox{\hyperlink{posix_2pipe_8c_a7e9848629fbb79aa2e32820a610a536f}{aws\+\_\+pipe\+\_\+subscribe\+\_\+to\+\_\+readable\+\_\+events}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, \mbox{\hyperlink{pipe_8h_a09fca130eff2201e2e708346b1712daf}{aws\+\_\+pipe\+\_\+on\+\_\+readable\+\_\+fn}} $\ast$on\+\_\+readable, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+int \mbox{\hyperlink{posix_2pipe_8c_a7e9848629fbb79aa2e32820a610a536f}{aws\+\_\+pipe\+\_\+subscribe\+\_\+to\+\_\+readable\+\_\+events}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end, \mbox{\hyperlink{pipe_8h_a09fca130eff2201e2e708346b1712daf}{aws\+\_\+pipe\+\_\+on\+\_\+readable\+\_\+fn}} $\ast$on\+\_\+readable, void $\ast$user\+\_\+data)
 \item 
 int \mbox{\hyperlink{posix_2pipe_8c_a146f320d83d3ef8f4d2199c619ddf14c}{aws\+\_\+pipe\+\_\+unsubscribe\+\_\+from\+\_\+readable\+\_\+events}} (struct \mbox{\hyperlink{structaws__pipe__read__end}{aws\+\_\+pipe\+\_\+read\+\_\+end}} $\ast$read\+\_\+end)
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{posix_2pipe_8c_a4b00f81f9ce8f4c4df417a7511ff9539}{s\+\_\+write\+\_\+end\+\_\+complete\+\_\+front\+\_\+write\+\_\+request}} (struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, int \mbox{\hyperlink{channel__handler__test_8c_a7d16b1c68c87cec009d972e79abfba78}{error\+\_\+code}})
+static bool \mbox{\hyperlink{posix_2pipe_8c_a4b00f81f9ce8f4c4df417a7511ff9539}{s\+\_\+write\+\_\+end\+\_\+complete\+\_\+front\+\_\+write\+\_\+request}} (struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, int error\+\_\+code)
 \item 
 static void \mbox{\hyperlink{posix_2pipe_8c_a39d3ac801f218d7da0cd3d05f5ef744b}{s\+\_\+write\+\_\+end\+\_\+process\+\_\+requests}} (struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end)
 \item 
-int \mbox{\hyperlink{posix_2pipe_8c_a1b498acbbeebfbbe976672d7bcaa3dba}{aws\+\_\+pipe\+\_\+write}} (struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} src\+\_\+buffer, \mbox{\hyperlink{pipe_8h_af5d692be5742b1a7a8e8eca17c1c1673}{aws\+\_\+pipe\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn}} $\ast$on\+\_\+completed, void $\ast$\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_af1abaca9a982b3cdb0b118914416c39b}{user\+\_\+data}})
+int \mbox{\hyperlink{posix_2pipe_8c_a1b498acbbeebfbbe976672d7bcaa3dba}{aws\+\_\+pipe\+\_\+write}} (struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} src\+\_\+buffer, \mbox{\hyperlink{pipe_8h_af5d692be5742b1a7a8e8eca17c1c1673}{aws\+\_\+pipe\+\_\+on\+\_\+write\+\_\+completed\+\_\+fn}} $\ast$on\+\_\+completed, void $\ast$user\+\_\+data)
 \item 
 int \mbox{\hyperlink{posix_2pipe_8c_a0caa54ae90f9251165a3cddd2dc94840}{aws\+\_\+pipe\+\_\+clean\+\_\+up\+\_\+write\+\_\+end}} (struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$write\+\_\+end)
 \end{DoxyCompactItemize}
@@ -156,7 +156,7 @@ Initiates an asynchrous write from the source buffer to the pipe. The data refer
 \index{pipe.c@{pipe.c}!s\_write\_end\_complete\_front\_write\_request@{s\_write\_end\_complete\_front\_write\_request}}
 \index{s\_write\_end\_complete\_front\_write\_request@{s\_write\_end\_complete\_front\_write\_request}!pipe.c@{pipe.c}}
 \doxysubsubsection{\texorpdfstring{s\_write\_end\_complete\_front\_write\_request()}{s\_write\_end\_complete\_front\_write\_request()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+write\+\_\+end\+\_\+complete\+\_\+front\+\_\+write\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$}]{write\+\_\+end,  }\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static bool s\+\_\+write\+\_\+end\+\_\+complete\+\_\+front\+\_\+write\+\_\+request (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__pipe__write__end}{aws\+\_\+pipe\+\_\+write\+\_\+end}} $\ast$}]{write\+\_\+end,  }\item[{int}]{error\+\_\+code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{posix_2pipe_8c_a14dac9a970c26838aa14274450569e57}\label{posix_2pipe_8c_a14dac9a970c26838aa14274450569e57}} 
 \index{pipe.c@{pipe.c}!s\_write\_end\_on\_event@{s\_write\_end\_on\_event}}

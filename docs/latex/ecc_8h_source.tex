@@ -20,12 +20,12 @@
 \DoxyCodeLine{20 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void} \mbox{\hyperlink{ecc_8h_aa7a8495ca1e836b7758081ea6d231987}{aws\_ecc\_key\_pair\_destroy\_fn}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *key\_pair);}
 \DoxyCodeLine{21 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{ecc_8h_acd3c973b845e08c2ea7278b5241a54dc}{aws\_ecc\_key\_pair\_sign\_message\_fn}}(}
 \DoxyCodeLine{22     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *key\_pair,}
-\DoxyCodeLine{23     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
+\DoxyCodeLine{23     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *message,}
 \DoxyCodeLine{24     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *signature\_output);}
 \DoxyCodeLine{25 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{ecc_8h_ac2bc7c015207257d74950245667b6893}{aws\_ecc\_key\_pair\_derive\_public\_key\_fn}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *key\_pair);}
 \DoxyCodeLine{26 \textcolor{keyword}{typedef} \textcolor{keywordtype}{int} \mbox{\hyperlink{ecc_8h_aeabc0184afc3e43f4b4810ccbf7d23ec}{aws\_ecc\_key\_pair\_verify\_signature\_fn}}(}
 \DoxyCodeLine{27     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *signer,}
-\DoxyCodeLine{28     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
+\DoxyCodeLine{28     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *message,}
 \DoxyCodeLine{29     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *signature);}
 \DoxyCodeLine{30 \textcolor{keyword}{typedef} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{ecc_8h_a3dcfccd7691932ddd4c3b1fcd2657a91}{aws\_ecc\_key\_pair\_signature\_length\_fn}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *signer);}
 \DoxyCodeLine{31 }
@@ -56,28 +56,28 @@
 \DoxyCodeLine{62 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{void} \mbox{\hyperlink{ecc_8h_a4ff5e1e4d4a338c92dd107b0619ca784}{aws\_ecc\_key\_pair\_release}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *key\_pair);}
 \DoxyCodeLine{63 }
 \DoxyCodeLine{70 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *\mbox{\hyperlink{ecc_8h_ab901a49c457bd7533d84103036d8af5c}{aws\_ecc\_key\_pair\_new\_from\_private\_key}}(}
-\DoxyCodeLine{71     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{71     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__ecc__key__pair_a97e3e8e8b1e5816d8d1d30e9de520e20}{allocator}},}
 \DoxyCodeLine{72     \textcolor{keyword}{enum} \mbox{\hyperlink{ecc_8h_a27a5bd6641fe1af09fdf80c122dc3119}{aws\_ecc\_curve\_name}} \mbox{\hyperlink{structaws__ecc__key__pair_ab1e482c59b4d4d8b4f65d19f52240fd3}{curve\_name}},}
 \DoxyCodeLine{73     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *priv\_key);}
 \DoxyCodeLine{74 }
 \DoxyCodeLine{75 \textcolor{preprocessor}{\#if !defined(AWS\_OS\_IOS)}}
 \DoxyCodeLine{81 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *\mbox{\hyperlink{ecc_8h_a1ae48cd5d128902de0e619a74a6280ce}{aws\_ecc\_key\_pair\_new\_generate\_random}}(}
-\DoxyCodeLine{82     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{82     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__ecc__key__pair_a97e3e8e8b1e5816d8d1d30e9de520e20}{allocator}},}
 \DoxyCodeLine{83     \textcolor{keyword}{enum} \mbox{\hyperlink{ecc_8h_a27a5bd6641fe1af09fdf80c122dc3119}{aws\_ecc\_curve\_name}} \mbox{\hyperlink{structaws__ecc__key__pair_ab1e482c59b4d4d8b4f65d19f52240fd3}{curve\_name}});}
 \DoxyCodeLine{84 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* !AWS\_OS\_IOS */}\textcolor{preprocessor}{}}
 \DoxyCodeLine{85 }
 \DoxyCodeLine{92 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *\mbox{\hyperlink{ecc_8h_a6955d9e999c44901c44d410e5cf49d81}{aws\_ecc\_key\_pair\_new\_from\_public\_key}}(}
-\DoxyCodeLine{93     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{93     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__ecc__key__pair_a97e3e8e8b1e5816d8d1d30e9de520e20}{allocator}},}
 \DoxyCodeLine{94     \textcolor{keyword}{enum} \mbox{\hyperlink{ecc_8h_a27a5bd6641fe1af09fdf80c122dc3119}{aws\_ecc\_curve\_name}} \mbox{\hyperlink{structaws__ecc__key__pair_ab1e482c59b4d4d8b4f65d19f52240fd3}{curve\_name}},}
 \DoxyCodeLine{95     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *public\_key\_x,}
 \DoxyCodeLine{96     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *public\_key\_y);}
 \DoxyCodeLine{97 }
 \DoxyCodeLine{104 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *\mbox{\hyperlink{ecc_8h_a1a3f19c95de22dec5647b67850458552}{aws\_ecc\_key\_pair\_new\_from\_asn1}}(}
-\DoxyCodeLine{105     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{105     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__ecc__key__pair_a97e3e8e8b1e5816d8d1d30e9de520e20}{allocator}},}
 \DoxyCodeLine{106     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *encoded\_keys);}
 \DoxyCodeLine{107 }
 \DoxyCodeLine{113 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *\mbox{\hyperlink{ecc_8h_ac245e5ce372e3189c9d5600e123f09a6}{aws\_ecc\_key\_new\_from\_hex\_coordinates}}(}
-\DoxyCodeLine{114     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}},}
+\DoxyCodeLine{114     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__allocator}{aws\_allocator}} *\mbox{\hyperlink{structaws__ecc__key__pair_a97e3e8e8b1e5816d8d1d30e9de520e20}{allocator}},}
 \DoxyCodeLine{115     \textcolor{keyword}{enum} \mbox{\hyperlink{ecc_8h_a27a5bd6641fe1af09fdf80c122dc3119}{aws\_ecc\_curve\_name}} \mbox{\hyperlink{structaws__ecc__key__pair_ab1e482c59b4d4d8b4f65d19f52240fd3}{curve\_name}},}
 \DoxyCodeLine{116     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} pub\_x\_hex\_cursor,}
 \DoxyCodeLine{117     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} pub\_y\_hex\_cursor);}
@@ -90,12 +90,12 @@
 \DoxyCodeLine{135 }
 \DoxyCodeLine{144 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{ecc_8h_a8c18ecf3f1953ea62e1b12153d21997e}{aws\_ecc\_key\_pair\_sign\_message}}(}
 \DoxyCodeLine{145     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *key\_pair,}
-\DoxyCodeLine{146     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
+\DoxyCodeLine{146     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *message,}
 \DoxyCodeLine{147     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__buf}{aws\_byte\_buf}} *signature);}
 \DoxyCodeLine{148 }
 \DoxyCodeLine{158 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{int} \mbox{\hyperlink{ecc_8h_a0f885da7b810b12be4b4ff5c26c23393}{aws\_ecc\_key\_pair\_verify\_signature}}(}
 \DoxyCodeLine{159     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *key\_pair,}
-\DoxyCodeLine{160     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *\mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a6095cc5ed7333d602d0c342e436eb2c5}{message}},}
+\DoxyCodeLine{160     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *message,}
 \DoxyCodeLine{161     \textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__byte__cursor}{aws\_byte\_cursor}} *signature);}
 \DoxyCodeLine{162 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-cal_2include_2aws_2cal_2_exports_8h_aa692ea47554141d96737626ab08871da}{AWS\_CAL\_API}} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{ecc_8h_a535f3efa777b24a54cc3ccc77c253f47}{aws\_ecc\_key\_pair\_signature\_length}}(\textcolor{keyword}{const} \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__ecc__key__pair}{aws\_ecc\_key\_pair}} *key\_pair);}
 \DoxyCodeLine{163 }

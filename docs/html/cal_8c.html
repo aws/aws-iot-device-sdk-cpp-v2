@@ -85,11 +85,11 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a407f69e844ac10381051b1d82e7de6c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a407f69e844ac10381051b1d82e7de6c2">aws_cal_platform_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)</td></tr>
+<tr class="memitem:a407f69e844ac10381051b1d82e7de6c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a407f69e844ac10381051b1d82e7de6c2">aws_cal_platform_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
 <tr class="separator:a407f69e844ac10381051b1d82e7de6c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb680a9a227a90f27c43f8a871248988"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#adb680a9a227a90f27c43f8a871248988">aws_cal_platform_clean_up</a> (void)</td></tr>
 <tr class="separator:adb680a9a227a90f27c43f8a871248988"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa63491f5049189b76f2271cd1d6370a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#aa63491f5049189b76f2271cd1d6370a5">aws_cal_library_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)</td></tr>
+<tr class="memitem:aa63491f5049189b76f2271cd1d6370a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#aa63491f5049189b76f2271cd1d6370a5">aws_cal_library_init</a> (struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
 <tr class="separator:aa63491f5049189b76f2271cd1d6370a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f4161db6a38398fc8ceccaed4e3886e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a1f4161db6a38398fc8ceccaed4e3886e">aws_cal_library_clean_up</a> (void)</td></tr>
 <tr class="separator:a1f4161db6a38398fc8ceccaed4e3886e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -100,7 +100,7 @@ Variables</h2></td></tr>
 <tr class="separator:a255baa9b51b60f5b91a01313637fc353"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ea700514e70a0da767872486e1c257a"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="structaws__error__info__list.html">aws_error_info_list</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a5ea700514e70a0da767872486e1c257a">s_list</a></td></tr>
 <tr class="separator:a5ea700514e70a0da767872486e1c257a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43a899c46112980667acd5ac9ac8cfca"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a43a899c46112980667acd5ac9ac8cfca">s_cal_library_initialized</a> = <a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a></td></tr>
+<tr class="memitem:a43a899c46112980667acd5ac9ac8cfca"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cal_8c.html#a43a899c46112980667acd5ac9ac8cfca">s_cal_library_initialized</a> = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td></tr>
 <tr class="separator:a43a899c46112980667acd5ac9ac8cfca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -218,7 +218,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> s_cal_library_initialized = <a class="el" href="preamble_8h.html#a4bd6d4d04b1126eefee5484b1521c6f9">false</a></td>
+          <td class="memname">bool s_cal_library_initialized = <a class="el" href="aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c.html#a65e9886d74aaee76545e83dd09011727">false</a></td>
         </tr>
       </table>
   </td>

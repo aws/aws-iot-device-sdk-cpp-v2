@@ -9,11 +9,11 @@
 \item 
 \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a9421f049699efe5c84e16b8a7d4474e6}{Mqtt\+Client\+Connection\+Config\+Builder}} ()
 \item 
-\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a7008ad6608bc1a8269e3fdd591ca0268}{Mqtt\+Client\+Connection\+Config\+Builder}} (const char $\ast$cert\+Path, const char $\ast$pkey\+Path, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a7008ad6608bc1a8269e3fdd591ca0268}{Mqtt\+Client\+Connection\+Config\+Builder}} (const char $\ast$cert\+Path, const char $\ast$pkey\+Path, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a1b2967c4415a9432d0f0b3b6e9f8082a}{Mqtt\+Client\+Connection\+Config\+Builder}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}{cert}}, const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} \&pkey, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a1b2967c4415a9432d0f0b3b6e9f8082a}{Mqtt\+Client\+Connection\+Config\+Builder}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} \&cert, const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} \&pkey, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a4fd052ff2f36a4c266b53318394e20cf}{Mqtt\+Client\+Connection\+Config\+Builder}} (const \mbox{\hyperlink{struct_aws_1_1_iot_1_1_websocket_config}{Websocket\+Config}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a7d70bb7bed95daae1233293126bb9523}{config}}, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a4fd052ff2f36a4c266b53318394e20cf}{Mqtt\+Client\+Connection\+Config\+Builder}} (const \mbox{\hyperlink{struct_aws_1_1_iot_1_1_websocket_config}{Websocket\+Config}} \&config, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Crt\+::\+Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{Crt\+::g\+\_\+allocator}}) noexcept
 \item 
 \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{Mqtt\+Client\+Connection\+Config\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_ab759e64586a580a1b817a8c650d0ca5b}{With\+Endpoint}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a865381ab2bc5db45524fa6ce43c394c3}{Crt\+::\+String}} \&endpoint)
 \item 
@@ -23,7 +23,7 @@
 \item 
 \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{Mqtt\+Client\+Connection\+Config\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_aa08aff9d13f7526ce94834d01286398e}{With\+Certificate\+Authority}} (const char $\ast$ca\+Path) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{Mqtt\+Client\+Connection\+Config\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a8abcb9c93c53de594ec071f458c098a1}{With\+Certificate\+Authority}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} \&\mbox{\hyperlink{s2n__client__key__recv__fuzz__test_8c_a847d4509baf1204aa3eef3d8044ad04c}{cert}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{Mqtt\+Client\+Connection\+Config\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a8abcb9c93c53de594ec071f458c098a1}{With\+Certificate\+Authority}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Crt\+::\+Byte\+Cursor}} \&cert) noexcept
 \item 
 \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder}{Mqtt\+Client\+Connection\+Config\+Builder}} \& \mbox{\hyperlink{class_aws_1_1_iot_1_1_mqtt_client_connection_config_builder_a153f716534c161772b6227791d9544ec}{With\+Tcp\+Keep\+Alive}} () noexcept
 \item 
@@ -95,7 +95,7 @@ the value of the last aws error encountered by operations on this instance.
 \index{Aws::Iot::MqttClientConnectionConfigBuilder@{Aws::Iot::MqttClientConnectionConfigBuilder}!operator bool@{operator bool}}
 \index{operator bool@{operator bool}!Aws::Iot::MqttClientConnectionConfigBuilder@{Aws::Iot::MqttClientConnectionConfigBuilder}}
 \doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
-{\footnotesize\ttfamily Aws\+::\+Iot\+::\+Mqtt\+Client\+Connection\+Config\+Builder\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Iot\+::\+Mqtt\+Client\+Connection\+Config\+Builder\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
 
 \begin{DoxyReturn}{Returns}
 true if the instance is in a valid state, false otherwise. 

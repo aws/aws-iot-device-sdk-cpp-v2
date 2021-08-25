@@ -10,9 +10,9 @@
 \item 
 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{strutil_8h_ac873a277766af4a57cbc76c62db5e3ae}{aws\+\_\+strutil\+\_\+trim\+\_\+http\+\_\+whitespace}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} cursor)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{strutil_8h_acd56886bdc0b67633e472d1322129215}{aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} bool \mbox{\hyperlink{strutil_8h_acd56886bdc0b67633e472d1322129215}{aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} token)
 \item 
-\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{strutil_8h_a6962f3466eb2b566cf5822441ab731e2}{aws\+\_\+strutil\+\_\+is\+\_\+lowercase\+\_\+http\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{event__stream__rpc__server__connection__test_8c_a3f037ea767197698bc0b4c14fa155431}{token}})
+\mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} bool \mbox{\hyperlink{strutil_8h_a6962f3466eb2b566cf5822441ab731e2}{aws\+\_\+strutil\+\_\+is\+\_\+lowercase\+\_\+http\+\_\+token}} (struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} token)
 \end{DoxyCompactItemize}
 
 
@@ -21,13 +21,13 @@
 \index{strutil.h@{strutil.h}!aws\_strutil\_is\_http\_token@{aws\_strutil\_is\_http\_token}}
 \index{aws\_strutil\_is\_http\_token@{aws\_strutil\_is\_http\_token}!strutil.h@{strutil.h}}
 \doxysubsubsection{\texorpdfstring{aws\_strutil\_is\_http\_token()}{aws\_strutil\_is\_http\_token()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} bool aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token }\end{DoxyParamCaption})}
 
 Return whether this is a valid token, as defined by RFC7230 section 3.\+2.\+6\+: token = 1$\ast$tchar tchar = \char`\"{}!\char`\"{} / \char`\"{}\#\char`\"{} / \char`\"{}\$\char`\"{} / \char`\"{}\%\char`\"{} / \char`\"{}\&\char`\"{} / \char`\"{}\textquotesingle{}\char`\"{} / \char`\"{}$\ast$\char`\"{} / \char`\"{}+\char`\"{} / \char`\"{}-\/\char`\"{} / \char`\"{}.\char`\"{} / \char`\"{}$^\wedge$\char`\"{} / \char`\"{}\+\_\+\char`\"{} / \char`\"{}\`{}\char`\"{} / \char`\"{}$\vert$\char`\"{} / \char`\"{}$\sim$\char`\"{} / DIGIT / ALPHA \mbox{\Hypertarget{strutil_8h_a6962f3466eb2b566cf5822441ab731e2}\label{strutil_8h_a6962f3466eb2b566cf5822441ab731e2}} 
 \index{strutil.h@{strutil.h}!aws\_strutil\_is\_lowercase\_http\_token@{aws\_strutil\_is\_lowercase\_http\_token}}
 \index{aws\_strutil\_is\_lowercase\_http\_token@{aws\_strutil\_is\_lowercase\_http\_token}!strutil.h@{strutil.h}}
 \doxysubsubsection{\texorpdfstring{aws\_strutil\_is\_lowercase\_http\_token()}{aws\_strutil\_is\_lowercase\_http\_token()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} aws\+\_\+strutil\+\_\+is\+\_\+lowercase\+\_\+http\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-http_2include_2aws_2http_2_exports_8h_a8eba90dca01a9989cacc0060fa84122a}{AWS\+\_\+\+HTTP\+\_\+\+API}} bool aws\+\_\+strutil\+\_\+is\+\_\+lowercase\+\_\+http\+\_\+token (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}}}]{token }\end{DoxyParamCaption})}
 
 Same as aws\+\_\+strutil\+\_\+is\+\_\+http\+\_\+token\+\_\+valid(), but uppercase letters are forbidden. \mbox{\Hypertarget{strutil_8h_ac8543217a55096718b23f253ba123c91}\label{strutil_8h_ac8543217a55096718b23f253ba123c91}} 
 \index{strutil.h@{strutil.h}!aws\_strutil\_read\_unsigned\_hex@{aws\_strutil\_read\_unsigned\_hex}}

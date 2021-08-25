@@ -7,21 +7,21 @@
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-int($\ast$ \mbox{\hyperlink{structs2n__hash_a2c6a410142af4c5c28de1879b1df0bee}{alloc}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})
+int($\ast$ \mbox{\hyperlink{structs2n__hash_a2c6a410142af4c5c28de1879b1df0bee}{alloc}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state)
 \item 
-int($\ast$ \mbox{\hyperlink{structs2n__hash_af6fa89105e2f7e0b67c424509733711a}{allow\+\_\+md5\+\_\+for\+\_\+fips}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})
+int($\ast$ \mbox{\hyperlink{structs2n__hash_af6fa89105e2f7e0b67c424509733711a}{allow\+\_\+md5\+\_\+for\+\_\+fips}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state)
 \item 
-int($\ast$ \mbox{\hyperlink{structs2n__hash_a5a993b0f9d836311a02f72e16e436d98}{init}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg)
+int($\ast$ \mbox{\hyperlink{structs2n__hash_a5a993b0f9d836311a02f72e16e436d98}{init}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state, \mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg)
 \item 
-int($\ast$ \mbox{\hyperlink{structs2n__hash_a30d5ef1abaf9620379bd597ca8aad92e}{update}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, const void $\ast$data, uint32\+\_\+t size)
+int($\ast$ \mbox{\hyperlink{structs2n__hash_a30d5ef1abaf9620379bd597ca8aad92e}{update}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state, const void $\ast$data, uint32\+\_\+t size)
 \item 
-int($\ast$ \mbox{\hyperlink{structs2n__hash_afaea755b79175a9cd8fd85d83b402a95}{digest}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, void $\ast$out, uint32\+\_\+t size)
+int($\ast$ \mbox{\hyperlink{structs2n__hash_afaea755b79175a9cd8fd85d83b402a95}{digest}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state, void $\ast$out, uint32\+\_\+t size)
 \item 
 int($\ast$ \mbox{\hyperlink{structs2n__hash_a9158c69980de0ebc6a43feed87e38c2b}{copy}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$to, struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$from)
 \item 
-int($\ast$ \mbox{\hyperlink{structs2n__hash_a704cb28ef84fb1eb59bb880320cf2fc6}{reset}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})
+int($\ast$ \mbox{\hyperlink{structs2n__hash_a704cb28ef84fb1eb59bb880320cf2fc6}{reset}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state)
 \item 
-int($\ast$ \mbox{\hyperlink{structs2n__hash_a3e967365f4c8eadf2dad0eb92c606523}{free}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})
+int($\ast$ \mbox{\hyperlink{structs2n__hash_a3e967365f4c8eadf2dad0eb92c606523}{free}} )(struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state)
 \end{DoxyCompactItemize}
 
 
@@ -30,13 +30,13 @@ int($\ast$ \mbox{\hyperlink{structs2n__hash_a3e967365f4c8eadf2dad0eb92c606523}{f
 \index{s2n\_hash@{s2n\_hash}!alloc@{alloc}}
 \index{alloc@{alloc}!s2n\_hash@{s2n\_hash}}
 \doxysubsubsection{\texorpdfstring{alloc}{alloc}}
-{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::alloc) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::alloc) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state)}
 
 \mbox{\Hypertarget{structs2n__hash_af6fa89105e2f7e0b67c424509733711a}\label{structs2n__hash_af6fa89105e2f7e0b67c424509733711a}} 
 \index{s2n\_hash@{s2n\_hash}!allow\_md5\_for\_fips@{allow\_md5\_for\_fips}}
 \index{allow\_md5\_for\_fips@{allow\_md5\_for\_fips}!s2n\_hash@{s2n\_hash}}
 \doxysubsubsection{\texorpdfstring{allow\_md5\_for\_fips}{allow\_md5\_for\_fips}}
-{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::allow\+\_\+md5\+\_\+for\+\_\+fips) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::allow\+\_\+md5\+\_\+for\+\_\+fips) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state)}
 
 \mbox{\Hypertarget{structs2n__hash_a9158c69980de0ebc6a43feed87e38c2b}\label{structs2n__hash_a9158c69980de0ebc6a43feed87e38c2b}} 
 \index{s2n\_hash@{s2n\_hash}!copy@{copy}}
@@ -48,34 +48,34 @@ int($\ast$ \mbox{\hyperlink{structs2n__hash_a3e967365f4c8eadf2dad0eb92c606523}{f
 \index{s2n\_hash@{s2n\_hash}!digest@{digest}}
 \index{digest@{digest}!s2n\_hash@{s2n\_hash}}
 \doxysubsubsection{\texorpdfstring{digest}{digest}}
-{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::digest) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, void $\ast$out, uint32\+\_\+t size)}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::digest) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state, void $\ast$out, uint32\+\_\+t size)}
 
 \mbox{\Hypertarget{structs2n__hash_a3e967365f4c8eadf2dad0eb92c606523}\label{structs2n__hash_a3e967365f4c8eadf2dad0eb92c606523}} 
 \index{s2n\_hash@{s2n\_hash}!free@{free}}
 \index{free@{free}!s2n\_hash@{s2n\_hash}}
 \doxysubsubsection{\texorpdfstring{free}{free}}
-{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::free) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::free) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state)}
 
 \mbox{\Hypertarget{structs2n__hash_a5a993b0f9d836311a02f72e16e436d98}\label{structs2n__hash_a5a993b0f9d836311a02f72e16e436d98}} 
 \index{s2n\_hash@{s2n\_hash}!init@{init}}
 \index{init@{init}!s2n\_hash@{s2n\_hash}}
 \doxysubsubsection{\texorpdfstring{init}{init}}
-{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::init) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, \mbox{\hyperlink{crypto_2s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg)}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::init) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state, \mbox{\hyperlink{s2n__hash_8h_a45fca4e9152a9bfb4b15f8d9f1a074e5}{s2n\+\_\+hash\+\_\+algorithm}} alg)}
 
 \mbox{\Hypertarget{structs2n__hash_a704cb28ef84fb1eb59bb880320cf2fc6}\label{structs2n__hash_a704cb28ef84fb1eb59bb880320cf2fc6}} 
 \index{s2n\_hash@{s2n\_hash}!reset@{reset}}
 \index{reset@{reset}!s2n\_hash@{s2n\_hash}}
 \doxysubsubsection{\texorpdfstring{reset}{reset}}
-{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::reset) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}})}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::reset) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state)}
 
 \mbox{\Hypertarget{structs2n__hash_a30d5ef1abaf9620379bd597ca8aad92e}\label{structs2n__hash_a30d5ef1abaf9620379bd597ca8aad92e}} 
 \index{s2n\_hash@{s2n\_hash}!update@{update}}
 \index{update@{update}!s2n\_hash@{s2n\_hash}}
 \doxysubsubsection{\texorpdfstring{update}{update}}
-{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::update) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$\mbox{\hyperlink{structstate}{state}}, const void $\ast$data, uint32\+\_\+t size)}
+{\footnotesize\ttfamily int($\ast$ s2n\+\_\+hash\+::update) (struct \mbox{\hyperlink{structs2n__hash__state}{s2n\+\_\+hash\+\_\+state}} $\ast$state, const void $\ast$data, uint32\+\_\+t size)}
 
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-crt/aws-\/crt-\/cpp/crt/s2n/crypto/\mbox{\hyperlink{crypto_2s2n__hash_8h}{s2n\+\_\+hash.\+h}}\end{DoxyCompactItemize}
+crt/aws-\/crt-\/cpp/crt/s2n/crypto/\mbox{\hyperlink{s2n__hash_8h}{s2n\+\_\+hash.\+h}}\end{DoxyCompactItemize}

@@ -4,7 +4,7 @@
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{s2n__signature_8h_ab970e27daf809d65df1052efc6788e14}{sig\+\_\+alg\+\_\+check}}(a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})~do \{ \mbox{\hyperlink{connection__state__test_8c_a0028ec690a2d04dca42f6fd3dee7f3bd}{if}} ( (a) != (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}) ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}(\mbox{\hyperlink{s2n__errno_8h_a64ed9ec59a957387654c5e5865325374ac68dbe36d515759d6ba535808027ad8c}{S2\+N\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM}}); \} \} while(0)
+\#define \mbox{\hyperlink{s2n__signature_8h_ab970e27daf809d65df1052efc6788e14}{sig\+\_\+alg\+\_\+check}}(a,  \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}})~do \{ if ( (a) != (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}) ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}(\mbox{\hyperlink{s2n__errno_8h_a64ed9ec59a957387654c5e5865325374ac68dbe36d515759d6ba535808027ad8c}{S2\+N\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM}}); \} \} while(0)
 \end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -25,7 +25,7 @@ enum \mbox{\hyperlink{s2n__signature_8h_a28050d82b8dc7de14b8b0698eb526780}{s2n\+
 \index{s2n\_signature.h@{s2n\_signature.h}!sig\_alg\_check@{sig\_alg\_check}}
 \index{sig\_alg\_check@{sig\_alg\_check}!s2n\_signature.h@{s2n\_signature.h}}
 \doxysubsubsection{\texorpdfstring{sig\_alg\_check}{sig\_alg\_check}}
-{\footnotesize\ttfamily \#define sig\+\_\+alg\+\_\+check(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} }\end{DoxyParamCaption})~do \{ \mbox{\hyperlink{connection__state__test_8c_a0028ec690a2d04dca42f6fd3dee7f3bd}{if}} ( (a) != (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}) ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}(\mbox{\hyperlink{s2n__errno_8h_a64ed9ec59a957387654c5e5865325374ac68dbe36d515759d6ba535808027ad8c}{S2\+N\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM}}); \} \} while(0)}
+{\footnotesize\ttfamily \#define sig\+\_\+alg\+\_\+check(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}} }\end{DoxyParamCaption})~do \{ if ( (a) != (\mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2include_2aws_2auth_2external_2c_j_s_o_n_8h_a1a175e87536301df98c805ac0636ad7c}{b}}) ) \{ \mbox{\hyperlink{s2n__errno_8h_a08d5fe29456fb80050bab416d565ae3e}{S2\+N\+\_\+\+ERROR}}(\mbox{\hyperlink{s2n__errno_8h_a64ed9ec59a957387654c5e5865325374ac68dbe36d515759d6ba535808027ad8c}{S2\+N\+\_\+\+ERR\+\_\+\+INVALID\+\_\+\+SIGNATURE\+\_\+\+ALGORITHM}}); \} \} while(0)}
 
 
 

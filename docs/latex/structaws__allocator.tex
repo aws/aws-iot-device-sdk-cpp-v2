@@ -7,15 +7,15 @@
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-void $\ast$($\ast$ \mbox{\hyperlink{structaws__allocator_a7b02273e3d52c045f047c8d39773572c}{mem\+\_\+acquire}} )(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)
+void $\ast$($\ast$ \mbox{\hyperlink{structaws__allocator_aa04e00515a625d17affdd0148a1c3681}{mem\+\_\+acquire}} )(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t size)
 \item 
-void($\ast$ \mbox{\hyperlink{structaws__allocator_ae5442dc414a34a2d154a6c3a28ca30a4}{mem\+\_\+release}} )(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr)
+void($\ast$ \mbox{\hyperlink{structaws__allocator_a0d2e8af22edd5d3a714f13c1bd057459}{mem\+\_\+release}} )(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$ptr)
 \item 
-void $\ast$($\ast$ \mbox{\hyperlink{structaws__allocator_a7a0d52fe7d6404bd17cd27ea2f59bbf2}{mem\+\_\+realloc}} )(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$oldptr, size\+\_\+t oldsize, size\+\_\+t newsize)
+void $\ast$($\ast$ \mbox{\hyperlink{structaws__allocator_aa3080b8955031d7fe0193d6eb2d2f58e}{mem\+\_\+realloc}} )(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$oldptr, size\+\_\+t oldsize, size\+\_\+t newsize)
 \item 
-void $\ast$($\ast$ \mbox{\hyperlink{structaws__allocator_a8936ae6bfbe2babcd3fd5f81a9329734}{mem\+\_\+calloc}} )(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t num, size\+\_\+t size)
+void $\ast$($\ast$ \mbox{\hyperlink{structaws__allocator_a8a67e6e41570ef61ec45841c056f0075}{mem\+\_\+calloc}} )(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t num, size\+\_\+t size)
 \item 
-void $\ast$ \mbox{\hyperlink{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}{impl}}
+void $\ast$ \mbox{\hyperlink{structaws__allocator_a67767a7a96553aa465cbeef998c4dbef}{impl}}
 \end{DoxyCompactItemize}
 
 
@@ -23,39 +23,38 @@ void $\ast$ \mbox{\hyperlink{structaws__allocator_a20b05892937b73369dbccfaf14b31
 Copyright Amazon.\+com, Inc. or its affiliates. All Rights Reserved. SPDX-\/\+License-\/\+Identifier\+: Apache-\/2.\+0. 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}\label{structaws__allocator_a20b05892937b73369dbccfaf14b31b9e}} 
+\mbox{\Hypertarget{structaws__allocator_a67767a7a96553aa465cbeef998c4dbef}\label{structaws__allocator_a67767a7a96553aa465cbeef998c4dbef}} 
 \index{aws\_allocator@{aws\_allocator}!impl@{impl}}
 \index{impl@{impl}!aws\_allocator@{aws\_allocator}}
 \doxysubsubsection{\texorpdfstring{impl}{impl}}
-{\footnotesize\ttfamily void $\ast$ aws\+\_\+allocator\+::impl}
+{\footnotesize\ttfamily void$\ast$ aws\+\_\+allocator\+::impl}
 
-\mbox{\Hypertarget{structaws__allocator_a7b02273e3d52c045f047c8d39773572c}\label{structaws__allocator_a7b02273e3d52c045f047c8d39773572c}} 
+\mbox{\Hypertarget{structaws__allocator_aa04e00515a625d17affdd0148a1c3681}\label{structaws__allocator_aa04e00515a625d17affdd0148a1c3681}} 
 \index{aws\_allocator@{aws\_allocator}!mem\_acquire@{mem\_acquire}}
 \index{mem\_acquire@{mem\_acquire}!aws\_allocator@{aws\_allocator}}
 \doxysubsubsection{\texorpdfstring{mem\_acquire}{mem\_acquire}}
-{\footnotesize\ttfamily void $\ast$($\ast$ aws\+\_\+allocator\+::mem\+\_\+acquire)(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t size)}
+{\footnotesize\ttfamily void$\ast$($\ast$ aws\+\_\+allocator\+::mem\+\_\+acquire) (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t size)}
 
-\mbox{\Hypertarget{structaws__allocator_a8936ae6bfbe2babcd3fd5f81a9329734}\label{structaws__allocator_a8936ae6bfbe2babcd3fd5f81a9329734}} 
+\mbox{\Hypertarget{structaws__allocator_a8a67e6e41570ef61ec45841c056f0075}\label{structaws__allocator_a8a67e6e41570ef61ec45841c056f0075}} 
 \index{aws\_allocator@{aws\_allocator}!mem\_calloc@{mem\_calloc}}
 \index{mem\_calloc@{mem\_calloc}!aws\_allocator@{aws\_allocator}}
 \doxysubsubsection{\texorpdfstring{mem\_calloc}{mem\_calloc}}
-{\footnotesize\ttfamily void $\ast$($\ast$ aws\+\_\+allocator\+::mem\+\_\+calloc)(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, size\+\_\+t num, size\+\_\+t size)}
+{\footnotesize\ttfamily void$\ast$($\ast$ aws\+\_\+allocator\+::mem\+\_\+calloc) (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, size\+\_\+t num, size\+\_\+t size)}
 
-\mbox{\Hypertarget{structaws__allocator_a7a0d52fe7d6404bd17cd27ea2f59bbf2}\label{structaws__allocator_a7a0d52fe7d6404bd17cd27ea2f59bbf2}} 
+\mbox{\Hypertarget{structaws__allocator_aa3080b8955031d7fe0193d6eb2d2f58e}\label{structaws__allocator_aa3080b8955031d7fe0193d6eb2d2f58e}} 
 \index{aws\_allocator@{aws\_allocator}!mem\_realloc@{mem\_realloc}}
 \index{mem\_realloc@{mem\_realloc}!aws\_allocator@{aws\_allocator}}
 \doxysubsubsection{\texorpdfstring{mem\_realloc}{mem\_realloc}}
-{\footnotesize\ttfamily void $\ast$($\ast$ aws\+\_\+allocator\+::mem\+\_\+realloc)(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$oldptr, size\+\_\+t oldsize, size\+\_\+t newsize)}
+{\footnotesize\ttfamily void$\ast$($\ast$ aws\+\_\+allocator\+::mem\+\_\+realloc) (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$oldptr, size\+\_\+t oldsize, size\+\_\+t newsize)}
 
-\mbox{\Hypertarget{structaws__allocator_ae5442dc414a34a2d154a6c3a28ca30a4}\label{structaws__allocator_ae5442dc414a34a2d154a6c3a28ca30a4}} 
+\mbox{\Hypertarget{structaws__allocator_a0d2e8af22edd5d3a714f13c1bd057459}\label{structaws__allocator_a0d2e8af22edd5d3a714f13c1bd057459}} 
 \index{aws\_allocator@{aws\_allocator}!mem\_release@{mem\_release}}
 \index{mem\_release@{mem\_release}!aws\_allocator@{aws\_allocator}}
 \doxysubsubsection{\texorpdfstring{mem\_release}{mem\_release}}
-{\footnotesize\ttfamily void($\ast$ aws\+\_\+allocator\+::mem\+\_\+release)(struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, void $\ast$ptr)}
+{\footnotesize\ttfamily void($\ast$ aws\+\_\+allocator\+::mem\+\_\+release) (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, void $\ast$ptr)}
 
 
 
-The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/\mbox{\hyperlink{allocator_8h}{allocator.\+h}}\item 
-crt/aws-\/crt-\/cpp/crt/aws-\/c-\/io/tests/vcc/\mbox{\hyperlink{preamble_8h}{preamble.\+h}}\end{DoxyCompactItemize}
+crt/aws-\/crt-\/cpp/crt/aws-\/c-\/common/include/aws/common/\mbox{\hyperlink{allocator_8h}{allocator.\+h}}\end{DoxyCompactItemize}

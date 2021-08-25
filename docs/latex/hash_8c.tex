@@ -4,13 +4,13 @@
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{hash_8c_ada95b9da50e03731fd4ea6920c6ddc51}{aws\+\_\+sha256\+\_\+default\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{hash_8c_ada95b9da50e03731fd4ea6920c6ddc51}{aws\+\_\+sha256\+\_\+default\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
-struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{hash_8c_a09ff2c5413718badc2c1251292c1a9b8}{aws\+\_\+md5\+\_\+default\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{hash_8c_a09ff2c5413718badc2c1251292c1a9b8}{aws\+\_\+md5\+\_\+default\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
-struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{hash_8c_ac4f484eb16016310a9f4130dcdadf3f5}{aws\+\_\+sha256\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{hash_8c_ac4f484eb16016310a9f4130dcdadf3f5}{aws\+\_\+sha256\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
-struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{hash_8c_ada7534b0623c90f7953e66bb9b640809}{aws\+\_\+md5\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}})
+struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$ \mbox{\hyperlink{hash_8c_ada7534b0623c90f7953e66bb9b640809}{aws\+\_\+md5\+\_\+new}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator)
 \item 
 void \mbox{\hyperlink{hash_8c_a9736f4f5329d69ba9bee7fe15a787a2e}{aws\+\_\+set\+\_\+md5\+\_\+new\+\_\+fn}} (\mbox{\hyperlink{crt_2aws-c-cal_2include_2aws_2cal_2_hash_8h_a8156c335c3fb63355fa5a5b9c00535d8}{aws\+\_\+hash\+\_\+new\+\_\+fn}} $\ast$fn)
 \item 
@@ -20,13 +20,13 @@ void \mbox{\hyperlink{hash_8c_a95039d57f8e71a65499ff6502f9538ad}{aws\+\_\+hash\+
 \item 
 int \mbox{\hyperlink{hash_8c_aa338d269cee5945a93726fb2b975949e}{aws\+\_\+hash\+\_\+update}} (struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$hash, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$to\+\_\+hash)
 \item 
-int \mbox{\hyperlink{hash_8c_a442ffb5dc791b689b649fdfc2b1420fa}{aws\+\_\+hash\+\_\+finalize}} (struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$hash, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t truncate\+\_\+to)
+int \mbox{\hyperlink{hash_8c_a442ffb5dc791b689b649fdfc2b1420fa}{aws\+\_\+hash\+\_\+finalize}} (struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$hash, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output, size\+\_\+t truncate\+\_\+to)
 \item 
-static int \mbox{\hyperlink{hash_8c_a9bd1fb13363267103ef2ddc9a3fdf597}{compute\+\_\+hash}} (struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$hash, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t truncate\+\_\+to)
+static int \mbox{\hyperlink{hash_8c_a9bd1fb13363267103ef2ddc9a3fdf597}{compute\+\_\+hash}} (struct \mbox{\hyperlink{structaws__hash}{aws\+\_\+hash}} $\ast$hash, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output, size\+\_\+t truncate\+\_\+to)
 \item 
-int \mbox{\hyperlink{hash_8c_a595cf5e3ce0263502baecc5ae15268f1}{aws\+\_\+md5\+\_\+compute}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t truncate\+\_\+to)
+int \mbox{\hyperlink{hash_8c_a595cf5e3ce0263502baecc5ae15268f1}{aws\+\_\+md5\+\_\+compute}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output, size\+\_\+t truncate\+\_\+to)
 \item 
-int \mbox{\hyperlink{hash_8c_a771ea4e9c9a9a1ce2a3b5cd0f37baae4}{aws\+\_\+sha256\+\_\+compute}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$\mbox{\hyperlink{log__formatter__test_8c_ae73289c5189c80c0661459b0f4743217}{output}}, size\+\_\+t truncate\+\_\+to)
+int \mbox{\hyperlink{hash_8c_a771ea4e9c9a9a1ce2a3b5cd0f37baae4}{aws\+\_\+sha256\+\_\+compute}} (struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$allocator, const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$input, struct \mbox{\hyperlink{structaws__byte__buf}{aws\+\_\+byte\+\_\+buf}} $\ast$output, size\+\_\+t truncate\+\_\+to)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}

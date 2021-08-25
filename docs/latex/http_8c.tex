@@ -22,7 +22,7 @@ struct \mbox{\hyperlink{structaws__enum__value}{aws\+\_\+enum\+\_\+value}}
 \item 
 static void \mbox{\hyperlink{http_8c_a11530c19f6bc3f0261a4668f40436d6d}{s\+\_\+destroy\+\_\+enum\+\_\+value}} (void $\ast$value)
 \item 
-static void \mbox{\hyperlink{http_8c_a249a55030cafb1dd9581f6d704ad950c}{s\+\_\+init\+\_\+str\+\_\+to\+\_\+enum\+\_\+hash\+\_\+table}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$table, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$str\+\_\+array, int start\+\_\+index, int end\+\_\+index, \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} ignore\+\_\+case)
+static void \mbox{\hyperlink{http_8c_a249a55030cafb1dd9581f6d704ad950c}{s\+\_\+init\+\_\+str\+\_\+to\+\_\+enum\+\_\+hash\+\_\+table}} (struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$table, struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$alloc, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$str\+\_\+array, int start\+\_\+index, int end\+\_\+index, bool ignore\+\_\+case)
 \item 
 static int \mbox{\hyperlink{http_8c_aa15b3ad92674b36ac39f4bc0877c92f9}{s\+\_\+find\+\_\+in\+\_\+str\+\_\+to\+\_\+enum\+\_\+hash\+\_\+table}} (const struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$table, struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$key)
 \item 
@@ -77,7 +77,7 @@ static struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}
 \item 
 static struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{http_8c_ad35dd77080a3fe504b71da2f291740b3}{s\+\_\+header\+\_\+enum\+\_\+to\+\_\+str}} \mbox{[}\mbox{\hyperlink{http__impl_8h_a12be5e482ebfe4d5f53c5a493099818fa5725ef4c402e78ffea3f505daf0932d0}{AWS\+\_\+\+HTTP\+\_\+\+HEADER\+\_\+\+COUNT}}\mbox{]}
 \item 
-static \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} \mbox{\hyperlink{http_8c_a3e0a762a360f8f4078afaba44e688669}{s\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}
+static bool \mbox{\hyperlink{http_8c_a3e0a762a360f8f4078afaba44e688669}{s\+\_\+library\+\_\+initialized}} = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}
 \item 
 const struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} \mbox{\hyperlink{http_8c_a3e011b122c331d5dd58cb849b638fd21}{aws\+\_\+http\+\_\+method\+\_\+get}} = \mbox{\hyperlink{byte__buf_8h_a25bb15426b081484f79b35669fc81b90}{AWS\+\_\+\+BYTE\+\_\+\+CUR\+\_\+\+INIT\+\_\+\+FROM\+\_\+\+STRING\+\_\+\+LITERAL}}(\char`\"{}GET\char`\"{})
 \item 
@@ -195,7 +195,7 @@ Given key, get value from table initialized by \mbox{\hyperlink{http_8c_a249a550
 \index{http.c@{http.c}!s\_init\_str\_to\_enum\_hash\_table@{s\_init\_str\_to\_enum\_hash\_table}}
 \index{s\_init\_str\_to\_enum\_hash\_table@{s\_init\_str\_to\_enum\_hash\_table}!http.c@{http.c}}
 \doxysubsubsection{\texorpdfstring{s\_init\_str\_to\_enum\_hash\_table()}{s\_init\_str\_to\_enum\_hash\_table()}}
-{\footnotesize\ttfamily static void s\+\_\+init\+\_\+str\+\_\+to\+\_\+enum\+\_\+hash\+\_\+table (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{table,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{str\+\_\+array,  }\item[{int}]{start\+\_\+index,  }\item[{int}]{end\+\_\+index,  }\item[{\mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}}}]{ignore\+\_\+case }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static void s\+\_\+init\+\_\+str\+\_\+to\+\_\+enum\+\_\+hash\+\_\+table (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structaws__hash__table}{aws\+\_\+hash\+\_\+table}} $\ast$}]{table,  }\item[{struct \mbox{\hyperlink{structaws__allocator}{aws\+\_\+allocator}} $\ast$}]{alloc,  }\item[{struct \mbox{\hyperlink{structaws__byte__cursor}{aws\+\_\+byte\+\_\+cursor}} $\ast$}]{str\+\_\+array,  }\item[{int}]{start\+\_\+index,  }\item[{int}]{end\+\_\+index,  }\item[{bool}]{ignore\+\_\+case }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 Given array of aws\+\_\+byte\+\_\+cursors, init hashtable where... Key is aws\+\_\+byte\+\_\+cursor$\ast$ (pointing into cursor from array) and comparisons are case-\/insensitive. Value is the array index cast to a void$\ast$. \mbox{\Hypertarget{http_8c_a84405bd496ddb136f37586f23d1fca4f}\label{http_8c_a84405bd496ddb136f37586f23d1fca4f}} 
 \index{http.c@{http.c}!s\_methods\_clean\_up@{s\_methods\_clean\_up}}
@@ -344,7 +344,7 @@ Shortcuts for common HTTP request methods \mbox{\Hypertarget{http_8c_aedcde70c17
 \index{http.c@{http.c}!s\_library\_initialized@{s\_library\_initialized}}
 \index{s\_library\_initialized@{s\_library\_initialized}!http.c@{http.c}}
 \doxysubsubsection{\texorpdfstring{s\_library\_initialized}{s\_library\_initialized}}
-{\footnotesize\ttfamily \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} s\+\_\+library\+\_\+initialized = \mbox{\hyperlink{preamble_8h_a4bd6d4d04b1126eefee5484b1521c6f9}{false}}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily bool s\+\_\+library\+\_\+initialized = \mbox{\hyperlink{aws-crt-cpp_2crt_2aws-c-auth_2source_2external_2c_j_s_o_n_8c_a65e9886d74aaee76545e83dd09011727}{false}}\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{http_8c_a3ea328ac426d809dd3902894ad4a9cf5}\label{http_8c_a3ea328ac426d809dd3902894ad4a9cf5}} 
 \index{http.c@{http.c}!s\_log\_subject\_infos@{s\_log\_subject\_infos}}

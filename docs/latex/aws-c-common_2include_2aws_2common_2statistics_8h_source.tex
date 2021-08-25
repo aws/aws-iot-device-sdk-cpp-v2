@@ -41,7 +41,7 @@
 \DoxyCodeLine{60 \textcolor{comment}{ * while skipping those it does not understand.}}
 \DoxyCodeLine{61 \textcolor{comment}{ */}}
 \DoxyCodeLine{62 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_ab7066b912ac1aca4956002e7b4a8f6c1}{aws\_crt\_statistics\_handler\_process\_statistics\_fn}})(}
-\DoxyCodeLine{63     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{63     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *handler,}
 \DoxyCodeLine{64     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__crt__statistics__sample__interval}{aws\_crt\_statistics\_sample\_interval}} *interval,}
 \DoxyCodeLine{65     \textcolor{keyword}{struct }\mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *stats,}
 \DoxyCodeLine{66     \textcolor{keywordtype}{void} *context);}
@@ -49,7 +49,7 @@
 \DoxyCodeLine{68 \textcolor{comment}{/*}}
 \DoxyCodeLine{69 \textcolor{comment}{ * Destroys a statistics handler implementation}}
 \DoxyCodeLine{70 \textcolor{comment}{ */}}
-\DoxyCodeLine{71 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_a7ca9833cb8c7bec255b5408625025065}{aws\_crt\_statistics\_handler\_destroy\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{71 \textcolor{keyword}{typedef} void(\mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_a7ca9833cb8c7bec255b5408625025065}{aws\_crt\_statistics\_handler\_destroy\_fn}})(\textcolor{keyword}{struct }\mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *handler);}
 \DoxyCodeLine{72 }
 \DoxyCodeLine{73 \textcolor{comment}{/*}}
 \DoxyCodeLine{74 \textcolor{comment}{ * The period, in milliseconds, that the handler would like to be informed of statistics.  Statistics generators are}}
@@ -73,16 +73,16 @@
 \DoxyCodeLine{107 }
 \DoxyCodeLine{117 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
 \DoxyCodeLine{118 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_aac3efbacd649820586431ac215fa652c}{aws\_crt\_statistics\_handler\_process\_statistics}}(}
-\DoxyCodeLine{119     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}},}
+\DoxyCodeLine{119     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *handler,}
 \DoxyCodeLine{120     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__sample__interval}{aws\_crt\_statistics\_sample\_interval}} *interval,}
 \DoxyCodeLine{121     \textcolor{keyword}{struct} \mbox{\hyperlink{structaws__array__list}{aws\_array\_list}} *stats,}
 \DoxyCodeLine{122     \textcolor{keywordtype}{void} *context);}
 \DoxyCodeLine{123 }
 \DoxyCodeLine{128 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{129 uint64\_t \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_a6943aa18bd4d1c3fe16351b7483f6ed7}{aws\_crt\_statistics\_handler\_get\_report\_interval\_ms}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{129 uint64\_t \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_a6943aa18bd4d1c3fe16351b7483f6ed7}{aws\_crt\_statistics\_handler\_get\_report\_interval\_ms}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *handler);}
 \DoxyCodeLine{130 }
 \DoxyCodeLine{135 \mbox{\hyperlink{crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h_a4d44553ff7ad58c9718deb08c64c49a6}{AWS\_COMMON\_API}}}
-\DoxyCodeLine{136 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_a4eb6a3bd9ef308585a6ffe65dbf1e820}{aws\_crt\_statistics\_handler\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *\mbox{\hyperlink{connection__state__test_8c_a5f4fb7eeb486f3159a0f17d3d7d59637}{handler}});}
+\DoxyCodeLine{136 \textcolor{keywordtype}{void} \mbox{\hyperlink{aws-c-common_2include_2aws_2common_2statistics_8h_a4eb6a3bd9ef308585a6ffe65dbf1e820}{aws\_crt\_statistics\_handler\_destroy}}(\textcolor{keyword}{struct} \mbox{\hyperlink{structaws__crt__statistics__handler}{aws\_crt\_statistics\_handler}} *handler);}
 \DoxyCodeLine{137 }
 \DoxyCodeLine{138 \mbox{\hyperlink{macros_8h_a24efb76a3b128abc9c35d83cac0030c5}{AWS\_EXTERN\_C\_END}}}
 \DoxyCodeLine{139 }

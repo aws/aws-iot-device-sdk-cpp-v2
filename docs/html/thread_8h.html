@@ -99,23 +99,17 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a579092dc6d13c980765a1a4c2f95879a"><td class="memItemLeft" align="right" valign="top">typedef pthread_once_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a579092dc6d13c980765a1a4c2f95879a">aws_thread_once</a></td></tr>
 <tr class="separator:a579092dc6d13c980765a1a4c2f95879a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ff84a0781fdcab710b0fa5e0a84d046"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="preamble_8h.html#a37c756f466ee6aa44725fa95b55047cc">pthread_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a></td></tr>
+<tr class="memitem:a9ff84a0781fdcab710b0fa5e0a84d046"><td class="memItemLeft" align="right" valign="top">typedef pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a></td></tr>
 <tr class="separator:a9ff84a0781fdcab710b0fa5e0a84d046"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae015b53e5ea80a44f2c18e88df8645fd"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#ae015b53e5ea80a44f2c18e88df8645fd">aws_thread_atexit_fn</a>(void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:ae015b53e5ea80a44f2c18e88df8645fd"><td class="memItemLeft" align="right" valign="top">typedef void()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#ae015b53e5ea80a44f2c18e88df8645fd">aws_thread_atexit_fn</a>(void *user_data)</td></tr>
 <tr class="separator:ae015b53e5ea80a44f2c18e88df8645fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:aec4a7069355037fe99a94a83bdcf1cdc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#aec4a7069355037fe99a94a83bdcf1cdc">aws_thread_detach_state</a> { <br />
-&#160;&#160;<a class="el" href="thread_8h.html#aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd">AWS_THREAD_NOT_CREATED</a> = 1
+<tr class="memitem:aec4a7069355037fe99a94a83bdcf1cdc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#aec4a7069355037fe99a94a83bdcf1cdc">aws_thread_detach_state</a> { <a class="el" href="thread_8h.html#aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd">AWS_THREAD_NOT_CREATED</a> = 1
 , <a class="el" href="thread_8h.html#aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8">AWS_THREAD_JOINABLE</a>
 , <a class="el" href="thread_8h.html#aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511">AWS_THREAD_JOIN_COMPLETED</a>
 , <a class="el" href="thread_8h.html#aec4a7069355037fe99a94a83bdcf1cdca14decd6ca3bd5bd11380ce0904e55960">AWS_THREAD_MANAGED</a>
-, <br />
-&#160;&#160;<a class="el" href="preamble_8h.html#aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd">AWS_THREAD_NOT_CREATED</a> = 1
-, <a class="el" href="preamble_8h.html#aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8">AWS_THREAD_JOINABLE</a>
-, <a class="el" href="preamble_8h.html#aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511">AWS_THREAD_JOIN_COMPLETED</a>
-<br />
  }</td></tr>
 <tr class="separator:aec4a7069355037fe99a94a83bdcf1cdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16ac4f7b945616df65e6bafb95e8a6b5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a16ac4f7b945616df65e6bafb95e8a6b5">aws_thread_join_strategy</a> { <a class="el" href="thread_8h.html#a16ac4f7b945616df65e6bafb95e8a6b5a6842ef9134acfa0a45bf15e168a00f33">AWS_TJS_MANUAL</a> = 0
@@ -127,9 +121,9 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a393cb909ab896d3bc93f3db1d820b818"><td class="memItemLeft" align="right" valign="top"><a class="el" href="macros_8h.html#ab6f66af8231eba5da061b9ada0d29bad">AWS_EXTERN_C_BEGIN</a> <a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> const struct <a class="el" href="structaws__thread__options.html">aws_thread_options</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a393cb909ab896d3bc93f3db1d820b818">aws_default_thread_options</a> (void)</td></tr>
 <tr class="separator:a393cb909ab896d3bc93f3db1d820b818"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22b23eae89a5c94f95dca6e6db1accc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a22b23eae89a5c94f95dca6e6db1accc2">aws_thread_call_once</a> (<a class="el" href="thread_8h.html#a579092dc6d13c980765a1a4c2f95879a">aws_thread_once</a> *flag, void(*call_once)(void *), void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a22b23eae89a5c94f95dca6e6db1accc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a22b23eae89a5c94f95dca6e6db1accc2">aws_thread_call_once</a> (<a class="el" href="thread_8h.html#a579092dc6d13c980765a1a4c2f95879a">aws_thread_once</a> *flag, void(*call_once)(void *), void *user_data)</td></tr>
 <tr class="separator:a22b23eae89a5c94f95dca6e6db1accc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd023fdb173f9f30b73c1a7836692169"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#afd023fdb173f9f30b73c1a7836692169">aws_thread_init</a> (struct <a class="el" href="structaws__thread.html">aws_thread</a> *thread, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *<a class="el" href="socket__test_8c.html#a130cc941753892421e3f70bdee1049d1">allocator</a>)</td></tr>
+<tr class="memitem:afd023fdb173f9f30b73c1a7836692169"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#afd023fdb173f9f30b73c1a7836692169">aws_thread_init</a> (struct <a class="el" href="structaws__thread.html">aws_thread</a> *thread, struct <a class="el" href="structaws__allocator.html">aws_allocator</a> *allocator)</td></tr>
 <tr class="separator:afd023fdb173f9f30b73c1a7836692169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4fab02896eab6897d29e4d88c1727c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#af4fab02896eab6897d29e4d88c1727c1">aws_thread_launch</a> (struct <a class="el" href="structaws__thread.html">aws_thread</a> *thread, void(*func)(void *arg), void *arg, const struct <a class="el" href="structaws__thread__options.html">aws_thread_options</a> *options)</td></tr>
 <tr class="separator:af4fab02896eab6897d29e4d88c1727c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,11 +141,11 @@ Functions</h2></td></tr>
 <tr class="separator:a0ece51e09969422c15fdfc6e8882c717"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11295acc8823b9a3c5e6db63916527b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a11295acc8823b9a3c5e6db63916527b6">aws_thread_current_thread_id</a> (void)</td></tr>
 <tr class="separator:a11295acc8823b9a3c5e6db63916527b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf2ecf236471c78abe87f73484ff8e8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#abf2ecf236471c78abe87f73484ff8e8b">aws_thread_thread_id_equal</a> (<a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a> t1, <a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a> t2)</td></tr>
+<tr class="memitem:abf2ecf236471c78abe87f73484ff8e8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#abf2ecf236471c78abe87f73484ff8e8b">aws_thread_thread_id_equal</a> (<a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a> t1, <a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a> t2)</td></tr>
 <tr class="separator:abf2ecf236471c78abe87f73484ff8e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7102ce1697f8815273d004a7e4945df9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a7102ce1697f8815273d004a7e4945df9">aws_thread_current_sleep</a> (uint64_t nanos)</td></tr>
 <tr class="separator:a7102ce1697f8815273d004a7e4945df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a086d801cf3c365e4b982c52637acf9b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a086d801cf3c365e4b982c52637acf9b5">aws_thread_current_at_exit</a> (<a class="el" href="thread_8h.html#ae015b53e5ea80a44f2c18e88df8645fd">aws_thread_atexit_fn</a> *callback, void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td></tr>
+<tr class="memitem:a086d801cf3c365e4b982c52637acf9b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#a086d801cf3c365e4b982c52637acf9b5">aws_thread_current_at_exit</a> (<a class="el" href="thread_8h.html#ae015b53e5ea80a44f2c18e88df8645fd">aws_thread_atexit_fn</a> *callback, void *user_data)</td></tr>
 <tr class="separator:a086d801cf3c365e4b982c52637acf9b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb83c3ddd739c2f4f49450ff767408a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="thread_8h.html#aeb83c3ddd739c2f4f49450ff767408a4">aws_thread_increment_unjoined_count</a> (void)</td></tr>
 <tr class="separator:aeb83c3ddd739c2f4f49450ff767408a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -195,7 +189,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void() aws_thread_atexit_fn(void *<a class="el" href="event__stream__rpc__server__connection__test_8c.html#af1abaca9a982b3cdb0b118914416c39b">user_data</a>)</td>
+          <td class="memname">typedef void() aws_thread_atexit_fn(void *user_data)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -209,7 +203,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="preamble_8h.html#a37c756f466ee6aa44725fa95b55047cc">pthread_t</a> <a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a></td>
+          <td class="memname">typedef pthread_t <a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -248,9 +242,6 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8" name="aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8"></a>AWS_THREAD_JOINABLE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511" name="aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511"></a>AWS_THREAD_JOIN_COMPLETED&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aec4a7069355037fe99a94a83bdcf1cdca14decd6ca3bd5bd11380ce0904e55960" name="aec4a7069355037fe99a94a83bdcf1cdca14decd6ca3bd5bd11380ce0904e55960"></a>AWS_THREAD_MANAGED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd" name="aec4a7069355037fe99a94a83bdcf1cdca4c67583011b87fb071a0d20909ce89cd"></a>AWS_THREAD_NOT_CREATED&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8" name="aec4a7069355037fe99a94a83bdcf1cdca720a4db701477bdb49d9e646ae1023c8"></a>AWS_THREAD_JOINABLE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511" name="aec4a7069355037fe99a94a83bdcf1cdca592d9eb042cb605a283b897442713511"></a>AWS_THREAD_JOIN_COMPLETED&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -633,7 +624,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> <a class="el" href="preamble_8h.html#a1062901a7428fdd9c7f180f5e01ea056">bool</a> aws_thread_thread_id_equal </td>
+          <td class="memname"><a class="el" href="crt_2aws-crt-cpp_2crt_2aws-c-common_2include_2aws_2common_2_exports_8h.html#a4d44553ff7ad58c9718deb08c64c49a6">AWS_COMMON_API</a> bool aws_thread_thread_id_equal </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="thread_8h.html#a9ff84a0781fdcab710b0fa5e0a84d046">aws_thread_id_t</a>&#160;</td>
           <td class="paramname"><em>t1</em>, </td>

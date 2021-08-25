@@ -11,9 +11,9 @@
 \item 
 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_a282a67fbc4ea7b8729bfc0ddfd4ee1bd}{$\sim$\+Uri}} ()
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_ad89f20188060ad11ad900409626b74dd}{Uri}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&cursor, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_ad89f20188060ad11ad900409626b74dd}{Uri}} (const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&cursor, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
 \item 
-\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_a928b689765c8a886868578c9fdc8881b}{Uri}} (\mbox{\hyperlink{structaws__uri__builder__options}{aws\+\_\+uri\+\_\+builder\+\_\+options}} \&builder\+Options, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$\mbox{\hyperlink{socket__test_8c_a130cc941753892421e3f70bdee1049d1}{allocator}}=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
+\mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_a928b689765c8a886868578c9fdc8881b}{Uri}} (\mbox{\hyperlink{structaws__uri__builder__options}{aws\+\_\+uri\+\_\+builder\+\_\+options}} \&builder\+Options, \mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$allocator=\mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}) noexcept
 \item 
 \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_aadc7458b20f551a5ef555e45ae128fae}{Uri}} (const \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri}{Uri}} \&)
 \item 
@@ -67,13 +67,13 @@ Contains a URI used for networking application protocols. This type is move-\/on
 \doxysubsubsection{\texorpdfstring{Uri()}{Uri()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
 {\footnotesize\ttfamily Aws\+::\+Crt\+::\+Io\+::\+Uri\+::\+Uri (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_aws_1_1_crt_a14ac076b0baa520bccb2b7236e4e78b7}{Byte\+Cursor}} \&}]{cursor,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Parses {\ttfamily cursor} as a URI. Upon failure the \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool()}} operator will return false and \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_a44219c00cfe813b84275d27cd6ba85c5}{Last\+Error()}} will contain the error\+Code. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_io_1_1_uri_a928b689765c8a886868578c9fdc8881b}\label{class_aws_1_1_crt_1_1_io_1_1_uri_a928b689765c8a886868578c9fdc8881b}} 
+Parses {\ttfamily cursor} as a URI. Upon failure the bool() operator will return false and \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_a44219c00cfe813b84275d27cd6ba85c5}{Last\+Error()}} will contain the error\+Code. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_io_1_1_uri_a928b689765c8a886868578c9fdc8881b}\label{class_aws_1_1_crt_1_1_io_1_1_uri_a928b689765c8a886868578c9fdc8881b}} 
 \index{Aws::Crt::Io::Uri@{Aws::Crt::Io::Uri}!Uri@{Uri}}
 \index{Uri@{Uri}!Aws::Crt::Io::Uri@{Aws::Crt::Io::Uri}}
 \doxysubsubsection{\texorpdfstring{Uri()}{Uri()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
 {\footnotesize\ttfamily Aws\+::\+Crt\+::\+Io\+::\+Uri\+::\+Uri (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structaws__uri__builder__options}{aws\+\_\+uri\+\_\+builder\+\_\+options}} \&}]{builder\+Options,  }\item[{\mbox{\hyperlink{namespace_aws_1_1_crt_a3c9efb213e2de565038afcfd4f8afcda}{Allocator}} $\ast$}]{allocator = {\ttfamily \mbox{\hyperlink{namespace_aws_1_1_crt_a7178ef65f261a8db52a624458331bbb2}{g\+\_\+allocator}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
 
-Builds a URI from {\ttfamily builder\+Options}. Upon failure the \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool()}} operator will return false and \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_a44219c00cfe813b84275d27cd6ba85c5}{Last\+Error()}} will contain the error\+Code. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_io_1_1_uri_aadc7458b20f551a5ef555e45ae128fae}\label{class_aws_1_1_crt_1_1_io_1_1_uri_aadc7458b20f551a5ef555e45ae128fae}} 
+Builds a URI from {\ttfamily builder\+Options}. Upon failure the bool() operator will return false and \mbox{\hyperlink{class_aws_1_1_crt_1_1_io_1_1_uri_a44219c00cfe813b84275d27cd6ba85c5}{Last\+Error()}} will contain the error\+Code. \mbox{\Hypertarget{class_aws_1_1_crt_1_1_io_1_1_uri_aadc7458b20f551a5ef555e45ae128fae}\label{class_aws_1_1_crt_1_1_io_1_1_uri_aadc7458b20f551a5ef555e45ae128fae}} 
 \index{Aws::Crt::Io::Uri@{Aws::Crt::Io::Uri}!Uri@{Uri}}
 \index{Uri@{Uri}!Aws::Crt::Io::Uri@{Aws::Crt::Io::Uri}}
 \doxysubsubsection{\texorpdfstring{Uri()}{Uri()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
@@ -173,7 +173,7 @@ the value of the last aws error encountered by operations on this instance.
 \index{Aws::Crt::Io::Uri@{Aws::Crt::Io::Uri}!operator bool@{operator bool}}
 \index{operator bool@{operator bool}!Aws::Crt::Io::Uri@{Aws::Crt::Io::Uri}}
 \doxysubsubsection{\texorpdfstring{operator bool()}{operator bool()}}
-{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Io\+::\+Uri\+::operator \mbox{\hyperlink{preamble_8h_a1062901a7428fdd9c7f180f5e01ea056}{bool}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily Aws\+::\+Crt\+::\+Io\+::\+Uri\+::operator bool (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 \begin{DoxyReturn}{Returns}
 true if the instance is in a valid state, false otherwise. 
